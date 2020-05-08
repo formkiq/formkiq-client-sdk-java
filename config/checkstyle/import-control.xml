@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Puppy Crawl//DTD Import Control 1.1//EN"
+    "http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
+
+<import-control pkg="com.formkiq.stacks">
+	
+	<subpackage name="client">
+	
+		<allow pkg="com.google.gson" />		
+		<allow pkg="com.formkiq.stacks.client" />
+		
+		<allow pkg="java.io" />
+		<allow pkg="java.net" />
+		<allow pkg="java.text" />
+		<allow pkg="java.time" />
+		<allow pkg="java.util" />
+		
+		<allow pkg="org.apache.commons.io" />
+		
+		<allow pkg="software.amazon.awssdk.auth" />
+		<allow pkg="software.amazon.awssdk.core" />
+		<allow pkg="software.amazon.awssdk.http" />
+		<allow pkg="software.amazon.awssdk.regions" />
+		
+		<subpackage name="models">
+			<allow pkg="java.nio" />
+			<allow pkg="java.util" />
+		</subpackage>
+		
+	</subpackage>
+	
+</import-control>
