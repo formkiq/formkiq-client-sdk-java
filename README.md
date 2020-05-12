@@ -1,14 +1,17 @@
 # FormKiQ Java Client Library
+=====================================
 This is the official supported Java library for the FormKiQ API. 
 
 Requires Java 11 or greater.
 
 Please visit http://www.formkiq.com  directly with any issues that need attention.
 
-## Documentation
+Documentation
+------------------
 General documentation for FormKiQ can be found here: http://docs.formkiq.com/.
 
-## Installation
+Installation
+------------------
 Clone the repository, and use
 
 ```
@@ -50,7 +53,7 @@ Add the following to your pom.xml
 ```
 
 Gradle Installation
-------------------
+-------------------
 
 Add the following to your build.gradle
 
@@ -58,3 +61,8 @@ Add the following to your build.gradle
    implementation group: 'com.formkiq.stacks', name: 'client', version:'VERSION'
    <!-- Replace VERSION with the version you want to use -->
 ```
+
+Licensing
+=========
+
+This library is licensed under the Apache Software License, version 2.0.
