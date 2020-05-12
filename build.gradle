@@ -1,6 +1,7 @@
 plugins {
 	id 'java'
 	id 'maven-publish'
+	id 'signing'
 }
 
 group = 'com.formkiq.stacks'
@@ -34,6 +35,30 @@ publishing {
 	    mavenJava(MavenPublication) {
 	    	artifactId = 'client'
 	        from components.java
+	        
+	        pom {
+                name = 'FormKiQ Client'
+                description = 'The Official Client library for FormKiQ'
+                url = 'https://github.com/formkiq/formkiq-java-client'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'mfriesen'
+                        name = 'Mike Friesen'
+                        email = 'mike@formkiq.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/formkiq/formkiq-java-client.git'
+                    developerConnection = 'scm:git:ssh://github.com/formkiq/formkiq-java-client.git'
+                    url = 'https://github.com/formkiq/formkiq-java-client.git'
+                }
+            }
 	    }
 	}
 	repositories {
@@ -51,4 +76,15 @@ javadoc {
     if(JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
+}
+
+artifacts {
+    archives jar
+	
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
