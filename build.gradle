@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.formkiq.stacks'
-version = '1.0'
+version = 'master'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
