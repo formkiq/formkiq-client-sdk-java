@@ -21,10 +21,10 @@ import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.regions.Region;
 
 /**
- * Class for creating connections to {@link FormKiqHttpClient}.
+ * Class for creating connections to {@link FormKiqClient}.
  *
  */
-public class FormKiqHttpClientConnection {
+public class FormKiqClientConnection {
 
   /** FormKiQ Rest API Url. */
   private String apiRestUrl;
@@ -41,7 +41,7 @@ public class FormKiqHttpClientConnection {
    * @param restUrl The Rest URL (can be found in SSM
    *        /formkiq/&lt;appenvironment&gt;/api/DocumentsRestUrl)
    */
-  public FormKiqHttpClientConnection(final String restUrl) {
+  public FormKiqClientConnection(final String restUrl) {
     this.apiRestUrl = restUrl;
   }
 
@@ -49,9 +49,9 @@ public class FormKiqHttpClientConnection {
    * Cognito Id Token.
    * 
    * @param token {@link String}
-   * @return {@link FormKiqHttpClientConnection}
+   * @return {@link FormKiqClientConnection}
    */
-  public FormKiqHttpClientConnection cognitoIdToken(final String token) {
+  public FormKiqClientConnection cognitoIdToken(final String token) {
     this.headers.put("Authorization", Arrays.asList(token));
     return this;
   }
@@ -60,9 +60,9 @@ public class FormKiqHttpClientConnection {
    * Set {@link AwsCredentials}.
    * 
    * @param region {@link Region}
-   * @return {@link FormKiqHttpClientConnection}
+   * @return {@link FormKiqClientConnection}
    */
-  public FormKiqHttpClientConnection region(final Region region) {
+  public FormKiqClientConnection region(final Region region) {
     this.awsregion = Optional.of(region);
     return this;
   }
@@ -71,21 +71,21 @@ public class FormKiqHttpClientConnection {
    * Set {@link AwsCredentials}.
    * 
    * @param credentials {@link AwsCredentials}
-   * @return {@link FormKiqHttpClientConnection}
+   * @return {@link FormKiqClientConnection}
    */
-  public FormKiqHttpClientConnection credentials(final AwsCredentials credentials) {
+  public FormKiqClientConnection credentials(final AwsCredentials credentials) {
     this.awscredentials = Optional.of(credentials);
     return this;
   }
 
   /**
-   * Build {@link HttpServiceJava}.
+   * Build {@link HttpService}.
    * 
-   * @return {@link HttpServiceJava}
+   * @return {@link HttpService}
    */
-  public HttpServiceJava build() {
+  public HttpService build() {
 
-    HttpServiceJava http = new HttpServiceJava().headers(this.headers);
+    HttpService http = new HttpServiceJava().headers(this.headers);
 
     this.awsregion.ifPresent(r -> http.signingRegion(r));
     this.awscredentials.ifPresent(c -> http.credentials(c));
@@ -98,9 +98,9 @@ public class FormKiqHttpClientConnection {
    * 
    * @param key {@link String}
    * @param values {@link List} {@link String}
-   * @return {@link FormKiqHttpClientConnection}
+   * @return {@link FormKiqClientConnection}
    */
-  public FormKiqHttpClientConnection header(final String key, final List<String> values) {
+  public FormKiqClientConnection header(final String key, final List<String> values) {
     this.headers.put(key, values);
     return this;
   }

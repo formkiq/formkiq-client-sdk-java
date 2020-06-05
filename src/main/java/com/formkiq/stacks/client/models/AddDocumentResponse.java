@@ -10,35 +10,37 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.formkiq.stacks.client.requests;
-
-import java.util.Collections;
-import java.util.Map;
-import com.formkiq.stacks.client.ApiRequest;
+package com.formkiq.stacks.client.models;
 
 /**
- * Creates GET /version.
+ * Response object for POST /documents.
  *
  */
-public class VersionRequest implements ApiRequest {
+public class AddDocumentResponse {
+
+  /** Document Identifier. */
+  private String documentId;
 
   /**
    * constructor.
    */
-  public VersionRequest() {}
+  public AddDocumentResponse() {}
 
-  @Override
-  public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
+  /**
+   * Get Document Identifier.
+   * 
+   * @return {@link String}
+   */
+  public String documentId() {
+    return this.documentId;
   }
 
-  @Override
-  public String getUrlPath() {
-    return "version";
-  }
-
-  @Override
-  public void validate() {
-    // empty
+  /**
+   * Set Document Identifier.
+   * 
+   * @param id {@link String}
+   */
+  public void documentId(final String id) {
+    this.documentId = id;
   }
 }

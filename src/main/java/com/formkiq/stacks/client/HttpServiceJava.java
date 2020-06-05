@@ -37,7 +37,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
-import org.apache.commons.io.IOUtils;
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.auth.signer.Aws4Signer;
 import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
@@ -47,10 +46,10 @@ import software.amazon.awssdk.http.SdkHttpMethod;
 import software.amazon.awssdk.regions.Region;
 
 /**
- * Java {@link HttpClient} Implemenation.
+ * Java 11 {@link HttpClient} Implemenation of {@link HttpService}.
  *
  */
-public class HttpServiceJava {
+public class HttpServiceJava implements HttpService {
 
   /** Headers that are not allowed to be added to {@link HttpClient}. */
   private static final Set<String> NOT_ALLOWED_HEADERS = Set.of("connection", "content-length",
@@ -132,35 +131,18 @@ public class HttpServiceJava {
     return requestBuilder;
   }
 
-  /**
-   * Gets {@link AwsCredentials}.
-   * 
-   * @return {@link AwsCredentials}
-   */
+  @Override
   public Optional<AwsCredentials> credentials() {
     return this.credentials;
   }
 
-  /**
-   * Set {@link AwsCredentials}.
-   * 
-   * @param cred {@link AwsCredentials}
-   * @return {@link HttpServiceJava}
-   */
+  @Override
   public HttpServiceJava credentials(final AwsCredentials cred) {
     this.credentials = cred != null ? Optional.of(cred) : Optional.empty();
     return this;
   }
 
-  /**
-   * Perform 'DELETE' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link Optional} {@link HttpHeaders}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> delete(final String uri, final Optional<HttpHeaders> headers)
       throws IOException, InterruptedException {
     SdkHttpFullRequest.Builder request =
@@ -169,6 +151,14 @@ public class HttpServiceJava {
     return execute(req);
   }
 
+  /**
+   * Execute {@link SdkHttpFullRequest}.
+   * 
+   * @param request {@link SdkHttpFullRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
   private HttpResponse<String> execute(final SdkHttpFullRequest request)
       throws IOException, InterruptedException {
 
@@ -191,8 +181,7 @@ public class HttpServiceJava {
       case PUT:
       case PATCH:
         InputStream is = request.contentStreamProvider().get().newStream();
-        byte[] bytes = IOUtils.toByteArray(is);
-        builder = builder.method(request.method().name(), BodyPublishers.ofByteArray(bytes));
+        builder = builder.method(request.method().name(), BodyPublishers.ofInputStream(() -> is));
         break;
       case DELETE:
         builder = builder.DELETE();
@@ -204,15 +193,7 @@ public class HttpServiceJava {
     return this.client.send(builder.build(), BodyHandlers.ofString());
   }
 
-  /**
-   * Perform 'GET' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link HttpHeaders}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> get(final String uri, final Optional<HttpHeaders> headers)
       throws IOException, InterruptedException {
     SdkHttpFullRequest.Builder request =
@@ -232,15 +213,7 @@ public class HttpServiceJava {
     return this;
   }
 
-  /**
-   * Perform 'OPTIONS' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link HttpHeaders}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> options(final String uri, final Optional<HttpHeaders> headers)
       throws IOException, InterruptedException {
     SdkHttpFullRequest.Builder request =
@@ -249,16 +222,7 @@ public class HttpServiceJava {
     return execute(req);
   }
 
-  /**
-   * Perform 'PATCH' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link HttpHeaders}
-   * @param payload {@link RequestBody}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> patch(final String uri, final Optional<HttpHeaders> headers,
       final RequestBody payload) throws IOException, InterruptedException {
 
@@ -268,16 +232,7 @@ public class HttpServiceJava {
     return execute(req);
   }
 
-  /**
-   * Perform 'POST' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link HttpHeaders}
-   * @param payload {@link RequestBody}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> post(final String uri, final Optional<HttpHeaders> headers,
       final RequestBody payload) throws IOException, InterruptedException {
     SdkHttpFullRequest.Builder request =
@@ -286,16 +241,7 @@ public class HttpServiceJava {
     return execute(req);
   }
 
-  /**
-   * Perform 'PUT' Request.
-   * 
-   * @param uri {@link String}
-   * @param headers {@link HttpHeaders}
-   * @param payload {@link RequestBody}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
+  @Override
   public HttpResponse<String> put(final String uri, final Optional<HttpHeaders> headers,
       final RequestBody payload) throws IOException, InterruptedException {
     SdkHttpFullRequest.Builder request =
@@ -326,21 +272,12 @@ public class HttpServiceJava {
     return req;
   }
 
-  /**
-   * Gets Signing Region.
-   * 
-   * @return {@link Region}
-   */
+  @Override
   public Optional<Region> signingRegion() {
     return this.signingRegion;
   }
 
-  /**
-   * Set Aws {@link Region}.
-   * 
-   * @param region {@link Region}
-   * @return {@link HttpServiceJava}
-   */
+  @Override
   public HttpServiceJava signingRegion(final Region region) {
     this.signingRegion = region != null ? Optional.of(region) : Optional.empty();
     return this;

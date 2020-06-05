@@ -98,4 +98,9 @@ public class GetDocumentUploadRequest implements ApiRequest {
     this.parameters.put("siteId", siteId);
     return this;
   }
+
+  @Override
+  public void validate() {
+    // empty
+  }
 }

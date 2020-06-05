@@ -10,35 +10,31 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.formkiq.stacks.client.requests;
-
-import java.util.Collections;
-import java.util.Map;
-import com.formkiq.stacks.client.ApiRequest;
+package com.formkiq.stacks.client;
 
 /**
- * Creates GET /version.
+ * 
+ * Validation Helper.
  *
  */
-public class VersionRequest implements ApiRequest {
+public final class Validate {
 
   /**
-   * constructor.
+   * private constructor.
    */
-  public VersionRequest() {}
+  private Validate() {}
 
-  @Override
-  public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
-  }
-
-  @Override
-  public String getUrlPath() {
-    return "version";
-  }
-
-  @Override
-  public void validate() {
-    // empty
+  /**
+   * Verifies object is Not Null.
+   * 
+   * @param <T> Type of
+   * @param object {@link Object}
+   * @param message Error Message
+   * @param values Object Value.
+   */
+  public static <T> void notNull(final T object, final String message, final Object... values) {
+    if (object == null) {
+      throw new NullPointerException(String.format(message, values));
+    }
   }
 }

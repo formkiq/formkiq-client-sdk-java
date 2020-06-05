@@ -21,10 +21,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiPredicate;
+import com.formkiq.stacks.client.models.AddDocument;
+import com.formkiq.stacks.client.models.AddDocumentResponse;
+import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchTag;
-import com.formkiq.stacks.client.models.NewDocument;
+import com.formkiq.stacks.client.models.DocumentTag;
+import com.formkiq.stacks.client.models.DocumentTags;
+import com.formkiq.stacks.client.models.DocumentUrl;
+import com.formkiq.stacks.client.models.Documents;
+import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -52,26 +59,32 @@ import software.amazon.awssdk.core.sync.RequestBody;
  * Http Client for interacting with the FormKiQ API.
  *
  */
-public class FormKiqHttpClient {
+public class FormKiqClientV1 implements FormKiqClient {
 
-  /** Date Format. */
-  private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
   /** {@link Gson}. */
   private Gson gson;
   /** FormKiQ Rest API Url. */
   private String apiRestUrl;
-  /** {@link FormKiqHttpClient}. */
-  private HttpServiceJava client;
+  /** {@link HttpService}. */
+  private HttpService client;
 
   /**
    * constructor.
    * 
-   * @param connection {@link FormKiqHttpClientConnection}
+   * @param connection {@link FormKiqClientConnection}
    */
-  public FormKiqHttpClient(final FormKiqHttpClientConnection connection) {
+  public FormKiqClientV1(final FormKiqClientConnection connection) {
     this.client = connection.build();
     this.apiRestUrl = connection.apiRestUrl();
     this.gson = new GsonBuilder().disableHtmlEscaping().setDateFormat(DATE_FORMAT).create();
+  }
+
+  @Override
+  public AddDocumentResponse addDocument(final AddDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddDocumentResponse.class);
   }
 
   /**
@@ -82,7 +95,7 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> addDocument(final AddDocumentRequest request)
+  public HttpResponse<String> addDocumentAsHttpResponse(final AddDocumentRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.document());
     String u = this.apiRestUrl + request.buildRequestUrl();
@@ -91,8 +104,38 @@ public class FormKiqHttpClient {
         RequestBody.fromString(body));
   }
 
+  @Override
+  public boolean addDocumentTag(final AddDocumentTagRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentTagAsHttpResponse(request);
+    checkStatusCode(response);
+    return true;
+  }
+
   /**
-   * Create HTTP Headers from {@link NewDocument}.
+   * POST /documents/{documentId}/tags.
+   * 
+   * @param request {@link AddDocumentTagRequest}
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocumentTagAsHttpResponse(final AddDocumentTagRequest request)
+      throws IOException, InterruptedException {
+
+    Map<String, Object> body = new HashMap<>();
+    body.put("key", request.tagKey());
+    body.put("value", request.tagValue());
+
+    String contents = this.gson.toJson(body);
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  /**
+   * Create HTTP Headers from {@link AddDocument}.
    * 
    * @param contentType {@link String}
    * @return {@link Optional} {@link Map}
@@ -105,6 +148,18 @@ public class FormKiqHttpClient {
     }
 
     return !headers.isEmpty() ? Optional.of(headers) : Optional.empty();
+  }
+
+  /**
+   * Checks {@link HttpResponse} for a 200 or 201.
+   * 
+   * @param response {@link HttpResponse}
+   * @throws IOException Received unexpected StatusCode.
+   */
+  private void checkStatusCode(final HttpResponse<?> response) throws IOException {
+    if (response.statusCode() != HTTP_STATUS_OK && response.statusCode() != HTTP_STATUS_CREATED) {
+      throw new IOException("unexpected response code: " + response.statusCode());
+    }
   }
 
   /**
@@ -132,6 +187,14 @@ public class FormKiqHttpClient {
         : Optional.empty();
   }
 
+  @Override
+  public boolean deleteDocument(final DeleteDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return true;
+  }
+
   /**
    * DELETE /documents/{documentId}.
    * 
@@ -141,10 +204,18 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> deleteDocument(final DeleteDocumentRequest request)
+  public HttpResponse<String> deleteDocumentAsHttpResponse(final DeleteDocumentRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public boolean deleteDocumentTag(final DeleteDocumentTagRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteDocumentTagAsHttpResponse(request);
+    checkStatusCode(response);
+    return true;
   }
 
   /**
@@ -156,10 +227,18 @@ public class FormKiqHttpClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> deleteDocumentTag(final DeleteDocumentTagRequest request)
-      throws IOException, InterruptedException {
+  public HttpResponse<String> deleteDocumentTagAsHttpResponse(
+      final DeleteDocumentTagRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public Document getDocument(final GetDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), Document.class);
   }
 
   /**
@@ -170,10 +249,18 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> getDocument(final GetDocumentRequest request)
+  public HttpResponse<String> getDocumentAsHttpResponse(final GetDocumentRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public DocumentUrl getDocumentContentUrl(final GetDocumentContentUrlRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentContentUrlAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
 
   /**
@@ -185,10 +272,18 @@ public class FormKiqHttpClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> getDocumentContentUrl(final GetDocumentContentUrlRequest request)
-      throws IOException, InterruptedException {
+  public HttpResponse<String> getDocumentContentUrlAsHttpResponse(
+      final GetDocumentContentUrlRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public Documents getDocuments(final GetDocumentsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), Documents.class);
   }
 
   /**
@@ -200,10 +295,18 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> getDocuments(final GetDocumentsRequest request)
+  public HttpResponse<String> getDocumentsAsHttpResponse(final GetDocumentsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public DocumentTag getDocumentTag(final GetDocumentTagsKeyRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentTagAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentTag.class);
   }
 
   /**
@@ -214,10 +317,18 @@ public class FormKiqHttpClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> getDocumentTag(final GetDocumentTagsKeyRequest request)
+  public HttpResponse<String> getDocumentTagAsHttpResponse(final GetDocumentTagsKeyRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public DocumentTags getDocumentTags(final GetDocumentTagsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentTagsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentTags.class);
   }
 
   /**
@@ -228,10 +339,18 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> getDocumentTags(final GetDocumentTagsRequest request)
+  public HttpResponse<String> getDocumentTagsAsHttpResponse(final GetDocumentTagsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public DocumentUrl getDocumentUpload(final GetDocumentUploadRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentUploadAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
 
   /**
@@ -242,10 +361,19 @@ public class FormKiqHttpClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> getDocumentUpload(final GetDocumentUploadRequest request)
-      throws IOException, InterruptedException {
+  public HttpResponse<String> getDocumentUploadAsHttpResponse(
+      final GetDocumentUploadRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public String getVersion() throws IOException, InterruptedException {
+    HttpResponse<String> response = getVersionAsHttpResponse();
+    checkStatusCode(response);
+    Map<String, Object> map = this.gson.fromJson(response.body(), Map.class);
+    return map.get("message").toString();
   }
 
   /**
@@ -255,7 +383,7 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> getVersion() throws IOException, InterruptedException {
+  public HttpResponse<String> getVersionAsHttpResponse() throws IOException, InterruptedException {
     String u = this.apiRestUrl + new VersionRequest().buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
@@ -366,52 +494,16 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsSearch() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new SearchDocumentsRequest().buildRequestUrl();
+    String u = this.apiRestUrl + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
-  /**
-   * POST /documents/{documentId}/tags.
-   * 
-   * @param request {@link AddDocumentTagRequest}
-   * @param key {@link String}
-   * @param value {@link String}
-   * @return {@link HttpResponse} {@link String}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> addDocumentTag(final AddDocumentTagRequest request, final String key,
-      final String value) throws IOException, InterruptedException {
-
-    Map<String, Object> body = new HashMap<>();
-    body.put("key", key);
-    body.put("value", value);
-
-    String contents = this.gson.toJson(body);
-    String u = this.apiRestUrl + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(contents));
-  }
-
-  /**
-   * PUT /documents/{documentId}/tags/{tagKey}.
-   * 
-   * @param request {@link UpdateDocumentTagKeyRequest}
-   * @return {@link HttpResponse} {@link String}
-   * 
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> updateDocumentTag(final UpdateDocumentTagKeyRequest request)
+  @Override
+  public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
-
-    Map<String, Object> body = new HashMap<>();
-    body.put("value", request.tagValue());
-
-    String contents = this.gson.toJson(body);
-    String u = this.apiRestUrl + request.buildRequestUrl();
-    return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
-        RequestBody.fromString(contents));
+    HttpResponse<String> response = searchAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), Documents.class);
   }
 
   /**
@@ -422,7 +514,7 @@ public class FormKiqHttpClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> search(final SearchDocumentsRequest request)
+  public HttpResponse<String> searchAsHttpResponse(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
 
     DocumentSearchTag tag = new DocumentSearchTag();
@@ -442,6 +534,14 @@ public class FormKiqHttpClient {
         RequestBody.fromString(contents));
   }
 
+  @Override
+  public UpdateDocumentResponse updateDocument(final UpdateDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = updateDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), UpdateDocumentResponse.class);
+  }
+
   /**
    * PATCH(Update) /documents/{documentId}.
    * 
@@ -450,12 +550,41 @@ public class FormKiqHttpClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> updateDocument(final UpdateDocumentRequest request)
+  public HttpResponse<String> updateDocumentAsHttpResponse(final UpdateDocumentRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.document());
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.patch(u,
         createHttpHeaders("PATCH", buildHeaders(request.document().contentType())),
         RequestBody.fromString(body));
+  }
+
+  @Override
+  public boolean updateDocumentTag(final UpdateDocumentTagKeyRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = updateDocumentTagAsHttpResponse(request);
+    checkStatusCode(response);
+    return true;
+  }
+
+  /**
+   * PUT /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @param request {@link UpdateDocumentTagKeyRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> updateDocumentTagAsHttpResponse(
+      final UpdateDocumentTagKeyRequest request) throws IOException, InterruptedException {
+
+    Map<String, Object> body = new HashMap<>();
+    body.put("value", request.tagValue());
+
+    String contents = this.gson.toJson(body);
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
   }
 }

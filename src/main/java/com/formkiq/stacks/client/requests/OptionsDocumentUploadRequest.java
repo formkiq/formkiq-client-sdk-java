@@ -53,4 +53,9 @@ public class OptionsDocumentUploadRequest implements ApiRequest {
         ? "documents/" + this.paths.get("documentId") + "/upload"
         : "documents/upload";
   }
+
+  @Override
+  public void validate() {
+    // empty
+  }
 }

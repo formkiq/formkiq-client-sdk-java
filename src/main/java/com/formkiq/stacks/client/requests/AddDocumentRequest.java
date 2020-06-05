@@ -15,7 +15,8 @@ package com.formkiq.stacks.client.requests;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
-import com.formkiq.stacks.client.models.NewDocument;
+import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.AddDocument;
 
 /**
  * POST /documents.
@@ -26,8 +27,8 @@ public class AddDocumentRequest implements ApiRequest {
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
-  /** {@link NewDocument}. */
-  private NewDocument document;
+  /** {@link AddDocument}. */
+  private AddDocument document;
 
   /**
    * constructor.
@@ -35,22 +36,22 @@ public class AddDocumentRequest implements ApiRequest {
   public AddDocumentRequest() {}
 
   /**
-   * Set {@link NewDocument}.
+   * Set {@link AddDocument}.
    * 
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument document() {
+  public AddDocument document() {
     return this.document;
   }
 
   /**
-   * Set {@link NewDocument}.
+   * Set {@link AddDocument}.
    * 
-   * @param newDocument {@link NewDocument}
+   * @param addDocument {@link AddDocument}
    * @return {@link AddDocumentRequest}
    */
-  public AddDocumentRequest document(final NewDocument newDocument) {
-    this.document = newDocument;
+  public AddDocumentRequest document(final AddDocument addDocument) {
+    this.document = addDocument;
     return this;
   }
 
@@ -73,5 +74,10 @@ public class AddDocumentRequest implements ApiRequest {
   public AddDocumentRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.document, "Document is required.");
   }
 }

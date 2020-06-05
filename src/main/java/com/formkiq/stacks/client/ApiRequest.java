@@ -22,11 +22,19 @@ import java.util.Map;
  */
 public interface ApiRequest {
   /**
-   * Get Request Url Path.
+   * Build Parameter {@link Map} to Query Parameter.
    * 
    * @return {@link String}
    */
-  String getUrlPath();
+  default String buildRequestUrl() {
+
+    validate();
+
+    final List<String> params = new ArrayList<>();
+    getQueryParameters().entrySet().stream().filter(e -> e.getValue() != null)
+        .forEach(e -> params.add(e.getKey() + "=" + e.getValue()));
+    return getUrlPath() + (params.size() > 0 ? "?" + String.join("&", params) : "");
+  }
 
   /**
    * Get Query Parameters.
@@ -36,15 +44,14 @@ public interface ApiRequest {
   Map<String, String> getQueryParameters();
 
   /**
-   * Build Parameter {@link Map} to Query Parameter.
+   * Get Request Url Path.
    * 
    * @return {@link String}
    */
-  default String buildRequestUrl() {
+  String getUrlPath();
 
-    final List<String> params = new ArrayList<>();
-    getQueryParameters().entrySet().stream().filter(e -> e.getValue() != null)
-        .forEach(e -> params.add(e.getKey() + "=" + e.getValue()));
-    return getUrlPath() + (params.size() > 0 ? "?" + String.join("&", params) : "");
-  }
+  /**
+   * Validates the Api Request has all required fields.
+   */
+  void validate();
 }

@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * PUT /documents/{documentId}/tags/{tagKey} Request.
@@ -96,5 +97,12 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   public UpdateDocumentTagKeyRequest tagValue(final String value) {
     this.tagValue = value;
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
+    Validate.notNull(this.tagValue, "TagValue is required.");
   }
 }
