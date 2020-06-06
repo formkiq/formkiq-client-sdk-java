@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * Creates DELETE /documents/{documentId}/tags/{tagKey} Request.
@@ -74,5 +75,11 @@ public class DeleteDocumentTagRequest implements ApiRequest {
   public DeleteDocumentTagRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
   }
 }

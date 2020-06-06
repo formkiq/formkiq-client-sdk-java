@@ -110,4 +110,9 @@ public class GetDocumentsRequest implements ApiRequest {
     this.parameters.put("tz", tz);
     return this;
   }
+
+  @Override
+  public void validate() {
+    // empty
+  }
 }

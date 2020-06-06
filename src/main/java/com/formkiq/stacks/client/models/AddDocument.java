@@ -18,10 +18,10 @@ import java.util.List;
 
 /**
  * 
- * {@link NewDocument} holder.
+ * {@link AddDocument} holder.
  *
  */
-public class NewDocument {
+public class AddDocument {
 
   /** Path. */
   private String path;
@@ -35,7 +35,7 @@ public class NewDocument {
   /**
    * constructor.
    */
-  public NewDocument() {}
+  public AddDocument() {}
 
   /**
    * Get Path.
@@ -50,9 +50,9 @@ public class NewDocument {
    * Set Path.
    * 
    * @param s {@link String}
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument path(final String s) {
+  public AddDocument path(final String s) {
     this.path = s;
     return this;
   }
@@ -70,9 +70,9 @@ public class NewDocument {
    * Set Content Type.
    * 
    * @param s {@link String}
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument contentType(final String s) {
+  public AddDocument contentType(final String s) {
     this.contentType = s;
     return this;
   }
@@ -91,9 +91,9 @@ public class NewDocument {
    * 
    * @param s {@link String}
    * @param charset {@link Charset}
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument content(final String s, final Charset charset) {
+  public AddDocument content(final String s, final Charset charset) {
     return contentAsBase64(Base64.getEncoder().encodeToString(s.getBytes(charset)));
   }
 
@@ -101,9 +101,9 @@ public class NewDocument {
    * Set Content.
    * 
    * @param s Base64 encoded string.
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument contentAsBase64(final String s) {
+  public AddDocument contentAsBase64(final String s) {
     this.content = s;
     return this;
   }
@@ -121,9 +121,9 @@ public class NewDocument {
    * Set Tags.
    * 
    * @param list {@link List} {@link DocumentTag}
-   * @return {@link NewDocument}
+   * @return {@link AddDocument}
    */
-  public NewDocument tags(final List<DocumentTag> list) {
+  public AddDocument tags(final List<DocumentTag> list) {
     this.tags = list;
     return this;
   }

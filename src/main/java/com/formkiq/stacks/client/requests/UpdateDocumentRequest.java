@@ -15,6 +15,7 @@ package com.formkiq.stacks.client.requests;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.UpdateDocument;
 
 /**
@@ -87,5 +88,10 @@ public class UpdateDocumentRequest implements ApiRequest {
   public UpdateDocumentRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * Creates POST /documents/{documentId}/tags Request.
@@ -23,6 +24,10 @@ import com.formkiq.stacks.client.ApiRequest;
  */
 public class AddDocumentTagRequest implements ApiRequest {
 
+  /** Tag Key. */
+  private String tagKey;
+  /** Tag Value. */
+  private String tagValue;
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -63,5 +68,52 @@ public class AddDocumentTagRequest implements ApiRequest {
   public AddDocumentTagRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  /**
+   * Get Tag Key.
+   * 
+   * @return {@link String}
+   */
+  public String tagKey() {
+    return this.tagKey;
+  }
+
+  /**
+   * Set Tag Key.
+   * 
+   * @param s {@link String}
+   * @return {@link AddDocumentTagRequest}
+   */
+  public AddDocumentTagRequest tagKey(final String s) {
+    this.tagKey = s;
+    return this;
+  }
+
+  /**
+   * Get Tag Value.
+   * 
+   * @return {@link String}
+   */
+  public String tagValue() {
+    return this.tagValue;
+  }
+
+  /**
+   * Set Tag Value.
+   * 
+   * @param s {@link String}
+   * @return {@link AddDocumentTagRequest}
+   */
+  public AddDocumentTagRequest tagValue(final String s) {
+    this.tagValue = s;
+    return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.tagKey, "TagKey is required.");
+    Validate.notNull(this.tagValue, "TagValue is required.");
   }
 }

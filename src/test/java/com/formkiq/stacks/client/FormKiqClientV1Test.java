@@ -35,13 +35,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockserver.integration.ClientAndServer;
+import com.formkiq.stacks.client.models.AddDocument;
+import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.Documents;
-import com.formkiq.stacks.client.models.NewDocument;
 import com.formkiq.stacks.client.models.UpdateDocument;
+import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -67,10 +69,10 @@ import software.amazon.awssdk.regions.Region;
 
 /**
  * 
- * Unit Test for {@link FormKiqHttpClient}.
+ * Unit Test for {@link FormKiqClient}.
  *
  */
-public class FormKiqHttpClientTest {
+public class FormKiqClientV1Test {
 
   /** Date Format. */
   private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
@@ -97,6 +99,7 @@ public class FormKiqHttpClientTest {
   /** {@link Date}. */
   private static Date date =
       Date.from(LocalDate.of(YEAR, 2, 1).atStartOfDay(ZoneId.systemDefault()).toInstant());
+
   /**
    * Add Url to Mock server.
    * 
@@ -110,6 +113,7 @@ public class FormKiqHttpClientTest {
     mockServer.when(request().withMethod(method).withPath(path))
         .respond(org.mockserver.model.HttpResponse.response(resourceToString(file, UTF_8)));
   }
+
   /**
    * Initialize BeforeClass.
    * 
@@ -159,13 +163,13 @@ public class FormKiqHttpClientTest {
     mockServer.stop();
   }
 
-  /** {@link FormKiqHttpClientConnection}. */
-  private FormKiqHttpClientConnection connection = new FormKiqHttpClientConnection(URL)
+  /** {@link FormKiqClientConnection}. */
+  private FormKiqClientConnection connection = new FormKiqClientConnection(URL)
       .region(Region.US_EAST_1).credentials(AwsBasicCredentials.create("123", "444"))
       .header("origin", Arrays.asList("http://localhost")).cognitoIdToken("AAAA");
 
-  /** {@link FormKiqHttpClient}. */
-  private FormKiqHttpClient client = new FormKiqHttpClient(this.connection);
+  /** {@link FormKiqClient}. */
+  private FormKiqClientV1 client = new FormKiqClientV1(this.connection);
 
   /**
    * Test POST /documents.
@@ -173,11 +177,42 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocuments01() throws Exception {
-    NewDocument post =
-        gson.fromJson(resourceToString("/post_documents.json", UTF_8), NewDocument.class);
+  public void testAddDocument01() throws Exception {
+    AddDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
     AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId);
-    HttpResponse<String> response = this.client.addDocument(req);
+    AddDocumentResponse response = this.client.addDocument(req);
+
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.documentId());
+  }
+
+  /**
+   * Test POST /documents. Missing Content
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocument02() throws Exception {
+    AddDocumentRequest req = new AddDocumentRequest();
+
+    try {
+      this.client.addDocument(req);
+    } catch (NullPointerException e) {
+      assertEquals("Document is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /documents.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentAsHttpResponse01() throws Exception {
+    AddDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
+    AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId);
+    HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents?siteId=" + siteId, response.request().uri().toString());
     assertEquals("POST", response.request().method());
@@ -194,12 +229,12 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocuments02() throws Exception {
-    NewDocument post =
-        gson.fromJson(resourceToString("/post_documents.json", UTF_8), NewDocument.class);
+  public void testAddDocumentAsHttpResponse02() throws Exception {
+    AddDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
     post.contentType(null);
     AddDocumentRequest req = new AddDocumentRequest().document(post);
-    HttpResponse<String> response = this.client.addDocument(req);
+    HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents", response.request().uri().toString());
     assertEquals("POST", response.request().method());
@@ -216,9 +251,38 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocumentTag() throws Exception {
-    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId);
-    HttpResponse<String> response = this.client.addDocumentTag(req, "category", "person");
+  public void testAddDocumentTag01() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
+        .tagKey("category").tagValue("person");
+    assertTrue(this.client.addDocumentTag(req));
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags. Missing content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag02() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest();
+
+    try {
+      this.client.addDocumentTag(req);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTagAsHttpResponse() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
+        .tagKey("category").tagValue("person");
+    HttpResponse<String> response = this.client.addDocumentTagAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
     assertEquals(URL + "documents/" + documentId + "/tags", response.request().uri().toString());
@@ -230,10 +294,37 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testDeleteDocument() throws Exception {
+  public void testDeleteDocument01() throws Exception {
     DeleteDocumentRequest request =
         new DeleteDocumentRequest().documentId(documentId).siteId(siteId);
-    HttpResponse<String> response = this.client.deleteDocument(request);
+    assertTrue(this.client.deleteDocument(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocument02() throws Exception {
+    DeleteDocumentRequest request = new DeleteDocumentRequest();
+    try {
+      this.client.deleteDocument(request);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentAsHttpResponse() throws Exception {
+    DeleteDocumentRequest request =
+        new DeleteDocumentRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.deleteDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
@@ -246,10 +337,37 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testDeleteDocumentTag() throws Exception {
+  public void testDeleteDocumentTag01() throws Exception {
     DeleteDocumentTagRequest request =
         new DeleteDocumentTagRequest().documentId(documentId).tagKey("category").siteId(siteId);
-    HttpResponse<String> response = this.client.deleteDocumentTag(request);
+    assertTrue(this.client.deleteDocumentTag(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/tags/{tagKey}. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentTag02() throws Exception {
+    DeleteDocumentTagRequest request = new DeleteDocumentTagRequest();
+    try {
+      this.client.deleteDocumentTag(request);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentTagAsHttpResponse() throws Exception {
+    DeleteDocumentTagRequest request =
+        new DeleteDocumentTagRequest().documentId(documentId).tagKey("category").siteId(siteId);
+    HttpResponse<String> response = this.client.deleteDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("DELETE", response.request().method());
     assertEquals(URL + "documents/" + documentId + "/tags/category",
@@ -262,9 +380,42 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testGetDocument() throws Exception {
+  public void testGetDocument01() throws Exception {
     GetDocumentRequest req = new GetDocumentRequest().documentId(documentId).siteId(siteId);
-    HttpResponse<String> response = this.client.getDocument(req);
+    Document doc = this.client.getDocument(req);
+    assertEquals("1000", "" + doc.contentLength());
+    assertEquals("text/plain", doc.contentType());
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", doc.documentId());
+    assertEquals("efjsdkfhds", doc.checksum());
+    assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
+    assertEquals("sample/test.txt", doc.path());
+    assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
+  }
+
+  /**
+   * Test GET /documents/{documentid}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocument02() throws Exception {
+    GetDocumentRequest req = new GetDocumentRequest();
+    try {
+      this.client.getDocument(req);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentid}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentAsHttpResponse() throws Exception {
+    GetDocumentRequest req = new GetDocumentRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
@@ -286,10 +437,39 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testGetDocumentContentUrl() throws Exception {
+  public void testGetDocumentContentUrl01() throws Exception {
     GetDocumentContentUrlRequest req =
         new GetDocumentContentUrlRequest().documentId(documentId).duration(1).siteId(siteId);
-    HttpResponse<String> response = this.client.getDocumentContentUrl(req);
+    DocumentUrl url = this.client.getDocumentContentUrl(req);
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", url.documentId());
+    assertEquals("https://www.google.com", url.url());
+  }
+
+  /**
+   * Test GET /documents/{documentId}/url. No Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentContentUrl02() throws Exception {
+    GetDocumentContentUrlRequest req = new GetDocumentContentUrlRequest();
+    try {
+      this.client.getDocumentContentUrl(req);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentId}/url.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentContentUrlAsHttpResponse() throws Exception {
+    GetDocumentContentUrlRequest req =
+        new GetDocumentContentUrlRequest().documentId(documentId).duration(1).siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentContentUrlAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/" + documentId + "/url?duration=1&siteId=" + siteId,
         response.request().uri().toString());
@@ -309,7 +489,30 @@ public class FormKiqHttpClientTest {
   public void testGetDocuments() throws Exception {
     GetDocumentsRequest request = new GetDocumentsRequest().date(date).limit(1).next("nnnn")
         .previous("ppp").siteId(siteId).tz("0500");
-    HttpResponse<String> response = this.client.getDocuments(request);
+    Documents docs = this.client.getDocuments(request);
+    assertEquals("123", docs.next());
+    assertEquals("555", docs.previous());
+    assertEquals(1, docs.documents().size());
+    assertEquals("1000", "" + docs.documents().get(0).contentLength());
+    assertEquals("text/plain", docs.documents().get(0).contentType());
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", docs.documents().get(0).documentId());
+    assertEquals("efjsdkfhds", docs.documents().get(0).checksum());
+    assertEquals("2020/05/05 17:31:06", df.format(docs.documents().get(0).insertedDate()));
+    assertEquals("sample/test.txt", docs.documents().get(0).path());
+    assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com",
+        docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test GET /documents.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsAsHttpResponse() throws Exception {
+    GetDocumentsRequest request = new GetDocumentsRequest().date(date).limit(1).next("nnnn")
+        .previous("ppp").siteId(siteId).tz("0500");
+    HttpResponse<String> response = this.client.getDocumentsAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(
         URL + "documents?next=nnnn&date=2020-02-01&previous=ppp&tz=0500&limit=1&siteId=" + siteId,
@@ -336,10 +539,46 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testGetDocumentsTags() throws Exception {
+  public void testGetDocumentsTags01() throws Exception {
     GetDocumentTagsRequest req = new GetDocumentTagsRequest().documentId(documentId).limit(1)
         .next("nn").previous("pp").siteId(siteId);
-    HttpResponse<String> response = this.client.getDocumentTags(req);
+    DocumentTags tags = this.client.getDocumentTags(req);
+    assertEquals("123", tags.next());
+    assertEquals("555", tags.previous());
+    assertEquals(1, tags.tags().size());
+    assertEquals("999", tags.tags().get(0).documentId());
+    assertEquals("2020/05/05 18:11:36", df.format(tags.tags().get(0).insertedDate()));
+    assertEquals("category", tags.tags().get(0).key());
+    assertEquals("userdefined", tags.tags().get(0).type());
+    assertEquals("jsmith", tags.tags().get(0).userId());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", tags.tags().get(0).value());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsTags02() throws Exception {
+    GetDocumentTagsRequest req = new GetDocumentTagsRequest();
+    try {
+      this.client.getDocumentTags(req);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentid}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsTagsAsHttpResponse() throws Exception {
+    GetDocumentTagsRequest req = new GetDocumentTagsRequest().documentId(documentId).limit(1)
+        .next("nn").previous("pp").siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/" + documentId + "/tags", response.request().uri().toString());
 
@@ -361,10 +600,43 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testGetDocumentTag() throws Exception {
+  public void testGetDocumentTag01() throws Exception {
     GetDocumentTagsKeyRequest request =
         new GetDocumentTagsKeyRequest().documentId(documentId).tagKey("category").siteId(siteId);
-    HttpResponse<String> response = this.client.getDocumentTag(request);
+    DocumentTag tag = this.client.getDocumentTag(request);
+    assertEquals("2020/05/05 18:11:36", df.format(tag.insertedDate()));
+    assertEquals("category", tag.key());
+    assertEquals("userdefined", tag.type());
+    assertEquals("jsmith", tag.userId());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", tag.value());
+    assertEquals("999", tag.documentId());
+  }
+
+  /**
+   * Test GET /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentTag02() throws Exception {
+    GetDocumentTagsKeyRequest request = new GetDocumentTagsKeyRequest();
+    try {
+      this.client.getDocumentTag(request);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentTagAsHttpResponse() throws Exception {
+    GetDocumentTagsKeyRequest request =
+        new GetDocumentTagsKeyRequest().documentId(documentId).tagKey("category").siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
     assertEquals(URL + "documents/" + documentId + "/tags/category",
@@ -386,8 +658,22 @@ public class FormKiqHttpClientTest {
    */
   @Test
   public void testGetDocumentUpload() throws Exception {
-    HttpResponse<String> response = this.client.getDocumentUpload(new GetDocumentUploadRequest()
-        .contentLength(1).documentId(null).duration(2).path("test.txt"));
+    DocumentUrl url = this.client.getDocumentUpload(new GetDocumentUploadRequest().contentLength(1)
+        .documentId(null).duration(2).path("test.txt"));
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", url.documentId());
+    assertEquals("https://www.google.com", url.url());
+  }
+
+  /**
+   * Test GET /documents/upload.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentUploadAsHttpResponse01() throws Exception {
+    HttpResponse<String> response =
+        this.client.getDocumentUploadAsHttpResponse(new GetDocumentUploadRequest().contentLength(1)
+            .documentId(null).duration(2).path("test.txt"));
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/upload?duration=2&path=test.txt&contentLength=1",
         response.request().uri().toString());
@@ -404,10 +690,10 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testGetDocumentUpload02() throws Exception {
+  public void testGetDocumentUploadAsHttpResponse02() throws Exception {
     GetDocumentUploadRequest req = new GetDocumentUploadRequest().documentId(documentId)
         .siteId(siteId).contentLength(1).duration(2).path("test.txt");
-    HttpResponse<String> response = this.client.getDocumentUpload(req);
+    HttpResponse<String> response = this.client.getDocumentUploadAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
     assertEquals(URL + "documents/" + documentId + "/upload?duration=2&path=test.txt&siteId="
@@ -425,7 +711,17 @@ public class FormKiqHttpClientTest {
    */
   @Test
   public void testGetVersion() throws Exception {
-    HttpResponse<String> response = this.client.getVersion();
+    assertEquals("0.0.45", this.client.getVersion());
+  }
+
+  /**
+   * Test GET /version.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetVersionAsHttpResponse() throws Exception {
+    HttpResponse<String> response = this.client.getVersionAsHttpResponse();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("0.0.45", gson.fromJson(response.body(), Map.class).get("message").toString());
     HttpRequest request = response.request();
@@ -554,10 +850,47 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testSearch() throws Exception {
+  public void testSearch01() throws Exception {
     SearchDocumentsRequest req = new SearchDocumentsRequest().tagKey("category").eq("value")
         .limit(1).next("nnn").previous("ppp").siteId(siteId).beginsWith("bbb");
-    HttpResponse<String> response = this.client.search(req);
+    Documents docs = this.client.search(req);
+    assertEquals("123", docs.next());
+    assertEquals("345345", docs.previous());
+    assertEquals(1, docs.documents().size());
+    assertEquals("1000", "" + docs.documents().get(0).contentLength());
+    assertEquals("text/plain", docs.documents().get(0).contentType());
+    assertEquals("3fa85f64-5717-4562-b3fc-2c963f66afa6", docs.documents().get(0).documentId());
+    assertEquals("jkldfkdsjfksdj", docs.documents().get(0).checksum());
+    assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
+    assertEquals("sample/test.txt", docs.documents().get(0).path());
+    assertEquals("jtest", docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test POST /search.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSearch02() throws Exception {
+    SearchDocumentsRequest req = new SearchDocumentsRequest();
+    try {
+      this.client.search(req);
+    } catch (NullPointerException e) {
+      assertEquals("TagKey is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /search.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSearchAsHttpResponse() throws Exception {
+    SearchDocumentsRequest req = new SearchDocumentsRequest().tagKey("category").eq("value")
+        .limit(1).next("nnn").previous("ppp").siteId(siteId).beginsWith("bbb");
+    HttpResponse<String> response = this.client.searchAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "search?next=nnn&previous=ppp&limit=1&siteId=" + siteId,
         response.request().uri().toString());
@@ -582,12 +915,42 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testUpdateDocuments() throws Exception {
+  public void testUpdateDocuments01() throws Exception {
     UpdateDocument post =
         gson.fromJson(resourceToString("/post_documents.json", UTF_8), UpdateDocument.class);
     UpdateDocumentRequest request =
         new UpdateDocumentRequest().document(post).documentId(documentId).siteId(siteId);
-    HttpResponse<String> response = this.client.updateDocument(request);
+    UpdateDocumentResponse response = this.client.updateDocument(request);
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.documentId());
+  }
+
+  /**
+   * Test PATCH /documents. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocuments02() throws Exception {
+    UpdateDocumentRequest request = new UpdateDocumentRequest();
+    try {
+      this.client.updateDocument(request);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test PATCH /documents.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentsAsHttpResponse() throws Exception {
+    UpdateDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), UpdateDocument.class);
+    UpdateDocumentRequest request =
+        new UpdateDocumentRequest().document(post).documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.updateDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
     assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
@@ -602,10 +965,37 @@ public class FormKiqHttpClientTest {
    * @throws Exception Exception
    */
   @Test
-  public void testUpdateDocumentTag() throws Exception {
+  public void testUpdateDocumentTag01() throws Exception {
     UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest().documentId(documentId)
         .tagKey("category").siteId(siteId).tagValue("food");
-    HttpResponse<String> response = this.client.updateDocumentTag(request);
+    assertTrue(this.client.updateDocumentTag(request));
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentTag02() throws Exception {
+    UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest();
+    try {
+      this.client.updateDocumentTag(request);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentTagAsHttpResponse() throws Exception {
+    UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest().documentId(documentId)
+        .tagKey("category").siteId(siteId).tagValue("food");
+    HttpResponse<String> response = this.client.updateDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PUT", response.request().method());
 

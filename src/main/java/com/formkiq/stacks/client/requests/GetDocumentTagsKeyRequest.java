@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * Creates GET /documents/{documentId}/tags/{tagKey} Request.
@@ -74,5 +75,11 @@ public class GetDocumentTagsKeyRequest implements ApiRequest {
   public GetDocumentTagsKeyRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
   }
 }

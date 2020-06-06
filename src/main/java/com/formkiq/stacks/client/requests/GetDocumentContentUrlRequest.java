@@ -15,6 +15,7 @@ package com.formkiq.stacks.client.requests;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * Creates GET /documents/{documentId}/url Request.
@@ -73,5 +74,10 @@ public class GetDocumentContentUrlRequest implements ApiRequest {
   public GetDocumentContentUrlRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

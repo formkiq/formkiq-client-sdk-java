@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
  * OPTIONS /documents/{documentId}/url Request.
@@ -50,5 +51,10 @@ public class OptionsDocumentContentUrlRequest implements ApiRequest {
   @Override
   public String getUrlPath() {
     return "documents/" + this.paths.get("documentId") + "/url";
+  }
+
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }
