@@ -41,6 +41,7 @@ import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
+import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
@@ -53,12 +54,14 @@ import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
+import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -80,6 +83,8 @@ public class FormKiqClientV1Test {
   private static final int HTTP_STATUS_OK = 200;
   /** Http Status Created. */
   private static final int HTTP_STATUS_CREATED = 201;
+  /** Random Version Identifier. */
+  private static String versionId = UUID.randomUUID().toString();
   /** Random Site Identifier. */
   private static String siteId = UUID.randomUUID().toString();
   /** Random Document Identifier. */
@@ -135,6 +140,8 @@ public class FormKiqClientV1Test {
     add("get", "/documents/" + documentId, "/get_document.json");
     add("delete", "/documents/" + documentId, "/documentsId.json");
     add("get", "/documents/" + documentId + "/tags", "/get_documents_tags.json");
+    add("get", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
+    add("options", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
     mockServer.when(request().withMethod("post").withPath("/documents/" + documentId + "/tags"))
         .respond(
             org.mockserver.model.HttpResponse.response(resourceToString("/documentsId.json", UTF_8))
@@ -467,12 +474,12 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testGetDocumentContentUrlAsHttpResponse() throws Exception {
-    GetDocumentContentUrlRequest req =
-        new GetDocumentContentUrlRequest().documentId(documentId).duration(1).siteId(siteId);
+    GetDocumentContentUrlRequest req = new GetDocumentContentUrlRequest().documentId(documentId)
+        .duration(1).siteId(siteId).versionId(versionId);
     HttpResponse<String> response = this.client.getDocumentContentUrlAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/url?duration=1&siteId=" + siteId,
-        response.request().uri().toString());
+    assertEquals(URL + "documents/" + documentId + "/url?duration=1&versionId=" + versionId
+        + "&siteId=" + siteId, response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
     DocumentUrl url = gson.fromJson(response.body(), DocumentUrl.class);
@@ -580,7 +587,9 @@ public class FormKiqClientV1Test {
         .next("nn").previous("pp").siteId(siteId);
     HttpResponse<String> response = this.client.getDocumentTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/tags", response.request().uri().toString());
+    assertEquals(
+        URL + "documents/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
+        response.request().uri().toString());
 
     DocumentTags tags = gson.fromJson(response.body(), DocumentTags.class);
     assertEquals("123", tags.next());
@@ -592,6 +601,57 @@ public class FormKiqClientV1Test {
     assertEquals("userdefined", tags.tags().get(0).type());
     assertEquals("jsmith", tags.tags().get(0).userId());
     assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", tags.tags().get(0).value());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/versions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsVersions01() throws Exception {
+    GetDocumentVersionsRequest req = new GetDocumentVersionsRequest().documentId(documentId)
+        .next("nn").tz("-0600").siteId(siteId);
+    DocumentVersions versions = this.client.getDocumentVersions(req);
+    assertEquals("123", versions.next());
+    assertEquals(1, versions.versions().size());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.versions().get(0).versionId());
+    assertEquals("2020/05/05 18:11:36", df.format(versions.versions().get(0).lastModifiedDate()));
+  }
+
+  /**
+   * Test GET /documents/{documentid}/versions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsVersions02() throws Exception {
+    GetDocumentVersionsRequest req = new GetDocumentVersionsRequest();
+    try {
+      this.client.getDocumentVersions(req);
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentid}/versions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsVersionsAsHttpResponse() throws Exception {
+    GetDocumentVersionsRequest req = new GetDocumentVersionsRequest().documentId(documentId)
+        .next("nn").tz("-0600").siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentVersionsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "documents/" + documentId + "/versions?next=nn&tz=-0600&siteId=" + siteId,
+        response.request().uri().toString());
+
+    DocumentVersions versions = gson.fromJson(response.body(), DocumentVersions.class);
+    assertEquals("123", versions.next());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.versions().get(0).versionId());
+    assertEquals("2020/05/05 18:11:36", df.format(versions.versions().get(0).lastModifiedDate()));
   }
 
   /**
@@ -733,21 +793,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test Options /documents/{documentId}/url.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsDocumenContentsUrl() throws Exception {
-    OptionsDocumentContentUrlRequest req =
-        new OptionsDocumentContentUrlRequest().documentId(documentId);
-    HttpResponse<String> response = this.client.optionsDocumentContentUrl(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/url", response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
    * Test OPTIONS /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -758,6 +803,21 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.optionsDocument(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "documents/" + documentId, response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
+   * Test Options /documents/{documentId}/url.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsDocumentContentsUrl() throws Exception {
+    OptionsDocumentContentUrlRequest req =
+        new OptionsDocumentContentUrlRequest().documentId(documentId);
+    HttpResponse<String> response = this.client.optionsDocumentContentUrl(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "documents/" + documentId + "/url", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -829,6 +889,22 @@ public class FormKiqClientV1Test {
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("OPTIONS", response.request().method());
     assertEquals(URL + "documents/" + documentId + "/upload", response.request().uri().toString());
+  }
+
+  /**
+   * Test Options /documents/{documentId}/versions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsDocumentVersions() throws Exception {
+    OptionsDocumentVersionsRequest req =
+        new OptionsDocumentVersionsRequest().documentId(documentId);
+    HttpResponse<String> response = this.client.optionsDocumentVersions(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "documents/" + documentId + "/versions",
+        response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
   }
 
   /**

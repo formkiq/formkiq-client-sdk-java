@@ -30,6 +30,7 @@ import com.formkiq.stacks.client.models.DocumentSearchTag;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
+import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
@@ -41,12 +42,14 @@ import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
+import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -368,6 +371,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocumentVersions getDocumentVersions(final GetDocumentVersionsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentVersionsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentVersions.class);
+  }
+
+  /**
+   * GET /documents/{documentId}/versions.
+   * 
+   * @param request {@link GetDocumentVersionsRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getDocumentVersionsAsHttpResponse(
+      final GetDocumentVersionsRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   @SuppressWarnings("unchecked")
   public String getVersion() throws IOException, InterruptedException {
     HttpResponse<String> response = getVersionAsHttpResponse();
@@ -481,6 +506,21 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsDocumentUpload(final OptionsDocumentUploadRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /documents/{documentId}/versions.
+   * 
+   * @param request {@link OptionsDocumentVersionsRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsDocumentVersions(final OptionsDocumentVersionsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
