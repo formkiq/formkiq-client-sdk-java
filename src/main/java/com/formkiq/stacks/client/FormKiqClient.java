@@ -19,6 +19,7 @@ import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
+import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
@@ -30,6 +31,7 @@ import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
+import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
@@ -156,6 +158,17 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   DocumentUrl getDocumentUpload(GetDocumentUploadRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * GET /documents/{documentId}/versions.
+   * 
+   * @param request {@link GetDocumentVersionsRequest}
+   * @return {@link DocumentVersions}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  DocumentVersions getDocumentVersions(GetDocumentVersionsRequest request)
       throws IOException, InterruptedException;
 
   /**

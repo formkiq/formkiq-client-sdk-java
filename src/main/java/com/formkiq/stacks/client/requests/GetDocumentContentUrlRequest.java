@@ -80,4 +80,15 @@ public class GetDocumentContentUrlRequest implements ApiRequest {
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
+
+  /**
+   * Set the VersionId.
+   * 
+   * @param versionId {@link String}
+   * @return {@link GetDocumentContentUrlRequest}
+   */
+  public GetDocumentContentUrlRequest versionId(final String versionId) {
+    this.parameters.put("versionId", versionId);
+    return this;
+  }
 }
