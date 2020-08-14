@@ -15,7 +15,9 @@ package com.formkiq.stacks.client.requests;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 
 /**
@@ -44,6 +46,11 @@ public class GetDocumentsRequest implements ApiRequest {
   public GetDocumentsRequest date(final Date date) {
     this.parameters.put("date", this.df.format(date));
     return this;
+  }
+
+  @Override
+  public Optional<Map<String, List<String>>> getHttpHeaders() {
+    return Optional.empty();
   }
 
   @Override

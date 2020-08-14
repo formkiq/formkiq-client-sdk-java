@@ -20,10 +20,10 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/{documentId}/tags Request.
+ * Creates OPTIONS /documents/{documentId}/content Request.
  *
  */
-public class GetDocumentTagsRequest implements ApiRequest {
+public class OptionsDocumentContentRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
@@ -33,15 +33,15 @@ public class GetDocumentTagsRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public GetDocumentTagsRequest() {}
+  public OptionsDocumentContentRequest() {}
 
   /**
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link GetDocumentTagsRequest}
+   * @return {@link OptionsDocumentContentRequest}
    */
-  public GetDocumentTagsRequest documentId(final String documentId) {
+  public OptionsDocumentContentRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
     return this;
   }
@@ -58,51 +58,7 @@ public class GetDocumentTagsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags";
-  }
-
-  /**
-   * Limit the number of results returned.
-   * 
-   * @param limit {@link String}
-   * @return {@link GetDocumentTagsRequest}
-   */
-  public GetDocumentTagsRequest limit(final int limit) {
-    this.parameters.put("limit", "" + limit);
-    return this;
-  }
-
-  /**
-   * set Next Results Token.
-   * 
-   * @param next {@link String}
-   * @return {@link GetDocumentTagsRequest}
-   */
-  public GetDocumentTagsRequest next(final String next) {
-    this.parameters.put("next", next);
-    return this;
-  }
-
-  /**
-   * set Previous Results Token.
-   * 
-   * @param previous {@link String}
-   * @return {@link GetDocumentTagsRequest}
-   */
-  public GetDocumentTagsRequest previous(final String previous) {
-    this.parameters.put("previous", previous);
-    return this;
-  }
-
-  /**
-   * Site Identifier.
-   * 
-   * @param siteId {@link String}
-   * @return {@link GetDocumentTagsRequest}
-   */
-  public GetDocumentTagsRequest siteId(final String siteId) {
-    this.parameters.put("siteId", siteId);
-    return this;
+    return "documents/" + this.paths.get("documentId") + "/content";
   }
 
   @Override

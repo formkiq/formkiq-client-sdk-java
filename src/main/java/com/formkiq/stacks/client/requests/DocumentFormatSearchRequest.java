@@ -17,13 +17,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/upload or /documents/{documentId}/url Request.
+ * Creates POST /documents/{documentId}/formats Request.
  *
  */
-public class GetDocumentUploadRequest implements ApiRequest {
+public class DocumentFormatSearchRequest implements ApiRequest {
 
+  /** Mime Type. */
+  private String mime;
+  /** Object Version Id. */
+  private String versionId;
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -32,38 +37,16 @@ public class GetDocumentUploadRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public GetDocumentUploadRequest() {}
-
-  /**
-   * Set the ContentLength of the data.
-   * 
-   * @param contentLength long
-   * @return {@link GetDocumentUploadRequest}
-   */
-  public GetDocumentUploadRequest contentLength(final long contentLength) {
-    this.parameters.put("contentLength", "" + contentLength);
-    return this;
-  }
+  public DocumentFormatSearchRequest() {}
 
   /**
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link GetDocumentContentRequest}
    */
-  public GetDocumentUploadRequest documentId(final String documentId) {
+  public DocumentFormatSearchRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
-    return this;
-  }
-
-  /**
-   * Indicates the number of hours request is valid for.
-   * 
-   * @param duration int
-   * @return {@link GetDocumentUploadRequest}
-   */
-  public GetDocumentUploadRequest duration(final int duration) {
-    this.parameters.put("duration", "" + duration);
     return this;
   }
 
@@ -79,19 +62,26 @@ public class GetDocumentUploadRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return this.paths.containsKey("documentId") && this.paths.get("documentId") != null
-        ? "documents/" + this.paths.get("documentId") + "/upload"
-        : "documents/upload";
+    return "documents/" + this.paths.get("documentId") + "/formats";
   }
 
   /**
-   * Set Document Path attribute.
+   * Get Mime Value.
    * 
-   * @param path {@link String}
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link String}
    */
-  public GetDocumentUploadRequest path(final String path) {
-    this.parameters.put("path", path);
+  public String mime() {
+    return this.mime;
+  }
+
+  /**
+   * Set the Mime.
+   * 
+   * @param contentType {@link String}
+   * @return {@link DocumentFormatSearchRequest}
+   */
+  public DocumentFormatSearchRequest mime(final String contentType) {
+    this.mime = contentType;
     return this;
   }
 
@@ -99,15 +89,35 @@ public class GetDocumentUploadRequest implements ApiRequest {
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link DocumentFormatSearchRequest}
    */
-  public GetDocumentUploadRequest siteId(final String siteId) {
+  public DocumentFormatSearchRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    // empty
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+  }
+
+  /**
+   * Get Version Id.
+   * 
+   * @return {@link String}
+   */
+  public String versionId() {
+    return this.versionId;
+  }
+
+  /**
+   * Set Version Id.
+   * 
+   * @param value {@link String}
+   * @return {@link DocumentFormatSearchRequest}
+   */
+  public DocumentFormatSearchRequest versionId(final String value) {
+    this.versionId = value;
+    return this;
   }
 }

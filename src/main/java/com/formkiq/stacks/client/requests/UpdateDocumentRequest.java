@@ -13,7 +13,9 @@
 package com.formkiq.stacks.client.requests;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.UpdateDocument;
@@ -67,6 +69,11 @@ public class UpdateDocumentRequest implements ApiRequest {
   public UpdateDocumentRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
     return this;
+  }
+
+  @Override
+  public Optional<Map<String, List<String>>> getHttpHeaders() {
+    return Optional.empty();
   }
 
   @Override

@@ -15,6 +15,7 @@ package com.formkiq.stacks.client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Interface for all FormKiQ Api Requests.
@@ -35,6 +36,13 @@ public interface ApiRequest {
         .forEach(e -> params.add(e.getKey() + "=" + e.getValue()));
     return getUrlPath() + (params.size() > 0 ? "?" + String.join("&", params) : "");
   }
+
+  /**
+   * Get Http Headers.
+   * 
+   * @return {@link Map}
+   */
+  Optional<Map<String, List<String>>> getHttpHeaders();
 
   /**
    * Get Query Parameters.
