@@ -14,7 +14,9 @@ package com.formkiq.stacks.client.requests;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
@@ -45,15 +47,9 @@ public class DeleteDocumentTagRequest implements ApiRequest {
     return this;
   }
 
-  /**
-   * Set the TagKey.
-   * 
-   * @param tagKey {@link String}
-   * @return {@link DeleteDocumentTagRequest}
-   */
-  public DeleteDocumentTagRequest tagKey(final String tagKey) {
-    this.paths.put("tagKey", tagKey);
-    return this;
+  @Override
+  public Optional<Map<String, List<String>>> getHttpHeaders() {
+    return Optional.empty();
   }
 
   @Override
@@ -74,6 +70,17 @@ public class DeleteDocumentTagRequest implements ApiRequest {
    */
   public DeleteDocumentTagRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
+    return this;
+  }
+
+  /**
+   * Set the TagKey.
+   * 
+   * @param tagKey {@link String}
+   * @return {@link DeleteDocumentTagRequest}
+   */
+  public DeleteDocumentTagRequest tagKey(final String tagKey) {
+    this.paths.put("tagKey", tagKey);
     return this;
   }
 

@@ -49,6 +49,8 @@ import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
+import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -56,7 +58,9 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentFormatRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
@@ -147,6 +151,7 @@ public class FormKiqClientV1Test {
             org.mockserver.model.HttpResponse.response(resourceToString("/documentsId.json", UTF_8))
                 .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
     add("options", "/documents/" + documentId + "/tags", "/documentsId.json");
+    add("options", "/documents/" + documentId + "/content", "/documentsId.json");
     add("options", "/documents/" + documentId, "/documentsId.json");
     add("get", "/documents/" + documentId + "/tags/category", "/get_documents_tag.json");
     add("put", "/documents/" + documentId + "/tags/category", "/documentsId.json");
@@ -158,8 +163,11 @@ public class FormKiqClientV1Test {
     add("options", "/documents/upload", "/documentsId.json");
     add("get", "/documents/" + documentId + "/upload", "/get_documents_url.json");
     add("options", "/documents/" + documentId + "/upload", "/documentsId.json");
+    add("post", "/documents/" + documentId + "/formats", "/get_documents_url.json");
+    add("options", "/documents/" + documentId + "/formats", "/documentsId.json");
     add("post", "/search", "/search.json");
     add("options", "/search", "/search.json");
+    add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
   }
 
   /**
@@ -865,6 +873,38 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test OPTIONS /documents/{documentId}/content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsDocumentContent() throws Exception {
+    OptionsDocumentContentRequest request =
+        new OptionsDocumentContentRequest().documentId(documentId);
+    HttpResponse<String> response = this.client.optionsDocumentContent(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("OPTIONS", response.request().method());
+    assertEquals(URL + "documents/" + documentId + "/content", response.request().uri().toString());
+  }
+
+  /**
+   * Test GET /documents/{documentId}/content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentContent() throws Exception {
+    GetDocumentContentRequest request = new GetDocumentContentRequest().documentId(documentId)
+        .contentType("application/pdf").siteId("123");
+    HttpResponse<String> response = this.client.getDocumentContentAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("GET", response.request().method());
+    assertEquals(URL + "documents/" + documentId + "/content?siteId=123",
+        response.request().uri().toString());
+    assertEquals("application/pdf", response.request().headers().firstValue("Content-Type").get());
+  }
+
+  /**
    * Test Options /documents/upload.
    * 
    * @throws Exception Exception
@@ -940,6 +980,37 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
     assertEquals("sample/test.txt", docs.documents().get(0).path());
     assertEquals("jtest", docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test OPTIONS /documents/{documentId}/formats.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsDocumentFormats() throws Exception {
+    OptionsDocumentFormatRequest request =
+        new OptionsDocumentFormatRequest().documentId(documentId);
+    HttpResponse<String> response = this.client.optionsDocumentFormats(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "documents/" + documentId + "/formats", response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
+   * Test POST /documents/{documentId}/formats.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPostDocumentFormats() throws Exception {
+    DocumentFormatSearchRequest req = new DocumentFormatSearchRequest().documentId(documentId)
+        .mime("bleh").siteId(siteId).siteId("10").versionId("2");
+    HttpResponse<String> response = this.client.addDocumentFormatAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "documents/" + documentId + "/formats?siteId=10",
+        response.request().uri().toString());
+    assertEquals("POST", response.request().method());
   }
 
   /**

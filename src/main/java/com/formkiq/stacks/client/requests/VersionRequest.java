@@ -13,7 +13,9 @@
 package com.formkiq.stacks.client.requests;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 
 /**
@@ -26,6 +28,11 @@ public class VersionRequest implements ApiRequest {
    * constructor.
    */
   public VersionRequest() {}
+
+  @Override
+  public Optional<Map<String, List<String>>> getHttpHeaders() {
+    return Optional.empty();
+  }
 
   @Override
   public Map<String, String> getQueryParameters() {

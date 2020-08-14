@@ -12,18 +12,22 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/upload or /documents/{documentId}/url Request.
+ * Creates GET /documents/{documentId}/content Request.
  *
  */
-public class GetDocumentUploadRequest implements ApiRequest {
+public class GetDocumentContentRequest implements ApiRequest {
 
+  /** Http Headers. */
+  private Optional<Map<String, List<String>>> headers = Optional.of(new HashMap<>());
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -32,16 +36,27 @@ public class GetDocumentUploadRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public GetDocumentUploadRequest() {}
+  public GetDocumentContentRequest() {}
 
   /**
-   * Set the ContentLength of the data.
+   * Get Content-Type.
    * 
-   * @param contentLength long
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link String}
    */
-  public GetDocumentUploadRequest contentLength(final long contentLength) {
-    this.parameters.put("contentLength", "" + contentLength);
+  public String contentType() {
+    return this.headers.get().containsKey("Content-Type")
+        ? this.headers.get().get("Content-Type").get(0)
+        : null;
+  }
+
+  /**
+   * Get Content-Type.
+   * 
+   * @param contentType {@link String}
+   * @return {@link GetDocumentContentRequest}
+   */
+  public GetDocumentContentRequest contentType(final String contentType) {
+    this.headers.get().put("Content-Type", Arrays.asList(contentType));
     return this;
   }
 
@@ -49,27 +64,16 @@ public class GetDocumentUploadRequest implements ApiRequest {
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link GetDocumentContentRequest}
    */
-  public GetDocumentUploadRequest documentId(final String documentId) {
+  public GetDocumentContentRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
-    return this;
-  }
-
-  /**
-   * Indicates the number of hours request is valid for.
-   * 
-   * @param duration int
-   * @return {@link GetDocumentUploadRequest}
-   */
-  public GetDocumentUploadRequest duration(final int duration) {
-    this.parameters.put("duration", "" + duration);
     return this;
   }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
-    return Optional.empty();
+    return this.headers;
   }
 
   @Override
@@ -79,35 +83,22 @@ public class GetDocumentUploadRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return this.paths.containsKey("documentId") && this.paths.get("documentId") != null
-        ? "documents/" + this.paths.get("documentId") + "/upload"
-        : "documents/upload";
-  }
-
-  /**
-   * Set Document Path attribute.
-   * 
-   * @param path {@link String}
-   * @return {@link GetDocumentUploadRequest}
-   */
-  public GetDocumentUploadRequest path(final String path) {
-    this.parameters.put("path", path);
-    return this;
+    return "documents/" + this.paths.get("documentId") + "/content";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentUploadRequest}
+   * @return {@link GetDocumentContentRequest}
    */
-  public GetDocumentUploadRequest siteId(final String siteId) {
+  public GetDocumentContentRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    // empty
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

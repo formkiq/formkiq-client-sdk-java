@@ -37,6 +37,8 @@ import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
+import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -44,7 +46,9 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.OptionsDocumentFormatRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
@@ -139,7 +143,7 @@ public class FormKiqClientV1 implements FormKiqClient {
 
   /**
    * Create HTTP Headers from {@link AddDocument}.
-   * 
+   *
    * @param contentType {@link String}
    * @return {@link Optional} {@link Map}
    */
@@ -256,6 +260,21 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  /**
+   * GET /documents/{documentId}/content.
+   * 
+   * @param request {@link GetDocumentContentRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocumentContentAsHttpResponse(
+      final GetDocumentContentRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", request.getHttpHeaders()));
   }
 
   @Override
@@ -429,6 +448,34 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   /**
+   * OPTIONS /documents/{documentId}/content.
+   * 
+   * @param request {@link OptionsDocumentContentRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> optionsDocumentContent(final OptionsDocumentContentRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /documents/{documentId}/formats.
+   * 
+   * @param request {@link OptionsDocumentFormatRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> optionsDocumentFormats(final OptionsDocumentFormatRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
    * OPTIONS /documents/{documentId}/url.
    * 
    * @param request {@link OptionsDocumentContentUrlRequest}
@@ -569,6 +616,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     search.query(q);
 
     String contents = this.gson.toJson(search);
+    String u = this.apiRestUrl + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  /**
+   * POST /documents/{documentId}/formats.
+   * 
+   * @param request {@link DocumentFormatSearchRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> addDocumentFormatAsHttpResponse(
+      final DocumentFormatSearchRequest request) throws IOException, InterruptedException {
+
+    Map<String, String> map = new HashMap<>();
+    map.put("mime", request.mime());
+
+    if (request.versionId() != null) {
+      map.put("versionId", request.versionId());
+    }
+
+    String contents = this.gson.toJson(map);
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));

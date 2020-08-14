@@ -13,7 +13,9 @@
 package com.formkiq.stacks.client.requests;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.AddDocument;
@@ -53,6 +55,11 @@ public class AddDocumentRequest implements ApiRequest {
   public AddDocumentRequest document(final AddDocument addDocument) {
     this.document = addDocument;
     return this;
+  }
+
+  @Override
+  public Optional<Map<String, List<String>>> getHttpHeaders() {
+    return Optional.empty();
   }
 
   @Override
