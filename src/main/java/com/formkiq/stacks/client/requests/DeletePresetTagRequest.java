@@ -12,6 +12,8 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,29 +22,42 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/{documentId}/tags/{tagKey} Request.
+ * Creates DELETE /preset/{presetId}/tags/{tagKey}.
  *
  */
-public class GetDocumentTagsKeyRequest implements ApiRequest {
+public class DeletePresetTagRequest implements ApiRequest {
 
-  /** Request Parameters. */
+  /** Request Paths. */
   private Map<String, String> paths = new HashMap<>();
+
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
-  public GetDocumentTagsKeyRequest() {}
+  public DeletePresetTagRequest() {}
 
   /**
-   * Set the DocumentId.
+   * Set the PresetId.
    * 
-   * @param documentId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
+   * @param presetId {@link String}
+   * @return {@link DeletePresetTagRequest}
    */
-  public GetDocumentTagsKeyRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
+  public DeletePresetTagRequest presetId(final String presetId) {
+    this.paths.put("presetId", presetId);
+    this.paths.put("tagKey", presetId);
+    return this;
+  }
+
+  /**
+   * Set the Tag.
+   * 
+   * @param tag {@link String}
+   * @return {@link DeletePresetTagRequest}
+   */
+  public DeletePresetTagRequest tag(final String tag) {
+    this.paths.put("tagKey", tag);
     return this;
   }
 
@@ -58,34 +73,23 @@ public class GetDocumentTagsKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+    return "presets/" + this.paths.get("presetId") + "/tags/"
+        + URLEncoder.encode(this.paths.get("tagKey"), StandardCharsets.UTF_8);
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
+   * @return {@link DeletePresetTagRequest}
    */
-  public GetDocumentTagsKeyRequest siteId(final String siteId) {
+  public DeletePresetTagRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
-    return this;
-  }
-
-  /**
-   * Set the tagKey.
-   * 
-   * @param tagKey {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
-   */
-  public GetDocumentTagsKeyRequest tagKey(final String tagKey) {
-    this.paths.put("tagKey", tagKey);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
+    Validate.notNull(this.paths.get("presetId"), "PresetId is required.");
   }
 }

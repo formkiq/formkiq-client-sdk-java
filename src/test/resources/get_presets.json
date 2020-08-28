@@ -1,0 +1,14 @@
+{
+  "next": "123",
+  "previous": "555",
+  "presets": [
+    {
+      "id": "werwer",
+      "siteId": "test",
+      "name": "foo",
+      "type": "TAGGING",
+      "insertedDate": "2020-08-28T17:55:20.352Z",
+      "userId": "joe"
+    }
+  ]
+}

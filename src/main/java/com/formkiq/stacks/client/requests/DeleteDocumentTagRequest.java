@@ -12,7 +12,6 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,7 @@ public class DeleteDocumentTagRequest implements ApiRequest {
 
   @Override
   public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
+    return this.parameters;
   }
 
   @Override

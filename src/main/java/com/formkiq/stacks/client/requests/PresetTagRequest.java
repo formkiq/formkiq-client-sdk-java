@@ -18,35 +18,34 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.PresetTagsBody;
 
 /**
- * Creates POST /documents/{documentId}/tags Request.
+ * Creates POST /presets/{presetId}/tags Request.
  *
  */
-public class AddDocumentTagRequest implements ApiRequest {
+public class PresetTagRequest implements ApiRequest {
 
-  /** Tag Key. */
-  private String tagKey;
-  /** Tag Value. */
-  private String tagValue;
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** {@link PresetTagsBody}. */
+  private PresetTagsBody body;
 
   /**
    * constructor.
    */
-  public AddDocumentTagRequest() {}
+  public PresetTagRequest() {}
 
   /**
-   * Set the DocumentId.
+   * Set the presetId.
    * 
-   * @param documentId {@link String}
-   * @return {@link AddDocumentTagRequest}
+   * @param presetId {@link String}
+   * @return {@link PresetTagRequest}
    */
-  public AddDocumentTagRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
+  public PresetTagRequest presetId(final String presetId) {
+    this.paths.put("presetId", presetId);
     return this;
   }
 
@@ -62,64 +61,42 @@ public class AddDocumentTagRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags";
+    return "presets/" + this.paths.get("presetId") + "/tags";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link AddDocumentTagRequest}
+   * @return {@link PresetTagRequest}
    */
-  public AddDocumentTagRequest siteId(final String siteId) {
+  public PresetTagRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
-    return this;
-  }
-
-  /**
-   * Get Tag Key.
-   * 
-   * @return {@link String}
-   */
-  public String tagKey() {
-    return this.tagKey;
-  }
-
-  /**
-   * Set Tag Key.
-   * 
-   * @param s {@link String}
-   * @return {@link AddDocumentTagRequest}
-   */
-  public AddDocumentTagRequest tagKey(final String s) {
-    this.tagKey = s;
-    return this;
-  }
-
-  /**
-   * Get Tag Value.
-   * 
-   * @return {@link String}
-   */
-  public String tagValue() {
-    return this.tagValue;
-  }
-
-  /**
-   * Set Tag Value.
-   * 
-   * @param s {@link String}
-   * @return {@link AddDocumentTagRequest}
-   */
-  public AddDocumentTagRequest tagValue(final String s) {
-    this.tagValue = s;
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.tagKey, "TagKey is required.");
-    Validate.notNull(this.tagValue, "TagValue is required.");
+    Validate.notNull(this.paths.get("presetId"), "PresetId is required.");
+  }
+
+  /**
+   * Get {@link PresetTagsBody}.
+   * 
+   * @return {@link PresetTagsBody}
+   */
+  public PresetTagsBody body() {
+    return this.body;
+  }
+
+  /**
+   * Set {@link PresetTagsBody}.
+   * 
+   * @param data {@link PresetTagsBody}
+   * @return {@link PresetTagRequest}
+   */
+  public PresetTagRequest body(final PresetTagsBody data) {
+    this.body = data;
+    return this;
   }
 }

@@ -20,29 +20,30 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/{documentId}/tags/{tagKey} Request.
+ * Creates DELETE /preset/{presetId}.
  *
  */
-public class GetDocumentTagsKeyRequest implements ApiRequest {
+public class DeletePresetRequest implements ApiRequest {
 
-  /** Request Parameters. */
+  /** Request Paths. */
   private Map<String, String> paths = new HashMap<>();
+
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
-  public GetDocumentTagsKeyRequest() {}
+  public DeletePresetRequest() {}
 
   /**
-   * Set the DocumentId.
+   * Set the PresetId.
    * 
-   * @param documentId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
+   * @param presetId {@link String}
+   * @return {@link DeletePresetRequest}
    */
-  public GetDocumentTagsKeyRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
+  public DeletePresetRequest presetId(final String presetId) {
+    this.paths.put("presetId", presetId);
     return this;
   }
 
@@ -58,34 +59,22 @@ public class GetDocumentTagsKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+    return "presets/" + this.paths.get("presetId");
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
+   * @return {@link DeletePresetRequest}
    */
-  public GetDocumentTagsKeyRequest siteId(final String siteId) {
+  public DeletePresetRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
-    return this;
-  }
-
-  /**
-   * Set the tagKey.
-   * 
-   * @param tagKey {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
-   */
-  public GetDocumentTagsKeyRequest tagKey(final String tagKey) {
-    this.paths.put("tagKey", tagKey);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
+    Validate.notNull(this.paths.get("presetId"), "PresetId is required.");
   }
 }
