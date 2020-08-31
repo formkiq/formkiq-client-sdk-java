@@ -17,34 +17,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
-import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/{documentId}/tags/{tagKey} Request.
+ * GET /presets.
  *
  */
-public class GetDocumentTagsKeyRequest implements ApiRequest {
+public class GetPresetsRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
-  public GetDocumentTagsKeyRequest() {}
-
-  /**
-   * Set the DocumentId.
-   * 
-   * @param documentId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
-   */
-  public GetDocumentTagsKeyRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
-    return this;
-  }
+  public GetPresetsRequest() {}
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -58,34 +44,55 @@ public class GetDocumentTagsKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+    return "presets";
+  }
+
+  /**
+   * Limit the number of results returned.
+   * 
+   * @param limit {@link String}
+   * @return {@link GetPresetsRequest}
+   */
+  public GetPresetsRequest limit(final int limit) {
+    this.parameters.put("limit", "" + limit);
+    return this;
+  }
+
+  /**
+   * set Next Results Token.
+   * 
+   * @param next {@link String}
+   * @return {@link GetPresetsRequest}
+   */
+  public GetPresetsRequest next(final String next) {
+    this.parameters.put("next", next);
+    return this;
+  }
+
+  /**
+   * set Previous Results Token.
+   * 
+   * @param previous {@link String}
+   * @return {@link GetPresetsRequest}
+   */
+  public GetPresetsRequest previous(final String previous) {
+    this.parameters.put("previous", previous);
+    return this;
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
+   * @return {@link GetPresetsRequest}
    */
-  public GetDocumentTagsKeyRequest siteId(final String siteId) {
+  public GetPresetsRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
-    return this;
-  }
-
-  /**
-   * Set the tagKey.
-   * 
-   * @param tagKey {@link String}
-   * @return {@link GetDocumentTagsKeyRequest}
-   */
-  public GetDocumentTagsKeyRequest tagKey(final String tagKey) {
-    this.paths.put("tagKey", tagKey);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
+    // empty
   }
 }
