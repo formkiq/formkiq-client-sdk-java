@@ -52,13 +52,6 @@ import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
  */
 public interface FormKiqClient {
 
-  /** Http Status OK. */
-  int HTTP_STATUS_OK = 200;
-  /** Http Status Created. */
-  int HTTP_STATUS_CREATED = 201;
-  /** Date Format. */
-  String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
-
   /**
    * POST(Add) /documents.
    * 
@@ -92,7 +85,7 @@ public interface FormKiqClient {
   AddPresetResponse addPreset(AddPresetRequest request) throws IOException, InterruptedException;
 
   /**
-   * Patch /presets/{presetId}/tags.
+   * Post /presets/{presetId}/tags.
    * 
    * @param request {@link PresetTagRequest}
    * @throws IOException IOException
@@ -258,15 +251,6 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   Documents search(SearchDocumentsRequest request) throws IOException, InterruptedException;
-
-  /**
-   * Post /presets/{presetId}/tags.
-   * 
-   * @param request {@link PresetTagRequest}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  void setPresetTags(PresetTagRequest request) throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.

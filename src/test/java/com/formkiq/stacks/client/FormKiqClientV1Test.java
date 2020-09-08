@@ -367,50 +367,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test PATCH /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags01() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
-    this.client.setPresetTags(req);
-  }
-
-  /**
-   * Test PATCH /documents/{documentId}/tags. Missing content.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags02() throws Exception {
-    PresetTagRequest req = new PresetTagRequest();
-
-    try {
-      this.client.addPresetTags(req);
-    } catch (NullPointerException e) {
-      assertEquals("PresetId is required.", e.getMessage());
-    }
-  }
-
-  /**
-   * Test PATCH /documents/{documentId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTagsAsHttpResponse() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
-    HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
-    assertEquals("PATCH", response.request().method());
-    assertEquals(URL + "presets/" + documentId + "/tags?siteId=" + siteId,
-        response.request().uri().toString());
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-  }
-
-  /**
    * Test DELETE /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -1374,23 +1330,23 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testSetPresetTags01() throws Exception {
+  public void testAddPresetTags01() throws Exception {
     PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
         .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
-    this.client.setPresetTags(req);
+    this.client.addPresetTags(req);
   }
 
   /**
-   * Test POST /documents/{documentId}/tags. Missing content.
+   * Test POST /presets/{presetId}/tags. Missing content.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testSetPresetTags02() throws Exception {
+  public void testAddPresetTags02() throws Exception {
     PresetTagRequest req = new PresetTagRequest();
 
     try {
-      this.client.setPresetTags(req);
+      this.client.addPresetTags(req);
     } catch (NullPointerException e) {
       assertEquals("PresetId is required.", e.getMessage());
     }
@@ -1402,10 +1358,10 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testSetPresetTagsAsHttpResponse() throws Exception {
+  public void testAddPresetTagsAsHttpResponse() throws Exception {
     PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
         .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
-    HttpResponse<String> response = this.client.setPresetTagsAsHttpResponse(req);
+    HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
     assertEquals(URL + "presets/" + documentId + "/tags?siteId=" + siteId,
