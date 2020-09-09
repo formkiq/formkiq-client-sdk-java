@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.PresetTagsBody;
+import com.formkiq.stacks.client.models.PresetTagBody;
 
 /**
  * Creates POST /presets/{presetId}/tags Request.
@@ -30,8 +30,8 @@ public class PresetTagRequest implements ApiRequest {
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** {@link PresetTagsBody}. */
-  private PresetTagsBody body;
+  /** {@link PresetTagBody}. */
+  private PresetTagBody body;
 
   /**
    * constructor.
@@ -81,21 +81,21 @@ public class PresetTagRequest implements ApiRequest {
   }
 
   /**
-   * Get {@link PresetTagsBody}.
+   * Get {@link PresetTagBody}.
    * 
-   * @return {@link PresetTagsBody}
+   * @return {@link PresetTagBody}
    */
-  public PresetTagsBody body() {
+  public PresetTagBody body() {
     return this.body;
   }
 
   /**
-   * Set {@link PresetTagsBody}.
+   * Set {@link PresetTagBody}.
    * 
-   * @param data {@link PresetTagsBody}
+   * @param data {@link PresetTagBody}
    * @return {@link PresetTagRequest}
    */
-  public PresetTagRequest body(final PresetTagsBody data) {
+  public PresetTagRequest body(final PresetTagBody data) {
     this.body = data;
     return this;
   }
