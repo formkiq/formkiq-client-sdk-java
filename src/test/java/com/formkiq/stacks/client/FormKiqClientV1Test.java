@@ -46,7 +46,6 @@ import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTagBody;
 import com.formkiq.stacks.client.models.PresetTags;
-import com.formkiq.stacks.client.models.PresetTagsBody;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.PresetsBody;
 import com.formkiq.stacks.client.models.UpdateDocument;
@@ -1332,7 +1331,7 @@ public class FormKiqClientV1Test {
   @Test
   public void testAddPresetTags01() throws Exception {
     PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
+        .body(new PresetTagBody().key("First Name"));
     this.client.addPresetTags(req);
   }
 
@@ -1360,7 +1359,7 @@ public class FormKiqClientV1Test {
   @Test
   public void testAddPresetTagsAsHttpResponse() throws Exception {
     PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagsBody().tags(Arrays.asList(new PresetTagBody().key("First Name"))));
+        .body(new PresetTagBody().key("First Name"));
     HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
