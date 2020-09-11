@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.models.PresetTagBody;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.PresetsBody;
+import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
@@ -172,6 +173,10 @@ public class FormKiqClientV1Test {
     gson = new GsonBuilder().disableHtmlEscaping().setDateFormat(DATE_FORMAT).create();
 
     add("get", "/version", "/get_version.json");
+    add("options", "/version", "/id.json");
+
+    add("get", "/sites", "/get_sites.json");
+    add("options", "/sites", "/id.json");
 
     addPresets();
 
@@ -363,6 +368,50 @@ public class FormKiqClientV1Test {
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
         gson.fromJson(httpresponse.body(), Map.class).get("id").toString());
+  }
+
+  /**
+   * Test POST /presets/{presetId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddPresetTags01() throws Exception {
+    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
+        .body(new PresetTagBody().key("First Name"));
+    this.client.addPresetTags(req);
+  }
+
+  /**
+   * Test POST /presets/{presetId}/tags. Missing content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddPresetTags02() throws Exception {
+    PresetTagRequest req = new PresetTagRequest();
+
+    try {
+      this.client.addPresetTags(req);
+    } catch (NullPointerException e) {
+      assertEquals("PresetId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /presets/{documentId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddPresetTagsAsHttpResponse() throws Exception {
+    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
+        .body(new PresetTagBody().key("First Name"));
+    HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_CREATED, response.statusCode());
+    assertEquals("POST", response.request().method());
+    assertEquals(URL + "presets/" + documentId + "/tags?siteId=" + siteId,
+        response.request().uri().toString());
   }
 
   /**
@@ -1028,6 +1077,36 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetSites() throws Exception {
+    Sites sites = this.client.getSites();
+    assertEquals(1, sites.sites().size());
+    assertEquals("test@formkiq.com", sites.sites().get(0).uploadEmail());
+    assertEquals("adadsad", sites.sites().get(0).siteId());
+  }
+
+  /**
+   * Test GET /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetSitesAsHttpResponse() throws Exception {
+    HttpResponse<String> response = this.client.getSitesAsHttpResponse();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    HttpRequest request = response.request();
+    assertEquals(URL + "sites", request.uri().toString());
+    assertEquals("GET", request.method());
+    assertEquals("http://localhost", request.headers().firstValue("Origin").get());
+    assertTrue(request.headers().firstValue("Authorization").get()
+        .startsWith("AWS4-HMAC-SHA256 Credential=123"));
+  }
+
+  /**
    * Test OPTIONS /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -1243,6 +1322,33 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test OPTIONS /version.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsVersion() throws Exception {
+    HttpResponse<String> response = this.client.optionsVersion();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "version", response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
+   * Test OPTIONS /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsSites() throws Exception {
+    HttpResponse<String> response = this.client.optionsSites();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "sites", response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+
+  /**
    * Test POST /documents/{documentId}/formats.
    * 
    * @throws Exception Exception
@@ -1321,50 +1427,6 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
     assertEquals("sample/test.txt", docs.documents().get(0).path());
     assertEquals("jtest", docs.documents().get(0).userId());
-  }
-
-  /**
-   * Test POST /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags01() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagBody().key("First Name"));
-    this.client.addPresetTags(req);
-  }
-
-  /**
-   * Test POST /presets/{presetId}/tags. Missing content.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags02() throws Exception {
-    PresetTagRequest req = new PresetTagRequest();
-
-    try {
-      this.client.addPresetTags(req);
-    } catch (NullPointerException e) {
-      assertEquals("PresetId is required.", e.getMessage());
-    }
-  }
-
-  /**
-   * Test POST /presets/{documentId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTagsAsHttpResponse() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagBody().key("First Name"));
-    HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_CREATED, response.statusCode());
-    assertEquals("POST", response.request().method());
-    assertEquals(URL + "presets/" + documentId + "/tags?siteId=" + siteId,
-        response.request().uri().toString());
   }
 
   /**

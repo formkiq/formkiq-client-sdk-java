@@ -24,6 +24,7 @@ import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
+import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -241,6 +242,15 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   String getVersion() throws IOException, InterruptedException;
+
+  /**
+   * GET /sites.
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  Sites getSites() throws IOException, InterruptedException;
 
   /**
    * POST /search.
