@@ -35,6 +35,7 @@ import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
+import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -66,6 +67,7 @@ import com.formkiq.stacks.client.requests.OptionsPresetRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
+import com.formkiq.stacks.client.requests.SitesRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 import com.formkiq.stacks.client.requests.VersionRequest;
@@ -626,6 +628,25 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public Sites getSites() throws IOException, InterruptedException {
+    HttpResponse<String> response = getSitesAsHttpResponse();
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), Sites.class);
+  }
+
+  /**
+   * GET /sites.
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getSitesAsHttpResponse() throws IOException, InterruptedException {
+    String u = this.apiRestUrl + new SitesRequest().buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   @SuppressWarnings("unchecked")
   public String getVersion() throws IOException, InterruptedException {
     HttpResponse<String> response = getVersionAsHttpResponse();
@@ -660,6 +681,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
+
 
   /**
    * OPTIONS /documents/{documentId}/content.
@@ -839,6 +861,32 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsSearch() throws IOException, InterruptedException {
     String u = this.apiRestUrl + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /sites.
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsSites() throws IOException, InterruptedException {
+    String u = this.apiRestUrl + new SitesRequest().buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /version.
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsVersion() throws IOException, InterruptedException {
+    String u = this.apiRestUrl + new VersionRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
