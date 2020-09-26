@@ -29,51 +29,17 @@ public class UpdateDocument {
   private String contentType;
   /** Document Content. */
   private String content;
+  /** Is Content Base 64 Encoded. */
+  private boolean isBase64;
   /** Document Tags. */
   private List<DocumentTag> tags;
+  /** Child Documents. */
+  private List<UpdateDocument> documents;
 
   /**
    * constructor.
    */
   public UpdateDocument() {}
-
-  /**
-   * Get Path.
-   * 
-   * @return {@link String}
-   */
-  public String path() {
-    return this.path;
-  }
-
-  /**
-   * Set Path.
-   * 
-   * @param s {@link String}
-   */
-  public void path(final String s) {
-    this.path = s;
-  }
-
-  /**
-   * Get Content Type.
-   * 
-   * @return {@link String}
-   */
-  public String contentType() {
-    return this.contentType;
-  }
-
-  /**
-   * Set Content Type.
-   * 
-   * @param s {@link String}
-   * @return {@link UpdateDocument}
-   */
-  public UpdateDocument contentType(final String s) {
-    this.contentType = s;
-    return this;
-  }
 
   /**
    * Get Content.
@@ -82,6 +48,18 @@ public class UpdateDocument {
    */
   public String content() {
     return this.content;
+  }
+
+  /**
+   * Set Content.
+   * 
+   * @param s {@link String}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument content(final String s) {
+    this.content = s;
+    isBase64(false);
+    return this;
   }
 
   /**
@@ -103,6 +81,88 @@ public class UpdateDocument {
    */
   public UpdateDocument contentAsBase64(final String s) {
     this.content = s;
+    isBase64(true);
+    return this;
+  }
+
+  /**
+   * Get Content Type.
+   * 
+   * @return {@link String}
+   */
+  public String contentType() {
+    return this.contentType;
+  }
+
+  /**
+   * Set Content Type.
+   * 
+   * @param s {@link String}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument contentType(final String s) {
+    this.contentType = s;
+    isBase64(false);
+    return this;
+  }
+
+  /**
+   * Child Documents.
+   * 
+   * @return {@link List} {@link UpdateDocument}
+   */
+  public List<UpdateDocument> documents() {
+    return this.documents;
+  }
+
+  /**
+   * Get Child Documents.
+   * 
+   * @param list {@link List} {@link UpdateDocument}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument documents(final List<UpdateDocument> list) {
+    this.documents = list;
+    return this;
+  }
+
+  /**
+   * Is Content Base64 Encoded.
+   * 
+   * @return boolean
+   */
+  public boolean isBase64() {
+    return this.isBase64;
+  }
+
+  /**
+   * Set Content as Base64 Encoded.
+   * 
+   * @param base64 boolean
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument isBase64(final boolean base64) {
+    this.isBase64 = base64;
+    return this;
+  }
+
+  /**
+   * Get Path.
+   * 
+   * @return {@link String}
+   */
+  public String path() {
+    return this.path;
+  }
+
+  /**
+   * Set Path.
+   * 
+   * @param s {@link String}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument path(final String s) {
+    this.path = s;
     return this;
   }
 

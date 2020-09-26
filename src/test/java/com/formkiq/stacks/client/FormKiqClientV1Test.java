@@ -182,6 +182,7 @@ public class FormKiqClientV1Test {
 
     add("get", "/documents", "/get_documents.json");
     add("post", "/documents", "/documentsId.json");
+    add("post", "/public/documents", "/documentsId.json");
     add("options", "/documents", "/documentsId.json");
     add("patch", "/documents/" + documentId, "/documentsId.json");
     add("get", "/documents/" + documentId, "/get_document.json");
@@ -301,6 +302,28 @@ public class FormKiqClientV1Test {
         gson.fromJson(response.body(), Map.class).get("documentId").toString());
     HttpRequest request = response.request();
     assertNull(request.headers().map().get("Content-Type"));
+  }
+
+  /**
+   * Test POST /public/documents.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentAsHttpResponse03() throws Exception {
+    AddDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
+    AddDocumentRequest req =
+        new AddDocumentRequest().enablePublicEndpoint(true).document(post).siteId(siteId);
+    HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "public/documents?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
+        gson.fromJson(response.body(), Map.class).get("documentId").toString());
+    HttpRequest request = response.request();
+    assertEquals("[plan/text]", request.headers().map().get("Content-Type").toString());
   }
 
   /**

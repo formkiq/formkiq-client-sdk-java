@@ -21,7 +21,7 @@ import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.UpdateDocument;
 
 /**
- * GET /documents/{documentId}.
+ * PATCH(Update) /documents/{documentId}.
  *
  */
 public class UpdateDocumentRequest implements ApiRequest {

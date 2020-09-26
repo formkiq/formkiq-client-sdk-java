@@ -12,48 +12,26 @@
  */
 package com.formkiq.stacks.client.models;
 
-import java.util.List;
-
 /**
- * Response object for PATCH(Update) /documents/{documentId}.
+ * Document Upload Url holder.
  *
  */
-public class UpdateDocumentResponse {
+public class DocumentUploadUrl {
 
-  /** Site Id. */
-  private String siteId;
-  /** Document Identifier. */
-  private String documentId;
-  /** Upload Url. */
+  /** Document Url. */
   private String uploadUrl;
-  /** {@link List} {@link DocumentUploadUrl}. */
-  private List<DocumentUploadUrl> documents;
+  /** Document Id. */
+  private String documentId;
 
   /**
    * constructor.
    */
-  public UpdateDocumentResponse() {}
+  public DocumentUploadUrl() {
 
-  /**
-   * Get Document Identifier.
-   * 
-   * @return {@link String}
-   */
-  public String documentId() {
-    return this.documentId;
   }
 
   /**
-   * Get Site Id.
-   * 
-   * @return {@link String}
-   */
-  public String siteId() {
-    return this.siteId;
-  }
-
-  /**
-   * Get Upload Url.
+   * Get Document Upload Url.
    * 
    * @return {@link String}
    */
@@ -62,11 +40,11 @@ public class UpdateDocumentResponse {
   }
 
   /**
-   * Get Child Documents.
+   * Get Document Id.
    * 
-   * @return {@link List} {@link DocumentUploadUrl}
+   * @return {@link String}
    */
-  public List<DocumentUploadUrl> documents() {
-    return this.documents;
+  public String documentId() {
+    return this.documentId;
   }
 }

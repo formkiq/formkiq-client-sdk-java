@@ -53,9 +53,11 @@ public class DocumentTag {
    * Set Tag DocumentId.
    * 
    * @param tagDocumentId {@link String}
+   * @return {@link DocumentTag}
    */
-  public void documentId(final String tagDocumentId) {
+  public DocumentTag documentId(final String tagDocumentId) {
     this.documentId = tagDocumentId;
+    return this;
   }
 
   /**
@@ -71,9 +73,11 @@ public class DocumentTag {
    * Set Inserted Date.
    * 
    * @param date {@link Date}
+   * @return {@link DocumentTag}
    */
-  public void insertedDate(final Date date) {
+  public DocumentTag insertedDate(final Date date) {
     this.insertedDate = date;
+    return this;
   }
 
   /**
@@ -89,9 +93,11 @@ public class DocumentTag {
    * Set Key.
    * 
    * @param tagkey {@link String}
+   * @return {@link DocumentTag}
    */
-  public void key(final String tagkey) {
+  public DocumentTag key(final String tagkey) {
     this.key = tagkey;
+    return this;
   }
 
   /**
@@ -107,9 +113,11 @@ public class DocumentTag {
    * Set Tag Type.
    * 
    * @param tagType {@link String}
+   * @return {@link DocumentTag}
    */
-  public void type(final String tagType) {
+  public DocumentTag type(final String tagType) {
     this.type = tagType;
+    return this;
   }
 
   /**
@@ -125,9 +133,11 @@ public class DocumentTag {
    * Set Tag UserId.
    * 
    * @param tagUserId {@link String}
+   * @return {@link DocumentTag}
    */
-  public void userId(final String tagUserId) {
+  public DocumentTag userId(final String tagUserId) {
     this.userId = tagUserId;
+    return this;
   }
 
   /**
@@ -143,8 +153,10 @@ public class DocumentTag {
    * Set Tag Value.
    * 
    * @param tagValue {@link String}
+   * @return {@link DocumentTag}
    */
-  public void value(final String tagValue) {
+  public DocumentTag value(final String tagValue) {
     this.value = tagValue;
+    return this;
   }
 }
