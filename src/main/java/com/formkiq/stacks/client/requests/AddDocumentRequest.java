@@ -32,6 +32,9 @@ public class AddDocumentRequest implements ApiRequest {
   /** {@link AddDocument}. */
   private AddDocument document;
 
+  /** Whether to use the public endpoint. */
+  private boolean enablePublicEndpoint;
+
   /**
    * constructor.
    */
@@ -57,6 +60,26 @@ public class AddDocumentRequest implements ApiRequest {
     return this;
   }
 
+  /**
+   * Is using Public Endpoint.
+   * 
+   * @return boolean
+   */
+  public boolean enablePublicEndpoint() {
+    return this.enablePublicEndpoint;
+  }
+
+  /**
+   * Whether to enable the public endpoint.
+   * 
+   * @param enable boolean
+   * @return {@link AddDocumentRequest}
+   */
+  public AddDocumentRequest enablePublicEndpoint(final boolean enable) {
+    this.enablePublicEndpoint = enable;
+    return this;
+  }
+
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
     return Optional.empty();
@@ -69,7 +92,7 @@ public class AddDocumentRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents";
+    return this.enablePublicEndpoint ? "public/documents" : "documents";
   }
 
   /**

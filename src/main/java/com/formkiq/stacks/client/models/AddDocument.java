@@ -29,8 +29,12 @@ public class AddDocument {
   private String contentType;
   /** Document Content. */
   private String content;
+  /** Is Content Base 64 Encoded. */
+  private boolean isBase64;
   /** Document Tags. */
   private List<DocumentTag> tags;
+  /** Child Documents. */
+  private List<AddDocument> documents;
 
   /**
    * constructor.
@@ -38,22 +42,46 @@ public class AddDocument {
   public AddDocument() {}
 
   /**
-   * Get Path.
+   * Get Content.
    * 
    * @return {@link String}
    */
-  public String path() {
-    return this.path;
+  public String content() {
+    return this.content;
   }
 
   /**
-   * Set Path.
+   * Set Content.
    * 
    * @param s {@link String}
+   * @return {@link UpdateDocument}
+   */
+  public AddDocument content(final String s) {
+    this.content = s;
+    isBase64(false);
+    return this;
+  }
+
+  /**
+   * Set Content and converts to Base64.
+   * 
+   * @param s {@link String}
+   * @param charset {@link Charset}
    * @return {@link AddDocument}
    */
-  public AddDocument path(final String s) {
-    this.path = s;
+  public AddDocument content(final String s, final Charset charset) {
+    return contentAsBase64(Base64.getEncoder().encodeToString(s.getBytes(charset)));
+  }
+
+  /**
+   * Set Content.
+   * 
+   * @param s Base64 encoded string.
+   * @return {@link AddDocument}
+   */
+  public AddDocument contentAsBase64(final String s) {
+    this.content = s;
+    isBase64(true);
     return this;
   }
 
@@ -78,33 +106,62 @@ public class AddDocument {
   }
 
   /**
-   * Get Content.
+   * Child Documents.
+   * 
+   * @return {@link List} {@link AddDocument}
+   */
+  public List<AddDocument> documents() {
+    return this.documents;
+  }
+
+  /**
+   * Get Child Documents.
+   * 
+   * @param list {@link List} {@link AddDocument}
+   * @return {@link AddDocument}
+   */
+  public AddDocument documents(final List<AddDocument> list) {
+    this.documents = list;
+    return this;
+  }
+
+  /**
+   * Is Content Base64 Encoded.
+   * 
+   * @return boolean
+   */
+  public boolean isBase64() {
+    return this.isBase64;
+  }
+
+  /**
+   * Set Content as Base64 Encoded.
+   * 
+   * @param base64 boolean
+   * @return {@link AddDocument}
+   */
+  public AddDocument isBase64(final boolean base64) {
+    this.isBase64 = base64;
+    return this;
+  }
+
+  /**
+   * Get Path.
    * 
    * @return {@link String}
    */
-  public String content() {
-    return this.content;
+  public String path() {
+    return this.path;
   }
 
   /**
-   * Set Content and converts to Base64.
+   * Set Path.
    * 
    * @param s {@link String}
-   * @param charset {@link Charset}
    * @return {@link AddDocument}
    */
-  public AddDocument content(final String s, final Charset charset) {
-    return contentAsBase64(Base64.getEncoder().encodeToString(s.getBytes(charset)));
-  }
-
-  /**
-   * Set Content.
-   * 
-   * @param s Base64 encoded string.
-   * @return {@link AddDocument}
-   */
-  public AddDocument contentAsBase64(final String s) {
-    this.content = s;
+  public AddDocument path(final String s) {
+    this.path = s;
     return this;
   }
 

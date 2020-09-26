@@ -12,14 +12,22 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.List;
+
 /**
  * Response object for POST /documents.
  *
  */
 public class AddDocumentResponse {
 
+  /** Site Id. */
+  private String siteId;
   /** Document Identifier. */
   private String documentId;
+  /** Upload Url. */
+  private String uploadUrl;
+  /** {@link List} {@link DocumentUploadUrl}. */
+  private List<DocumentUploadUrl> documents;
 
   /**
    * constructor.
@@ -36,11 +44,29 @@ public class AddDocumentResponse {
   }
 
   /**
-   * Set Document Identifier.
+   * Get Site Id.
    * 
-   * @param id {@link String}
+   * @return {@link String}
    */
-  public void documentId(final String id) {
-    this.documentId = id;
+  public String siteId() {
+    return this.siteId;
+  }
+
+  /**
+   * Get Upload Url.
+   * 
+   * @return {@link String}
+   */
+  public String uploadUrl() {
+    return this.uploadUrl;
+  }
+
+  /**
+   * Get Child Documents.
+   * 
+   * @return {@link List} {@link DocumentUploadUrl}
+   */
+  public List<DocumentUploadUrl> documents() {
+    return this.documents;
   }
 }
