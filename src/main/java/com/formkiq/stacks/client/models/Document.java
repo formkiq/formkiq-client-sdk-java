@@ -34,11 +34,33 @@ public class Document {
   private String userId;
   /** Document Content Length. */
   private long contentLength;
+  /** Document Id this document belongs to. */
+  private String belongsToDocumentId;
 
   /**
    * constructor.
    */
   public Document() {}
+
+  /**
+   * Get Belongs To DocumentId.
+   * 
+   * @return {@link String}
+   */
+  public String belongsToDocumentId() {
+    return this.belongsToDocumentId;
+  }
+
+  /**
+   * Sets Belongs To DocumentId.
+   * 
+   * @param id {@link String}
+   * @return {@link String}
+   */
+  public Document belongsToDocumentId(final String id) {
+    this.belongsToDocumentId = id;
+    return this;
+  }
 
   /**
    * Get Checksum.
