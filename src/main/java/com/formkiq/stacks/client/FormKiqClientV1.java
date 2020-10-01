@@ -24,7 +24,7 @@ import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
-import com.formkiq.stacks.client.models.Document;
+import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchTag;
@@ -32,6 +32,7 @@ import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
+import com.formkiq.stacks.client.models.DocumentWithChildren;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
@@ -413,11 +414,11 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public Document getDocument(final GetDocumentRequest request)
+  public DocumentWithChildren getDocument(final GetDocumentRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = getDocumentAsHttpResponse(request);
     checkStatusCode(response);
-    return this.gson.fromJson(response.body(), Document.class);
+    return this.gson.fromJson(response.body(), DocumentWithChildren.class);
   }
 
   /**
@@ -432,6 +433,22 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  /**
+   * GET /documents/{documentId}/content.
+   * 
+   * @param request {@link GetDocumentContentRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public DocumentContent getDocumentContent(final GetDocumentContentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentContentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentContent.class);
   }
 
   /**

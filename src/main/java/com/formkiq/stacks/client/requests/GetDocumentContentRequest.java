@@ -12,7 +12,6 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +25,6 @@ import com.formkiq.stacks.client.Validate;
  */
 public class GetDocumentContentRequest implements ApiRequest {
 
-  /** Http Headers. */
-  private Optional<Map<String, List<String>>> headers = Optional.of(new HashMap<>());
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -37,28 +34,6 @@ public class GetDocumentContentRequest implements ApiRequest {
    * constructor.
    */
   public GetDocumentContentRequest() {}
-
-  /**
-   * Get Content-Type.
-   * 
-   * @return {@link String}
-   */
-  public String contentType() {
-    return this.headers.get().containsKey("Content-Type")
-        ? this.headers.get().get("Content-Type").get(0)
-        : null;
-  }
-
-  /**
-   * Get Content-Type.
-   * 
-   * @param contentType {@link String}
-   * @return {@link GetDocumentContentRequest}
-   */
-  public GetDocumentContentRequest contentType(final String contentType) {
-    this.headers.get().put("Content-Type", Arrays.asList(contentType));
-    return this;
-  }
 
   /**
    * Set the DocumentId.
@@ -73,7 +48,7 @@ public class GetDocumentContentRequest implements ApiRequest {
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
-    return this.headers;
+    return Optional.empty();
   }
 
   @Override
@@ -94,6 +69,17 @@ public class GetDocumentContentRequest implements ApiRequest {
    */
   public GetDocumentContentRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
+    return this;
+  }
+
+  /**
+   * Version Id.
+   * 
+   * @param versionId {@link String}
+   * @return {@link GetDocumentContentRequest}
+   */
+  public GetDocumentContentRequest versionId(final String versionId) {
+    this.parameters.put("versionId", versionId);
     return this;
   }
 

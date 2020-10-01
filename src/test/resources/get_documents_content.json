@@ -1,1 +1,5 @@
-nothing
+{
+  "content": "this is a test",
+  "contentUrl": "http://www.google.com",
+  "contentType": "text/plain"
+}

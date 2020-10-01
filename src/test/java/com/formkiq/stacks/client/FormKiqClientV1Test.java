@@ -15,6 +15,7 @@ package com.formkiq.stacks.client;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.io.IOUtils.resourceToString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
@@ -39,6 +40,7 @@ import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.Document;
+import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -656,14 +658,29 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testGetDocumentContent() throws Exception {
-    GetDocumentContentRequest request = new GetDocumentContentRequest().documentId(documentId)
-        .contentType("application/pdf").siteId("123");
+    GetDocumentContentRequest request =
+        new GetDocumentContentRequest().documentId(documentId).versionId("100").siteId("123");
+    DocumentContent response = this.client.getDocumentContent(request);
+    assertEquals("this is a test", response.content());
+    assertEquals("text/plain", response.contentType());
+    assertEquals("http://www.google.com", response.contentUrl());
+    assertFalse("", response.isBase64());
+  }
+
+  /**
+   * Test GET /documents/{documentId}/content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentContentAsHttpResponse() throws Exception {
+    GetDocumentContentRequest request =
+        new GetDocumentContentRequest().documentId(documentId).versionId("101").siteId("123");
     HttpResponse<String> response = this.client.getDocumentContentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/content?siteId=123",
+    assertEquals(URL + "documents/" + documentId + "/content?versionId=101&siteId=123",
         response.request().uri().toString());
-    assertEquals("application/pdf", response.request().headers().firstValue("Content-Type").get());
   }
 
   /**
