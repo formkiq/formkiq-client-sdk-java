@@ -38,6 +38,7 @@ import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
+import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
@@ -664,12 +665,10 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  @SuppressWarnings("unchecked")
-  public String getVersion() throws IOException, InterruptedException {
+  public Version getVersion() throws IOException, InterruptedException {
     HttpResponse<String> response = getVersionAsHttpResponse();
     checkStatusCode(response);
-    Map<String, Object> map = this.gson.fromJson(response.body(), Map.class);
-    return map.get("message").toString();
+    return this.gson.fromJson(response.body(), Version.class);
   }
 
   /**
