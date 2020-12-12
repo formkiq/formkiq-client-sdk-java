@@ -104,7 +104,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public FormKiqClientV1(final FormKiqClientConnection connection) {
     this.client = connection.build();
-    this.apiRestUrl = connection.apiRestUrl();
+    this.apiRestUrl = connection.apiRestUrl().replaceAll("/$", "");
     this.gson = new GsonBuilder().disableHtmlEscaping().setDateFormat(DATE_FORMAT).create();
   }
 
@@ -127,7 +127,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> addDocumentAsHttpResponse(final AddDocumentRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.document());
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u,
         createHttpHeaders("POST", buildHeaders(request.document().contentType())),
         RequestBody.fromString(body));
@@ -152,7 +152,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     }
 
     String contents = this.gson.toJson(map);
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
   }
@@ -181,7 +181,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     body.put("value", request.tagValue());
 
     String contents = this.gson.toJson(body);
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
   }
@@ -206,7 +206,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> addPresetAsHttpResponse(final AddPresetRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.body());
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(body));
   }
@@ -243,7 +243,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   private HttpResponse<String> addPresetTagsAsHttpResponse(final String method,
       final PresetTagRequest request) throws IOException, InterruptedException {
     String body = this.gson.toJson(request.body());
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
 
     HttpResponse<String> response = null;
     if ("patch".equalsIgnoreCase(method)) {
@@ -344,7 +344,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deleteDocumentAsHttpResponse(final DeleteDocumentRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 
@@ -366,7 +366,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deleteDocumentTagAsHttpResponse(
       final DeleteDocumentTagRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 
@@ -388,7 +388,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deletePresetAsHttpResponse(final DeletePresetRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 
@@ -410,7 +410,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deletePresetTagAsHttpResponse(final DeletePresetTagRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 
@@ -432,7 +432,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentAsHttpResponse(final GetDocumentRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -463,7 +463,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentContentAsHttpResponse(
       final GetDocumentContentRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", request.getHttpHeaders()));
   }
 
@@ -486,7 +486,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentContentUrlAsHttpResponse(
       final GetDocumentContentUrlRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -509,7 +509,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentsAsHttpResponse(final GetDocumentsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -531,7 +531,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentTagAsHttpResponse(final GetDocumentTagsKeyRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -553,7 +553,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentTagsAsHttpResponse(final GetDocumentTagsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -575,7 +575,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentUploadAsHttpResponse(
       final GetDocumentUploadRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -597,7 +597,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getDocumentVersionsAsHttpResponse(
       final GetDocumentVersionsRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -619,7 +619,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getPresetsAsHttpResponse(final GetPresetsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -641,7 +641,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getPresetTagsAsHttpResponse(final GetPresetTagsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -660,7 +660,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> getSitesAsHttpResponse() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new SitesRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new SitesRequest().buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -679,7 +679,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> getVersionAsHttpResponse() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new VersionRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new VersionRequest().buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -694,7 +694,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocument(final OptionsDocumentRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -709,7 +709,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentContent(final OptionsDocumentContentRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -724,7 +724,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentContentUrl(
       final OptionsDocumentContentUrlRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -738,7 +738,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentFormats(final OptionsDocumentFormatRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -751,7 +751,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> optionsDocuments() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new GetDocumentsRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new GetDocumentsRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -766,7 +766,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentTag(final OptionsDocumentTagsKeyRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -780,7 +780,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentTags(final OptionsDocumentTagsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -792,7 +792,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsDocumentUpload() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new OptionsDocumentUploadRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new OptionsDocumentUploadRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -806,7 +806,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentUpload(final OptionsDocumentUploadRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -821,7 +821,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsDocumentVersions(final OptionsDocumentVersionsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -836,7 +836,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsPreset(final OptionsPresetRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -849,7 +849,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> optionsPresets() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new GetPresetsRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new GetPresetsRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -864,7 +864,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> optionsPresetTags(final OptionsPresetTagsRequest request)
       throws IOException, InterruptedException {
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -876,7 +876,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsSearch() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -889,7 +889,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsSites() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new SitesRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new SitesRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -902,7 +902,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsVersion() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + new VersionRequest().buildRequestUrl();
+    String u = this.apiRestUrl + "/" + new VersionRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -937,7 +937,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     search.query(q);
 
     String contents = this.gson.toJson(search);
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
   }
@@ -961,7 +961,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> updateDocumentAsHttpResponse(final UpdateDocumentRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.document());
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.patch(u,
         createHttpHeaders("PATCH", buildHeaders(request.document().contentType())),
         RequestBody.fromString(body));
@@ -990,7 +990,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     body.put("value", request.tagValue());
 
     String contents = this.gson.toJson(body);
-    String u = this.apiRestUrl + request.buildRequestUrl();
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
