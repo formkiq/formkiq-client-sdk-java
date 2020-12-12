@@ -112,7 +112,7 @@ public class FormKiqClientV1Test {
   /** Port to run Test server. */
   private static final int PORT = 8080;
   /** Test server URL. */
-  private static final String URL = "http://localhost:" + PORT + "/";
+  private static final String URL = "http://localhost:" + PORT;
   /** {@link DateFormat}. */
   private static DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
   /** {@link Gson}. */
@@ -229,8 +229,16 @@ public class FormKiqClientV1Test {
       .region(Region.US_EAST_1).credentials(AwsBasicCredentials.create("123", "444"))
       .header("origin", Arrays.asList("http://localhost")).cognitoIdToken("AAAA");
 
+  /** {@link FormKiqClientConnection}. */
+  private FormKiqClientConnection connectionEndSlash = new FormKiqClientConnection(URL + "/")
+      .region(Region.US_EAST_1).credentials(AwsBasicCredentials.create("123", "444"))
+      .header("origin", Arrays.asList("http://localhost")).cognitoIdToken("AAAA");
+
   /** {@link FormKiqClient}. */
   private FormKiqClientV1 client = new FormKiqClientV1(this.connection);
+
+  /** {@link FormKiqClient}. */
+  private FormKiqClientV1 clientEndSlash = new FormKiqClientV1(this.connectionEndSlash);
 
   /**
    * Test POST /documents.
@@ -248,12 +256,27 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test POST /documents. Missing Content
+   * Test POST /documents.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testAddDocument02() throws Exception {
+    AddDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
+    AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId);
+    AddDocumentResponse response = this.clientEndSlash.addDocument(req);
+
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.documentId());
+  }
+
+  /**
+   * Test POST /documents. Missing Content
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocument03() throws Exception {
     AddDocumentRequest req = new AddDocumentRequest();
 
     try {
@@ -275,7 +298,7 @@ public class FormKiqClientV1Test {
     AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId);
     HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/documents?siteId=" + siteId, response.request().uri().toString());
     assertEquals("POST", response.request().method());
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
@@ -297,7 +320,7 @@ public class FormKiqClientV1Test {
     AddDocumentRequest req = new AddDocumentRequest().document(post);
     HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents", response.request().uri().toString());
+    assertEquals(URL + "/documents", response.request().uri().toString());
     assertEquals("POST", response.request().method());
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
@@ -319,7 +342,7 @@ public class FormKiqClientV1Test {
         new AddDocumentRequest().enablePublicEndpoint(true).document(post).siteId(siteId);
     HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "public/documents?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/public/documents?siteId=" + siteId, response.request().uri().toString());
     assertEquals("POST", response.request().method());
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
@@ -368,7 +391,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.addDocumentTagAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/tags?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId,
         response.request().uri().toString());
   }
 
@@ -388,7 +411,7 @@ public class FormKiqClientV1Test {
 
     HttpResponse<String> httpresponse = this.client.addPresetAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, httpresponse.statusCode());
-    assertEquals(URL + "presets?siteId=" + siteId, httpresponse.request().uri().toString());
+    assertEquals(URL + "/presets?siteId=" + siteId, httpresponse.request().uri().toString());
     assertEquals("POST", httpresponse.request().method());
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
@@ -435,7 +458,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.addPresetTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
-    assertEquals(URL + "presets/" + documentId + "/tags?siteId=" + siteId,
+    assertEquals(URL + "/presets/" + documentId + "/tags?siteId=" + siteId,
         response.request().uri().toString());
   }
 
@@ -477,7 +500,7 @@ public class FormKiqClientV1Test {
         new DeleteDocumentRequest().documentId(documentId).siteId(siteId);
     HttpResponse<String> response = this.client.deleteDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -521,7 +544,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.deleteDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("DELETE", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/tags/category?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId,
         response.request().uri().toString());
   }
 
@@ -561,7 +584,7 @@ public class FormKiqClientV1Test {
     DeletePresetRequest request = new DeletePresetRequest().presetId(documentId).siteId(siteId);
     HttpResponse<String> response = this.client.deletePresetAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/presets/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -589,7 +612,7 @@ public class FormKiqClientV1Test {
         new DeletePresetTagRequest().presetId(documentId).siteId(siteId).tag("first name");
     HttpResponse<String> response = this.client.deletePresetTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets/" + documentId + "/tags/first+name?siteId=" + siteId,
+    assertEquals(URL + "/presets/" + documentId + "/tags/first+name?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -637,7 +660,7 @@ public class FormKiqClientV1Test {
     GetDocumentRequest req = new GetDocumentRequest().documentId(documentId).siteId(siteId);
     HttpResponse<String> response = this.client.getDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
@@ -679,7 +702,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getDocumentContentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/content?versionId=101&siteId=123",
+    assertEquals(URL + "/documents/" + documentId + "/content?versionId=101&siteId=123",
         response.request().uri().toString());
   }
 
@@ -723,7 +746,7 @@ public class FormKiqClientV1Test {
         .duration(1).siteId(siteId).versionId(versionId);
     HttpResponse<String> response = this.client.getDocumentContentUrlAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/url?duration=1&versionId=" + versionId
+    assertEquals(URL + "/documents/" + documentId + "/url?duration=1&versionId=" + versionId
         + "&siteId=" + siteId, response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
@@ -767,7 +790,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getDocumentsAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(
-        URL + "documents?next=nnnn&date=2020-02-01&previous=ppp&tz=0500&limit=1&siteId=" + siteId,
+        URL + "/documents?next=nnnn&date=2020-02-01&previous=ppp&tz=0500&limit=1&siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
@@ -833,7 +856,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getDocumentTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(
-        URL + "documents/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
+        URL + "/documents/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
         response.request().uri().toString());
 
     DocumentTags tags = gson.fromJson(response.body(), DocumentTags.class);
@@ -890,7 +913,7 @@ public class FormKiqClientV1Test {
         .next("nn").tz("-0600").siteId(siteId);
     HttpResponse<String> response = this.client.getDocumentVersionsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/versions?next=nn&tz=-0600&siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/versions?next=nn&tz=-0600&siteId=" + siteId,
         response.request().uri().toString());
 
     DocumentVersions versions = gson.fromJson(response.body(), DocumentVersions.class);
@@ -944,7 +967,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/tags/category?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId,
         response.request().uri().toString());
 
     DocumentTag tag = gson.fromJson(response.body(), DocumentTag.class);
@@ -980,7 +1003,7 @@ public class FormKiqClientV1Test {
         this.client.getDocumentUploadAsHttpResponse(new GetDocumentUploadRequest().contentLength(1)
             .documentId(null).duration(2).path("test.txt"));
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/upload?duration=2&path=test.txt&contentLength=1",
+    assertEquals(URL + "/documents/upload?duration=2&path=test.txt&contentLength=1",
         response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
@@ -1001,7 +1024,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getDocumentUploadAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/upload?duration=2&path=test.txt&siteId="
+    assertEquals(URL + "/documents/" + documentId + "/upload?duration=2&path=test.txt&siteId="
         + siteId + "&contentLength=1", response.request().uri().toString());
 
     DocumentUrl url = gson.fromJson(response.body(), DocumentUrl.class);
@@ -1033,7 +1056,7 @@ public class FormKiqClientV1Test {
         new GetPresetsRequest().limit(1).next("nnnn").previous("ppp").siteId(siteId);
     HttpResponse<String> response = this.client.getPresetsAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets?next=nnnn&previous=ppp&limit=1&siteId=" + siteId,
+    assertEquals(URL + "/presets?next=nnnn&previous=ppp&limit=1&siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
@@ -1081,7 +1104,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getPresetTagsAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(
-        URL + "presets/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
+        URL + "/presets/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
         response.request().uri().toString());
 
     PresetTags tags = gson.fromJson(response.body(), PresetTags.class);
@@ -1111,7 +1134,7 @@ public class FormKiqClientV1Test {
     assertEquals("0.0.45", gson.fromJson(response.body(), Map.class).get("version").toString());
     assertEquals("core", gson.fromJson(response.body(), Map.class).get("type").toString());
     HttpRequest request = response.request();
-    assertEquals(URL + "version", request.uri().toString());
+    assertEquals(URL + "/version", request.uri().toString());
     assertEquals("GET", request.method());
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
@@ -1141,7 +1164,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.getSitesAsHttpResponse();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     HttpRequest request = response.request();
-    assertEquals(URL + "sites", request.uri().toString());
+    assertEquals(URL + "/sites", request.uri().toString());
     assertEquals("GET", request.method());
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
@@ -1158,7 +1181,7 @@ public class FormKiqClientV1Test {
     OptionsDocumentRequest req = new OptionsDocumentRequest().documentId(documentId);
     HttpResponse<String> response = this.client.optionsDocument(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId, response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId, response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1174,7 +1197,8 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.optionsDocumentContent(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("OPTIONS", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/content", response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/content",
+        response.request().uri().toString());
   }
 
   /**
@@ -1188,7 +1212,7 @@ public class FormKiqClientV1Test {
         new OptionsDocumentContentUrlRequest().documentId(documentId);
     HttpResponse<String> response = this.client.optionsDocumentContentUrl(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/url", response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/url", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1203,7 +1227,8 @@ public class FormKiqClientV1Test {
         new OptionsDocumentFormatRequest().documentId(documentId);
     HttpResponse<String> response = this.client.optionsDocumentFormats(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/formats", response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/formats",
+        response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1216,7 +1241,7 @@ public class FormKiqClientV1Test {
   public void testOptionsDocuments() throws Exception {
     HttpResponse<String> response = this.client.optionsDocuments();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents", response.request().uri().toString());
+    assertEquals(URL + "/documents", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1231,7 +1256,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.optionsDocumentTags(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("OPTIONS", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/tags", response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/tags", response.request().uri().toString());
   }
 
   /**
@@ -1246,7 +1271,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.optionsDocumentTag(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("OPTIONS", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/tags/category",
+    assertEquals(URL + "/documents/" + documentId + "/tags/category",
         response.request().uri().toString());
   }
 
@@ -1259,7 +1284,7 @@ public class FormKiqClientV1Test {
   public void testOptionsDocumentUpload01() throws Exception {
     HttpResponse<String> response = this.client.optionsDocumentUpload();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/upload", response.request().uri().toString());
+    assertEquals(URL + "/documents/upload", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1274,7 +1299,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.optionsDocumentUpload(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("OPTIONS", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "/upload", response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/upload", response.request().uri().toString());
   }
 
   /**
@@ -1288,7 +1313,7 @@ public class FormKiqClientV1Test {
         new OptionsDocumentVersionsRequest().documentId(documentId);
     HttpResponse<String> response = this.client.optionsDocumentVersions(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/versions",
+    assertEquals(URL + "/documents/" + documentId + "/versions",
         response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
@@ -1303,7 +1328,7 @@ public class FormKiqClientV1Test {
     OptionsPresetRequest req = new OptionsPresetRequest().presetId(documentId);
     HttpResponse<String> response = this.client.optionsPreset(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets/" + documentId, response.request().uri().toString());
+    assertEquals(URL + "/presets/" + documentId, response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1316,7 +1341,7 @@ public class FormKiqClientV1Test {
   public void testOptionsPresets() throws Exception {
     HttpResponse<String> response = this.client.optionsPresets();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets", response.request().uri().toString());
+    assertEquals(URL + "/presets", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1330,7 +1355,7 @@ public class FormKiqClientV1Test {
     OptionsPresetTagsRequest req = new OptionsPresetTagsRequest().presetId(documentId);
     HttpResponse<String> response = this.client.optionsPresetTags(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets/" + documentId + "/tags", response.request().uri().toString());
+    assertEquals(URL + "/presets/" + documentId + "/tags", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1345,7 +1370,7 @@ public class FormKiqClientV1Test {
         new OptionsPresetTagsRequest().presetId(documentId).tag("first name");
     HttpResponse<String> response = this.client.optionsPresetTags(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "presets/" + documentId + "/tags/first+name",
+    assertEquals(URL + "/presets/" + documentId + "/tags/first+name",
         response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
@@ -1359,7 +1384,7 @@ public class FormKiqClientV1Test {
   public void testOptionsSearch() throws Exception {
     HttpResponse<String> response = this.client.optionsSearch();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "search", response.request().uri().toString());
+    assertEquals(URL + "/search", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1372,7 +1397,7 @@ public class FormKiqClientV1Test {
   public void testOptionsVersion() throws Exception {
     HttpResponse<String> response = this.client.optionsVersion();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "version", response.request().uri().toString());
+    assertEquals(URL + "/version", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1385,7 +1410,7 @@ public class FormKiqClientV1Test {
   public void testOptionsSites() throws Exception {
     HttpResponse<String> response = this.client.optionsSites();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "sites", response.request().uri().toString());
+    assertEquals(URL + "/sites", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
@@ -1401,7 +1426,7 @@ public class FormKiqClientV1Test {
         .mime("bleh").siteId(siteId).siteId("10").versionId("2");
     HttpResponse<String> response = this.client.addDocumentFormatAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "documents/" + documentId + "/formats?siteId=10",
+    assertEquals(URL + "/documents/" + documentId + "/formats?siteId=10",
         response.request().uri().toString());
     assertEquals("POST", response.request().method());
   }
@@ -1454,7 +1479,7 @@ public class FormKiqClientV1Test {
         .limit(1).next("nnn").previous("ppp").siteId(siteId).beginsWith("bbb");
     HttpResponse<String> response = this.client.searchAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "search?next=nnn&previous=ppp&limit=1&siteId=" + siteId,
+    assertEquals(URL + "/search?next=nnn&previous=ppp&limit=1&siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("POST", response.request().method());
 
@@ -1515,7 +1540,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.updateDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
-    assertEquals(URL + "documents/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
         gson.fromJson(response.body(), Map.class).get("documentId").toString());
@@ -1560,8 +1585,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.updateDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PUT", response.request().method());
-
-    assertEquals(URL + "documents/" + documentId + "/tags/category?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId,
         response.request().uri().toString());
   }
 
