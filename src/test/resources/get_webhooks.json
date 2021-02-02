@@ -1,0 +1,11 @@
+{
+  "webhooks": [
+    {
+      "id": "werwer",
+      "siteId": "test",
+      "name": "foo",
+      "url": "http://localhost:8080/webhooks",
+      "userId": "joe"
+    }
+  ]
+}
