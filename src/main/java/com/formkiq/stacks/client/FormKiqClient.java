@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
@@ -27,13 +28,16 @@ import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
+import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
+import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -43,6 +47,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
@@ -96,6 +101,16 @@ public interface FormKiqClient {
   void addPresetTags(PresetTagRequest request) throws IOException, InterruptedException;
 
   /**
+   * POST(Add) /webhook.
+   * 
+   * @param request {@link AddWebhookRequest}
+   * @return {@link AddWebhookResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  AddWebhookResponse addWebhook(AddWebhookRequest request) throws IOException, InterruptedException;
+
+  /**
    * DELETE /documents/{documentId}.
    * 
    * @param request {@link DeleteDocumentRequest}
@@ -137,6 +152,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean deletePresetTag(DeletePresetTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * DELETE /documents/{webhookId}.
+   * 
+   * @param request {@link DeleteWebhookRequest}
+   * @return boolean - Whether the document was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteWebhook(DeleteWebhookRequest request) throws IOException, InterruptedException;
 
   /**
    * GET /documents/{documentId}.
@@ -236,6 +262,15 @@ public interface FormKiqClient {
   PresetTags getPresetTags(GetPresetTagsRequest request) throws IOException, InterruptedException;
 
   /**
+   * GET /sites.
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  Sites getSites() throws IOException, InterruptedException;
+
+  /**
    * GET /version.
    * 
    * @return {@link Version}
@@ -245,13 +280,14 @@ public interface FormKiqClient {
   Version getVersion() throws IOException, InterruptedException;
 
   /**
-   * GET /sites.
+   * Get /webhooks.
    * 
-   * @return {@link HttpResponse}
+   * @param request {@link GetWebhooksRequest}
+   * @return {@link Webhooks}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  Sites getSites() throws IOException, InterruptedException;
+  Webhooks getWebhooks(GetWebhooksRequest request) throws IOException, InterruptedException;
 
   /**
    * POST /search.

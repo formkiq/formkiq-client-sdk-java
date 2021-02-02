@@ -24,6 +24,7 @@ import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
@@ -39,13 +40,16 @@ import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
+import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
+import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
@@ -57,6 +61,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentFormatRequest;
@@ -67,6 +72,7 @@ import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
+import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
@@ -257,6 +263,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     return response;
   }
 
+  @Override
+  public AddWebhookResponse addWebhook(final AddWebhookRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addWebhookAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddWebhookResponse.class);
+
+  }
+
+  /**
+   * POST(Add) /webhooks.
+   * 
+   * @param request {@link AddWebhookRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addWebhookAsHttpResponse(final AddWebhookRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(Map.of("name", request.name()));
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, Optional.empty(), RequestBody.fromString(body));
+  }
+
   /**
    * Create HTTP Headers from {@link AddDocument}.
    *
@@ -409,6 +439,28 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> deletePresetTagAsHttpResponse(final DeletePresetTagRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public boolean deleteWebhook(final DeleteWebhookRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteWebhookAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /webhooks/{/webhooks/{webhookId}}.
+   * 
+   * @param request {@link DeleteDocumentRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteWebhookAsHttpResponse(final DeleteWebhookRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
@@ -652,6 +704,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), Sites.class);
   }
 
+
   /**
    * GET /sites.
    * 
@@ -683,6 +736,29 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
+  @Override
+  public Webhooks getWebhooks(final GetWebhooksRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getWebhooksAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), Webhooks.class);
+  }
+
+  /**
+   * GET /webhooks.
+   * 
+   * @param request {@link GetWebhooksRequest}
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getWebhooksAsHttpResponse(final GetWebhooksRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
   /**
    * OPTIONS /documents/{documentId}.
    * 
@@ -697,7 +773,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /documents/{documentId}/content.
@@ -906,6 +981,34 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+  /**
+   * OPTIONS /webhooks.
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsWebhooks() throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + new GetWebhooksRequest().buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /webhooks/{webhookId}.
+   * 
+   * @param request {@link OptionsWebhookRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsWebhooks(final OptionsWebhookRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
   @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
@@ -967,6 +1070,7 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(body));
   }
 
+
   @Override
   public boolean updateDocumentTag(final UpdateDocumentTagKeyRequest request)
       throws IOException, InterruptedException {
@@ -994,4 +1098,5 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
+
 }
