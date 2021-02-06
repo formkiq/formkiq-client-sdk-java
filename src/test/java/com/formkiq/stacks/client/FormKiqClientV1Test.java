@@ -16,6 +16,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.io.IOUtils.resourceToString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
@@ -54,11 +55,13 @@ import com.formkiq.stacks.client.models.PresetsBody;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
+import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
+import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -75,6 +78,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
@@ -87,6 +91,7 @@ import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
+import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
@@ -146,19 +151,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Add /webhooks urls.
-   * 
-   * @throws IOException IOException
-   */
-  private static void addWebhooks() throws IOException {
-    add("get", "/webhooks", "/get_webhooks.json");
-    add("post", "/webhooks", "/id.json");
-    add("options", "/webhooks", "/id.json");
-    add("options", "/webhooks/" + documentId, "/id.json");
-    add("delete", "/webhooks/" + documentId, "/id.json");
-  }
-
-  /**
    * Add /presets urls.
    * 
    * @throws IOException IOException
@@ -178,6 +170,27 @@ public class FormKiqClientV1Test {
     add("options", "/presets/" + documentId + "/tags", "/id.json");
     add("options", "/presets/" + documentId + "/tags/first+name", "/id.json");
     add("delete", "/presets/" + documentId + "/tags/first+name", "/id.json");
+  }
+
+  /**
+   * Add /webhooks urls.
+   * 
+   * @throws IOException IOException
+   */
+  private static void addWebhooks() throws IOException {
+    mockServer.when(request().withMethod("post").withPath("/webhooks/" + documentId + "/tags"))
+        .respond(
+            org.mockserver.model.HttpResponse.response(resourceToString("/documentsId.json", UTF_8))
+                .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
+
+    add("get", "/webhooks", "/get_webhooks.json");
+    add("post", "/webhooks", "/id.json");
+    add("options", "/webhooks", "/id.json");
+    add("options", "/webhooks/" + documentId, "/id.json");
+    add("delete", "/webhooks/" + documentId, "/id.json");
+
+    add("options", "/webhooks/" + documentId + "/tags", "/documentsId.json");
+    add("get", "/webhooks/" + documentId + "/tags", "/get_webhooks_tags.json");
   }
 
   /**
@@ -483,6 +496,80 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test POST /webhooks.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddWebhookAsHttpResponse01() throws Exception {
+    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId);
+    HttpResponse<String> response = this.client.addWebhookAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/webhooks?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
+        gson.fromJson(response.body(), Map.class).get("id").toString());
+  }
+
+  /**
+   * Test POST /webhooks.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddWebhooks01() throws Exception {
+    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId);
+    AddWebhookResponse response = this.client.addWebhook(req);
+
+    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.id());
+    assertEquals("default", response.siteId());
+  }
+
+  /**
+   * Test POST /webhooks/{webhookId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddWebhookTag01() throws Exception {
+    AddWebhookTagRequest req = new AddWebhookTagRequest().siteId(siteId).webhookId(documentId)
+        .tagKey("category").tagValue("person");
+    assertTrue(this.client.addWebhookTag(req));
+  }
+
+  /**
+   * Test POST /webhooks/{webhookId}/tags. Missing content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddWebhookTag02() throws Exception {
+    AddWebhookTagRequest req = new AddWebhookTagRequest();
+
+    try {
+      this.client.addWebhookTag(req);
+    } catch (NullPointerException e) {
+      assertEquals("WebhookId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /webhooks/{webhookId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddWebhookTagAsHttpResponse() throws Exception {
+    AddWebhookTagRequest req = new AddWebhookTagRequest().siteId(siteId).webhookId(documentId)
+        .tagKey("category").tagValue("person");
+    HttpResponse<String> response = this.client.addWebhookTagAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_CREATED, response.statusCode());
+    assertEquals("POST", response.request().method());
+    assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId,
+        response.request().uri().toString());
+  }
+
+  /**
    * Test DELETE /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -635,6 +722,17 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/presets/" + documentId + "/tags/first+name?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
+  }
+
+  /**
+   * Test DELETE /webhooks/{webhookId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteWebhook01() throws Exception {
+    DeleteWebhookRequest request = new DeleteWebhookRequest().webhookId(documentId).siteId(siteId);
+    assertTrue(this.client.deleteWebhook(request));
   }
 
   /**
@@ -1132,6 +1230,36 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetSites() throws Exception {
+    Sites sites = this.client.getSites();
+    assertEquals(1, sites.sites().size());
+    assertEquals("test@formkiq.com", sites.sites().get(0).uploadEmail());
+    assertEquals("adadsad", sites.sites().get(0).siteId());
+  }
+
+  /**
+   * Test GET /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetSitesAsHttpResponse() throws Exception {
+    HttpResponse<String> response = this.client.getSitesAsHttpResponse();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    HttpRequest request = response.request();
+    assertEquals(URL + "/sites", request.uri().toString());
+    assertEquals("GET", request.method());
+    assertEquals("http://localhost", request.headers().firstValue("Origin").get());
+    assertTrue(request.headers().firstValue("Authorization").get()
+        .startsWith("AWS4-HMAC-SHA256 Credential=123"));
+  }
+
+  /**
    * Test GET /version.
    * 
    * @throws Exception Exception
@@ -1162,33 +1290,86 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test GET /sites.
+   * Test GET /webhooks.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testGetSites() throws Exception {
-    Sites sites = this.client.getSites();
-    assertEquals(1, sites.sites().size());
-    assertEquals("test@formkiq.com", sites.sites().get(0).uploadEmail());
-    assertEquals("adadsad", sites.sites().get(0).siteId());
+  public void testGetWebhooks01() throws Exception {
+    GetWebhooksRequest req = new GetWebhooksRequest().siteId(siteId);
+    Webhooks doc = this.client.getWebhooks(req);
+
+    assertEquals(1, doc.webhooks().size());
+    assertEquals("werwer", "" + doc.webhooks().get(0).id());
+    assertEquals("foo", "" + doc.webhooks().get(0).name());
+    assertEquals("test", "" + doc.webhooks().get(0).siteId());
+    assertEquals("http://localhost:8080/webhooks", "" + doc.webhooks().get(0).url());
+    assertEquals("joe", "" + doc.webhooks().get(0).userId());
   }
 
   /**
-   * Test GET /sites.
+   * Test GET /webhooks.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testGetSitesAsHttpResponse() throws Exception {
-    HttpResponse<String> response = this.client.getSitesAsHttpResponse();
+  public void testGetWebhooksAsHttpResponse() throws Exception {
+    GetWebhooksRequest req = new GetWebhooksRequest().siteId(siteId);
+    HttpResponse<String> response = this.client.getWebhooksAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    HttpRequest request = response.request();
-    assertEquals(URL + "/sites", request.uri().toString());
-    assertEquals("GET", request.method());
-    assertEquals("http://localhost", request.headers().firstValue("Origin").get());
-    assertTrue(request.headers().firstValue("Authorization").get()
-        .startsWith("AWS4-HMAC-SHA256 Credential=123"));
+    assertEquals(URL + "/webhooks?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    Webhooks doc = gson.fromJson(response.body(), Webhooks.class);
+    assertEquals(1, doc.webhooks().size());
+    assertEquals("werwer", "" + doc.webhooks().get(0).id());
+    assertEquals("foo", "" + doc.webhooks().get(0).name());
+    assertEquals("test", "" + doc.webhooks().get(0).siteId());
+    assertEquals("http://localhost:8080/webhooks", "" + doc.webhooks().get(0).url());
+    assertEquals("joe", "" + doc.webhooks().get(0).userId());
+  }
+
+  /**
+   * Test GET /webhooks/{webhookId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetWebhookTags01() throws Exception {
+    GetWebhookTagsRequest req = new GetWebhookTagsRequest().siteId(siteId).webhookId(documentId);
+    WebhookTags doc = this.client.getWebhookTags(req);
+
+    assertEquals(1, doc.tags().size());
+    assertEquals("category", doc.tags().get(0).key());
+    assertEquals("userdefined", doc.tags().get(0).type());
+    assertEquals("jsmith", doc.tags().get(0).userId());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", doc.tags().get(0).value());
+    assertEquals("999", "" + doc.tags().get(0).webhookId());
+    assertNotNull(doc.tags().get(0).insertedDate());
+  }
+
+  /**
+   * Test GET /webhooks/{webhookId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetWebhookTagsAsHttpResponse() throws Exception {
+    GetWebhookTagsRequest req = new GetWebhookTagsRequest().siteId(siteId).webhookId(documentId);
+    HttpResponse<String> response = this.client.getWebhookTagsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    WebhookTags doc = gson.fromJson(response.body(), WebhookTags.class);
+    assertEquals(1, doc.tags().size());
+    assertEquals("category", doc.tags().get(0).key());
+    assertEquals("userdefined", doc.tags().get(0).type());
+    assertEquals("jsmith", doc.tags().get(0).userId());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", doc.tags().get(0).value());
+    assertEquals("999", "" + doc.tags().get(0).webhookId());
+    assertNotNull(doc.tags().get(0).insertedDate());
   }
 
   /**
@@ -1338,6 +1519,7 @@ public class FormKiqClientV1Test {
     assertEquals("OPTIONS", response.request().method());
   }
 
+
   /**
    * Test OPTIONS /presets/{presetId}.
    * 
@@ -1409,6 +1591,19 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test OPTIONS /sites.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsSites() throws Exception {
+    HttpResponse<String> response = this.client.optionsSites();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/sites", response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
    * Test OPTIONS /version.
    * 
    * @throws Exception Exception
@@ -1422,18 +1617,48 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test OPTIONS /sites.
+   * Test Options /webhooks.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testOptionsSites() throws Exception {
-    HttpResponse<String> response = this.client.optionsSites();
+  public void testOptionsWebhooks01() throws Exception {
+    HttpResponse<String> response = this.client.optionsWebhooks();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/sites", response.request().uri().toString());
+    assertEquals(URL + "/webhooks", response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
 
+  /**
+   * Test Options /webhooks/{webhookId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsWebhooksId01() throws Exception {
+    OptionsWebhookRequest req = new OptionsWebhookRequest().webhookId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.optionsWebhooks(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/webhooks/" + documentId + "?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
+   * Test Options /webhooks/{webhookId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testOptionsWebhookTags01() throws Exception {
+    OptionsWebhookTagsRequest req =
+        new OptionsWebhookTagsRequest().webhookId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.optionsWebhookTags(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("OPTIONS", response.request().method());
+  }
 
   /**
    * Test POST /documents/{documentId}/formats.
@@ -1637,114 +1862,5 @@ public class FormKiqClientV1Test {
     assertEquals("werwer", p.presets().get(0).id());
     assertEquals("test", p.presets().get(0).siteId());
     assertEquals("joe", p.presets().get(0).userId());
-  }
-
-  /**
-   * Test POST /webhooks.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddWebhooks01() throws Exception {
-    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId);
-    AddWebhookResponse response = this.client.addWebhook(req);
-
-    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.id());
-    assertEquals("default", response.siteId());
-  }
-
-  /**
-   * Test POST /webhooks.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddWebhookAsHttpResponse01() throws Exception {
-    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId);
-    HttpResponse<String> response = this.client.addWebhookAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/webhooks?siteId=" + siteId, response.request().uri().toString());
-    assertEquals("POST", response.request().method());
-    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
-        gson.fromJson(response.body(), Map.class).get("id").toString());
-  }
-
-  /**
-   * Test DELETE /webhooks/{webhookId}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeleteWebhook01() throws Exception {
-    DeleteWebhookRequest request = new DeleteWebhookRequest().webhookId(documentId).siteId(siteId);
-    assertTrue(this.client.deleteWebhook(request));
-  }
-
-  /**
-   * Test GET /webhooks.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetWebhooks01() throws Exception {
-    GetWebhooksRequest req = new GetWebhooksRequest().siteId(siteId);
-    Webhooks doc = this.client.getWebhooks(req);
-
-    assertEquals(1, doc.webhooks().size());
-    assertEquals("werwer", "" + doc.webhooks().get(0).id());
-    assertEquals("foo", "" + doc.webhooks().get(0).name());
-    assertEquals("test", "" + doc.webhooks().get(0).siteId());
-    assertEquals("http://localhost:8080/webhooks", "" + doc.webhooks().get(0).url());
-    assertEquals("joe", "" + doc.webhooks().get(0).userId());
-  }
-
-  /**
-   * Test GET /webhooks.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetWebhooksAsHttpResponse() throws Exception {
-    GetWebhooksRequest req = new GetWebhooksRequest().siteId(siteId);
-    HttpResponse<String> response = this.client.getWebhooksAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/webhooks?siteId=" + siteId, response.request().uri().toString());
-    assertEquals("GET", response.request().method());
-
-    Webhooks doc = gson.fromJson(response.body(), Webhooks.class);
-    assertEquals(1, doc.webhooks().size());
-    assertEquals("werwer", "" + doc.webhooks().get(0).id());
-    assertEquals("foo", "" + doc.webhooks().get(0).name());
-    assertEquals("test", "" + doc.webhooks().get(0).siteId());
-    assertEquals("http://localhost:8080/webhooks", "" + doc.webhooks().get(0).url());
-    assertEquals("joe", "" + doc.webhooks().get(0).userId());
-  }
-
-  /**
-   * Test Options /webhooks.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsWebhooks01() throws Exception {
-    HttpResponse<String> response = this.client.optionsWebhooks();
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/webhooks", response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
-   * Test Options /webhooks/{webhookId}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsWebhooksId01() throws Exception {
-    OptionsWebhookRequest req = new OptionsWebhookRequest().webhookId(documentId).siteId(siteId);
-    HttpResponse<String> response = this.client.optionsWebhooks(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/webhooks/" + documentId + "?siteId=" + siteId,
-        response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
   }
 }

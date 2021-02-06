@@ -40,11 +40,13 @@ import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
+import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
+import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -61,6 +63,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
@@ -73,6 +76,7 @@ import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetRequest;
 import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
+import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
@@ -180,6 +184,35 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> addDocumentTagAsHttpResponse(final AddDocumentTagRequest request)
+      throws IOException, InterruptedException {
+
+    Map<String, Object> body = new HashMap<>();
+    body.put("key", request.tagKey());
+    body.put("value", request.tagValue());
+
+    String contents = this.gson.toJson(body);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
+  public boolean addWebhookTag(final AddWebhookTagRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addWebhookTagAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * POST /webhook/{webhookId}/tags.
+   * 
+   * @param request {@link AddWebhookTagRequest}
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addWebhookTagAsHttpResponse(final AddWebhookTagRequest request)
       throws IOException, InterruptedException {
 
     Map<String, Object> body = new HashMap<>();
@@ -704,7 +737,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), Sites.class);
   }
 
-
   /**
    * GET /sites.
    * 
@@ -723,6 +755,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), Version.class);
   }
+
 
   /**
    * GET /version.
@@ -754,6 +787,29 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> getWebhooksAsHttpResponse(final GetWebhooksRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public WebhookTags getWebhookTags(final GetWebhookTagsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getWebhookTagsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), WebhookTags.class);
+  }
+
+  /**
+   * GET /webhooks/{/webhooks/{webhookId}/tags}.
+   * 
+   * @param request {@link DeleteDocumentRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getWebhookTagsAsHttpResponse(final GetWebhookTagsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
@@ -1004,6 +1060,21 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsWebhooks(final OptionsWebhookRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
+  }
+
+  /**
+   * OPTIONS /webhooks/{webhookId}/tags.
+   * 
+   * @param request {@link OptionsWebhookRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> optionsWebhookTags(final OptionsWebhookTagsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
