@@ -28,11 +28,13 @@ import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
+import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
+import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -47,6 +49,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
@@ -79,6 +82,16 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /webhooks/{webhookId}/tags.
+   * 
+   * @param request {@link AddDocumentTagRequest}
+   * @return boolean
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean addWebhookTag(AddWebhookTagRequest request) throws IOException, InterruptedException;
 
   /**
    * POST(Add) /presets.
@@ -288,6 +301,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   Webhooks getWebhooks(GetWebhooksRequest request) throws IOException, InterruptedException;
+
+  /**
+   * Get /webhooks/${webhookId}/tags.
+   * 
+   * @param request {@link GetWebhookTagsRequest}
+   * @return {@link WebhookTags}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  WebhookTags getWebhookTags(GetWebhookTagsRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * POST /search.
