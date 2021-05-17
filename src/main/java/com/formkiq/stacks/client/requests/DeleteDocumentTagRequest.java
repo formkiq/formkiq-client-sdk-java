@@ -88,4 +88,15 @@ public class DeleteDocumentTagRequest implements ApiRequest {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
     Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link DeleteDocumentTagRequest}
+   */
+  public DeleteDocumentTagRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }

@@ -77,4 +77,15 @@ public class DeleteDocumentRequest implements ApiRequest {
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link DeleteDocumentRequest}
+   */
+  public DeleteDocumentRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }
