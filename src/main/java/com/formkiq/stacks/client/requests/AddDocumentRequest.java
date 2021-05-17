@@ -110,4 +110,15 @@ public class AddDocumentRequest implements ApiRequest {
   public void validate() {
     Validate.notNull(this.document, "Document is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link AddDocumentTagRequest}
+   */
+  public AddDocumentRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }

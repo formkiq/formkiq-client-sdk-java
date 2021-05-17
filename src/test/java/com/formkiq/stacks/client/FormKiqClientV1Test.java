@@ -328,10 +328,11 @@ public class FormKiqClientV1Test {
   public void testAddDocumentAsHttpResponse01() throws Exception {
     AddDocument post =
         gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddDocument.class);
-    AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId);
+    AddDocumentRequest req = new AddDocumentRequest().document(post).siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.addDocumentAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/documents?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/documents?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
     assertEquals("POST", response.request().method());
 
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
@@ -420,11 +421,11 @@ public class FormKiqClientV1Test {
   @Test
   public void testAddDocumentTagAsHttpResponse() throws Exception {
     AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
-        .tagKey("category").tagValue("person");
+        .tagKey("category").tagValue("person").webnotify(true);
     HttpResponse<String> response = this.client.addDocumentTagAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
-    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
 
@@ -502,10 +503,11 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testAddWebhookAsHttpResponse01() throws Exception {
-    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId);
+    AddWebhookRequest req = new AddWebhookRequest().name("test").siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.addWebhookAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/webhooks?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/webhooks?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
     assertEquals("POST", response.request().method());
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
         gson.fromJson(response.body(), Map.class).get("id").toString());
@@ -561,11 +563,11 @@ public class FormKiqClientV1Test {
   @Test
   public void testAddWebhookTagAsHttpResponse() throws Exception {
     AddWebhookTagRequest req = new AddWebhookTagRequest().siteId(siteId).webhookId(documentId)
-        .tagKey("category").tagValue("person");
+        .tagKey("category").tagValue("person").webnotify(true);
     HttpResponse<String> response = this.client.addWebhookTagAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());
-    assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId,
+    assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
 
@@ -604,10 +606,10 @@ public class FormKiqClientV1Test {
   @Test
   public void testDeleteDocumentAsHttpResponse() throws Exception {
     DeleteDocumentRequest request =
-        new DeleteDocumentRequest().documentId(documentId).siteId(siteId);
+        new DeleteDocumentRequest().documentId(documentId).siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.deleteDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -646,12 +648,13 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testDeleteDocumentTagAsHttpResponse() throws Exception {
-    DeleteDocumentTagRequest request =
-        new DeleteDocumentTagRequest().documentId(documentId).tagKey("category").siteId(siteId);
+    DeleteDocumentTagRequest request = new DeleteDocumentTagRequest().documentId(documentId)
+        .tagKey("category").siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.deleteDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("DELETE", response.request().method());
-    assertEquals(URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId,
+    assertEquals(
+        URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
 
@@ -1780,12 +1783,12 @@ public class FormKiqClientV1Test {
   public void testUpdateDocumentsAsHttpResponse() throws Exception {
     UpdateDocument post =
         gson.fromJson(resourceToString("/post_documents.json", UTF_8), UpdateDocument.class);
-    UpdateDocumentRequest request =
-        new UpdateDocumentRequest().document(post).documentId(documentId).siteId(siteId);
+    UpdateDocumentRequest request = new UpdateDocumentRequest().document(post)
+        .documentId(documentId).siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.updateDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
-    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
     assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
         gson.fromJson(response.body(), Map.class).get("documentId").toString());
@@ -1826,11 +1829,12 @@ public class FormKiqClientV1Test {
   @Test
   public void testUpdateDocumentTagAsHttpResponse() throws Exception {
     UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest().documentId(documentId)
-        .tagKey("category").siteId(siteId).tagValue("food");
+        .tagKey("category").siteId(siteId).tagValue("food").webnotify(true);
     HttpResponse<String> response = this.client.updateDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PUT", response.request().method());
-    assertEquals(URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId,
+    assertEquals(
+        URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
 

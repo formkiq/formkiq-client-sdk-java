@@ -111,4 +111,15 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
     Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
     Validate.notNull(this.tagValue, "TagValue is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link UpdateDocumentTagKeyRequest}
+   */
+  public UpdateDocumentTagKeyRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }

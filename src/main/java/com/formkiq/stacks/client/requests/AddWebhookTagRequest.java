@@ -122,4 +122,15 @@ public class AddWebhookTagRequest implements ApiRequest {
     Validate.notNull(this.tagKey, "TagKey is required.");
     Validate.notNull(this.tagValue, "TagValue is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link AddWebhookTagRequest}
+   */
+  public AddWebhookTagRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }

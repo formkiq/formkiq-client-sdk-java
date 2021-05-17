@@ -101,4 +101,15 @@ public class UpdateDocumentRequest implements ApiRequest {
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
+
+  /**
+   * WebNotify.
+   * 
+   * @param webnotify boolean
+   * @return {@link UpdateDocumentRequest}
+   */
+  public UpdateDocumentRequest webnotify(final boolean webnotify) {
+    this.parameters.put("webnotify", String.valueOf(webnotify));
+    return this;
+  }
 }
