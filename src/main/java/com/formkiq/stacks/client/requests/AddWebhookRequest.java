@@ -31,18 +31,21 @@ public class AddWebhookRequest implements ApiRequest {
   /** {@link String}. */
   private String name;
 
+  /** {@link String}. */
+  private String enabled = "true";
+
   /**
    * constructor.
    */
   public AddWebhookRequest() {}
 
   /**
-   * Set Name.
+   * Get Enabled.
    * 
    * @return {@link String}
    */
-  public String name() {
-    return this.name;
+  public String enabled() {
+    return this.enabled;
   }
 
   /**
@@ -51,8 +54,8 @@ public class AddWebhookRequest implements ApiRequest {
    * @param s {@link String}
    * @return {@link AddWebhookRequest}
    */
-  public AddWebhookRequest name(final String s) {
-    this.name = s;
+  public AddWebhookRequest enabled(final String s) {
+    this.enabled = s;
     return this;
   }
 
@@ -69,6 +72,26 @@ public class AddWebhookRequest implements ApiRequest {
   @Override
   public String getUrlPath() {
     return "webhooks";
+  }
+
+  /**
+   * Get Name.
+   * 
+   * @return {@link String}
+   */
+  public String name() {
+    return this.name;
+  }
+
+  /**
+   * Set {@link String}.
+   * 
+   * @param s {@link String}
+   * @return {@link AddWebhookRequest}
+   */
+  public AddWebhookRequest name(final String s) {
+    this.name = s;
+    return this;
   }
 
   /**

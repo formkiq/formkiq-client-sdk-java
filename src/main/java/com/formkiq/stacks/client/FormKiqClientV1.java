@@ -315,7 +315,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> addWebhookAsHttpResponse(final AddWebhookRequest request)
       throws IOException, InterruptedException {
-    String body = this.gson.toJson(Map.of("name", request.name()));
+    String body = this.gson.toJson(Map.of("name", request.name(), "enabled", request.enabled()));
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, Optional.empty(), RequestBody.fromString(body));
   }
