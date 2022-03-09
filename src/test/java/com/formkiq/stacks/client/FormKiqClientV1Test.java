@@ -414,14 +414,75 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test POST /documents/{documentId}/tags.
+   * Test POST /documents/{documentId}/tags. Missing tagKey.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocumentTagAsHttpResponse() throws Exception {
+  public void testAddDocumentTag03() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId);
+
+    try {
+      this.client.addDocumentTag(req);
+    } catch (NullPointerException e) {
+      assertEquals("TagKey is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags. Missing tagValue.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag04() throws Exception {
+    AddDocumentTagRequest req =
+        new AddDocumentTagRequest().siteId(siteId).documentId(documentId).tagKey("category");
+
+    try {
+      this.client.addDocumentTag(req);
+    } catch (NullPointerException e) {
+      assertEquals("TagValue or TagValues is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags with TagValues.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag05() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
+        .tagKey("category").tagValues(Arrays.asList("person"));
+    assertTrue(this.client.addDocumentTag(req));
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags VALUE.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTagAsHttpResponse01() throws Exception {
     AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
         .tagKey("category").tagValue("person").webnotify(true);
+    HttpResponse<String> response = this.client.addDocumentTagAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_CREATED, response.statusCode());
+    assertEquals("POST", response.request().method());
+    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags VALUES.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTagAsHttpResponse02() throws Exception {
+    AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
+        .tagKey("category").tagValues(Arrays.asList("person")).webnotify(true);
     HttpResponse<String> response = this.client.addDocumentTagAsHttpResponse(req);
     assertEquals(HTTP_STATUS_CREATED, response.statusCode());
     assertEquals("POST", response.request().method());

@@ -37,4 +37,20 @@ public final class Validate {
       throw new NullPointerException(String.format(message, values));
     }
   }
+
+  /**
+   * Verifies object0 OR object1 is Not Null.
+   * 
+   * @param <T> Type of
+   * @param object0 {@link Object}
+   * @param object1 {@link Object}
+   * @param message Error Message
+   * @param values Object Value.
+   */
+  public static <T> void notNull(final T object0, final T object1, final String message,
+      final Object... values) {
+    if (object0 == null && object1 == null) {
+      throw new NullPointerException(String.format(message, values));
+    }
+  }
 }

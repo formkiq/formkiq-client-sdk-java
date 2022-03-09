@@ -29,6 +29,8 @@ public class AddDocumentTagRequest implements ApiRequest {
   private String tagKey;
   /** Tag Value. */
   private String tagValue;
+  /** Tag Values. */
+  private List<String> tagValues;
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -116,11 +118,31 @@ public class AddDocumentTagRequest implements ApiRequest {
     return this;
   }
 
+  /**
+   * Get Tag Values.
+   * 
+   * @return {@link String}
+   */
+  public List<String> tagValues() {
+    return this.tagValues;
+  }
+
+  /**
+   * Set Tag Values.
+   * 
+   * @param list {@link List} {@link String}
+   * @return {@link AddDocumentTagRequest}
+   */
+  public AddDocumentTagRequest tagValues(final List<String> list) {
+    this.tagValues = list;
+    return this;
+  }
+
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
     Validate.notNull(this.tagKey, "TagKey is required.");
-    Validate.notNull(this.tagValue, "TagValue is required.");
+    Validate.notNull(this.tagValue, this.tagValues, "TagValue or TagValues is required.");
   }
 
   /**

@@ -31,7 +31,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   private Map<String, String> parameters = new HashMap<>();
   /** Tag Value. */
   private String tagValue;
-
+  /** Tag Values. */
+  private List<String> tagValues;
+  
   /**
    * constructor.
    */
@@ -95,6 +97,15 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   }
 
   /**
+   * Set the tagValues.
+   * 
+   * @return {@link UpdateDocumentTagKeyRequest}
+   */
+  public List<String> tagValues() {
+    return this.tagValues;
+  }
+  
+  /**
    * Set the tagValue.
    * 
    * @param value {@link String}
@@ -105,11 +116,22 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
     return this;
   }
 
+  /**
+   * Set the tagValue.
+   * 
+   * @param list {@link List} {@link String}
+   * @return {@link UpdateDocumentTagKeyRequest}
+   */
+  public UpdateDocumentTagKeyRequest tagValues(final List<String> list) {
+    this.tagValues = list;
+    return this;
+  }
+  
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
     Validate.notNull(this.paths.get("tagKey"), "TagKey is required.");
-    Validate.notNull(this.tagValue, "TagValue is required.");
+    Validate.notNull(this.tagValue, this.tagValues, "either TagValue/TagValues is required.");
   }
 
   /**
