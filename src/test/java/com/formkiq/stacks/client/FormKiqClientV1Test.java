@@ -235,6 +235,7 @@ public class FormKiqClientV1Test {
     add("get", "/documents/" + documentId + "/tags/category", "/get_documents_tag.json");
     add("put", "/documents/" + documentId + "/tags/category", "/documentsId.json");
     add("options", "/documents/" + documentId + "/tags/category", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/tags/category/person", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/tags/category", "/documentsId.json");
     add("get", "/documents/" + documentId + "/url", "/get_documents_url.json");
     add("options", "/documents/" + documentId + "/url", "/documentsId.json");
@@ -708,7 +709,7 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testDeleteDocumentTagAsHttpResponse() throws Exception {
+  public void testDeleteDocumentTagAsHttpResponse01() throws Exception {
     DeleteDocumentTagRequest request = new DeleteDocumentTagRequest().documentId(documentId)
         .tagKey("category").siteId(siteId).webnotify(true);
     HttpResponse<String> response = this.client.deleteDocumentTagAsHttpResponse(request);
@@ -717,6 +718,22 @@ public class FormKiqClientV1Test {
     assertEquals(
         URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/tags/{tagKey}/{tagValue}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentTagAsHttpResponse02() throws Exception {
+    DeleteDocumentTagRequest request = new DeleteDocumentTagRequest().documentId(documentId)
+        .tagKey("category").tagValue("person").siteId(siteId).webnotify(true);
+    HttpResponse<String> response = this.client.deleteDocumentTagAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("DELETE", response.request().method());
+    assertEquals(URL + "/documents/" + documentId + "/tags/category/person?siteId=" + siteId
+        + "&webnotify=true", response.request().uri().toString());
   }
 
   /**
