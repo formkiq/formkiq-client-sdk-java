@@ -187,9 +187,14 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
 
     Map<String, Object> body = new HashMap<>();
-    body.put("key", request.tagKey());
-    body.put("value", request.tagValue());
-    body.put("values", request.tagValues());
+
+    if (!request.tags().isEmpty()) {
+      body.put("tags", request.tags());
+    } else {
+      body.put("key", request.tagKey());
+      body.put("value", request.tagValue());
+      body.put("values", request.tagValues());
+    }
 
     String contents = this.gson.toJson(body);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();

@@ -33,7 +33,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   private String tagValue;
   /** Tag Values. */
   private List<String> tagValues;
-  
+
   /**
    * constructor.
    */
@@ -104,7 +104,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   public List<String> tagValues() {
     return this.tagValues;
   }
-  
+
   /**
    * Set the tagValue.
    * 
@@ -126,7 +126,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
     this.tagValues = list;
     return this;
   }
-  
+
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");

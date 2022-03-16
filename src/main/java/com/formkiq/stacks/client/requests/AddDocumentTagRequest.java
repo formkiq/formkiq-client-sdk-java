@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,10 @@ import com.formkiq.stacks.client.Validate;
  */
 public class AddDocumentTagRequest implements ApiRequest {
 
-  /** Tag Key. */
-  private String tagKey;
-  /** Tag Value. */
-  private String tagValue;
-  /** Tag Values. */
-  private List<String> tagValues;
+  /** {@link AddDocumentTag}. */
+  private AddDocumentTag tag;
+  /** {@link List} {@link AddDocumentTag}. */
+  private List<AddDocumentTag> tags;
   /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
@@ -39,7 +38,10 @@ public class AddDocumentTagRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public AddDocumentTagRequest() {}
+  public AddDocumentTagRequest() {
+    this.tag = new AddDocumentTag();
+    this.tags = new ArrayList<>();
+  }
 
   /**
    * Set the DocumentId.
@@ -84,7 +86,7 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link String}
    */
   public String tagKey() {
-    return this.tagKey;
+    return this.tag.key();
   }
 
   /**
@@ -94,7 +96,27 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link AddDocumentTagRequest}
    */
   public AddDocumentTagRequest tagKey(final String s) {
-    this.tagKey = s;
+    this.tag.key(s);
+    return this;
+  }
+
+  /**
+   * Get Tags.
+   * 
+   * @return {@link List} {@link AddDocumentTag}
+   */
+  public List<AddDocumentTag> tags() {
+    return this.tags;
+  }
+
+  /**
+   * Set Tags.
+   * 
+   * @param list {@link List} {@link AddDocumentTag}
+   * @return {@link AddDocumentTagRequest}
+   */
+  public AddDocumentTagRequest tags(final List<AddDocumentTag> list) {
+    this.tags = list;
     return this;
   }
 
@@ -104,7 +126,7 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link String}
    */
   public String tagValue() {
-    return this.tagValue;
+    return this.tag.value();
   }
 
   /**
@@ -114,7 +136,7 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link AddDocumentTagRequest}
    */
   public AddDocumentTagRequest tagValue(final String s) {
-    this.tagValue = s;
+    this.tag.value(s);
     return this;
   }
 
@@ -124,7 +146,7 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link String}
    */
   public List<String> tagValues() {
-    return this.tagValues;
+    return this.tag.values();
   }
 
   /**
@@ -134,15 +156,20 @@ public class AddDocumentTagRequest implements ApiRequest {
    * @return {@link AddDocumentTagRequest}
    */
   public AddDocumentTagRequest tagValues(final List<String> list) {
-    this.tagValues = list;
+    this.tag.values(list);
     return this;
   }
 
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.tagKey, "TagKey is required.");
-    Validate.notNull(this.tagValue, this.tagValues, "TagValue or TagValues is required.");
+    if (this.tags.isEmpty()) {
+      Validate.notNull(this.tag.key(), "TagKey is required.");
+    } else {
+      this.tags.forEach(t -> {
+        Validate.notNull(t.key(), "TagKey is required.");
+      });
+    }
   }
 
   /**

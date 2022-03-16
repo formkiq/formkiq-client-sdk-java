@@ -19,6 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.mockserver.model.HttpRequest.request;
 import java.io.IOException;
@@ -58,6 +59,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
+import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -315,6 +317,7 @@ public class FormKiqClientV1Test {
 
     try {
       this.client.addDocument(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("Document is required.", e.getMessage());
     }
@@ -399,16 +402,29 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test POST /documents/{documentId}/tags. Missing content.
+   * Test POST /documents/{documentId}/tags with TagKey.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testAddDocumentTag02() throws Exception {
+    AddDocumentTagRequest req =
+        new AddDocumentTagRequest().siteId(siteId).documentId(documentId).tagKey("category");
+    assertTrue(this.client.addDocumentTag(req));
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags. Missing content.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag03() throws Exception {
     AddDocumentTagRequest req = new AddDocumentTagRequest();
 
     try {
       this.client.addDocumentTag(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -420,11 +436,12 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocumentTag03() throws Exception {
+  public void testAddDocumentTag04() throws Exception {
     AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId);
 
     try {
       this.client.addDocumentTag(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("TagKey is required.", e.getMessage());
     }
@@ -436,15 +453,10 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocumentTag04() throws Exception {
+  public void testAddDocumentTag05() throws Exception {
     AddDocumentTagRequest req =
         new AddDocumentTagRequest().siteId(siteId).documentId(documentId).tagKey("category");
-
-    try {
-      this.client.addDocumentTag(req);
-    } catch (NullPointerException e) {
-      assertEquals("TagValue or TagValues is required.", e.getMessage());
-    }
+    assertTrue(this.client.addDocumentTag(req));
   }
 
   /**
@@ -453,10 +465,42 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testAddDocumentTag05() throws Exception {
+  public void testAddDocumentTag06() throws Exception {
     AddDocumentTagRequest req = new AddDocumentTagRequest().siteId(siteId).documentId(documentId)
         .tagKey("category").tagValues(Arrays.asList("person"));
     assertTrue(this.client.addDocumentTag(req));
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags with tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag07() throws Exception {
+    AddDocumentTag tag = new AddDocumentTag().key("category");
+    AddDocumentTagRequest req =
+        new AddDocumentTagRequest().siteId(siteId).documentId(documentId).tags(Arrays.asList(tag));
+    assertTrue(this.client.addDocumentTag(req));
+  }
+
+  /**
+   * Test POST /documents/{documentId}/tags. Using Tags Missing tagkey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocumentTag08() throws Exception {
+    AddDocumentTag tag = new AddDocumentTag();
+    AddDocumentTagRequest req =
+        new AddDocumentTagRequest().siteId(siteId).documentId(documentId).tags(Arrays.asList(tag));
+
+    try {
+      this.client.addDocumentTag(req);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("TagKey is required.", e.getMessage());
+    }
   }
 
   /**
@@ -537,6 +581,7 @@ public class FormKiqClientV1Test {
 
     try {
       this.client.addPresetTags(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("PresetId is required.", e.getMessage());
     }
@@ -612,6 +657,7 @@ public class FormKiqClientV1Test {
 
     try {
       this.client.addWebhookTag(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("WebhookId is required.", e.getMessage());
     }
@@ -655,6 +701,7 @@ public class FormKiqClientV1Test {
     DeleteDocumentRequest request = new DeleteDocumentRequest();
     try {
       this.client.deleteDocument(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -698,6 +745,7 @@ public class FormKiqClientV1Test {
     DeleteDocumentTagRequest request = new DeleteDocumentTagRequest();
     try {
       this.client.deleteDocumentTag(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -757,6 +805,7 @@ public class FormKiqClientV1Test {
     DeletePresetRequest request = new DeletePresetRequest();
     try {
       this.client.deletePreset(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("PresetId is required.", e.getMessage());
     }
@@ -844,6 +893,7 @@ public class FormKiqClientV1Test {
     GetDocumentRequest req = new GetDocumentRequest();
     try {
       this.client.getDocument(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -929,6 +979,7 @@ public class FormKiqClientV1Test {
     GetDocumentContentUrlRequest req = new GetDocumentContentUrlRequest();
     try {
       this.client.getDocumentContentUrl(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -1038,6 +1089,7 @@ public class FormKiqClientV1Test {
     GetDocumentTagsRequest req = new GetDocumentTagsRequest();
     try {
       this.client.getDocumentTags(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -1096,6 +1148,7 @@ public class FormKiqClientV1Test {
     GetDocumentVersionsRequest req = new GetDocumentVersionsRequest();
     try {
       this.client.getDocumentVersions(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -1149,6 +1202,7 @@ public class FormKiqClientV1Test {
     GetDocumentTagsKeyRequest request = new GetDocumentTagsKeyRequest();
     try {
       this.client.getDocumentTag(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -1286,6 +1340,7 @@ public class FormKiqClientV1Test {
     GetPresetTagsRequest req = new GetPresetTagsRequest();
     try {
       this.client.getPresetTags(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("PresetId is required.", e.getMessage());
     }
@@ -1789,6 +1844,7 @@ public class FormKiqClientV1Test {
     SearchDocumentsRequest req = new SearchDocumentsRequest();
     try {
       this.client.search(req);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("TagKey is required.", e.getMessage());
     }
@@ -1847,6 +1903,7 @@ public class FormKiqClientV1Test {
     UpdateDocumentRequest request = new UpdateDocumentRequest();
     try {
       this.client.updateDocument(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
@@ -1894,6 +1951,7 @@ public class FormKiqClientV1Test {
     UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest();
     try {
       this.client.updateDocumentTag(request);
+      fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
