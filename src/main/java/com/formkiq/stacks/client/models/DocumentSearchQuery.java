@@ -12,6 +12,8 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.Collection;
+
 /**
  * DocumentSearchQuery holder.
  *
@@ -19,10 +21,30 @@ package com.formkiq.stacks.client.models;
 public class DocumentSearchQuery {
   /** {@link DocumentSearchTag}. */
   private DocumentSearchTag tag;
+  /** {@link Collection} {@link String}. */
+  private Collection<String> documentIds;
 
   /** constructor. */
   public DocumentSearchQuery() {
 
+  }
+
+  /**
+   * Get Document Ids.
+   * 
+   * @return {@link Collection} {@link String}
+   */
+  public Collection<String> documentIds() {
+    return this.documentIds;
+  }
+
+  /**
+   * Set DocumentIds.
+   * 
+   * @param list {@link Collection} {@link String}
+   */
+  public void documentIds(final Collection<String> list) {
+    this.documentIds = list;
   }
 
   /**

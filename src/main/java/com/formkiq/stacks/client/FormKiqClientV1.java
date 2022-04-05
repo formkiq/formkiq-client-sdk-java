@@ -1112,6 +1112,7 @@ public class FormKiqClientV1 implements FormKiqClient {
 
     DocumentSearchQuery q = new DocumentSearchQuery();
     q.tag(tag);
+    q.documentIds(request.documentIds());
 
     DocumentSearch search = new DocumentSearch();
     search.query(q);
