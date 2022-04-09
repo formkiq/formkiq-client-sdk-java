@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,8 @@ public class SearchDocumentsRequest implements ApiRequest {
   private String eq;
   /** Tag Value. */
   private String beginsWith;
+  /** Apply search criteria to only certain documents. */
+  private Collection<String> documentIds;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
@@ -57,6 +60,26 @@ public class SearchDocumentsRequest implements ApiRequest {
    */
   public SearchDocumentsRequest beginsWith(final String value) {
     this.beginsWith = value;
+    return this;
+  }
+
+  /**
+   * Get Document Ids.
+   * 
+   * @return {@link Collection} {@link String}
+   */
+  public Collection<String> documentIds() {
+    return this.documentIds;
+  }
+
+  /**
+   * Set the Document Ids.
+   * 
+   * @param list {@link Collection} {@link String}
+   * @return {@link SearchDocumentsRequest}
+   */
+  public SearchDocumentsRequest documentIds(final Collection<String> list) {
+    this.documentIds = list;
     return this;
   }
 

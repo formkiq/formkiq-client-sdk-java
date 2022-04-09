@@ -20,7 +20,8 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates DELETE /documents/{documentId}/tags/{tagKey} Request.
+ * Creates DELETE /documents/{documentId}/tags/{tagKey} or
+ * /documents/{documentId}/tags/{tagKey}/{tagValue} Request.
  *
  */
 public class DeleteDocumentTagRequest implements ApiRequest {
@@ -58,7 +59,11 @@ public class DeleteDocumentTagRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+    String url = "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+    if (this.paths.containsKey("tagValue")) {
+      url += "/" + this.paths.get("tagValue");
+    }
+    return url;
   }
 
   /**
@@ -80,6 +85,17 @@ public class DeleteDocumentTagRequest implements ApiRequest {
    */
   public DeleteDocumentTagRequest tagKey(final String tagKey) {
     this.paths.put("tagKey", tagKey);
+    return this;
+  }
+
+  /**
+   * Set the TagValue.
+   * 
+   * @param tagValue {@link String}
+   * @return {@link DeleteDocumentTagRequest}
+   */
+  public DeleteDocumentTagRequest tagValue(final String tagValue) {
+    this.paths.put("tagValue", tagValue);
     return this;
   }
 
