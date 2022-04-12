@@ -12,16 +12,10 @@
  */
 package com.formkiq.stacks.client;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toList;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
@@ -30,13 +24,11 @@ import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Pattern;
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.auth.signer.Aws4Signer;
 import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
@@ -54,20 +46,6 @@ public class HttpServiceJava implements HttpService {
   /** Headers that are not allowed to be added to {@link HttpClient}. */
   private static final Set<String> NOT_ALLOWED_HEADERS = Set.of("connection", "content-length",
       "date", "expect", "from", "host", "upgrade", "via", "warning");
-
-  /**
-   * Decode Encoded {@link String}.
-   * 
-   * @param encoded {@link String}
-   * @return {@link String}
-   */
-  private static String decode(final String encoded) {
-    try {
-      return encoded == null ? null : URLDecoder.decode(encoded, "UTF-8");
-    } catch (final UnsupportedEncodingException e) {
-      throw new RuntimeException("Impossible: UTF-8 is a required encoding", e);
-    }
-  }
 
   /** {@link HttpClient}. */
   private HttpClient client;
@@ -110,18 +88,6 @@ public class HttpServiceJava implements HttpService {
 
     for (Map.Entry<String, List<String>> e : this.defaultHeaders.entrySet()) {
       requestBuilder = requestBuilder.appendHeader(e.getKey(), String.join(",", e.getValue()));
-    }
-
-    URL url = new URL(uri);
-    if (url.getQuery() != null) {
-      Map<String, List<String>> queryParams = Pattern.compile("&")
-          .splitAsStream(new URL(uri).getQuery()).map(s -> Arrays.copyOf(s.split("="), 2))
-          .collect(groupingBy(s -> decode(s[0]), mapping(s -> decode(s[1]), toList())));
-
-      for (Map.Entry<String, List<String>> e : queryParams.entrySet()) {
-        requestBuilder =
-            requestBuilder.appendRawQueryParameter(e.getKey(), String.join(",", e.getValue()));
-      }
     }
 
     if (payload.isPresent()) {
