@@ -1105,17 +1105,10 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> searchAsHttpResponse(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
 
-    DocumentSearchTag tag = new DocumentSearchTag();
-    tag.key(request.tagKey());
-    tag.eq(request.eq());
-    tag.beginsWith(request.beginsWith());
-
-    DocumentSearchQuery q = new DocumentSearchQuery();
-    q.tag(tag);
-    q.documentIds(request.documentIds());
-
-    DocumentSearch search = new DocumentSearch();
-    search.query(q);
+    DocumentSearchTag tag = new DocumentSearchTag().key(request.tagKey()).eq(request.eq())
+        .eqOr(request.eqOr()).beginsWith(request.beginsWith());
+    DocumentSearchQuery q = new DocumentSearchQuery().tag(tag).documentIds(request.documentIds());
+    DocumentSearch search = new DocumentSearch().query(q);
 
     String contents = this.gson.toJson(search);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();

@@ -12,6 +12,8 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.Collection;
+
 /**
  * DocumentSearch holder.
  *
@@ -22,6 +24,8 @@ public class DocumentSearchTag {
   private String key;
   /** Eq criteria. */
   private String eq;
+  /** EqOr criteria. */
+  private Collection<String> eqOr;
   /** BeginsWith criteria. */
   private String beginsWith;
 
@@ -45,9 +49,11 @@ public class DocumentSearchTag {
    * Set Begins With.
    * 
    * @param searchBeginsWith {@link String}
+   * @return {@link DocumentSearchTag}
    */
-  public void beginsWith(final String searchBeginsWith) {
+  public DocumentSearchTag beginsWith(final String searchBeginsWith) {
     this.beginsWith = searchBeginsWith;
+    return this;
   }
 
   /**
@@ -63,9 +69,31 @@ public class DocumentSearchTag {
    * Set Search Equals criteria.
    * 
    * @param searchEq {@link String}
+   * @return {@link DocumentSearchTag}
    */
-  public void eq(final String searchEq) {
+  public DocumentSearchTag eq(final String searchEq) {
     this.eq = searchEq;
+    return this;
+  }
+
+  /**
+   * Get Search Equals criteria.
+   * 
+   * @return {@link Collection} {@link String}
+   */
+  public Collection<String> eqOr() {
+    return this.eqOr;
+  }
+
+  /**
+   * Set Search Equals criteria.
+   * 
+   * @param searchEqs {@link String}
+   * @return {@link DocumentSearchTag}
+   */
+  public DocumentSearchTag eqOr(final Collection<String> searchEqs) {
+    this.eqOr = searchEqs;
+    return this;
   }
 
   /**
@@ -81,8 +109,10 @@ public class DocumentSearchTag {
    * Set Search Key.
    * 
    * @param searchkey {@link String}
+   * @return {@link DocumentSearchTag}
    */
-  public void key(final String searchkey) {
+  public DocumentSearchTag key(final String searchkey) {
     this.key = searchkey;
+    return this;
   }
 }

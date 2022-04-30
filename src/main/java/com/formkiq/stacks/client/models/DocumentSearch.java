@@ -41,8 +41,10 @@ public class DocumentSearch {
    * Set Query.
    * 
    * @param q {@link DocumentSearchQuery}
+   * @return {@link DocumentSearchQuery}
    */
-  public void query(final DocumentSearchQuery q) {
+  public DocumentSearch query(final DocumentSearchQuery q) {
     this.query = q;
+    return this;
   }
 }

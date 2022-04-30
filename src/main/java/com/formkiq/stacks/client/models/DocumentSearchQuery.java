@@ -42,9 +42,11 @@ public class DocumentSearchQuery {
    * Set DocumentIds.
    * 
    * @param list {@link Collection} {@link String}
+   * @return {@link DocumentSearchQuery}
    */
-  public void documentIds(final Collection<String> list) {
+  public DocumentSearchQuery documentIds(final Collection<String> list) {
     this.documentIds = list;
+    return this;
   }
 
   /**
@@ -60,8 +62,10 @@ public class DocumentSearchQuery {
    * Set {@link DocumentSearchTag}.
    * 
    * @param searchTag {@link DocumentSearchTag}
+   * @return {@link DocumentSearchQuery}
    */
-  public void tag(final DocumentSearchTag searchTag) {
+  public DocumentSearchQuery tag(final DocumentSearchTag searchTag) {
     this.tag = searchTag;
+    return this;
   }
 }
