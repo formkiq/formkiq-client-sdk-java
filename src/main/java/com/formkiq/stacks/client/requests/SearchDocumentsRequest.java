@@ -30,6 +30,8 @@ public class SearchDocumentsRequest implements ApiRequest {
   private String tagKey;
   /** Tag Value. */
   private String eq;
+  /** EqOr criteria. */
+  private Collection<String> eqOr;
   /** Tag Value. */
   private String beginsWith;
   /** Apply search criteria to only certain documents. */
@@ -100,6 +102,26 @@ public class SearchDocumentsRequest implements ApiRequest {
    */
   public SearchDocumentsRequest eq(final String value) {
     this.eq = value;
+    return this;
+  }
+
+  /**
+   * Get Search Equals criteria.
+   * 
+   * @return {@link Collection} {@link String}
+   */
+  public Collection<String> eqOr() {
+    return this.eqOr;
+  }
+
+  /**
+   * Set Search Equals criteria.
+   * 
+   * @param searchEqs {@link String}
+   * @return {@link SearchDocumentsRequest}
+   */
+  public SearchDocumentsRequest eqOr(final Collection<String> searchEqs) {
+    this.eqOr = searchEqs;
     return this;
   }
 
