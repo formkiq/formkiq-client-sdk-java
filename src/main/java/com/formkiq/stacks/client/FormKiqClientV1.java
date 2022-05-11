@@ -26,6 +26,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentContent;
+import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchTag;
@@ -42,6 +43,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
@@ -55,6 +57,7 @@ import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
@@ -168,6 +171,29 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public void addDocumentOcr(final AddDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  /**
+   * POST(Add) /documents/{documentId}/ocr.
+   * 
+   * @param request {@link AddDocumentOcrRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocumentOcrAsHttpResponse(final AddDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    String contents = "";
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
   public boolean addDocumentTag(final AddDocumentTagRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = addDocumentTagAsHttpResponse(request);
@@ -195,35 +221,6 @@ public class FormKiqClientV1 implements FormKiqClient {
       body.put("value", request.tagValue());
       body.put("values", request.tagValues());
     }
-
-    String contents = this.gson.toJson(body);
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(contents));
-  }
-
-  @Override
-  public boolean addWebhookTag(final AddWebhookTagRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = addWebhookTagAsHttpResponse(request);
-    return checkStatusCodeBoolean(response);
-  }
-
-  /**
-   * POST /webhook/{webhookId}/tags.
-   * 
-   * @param request {@link AddWebhookTagRequest}
-   * 
-   * @return {@link HttpResponse} {@link String}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> addWebhookTagAsHttpResponse(final AddWebhookTagRequest request)
-      throws IOException, InterruptedException {
-
-    Map<String, Object> body = new HashMap<>();
-    body.put("key", request.tagKey());
-    body.put("value", request.tagValue());
 
     String contents = this.gson.toJson(body);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
@@ -324,6 +321,35 @@ public class FormKiqClientV1 implements FormKiqClient {
     String body = this.gson.toJson(Map.of("name", request.name(), "enabled", request.enabled()));
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, Optional.empty(), RequestBody.fromString(body));
+  }
+
+  @Override
+  public boolean addWebhookTag(final AddWebhookTagRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addWebhookTagAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * POST /webhook/{webhookId}/tags.
+   * 
+   * @param request {@link AddWebhookTagRequest}
+   * 
+   * @return {@link HttpResponse} {@link String}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addWebhookTagAsHttpResponse(final AddWebhookTagRequest request)
+      throws IOException, InterruptedException {
+
+    Map<String, Object> body = new HashMap<>();
+    body.put("key", request.tagKey());
+    body.put("value", request.tagValue());
+
+    String contents = this.gson.toJson(body);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
   }
 
   /**
@@ -582,6 +608,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocumentOcr getDocumentOcr(final GetDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentOcrAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentOcr.class);
+  }
+
+  /**
+   * GET /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @param request {@link GetDocumentTagsKeyRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocumentOcrAsHttpResponse(final GetDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   public Documents getDocuments(final GetDocumentsRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = getDocumentsAsHttpResponse(request);
@@ -722,6 +770,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), PresetTags.class);
   }
 
+
   /**
    * GET /presets/{presetId}/tags.
    * 
@@ -761,7 +810,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), Version.class);
   }
-
 
   /**
    * GET /version.
@@ -1086,6 +1134,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
@@ -1140,7 +1189,6 @@ public class FormKiqClientV1 implements FormKiqClient {
         createHttpHeaders("PATCH", buildHeaders(request.document().contentType())),
         RequestBody.fromString(body));
   }
-
 
   @Override
   public boolean updateDocumentTag(final UpdateDocumentTagKeyRequest request)
