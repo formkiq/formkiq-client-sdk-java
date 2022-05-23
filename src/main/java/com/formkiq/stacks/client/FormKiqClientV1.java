@@ -187,7 +187,14 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> addDocumentOcrAsHttpResponse(final AddDocumentOcrRequest request)
       throws IOException, InterruptedException {
-    String contents = "";
+
+    Map<String, Object> map = new HashMap<>();
+
+    if (request.parseTypes() != null) {
+      map.put("parseTypes", request.parseTypes());
+    }
+
+    String contents = this.gson.toJson(map);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
