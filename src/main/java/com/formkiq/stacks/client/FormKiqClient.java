@@ -18,6 +18,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
+import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -30,6 +31,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
@@ -41,6 +43,7 @@ import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
@@ -74,6 +77,15 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
+   * POST /documents/{documentId}/ocr.
+   * 
+   * @param request {@link AddDocumentOcrRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void addDocumentOcr(AddDocumentOcrRequest request) throws IOException, InterruptedException;
+
+  /**
    * POST /documents/{documentId}/tags.
    * 
    * @param request {@link AddDocumentTagRequest}
@@ -82,16 +94,6 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
-
-  /**
-   * POST /webhooks/{webhookId}/tags.
-   * 
-   * @param request {@link AddDocumentTagRequest}
-   * @return boolean
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  boolean addWebhookTag(AddWebhookTagRequest request) throws IOException, InterruptedException;
 
   /**
    * POST(Add) /presets.
@@ -122,6 +124,16 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   AddWebhookResponse addWebhook(AddWebhookRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /webhooks/{webhookId}/tags.
+   * 
+   * @param request {@link AddDocumentTagRequest}
+   * @return boolean
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean addWebhookTag(AddWebhookTagRequest request) throws IOException, InterruptedException;
 
   /**
    * DELETE /documents/{documentId}.
@@ -197,6 +209,17 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   DocumentUrl getDocumentContentUrl(GetDocumentContentUrlRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * GET /documents/{documentId}/ocr.
+   * 
+   * @param request {@link GetDocumentOcrRequest}.
+   * @return {@link DocumentOcr}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentOcr getDocumentOcr(GetDocumentOcrRequest request)
       throws IOException, InterruptedException;
 
   /**

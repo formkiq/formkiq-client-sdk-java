@@ -44,6 +44,7 @@ import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentContent;
+import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -58,6 +59,7 @@ import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -72,6 +74,7 @@ import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
@@ -250,6 +253,8 @@ public class FormKiqClientV1Test {
     add("post", "/search", "/search.json");
     add("options", "/search", "/search.json");
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
+    add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
+    add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
   }
 
   /**
@@ -1059,6 +1064,44 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /documents/{documentid}/ocr.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsOcr01() throws Exception {
+    GetDocumentOcrRequest req = new GetDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    DocumentOcr ocr = this.client.getDocumentOcr(req);
+    assertEquals("999", ocr.documentId());
+    assertEquals("2020/05/05 18:11:36", df.format(ocr.insertedDate()));
+    assertEquals("text/plain", ocr.contentType());
+    assertEquals("textract", ocr.ocrEngine());
+    assertEquals("joe", ocr.userId());
+    assertEquals("This is a test", ocr.data());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/ocr.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsOcrAsHttpResponse() throws Exception {
+    GetDocumentOcrRequest req = new GetDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.getDocumentOcrAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/ocr?siteId=" + siteId,
+        response.request().uri().toString());
+    DocumentOcr ocr = gson.fromJson(response.body(), DocumentOcr.class);
+    assertEquals("999", ocr.documentId());
+    assertEquals("2020/05/05 18:11:36", df.format(ocr.insertedDate()));
+    assertEquals("text/plain", ocr.contentType());
+    assertEquals("textract", ocr.ocrEngine());
+    assertEquals("joe", ocr.userId());
+    assertEquals("This is a test", ocr.data());
+  }
+
+  /**
    * Test GET /documents/{documentid}/tags.
    * 
    * @throws Exception Exception
@@ -1810,6 +1853,17 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/documents/" + documentId + "/formats?siteId=10",
         response.request().uri().toString());
     assertEquals("POST", response.request().method());
+  }
+
+  /**
+   * Test POST /documents/{documentId}/ocr.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPostDocumentOcr() throws Exception {
+    AddDocumentOcrRequest req = new AddDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    this.client.addDocumentOcr(req);
   }
 
   /**
