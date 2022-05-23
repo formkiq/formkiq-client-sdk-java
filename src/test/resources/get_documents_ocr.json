@@ -1,6 +1,7 @@
 {
   "data":"This is a test",
   "ocrEngine":"textract",
+  "ocrStatus":"pending",
   "contentType":"text/plain",
   "isBase64":false,
   "insertedDate": "2020-05-05T13:11:36-0500",

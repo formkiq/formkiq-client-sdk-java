@@ -85,6 +85,7 @@ import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
+import com.formkiq.stacks.client.requests.OcrParseType;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentFormatRequest;
@@ -1076,6 +1077,7 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 18:11:36", df.format(ocr.insertedDate()));
     assertEquals("text/plain", ocr.contentType());
     assertEquals("textract", ocr.ocrEngine());
+    assertEquals("pending", ocr.ocrStatus());
     assertEquals("joe", ocr.userId());
     assertEquals("This is a test", ocr.data());
   }
@@ -1097,6 +1099,7 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 18:11:36", df.format(ocr.insertedDate()));
     assertEquals("text/plain", ocr.contentType());
     assertEquals("textract", ocr.ocrEngine());
+    assertEquals("pending", ocr.ocrStatus());
     assertEquals("joe", ocr.userId());
     assertEquals("This is a test", ocr.data());
   }
@@ -1862,7 +1865,8 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testPostDocumentOcr() throws Exception {
-    AddDocumentOcrRequest req = new AddDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    AddDocumentOcrRequest req = new AddDocumentOcrRequest().documentId(documentId).siteId(siteId)
+        .parseTypes(Arrays.asList(OcrParseType.FORMS));
     this.client.addDocumentOcr(req);
   }
 

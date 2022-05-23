@@ -29,6 +29,8 @@ public class AddDocumentOcrRequest implements ApiRequest {
   private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** OCR Parse Types. */
+  private List<OcrParseType> parseTypes;
 
   /**
    * constructor.
@@ -59,6 +61,26 @@ public class AddDocumentOcrRequest implements ApiRequest {
   @Override
   public String getUrlPath() {
     return "documents/" + this.paths.get("documentId") + "/ocr";
+  }
+
+  /**
+   * Get Parse Types.
+   * 
+   * @return {@link List} {@link OcrParseType}
+   */
+  public List<OcrParseType> parseTypes() {
+    return this.parseTypes;
+  }
+
+  /**
+   * Set Parse Types.
+   * 
+   * @param types {@link List} {@link OcrParseType}
+   * @return {@link AddDocumentOcrRequest}
+   */
+  public AddDocumentOcrRequest parseTypes(final List<OcrParseType> types) {
+    this.parseTypes = types;
+    return this;
   }
 
   /**

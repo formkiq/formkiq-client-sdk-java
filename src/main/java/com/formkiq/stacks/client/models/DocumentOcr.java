@@ -26,8 +26,8 @@ public class DocumentOcr {
   private String data;
   /** Ocr Engine Used. */
   private String ocrEngine;
-  /** Get Url to Data if too large. */
-  private String url;
+  /** Ocr Status. */
+  private String ocrStatus;
   /** Document Ocr Content Type. */
   private String contentType;
   /** Is Content Base 64 Encoded. */
@@ -166,22 +166,22 @@ public class DocumentOcr {
   }
 
   /**
-   * Get Url to OCR data.
+   * Get Ocr Status.
    * 
    * @return {@link String}
    */
-  public String url() {
-    return this.url;
+  public String ocrStatus() {
+    return this.ocrStatus;
   }
 
   /**
-   * Set Url to OCR data.
+   * Set Ocr Status.
    * 
-   * @param u {@link String}
+   * @param status {@link String}
    * @return {@link DocumentOcr}
    */
-  public DocumentOcr url(final String u) {
-    this.url = u;
+  public DocumentOcr ocrStatus(final String status) {
+    this.ocrStatus = status;
     return this;
   }
 
