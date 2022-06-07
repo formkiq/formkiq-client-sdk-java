@@ -55,6 +55,8 @@ import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.PresetsBody;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchemaSummaries;
+import com.formkiq.stacks.client.models.TagSchemaSummary;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -83,6 +85,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OcrParseType;
@@ -253,6 +256,7 @@ public class FormKiqClientV1Test {
     add("options", "/documents/" + documentId + "/formats", "/documentsId.json");
     add("post", "/search", "/search.json");
     add("options", "/search", "/search.json");
+    add("get", "/tagSchemas", "/get_tagschemas.json");
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
     add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
     add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
@@ -1439,6 +1443,45 @@ public class FormKiqClientV1Test {
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
         .startsWith("AWS4-HMAC-SHA256 Credential=123"));
+  }
+
+  /**
+   * Test GET /tagSchemas.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetTagSchemas() throws Exception {
+    GetTagSchemasRequest req = new GetTagSchemasRequest().siteId(siteId);
+    TagSchemaSummaries summaries = this.client.getTagSchemas(req);
+    assertEquals(1, summaries.schemas().size());
+    TagSchemaSummary doc = summaries.schemas().get(0);
+    assertEquals("testschema", doc.name());
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", doc.tagSchemaId());
+    assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
+    assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
+  }
+
+  /**
+   * Test GET /tagSchemas.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetTagSchemasAsHttpResponse() throws Exception {
+    GetTagSchemasRequest req = new GetTagSchemasRequest().siteId(siteId);
+    HttpResponse<String> response = this.client.getTagSchemasAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/tagSchemas?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    TagSchemaSummaries summaries = gson.fromJson(response.body(), TagSchemaSummaries.class);
+    assertEquals(1, summaries.schemas().size());
+    TagSchemaSummary doc = summaries.schemas().get(0);
+    assertEquals("testschema", doc.name());
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", doc.tagSchemaId());
+    assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
+    assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
   }
 
   /**

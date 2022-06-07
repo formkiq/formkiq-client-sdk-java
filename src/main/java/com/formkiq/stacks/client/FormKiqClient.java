@@ -27,6 +27,7 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -52,6 +53,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
@@ -305,6 +307,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   Sites getSites() throws IOException, InterruptedException;
+
+  /**
+   * GET /tagSchemas.
+   * 
+   * @param request {@link GetTagSchemasRequest}
+   * @return {@link TagSchemaSummaries}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  TagSchemaSummaries getTagSchemas(GetTagSchemasRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * GET /version.

@@ -39,6 +39,7 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -66,6 +67,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
@@ -812,6 +814,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public TagSchemaSummaries getTagSchemas(final GetTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getTagSchemasAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), TagSchemaSummaries.class);
+  }
+
+  /**
+   * GET /tagSchemas.
+   * 
+   * @param request {@link GetTagSchemasRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getTagSchemasAsHttpResponse(final GetTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   public Version getVersion() throws IOException, InterruptedException {
     HttpResponse<String> response = getVersionAsHttpResponse();
     checkStatusCode(response);
@@ -1111,6 +1135,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /webhooks/{webhookId}.
    * 
@@ -1140,7 +1165,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   @Override
   public Documents search(final SearchDocumentsRequest request)
@@ -1224,5 +1248,4 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
-
 }
