@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentOcr;
@@ -36,6 +37,7 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -116,6 +118,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   void addPresetTags(PresetTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /tagSchemas.
+   * 
+   * @param request {@link AddTagSchemasRequest}
+   * @return {@link TagSchemaSummaries}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  AddTagSchemaResponse addTagSchemas(AddTagSchemasRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * POST(Add) /webhook.

@@ -24,6 +24,7 @@ import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
@@ -48,6 +49,7 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -306,6 +308,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     }
 
     return response;
+  }
+
+  @Override
+  public AddTagSchemaResponse addTagSchemas(final AddTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addTagSchemasAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddTagSchemaResponse.class);
+  }
+
+  /**
+   * POST(Add) /tagSchemas.
+   * 
+   * @param request {@link AddTagSchemasRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addTagSchemasAsHttpResponse(final AddTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.tagSchema());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
   }
 
   @Override
@@ -757,6 +783,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), Presets.class);
   }
 
+
   /**
    * GET /presets.
    * 
@@ -778,7 +805,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), PresetTags.class);
   }
-
 
   /**
    * GET /presets/{presetId}/tags.
@@ -1109,6 +1135,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /version.
    * 
@@ -1134,7 +1161,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + new GetWebhooksRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /webhooks/{webhookId}.

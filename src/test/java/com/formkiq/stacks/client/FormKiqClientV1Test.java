@@ -41,6 +41,7 @@ import org.mockserver.integration.ClientAndServer;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentContent;
@@ -55,8 +56,11 @@ import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.PresetsBody;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.TagSchemaSummary;
+import com.formkiq.stacks.client.models.TagSchemaTags;
+import com.formkiq.stacks.client.models.TagSchemas;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -66,6 +70,7 @@ import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -257,6 +262,7 @@ public class FormKiqClientV1Test {
     add("post", "/search", "/search.json");
     add("options", "/search", "/search.json");
     add("get", "/tagSchemas", "/get_tagschemas.json");
+    add("post", "/tagSchemas", "/post_tagschemas.json");
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
     add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
     add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
@@ -611,6 +617,19 @@ public class FormKiqClientV1Test {
     assertEquals("POST", response.request().method());
     assertEquals(URL + "/presets/" + documentId + "/tags?siteId=" + siteId,
         response.request().uri().toString());
+  }
+
+  /**
+   * Test POST /tagSchemas.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddTagSchemas01() throws Exception {
+    AddTagSchemasRequest req = new AddTagSchemasRequest().siteId(siteId)
+        .tagSchema(new TagSchemas().schema(new TagSchema().tags(new TagSchemaTags())));
+    AddTagSchemaResponse response = this.client.addTagSchemas(req);
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", response.tagSchemaId());
   }
 
   /**
@@ -1728,6 +1747,7 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/documents/" + documentId + "/upload", response.request().uri().toString());
   }
 
+
   /**
    * Test Options /documents/{documentId}/versions.
    * 
@@ -1743,7 +1763,6 @@ public class FormKiqClientV1Test {
         response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
-
 
   /**
    * Test OPTIONS /presets/{presetId}.
@@ -1977,6 +1996,24 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
     assertEquals("sample/test.txt", docs.documents().get(0).path());
     assertEquals("jtest", docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test POST /tagSchemas.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testTagSchemasAsHttpResponse01() throws Exception {
+    AddTagSchemasRequest req = new AddTagSchemasRequest().siteId(siteId)
+        .tagSchema(new TagSchemas().schema(new TagSchema().tags(new TagSchemaTags())));
+    HttpResponse<String> response = this.client.addTagSchemasAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/tagSchemas?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae",
+        gson.fromJson(response.body(), Map.class).get("tagSchemaId").toString());
   }
 
   /**
