@@ -41,6 +41,7 @@ import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
+import com.formkiq.stacks.client.models.TagSchemas;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -56,6 +57,7 @@ import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
+import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
@@ -69,6 +71,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
@@ -545,6 +548,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public boolean deleteTagSchema(final DeleteTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteTagSchemaAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /tagSchemas/{tagSchemaId}.
+   * 
+   * @param request {@link DeleteDocumentRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteTagSchemaAsHttpResponse(final DeleteTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
   public boolean deleteWebhook(final DeleteWebhookRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = deleteWebhookAsHttpResponse(request);
@@ -761,6 +786,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentVersions.class);
   }
 
+
   /**
    * GET /documents/{documentId}/versions.
    * 
@@ -782,7 +808,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), Presets.class);
   }
-
 
   /**
    * GET /presets.
@@ -836,6 +861,28 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getSitesAsHttpResponse() throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + new SitesRequest().buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public TagSchemas getTagSchema(final GetTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getTagSchemaAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), TagSchemas.class);
+  }
+
+  /**
+   * GET /tagSchemas/{tagSchemaId}.
+   * 
+   * @param request {@link GetTagSchemasRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getTagSchemaAsHttpResponse(final GetTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -1095,6 +1142,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /presets/{presetId}/tags and /presets/{presetId}/tag/{tag}.
    * 
@@ -1134,7 +1182,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + new SitesRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /version.

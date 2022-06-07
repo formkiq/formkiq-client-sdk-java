@@ -77,6 +77,7 @@ import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
+import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
@@ -90,6 +91,7 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
@@ -263,6 +265,8 @@ public class FormKiqClientV1Test {
     add("options", "/search", "/search.json");
     add("get", "/tagSchemas", "/get_tagschemas.json");
     add("post", "/tagSchemas", "/post_tagschemas.json");
+    add("get", "/tagSchemas/" + documentId, "/get_tagschema.json");
+    add("delete", "/tagSchemas/" + documentId, "/post_tagschemas.json");
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
     add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
     add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
@@ -884,6 +888,34 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test DELETE /tagSchemas/{tagSchemaId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteTagSchema01() throws Exception {
+    DeleteTagSchemaRequest request =
+        new DeleteTagSchemaRequest().tagSchemaId(documentId).siteId(siteId);
+    assertTrue(this.client.deleteTagSchema(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteTagSchema02() throws Exception {
+    DeleteTagSchemaRequest request = new DeleteTagSchemaRequest();
+    try {
+      this.client.deleteTagSchema(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("TagSchemaId is required.", e.getMessage());
+    }
+  }
+
+  /**
    * Test DELETE /webhooks/{webhookId}.
    * 
    * @throws Exception Exception
@@ -1465,6 +1497,61 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /tagSchema/{tagSchemaId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetTagSchema01() throws Exception {
+    GetTagSchemaRequest req = new GetTagSchemaRequest().siteId(siteId).tagSchemaId(documentId);
+    TagSchemas schemas = this.client.getTagSchema(req);
+    TagSchema doc = schemas.schema();
+    assertEquals("test", doc.name());
+    assertEquals("123", doc.tagSchemaId());
+    assertEquals("joe", doc.userId());
+    assertEquals("2022/06/07 03:44:23", df.format(doc.insertedDate()));
+  }
+
+  /**
+   * Test GET /tagSchema/{tagSchemaId}. Missing tagSchemaId.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetTagSchema02() throws Exception {
+    GetTagSchemaRequest req = new GetTagSchemaRequest();
+
+    try {
+      this.client.getTagSchema(req);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("TagSchemaId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /tagSchema/{tagSchemaId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetTagSchemaAsHttpResponse() throws Exception {
+    GetTagSchemasRequest req = new GetTagSchemasRequest().siteId(siteId);
+    HttpResponse<String> response = this.client.getTagSchemasAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/tagSchemas?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    TagSchemaSummaries summaries = gson.fromJson(response.body(), TagSchemaSummaries.class);
+    assertEquals(1, summaries.schemas().size());
+    TagSchemaSummary doc = summaries.schemas().get(0);
+    assertEquals("testschema", doc.name());
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", doc.tagSchemaId());
+    assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
+    assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
+  }
+
+  /**
    * Test GET /tagSchemas.
    * 
    * @throws Exception Exception
@@ -1480,6 +1567,7 @@ public class FormKiqClientV1Test {
     assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
     assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
   }
+
 
   /**
    * Test GET /tagSchemas.
