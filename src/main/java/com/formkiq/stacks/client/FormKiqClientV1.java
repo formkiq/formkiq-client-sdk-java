@@ -40,8 +40,8 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
-import com.formkiq.stacks.client.models.TagSchemas;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -50,7 +50,7 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
-import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -314,9 +314,9 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public AddTagSchemaResponse addTagSchemas(final AddTagSchemasRequest request)
+  public AddTagSchemaResponse addTagSchema(final AddTagSchemaRequest request)
       throws IOException, InterruptedException {
-    HttpResponse<String> response = addTagSchemasAsHttpResponse(request);
+    HttpResponse<String> response = addTagSchemaAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), AddTagSchemaResponse.class);
   }
@@ -324,12 +324,12 @@ public class FormKiqClientV1 implements FormKiqClient {
   /**
    * POST(Add) /tagSchemas.
    * 
-   * @param request {@link AddTagSchemasRequest}
+   * @param request {@link AddTagSchemaRequest}
    * @return {@link HttpResponse}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> addTagSchemasAsHttpResponse(final AddTagSchemasRequest request)
+  public HttpResponse<String> addTagSchemaAsHttpResponse(final AddTagSchemaRequest request)
       throws IOException, InterruptedException {
     String body = this.gson.toJson(request.tagSchema());
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
@@ -865,11 +865,11 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public TagSchemas getTagSchema(final GetTagSchemaRequest request)
+  public TagSchema getTagSchema(final GetTagSchemaRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = getTagSchemaAsHttpResponse(request);
     checkStatusCode(response);
-    return this.gson.fromJson(response.body(), TagSchemas.class);
+    return this.gson.fromJson(response.body(), TagSchema.class);
   }
 
   /**

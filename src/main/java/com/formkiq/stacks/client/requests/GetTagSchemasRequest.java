@@ -48,6 +48,39 @@ public class GetTagSchemasRequest implements ApiRequest {
   }
 
   /**
+   * Limit the number of results returned.
+   * 
+   * @param limit {@link String}
+   * @return {@link GetTagSchemasRequest}
+   */
+  public GetTagSchemasRequest limit(final int limit) {
+    this.parameters.put("limit", "" + limit);
+    return this;
+  }
+
+  /**
+   * set Next Results Token.
+   * 
+   * @param next {@link String}
+   * @return {@link GetTagSchemasRequest}
+   */
+  public GetTagSchemasRequest next(final String next) {
+    this.parameters.put("next", next);
+    return this;
+  }
+
+  /**
+   * set Previous Results Token.
+   * 
+   * @param previous {@link String}
+   * @return {@link GetTagSchemasRequest}
+   */
+  public GetTagSchemasRequest previous(final String previous) {
+    this.parameters.put("previous", previous);
+    return this;
+  }
+
+  /**
    * Site Identifier.
    * 
    * @param siteId {@link String}

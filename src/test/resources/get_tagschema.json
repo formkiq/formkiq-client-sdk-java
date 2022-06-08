@@ -1,5 +1,4 @@
 {
-  "schema": {
     "tagSchemaId": "123",
     "name": "test",
     "userId": "joe",
@@ -36,5 +35,4 @@
       ],
       "allowAdditionalTags": true
     }
-  }
 }

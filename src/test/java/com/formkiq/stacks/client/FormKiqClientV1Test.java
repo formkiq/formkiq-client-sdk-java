@@ -60,7 +60,6 @@ import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.TagSchemaSummary;
 import com.formkiq.stacks.client.models.TagSchemaTags;
-import com.formkiq.stacks.client.models.TagSchemas;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -70,7 +69,7 @@ import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
-import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -630,9 +629,9 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testAddTagSchemas01() throws Exception {
-    AddTagSchemasRequest req = new AddTagSchemasRequest().siteId(siteId)
-        .tagSchema(new TagSchemas().schema(new TagSchema().tags(new TagSchemaTags())));
-    AddTagSchemaResponse response = this.client.addTagSchemas(req);
+    AddTagSchemaRequest req = new AddTagSchemaRequest().siteId(siteId)
+        .tagSchema(new TagSchema().tags(new TagSchemaTags()));
+    AddTagSchemaResponse response = this.client.addTagSchema(req);
     assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", response.tagSchemaId());
   }
 
@@ -1504,8 +1503,7 @@ public class FormKiqClientV1Test {
   @Test
   public void testGetTagSchema01() throws Exception {
     GetTagSchemaRequest req = new GetTagSchemaRequest().siteId(siteId).tagSchemaId(documentId);
-    TagSchemas schemas = this.client.getTagSchema(req);
-    TagSchema doc = schemas.schema();
+    TagSchema doc = this.client.getTagSchema(req);
     assertEquals("test", doc.name());
     assertEquals("123", doc.tagSchemaId());
     assertEquals("joe", doc.userId());
@@ -1536,10 +1534,12 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testGetTagSchemaAsHttpResponse() throws Exception {
-    GetTagSchemasRequest req = new GetTagSchemasRequest().siteId(siteId);
+    GetTagSchemasRequest req =
+        new GetTagSchemasRequest().siteId(siteId).next("bbb").previous("aaa").limit(0);
     HttpResponse<String> response = this.client.getTagSchemasAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/tagSchemas?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/tagSchemas?next=bbb&previous=aaa&limit=0&siteId=" + siteId,
+        response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
     TagSchemaSummaries summaries = gson.fromJson(response.body(), TagSchemaSummaries.class);
@@ -2093,9 +2093,9 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testTagSchemasAsHttpResponse01() throws Exception {
-    AddTagSchemasRequest req = new AddTagSchemasRequest().siteId(siteId)
-        .tagSchema(new TagSchemas().schema(new TagSchema().tags(new TagSchemaTags())));
-    HttpResponse<String> response = this.client.addTagSchemasAsHttpResponse(req);
+    AddTagSchemaRequest req = new AddTagSchemaRequest().siteId(siteId)
+        .tagSchema(new TagSchema().tags(new TagSchemaTags()));
+    HttpResponse<String> response = this.client.addTagSchemaAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/tagSchemas?siteId=" + siteId, response.request().uri().toString());
     assertEquals("POST", response.request().method());

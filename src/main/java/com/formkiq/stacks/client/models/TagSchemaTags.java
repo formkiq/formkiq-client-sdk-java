@@ -76,9 +76,11 @@ public class TagSchemaTags {
    * Set {@link List} {@link TagSchemaOptional}.
    * 
    * @param tagSchemaOptional {@link List} {@link TagSchemaOptional}
+   * @return {@link TagSchemaTags}
    */
-  public void optional(final List<TagSchemaOptional> tagSchemaOptional) {
+  public TagSchemaTags optional(final List<TagSchemaOptional> tagSchemaOptional) {
     this.optional = tagSchemaOptional;
+    return this;
   }
 
   /**

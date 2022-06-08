@@ -23,6 +23,8 @@ import java.util.List;
  */
 public class AddDocument {
 
+  /** TagSchema Id. */
+  private String tagSchemaId;
   /** Path. */
   private String path;
   /** Content Type. */
@@ -182,6 +184,26 @@ public class AddDocument {
    */
   public AddDocument tags(final List<DocumentTag> list) {
     this.tags = list;
+    return this;
+  }
+
+  /**
+   * Get Tag Schema Id.
+   * 
+   * @return {@link String}
+   */
+  public String tagSchemaId() {
+    return this.tagSchemaId;
+  }
+
+  /**
+   * Set Tag Schema Id.
+   * 
+   * @param id {@link String}
+   * @return {@link AddDocument}
+   */
+  public AddDocument tagSchemaId(final String id) {
+    this.tagSchemaId = id;
     return this;
   }
 }

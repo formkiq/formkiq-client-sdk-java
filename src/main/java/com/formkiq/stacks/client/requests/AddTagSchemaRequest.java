@@ -19,24 +19,23 @@ import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.TagSchema;
-import com.formkiq.stacks.client.models.TagSchemas;
 
 /**
  * Creates POST /tagSchemas Request.
  *
  */
-public class AddTagSchemasRequest implements ApiRequest {
+public class AddTagSchemaRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /** {@link TagSchema}. */
-  private TagSchemas tagSchema;
+  private TagSchema tagSchema;
 
   /**
    * constructor.
    */
-  public AddTagSchemasRequest() {}
+  public AddTagSchemaRequest() {}
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -57,29 +56,29 @@ public class AddTagSchemasRequest implements ApiRequest {
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link AddTagSchemasRequest}
+   * @return {@link AddTagSchemaRequest}
    */
-  public AddTagSchemasRequest siteId(final String siteId) {
+  public AddTagSchemaRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   /**
-   * Get {@link TagSchemas}.
+   * Get {@link TagSchema}.
    * 
-   * @return {@link TagSchemas}
+   * @return {@link TagSchema}
    */
-  public TagSchemas tagSchema() {
+  public TagSchema tagSchema() {
     return this.tagSchema;
   }
 
   /**
-   * Set {@link TagSchemas}.
+   * Set {@link TagSchema}.
    * 
-   * @param schema {@link TagSchemas}
-   * @return {@link AddTagSchemasRequest}
+   * @param schema {@link TagSchema}
+   * @return {@link AddTagSchemaRequest}
    */
-  public AddTagSchemasRequest tagSchema(final TagSchemas schema) {
+  public AddTagSchemaRequest tagSchema(final TagSchema schema) {
     this.tagSchema = schema;
     return this;
   }

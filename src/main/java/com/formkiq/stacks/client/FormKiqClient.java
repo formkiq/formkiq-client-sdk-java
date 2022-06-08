@@ -28,8 +28,8 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
-import com.formkiq.stacks.client.models.TagSchemas;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -38,7 +38,7 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
-import com.formkiq.stacks.client.requests.AddTagSchemasRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -125,12 +125,12 @@ public interface FormKiqClient {
   /**
    * POST /tagSchemas.
    * 
-   * @param request {@link AddTagSchemasRequest}
+   * @param request {@link AddTagSchemaRequest}
    * @return {@link TagSchemaSummaries}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  AddTagSchemaResponse addTagSchemas(AddTagSchemasRequest request)
+  AddTagSchemaResponse addTagSchema(AddTagSchemaRequest request)
       throws IOException, InterruptedException;
 
   /**
@@ -339,11 +339,11 @@ public interface FormKiqClient {
    * GET /tagSchemas/{tagSchemaId}.
    * 
    * @param request {@link GetTagSchemasRequest}
-   * @return {@link TagSchemaSummaries}
+   * @return {@link TagSchema}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  TagSchemas getTagSchema(GetTagSchemaRequest request) throws IOException, InterruptedException;
+  TagSchema getTagSchema(GetTagSchemaRequest request) throws IOException, InterruptedException;
 
   /**
    * GET /tagSchemas.
