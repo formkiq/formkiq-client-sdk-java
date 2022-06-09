@@ -46,6 +46,8 @@ import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
+import com.formkiq.stacks.client.models.DocumentSearchQuery;
+import com.formkiq.stacks.client.models.DocumentSearchTag;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -2027,8 +2029,11 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testSearch01() throws Exception {
-    SearchDocumentsRequest req = new SearchDocumentsRequest().tagKey("category").eq("value")
-        .limit(1).next("nnn").previous("ppp").siteId(siteId).beginsWith("bbb");
+    SearchDocumentsRequest req = new SearchDocumentsRequest()
+        .query(new DocumentSearchQuery()
+            .tag(new DocumentSearchTag().key("category").eq("value").beginsWith("bbb")))
+        .limit(1).next("nnn").previous("ppp").siteId(siteId);
+
     Documents docs = this.client.search(req);
     assertEquals("123", docs.next());
     assertEquals("345345", docs.previous());
@@ -2054,7 +2059,7 @@ public class FormKiqClientV1Test {
       this.client.search(req);
       fail();
     } catch (NullPointerException e) {
-      assertEquals("TagKey is required.", e.getMessage());
+      assertEquals("Query is required.", e.getMessage());
     }
   }
 
@@ -2065,8 +2070,12 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testSearchAsHttpResponse() throws Exception {
-    SearchDocumentsRequest req = new SearchDocumentsRequest().tagKey("category").eq("value")
-        .limit(1).next("nnn").previous("ppp").siteId(siteId).beginsWith("bbb");
+
+    SearchDocumentsRequest req = new SearchDocumentsRequest()
+        .query(new DocumentSearchQuery()
+            .tag(new DocumentSearchTag().key("category").eq("value").beginsWith("bbb")))
+        .limit(1).next("nnn").previous("ppp").siteId(siteId);
+
     HttpResponse<String> response = this.client.searchAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/search?next=nnn&previous=ppp&limit=1&siteId=" + siteId,

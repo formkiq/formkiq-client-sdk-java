@@ -30,7 +30,6 @@ import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
-import com.formkiq.stacks.client.models.DocumentSearchTag;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -1166,7 +1165,9 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsSearch() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
+
+    String u = this.apiRestUrl + "/"
+        + new SearchDocumentsRequest().query(new DocumentSearchQuery()).buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -1258,9 +1259,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> searchAsHttpResponse(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
 
-    DocumentSearchTag tag = new DocumentSearchTag().key(request.tagKey()).eq(request.eq())
-        .eqOr(request.eqOr()).beginsWith(request.beginsWith());
-    DocumentSearchQuery q = new DocumentSearchQuery().tag(tag).documentIds(request.documentIds());
+    DocumentSearchQuery q = request.query();
     DocumentSearch search = new DocumentSearch().query(q);
 
     String contents = this.gson.toJson(search);

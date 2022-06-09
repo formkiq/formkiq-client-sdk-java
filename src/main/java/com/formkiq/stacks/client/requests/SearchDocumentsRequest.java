@@ -12,13 +12,13 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.DocumentSearchQuery;
 
 /**
  * Creates POST /search Request.
@@ -26,104 +26,15 @@ import com.formkiq.stacks.client.Validate;
  */
 public class SearchDocumentsRequest implements ApiRequest {
 
-  /** Tag Key. */
-  private String tagKey;
-  /** Tag Value. */
-  private String eq;
-  /** EqOr criteria. */
-  private Collection<String> eqOr;
-  /** Tag Value. */
-  private String beginsWith;
-  /** Apply search criteria to only certain documents. */
-  private Collection<String> documentIds;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** {@link DocumentSearchQuery}. */
+  private DocumentSearchQuery query = null;
 
   /**
    * constructor.
    */
   public SearchDocumentsRequest() {}
-
-
-  /**
-   * Get BeginsWith Value.
-   * 
-   * @return {@link String}
-   */
-  public String beginsWith() {
-    return this.beginsWith;
-  }
-
-  /**
-   * Set the BeginsWith search criteria.
-   * 
-   * @param value {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest beginsWith(final String value) {
-    this.beginsWith = value;
-    return this;
-  }
-
-  /**
-   * Get Document Ids.
-   * 
-   * @return {@link Collection} {@link String}
-   */
-  public Collection<String> documentIds() {
-    return this.documentIds;
-  }
-
-  /**
-   * Set the Document Ids.
-   * 
-   * @param list {@link Collection} {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest documentIds(final Collection<String> list) {
-    this.documentIds = list;
-    return this;
-  }
-
-  /**
-   * Get Eq Value.
-   * 
-   * @return {@link String}
-   */
-  public String eq() {
-    return this.eq;
-  }
-
-  /**
-   * Set the equals search criteria.
-   * 
-   * @param value {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest eq(final String value) {
-    this.eq = value;
-    return this;
-  }
-
-  /**
-   * Get Search Equals criteria.
-   * 
-   * @return {@link Collection} {@link String}
-   */
-  public Collection<String> eqOr() {
-    return this.eqOr;
-  }
-
-  /**
-   * Set Search Equals criteria.
-   * 
-   * @param searchEqs {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest eqOr(final Collection<String> searchEqs) {
-    this.eqOr = searchEqs;
-    return this;
-  }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -174,6 +85,26 @@ public class SearchDocumentsRequest implements ApiRequest {
   }
 
   /**
+   * Get {@link DocumentSearchQuery}.
+   * 
+   * @return {@link DocumentSearchQuery}
+   */
+  public DocumentSearchQuery query() {
+    return this.query;
+  }
+
+  /**
+   * Set {@link DocumentSearchQuery}.
+   * 
+   * @param searchQuery {@link DocumentSearchQuery}
+   * @return {@link SearchDocumentsRequest}
+   */
+  public SearchDocumentsRequest query(final DocumentSearchQuery searchQuery) {
+    this.query = searchQuery;
+    return this;
+  }
+
+  /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
@@ -184,28 +115,8 @@ public class SearchDocumentsRequest implements ApiRequest {
     return this;
   }
 
-  /**
-   * Get Tag Key.
-   * 
-   * @return {@link String}
-   */
-  public String tagKey() {
-    return this.tagKey;
-  }
-
-  /**
-   * Set the tagKey.
-   * 
-   * @param key {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest tagKey(final String key) {
-    this.tagKey = key;
-    return this;
-  }
-
   @Override
   public void validate() {
-    Validate.notNull(this.tagKey, "TagKey is required.");
+    Validate.notNull(this.query, "Query is required.");
   }
 }
