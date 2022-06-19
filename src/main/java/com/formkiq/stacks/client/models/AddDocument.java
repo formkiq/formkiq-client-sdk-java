@@ -37,11 +37,33 @@ public class AddDocument {
   private List<DocumentTag> tags;
   /** Child Documents. */
   private List<AddDocument> documents;
+  /** Document Actions. */
+  private List<DocumentAction> actions;
 
   /**
    * constructor.
    */
   public AddDocument() {}
+
+  /**
+   * Get {@link List} {@link DocumentAction}.
+   * 
+   * @return {@link List} {@link DocumentAction}
+   */
+  public List<DocumentAction> actions() {
+    return this.actions;
+  }
+
+  /**
+   * Set {@link List} {@link DocumentAction}.
+   * 
+   * @param documentActions {@link List} {@link DocumentAction}
+   * @return {@link AddDocument}
+   */
+  public AddDocument actions(final List<DocumentAction> documentActions) {
+    this.actions = documentActions;
+    return this;
+  }
 
   /**
    * Get Content.
