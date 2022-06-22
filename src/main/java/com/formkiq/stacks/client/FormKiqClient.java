@@ -37,6 +37,7 @@ import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -101,6 +102,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST(Add) /documents/upload to get a URL that will allow adding a large document.
+   * 
+   * @param request {@link AddLargeDocumentRequest}
+   * @return {@link AddDocumentResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentUrl addLargeDocument(AddLargeDocumentRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * POST(Add) /presets.

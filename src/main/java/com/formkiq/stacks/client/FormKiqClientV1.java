@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -239,6 +240,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
+  }
+
+  @Override
+  public DocumentUrl addLargeDocument(final AddLargeDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addLargeDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentUrl.class);
+  }
+
+  /**
+   * POST(Add) /documents/upload.
+   * 
+   * @param request {@link AddLargeDocumentRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addLargeDocumentAsHttpResponse(final AddLargeDocumentRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.document());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
   }
 
   @Override
@@ -763,6 +788,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
 
+
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
    * 
@@ -784,7 +810,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentVersions.class);
   }
-
 
   /**
    * GET /documents/{documentId}/versions.
@@ -1113,6 +1138,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /presets/{presetId}.
    * 
@@ -1140,7 +1166,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + new GetPresetsRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /presets/{presetId}/tags and /presets/{presetId}/tag/{tag}.

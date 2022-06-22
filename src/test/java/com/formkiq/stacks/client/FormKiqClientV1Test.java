@@ -40,6 +40,7 @@ import org.junit.Test;
 import org.mockserver.integration.ClientAndServer;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
+import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
@@ -70,6 +71,7 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -168,6 +170,19 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Add Basic Urls.
+   * 
+   * @throws IOException IOException
+   */
+  private static void addBasics() throws IOException {
+    add("get", "/version", "/get_version.json");
+    add("options", "/version", "/id.json");
+
+    add("get", "/sites", "/get_sites.json");
+    add("options", "/sites", "/id.json");
+  }
+
+  /**
    * Add /presets urls.
    * 
    * @throws IOException IOException
@@ -223,12 +238,7 @@ public class FormKiqClientV1Test {
 
     gson = new GsonBuilder().disableHtmlEscaping().setDateFormat(DATE_FORMAT).create();
 
-    add("get", "/version", "/get_version.json");
-    add("options", "/version", "/id.json");
-
-    add("get", "/sites", "/get_sites.json");
-    add("options", "/sites", "/id.json");
-
+    addBasics();
     addWebhooks();
     addPresets();
 
@@ -256,6 +266,7 @@ public class FormKiqClientV1Test {
     add("delete", "/documents/" + documentId + "/tags/category", "/documentsId.json");
     add("get", "/documents/" + documentId + "/url", "/get_documents_url.json");
     add("options", "/documents/" + documentId + "/url", "/documentsId.json");
+    add("post", "/documents/upload", "/get_documents_url.json");
     add("get", "/documents/upload", "/get_documents_url.json");
     add("options", "/documents/upload", "/documentsId.json");
     add("get", "/documents/" + documentId + "/upload", "/get_documents_url.json");
@@ -554,6 +565,57 @@ public class FormKiqClientV1Test {
     assertEquals("POST", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
+  }
+
+  /**
+   * Test POST /documents/upload.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddLargeDocument01() throws Exception {
+    AddLargeDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddLargeDocument.class);
+    AddLargeDocumentRequest req = new AddLargeDocumentRequest().document(post).siteId(siteId);
+    DocumentUrl response = this.client.addLargeDocument(req);
+
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", response.documentId());
+  }
+
+  /**
+   * Test POST /documents. Missing Content
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddLargeDocument02() throws Exception {
+    AddLargeDocumentRequest req = new AddLargeDocumentRequest();
+
+    try {
+      this.client.addLargeDocument(req);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("Document is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /documents/upload.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddLargeDocumentAsHttpResponse01() throws Exception {
+    AddLargeDocument post =
+        gson.fromJson(resourceToString("/post_documents.json", UTF_8), AddLargeDocument.class);
+    AddLargeDocumentRequest req = new AddLargeDocumentRequest().document(post).siteId(siteId);
+    HttpResponse<String> response = this.client.addLargeDocumentAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/upload?siteId=" + siteId, response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+
+    assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae",
+        gson.fromJson(response.body(), Map.class).get("documentId").toString());
   }
 
   /**
