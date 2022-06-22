@@ -24,12 +24,12 @@ import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
+import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
-import com.formkiq.stacks.client.models.DocumentSearchTag;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -39,6 +39,8 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
+import com.formkiq.stacks.client.models.TagSchema;
+import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
@@ -46,13 +48,16 @@ import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddPresetRequest;
+import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
+import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
@@ -66,6 +71,8 @@ import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
 import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
 import com.formkiq.stacks.client.requests.GetPresetsRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
+import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentContentRequest;
@@ -236,6 +243,30 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocumentUrl addLargeDocument(final AddLargeDocumentRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addLargeDocumentAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentUrl.class);
+  }
+
+  /**
+   * POST(Add) /documents/upload.
+   * 
+   * @param request {@link AddLargeDocumentRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addLargeDocumentAsHttpResponse(final AddLargeDocumentRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.document());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
+  }
+
+  @Override
   public AddPresetResponse addPreset(final AddPresetRequest request)
       throws IOException, InterruptedException {
 
@@ -304,6 +335,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     }
 
     return response;
+  }
+
+  @Override
+  public AddTagSchemaResponse addTagSchema(final AddTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addTagSchemaAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddTagSchemaResponse.class);
+  }
+
+  /**
+   * POST(Add) /tagSchemas.
+   * 
+   * @param request {@link AddTagSchemaRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addTagSchemaAsHttpResponse(final AddTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.tagSchema());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
   }
 
   @Override
@@ -517,6 +572,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public boolean deleteTagSchema(final DeleteTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteTagSchemaAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /tagSchemas/{tagSchemaId}.
+   * 
+   * @param request {@link DeleteDocumentRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteTagSchemaAsHttpResponse(final DeleteTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
   public boolean deleteWebhook(final DeleteWebhookRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = deleteWebhookAsHttpResponse(request);
@@ -711,6 +788,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
 
+
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
    * 
@@ -777,7 +855,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), PresetTags.class);
   }
 
-
   /**
    * GET /presets/{presetId}/tags.
    * 
@@ -808,6 +885,50 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> getSitesAsHttpResponse() throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + new SitesRequest().buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public TagSchema getTagSchema(final GetTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getTagSchemaAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), TagSchema.class);
+  }
+
+  /**
+   * GET /tagSchemas/{tagSchemaId}.
+   * 
+   * @param request {@link GetTagSchemasRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getTagSchemaAsHttpResponse(final GetTagSchemaRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
+  public TagSchemaSummaries getTagSchemas(final GetTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getTagSchemasAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), TagSchemaSummaries.class);
+  }
+
+  /**
+   * GET /tagSchemas.
+   * 
+   * @param request {@link GetTagSchemasRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getTagSchemasAsHttpResponse(final GetTagSchemasRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -1017,6 +1138,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /presets/{presetId}.
    * 
@@ -1068,7 +1190,9 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsSearch() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + new SearchDocumentsRequest().tagKey("").buildRequestUrl();
+
+    String u = this.apiRestUrl + "/"
+        + new SearchDocumentsRequest().query(new DocumentSearchQuery()).buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
@@ -1141,7 +1265,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
-
   @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
@@ -1161,9 +1284,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> searchAsHttpResponse(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
 
-    DocumentSearchTag tag = new DocumentSearchTag().key(request.tagKey()).eq(request.eq())
-        .eqOr(request.eqOr()).beginsWith(request.beginsWith());
-    DocumentSearchQuery q = new DocumentSearchQuery().tag(tag).documentIds(request.documentIds());
+    DocumentSearchQuery q = request.query();
     DocumentSearch search = new DocumentSearch().query(q);
 
     String contents = this.gson.toJson(search);
@@ -1224,5 +1345,4 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
-
 }

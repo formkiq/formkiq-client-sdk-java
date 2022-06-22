@@ -23,6 +23,8 @@ import java.util.List;
  */
 public class AddDocument {
 
+  /** TagSchema Id. */
+  private String tagSchemaId;
   /** Path. */
   private String path;
   /** Content Type. */
@@ -35,11 +37,33 @@ public class AddDocument {
   private List<DocumentTag> tags;
   /** Child Documents. */
   private List<AddDocument> documents;
+  /** Document Actions. */
+  private List<DocumentAction> actions;
 
   /**
    * constructor.
    */
   public AddDocument() {}
+
+  /**
+   * Get {@link List} {@link DocumentAction}.
+   * 
+   * @return {@link List} {@link DocumentAction}
+   */
+  public List<DocumentAction> actions() {
+    return this.actions;
+  }
+
+  /**
+   * Set {@link List} {@link DocumentAction}.
+   * 
+   * @param documentActions {@link List} {@link DocumentAction}
+   * @return {@link AddDocument}
+   */
+  public AddDocument actions(final List<DocumentAction> documentActions) {
+    this.actions = documentActions;
+    return this;
+  }
 
   /**
    * Get Content.
@@ -182,6 +206,26 @@ public class AddDocument {
    */
   public AddDocument tags(final List<DocumentTag> list) {
     this.tags = list;
+    return this;
+  }
+
+  /**
+   * Get Tag Schema Id.
+   * 
+   * @return {@link String}
+   */
+  public String tagSchemaId() {
+    return this.tagSchemaId;
+  }
+
+  /**
+   * Set Tag Schema Id.
+   * 
+   * @param id {@link String}
+   * @return {@link AddDocument}
+   */
+  public AddDocument tagSchemaId(final String id) {
+    this.tagSchemaId = id;
     return this;
   }
 }

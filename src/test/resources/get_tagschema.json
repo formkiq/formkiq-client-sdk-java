@@ -1,0 +1,38 @@
+{
+    "tagSchemaId": "123",
+    "name": "test",
+    "userId": "joe",
+    "insertedDate": "2022-06-07T03:44:23.918Z",
+    "tags": {
+      "compositeKeys": [
+        {
+          "key": [
+            "key1"
+          ]
+        }
+      ],
+      "required": [
+        {
+          "key": "requiredKey",
+          "defaultValues": [
+            "10"
+          ],
+          "allowedValues": [
+            "10"
+          ]
+        }
+      ],
+      "optional": [
+        {
+          "key": "optionalKeuy",
+          "defaultValues": [
+            "11"
+          ],
+          "allowedValues": [
+            "11"
+          ]
+        }
+      ],
+      "allowAdditionalTags": true
+    }
+}

@@ -17,24 +17,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
-import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.DocumentSearchQuery;
 
 /**
- * Creates POST /search Request.
+ * Creates GET /tagSchemas Request.
  *
  */
-public class SearchDocumentsRequest implements ApiRequest {
+public class GetTagSchemasRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** {@link DocumentSearchQuery}. */
-  private DocumentSearchQuery query = null;
 
   /**
    * constructor.
    */
-  public SearchDocumentsRequest() {}
+  public GetTagSchemasRequest() {}
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -48,16 +44,16 @@ public class SearchDocumentsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "search";
+    return "tagSchemas";
   }
 
   /**
    * Limit the number of results returned.
    * 
    * @param limit {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link GetTagSchemasRequest}
    */
-  public SearchDocumentsRequest limit(final int limit) {
+  public GetTagSchemasRequest limit(final int limit) {
     this.parameters.put("limit", "" + limit);
     return this;
   }
@@ -66,9 +62,9 @@ public class SearchDocumentsRequest implements ApiRequest {
    * set Next Results Token.
    * 
    * @param next {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link GetTagSchemasRequest}
    */
-  public SearchDocumentsRequest next(final String next) {
+  public GetTagSchemasRequest next(final String next) {
     this.parameters.put("next", next);
     return this;
   }
@@ -77,30 +73,10 @@ public class SearchDocumentsRequest implements ApiRequest {
    * set Previous Results Token.
    * 
    * @param previous {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link GetTagSchemasRequest}
    */
-  public SearchDocumentsRequest previous(final String previous) {
+  public GetTagSchemasRequest previous(final String previous) {
     this.parameters.put("previous", previous);
-    return this;
-  }
-
-  /**
-   * Get {@link DocumentSearchQuery}.
-   * 
-   * @return {@link DocumentSearchQuery}
-   */
-  public DocumentSearchQuery query() {
-    return this.query;
-  }
-
-  /**
-   * Set {@link DocumentSearchQuery}.
-   * 
-   * @param searchQuery {@link DocumentSearchQuery}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest query(final DocumentSearchQuery searchQuery) {
-    this.query = searchQuery;
     return this;
   }
 
@@ -108,15 +84,16 @@ public class SearchDocumentsRequest implements ApiRequest {
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link GetTagSchemasRequest}
    */
-  public SearchDocumentsRequest siteId(final String siteId) {
+  public GetTagSchemasRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.query, "Query is required.");
+    // empty
   }
+
 }
