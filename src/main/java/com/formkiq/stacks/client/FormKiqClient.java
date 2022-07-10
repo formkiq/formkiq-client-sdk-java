@@ -25,6 +25,7 @@ import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
+import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
@@ -34,6 +35,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -42,6 +44,7 @@ import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -64,6 +67,7 @@ import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
+import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 
@@ -82,6 +86,16 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   AddDocumentResponse addDocument(AddDocumentRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link AddDocumentFulltextRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void addDocumentFulltext(AddDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
   /**
@@ -175,6 +189,18 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean deleteDocument(DeleteDocumentRequest request) throws IOException, InterruptedException;
+
+  /**
+   * DELETE /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link DeleteDocumentFulltextRequest}
+   * @return boolean - Whether the document fulltext was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteDocumentFulltext(DeleteDocumentFulltextRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * DELETE /documents/{documentId}/tags/{tagKey}.
@@ -408,6 +434,17 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   Documents search(SearchDocumentsRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /searchFulltext.
+   * 
+   * @param request {@link SearchFulltextRequest}
+   * @return {@link FulltextDocuments}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  FulltextDocuments searchFulltext(SearchFulltextRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.

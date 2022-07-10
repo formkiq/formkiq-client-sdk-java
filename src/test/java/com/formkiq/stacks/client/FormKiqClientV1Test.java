@@ -54,6 +54,9 @@ import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
+import com.formkiq.stacks.client.models.FulltextDocuments;
+import com.formkiq.stacks.client.models.FulltextSearchQuery;
+import com.formkiq.stacks.client.models.FulltextSearchTag;
 import com.formkiq.stacks.client.models.PresetTagBody;
 import com.formkiq.stacks.client.models.PresetTags;
 import com.formkiq.stacks.client.models.Presets;
@@ -67,6 +70,7 @@ import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
@@ -76,6 +80,7 @@ import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -113,6 +118,7 @@ import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
+import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 import com.google.gson.Gson;
@@ -182,6 +188,12 @@ public class FormKiqClientV1Test {
     add("options", "/sites", "/id.json");
   }
 
+  private static void addFulltextUrls() throws IOException {
+    add("post", "/searchFulltext", "/searchFulltext.json");
+    add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
+  }
+
   /**
    * Add /presets urls.
    * 
@@ -241,6 +253,7 @@ public class FormKiqClientV1Test {
     addBasics();
     addWebhooks();
     addPresets();
+    addFulltextUrls();
 
     add("get", "/documents", "/get_documents.json");
     add("post", "/documents", "/documentsId.json");
@@ -815,6 +828,50 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client.deleteDocumentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/documents/" + documentId + "?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
+    assertEquals("DELETE", response.request().method());
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentFulltext01() throws Exception {
+    DeleteDocumentFulltextRequest request =
+        new DeleteDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+    assertTrue(this.client.deleteDocumentFulltext(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/Fulltext. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentFulltext02() throws Exception {
+    DeleteDocumentFulltextRequest request = new DeleteDocumentFulltextRequest();
+    try {
+      this.client.deleteDocumentFulltext(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentFulltextAsHttpResponse() throws Exception {
+    DeleteDocumentFulltextRequest request =
+        new DeleteDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client.deleteDocumentFulltextAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/fulltext?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -1574,6 +1631,7 @@ public class FormKiqClientV1Test {
     assertEquals("2022/06/07 03:44:23", df.format(doc.insertedDate()));
   }
 
+
   /**
    * Test GET /tagSchema/{tagSchemaId}. Missing tagSchemaId.
    * 
@@ -1631,7 +1689,6 @@ public class FormKiqClientV1Test {
     assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com", doc.userId());
     assertEquals("2020/05/05 17:31:06", df.format(doc.insertedDate()));
   }
-
 
   /**
    * Test GET /tagSchemas.
@@ -1856,6 +1913,7 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/documents/" + documentId + "/tags", response.request().uri().toString());
   }
 
+
   /**
    * Test OPTIONS /documents/{documentId}/tags/{tagKey}.
    * 
@@ -1898,7 +1956,6 @@ public class FormKiqClientV1Test {
     assertEquals("OPTIONS", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/upload", response.request().uri().toString());
   }
-
 
   /**
    * Test Options /documents/{documentId}/versions.
@@ -2085,6 +2142,18 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test PUT /documents/{documentId}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocumentFulltext01() throws Exception {
+    AddDocumentFulltextRequest req =
+        new AddDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+    this.client.addDocumentFulltext(req);
+  }
+
+  /**
    * Test POST /search.
    * 
    * @throws Exception Exception
@@ -2155,6 +2224,70 @@ public class FormKiqClientV1Test {
     assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
     assertEquals("sample/test.txt", docs.documents().get(0).path());
     assertEquals("jtest", docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test POST /searchFulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSearchFulltext01() throws Exception {
+    SearchFulltextRequest req = new SearchFulltextRequest()
+        .query(new FulltextSearchQuery()
+            .tags(Arrays.asList(new FulltextSearchTag().key("category").eq("value"))))
+        .limit(1).siteId(siteId);
+
+    FulltextDocuments docs = this.client.searchFulltext(req);
+    assertEquals(1, docs.documents().size());
+    assertEquals("3fa85f64-5717-4562-b3fc-2c963f66afa6", docs.documents().get(0).documentId());
+    assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
+    assertEquals("sample/test.txt", docs.documents().get(0).path());
+    assertEquals("jtest", docs.documents().get(0).createdBy());
+  }
+
+  /**
+   * Test POST /searchFulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSearchFulltext02() throws Exception {
+    SearchFulltextRequest req = new SearchFulltextRequest();
+    try {
+      this.client.searchFulltext(req);
+      fail();
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+      assertEquals("Query is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test POST /searchFulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSearchFulltextAsHttpResponse() throws Exception {
+
+    SearchFulltextRequest req = new SearchFulltextRequest()
+        .query(new FulltextSearchQuery()
+            .tags(Arrays.asList(new FulltextSearchTag().key("category").eq("value"))))
+        .limit(1).siteId(siteId);
+
+    HttpResponse<String> response = this.client.searchAsFulltextHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/searchFulltext?limit=1&siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+
+    FulltextDocuments docs = gson.fromJson(response.body(), FulltextDocuments.class);
+    assertEquals(1, docs.documents().size());
+    assertEquals("3fa85f64-5717-4562-b3fc-2c963f66afa6", docs.documents().get(0).documentId());
+    assertEquals("2020/05/05 19:09:09", df.format(docs.documents().get(0).insertedDate()));
+    assertEquals("sample/test.txt", docs.documents().get(0).path());
+    assertEquals("jtest", docs.documents().get(0).createdBy());
   }
 
   /**
