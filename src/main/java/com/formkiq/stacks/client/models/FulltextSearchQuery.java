@@ -63,8 +63,10 @@ public class FulltextSearchQuery {
    * Set Full Text.
    * 
    * @param fulltext {@link String}
+   * @return {@link FulltextSearchQuery}
    */
-  public void text(final String fulltext) {
+  public FulltextSearchQuery text(final String fulltext) {
     this.text = fulltext;
+    return this;
   }
 }
