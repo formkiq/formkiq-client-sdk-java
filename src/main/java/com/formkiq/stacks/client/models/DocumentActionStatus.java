@@ -17,9 +17,11 @@ package com.formkiq.stacks.client.models;
  * {@link AddDocumentAction} Type.
  *
  */
-public enum DocumentActionType {
-  /** OCR. */
-  OCR,
-  /** Full Text. */
-  FULLTEXT;
+public enum DocumentActionStatus {
+  /** Completed. */
+  COMPLETE,
+  /** FAILED. */
+  FAILED,
+  /** Pending. */
+  PENDING;
 }

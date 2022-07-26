@@ -38,7 +38,7 @@ public class AddDocument {
   /** Child Documents. */
   private List<AddDocument> documents;
   /** Document Actions. */
-  private List<DocumentAction> actions;
+  private List<AddDocumentAction> actions;
 
   /**
    * constructor.
@@ -46,21 +46,21 @@ public class AddDocument {
   public AddDocument() {}
 
   /**
-   * Get {@link List} {@link DocumentAction}.
+   * Get {@link List} {@link AddDocumentAction}.
    * 
-   * @return {@link List} {@link DocumentAction}
+   * @return {@link List} {@link AddDocumentAction}
    */
-  public List<DocumentAction> actions() {
+  public List<AddDocumentAction> actions() {
     return this.actions;
   }
 
   /**
-   * Set {@link List} {@link DocumentAction}.
+   * Set {@link List} {@link AddDocumentAction}.
    * 
-   * @param documentActions {@link List} {@link DocumentAction}
+   * @param documentActions {@link List} {@link AddDocumentAction}
    * @return {@link AddDocument}
    */
-  public AddDocument actions(final List<DocumentAction> documentActions) {
+  public AddDocument actions(final List<AddDocumentAction> documentActions) {
     this.actions = documentActions;
     return this;
   }

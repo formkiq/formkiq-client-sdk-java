@@ -45,6 +45,8 @@ import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
+import com.formkiq.stacks.client.models.DocumentAction;
+import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
@@ -88,6 +90,7 @@ import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
+import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
@@ -196,6 +199,13 @@ public class FormKiqClientV1Test {
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
   }
 
+  private static void addOcr() throws IOException {
+    add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
+    add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
+    add("put", "/documents/" + documentId + "/ocr", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/ocr", "/documentsId.json");
+  }
+
   /**
    * Add /presets urls.
    * 
@@ -296,13 +306,7 @@ public class FormKiqClientV1Test {
     add("get", "/tagSchemas/" + documentId, "/get_tagschema.json");
     add("delete", "/tagSchemas/" + documentId, "/post_tagschemas.json");
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
-  }
-
-  private static void addOcr() throws IOException {
-    add("get", "/documents/" + documentId + "/ocr", "/get_documents_ocr.json");
-    add("post", "/documents/" + documentId + "/ocr", "/documentsId.json");
-    add("put", "/documents/" + documentId + "/ocr", "/documentsId.json");
-    add("delete", "/documents/" + documentId + "/ocr", "/documentsId.json");
+    add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
   }
 
   /**
@@ -314,8 +318,8 @@ public class FormKiqClientV1Test {
   }
 
   /** {@link FormKiqClientConnection}. */
-  private FormKiqClientConnection c0 = new FormKiqClientConnection(URL)
-      .region(Region.US_EAST_1).credentials(AwsBasicCredentials.create("123", "444"))
+  private FormKiqClientConnection c0 = new FormKiqClientConnection(URL).region(Region.US_EAST_1)
+      .credentials(AwsBasicCredentials.create("123", "444"))
       .header("origin", Arrays.asList("http://localhost")).cognitoIdToken("AAAA");
 
   /** {@link FormKiqClientConnection}. */
@@ -927,7 +931,7 @@ public class FormKiqClientV1Test {
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
-  
+
   /**
    * Test DELETE /documents/{documentId}/tags/{tagKey}.
    * 
@@ -1130,6 +1134,62 @@ public class FormKiqClientV1Test {
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
     }
+  }
+
+  /**
+   * Test GET /documents/{documentid}/actions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentActions01() throws Exception {
+    GetDocumentActionsRequest req =
+        new GetDocumentActionsRequest().documentId(documentId).siteId(siteId);
+    DocumentActions actions = this.client0.getDocumentActions(req);
+    DocumentAction action = actions.actions().get(0);
+    assertEquals("joe", action.userId());
+    assertEquals("{parseTypes=TEXT}", action.parameters().toString());
+    assertEquals("PENDING", action.status().toString());
+    assertEquals("OCR", action.type().toString());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/actions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentActions02() throws Exception {
+    GetDocumentActionsRequest req = new GetDocumentActionsRequest();
+    try {
+      this.client0.getDocumentActions(req);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentid}/actions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentActionsAsHttpResponse() throws Exception {
+    GetDocumentActionsRequest req =
+        new GetDocumentActionsRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client0.getDocumentActionsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/actions?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    DocumentActions actions = gson.fromJson(response.body(), DocumentActions.class);
+    DocumentAction action = actions.actions().get(0);
+    assertEquals("joe", action.userId());
+    assertEquals("{parseTypes=TEXT}", action.parameters().toString());
+    assertEquals("PENDING", action.status().toString());
+    assertEquals("OCR", action.type().toString());
   }
 
   /**
@@ -2212,11 +2272,10 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testPutDocumentOcr01() throws Exception {
-    SetDocumentOcrRequest req =
-        new SetDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    SetDocumentOcrRequest req = new SetDocumentOcrRequest().documentId(documentId).siteId(siteId);
     this.client0.setDocumentOcr(req);
   }
-  
+
   /**
    * Test POST /search.
    * 

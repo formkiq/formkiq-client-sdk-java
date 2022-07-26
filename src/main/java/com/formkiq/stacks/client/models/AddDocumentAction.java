@@ -18,21 +18,19 @@ import java.util.Map;
  * Add DocumentAction holder.
  *
  */
-public class DocumentAction {
+public class AddDocumentAction {
 
   /** Action Parameters. */
   private Map<String, String> parameters;
   /** Document Tag Key. */
-  private DocumentActionStatus status;
+  private DocumentActionStatus status = null;
   /** Document Tag Key. */
   private DocumentActionType type;
-  /** User Id. */
-  private String userId;
 
   /**
    * constructor.
    */
-  public DocumentAction() {
+  public AddDocumentAction() {
 
   }
 
@@ -49,9 +47,9 @@ public class DocumentAction {
    * Set Action Parameters.
    * 
    * @param map {@link Map}
-   * @return {@link DocumentAction}
+   * @return {@link AddDocumentAction}
    */
-  public DocumentAction parameters(final Map<String, String> map) {
+  public AddDocumentAction parameters(final Map<String, String> map) {
     this.parameters = map;
     return this;
   }
@@ -69,9 +67,9 @@ public class DocumentAction {
    * Set {@link DocumentActionStatus}.
    * 
    * @param actionStatus {@link DocumentActionStatus}
-   * @return {@link DocumentAction}
+   * @return {@link AddDocumentAction}
    */
-  public DocumentAction status(final DocumentActionStatus actionStatus) {
+  public AddDocumentAction status(final DocumentActionStatus actionStatus) {
     this.status = actionStatus;
     return this;
   }
@@ -89,30 +87,10 @@ public class DocumentAction {
    * Set {@link DocumentActionType}.
    * 
    * @param actionType {@link DocumentActionType}
-   * @return {@link DocumentAction}
+   * @return {@link AddDocumentAction}
    */
-  public DocumentAction type(final DocumentActionType actionType) {
+  public AddDocumentAction type(final DocumentActionType actionType) {
     this.type = actionType;
-    return this;
-  }
-
-  /**
-   * Get Created By UserId.
-   * 
-   * @return {@link String}
-   */
-  public String userId() {
-    return this.userId;
-  }
-
-  /**
-   * Set User Id.
-   * 
-   * @param user {@link String}
-   * @return {@link DocumentAction}
-   */
-  public DocumentAction userId(final String user) {
-    this.userId = user;
     return this;
   }
 }

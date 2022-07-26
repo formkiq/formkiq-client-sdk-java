@@ -26,6 +26,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearch;
@@ -64,6 +65,7 @@ import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
+import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
@@ -209,7 +211,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
     checkStatusCode(response);
   }
-  
+
   /**
    * POST(Add) /documents/{documentId}/ocr.
    * 
@@ -241,8 +243,8 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> addDocumentOcrAsHttpResponse(
-      final SetDocumentOcrRequest request) throws IOException, InterruptedException {
+  public HttpResponse<String> addDocumentOcrAsHttpResponse(final SetDocumentOcrRequest request)
+      throws IOException, InterruptedException {
 
     Map<String, Object> map = new HashMap<>();
 
@@ -251,7 +253,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
-  
+
   @Override
   public boolean addDocumentTag(final AddDocumentTagRequest request)
       throws IOException, InterruptedException {
@@ -615,7 +617,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
-  
+
   @Override
   public boolean deletePreset(final DeletePresetRequest request)
       throws IOException, InterruptedException {
@@ -710,6 +712,29 @@ public class FormKiqClientV1 implements FormKiqClient {
     HttpResponse<String> response = getDocumentAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentWithChildren.class);
+  }
+
+  @Override
+  public DocumentActions getDocumentActions(final GetDocumentActionsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentActionsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentActions.class);
+  }
+
+  /**
+   * GET /documents/{documentId}/content.
+   * 
+   * @param request {@link GetDocumentContentRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocumentActionsAsHttpResponse(
+      final GetDocumentActionsRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", request.getHttpHeaders()));
   }
 
   /**

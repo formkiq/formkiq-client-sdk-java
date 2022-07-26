@@ -19,6 +19,7 @@ import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
+import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
@@ -51,6 +52,7 @@ import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
+import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
@@ -108,7 +110,7 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
-  
+
   /**
    * POST(Add) /documents/upload to get a URL that will allow adding a large document.
    * 
@@ -217,7 +219,7 @@ public interface FormKiqClient {
    */
   boolean deleteDocumentTag(DeleteDocumentTagRequest request)
       throws IOException, InterruptedException;
-  
+
   /**
    * DELETE /presets/{presetsId}.
    * 
@@ -226,7 +228,7 @@ public interface FormKiqClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  boolean deletePreset(DeletePresetRequest request) throws IOException, InterruptedException;  
+  boolean deletePreset(DeletePresetRequest request) throws IOException, InterruptedException;
 
   /**
    * DELETE /preset/{presetId}/tags/{tagKey}.
@@ -303,6 +305,19 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   Documents getDocuments(GetDocumentsRequest request) throws IOException, InterruptedException;
+
+  /**
+   * GET /documents/{documentId}/actions.
+   * 
+   * @param request {@link GetDocumentActionsRequest}
+   * 
+   * @return {@link Documents}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentActions getDocumentActions(GetDocumentActionsRequest request)
+      throws IOException, InterruptedException;
+
 
   /**
    * GET /documents/{documentId}/tags/{tagKey}.
@@ -467,8 +482,7 @@ public interface FormKiqClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  void setDocumentOcr(SetDocumentOcrRequest request)
-      throws IOException, InterruptedException;
+  void setDocumentOcr(SetDocumentOcrRequest request) throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.
