@@ -106,7 +106,7 @@ public class SearchDocumentsRequest implements ApiRequest {
     this.query = searchQuery;
     return this;
   }
-  
+
   /**
    * Get {@link DocumentSearchResponseFields}.
    * 

@@ -33,7 +33,7 @@ public class SearchFulltextRequest implements ApiRequest {
   private FulltextSearchQuery query = null;
   /** {@link DocumentSearchResponseFields}. */
   private DocumentSearchResponseFields responseFields = null;
-  
+
   /**
    * constructor.
    */
@@ -104,7 +104,7 @@ public class SearchFulltextRequest implements ApiRequest {
     this.responseFields = response;
     return this;
   }
-  
+
   /**
    * Site Identifier.
    * 
