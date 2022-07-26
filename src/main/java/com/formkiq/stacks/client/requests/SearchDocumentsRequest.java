@@ -19,6 +19,7 @@ import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
+import com.formkiq.stacks.client.models.DocumentSearchResponseFields;
 
 /**
  * Creates POST /search Request.
@@ -30,6 +31,8 @@ public class SearchDocumentsRequest implements ApiRequest {
   private Map<String, String> parameters = new HashMap<>();
   /** {@link DocumentSearchQuery}. */
   private DocumentSearchQuery query = null;
+  /** {@link DocumentSearchResponseFields}. */
+  private DocumentSearchResponseFields responseFields = null;
 
   /**
    * constructor.
@@ -101,6 +104,26 @@ public class SearchDocumentsRequest implements ApiRequest {
    */
   public SearchDocumentsRequest query(final DocumentSearchQuery searchQuery) {
     this.query = searchQuery;
+    return this;
+  }
+  
+  /**
+   * Get {@link DocumentSearchResponseFields}.
+   * 
+   * @return {@link DocumentSearchResponseFields}
+   */
+  public DocumentSearchResponseFields responseFields() {
+    return this.responseFields;
+  }
+
+  /**
+   * Set {@link DocumentSearchResponseFields}.
+   * 
+   * @param response {@link DocumentSearchResponseFields}
+   * @return {@link SearchDocumentsRequest}
+   */
+  public SearchDocumentsRequest responseFields(final DocumentSearchResponseFields response) {
+    this.responseFields = response;
     return this;
   }
 

@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.DocumentSearchResponseFields;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
 
 /**
@@ -30,7 +31,9 @@ public class SearchFulltextRequest implements ApiRequest {
   private Map<String, String> parameters = new HashMap<>();
   /** {@link FulltextSearchQuery}. */
   private FulltextSearchQuery query = null;
-
+  /** {@link DocumentSearchResponseFields}. */
+  private DocumentSearchResponseFields responseFields = null;
+  
   /**
    * constructor.
    */
@@ -82,6 +85,26 @@ public class SearchFulltextRequest implements ApiRequest {
     return this;
   }
 
+  /**
+   * Get {@link DocumentSearchResponseFields}.
+   * 
+   * @return {@link DocumentSearchResponseFields}
+   */
+  public DocumentSearchResponseFields responseFields() {
+    return this.responseFields;
+  }
+
+  /**
+   * Set {@link DocumentSearchResponseFields}.
+   * 
+   * @param response {@link DocumentSearchResponseFields}
+   * @return {@link SearchFulltextRequest}
+   */
+  public SearchFulltextRequest responseFields(final DocumentSearchResponseFields response) {
+    this.responseFields = response;
+    return this;
+  }
+  
   /**
    * Site Identifier.
    * 
