@@ -35,7 +35,6 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
-import com.formkiq.stacks.client.requests.AddDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -45,6 +44,7 @@ import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -68,6 +68,8 @@ import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 
@@ -89,16 +91,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * PUT /documents/{documentId}/fulltext.
-   * 
-   * @param request {@link AddDocumentFulltextRequest}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  void addDocumentFulltext(AddDocumentFulltextRequest request)
-      throws IOException, InterruptedException;
-
-  /**
    * POST /documents/{documentId}/ocr.
    * 
    * @param request {@link AddDocumentOcrRequest}
@@ -116,7 +108,7 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
-
+  
   /**
    * POST(Add) /documents/upload to get a URL that will allow adding a large document.
    * 
@@ -203,6 +195,18 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
+   * DELETE /documents/{documentId}/ocr.
+   * 
+   * @param request {@link DeleteDocumentOcrRequest}
+   * @return boolean - Whether the document ocr was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteDocumentOcr(DeleteDocumentOcrRequest request)
+      throws IOException, InterruptedException;
+
+  /**
    * DELETE /documents/{documentId}/tags/{tagKey}.
    * 
    * @param request {@link DeleteDocumentTagRequest}
@@ -213,7 +217,7 @@ public interface FormKiqClient {
    */
   boolean deleteDocumentTag(DeleteDocumentTagRequest request)
       throws IOException, InterruptedException;
-
+  
   /**
    * DELETE /presets/{presetsId}.
    * 
@@ -222,7 +226,7 @@ public interface FormKiqClient {
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  boolean deletePreset(DeletePresetRequest request) throws IOException, InterruptedException;
+  boolean deletePreset(DeletePresetRequest request) throws IOException, InterruptedException;  
 
   /**
    * DELETE /preset/{presetId}/tags/{tagKey}.
@@ -394,7 +398,6 @@ public interface FormKiqClient {
   TagSchemaSummaries getTagSchemas(GetTagSchemasRequest request)
       throws IOException, InterruptedException;
 
-
   /**
    * GET /version.
    * 
@@ -413,6 +416,7 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   Webhooks getWebhooks(GetWebhooksRequest request) throws IOException, InterruptedException;
+
 
   /**
    * Get /webhooks/${webhookId}/tags.
@@ -444,6 +448,26 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   FulltextDocuments searchFulltext(SearchFulltextRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link SetDocumentFulltextRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void setDocumentFulltext(SetDocumentFulltextRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/ocr.
+   * 
+   * @param request {@link SetDocumentOcrRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void setDocumentOcr(SetDocumentOcrRequest request)
       throws IOException, InterruptedException;
 
   /**

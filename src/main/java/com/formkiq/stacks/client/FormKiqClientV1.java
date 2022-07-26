@@ -47,7 +47,6 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
-import com.formkiq.stacks.client.requests.AddDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -57,6 +56,7 @@ import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
@@ -94,6 +94,8 @@ import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -108,19 +110,19 @@ import software.amazon.awssdk.core.sync.RequestBody;
  */
 public class FormKiqClientV1 implements FormKiqClient {
 
-  /** Http Status OK. */
-  private static final int HTTP_STATUS_OK = 200;
-  /** Http Status Multiple Choices. */
-  private static final int HTTP_STATUS_MULTIPLE_CHOICES = 300;
   /** Date Format. */
   private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
+  /** Http Status Multiple Choices. */
+  private static final int HTTP_STATUS_MULTIPLE_CHOICES = 300;
+  /** Http Status OK. */
+  private static final int HTTP_STATUS_OK = 200;
 
-  /** {@link Gson}. */
-  private Gson gson;
   /** FormKiQ Rest API Url. */
   private String apiRestUrl;
   /** {@link HttpService}. */
   private HttpService client;
+  /** {@link Gson}. */
+  private Gson gson;
 
   /**
    * constructor.
@@ -182,23 +184,16 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(contents));
   }
 
-  @Override
-  public void addDocumentFulltext(final AddDocumentFulltextRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = addDocumentFulltextAsHttpResponse(request);
-    checkStatusCode(response);
-  }
-
   /**
    * PUT(Replace) /documents/{documentId}/fulltext.
    * 
-   * @param request {@link AddDocumentFulltextRequest}
+   * @param request {@link SetDocumentFulltextRequest}
    * @return {@link HttpResponse}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
   public HttpResponse<String> addDocumentFulltextAsHttpResponse(
-      final AddDocumentFulltextRequest request) throws IOException, InterruptedException {
+      final SetDocumentFulltextRequest request) throws IOException, InterruptedException {
 
     Map<String, Object> map = new HashMap<>();
 
@@ -214,7 +209,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
     checkStatusCode(response);
   }
-
+  
   /**
    * POST(Add) /documents/{documentId}/ocr.
    * 
@@ -238,6 +233,25 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(contents));
   }
 
+  /**
+   * PUT(Replace) /documents/{documentId}/ocr.
+   * 
+   * @param request {@link SetDocumentFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocumentOcrAsHttpResponse(
+      final SetDocumentOcrRequest request) throws IOException, InterruptedException {
+
+    Map<String, Object> map = new HashMap<>();
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+  
   @Override
   public boolean addDocumentTag(final AddDocumentTagRequest request)
       throws IOException, InterruptedException {
@@ -559,6 +573,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public boolean deleteDocumentOcr(final DeleteDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteDocumentOcrAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /documents/{documentId}/ocr.
+   * 
+   * @param request {@link DeleteDocumentOcrRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteDocumentOcrAsHttpResponse(
+      final DeleteDocumentOcrRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
   public boolean deleteDocumentTag(final DeleteDocumentTagRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = deleteDocumentTagAsHttpResponse(request);
@@ -579,7 +615,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
-
+  
   @Override
   public boolean deletePreset(final DeletePresetRequest request)
       throws IOException, InterruptedException {
@@ -811,7 +847,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
-
   @Override
   public DocumentTags getDocumentTags(final GetDocumentTagsRequest request)
       throws IOException, InterruptedException {
@@ -833,6 +868,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
+
 
   @Override
   public DocumentUrl getDocumentUpload(final GetDocumentUploadRequest request)
@@ -1150,7 +1186,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
-
   /**
    * OPTIONS /documents/upload.
    * 
@@ -1176,6 +1211,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
+
 
   /**
    * OPTIONS /documents/{documentId}/versions.
@@ -1372,6 +1408,20 @@ public class FormKiqClientV1 implements FormKiqClient {
     HttpResponse<String> response = searchAsFulltextHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), FulltextDocuments.class);
+  }
+
+  @Override
+  public void setDocumentFulltext(final SetDocumentFulltextRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentFulltextAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  @Override
+  public void setDocumentOcr(final SetDocumentOcrRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
+    checkStatusCode(response);
   }
 
   @Override

@@ -20,28 +20,29 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates PUT /documents/{documentId}/fulltext Request.
+ * Creates DELETE /documents/{documentId}/ocr.
  *
  */
-public class AddDocumentFulltextRequest implements ApiRequest {
+public class DeleteDocumentOcrRequest implements ApiRequest {
 
-  /** Request Parameters. */
+  /** Request Paths. */
   private Map<String, String> paths = new HashMap<>();
+
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
-  public AddDocumentFulltextRequest() {}
+  public DeleteDocumentOcrRequest() {}
 
   /**
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link AddDocumentFulltextRequest}
+   * @return {@link DeleteDocumentOcrRequest}
    */
-  public AddDocumentFulltextRequest documentId(final String documentId) {
+  public DeleteDocumentOcrRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
     return this;
   }
@@ -58,16 +59,16 @@ public class AddDocumentFulltextRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/fulltext";
+    return "documents/" + this.paths.get("documentId") + "/ocr";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link AddDocumentFulltextRequest}
+   * @return {@link DeleteDocumentOcrRequest}
    */
-  public AddDocumentFulltextRequest siteId(final String siteId) {
+  public DeleteDocumentOcrRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
