@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
@@ -207,6 +208,18 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean deleteDocumentOcr(DeleteDocumentOcrRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * DELETE /documents/{documentId}/fulltext/tags.
+   * 
+   * @param request {@link DeleteFulltextTagsRequest}
+   * @return boolean - Whether the document fulltext tags was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteFulltextTags(DeleteFulltextTagsRequest request)
       throws IOException, InterruptedException;
 
   /**

@@ -27,6 +27,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.DeleteFulltext;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
@@ -62,6 +63,7 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
@@ -596,6 +598,48 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> deleteDocumentOcrAsHttpResponse(
       final DeleteDocumentOcrRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public boolean deleteFulltextTags(final DeleteFulltextTagsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteFulltextTagsAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /documents/{documentId}/fulltext/tags.
+   * 
+   * @param request {@link DeleteFulltextTagsRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteFulltextTagsAsHttpResponse(
+      final DeleteFulltextTagsRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+
+    Map<String, Object> body = new HashMap<>();
+    DeleteFulltext document = request.document();
+
+    if (document.tags() != null) {
+      List<Map<String, Object>> tags = new ArrayList<>();
+      body.put("tags", tags);
+      document.tags().forEach(tag -> {
+        Map<String, Object> map = new HashMap<>();
+        if (tag.values() != null) {
+          map.put(tag.key(), tag.values());
+        } else if (tag.value() != null) {
+          map.put(tag.key(), tag.value());
+        } else {
+          map.put(tag.key(), "");
+        }
+        tags.add(map);
+      });
+    }
+
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 

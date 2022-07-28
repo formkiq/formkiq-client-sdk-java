@@ -44,6 +44,7 @@ import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.DeleteFulltext;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
 import com.formkiq.stacks.client.models.DocumentActions;
@@ -86,6 +87,7 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
 import com.formkiq.stacks.client.requests.DeletePresetRequest;
 import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
@@ -199,6 +201,7 @@ public class FormKiqClientV1Test {
     add("post", "/searchFulltext", "/searchFulltext.json");
     add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/fulltext/tags", "/documentsId.json");
     add("patch", "/documents/" + documentId + "/fulltext", "/documentsId.json");
   }
 
@@ -994,6 +997,50 @@ public class FormKiqClientV1Test {
     assertEquals("DELETE", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/tags/category/person?siteId=" + siteId
         + "&webnotify=true", response.request().uri().toString());
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/fulltext/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteFulltextTags01() throws Exception {
+    DeleteFulltextTagsRequest request = new DeleteFulltextTagsRequest().documentId(documentId)
+        .siteId(siteId).document(new DeleteFulltext());
+    assertTrue(this.client0.deleteFulltextTags(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/fulltext/tags. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteFulltextTags02() throws Exception {
+    DeleteFulltextTagsRequest request = new DeleteFulltextTagsRequest();
+    try {
+      this.client0.deleteFulltextTags(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /documents/{documentid}/ocr.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteFulltextTagsAsHttpResponse() throws Exception {
+    DeleteFulltextTagsRequest request = new DeleteFulltextTagsRequest().documentId(documentId)
+        .siteId(siteId).document(new DeleteFulltext());
+    HttpResponse<String> response = this.client0.deleteFulltextTagsAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/fulltext/tags?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("DELETE", response.request().method());
   }
 
   /**
