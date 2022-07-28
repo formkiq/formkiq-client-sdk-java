@@ -72,6 +72,7 @@ import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 
@@ -473,6 +474,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   void setDocumentFulltext(SetDocumentFulltextRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * PATCH /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link UpdateDocumentFulltextRequest}
+   * @return boolean
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean updateDocumentFulltext(UpdateDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
   /**

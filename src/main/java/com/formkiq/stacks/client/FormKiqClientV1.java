@@ -15,6 +15,7 @@ package com.formkiq.stacks.client;
 import java.io.IOException;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
+import com.formkiq.stacks.client.models.UpdateFulltext;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
@@ -99,6 +101,7 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
+import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 import com.formkiq.stacks.client.requests.VersionRequest;
@@ -1499,6 +1502,59 @@ public class FormKiqClientV1 implements FormKiqClient {
     String contents = this.gson.toJson(body);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
+  public boolean updateDocumentFulltext(final UpdateDocumentFulltextRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = updateDocumentFulltextTagAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * PUT /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @param request {@link UpdateDocumentFulltextRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> updateDocumentFulltextTagAsHttpResponse(
+      final UpdateDocumentFulltextRequest request) throws IOException, InterruptedException {
+
+    final String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+
+    Map<String, Object> body = new HashMap<>();
+    UpdateFulltext document = request.document();
+
+    if (document.content() != null) {
+      body.put("content", document.content());
+    }
+
+    if (document.path() != null) {
+      body.put("path", document.path());
+    }
+
+    if (document.tags() != null) {
+      List<Map<String, Object>> tags = new ArrayList<>();
+      body.put("tags", tags);
+      document.tags().forEach(tag -> {
+        Map<String, Object> map = new HashMap<>();
+        if (tag.values() != null) {
+          map.put(tag.key(), tag.values());
+        } else if (tag.value() != null) {
+          map.put(tag.key(), tag.value());
+        } else {
+          map.put(tag.key(), "");
+        }
+        tags.add(map);
+      });
+    }
+
+    String contents = this.gson.toJson(body);
+    return this.client.patch(u, createHttpHeaders("PATCH", Optional.empty()),
         RequestBody.fromString(contents));
   }
 }

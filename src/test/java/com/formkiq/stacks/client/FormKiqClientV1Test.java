@@ -70,6 +70,7 @@ import com.formkiq.stacks.client.models.TagSchemaSummary;
 import com.formkiq.stacks.client.models.TagSchemaTags;
 import com.formkiq.stacks.client.models.UpdateDocument;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
+import com.formkiq.stacks.client.models.UpdateFulltext;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
@@ -124,6 +125,7 @@ import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
 import com.google.gson.Gson;
@@ -197,6 +199,7 @@ public class FormKiqClientV1Test {
     add("post", "/searchFulltext", "/searchFulltext.json");
     add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
+    add("patch", "/documents/" + documentId + "/fulltext", "/documentsId.json");
   }
 
   private static void addOcr() throws IOException {
@@ -2429,6 +2432,50 @@ public class FormKiqClientV1Test {
 
     assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae",
         gson.fromJson(response.body(), Map.class).get("tagSchemaId").toString());
+  }
+
+  /**
+   * Test PATCH /documents/{documentId}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentFulltext01() throws Exception {
+    UpdateDocumentFulltextRequest request = new UpdateDocumentFulltextRequest()
+        .documentId(documentId).siteId(siteId).document(new UpdateFulltext().content("test"));
+    assertTrue(this.client0.updateDocumentFulltext(request));
+  }
+
+  /**
+   * Test PATCH /documents/{documentId}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentFulltext02() throws Exception {
+    UpdateDocumentFulltextRequest request = new UpdateDocumentFulltextRequest();
+    try {
+      this.client0.updateDocumentFulltext(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test PATCH /documents/{documentId}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentFulltextTagAsHttpResponse() throws Exception {
+    UpdateDocumentFulltextRequest request = new UpdateDocumentFulltextRequest()
+        .documentId(documentId).siteId(siteId).document(new UpdateFulltext());
+    HttpResponse<String> response = this.client0.updateDocumentFulltextTagAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("PATCH", response.request().method());
+    assertEquals(URL + "/documents/" + documentId + "/fulltext?siteId=" + siteId,
+        response.request().uri().toString());
   }
 
   /**
