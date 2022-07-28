@@ -41,7 +41,6 @@ import org.mockserver.integration.ClientAndServer;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
-import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DeleteFulltext;
@@ -60,10 +59,6 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
 import com.formkiq.stacks.client.models.FulltextSearchTag;
-import com.formkiq.stacks.client.models.PresetTagBody;
-import com.formkiq.stacks.client.models.PresetTags;
-import com.formkiq.stacks.client.models.Presets;
-import com.formkiq.stacks.client.models.PresetsBody;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -79,7 +74,6 @@ import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTag;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
-import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
@@ -88,8 +82,6 @@ import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
-import com.formkiq.stacks.client.requests.DeletePresetRequest;
-import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
@@ -103,8 +95,6 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
-import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
-import com.formkiq.stacks.client.requests.GetPresetsRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
@@ -118,11 +108,8 @@ import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
-import com.formkiq.stacks.client.requests.OptionsPresetRequest;
-import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
-import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
@@ -213,28 +200,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Add /presets urls.
-   * 
-   * @throws IOException IOException
-   */
-  private static void addPresets() throws IOException {
-    add("get", "/presets", "/get_presets.json");
-    add("post", "/presets", "/id.json");
-    add("options", "/presets", "/id.json");
-    add("options", "/presets/" + documentId, "/id.json");
-    add("delete", "/presets/" + documentId, "/id.json");
-    add("delete", "/presets/" + documentId, "/id.json");
-    add("get", "/presets/" + documentId + "/tags", "/get_presets_tags.json");
-    add("patch", "/presets/" + documentId + "/tags", "/id.json");
-    mockServer.when(request().withMethod("post").withPath("/presets/" + documentId + "/tags"))
-        .respond(org.mockserver.model.HttpResponse.response(resourceToString("/id.json", UTF_8))
-            .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
-    add("options", "/presets/" + documentId + "/tags", "/id.json");
-    add("options", "/presets/" + documentId + "/tags/first+name", "/id.json");
-    add("delete", "/presets/" + documentId + "/tags/first+name", "/id.json");
-  }
-
-  /**
    * Add /webhooks urls.
    * 
    * @throws IOException IOException
@@ -270,7 +235,6 @@ public class FormKiqClientV1Test {
 
     addBasics();
     addWebhooks();
-    addPresets();
     addFulltextUrls();
     addOcr();
 
@@ -650,74 +614,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test POST /presets.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPreset01() throws Exception {
-    PresetsBody post =
-        gson.fromJson(resourceToString("/post_presets.json", UTF_8), PresetsBody.class);
-    AddPresetRequest req = new AddPresetRequest().body(post).siteId(siteId);
-
-    AddPresetResponse response = this.client0.addPreset(req);
-    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc", response.id());
-
-    HttpResponse<String> httpresponse = this.client0.addPresetAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_OK, httpresponse.statusCode());
-    assertEquals(URL + "/presets?siteId=" + siteId, httpresponse.request().uri().toString());
-    assertEquals("POST", httpresponse.request().method());
-
-    assertEquals("3de5c199-0537-4bb3-a035-aa2367a8bddc",
-        gson.fromJson(httpresponse.body(), Map.class).get("id").toString());
-  }
-
-  /**
-   * Test POST /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags01() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagBody().key("First Name"));
-    this.client0.addPresetTags(req);
-  }
-
-  /**
-   * Test POST /presets/{presetId}/tags. Missing content.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTags02() throws Exception {
-    PresetTagRequest req = new PresetTagRequest();
-
-    try {
-      this.client0.addPresetTags(req);
-      fail();
-    } catch (NullPointerException e) {
-      assertEquals("PresetId is required.", e.getMessage());
-    }
-  }
-
-  /**
-   * Test POST /presets/{documentId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testAddPresetTagsAsHttpResponse() throws Exception {
-    PresetTagRequest req = new PresetTagRequest().siteId(siteId).presetId(documentId)
-        .body(new PresetTagBody().key("First Name"));
-    HttpResponse<String> response = this.client0.addPresetTagsAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_CREATED, response.statusCode());
-    assertEquals("POST", response.request().method());
-    assertEquals(URL + "/presets/" + documentId + "/tags?siteId=" + siteId,
-        response.request().uri().toString());
-  }
-
-  /**
    * Test POST /tagSchemas.
    * 
    * @throws Exception Exception
@@ -1039,76 +935,6 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client0.deleteFulltextTagsAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/documents/" + documentId + "/fulltext/tags?siteId=" + siteId,
-        response.request().uri().toString());
-    assertEquals("DELETE", response.request().method());
-  }
-
-  /**
-   * Test DELETE /presets/{presetid}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeletePreset01() throws Exception {
-    DeletePresetRequest request = new DeletePresetRequest().presetId(documentId).siteId(siteId);
-    assertTrue(this.client0.deletePreset(request));
-  }
-
-  /**
-   * Test DELETE /presets/{presetid}. Missing Data.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeletePreset02() throws Exception {
-    DeletePresetRequest request = new DeletePresetRequest();
-    try {
-      this.client0.deletePreset(request);
-      fail();
-    } catch (NullPointerException e) {
-      assertEquals("PresetId is required.", e.getMessage());
-    }
-  }
-
-  /**
-   * Test DELETE /presets/{presetid}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeletePresetAsHttpResponse() throws Exception {
-    DeletePresetRequest request = new DeletePresetRequest().presetId(documentId).siteId(siteId);
-    HttpResponse<String> response = this.client0.deletePresetAsHttpResponse(request);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets/" + documentId + "?siteId=" + siteId,
-        response.request().uri().toString());
-    assertEquals("DELETE", response.request().method());
-  }
-
-  /**
-   * Test DELETE /presets/{presetId}/tags/{tagKey}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeletePresetTag() throws Exception {
-    DeletePresetTagRequest request =
-        new DeletePresetTagRequest().presetId(documentId).siteId(siteId).tag("first name");
-    assertTrue(this.client0.deletePresetTag(request));
-  }
-
-  /**
-   * Test DELETE /presets/{presetId}/tags/{tagKey}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testDeletePresetTagAsHttpResponse() throws Exception {
-    DeletePresetTagRequest request =
-        new DeletePresetTagRequest().presetId(documentId).siteId(siteId).tag("first name");
-    HttpResponse<String> response = this.client0.deletePresetTagAsHttpResponse(request);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets/" + documentId + "/tags/first+name?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -1669,86 +1495,6 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test GET /presets.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetPresets() throws Exception {
-    GetPresetsRequest request =
-        new GetPresetsRequest().limit(1).next("nnnn").previous("ppp").siteId(siteId);
-    Presets p = this.client0.getPresets(request);
-    verifyGetPresets(p);
-  }
-
-  /**
-   * Test GET /presets.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetPresetsAsHttpResponse() throws Exception {
-    GetPresetsRequest request =
-        new GetPresetsRequest().limit(1).next("nnnn").previous("ppp").siteId(siteId);
-    HttpResponse<String> response = this.client0.getPresetsAsHttpResponse(request);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets?next=nnnn&previous=ppp&limit=1&siteId=" + siteId,
-        response.request().uri().toString());
-    assertEquals("GET", response.request().method());
-
-    Presets p = gson.fromJson(response.body(), Presets.class);
-    verifyGetPresets(p);
-  }
-
-  /**
-   * Test GET /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetPresetsTags01() throws Exception {
-    GetPresetTagsRequest req = new GetPresetTagsRequest().presetId(documentId).limit(1).next("nn")
-        .previous("pp").siteId(siteId);
-    PresetTags tags = this.client0.getPresetTags(req);
-    verify(tags);
-  }
-
-  /**
-   * Test GET /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetPresetsTags02() throws Exception {
-    GetPresetTagsRequest req = new GetPresetTagsRequest();
-    try {
-      this.client0.getPresetTags(req);
-      fail();
-    } catch (NullPointerException e) {
-      assertEquals("PresetId is required.", e.getMessage());
-    }
-  }
-
-  /**
-   * Test GET /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testGetPresetsTagsAsHttpResponse() throws Exception {
-    GetPresetTagsRequest req = new GetPresetTagsRequest().presetId(documentId).limit(1).next("nn")
-        .previous("pp").siteId(siteId);
-    HttpResponse<String> response = this.client0.getPresetTagsAsHttpResponse(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(
-        URL + "/presets/" + documentId + "/tags?next=nn&previous=pp&limit=1&siteId=" + siteId,
-        response.request().uri().toString());
-
-    PresetTags tags = gson.fromJson(response.body(), PresetTags.class);
-    verify(tags);
-  }
-
-  /**
    * Test GET /sites.
    * 
    * @throws Exception Exception
@@ -2131,63 +1877,6 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client0.optionsDocumentVersions(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/documents/" + documentId + "/versions",
-        response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
-   * Test OPTIONS /presets/{presetId}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsPreset() throws Exception {
-    OptionsPresetRequest req = new OptionsPresetRequest().presetId(documentId);
-    HttpResponse<String> response = this.client0.optionsPreset(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets/" + documentId, response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
-   * Test OPTIONS /presets.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsPresets() throws Exception {
-    HttpResponse<String> response = this.client0.optionsPresets();
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets", response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
-   * Test OPTIONS /presets/{presetId}/tags.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsPresetTags() throws Exception {
-    OptionsPresetTagsRequest req = new OptionsPresetTagsRequest().presetId(documentId);
-    HttpResponse<String> response = this.client0.optionsPresetTags(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets/" + documentId + "/tags", response.request().uri().toString());
-    assertEquals("OPTIONS", response.request().method());
-  }
-
-  /**
-   * Test OPTIONS /presets/{presetId}/tags/{tagKey}.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
-  public void testOptionsPresetTagsKey() throws Exception {
-    OptionsPresetTagsRequest req =
-        new OptionsPresetTagsRequest().presetId(documentId).tag("first name");
-    HttpResponse<String> response = this.client0.optionsPresetTags(req);
-    assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/presets/" + documentId + "/tags/first+name",
         response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
@@ -2619,35 +2308,5 @@ public class FormKiqClientV1Test {
     assertEquals(
         URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
-  }
-
-  /**
-   * Verify {@link PresetTags}.
-   * 
-   * @param tags {@link PresetTags}
-   */
-  private void verify(final PresetTags tags) {
-    assertEquals("2131", tags.next());
-    assertEquals("asdad", tags.previous());
-    assertEquals(1, tags.tags().size());
-    assertEquals("2020/08/28 18:39:10", df.format(tags.tags().get(0).insertedDate()));
-    assertEquals("dddssd", tags.tags().get(0).key());
-    assertEquals("joe", tags.tags().get(0).userId());
-  }
-
-  /**
-   * Verify {@link Presets}.
-   * 
-   * @param p {@link Presets}
-   */
-  private void verifyGetPresets(final Presets p) {
-    assertEquals("123", p.next());
-    assertEquals("555", p.previous());
-    assertEquals(1, p.presets().size());
-    assertEquals("foo", "" + p.presets().get(0).name());
-    assertEquals("2020/08/28 17:55:20", df.format(p.presets().get(0).insertedDate()));
-    assertEquals("werwer", p.presets().get(0).id());
-    assertEquals("test", p.presets().get(0).siteId());
-    assertEquals("joe", p.presets().get(0).userId());
   }
 }

@@ -15,7 +15,6 @@ package com.formkiq.stacks.client;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
-import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
@@ -27,8 +26,6 @@ import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
-import com.formkiq.stacks.client.models.PresetTags;
-import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -40,7 +37,6 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
-import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
@@ -49,8 +45,6 @@ import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
-import com.formkiq.stacks.client.requests.DeletePresetRequest;
-import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
@@ -62,13 +56,10 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
-import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
-import com.formkiq.stacks.client.requests.GetPresetsRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
-import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
@@ -123,26 +114,6 @@ public interface FormKiqClient {
    */
   DocumentUrl addLargeDocument(AddLargeDocumentRequest request)
       throws IOException, InterruptedException;
-
-  /**
-   * POST(Add) /presets.
-   * 
-   * @param request {@link AddPresetRequest}
-   * @return {@link AddPresetResponse}
-   * @throws IOException IOExceptions
-   * @throws InterruptedException InterruptedException
-   */
-
-  AddPresetResponse addPreset(AddPresetRequest request) throws IOException, InterruptedException;
-
-  /**
-   * Post /presets/{presetId}/tags.
-   * 
-   * @param request {@link PresetTagRequest}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  void addPresetTags(PresetTagRequest request) throws IOException, InterruptedException;
 
   /**
    * POST /tagSchemas.
@@ -233,26 +204,6 @@ public interface FormKiqClient {
    */
   boolean deleteDocumentTag(DeleteDocumentTagRequest request)
       throws IOException, InterruptedException;
-
-  /**
-   * DELETE /presets/{presetsId}.
-   * 
-   * @param request {@link DeletePresetRequest}
-   * @return boolean - Whether delete was successfully
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  boolean deletePreset(DeletePresetRequest request) throws IOException, InterruptedException;
-
-  /**
-   * DELETE /preset/{presetId}/tags/{tagKey}.
-   * 
-   * @param request {@link DeletePresetTagRequest}
-   * @return boolean - Whether delete was successfully
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  boolean deletePresetTag(DeletePresetTagRequest request) throws IOException, InterruptedException;
 
   /**
    * DELETE /tagSchemas/{tagSchemaId}.
@@ -376,26 +327,6 @@ public interface FormKiqClient {
    */
   DocumentVersions getDocumentVersions(GetDocumentVersionsRequest request)
       throws IOException, InterruptedException;
-
-  /**
-   * Get /presets.
-   * 
-   * @param request {@link GetPresetsRequest}
-   * @return {@link Presets}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  Presets getPresets(GetPresetsRequest request) throws IOException, InterruptedException;
-
-  /**
-   * Get /presets/{presetId}/tags.
-   * 
-   * @param request {@link GetPresetTagsRequest}
-   * @return {@link PresetTags}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  PresetTags getPresetTags(GetPresetTagsRequest request) throws IOException, InterruptedException;
 
   /**
    * GET /sites.

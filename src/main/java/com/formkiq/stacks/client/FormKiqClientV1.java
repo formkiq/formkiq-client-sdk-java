@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
-import com.formkiq.stacks.client.models.AddPresetResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DeleteFulltext;
@@ -41,8 +40,6 @@ import com.formkiq.stacks.client.models.DocumentWithChildren;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
-import com.formkiq.stacks.client.models.PresetTags;
-import com.formkiq.stacks.client.models.Presets;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -55,7 +52,6 @@ import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
 import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
-import com.formkiq.stacks.client.requests.AddPresetRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
@@ -64,8 +60,6 @@ import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
-import com.formkiq.stacks.client.requests.DeletePresetRequest;
-import com.formkiq.stacks.client.requests.DeletePresetTagRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
@@ -79,8 +73,6 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
-import com.formkiq.stacks.client.requests.GetPresetTagsRequest;
-import com.formkiq.stacks.client.requests.GetPresetsRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
@@ -93,11 +85,8 @@ import com.formkiq.stacks.client.requests.OptionsDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
-import com.formkiq.stacks.client.requests.OptionsPresetRequest;
-import com.formkiq.stacks.client.requests.OptionsPresetTagsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
-import com.formkiq.stacks.client.requests.PresetTagRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
@@ -316,77 +305,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(body));
-  }
-
-  @Override
-  public AddPresetResponse addPreset(final AddPresetRequest request)
-      throws IOException, InterruptedException {
-
-    HttpResponse<String> response = addPresetAsHttpResponse(request);
-    checkStatusCode(response);
-    return this.gson.fromJson(response.body(), AddPresetResponse.class);
-  }
-
-  /**
-   * POST(Add) /presets.
-   * 
-   * @param request {@link AddDocumentRequest}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> addPresetAsHttpResponse(final AddPresetRequest request)
-      throws IOException, InterruptedException {
-    String body = this.gson.toJson(request.body());
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(body));
-  }
-
-  @Override
-  public void addPresetTags(final PresetTagRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = addPresetTagsAsHttpResponse("POST", request);
-    checkStatusCode(response);
-  }
-
-  /**
-   * POST(Set) /presets/{presetId}/tags.
-   * 
-   * @param request {@link PresetTagRequest}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> addPresetTagsAsHttpResponse(final PresetTagRequest request)
-      throws IOException, InterruptedException {
-    return addPresetTagsAsHttpResponse("POST", request);
-  }
-
-  /**
-   * POST(add) /presets/{presetId}/tags.
-   * 
-   * @param method {@link String}
-   * @param request {@link PresetTagRequest}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  private HttpResponse<String> addPresetTagsAsHttpResponse(final String method,
-      final PresetTagRequest request) throws IOException, InterruptedException {
-    String body = this.gson.toJson(request.body());
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-
-    HttpResponse<String> response = null;
-    if ("patch".equalsIgnoreCase(method)) {
-      response = this.client.patch(u, createHttpHeaders(method, Optional.empty()),
-          RequestBody.fromString(body));
-    } else {
-      response = this.client.post(u, createHttpHeaders(method, Optional.empty()),
-          RequestBody.fromString(body));
-    }
-
-    return response;
   }
 
   @Override
@@ -661,50 +579,6 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deleteDocumentTagAsHttpResponse(
       final DeleteDocumentTagRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
-  }
-
-  @Override
-  public boolean deletePreset(final DeletePresetRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = deletePresetAsHttpResponse(request);
-    return checkStatusCodeBoolean(response);
-  }
-
-  /**
-   * DELETE /presets/{presetId}.
-   * 
-   * @param request {@link DeleteDocumentRequest}
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> deletePresetAsHttpResponse(final DeletePresetRequest request)
-      throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
-  }
-
-  @Override
-  public boolean deletePresetTag(final DeletePresetTagRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = deletePresetTagAsHttpResponse(request);
-    return checkStatusCodeBoolean(response);
-  }
-
-  /**
-   * DELETE /presets/{presetId}/tags/{tagKey}.
-   * 
-   * @param request {@link DeletePresetTagRequest}
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> deletePresetTagAsHttpResponse(final DeletePresetTagRequest request)
-      throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
@@ -987,50 +861,6 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public Presets getPresets(final GetPresetsRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = getPresetsAsHttpResponse(request);
-    checkStatusCode(response);
-    return this.gson.fromJson(response.body(), Presets.class);
-  }
-
-  /**
-   * GET /presets.
-   * 
-   * @param request {@link GetPresetsRequest}
-   * @return {@link HttpResponse}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> getPresetsAsHttpResponse(final GetPresetsRequest request)
-      throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
-  }
-
-  @Override
-  public PresetTags getPresetTags(final GetPresetTagsRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = getPresetTagsAsHttpResponse(request);
-    checkStatusCode(response);
-    return this.gson.fromJson(response.body(), PresetTags.class);
-  }
-
-  /**
-   * GET /presets/{presetId}/tags.
-   * 
-   * @param request {@link GetPresetTagsRequest}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> getPresetTagsAsHttpResponse(final GetPresetTagsRequest request)
-      throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
-  }
-
-  @Override
   public Sites getSites() throws IOException, InterruptedException {
     HttpResponse<String> response = getSitesAsHttpResponse();
     checkStatusCode(response);
@@ -1295,49 +1125,6 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws IOException IOException
    */
   public HttpResponse<String> optionsDocumentVersions(final OptionsDocumentVersionsRequest request)
-      throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
-  }
-
-  /**
-   * OPTIONS /presets/{presetId}.
-   * 
-   * @param request {@link OptionsPresetRequest}
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> optionsPreset(final OptionsPresetRequest request)
-      throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
-  }
-
-  /**
-   * OPTIONS /presets.
-   * 
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> optionsPresets() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + new GetPresetsRequest().buildRequestUrl();
-    return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
-  }
-
-  /**
-   * OPTIONS /presets/{presetId}/tags and /presets/{presetId}/tag/{tag}.
-   * 
-   * @param request {@link OptionsPresetTagsRequest}
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> optionsPresetTags(final OptionsPresetTagsRequest request)
       throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));

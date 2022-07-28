@@ -31,7 +31,7 @@ public class Sites {
   /**
    * Get Sites.
    * 
-   * @return {@link List} {@link Preset}
+   * @return {@link List} {@link Site}
    */
   public List<Site> sites() {
     return this.sites;
@@ -40,7 +40,7 @@ public class Sites {
   /**
    * Set Sites.
    * 
-   * @param list {@link List} {@link Preset}
+   * @param list {@link List} {@link Site}
    */
   public void sites(final List<Site> list) {
     this.sites = list;
