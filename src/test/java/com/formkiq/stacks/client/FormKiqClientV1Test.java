@@ -59,6 +59,7 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
 import com.formkiq.stacks.client.models.FulltextSearchTag;
+import com.formkiq.stacks.client.models.SetDocumentOcr;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -2011,7 +2012,8 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testPutDocumentOcr01() throws Exception {
-    SetDocumentOcrRequest req = new SetDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    SetDocumentOcrRequest req = new SetDocumentOcrRequest().documentId(documentId).siteId(siteId)
+        .document(new SetDocumentOcr().content("test").contentType("text/plain"));
     this.client0.setDocumentOcr(req);
   }
 

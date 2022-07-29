@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.SetDocumentOcr;
 
 /**
  * Creates PUT /documents/{documentId}/ocr Request.
@@ -25,15 +26,37 @@ import com.formkiq.stacks.client.Validate;
  */
 public class SetDocumentOcrRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
+  /** {@link SetDocumentOcr}. */
+  private SetDocumentOcr document;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public SetDocumentOcrRequest() {}
+
+  /**
+   * Get {@link SetDocumentOcr}.
+   * 
+   * @return {@link SetDocumentOcr}
+   */
+  public SetDocumentOcr document() {
+    return this.document;
+  }
+
+  /**
+   * Set {@link SetDocumentOcr}.
+   * 
+   * @param doc {@link SetDocumentOcr}
+   * @return {@link SetDocumentOcr}
+   */
+  public SetDocumentOcrRequest document(final SetDocumentOcr doc) {
+    this.document = doc;
+    return this;
+  }
 
   /**
    * Set the DocumentId.
@@ -75,5 +98,6 @@ public class SetDocumentOcrRequest implements ApiRequest {
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.document, "Document is required.");
   }
 }
