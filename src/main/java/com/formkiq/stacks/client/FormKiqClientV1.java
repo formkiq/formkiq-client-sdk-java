@@ -15,7 +15,6 @@ package com.formkiq.stacks.client;
 import java.io.IOException;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +25,6 @@ import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
-import com.formkiq.stacks.client.models.DeleteFulltext;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
@@ -44,7 +42,6 @@ import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
 import com.formkiq.stacks.client.models.UpdateDocumentResponse;
-import com.formkiq.stacks.client.models.UpdateFulltext;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
@@ -191,10 +188,14 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> addDocumentFulltextAsHttpResponse(
       final SetDocumentFulltextRequest request) throws IOException, InterruptedException {
 
+    final String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+
     Map<String, Object> map = new HashMap<>();
+    map.put("contentType", request.document().contentType());
+    map.put("content", request.document().content());
+    map.put("contentUrl", request.document().contentUrl());
 
     String contents = this.gson.toJson(map);
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
@@ -541,26 +542,6 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> deleteFulltextTagsAsHttpResponse(
       final DeleteFulltextTagsRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-
-    Map<String, Object> body = new HashMap<>();
-    DeleteFulltext document = request.document();
-
-    if (document.tags() != null) {
-      List<Map<String, Object>> tags = new ArrayList<>();
-      body.put("tags", tags);
-      document.tags().forEach(tag -> {
-        Map<String, Object> map = new HashMap<>();
-        if (tag.values() != null) {
-          map.put(tag.key(), tag.values());
-        } else if (tag.value() != null) {
-          map.put(tag.key(), tag.value());
-        } else {
-          map.put(tag.key(), "");
-        }
-        tags.add(map);
-      });
-    }
-
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
 
@@ -1360,34 +1341,7 @@ public class FormKiqClientV1 implements FormKiqClient {
 
     final String u = this.apiRestUrl + "/" + request.buildRequestUrl();
 
-    Map<String, Object> body = new HashMap<>();
-    UpdateFulltext document = request.document();
-
-    if (document.content() != null) {
-      body.put("content", document.content());
-    }
-
-    if (document.path() != null) {
-      body.put("path", document.path());
-    }
-
-    if (document.tags() != null) {
-      List<Map<String, Object>> tags = new ArrayList<>();
-      body.put("tags", tags);
-      document.tags().forEach(tag -> {
-        Map<String, Object> map = new HashMap<>();
-        if (tag.values() != null) {
-          map.put(tag.key(), tag.values());
-        } else if (tag.value() != null) {
-          map.put(tag.key(), tag.value());
-        } else {
-          map.put(tag.key(), "");
-        }
-        tags.add(map);
-      });
-    }
-
-    String contents = this.gson.toJson(body);
+    String contents = this.gson.toJson(request.document());
     return this.client.patch(u, createHttpHeaders("PATCH", Optional.empty()),
         RequestBody.fromString(contents));
   }

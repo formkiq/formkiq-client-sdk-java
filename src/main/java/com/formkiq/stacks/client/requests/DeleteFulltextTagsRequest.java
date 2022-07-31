@@ -18,16 +18,18 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.DeleteFulltext;
+import com.formkiq.stacks.client.models.DeleteFulltextTag;
+import software.amazon.awssdk.utils.StringUtils;
 
 /**
- * Creates DELETE /documents/{documentId}/fulltext/tags.
+ * Creates DELETE /documents/{DocumentId}/fulltext/tags/{tagKey} and
+ * /documents/{DocumentId}/fulltext/tags/{tagKey}/{tagValue}.
  *
  */
 public class DeleteFulltextTagsRequest implements ApiRequest {
 
-  /** {@link DeleteFulltext}. */
-  private DeleteFulltext document;
+  /** {@link DeleteFulltextTag}. */
+  private DeleteFulltextTag tag;
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
@@ -40,24 +42,14 @@ public class DeleteFulltextTagsRequest implements ApiRequest {
    */
   public DeleteFulltextTagsRequest() {}
 
-
   /**
-   * Set {@link DeleteFulltext}.
+   * Set {@link DeleteFulltextTag}.
    * 
-   * @return {@link DeleteFulltext}
-   */
-  public DeleteFulltext document() {
-    return this.document;
-  }
-
-  /**
-   * Set {@link DeleteFulltext}.
-   * 
-   * @param updateDocument {@link DeleteFulltext}
+   * @param deleteTag {@link DeleteFulltextTag}
    * @return {@link DeleteFulltextTagsRequest}
    */
-  public DeleteFulltextTagsRequest document(final DeleteFulltext updateDocument) {
-    this.document = updateDocument;
+  public DeleteFulltextTagsRequest tag(final DeleteFulltextTag deleteTag) {
+    this.tag = deleteTag;
     return this;
   }
 
@@ -84,7 +76,11 @@ public class DeleteFulltextTagsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/fulltext/tags";
+    return !StringUtils.isEmpty(this.tag.value())
+        ? String.format("documents/%s/fulltext/tags/%s/%s", this.paths.get("documentId"),
+            this.tag.key(), this.tag.value())
+        : String.format("documents/%s/fulltext/tags/%s", this.paths.get("documentId"),
+            this.tag.key());
   }
 
   /**
@@ -101,6 +97,6 @@ public class DeleteFulltextTagsRequest implements ApiRequest {
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-    Validate.notNull(this.document, "Document is required.");
+    Validate.notNull(this.tag, "DocumentTag is required.");
   }
 }

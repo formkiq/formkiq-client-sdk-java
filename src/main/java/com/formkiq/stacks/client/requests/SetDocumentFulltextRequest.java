@@ -39,6 +39,15 @@ public class SetDocumentFulltextRequest implements ApiRequest {
   public SetDocumentFulltextRequest() {}
 
   /**
+   * Get {@link SetDocumentFulltext}.
+   * 
+   * @return {@link SetDocumentFulltext}
+   */
+  public SetDocumentFulltext document() {
+    return this.document;
+  }
+
+  /**
    * Set {@link SetDocumentFulltext}.
    * 
    * @param doc {@link SetDocumentFulltext}

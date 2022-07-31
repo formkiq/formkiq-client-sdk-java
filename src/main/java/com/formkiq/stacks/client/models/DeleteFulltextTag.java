@@ -12,10 +12,8 @@
  */
 package com.formkiq.stacks.client.models;
 
-import java.util.List;
-
 /**
- * DocumentTag holder.
+ * {@link DeleteFulltextTag} holder.
  *
  */
 public class DeleteFulltextTag {
@@ -24,8 +22,6 @@ public class DeleteFulltextTag {
   private String key;
   /** Document Tag Value. */
   private String value;
-  /** Document Tag Values. */
-  private List<String> values;
 
   /**
    * constructor.
@@ -71,26 +67,6 @@ public class DeleteFulltextTag {
    */
   public DeleteFulltextTag value(final String tagValue) {
     this.value = tagValue;
-    return this;
-  }
-
-  /**
-   * Get Values.
-   * 
-   * @return {@link List} {@link String}
-   */
-  public List<String> values() {
-    return this.values;
-  }
-
-  /**
-   * Set Values.
-   * 
-   * @param list {@link List} {@link String}
-   * @return {@link DeleteFulltextTag}
-   */
-  public DeleteFulltextTag values(final List<String> list) {
-    this.values = list;
     return this;
   }
 }

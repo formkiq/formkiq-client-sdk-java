@@ -43,7 +43,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
-import com.formkiq.stacks.client.models.DeleteFulltext;
+import com.formkiq.stacks.client.models.DeleteFulltextTag;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
 import com.formkiq.stacks.client.models.DocumentActions;
@@ -190,7 +190,9 @@ public class FormKiqClientV1Test {
     add("post", "/searchFulltext", "/searchFulltext.json");
     add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
-    add("delete", "/documents/" + documentId + "/fulltext/tags", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/fulltext/tags/{tagKey}", "/documentsId.json");
+    add("delete", "/documents/" + documentId + "/fulltext/tags/somekey/somevalue",
+        "/documentsId.json");
     add("patch", "/documents/" + documentId + "/fulltext", "/documentsId.json");
   }
 
@@ -905,7 +907,7 @@ public class FormKiqClientV1Test {
   @Test
   public void testDeleteFulltextTags01() throws Exception {
     DeleteFulltextTagsRequest request = new DeleteFulltextTagsRequest().documentId(documentId)
-        .siteId(siteId).document(new DeleteFulltext());
+        .siteId(siteId).tag(new DeleteFulltextTag().key("somekey").value("somevalue"));
     assertTrue(this.client0.deleteFulltextTags(request));
   }
 
@@ -926,17 +928,18 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test DELETE /documents/{documentid}/ocr.
+   * Test DELETE /documents/{documentid}/fulltext/{tagKey/{tagValue}.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testDeleteFulltextTagsAsHttpResponse() throws Exception {
     DeleteFulltextTagsRequest request = new DeleteFulltextTagsRequest().documentId(documentId)
-        .siteId(siteId).document(new DeleteFulltext());
+        .siteId(siteId).tag(new DeleteFulltextTag().key("somekey").value("somevalue"));
     HttpResponse<String> response = this.client0.deleteFulltextTagsAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/documents/" + documentId + "/fulltext/tags?siteId=" + siteId,
+    assertEquals(
+        URL + "/documents/" + documentId + "/fulltext/tags/somekey/somevalue?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
