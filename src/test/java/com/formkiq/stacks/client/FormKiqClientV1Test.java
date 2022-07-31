@@ -59,6 +59,7 @@ import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
 import com.formkiq.stacks.client.models.FulltextSearchTag;
+import com.formkiq.stacks.client.models.SetDocumentFulltext;
 import com.formkiq.stacks.client.models.SetDocumentOcr;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
@@ -2001,7 +2002,8 @@ public class FormKiqClientV1Test {
   @Test
   public void testPutDocumentFulltext01() throws Exception {
     SetDocumentFulltextRequest req =
-        new SetDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+        new SetDocumentFulltextRequest().documentId(documentId).siteId(siteId)
+            .document(new SetDocumentFulltext().content("this").contentType("text/plain"));
     this.client0.setDocumentFulltext(req);
   }
 

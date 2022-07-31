@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.SetDocumentFulltext;
 
 /**
  * Creates PUT /documents/{documentId}/fulltext Request.
@@ -25,15 +26,28 @@ import com.formkiq.stacks.client.Validate;
  */
 public class SetDocumentFulltextRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
+  /** {@link SetDocumentFulltext}. */
+  private SetDocumentFulltext document;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public SetDocumentFulltextRequest() {}
+
+  /**
+   * Set {@link SetDocumentFulltext}.
+   * 
+   * @param doc {@link SetDocumentFulltext}
+   * @return {@link SetDocumentFulltextRequest}
+   */
+  public SetDocumentFulltextRequest document(final SetDocumentFulltext doc) {
+    this.document = doc;
+    return this;
+  }
 
   /**
    * Set the DocumentId.
@@ -75,5 +89,6 @@ public class SetDocumentFulltextRequest implements ApiRequest {
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.document, "Document is required.");
   }
 }
