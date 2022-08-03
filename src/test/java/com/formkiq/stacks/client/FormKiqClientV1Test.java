@@ -2214,7 +2214,7 @@ public class FormKiqClientV1Test {
   public void testUpdateDocumentFulltextTagAsHttpResponse() throws Exception {
     UpdateDocumentFulltextRequest request = new UpdateDocumentFulltextRequest()
         .documentId(documentId).siteId(siteId).document(new UpdateFulltext());
-    HttpResponse<String> response = this.client0.updateDocumentFulltextTagAsHttpResponse(request);
+    HttpResponse<String> response = this.client0.updateDocumentFulltextAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/fulltext?siteId=" + siteId,

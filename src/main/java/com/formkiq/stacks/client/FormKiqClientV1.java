@@ -1323,12 +1323,12 @@ public class FormKiqClientV1 implements FormKiqClient {
   @Override
   public boolean updateDocumentFulltext(final UpdateDocumentFulltextRequest request)
       throws IOException, InterruptedException {
-    HttpResponse<String> response = updateDocumentFulltextTagAsHttpResponse(request);
+    HttpResponse<String> response = updateDocumentFulltextAsHttpResponse(request);
     return checkStatusCodeBoolean(response);
   }
 
   /**
-   * PUT /documents/{documentId}/tags/{tagKey}.
+   * PATCH /documents/{documentId}/fulltext.
    * 
    * @param request {@link UpdateDocumentFulltextRequest}
    * @return {@link HttpResponse} {@link String}
@@ -1336,7 +1336,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> updateDocumentFulltextTagAsHttpResponse(
+  public HttpResponse<String> updateDocumentFulltextAsHttpResponse(
       final UpdateDocumentFulltextRequest request) throws IOException, InterruptedException {
 
     final String u = this.apiRestUrl + "/" + request.buildRequestUrl();

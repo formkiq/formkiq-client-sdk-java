@@ -22,10 +22,10 @@ public class DocumentAction {
 
   /** Action Parameters. */
   private Map<String, String> parameters;
-  /** Document Tag Key. */
-  private DocumentActionStatus status;
-  /** Document Tag Key. */
-  private DocumentActionType type;
+  /** Document Action Status. */
+  private String status;
+  /** Document Action Type. */
+  private String type;
   /** User Id. */
   private String userId;
 
@@ -57,41 +57,41 @@ public class DocumentAction {
   }
 
   /**
-   * Get {@link DocumentActionStatus}.
+   * Get {@link String}.
    * 
-   * @return {@link DocumentActionStatus}
+   * @return {@link String}
    */
-  public DocumentActionStatus status() {
+  public String status() {
     return this.status;
   }
 
   /**
-   * Set {@link DocumentActionStatus}.
+   * Set {@link String}.
    * 
-   * @param actionStatus {@link DocumentActionStatus}
+   * @param actionStatus {@link String}
    * @return {@link DocumentAction}
    */
-  public DocumentAction status(final DocumentActionStatus actionStatus) {
+  public DocumentAction status(final String actionStatus) {
     this.status = actionStatus;
     return this;
   }
 
   /**
-   * Get {@link DocumentActionType}.
+   * Get {@link String}.
    * 
-   * @return {@link DocumentActionType}
+   * @return {@link String}
    */
-  public DocumentActionType type() {
+  public String type() {
     return this.type;
   }
 
   /**
-   * Set {@link DocumentActionType}.
+   * Set {@link String}.
    * 
-   * @param actionType {@link DocumentActionType}
+   * @param actionType {@link String}
    * @return {@link DocumentAction}
    */
-  public DocumentAction type(final DocumentActionType actionType) {
+  public DocumentAction type(final String actionType) {
     this.type = actionType;
     return this;
   }
