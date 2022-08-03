@@ -34,7 +34,7 @@ public class AddDocument {
   /** Is Content Base 64 Encoded. */
   private boolean isBase64;
   /** Document Tags. */
-  private List<DocumentTag> tags;
+  private List<AddDocumentTag> tags;
   /** Child Documents. */
   private List<AddDocument> documents;
   /** Document Actions. */
@@ -192,19 +192,19 @@ public class AddDocument {
   /**
    * Get Tags.
    * 
-   * @return {@link List} {@link DocumentTag}
+   * @return {@link List} {@link AddDocumentTag}
    */
-  public List<DocumentTag> tags() {
+  public List<AddDocumentTag> tags() {
     return this.tags;
   }
 
   /**
    * Set Tags.
    * 
-   * @param list {@link List} {@link DocumentTag}
+   * @param list {@link List} {@link AddDocumentTag}
    * @return {@link AddDocument}
    */
-  public AddDocument tags(final List<DocumentTag> list) {
+  public AddDocument tags(final List<AddDocumentTag> list) {
     this.tags = list;
     return this;
   }
