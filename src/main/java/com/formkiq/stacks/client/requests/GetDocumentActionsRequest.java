@@ -12,7 +12,6 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,27 +20,29 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * OPTIONS /presets/{presetId}.
+ * GET /documents/{documentId}/actions.
  *
  */
-public class OptionsPresetRequest implements ApiRequest {
+public class GetDocumentActionsRequest implements ApiRequest {
 
-  /** Request Paths. */
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public OptionsPresetRequest() {}
+  public GetDocumentActionsRequest() {}
 
   /**
-   * Set the presetId.
+   * Set the DocumentId.
    * 
-   * @param presetId {@link String}
-   * @return {@link OptionsPresetRequest}
+   * @param documentId {@link String}
+   * @return {@link GetDocumentActionsRequest}
    */
-  public OptionsPresetRequest presetId(final String presetId) {
-    this.paths.put("presetId", presetId);
+  public GetDocumentActionsRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
     return this;
   }
 
@@ -52,16 +53,28 @@ public class OptionsPresetRequest implements ApiRequest {
 
   @Override
   public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
+    return this.parameters;
   }
 
   @Override
   public String getUrlPath() {
-    return "presets/" + this.paths.get("presetId");
+    return "documents/" + this.paths.get("documentId") + "/actions";
   }
+
+  /**
+   * Site Identifier.
+   * 
+   * @param siteId {@link String}
+   * @return {@link GetDocumentActionsRequest}
+   */
+  public GetDocumentActionsRequest siteId(final String siteId) {
+    this.parameters.put("siteId", siteId);
+    return this;
+  }
+
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("presetId"), "presetId is required.");
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

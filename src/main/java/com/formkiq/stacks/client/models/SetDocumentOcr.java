@@ -12,62 +12,61 @@
  */
 package com.formkiq.stacks.client.models;
 
-import java.util.List;
-
 /**
- * PresetTagBody holder.
+ * SetDocumentOcr holder.
  *
  */
-public class PresetsBody {
+public class SetDocumentOcr {
 
-  /** Preset Name. */
-  private String name;
-
-  /** Tags. */
-  private List<PresetTagBody> tags;
+  /** Document Ocr Content Type. */
+  private String contentType;
+  /** Document Content. */
+  private String content;
 
   /**
    * constructor.
    */
-  public PresetsBody() {}
+  public SetDocumentOcr() {
 
-  /**
-   * Get Name.
-   * 
-   * @return {@link String}
-   */
-  public String name() {
-    return this.name;
   }
 
   /**
-   * Set Name.
+   * Get Content-Type.
    * 
-   * @param s {@link String}
-   * @return {@link PresetsBody}
+   * @return {@link String}
    */
-  public PresetsBody name(final String s) {
-    this.name = s;
+  public String contentType() {
+    return this.contentType;
+  }
+
+  /**
+   * Set Content-Type.
+   * 
+   * @param type {@link String}
+   * @return {@link SetDocumentOcr}
+   */
+  public SetDocumentOcr contentType(final String type) {
+    this.contentType = type;
     return this;
   }
 
   /**
-   * Get {@link PresetTagBody}.
+   * Get Content.
    * 
-   * @return {@link List} {@link PresetTagBody}
+   * @return {@link String}
    */
-  public List<PresetTagBody> tags() {
-    return this.tags;
+  public String content() {
+    return this.content;
   }
 
   /**
-   * Set {@link PresetTagBody}.
+   * Set Content.
    * 
-   * @param list {@link List} {@link PresetTagBody}
-   * @return {@link PresetsBody}
+   * @param data {@link String}
+   * @return {@link SetDocumentOcr}
    */
-  public PresetsBody tags(final List<PresetTagBody> list) {
-    this.tags = list;
+  public SetDocumentOcr content(final String data) {
+    this.content = data;
     return this;
   }
 }

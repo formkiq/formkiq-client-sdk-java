@@ -12,37 +12,39 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.List;
+
 /**
- * PresetTagBody holder.
+ * Document Actions holder.
  *
  */
-public class PresetTagBody {
+public class DocumentActions {
 
-  /** PresetTag Key. */
-  private String key;
+  /** {@link List} {@link DocumentAction}. */
+  private List<DocumentAction> actions;
 
   /**
    * constructor.
    */
-  public PresetTagBody() {}
+  public DocumentActions() {}
 
   /**
-   * Get Key.
+   * Get Actions.
    * 
-   * @return {@link String}
+   * @return {@link List} {@link Document}
    */
-  public String key() {
-    return this.key;
+  public List<DocumentAction> actions() {
+    return this.actions;
   }
 
   /**
-   * Set Key.
+   * Set Actions.
    * 
-   * @param s {@link String}
-   * @return {@link PresetTagBody}
+   * @param list {@link List} {@link DocumentAction}
+   * @return {@link DocumentActions}
    */
-  public PresetTagBody key(final String s) {
-    this.key = s;
+  public DocumentActions actions(final List<DocumentAction> list) {
+    this.actions = list;
     return this;
   }
 }

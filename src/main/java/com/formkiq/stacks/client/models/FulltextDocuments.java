@@ -12,14 +12,37 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.List;
+
 /**
- * 
- * {@link AddDocumentAction} Type.
+ * Documents holder.
  *
  */
-public enum DocumentActionType {
-  /** OCR. */
-  OCR,
-  /** Full Text. */
-  FULLTEXT;
+public class FulltextDocuments {
+
+  /** {@link List} {@link Document}. */
+  private List<FulltextDocument> documents;
+
+  /**
+   * constructor.
+   */
+  public FulltextDocuments() {}
+
+  /**
+   * Get Documents.
+   * 
+   * @return {@link List} {@link FulltextDocument}
+   */
+  public List<FulltextDocument> documents() {
+    return this.documents;
+  }
+
+  /**
+   * Set Documents.
+   * 
+   * @param list {@link List} {@link FulltextDocument}
+   */
+  public void documents(final List<FulltextDocument> list) {
+    this.documents = list;
+  }
 }

@@ -12,9 +12,6 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,18 +20,32 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * OPTIONS /presets/{presetId}/tags and /presets/{presetId}/tags/{tagKey}.
+ * Creates DELETE /documents/{documentId}/ocr.
  *
  */
-public class OptionsPresetTagsRequest implements ApiRequest {
+public class DeleteDocumentOcrRequest implements ApiRequest {
 
   /** Request Paths. */
   private Map<String, String> paths = new HashMap<>();
 
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+
   /**
    * constructor.
    */
-  public OptionsPresetTagsRequest() {}
+  public DeleteDocumentOcrRequest() {}
+
+  /**
+   * Set the DocumentId.
+   * 
+   * @param documentId {@link String}
+   * @return {@link DeleteDocumentOcrRequest}
+   */
+  public DeleteDocumentOcrRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
+    return this;
+  }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -43,41 +54,27 @@ public class OptionsPresetTagsRequest implements ApiRequest {
 
   @Override
   public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
+    return this.parameters;
   }
 
   @Override
   public String getUrlPath() {
-    return this.paths.containsKey("tag")
-        ? "presets/" + this.paths.get("presetId") + "/tags/"
-            + URLEncoder.encode(this.paths.get("tag"), StandardCharsets.UTF_8)
-        : "presets/" + this.paths.get("presetId") + "/tags";
+    return "documents/" + this.paths.get("documentId") + "/ocr";
   }
 
   /**
-   * Set the presetId.
+   * Site Identifier.
    * 
-   * @param presetId {@link String}
-   * @return {@link OptionsPresetTagsRequest}
+   * @param siteId {@link String}
+   * @return {@link DeleteDocumentOcrRequest}
    */
-  public OptionsPresetTagsRequest presetId(final String presetId) {
-    this.paths.put("presetId", presetId);
-    return this;
-  }
-
-  /**
-   * Set the Tag.
-   * 
-   * @param tag {@link String}
-   * @return {@link OptionsPresetTagsRequest}
-   */
-  public OptionsPresetTagsRequest tag(final String tag) {
-    this.paths.put("tag", tag);
+  public DeleteDocumentOcrRequest siteId(final String siteId) {
+    this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("presetId"), "presetId is required.");
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

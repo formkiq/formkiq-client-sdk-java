@@ -12,37 +12,38 @@
  */
 package com.formkiq.stacks.client.models;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
- * Sites holder.
+ * {@link DocumentSearchResponseFields} holder.
  *
  */
-public class Sites {
+public class DocumentSearchResponseFields {
+  /** {@link Collection} {@link String}. */
+  private Collection<String> tags;
 
-  /** {@link List} {@link Preset}. */
-  private List<Site> sites;
+  /** constructor. */
+  public DocumentSearchResponseFields() {
 
-  /**
-   * constructor.
-   */
-  public Sites() {}
-
-  /**
-   * Get Sites.
-   * 
-   * @return {@link List} {@link Site}
-   */
-  public List<Site> sites() {
-    return this.sites;
   }
 
   /**
-   * Set Sites.
+   * Get {@link Collection} Tags.
    * 
-   * @param list {@link List} {@link Site}
+   * @return {@link Collection} {@link String}
    */
-  public void sites(final List<Site> list) {
-    this.sites = list;
+  public Collection<String> tags() {
+    return this.tags;
+  }
+
+  /**
+   * Set {@link Collection} Tags.
+   * 
+   * @param list {@link Collection} {@link String}
+   * @return {@link DocumentSearchResponseFields}
+   */
+  public DocumentSearchResponseFields tags(final Collection<String> list) {
+    this.tags = list;
+    return this;
   }
 }

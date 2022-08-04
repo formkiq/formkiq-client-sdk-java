@@ -28,7 +28,7 @@ public class AddLargeDocument {
   /** Document Tags. */
   private List<DocumentTag> tags;
   /** Document Actions. */
-  private List<DocumentAction> actions;
+  private List<AddDocumentAction> actions;
 
   /**
    * constructor.
@@ -36,21 +36,21 @@ public class AddLargeDocument {
   public AddLargeDocument() {}
 
   /**
-   * Get {@link List} {@link DocumentAction}.
+   * Get {@link List} {@link AddDocumentAction}.
    * 
-   * @return {@link List} {@link DocumentAction}
+   * @return {@link List} {@link AddDocumentAction}
    */
-  public List<DocumentAction> actions() {
+  public List<AddDocumentAction> actions() {
     return this.actions;
   }
 
   /**
-   * Set {@link List} {@link DocumentAction}.
+   * Set {@link List} {@link AddDocumentAction}.
    * 
-   * @param documentActions {@link List} {@link DocumentAction}
+   * @param documentActions {@link List} {@link AddDocumentAction}
    * @return {@link AddLargeDocument}
    */
-  public AddLargeDocument actions(final List<DocumentAction> documentActions) {
+  public AddLargeDocument actions(final List<AddDocumentAction> documentActions) {
     this.actions = documentActions;
     return this;
   }

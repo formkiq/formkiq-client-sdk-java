@@ -31,7 +31,7 @@ public class Webhooks {
   /**
    * Get Presets.
    * 
-   * @return {@link List} {@link Preset}
+   * @return {@link List} {@link Webhook}
    */
   public List<Webhook> webhooks() {
     return this.webhooks;
@@ -40,7 +40,7 @@ public class Webhooks {
   /**
    * Set Presets.
    * 
-   * @param list {@link List} {@link Preset}
+   * @param list {@link List} {@link Webhook}
    */
   public void webhooks(final List<Webhook> list) {
     this.webhooks = list;

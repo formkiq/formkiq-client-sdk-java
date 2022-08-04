@@ -10,27 +10,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.formkiq.stacks.client.requests;
-
-import java.util.List;
+package com.formkiq.stacks.client.models;
 
 /**
- * Document Tag object.
+ * {@link DeleteFulltextTag} holder.
  *
  */
-public class AddDocumentTag {
+public class DeleteFulltextTag {
 
-  /** Tag Key. */
+  /** Document Tag Key. */
   private String key;
-  /** Tag Value. */
+  /** Document Tag Value. */
   private String value;
-  /** Tag Values. */
-  private List<String> values;
 
   /**
    * constructor.
    */
-  public AddDocumentTag() {}
+  public DeleteFulltextTag() {
+
+  }
 
   /**
    * Get Tag Key.
@@ -42,13 +40,13 @@ public class AddDocumentTag {
   }
 
   /**
-   * Set Tag Key.
+   * Set Key.
    * 
-   * @param s {@link String}
-   * @return {@link AddDocumentTag}
+   * @param tagkey {@link String}
+   * @return {@link DeleteFulltextTag}
    */
-  public AddDocumentTag key(final String s) {
-    this.key = s;
+  public DeleteFulltextTag key(final String tagkey) {
+    this.key = tagkey;
     return this;
   }
 
@@ -64,31 +62,11 @@ public class AddDocumentTag {
   /**
    * Set Tag Value.
    * 
-   * @param s {@link String}
-   * @return {@link AddDocumentTag}
+   * @param tagValue {@link String}
+   * @return {@link DeleteFulltextTag}
    */
-  public AddDocumentTag value(final String s) {
-    this.value = s;
-    return this;
-  }
-
-  /**
-   * Get Tag Values.
-   * 
-   * @return {@link String}
-   */
-  public List<String> values() {
-    return this.values;
-  }
-
-  /**
-   * Set Tag Values.
-   * 
-   * @param list {@link List} {@link String}
-   * @return {@link AddDocumentTag}
-   */
-  public AddDocumentTag values(final List<String> list) {
-    this.values = list;
+  public DeleteFulltextTag value(final String tagValue) {
+    this.value = tagValue;
     return this;
   }
 }

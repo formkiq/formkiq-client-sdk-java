@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.AddDocumentTag;
 
 /**
  * Creates POST /documents/{documentId}/tags Request.

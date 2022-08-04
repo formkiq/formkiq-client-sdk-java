@@ -17,42 +17,55 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
-import com.formkiq.stacks.client.models.PresetsBody;
+import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.SetDocumentOcr;
 
 /**
- * POST /presets.
+ * Creates PUT /documents/{documentId}/ocr Request.
  *
  */
-public class AddPresetRequest implements ApiRequest {
+public class SetDocumentOcrRequest implements ApiRequest {
 
+  /** {@link SetDocumentOcr}. */
+  private SetDocumentOcr document;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-
-  /** {@link PresetsBody}. */
-  private PresetsBody body;
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public AddPresetRequest() {}
+  public SetDocumentOcrRequest() {}
 
   /**
-   * Set {@link PresetsBody}.
+   * Get {@link SetDocumentOcr}.
    * 
-   * @return {@link PresetsBody}
+   * @return {@link SetDocumentOcr}
    */
-  public PresetsBody body() {
-    return this.body;
+  public SetDocumentOcr document() {
+    return this.document;
   }
 
   /**
-   * Set {@link PresetsBody}.
+   * Set {@link SetDocumentOcr}.
    * 
-   * @param presetBody {@link PresetsBody}
-   * @return {@link AddPresetRequest}
+   * @param doc {@link SetDocumentOcr}
+   * @return {@link SetDocumentOcr}
    */
-  public AddPresetRequest body(final PresetsBody presetBody) {
-    this.body = presetBody;
+  public SetDocumentOcrRequest document(final SetDocumentOcr doc) {
+    this.document = doc;
+    return this;
+  }
+
+  /**
+   * Set the DocumentId.
+   * 
+   * @param documentId {@link String}
+   * @return {@link SetDocumentOcrRequest}
+   */
+  public SetDocumentOcrRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
     return this;
   }
 
@@ -68,22 +81,23 @@ public class AddPresetRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "presets";
+    return "documents/" + this.paths.get("documentId") + "/ocr";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link AddPresetRequest}
+   * @return {@link SetDocumentOcrRequest}
    */
-  public AddPresetRequest siteId(final String siteId) {
+  public SetDocumentOcrRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    // empty
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.document, "Document is required.");
   }
 }

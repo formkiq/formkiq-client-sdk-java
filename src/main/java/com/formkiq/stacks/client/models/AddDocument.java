@@ -34,11 +34,11 @@ public class AddDocument {
   /** Is Content Base 64 Encoded. */
   private boolean isBase64;
   /** Document Tags. */
-  private List<DocumentTag> tags;
+  private List<AddDocumentTag> tags;
   /** Child Documents. */
   private List<AddDocument> documents;
   /** Document Actions. */
-  private List<DocumentAction> actions;
+  private List<AddDocumentAction> actions;
 
   /**
    * constructor.
@@ -46,21 +46,21 @@ public class AddDocument {
   public AddDocument() {}
 
   /**
-   * Get {@link List} {@link DocumentAction}.
+   * Get {@link List} {@link AddDocumentAction}.
    * 
-   * @return {@link List} {@link DocumentAction}
+   * @return {@link List} {@link AddDocumentAction}
    */
-  public List<DocumentAction> actions() {
+  public List<AddDocumentAction> actions() {
     return this.actions;
   }
 
   /**
-   * Set {@link List} {@link DocumentAction}.
+   * Set {@link List} {@link AddDocumentAction}.
    * 
-   * @param documentActions {@link List} {@link DocumentAction}
+   * @param documentActions {@link List} {@link AddDocumentAction}
    * @return {@link AddDocument}
    */
-  public AddDocument actions(final List<DocumentAction> documentActions) {
+  public AddDocument actions(final List<AddDocumentAction> documentActions) {
     this.actions = documentActions;
     return this;
   }
@@ -192,19 +192,19 @@ public class AddDocument {
   /**
    * Get Tags.
    * 
-   * @return {@link List} {@link DocumentTag}
+   * @return {@link List} {@link AddDocumentTag}
    */
-  public List<DocumentTag> tags() {
+  public List<AddDocumentTag> tags() {
     return this.tags;
   }
 
   /**
    * Set Tags.
    * 
-   * @param list {@link List} {@link DocumentTag}
+   * @param list {@link List} {@link AddDocumentTag}
    * @return {@link AddDocument}
    */
-  public AddDocument tags(final List<DocumentTag> list) {
+  public AddDocument tags(final List<AddDocumentTag> list) {
     this.tags = list;
     return this;
   }

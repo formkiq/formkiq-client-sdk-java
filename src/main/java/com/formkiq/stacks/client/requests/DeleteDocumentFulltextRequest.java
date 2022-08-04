@@ -17,12 +17,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
+import com.formkiq.stacks.client.Validate;
 
 /**
- * GET /presets.
+ * Creates DELETE /documents/{documentId}/fulltext.
  *
  */
-public class GetPresetsRequest implements ApiRequest {
+public class DeleteDocumentFulltextRequest implements ApiRequest {
+
+  /** Request Paths. */
+  private Map<String, String> paths = new HashMap<>();
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
@@ -30,7 +34,18 @@ public class GetPresetsRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public GetPresetsRequest() {}
+  public DeleteDocumentFulltextRequest() {}
+
+  /**
+   * Set the DocumentId.
+   * 
+   * @param documentId {@link String}
+   * @return {@link DeleteDocumentFulltextRequest}
+   */
+  public DeleteDocumentFulltextRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
+    return this;
+  }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -44,55 +59,22 @@ public class GetPresetsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "presets";
-  }
-
-  /**
-   * Limit the number of results returned.
-   * 
-   * @param limit {@link String}
-   * @return {@link GetPresetsRequest}
-   */
-  public GetPresetsRequest limit(final int limit) {
-    this.parameters.put("limit", "" + limit);
-    return this;
-  }
-
-  /**
-   * set Next Results Token.
-   * 
-   * @param next {@link String}
-   * @return {@link GetPresetsRequest}
-   */
-  public GetPresetsRequest next(final String next) {
-    this.parameters.put("next", next);
-    return this;
-  }
-
-  /**
-   * set Previous Results Token.
-   * 
-   * @param previous {@link String}
-   * @return {@link GetPresetsRequest}
-   */
-  public GetPresetsRequest previous(final String previous) {
-    this.parameters.put("previous", previous);
-    return this;
+    return "documents/" + this.paths.get("documentId") + "/fulltext";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetPresetsRequest}
+   * @return {@link DeleteDocumentFulltextRequest}
    */
-  public GetPresetsRequest siteId(final String siteId) {
+  public DeleteDocumentFulltextRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    // empty
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }

@@ -18,26 +18,26 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchResponseFields;
+import com.formkiq.stacks.client.models.FulltextSearchQuery;
 
 /**
- * Creates POST /search Request.
+ * Creates POST /searchFulltext Request.
  *
  */
-public class SearchDocumentsRequest implements ApiRequest {
+public class SearchFulltextRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** {@link DocumentSearchQuery}. */
-  private DocumentSearchQuery query = null;
+  /** {@link FulltextSearchQuery}. */
+  private FulltextSearchQuery query = null;
   /** {@link DocumentSearchResponseFields}. */
   private DocumentSearchResponseFields responseFields = null;
 
   /**
    * constructor.
    */
-  public SearchDocumentsRequest() {}
+  public SearchFulltextRequest() {}
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -51,58 +51,36 @@ public class SearchDocumentsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "search";
+    return "searchFulltext";
   }
 
   /**
    * Limit the number of results returned.
    * 
    * @param limit {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link SearchFulltextRequest}
    */
-  public SearchDocumentsRequest limit(final int limit) {
+  public SearchFulltextRequest limit(final int limit) {
     this.parameters.put("limit", "" + limit);
     return this;
   }
 
   /**
-   * set Next Results Token.
+   * Get {@link FulltextSearchQuery}.
    * 
-   * @param next {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link FulltextSearchQuery}
    */
-  public SearchDocumentsRequest next(final String next) {
-    this.parameters.put("next", next);
-    return this;
-  }
-
-  /**
-   * set Previous Results Token.
-   * 
-   * @param previous {@link String}
-   * @return {@link SearchDocumentsRequest}
-   */
-  public SearchDocumentsRequest previous(final String previous) {
-    this.parameters.put("previous", previous);
-    return this;
-  }
-
-  /**
-   * Get {@link DocumentSearchQuery}.
-   * 
-   * @return {@link DocumentSearchQuery}
-   */
-  public DocumentSearchQuery query() {
+  public FulltextSearchQuery query() {
     return this.query;
   }
 
   /**
-   * Set {@link DocumentSearchQuery}.
+   * Set {@link FulltextSearchQuery}.
    * 
-   * @param searchQuery {@link DocumentSearchQuery}
-   * @return {@link SearchDocumentsRequest}
+   * @param searchQuery {@link FulltextSearchQuery}
+   * @return {@link SearchFulltextRequest}
    */
-  public SearchDocumentsRequest query(final DocumentSearchQuery searchQuery) {
+  public SearchFulltextRequest query(final FulltextSearchQuery searchQuery) {
     this.query = searchQuery;
     return this;
   }
@@ -120,9 +98,9 @@ public class SearchDocumentsRequest implements ApiRequest {
    * Set {@link DocumentSearchResponseFields}.
    * 
    * @param response {@link DocumentSearchResponseFields}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link SearchFulltextRequest}
    */
-  public SearchDocumentsRequest responseFields(final DocumentSearchResponseFields response) {
+  public SearchFulltextRequest responseFields(final DocumentSearchResponseFields response) {
     this.responseFields = response;
     return this;
   }
@@ -131,9 +109,9 @@ public class SearchDocumentsRequest implements ApiRequest {
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link SearchDocumentsRequest}
+   * @return {@link SearchFulltextRequest}
    */
-  public SearchDocumentsRequest siteId(final String siteId) {
+  public SearchFulltextRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }

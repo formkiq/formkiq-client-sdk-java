@@ -1,0 +1,12 @@
+{
+  "actions": [
+    {
+      "status": "PENDING",
+      "type": "OCR",
+      "userId":"joe",
+      "parameters": {
+        "parseTypes": "TEXT"
+      }
+    }
+  ]
+}

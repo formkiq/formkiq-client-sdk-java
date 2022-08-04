@@ -18,34 +18,54 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.PresetTagBody;
+import com.formkiq.stacks.client.models.UpdateFulltext;
 
 /**
- * Creates POST /presets/{presetId}/tags Request.
+ * Creates PATCH /documents/{documentId}/fulltext Request.
  *
  */
-public class PresetTagRequest implements ApiRequest {
+public class UpdateDocumentFulltextRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
+  /** {@link UpdateFulltext}. */
+  private UpdateFulltext document;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** {@link PresetTagBody}. */
-  private PresetTagBody body;
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public PresetTagRequest() {}
+  public UpdateDocumentFulltextRequest() {}
 
   /**
-   * Set the presetId.
+   * Set {@link UpdateFulltext}.
    * 
-   * @param presetId {@link String}
-   * @return {@link PresetTagRequest}
+   * @return {@link UpdateFulltext}
    */
-  public PresetTagRequest presetId(final String presetId) {
-    this.paths.put("presetId", presetId);
+  public UpdateFulltext document() {
+    return this.document;
+  }
+
+  /**
+   * Set {@link UpdateFulltext}.
+   * 
+   * @param updateDocument {@link UpdateFulltext}
+   * @return {@link UpdateDocumentFulltextRequest}
+   */
+  public UpdateDocumentFulltextRequest document(final UpdateFulltext updateDocument) {
+    this.document = updateDocument;
+    return this;
+  }
+
+  /**
+   * Set the DocumentId.
+   * 
+   * @param documentId {@link String}
+   * @return {@link UpdateDocumentFulltextRequest}
+   */
+  public UpdateDocumentFulltextRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
     return this;
   }
 
@@ -61,42 +81,23 @@ public class PresetTagRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "presets/" + this.paths.get("presetId") + "/tags";
+    return "documents/" + this.paths.get("documentId") + "/fulltext";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link PresetTagRequest}
+   * @return {@link UpdateDocumentFulltextRequest}
    */
-  public PresetTagRequest siteId(final String siteId) {
+  public UpdateDocumentFulltextRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("presetId"), "PresetId is required.");
-  }
-
-  /**
-   * Get {@link PresetTagBody}.
-   * 
-   * @return {@link PresetTagBody}
-   */
-  public PresetTagBody body() {
-    return this.body;
-  }
-
-  /**
-   * Set {@link PresetTagBody}.
-   * 
-   * @param data {@link PresetTagBody}
-   * @return {@link PresetTagRequest}
-   */
-  public PresetTagRequest body(final PresetTagBody data) {
-    this.body = data;
-    return this;
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.document, "Document is required.");
   }
 }

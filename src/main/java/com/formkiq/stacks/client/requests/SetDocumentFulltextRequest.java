@@ -12,52 +12,60 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.SetDocumentFulltext;
 
 /**
- * Creates DELETE /preset/{presetId}/tags/{tagKey}.
+ * Creates PUT /documents/{documentId}/fulltext Request.
  *
  */
-public class DeletePresetTagRequest implements ApiRequest {
+public class SetDocumentFulltextRequest implements ApiRequest {
 
-  /** Request Paths. */
-  private Map<String, String> paths = new HashMap<>();
-
+  /** {@link SetDocumentFulltext}. */
+  private SetDocumentFulltext document;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public DeletePresetTagRequest() {}
+  public SetDocumentFulltextRequest() {}
 
   /**
-   * Set the PresetId.
+   * Get {@link SetDocumentFulltext}.
    * 
-   * @param presetId {@link String}
-   * @return {@link DeletePresetTagRequest}
+   * @return {@link SetDocumentFulltext}
    */
-  public DeletePresetTagRequest presetId(final String presetId) {
-    this.paths.put("presetId", presetId);
-    this.paths.put("tagKey", presetId);
+  public SetDocumentFulltext document() {
+    return this.document;
+  }
+
+  /**
+   * Set {@link SetDocumentFulltext}.
+   * 
+   * @param doc {@link SetDocumentFulltext}
+   * @return {@link SetDocumentFulltextRequest}
+   */
+  public SetDocumentFulltextRequest document(final SetDocumentFulltext doc) {
+    this.document = doc;
     return this;
   }
 
   /**
-   * Set the Tag.
+   * Set the DocumentId.
    * 
-   * @param tag {@link String}
-   * @return {@link DeletePresetTagRequest}
+   * @param documentId {@link String}
+   * @return {@link SetDocumentFulltextRequest}
    */
-  public DeletePresetTagRequest tag(final String tag) {
-    this.paths.put("tagKey", tag);
+  public SetDocumentFulltextRequest documentId(final String documentId) {
+    this.paths.put("documentId", documentId);
     return this;
   }
 
@@ -73,23 +81,23 @@ public class DeletePresetTagRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "presets/" + this.paths.get("presetId") + "/tags/"
-        + URLEncoder.encode(this.paths.get("tagKey"), StandardCharsets.UTF_8);
+    return "documents/" + this.paths.get("documentId") + "/fulltext";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link DeletePresetTagRequest}
+   * @return {@link SetDocumentFulltextRequest}
    */
-  public DeletePresetTagRequest siteId(final String siteId) {
+  public SetDocumentFulltextRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("presetId"), "PresetId is required.");
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.document, "Document is required.");
   }
 }
