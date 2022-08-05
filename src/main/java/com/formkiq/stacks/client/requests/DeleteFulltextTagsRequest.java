@@ -28,29 +28,23 @@ import software.amazon.awssdk.utils.StringUtils;
  */
 public class DeleteFulltextTagsRequest implements ApiRequest {
 
-  /** {@link DeleteFulltextTag}. */
-  private DeleteFulltextTag tag;
-
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
   /** Request Paths. */
   private Map<String, String> paths = new HashMap<>();
 
+  /** {@link DeleteFulltextTag}. */
+  private DeleteFulltextTag tag;
+
   /**
    * constructor.
    */
   public DeleteFulltextTagsRequest() {}
 
-  /**
-   * Set {@link DeleteFulltextTag}.
-   * 
-   * @param deleteTag {@link DeleteFulltextTag}
-   * @return {@link DeleteFulltextTagsRequest}
-   */
-  public DeleteFulltextTagsRequest tag(final DeleteFulltextTag deleteTag) {
-    this.tag = deleteTag;
-    return this;
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
   }
 
   /**
@@ -91,6 +85,17 @@ public class DeleteFulltextTagsRequest implements ApiRequest {
    */
   public DeleteFulltextTagsRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
+    return this;
+  }
+
+  /**
+   * Set {@link DeleteFulltextTag}.
+   * 
+   * @param deleteTag {@link DeleteFulltextTag}
+   * @return {@link DeleteFulltextTagsRequest}
+   */
+  public DeleteFulltextTagsRequest tag(final DeleteFulltextTag deleteTag) {
+    this.tag = deleteTag;
     return this;
   }
 

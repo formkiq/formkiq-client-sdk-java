@@ -25,16 +25,21 @@ import com.formkiq.stacks.client.Validate;
  */
 public class GetDocumentRequest implements ApiRequest {
 
-  /** Request Paths. */
-  private Map<String, String> paths = new HashMap<>();
-
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+
+  /** Request Paths. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public GetDocumentRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set the DocumentId.

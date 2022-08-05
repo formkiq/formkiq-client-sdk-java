@@ -26,19 +26,24 @@ import com.formkiq.stacks.client.models.AddDocument;
  */
 public class AddDocumentRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> parameters = new HashMap<>();
-
   /** {@link AddDocument}. */
   private AddDocument document;
 
   /** Whether to use the public endpoint. */
   private boolean enablePublicEndpoint;
 
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+
   /**
    * constructor.
    */
   public AddDocumentRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set {@link AddDocument}.

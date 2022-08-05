@@ -34,6 +34,9 @@ public class OptionsDocumentRequest implements ApiRequest {
    */
   public OptionsDocumentRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {}
+
   /**
    * Set the DocumentId.
    * 

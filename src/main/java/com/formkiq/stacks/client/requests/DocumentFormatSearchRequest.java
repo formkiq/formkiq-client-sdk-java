@@ -27,17 +27,22 @@ public class DocumentFormatSearchRequest implements ApiRequest {
 
   /** Mime Type. */
   private String mime;
-  /** Object Version Id. */
-  private String versionId;
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
+  /** Object Version Id. */
+  private String versionId;
 
   /**
    * constructor.
    */
   public DocumentFormatSearchRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set the DocumentId.

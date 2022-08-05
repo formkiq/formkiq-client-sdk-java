@@ -30,6 +30,9 @@ public class SitesRequest implements ApiRequest {
   public SitesRequest() {}
 
   @Override
+  public void addQueryParameter(final String key, final String value) {}
+
+  @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
     return Optional.empty();
   }

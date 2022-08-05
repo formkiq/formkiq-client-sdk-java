@@ -34,6 +34,9 @@ public class OptionsDocumentContentUrlRequest implements ApiRequest {
    */
   public OptionsDocumentContentUrlRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {}
+
   /**
    * Set the DocumentId.
    * 

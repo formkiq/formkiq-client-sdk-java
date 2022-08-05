@@ -27,14 +27,14 @@ import com.formkiq.stacks.client.models.AddDocumentTag;
  */
 public class AddDocumentTagRequest implements ApiRequest {
 
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
   /** {@link AddDocumentTag}. */
   private AddDocumentTag tag;
   /** {@link List} {@link AddDocumentTag}. */
   private List<AddDocumentTag> tags;
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
-  /** Request Parameters. */
-  private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
@@ -42,6 +42,11 @@ public class AddDocumentTagRequest implements ApiRequest {
   public AddDocumentTagRequest() {
     this.tag = new AddDocumentTag();
     this.tags = new ArrayList<>();
+  }
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
   }
 
   /**

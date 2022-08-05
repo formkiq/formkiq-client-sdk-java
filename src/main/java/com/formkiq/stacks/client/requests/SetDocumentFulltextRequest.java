@@ -38,6 +38,11 @@ public class SetDocumentFulltextRequest implements ApiRequest {
    */
   public SetDocumentFulltextRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
+
   /**
    * Get {@link SetDocumentFulltext}.
    * 

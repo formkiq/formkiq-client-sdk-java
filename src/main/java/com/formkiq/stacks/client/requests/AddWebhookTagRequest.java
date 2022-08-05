@@ -25,29 +25,23 @@ import com.formkiq.stacks.client.Validate;
  */
 public class AddWebhookTagRequest implements ApiRequest {
 
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
   /** Tag Key. */
   private String tagKey;
   /** Tag Value. */
   private String tagValue;
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
-  /** Request Parameters. */
-  private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
   public AddWebhookTagRequest() {}
 
-  /**
-   * Set the WebhookId.
-   * 
-   * @param webhookId {@link String}
-   * @return {@link AddWebhookTagRequest}
-   */
-  public AddWebhookTagRequest webhookId(final String webhookId) {
-    this.paths.put("webhookId", webhookId);
-    return this;
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
   }
 
   @Override
@@ -121,6 +115,17 @@ public class AddWebhookTagRequest implements ApiRequest {
     Validate.notNull(this.paths.get("webhookId"), "WebhookId is required.");
     Validate.notNull(this.tagKey, "TagKey is required.");
     Validate.notNull(this.tagValue, "TagValue is required.");
+  }
+
+  /**
+   * Set the WebhookId.
+   * 
+   * @param webhookId {@link String}
+   * @return {@link AddWebhookTagRequest}
+   */
+  public AddWebhookTagRequest webhookId(final String webhookId) {
+    this.paths.put("webhookId", webhookId);
+    return this;
   }
 
   /**

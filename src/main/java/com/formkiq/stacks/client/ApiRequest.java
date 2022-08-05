@@ -23,6 +23,14 @@ import java.util.Optional;
  */
 public interface ApiRequest {
   /**
+   * Add Query Parameter.
+   * 
+   * @param key {@link String}
+   * @param value {@link String}
+   */
+  void addQueryParameter(String key, String value);
+
+  /**
    * Build Parameter {@link Map} to Query Parameter.
    * 
    * @return {@link String}

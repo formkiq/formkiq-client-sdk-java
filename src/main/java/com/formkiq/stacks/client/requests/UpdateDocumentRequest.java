@@ -26,19 +26,24 @@ import com.formkiq.stacks.client.models.UpdateDocument;
  */
 public class UpdateDocumentRequest implements ApiRequest {
 
-  /** Request Paths. */
-  private Map<String, String> paths = new HashMap<>();
+  /** {@link UpdateDocument}. */
+  private UpdateDocument document;
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
 
-  /** {@link UpdateDocument}. */
-  private UpdateDocument document;
+  /** Request Paths. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public UpdateDocumentRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set {@link UpdateDocument}.

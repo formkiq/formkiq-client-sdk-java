@@ -25,26 +25,20 @@ import com.formkiq.stacks.client.Validate;
  */
 public class OptionsWebhookRequest implements ApiRequest {
 
-  /** Request Paths. */
-  private Map<String, String> paths = new HashMap<>();
-
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+
+  /** Request Paths. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public OptionsWebhookRequest() {}
 
-  /**
-   * Set the DocumentId.
-   * 
-   * @param webhookId {@link String}
-   * @return {@link OptionsWebhookRequest}
-   */
-  public OptionsWebhookRequest webhookId(final String webhookId) {
-    this.paths.put("webhookId", webhookId);
-    return this;
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
   }
 
   @Override
@@ -76,5 +70,16 @@ public class OptionsWebhookRequest implements ApiRequest {
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("webhookId"), "webhookId is required.");
+  }
+
+  /**
+   * Set the DocumentId.
+   * 
+   * @param webhookId {@link String}
+   * @return {@link OptionsWebhookRequest}
+   */
+  public OptionsWebhookRequest webhookId(final String webhookId) {
+    this.paths.put("webhookId", webhookId);
+    return this;
   }
 }

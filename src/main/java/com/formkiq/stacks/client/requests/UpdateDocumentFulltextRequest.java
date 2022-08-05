@@ -38,6 +38,11 @@ public class UpdateDocumentFulltextRequest implements ApiRequest {
    */
   public UpdateDocumentFulltextRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
+
   /**
    * Set {@link UpdateFulltext}.
    * 

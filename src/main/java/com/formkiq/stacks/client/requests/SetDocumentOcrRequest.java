@@ -38,6 +38,11 @@ public class SetDocumentOcrRequest implements ApiRequest {
    */
   public SetDocumentOcrRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
+
   /**
    * Get {@link SetDocumentOcr}.
    * 

@@ -1258,9 +1258,10 @@ public class FormKiqClientV1Test {
   @Test
   public void testGetDocumentsOcrAsHttpResponse() throws Exception {
     GetDocumentOcrRequest req = new GetDocumentOcrRequest().documentId(documentId).siteId(siteId);
+    req.addQueryParameter("some", "thing");
     HttpResponse<String> response = this.client0.getDocumentOcrAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/documents/" + documentId + "/ocr?siteId=" + siteId,
+    assertEquals(URL + "/documents/" + documentId + "/ocr?some=thing&siteId=" + siteId,
         response.request().uri().toString());
     DocumentOcr ocr = gson.fromJson(response.body(), DocumentOcr.class);
     assertEquals("999", ocr.documentId());

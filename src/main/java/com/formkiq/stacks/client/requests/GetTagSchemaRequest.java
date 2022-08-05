@@ -25,15 +25,20 @@ import com.formkiq.stacks.client.Validate;
  */
 public class GetTagSchemaRequest implements ApiRequest {
 
-  /** Request Paths. */
-  private Map<String, String> paths = new HashMap<>();
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Paths. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public GetTagSchemaRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {
@@ -76,5 +81,4 @@ public class GetTagSchemaRequest implements ApiRequest {
   public void validate() {
     Validate.notNull(this.paths.get("tagSchemaId"), "TagSchemaId is required.");
   }
-
 }

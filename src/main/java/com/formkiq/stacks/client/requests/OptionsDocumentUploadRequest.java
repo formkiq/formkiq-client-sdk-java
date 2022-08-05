@@ -33,6 +33,9 @@ public class OptionsDocumentUploadRequest implements ApiRequest {
    */
   public OptionsDocumentUploadRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {}
+
   /**
    * Set the DocumentId.
    * 

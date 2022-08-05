@@ -25,19 +25,24 @@ import com.formkiq.stacks.client.Validate;
  */
 public class AddWebhookRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> parameters = new HashMap<>();
+  /** {@link String}. */
+  private String enabled = "true";
 
   /** {@link String}. */
   private String name;
 
-  /** {@link String}. */
-  private String enabled = "true";
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
   public AddWebhookRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Get Enabled.

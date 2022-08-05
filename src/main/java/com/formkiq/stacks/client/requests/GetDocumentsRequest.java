@@ -37,6 +37,11 @@ public class GetDocumentsRequest implements ApiRequest {
    */
   public GetDocumentsRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
+
   /**
    * Get Documents for {@link Date}.
    * 

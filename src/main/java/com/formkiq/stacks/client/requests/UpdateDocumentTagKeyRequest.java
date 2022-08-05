@@ -26,9 +26,9 @@ import com.formkiq.stacks.client.Validate;
 public class UpdateDocumentTagKeyRequest implements ApiRequest {
 
   /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
-  /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
   /** Tag Value. */
   private String tagValue;
   /** Tag Values. */
@@ -38,6 +38,11 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * constructor.
    */
   public UpdateDocumentTagKeyRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set the DocumentId.
@@ -97,15 +102,6 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   }
 
   /**
-   * Set the tagValues.
-   * 
-   * @return {@link UpdateDocumentTagKeyRequest}
-   */
-  public List<String> tagValues() {
-    return this.tagValues;
-  }
-
-  /**
    * Set the tagValue.
    * 
    * @param value {@link String}
@@ -114,6 +110,15 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   public UpdateDocumentTagKeyRequest tagValue(final String value) {
     this.tagValue = value;
     return this;
+  }
+
+  /**
+   * Set the tagValues.
+   * 
+   * @return {@link UpdateDocumentTagKeyRequest}
+   */
+  public List<String> tagValues() {
+    return this.tagValues;
   }
 
   /**

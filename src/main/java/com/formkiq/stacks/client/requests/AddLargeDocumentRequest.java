@@ -26,16 +26,21 @@ import com.formkiq.stacks.client.models.AddLargeDocument;
  */
 public class AddLargeDocumentRequest implements ApiRequest {
 
-  /** Request Parameters. */
-  private Map<String, String> parameters = new HashMap<>();
-
   /** {@link AddLargeDocument}. */
   private AddLargeDocument document;
+
+  /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
 
   /**
    * constructor.
    */
   public AddLargeDocumentRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set {@link AddLargeDocument}.

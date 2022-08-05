@@ -35,6 +35,11 @@ public class GetDocumentActionsRequest implements ApiRequest {
    */
   public GetDocumentActionsRequest() {}
 
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
+
   /**
    * Set the DocumentId.
    * 
@@ -71,7 +76,6 @@ public class GetDocumentActionsRequest implements ApiRequest {
     this.parameters.put("siteId", siteId);
     return this;
   }
-
 
   @Override
   public void validate() {

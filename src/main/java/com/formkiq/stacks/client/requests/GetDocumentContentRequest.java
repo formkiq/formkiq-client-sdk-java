@@ -26,14 +26,19 @@ import com.formkiq.stacks.client.Validate;
 public class GetDocumentContentRequest implements ApiRequest {
 
   /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
-  /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
+  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
   public GetDocumentContentRequest() {}
+
+  @Override
+  public void addQueryParameter(final String key, final String value) {
+    this.parameters.put(key, value);
+  }
 
   /**
    * Set the DocumentId.
@@ -72,6 +77,11 @@ public class GetDocumentContentRequest implements ApiRequest {
     return this;
   }
 
+  @Override
+  public void validate() {
+    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+  }
+
   /**
    * Version Id.
    * 
@@ -81,10 +91,5 @@ public class GetDocumentContentRequest implements ApiRequest {
   public GetDocumentContentRequest versionId(final String versionId) {
     this.parameters.put("versionId", versionId);
     return this;
-  }
-
-  @Override
-  public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
   }
 }
