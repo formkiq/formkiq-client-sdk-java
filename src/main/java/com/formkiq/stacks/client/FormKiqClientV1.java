@@ -28,7 +28,6 @@ import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentOcr;
-import com.formkiq.stacks.client.models.DocumentSearch;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
@@ -37,7 +36,6 @@ import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.DocumentWithChildren;
 import com.formkiq.stacks.client.models.Documents;
 import com.formkiq.stacks.client.models.FulltextDocuments;
-import com.formkiq.stacks.client.models.FulltextSearchQuery;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -1217,9 +1215,12 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
 
     request.validate();
-    FulltextSearchQuery q = request.query();
 
-    String contents = this.gson.toJson(Map.of("query", q));
+    Map<String, Object> map = new HashMap<>();
+    map.put("query", request.query());
+    map.put("responseFields", request.responseFields());
+
+    String contents = this.gson.toJson(map);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
@@ -1236,10 +1237,11 @@ public class FormKiqClientV1 implements FormKiqClient {
   public HttpResponse<String> searchAsHttpResponse(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
 
-    DocumentSearchQuery q = request.query();
-    DocumentSearch search = new DocumentSearch().query(q);
+    Map<String, Object> map = new HashMap<>();
+    map.put("query", request.query());
+    map.put("responseFields", request.responseFields());
 
-    String contents = this.gson.toJson(search);
+    String contents = this.gson.toJson(map);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
