@@ -114,6 +114,7 @@ import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
@@ -241,6 +242,8 @@ public class FormKiqClientV1Test {
     addWebhooks();
     addFulltextUrls();
     addOcr();
+
+    add("put", "/documents/" + documentId + "/antivirus", "/documentsId.json");
 
     add("get", "/documents", "/get_documents.json");
     add("post", "/documents", "/documentsId.json");
@@ -1996,6 +1999,36 @@ public class FormKiqClientV1Test {
     AddDocumentOcrRequest req = new AddDocumentOcrRequest().documentId(documentId).siteId(siteId)
         .parseTypes(Arrays.asList(OcrParseType.FORMS));
     this.client0.addDocumentOcr(req);
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/antivirus.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocumentAntivirus01() throws Exception {
+    SetDocumentAntivirusRequest req =
+        new SetDocumentAntivirusRequest().documentId(documentId).siteId(siteId);
+    this.client0.setDocumentAntivirus(req);
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/antivirus.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocumentAntivirusAsHttpResponse01() throws Exception {
+
+    SetDocumentAntivirusRequest req =
+        new SetDocumentAntivirusRequest().documentId(documentId).siteId(siteId);
+
+    HttpResponse<String> response = this.client0.setDocumentAntivirusAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/antivirus?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("PUT", response.request().method());
   }
 
   /**

@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.formkiq.stacks'
-version = '1.8.2'
+version = '1.8.3-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -80,8 +80,8 @@ publishing {
 		    username project.repoUser
 		    password project.repoPassword
 		  }
-		  url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-		  //url "https://oss.sonatype.org/content/repositories/snapshots/"
+		  //url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+		  url "https://oss.sonatype.org/content/repositories/snapshots/"
 		}
 	}
 }
