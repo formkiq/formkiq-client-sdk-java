@@ -62,6 +62,7 @@ import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
@@ -182,18 +183,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * DELETE /documents/{documentId}/fulltext/tags.
-   * 
-   * @param request {@link DeleteFulltextTagsRequest}
-   * @return boolean - Whether the document fulltext tags was successfully deleted
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  boolean deleteFulltextTags(DeleteFulltextTagsRequest request)
-      throws IOException, InterruptedException;
-
-  /**
    * DELETE /documents/{documentId}/tags/{tagKey}.
    * 
    * @param request {@link DeleteDocumentTagRequest}
@@ -203,6 +192,18 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   boolean deleteDocumentTag(DeleteDocumentTagRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * DELETE /documents/{documentId}/fulltext/tags.
+   * 
+   * @param request {@link DeleteFulltextTagsRequest}
+   * @return boolean - Whether the document fulltext tags was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteFulltextTags(DeleteFulltextTagsRequest request)
       throws IOException, InterruptedException;
 
   /**
@@ -238,6 +239,18 @@ public interface FormKiqClient {
   Document getDocument(GetDocumentRequest request) throws IOException, InterruptedException;
 
   /**
+   * GET /documents/{documentId}/actions.
+   * 
+   * @param request {@link GetDocumentActionsRequest}
+   * 
+   * @return {@link Documents}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentActions getDocumentActions(GetDocumentActionsRequest request)
+      throws IOException, InterruptedException;
+
+  /**
    * GET /documents/{documentId}/url.
    * 
    * @param request {@link GetDocumentContentUrlRequest}
@@ -270,18 +283,6 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   Documents getDocuments(GetDocumentsRequest request) throws IOException, InterruptedException;
-
-  /**
-   * GET /documents/{documentId}/actions.
-   * 
-   * @param request {@link GetDocumentActionsRequest}
-   * 
-   * @return {@link Documents}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  DocumentActions getDocumentActions(GetDocumentActionsRequest request)
-      throws IOException, InterruptedException;
 
 
   /**
@@ -411,6 +412,16 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
+   * PUT /documents/{documentId}/antivirus.
+   * 
+   * @param request {@link SetDocumentAntivirusRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void setDocumentAntivirus(SetDocumentAntivirusRequest request)
+      throws IOException, InterruptedException;
+
+  /**
    * PUT /documents/{documentId}/fulltext.
    * 
    * @param request {@link SetDocumentFulltextRequest}
@@ -418,17 +429,6 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   void setDocumentFulltext(SetDocumentFulltextRequest request)
-      throws IOException, InterruptedException;
-
-  /**
-   * PATCH /documents/{documentId}/fulltext.
-   * 
-   * @param request {@link UpdateDocumentFulltextRequest}
-   * @return boolean
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  boolean updateDocumentFulltext(UpdateDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
   /**
@@ -449,6 +449,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   UpdateDocumentResponse updateDocument(UpdateDocumentRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * PATCH /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link UpdateDocumentFulltextRequest}
+   * @return boolean
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean updateDocumentFulltext(UpdateDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
   /**

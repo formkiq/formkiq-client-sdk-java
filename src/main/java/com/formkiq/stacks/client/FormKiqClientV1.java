@@ -84,6 +84,7 @@ import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
+import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
@@ -249,6 +250,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
+
 
   @Override
   public boolean addDocumentTag(final AddDocumentTagRequest request)
@@ -522,28 +524,6 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public boolean deleteFulltextTags(final DeleteFulltextTagsRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = deleteFulltextTagsAsHttpResponse(request);
-    return checkStatusCodeBoolean(response);
-  }
-
-  /**
-   * DELETE /documents/{documentId}/fulltext/tags.
-   * 
-   * @param request {@link DeleteFulltextTagsRequest}
-   * @return {@link HttpResponse}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> deleteFulltextTagsAsHttpResponse(
-      final DeleteFulltextTagsRequest request) throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
-  }
-
-  @Override
   public boolean deleteDocumentTag(final DeleteDocumentTagRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = deleteDocumentTagAsHttpResponse(request);
@@ -561,6 +541,28 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deleteDocumentTagAsHttpResponse(
       final DeleteDocumentTagRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public boolean deleteFulltextTags(final DeleteFulltextTagsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteFulltextTagsAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /documents/{documentId}/fulltext/tags.
+   * 
+   * @param request {@link DeleteFulltextTagsRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteFulltextTagsAsHttpResponse(
+      final DeleteFulltextTagsRequest request) throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }
@@ -797,7 +799,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
-
   @Override
   public DocumentUrl getDocumentUpload(final GetDocumentUploadRequest request)
       throws IOException, InterruptedException {
@@ -805,6 +806,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
+
 
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
@@ -1096,7 +1098,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
-
   /**
    * OPTIONS /documents/{documentId}/versions.
    * 
@@ -1111,6 +1112,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
+
 
   /**
    * OPTIONS /search.
@@ -1256,6 +1258,32 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public void setDocumentAntivirus(final SetDocumentAntivirusRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = setDocumentAntivirusAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  /**
+   * PUT /documents/{documentId}/antivirus.
+   * 
+   * @param request {@link AddDocumentOcrRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> setDocumentAntivirusAsHttpResponse(
+      final SetDocumentAntivirusRequest request) throws IOException, InterruptedException {
+
+    Map<String, Object> map = new HashMap<>();
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
   public void setDocumentFulltext(final SetDocumentFulltextRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = addDocumentFulltextAsHttpResponse(request);
@@ -1295,6 +1323,32 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public boolean updateDocumentFulltext(final UpdateDocumentFulltextRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = updateDocumentFulltextAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * PATCH /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link UpdateDocumentFulltextRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> updateDocumentFulltextAsHttpResponse(
+      final UpdateDocumentFulltextRequest request) throws IOException, InterruptedException {
+
+    final String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+
+    String contents = this.gson.toJson(request.document());
+    return this.client.patch(u, createHttpHeaders("PATCH", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
   public boolean updateDocumentTag(final UpdateDocumentTagKeyRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = updateDocumentTagAsHttpResponse(request);
@@ -1319,32 +1373,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String contents = this.gson.toJson(body);
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
-        RequestBody.fromString(contents));
-  }
-
-  @Override
-  public boolean updateDocumentFulltext(final UpdateDocumentFulltextRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = updateDocumentFulltextAsHttpResponse(request);
-    return checkStatusCodeBoolean(response);
-  }
-
-  /**
-   * PATCH /documents/{documentId}/fulltext.
-   * 
-   * @param request {@link UpdateDocumentFulltextRequest}
-   * @return {@link HttpResponse} {@link String}
-   * 
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> updateDocumentFulltextAsHttpResponse(
-      final UpdateDocumentFulltextRequest request) throws IOException, InterruptedException {
-
-    final String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-
-    String contents = this.gson.toJson(request.document());
-    return this.client.patch(u, createHttpHeaders("PATCH", Optional.empty()),
         RequestBody.fromString(contents));
   }
 }

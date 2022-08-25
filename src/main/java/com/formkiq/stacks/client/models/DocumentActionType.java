@@ -18,8 +18,10 @@ package com.formkiq.stacks.client.models;
  *
  */
 public enum DocumentActionType {
-  /** OCR. */
-  OCR,
+  /** AntiVirus. */
+  ANTIVIRUS,
   /** Full Text. */
-  FULLTEXT;
+  FULLTEXT,
+  /** OCR. */
+  OCR;
 }
