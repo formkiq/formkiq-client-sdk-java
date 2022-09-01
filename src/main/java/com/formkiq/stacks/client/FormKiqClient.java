@@ -19,6 +19,7 @@ import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentActions;
+import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
@@ -49,6 +50,7 @@ import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -271,6 +273,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   DocumentOcr getDocumentOcr(GetDocumentOcrRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * GET /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link GetDocumentFulltextRequest}.
+   * @return {@link DocumentFulltext}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentFulltext getDocumentFulltext(GetDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
   /**

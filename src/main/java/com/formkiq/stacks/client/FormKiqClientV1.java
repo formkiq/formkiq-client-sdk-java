@@ -27,6 +27,7 @@ import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
+import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentTag;
@@ -61,6 +62,7 @@ import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -711,6 +713,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocumentFulltext getDocumentFulltext(final GetDocumentFulltextRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentFulltextAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentFulltext.class);
+  }
+
+  /**
+   * GET /documents/{documentId}/fulltext.
+   * 
+   * @param request {@link GetDocumentFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocumentFulltextAsHttpResponse(
+      final GetDocumentFulltextRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   public DocumentOcr getDocumentOcr(final GetDocumentOcrRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = getDocumentOcrAsHttpResponse(request);
@@ -719,9 +743,9 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   /**
-   * GET /documents/{documentId}/tags/{tagKey}.
+   * GET /documents/{documentId}/ocr.
    * 
-   * @param request {@link GetDocumentTagsKeyRequest}
+   * @param request {@link GetDocumentOcrRequest}
    * @return {@link HttpResponse}
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
