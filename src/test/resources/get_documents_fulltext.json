@@ -1,0 +1,11 @@
+{
+  "siteId": "default",
+  "documentId": "73482",
+  "content": "this is data",
+  "path": "test.txt",
+  "insertedDate": 1661999168000,
+  "createdBy": "joe",
+  "tags":{
+  	"playerId":"123"
+  }
+}

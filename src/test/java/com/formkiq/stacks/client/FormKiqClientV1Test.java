@@ -49,6 +49,7 @@ import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
+import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchTag;
@@ -90,6 +91,7 @@ import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
 import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
+import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
@@ -189,6 +191,7 @@ public class FormKiqClientV1Test {
 
   private static void addFulltextUrls() throws IOException {
     add("post", "/searchFulltext", "/searchFulltext.json");
+    add("get", "/documents/" + documentId + "/fulltext", "/get_documents_fulltext.json");
     add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext/tags/{tagKey}", "/documentsId.json");
@@ -1233,6 +1236,46 @@ public class FormKiqClientV1Test {
     assertEquals("sample/test.txt", docs.documents().get(0).path());
     assertEquals("6981181a-bbb1-4228-a65d-6dc947f036ac@formkiq.com",
         docs.documents().get(0).userId());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsFulltext01() throws Exception {
+    GetDocumentFulltextRequest req =
+        new GetDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+    DocumentFulltext fulltext = this.client0.getDocumentFulltext(req);
+    assertEquals("73482", fulltext.documentId());
+    assertEquals("2022/09/01 02:26:08", df.format(fulltext.insertedDate()));
+    assertEquals("this is data", fulltext.content());
+    assertEquals("joe", fulltext.createdBy());
+    assertEquals("test.txt", fulltext.path());
+    assertEquals("{playerId=123}", fulltext.tags().toString());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/fulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentsFulltextAsHttpResponse() throws Exception {
+    GetDocumentFulltextRequest req =
+        new GetDocumentFulltextRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client0.getDocumentFulltextAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/fulltext?siteId=" + siteId,
+        response.request().uri().toString());
+    DocumentFulltext fulltext = gson.fromJson(response.body(), DocumentFulltext.class);
+    assertEquals("73482", fulltext.documentId());
+    assertEquals("2022/09/01 02:26:08", df.format(fulltext.insertedDate()));
+    assertEquals("this is data", fulltext.content());
+    assertEquals("joe", fulltext.createdBy());
+    assertEquals("test.txt", fulltext.path());
+    assertEquals("{playerId=123}", fulltext.tags().toString());
   }
 
   /**
