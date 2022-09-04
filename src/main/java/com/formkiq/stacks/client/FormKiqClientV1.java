@@ -194,7 +194,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     Map<String, Object> map = new HashMap<>();
     map.put("contentType", request.document().contentType());
     map.put("content", request.document().content());
-    map.put("contentUrl", request.document().contentUrl());
+    map.put("contentUrls", request.document().contentUrls());
 
     String contents = this.gson.toJson(map);
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
