@@ -12,6 +12,8 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.List;
+
 /**
  * SetDocumentOcr holder.
  *
@@ -23,7 +25,7 @@ public class SetDocumentFulltext {
   /** Document Ocr Content Type. */
   private String contentType;
   /** Document Content Url. */
-  private String contentUrl;
+  private List<String> contentUrls;
 
   /**
    * constructor.
@@ -73,22 +75,22 @@ public class SetDocumentFulltext {
   }
 
   /**
-   * Get Content Url.
+   * Get Content Urls.
    * 
-   * @return {@link String}
+   * @return {@link List} {@link String}
    */
-  public String contentUrl() {
-    return this.contentUrl;
+  public List<String> contentUrls() {
+    return this.contentUrls;
   }
 
   /**
    * Set Content url.
    * 
-   * @param url {@link String}
+   * @param urls {@link List} {@link String}
    * @return {@link SetDocumentFulltext}
    */
-  public SetDocumentFulltext contentUrl(final String url) {
-    this.contentUrl = url;
+  public SetDocumentFulltext contentUrls(final List<String> urls) {
+    this.contentUrls = urls;
     return this;
   }
 }
