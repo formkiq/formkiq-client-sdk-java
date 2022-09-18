@@ -23,23 +23,45 @@ import java.util.List;
  */
 public class UpdateDocument {
 
-  /** Path. */
-  private String path;
-  /** Content Type. */
-  private String contentType;
+  /** Document Actions. */
+  private List<AddDocumentAction> actions;
   /** Document Content. */
   private String content;
-  /** Is Content Base 64 Encoded. */
-  private boolean isBase64;
-  /** Document Tags. */
-  private List<DocumentTag> tags;
+  /** Content Type. */
+  private String contentType;
   /** Child Documents. */
   private List<UpdateDocument> documents;
+  /** Is Content Base 64 Encoded. */
+  private boolean isBase64;
+  /** Path. */
+  private String path;
+  /** Document Tags. */
+  private List<AddDocumentTag> tags;
 
   /**
    * constructor.
    */
   public UpdateDocument() {}
+
+  /**
+   * Get {@link List} {@link AddDocumentAction}.
+   * 
+   * @return {@link List} {@link AddDocumentAction}
+   */
+  public List<AddDocumentAction> actions() {
+    return this.actions;
+  }
+
+  /**
+   * Set {@link List} {@link AddDocumentAction}.
+   * 
+   * @param documentActions {@link List} {@link AddDocumentAction}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument actions(final List<AddDocumentAction> documentActions) {
+    this.actions = documentActions;
+    return this;
+  }
 
   /**
    * Get Content.
@@ -169,20 +191,21 @@ public class UpdateDocument {
   /**
    * Get Tags.
    * 
-   * @return {@link List} {@link DocumentTag}
+   * @return {@link List} {@link AddDocumentTag}
    */
-  public List<DocumentTag> tags() {
+  public List<AddDocumentTag> tags() {
     return this.tags;
   }
 
   /**
    * Set Tags.
    * 
-   * @param list {@link List} {@link DocumentTag}
+   * @param list {@link List} {@link AddDocumentTag}
    * @return {@link UpdateDocument}
    */
-  public UpdateDocument tags(final List<DocumentTag> list) {
+  public UpdateDocument tags(final List<AddDocumentTag> list) {
     this.tags = list;
     return this;
   }
+
 }
