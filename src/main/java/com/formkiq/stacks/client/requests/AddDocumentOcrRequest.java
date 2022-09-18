@@ -25,6 +25,8 @@ import com.formkiq.stacks.client.Validate;
  */
 public class AddDocumentOcrRequest implements ApiRequest {
 
+  /** AddPdfDetectedCharactersAsText. */
+  private boolean addPdfDetectedCharactersAsText;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
   /** OCR Parse Types. */
@@ -36,6 +38,26 @@ public class AddDocumentOcrRequest implements ApiRequest {
    * constructor.
    */
   public AddDocumentOcrRequest() {}
+
+  /**
+   * AddPdfDetectedCharactersAsText.
+   * 
+   * @return boolean
+   */
+  public boolean addPdfDetectedCharactersAsText() {
+    return this.addPdfDetectedCharactersAsText;
+  }
+
+  /**
+   * AddPdfDetectedCharactersAsText.
+   * 
+   * @param bool boolean
+   * @return {@link AddDocumentOcrRequest}
+   */
+  public AddDocumentOcrRequest addPdfDetectedCharactersAsText(final boolean bool) {
+    this.addPdfDetectedCharactersAsText = bool;
+    return this;
+  }
 
   @Override
   public void addQueryParameter(final String key, final String value) {
