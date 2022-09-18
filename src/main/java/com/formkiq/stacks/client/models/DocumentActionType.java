@@ -23,5 +23,7 @@ public enum DocumentActionType {
   /** Full Text. */
   FULLTEXT,
   /** OCR. */
-  OCR;
+  OCR,
+  /** Webhook. */
+  WEBHOOK;
 }

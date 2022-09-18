@@ -1681,6 +1681,7 @@ public class FormKiqClientV1Test {
   public void testGetVersion() throws Exception {
     assertEquals("0.0.45", this.client0.getVersion().version());
     assertEquals("core", this.client0.getVersion().type());
+    assertEquals("[ocr]", this.client0.getVersion().modules().toString());
   }
 
   /**
@@ -1694,6 +1695,7 @@ public class FormKiqClientV1Test {
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("0.0.45", gson.fromJson(response.body(), Map.class).get("version").toString());
     assertEquals("core", gson.fromJson(response.body(), Map.class).get("type").toString());
+    assertEquals("[ocr]", gson.fromJson(response.body(), Map.class).get("modules").toString());
     HttpRequest request = response.request();
     assertEquals(URL + "/version", request.uri().toString());
     assertEquals("GET", request.method());
