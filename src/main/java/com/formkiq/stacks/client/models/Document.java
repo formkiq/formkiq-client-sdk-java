@@ -20,22 +20,24 @@ import java.util.Date;
  */
 public class Document {
 
-  /** Document Path. */
-  private String path;
-  /** Document Inserted Date. */
-  private Date insertedDate;
-  /** Document Checksum. */
-  private String checksum;
-  /** Document Identifier. */
-  private String documentId;
-  /** Document Content Type. */
-  private String contentType;
-  /** UserId. */
-  private String userId;
-  /** Document Content Length. */
-  private long contentLength;
   /** Document Id this document belongs to. */
   private String belongsToDocumentId;
+  /** Document Checksum. */
+  private String checksum;
+  /** Document Content Length. */
+  private long contentLength;
+  /** Document Content Type. */
+  private String contentType;
+  /** Document Identifier. */
+  private String documentId;
+  /** Document Inserted Date. */
+  private Date insertedDate;
+  /** Document Last Modified Date. */
+  private Date lastModifiedDate;
+  /** Document Path. */
+  private String path;
+  /** UserId. */
+  private String userId;
 
   /**
    * constructor.
@@ -150,6 +152,24 @@ public class Document {
    */
   public void insertedDate(final Date date) {
     this.insertedDate = date;
+  }
+
+  /**
+   * Get Last Modified Date.
+   * 
+   * @return {@link Date}
+   */
+  public Date lastModifiedDate() {
+    return this.lastModifiedDate;
+  }
+
+  /**
+   * Set Last Modified Date.
+   * 
+   * @param date {@link Date}
+   */
+  public void lastModifiedDate(final Date date) {
+    this.lastModifiedDate = date;
   }
 
   /**

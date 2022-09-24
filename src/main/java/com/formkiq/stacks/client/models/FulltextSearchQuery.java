@@ -19,14 +19,37 @@ import java.util.List;
  *
  */
 public class FulltextSearchQuery {
-  /** {@link String}. */
-  private String text;
+  /** Result page to return (starting at 1). */
+  private Integer page;
   /** {@link List} {@link FulltextSearchTag}. */
   private List<FulltextSearchTag> tags;
+
+  /** {@link String}. */
+  private String text;
 
   /** constructor. */
   public FulltextSearchQuery() {
 
+  }
+
+  /**
+   * Get Search Result Page.
+   * 
+   * @return {@link Integer}
+   */
+  public Integer getPage() {
+    return this.page;
+  }
+
+  /**
+   * Set Search Results Page.
+   * 
+   * @param pageNumber {@link Integer}
+   * @return {@link FulltextSearchQuery}
+   */
+  public FulltextSearchQuery page(final Integer pageNumber) {
+    this.page = pageNumber;
+    return this;
   }
 
 
