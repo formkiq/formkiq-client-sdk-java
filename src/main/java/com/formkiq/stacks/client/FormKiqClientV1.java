@@ -84,6 +84,7 @@ import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
+import com.formkiq.stacks.client.requests.QueryFulltextRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
@@ -1225,6 +1226,14 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public String queryFulltext(final QueryFulltextRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = searchAsQueryFulltextHttpResponse(request);
+    checkStatusCode(response);
+    return response.body();
+  }
+
+  @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = searchAsHttpResponse(request);
@@ -1274,6 +1283,24 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
+  }
+
+  /**
+   * POST /queryFulltext.
+   * 
+   * @param request {@link QueryFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> searchAsQueryFulltextHttpResponse(final QueryFulltextRequest request)
+      throws IOException, InterruptedException {
+
+    request.validate();
+
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(request.query()));
   }
 
   @Override
