@@ -20,16 +20,18 @@ import java.util.Date;
  */
 public class FulltextDocument {
 
-  /** Document Site Id. */
-  private String siteId;
-  /** Document Path. */
-  private String path;
-  /** Document Inserted Date. */
-  private Date insertedDate;
-  /** Document Identifier. */
-  private String documentId;
   /** UserId. */
   private String createdBy;
+  /** Document Identifier. */
+  private String documentId;
+  /** Document Inserted Date. */
+  private Date insertedDate;
+  /** Last Modified Date. */
+  private Date lastModifiedDate;
+  /** Document Path. */
+  private String path;
+  /** Document Site Id. */
+  private String siteId;
 
   /**
    * constructor.
@@ -90,6 +92,22 @@ public class FulltextDocument {
    */
   public void insertedDate(final Date date) {
     this.insertedDate = date;
+  }
+
+  /**
+   * Get Last Modified Date.
+   * @return {@link Date}
+   */
+  public Date lastModifiedDate() {
+    return this.lastModifiedDate;
+  }
+
+  /**
+   * Set Last Modified Date.
+   * @param date {@link Date}
+   */
+  public void lastModifiedDate(final Date date) {
+    this.lastModifiedDate = date;
   }
 
   /**
