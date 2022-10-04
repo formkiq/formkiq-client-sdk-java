@@ -96,6 +96,7 @@ public class FulltextDocument {
 
   /**
    * Get Last Modified Date.
+   * 
    * @return {@link Date}
    */
   public Date lastModifiedDate() {
@@ -104,6 +105,7 @@ public class FulltextDocument {
 
   /**
    * Set Last Modified Date.
+   * 
    * @param date {@link Date}
    */
   public void lastModifiedDate(final Date date) {

@@ -1228,7 +1228,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   @Override
   public String queryFulltext(final QueryFulltextRequest request)
       throws IOException, InterruptedException {
-    HttpResponse<String> response = searchAsQueryFulltextHttpResponse(request);
+    HttpResponse<String> response = queryFulltextAsHttpResponse(request);
     checkStatusCode(response);
     return response.body();
   }
@@ -1293,7 +1293,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> searchAsQueryFulltextHttpResponse(final QueryFulltextRequest request)
+  public HttpResponse<String> queryFulltextAsHttpResponse(final QueryFulltextRequest request)
       throws IOException, InterruptedException {
 
     request.validate();
