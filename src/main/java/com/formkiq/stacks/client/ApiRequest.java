@@ -12,6 +12,9 @@
  */
 package com.formkiq.stacks.client;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +37,9 @@ public interface ApiRequest {
    * Build Parameter {@link Map} to Query Parameter.
    * 
    * @return {@link String}
+   * @throws IOException IOException
    */
-  default String buildRequestUrl() {
+  default String buildRequestUrl() throws IOException {
 
     validate();
 
@@ -44,6 +48,18 @@ public interface ApiRequest {
         .forEach(e -> params.add(e.getKey() + "=" + e.getValue()));
     return getUrlPath() + (params.size() > 0 ? "?" + String.join("&", params) : "");
   }
+
+  /**
+   * Url Encode {@link String}.
+   * 
+   * @param value {@link String}
+   * @return {@link String}
+   * @throws IOException IOException
+   */
+  default String encodeValue(String value) throws IOException {
+    return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+  }
+
 
   /**
    * Get Http Headers.
@@ -63,8 +79,9 @@ public interface ApiRequest {
    * Get Request Url Path.
    * 
    * @return {@link String}
+   * @throws IOException IOException
    */
-  String getUrlPath();
+  String getUrlPath() throws IOException;
 
   /**
    * Validates the Api Request has all required fields.

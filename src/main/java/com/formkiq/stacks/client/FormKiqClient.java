@@ -62,6 +62,7 @@ import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
 import com.formkiq.stacks.client.requests.GetWebhooksRequest;
+import com.formkiq.stacks.client.requests.QueryFulltextRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
@@ -412,6 +413,17 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   Documents search(SearchDocumentsRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /queryFulltext.
+   * 
+   * @param request {@link QueryFulltextRequest}
+   * @return {@link String}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  String queryFulltext(QueryFulltextRequest request) throws IOException, InterruptedException;
+
 
   /**
    * POST /searchFulltext.

@@ -114,6 +114,7 @@ import com.formkiq.stacks.client.requests.OptionsDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.OptionsDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookRequest;
 import com.formkiq.stacks.client.requests.OptionsWebhookTagsRequest;
+import com.formkiq.stacks.client.requests.QueryFulltextRequest;
 import com.formkiq.stacks.client.requests.SearchDocumentsRequest;
 import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
@@ -191,6 +192,7 @@ public class FormKiqClientV1Test {
 
   private static void addFulltextUrls() throws IOException {
     add("post", "/searchFulltext", "/searchFulltext.json");
+    add("post", "/queryFulltext", "/documentsId.json");
     add("get", "/documents/" + documentId + "/fulltext", "/get_documents_fulltext.json");
     add("put", "/documents/" + documentId + "/fulltext", "/documentsId.json");
     add("delete", "/documents/" + documentId + "/fulltext", "/documentsId.json");
@@ -2099,6 +2101,19 @@ public class FormKiqClientV1Test {
     SetDocumentOcrRequest req = new SetDocumentOcrRequest().documentId(documentId).siteId(siteId)
         .document(new SetDocumentOcr().content("test").contentType("text/plain"));
     this.client0.setDocumentOcr(req);
+  }
+
+  /**
+   * Test POST /queryFulltext.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testQueryFulltext01() throws Exception {
+    QueryFulltextRequest req = new QueryFulltextRequest().query("").siteId(siteId);
+    String text = this.client0.queryFulltext(req);
+    assertEquals("{\n" + "  \"documentId\": \"3de5c199-0537-4bb3-a035-aa2367a8bddc\"\n" + "}",
+        text);
   }
 
   /**

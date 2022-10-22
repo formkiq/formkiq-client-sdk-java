@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,10 +64,11 @@ public class DeleteDocumentTagRequest implements ApiRequest {
   }
 
   @Override
-  public String getUrlPath() {
-    String url = "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+  public String getUrlPath() throws IOException {
+    String url = "documents/" + this.paths.get("documentId") + "/tags/"
+        + encodeValue(this.paths.get("tagKey"));
     if (this.paths.containsKey("tagValue")) {
-      url += "/" + this.paths.get("tagValue");
+      url += "/" + encodeValue(this.paths.get("tagValue"));
     }
     return url;
   }
