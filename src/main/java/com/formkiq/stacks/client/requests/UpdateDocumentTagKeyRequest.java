@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,8 +67,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   }
 
   @Override
-  public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/tags/" + this.paths.get("tagKey");
+  public String getUrlPath() throws IOException {
+    return "documents/" + this.paths.get("documentId") + "/tags/"
+        + encodeValue(this.paths.get("tagKey"));
   }
 
   /**

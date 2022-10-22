@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.requests;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,12 +70,12 @@ public class DeleteFulltextTagsRequest implements ApiRequest {
   }
 
   @Override
-  public String getUrlPath() {
+  public String getUrlPath() throws IOException {
     return !StringUtils.isEmpty(this.tag.value())
         ? String.format("documents/%s/fulltext/tags/%s/%s", this.paths.get("documentId"),
-            this.tag.key(), this.tag.value())
+            encodeValue(this.tag.key()), encodeValue(this.tag.value()))
         : String.format("documents/%s/fulltext/tags/%s", this.paths.get("documentId"),
-            this.tag.key());
+            encodeValue(this.tag.key()));
   }
 
   /**
