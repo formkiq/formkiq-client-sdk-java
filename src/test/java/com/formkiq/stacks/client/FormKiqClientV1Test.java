@@ -2239,7 +2239,7 @@ public class FormKiqClientV1Test {
             .tags(Arrays.asList(new FulltextSearchTag().key("category").eq("value"))))
         .limit(1).siteId(siteId);
 
-    HttpResponse<String> response = this.client0.searchAsFulltextHttpResponse(req);
+    HttpResponse<String> response = this.client0.searchFulltextAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(URL + "/searchFulltext?limit=1&siteId=" + siteId,
         response.request().uri().toString());

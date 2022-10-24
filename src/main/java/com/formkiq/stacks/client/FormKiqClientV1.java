@@ -196,6 +196,8 @@ public class FormKiqClientV1 implements FormKiqClient {
     map.put("contentType", request.document().contentType());
     map.put("content", request.document().content());
     map.put("contentUrls", request.document().contentUrls());
+    map.put("path", request.document().path());
+    map.put("tags", request.document().tags());
 
     String contents = this.gson.toJson(map);
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
@@ -1249,7 +1251,7 @@ public class FormKiqClientV1 implements FormKiqClient {
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> searchAsFulltextHttpResponse(final SearchFulltextRequest request)
+  public HttpResponse<String> searchFulltextAsHttpResponse(final SearchFulltextRequest request)
       throws IOException, InterruptedException {
 
     request.validate();
@@ -1306,7 +1308,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   @Override
   public FulltextDocuments searchFulltext(final SearchFulltextRequest request)
       throws IOException, InterruptedException {
-    HttpResponse<String> response = searchAsFulltextHttpResponse(request);
+    HttpResponse<String> response = searchFulltextAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), FulltextDocuments.class);
   }
