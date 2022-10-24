@@ -13,6 +13,7 @@
 package com.formkiq.stacks.client.models;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Document holder.
@@ -32,6 +33,8 @@ public class FulltextDocument {
   private String path;
   /** Document Site Id. */
   private String siteId;
+  /** Tags. */
+  private Map<String, String> tags;
 
   /**
    * constructor.
@@ -147,6 +150,26 @@ public class FulltextDocument {
    */
   public FulltextDocument siteId(final String id) {
     this.siteId = id;
+    return this;
+  }
+
+  /**
+   * Get Document Tags.
+   * 
+   * @return {@link Map}
+   */
+  public Map<String, String> tags() {
+    return this.tags;
+  }
+
+  /**
+   * Set Document Tags.
+   * 
+   * @param map {@link Map}
+   * @return {@link FulltextDocument}
+   */
+  public FulltextDocument tags(final Map<String, String> map) {
+    this.tags = map;
     return this;
   }
 }

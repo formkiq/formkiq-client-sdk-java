@@ -15,7 +15,7 @@ package com.formkiq.stacks.client.models;
 import java.util.List;
 
 /**
- * SetDocumentOcr holder.
+ * Set Document Fulltext holder.
  *
  */
 public class SetDocumentFulltext {
@@ -26,6 +26,10 @@ public class SetDocumentFulltext {
   private String contentType;
   /** Document Content Url. */
   private List<String> contentUrls;
+  /** Path. */
+  private String path;
+  /** Document Tags. */
+  private List<UpdateFulltextTag> tags;
 
   /**
    * constructor.
@@ -91,6 +95,46 @@ public class SetDocumentFulltext {
    */
   public SetDocumentFulltext contentUrls(final List<String> urls) {
     this.contentUrls = urls;
+    return this;
+  }
+
+  /**
+   * Get Path.
+   * 
+   * @return {@link String}
+   */
+  public String path() {
+    return this.path;
+  }
+
+  /**
+   * Set Path.
+   * 
+   * @param s {@link String}
+   * @return {@link SetDocumentFulltext}
+   */
+  public SetDocumentFulltext path(final String s) {
+    this.path = s;
+    return this;
+  }
+
+  /**
+   * Get Tags.
+   * 
+   * @return {@link List} {@link UpdateFulltextTag}
+   */
+  public List<UpdateFulltextTag> tags() {
+    return this.tags;
+  }
+
+  /**
+   * Set Tags.
+   * 
+   * @param list {@link List} {@link UpdateFulltextTag}
+   * @return {@link SetDocumentFulltext}
+   */
+  public SetDocumentFulltext tags(final List<UpdateFulltextTag> list) {
+    this.tags = list;
     return this;
   }
 }
