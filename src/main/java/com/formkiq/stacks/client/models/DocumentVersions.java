@@ -23,8 +23,8 @@ public class DocumentVersions {
 
   /** Path. */
   private String next;
-  /** Content Type. */
-  private List<DocumentVersion> versions;
+  /** Document Versions. */
+  private List<Document> documents;
 
   /**
    * constructor.
@@ -52,18 +52,18 @@ public class DocumentVersions {
   /**
    * Get Document Versions.
    * 
-   * @return {@link List} {@link DocumentVersion}
+   * @return {@link List} {@link Document}
    */
-  public List<DocumentVersion> versions() {
-    return this.versions;
+  public List<Document> documents() {
+    return this.documents;
   }
 
   /**
-   * Get Document Versions.
+   * Set Document Versions.
    * 
-   * @param list {@link List} {@link DocumentVersion}
+   * @param list {@link List} {@link Document}
    */
-  public void versions(final List<DocumentVersion> list) {
-    this.versions = list;
+  public void documents(final List<Document> list) {
+    this.documents = list;
   }
 }

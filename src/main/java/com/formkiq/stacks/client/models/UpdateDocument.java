@@ -33,6 +33,8 @@ public class UpdateDocument {
   private List<UpdateDocument> documents;
   /** Is Content Base 64 Encoded. */
   private boolean isBase64;
+  /** Document Actions. */
+  private List<AddDocumentMetadata> metadata;
   /** Path. */
   private String path;
   /** Document Tags. */
@@ -169,6 +171,26 @@ public class UpdateDocument {
   }
 
   /**
+   * Get Document Metadata.
+   * 
+   * @return {@link List} {@link AddDocumentMetadata}
+   */
+  public List<AddDocumentMetadata> metadata() {
+    return this.metadata;
+  }
+
+  /**
+   * Set Document Metadata.
+   * 
+   * @param documentMetadata {@link List} {@link AddDocumentMetadata}
+   * @return {@link UpdateDocument}
+   */
+  public UpdateDocument metadata(final List<AddDocumentMetadata> documentMetadata) {
+    this.metadata = documentMetadata;
+    return this;
+  }
+
+  /**
    * Get Path.
    * 
    * @return {@link String}
@@ -207,5 +229,4 @@ public class UpdateDocument {
     this.tags = list;
     return this;
   }
-
 }

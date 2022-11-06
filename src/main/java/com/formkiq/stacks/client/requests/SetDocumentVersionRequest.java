@@ -12,7 +12,6 @@
  */
 package com.formkiq.stacks.client.requests;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,31 +20,35 @@ import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
 
 /**
- * OPTIONS /documents/{documentId}/url Request.
+ * Creates PUT /documents/{documentId}/version Request.
  *
  */
-public class OptionsDocumentContentUrlRequest implements ApiRequest {
+public class SetDocumentVersionRequest implements ApiRequest {
 
   /** Request Parameters. */
+  private Map<String, String> parameters = new HashMap<>();
+  /** Request Parameters. */
   private Map<String, String> paths = new HashMap<>();
+  /** {@link String}. */
+  private String versionKey;
 
   /**
    * constructor.
    */
-  public OptionsDocumentContentUrlRequest() {}
+  public SetDocumentVersionRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
-    // empty
+    this.parameters.put(key, value);
   }
 
   /**
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link OptionsDocumentContentUrlRequest}
+   * @return {@link SetDocumentVersionRequest}
    */
-  public OptionsDocumentContentUrlRequest documentId(final String documentId) {
+  public SetDocumentVersionRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
     return this;
   }
@@ -57,16 +60,48 @@ public class OptionsDocumentContentUrlRequest implements ApiRequest {
 
   @Override
   public Map<String, String> getQueryParameters() {
-    return Collections.emptyMap();
+    return this.parameters;
   }
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/url";
+    return "documents/" + this.paths.get("documentId") + "/versions";
+  }
+
+  /**
+   * Site Identifier.
+   * 
+   * @param siteId {@link String}
+   * @return {@link SetDocumentVersionRequest}
+   */
+  public SetDocumentVersionRequest siteId(final String siteId) {
+    this.parameters.put("siteId", siteId);
+    return this;
   }
 
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
+    Validate.notNull(this.versionKey, "Version Key is required.");
+  }
+
+  /**
+   * Get {@link SetDocumentVersionRequest}.
+   * 
+   * @return {@link SetDocumentVersionRequest}
+   */
+  public String versionKey() {
+    return this.versionKey;
+  }
+
+  /**
+   * Set {@link SetDocumentVersionRequest}.
+   * 
+   * @param key {@link String}
+   * @return {@link SetDocumentVersionRequest}
+   */
+  public SetDocumentVersionRequest versionKey(final String key) {
+    this.versionKey = key;
+    return this;
   }
 }

@@ -120,6 +120,7 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -259,6 +260,7 @@ public class FormKiqClientV1Test {
     add("delete", "/documents/" + documentId, "/documentsId.json");
     add("get", "/documents/" + documentId + "/tags", "/get_documents_tags.json");
     add("get", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
+    add("put", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
     add("options", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
     mockServer.when(request().withMethod("post").withPath("/documents/" + documentId + "/tags"))
         .respond(
@@ -1396,9 +1398,9 @@ public class FormKiqClientV1Test {
         .next("nn").tz("-0600").siteId(siteId);
     DocumentVersions versions = this.client0.getDocumentVersions(req);
     assertEquals("123", versions.next());
-    assertEquals(1, versions.versions().size());
-    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.versions().get(0).versionId());
-    assertEquals("2020/05/05 18:11:36", df.format(versions.versions().get(0).lastModifiedDate()));
+    assertEquals(1, versions.documents().size());
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.documents().get(0).version());
+    assertEquals("2020/05/05 18:11:36", df.format(versions.documents().get(0).lastModifiedDate()));
   }
 
   /**
@@ -1433,8 +1435,8 @@ public class FormKiqClientV1Test {
 
     DocumentVersions versions = gson.fromJson(response.body(), DocumentVersions.class);
     assertEquals("123", versions.next());
-    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.versions().get(0).versionId());
-    assertEquals("2020/05/05 18:11:36", df.format(versions.versions().get(0).lastModifiedDate()));
+    assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.documents().get(0).version());
+    assertEquals("2020/05/05 18:11:36", df.format(versions.documents().get(0).lastModifiedDate()));
   }
 
   /**
@@ -2101,6 +2103,18 @@ public class FormKiqClientV1Test {
     SetDocumentOcrRequest req = new SetDocumentOcrRequest().documentId(documentId).siteId(siteId)
         .document(new SetDocumentOcr().content("test").contentType("text/plain"));
     this.client0.setDocumentOcr(req);
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/versions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocumentVersion01() throws Exception {
+    SetDocumentVersionRequest req =
+        new SetDocumentVersionRequest().documentId(documentId).siteId(siteId).versionKey("test");
+    this.client0.setDocumentVersion(req);
   }
 
   /**

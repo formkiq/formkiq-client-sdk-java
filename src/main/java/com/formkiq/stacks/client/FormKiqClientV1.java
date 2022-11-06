@@ -90,6 +90,7 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
@@ -1235,35 +1236,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     return response.body();
   }
 
+  /**
+   * POST /queryFulltext.
+   * 
+   * @param request {@link QueryFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> queryFulltextAsHttpResponse(final QueryFulltextRequest request)
+      throws IOException, InterruptedException {
+
+    request.validate();
+
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(request.query()));
+  }
+
   @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = searchAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), Documents.class);
-  }
-
-  /**
-   * POST /searchFulltext.
-   * 
-   * @param request {@link SearchFulltextRequest}
-   * @return {@link HttpResponse}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> searchFulltextAsHttpResponse(final SearchFulltextRequest request)
-      throws IOException, InterruptedException {
-
-    request.validate();
-
-    Map<String, Object> map = new HashMap<>();
-    map.put("query", request.query());
-    map.put("responseFields", request.responseFields());
-
-    String contents = this.gson.toJson(map);
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(contents));
   }
 
   /**
@@ -1287,30 +1283,35 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(contents));
   }
 
-  /**
-   * POST /queryFulltext.
-   * 
-   * @param request {@link QueryFulltextRequest}
-   * @return {@link HttpResponse}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> queryFulltextAsHttpResponse(final QueryFulltextRequest request)
-      throws IOException, InterruptedException {
-
-    request.validate();
-
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(request.query()));
-  }
-
   @Override
   public FulltextDocuments searchFulltext(final SearchFulltextRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = searchFulltextAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), FulltextDocuments.class);
+  }
+
+  /**
+   * POST /searchFulltext.
+   * 
+   * @param request {@link SearchFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> searchFulltextAsHttpResponse(final SearchFulltextRequest request)
+      throws IOException, InterruptedException {
+
+    request.validate();
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("query", request.query());
+    map.put("responseFields", request.responseFields());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
   }
 
   @Override
@@ -1351,6 +1352,20 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
     HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
     checkStatusCode(response);
+  }
+
+  @Override
+  public void setDocumentVersion(final SetDocumentVersionRequest request)
+      throws IOException, InterruptedException {
+    Map<String, Object> map = new HashMap<>();
+    map.put("versionKey", request.versionKey());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    HttpResponse<String> response = this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
+    checkStatusCode(response);
+
   }
 
   @Override

@@ -68,6 +68,7 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -266,17 +267,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * GET /documents/{documentId}/ocr.
-   * 
-   * @param request {@link GetDocumentOcrRequest}.
-   * @return {@link DocumentOcr}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  DocumentOcr getDocumentOcr(GetDocumentOcrRequest request)
-      throws IOException, InterruptedException;
-
-  /**
    * GET /documents/{documentId}/fulltext.
    * 
    * @param request {@link GetDocumentFulltextRequest}.
@@ -285,6 +275,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   DocumentFulltext getDocumentFulltext(GetDocumentFulltextRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * GET /documents/{documentId}/ocr.
+   * 
+   * @param request {@link GetDocumentOcrRequest}.
+   * @return {@link DocumentOcr}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentOcr getDocumentOcr(GetDocumentOcrRequest request)
       throws IOException, InterruptedException;
 
   /**
@@ -298,7 +299,6 @@ public interface FormKiqClient {
    */
   Documents getDocuments(GetDocumentsRequest request) throws IOException, InterruptedException;
 
-
   /**
    * GET /documents/{documentId}/tags/{tagKey}.
    * 
@@ -309,6 +309,7 @@ public interface FormKiqClient {
    */
   DocumentTag getDocumentTag(GetDocumentTagsKeyRequest request)
       throws IOException, InterruptedException;
+
 
   /**
    * GET /documents/{documentId}/tags.
@@ -392,7 +393,6 @@ public interface FormKiqClient {
    */
   Webhooks getWebhooks(GetWebhooksRequest request) throws IOException, InterruptedException;
 
-
   /**
    * Get /webhooks/${webhookId}/tags.
    * 
@@ -403,6 +403,17 @@ public interface FormKiqClient {
    */
   WebhookTags getWebhookTags(GetWebhookTagsRequest request)
       throws IOException, InterruptedException;
+
+
+  /**
+   * POST /queryFulltext.
+   * 
+   * @param request {@link QueryFulltextRequest}
+   * @return {@link String}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  String queryFulltext(QueryFulltextRequest request) throws IOException, InterruptedException;
 
   /**
    * POST /search.
@@ -415,17 +426,6 @@ public interface FormKiqClient {
   Documents search(SearchDocumentsRequest request) throws IOException, InterruptedException;
 
   /**
-   * POST /queryFulltext.
-   * 
-   * @param request {@link QueryFulltextRequest}
-   * @return {@link String}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  String queryFulltext(QueryFulltextRequest request) throws IOException, InterruptedException;
-
-
-  /**
    * POST /searchFulltext.
    * 
    * @param request {@link SearchFulltextRequest}
@@ -435,6 +435,7 @@ public interface FormKiqClient {
    */
   FulltextDocuments searchFulltext(SearchFulltextRequest request)
       throws IOException, InterruptedException;
+
 
   /**
    * PUT /documents/{documentId}/antivirus.
@@ -464,6 +465,16 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   void setDocumentOcr(SetDocumentOcrRequest request) throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/version.
+   * 
+   * @param request {@link SetDocumentVersionRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void setDocumentVersion(SetDocumentVersionRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.
