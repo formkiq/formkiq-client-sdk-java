@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.mockserver.model.HttpRequest.request;
+import static org.mockserver.model.HttpResponse.response;
 import java.io.IOException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -41,6 +42,8 @@ import org.mockserver.integration.ClientAndServer;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocumentTag;
+import com.formkiq.stacks.client.models.AddDocusign;
+import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
@@ -58,11 +61,13 @@ import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.Documents;
+import com.formkiq.stacks.client.models.DocusignConfig;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.FulltextSearchQuery;
 import com.formkiq.stacks.client.models.FulltextSearchTag;
 import com.formkiq.stacks.client.models.SetDocumentFulltext;
 import com.formkiq.stacks.client.models.SetDocumentOcr;
+import com.formkiq.stacks.client.models.SetDocusignConfig;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
 import com.formkiq.stacks.client.models.TagSchemaSummaries;
@@ -76,6 +81,7 @@ import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddDocusignRequest;
 import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -99,6 +105,7 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
+import com.formkiq.stacks.client.requests.GetDocusignRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
@@ -121,6 +128,7 @@ import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
+import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -175,7 +183,7 @@ public class FormKiqClientV1Test {
   private static void add(final String method, final String path, final String file)
       throws IOException {
     mockServer.when(request().withMethod(method).withPath(path))
-        .respond(org.mockserver.model.HttpResponse.response(resourceToString(file, UTF_8)));
+        .respond(response(resourceToString(file, UTF_8)));
   }
 
   /**
@@ -189,6 +197,12 @@ public class FormKiqClientV1Test {
 
     add("get", "/sites", "/get_sites.json");
     add("options", "/sites", "/id.json");
+  }
+
+  private static void addEsignature() throws IOException {
+    add("get", "/esignature/docusign/config", "/get_docusign_config.json");
+    add("put", "/esignature/docusign/config", "/documentsId.json");
+    add("post", "/esignature/docusign/" + documentId, "/post_docusign.json");
   }
 
   private static void addFulltextUrls() throws IOException {
@@ -217,9 +231,8 @@ public class FormKiqClientV1Test {
    */
   private static void addWebhooks() throws IOException {
     mockServer.when(request().withMethod("post").withPath("/webhooks/" + documentId + "/tags"))
-        .respond(
-            org.mockserver.model.HttpResponse.response(resourceToString("/documentsId.json", UTF_8))
-                .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
+        .respond(response(resourceToString("/documentsId.json", UTF_8))
+            .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
 
     add("get", "/webhooks", "/get_webhooks.json");
     add("post", "/webhooks", "/id.json");
@@ -248,6 +261,7 @@ public class FormKiqClientV1Test {
     addWebhooks();
     addFulltextUrls();
     addOcr();
+    addEsignature();
 
     add("put", "/documents/" + documentId + "/antivirus", "/documentsId.json");
 
@@ -263,9 +277,8 @@ public class FormKiqClientV1Test {
     add("put", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
     add("options", "/documents/" + documentId + "/versions", "/get_documents_versions.json");
     mockServer.when(request().withMethod("post").withPath("/documents/" + documentId + "/tags"))
-        .respond(
-            org.mockserver.model.HttpResponse.response(resourceToString("/documentsId.json", UTF_8))
-                .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
+        .respond(response(resourceToString("/documentsId.json", UTF_8))
+            .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
     add("options", "/documents/" + documentId + "/tags", "/documentsId.json");
     add("options", "/documents/" + documentId + "/content", "/documentsId.json");
     add("options", "/documents/" + documentId, "/documentsId.json");
@@ -574,6 +587,41 @@ public class FormKiqClientV1Test {
     assertEquals("POST", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
+  }
+
+  /**
+   * Test POST /esignature/docusign/{documentId}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddDocusign01() throws Exception {
+    AddDocusignRequest req = new AddDocusignRequest().siteId(siteId).documentId(documentId)
+        .docusign(new AddDocusign().emailSubject("test"));
+    AddDocusignResponse response = this.client0.addDocusign(req);
+    assertEquals("all good", response.message());
+    assertEquals("http://localhost", response.url());
+  }
+
+  /**
+   * Test POST /esignature/docusign/{documentId}.
+   * 
+   * @throws Exception Exception
+   */
+  @SuppressWarnings("unchecked")
+  @Test
+  public void testAddDocusign01AsHttpResponse01() throws Exception {
+    AddDocusignRequest req = new AddDocusignRequest().siteId(siteId).documentId(documentId)
+        .docusign(new AddDocusign().emailSubject("test"));
+    HttpResponse<String> response = this.client0.addDocusignAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/esignature/docusign/" + documentId + "?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("POST", response.request().method());
+
+    Map<String, Object> map = gson.fromJson(response.body(), Map.class);
+    assertEquals("all good", map.get("message").toString());
+    assertEquals("http://localhost", map.get("url").toString());
   }
 
   /**
@@ -1551,6 +1599,39 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /esignature/docusign/config.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocusignConfig() throws Exception {
+    DocusignConfig config = this.client0.getDocusignConfig(new GetDocusignRequest());
+    assertEquals("555", config.clientId());
+    assertEquals("123", config.userId());
+    assertTrue(config.configured());
+  }
+
+
+  /**
+   * Test GET /esignature/docusign/config.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocusignConfigAsHttpResponse01() throws Exception {
+    HttpResponse<String> response =
+        this.client0.getDocusignConfigAsHttpResponse(new GetDocusignRequest());
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/esignature/docusign/config", response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    DocusignConfig config = gson.fromJson(response.body(), DocusignConfig.class);
+    assertEquals("555", config.clientId());
+    assertEquals("123", config.userId());
+    assertTrue(config.configured());
+  }
+
+  /**
    * Test GET /sites.
    * 
    * @throws Exception Exception
@@ -1594,7 +1675,6 @@ public class FormKiqClientV1Test {
     assertEquals("joe", doc.userId());
     assertEquals("2022/06/07 03:44:23", df.format(doc.insertedDate()));
   }
-
 
   /**
    * Test GET /tagSchema/{tagSchemaId}. Missing tagSchemaId.
@@ -1821,6 +1901,7 @@ public class FormKiqClientV1Test {
         response.request().uri().toString());
   }
 
+
   /**
    * Test Options /documents/{documentId}/url.
    * 
@@ -1878,7 +1959,6 @@ public class FormKiqClientV1Test {
     assertEquals("OPTIONS", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/tags", response.request().uri().toString());
   }
-
 
   /**
    * Test OPTIONS /documents/{documentId}/tags/{tagKey}.
@@ -2115,6 +2195,50 @@ public class FormKiqClientV1Test {
     SetDocumentVersionRequest req =
         new SetDocumentVersionRequest().documentId(documentId).siteId(siteId).versionKey("test");
     this.client0.setDocumentVersion(req);
+  }
+
+  /**
+   * Test PUT /esignature/docusign/config.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocusignConfig01() throws Exception {
+    SetDocusignConfigRequest request = new SetDocusignConfigRequest()
+        .config(new SetDocusignConfig().clientId("1").privateKey("123").clientId("2"));
+    this.client0.setDocusignConfig(request);
+  }
+
+  /**
+   * Test PUT /esignature/docusign/config.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocusignConfig02() throws Exception {
+    SetDocusignConfigRequest request = new SetDocusignConfigRequest();
+    try {
+      this.client0.setDocusignConfig(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("Config is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test PUT /esignature/docusign/config.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPutDocusignConfigAsHttpResponse() throws Exception {
+    SetDocusignConfigRequest request = new SetDocusignConfigRequest().siteId(siteId)
+        .config(new SetDocusignConfig().clientId("1").privateKey("123").clientId("2"));
+    HttpResponse<String> response = this.client0.setDocusignConfigAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("PUT", response.request().method());
+    assertEquals(URL + "/esignature/docusign/config?siteId=" + siteId,
+        response.request().uri().toString());
   }
 
   /**
