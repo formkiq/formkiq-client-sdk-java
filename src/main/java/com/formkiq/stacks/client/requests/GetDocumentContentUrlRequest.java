@@ -94,13 +94,13 @@ public class GetDocumentContentUrlRequest implements ApiRequest {
   }
 
   /**
-   * Set the VersionId.
+   * Set the VersionKey.
    * 
-   * @param versionId {@link String}
+   * @param versionKey {@link String}
    * @return {@link GetDocumentContentUrlRequest}
    */
-  public GetDocumentContentUrlRequest versionId(final String versionId) {
-    this.parameters.put("versionId", versionId);
+  public GetDocumentContentUrlRequest versionKey(final String versionKey) {
+    this.parameters.put("versionKey", versionKey);
     return this;
   }
 }

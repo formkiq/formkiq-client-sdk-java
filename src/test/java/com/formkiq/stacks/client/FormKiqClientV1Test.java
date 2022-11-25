@@ -165,7 +165,7 @@ public class FormKiqClientV1Test {
   /** Test server URL. */
   private static final String URL = "http://localhost:" + PORT;
   /** Random Version Identifier. */
-  private static String versionId = UUID.randomUUID().toString();
+  private static String versionKey = UUID.randomUUID().toString();
   /** Year 2020. */
   private static final int YEAR = 2020;
   /** {@link Date}. */
@@ -1163,7 +1163,7 @@ public class FormKiqClientV1Test {
   @Test
   public void testGetDocumentContent() throws Exception {
     GetDocumentContentRequest request =
-        new GetDocumentContentRequest().documentId(documentId).versionId("100").siteId("123");
+        new GetDocumentContentRequest().documentId(documentId).versionKey("100").siteId("123");
     DocumentContent response = this.client0.getDocumentContent(request);
     assertEquals("this is a test", response.content());
     assertEquals("text/plain", response.contentType());
@@ -1179,11 +1179,11 @@ public class FormKiqClientV1Test {
   @Test
   public void testGetDocumentContentAsHttpResponse() throws Exception {
     GetDocumentContentRequest request =
-        new GetDocumentContentRequest().documentId(documentId).versionId("101").siteId("123");
+        new GetDocumentContentRequest().documentId(documentId).versionKey("101").siteId("123");
     HttpResponse<String> response = this.client0.getDocumentContentAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("GET", response.request().method());
-    assertEquals(URL + "/documents/" + documentId + "/content?versionId=101&siteId=123",
+    assertEquals(URL + "/documents/" + documentId + "/content?siteId=123&versionKey=101",
         response.request().uri().toString());
   }
 
@@ -1225,11 +1225,11 @@ public class FormKiqClientV1Test {
   @Test
   public void testGetDocumentContentUrlAsHttpResponse() throws Exception {
     GetDocumentContentUrlRequest req = new GetDocumentContentUrlRequest().documentId(documentId)
-        .duration(1).siteId(siteId).versionId(versionId);
+        .duration(1).siteId(siteId).versionKey(versionKey);
     HttpResponse<String> response = this.client0.getDocumentContentUrlAsHttpResponse(req);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/documents/" + documentId + "/url?duration=1&versionId=" + versionId
-        + "&siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/documents/" + documentId + "/url?duration=1&siteId=" + siteId
+        + "&versionKey=" + versionKey, response.request().uri().toString());
     assertEquals("GET", response.request().method());
 
     DocumentUrl url = gson.fromJson(response.body(), DocumentUrl.class);
