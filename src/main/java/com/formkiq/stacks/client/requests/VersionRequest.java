@@ -30,7 +30,9 @@ public class VersionRequest implements ApiRequest {
   public VersionRequest() {}
 
   @Override
-  public void addQueryParameter(final String key, final String value) {}
+  public void addQueryParameter(final String key, final String value) {
+    // empty
+  }
 
   @Override
   public Optional<Map<String, List<String>>> getHttpHeaders() {

@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -34,10 +35,16 @@ public class Document {
   private Date insertedDate;
   /** Document Last Modified Date. */
   private Date lastModifiedDate;
+  /** {@link Collection} {@link DocumentMetadata}. */
+  private Collection<DocumentMetadata> metadata;
   /** Document Path. */
   private String path;
   /** UserId. */
   private String userId;
+  /** Version. */
+  private String version;
+  /** Version Key. */
+  private String versionKey;
 
   /**
    * constructor.
@@ -173,6 +180,24 @@ public class Document {
   }
 
   /**
+   * Get Document Metadata.
+   * 
+   * @return {@link Collection} {@link DocumentMetadata}
+   */
+  public Collection<DocumentMetadata> metadata() {
+    return this.metadata;
+  }
+
+  /**
+   * Set Document Metadata.
+   * 
+   * @param list {@link Collection} {@link DocumentMetadata}
+   */
+  public void metadata(final Collection<DocumentMetadata> list) {
+    this.metadata = list;
+  }
+
+  /**
    * Get Document Path.
    * 
    * @return {@link String}
@@ -206,5 +231,41 @@ public class Document {
    */
   public void userId(final String s) {
     this.userId = s;
+  }
+
+  /**
+   * Get Document Version.
+   * 
+   * @return {@link String}
+   */
+  public String version() {
+    return this.version;
+  }
+
+  /**
+   * Set Document Version.
+   * 
+   * @param documentVersion {@link String}
+   */
+  public void version(final String documentVersion) {
+    this.version = documentVersion;
+  }
+
+  /**
+   * Get Version Key.
+   * 
+   * @return {@link String}
+   */
+  public String versionKey() {
+    return this.versionKey;
+  }
+
+  /**
+   * Set Version Key.
+   * 
+   * @param key {@link String}
+   */
+  public void versionKey(final String key) {
+    this.versionKey = key;
   }
 }

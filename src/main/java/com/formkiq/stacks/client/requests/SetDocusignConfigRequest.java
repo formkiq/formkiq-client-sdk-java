@@ -18,22 +18,24 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.SetDocumentFulltext;
+import com.formkiq.stacks.client.models.SetDocusignConfig;
 
 /**
- * Creates GET /documents/{documentId}/content Request.
+ * Creates PUT /esignature/docusign/config Request.
  *
  */
-public class GetDocumentContentRequest implements ApiRequest {
+public class SetDocusignConfigRequest implements ApiRequest {
 
+  /** {@link SetDocumentFulltext}. */
+  private SetDocusignConfig config;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public GetDocumentContentRequest() {}
+  public SetDocusignConfigRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
@@ -41,13 +43,22 @@ public class GetDocumentContentRequest implements ApiRequest {
   }
 
   /**
-   * Set the DocumentId.
+   * Set {@link SetDocusignConfig}.
    * 
-   * @param documentId {@link String}
-   * @return {@link GetDocumentContentRequest}
+   * @return {@link SetDocusignConfig}
    */
-  public GetDocumentContentRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
+  public SetDocusignConfig config() {
+    return this.config;
+  }
+
+  /**
+   * Set {@link SetDocusignConfig}.
+   * 
+   * @param docusignConfig {@link SetDocusignConfig}
+   * @return {@link SetDocusignConfigRequest}
+   */
+  public SetDocusignConfigRequest config(final SetDocusignConfig docusignConfig) {
+    this.config = docusignConfig;
     return this;
   }
 
@@ -63,33 +74,22 @@ public class GetDocumentContentRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/content";
+    return "esignature/docusign/config";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentContentRequest}
+   * @return {@link SetDocusignConfigRequest}
    */
-  public GetDocumentContentRequest siteId(final String siteId) {
+  public SetDocusignConfigRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-  }
-
-  /**
-   * Version Id.
-   * 
-   * @param versionKey {@link String}
-   * @return {@link GetDocumentContentRequest}
-   */
-  public GetDocumentContentRequest versionKey(final String versionKey) {
-    this.parameters.put("versionKey", versionKey);
-    return this;
+    Validate.notNull(this.config, "Config is required.");
   }
 }

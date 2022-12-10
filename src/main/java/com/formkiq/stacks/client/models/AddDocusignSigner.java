@@ -12,58 +12,63 @@
  */
 package com.formkiq.stacks.client.models;
 
-import java.util.List;
-
 /**
- * 
- * {@link DocumentVersions} holder.
+ * Add DocumentAction holder.
  *
  */
-public class DocumentVersions {
+public class AddDocusignSigner {
 
-  /** Path. */
-  private String next;
-  /** Document Versions. */
-  private List<Document> documents;
+  /** Signer Email. */
+  private String email;
+  /** Signer Name. */
+  private String name;
 
   /**
    * constructor.
    */
-  public DocumentVersions() {}
+  public AddDocusignSigner() {
+
+  }
 
   /**
-   * Get Next Token.
+   * Get Signer Email.
    * 
    * @return {@link String}
    */
-  public String next() {
-    return this.next;
+  public String email() {
+    return this.email;
   }
 
   /**
-   * Set Next Token.
+   * Set Signer Email.
    * 
-   * @param token {@link String}
+   * @param s {@link String}
+   * @return {@link AddDocusignSigner}
    */
-  public void next(final String token) {
-    this.next = token;
+  public AddDocusignSigner email(final String s) {
+    this.email = s;
+    return this;
   }
 
   /**
-   * Get Document Versions.
+   * Get Signer Name.
    * 
-   * @return {@link List} {@link Document}
+   * @return {@link String}
    */
-  public List<Document> documents() {
-    return this.documents;
+  public String name() {
+    return this.name;
   }
 
   /**
-   * Set Document Versions.
+   * Set Signer Name.
    * 
-   * @param list {@link List} {@link Document}
+   * @param s {@link String}
+   * @return {@link AddDocusignSigner}
    */
-  public void documents(final List<Document> list) {
-    this.documents = list;
+  public AddDocusignSigner name(final String s) {
+    this.name = s;
+    return this;
   }
+
+
 }

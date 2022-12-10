@@ -23,22 +23,24 @@ import java.util.List;
  */
 public class AddDocument {
 
-  /** TagSchema Id. */
-  private String tagSchemaId;
-  /** Path. */
-  private String path;
-  /** Content Type. */
-  private String contentType;
-  /** Document Content. */
-  private String content;
-  /** Is Content Base 64 Encoded. */
-  private boolean isBase64;
-  /** Document Tags. */
-  private List<AddDocumentTag> tags;
-  /** Child Documents. */
-  private List<AddDocument> documents;
   /** Document Actions. */
   private List<AddDocumentAction> actions;
+  /** Document Content. */
+  private String content;
+  /** Content Type. */
+  private String contentType;
+  /** Child Documents. */
+  private List<AddDocument> documents;
+  /** Is Content Base 64 Encoded. */
+  private boolean isBase64;
+  /** Document Metadata. */
+  private List<AddDocumentMetadata> metadata;
+  /** Path. */
+  private String path;
+  /** Document Tags. */
+  private List<AddDocumentTag> tags;
+  /** TagSchema Id. */
+  private String tagSchemaId;
 
   /**
    * constructor.
@@ -166,6 +168,26 @@ public class AddDocument {
    */
   public AddDocument isBase64(final boolean base64) {
     this.isBase64 = base64;
+    return this;
+  }
+
+  /**
+   * Get Document Metadata.
+   * 
+   * @return {@link List} {@link AddDocumentMetadata}
+   */
+  public List<AddDocumentMetadata> metadata() {
+    return this.metadata;
+  }
+
+  /**
+   * Set Document Metadata.
+   * 
+   * @param documentMetadata {@link List} {@link AddDocumentMetadata}
+   * @return {@link AddDocument}
+   */
+  public AddDocument metadata(final List<AddDocumentMetadata> documentMetadata) {
+    this.metadata = documentMetadata;
     return this;
   }
 

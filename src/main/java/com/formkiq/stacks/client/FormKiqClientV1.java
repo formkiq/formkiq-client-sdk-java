@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import com.formkiq.stacks.client.models.AddDocument;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
+import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DocumentActions;
@@ -36,6 +37,7 @@ import com.formkiq.stacks.client.models.DocumentUrl;
 import com.formkiq.stacks.client.models.DocumentVersions;
 import com.formkiq.stacks.client.models.DocumentWithChildren;
 import com.formkiq.stacks.client.models.Documents;
+import com.formkiq.stacks.client.models.DocusignConfig;
 import com.formkiq.stacks.client.models.FulltextDocuments;
 import com.formkiq.stacks.client.models.Sites;
 import com.formkiq.stacks.client.models.TagSchema;
@@ -47,6 +49,7 @@ import com.formkiq.stacks.client.models.Webhooks;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
+import com.formkiq.stacks.client.requests.AddDocusignRequest;
 import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
@@ -70,6 +73,7 @@ import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
 import com.formkiq.stacks.client.requests.GetDocumentVersionsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentsRequest;
+import com.formkiq.stacks.client.requests.GetDocusignRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemaRequest;
 import com.formkiq.stacks.client.requests.GetTagSchemasRequest;
 import com.formkiq.stacks.client.requests.GetWebhookTagsRequest;
@@ -90,6 +94,8 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
+import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
@@ -875,6 +881,30 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocusignConfig getDocusignConfig(final GetDocusignRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocusignConfigAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocusignConfig.class);
+
+  }
+
+  /**
+   * GET /esignature/docusign/config.
+   * 
+   * @param request {@link GetDocumentContentRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocusignConfigAsHttpResponse(final GetDocusignRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", request.getHttpHeaders()));
+  }
+
+  @Override
   public Sites getSites() throws IOException, InterruptedException {
     HttpResponse<String> response = getSitesAsHttpResponse();
     checkStatusCode(response);
@@ -1114,6 +1144,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /documents/{documentId}/upload.
    * 
@@ -1142,7 +1173,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /search.
@@ -1235,35 +1265,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     return response.body();
   }
 
+  /**
+   * POST /queryFulltext.
+   * 
+   * @param request {@link QueryFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> queryFulltextAsHttpResponse(final QueryFulltextRequest request)
+      throws IOException, InterruptedException {
+
+    request.validate();
+
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(request.query()));
+  }
+
   @Override
   public Documents search(final SearchDocumentsRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = searchAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), Documents.class);
-  }
-
-  /**
-   * POST /searchFulltext.
-   * 
-   * @param request {@link SearchFulltextRequest}
-   * @return {@link HttpResponse}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> searchFulltextAsHttpResponse(final SearchFulltextRequest request)
-      throws IOException, InterruptedException {
-
-    request.validate();
-
-    Map<String, Object> map = new HashMap<>();
-    map.put("query", request.query());
-    map.put("responseFields", request.responseFields());
-
-    String contents = this.gson.toJson(map);
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(contents));
   }
 
   /**
@@ -1287,30 +1312,35 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(contents));
   }
 
-  /**
-   * POST /queryFulltext.
-   * 
-   * @param request {@link QueryFulltextRequest}
-   * @return {@link HttpResponse}
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  public HttpResponse<String> queryFulltextAsHttpResponse(final QueryFulltextRequest request)
-      throws IOException, InterruptedException {
-
-    request.validate();
-
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(request.query()));
-  }
-
   @Override
   public FulltextDocuments searchFulltext(final SearchFulltextRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = searchFulltextAsHttpResponse(request);
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), FulltextDocuments.class);
+  }
+
+  /**
+   * POST /searchFulltext.
+   * 
+   * @param request {@link SearchFulltextRequest}
+   * @return {@link HttpResponse}
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> searchFulltextAsHttpResponse(final SearchFulltextRequest request)
+      throws IOException, InterruptedException {
+
+    request.validate();
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("query", request.query());
+    map.put("responseFields", request.responseFields());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
   }
 
   @Override
@@ -1351,6 +1381,51 @@ public class FormKiqClientV1 implements FormKiqClient {
       throws IOException, InterruptedException {
     HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
     checkStatusCode(response);
+  }
+
+  @Override
+  public void setDocumentVersion(final SetDocumentVersionRequest request)
+      throws IOException, InterruptedException {
+    Map<String, Object> map = new HashMap<>();
+    map.put("versionKey", request.versionKey());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    HttpResponse<String> response = this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
+    checkStatusCode(response);
+
+  }
+
+  @Override
+  public void setDocusignConfig(final SetDocusignConfigRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = setDocusignConfigAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  /**
+   * PUT /esignature/docusign/config.
+   * 
+   * @param request {@link AddDocumentOcrRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> setDocusignConfigAsHttpResponse(
+      final SetDocusignConfigRequest request) throws IOException, InterruptedException {
+
+    request.validate();
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("privateKey", request.config().privateKey());
+    map.put("userId", request.config().userId());
+    map.put("clientId", request.config().clientId());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
+        RequestBody.fromString(contents));
   }
 
   @Override
@@ -1430,5 +1505,29 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
+  }
+
+  @Override
+  public AddDocusignResponse addDocusign(final AddDocusignRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocusignAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddDocusignResponse.class);
+  }
+
+  /**
+   * POST /esignature/docusign/{documentId}.
+   * 
+   * @param request {@link AddDocumentRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocusignAsHttpResponse(final AddDocusignRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.docusign());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
   }
 }

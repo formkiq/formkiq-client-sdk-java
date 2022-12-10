@@ -35,7 +35,9 @@ public class OptionsDocumentTagsRequest implements ApiRequest {
   public OptionsDocumentTagsRequest() {}
 
   @Override
-  public void addQueryParameter(final String key, final String value) {}
+  public void addQueryParameter(final String key, final String value) {
+    // empty
+  }
 
   /**
    * Set the DocumentId.

@@ -17,38 +17,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
-import com.formkiq.stacks.client.Validate;
 
 /**
- * Creates GET /documents/{documentId}/content Request.
+ * GET /esignature/docusign/config.
  *
  */
-public class GetDocumentContentRequest implements ApiRequest {
+public class GetDocusignRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
-  /** Request Parameters. */
-  private Map<String, String> paths = new HashMap<>();
 
   /**
    * constructor.
    */
-  public GetDocumentContentRequest() {}
+  public GetDocusignRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
     this.parameters.put(key, value);
-  }
-
-  /**
-   * Set the DocumentId.
-   * 
-   * @param documentId {@link String}
-   * @return {@link GetDocumentContentRequest}
-   */
-  public GetDocumentContentRequest documentId(final String documentId) {
-    this.paths.put("documentId", documentId);
-    return this;
   }
 
   @Override
@@ -63,33 +49,22 @@ public class GetDocumentContentRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/content";
+    return "esignature/docusign/config";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentContentRequest}
+   * @return {@link GetDocusignRequest}
    */
-  public GetDocumentContentRequest siteId(final String siteId) {
+  public GetDocusignRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
 
   @Override
   public void validate() {
-    Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-  }
-
-  /**
-   * Version Id.
-   * 
-   * @param versionKey {@link String}
-   * @return {@link GetDocumentContentRequest}
-   */
-  public GetDocumentContentRequest versionKey(final String versionKey) {
-    this.parameters.put("versionKey", versionKey);
-    return this;
+    // empty
   }
 }

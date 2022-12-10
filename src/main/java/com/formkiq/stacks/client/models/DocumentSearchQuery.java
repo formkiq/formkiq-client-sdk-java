@@ -20,12 +20,14 @@ import java.util.List;
  *
  */
 public class DocumentSearchQuery {
+  /** {@link Collection} {@link String}. */
+  private Collection<String> documentIds;
   /** {@link DocumentSearchTag}. */
   private DocumentSearchTag tag;
   /** {@link List} {@link DocumentSearchTag}. */
   private List<DocumentSearchTag> tags;
-  /** {@link Collection} {@link String}. */
-  private Collection<String> documentIds;
+  /** Text Search. */
+  private String text;
 
   /** constructor. */
   public DocumentSearchQuery() {
@@ -89,6 +91,26 @@ public class DocumentSearchQuery {
    */
   public DocumentSearchQuery tags(final List<DocumentSearchTag> list) {
     this.tags = list;
+    return this;
+  }
+
+  /**
+   * Get Search Text.
+   * 
+   * @return {@link String}
+   */
+  public String text() {
+    return this.text;
+  }
+
+  /**
+   * Set DocumentIds.
+   * 
+   * @param s {@link String}
+   * @return {@link DocumentSearchQuery}
+   */
+  public DocumentSearchQuery text(final String s) {
+    this.text = s;
     return this;
   }
 }

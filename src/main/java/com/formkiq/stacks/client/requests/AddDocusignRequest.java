@@ -18,13 +18,16 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
+import com.formkiq.stacks.client.models.AddDocusign;
 
 /**
- * Creates GET /documents/{documentId}/content Request.
+ * Creates POST /esignature/docusign/{documentId} Request.
  *
  */
-public class GetDocumentContentRequest implements ApiRequest {
+public class AddDocusignRequest implements ApiRequest {
 
+  /** {@link AddDocusign}. */
+  private AddDocusign docusign;
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
   /** Request Parameters. */
@@ -33,7 +36,7 @@ public class GetDocumentContentRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public GetDocumentContentRequest() {}
+  public AddDocusignRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
@@ -44,10 +47,30 @@ public class GetDocumentContentRequest implements ApiRequest {
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link GetDocumentContentRequest}
+   * @return {@link AddDocusignRequest}
    */
-  public GetDocumentContentRequest documentId(final String documentId) {
+  public AddDocusignRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
+    return this;
+  }
+
+  /**
+   * Set {@link AddDocusign}.
+   * 
+   * @return {@link AddDocusign}
+   */
+  public AddDocusign docusign() {
+    return this.docusign;
+  }
+
+  /**
+   * Set {@link AddDocusign}.
+   * 
+   * @param addDocument {@link AddDocusign}
+   * @return {@link AddDocumentRequest}
+   */
+  public AddDocusignRequest docusign(final AddDocusign addDocument) {
+    this.docusign = addDocument;
     return this;
   }
 
@@ -63,16 +86,16 @@ public class GetDocumentContentRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "documents/" + this.paths.get("documentId") + "/content";
+    return "esignature/docusign/" + this.paths.get("documentId");
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link GetDocumentContentRequest}
+   * @return {@link AddDocusignRequest}
    */
-  public GetDocumentContentRequest siteId(final String siteId) {
+  public AddDocusignRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
@@ -80,16 +103,6 @@ public class GetDocumentContentRequest implements ApiRequest {
   @Override
   public void validate() {
     Validate.notNull(this.paths.get("documentId"), "DocumentId is required.");
-  }
-
-  /**
-   * Version Id.
-   * 
-   * @param versionKey {@link String}
-   * @return {@link GetDocumentContentRequest}
-   */
-  public GetDocumentContentRequest versionKey(final String versionKey) {
-    this.parameters.put("versionKey", versionKey);
-    return this;
+    Validate.notNull(this.docusign, "Docusign is required.");
   }
 }
