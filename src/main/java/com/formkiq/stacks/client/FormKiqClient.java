@@ -22,6 +22,7 @@ import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
+import com.formkiq.stacks.client.models.DocumentSyncs;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -56,6 +57,7 @@ import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
+import com.formkiq.stacks.client.requests.GetDocumentSyncsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
@@ -96,17 +98,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * POST(Add) /esignature/docusign/{documentId}.
-   * 
-   * @param request {@link AddDocusignRequest}
-   * @return {@link AddDocusignResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  AddDocusignResponse addDocusign(AddDocusignRequest request)
-      throws IOException, InterruptedException;
-
-  /**
    * POST /documents/{documentId}/ocr.
    * 
    * @param request {@link AddDocumentOcrRequest}
@@ -124,6 +115,17 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addDocumentTag(AddDocumentTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST(Add) /esignature/docusign/{documentId}.
+   * 
+   * @param request {@link AddDocusignRequest}
+   * @return {@link AddDocusignResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  AddDocusignResponse addDocusign(AddDocusignRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * POST(Add) /documents/upload to get a URL that will allow adding a large document.
@@ -316,6 +318,17 @@ public interface FormKiqClient {
   Documents getDocuments(GetDocumentsRequest request) throws IOException, InterruptedException;
 
   /**
+   * GET /documents/{documentId}/syncs.
+   * 
+   * @param request {@link GetDocumentRequest}
+   * @return {@link DocumentSyncs}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  DocumentSyncs getDocumentSyncs(GetDocumentSyncsRequest request)
+      throws IOException, InterruptedException;
+
+  /**
    * GET /documents/{documentId}/tags/{tagKey}.
    * 
    * @param request {@link GetDocumentTagsKeyRequest}
@@ -475,15 +488,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * PUT /esignature/docusign/config.
-   * 
-   * @param request {@link SetDocusignConfigRequest}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  void setDocusignConfig(SetDocusignConfigRequest request) throws IOException, InterruptedException;
-
-  /**
    * PUT /documents/{documentId}/fulltext.
    * 
    * @param request {@link SetDocumentFulltextRequest}
@@ -511,6 +515,15 @@ public interface FormKiqClient {
    */
   void setDocumentVersion(SetDocumentVersionRequest request)
       throws IOException, InterruptedException;
+
+  /**
+   * PUT /esignature/docusign/config.
+   * 
+   * @param request {@link SetDocusignConfigRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void setDocusignConfig(SetDocusignConfigRequest request) throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.

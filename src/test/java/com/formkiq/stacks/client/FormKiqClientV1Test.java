@@ -56,6 +56,8 @@ import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
 import com.formkiq.stacks.client.models.DocumentSearchTag;
+import com.formkiq.stacks.client.models.DocumentSync;
+import com.formkiq.stacks.client.models.DocumentSyncs;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -100,6 +102,7 @@ import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
+import com.formkiq.stacks.client.requests.GetDocumentSyncsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
@@ -197,6 +200,12 @@ public class FormKiqClientV1Test {
 
     add("get", "/sites", "/get_sites.json");
     add("options", "/sites", "/id.json");
+  }
+
+  private static void addDocumentOthers() throws IOException {
+    add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
+    add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
+    add("get", "/documents/" + documentId + "/syncs", "/get_documents_syncs.json");
   }
 
   private static void addEsignature() throws IOException {
@@ -302,8 +311,8 @@ public class FormKiqClientV1Test {
     add("post", "/tagSchemas", "/post_tagschemas.json");
     add("get", "/tagSchemas/" + documentId, "/get_tagschema.json");
     add("delete", "/tagSchemas/" + documentId, "/post_tagschemas.json");
-    add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
-    add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
+
+    addDocumentOthers();
   }
 
   /**
@@ -1485,6 +1494,66 @@ public class FormKiqClientV1Test {
     assertEquals("123", versions.next());
     assertEquals("9eb6a07a-08c0-44e0-9d02-a8c6bebb1408", versions.documents().get(0).version());
     assertEquals("2020/05/05 18:11:36", df.format(versions.documents().get(0).lastModifiedDate()));
+  }
+
+  /**
+   * Test GET /documents/{documentid}/syncs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentSyncs01() throws Exception {
+    GetDocumentSyncsRequest req =
+        new GetDocumentSyncsRequest().documentId(documentId).siteId(siteId);
+    DocumentSyncs syncs = this.client0.getDocumentSyncs(req);
+    DocumentSync sync = syncs.syncs().get(0);
+    assertEquals("joe", sync.userId());
+    assertEquals("1234", sync.documentId());
+    assertEquals("COMPLETE", sync.status());
+    assertEquals("METADATA", sync.type());
+    assertEquals("TYPESENSE", sync.service());
+    assertNotNull(sync.syncDate());
+  }
+
+  /**
+   * Test GET /documents/{documentid}/syncs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentSyncs02() throws Exception {
+    GetDocumentSyncsRequest req = new GetDocumentSyncsRequest();
+    try {
+      this.client0.getDocumentSyncs(req);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test GET /documents/{documentid}/syncs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetDocumentSyncsAsHttpResponse() throws Exception {
+    GetDocumentSyncsRequest req =
+        new GetDocumentSyncsRequest().documentId(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client0.getDocumentSyncsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/syncs?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("GET", response.request().method());
+
+    DocumentSyncs syncs = gson.fromJson(response.body(), DocumentSyncs.class);
+    DocumentSync sync = syncs.syncs().get(0);
+    assertEquals("joe", sync.userId());
+    assertEquals("1234", sync.documentId());
+    assertEquals("COMPLETE", sync.status());
+    assertEquals("METADATA", sync.type());
+    assertEquals("TYPESENSE", sync.service());
+    assertNotNull(sync.syncDate());
   }
 
   /**

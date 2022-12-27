@@ -1,0 +1,12 @@
+{
+  "syncs": [
+    {
+      "service": "TYPESENSE",
+      "syncDate": "2022-12-26T05:59:44+0000",
+      "documentId": "1234",
+      "type": "METADATA",
+      "userId": "joe",
+      "status": "COMPLETE"
+    }
+  ]
+}

@@ -31,6 +31,7 @@ import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentFulltext;
 import com.formkiq.stacks.client.models.DocumentOcr;
 import com.formkiq.stacks.client.models.DocumentSearchQuery;
+import com.formkiq.stacks.client.models.DocumentSyncs;
 import com.formkiq.stacks.client.models.DocumentTag;
 import com.formkiq.stacks.client.models.DocumentTags;
 import com.formkiq.stacks.client.models.DocumentUrl;
@@ -68,6 +69,7 @@ import com.formkiq.stacks.client.requests.GetDocumentContentUrlRequest;
 import com.formkiq.stacks.client.requests.GetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.GetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.GetDocumentRequest;
+import com.formkiq.stacks.client.requests.GetDocumentSyncsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsKeyRequest;
 import com.formkiq.stacks.client.requests.GetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.GetDocumentUploadRequest;
@@ -299,6 +301,30 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
         RequestBody.fromString(contents));
+  }
+
+  @Override
+  public AddDocusignResponse addDocusign(final AddDocusignRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocusignAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), AddDocusignResponse.class);
+  }
+
+  /**
+   * POST /esignature/docusign/{documentId}.
+   * 
+   * @param request {@link AddDocumentRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocusignAsHttpResponse(final AddDocusignRequest request)
+      throws IOException, InterruptedException {
+    String body = this.gson.toJson(request.docusign());
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(body));
   }
 
   @Override
@@ -642,9 +668,9 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   /**
-   * GET /documents/{documentId}/content.
+   * GET /documents/{documentId}/actions.
    * 
-   * @param request {@link GetDocumentContentRequest}
+   * @param request {@link GetDocumentActionsRequest}
    * @return {@link HttpResponse} {@link String}
    * 
    * @throws InterruptedException InterruptedException
@@ -792,6 +818,29 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public DocumentSyncs getDocumentSyncs(final GetDocumentSyncsRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = getDocumentSyncsAsHttpResponse(request);
+    checkStatusCode(response);
+    return this.gson.fromJson(response.body(), DocumentSyncs.class);
+  }
+
+  /**
+   * GET /documents/{documentId}/syncs.
+   * 
+   * @param request {@link GetDocumentSyncsRequest}
+   * @return {@link HttpResponse} {@link String}
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  public HttpResponse<String> getDocumentSyncsAsHttpResponse(final GetDocumentSyncsRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", request.getHttpHeaders()));
+  }
+
+  @Override
   public DocumentTag getDocumentTag(final GetDocumentTagsKeyRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = getDocumentTagAsHttpResponse(request);
@@ -821,6 +870,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentTags.class);
   }
 
+
   /**
    * GET /documents/{documentId}/tags.
    * 
@@ -842,7 +892,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentUrl.class);
   }
-
 
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
@@ -1118,6 +1167,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /documents/{documentId}/tags.
    * 
@@ -1143,7 +1193,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + new OptionsDocumentUploadRequest().buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /documents/{documentId}/upload.
@@ -1505,29 +1554,5 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
-  }
-
-  @Override
-  public AddDocusignResponse addDocusign(final AddDocusignRequest request)
-      throws IOException, InterruptedException {
-    HttpResponse<String> response = addDocusignAsHttpResponse(request);
-    checkStatusCode(response);
-    return this.gson.fromJson(response.body(), AddDocusignResponse.class);
-  }
-
-  /**
-   * POST /esignature/docusign/{documentId}.
-   * 
-   * @param request {@link AddDocumentRequest}
-   * @return {@link HttpResponse}
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  public HttpResponse<String> addDocusignAsHttpResponse(final AddDocusignRequest request)
-      throws IOException, InterruptedException {
-    String body = this.gson.toJson(request.docusign());
-    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
-    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
-        RequestBody.fromString(body));
   }
 }
