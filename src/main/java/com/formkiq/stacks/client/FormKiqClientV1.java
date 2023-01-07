@@ -59,7 +59,9 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
+import com.formkiq.stacks.client.requests.DeleteIndicesRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
@@ -586,6 +588,28 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public boolean deleteDocumentVersion(final DeleteDocumentVersionRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteDocumentVersionAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /documents/{documentId}/ocr.
+   * 
+   * @param request {@link DeleteDocumentOcrRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteDocumentVersionAsHttpResponse(
+      final DeleteDocumentVersionRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
   public boolean deleteFulltextTags(final DeleteFulltextTagsRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = deleteFulltextTagsAsHttpResponse(request);
@@ -603,6 +627,28 @@ public class FormKiqClientV1 implements FormKiqClient {
    */
   public HttpResponse<String> deleteFulltextTagsAsHttpResponse(
       final DeleteFulltextTagsRequest request) throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
+  @Override
+  public boolean deleteIndices(final DeleteIndicesRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteIndicesAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /indices/{indexType}/{indexKey}.
+   * 
+   * @param request {@link DeleteIndicesRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteIndicesAsHttpResponse(final DeleteIndicesRequest request)
+      throws IOException, InterruptedException {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
   }

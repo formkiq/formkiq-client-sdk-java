@@ -15,7 +15,7 @@ package com.formkiq.stacks.client.models;
 import java.util.Map;
 
 /**
- * DocumentOcr holder.
+ * Document Fulltext holder.
  *
  */
 public class DocumentFulltext {
@@ -28,6 +28,8 @@ public class DocumentFulltext {
   private String documentId;
   /** Document Tag InsertedDate. */
   private Long insertedDate;
+  /** Document Metadata. */
+  private Map<String, Object> metadata;
   /** Document Path. */
   private String path;
   /** Site Id. */
@@ -119,6 +121,26 @@ public class DocumentFulltext {
    */
   public DocumentFulltext insertedDate(final Long date) {
     this.insertedDate = date;
+    return this;
+  }
+
+  /**
+   * Get Document Metadata {@link Map}.
+   * 
+   * @return {@link Map}
+   */
+  public Map<String, Object> metadata() {
+    return this.metadata;
+  }
+
+  /**
+   * Set Document Metadata.
+   * 
+   * @param map {@link Map}
+   * @return {@link DocumentFulltext}
+   */
+  public DocumentFulltext metadata(final Map<String, Object> map) {
+    this.metadata = map;
     return this;
   }
 

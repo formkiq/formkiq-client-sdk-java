@@ -49,7 +49,9 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
+import com.formkiq.stacks.client.requests.DeleteIndicesRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.GetDocumentActionsRequest;
@@ -202,6 +204,29 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean deleteDocumentOcr(DeleteDocumentOcrRequest request)
+      throws IOException, InterruptedException;
+
+  /**
+   * DELETE /indices/{indexType}/{indexKey}.
+   * 
+   * @param request {@link DeleteIndicesRequest}
+   * @return boolean - Whether the Indices was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteIndices(DeleteIndicesRequest request) throws IOException, InterruptedException;
+
+  /**
+   * DELETE /documents/{documentId}/versions/{versionKey}.
+   * 
+   * @param request {@link DeleteDocumentVersionRequest}
+   * @return boolean - Whether the Document Version was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteDocumentVersion(DeleteDocumentVersionRequest request)
       throws IOException, InterruptedException;
 
   /**

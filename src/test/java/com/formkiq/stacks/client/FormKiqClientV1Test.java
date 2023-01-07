@@ -92,7 +92,9 @@ import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentTagRequest;
+import com.formkiq.stacks.client.requests.DeleteDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.DeleteFulltextTagsRequest;
+import com.formkiq.stacks.client.requests.DeleteIndicesRequest;
 import com.formkiq.stacks.client.requests.DeleteTagSchemaRequest;
 import com.formkiq.stacks.client.requests.DeleteWebhookRequest;
 import com.formkiq.stacks.client.requests.DocumentFormatSearchRequest;
@@ -200,12 +202,15 @@ public class FormKiqClientV1Test {
 
     add("get", "/sites", "/get_sites.json");
     add("options", "/sites", "/id.json");
+    add("delete", "/indices/tags/category", "/documentsId.json");
   }
 
   private static void addDocumentOthers() throws IOException {
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
     add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
     add("get", "/documents/" + documentId + "/syncs", "/get_documents_syncs.json");
+    add("delete", "/documents/" + documentId + "/versions/abc", "/documentsId.json");
+    System.out.println("ASD: " + "/documents/" + documentId + "/versions/abc");
   }
 
   private static void addEsignature() throws IOException {
@@ -950,6 +955,7 @@ public class FormKiqClientV1Test {
         response.request().uri().toString());
   }
 
+
   /**
    * Test DELETE /documents/{documentId}/tags/{tagKey}/{tagValue}.
    * 
@@ -964,6 +970,50 @@ public class FormKiqClientV1Test {
     assertEquals("DELETE", response.request().method());
     assertEquals(URL + "/documents/" + documentId + "/tags/category/person?siteId=" + siteId
         + "&webnotify=true", response.request().uri().toString());
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/versions/{versionKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentVersion01() throws Exception {
+    DeleteDocumentVersionRequest request =
+        new DeleteDocumentVersionRequest().documentId(documentId).siteId(siteId).versionKey("abc");
+    assertTrue(this.client0.deleteDocumentVersion(request));
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/versions/{versionKey}. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentVersion02() throws Exception {
+    DeleteDocumentVersionRequest request = new DeleteDocumentVersionRequest();
+    try {
+      this.client0.deleteDocumentVersion(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("DocumentId is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /documents/{documentId}/versions/{versionKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteDocumentVersionAsHttpResponse() throws Exception {
+    DeleteDocumentVersionRequest request =
+        new DeleteDocumentVersionRequest().documentId(documentId).siteId(siteId).versionKey("abc");
+    HttpResponse<String> response = this.client0.deleteDocumentVersionAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/documents/" + documentId + "/versions/abc?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("DELETE", response.request().method());
   }
 
   /**
@@ -1007,6 +1057,50 @@ public class FormKiqClientV1Test {
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals(
         URL + "/documents/" + documentId + "/fulltext/tags/somekey/somevalue?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("DELETE", response.request().method());
+  }
+
+  /**
+   * Test DELETE /indices/{indexType}/{indexKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteIndices01() throws Exception {
+    DeleteIndicesRequest request =
+        new DeleteIndicesRequest().indexType("tags").indexKey("category");
+    assertTrue(this.client0.deleteIndices(request));
+  }
+
+  /**
+   * Test DELETE /indices/{indexType}/{indexKey}. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteIndices02() throws Exception {
+    DeleteIndicesRequest request = new DeleteIndicesRequest();
+    try {
+      this.client0.deleteIndices(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("IndexType is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /indices/{indexType}/{indexKey}.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteIndicesAsHttpResponse() throws Exception {
+    DeleteIndicesRequest request =
+        new DeleteIndicesRequest().indexType("tags").indexKey("category").siteId(siteId);
+    HttpResponse<String> response = this.client0.deleteIndicesAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/indices/tags/category?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
