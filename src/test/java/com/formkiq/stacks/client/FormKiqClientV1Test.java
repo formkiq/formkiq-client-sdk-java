@@ -210,7 +210,6 @@ public class FormKiqClientV1Test {
     add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
     add("get", "/documents/" + documentId + "/syncs", "/get_documents_syncs.json");
     add("delete", "/documents/" + documentId + "/versions/abc", "/documentsId.json");
-    System.out.println("ASD: " + "/documents/" + documentId + "/versions/abc");
   }
 
   private static void addEsignature() throws IOException {
