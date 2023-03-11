@@ -22,6 +22,8 @@ import java.util.List;
 public class DocumentSearchQuery {
   /** {@link Collection} {@link String}. */
   private Collection<String> documentIds;
+  /** {@link DocumentSearchMetadata}. */
+  private DocumentSearchMetadata meta;
   /** {@link DocumentSearchTag}. */
   private DocumentSearchTag tag;
   /** {@link List} {@link DocumentSearchTag}. */
@@ -51,6 +53,26 @@ public class DocumentSearchQuery {
    */
   public DocumentSearchQuery documentIds(final Collection<String> list) {
     this.documentIds = list;
+    return this;
+  }
+
+  /**
+   * Get {@link List} {@link DocumentSearchMetadata}.
+   * 
+   * @return {@link List} {@link DocumentSearchMetadata}
+   */
+  public DocumentSearchMetadata meta() {
+    return this.meta;
+  }
+
+  /**
+   * Set {@link List} {@link DocumentSearchMetadata}.
+   * 
+   * @param data {@link DocumentSearchMetadata}
+   * @return {@link DocumentSearchQuery}
+   */
+  public DocumentSearchQuery meta(final DocumentSearchMetadata data) {
+    this.meta = data;
     return this;
   }
 

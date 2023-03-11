@@ -23,6 +23,8 @@ public class UpdateFulltext {
 
   /** Document Content. */
   private String content;
+  /** Document Content Url. */
+  private List<String> contentUrls;
   /** Path. */
   private String path;
   /** Document Tags. */
@@ -50,6 +52,26 @@ public class UpdateFulltext {
    */
   public UpdateFulltext content(final String s) {
     this.content = s;
+    return this;
+  }
+
+  /**
+   * Get Content Urls.
+   * 
+   * @return {@link List} {@link String}
+   */
+  public List<String> contentUrls() {
+    return this.contentUrls;
+  }
+
+  /**
+   * Set Content url.
+   * 
+   * @param urls {@link List} {@link String}
+   * @return {@link UpdateFulltext}
+   */
+  public UpdateFulltext contentUrls(final List<String> urls) {
+    this.contentUrls = urls;
     return this;
   }
 

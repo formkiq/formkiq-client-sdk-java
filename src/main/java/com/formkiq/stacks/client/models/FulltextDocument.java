@@ -29,12 +29,14 @@ public class FulltextDocument {
   private Date insertedDate;
   /** Last Modified Date. */
   private Date lastModifiedDate;
+  /** Metadata. */
+  private Map<String, Object> metadata;
   /** Document Path. */
   private String path;
   /** Document Site Id. */
   private String siteId;
   /** Tags. */
-  private Map<String, String> tags;
+  private Map<String, Object> tags;
 
   /**
    * constructor.
@@ -116,6 +118,26 @@ public class FulltextDocument {
   }
 
   /**
+   * Get Document Tags.
+   * 
+   * @return {@link Map}
+   */
+  public Map<String, Object> metadata() {
+    return this.metadata;
+  }
+
+  /**
+   * Set Document Metadata.
+   * 
+   * @param map {@link Map}
+   * @return {@link FulltextDocument}
+   */
+  public FulltextDocument metadata(final Map<String, Object> map) {
+    this.metadata = map;
+    return this;
+  }
+
+  /**
    * Get Document Path.
    * 
    * @return {@link String}
@@ -158,7 +180,7 @@ public class FulltextDocument {
    * 
    * @return {@link Map}
    */
-  public Map<String, String> tags() {
+  public Map<String, Object> tags() {
     return this.tags;
   }
 
@@ -168,7 +190,7 @@ public class FulltextDocument {
    * @param map {@link Map}
    * @return {@link FulltextDocument}
    */
-  public FulltextDocument tags(final Map<String, String> map) {
+  public FulltextDocument tags(final Map<String, Object> map) {
     this.tags = map;
     return this;
   }

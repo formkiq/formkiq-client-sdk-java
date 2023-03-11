@@ -18,15 +18,35 @@ package com.formkiq.stacks.client.models;
  */
 public class Site {
 
-  /** Uplooad Email. */
-  private String uploadEmail;
+  /** Permission. */
+  private String permission;
   /** Preset SiteId. */
   private String siteId;
+  /** Upload Email. */
+  private String uploadEmail;
 
   /**
    * constructor.
    */
   public Site() {}
+
+  /**
+   * Get SiteId permission.
+   * 
+   * @return {@link String}
+   */
+  public String permission() {
+    return this.permission;
+  }
+
+  /**
+   * Set SiteId Permission.
+   * 
+   * @param sitePermission {@link String}
+   */
+  public void permission(final String sitePermission) {
+    this.permission = sitePermission;
+  }
 
   /**
    * Get SiteId.
