@@ -47,6 +47,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentActionRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -148,6 +149,33 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), AddDocumentResponse.class);
   }
 
+  @Override
+  public void addDocumentAction(final AddDocumentActionRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = addDocumentActionsAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  /**
+   * POST(Add) /documents/{documentId}/actions.
+   * 
+   * @param request {@link AddDocumentActionRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addDocumentActionsAsHttpResponse(
+      final AddDocumentActionRequest request) throws IOException, InterruptedException {
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("actions", request.actions());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
   /**
    * POST(Add) /documents.
    * 
@@ -221,6 +249,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
   }
 
+
   /**
    * POST(Add) /documents/{documentId}/ocr.
    * 
@@ -268,7 +297,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
-
 
   @Override
   public boolean addDocumentTag(final AddDocumentTagRequest request)
@@ -894,6 +922,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentTag.class);
   }
 
+
   /**
    * GET /documents/{documentId}/tags/{tagKey}.
    * 
@@ -915,7 +944,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentTags.class);
   }
-
 
   /**
    * GET /documents/{documentId}/tags.
@@ -1185,6 +1213,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
 
+
   /**
    * OPTIONS /documents.
    * 
@@ -1212,7 +1241,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /documents/{documentId}/tags.

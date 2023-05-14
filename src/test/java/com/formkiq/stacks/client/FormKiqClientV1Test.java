@@ -40,6 +40,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockserver.integration.ClientAndServer;
 import com.formkiq.stacks.client.models.AddDocument;
+import com.formkiq.stacks.client.models.AddDocumentAction;
 import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocumentTag;
 import com.formkiq.stacks.client.models.AddDocusign;
@@ -50,6 +51,7 @@ import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.DeleteFulltextTag;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
+import com.formkiq.stacks.client.models.DocumentActionType;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentFulltext;
@@ -80,6 +82,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.UpdateFulltext;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentActionRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -208,6 +211,7 @@ public class FormKiqClientV1Test {
   private static void addDocumentOthers() throws IOException {
     add("get", "/documents/" + documentId + "/content", "/get_documents_content.json");
     add("get", "/documents/" + documentId + "/actions", "/get_documents_actions.json");
+    add("post", "/documents/" + documentId + "/actions", "/documentsId.json");
     add("get", "/documents/" + documentId + "/syncs", "/get_documents_syncs.json");
     add("delete", "/documents/" + documentId + "/versions/abc", "/documentsId.json");
   }
@@ -2262,6 +2266,19 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/webhooks/" + documentId + "/tags?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
+  }
+
+  /**
+   * Test POST /documents/{documentId}/actions.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testPostDocumentAction() throws Exception {
+    AddDocumentActionRequest req =
+        new AddDocumentActionRequest().documentId(documentId).siteId(siteId)
+            .actions(Arrays.asList(new AddDocumentAction().type(DocumentActionType.OCR)));
+    this.client0.addDocumentAction(req);
   }
 
   /**

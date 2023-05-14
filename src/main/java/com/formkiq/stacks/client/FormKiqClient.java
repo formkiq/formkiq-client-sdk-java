@@ -37,6 +37,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddDocumentActionRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
 import com.formkiq.stacks.client.requests.AddDocumentTagRequest;
@@ -170,6 +171,16 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean addWebhookTag(AddWebhookTagRequest request) throws IOException, InterruptedException;
+
+  /**
+   * POST /documents/{documentId}/action.
+   * 
+   * @param request {@link AddDocumentActionRequest}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void addDocumentAction(AddDocumentActionRequest request) throws IOException, InterruptedException;
 
   /**
    * DELETE /documents/{documentId}.
