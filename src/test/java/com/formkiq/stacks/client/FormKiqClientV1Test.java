@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.DeleteFulltextTag;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
@@ -137,6 +138,7 @@ import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
+import com.formkiq.stacks.client.requests.UpdateConfigsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -204,6 +206,8 @@ public class FormKiqClientV1Test {
     add("options", "/version", "/id.json");
 
     add("get", "/sites", "/get_sites.json");
+    add("get", "/configs", "/get_configs.json");
+    add("patch", "/configs", "/id.json");
     add("options", "/sites", "/id.json");
     add("delete", "/indices/tags/category", "/documentsId.json");
   }
@@ -1148,6 +1152,34 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test GET /configs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetConfigs() throws Exception {
+    Config configs = this.client0.getConfigs();
+    assertEquals("ABC", configs.chatGptApiKey());
+  }
+
+  /**
+   * Test GET /configs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetConfigsAsHttpResponse() throws Exception {
+    HttpResponse<String> response = this.client0.getConfigsAsHttpResponse();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    HttpRequest request = response.request();
+    assertEquals(URL + "/configs", request.uri().toString());
+    assertEquals("GET", request.method());
+    assertEquals("http://localhost", request.headers().firstValue("Origin").get());
+    assertTrue(request.headers().firstValue("Authorization").get()
+        .startsWith("AWS4-HMAC-SHA256 Credential=123"));
+  }
+
+  /**
    * Test GET /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -1744,6 +1776,7 @@ public class FormKiqClientV1Test {
     assertEquals("https://www.google.com", url.url());
   }
 
+
   /**
    * Test GET /documents/{documentId}/upload.
    * 
@@ -1776,7 +1809,6 @@ public class FormKiqClientV1Test {
     assertEquals("123", config.userId());
     assertTrue(config.configured());
   }
-
 
   /**
    * Test GET /esignature/docusign/config.
@@ -2586,6 +2618,34 @@ public class FormKiqClientV1Test {
 
     assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae",
         gson.fromJson(response.body(), Map.class).get("tagSchemaId").toString());
+  }
+
+  /**
+   * Test PATCH /configs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateConfigs01() throws Exception {
+    Config config = new Config();
+    config.chatGptApiKey("ABC");
+    UpdateConfigsRequest request = new UpdateConfigsRequest().config(config).siteId(siteId);
+    this.client0.updateConfigs(request);
+  }
+
+  /**
+   * Test PATCH /configs.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateConfigsAsHttpResponse() throws Exception {
+    Config config = new Config();
+    UpdateConfigsRequest request = new UpdateConfigsRequest().config(config).siteId(siteId);
+    HttpResponse<String> response = this.client0.updateConfigsAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("PATCH", response.request().method());
+    assertEquals(URL + "/configs?siteId=" + siteId, response.request().uri().toString());
   }
 
   /**

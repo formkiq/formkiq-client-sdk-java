@@ -13,19 +13,34 @@
 package com.formkiq.stacks.client.models;
 
 /**
- * 
- * {@link AddDocumentAction} Type.
+ * Configs holder.
  *
  */
-public enum DocumentActionType {
-  /** AntiVirus. */
-  ANTIVIRUS,
-  /** Document Tagging. */
-  DOCUMENTTAGGING,
-  /** Full Text. */
-  FULLTEXT,
-  /** OCR. */
-  OCR,
-  /** Webhook. */
-  WEBHOOK;
+public class Config {
+
+  /** {@link String}. */
+  private String chatGptApiKey;
+
+  /**
+   * constructor.
+   */
+  public Config() {}
+
+  /**
+   * Get ChatGPT Api Key.
+   * 
+   * @return {@link String}
+   */
+  public String chatGptApiKey() {
+    return this.chatGptApiKey;
+  }
+
+  /**
+   * Set ChatGPT Api Key.
+   * 
+   * @param apiKey {@link String}
+   */
+  public void chatGptApiKey(final String apiKey) {
+    this.chatGptApiKey = apiKey;
+  }
 }

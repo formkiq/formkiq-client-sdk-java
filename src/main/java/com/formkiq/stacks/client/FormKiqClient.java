@@ -18,6 +18,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentFulltext;
@@ -79,6 +80,7 @@ import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
+import com.formkiq.stacks.client.requests.UpdateConfigsRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -99,6 +101,16 @@ public interface FormKiqClient {
    */
   AddDocumentResponse addDocument(AddDocumentRequest request)
       throws IOException, InterruptedException;
+
+  /**
+   * POST /documents/{documentId}/action.
+   * 
+   * @param request {@link AddDocumentActionRequest}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void addDocumentAction(AddDocumentActionRequest request) throws IOException, InterruptedException;
 
   /**
    * POST /documents/{documentId}/ocr.
@@ -173,16 +185,6 @@ public interface FormKiqClient {
   boolean addWebhookTag(AddWebhookTagRequest request) throws IOException, InterruptedException;
 
   /**
-   * POST /documents/{documentId}/action.
-   * 
-   * @param request {@link AddDocumentActionRequest}
-   * 
-   * @throws IOException IOException
-   * @throws InterruptedException InterruptedException
-   */
-  void addDocumentAction(AddDocumentActionRequest request) throws IOException, InterruptedException;
-
-  /**
    * DELETE /documents/{documentId}.
    * 
    * @param request {@link DeleteDocumentRequest}
@@ -218,15 +220,16 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * DELETE /indices/{indexType}/{indexKey}.
+   * DELETE /documents/{documentId}/tags/{tagKey}.
    * 
-   * @param request {@link DeleteIndicesRequest}
-   * @return boolean - Whether the Indices was successfully deleted
+   * @param request {@link DeleteDocumentTagRequest}
+   * @return {@link HttpResponse} {@link String}
    * 
-   * @throws IOException IOException
    * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
    */
-  boolean deleteIndices(DeleteIndicesRequest request) throws IOException, InterruptedException;
+  boolean deleteDocumentTag(DeleteDocumentTagRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * DELETE /documents/{documentId}/versions/{versionKey}.
@@ -241,18 +244,6 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * DELETE /documents/{documentId}/tags/{tagKey}.
-   * 
-   * @param request {@link DeleteDocumentTagRequest}
-   * @return {@link HttpResponse} {@link String}
-   * 
-   * @throws InterruptedException InterruptedException
-   * @throws IOException IOException
-   */
-  boolean deleteDocumentTag(DeleteDocumentTagRequest request)
-      throws IOException, InterruptedException;
-
-  /**
    * DELETE /documents/{documentId}/fulltext/tags.
    * 
    * @param request {@link DeleteFulltextTagsRequest}
@@ -263,6 +254,17 @@ public interface FormKiqClient {
    */
   boolean deleteFulltextTags(DeleteFulltextTagsRequest request)
       throws IOException, InterruptedException;
+
+  /**
+   * DELETE /indices/{indexType}/{indexKey}.
+   * 
+   * @param request {@link DeleteIndicesRequest}
+   * @return boolean - Whether the Indices was successfully deleted
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean deleteIndices(DeleteIndicesRequest request) throws IOException, InterruptedException;
 
   /**
    * DELETE /tagSchemas/{tagSchemaId}.
@@ -285,6 +287,24 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   boolean deleteWebhook(DeleteWebhookRequest request) throws IOException, InterruptedException;
+
+  /**
+   * GET /configs.
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  Config getConfigs() throws IOException, InterruptedException;
+
+  /**
+   * PATCH(Update) /configs.
+   * 
+   * @param request {@link UpdateDocumentRequest}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  void updateConfigs(UpdateConfigsRequest request) throws IOException, InterruptedException;
 
   /**
    * GET /documents/{documentId}.
@@ -375,6 +395,7 @@ public interface FormKiqClient {
   DocumentTag getDocumentTag(GetDocumentTagsKeyRequest request)
       throws IOException, InterruptedException;
 
+
   /**
    * GET /documents/{documentId}/tags.
    * 
@@ -385,7 +406,6 @@ public interface FormKiqClient {
    */
   DocumentTags getDocumentTags(GetDocumentTagsRequest request)
       throws IOException, InterruptedException;
-
 
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
