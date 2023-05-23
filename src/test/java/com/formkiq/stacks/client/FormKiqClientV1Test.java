@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.ApiKeys;
 import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.DeleteFulltextTag;
 import com.formkiq.stacks.client.models.Document;
@@ -83,6 +84,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.UpdateFulltext;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddApiKeyRequest;
 import com.formkiq.stacks.client.requests.AddDocumentActionRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
@@ -92,6 +94,7 @@ import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
+import com.formkiq.stacks.client.requests.DeleteApiKeyRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -207,6 +210,9 @@ public class FormKiqClientV1Test {
 
     add("get", "/sites", "/get_sites.json");
     add("get", "/configs", "/get_configs.json");
+    add("get", "/configs/apiKey", "/get_configs_apikey.json");
+    add("post", "/configs/apiKey", "/id.json");
+    add("delete", "/configs/apiKey/" + documentId, "/id.json");
     add("patch", "/configs", "/id.json");
     add("options", "/sites", "/id.json");
     add("delete", "/indices/tags/category", "/documentsId.json");
@@ -350,6 +356,33 @@ public class FormKiqClientV1Test {
 
   /** {@link FormKiqClient}. */
   private FormKiqClientV1 client1 = new FormKiqClientV1(this.c1);
+
+  /**
+   * Test POST /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddApiKey01() throws Exception {
+    Config config = new Config();
+    config.chatGptApiKey("ABC");
+    AddApiKeyRequest request = new AddApiKeyRequest().name("My API").siteId(siteId);
+    this.client0.addApiKey(request);
+  }
+
+  /**
+   * Test POST /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testAddApiKeyAsHttpResponse() throws Exception {
+    AddApiKeyRequest request = new AddApiKeyRequest().name("My API").siteId(siteId);
+    HttpResponse<String> response = this.client0.addApiKeyAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("POST", response.request().method());
+    assertEquals(URL + "/configs/apiKey?siteId=" + siteId, response.request().uri().toString());
+  }
 
   /**
    * Test POST /documents.
@@ -786,6 +819,48 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test DELETE /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteApiKey01() throws Exception {
+    DeleteApiKeyRequest request = new DeleteApiKeyRequest().apiKey(documentId).siteId(siteId);
+    assertTrue(this.client0.deleteApiKey(request));
+  }
+
+  /**
+   * Test DELETE /configs/apiKey. Missing Data.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteApiKey02() throws Exception {
+    DeleteApiKeyRequest request = new DeleteApiKeyRequest();
+    try {
+      this.client0.deleteApiKey(request);
+      fail();
+    } catch (NullPointerException e) {
+      assertEquals("Api Key is required.", e.getMessage());
+    }
+  }
+
+  /**
+   * Test DELETE /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testDeleteApiKeyAsHttpResponse() throws Exception {
+    DeleteApiKeyRequest request = new DeleteApiKeyRequest().apiKey(documentId).siteId(siteId);
+    HttpResponse<String> response = this.client0.deleteApiKeyAsHttpResponse(request);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals(URL + "/configs/apiKey/" + documentId + "?siteId=" + siteId,
+        response.request().uri().toString());
+    assertEquals("DELETE", response.request().method());
+  }
+
+  /**
    * Test DELETE /documents/{documentid}.
    * 
    * @throws Exception Exception
@@ -885,6 +960,7 @@ public class FormKiqClientV1Test {
     assertTrue(this.client0.deleteDocumentOcr(request));
   }
 
+
   /**
    * Test DELETE /documents/{documentid}/ocr. Missing Data.
    * 
@@ -961,7 +1037,6 @@ public class FormKiqClientV1Test {
         URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
-
 
   /**
    * Test DELETE /documents/{documentId}/tags/{tagKey}/{tagValue}.
@@ -1149,6 +1224,36 @@ public class FormKiqClientV1Test {
   public void testDeleteWebhook01() throws Exception {
     DeleteWebhookRequest request = new DeleteWebhookRequest().webhookId(documentId).siteId(siteId);
     assertTrue(this.client0.deleteWebhook(request));
+  }
+
+  /**
+   * Test GET /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetApiKeys() throws Exception {
+    ApiKeys apiKeys = this.client0.getApiKeys();
+    assertEquals(1, apiKeys.apiKeys().size());
+    assertEquals("1235363453", apiKeys.apiKeys().get(0).apiKey());
+    assertEquals("My Api", apiKeys.apiKeys().get(0).name());
+  }
+
+  /**
+   * Test GET /configs/apiKey.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testGetApiKeysAsHttpResponse() throws Exception {
+    HttpResponse<String> response = this.client0.getApiKeysAsHttpResponse();
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    HttpRequest request = response.request();
+    assertEquals(URL + "/configs/apiKey", request.uri().toString());
+    assertEquals("GET", request.method());
+    assertEquals("http://localhost", request.headers().firstValue("Origin").get());
+    assertTrue(request.headers().firstValue("Authorization").get()
+        .startsWith("AWS4-HMAC-SHA256 Credential=123"));
   }
 
   /**
@@ -1685,6 +1790,7 @@ public class FormKiqClientV1Test {
     assertNotNull(sync.syncDate());
   }
 
+
   /**
    * Test GET /documents/{documentId}/tags/{tagKey}.
    * 
@@ -1775,7 +1881,6 @@ public class FormKiqClientV1Test {
     assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", url.documentId());
     assertEquals("https://www.google.com", url.url());
   }
-
 
   /**
    * Test GET /documents/{documentId}/upload.
@@ -2004,6 +2109,7 @@ public class FormKiqClientV1Test {
     assertEquals("joe", "" + doc.webhooks().get(0).userId());
   }
 
+
   /**
    * Test GET /webhooks.
    * 
@@ -2098,7 +2204,6 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/documents/" + documentId + "/content",
         response.request().uri().toString());
   }
-
 
   /**
    * Test Options /documents/{documentId}/url.
@@ -2787,4 +2892,5 @@ public class FormKiqClientV1Test {
         URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
+
 }

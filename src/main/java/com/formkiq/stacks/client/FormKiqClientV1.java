@@ -26,6 +26,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.ApiKeys;
 import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
@@ -48,6 +49,7 @@ import com.formkiq.stacks.client.models.UpdateDocumentResponse;
 import com.formkiq.stacks.client.models.Version;
 import com.formkiq.stacks.client.models.WebhookTags;
 import com.formkiq.stacks.client.models.Webhooks;
+import com.formkiq.stacks.client.requests.AddApiKeyRequest;
 import com.formkiq.stacks.client.requests.AddDocumentActionRequest;
 import com.formkiq.stacks.client.requests.AddDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.AddDocumentRequest;
@@ -57,7 +59,9 @@ import com.formkiq.stacks.client.requests.AddLargeDocumentRequest;
 import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
+import com.formkiq.stacks.client.requests.ApiKeyRequest;
 import com.formkiq.stacks.client.requests.ConfigsRequest;
+import com.formkiq.stacks.client.requests.DeleteApiKeyRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentRequest;
@@ -145,6 +149,32 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public void addApiKey(final AddApiKeyRequest request) throws IOException, InterruptedException {
+    HttpResponse<String> response = addApiKeyAsHttpResponse(request);
+    checkStatusCode(response);
+  }
+
+  /**
+   * POST(Add) /configs/apiKey.
+   * 
+   * @param request {@link AddApiKeyRequest}
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> addApiKeyAsHttpResponse(final AddApiKeyRequest request)
+      throws IOException, InterruptedException {
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", request.name());
+
+    String contents = this.gson.toJson(map);
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.post(u, createHttpHeaders("POST", Optional.empty()),
+        RequestBody.fromString(contents));
+  }
+
+  @Override
   public AddDocumentResponse addDocument(final AddDocumentRequest request)
       throws IOException, InterruptedException {
     HttpResponse<String> response = addDocumentAsHttpResponse(request);
@@ -220,6 +250,7 @@ public class FormKiqClientV1 implements FormKiqClient {
         RequestBody.fromString(contents));
   }
 
+
   /**
    * PUT(Replace) /documents/{documentId}/fulltext.
    * 
@@ -251,7 +282,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     HttpResponse<String> response = addDocumentOcrAsHttpResponse(request);
     checkStatusCode(response);
   }
-
 
   /**
    * POST(Add) /documents/{documentId}/ocr.
@@ -729,6 +759,26 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
+  public ApiKeys getApiKeys() throws IOException, InterruptedException {
+    HttpResponse<String> response = getApiKeysAsHttpResponse();
+    checkStatusCode(response);
+    ApiKeys data = this.gson.fromJson(response.body(), ApiKeys.class);
+    return data;
+  }
+
+  /**
+   * GET /configs/apiKey.
+   * 
+   * @return {@link HttpResponse}
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> getApiKeysAsHttpResponse() throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + new ApiKeyRequest().buildRequestUrl();
+    return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
+  }
+
+  @Override
   public Config getConfigs() throws IOException, InterruptedException {
     HttpResponse<String> response = getConfigsAsHttpResponse();
     checkStatusCode(response);
@@ -737,7 +787,7 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   /**
-   * GET /sites.
+   * GET /configs.
    * 
    * @return {@link HttpResponse}
    * @throws IOException IOException
@@ -877,6 +927,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.gson.fromJson(response.body(), DocumentOcr.class);
   }
 
+
   /**
    * GET /documents/{documentId}/ocr.
    * 
@@ -921,7 +972,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     checkStatusCode(response);
     return this.gson.fromJson(response.body(), DocumentSyncs.class);
   }
-
 
   /**
    * GET /documents/{documentId}/syncs.
@@ -1155,6 +1205,7 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
+
   @Override
   public WebhookTags getWebhookTags(final GetWebhookTagsRequest request)
       throws IOException, InterruptedException {
@@ -1206,7 +1257,6 @@ public class FormKiqClientV1 implements FormKiqClient {
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.options(u, createHttpHeaders("OPTIONS", Optional.empty()));
   }
-
 
   /**
    * OPTIONS /documents/{documentId}/url.
@@ -1676,4 +1726,27 @@ public class FormKiqClientV1 implements FormKiqClient {
     return this.client.put(u, createHttpHeaders("PUT", Optional.empty()),
         RequestBody.fromString(contents));
   }
+
+  @Override
+  public boolean deleteApiKey(final DeleteApiKeyRequest request)
+      throws IOException, InterruptedException {
+    HttpResponse<String> response = deleteApiKeyAsHttpResponse(request);
+    return checkStatusCodeBoolean(response);
+  }
+
+  /**
+   * DELETE /configs/apiKey.
+   * 
+   * @param request {@link DeleteApiKeyRequest}
+   * @return {@link HttpResponse}
+   * 
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  public HttpResponse<String> deleteApiKeyAsHttpResponse(final DeleteApiKeyRequest request)
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + request.buildRequestUrl();
+    return this.client.delete(u, createHttpHeaders("DELETE", Optional.empty()));
+  }
+
 }
