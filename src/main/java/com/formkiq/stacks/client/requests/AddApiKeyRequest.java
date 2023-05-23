@@ -35,17 +35,6 @@ public class AddApiKeyRequest implements ApiRequest {
    */
   public AddApiKeyRequest() {}
 
-  /**
-   * Set Name.
-   * 
-   * @param apiKeyName {@link String}
-   * @return {@link AddApiKeyRequest}
-   */
-  public AddApiKeyRequest actions(final String apiKeyName) {
-    this.name = apiKeyName;
-    return this;
-  }
-
   @Override
   public void addQueryParameter(final String key, final String value) {
     this.parameters.put(key, value);
