@@ -18,6 +18,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
 import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.Document;
@@ -98,11 +99,12 @@ public interface FormKiqClient {
    * POST /configs/apiKey.
    * 
    * @param request {@link AddApiKeyRequest}
+   * @return {@link ApiKey}
    * 
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  void addApiKey(AddApiKeyRequest request) throws IOException, InterruptedException;
+  ApiKey addApiKey(AddApiKeyRequest request) throws IOException, InterruptedException;
 
   /**
    * POST(Add) /documents.

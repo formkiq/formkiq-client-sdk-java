@@ -48,6 +48,7 @@ import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddLargeDocument;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
 import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.DeleteFulltextTag;
@@ -211,7 +212,7 @@ public class FormKiqClientV1Test {
     add("get", "/sites", "/get_sites.json");
     add("get", "/configs", "/get_configs.json");
     add("get", "/configs/apiKey", "/get_configs_apikey.json");
-    add("post", "/configs/apiKey", "/id.json");
+    add("post", "/configs/apiKey", "/post_apiKey.json");
     add("delete", "/configs/apiKey/" + documentId, "/id.json");
     add("patch", "/configs", "/id.json");
     add("options", "/sites", "/id.json");
@@ -367,7 +368,9 @@ public class FormKiqClientV1Test {
     Config config = new Config();
     config.chatGptApiKey("ABC");
     AddApiKeyRequest request = new AddApiKeyRequest().name("My API").siteId(siteId);
-    this.client0.addApiKey(request);
+    ApiKey apiKey = this.client0.addApiKey(request);
+    assertEquals("My API", apiKey.name());
+    assertEquals("VvgwtPnb9kVJc26j7JFAfUiHcf5KTscZTMtl4pIYIyuNWIB3v6U", apiKey.apiKey());
   }
 
   /**

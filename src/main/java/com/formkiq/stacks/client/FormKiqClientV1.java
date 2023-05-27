@@ -26,6 +26,7 @@ import com.formkiq.stacks.client.models.AddDocumentResponse;
 import com.formkiq.stacks.client.models.AddDocusignResponse;
 import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
+import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
 import com.formkiq.stacks.client.models.Config;
 import com.formkiq.stacks.client.models.DocumentActions;
@@ -149,9 +150,10 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public void addApiKey(final AddApiKeyRequest request) throws IOException, InterruptedException {
+  public ApiKey addApiKey(final AddApiKeyRequest request) throws IOException, InterruptedException {
     HttpResponse<String> response = addApiKeyAsHttpResponse(request);
     checkStatusCode(response);
+    return this.gson.fromJson(response.body(), ApiKey.class);
   }
 
   /**
