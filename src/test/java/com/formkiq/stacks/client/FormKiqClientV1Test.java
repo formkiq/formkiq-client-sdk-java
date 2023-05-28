@@ -211,7 +211,7 @@ public class FormKiqClientV1Test {
 
     add("get", "/sites", "/get_sites.json");
     add("get", "/configs", "/get_configs.json");
-    add("get", "/configs/apiKey", "/get_configs_apikey.json");
+    add("get", "/configs/apiKeys", "/get_configs_apikey.json");
     add("post", "/configs/apiKey", "/post_apiKey.json");
     add("delete", "/configs/apiKey/" + documentId, "/id.json");
     add("patch", "/configs", "/id.json");
@@ -1252,7 +1252,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client0.getApiKeysAsHttpResponse();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     HttpRequest request = response.request();
-    assertEquals(URL + "/configs/apiKey", request.uri().toString());
+    assertEquals(URL + "/configs/apiKeys", request.uri().toString());
     assertEquals("GET", request.method());
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
