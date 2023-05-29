@@ -20,6 +20,12 @@ public class Config {
 
   /** {@link String}. */
   private String chatGptApiKey;
+  /** {@link String}. */
+  private String maxContentLengthBytes;
+  /** {@link String}. */
+  private String maxDocuments;
+  /** {@link String}. */
+  private String maxWebhooks;
 
   /**
    * constructor.
@@ -39,8 +45,68 @@ public class Config {
    * Set ChatGPT Api Key.
    * 
    * @param apiKey {@link String}
+   * @return {@link Config}
    */
-  public void chatGptApiKey(final String apiKey) {
+  public Config chatGptApiKey(final String apiKey) {
     this.chatGptApiKey = apiKey;
+    return this;
+  }
+
+  /**
+   * Get Max Content Length in Bytes.
+   * 
+   * @return {@link String}
+   */
+  public String maxContentLengthBytes() {
+    return this.maxContentLengthBytes;
+  }
+
+  /**
+   * Set Max Content Length in Bytes.
+   * 
+   * @param maxContentLength {@link String}
+   */
+  public void maxContentLengthBytes(final String maxContentLength) {
+    this.maxContentLengthBytes = maxContentLength;
+  }
+
+  /**
+   * Get Max Documents.
+   * 
+   * @return {@link String}
+   */
+  public String maxDocuments() {
+    return this.maxDocuments;
+  }
+
+  /**
+   * Set Max Documents.
+   * 
+   * @param max {@link String}
+   * @return {@link Config}
+   */
+  public Config maxDocuments(final String max) {
+    this.maxDocuments = max;
+    return this;
+  }
+
+  /**
+   * Get Max Webhooks.
+   * 
+   * @return {@link String}
+   */
+  public String maxWebhooks() {
+    return this.maxWebhooks;
+  }
+
+  /**
+   * Set Max Webhooks.
+   * 
+   * @param max {@link String}
+   * @return {@link Config}
+   */
+  public Config maxWebhooks(final String max) {
+    this.maxWebhooks = max;
+    return this;
   }
 }
