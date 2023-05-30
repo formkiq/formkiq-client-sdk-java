@@ -20,7 +20,7 @@ import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
-import com.formkiq.stacks.client.models.Config;
+import com.formkiq.stacks.client.models.Configuration;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentFulltext;
@@ -84,7 +84,7 @@ import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
-import com.formkiq.stacks.client.requests.UpdateConfigsRequest;
+import com.formkiq.stacks.client.requests.UpdateConfigurationRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -324,13 +324,13 @@ public interface FormKiqClient {
   ApiKeys getApiKeys() throws IOException, InterruptedException;
 
   /**
-   * GET /configs.
+   * GET /configuration.
    * 
    * @return {@link HttpResponse}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  Config getConfigs() throws IOException, InterruptedException;
+  Configuration getConfiguration() throws IOException, InterruptedException;
 
   /**
    * GET /documents/{documentId}.
@@ -608,13 +608,14 @@ public interface FormKiqClient {
   void setDocusignConfig(SetDocusignConfigRequest request) throws IOException, InterruptedException;
 
   /**
-   * PATCH(Update) /configs.
+   * PATCH(Update) /configuration.
    * 
-   * @param request {@link UpdateConfigsRequest}
+   * @param request {@link UpdateConfigurationRequest}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  void updateConfigs(UpdateConfigsRequest request) throws IOException, InterruptedException;
+  void updateConfiguration(UpdateConfigurationRequest request)
+      throws IOException, InterruptedException;
 
   /**
    * PATCH(Update) /documents/{documentId}.

@@ -18,16 +18,16 @@ import java.util.Map;
 import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 import com.formkiq.stacks.client.Validate;
-import com.formkiq.stacks.client.models.Config;
+import com.formkiq.stacks.client.models.Configuration;
 
 /**
- * PATCH(Update) /configs.
+ * PATCH(Update) /configuration.
  *
  */
-public class UpdateConfigsRequest implements ApiRequest {
+public class UpdateConfigurationRequest implements ApiRequest {
 
-  /** {@link Config}. */
-  private Config config;
+  /** {@link Configuration}. */
+  private Configuration config;
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
@@ -35,7 +35,7 @@ public class UpdateConfigsRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public UpdateConfigsRequest() {}
+  public UpdateConfigurationRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
@@ -43,21 +43,21 @@ public class UpdateConfigsRequest implements ApiRequest {
   }
 
   /**
-   * Set {@link Config}.
+   * Set {@link Configuration}.
    * 
-   * @return {@link Config}
+   * @return {@link Configuration}
    */
-  public Config config() {
+  public Configuration config() {
     return this.config;
   }
 
   /**
-   * Set {@link Config}.
+   * Set {@link Configuration}.
    * 
-   * @param updateConfig {@link Config}
-   * @return {@link UpdateConfigsRequest}
+   * @param updateConfig {@link Configuration}
+   * @return {@link UpdateConfigurationRequest}
    */
-  public UpdateConfigsRequest config(final Config updateConfig) {
+  public UpdateConfigurationRequest config(final Configuration updateConfig) {
     this.config = updateConfig;
     return this;
   }
@@ -74,16 +74,16 @@ public class UpdateConfigsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "configs";
+    return "configuration";
   }
 
   /**
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link UpdateConfigsRequest}
+   * @return {@link UpdateConfigurationRequest}
    */
-  public UpdateConfigsRequest siteId(final String siteId) {
+  public UpdateConfigurationRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }

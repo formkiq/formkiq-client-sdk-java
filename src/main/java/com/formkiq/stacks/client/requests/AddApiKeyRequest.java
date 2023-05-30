@@ -52,7 +52,7 @@ public class AddApiKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "configs/apiKey";
+    return "configuration/apiKeys";
   }
 
   /**

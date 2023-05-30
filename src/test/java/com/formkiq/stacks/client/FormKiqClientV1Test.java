@@ -50,7 +50,7 @@ import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
-import com.formkiq.stacks.client.models.Config;
+import com.formkiq.stacks.client.models.Configuration;
 import com.formkiq.stacks.client.models.DeleteFulltextTag;
 import com.formkiq.stacks.client.models.Document;
 import com.formkiq.stacks.client.models.DocumentAction;
@@ -142,7 +142,7 @@ import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
-import com.formkiq.stacks.client.requests.UpdateConfigsRequest;
+import com.formkiq.stacks.client.requests.UpdateConfigurationRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -210,11 +210,11 @@ public class FormKiqClientV1Test {
     add("options", "/version", "/id.json");
 
     add("get", "/sites", "/get_sites.json");
-    add("get", "/configs", "/get_configs.json");
-    add("get", "/configs/apiKeys", "/get_configs_apikey.json");
-    add("post", "/configs/apiKey", "/post_apiKey.json");
-    add("delete", "/configs/apiKey/" + documentId, "/id.json");
-    add("patch", "/configs", "/id.json");
+    add("get", "/configuration", "/get_configs.json");
+    add("get", "/configuration/apiKeys", "/get_configs_apikey.json");
+    add("post", "/configuration/apiKeys", "/post_apiKey.json");
+    add("delete", "/configuration/apiKeys/" + documentId, "/id.json");
+    add("patch", "/configuration", "/id.json");
     add("options", "/sites", "/id.json");
     add("delete", "/indices/tags/category", "/documentsId.json");
   }
@@ -365,7 +365,7 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testAddApiKey01() throws Exception {
-    Config config = new Config();
+    Configuration config = new Configuration();
     config.chatGptApiKey("ABC");
     AddApiKeyRequest request = new AddApiKeyRequest().name("My API").siteId(siteId);
     ApiKey apiKey = this.client0.addApiKey(request);
@@ -384,7 +384,8 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client0.addApiKeyAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("POST", response.request().method());
-    assertEquals(URL + "/configs/apiKey?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/configuration/apiKeys?siteId=" + siteId,
+        response.request().uri().toString());
   }
 
   /**
@@ -858,7 +859,7 @@ public class FormKiqClientV1Test {
     DeleteApiKeyRequest request = new DeleteApiKeyRequest().apiKey(documentId).siteId(siteId);
     HttpResponse<String> response = this.client0.deleteApiKeyAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
-    assertEquals(URL + "/configs/apiKey/" + documentId + "?siteId=" + siteId,
+    assertEquals(URL + "/configuration/apiKeys/" + documentId + "?siteId=" + siteId,
         response.request().uri().toString());
     assertEquals("DELETE", response.request().method());
   }
@@ -1252,7 +1253,7 @@ public class FormKiqClientV1Test {
     HttpResponse<String> response = this.client0.getApiKeysAsHttpResponse();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     HttpRequest request = response.request();
-    assertEquals(URL + "/configs/apiKeys", request.uri().toString());
+    assertEquals(URL + "/configuration/apiKeys", request.uri().toString());
     assertEquals("GET", request.method());
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
@@ -1260,27 +1261,27 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test GET /configs.
+   * Test GET /configuration.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testGetConfigs() throws Exception {
-    Config configs = this.client0.getConfigs();
+    Configuration configs = this.client0.getConfiguration();
     assertEquals("ABC", configs.chatGptApiKey());
   }
 
   /**
-   * Test GET /configs.
+   * Test GET /configuration.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testGetConfigsAsHttpResponse() throws Exception {
-    HttpResponse<String> response = this.client0.getConfigsAsHttpResponse();
+    HttpResponse<String> response = this.client0.getConfigurationAsHttpResponse();
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     HttpRequest request = response.request();
-    assertEquals(URL + "/configs", request.uri().toString());
+    assertEquals(URL + "/configuration", request.uri().toString());
     assertEquals("GET", request.method());
     assertEquals("http://localhost", request.headers().firstValue("Origin").get());
     assertTrue(request.headers().firstValue("Authorization").get()
@@ -2729,31 +2730,33 @@ public class FormKiqClientV1Test {
   }
 
   /**
-   * Test PATCH /configs.
+   * Test PATCH /configuration.
    * 
    * @throws Exception Exception
    */
   @Test
-  public void testUpdateConfigs01() throws Exception {
-    Config config = new Config();
+  public void testUpdateConfiguration01() throws Exception {
+    Configuration config = new Configuration();
     config.chatGptApiKey("ABC");
-    UpdateConfigsRequest request = new UpdateConfigsRequest().config(config).siteId(siteId);
-    this.client0.updateConfigs(request);
+    UpdateConfigurationRequest request =
+        new UpdateConfigurationRequest().config(config).siteId(siteId);
+    this.client0.updateConfiguration(request);
   }
 
   /**
-   * Test PATCH /configs.
+   * Test PATCH /configuration.
    * 
    * @throws Exception Exception
    */
   @Test
   public void testUpdateConfigsAsHttpResponse() throws Exception {
-    Config config = new Config();
-    UpdateConfigsRequest request = new UpdateConfigsRequest().config(config).siteId(siteId);
-    HttpResponse<String> response = this.client0.updateConfigsAsHttpResponse(request);
+    Configuration config = new Configuration();
+    UpdateConfigurationRequest request =
+        new UpdateConfigurationRequest().config(config).siteId(siteId);
+    HttpResponse<String> response = this.client0.updateConfigurationAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
-    assertEquals(URL + "/configs?siteId=" + siteId, response.request().uri().toString());
+    assertEquals(URL + "/configuration?siteId=" + siteId, response.request().uri().toString());
   }
 
   /**

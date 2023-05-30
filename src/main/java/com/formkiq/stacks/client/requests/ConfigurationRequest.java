@@ -19,15 +19,15 @@ import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 
 /**
- * Creates GET /sites.
+ * Creates GET /configuration.
  *
  */
-public class ConfigsRequest implements ApiRequest {
+public class ConfigurationRequest implements ApiRequest {
 
   /**
    * constructor.
    */
-  public ConfigsRequest() {}
+  public ConfigurationRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
@@ -46,7 +46,7 @@ public class ConfigsRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "configs";
+    return "configuration";
   }
 
   @Override

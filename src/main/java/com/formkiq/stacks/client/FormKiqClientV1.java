@@ -28,7 +28,7 @@ import com.formkiq.stacks.client.models.AddTagSchemaResponse;
 import com.formkiq.stacks.client.models.AddWebhookResponse;
 import com.formkiq.stacks.client.models.ApiKey;
 import com.formkiq.stacks.client.models.ApiKeys;
-import com.formkiq.stacks.client.models.Config;
+import com.formkiq.stacks.client.models.Configuration;
 import com.formkiq.stacks.client.models.DocumentActions;
 import com.formkiq.stacks.client.models.DocumentContent;
 import com.formkiq.stacks.client.models.DocumentFulltext;
@@ -61,7 +61,7 @@ import com.formkiq.stacks.client.requests.AddTagSchemaRequest;
 import com.formkiq.stacks.client.requests.AddWebhookRequest;
 import com.formkiq.stacks.client.requests.AddWebhookTagRequest;
 import com.formkiq.stacks.client.requests.ApiKeyRequest;
-import com.formkiq.stacks.client.requests.ConfigsRequest;
+import com.formkiq.stacks.client.requests.ConfigurationRequest;
 import com.formkiq.stacks.client.requests.DeleteApiKeyRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.DeleteDocumentOcrRequest;
@@ -109,7 +109,7 @@ import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
 import com.formkiq.stacks.client.requests.SitesRequest;
-import com.formkiq.stacks.client.requests.UpdateConfigsRequest;
+import com.formkiq.stacks.client.requests.UpdateConfigurationRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
@@ -781,22 +781,23 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public Config getConfigs() throws IOException, InterruptedException {
-    HttpResponse<String> response = getConfigsAsHttpResponse();
+  public Configuration getConfiguration() throws IOException, InterruptedException {
+    HttpResponse<String> response = getConfigurationAsHttpResponse();
     checkStatusCode(response);
-    Config data = this.gson.fromJson(response.body(), Config.class);
+    Configuration data = this.gson.fromJson(response.body(), Configuration.class);
     return data;
   }
 
   /**
-   * GET /configs.
+   * GET /configuration.
    * 
    * @return {@link HttpResponse}
    * @throws IOException IOException
    * @throws InterruptedException InterruptedException
    */
-  public HttpResponse<String> getConfigsAsHttpResponse() throws IOException, InterruptedException {
-    String u = this.apiRestUrl + "/" + new ConfigsRequest().buildRequestUrl();
+  public HttpResponse<String> getConfigurationAsHttpResponse()
+      throws IOException, InterruptedException {
+    String u = this.apiRestUrl + "/" + new ConfigurationRequest().buildRequestUrl();
     return this.client.get(u, createHttpHeaders("GET", Optional.empty()));
   }
 
@@ -1627,23 +1628,23 @@ public class FormKiqClientV1 implements FormKiqClient {
   }
 
   @Override
-  public void updateConfigs(final UpdateConfigsRequest request)
+  public void updateConfiguration(final UpdateConfigurationRequest request)
       throws IOException, InterruptedException {
-    HttpResponse<String> response = updateConfigsAsHttpResponse(request);
+    HttpResponse<String> response = updateConfigurationAsHttpResponse(request);
     checkStatusCode(response);
   }
 
   /**
-   * PATCH /configs.
+   * PATCH /configuration.
    * 
-   * @param request {@link UpdateConfigsRequest}
+   * @param request {@link UpdateConfigurationRequest}
    * @return {@link HttpResponse} {@link String}
    * 
    * @throws InterruptedException InterruptedException
    * @throws IOException IOException
    */
-  public HttpResponse<String> updateConfigsAsHttpResponse(final UpdateConfigsRequest request)
-      throws IOException, InterruptedException {
+  public HttpResponse<String> updateConfigurationAsHttpResponse(
+      final UpdateConfigurationRequest request) throws IOException, InterruptedException {
     String contents = this.gson.toJson(request.config());
     String u = this.apiRestUrl + "/" + request.buildRequestUrl();
     return this.client.patch(u, createHttpHeaders("PATCH", Optional.empty()),

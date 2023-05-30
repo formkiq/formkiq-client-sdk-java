@@ -19,7 +19,7 @@ import java.util.Optional;
 import com.formkiq.stacks.client.ApiRequest;
 
 /**
- * Creates GET /configs/apiKeys.
+ * Creates GET /configuration/apiKeys.
  *
  */
 public class ApiKeyRequest implements ApiRequest {
@@ -46,7 +46,7 @@ public class ApiKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "configs/apiKeys";
+    return "configuration/apiKeys";
   }
 
   @Override

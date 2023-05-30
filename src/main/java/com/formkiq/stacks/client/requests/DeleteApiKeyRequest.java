@@ -64,7 +64,7 @@ public class DeleteApiKeyRequest implements ApiRequest {
 
   @Override
   public String getUrlPath() {
-    return "configs/apiKey/" + this.paths.get("apiKey");
+    return "configuration/apiKeys/" + this.paths.get("apiKey");
   }
 
   /**

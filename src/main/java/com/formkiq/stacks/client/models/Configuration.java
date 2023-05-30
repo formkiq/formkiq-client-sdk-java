@@ -13,10 +13,10 @@
 package com.formkiq.stacks.client.models;
 
 /**
- * Configs holder.
+ * Configuration holder.
  *
  */
-public class Config {
+public class Configuration {
 
   /** {@link String}. */
   private String chatGptApiKey;
@@ -30,7 +30,7 @@ public class Config {
   /**
    * constructor.
    */
-  public Config() {}
+  public Configuration() {}
 
   /**
    * Get ChatGPT Api Key.
@@ -45,9 +45,9 @@ public class Config {
    * Set ChatGPT Api Key.
    * 
    * @param apiKey {@link String}
-   * @return {@link Config}
+   * @return {@link Configuration}
    */
-  public Config chatGptApiKey(final String apiKey) {
+  public Configuration chatGptApiKey(final String apiKey) {
     this.chatGptApiKey = apiKey;
     return this;
   }
@@ -83,9 +83,9 @@ public class Config {
    * Set Max Documents.
    * 
    * @param max {@link String}
-   * @return {@link Config}
+   * @return {@link Configuration}
    */
-  public Config maxDocuments(final String max) {
+  public Configuration maxDocuments(final String max) {
     this.maxDocuments = max;
     return this;
   }
@@ -103,9 +103,9 @@ public class Config {
    * Set Max Webhooks.
    * 
    * @param max {@link String}
-   * @return {@link Config}
+   * @return {@link Configuration}
    */
-  public Config maxWebhooks(final String max) {
+  public Configuration maxWebhooks(final String max) {
     this.maxWebhooks = max;
     return this;
   }
