@@ -22,6 +22,8 @@ public class DocumentFulltext {
 
   /** Document Data. */
   private String content;
+  /** Document Content Length. */
+  private long contentLength;
   /** Document Create By User. */
   private String createdBy;
   /** Document Id. */
@@ -61,6 +63,26 @@ public class DocumentFulltext {
    */
   public DocumentFulltext content(final String s) {
     this.content = s;
+    return this;
+  }
+
+  /**
+   * Get Content Length.
+   * 
+   * @return {@link String}
+   */
+  public long contentLength() {
+    return this.contentLength;
+  }
+
+  /**
+   * Set Content Length.
+   * 
+   * @param cl long
+   * @return {@link DocumentFulltext}
+   */
+  public DocumentFulltext contentLength(final long cl) {
+    this.contentLength = cl;
     return this;
   }
 

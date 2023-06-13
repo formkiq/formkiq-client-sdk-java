@@ -12,20 +12,41 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.List;
+
 /**
- * 
- * {@link AddDocumentAction} Type.
+ * Configs holder.
  *
  */
-public enum DocumentActionType {
-  /** AntiVirus. */
-  ANTIVIRUS,
-  /** Document Tagging. */
-  DOCUMENTTAGGING,
-  /** Full Text. */
-  FULLTEXT,
-  /** OCR. */
-  OCR,
-  /** Webhook. */
-  WEBHOOK;
+public class ApiKeys {
+
+  /** {@link List} {@link ApiKey}. */
+  private List<ApiKey> apiKeys;
+
+  /**
+   * constructor.
+   */
+  public ApiKeys() {}
+
+  /**
+   * Get Api Keys.
+   * 
+   * @return {@link List} {@link ApiKey}
+   */
+  public List<ApiKey> apiKeys() {
+    return this.apiKeys;
+  }
+
+  /**
+   * Set Api Keys.
+   * 
+   * @param keys {@link List} {@link ApiKey}
+   * @return {@link ApiKeys}
+   */
+  public ApiKeys apiKeys(final List<ApiKey> keys) {
+    this.apiKeys = keys;
+    return this;
+  }
+
+
 }
