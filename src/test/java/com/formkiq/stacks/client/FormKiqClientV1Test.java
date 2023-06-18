@@ -140,12 +140,14 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentTagKeyRequest;
+import com.formkiq.stacks.client.requests.SetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
 import com.formkiq.stacks.client.requests.UpdateConfigurationRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
-import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
+import com.formkiq.stacks.client.requests.UpdateDocumentTagsRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -252,6 +254,13 @@ public class FormKiqClientV1Test {
     add("delete", "/documents/" + documentId + "/ocr", "/documentsId.json");
   }
 
+  private static void addTagSchemas() throws IOException {
+    add("get", "/tagSchemas", "/get_tagschemas.json");
+    add("post", "/tagSchemas", "/post_tagschemas.json");
+    add("get", "/tagSchemas/" + documentId, "/get_tagschema.json");
+    add("delete", "/tagSchemas/" + documentId, "/post_tagschemas.json");
+  }
+
   /**
    * Add /webhooks urls.
    * 
@@ -307,6 +316,8 @@ public class FormKiqClientV1Test {
     mockServer.when(request().withMethod("post").withPath("/documents/" + documentId + "/tags"))
         .respond(response(resourceToString("/documentsId.json", UTF_8))
             .withStatusCode(Integer.valueOf(HTTP_STATUS_CREATED)));
+    add("put", "/documents/" + documentId + "/tags", "/documentsId.json");
+    add("patch", "/documents/" + documentId + "/tags", "/documentsId.json");
     add("options", "/documents/" + documentId + "/tags", "/documentsId.json");
     add("options", "/documents/" + documentId + "/content", "/documentsId.json");
     add("options", "/documents/" + documentId, "/documentsId.json");
@@ -326,10 +337,8 @@ public class FormKiqClientV1Test {
     add("options", "/documents/" + documentId + "/formats", "/documentsId.json");
     add("post", "/search", "/search.json");
     add("options", "/search", "/search.json");
-    add("get", "/tagSchemas", "/get_tagschemas.json");
-    add("post", "/tagSchemas", "/post_tagschemas.json");
-    add("get", "/tagSchemas/" + documentId, "/get_tagschema.json");
-    add("delete", "/tagSchemas/" + documentId, "/post_tagschemas.json");
+
+    addTagSchemas();
 
     addDocumentOthers();
   }
@@ -964,7 +973,6 @@ public class FormKiqClientV1Test {
     assertTrue(this.client0.deleteDocumentOcr(request));
   }
 
-
   /**
    * Test DELETE /documents/{documentid}/ocr. Missing Data.
    * 
@@ -1024,6 +1032,7 @@ public class FormKiqClientV1Test {
       assertEquals("DocumentId is required.", e.getMessage());
     }
   }
+
 
   /**
    * Test DELETE /documents/{documentId}/tags/{tagKey}.
@@ -1794,7 +1803,6 @@ public class FormKiqClientV1Test {
     assertNotNull(sync.syncDate());
   }
 
-
   /**
    * Test GET /documents/{documentId}/tags/{tagKey}.
    * 
@@ -1865,6 +1873,7 @@ public class FormKiqClientV1Test {
     assertEquals("3c39bb05-9c7a-4afa-8497-6935a1e8dbae", url.documentId());
     assertEquals("https://www.google.com", url.url());
   }
+
 
   /**
    * Test GET /documents/upload.
@@ -2113,7 +2122,6 @@ public class FormKiqClientV1Test {
     assertEquals("joe", "" + doc.webhooks().get(0).userId());
   }
 
-
   /**
    * Test GET /webhooks.
    * 
@@ -2192,6 +2200,7 @@ public class FormKiqClientV1Test {
     assertEquals(URL + "/documents/" + documentId, response.request().uri().toString());
     assertEquals("OPTIONS", response.request().method());
   }
+
 
   /**
    * Test OPTIONS /documents/{documentId}/content.
@@ -2712,6 +2721,34 @@ public class FormKiqClientV1Test {
   }
 
   /**
+   * Test PUT /documents/{documentId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSetDocumentTag01() throws Exception {
+    SetDocumentTagsRequest req = new SetDocumentTagsRequest().siteId(siteId).documentId(documentId)
+        .tags(Arrays.asList(new AddDocumentTag().key("key").value("value")));
+    assertTrue(this.client0.setDocumentTags(req));
+  }
+
+  /**
+   * Test PUT /documents/{documentId}/tags VALUE.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testSetDocumentTagAsHttpResponse01() throws Exception {
+    SetDocumentTagsRequest req = new SetDocumentTagsRequest().siteId(siteId).documentId(documentId)
+        .tags(Arrays.asList(new AddDocumentTag().key("key").value("value"))).webnotify(true);
+    HttpResponse<String> response = this.client0.setDocumentTagsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("PUT", response.request().method());
+    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
+  }
+
+  /**
    * Test POST /tagSchemas.
    * 
    * @throws Exception Exception
@@ -2735,20 +2772,6 @@ public class FormKiqClientV1Test {
    * @throws Exception Exception
    */
   @Test
-  public void testUpdateConfiguration01() throws Exception {
-    Configuration config = new Configuration();
-    config.chatGptApiKey("ABC");
-    UpdateConfigurationRequest request =
-        new UpdateConfigurationRequest().config(config).siteId(siteId);
-    this.client0.updateConfiguration(request);
-  }
-
-  /**
-   * Test PATCH /configuration.
-   * 
-   * @throws Exception Exception
-   */
-  @Test
   public void testUpdateConfigsAsHttpResponse() throws Exception {
     Configuration config = new Configuration();
     UpdateConfigurationRequest request =
@@ -2757,6 +2780,20 @@ public class FormKiqClientV1Test {
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PATCH", response.request().method());
     assertEquals(URL + "/configuration?siteId=" + siteId, response.request().uri().toString());
+  }
+
+  /**
+   * Test PATCH /configuration.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateConfiguration01() throws Exception {
+    Configuration config = new Configuration();
+    config.chatGptApiKey("ABC");
+    UpdateConfigurationRequest request =
+        new UpdateConfigurationRequest().config(config).siteId(siteId);
+    this.client0.updateConfiguration(request);
   }
 
   /**
@@ -2861,9 +2898,9 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testUpdateDocumentTag01() throws Exception {
-    UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest().documentId(documentId)
+    SetDocumentTagKeyRequest request = new SetDocumentTagKeyRequest().documentId(documentId)
         .tagKey("category").siteId(siteId).tagValue("food");
-    assertTrue(this.client0.updateDocumentTag(request));
+    assertTrue(this.client0.setDocumentTag(request));
   }
 
   /**
@@ -2873,9 +2910,9 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testUpdateDocumentTag02() throws Exception {
-    UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest();
+    SetDocumentTagKeyRequest request = new SetDocumentTagKeyRequest();
     try {
-      this.client0.updateDocumentTag(request);
+      this.client0.setDocumentTag(request);
       fail();
     } catch (NullPointerException e) {
       assertEquals("DocumentId is required.", e.getMessage());
@@ -2889,13 +2926,42 @@ public class FormKiqClientV1Test {
    */
   @Test
   public void testUpdateDocumentTagAsHttpResponse() throws Exception {
-    UpdateDocumentTagKeyRequest request = new UpdateDocumentTagKeyRequest().documentId(documentId)
+    SetDocumentTagKeyRequest request = new SetDocumentTagKeyRequest().documentId(documentId)
         .tagKey("category").siteId(siteId).tagValue("food").webnotify(true);
     HttpResponse<String> response = this.client0.updateDocumentTagAsHttpResponse(request);
     assertEquals(HTTP_STATUS_OK, response.statusCode());
     assertEquals("PUT", response.request().method());
     assertEquals(
         URL + "/documents/" + documentId + "/tags/category?siteId=" + siteId + "&webnotify=true",
+        response.request().uri().toString());
+  }
+
+  /**
+   * Test PATCH /documents/{documentId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentTags01() throws Exception {
+    UpdateDocumentTagsRequest req = new UpdateDocumentTagsRequest().siteId(siteId)
+        .documentId(documentId).tags(Arrays.asList(new AddDocumentTag().key("key").value("value")));
+    assertTrue(this.client0.updateDocumentTags(req));
+  }
+
+  /**
+   * Test PATCH /documents/{documentId}/tags.
+   * 
+   * @throws Exception Exception
+   */
+  @Test
+  public void testUpdateDocumentTagsAsHttpResponse01() throws Exception {
+    UpdateDocumentTagsRequest req =
+        new UpdateDocumentTagsRequest().siteId(siteId).documentId(documentId)
+            .tags(Arrays.asList(new AddDocumentTag().key("key").value("value"))).webnotify(true);
+    HttpResponse<String> response = this.client0.updateDocumentTagsAsHttpResponse(req);
+    assertEquals(HTTP_STATUS_OK, response.statusCode());
+    assertEquals("PATCH", response.request().method());
+    assertEquals(URL + "/documents/" + documentId + "/tags?siteId=" + siteId + "&webnotify=true",
         response.request().uri().toString());
   }
 

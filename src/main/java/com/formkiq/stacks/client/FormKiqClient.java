@@ -82,12 +82,14 @@ import com.formkiq.stacks.client.requests.SearchFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentAntivirusRequest;
 import com.formkiq.stacks.client.requests.SetDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.SetDocumentOcrRequest;
+import com.formkiq.stacks.client.requests.SetDocumentTagKeyRequest;
+import com.formkiq.stacks.client.requests.SetDocumentTagsRequest;
 import com.formkiq.stacks.client.requests.SetDocumentVersionRequest;
 import com.formkiq.stacks.client.requests.SetDocusignConfigRequest;
 import com.formkiq.stacks.client.requests.UpdateConfigurationRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentFulltextRequest;
 import com.formkiq.stacks.client.requests.UpdateDocumentRequest;
-import com.formkiq.stacks.client.requests.UpdateDocumentTagKeyRequest;
+import com.formkiq.stacks.client.requests.UpdateDocumentTagsRequest;
 
 /**
  * Http Client for interacting with the FormKiQ API.
@@ -432,7 +434,6 @@ public interface FormKiqClient {
   DocumentTags getDocumentTags(GetDocumentTagsRequest request)
       throws IOException, InterruptedException;
 
-
   /**
    * GET /documents/upload or /documents/{documentId}/upload.
    * 
@@ -443,6 +444,7 @@ public interface FormKiqClient {
    */
   DocumentUrl getDocumentUpload(GetDocumentUploadRequest request)
       throws IOException, InterruptedException;
+
 
   /**
    * GET /documents/{documentId}/versions.
@@ -536,7 +538,6 @@ public interface FormKiqClient {
    */
   String queryFulltext(QueryFulltextRequest request) throws IOException, InterruptedException;
 
-
   /**
    * POST /search.
    * 
@@ -546,6 +547,7 @@ public interface FormKiqClient {
    * @throws IOException IOException
    */
   Documents search(SearchDocumentsRequest request) throws IOException, InterruptedException;
+
 
   /**
    * POST /searchFulltext.
@@ -568,7 +570,6 @@ public interface FormKiqClient {
   void setDocumentAntivirus(SetDocumentAntivirusRequest request)
       throws IOException, InterruptedException;
 
-
   /**
    * PUT /documents/{documentId}/fulltext.
    * 
@@ -579,6 +580,7 @@ public interface FormKiqClient {
   void setDocumentFulltext(SetDocumentFulltextRequest request)
       throws IOException, InterruptedException;
 
+
   /**
    * PUT /documents/{documentId}/ocr.
    * 
@@ -587,6 +589,27 @@ public interface FormKiqClient {
    * @throws InterruptedException InterruptedException
    */
   void setDocumentOcr(SetDocumentOcrRequest request) throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/tags/{tagKey}.
+   * 
+   * @param request {@link SetDocumentTagKeyRequest}
+   * @return boolean
+   * 
+   * @throws InterruptedException InterruptedException
+   * @throws IOException IOException
+   */
+  boolean setDocumentTag(SetDocumentTagKeyRequest request) throws IOException, InterruptedException;
+
+  /**
+   * PUT /documents/{documentId}/tags.
+   * 
+   * @param request {@link SetDocumentTagsRequest}
+   * @return boolean
+   * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
+   */
+  boolean setDocumentTags(SetDocumentTagsRequest request) throws IOException, InterruptedException;
 
   /**
    * PUT /documents/{documentId}/version.
@@ -640,14 +663,13 @@ public interface FormKiqClient {
       throws IOException, InterruptedException;
 
   /**
-   * PUT /documents/{documentId}/tags/{tagKey}.
+   * PATCH /documents/{documentId}/tags.
    * 
-   * @param request {@link UpdateDocumentTagKeyRequest}
+   * @param request {@link UpdateDocumentTagsRequest}
    * @return boolean
-   * 
-   * @throws InterruptedException InterruptedException
    * @throws IOException IOException
+   * @throws InterruptedException InterruptedException
    */
-  boolean updateDocumentTag(UpdateDocumentTagKeyRequest request)
+  boolean updateDocumentTags(UpdateDocumentTagsRequest request)
       throws IOException, InterruptedException;
 }

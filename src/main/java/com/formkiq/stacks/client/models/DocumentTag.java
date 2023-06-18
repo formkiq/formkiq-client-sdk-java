@@ -12,6 +12,7 @@
  */
 package com.formkiq.stacks.client.models;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -20,18 +21,20 @@ import java.util.Date;
  */
 public class DocumentTag {
 
-  /** Document Tag Key. */
-  private String key;
-  /** Document Tag Value. */
-  private String value;
   /** Document Tag DocumentId. */
   private String documentId;
+  /** Document Tag InsertedDate. */
+  private Date insertedDate;
+  /** Document Tag Key. */
+  private String key;
   /** Document Tag Type. */
   private String type;
   /** Document Tag UserId. */
   private String userId;
-  /** Document Tag InsertedDate. */
-  private Date insertedDate;
+  /** Document Tag Value. */
+  private String value;
+  /** Document Tag Value. */
+  private Collection<String> values;
 
   /**
    * constructor.
@@ -157,6 +160,26 @@ public class DocumentTag {
    */
   public DocumentTag value(final String tagValue) {
     this.value = tagValue;
+    return this;
+  }
+
+  /**
+   * Get Tag Values.
+   * 
+   * @return {@link Collection} {@link String}
+   */
+  public Collection<String> values() {
+    return this.values;
+  }
+
+  /**
+   * Set Tag Value.
+   * 
+   * @param tagValues {@link Collection} {@link String}
+   * @return {@link DocumentTag}
+   */
+  public DocumentTag values(final Collection<String> tagValues) {
+    this.values = tagValues;
     return this;
   }
 }

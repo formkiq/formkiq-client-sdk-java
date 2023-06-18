@@ -24,7 +24,7 @@ import com.formkiq.stacks.client.Validate;
  * PUT /documents/{documentId}/tags/{tagKey} Request.
  *
  */
-public class UpdateDocumentTagKeyRequest implements ApiRequest {
+public class SetDocumentTagKeyRequest implements ApiRequest {
 
   /** Request Parameters. */
   private Map<String, String> parameters = new HashMap<>();
@@ -38,7 +38,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   /**
    * constructor.
    */
-  public UpdateDocumentTagKeyRequest() {}
+  public SetDocumentTagKeyRequest() {}
 
   @Override
   public void addQueryParameter(final String key, final String value) {
@@ -49,9 +49,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * Set the DocumentId.
    * 
    * @param documentId {@link String}
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest documentId(final String documentId) {
+  public SetDocumentTagKeyRequest documentId(final String documentId) {
     this.paths.put("documentId", documentId);
     return this;
   }
@@ -76,9 +76,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * Site Identifier.
    * 
    * @param siteId {@link String}
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest siteId(final String siteId) {
+  public SetDocumentTagKeyRequest siteId(final String siteId) {
     this.parameters.put("siteId", siteId);
     return this;
   }
@@ -87,9 +87,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * Set the tagKey.
    * 
    * @param tagKey {@link String}
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest tagKey(final String tagKey) {
+  public SetDocumentTagKeyRequest tagKey(final String tagKey) {
     this.paths.put("tagKey", tagKey);
     return this;
   }
@@ -97,7 +97,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   /**
    * Set the tagValue.
    * 
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
   public String tagValue() {
     return this.tagValue;
@@ -107,9 +107,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * Set the tagValue.
    * 
    * @param value {@link String}
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest tagValue(final String value) {
+  public SetDocumentTagKeyRequest tagValue(final String value) {
     this.tagValue = value;
     return this;
   }
@@ -117,7 +117,7 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
   /**
    * Set the tagValues.
    * 
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
   public List<String> tagValues() {
     return this.tagValues;
@@ -127,9 +127,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * Set the tagValue.
    * 
    * @param list {@link List} {@link String}
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest tagValues(final List<String> list) {
+  public SetDocumentTagKeyRequest tagValues(final List<String> list) {
     this.tagValues = list;
     return this;
   }
@@ -145,9 +145,9 @@ public class UpdateDocumentTagKeyRequest implements ApiRequest {
    * WebNotify.
    * 
    * @param webnotify boolean
-   * @return {@link UpdateDocumentTagKeyRequest}
+   * @return {@link SetDocumentTagKeyRequest}
    */
-  public UpdateDocumentTagKeyRequest webnotify(final boolean webnotify) {
+  public SetDocumentTagKeyRequest webnotify(final boolean webnotify) {
     this.parameters.put("webnotify", String.valueOf(webnotify));
     return this;
   }
