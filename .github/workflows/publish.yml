@@ -33,8 +33,14 @@ jobs:
         mkdir -p ~/.gradle/
         echo "GRADLE_USER_HOME=${HOME}/.gradle" >> $GITHUB_ENV
         echo "${GRADLE_PROPERTIES}" > ~/.gradle/gradle.properties
+    - name: Restore gpg key
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      shell: bash
+      run: |
+        echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > ~/secring.gpg
     -
-      name: Import GPG key
+      name: Restore GPG key
       uses: crazy-max/ghaction-import-gpg@v5
       with:
         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
