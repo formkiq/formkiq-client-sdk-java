@@ -38,7 +38,8 @@ jobs:
         GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       shell: bash
       run: |
-        echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > ~/key.gpg
+        mkdir /home/runner/.gnupg
+        echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > /home/runner/.gnupg/secring.gpg
     - name: List keys
       run: gpg -K
     - name: Build with Gradle
