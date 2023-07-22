@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-07-21T22:05:43.216049-05:00[America/Winnipeg]
+  - Build date: 2023-07-21T22:37:18.641266-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -231,6 +231,7 @@ Class | Method | HTTP request | Description
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
+ - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)

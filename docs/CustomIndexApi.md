@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="deleteIndex"></a>
 # **deleteIndex**
-> deleteIndex(indexKey, indexType, siteId)
+> DeleteIndicesResponse deleteIndex(indexKey, indexType, siteId)
 
 
 
@@ -41,7 +41,8 @@ public class Example {
     String indexType = "indexType_example"; // String | Index Type
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteIndex(indexKey, indexType, siteId);
+      DeleteIndicesResponse result = apiInstance.deleteIndex(indexKey, indexType, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomIndexApi#deleteIndex");
       System.err.println("Status code: " + e.getCode());
@@ -63,7 +64,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteIndicesResponse**](DeleteIndicesResponse.md)
 
 ### Authorization
 

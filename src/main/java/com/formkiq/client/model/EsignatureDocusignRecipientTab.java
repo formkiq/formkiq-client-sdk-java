@@ -50,7 +50,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * EsignatureDocusignRecipientTab
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:05:43.216049-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:37:18.641266-05:00[America/Winnipeg]")
 public class EsignatureDocusignRecipientTab {
   /**
    * Type of Recipient

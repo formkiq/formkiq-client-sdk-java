@@ -39,6 +39,7 @@ docs/ChildDocument.md
 docs/CustomIndexApi.md
 docs/DeleteApiKeyResponse.md
 docs/DeleteFolderResponse.md
+docs/DeleteIndicesResponse.md
 docs/DeleteShareResponse.md
 docs/DocumentAction.md
 docs/DocumentActionsApi.md
@@ -214,6 +215,7 @@ src/main/java/com/formkiq/client/model/ApiKey.java
 src/main/java/com/formkiq/client/model/ChildDocument.java
 src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
 src/main/java/com/formkiq/client/model/DeleteFolderResponse.java
+src/main/java/com/formkiq/client/model/DeleteIndicesResponse.java
 src/main/java/com/formkiq/client/model/DeleteShareResponse.java
 src/main/java/com/formkiq/client/model/DocumentAction.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
@@ -347,6 +349,7 @@ src/test/java/com/formkiq/client/model/ApiKeyTest.java
 src/test/java/com/formkiq/client/model/ChildDocumentTest.java
 src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFolderResponseTest.java
+src/test/java/com/formkiq/client/model/DeleteIndicesResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteShareResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java

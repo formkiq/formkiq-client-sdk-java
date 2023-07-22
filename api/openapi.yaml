@@ -3849,6 +3849,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteIndicesResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -4395,6 +4399,14 @@ components:
           items:
             type: string
           type: array
+      type: object
+    DeleteIndicesResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: response message
+          type: string
       type: object
     IndexFolderMoveResponse:
       example:

@@ -15,15 +15,12 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formkiq.client.model.ApiKey;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,43 +48,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetApiKeysResponse
+ * DeleteIndicesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:37:18.641266-05:00[America/Winnipeg]")
-public class GetApiKeysResponse {
-  public static final String SERIALIZED_NAME_API_KEYS = "apiKeys";
-  @SerializedName(SERIALIZED_NAME_API_KEYS)
-  private List<ApiKey> apiKeys;
+public class DeleteIndicesResponse {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
-  public GetApiKeysResponse() {
+  public DeleteIndicesResponse() {
   }
 
-  public GetApiKeysResponse apiKeys(List<ApiKey> apiKeys) {
+  public DeleteIndicesResponse message(String message) {
     
-    this.apiKeys = apiKeys;
-    return this;
-  }
-
-  public GetApiKeysResponse addApiKeysItem(ApiKey apiKeysItem) {
-    if (this.apiKeys == null) {
-      this.apiKeys = new ArrayList<>();
-    }
-    this.apiKeys.add(apiKeysItem);
+    this.message = message;
     return this;
   }
 
    /**
-   * List of ApiKeys
-   * @return apiKeys
+   * response message
+   * @return message
   **/
   @javax.annotation.Nullable
-  public List<ApiKey> getApiKeys() {
-    return apiKeys;
+  public String getMessage() {
+    return message;
   }
 
 
-  public void setApiKeys(List<ApiKey> apiKeys) {
-    this.apiKeys = apiKeys;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -100,20 +89,20 @@ public class GetApiKeysResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetApiKeysResponse getApiKeysResponse = (GetApiKeysResponse) o;
-    return Objects.equals(this.apiKeys, getApiKeysResponse.apiKeys);
+    DeleteIndicesResponse deleteIndicesResponse = (DeleteIndicesResponse) o;
+    return Objects.equals(this.message, deleteIndicesResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiKeys);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetApiKeysResponse {\n");
-    sb.append("    apiKeys: ").append(toIndentedString(apiKeys)).append("\n");
+    sb.append("class DeleteIndicesResponse {\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -136,7 +125,7 @@ public class GetApiKeysResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("apiKeys");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -146,35 +135,24 @@ public class GetApiKeysResponse {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to GetApiKeysResponse
+  * @throws IOException if the JSON Object is invalid with respect to DeleteIndicesResponse
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!GetApiKeysResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in GetApiKeysResponse is not found in the empty JSON string", GetApiKeysResponse.openapiRequiredFields.toString()));
+        if (!DeleteIndicesResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DeleteIndicesResponse is not found in the empty JSON string", DeleteIndicesResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!GetApiKeysResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetApiKeysResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!DeleteIndicesResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeleteIndicesResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if (jsonObj.get("apiKeys") != null && !jsonObj.get("apiKeys").isJsonNull()) {
-        JsonArray jsonArrayapiKeys = jsonObj.getAsJsonArray("apiKeys");
-        if (jsonArrayapiKeys != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("apiKeys").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `apiKeys` to be an array in the JSON string but got `%s`", jsonObj.get("apiKeys").toString()));
-          }
-
-          // validate the optional field `apiKeys` (array)
-          for (int i = 0; i < jsonArrayapiKeys.size(); i++) {
-            ApiKey.validateJsonObject(jsonArrayapiKeys.get(i).getAsJsonObject());
-          };
-        }
+      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
   }
 
@@ -182,22 +160,22 @@ public class GetApiKeysResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!GetApiKeysResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'GetApiKeysResponse' and its subtypes
+       if (!DeleteIndicesResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DeleteIndicesResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<GetApiKeysResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(GetApiKeysResponse.class));
+       final TypeAdapter<DeleteIndicesResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DeleteIndicesResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<GetApiKeysResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<DeleteIndicesResponse>() {
            @Override
-           public void write(JsonWriter out, GetApiKeysResponse value) throws IOException {
+           public void write(JsonWriter out, DeleteIndicesResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public GetApiKeysResponse read(JsonReader in) throws IOException {
+           public DeleteIndicesResponse read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -208,18 +186,18 @@ public class GetApiKeysResponse {
   }
 
  /**
-  * Create an instance of GetApiKeysResponse given an JSON string
+  * Create an instance of DeleteIndicesResponse given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of GetApiKeysResponse
-  * @throws IOException if the JSON string is invalid with respect to GetApiKeysResponse
+  * @return An instance of DeleteIndicesResponse
+  * @throws IOException if the JSON string is invalid with respect to DeleteIndicesResponse
   */
-  public static GetApiKeysResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetApiKeysResponse.class);
+  public static DeleteIndicesResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DeleteIndicesResponse.class);
   }
 
  /**
-  * Convert an instance of GetApiKeysResponse to an JSON string
+  * Convert an instance of DeleteIndicesResponse to an JSON string
   *
   * @return JSON string
   */

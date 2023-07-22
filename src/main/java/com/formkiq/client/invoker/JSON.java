@@ -124,6 +124,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.ChildDocument.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DeleteApiKeyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DeleteFolderResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DeleteIndicesResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DeleteShareResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DocumentAction.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.DocumentFulltextRequest.CustomTypeAdapterFactory());

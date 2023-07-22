@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.DeleteIndicesResponse;
 import com.formkiq.client.model.IndexFolderMoveRequest;
 import com.formkiq.client.model.IndexFolderMoveResponse;
 import com.formkiq.client.model.IndexSearchRequest;
@@ -164,6 +165,7 @@ public class CustomIndexApi {
      * @param indexKey Index Key Identifier (required)
      * @param indexType Index Type (required)
      * @param siteId Site Identifier (optional)
+     * @return DeleteIndicesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -172,8 +174,9 @@ public class CustomIndexApi {
         <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
-    public void deleteIndex(String indexKey, String indexType, String siteId) throws ApiException {
-        deleteIndexWithHttpInfo(indexKey, indexType, siteId);
+    public DeleteIndicesResponse deleteIndex(String indexKey, String indexType, String siteId) throws ApiException {
+        ApiResponse<DeleteIndicesResponse> localVarResp = deleteIndexWithHttpInfo(indexKey, indexType, siteId);
+        return localVarResp.getData();
     }
 
     /**
@@ -182,7 +185,7 @@ public class CustomIndexApi {
      * @param indexKey Index Key Identifier (required)
      * @param indexType Index Type (required)
      * @param siteId Site Identifier (optional)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;DeleteIndicesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -191,9 +194,10 @@ public class CustomIndexApi {
         <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deleteIndexWithHttpInfo(String indexKey, String indexType, String siteId) throws ApiException {
+    public ApiResponse<DeleteIndicesResponse> deleteIndexWithHttpInfo(String indexKey, String indexType, String siteId) throws ApiException {
         okhttp3.Call localVarCall = deleteIndexValidateBeforeCall(indexKey, indexType, siteId, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<DeleteIndicesResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -212,10 +216,11 @@ public class CustomIndexApi {
         <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteIndexAsync(String indexKey, String indexType, String siteId, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteIndexAsync(String indexKey, String indexType, String siteId, final ApiCallback<DeleteIndicesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteIndexValidateBeforeCall(indexKey, indexType, siteId, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<DeleteIndicesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**

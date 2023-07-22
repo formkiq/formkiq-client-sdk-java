@@ -14,6 +14,7 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.DeleteIndicesResponse;
 import com.formkiq.client.model.IndexFolderMoveRequest;
 import com.formkiq.client.model.IndexFolderMoveResponse;
 import com.formkiq.client.model.IndexSearchRequest;
@@ -45,7 +46,7 @@ public class CustomIndexApiTest {
         String indexKey = null;
         String indexType = null;
         String siteId = null;
-        api.deleteIndex(indexKey, indexType, siteId);
+        DeleteIndicesResponse response = api.deleteIndex(indexKey, indexType, siteId);
         // TODO: test validations
     }
 
