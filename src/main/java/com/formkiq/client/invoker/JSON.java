@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -169,7 +169,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetTagSchemaRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetTagSchemasRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetUserShares.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetUsersMeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetVersionRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetWebhookResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.GetWebhookTagsResponse.CustomTypeAdapterFactory());
@@ -198,7 +197,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.SetDocumentVersionRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.SetDocumentVersionResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.Site.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.SitesByPermission.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.TagSchemaCompositeKey.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.TagSchemaOptional.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.formkiq.client.model.TagSchemaPostResponse.CustomTypeAdapterFactory());

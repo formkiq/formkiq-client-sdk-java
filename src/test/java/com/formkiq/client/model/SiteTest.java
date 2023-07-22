@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -19,6 +19,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +53,14 @@ public class SiteTest {
     @Test
     public void permissionTest() {
         // TODO: test permission
+    }
+
+    /**
+     * Test the property 'permissions'
+     */
+    @Test
+    public void permissionsTest() {
+        // TODO: test permissions
     }
 
     /**

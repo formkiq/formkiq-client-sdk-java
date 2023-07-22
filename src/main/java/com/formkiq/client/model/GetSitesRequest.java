@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -53,14 +53,39 @@ import com.formkiq.client.invoker.JSON;
 /**
  * GetSitesRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-12T22:09:49.468810-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:05:43.216049-05:00[America/Winnipeg]")
 public class GetSitesRequest {
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
+
   public static final String SERIALIZED_NAME_SITES = "sites";
   @SerializedName(SERIALIZED_NAME_SITES)
   private List<Site> sites;
 
   public GetSitesRequest() {
   }
+
+  public GetSitesRequest username(String username) {
+    
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Username of request caller
+   * @return username
+  **/
+  @javax.annotation.Nullable
+  public String getUsername() {
+    return username;
+  }
+
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
 
   public GetSitesRequest sites(List<Site> sites) {
     
@@ -101,18 +126,20 @@ public class GetSitesRequest {
       return false;
     }
     GetSitesRequest getSitesRequest = (GetSitesRequest) o;
-    return Objects.equals(this.sites, getSitesRequest.sites);
+    return Objects.equals(this.username, getSitesRequest.username) &&
+        Objects.equals(this.sites, getSitesRequest.sites);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sites);
+    return Objects.hash(username, sites);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetSitesRequest {\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    sites: ").append(toIndentedString(sites)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -136,6 +163,7 @@ public class GetSitesRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("username");
     openapiFields.add("sites");
 
     // a set of required properties/fields (JSON key names)
@@ -161,6 +189,9 @@ public class GetSitesRequest {
         if (!GetSitesRequest.openapiFields.contains(entry.getKey())) {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetSitesRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
+      }
+      if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull()) && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
       }
       if (jsonObj.get("sites") != null && !jsonObj.get("sites").isJsonNull()) {
         JsonArray jsonArraysites = jsonObj.getAsJsonArray("sites");

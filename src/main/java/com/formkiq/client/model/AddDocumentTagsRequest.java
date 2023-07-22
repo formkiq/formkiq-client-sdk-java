@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -53,7 +53,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * Add List of document tags
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-12T22:09:49.468810-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:05:43.216049-05:00[America/Winnipeg]")
 public class AddDocumentTagsRequest {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)

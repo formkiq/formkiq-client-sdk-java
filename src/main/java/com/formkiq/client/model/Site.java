@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -21,6 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +52,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * Site
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-12T22:09:49.468810-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:05:43.216049-05:00[America/Winnipeg]")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -107,6 +109,61 @@ public class Site {
   @SerializedName(SERIALIZED_NAME_PERMISSION)
   private PermissionEnum permission;
 
+  /**
+   * Gets or Sets permissions
+   */
+  @JsonAdapter(PermissionsEnum.Adapter.class)
+  public enum PermissionsEnum {
+    ADMIN("ADMIN"),
+    
+    DELETE("DELETE"),
+    
+    READ("READ"),
+    
+    WRITE("WRITE");
+
+    private String value;
+
+    PermissionsEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PermissionsEnum fromValue(String value) {
+      for (PermissionsEnum b : PermissionsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PermissionsEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PermissionsEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
+  @SerializedName(SERIALIZED_NAME_PERMISSIONS)
+  private List<PermissionsEnum> permissions;
+
   public static final String SERIALIZED_NAME_UPLOAD_EMAIL = "uploadEmail";
   @SerializedName(SERIALIZED_NAME_UPLOAD_EMAIL)
   private String uploadEmail;
@@ -156,6 +213,35 @@ public class Site {
   }
 
 
+  public Site permissions(List<PermissionsEnum> permissions) {
+    
+    this.permissions = permissions;
+    return this;
+  }
+
+  public Site addPermissionsItem(PermissionsEnum permissionsItem) {
+    if (this.permissions == null) {
+      this.permissions = new ArrayList<>();
+    }
+    this.permissions.add(permissionsItem);
+    return this;
+  }
+
+   /**
+   * List of caller permissions
+   * @return permissions
+  **/
+  @javax.annotation.Nullable
+  public List<PermissionsEnum> getPermissions() {
+    return permissions;
+  }
+
+
+  public void setPermissions(List<PermissionsEnum> permissions) {
+    this.permissions = permissions;
+  }
+
+
   public Site uploadEmail(String uploadEmail) {
     
     this.uploadEmail = uploadEmail;
@@ -189,12 +275,13 @@ public class Site {
     Site site = (Site) o;
     return Objects.equals(this.siteId, site.siteId) &&
         Objects.equals(this.permission, site.permission) &&
+        Objects.equals(this.permissions, site.permissions) &&
         Objects.equals(this.uploadEmail, site.uploadEmail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, permission, uploadEmail);
+    return Objects.hash(siteId, permission, permissions, uploadEmail);
   }
 
   @Override
@@ -203,6 +290,7 @@ public class Site {
     sb.append("class Site {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -228,6 +316,7 @@ public class Site {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("permission");
+    openapiFields.add("permissions");
     openapiFields.add("uploadEmail");
 
     // a set of required properties/fields (JSON key names)
@@ -259,6 +348,10 @@ public class Site {
       }
       if ((jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull()) && !jsonObj.get("permission").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `permission` to be a primitive type in the JSON string but got `%s`", jsonObj.get("permission").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `permissions` to be an array in the JSON string but got `%s`", jsonObj.get("permissions").toString()));
       }
       if ((jsonObj.get("uploadEmail") != null && !jsonObj.get("uploadEmail").isJsonNull()) && !jsonObj.get("uploadEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `uploadEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uploadEmail").toString()));

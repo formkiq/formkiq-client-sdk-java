@@ -4,7 +4,7 @@ info:
     email: support@formkiq.com
     name: FormKiQ
     url: https://formkiq.com
-  description: FormKiQ HTTP API
+  description: "Formkiq API: Document Management Platform API using JWT Authentication"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -18,46 +18,6 @@ servers:
 - description: Local development server
   url: http://localhost
 paths:
-  /users/me:
-    get:
-      description: Return the calling users user information
-      operationId: GetUsersMe
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetUsersMeRequest'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
-            Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
-            Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorsResponse'
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      tags:
-      - Users Management
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
   /version:
     get:
       description: Return the version of FormKiQ
@@ -443,6 +403,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Share Identifier
+        explode: true
+        in: query
+        name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -631,6 +599,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Share Identifier
+        explode: true
+        in: query
+        name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -1392,6 +1368,14 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Share Identifier
+        explode: true
+        in: query
+        name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1436,6 +1420,14 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Share Identifier
+        explode: true
+        in: query
+        name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -1466,7 +1458,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddDocumentResponse'
+                $ref: '#/components/schemas/GetDocumentUrlResponse'
           description: 201 CREATED
           headers:
             Access-Control-Allow-Origin:
@@ -6399,49 +6391,6 @@ components:
       required:
       - content
       type: object
-    GetUsersMeRequest:
-      example:
-        sites:
-        - permissions:
-          - ADMIN
-          - ADMIN
-          siteId: siteId
-        - permissions:
-          - ADMIN
-          - ADMIN
-          siteId: siteId
-        username: username
-      properties:
-        username:
-          description: Username of request caller
-          type: string
-        sites:
-          description: List of sites
-          items:
-            $ref: '#/components/schemas/SitesByPermission'
-          type: array
-      type: object
-    SitesByPermission:
-      example:
-        permissions:
-        - ADMIN
-        - ADMIN
-        siteId: siteId
-      properties:
-        siteId:
-          description: Site Identifier
-          type: string
-        permissions:
-          description: List of caller permissions
-          items:
-            enum:
-            - ADMIN
-            - DELETE
-            - READ
-            - WRITE
-            type: string
-          type: array
-      type: object
     GetVersionRequest:
       example:
         type: type
@@ -6588,12 +6537,22 @@ components:
       example:
         sites:
         - uploadEmail: uploadEmail
+          permissions:
+          - ADMIN
+          - ADMIN
           siteId: siteId
           permission: READ_WRITE
         - uploadEmail: uploadEmail
+          permissions:
+          - ADMIN
+          - ADMIN
           siteId: siteId
           permission: READ_WRITE
+        username: username
       properties:
+        username:
+          description: Username of request caller
+          type: string
         sites:
           description: List of sites
           items:
@@ -6603,6 +6562,9 @@ components:
     Site:
       example:
         uploadEmail: uploadEmail
+        permissions:
+        - ADMIN
+        - ADMIN
         siteId: siteId
         permission: READ_WRITE
       properties:
@@ -6615,6 +6577,16 @@ components:
           - READ_WRITE
           - READ_ONLY
           type: string
+        permissions:
+          description: List of caller permissions
+          items:
+            enum:
+            - ADMIN
+            - DELETE
+            - READ
+            - WRITE
+            type: string
+          type: array
         uploadEmail:
           description: SiteId document upload email address
           type: string

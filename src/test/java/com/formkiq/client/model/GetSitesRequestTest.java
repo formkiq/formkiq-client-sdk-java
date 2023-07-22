@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -38,6 +38,14 @@ public class GetSitesRequestTest {
     @Test
     public void testGetSitesRequest() {
         // TODO: test GetSitesRequest
+    }
+
+    /**
+     * Test the property 'username'
+     */
+    @Test
+    public void usernameTest() {
+        // TODO: test username
     }
 
     /**

@@ -19,7 +19,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocument"></a>
 # **addDocument**
-> AddDocumentResponse addDocument(addDocumentRequest, siteId)
+> AddDocumentResponse addDocument(addDocumentRequest, siteId, shareKey)
 
 
 
@@ -47,8 +47,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId);
+      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#addDocument");
@@ -67,6 +68,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **addDocumentRequest** | [**AddDocumentRequest**](AddDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
 
@@ -88,7 +90,7 @@ public class Example {
 
 <a id="addDocumentUpload"></a>
 # **addDocumentUpload**
-> AddDocumentResponse addDocumentUpload(addDocumentUploadRequest, siteId, duration)
+> GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey)
 
 
 
@@ -117,8 +119,9 @@ public class Example {
     AddDocumentUploadRequest addDocumentUploadRequest = new AddDocumentUploadRequest(); // AddDocumentUploadRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
+    String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, duration);
+      GetDocumentUrlResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#addDocumentUpload");
@@ -138,10 +141,11 @@ public class Example {
 | **addDocumentUploadRequest** | [**AddDocumentUploadRequest**](AddDocumentUploadRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
+| **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
 
-[**AddDocumentResponse**](AddDocumentResponse.md)
+[**GetDocumentUrlResponse**](GetDocumentUrlResponse.md)
 
 ### Authorization
 
@@ -519,7 +523,7 @@ public class Example {
 
 <a id="getDocumentUpload"></a>
 # **getDocumentUpload**
-> GetDocumentUrlResponse getDocumentUpload(path, siteId, contentLength, duration)
+> GetDocumentUrlResponse getDocumentUpload(path, siteId, contentLength, duration, shareKey)
 
 
 
@@ -549,8 +553,9 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
+    String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, contentLength, duration);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, contentLength, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUpload");
@@ -571,6 +576,7 @@ public class Example {
 | **siteId** | **String**| Site Identifier | [optional] |
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
+| **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
 
@@ -746,7 +752,7 @@ public class Example {
 
 <a id="updateDocument"></a>
 # **updateDocument**
-> AddDocumentResponse updateDocument(documentId, addDocumentRequest, siteId)
+> AddDocumentResponse updateDocument(documentId, addDocumentRequest, siteId, shareKey)
 
 
 
@@ -775,8 +781,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.updateDocument(documentId, addDocumentRequest, siteId);
+      AddDocumentResponse result = apiInstance.updateDocument(documentId, addDocumentRequest, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#updateDocument");
@@ -796,6 +803,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentRequest** | [**AddDocumentRequest**](AddDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
 

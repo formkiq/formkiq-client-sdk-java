@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -84,6 +84,7 @@ public class DocumentsApi {
      * Build call for addDocument
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -93,7 +94,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentCall(AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addDocumentCall(AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -122,6 +123,10 @@ public class DocumentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
         }
 
+        if (shareKey != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -143,13 +148,13 @@ public class DocumentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addDocumentValidateBeforeCall(AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addDocumentValidateBeforeCall(AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'addDocumentRequest' is set
         if (addDocumentRequest == null) {
             throw new ApiException("Missing the required parameter 'addDocumentRequest' when calling addDocument(Async)");
         }
 
-        return addDocumentCall(addDocumentRequest, siteId, _callback);
+        return addDocumentCall(addDocumentRequest, siteId, shareKey, _callback);
 
     }
 
@@ -158,6 +163,7 @@ public class DocumentsApi {
      * Creates a new document; body may include document content if less than 5 MB
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @return AddDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -166,8 +172,8 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public AddDocumentResponse addDocument(AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
-        ApiResponse<AddDocumentResponse> localVarResp = addDocumentWithHttpInfo(addDocumentRequest, siteId);
+    public AddDocumentResponse addDocument(AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+        ApiResponse<AddDocumentResponse> localVarResp = addDocumentWithHttpInfo(addDocumentRequest, siteId, shareKey);
         return localVarResp.getData();
     }
 
@@ -176,6 +182,7 @@ public class DocumentsApi {
      * Creates a new document; body may include document content if less than 5 MB
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @return ApiResponse&lt;AddDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -184,8 +191,8 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<AddDocumentResponse> addDocumentWithHttpInfo(AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
-        okhttp3.Call localVarCall = addDocumentValidateBeforeCall(addDocumentRequest, siteId, null);
+    public ApiResponse<AddDocumentResponse> addDocumentWithHttpInfo(AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = addDocumentValidateBeforeCall(addDocumentRequest, siteId, shareKey, null);
         Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -195,6 +202,7 @@ public class DocumentsApi {
      * Creates a new document; body may include document content if less than 5 MB
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -204,9 +212,9 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentAsync(AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call addDocumentAsync(AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addDocumentValidateBeforeCall(addDocumentRequest, siteId, _callback);
+        okhttp3.Call localVarCall = addDocumentValidateBeforeCall(addDocumentRequest, siteId, shareKey, _callback);
         Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -216,6 +224,7 @@ public class DocumentsApi {
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -225,7 +234,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentUploadCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addDocumentUploadCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -258,6 +267,10 @@ public class DocumentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("duration", duration));
         }
 
+        if (shareKey != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -279,13 +292,13 @@ public class DocumentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addDocumentUploadValidateBeforeCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addDocumentUploadValidateBeforeCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'addDocumentUploadRequest' is set
         if (addDocumentUploadRequest == null) {
             throw new ApiException("Missing the required parameter 'addDocumentUploadRequest' when calling addDocumentUpload(Async)");
         }
 
-        return addDocumentUploadCall(addDocumentUploadRequest, siteId, duration, _callback);
+        return addDocumentUploadCall(addDocumentUploadRequest, siteId, duration, shareKey, _callback);
 
     }
 
@@ -295,7 +308,8 @@ public class DocumentsApi {
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
-     * @return AddDocumentResponse
+     * @param shareKey Share Identifier (optional)
+     * @return GetDocumentUrlResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -303,8 +317,8 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public AddDocumentResponse addDocumentUpload(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration) throws ApiException {
-        ApiResponse<AddDocumentResponse> localVarResp = addDocumentUploadWithHttpInfo(addDocumentUploadRequest, siteId, duration);
+    public GetDocumentUrlResponse addDocumentUpload(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey) throws ApiException {
+        ApiResponse<GetDocumentUrlResponse> localVarResp = addDocumentUploadWithHttpInfo(addDocumentUploadRequest, siteId, duration, shareKey);
         return localVarResp.getData();
     }
 
@@ -314,7 +328,8 @@ public class DocumentsApi {
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
-     * @return ApiResponse&lt;AddDocumentResponse&gt;
+     * @param shareKey Share Identifier (optional)
+     * @return ApiResponse&lt;GetDocumentUrlResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -322,9 +337,9 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<AddDocumentResponse> addDocumentUploadWithHttpInfo(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration) throws ApiException {
-        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, null);
-        Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
+    public ApiResponse<GetDocumentUrlResponse> addDocumentUploadWithHttpInfo(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, shareKey, null);
+        Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -334,6 +349,7 @@ public class DocumentsApi {
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -343,10 +359,10 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentUploadAsync(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call addDocumentUploadAsync(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, _callback);
-        Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
+        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, shareKey, _callback);
+        Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1070,6 +1086,7 @@ public class DocumentsApi {
      * @param siteId Site Identifier (optional)
      * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1079,7 +1096,7 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call getDocumentUploadCall(String path, String siteId, Integer contentLength, Integer duration, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDocumentUploadCall(String path, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1120,6 +1137,10 @@ public class DocumentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("duration", duration));
         }
 
+        if (shareKey != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1140,8 +1161,8 @@ public class DocumentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDocumentUploadValidateBeforeCall(String path, String siteId, Integer contentLength, Integer duration, final ApiCallback _callback) throws ApiException {
-        return getDocumentUploadCall(path, siteId, contentLength, duration, _callback);
+    private okhttp3.Call getDocumentUploadValidateBeforeCall(String path, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
+        return getDocumentUploadCall(path, siteId, contentLength, duration, shareKey, _callback);
 
     }
 
@@ -1152,6 +1173,7 @@ public class DocumentsApi {
      * @param siteId Site Identifier (optional)
      * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @return GetDocumentUrlResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1160,8 +1182,8 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public GetDocumentUrlResponse getDocumentUpload(String path, String siteId, Integer contentLength, Integer duration) throws ApiException {
-        ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentUploadWithHttpInfo(path, siteId, contentLength, duration);
+    public GetDocumentUrlResponse getDocumentUpload(String path, String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
+        ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentUploadWithHttpInfo(path, siteId, contentLength, duration, shareKey);
         return localVarResp.getData();
     }
 
@@ -1172,6 +1194,7 @@ public class DocumentsApi {
      * @param siteId Site Identifier (optional)
      * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @return ApiResponse&lt;GetDocumentUrlResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1180,8 +1203,8 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<GetDocumentUrlResponse> getDocumentUploadWithHttpInfo(String path, String siteId, Integer contentLength, Integer duration) throws ApiException {
-        okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, contentLength, duration, null);
+    public ApiResponse<GetDocumentUrlResponse> getDocumentUploadWithHttpInfo(String path, String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, contentLength, duration, shareKey, null);
         Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1193,6 +1216,7 @@ public class DocumentsApi {
      * @param siteId Site Identifier (optional)
      * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1202,9 +1226,9 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call getDocumentUploadAsync(String path, String siteId, Integer contentLength, Integer duration, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
+    public okhttp3.Call getDocumentUploadAsync(String path, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, contentLength, duration, _callback);
+        okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, contentLength, duration, shareKey, _callback);
         Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1538,6 +1562,7 @@ public class DocumentsApi {
      * @param documentId Document Identifier (required)
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1547,7 +1572,7 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call updateDocumentCall(String documentId, AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateDocumentCall(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1577,6 +1602,10 @@ public class DocumentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
         }
 
+        if (shareKey != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1598,7 +1627,7 @@ public class DocumentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateDocumentValidateBeforeCall(String documentId, AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateDocumentValidateBeforeCall(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'documentId' is set
         if (documentId == null) {
             throw new ApiException("Missing the required parameter 'documentId' when calling updateDocument(Async)");
@@ -1609,7 +1638,7 @@ public class DocumentsApi {
             throw new ApiException("Missing the required parameter 'addDocumentRequest' when calling updateDocument(Async)");
         }
 
-        return updateDocumentCall(documentId, addDocumentRequest, siteId, _callback);
+        return updateDocumentCall(documentId, addDocumentRequest, siteId, shareKey, _callback);
 
     }
 
@@ -1619,6 +1648,7 @@ public class DocumentsApi {
      * @param documentId Document Identifier (required)
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @return AddDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1627,8 +1657,8 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public AddDocumentResponse updateDocument(String documentId, AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
-        ApiResponse<AddDocumentResponse> localVarResp = updateDocumentWithHttpInfo(documentId, addDocumentRequest, siteId);
+    public AddDocumentResponse updateDocument(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+        ApiResponse<AddDocumentResponse> localVarResp = updateDocumentWithHttpInfo(documentId, addDocumentRequest, siteId, shareKey);
         return localVarResp.getData();
     }
 
@@ -1638,6 +1668,7 @@ public class DocumentsApi {
      * @param documentId Document Identifier (required)
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @return ApiResponse&lt;AddDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1646,8 +1677,8 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<AddDocumentResponse> updateDocumentWithHttpInfo(String documentId, AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
-        okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, addDocumentRequest, siteId, null);
+    public ApiResponse<AddDocumentResponse> updateDocumentWithHttpInfo(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, addDocumentRequest, siteId, shareKey, null);
         Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1658,6 +1689,7 @@ public class DocumentsApi {
      * @param documentId Document Identifier (required)
      * @param addDocumentRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1667,9 +1699,9 @@ public class DocumentsApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call updateDocumentAsync(String documentId, AddDocumentRequest addDocumentRequest, String siteId, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call updateDocumentAsync(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, addDocumentRequest, siteId, _callback);
+        okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, addDocumentRequest, siteId, shareKey, _callback);
         Type localVarReturnType = new TypeToken<AddDocumentResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

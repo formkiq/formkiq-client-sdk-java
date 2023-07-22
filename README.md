@@ -2,9 +2,9 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-07-12T22:09:49.468810-05:00[America/Winnipeg]
+  - Build date: 2023-07-21T22:05:43.216049-05:00[America/Winnipeg]
 
-FormKiQ HTTP API
+Formkiq API: Document Management Platform API using JWT Authentication
 
   For more information, please visit [https://formkiq.com](https://formkiq.com)
 
@@ -188,7 +188,6 @@ Class | Method | HTTP request | Description
 *TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | 
 *TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | 
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | 
-*UsersManagementApi* | [**getUsersMe**](docs/UsersManagementApi.md#getUsersMe) | **GET** /users/me | 
 *WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | 
 *WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | 
 *WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | 
@@ -277,7 +276,6 @@ Class | Method | HTTP request | Description
  - [GetTagSchemaRequest](docs/GetTagSchemaRequest.md)
  - [GetTagSchemasRequest](docs/GetTagSchemasRequest.md)
  - [GetUserShares](docs/GetUserShares.md)
- - [GetUsersMeRequest](docs/GetUsersMeRequest.md)
  - [GetVersionRequest](docs/GetVersionRequest.md)
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
@@ -306,7 +304,6 @@ Class | Method | HTTP request | Description
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [Site](docs/Site.md)
- - [SitesByPermission](docs/SitesByPermission.md)
  - [TagSchemaCompositeKey](docs/TagSchemaCompositeKey.md)
  - [TagSchemaOptional](docs/TagSchemaOptional.md)
  - [TagSchemaPostResponse](docs/TagSchemaPostResponse.md)

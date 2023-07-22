@@ -1,6 +1,5 @@
 .github/workflows/maven.yml
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -94,7 +93,6 @@ docs/GetSitesRequest.md
 docs/GetTagSchemaRequest.md
 docs/GetTagSchemasRequest.md
 docs/GetUserShares.md
-docs/GetUsersMeRequest.md
 docs/GetVersionRequest.md
 docs/GetWebhookResponse.md
 docs/GetWebhookTagsResponse.md
@@ -125,7 +123,6 @@ docs/SetDocumentTagKeyRequest.md
 docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
 docs/Site.md
-docs/SitesByPermission.md
 docs/SystemManagementApi.md
 docs/TagIndexApi.md
 docs/TagSchemaApi.md
@@ -137,7 +134,6 @@ docs/TagSchemaSummary.md
 docs/TagSchemaTags.md
 docs/UpdateDocumentFulltextRequest.md
 docs/UserShare.md
-docs/UsersManagementApi.md
 docs/ValidationError.md
 docs/ValidationErrorsResponse.md
 docs/WebhookTag.md
@@ -168,7 +164,6 @@ src/main/java/com/formkiq/client/api/PublicApi.java
 src/main/java/com/formkiq/client/api/SystemManagementApi.java
 src/main/java/com/formkiq/client/api/TagIndexApi.java
 src/main/java/com/formkiq/client/api/TagSchemaApi.java
-src/main/java/com/formkiq/client/api/UsersManagementApi.java
 src/main/java/com/formkiq/client/api/WebhooksApi.java
 src/main/java/com/formkiq/client/invoker/ApiCallback.java
 src/main/java/com/formkiq/client/invoker/ApiClient.java
@@ -264,7 +259,6 @@ src/main/java/com/formkiq/client/model/GetSitesRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemasRequest.java
 src/main/java/com/formkiq/client/model/GetUserShares.java
-src/main/java/com/formkiq/client/model/GetUsersMeRequest.java
 src/main/java/com/formkiq/client/model/GetVersionRequest.java
 src/main/java/com/formkiq/client/model/GetWebhookResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookTagsResponse.java
@@ -293,7 +287,6 @@ src/main/java/com/formkiq/client/model/SetDocumentTagKeyRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
 src/main/java/com/formkiq/client/model/Site.java
-src/main/java/com/formkiq/client/model/SitesByPermission.java
 src/main/java/com/formkiq/client/model/TagSchemaCompositeKey.java
 src/main/java/com/formkiq/client/model/TagSchemaOptional.java
 src/main/java/com/formkiq/client/model/TagSchemaPostResponse.java
@@ -322,7 +315,6 @@ src/test/java/com/formkiq/client/api/PublicApiTest.java
 src/test/java/com/formkiq/client/api/SystemManagementApiTest.java
 src/test/java/com/formkiq/client/api/TagIndexApiTest.java
 src/test/java/com/formkiq/client/api/TagSchemaApiTest.java
-src/test/java/com/formkiq/client/api/UsersManagementApiTest.java
 src/test/java/com/formkiq/client/api/WebhooksApiTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
@@ -400,7 +392,6 @@ src/test/java/com/formkiq/client/model/GetSitesRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasRequestTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesTest.java
-src/test/java/com/formkiq/client/model/GetUsersMeRequestTest.java
 src/test/java/com/formkiq/client/model/GetVersionRequestTest.java
 src/test/java/com/formkiq/client/model/GetWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookTagsResponseTest.java
@@ -429,7 +420,6 @@ src/test/java/com/formkiq/client/model/SetDocumentTagKeyRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java
-src/test/java/com/formkiq/client/model/SitesByPermissionTest.java
 src/test/java/com/formkiq/client/model/TagSchemaCompositeKeyTest.java
 src/test/java/com/formkiq/client/model/TagSchemaOptionalTest.java
 src/test/java/com/formkiq/client/model/TagSchemaPostResponseTest.java

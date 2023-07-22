@@ -1,6 +1,6 @@
 /*
  * FormKiQ HTTP API
- * FormKiQ HTTP API
+ * Formkiq API: Document Management Platform API using JWT Authentication
  *
  * The version of the OpenAPI document: 1.12.0
  * Contact: support@formkiq.com
@@ -47,7 +47,8 @@ public class DocumentsApiTest {
     public void addDocumentTest() throws ApiException {
         AddDocumentRequest addDocumentRequest = null;
         String siteId = null;
-        AddDocumentResponse response = api.addDocument(addDocumentRequest, siteId);
+        String shareKey = null;
+        AddDocumentResponse response = api.addDocument(addDocumentRequest, siteId, shareKey);
         // TODO: test validations
     }
 
@@ -61,7 +62,8 @@ public class DocumentsApiTest {
         AddDocumentUploadRequest addDocumentUploadRequest = null;
         String siteId = null;
         Integer duration = null;
-        AddDocumentResponse response = api.addDocumentUpload(addDocumentUploadRequest, siteId, duration);
+        String shareKey = null;
+        GetDocumentUrlResponse response = api.addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey);
         // TODO: test validations
     }
 
@@ -149,7 +151,8 @@ public class DocumentsApiTest {
         String siteId = null;
         Integer contentLength = null;
         Integer duration = null;
-        GetDocumentUrlResponse response = api.getDocumentUpload(path, siteId, contentLength, duration);
+        String shareKey = null;
+        GetDocumentUrlResponse response = api.getDocumentUpload(path, siteId, contentLength, duration, shareKey);
         // TODO: test validations
     }
 
@@ -197,7 +200,8 @@ public class DocumentsApiTest {
         String documentId = null;
         AddDocumentRequest addDocumentRequest = null;
         String siteId = null;
-        AddDocumentResponse response = api.updateDocument(documentId, addDocumentRequest, siteId);
+        String shareKey = null;
+        AddDocumentResponse response = api.updateDocument(documentId, addDocumentRequest, siteId, shareKey);
         // TODO: test validations
     }
 
