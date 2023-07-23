@@ -50,7 +50,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * GetDocumentFulltextResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:37:18.641266-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T21:10:11.628621-05:00[America/Winnipeg]")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -59,6 +59,10 @@ public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private String content;
+
+  public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
+  @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
+  private String contentType;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -130,6 +134,27 @@ public class GetDocumentFulltextResponse {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+
+  public GetDocumentFulltextResponse contentType(String contentType) {
+    
+    this.contentType = contentType;
+    return this;
+  }
+
+   /**
+   * Document Content-Type
+   * @return contentType
+  **/
+  @javax.annotation.Nullable
+  public String getContentType() {
+    return contentType;
+  }
+
+
+  public void setContentType(String contentType) {
+    this.contentType = contentType;
   }
 
 
@@ -292,6 +317,7 @@ public class GetDocumentFulltextResponse {
     GetDocumentFulltextResponse getDocumentFulltextResponse = (GetDocumentFulltextResponse) o;
     return Objects.equals(this.siteId, getDocumentFulltextResponse.siteId) &&
         Objects.equals(this.content, getDocumentFulltextResponse.content) &&
+        Objects.equals(this.contentType, getDocumentFulltextResponse.contentType) &&
         Objects.equals(this.path, getDocumentFulltextResponse.path) &&
         Objects.equals(this.insertedDate, getDocumentFulltextResponse.insertedDate) &&
         Objects.equals(this.documentId, getDocumentFulltextResponse.documentId) &&
@@ -303,7 +329,7 @@ public class GetDocumentFulltextResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, content, path, insertedDate, documentId, createdBy, contentLength, tags, metadata);
+    return Objects.hash(siteId, content, contentType, path, insertedDate, documentId, createdBy, contentLength, tags, metadata);
   }
 
   @Override
@@ -312,6 +338,7 @@ public class GetDocumentFulltextResponse {
     sb.append("class GetDocumentFulltextResponse {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
@@ -343,6 +370,7 @@ public class GetDocumentFulltextResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("content");
+    openapiFields.add("contentType");
     openapiFields.add("path");
     openapiFields.add("insertedDate");
     openapiFields.add("documentId");
@@ -380,6 +408,9 @@ public class GetDocumentFulltextResponse {
       }
       if ((jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) && !jsonObj.get("content").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `content` to be a primitive type in the JSON string but got `%s`", jsonObj.get("content").toString()));
+      }
+      if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull()) && !jsonObj.get("contentType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `contentType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contentType").toString()));
       }
       if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));

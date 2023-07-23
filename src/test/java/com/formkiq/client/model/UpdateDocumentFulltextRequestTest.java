@@ -13,6 +13,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTagRequest;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -41,11 +42,11 @@ public class UpdateDocumentFulltextRequestTest {
     }
 
     /**
-     * Test the property 'path'
+     * Test the property 'contentType'
      */
     @Test
-    public void pathTest() {
-        // TODO: test path
+    public void contentTypeTest() {
+        // TODO: test contentType
     }
 
     /**
@@ -57,11 +58,35 @@ public class UpdateDocumentFulltextRequestTest {
     }
 
     /**
+     * Test the property 'contentUrls'
+     */
+    @Test
+    public void contentUrlsTest() {
+        // TODO: test contentUrls
+    }
+
+    /**
+     * Test the property 'path'
+     */
+    @Test
+    public void pathTest() {
+        // TODO: test path
+    }
+
+    /**
      * Test the property 'tags'
      */
     @Test
     public void tagsTest() {
         // TODO: test tags
+    }
+
+    /**
+     * Test the property 'metadata'
+     */
+    @Test
+    public void metadataTest() {
+        // TODO: test metadata
     }
 
 }

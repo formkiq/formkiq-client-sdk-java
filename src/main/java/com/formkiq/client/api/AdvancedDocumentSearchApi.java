@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.DeleteFulltextResponse;
 import com.formkiq.client.model.DocumentFulltextRequest;
 import com.formkiq.client.model.DocumentFulltextResponse;
 import com.formkiq.client.model.GetDocumentFulltextResponse;
@@ -123,6 +124,7 @@ public class AdvancedDocumentSearchApi {
         }
 
         final String[] localVarAccepts = {
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -156,6 +158,7 @@ public class AdvancedDocumentSearchApi {
      * Remove full text search for a document from OpenSearch; ONLY available with FormKiQ Enterprise
      * @param documentId Document Identifier (required)
      * @param siteId Site Identifier (optional)
+     * @return DeleteFulltextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -163,8 +166,9 @@ public class AdvancedDocumentSearchApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public void deleteDocumentFulltext(String documentId, String siteId) throws ApiException {
-        deleteDocumentFulltextWithHttpInfo(documentId, siteId);
+    public DeleteFulltextResponse deleteDocumentFulltext(String documentId, String siteId) throws ApiException {
+        ApiResponse<DeleteFulltextResponse> localVarResp = deleteDocumentFulltextWithHttpInfo(documentId, siteId);
+        return localVarResp.getData();
     }
 
     /**
@@ -172,7 +176,7 @@ public class AdvancedDocumentSearchApi {
      * Remove full text search for a document from OpenSearch; ONLY available with FormKiQ Enterprise
      * @param documentId Document Identifier (required)
      * @param siteId Site Identifier (optional)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;DeleteFulltextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -180,9 +184,10 @@ public class AdvancedDocumentSearchApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deleteDocumentFulltextWithHttpInfo(String documentId, String siteId) throws ApiException {
+    public ApiResponse<DeleteFulltextResponse> deleteDocumentFulltextWithHttpInfo(String documentId, String siteId) throws ApiException {
         okhttp3.Call localVarCall = deleteDocumentFulltextValidateBeforeCall(documentId, siteId, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<DeleteFulltextResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -199,10 +204,11 @@ public class AdvancedDocumentSearchApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteDocumentFulltextAsync(String documentId, String siteId, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteDocumentFulltextAsync(String documentId, String siteId, final ApiCallback<DeleteFulltextResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteDocumentFulltextValidateBeforeCall(documentId, siteId, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<DeleteFulltextResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**

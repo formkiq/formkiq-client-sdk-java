@@ -90,7 +90,7 @@ public class Example {
 
 <a id="addDocumentUpload"></a>
 # **addDocumentUpload**
-> GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey)
+> GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey)
 
 
 
@@ -118,10 +118,11 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     AddDocumentUploadRequest addDocumentUploadRequest = new AddDocumentUploadRequest(); // AddDocumentUploadRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentUrlResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#addDocumentUpload");
@@ -140,6 +141,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **addDocumentUploadRequest** | [**AddDocumentUploadRequest**](AddDocumentUploadRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 

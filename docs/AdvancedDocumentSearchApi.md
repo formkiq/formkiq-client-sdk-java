@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 
 <a id="deleteDocumentFulltext"></a>
 # **deleteDocumentFulltext**
-> deleteDocumentFulltext(documentId, siteId)
+> DeleteFulltextResponse deleteDocumentFulltext(documentId, siteId)
 
 
 
@@ -45,7 +45,8 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteDocumentFulltext(documentId, siteId);
+      DeleteFulltextResponse result = apiInstance.deleteDocumentFulltext(documentId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdvancedDocumentSearchApi#deleteDocumentFulltext");
       System.err.println("Status code: " + e.getCode());
@@ -66,7 +67,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteFulltextResponse**](DeleteFulltextResponse.md)
 
 ### Authorization
 
@@ -75,7 +76,7 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

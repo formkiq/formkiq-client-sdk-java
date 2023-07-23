@@ -15,6 +15,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTagRequest;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -53,41 +54,53 @@ import com.formkiq.client.invoker.JSON;
 /**
  * UpdateDocumentFulltextRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:37:18.641266-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T21:10:11.628621-05:00[America/Winnipeg]")
 public class UpdateDocumentFulltextRequest {
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
-  private String path;
+  public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
+  @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
+  private String contentType;
 
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private String content;
 
+  public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
+  @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
+  private List<String> contentUrls;
+
+  public static final String SERIALIZED_NAME_PATH = "path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
+
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<AddDocumentTagRequest> tags;
 
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private List<AddDocumentMetadata> metadata;
+
   public UpdateDocumentFulltextRequest() {
   }
 
-  public UpdateDocumentFulltextRequest path(String path) {
+  public UpdateDocumentFulltextRequest contentType(String contentType) {
     
-    this.path = path;
+    this.contentType = contentType;
     return this;
   }
 
    /**
-   * Path or Name of document
-   * @return path
+   * Document Content-Type
+   * @return contentType
   **/
   @javax.annotation.Nullable
-  public String getPath() {
-    return path;
+  public String getContentType() {
+    return contentType;
   }
 
 
-  public void setPath(String path) {
-    this.path = path;
+  public void setContentType(String contentType) {
+    this.contentType = contentType;
   }
 
 
@@ -109,6 +122,56 @@ public class UpdateDocumentFulltextRequest {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+
+  public UpdateDocumentFulltextRequest contentUrls(List<String> contentUrls) {
+    
+    this.contentUrls = contentUrls;
+    return this;
+  }
+
+  public UpdateDocumentFulltextRequest addContentUrlsItem(String contentUrlsItem) {
+    if (this.contentUrls == null) {
+      this.contentUrls = new ArrayList<>();
+    }
+    this.contentUrls.add(contentUrlsItem);
+    return this;
+  }
+
+   /**
+   * URL(s) which contain document content
+   * @return contentUrls
+  **/
+  @javax.annotation.Nullable
+  public List<String> getContentUrls() {
+    return contentUrls;
+  }
+
+
+  public void setContentUrls(List<String> contentUrls) {
+    this.contentUrls = contentUrls;
+  }
+
+
+  public UpdateDocumentFulltextRequest path(String path) {
+    
+    this.path = path;
+    return this;
+  }
+
+   /**
+   * Path or Name of document
+   * @return path
+  **/
+  @javax.annotation.Nullable
+  public String getPath() {
+    return path;
+  }
+
+
+  public void setPath(String path) {
+    this.path = path;
   }
 
 
@@ -141,6 +204,35 @@ public class UpdateDocumentFulltextRequest {
   }
 
 
+  public UpdateDocumentFulltextRequest metadata(List<AddDocumentMetadata> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UpdateDocumentFulltextRequest addMetadataItem(AddDocumentMetadata metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new ArrayList<>();
+    }
+    this.metadata.add(metadataItem);
+    return this;
+  }
+
+   /**
+   * List of document Metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  public List<AddDocumentMetadata> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(List<AddDocumentMetadata> metadata) {
+    this.metadata = metadata;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -151,23 +243,29 @@ public class UpdateDocumentFulltextRequest {
       return false;
     }
     UpdateDocumentFulltextRequest updateDocumentFulltextRequest = (UpdateDocumentFulltextRequest) o;
-    return Objects.equals(this.path, updateDocumentFulltextRequest.path) &&
+    return Objects.equals(this.contentType, updateDocumentFulltextRequest.contentType) &&
         Objects.equals(this.content, updateDocumentFulltextRequest.content) &&
-        Objects.equals(this.tags, updateDocumentFulltextRequest.tags);
+        Objects.equals(this.contentUrls, updateDocumentFulltextRequest.contentUrls) &&
+        Objects.equals(this.path, updateDocumentFulltextRequest.path) &&
+        Objects.equals(this.tags, updateDocumentFulltextRequest.tags) &&
+        Objects.equals(this.metadata, updateDocumentFulltextRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, content, tags);
+    return Objects.hash(contentType, content, contentUrls, path, tags, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateDocumentFulltextRequest {\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -190,9 +288,12 @@ public class UpdateDocumentFulltextRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("path");
+    openapiFields.add("contentType");
     openapiFields.add("content");
+    openapiFields.add("contentUrls");
+    openapiFields.add("path");
     openapiFields.add("tags");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -218,11 +319,18 @@ public class UpdateDocumentFulltextRequest {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateDocumentFulltextRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+      if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull()) && !jsonObj.get("contentType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `contentType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contentType").toString()));
       }
       if ((jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) && !jsonObj.get("content").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `content` to be a primitive type in the JSON string but got `%s`", jsonObj.get("content").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("contentUrls") != null && !jsonObj.get("contentUrls").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `contentUrls` to be an array in the JSON string but got `%s`", jsonObj.get("contentUrls").toString()));
+      }
+      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
       }
       if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
         JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");
@@ -235,6 +343,20 @@ public class UpdateDocumentFulltextRequest {
           // validate the optional field `tags` (array)
           for (int i = 0; i < jsonArraytags.size(); i++) {
             AddDocumentTagRequest.validateJsonObject(jsonArraytags.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
+        JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
+        if (jsonArraymetadata != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("metadata").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `metadata` to be an array in the JSON string but got `%s`", jsonObj.get("metadata").toString()));
+          }
+
+          // validate the optional field `metadata` (array)
+          for (int i = 0; i < jsonArraymetadata.size(); i++) {
+            AddDocumentMetadata.validateJsonObject(jsonArraymetadata.get(i).getAsJsonObject());
           };
         }
       }

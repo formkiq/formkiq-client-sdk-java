@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-07-21T22:37:18.641266-05:00[America/Winnipeg]
+  - Build date: 2023-07-22T21:10:11.628621-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -101,7 +101,8 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteDocumentFulltext(documentId, siteId);
+      DeleteFulltextResponse result = apiInstance.deleteDocumentFulltext(documentId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdvancedDocumentSearchApi#deleteDocumentFulltext");
       System.err.println("Status code: " + e.getCode());
@@ -231,6 +232,7 @@ Class | Method | HTTP request | Description
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
+ - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
  - [DocumentAction](docs/DocumentAction.md)

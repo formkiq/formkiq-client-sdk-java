@@ -54,6 +54,14 @@ public class GetDocumentFulltextResponseTest {
     }
 
     /**
+     * Test the property 'contentType'
+     */
+    @Test
+    public void contentTypeTest() {
+        // TODO: test contentType
+    }
+
+    /**
      * Test the property 'path'
      */
     @Test

@@ -61,9 +61,10 @@ public class DocumentsApiTest {
     public void addDocumentUploadTest() throws ApiException {
         AddDocumentUploadRequest addDocumentUploadRequest = null;
         String siteId = null;
+        Integer contentLength = null;
         Integer duration = null;
         String shareKey = null;
-        GetDocumentUrlResponse response = api.addDocumentUpload(addDocumentUploadRequest, siteId, duration, shareKey);
+        GetDocumentUrlResponse response = api.addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey);
         // TODO: test validations
     }
 

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**content** | **String** | Content of document |  [optional] |
+|**contentType** | **String** | Document Content-Type |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |

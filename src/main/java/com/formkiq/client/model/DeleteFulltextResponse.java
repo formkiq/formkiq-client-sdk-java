@@ -48,25 +48,25 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DeleteFolderResponse
+ * DeleteFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T21:10:11.628621-05:00[America/Winnipeg]")
-public class DeleteFolderResponse {
+public class DeleteFulltextResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public DeleteFolderResponse() {
+  public DeleteFulltextResponse() {
   }
 
-  public DeleteFolderResponse message(String message) {
+  public DeleteFulltextResponse message(String message) {
     
     this.message = message;
     return this;
   }
 
    /**
-   * API Response message
+   * Result message
    * @return message
   **/
   @javax.annotation.Nullable
@@ -89,8 +89,8 @@ public class DeleteFolderResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeleteFolderResponse deleteFolderResponse = (DeleteFolderResponse) o;
-    return Objects.equals(this.message, deleteFolderResponse.message);
+    DeleteFulltextResponse deleteFulltextResponse = (DeleteFulltextResponse) o;
+    return Objects.equals(this.message, deleteFulltextResponse.message);
   }
 
   @Override
@@ -101,7 +101,7 @@ public class DeleteFolderResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeleteFolderResponse {\n");
+    sb.append("class DeleteFulltextResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -135,20 +135,20 @@ public class DeleteFolderResponse {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DeleteFolderResponse
+  * @throws IOException if the JSON Object is invalid with respect to DeleteFulltextResponse
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!DeleteFolderResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DeleteFolderResponse is not found in the empty JSON string", DeleteFolderResponse.openapiRequiredFields.toString()));
+        if (!DeleteFulltextResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DeleteFulltextResponse is not found in the empty JSON string", DeleteFulltextResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!DeleteFolderResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeleteFolderResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!DeleteFulltextResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeleteFulltextResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
@@ -160,22 +160,22 @@ public class DeleteFolderResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!DeleteFolderResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'DeleteFolderResponse' and its subtypes
+       if (!DeleteFulltextResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DeleteFulltextResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<DeleteFolderResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(DeleteFolderResponse.class));
+       final TypeAdapter<DeleteFulltextResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DeleteFulltextResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<DeleteFolderResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<DeleteFulltextResponse>() {
            @Override
-           public void write(JsonWriter out, DeleteFolderResponse value) throws IOException {
+           public void write(JsonWriter out, DeleteFulltextResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public DeleteFolderResponse read(JsonReader in) throws IOException {
+           public DeleteFulltextResponse read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -186,18 +186,18 @@ public class DeleteFolderResponse {
   }
 
  /**
-  * Create an instance of DeleteFolderResponse given an JSON string
+  * Create an instance of DeleteFulltextResponse given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of DeleteFolderResponse
-  * @throws IOException if the JSON string is invalid with respect to DeleteFolderResponse
+  * @return An instance of DeleteFulltextResponse
+  * @throws IOException if the JSON string is invalid with respect to DeleteFulltextResponse
   */
-  public static DeleteFolderResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DeleteFolderResponse.class);
+  public static DeleteFulltextResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DeleteFulltextResponse.class);
   }
 
  /**
-  * Convert an instance of DeleteFolderResponse to an JSON string
+  * Convert an instance of DeleteFulltextResponse to an JSON string
   *
   * @return JSON string
   */

@@ -223,6 +223,7 @@ public class DocumentsApi {
      * Build call for addDocumentUpload
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
      * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
@@ -234,7 +235,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentUploadCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addDocumentUploadCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -261,6 +262,10 @@ public class DocumentsApi {
 
         if (siteId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+        }
+
+        if (contentLength != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("contentLength", contentLength));
         }
 
         if (duration != null) {
@@ -292,13 +297,13 @@ public class DocumentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addDocumentUploadValidateBeforeCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addDocumentUploadValidateBeforeCall(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'addDocumentUploadRequest' is set
         if (addDocumentUploadRequest == null) {
             throw new ApiException("Missing the required parameter 'addDocumentUploadRequest' when calling addDocumentUpload(Async)");
         }
 
-        return addDocumentUploadCall(addDocumentUploadRequest, siteId, duration, shareKey, _callback);
+        return addDocumentUploadCall(addDocumentUploadRequest, siteId, contentLength, duration, shareKey, _callback);
 
     }
 
@@ -307,6 +312,7 @@ public class DocumentsApi {
      * Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
      * @param shareKey Share Identifier (optional)
      * @return GetDocumentUrlResponse
@@ -317,8 +323,8 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public GetDocumentUrlResponse addDocumentUpload(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey) throws ApiException {
-        ApiResponse<GetDocumentUrlResponse> localVarResp = addDocumentUploadWithHttpInfo(addDocumentUploadRequest, siteId, duration, shareKey);
+    public GetDocumentUrlResponse addDocumentUpload(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
+        ApiResponse<GetDocumentUrlResponse> localVarResp = addDocumentUploadWithHttpInfo(addDocumentUploadRequest, siteId, contentLength, duration, shareKey);
         return localVarResp.getData();
     }
 
@@ -327,6 +333,7 @@ public class DocumentsApi {
      * Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
      * @param shareKey Share Identifier (optional)
      * @return ApiResponse&lt;GetDocumentUrlResponse&gt;
@@ -337,8 +344,8 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<GetDocumentUrlResponse> addDocumentUploadWithHttpInfo(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey) throws ApiException {
-        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, shareKey, null);
+    public ApiResponse<GetDocumentUrlResponse> addDocumentUploadWithHttpInfo(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, contentLength, duration, shareKey, null);
         Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -348,6 +355,7 @@ public class DocumentsApi {
      * Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
      * @param addDocumentUploadRequest  (required)
      * @param siteId Site Identifier (optional)
+     * @param contentLength Indicates the size of the entity-body (optional)
      * @param duration Indicates the number of hours request is valid for (optional)
      * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -359,9 +367,9 @@ public class DocumentsApi {
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call addDocumentUploadAsync(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer duration, String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
+    public okhttp3.Call addDocumentUploadAsync(AddDocumentUploadRequest addDocumentUploadRequest, String siteId, Integer contentLength, Integer duration, String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, duration, shareKey, _callback);
+        okhttp3.Call localVarCall = addDocumentUploadValidateBeforeCall(addDocumentUploadRequest, siteId, contentLength, duration, shareKey, _callback);
         Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

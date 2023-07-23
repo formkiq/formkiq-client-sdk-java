@@ -14,6 +14,7 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.DeleteFulltextResponse;
 import com.formkiq.client.model.DocumentFulltextRequest;
 import com.formkiq.client.model.DocumentFulltextResponse;
 import com.formkiq.client.model.GetDocumentFulltextResponse;
@@ -46,7 +47,7 @@ public class AdvancedDocumentSearchApiTest {
     public void deleteDocumentFulltextTest() throws ApiException {
         String documentId = null;
         String siteId = null;
-        api.deleteDocumentFulltext(documentId, siteId);
+        DeleteFulltextResponse response = api.deleteDocumentFulltext(documentId, siteId);
         // TODO: test validations
     }
 

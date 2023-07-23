@@ -52,7 +52,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddDocumentOcrRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-21T22:37:18.641266-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T21:10:11.628621-05:00[America/Winnipeg]")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)

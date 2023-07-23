@@ -1412,6 +1412,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Indicates the size of the entity-body
+        explode: true
+        in: query
+        name: contentLength
+        required: false
+        schema:
+          type: integer
+        style: form
       - description: Indicates the number of hours request is valid for
         explode: true
         in: query
@@ -2779,24 +2787,18 @@ paths:
         style: simple
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFulltextResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       tags:
@@ -5621,6 +5623,7 @@ components:
         siteId: siteId
         documentId: documentId
         contentLength: 0
+        contentType: contentType
         content: content
         tags: "{}"
       properties:
@@ -5629,6 +5632,9 @@ components:
           type: string
         content:
           description: Content of document
+          type: string
+        contentType:
+          description: Document Content-Type
           type: string
         path:
           description: Path or Name of document
@@ -6240,6 +6246,21 @@ components:
     UpdateDocumentFulltextRequest:
       example:
         path: path
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        contentUrls:
+        - contentUrls
+        - contentUrls
+        contentType: contentType
         content: content
         tags:
         - values:
@@ -6253,16 +6274,29 @@ components:
           value: value
           key: key
       properties:
-        path:
-          description: Path or Name of document
+        contentType:
+          description: Document Content-Type
           type: string
         content:
           description: Document content
+          type: string
+        contentUrls:
+          description: URL(s) which contain document content
+          items:
+            type: string
+          type: array
+        path:
+          description: Path or Name of document
           type: string
         tags:
           description: List of document tags
           items:
             $ref: '#/components/schemas/AddDocumentTagRequest'
+          type: array
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
       type: object
     SetAntivirusRequest:
@@ -6460,6 +6494,14 @@ components:
           type: string
       type: object
     AddApiKeyResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteFulltextResponse:
       example:
         message: message
       properties:
