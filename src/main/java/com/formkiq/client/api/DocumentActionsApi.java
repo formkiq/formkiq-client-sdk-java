@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.formkiq.client.model.AddDocumentActionsRequest;
 import com.formkiq.client.model.AddDocumentActionsResponse;
 import com.formkiq.client.model.GetDocumentActionsResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class DocumentActionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addDocumentActionsCall(String documentId, String siteId, AddDocumentActionsRequest addDocumentActionsRequest, final ApiCallback _callback) throws ApiException {
@@ -162,6 +164,7 @@ public class DocumentActionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public AddDocumentActionsResponse addDocumentActions(String documentId, String siteId, AddDocumentActionsRequest addDocumentActionsRequest) throws ApiException {
@@ -181,6 +184,7 @@ public class DocumentActionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AddDocumentActionsResponse> addDocumentActionsWithHttpInfo(String documentId, String siteId, AddDocumentActionsRequest addDocumentActionsRequest) throws ApiException {
@@ -202,6 +206,7 @@ public class DocumentActionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addDocumentActionsAsync(String documentId, String siteId, AddDocumentActionsRequest addDocumentActionsRequest, final ApiCallback<AddDocumentActionsResponse> _callback) throws ApiException {

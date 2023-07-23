@@ -474,6 +474,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
       tags:
@@ -646,6 +652,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
       tags:
@@ -1834,6 +1846,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
       tags:

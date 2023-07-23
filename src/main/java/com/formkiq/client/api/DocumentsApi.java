@@ -35,6 +35,7 @@ import com.formkiq.client.model.GetDocumentResponse;
 import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addDocumentCall(AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
@@ -170,6 +172,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public AddDocumentResponse addDocument(AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
@@ -189,6 +192,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AddDocumentResponse> addDocumentWithHttpInfo(AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
@@ -210,6 +214,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addDocumentAsync(AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
@@ -1578,6 +1583,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateDocumentCall(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
@@ -1663,6 +1669,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public AddDocumentResponse updateDocument(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
@@ -1683,6 +1690,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AddDocumentResponse> updateDocumentWithHttpInfo(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
@@ -1705,6 +1713,7 @@ public class DocumentsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateDocumentAsync(String documentId, AddDocumentRequest addDocumentRequest, String siteId, String shareKey, final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
