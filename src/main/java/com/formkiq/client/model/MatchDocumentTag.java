@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,26 +48,26 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * List of Document Tags (use either &#39;value&#39; or &#39;values&#39; not both)
+ * Match Document Tag
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T22:50:57.759130-05:00[America/Winnipeg]")
-public class AddDocumentTagRequest {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+public class MatchDocumentTag {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
+  public static final String SERIALIZED_NAME_BEGINS_WITH = "beginsWith";
+  @SerializedName(SERIALIZED_NAME_BEGINS_WITH)
+  private String beginsWith;
 
-  public static final String SERIALIZED_NAME_VALUES = "values";
-  @SerializedName(SERIALIZED_NAME_VALUES)
-  private List<String> values;
+  public static final String SERIALIZED_NAME_EQ = "eq";
+  @SerializedName(SERIALIZED_NAME_EQ)
+  private String eq;
 
-  public AddDocumentTagRequest() {
+  public MatchDocumentTag() {
   }
 
-  public AddDocumentTagRequest key(String key) {
+  public MatchDocumentTag key(String key) {
     
     this.key = key;
     return this;
@@ -90,53 +88,45 @@ public class AddDocumentTagRequest {
   }
 
 
-  public AddDocumentTagRequest value(String value) {
+  public MatchDocumentTag beginsWith(String beginsWith) {
     
-    this.value = value;
+    this.beginsWith = beginsWith;
     return this;
   }
 
    /**
-   * Tag value
-   * @return value
+   * Searches for strings that begin with
+   * @return beginsWith
   **/
   @javax.annotation.Nullable
-  public String getValue() {
-    return value;
+  public String getBeginsWith() {
+    return beginsWith;
   }
 
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setBeginsWith(String beginsWith) {
+    this.beginsWith = beginsWith;
   }
 
 
-  public AddDocumentTagRequest values(List<String> values) {
+  public MatchDocumentTag eq(String eq) {
     
-    this.values = values;
-    return this;
-  }
-
-  public AddDocumentTagRequest addValuesItem(String valuesItem) {
-    if (this.values == null) {
-      this.values = new ArrayList<>();
-    }
-    this.values.add(valuesItem);
+    this.eq = eq;
     return this;
   }
 
    /**
-   * Tag values
-   * @return values
+   * Searches for strings that eq
+   * @return eq
   **/
   @javax.annotation.Nullable
-  public List<String> getValues() {
-    return values;
+  public String getEq() {
+    return eq;
   }
 
 
-  public void setValues(List<String> values) {
-    this.values = values;
+  public void setEq(String eq) {
+    this.eq = eq;
   }
 
 
@@ -149,24 +139,24 @@ public class AddDocumentTagRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentTagRequest addDocumentTagRequest = (AddDocumentTagRequest) o;
-    return Objects.equals(this.key, addDocumentTagRequest.key) &&
-        Objects.equals(this.value, addDocumentTagRequest.value) &&
-        Objects.equals(this.values, addDocumentTagRequest.values);
+    MatchDocumentTag matchDocumentTag = (MatchDocumentTag) o;
+    return Objects.equals(this.key, matchDocumentTag.key) &&
+        Objects.equals(this.beginsWith, matchDocumentTag.beginsWith) &&
+        Objects.equals(this.eq, matchDocumentTag.eq);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, value, values);
+    return Objects.hash(key, beginsWith, eq);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentTagRequest {\n");
+    sb.append("class MatchDocumentTag {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    beginsWith: ").append(toIndentedString(beginsWith)).append("\n");
+    sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -190,8 +180,8 @@ public class AddDocumentTagRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("key");
-    openapiFields.add("value");
-    openapiFields.add("values");
+    openapiFields.add("beginsWith");
+    openapiFields.add("eq");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -202,25 +192,25 @@ public class AddDocumentTagRequest {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AddDocumentTagRequest
+  * @throws IOException if the JSON Object is invalid with respect to MatchDocumentTag
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!AddDocumentTagRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AddDocumentTagRequest is not found in the empty JSON string", AddDocumentTagRequest.openapiRequiredFields.toString()));
+        if (!MatchDocumentTag.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in MatchDocumentTag is not found in the empty JSON string", MatchDocumentTag.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!AddDocumentTagRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AddDocumentTagRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!MatchDocumentTag.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MatchDocumentTag` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : AddDocumentTagRequest.openapiRequiredFields) {
+      for (String requiredField : MatchDocumentTag.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
@@ -228,12 +218,11 @@ public class AddDocumentTagRequest {
       if (!jsonObj.get("key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
       }
-      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
+      if ((jsonObj.get("beginsWith") != null && !jsonObj.get("beginsWith").isJsonNull()) && !jsonObj.get("beginsWith").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `beginsWith` to be a primitive type in the JSON string but got `%s`", jsonObj.get("beginsWith").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("values") != null && !jsonObj.get("values").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `values` to be an array in the JSON string but got `%s`", jsonObj.get("values").toString()));
+      if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull()) && !jsonObj.get("eq").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eq` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eq").toString()));
       }
   }
 
@@ -241,22 +230,22 @@ public class AddDocumentTagRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AddDocumentTagRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AddDocumentTagRequest' and its subtypes
+       if (!MatchDocumentTag.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'MatchDocumentTag' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AddDocumentTagRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AddDocumentTagRequest.class));
+       final TypeAdapter<MatchDocumentTag> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(MatchDocumentTag.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AddDocumentTagRequest>() {
+       return (TypeAdapter<T>) new TypeAdapter<MatchDocumentTag>() {
            @Override
-           public void write(JsonWriter out, AddDocumentTagRequest value) throws IOException {
+           public void write(JsonWriter out, MatchDocumentTag value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AddDocumentTagRequest read(JsonReader in) throws IOException {
+           public MatchDocumentTag read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -267,18 +256,18 @@ public class AddDocumentTagRequest {
   }
 
  /**
-  * Create an instance of AddDocumentTagRequest given an JSON string
+  * Create an instance of MatchDocumentTag given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of AddDocumentTagRequest
-  * @throws IOException if the JSON string is invalid with respect to AddDocumentTagRequest
+  * @return An instance of MatchDocumentTag
+  * @throws IOException if the JSON string is invalid with respect to MatchDocumentTag
   */
-  public static AddDocumentTagRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentTagRequest.class);
+  public static MatchDocumentTag fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, MatchDocumentTag.class);
   }
 
  /**
-  * Convert an instance of AddDocumentTagRequest to an JSON string
+  * Convert an instance of MatchDocumentTag to an JSON string
   *
   * @return JSON string
   */

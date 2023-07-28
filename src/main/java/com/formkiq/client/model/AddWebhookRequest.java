@@ -15,7 +15,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formkiq.client.model.AddDocumentTagRequest;
+import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +53,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddWebhookRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T22:50:57.759130-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
 public class AddWebhookRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -69,7 +69,7 @@ public class AddWebhookRequest {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<AddDocumentTagRequest> tags;
+  private List<AddDocumentTag> tags;
 
   public AddWebhookRequest() {
   }
@@ -137,13 +137,13 @@ public class AddWebhookRequest {
   }
 
 
-  public AddWebhookRequest tags(List<AddDocumentTagRequest> tags) {
+  public AddWebhookRequest tags(List<AddDocumentTag> tags) {
     
     this.tags = tags;
     return this;
   }
 
-  public AddWebhookRequest addTagsItem(AddDocumentTagRequest tagsItem) {
+  public AddWebhookRequest addTagsItem(AddDocumentTag tagsItem) {
     if (this.tags == null) {
       this.tags = new ArrayList<>();
     }
@@ -156,12 +156,12 @@ public class AddWebhookRequest {
    * @return tags
   **/
   @javax.annotation.Nullable
-  public List<AddDocumentTagRequest> getTags() {
+  public List<AddDocumentTag> getTags() {
     return tags;
   }
 
 
-  public void setTags(List<AddDocumentTagRequest> tags) {
+  public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;
   }
 
@@ -273,7 +273,7 @@ public class AddWebhookRequest {
 
           // validate the optional field `tags` (array)
           for (int i = 0; i < jsonArraytags.size(); i++) {
-            AddDocumentTagRequest.validateJsonObject(jsonArraytags.get(i).getAsJsonObject());
+            AddDocumentTag.validateJsonObject(jsonArraytags.get(i).getAsJsonObject());
           };
         }
       }

@@ -1265,6 +1265,57 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
+  /documents/tags:
+    patch:
+      description: This API request allows the adding/updating of multiple document
+        tag(s) based on document(s) that have the matching tag.
+      operationId: UpdateMatchingDocumentTags
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMatchingDocumentTagsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateMatchingDocumentTagsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      tags:
+      - Document Tags
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
   /documents/{documentId}/url:
     get:
       description: Returns a URL for the document's contents; this URL will expire
@@ -4428,6 +4479,14 @@ components:
           description: response message
           type: string
       type: object
+    UpdateMatchingDocumentTagsResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: response message
+          type: string
+      type: object
     IndexFolderMoveResponse:
       example:
         message: message
@@ -5101,7 +5160,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
       required:
       - name
@@ -5152,7 +5211,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
         actions:
           description: List of Actions
@@ -5251,7 +5310,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
         metadata:
           description: List of document Metadata
@@ -5380,6 +5439,55 @@ components:
           description: API Response message
           type: string
       type: object
+    MatchDocumentTag:
+      description: Match Document Tag
+      example:
+        beginsWith: beginsWith
+        eq: eq
+        key: key
+      properties:
+        key:
+          description: Tag key
+          type: string
+        beginsWith:
+          description: Searches for strings that begin with
+          type: string
+        eq:
+          description: Searches for strings that eq
+          type: string
+      required:
+      - key
+      type: object
+    UpdateMatchingDocumentTagsRequest:
+      description: Add/Update of multiple document tag(s) based on document(s) that
+        have the matching tag.
+      example:
+        match:
+          tag:
+            beginsWith: beginsWith
+            eq: eq
+            key: key
+        update:
+          tags:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+      properties:
+        match:
+          $ref: '#/components/schemas/UpdateMatchingDocumentTagsRequest_match'
+        update:
+          $ref: '#/components/schemas/UpdateMatchingDocumentTagsRequest_update'
+      required:
+      - match
+      - update
+      type: object
     AddDocumentTagsRequest:
       description: Add List of document tags
       example:
@@ -5398,7 +5506,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
       type: object
     AddDocumentMetadata:
@@ -5425,7 +5533,7 @@ components:
       required:
       - key
       type: object
-    AddDocumentTagRequest:
+    AddDocumentTag:
       description: List of Document Tags (use either 'value' or 'values' not both)
       example:
         values:
@@ -6253,7 +6361,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
         metadata:
           description: List of document Metadata
@@ -6309,7 +6417,7 @@ components:
         tags:
           description: List of document tags
           items:
-            $ref: '#/components/schemas/AddDocumentTagRequest'
+            $ref: '#/components/schemas/AddDocumentTag'
           type: array
         metadata:
           description: List of document Metadata
@@ -7260,6 +7368,37 @@ components:
         message:
           description: Message response
           type: string
+      type: object
+    UpdateMatchingDocumentTagsRequest_match:
+      example:
+        tag:
+          beginsWith: beginsWith
+          eq: eq
+          key: key
+      properties:
+        tag:
+          $ref: '#/components/schemas/MatchDocumentTag'
+      type: object
+    UpdateMatchingDocumentTagsRequest_update:
+      description: Data to update
+      example:
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+      properties:
+        tags:
+          description: List of document tags
+          items:
+            $ref: '#/components/schemas/AddDocumentTag'
+          type: array
       type: object
   securitySchemes:
     ApiAuthorization:

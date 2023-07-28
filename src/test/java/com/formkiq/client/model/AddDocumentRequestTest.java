@@ -16,7 +16,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentMetadata;
-import com.formkiq.client.model.AddDocumentTagRequest;
+import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.AddPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;

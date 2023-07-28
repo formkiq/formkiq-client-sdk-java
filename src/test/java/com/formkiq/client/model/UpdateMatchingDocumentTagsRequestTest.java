@@ -13,54 +13,46 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.UpdateMatchingDocumentTagsRequestMatch;
+import com.formkiq.client.model.UpdateMatchingDocumentTagsRequestUpdate;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for AddDocumentTagRequest
+ * Model tests for UpdateMatchingDocumentTagsRequest
  */
-public class AddDocumentTagRequestTest {
-    private final AddDocumentTagRequest model = new AddDocumentTagRequest();
+public class UpdateMatchingDocumentTagsRequestTest {
+    private final UpdateMatchingDocumentTagsRequest model = new UpdateMatchingDocumentTagsRequest();
 
     /**
-     * Model tests for AddDocumentTagRequest
+     * Model tests for UpdateMatchingDocumentTagsRequest
      */
     @Test
-    public void testAddDocumentTagRequest() {
-        // TODO: test AddDocumentTagRequest
+    public void testUpdateMatchingDocumentTagsRequest() {
+        // TODO: test UpdateMatchingDocumentTagsRequest
     }
 
     /**
-     * Test the property 'key'
+     * Test the property 'match'
      */
     @Test
-    public void keyTest() {
-        // TODO: test key
+    public void matchTest() {
+        // TODO: test match
     }
 
     /**
-     * Test the property 'value'
+     * Test the property 'update'
      */
     @Test
-    public void valueTest() {
-        // TODO: test value
-    }
-
-    /**
-     * Test the property 'values'
-     */
-    @Test
-    public void valuesTest() {
-        // TODO: test values
+    public void updateTest() {
+        // TODO: test update
     }
 
 }

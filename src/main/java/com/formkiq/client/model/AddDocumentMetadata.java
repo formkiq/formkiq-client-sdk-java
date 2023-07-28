@@ -52,7 +52,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * Document Metadata (use either &#39;value&#39; or &#39;values&#39; not both)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T22:50:57.759130-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
 public class AddDocumentMetadata {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)

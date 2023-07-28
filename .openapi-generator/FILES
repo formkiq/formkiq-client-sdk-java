@@ -18,7 +18,7 @@ docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
 docs/AddDocumentRequest.md
 docs/AddDocumentResponse.md
-docs/AddDocumentTagRequest.md
+docs/AddDocumentTag.md
 docs/AddDocumentTagsRequest.md
 docs/AddDocumentUploadRequest.md
 docs/AddFolderRequest.md
@@ -104,6 +104,7 @@ docs/IndexFolderMoveResponse.md
 docs/IndexSearch.md
 docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
+docs/MatchDocumentTag.md
 docs/OnlyOfficeConfig.md
 docs/OnlyOfficeConfigDocument.md
 docs/OnlyOfficeDocumentNewRequest.md
@@ -135,6 +136,10 @@ docs/TagSchemaRequired.md
 docs/TagSchemaSummary.md
 docs/TagSchemaTags.md
 docs/UpdateDocumentFulltextRequest.md
+docs/UpdateMatchingDocumentTagsRequest.md
+docs/UpdateMatchingDocumentTagsRequestMatch.md
+docs/UpdateMatchingDocumentTagsRequestUpdate.md
+docs/UpdateMatchingDocumentTagsResponse.md
 docs/UserShare.md
 docs/ValidationError.md
 docs/ValidationErrorsResponse.md
@@ -198,7 +203,7 @@ src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentResponse.java
-src/main/java/com/formkiq/client/model/AddDocumentTagRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentTag.java
 src/main/java/com/formkiq/client/model/AddDocumentTagsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentUploadRequest.java
 src/main/java/com/formkiq/client/model/AddFolderRequest.java
@@ -272,6 +277,7 @@ src/main/java/com/formkiq/client/model/IndexFolderMoveResponse.java
 src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
+src/main/java/com/formkiq/client/model/MatchDocumentTag.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfig.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfigDocument.java
 src/main/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequest.java
@@ -298,6 +304,10 @@ src/main/java/com/formkiq/client/model/TagSchemaRequired.java
 src/main/java/com/formkiq/client/model/TagSchemaSummary.java
 src/main/java/com/formkiq/client/model/TagSchemaTags.java
 src/main/java/com/formkiq/client/model/UpdateDocumentFulltextRequest.java
+src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequest.java
+src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatch.java
+src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdate.java
+src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsResponse.java
 src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
@@ -333,7 +343,7 @@ src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentResponseTest.java
-src/test/java/com/formkiq/client/model/AddDocumentTagRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentTagTest.java
 src/test/java/com/formkiq/client/model/AddDocumentTagsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentUploadRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
@@ -407,6 +417,7 @@ src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
+src/test/java/com/formkiq/client/model/MatchDocumentTagTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigDocumentTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequestTest.java
@@ -433,6 +444,10 @@ src/test/java/com/formkiq/client/model/TagSchemaRequiredTest.java
 src/test/java/com/formkiq/client/model/TagSchemaSummaryTest.java
 src/test/java/com/formkiq/client/model/TagSchemaTagsTest.java
 src/test/java/com/formkiq/client/model/UpdateDocumentFulltextRequestTest.java
+src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatchTest.java
+src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestTest.java
+src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdateTest.java
+src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsResponseTest.java
 src/test/java/com/formkiq/client/model/UserShareTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorsResponseTest.java

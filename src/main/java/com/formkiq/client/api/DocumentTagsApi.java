@@ -31,6 +31,8 @@ import com.formkiq.client.model.AddDocumentTagsRequest;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
 import com.formkiq.client.model.SetDocumentTagKeyRequest;
+import com.formkiq.client.model.UpdateMatchingDocumentTagsRequest;
+import com.formkiq.client.model.UpdateMatchingDocumentTagsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1230,6 +1232,137 @@ public class DocumentTagsApi {
 
         okhttp3.Call localVarCall = updateDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateMatchingDocumentTags
+     * @param updateMatchingDocumentTagsRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateMatchingDocumentTagsCall(UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateMatchingDocumentTagsRequest;
+
+        // create path and map variables
+        String localVarPath = "/documents/tags";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (siteId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiAuthorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateMatchingDocumentTagsValidateBeforeCall(UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'updateMatchingDocumentTagsRequest' is set
+        if (updateMatchingDocumentTagsRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateMatchingDocumentTagsRequest' when calling updateMatchingDocumentTags(Async)");
+        }
+
+        return updateMatchingDocumentTagsCall(updateMatchingDocumentTagsRequest, siteId, _callback);
+
+    }
+
+    /**
+     * 
+     * This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
+     * @param updateMatchingDocumentTagsRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @return UpdateMatchingDocumentTagsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+     </table>
+     */
+    public UpdateMatchingDocumentTagsResponse updateMatchingDocumentTags(UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId) throws ApiException {
+        ApiResponse<UpdateMatchingDocumentTagsResponse> localVarResp = updateMatchingDocumentTagsWithHttpInfo(updateMatchingDocumentTagsRequest, siteId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
+     * @param updateMatchingDocumentTagsRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @return ApiResponse&lt;UpdateMatchingDocumentTagsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+     </table>
+     */
+    public ApiResponse<UpdateMatchingDocumentTagsResponse> updateMatchingDocumentTagsWithHttpInfo(UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId) throws ApiException {
+        okhttp3.Call localVarCall = updateMatchingDocumentTagsValidateBeforeCall(updateMatchingDocumentTagsRequest, siteId, null);
+        Type localVarReturnType = new TypeToken<UpdateMatchingDocumentTagsResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
+     * @param updateMatchingDocumentTagsRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateMatchingDocumentTagsAsync(UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId, final ApiCallback<UpdateMatchingDocumentTagsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateMatchingDocumentTagsValidateBeforeCall(updateMatchingDocumentTagsRequest, siteId, _callback);
+        Type localVarReturnType = new TypeToken<UpdateMatchingDocumentTagsResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 }

@@ -8,7 +8,7 @@ Add List of document tags
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tags** | [**List&lt;AddDocumentTagRequest&gt;**](AddDocumentTagRequest.md) | List of document tags |  [optional] |
+|**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
 
 
 

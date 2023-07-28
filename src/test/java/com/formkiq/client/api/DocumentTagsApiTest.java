@@ -18,6 +18,8 @@ import com.formkiq.client.model.AddDocumentTagsRequest;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
 import com.formkiq.client.model.SetDocumentTagKeyRequest;
+import com.formkiq.client.model.UpdateMatchingDocumentTagsRequest;
+import com.formkiq.client.model.UpdateMatchingDocumentTagsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -150,6 +152,19 @@ public class DocumentTagsApiTest {
         AddDocumentTagsRequest addDocumentTagsRequest = null;
         String siteId = null;
         api.updateDocumentTags(documentId, addDocumentTagsRequest, siteId);
+        // TODO: test validations
+    }
+
+    /**
+     * This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void updateMatchingDocumentTagsTest() throws ApiException {
+        UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest = null;
+        String siteId = null;
+        UpdateMatchingDocumentTagsResponse response = api.updateMatchingDocumentTags(updateMatchingDocumentTagsRequest, siteId);
         // TODO: test validations
     }
 

@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-07-22T22:50:57.759130-05:00[America/Winnipeg]
+  - Build date: 2023-07-26T14:27:07.580592-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
 *DocumentTagsApi* | [**setDocumentTag**](docs/DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} | 
 *DocumentTagsApi* | [**setDocumentTags**](docs/DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags | 
 *DocumentTagsApi* | [**updateDocumentTags**](docs/DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags | 
+*DocumentTagsApi* | [**updateMatchingDocumentTags**](docs/DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags | 
 *DocumentVersionsApi* | [**deleteDocumentVersion**](docs/DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | 
 *DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | 
 *DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | 
@@ -214,7 +215,7 @@ Class | Method | HTTP request | Description
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
  - [AddDocumentRequest](docs/AddDocumentRequest.md)
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
- - [AddDocumentTagRequest](docs/AddDocumentTagRequest.md)
+ - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
@@ -288,6 +289,7 @@ Class | Method | HTTP request | Description
  - [IndexSearch](docs/IndexSearch.md)
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
+ - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
@@ -314,6 +316,10 @@ Class | Method | HTTP request | Description
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
+ - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
+ - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
+ - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
+ - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
  - [UserShare](docs/UserShare.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)

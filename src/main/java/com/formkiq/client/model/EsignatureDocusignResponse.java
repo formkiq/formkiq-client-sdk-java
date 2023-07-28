@@ -50,7 +50,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * EsignatureDocusignResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T22:50:57.759130-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
 public class EsignatureDocusignResponse {
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URL)

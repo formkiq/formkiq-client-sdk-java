@@ -12,6 +12,7 @@ All URIs are relative to *http://localhost*
 | [**setDocumentTag**](DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} |  |
 | [**setDocumentTags**](DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags |  |
 | [**updateDocumentTags**](DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags |  |
+| [**updateMatchingDocumentTags**](DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags |  |
 
 
 <a id="addDocumentTags"></a>
@@ -584,6 +585,75 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="updateMatchingDocumentTags"></a>
+# **updateMatchingDocumentTags**
+> UpdateMatchingDocumentTagsResponse updateMatchingDocumentTags(updateMatchingDocumentTagsRequest, siteId)
+
+
+
+This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentTagsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: ApiAuthorization
+    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
+    ApiAuthorization.setBearerToken("BEARER TOKEN");
+
+    DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
+    UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest = new UpdateMatchingDocumentTagsRequest(); // UpdateMatchingDocumentTagsRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      UpdateMatchingDocumentTagsResponse result = apiInstance.updateMatchingDocumentTags(updateMatchingDocumentTagsRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentTagsApi#updateMatchingDocumentTags");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateMatchingDocumentTagsRequest** | [**UpdateMatchingDocumentTagsRequest**](UpdateMatchingDocumentTagsRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**UpdateMatchingDocumentTagsResponse**](UpdateMatchingDocumentTagsResponse.md)
+
+### Authorization
+
+[ApiAuthorization](../README.md#ApiAuthorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

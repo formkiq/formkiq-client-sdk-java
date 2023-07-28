@@ -51,7 +51,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddAction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-22T22:50:57.759130-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
 public class AddAction {
   /**
    * Type of Document Action
