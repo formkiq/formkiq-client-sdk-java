@@ -6,7 +6,8 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addFolderShare**](DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} |  |
 | [**deleteShare**](DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} |  |
-| [**getUserShares**](DocumentSharesApi.md#getUserShares) | **GET** /shares/me |  |
+| [**getUserShares**](DocumentSharesApi.md#getUserShares) | **GET** /shares |  |
+| [**updateFolderShare**](DocumentSharesApi.md#updateFolderShare) | **PATCH** /shares/folders/{shareKey} |  |
 
 
 <a id="addFolderShare"></a>
@@ -32,10 +33,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentSharesApi apiInstance = new DocumentSharesApi(defaultClient);
     String indexKey = "indexKey_example"; // String | Index Key Identifier
     AddFolderShareRequest addFolderShareRequest = new AddFolderShareRequest(); // AddFolderShareRequest | 
@@ -68,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -79,6 +76,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 
 <a id="deleteShare"></a>
 # **deleteShare**
@@ -103,10 +101,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentSharesApi apiInstance = new DocumentSharesApi(defaultClient);
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
@@ -135,7 +129,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -149,7 +143,7 @@ public class Example {
 
 <a id="getUserShares"></a>
 # **getUserShares**
-> GetUserShares getUserShares()
+> GetUserShares getUserShares(group, limit, next)
 
 
 
@@ -170,13 +164,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentSharesApi apiInstance = new DocumentSharesApi(defaultClient);
+    String group = "group_example"; // String | Group Identifier
+    String limit = "10"; // String | Limit Results
+    String next = "next_example"; // String | Next page of results token
     try {
-      GetUserShares result = apiInstance.getUserShares();
+      GetUserShares result = apiInstance.getUserShares(group, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentSharesApi#getUserShares");
@@ -190,7 +183,12 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **group** | **String**| Group Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **next** | **String**| Next page of results token | [optional] |
 
 ### Return type
 
@@ -198,7 +196,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -209,4 +207,72 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="updateFolderShare"></a>
+# **updateFolderShare**
+> UpdateFolderShareResponse updateFolderShare(shareKey, updateFolderShareRequest, siteId)
+
+
+
+Updates a folder share; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentSharesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    DocumentSharesApi apiInstance = new DocumentSharesApi(defaultClient);
+    String shareKey = "shareKey_example"; // String | Share Identifier
+    UpdateFolderShareRequest updateFolderShareRequest = new UpdateFolderShareRequest(); // UpdateFolderShareRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      UpdateFolderShareResponse result = apiInstance.updateFolderShare(shareKey, updateFolderShareRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentSharesApi#updateFolderShare");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shareKey** | **String**| Share Identifier | |
+| **updateFolderShareRequest** | [**UpdateFolderShareRequest**](UpdateFolderShareRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**UpdateFolderShareResponse**](UpdateFolderShareResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 

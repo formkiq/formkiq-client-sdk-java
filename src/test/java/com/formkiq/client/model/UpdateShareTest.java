@@ -19,38 +19,32 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for AddFolderShare
+ * Model tests for UpdateShare
  */
-public class AddFolderShareTest {
-    private final AddFolderShare model = new AddFolderShare();
+public class UpdateShareTest {
+    private final UpdateShare model = new UpdateShare();
 
     /**
-     * Model tests for AddFolderShare
+     * Model tests for UpdateShare
      */
     @Test
-    public void testAddFolderShare() {
-        // TODO: test AddFolderShare
+    public void testUpdateShare() {
+        // TODO: test UpdateShare
     }
 
     /**
-     * Test the property 'shareKey'
+     * Test the property 'permissions'
      */
     @Test
-    public void shareKeyTest() {
-        // TODO: test shareKey
-    }
-
-    /**
-     * Test the property 'path'
-     */
-    @Test
-    public void pathTest() {
-        // TODO: test path
+    public void permissionsTest() {
+        // TODO: test permissions
     }
 
 }

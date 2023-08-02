@@ -13,15 +13,12 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.AddFolderShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -49,11 +46,11 @@ public class AddFolderShareResponseTest {
     }
 
     /**
-     * Test the property 'shares'
+     * Test the property 'shareKey'
      */
     @Test
-    public void sharesTest() {
-        // TODO: test shares
+    public void shareKeyTest() {
+        // TODO: test shareKey
     }
 
 }

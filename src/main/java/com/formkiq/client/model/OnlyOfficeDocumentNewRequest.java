@@ -50,7 +50,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * ONLYOFFICE New Document Request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class OnlyOfficeDocumentNewRequest {
   /**
    * Gets or Sets extension

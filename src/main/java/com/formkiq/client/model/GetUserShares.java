@@ -53,14 +53,39 @@ import com.formkiq.client.invoker.JSON;
 /**
  * GetUserShares
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class GetUserShares {
+  public static final String SERIALIZED_NAME_NEXT = "next";
+  @SerializedName(SERIALIZED_NAME_NEXT)
+  private String next;
+
   public static final String SERIALIZED_NAME_SHARES = "shares";
   @SerializedName(SERIALIZED_NAME_SHARES)
   private List<UserShare> shares;
 
   public GetUserShares() {
   }
+
+  public GetUserShares next(String next) {
+    
+    this.next = next;
+    return this;
+  }
+
+   /**
+   * Next page of results token
+   * @return next
+  **/
+  @javax.annotation.Nullable
+  public String getNext() {
+    return next;
+  }
+
+
+  public void setNext(String next) {
+    this.next = next;
+  }
+
 
   public GetUserShares shares(List<UserShare> shares) {
     
@@ -101,18 +126,20 @@ public class GetUserShares {
       return false;
     }
     GetUserShares getUserShares = (GetUserShares) o;
-    return Objects.equals(this.shares, getUserShares.shares);
+    return Objects.equals(this.next, getUserShares.next) &&
+        Objects.equals(this.shares, getUserShares.shares);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shares);
+    return Objects.hash(next, shares);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetUserShares {\n");
+    sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    shares: ").append(toIndentedString(shares)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -136,6 +163,7 @@ public class GetUserShares {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("next");
     openapiFields.add("shares");
 
     // a set of required properties/fields (JSON key names)
@@ -161,6 +189,9 @@ public class GetUserShares {
         if (!GetUserShares.openapiFields.contains(entry.getKey())) {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetUserShares` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
+      }
+      if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull()) && !jsonObj.get("next").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `next` to be a primitive type in the JSON string but got `%s`", jsonObj.get("next").toString()));
       }
       if (jsonObj.get("shares") != null && !jsonObj.get("shares").isJsonNull()) {
         JsonArray jsonArrayshares = jsonObj.getAsJsonArray("shares");

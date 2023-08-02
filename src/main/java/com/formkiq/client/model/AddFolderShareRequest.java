@@ -15,7 +15,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formkiq.client.model.AddPermissions;
+import com.formkiq.client.model.AddShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,33 +51,33 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddFolderShareRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class AddFolderShareRequest {
-  public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
-  @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private AddPermissions permissions;
+  public static final String SERIALIZED_NAME_SHARE = "share";
+  @SerializedName(SERIALIZED_NAME_SHARE)
+  private AddShare share;
 
   public AddFolderShareRequest() {
   }
 
-  public AddFolderShareRequest permissions(AddPermissions permissions) {
+  public AddFolderShareRequest share(AddShare share) {
     
-    this.permissions = permissions;
+    this.share = share;
     return this;
   }
 
    /**
-   * Get permissions
-   * @return permissions
+   * Get share
+   * @return share
   **/
   @javax.annotation.Nullable
-  public AddPermissions getPermissions() {
-    return permissions;
+  public AddShare getShare() {
+    return share;
   }
 
 
-  public void setPermissions(AddPermissions permissions) {
-    this.permissions = permissions;
+  public void setShare(AddShare share) {
+    this.share = share;
   }
 
 
@@ -91,19 +91,19 @@ public class AddFolderShareRequest {
       return false;
     }
     AddFolderShareRequest addFolderShareRequest = (AddFolderShareRequest) o;
-    return Objects.equals(this.permissions, addFolderShareRequest.permissions);
+    return Objects.equals(this.share, addFolderShareRequest.share);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissions);
+    return Objects.hash(share);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddFolderShareRequest {\n");
-    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    share: ").append(toIndentedString(share)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,7 +126,7 @@ public class AddFolderShareRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("permissions");
+    openapiFields.add("share");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -152,9 +152,9 @@ public class AddFolderShareRequest {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AddFolderShareRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      // validate the optional field `permissions`
-      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
-        AddPermissions.validateJsonObject(jsonObj.getAsJsonObject("permissions"));
+      // validate the optional field `share`
+      if (jsonObj.get("share") != null && !jsonObj.get("share").isJsonNull()) {
+        AddShare.validateJsonObject(jsonObj.getAsJsonObject("share"));
       }
   }
 

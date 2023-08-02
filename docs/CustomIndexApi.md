@@ -32,10 +32,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     CustomIndexApi apiInstance = new CustomIndexApi(defaultClient);
     String indexKey = "indexKey_example"; // String | Index Key Identifier
     String indexType = "indexType_example"; // String | Index Type
@@ -68,7 +64,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -104,10 +100,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     CustomIndexApi apiInstance = new CustomIndexApi(defaultClient);
     String indexType = "indexType_example"; // String | Index Type
     IndexFolderMoveRequest indexFolderMoveRequest = new IndexFolderMoveRequest(); // IndexFolderMoveRequest | 
@@ -140,7 +132,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -176,10 +168,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     CustomIndexApi apiInstance = new CustomIndexApi(defaultClient);
     IndexSearchRequest indexSearchRequest = new IndexSearchRequest(); // IndexSearchRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -216,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

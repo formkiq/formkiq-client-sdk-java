@@ -40,11 +40,11 @@ public class UserShareTest {
     }
 
     /**
-     * Test the property 'documentId'
+     * Test the property 'group'
      */
     @Test
-    public void documentIdTest() {
-        // TODO: test documentId
+    public void groupTest() {
+        // TODO: test group
     }
 
     /**
@@ -72,14 +72,6 @@ public class UserShareTest {
     }
 
     /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
      * Test the property 'siteId'
      */
     @Test
@@ -101,6 +93,14 @@ public class UserShareTest {
     @Test
     public void userIdTest() {
         // TODO: test userId
+    }
+
+    /**
+     * Test the property 'permissionType'
+     */
+    @Test
+    public void permissionTypeTest() {
+        // TODO: test permissionType
     }
 
 }

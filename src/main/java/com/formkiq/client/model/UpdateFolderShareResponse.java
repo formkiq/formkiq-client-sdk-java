@@ -15,7 +15,6 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formkiq.client.model.AddPermission;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,35 +48,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddPermissions
+ * UpdateFolderShareResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
-public class AddPermissions {
-  public static final String SERIALIZED_NAME_GROUPS = "groups";
-  @SerializedName(SERIALIZED_NAME_GROUPS)
-  private AddPermission groups;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
+public class UpdateFolderShareResponse {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
-  public AddPermissions() {
+  public UpdateFolderShareResponse() {
   }
 
-  public AddPermissions groups(AddPermission groups) {
+  public UpdateFolderShareResponse message(String message) {
     
-    this.groups = groups;
+    this.message = message;
     return this;
   }
 
    /**
-   * Get groups
-   * @return groups
+   * API Response message
+   * @return message
   **/
   @javax.annotation.Nullable
-  public AddPermission getGroups() {
-    return groups;
+  public String getMessage() {
+    return message;
   }
 
 
-  public void setGroups(AddPermission groups) {
-    this.groups = groups;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -90,20 +89,20 @@ public class AddPermissions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddPermissions addPermissions = (AddPermissions) o;
-    return Objects.equals(this.groups, addPermissions.groups);
+    UpdateFolderShareResponse updateFolderShareResponse = (UpdateFolderShareResponse) o;
+    return Objects.equals(this.message, updateFolderShareResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groups);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddPermissions {\n");
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("class UpdateFolderShareResponse {\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,7 +125,7 @@ public class AddPermissions {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("groups");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -136,25 +135,24 @@ public class AddPermissions {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AddPermissions
+  * @throws IOException if the JSON Object is invalid with respect to UpdateFolderShareResponse
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!AddPermissions.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AddPermissions is not found in the empty JSON string", AddPermissions.openapiRequiredFields.toString()));
+        if (!UpdateFolderShareResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateFolderShareResponse is not found in the empty JSON string", UpdateFolderShareResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!AddPermissions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AddPermissions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!UpdateFolderShareResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateFolderShareResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      // validate the optional field `groups`
-      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) {
-        AddPermission.validateJsonObject(jsonObj.getAsJsonObject("groups"));
+      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
   }
 
@@ -162,22 +160,22 @@ public class AddPermissions {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AddPermissions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AddPermissions' and its subtypes
+       if (!UpdateFolderShareResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateFolderShareResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AddPermissions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AddPermissions.class));
+       final TypeAdapter<UpdateFolderShareResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateFolderShareResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AddPermissions>() {
+       return (TypeAdapter<T>) new TypeAdapter<UpdateFolderShareResponse>() {
            @Override
-           public void write(JsonWriter out, AddPermissions value) throws IOException {
+           public void write(JsonWriter out, UpdateFolderShareResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AddPermissions read(JsonReader in) throws IOException {
+           public UpdateFolderShareResponse read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -188,18 +186,18 @@ public class AddPermissions {
   }
 
  /**
-  * Create an instance of AddPermissions given an JSON string
+  * Create an instance of UpdateFolderShareResponse given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of AddPermissions
-  * @throws IOException if the JSON string is invalid with respect to AddPermissions
+  * @return An instance of UpdateFolderShareResponse
+  * @throws IOException if the JSON string is invalid with respect to UpdateFolderShareResponse
   */
-  public static AddPermissions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddPermissions.class);
+  public static UpdateFolderShareResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateFolderShareResponse.class);
   }
 
  /**
-  * Convert an instance of AddPermissions to an JSON string
+  * Convert an instance of UpdateFolderShareResponse to an JSON string
   *
   * @return JSON string
   */

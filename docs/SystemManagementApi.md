@@ -36,10 +36,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     AddApiKeyRequest addApiKeyRequest = new AddApiKeyRequest(); // AddApiKeyRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -70,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -105,10 +101,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String apiKey = "apiKey_example"; // String | API Key
     String siteId = "siteId_example"; // String | Site Identifier
@@ -139,7 +131,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -174,10 +166,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
@@ -206,7 +194,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -241,10 +229,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
@@ -273,7 +257,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -308,10 +292,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     try {
       GetSitesRequest result = apiInstance.getSites();
@@ -336,7 +316,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -371,10 +351,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     try {
       GetVersionRequest result = apiInstance.getVersion();
@@ -399,7 +375,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -434,10 +410,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     SetConfigRequest setConfigRequest = new SetConfigRequest(); // SetConfigRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -468,7 +440,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

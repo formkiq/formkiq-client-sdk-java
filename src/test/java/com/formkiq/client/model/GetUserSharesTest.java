@@ -41,6 +41,14 @@ public class GetUserSharesTest {
     }
 
     /**
+     * Test the property 'next'
+     */
+    @Test
+    public void nextTest() {
+        // TODO: test next
+    }
+
+    /**
      * Test the property 'shares'
      */
     @Test

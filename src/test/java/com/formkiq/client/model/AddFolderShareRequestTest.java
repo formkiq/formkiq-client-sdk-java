@@ -13,7 +13,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.AddPermissions;
+import com.formkiq.client.model.AddShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,11 +39,11 @@ public class AddFolderShareRequestTest {
     }
 
     /**
-     * Test the property 'permissions'
+     * Test the property 'share'
      */
     @Test
-    public void permissionsTest() {
-        // TODO: test permissions
+    public void shareTest() {
+        // TODO: test share
     }
 
 }

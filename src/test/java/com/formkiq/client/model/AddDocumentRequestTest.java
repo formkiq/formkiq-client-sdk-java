@@ -17,7 +17,6 @@ import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
-import com.formkiq.client.model.AddPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -114,14 +113,6 @@ public class AddDocumentRequestTest {
     @Test
     public void documentsTest() {
         // TODO: test documents
-    }
-
-    /**
-     * Test the property 'permissions'
-     */
-    @Test
-    public void permissionsTest() {
-        // TODO: test permissions
     }
 
 }

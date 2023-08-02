@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddTagSchemaTags
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class AddTagSchemaTags {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)

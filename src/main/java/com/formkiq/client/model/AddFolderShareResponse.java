@@ -15,15 +15,12 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formkiq.client.model.AddFolderShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,15 +50,15 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddFolderShareResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class AddFolderShareResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public static final String SERIALIZED_NAME_SHARES = "shares";
-  @SerializedName(SERIALIZED_NAME_SHARES)
-  private List<AddFolderShare> shares;
+  public static final String SERIALIZED_NAME_SHARE_KEY = "shareKey";
+  @SerializedName(SERIALIZED_NAME_SHARE_KEY)
+  private String shareKey;
 
   public AddFolderShareResponse() {
   }
@@ -87,32 +84,24 @@ public class AddFolderShareResponse {
   }
 
 
-  public AddFolderShareResponse shares(List<AddFolderShare> shares) {
+  public AddFolderShareResponse shareKey(String shareKey) {
     
-    this.shares = shares;
-    return this;
-  }
-
-  public AddFolderShareResponse addSharesItem(AddFolderShare sharesItem) {
-    if (this.shares == null) {
-      this.shares = new ArrayList<>();
-    }
-    this.shares.add(sharesItem);
+    this.shareKey = shareKey;
     return this;
   }
 
    /**
-   * List of created shares
-   * @return shares
+   * Share Identifier
+   * @return shareKey
   **/
   @javax.annotation.Nullable
-  public List<AddFolderShare> getShares() {
-    return shares;
+  public String getShareKey() {
+    return shareKey;
   }
 
 
-  public void setShares(List<AddFolderShare> shares) {
-    this.shares = shares;
+  public void setShareKey(String shareKey) {
+    this.shareKey = shareKey;
   }
 
 
@@ -127,12 +116,12 @@ public class AddFolderShareResponse {
     }
     AddFolderShareResponse addFolderShareResponse = (AddFolderShareResponse) o;
     return Objects.equals(this.message, addFolderShareResponse.message) &&
-        Objects.equals(this.shares, addFolderShareResponse.shares);
+        Objects.equals(this.shareKey, addFolderShareResponse.shareKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, shares);
+    return Objects.hash(message, shareKey);
   }
 
   @Override
@@ -140,7 +129,7 @@ public class AddFolderShareResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddFolderShareResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    shares: ").append(toIndentedString(shares)).append("\n");
+    sb.append("    shareKey: ").append(toIndentedString(shareKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -164,7 +153,7 @@ public class AddFolderShareResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("message");
-    openapiFields.add("shares");
+    openapiFields.add("shareKey");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -193,19 +182,8 @@ public class AddFolderShareResponse {
       if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
-      if (jsonObj.get("shares") != null && !jsonObj.get("shares").isJsonNull()) {
-        JsonArray jsonArrayshares = jsonObj.getAsJsonArray("shares");
-        if (jsonArrayshares != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("shares").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `shares` to be an array in the JSON string but got `%s`", jsonObj.get("shares").toString()));
-          }
-
-          // validate the optional field `shares` (array)
-          for (int i = 0; i < jsonArrayshares.size(); i++) {
-            AddFolderShare.validateJsonObject(jsonArrayshares.get(i).getAsJsonObject());
-          };
-        }
+      if ((jsonObj.get("shareKey") != null && !jsonObj.get("shareKey").isJsonNull()) && !jsonObj.get("shareKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `shareKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shareKey").toString()));
       }
   }
 

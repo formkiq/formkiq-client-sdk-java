@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-07-26T14:27:07.580592-05:00[America/Winnipeg]
+  - Build date: 2023-08-02T11:00:15.465357-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -93,10 +93,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -142,7 +138,8 @@ Class | Method | HTTP request | Description
 *DocumentSearchApi* | [**documentSearch**](docs/DocumentSearchApi.md#documentSearch) | **POST** /search | 
 *DocumentSharesApi* | [**addFolderShare**](docs/DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | 
 *DocumentSharesApi* | [**deleteShare**](docs/DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | 
-*DocumentSharesApi* | [**getUserShares**](docs/DocumentSharesApi.md#getUserShares) | **GET** /shares/me | 
+*DocumentSharesApi* | [**getUserShares**](docs/DocumentSharesApi.md#getUserShares) | **GET** /shares | 
+*DocumentSharesApi* | [**updateFolderShare**](docs/DocumentSharesApi.md#updateFolderShare) | **PATCH** /shares/folders/{shareKey} | 
 *DocumentTagsApi* | [**addDocumentTags**](docs/DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags | 
 *DocumentTagsApi* | [**deleteDocumentTag**](docs/DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} | 
 *DocumentTagsApi* | [**deleteDocumentTagAndValue**](docs/DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} | 
@@ -220,11 +217,9 @@ Class | Method | HTTP request | Description
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
- - [AddFolderShare](docs/AddFolderShare.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
- - [AddPermission](docs/AddPermission.md)
- - [AddPermissions](docs/AddPermissions.md)
+ - [AddShare](docs/AddShare.md)
  - [AddTagSchemaRequest](docs/AddTagSchemaRequest.md)
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
@@ -316,10 +311,13 @@ Class | Method | HTTP request | Description
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
+ - [UpdateFolderShareRequest](docs/UpdateFolderShareRequest.md)
+ - [UpdateFolderShareResponse](docs/UpdateFolderShareResponse.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
+ - [UpdateShare](docs/UpdateShare.md)
  - [UserShare](docs/UserShare.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
@@ -329,12 +327,7 @@ Class | Method | HTTP request | Description
 <a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-
-Authentication schemes defined for the API:
-<a id="ApiAuthorization"></a>
-### ApiAuthorization
-
-- **Type**: HTTP basic authentication
+Endpoints do not require authorization.
 
 
 ## Recommendation

@@ -32,10 +32,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key
@@ -67,7 +63,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -102,10 +98,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -140,7 +132,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -175,10 +167,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     SetDocumentVersionRequest setDocumentVersionRequest = new SetDocumentVersionRequest(); // SetDocumentVersionRequest | 
@@ -211,7 +199,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

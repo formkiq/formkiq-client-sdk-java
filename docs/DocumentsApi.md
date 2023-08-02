@@ -40,10 +40,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -76,7 +72,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -112,10 +108,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     AddDocumentUploadRequest addDocumentUploadRequest = new AddDocumentUploadRequest(); // AddDocumentUploadRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -152,7 +144,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -187,10 +179,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -220,7 +208,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -255,10 +243,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -291,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -326,10 +310,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key
@@ -364,7 +344,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -399,10 +379,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -439,7 +415,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -474,10 +450,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -512,7 +484,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -547,10 +519,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String path = "path_example"; // String | The upload file's path
     String siteId = "siteId_example"; // String | Site Identifier
@@ -587,7 +555,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -622,10 +590,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -664,7 +628,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -699,10 +663,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String date = "date_example"; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
@@ -741,7 +701,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -776,10 +736,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
@@ -814,7 +770,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

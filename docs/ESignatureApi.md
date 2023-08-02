@@ -91,10 +91,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     EsignatureDocusignRequest esignatureDocusignRequest = new EsignatureDocusignRequest(); // EsignatureDocusignRequest | 
@@ -127,7 +123,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -163,10 +159,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
@@ -195,7 +187,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -230,10 +222,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     EsignatureSetDocusignConfigRequest esignatureSetDocusignConfigRequest = new EsignatureSetDocusignConfigRequest(); // EsignatureSetDocusignConfigRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -264,7 +252,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

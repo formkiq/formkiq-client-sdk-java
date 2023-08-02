@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**documentId** | **String** | Document/Folder Identifier |  [optional] |
-|**shareKey** | **String** | Share Key Identifier |  [optional] |
+|**group** | **String** | Name of Share Group |  [optional] |
+|**shareKey** | **String** | Share Identifier |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | Type of Document |  [optional] |
 |**permissions** | [**List&lt;PermissionsEnum&gt;**](#List&lt;PermissionsEnum&gt;) | List of share permissions |  [optional] |
-|**name** | **String** | Name of Share |  [optional] |
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**userId** | **String** | User who created share |  [optional] |
+|**permissionType** | [**PermissionTypeEnum**](#PermissionTypeEnum) | Type of share |  [optional] |
 
 
 
@@ -23,7 +23,6 @@
 | Name | Value |
 |---- | -----|
 | FOLDER | &quot;FOLDER&quot; |
-| FILE | &quot;FILE&quot; |
 
 
 
@@ -34,6 +33,14 @@
 | READ | &quot;READ&quot; |
 | WRITE | &quot;WRITE&quot; |
 | DELETE | &quot;DELETE&quot; |
+
+
+
+## Enum: PermissionTypeEnum
+
+| Name | Value |
+|---- | -----|
+| GROUP | &quot;GROUP&quot; |
 
 
 

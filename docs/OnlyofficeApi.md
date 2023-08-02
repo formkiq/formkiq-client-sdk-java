@@ -32,10 +32,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     OnlyofficeApi apiInstance = new OnlyofficeApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     Object body = null; // Object | 
@@ -68,7 +64,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -103,10 +99,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     OnlyofficeApi apiInstance = new OnlyofficeApi(defaultClient);
     OnlyOfficeDocumentNewRequest onlyOfficeDocumentNewRequest = new OnlyOfficeDocumentNewRequest(); // OnlyOfficeDocumentNewRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -137,7 +129,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

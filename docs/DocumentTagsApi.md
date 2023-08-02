@@ -38,10 +38,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
@@ -73,7 +69,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -108,10 +104,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
@@ -143,7 +135,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -178,10 +170,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
@@ -217,7 +205,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -252,10 +240,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
@@ -290,7 +274,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -325,10 +309,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
@@ -367,7 +347,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -402,10 +382,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
@@ -439,7 +415,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -474,10 +450,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
@@ -509,7 +481,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -544,10 +516,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
@@ -579,7 +547,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -614,10 +582,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest = new UpdateMatchingDocumentTagsRequest(); // UpdateMatchingDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -648,7 +612,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

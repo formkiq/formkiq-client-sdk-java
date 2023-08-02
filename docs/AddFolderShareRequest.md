@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**permissions** | [**AddPermissions**](AddPermissions.md) |  |  [optional] |
+|**share** | [**AddShare**](AddShare.md) |  |  [optional] |
 
 
 

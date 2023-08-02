@@ -19,7 +19,6 @@ import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
-import com.formkiq.client.model.AddPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddDocumentRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -94,10 +93,6 @@ public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
   private List<AddChildDocument> documents;
-
-  public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
-  @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private AddPermissions permissions;
 
   public AddDocumentRequest() {
   }
@@ -323,27 +318,6 @@ public class AddDocumentRequest {
   }
 
 
-  public AddDocumentRequest permissions(AddPermissions permissions) {
-    
-    this.permissions = permissions;
-    return this;
-  }
-
-   /**
-   * Get permissions
-   * @return permissions
-  **/
-  @javax.annotation.Nullable
-  public AddPermissions getPermissions() {
-    return permissions;
-  }
-
-
-  public void setPermissions(AddPermissions permissions) {
-    this.permissions = permissions;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -362,13 +336,12 @@ public class AddDocumentRequest {
         Objects.equals(this.tags, addDocumentRequest.tags) &&
         Objects.equals(this.metadata, addDocumentRequest.metadata) &&
         Objects.equals(this.actions, addDocumentRequest.actions) &&
-        Objects.equals(this.documents, addDocumentRequest.documents) &&
-        Objects.equals(this.permissions, addDocumentRequest.permissions);
+        Objects.equals(this.documents, addDocumentRequest.documents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, contentType, isBase64, content, tags, metadata, actions, documents, permissions);
+    return Objects.hash(tagSchemaId, path, contentType, isBase64, content, tags, metadata, actions, documents);
   }
 
   @Override
@@ -384,7 +357,6 @@ public class AddDocumentRequest {
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
-    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -416,7 +388,6 @@ public class AddDocumentRequest {
     openapiFields.add("metadata");
     openapiFields.add("actions");
     openapiFields.add("documents");
-    openapiFields.add("permissions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -517,10 +488,6 @@ public class AddDocumentRequest {
             AddChildDocument.validateJsonObject(jsonArraydocuments.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `permissions`
-      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
-        AddPermissions.validateJsonObject(jsonObj.getAsJsonObject("permissions"));
       }
   }
 

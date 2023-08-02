@@ -30,10 +30,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     DocumentSearchApi apiInstance = new DocumentSearchApi(defaultClient);
     DocumentSearchRequest documentSearchRequest = new DocumentSearchRequest(); // DocumentSearchRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -70,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

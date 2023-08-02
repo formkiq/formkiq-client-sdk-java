@@ -16,7 +16,6 @@
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
 |**actions** | [**List&lt;AddAction&gt;**](AddAction.md) | List of Actions |  [optional] |
 |**documents** | [**List&lt;AddChildDocument&gt;**](AddChildDocument.md) | List of child documents |  [optional] |
-|**permissions** | [**AddPermissions**](AddPermissions.md) |  |  [optional] |
 
 
 

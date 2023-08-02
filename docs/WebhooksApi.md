@@ -37,10 +37,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     AddWebhookRequest addWebhookRequest = new AddWebhookRequest(); // AddWebhookRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
@@ -71,7 +67,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -106,10 +102,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhooksPlus = "webhooksPlus_example"; // String | Web Hook Param
     Object body = null; // Object | 
@@ -142,7 +134,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -177,10 +169,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
     GetDocumentTagResponse getDocumentTagResponse = new GetDocumentTagResponse(); // GetDocumentTagResponse | 
@@ -212,7 +200,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -247,10 +235,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
     String siteId = "siteId_example"; // String | Site Identifier
@@ -280,7 +264,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -315,10 +299,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
     String siteId = "siteId_example"; // String | Site Identifier
@@ -349,7 +329,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -384,10 +364,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
     String siteId = "siteId_example"; // String | Site Identifier
@@ -418,7 +394,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -453,10 +429,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
@@ -485,7 +457,7 @@ public class Example {
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 
@@ -520,10 +492,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
     
-    // Configure HTTP bearer authorization: ApiAuthorization
-    HttpBearerAuth ApiAuthorization = (HttpBearerAuth) defaultClient.getAuthentication("ApiAuthorization");
-    ApiAuthorization.setBearerToken("BEARER TOKEN");
-
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
     AddWebhookRequest addWebhookRequest = new AddWebhookRequest(); // AddWebhookRequest | 
@@ -555,7 +523,7 @@ null (empty response body)
 
 ### Authorization
 
-[ApiAuthorization](../README.md#ApiAuthorization)
+No authorization required
 
 ### HTTP request headers
 

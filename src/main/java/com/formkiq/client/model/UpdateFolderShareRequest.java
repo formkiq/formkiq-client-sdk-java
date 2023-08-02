@@ -15,6 +15,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.formkiq.client.model.UpdateShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,60 +49,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddFolderShare
+ * UpdateFolderShareRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
-public class AddFolderShare {
-  public static final String SERIALIZED_NAME_SHARE_KEY = "shareKey";
-  @SerializedName(SERIALIZED_NAME_SHARE_KEY)
-  private String shareKey;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
+public class UpdateFolderShareRequest {
+  public static final String SERIALIZED_NAME_SHARE = "share";
+  @SerializedName(SERIALIZED_NAME_SHARE)
+  private UpdateShare share;
 
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
-  private String path;
-
-  public AddFolderShare() {
+  public UpdateFolderShareRequest() {
   }
 
-  public AddFolderShare shareKey(String shareKey) {
+  public UpdateFolderShareRequest share(UpdateShare share) {
     
-    this.shareKey = shareKey;
+    this.share = share;
     return this;
   }
 
    /**
-   * Share Key Identifier
-   * @return shareKey
+   * Get share
+   * @return share
   **/
   @javax.annotation.Nullable
-  public String getShareKey() {
-    return shareKey;
+  public UpdateShare getShare() {
+    return share;
   }
 
 
-  public void setShareKey(String shareKey) {
-    this.shareKey = shareKey;
-  }
-
-
-  public AddFolderShare path(String path) {
-    
-    this.path = path;
-    return this;
-  }
-
-   /**
-   * Path or Name of document
-   * @return path
-  **/
-  @javax.annotation.Nullable
-  public String getPath() {
-    return path;
-  }
-
-
-  public void setPath(String path) {
-    this.path = path;
+  public void setShare(UpdateShare share) {
+    this.share = share;
   }
 
 
@@ -114,22 +90,20 @@ public class AddFolderShare {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddFolderShare addFolderShare = (AddFolderShare) o;
-    return Objects.equals(this.shareKey, addFolderShare.shareKey) &&
-        Objects.equals(this.path, addFolderShare.path);
+    UpdateFolderShareRequest updateFolderShareRequest = (UpdateFolderShareRequest) o;
+    return Objects.equals(this.share, updateFolderShareRequest.share);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shareKey, path);
+    return Objects.hash(share);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddFolderShare {\n");
-    sb.append("    shareKey: ").append(toIndentedString(shareKey)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("class UpdateFolderShareRequest {\n");
+    sb.append("    share: ").append(toIndentedString(share)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -152,8 +126,7 @@ public class AddFolderShare {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("shareKey");
-    openapiFields.add("path");
+    openapiFields.add("share");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -163,27 +136,25 @@ public class AddFolderShare {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AddFolderShare
+  * @throws IOException if the JSON Object is invalid with respect to UpdateFolderShareRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!AddFolderShare.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AddFolderShare is not found in the empty JSON string", AddFolderShare.openapiRequiredFields.toString()));
+        if (!UpdateFolderShareRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateFolderShareRequest is not found in the empty JSON string", UpdateFolderShareRequest.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!AddFolderShare.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AddFolderShare` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!UpdateFolderShareRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateFolderShareRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("shareKey") != null && !jsonObj.get("shareKey").isJsonNull()) && !jsonObj.get("shareKey").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `shareKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shareKey").toString()));
-      }
-      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+      // validate the optional field `share`
+      if (jsonObj.get("share") != null && !jsonObj.get("share").isJsonNull()) {
+        UpdateShare.validateJsonObject(jsonObj.getAsJsonObject("share"));
       }
   }
 
@@ -191,22 +162,22 @@ public class AddFolderShare {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AddFolderShare.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AddFolderShare' and its subtypes
+       if (!UpdateFolderShareRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateFolderShareRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AddFolderShare> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AddFolderShare.class));
+       final TypeAdapter<UpdateFolderShareRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateFolderShareRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AddFolderShare>() {
+       return (TypeAdapter<T>) new TypeAdapter<UpdateFolderShareRequest>() {
            @Override
-           public void write(JsonWriter out, AddFolderShare value) throws IOException {
+           public void write(JsonWriter out, UpdateFolderShareRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AddFolderShare read(JsonReader in) throws IOException {
+           public UpdateFolderShareRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -217,18 +188,18 @@ public class AddFolderShare {
   }
 
  /**
-  * Create an instance of AddFolderShare given an JSON string
+  * Create an instance of UpdateFolderShareRequest given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of AddFolderShare
-  * @throws IOException if the JSON string is invalid with respect to AddFolderShare
+  * @return An instance of UpdateFolderShareRequest
+  * @throws IOException if the JSON string is invalid with respect to UpdateFolderShareRequest
   */
-  public static AddFolderShare fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddFolderShare.class);
+  public static UpdateFolderShareRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateFolderShareRequest.class);
   }
 
  /**
-  * Convert an instance of AddFolderShare to an JSON string
+  * Convert an instance of UpdateFolderShareRequest to an JSON string
   *
   * @return JSON string
   */

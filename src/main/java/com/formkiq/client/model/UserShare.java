@@ -52,11 +52,11 @@ import com.formkiq.client.invoker.JSON;
 /**
  * UserShare
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-07-26T14:27:07.580592-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
 public class UserShare {
-  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
-  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
-  private String documentId;
+  public static final String SERIALIZED_NAME_GROUP = "group";
+  @SerializedName(SERIALIZED_NAME_GROUP)
+  private String group;
 
   public static final String SERIALIZED_NAME_SHARE_KEY = "shareKey";
   @SerializedName(SERIALIZED_NAME_SHARE_KEY)
@@ -67,9 +67,7 @@ public class UserShare {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    FOLDER("FOLDER"),
-    
-    FILE("FILE");
+    FOLDER("FOLDER");
 
     private String value;
 
@@ -166,10 +164,6 @@ public class UserShare {
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
   private List<PermissionsEnum> permissions;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
   private String siteId;
@@ -182,27 +176,76 @@ public class UserShare {
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
 
+  /**
+   * Type of share
+   */
+  @JsonAdapter(PermissionTypeEnum.Adapter.class)
+  public enum PermissionTypeEnum {
+    GROUP("GROUP");
+
+    private String value;
+
+    PermissionTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PermissionTypeEnum fromValue(String value) {
+      for (PermissionTypeEnum b : PermissionTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PermissionTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PermissionTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PermissionTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PermissionTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PERMISSION_TYPE = "permissionType";
+  @SerializedName(SERIALIZED_NAME_PERMISSION_TYPE)
+  private PermissionTypeEnum permissionType;
+
   public UserShare() {
   }
 
-  public UserShare documentId(String documentId) {
+  public UserShare group(String group) {
     
-    this.documentId = documentId;
+    this.group = group;
     return this;
   }
 
    /**
-   * Document/Folder Identifier
-   * @return documentId
+   * Name of Share Group
+   * @return group
   **/
   @javax.annotation.Nullable
-  public String getDocumentId() {
-    return documentId;
+  public String getGroup() {
+    return group;
   }
 
 
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setGroup(String group) {
+    this.group = group;
   }
 
 
@@ -213,7 +256,7 @@ public class UserShare {
   }
 
    /**
-   * Share Key Identifier
+   * Share Identifier
    * @return shareKey
   **/
   @javax.annotation.Nullable
@@ -274,27 +317,6 @@ public class UserShare {
 
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;
-  }
-
-
-  public UserShare name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of Share
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
   }
 
 
@@ -361,6 +383,27 @@ public class UserShare {
   }
 
 
+  public UserShare permissionType(PermissionTypeEnum permissionType) {
+    
+    this.permissionType = permissionType;
+    return this;
+  }
+
+   /**
+   * Type of share
+   * @return permissionType
+  **/
+  @javax.annotation.Nullable
+  public PermissionTypeEnum getPermissionType() {
+    return permissionType;
+  }
+
+
+  public void setPermissionType(PermissionTypeEnum permissionType) {
+    this.permissionType = permissionType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -371,33 +414,33 @@ public class UserShare {
       return false;
     }
     UserShare userShare = (UserShare) o;
-    return Objects.equals(this.documentId, userShare.documentId) &&
+    return Objects.equals(this.group, userShare.group) &&
         Objects.equals(this.shareKey, userShare.shareKey) &&
         Objects.equals(this.type, userShare.type) &&
         Objects.equals(this.permissions, userShare.permissions) &&
-        Objects.equals(this.name, userShare.name) &&
         Objects.equals(this.siteId, userShare.siteId) &&
         Objects.equals(this.path, userShare.path) &&
-        Objects.equals(this.userId, userShare.userId);
+        Objects.equals(this.userId, userShare.userId) &&
+        Objects.equals(this.permissionType, userShare.permissionType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, shareKey, type, permissions, name, siteId, path, userId);
+    return Objects.hash(group, shareKey, type, permissions, siteId, path, userId, permissionType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserShare {\n");
-    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    shareKey: ").append(toIndentedString(shareKey)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    permissionType: ").append(toIndentedString(permissionType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -420,14 +463,14 @@ public class UserShare {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("documentId");
+    openapiFields.add("group");
     openapiFields.add("shareKey");
     openapiFields.add("type");
     openapiFields.add("permissions");
-    openapiFields.add("name");
     openapiFields.add("siteId");
     openapiFields.add("path");
     openapiFields.add("userId");
+    openapiFields.add("permissionType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -453,8 +496,8 @@ public class UserShare {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UserShare` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull()) && !jsonObj.get("documentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `documentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("documentId").toString()));
+      if ((jsonObj.get("group") != null && !jsonObj.get("group").isJsonNull()) && !jsonObj.get("group").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `group` to be a primitive type in the JSON string but got `%s`", jsonObj.get("group").toString()));
       }
       if ((jsonObj.get("shareKey") != null && !jsonObj.get("shareKey").isJsonNull()) && !jsonObj.get("shareKey").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `shareKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shareKey").toString()));
@@ -466,9 +509,6 @@ public class UserShare {
       if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `permissions` to be an array in the JSON string but got `%s`", jsonObj.get("permissions").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
       if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull()) && !jsonObj.get("siteId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `siteId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siteId").toString()));
       }
@@ -477,6 +517,9 @@ public class UserShare {
       }
       if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull()) && !jsonObj.get("userId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
+      }
+      if ((jsonObj.get("permissionType") != null && !jsonObj.get("permissionType").isJsonNull()) && !jsonObj.get("permissionType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `permissionType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("permissionType").toString()));
       }
   }
 

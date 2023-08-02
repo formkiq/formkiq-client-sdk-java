@@ -13,7 +13,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.AddPermission;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,25 +24,25 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for AddPermissions
+ * Model tests for UpdateFolderShareResponse
  */
-public class AddPermissionsTest {
-    private final AddPermissions model = new AddPermissions();
+public class UpdateFolderShareResponseTest {
+    private final UpdateFolderShareResponse model = new UpdateFolderShareResponse();
 
     /**
-     * Model tests for AddPermissions
+     * Model tests for UpdateFolderShareResponse
      */
     @Test
-    public void testAddPermissions() {
-        // TODO: test AddPermissions
+    public void testUpdateFolderShareResponse() {
+        // TODO: test UpdateFolderShareResponse
     }
 
     /**
-     * Test the property 'groups'
+     * Test the property 'message'
      */
     @Test
-    public void groupsTest() {
-        // TODO: test groups
+    public void messageTest() {
+        // TODO: test message
     }
 
 }

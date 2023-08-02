@@ -31,6 +31,9 @@ import com.formkiq.client.model.AddFolderShareRequest;
 import com.formkiq.client.model.AddFolderShareResponse;
 import com.formkiq.client.model.DeleteShareResponse;
 import com.formkiq.client.model.GetUserShares;
+import com.formkiq.client.model.UpdateFolderShareRequest;
+import com.formkiq.client.model.UpdateFolderShareResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -88,6 +91,7 @@ public class DocumentSharesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addFolderShareCall(String indexKey, AddFolderShareRequest addFolderShareRequest, String siteId, final ApiCallback _callback) throws ApiException {
@@ -136,7 +140,7 @@ public class DocumentSharesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "ApiAuthorization" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -168,6 +172,7 @@ public class DocumentSharesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public AddFolderShareResponse addFolderShare(String indexKey, AddFolderShareRequest addFolderShareRequest, String siteId) throws ApiException {
@@ -187,6 +192,7 @@ public class DocumentSharesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AddFolderShareResponse> addFolderShareWithHttpInfo(String indexKey, AddFolderShareRequest addFolderShareRequest, String siteId) throws ApiException {
@@ -208,6 +214,7 @@ public class DocumentSharesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> 201 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call addFolderShareAsync(String indexKey, AddFolderShareRequest addFolderShareRequest, String siteId, final ApiCallback<AddFolderShareResponse> _callback) throws ApiException {
@@ -270,7 +277,7 @@ public class DocumentSharesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "ApiAuthorization" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -342,6 +349,9 @@ public class DocumentSharesApi {
     }
     /**
      * Build call for getUserShares
+     * @param group Group Identifier (optional)
+     * @param limit Limit Results (optional, default to 10)
+     * @param next Next page of results token (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -351,7 +361,7 @@ public class DocumentSharesApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call getUserSharesCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getUserSharesCall(String group, String limit, String next, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -368,13 +378,25 @@ public class DocumentSharesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/shares/me";
+        String localVarPath = "/shares";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (group != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("group", group));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (next != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -391,19 +413,22 @@ public class DocumentSharesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "ApiAuthorization" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUserSharesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return getUserSharesCall(_callback);
+    private okhttp3.Call getUserSharesValidateBeforeCall(String group, String limit, String next, final ApiCallback _callback) throws ApiException {
+        return getUserSharesCall(group, limit, next, _callback);
 
     }
 
     /**
      * 
      * Get a listing of user folder/document shares; ONLY available with FormKiQ Enterprise
+     * @param group Group Identifier (optional)
+     * @param limit Limit Results (optional, default to 10)
+     * @param next Next page of results token (optional)
      * @return GetUserShares
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -412,14 +437,17 @@ public class DocumentSharesApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public GetUserShares getUserShares() throws ApiException {
-        ApiResponse<GetUserShares> localVarResp = getUserSharesWithHttpInfo();
+    public GetUserShares getUserShares(String group, String limit, String next) throws ApiException {
+        ApiResponse<GetUserShares> localVarResp = getUserSharesWithHttpInfo(group, limit, next);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Get a listing of user folder/document shares; ONLY available with FormKiQ Enterprise
+     * @param group Group Identifier (optional)
+     * @param limit Limit Results (optional, default to 10)
+     * @param next Next page of results token (optional)
      * @return ApiResponse&lt;GetUserShares&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -428,8 +456,8 @@ public class DocumentSharesApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<GetUserShares> getUserSharesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(null);
+    public ApiResponse<GetUserShares> getUserSharesWithHttpInfo(String group, String limit, String next) throws ApiException {
+        okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(group, limit, next, null);
         Type localVarReturnType = new TypeToken<GetUserShares>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -437,6 +465,9 @@ public class DocumentSharesApi {
     /**
      *  (asynchronously)
      * Get a listing of user folder/document shares; ONLY available with FormKiQ Enterprise
+     * @param group Group Identifier (optional)
+     * @param limit Limit Results (optional, default to 10)
+     * @param next Next page of results token (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -446,10 +477,155 @@ public class DocumentSharesApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call getUserSharesAsync(final ApiCallback<GetUserShares> _callback) throws ApiException {
+    public okhttp3.Call getUserSharesAsync(String group, String limit, String next, final ApiCallback<GetUserShares> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(group, limit, next, _callback);
         Type localVarReturnType = new TypeToken<GetUserShares>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateFolderShare
+     * @param shareKey Share Identifier (required)
+     * @param updateFolderShareRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateFolderShareCall(String shareKey, UpdateFolderShareRequest updateFolderShareRequest, String siteId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateFolderShareRequest;
+
+        // create path and map variables
+        String localVarPath = "/shares/folders/{shareKey}"
+            .replace("{" + "shareKey" + "}", localVarApiClient.escapeString(shareKey.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (siteId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateFolderShareValidateBeforeCall(String shareKey, UpdateFolderShareRequest updateFolderShareRequest, String siteId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'shareKey' is set
+        if (shareKey == null) {
+            throw new ApiException("Missing the required parameter 'shareKey' when calling updateFolderShare(Async)");
+        }
+
+        // verify the required parameter 'updateFolderShareRequest' is set
+        if (updateFolderShareRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateFolderShareRequest' when calling updateFolderShare(Async)");
+        }
+
+        return updateFolderShareCall(shareKey, updateFolderShareRequest, siteId, _callback);
+
+    }
+
+    /**
+     * 
+     * Updates a folder share; ONLY available with FormKiQ Enterprise
+     * @param shareKey Share Identifier (required)
+     * @param updateFolderShareRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @return UpdateFolderShareResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public UpdateFolderShareResponse updateFolderShare(String shareKey, UpdateFolderShareRequest updateFolderShareRequest, String siteId) throws ApiException {
+        ApiResponse<UpdateFolderShareResponse> localVarResp = updateFolderShareWithHttpInfo(shareKey, updateFolderShareRequest, siteId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Updates a folder share; ONLY available with FormKiQ Enterprise
+     * @param shareKey Share Identifier (required)
+     * @param updateFolderShareRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @return ApiResponse&lt;UpdateFolderShareResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<UpdateFolderShareResponse> updateFolderShareWithHttpInfo(String shareKey, UpdateFolderShareRequest updateFolderShareRequest, String siteId) throws ApiException {
+        okhttp3.Call localVarCall = updateFolderShareValidateBeforeCall(shareKey, updateFolderShareRequest, siteId, null);
+        Type localVarReturnType = new TypeToken<UpdateFolderShareResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Updates a folder share; ONLY available with FormKiQ Enterprise
+     * @param shareKey Share Identifier (required)
+     * @param updateFolderShareRequest  (required)
+     * @param siteId Site Identifier (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> 200 CREATED </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
+        <tr><td> 400 </td><td> 400 OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateFolderShareAsync(String shareKey, UpdateFolderShareRequest updateFolderShareRequest, String siteId, final ApiCallback<UpdateFolderShareResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateFolderShareValidateBeforeCall(shareKey, updateFolderShareRequest, siteId, _callback);
+        Type localVarReturnType = new TypeToken<UpdateFolderShareResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

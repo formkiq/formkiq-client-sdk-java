@@ -13,54 +13,37 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.UpdateShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for AddPermission
+ * Model tests for UpdateFolderShareRequest
  */
-public class AddPermissionTest {
-    private final AddPermission model = new AddPermission();
+public class UpdateFolderShareRequestTest {
+    private final UpdateFolderShareRequest model = new UpdateFolderShareRequest();
 
     /**
-     * Model tests for AddPermission
+     * Model tests for UpdateFolderShareRequest
      */
     @Test
-    public void testAddPermission() {
-        // TODO: test AddPermission
+    public void testUpdateFolderShareRequest() {
+        // TODO: test UpdateFolderShareRequest
     }
 
     /**
-     * Test the property 'read'
+     * Test the property 'share'
      */
     @Test
-    public void readTest() {
-        // TODO: test read
-    }
-
-    /**
-     * Test the property 'write'
-     */
-    @Test
-    public void writeTest() {
-        // TODO: test write
-    }
-
-    /**
-     * Test the property 'delete'
-     */
-    @Test
-    public void deleteTest() {
-        // TODO: test delete
+    public void shareTest() {
+        // TODO: test share
     }
 
 }
