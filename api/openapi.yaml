@@ -221,7 +221,7 @@ paths:
       x-accepts: application/json
     post:
       description: Adds a new API Key
-      operationId: ÅddApiKey
+      operationId: AddApiKey
       parameters:
       - description: Site Identifier
         explode: true
@@ -6696,18 +6696,30 @@ components:
       type: object
     AddApiKeyRequest:
       example:
+        permissions:
+        - READ
+        - READ
         name: name
       properties:
         name:
           description: Name of API Key
           type: string
+        permissions:
+          description: List of permissions
+          items:
+            enum:
+            - READ
+            - WRITE
+            - DELETE
+            type: string
+          type: array
       type: object
     AddApiKeyResponse:
       example:
-        message: message
+        apiKey: apiKey
       properties:
-        message:
-          description: Result message
+        apiKey:
+          description: API Key Identifier
           type: string
       type: object
     DeleteFulltextResponse:
@@ -6731,17 +6743,19 @@ components:
         apiKeys:
         - apiKey: apiKey
           insertedDate: insertedDate
+          permissions:
+          - READ
+          - READ
           name: name
-          siteIds:
-          - siteIds
-          - siteIds
+          siteId: siteId
           userId: userId
         - apiKey: apiKey
           insertedDate: insertedDate
+          permissions:
+          - READ
+          - READ
           name: name
-          siteIds:
-          - siteIds
-          - siteIds
+          siteId: siteId
           userId: userId
       properties:
         apiKeys:
@@ -6754,10 +6768,11 @@ components:
       example:
         apiKey: apiKey
         insertedDate: insertedDate
+        permissions:
+        - READ
+        - READ
         name: name
-        siteIds:
-        - siteIds
-        - siteIds
+        siteId: siteId
         userId: userId
       properties:
         name:
@@ -6768,13 +6783,20 @@ components:
           type: string
         userId:
           type: string
-        siteIds:
-          items:
-            type: string
-          type: array
+        siteId:
+          type: string
         insertedDate:
           description: Inserted Timestamp
           type: string
+        permissions:
+          description: List of permissions
+          items:
+            enum:
+            - READ
+            - WRITE
+            - DELETE
+            type: string
+          type: array
       type: object
     GetConfigurationResponse:
       example:

@@ -50,33 +50,33 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddApiKeyResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-04T23:41:20.238290-05:00[America/Winnipeg]")
 public class AddApiKeyResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private String message;
+  public static final String SERIALIZED_NAME_API_KEY = "apiKey";
+  @SerializedName(SERIALIZED_NAME_API_KEY)
+  private String apiKey;
 
   public AddApiKeyResponse() {
   }
 
-  public AddApiKeyResponse message(String message) {
+  public AddApiKeyResponse apiKey(String apiKey) {
     
-    this.message = message;
+    this.apiKey = apiKey;
     return this;
   }
 
    /**
-   * Result message
-   * @return message
+   * API Key Identifier
+   * @return apiKey
   **/
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public String getApiKey() {
+    return apiKey;
   }
 
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
   }
 
 
@@ -90,19 +90,19 @@ public class AddApiKeyResponse {
       return false;
     }
     AddApiKeyResponse addApiKeyResponse = (AddApiKeyResponse) o;
-    return Objects.equals(this.message, addApiKeyResponse.message);
+    return Objects.equals(this.apiKey, addApiKeyResponse.apiKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(apiKey);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddApiKeyResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -125,7 +125,7 @@ public class AddApiKeyResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("message");
+    openapiFields.add("apiKey");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -151,8 +151,8 @@ public class AddApiKeyResponse {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AddApiKeyResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      if ((jsonObj.get("apiKey") != null && !jsonObj.get("apiKey").isJsonNull()) && !jsonObj.get("apiKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `apiKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apiKey").toString()));
       }
   }
 

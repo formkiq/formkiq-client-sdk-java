@@ -38,11 +38,11 @@ public class AddApiKeyResponseTest {
     }
 
     /**
-     * Test the property 'message'
+     * Test the property 'apiKey'
      */
     @Test
-    public void messageTest() {
-        // TODO: test message
+    public void apiKeyTest() {
+        // TODO: test apiKey
     }
 
 }

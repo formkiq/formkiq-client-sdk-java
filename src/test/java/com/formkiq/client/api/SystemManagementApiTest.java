@@ -45,10 +45,10 @@ public class SystemManagementApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void ddApiKeyTest() throws ApiException {
+    public void addApiKeyTest() throws ApiException {
         AddApiKeyRequest addApiKeyRequest = null;
         String siteId = null;
-        AddApiKeyResponse response = api.ddApiKey(addApiKeyRequest, siteId);
+        AddApiKeyResponse response = api.addApiKey(addApiKeyRequest, siteId);
         // TODO: test validations
     }
 

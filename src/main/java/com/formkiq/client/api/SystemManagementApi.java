@@ -82,7 +82,7 @@ public class SystemManagementApi {
     }
 
     /**
-     * Build call for ddApiKey
+     * Build call for addApiKey
      * @param addApiKeyRequest  (required)
      * @param siteId Site Identifier (optional)
      * @param _callback Callback for upload/download progress
@@ -94,7 +94,7 @@ public class SystemManagementApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call ddApiKeyCall(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addApiKeyCall(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -144,13 +144,13 @@ public class SystemManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call ddApiKeyValidateBeforeCall(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addApiKeyValidateBeforeCall(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'addApiKeyRequest' is set
         if (addApiKeyRequest == null) {
-            throw new ApiException("Missing the required parameter 'addApiKeyRequest' when calling ddApiKey(Async)");
+            throw new ApiException("Missing the required parameter 'addApiKeyRequest' when calling addApiKey(Async)");
         }
 
-        return ddApiKeyCall(addApiKeyRequest, siteId, _callback);
+        return addApiKeyCall(addApiKeyRequest, siteId, _callback);
 
     }
 
@@ -167,8 +167,8 @@ public class SystemManagementApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public AddApiKeyResponse ddApiKey(AddApiKeyRequest addApiKeyRequest, String siteId) throws ApiException {
-        ApiResponse<AddApiKeyResponse> localVarResp = ddApiKeyWithHttpInfo(addApiKeyRequest, siteId);
+    public AddApiKeyResponse addApiKey(AddApiKeyRequest addApiKeyRequest, String siteId) throws ApiException {
+        ApiResponse<AddApiKeyResponse> localVarResp = addApiKeyWithHttpInfo(addApiKeyRequest, siteId);
         return localVarResp.getData();
     }
 
@@ -185,8 +185,8 @@ public class SystemManagementApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<AddApiKeyResponse> ddApiKeyWithHttpInfo(AddApiKeyRequest addApiKeyRequest, String siteId) throws ApiException {
-        okhttp3.Call localVarCall = ddApiKeyValidateBeforeCall(addApiKeyRequest, siteId, null);
+    public ApiResponse<AddApiKeyResponse> addApiKeyWithHttpInfo(AddApiKeyRequest addApiKeyRequest, String siteId) throws ApiException {
+        okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(addApiKeyRequest, siteId, null);
         Type localVarReturnType = new TypeToken<AddApiKeyResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -205,9 +205,9 @@ public class SystemManagementApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call ddApiKeyAsync(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback<AddApiKeyResponse> _callback) throws ApiException {
+    public okhttp3.Call addApiKeyAsync(AddApiKeyRequest addApiKeyRequest, String siteId, final ApiCallback<AddApiKeyResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = ddApiKeyValidateBeforeCall(addApiKeyRequest, siteId, _callback);
+        okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(addApiKeyRequest, siteId, _callback);
         Type localVarReturnType = new TypeToken<AddApiKeyResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

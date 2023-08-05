@@ -64,11 +64,11 @@ public class ApiKeyTest {
     }
 
     /**
-     * Test the property 'siteIds'
+     * Test the property 'siteId'
      */
     @Test
-    public void siteIdsTest() {
-        // TODO: test siteIds
+    public void siteIdTest() {
+        // TODO: test siteId
     }
 
     /**
@@ -77,6 +77,14 @@ public class ApiKeyTest {
     @Test
     public void insertedDateTest() {
         // TODO: test insertedDate
+    }
+
+    /**
+     * Test the property 'permissions'
+     */
+    @Test
+    public void permissionsTest() {
+        // TODO: test permissions
     }
 
 }

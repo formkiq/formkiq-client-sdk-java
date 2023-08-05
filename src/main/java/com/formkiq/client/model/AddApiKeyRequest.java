@@ -21,6 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,11 +52,64 @@ import com.formkiq.client.invoker.JSON;
 /**
  * AddApiKeyRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-04T23:41:20.238290-05:00[America/Winnipeg]")
 public class AddApiKeyRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  /**
+   * Gets or Sets permissions
+   */
+  @JsonAdapter(PermissionsEnum.Adapter.class)
+  public enum PermissionsEnum {
+    READ("READ"),
+    
+    WRITE("WRITE"),
+    
+    DELETE("DELETE");
+
+    private String value;
+
+    PermissionsEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PermissionsEnum fromValue(String value) {
+      for (PermissionsEnum b : PermissionsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PermissionsEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PermissionsEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
+  @SerializedName(SERIALIZED_NAME_PERMISSIONS)
+  private List<PermissionsEnum> permissions;
 
   public AddApiKeyRequest() {
   }
@@ -80,6 +135,35 @@ public class AddApiKeyRequest {
   }
 
 
+  public AddApiKeyRequest permissions(List<PermissionsEnum> permissions) {
+    
+    this.permissions = permissions;
+    return this;
+  }
+
+  public AddApiKeyRequest addPermissionsItem(PermissionsEnum permissionsItem) {
+    if (this.permissions == null) {
+      this.permissions = new ArrayList<>();
+    }
+    this.permissions.add(permissionsItem);
+    return this;
+  }
+
+   /**
+   * List of permissions
+   * @return permissions
+  **/
+  @javax.annotation.Nullable
+  public List<PermissionsEnum> getPermissions() {
+    return permissions;
+  }
+
+
+  public void setPermissions(List<PermissionsEnum> permissions) {
+    this.permissions = permissions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -90,12 +174,13 @@ public class AddApiKeyRequest {
       return false;
     }
     AddApiKeyRequest addApiKeyRequest = (AddApiKeyRequest) o;
-    return Objects.equals(this.name, addApiKeyRequest.name);
+    return Objects.equals(this.name, addApiKeyRequest.name) &&
+        Objects.equals(this.permissions, addApiKeyRequest.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, permissions);
   }
 
   @Override
@@ -103,6 +188,7 @@ public class AddApiKeyRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddApiKeyRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,6 +212,7 @@ public class AddApiKeyRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
+    openapiFields.add("permissions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -153,6 +240,10 @@ public class AddApiKeyRequest {
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `permissions` to be an array in the JSON string but got `%s`", jsonObj.get("permissions").toString()));
       }
   }
 

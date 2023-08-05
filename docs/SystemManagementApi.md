@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**ddApiKey**](SystemManagementApi.md#ddApiKey) | **POST** /configuration/apiKeys |  |
+| [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys |  |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} |  |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys |  |
 | [**getConfigs**](SystemManagementApi.md#getConfigs) | **GET** /configuration |  |
@@ -13,9 +13,9 @@ All URIs are relative to *http://localhost*
 | [**updateConfig**](SystemManagementApi.md#updateConfig) | **PATCH** /configuration |  |
 
 
-<a id="ddApiKey"></a>
-# **ddApiKey**
-> AddApiKeyResponse ddApiKey(addApiKeyRequest, siteId)
+<a id="addApiKey"></a>
+# **addApiKey**
+> AddApiKeyResponse addApiKey(addApiKeyRequest, siteId)
 
 
 
@@ -40,10 +40,10 @@ public class Example {
     AddApiKeyRequest addApiKeyRequest = new AddApiKeyRequest(); // AddApiKeyRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddApiKeyResponse result = apiInstance.ddApiKey(addApiKeyRequest, siteId);
+      AddApiKeyResponse result = apiInstance.addApiKey(addApiKeyRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#ddApiKey");
+      System.err.println("Exception when calling SystemManagementApi#addApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

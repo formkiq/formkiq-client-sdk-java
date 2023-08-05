@@ -52,7 +52,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * ApiKey
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-02T11:00:15.465357-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-04T23:41:20.238290-05:00[America/Winnipeg]")
 public class ApiKey {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -66,13 +66,66 @@ public class ApiKey {
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
 
-  public static final String SERIALIZED_NAME_SITE_IDS = "siteIds";
-  @SerializedName(SERIALIZED_NAME_SITE_IDS)
-  private List<String> siteIds;
+  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
+  @SerializedName(SERIALIZED_NAME_SITE_ID)
+  private String siteId;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
+
+  /**
+   * Gets or Sets permissions
+   */
+  @JsonAdapter(PermissionsEnum.Adapter.class)
+  public enum PermissionsEnum {
+    READ("READ"),
+    
+    WRITE("WRITE"),
+    
+    DELETE("DELETE");
+
+    private String value;
+
+    PermissionsEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PermissionsEnum fromValue(String value) {
+      for (PermissionsEnum b : PermissionsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PermissionsEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PermissionsEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
+  @SerializedName(SERIALIZED_NAME_PERMISSIONS)
+  private List<PermissionsEnum> permissions;
 
   public ApiKey() {
   }
@@ -140,32 +193,24 @@ public class ApiKey {
   }
 
 
-  public ApiKey siteIds(List<String> siteIds) {
+  public ApiKey siteId(String siteId) {
     
-    this.siteIds = siteIds;
-    return this;
-  }
-
-  public ApiKey addSiteIdsItem(String siteIdsItem) {
-    if (this.siteIds == null) {
-      this.siteIds = new ArrayList<>();
-    }
-    this.siteIds.add(siteIdsItem);
+    this.siteId = siteId;
     return this;
   }
 
    /**
-   * Get siteIds
-   * @return siteIds
+   * Get siteId
+   * @return siteId
   **/
   @javax.annotation.Nullable
-  public List<String> getSiteIds() {
-    return siteIds;
+  public String getSiteId() {
+    return siteId;
   }
 
 
-  public void setSiteIds(List<String> siteIds) {
-    this.siteIds = siteIds;
+  public void setSiteId(String siteId) {
+    this.siteId = siteId;
   }
 
 
@@ -190,6 +235,35 @@ public class ApiKey {
   }
 
 
+  public ApiKey permissions(List<PermissionsEnum> permissions) {
+    
+    this.permissions = permissions;
+    return this;
+  }
+
+  public ApiKey addPermissionsItem(PermissionsEnum permissionsItem) {
+    if (this.permissions == null) {
+      this.permissions = new ArrayList<>();
+    }
+    this.permissions.add(permissionsItem);
+    return this;
+  }
+
+   /**
+   * List of permissions
+   * @return permissions
+  **/
+  @javax.annotation.Nullable
+  public List<PermissionsEnum> getPermissions() {
+    return permissions;
+  }
+
+
+  public void setPermissions(List<PermissionsEnum> permissions) {
+    this.permissions = permissions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -203,13 +277,14 @@ public class ApiKey {
     return Objects.equals(this.name, apiKey.name) &&
         Objects.equals(this.apiKey, apiKey.apiKey) &&
         Objects.equals(this.userId, apiKey.userId) &&
-        Objects.equals(this.siteIds, apiKey.siteIds) &&
-        Objects.equals(this.insertedDate, apiKey.insertedDate);
+        Objects.equals(this.siteId, apiKey.siteId) &&
+        Objects.equals(this.insertedDate, apiKey.insertedDate) &&
+        Objects.equals(this.permissions, apiKey.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, apiKey, userId, siteIds, insertedDate);
+    return Objects.hash(name, apiKey, userId, siteId, insertedDate, permissions);
   }
 
   @Override
@@ -219,8 +294,9 @@ public class ApiKey {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    siteIds: ").append(toIndentedString(siteIds)).append("\n");
+    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,8 +322,9 @@ public class ApiKey {
     openapiFields.add("name");
     openapiFields.add("apiKey");
     openapiFields.add("userId");
-    openapiFields.add("siteIds");
+    openapiFields.add("siteId");
     openapiFields.add("insertedDate");
+    openapiFields.add("permissions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -282,12 +359,15 @@ public class ApiKey {
       if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull()) && !jsonObj.get("userId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("siteIds") != null && !jsonObj.get("siteIds").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `siteIds` to be an array in the JSON string but got `%s`", jsonObj.get("siteIds").toString()));
+      if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull()) && !jsonObj.get("siteId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `siteId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siteId").toString()));
       }
       if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull()) && !jsonObj.get("insertedDate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("insertedDate").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `permissions` to be an array in the JSON string but got `%s`", jsonObj.get("permissions").toString()));
       }
   }
 

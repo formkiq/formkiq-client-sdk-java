@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-08-02T11:00:15.465357-05:00[America/Winnipeg]
+  - Build date: 2023-08-04T23:41:20.238290-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -175,7 +175,7 @@ Class | Method | HTTP request | Description
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | 
 *PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | 
 *PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | 
-*SystemManagementApi* | [**ddApiKey**](docs/SystemManagementApi.md#ddApiKey) | **POST** /configuration/apiKeys | 
+*SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | 
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | 
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | 
 *SystemManagementApi* | [**getConfigs**](docs/SystemManagementApi.md#getConfigs) | **GET** /configuration | 

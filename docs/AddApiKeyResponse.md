@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**message** | **String** | Result message |  [optional] |
+|**apiKey** | **String** | API Key Identifier |  [optional] |
 
 
 
