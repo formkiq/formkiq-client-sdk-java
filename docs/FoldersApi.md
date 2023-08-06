@@ -31,6 +31,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     FoldersApi apiInstance = new FoldersApi(defaultClient);
     AddFolderRequest addFolderRequest = new AddFolderRequest(); // AddFolderRequest | 
@@ -98,6 +100,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     FoldersApi apiInstance = new FoldersApi(defaultClient);
     String indexKey = "indexKey_example"; // String | Index Key Identifier
@@ -163,6 +167,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     FoldersApi apiInstance = new FoldersApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier

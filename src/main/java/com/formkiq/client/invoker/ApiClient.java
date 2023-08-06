@@ -54,6 +54,7 @@ import com.formkiq.client.invoker.auth.Authentication;
 import com.formkiq.client.invoker.auth.HttpBasicAuth;
 import com.formkiq.client.invoker.auth.HttpBearerAuth;
 import com.formkiq.client.invoker.auth.ApiKeyAuth;
+import com.formkiq.client.invoker.auth.AWS4Auth;
 
 /**
  * <p>ApiClient class.</p>
@@ -99,6 +100,7 @@ public class ApiClient {
         initHttpClient();
 
         // Setup authentications (key: authentication name, value: authentication).
+        authentications.put("AWS4Auth", new AWS4Auth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -114,6 +116,7 @@ public class ApiClient {
         httpClient = client;
 
         // Setup authentications (key: authentication name, value: authentication).
+        authentications.put("AWS4Auth", new AWS4Auth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -461,6 +464,14 @@ public class ApiClient {
      * @param service Service to access to
      */
     public void setAWS4Configuration(String accessKey, String secretKey, String region, String service) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof AWS4Auth) {
+                ((AWS4Auth) auth).setCredentials(accessKey, secretKey);
+                ((AWS4Auth) auth).setRegion(region);
+                ((AWS4Auth) auth).setService(service);
+                return;
+            }
+        }
         throw new RuntimeException("No AWS4 authentication configured!");
     }
 

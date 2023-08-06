@@ -36,6 +36,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     AddWebhookRequest addWebhookRequest = new AddWebhookRequest(); // AddWebhookRequest | 
@@ -101,6 +103,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhooksPlus = "webhooksPlus_example"; // String | Web Hook Param
@@ -168,6 +172,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
@@ -234,6 +240,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
@@ -298,6 +306,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
@@ -363,6 +373,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
@@ -428,6 +440,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
@@ -491,6 +505,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param

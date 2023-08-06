@@ -186,6 +186,7 @@ src/main/java/com/formkiq/client/invoker/ProgressResponseBody.java
 src/main/java/com/formkiq/client/invoker/ServerConfiguration.java
 src/main/java/com/formkiq/client/invoker/ServerVariable.java
 src/main/java/com/formkiq/client/invoker/StringUtil.java
+src/main/java/com/formkiq/client/invoker/auth/AWS4Auth.java
 src/main/java/com/formkiq/client/invoker/auth/ApiKeyAuth.java
 src/main/java/com/formkiq/client/invoker/auth/Authentication.java
 src/main/java/com/formkiq/client/invoker/auth/HttpBasicAuth.java

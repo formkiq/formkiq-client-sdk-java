@@ -31,6 +31,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
 
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     try {
@@ -90,6 +92,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
@@ -158,6 +162,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
@@ -221,6 +227,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     EsignatureSetDocusignConfigRequest esignatureSetDocusignConfigRequest = new EsignatureSetDocusignConfigRequest(); // EsignatureSetDocusignConfigRequest | 

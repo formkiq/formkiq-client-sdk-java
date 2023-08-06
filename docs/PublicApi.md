@@ -29,6 +29,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
@@ -93,6 +95,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
 
     PublicApi apiInstance = new PublicApi(defaultClient);
     String webhooksPlus = "webhooksPlus_example"; // String | Web Hook Param

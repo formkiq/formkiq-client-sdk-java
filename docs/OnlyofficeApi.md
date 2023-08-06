@@ -31,6 +31,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     OnlyofficeApi apiInstance = new OnlyofficeApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
@@ -98,6 +100,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     OnlyofficeApi apiInstance = new OnlyofficeApi(defaultClient);
     OnlyOfficeDocumentNewRequest onlyOfficeDocumentNewRequest = new OnlyOfficeDocumentNewRequest(); // OnlyOfficeDocumentNewRequest | 
@@ -162,6 +166,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
 
     OnlyofficeApi apiInstance = new OnlyofficeApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier

@@ -52,7 +52,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * TagSchemaOptional
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-04T23:41:20.238290-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-05T17:28:01.933058-05:00[America/Winnipeg]")
 public class TagSchemaOptional {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)

@@ -29,6 +29,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     TagIndexApi apiInstance = new TagIndexApi(defaultClient);
     IndexSearchRequest indexSearchRequest = new IndexSearchRequest(); // IndexSearchRequest | 

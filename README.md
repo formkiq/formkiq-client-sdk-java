@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-08-04T23:41:20.238290-05:00[America/Winnipeg]
+  - Build date: 2023-08-05T17:28:01.933058-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -92,6 +92,8 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
