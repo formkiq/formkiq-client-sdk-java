@@ -80,7 +80,7 @@ No authorization required
 
 <a id="deleteFolder"></a>
 # **deleteFolder**
-> DeleteFolderResponse deleteFolder(indexKey, shareKey)
+> DeleteFolderResponse deleteFolder(indexKey, siteId, shareKey)
 
 
 
@@ -105,9 +105,10 @@ public class Example {
     
     FoldersApi apiInstance = new FoldersApi(defaultClient);
     String indexKey = "indexKey_example"; // String | Index Key Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      DeleteFolderResponse result = apiInstance.deleteFolder(indexKey, shareKey);
+      DeleteFolderResponse result = apiInstance.deleteFolder(indexKey, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FoldersApi#deleteFolder");
@@ -125,6 +126,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **indexKey** | **String**| Index Key Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type

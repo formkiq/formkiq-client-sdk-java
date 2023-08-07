@@ -10,40 +10,32 @@
 
 package com.formkiq.client.invoker.auth;
 
-import com.formkiq.client.invoker.Pair;
-import com.formkiq.client.invoker.ApiException;
-
-import java.io.ByteArrayInputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.Arrays;
-import java.util.List;
-
-import com.amazonaws.DefaultRequest;
-import com.amazonaws.auth.AWS4Signer;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AnonymousAWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.http.HttpMethodName;
-
-import okio.Buffer;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Pair;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.AwsCredentials;
+import software.amazon.awssdk.auth.signer.Aws4Signer;
+import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
+import software.amazon.awssdk.http.SdkHttpFullRequest;
+import software.amazon.awssdk.http.SdkHttpMethod;
+import software.amazon.awssdk.regions.Region;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
     date = "2023-08-05T17:28:01.933058-05:00[America/Winnipeg]")
 public class AWS4Auth implements Authentication {
 
-  private AWSCredentials credentials;
+  private AwsCredentials credentials = null;
   private String region;
   private String service;
 
-  public AWS4Auth() {
-    this.credentials = new AnonymousAWSCredentials();
-  }
+  public AWS4Auth() {}
 
   public void setCredentials(String accessKey, String secretKey) {
-    this.credentials = new BasicAWSCredentials(accessKey, secretKey);
+    this.credentials = AwsBasicCredentials.create(accessKey, secretKey);
   }
 
   public void setRegion(String region) {
@@ -59,28 +51,39 @@ public class AWS4Auth implements Authentication {
       Map<String, String> cookieParams, String payload, String method, URI uri)
       throws ApiException {
 
-    DefaultRequest<String> signableRequest = new DefaultRequest<>(this.service);
+    SdkHttpFullRequest.Builder requestBuilder =
+        SdkHttpFullRequest.builder().uri(uri).method(SdkHttpMethod.fromValue(method));
 
-    Map<String, List<String>> parameters = queryParams.stream()
-        .collect(Collectors.toMap(p -> p.getName(), p -> Arrays.asList(p.getValue())));
-    signableRequest.setParameters(parameters);
-    signableRequest.setContent(new ByteArrayInputStream(payload.getBytes()));
+    StringContentStreamProvider provider = new StringContentStreamProvider(payload);
+    requestBuilder = requestBuilder.contentStreamProvider(provider);
 
-    signableRequest.setHttpMethod(HttpMethodName.valueOf(method));
-    URI targetUri = null;
-    try {
-      targetUri = new URI(uri.getScheme(), "", uri.getHost(), uri.getPort(), "", "", "");
-    } catch (URISyntaxException e) {
-      return;
+    SdkHttpFullRequest signableRequest = sign(requestBuilder);
+  
+    Map<String, String> headers = signableRequest.headers().entrySet().stream()
+        .collect(Collectors.toMap(s -> s.getKey(), e -> e.getValue().get(0)));
+    // headerParams.putAll(req.getHeaders());
+    headerParams.putAll(headers);
+  }
+
+  /**
+   * AWS Signature Version 4 signing.
+   * 
+   * @param request {@link SdkHttpFullRequest.Builder}
+   * @return {@link SdkHttpFullRequest}
+   */
+  private SdkHttpFullRequest sign(final SdkHttpFullRequest.Builder request) {
+
+    SdkHttpFullRequest req = request.build();
+
+    if (this.service != null && this.region != null && this.credentials != null) {
+      Aws4SignerParams params = Aws4SignerParams.builder().signingName(this.service)
+          .signingRegion(Region.of(this.region)).awsCredentials(this.credentials).build();
+
+      Aws4Signer signer = Aws4Signer.create();
+
+      req = signer.sign(req, params);
     }
-    signableRequest.setEndpoint(targetUri);
-    signableRequest.setResourcePath(uri.getPath());
 
-    AWS4Signer signer = new AWS4Signer(false);
-    signer.setServiceName(this.service);
-    signer.setRegionName(this.region);
-    signer.sign(signableRequest, credentials);
-
-    headerParams.putAll(signableRequest.getHeaders());
+    return req;
   }
 }

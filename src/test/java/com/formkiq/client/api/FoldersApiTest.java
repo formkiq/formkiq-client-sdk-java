@@ -56,8 +56,9 @@ public class FoldersApiTest {
     @Test
     public void deleteFolderTest() throws ApiException {
         String indexKey = null;
+        String siteId = null;
         String shareKey = null;
-        DeleteFolderResponse response = api.deleteFolder(indexKey, shareKey);
+        DeleteFolderResponse response = api.deleteFolder(indexKey, siteId, shareKey);
         // TODO: test validations
     }
 

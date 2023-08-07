@@ -2416,6 +2416,14 @@ paths:
       description: Delete a specific folder; folder must be empty
       operationId: DeleteFolder
       parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Index Key Identifier
         explode: false
         in: path

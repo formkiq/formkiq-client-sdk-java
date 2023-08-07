@@ -218,6 +218,7 @@ public class FoldersApi {
     /**
      * Build call for deleteFolder
      * @param indexKey Index Key Identifier (required)
+     * @param siteId Site Identifier (optional)
      * @param shareKey Share Identifier (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -228,7 +229,7 @@ public class FoldersApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFolderCall(String indexKey, String shareKey, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteFolderCall(String indexKey, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -254,6 +255,10 @@ public class FoldersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (siteId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+        }
+
         if (shareKey != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
         }
@@ -278,13 +283,13 @@ public class FoldersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteFolderValidateBeforeCall(String indexKey, String shareKey, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteFolderValidateBeforeCall(String indexKey, String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'indexKey' is set
         if (indexKey == null) {
             throw new ApiException("Missing the required parameter 'indexKey' when calling deleteFolder(Async)");
         }
 
-        return deleteFolderCall(indexKey, shareKey, _callback);
+        return deleteFolderCall(indexKey, siteId, shareKey, _callback);
 
     }
 
@@ -292,6 +297,7 @@ public class FoldersApi {
      * 
      * Delete a specific folder; folder must be empty
      * @param indexKey Index Key Identifier (required)
+     * @param siteId Site Identifier (optional)
      * @param shareKey Share Identifier (optional)
      * @return DeleteFolderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -301,8 +307,8 @@ public class FoldersApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public DeleteFolderResponse deleteFolder(String indexKey, String shareKey) throws ApiException {
-        ApiResponse<DeleteFolderResponse> localVarResp = deleteFolderWithHttpInfo(indexKey, shareKey);
+    public DeleteFolderResponse deleteFolder(String indexKey, String siteId, String shareKey) throws ApiException {
+        ApiResponse<DeleteFolderResponse> localVarResp = deleteFolderWithHttpInfo(indexKey, siteId, shareKey);
         return localVarResp.getData();
     }
 
@@ -310,6 +316,7 @@ public class FoldersApi {
      * 
      * Delete a specific folder; folder must be empty
      * @param indexKey Index Key Identifier (required)
+     * @param siteId Site Identifier (optional)
      * @param shareKey Share Identifier (optional)
      * @return ApiResponse&lt;DeleteFolderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -319,8 +326,8 @@ public class FoldersApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public ApiResponse<DeleteFolderResponse> deleteFolderWithHttpInfo(String indexKey, String shareKey) throws ApiException {
-        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(indexKey, shareKey, null);
+    public ApiResponse<DeleteFolderResponse> deleteFolderWithHttpInfo(String indexKey, String siteId, String shareKey) throws ApiException {
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(indexKey, siteId, shareKey, null);
         Type localVarReturnType = new TypeToken<DeleteFolderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -329,6 +336,7 @@ public class FoldersApi {
      *  (asynchronously)
      * Delete a specific folder; folder must be empty
      * @param indexKey Index Key Identifier (required)
+     * @param siteId Site Identifier (optional)
      * @param shareKey Share Identifier (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -339,9 +347,9 @@ public class FoldersApi {
         <tr><td> 200 </td><td> 200 OK </td><td>  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFolderAsync(String indexKey, String shareKey, final ApiCallback<DeleteFolderResponse> _callback) throws ApiException {
+    public okhttp3.Call deleteFolderAsync(String indexKey, String siteId, String shareKey, final ApiCallback<DeleteFolderResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(indexKey, shareKey, _callback);
+        okhttp3.Call localVarCall = deleteFolderValidateBeforeCall(indexKey, siteId, shareKey, _callback);
         Type localVarReturnType = new TypeToken<DeleteFolderResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

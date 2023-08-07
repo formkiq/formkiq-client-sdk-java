@@ -49,7 +49,8 @@ ext {
 
 dependencies {
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
-    implementation "com.amazonaws:aws-java-sdk-signer:1.12.349"
+	implementation "software.amazon.awssdk:auth:2.20.120"
+    
     implementation "javax.ws.rs:javax.ws.rs-api:2.1.1"
     implementation "com.squareup.okhttp3:okhttp:4.10.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
