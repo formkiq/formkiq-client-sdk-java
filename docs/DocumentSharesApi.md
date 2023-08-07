@@ -7,7 +7,6 @@ All URIs are relative to *http://localhost*
 | [**addFolderShare**](DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} |  |
 | [**deleteShare**](DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} |  |
 | [**getUserShares**](DocumentSharesApi.md#getUserShares) | **GET** /shares |  |
-| [**updateFolderShare**](DocumentSharesApi.md#updateFolderShare) | **PATCH** /shares/folders/{shareKey} |  |
 
 
 <a id="addFolderShare"></a>
@@ -213,74 +212,4 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
-<a id="updateFolderShare"></a>
-# **updateFolderShare**
-> UpdateFolderShareResponse updateFolderShare(shareKey, updateFolderShareRequest, siteId)
-
-
-
-Updates a folder share; ONLY available with FormKiQ Enterprise
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.DocumentSharesApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    DocumentSharesApi apiInstance = new DocumentSharesApi(defaultClient);
-    String shareKey = "shareKey_example"; // String | Share Identifier
-    UpdateFolderShareRequest updateFolderShareRequest = new UpdateFolderShareRequest(); // UpdateFolderShareRequest | 
-    String siteId = "siteId_example"; // String | Site Identifier
-    try {
-      UpdateFolderShareResponse result = apiInstance.updateFolderShare(shareKey, updateFolderShareRequest, siteId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentSharesApi#updateFolderShare");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shareKey** | **String**| Share Identifier | |
-| **updateFolderShareRequest** | [**UpdateFolderShareRequest**](UpdateFolderShareRequest.md)|  | |
-| **siteId** | **String**| Site Identifier | [optional] |
-
-### Return type
-
-[**UpdateFolderShareResponse**](UpdateFolderShareResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-| **400** | 400 OK |  -  |
 

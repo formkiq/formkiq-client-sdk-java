@@ -18,8 +18,6 @@ import com.formkiq.client.model.AddFolderShareRequest;
 import com.formkiq.client.model.AddFolderShareResponse;
 import com.formkiq.client.model.DeleteShareResponse;
 import com.formkiq.client.model.GetUserShares;
-import com.formkiq.client.model.UpdateFolderShareRequest;
-import com.formkiq.client.model.UpdateFolderShareResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -74,20 +72,6 @@ public class DocumentSharesApiTest {
         String limit = null;
         String next = null;
         GetUserShares response = api.getUserShares(group, limit, next);
-        // TODO: test validations
-    }
-
-    /**
-     * Updates a folder share; ONLY available with FormKiQ Enterprise
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void updateFolderShareTest() throws ApiException {
-        String shareKey = null;
-        UpdateFolderShareRequest updateFolderShareRequest = null;
-        String siteId = null;
-        UpdateFolderShareResponse response = api.updateFolderShare(shareKey, updateFolderShareRequest, siteId);
         // TODO: test validations
     }
 

@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-08-05T17:28:01.933058-05:00[America/Winnipeg]
+  - Build date: 2023-08-06T22:07:40.215317-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -141,7 +141,6 @@ Class | Method | HTTP request | Description
 *DocumentSharesApi* | [**addFolderShare**](docs/DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | 
 *DocumentSharesApi* | [**deleteShare**](docs/DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | 
 *DocumentSharesApi* | [**getUserShares**](docs/DocumentSharesApi.md#getUserShares) | **GET** /shares | 
-*DocumentSharesApi* | [**updateFolderShare**](docs/DocumentSharesApi.md#updateFolderShare) | **PATCH** /shares/folders/{shareKey} | 
 *DocumentTagsApi* | [**addDocumentTags**](docs/DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags | 
 *DocumentTagsApi* | [**deleteDocumentTag**](docs/DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} | 
 *DocumentTagsApi* | [**deleteDocumentTagAndValue**](docs/DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} | 
@@ -313,13 +312,10 @@ Class | Method | HTTP request | Description
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
- - [UpdateFolderShareRequest](docs/UpdateFolderShareRequest.md)
- - [UpdateFolderShareResponse](docs/UpdateFolderShareResponse.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
- - [UpdateShare](docs/UpdateShare.md)
  - [UserShare](docs/UserShare.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)

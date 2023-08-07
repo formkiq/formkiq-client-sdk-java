@@ -2560,61 +2560,6 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
       x-accepts: application/json
-  /shares/folders/{shareKey}:
-    patch:
-      description: Updates a folder share; ONLY available with FormKiQ Enterprise
-      operationId: UpdateFolderShare
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Share Identifier
-        explode: false
-        in: path
-        name: shareKey
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateFolderShareRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateFolderShareResponse'
-          description: 200 CREATED
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorsResponse'
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      tags:
-      - Document Shares
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-content-type: application/json
-      x-accepts: application/json
   /shares/{shareKey}:
     delete:
       description: Delete a specific document share; ONLY available with FormKiQ Enterprise
@@ -5459,40 +5404,6 @@ components:
             - DELETE
             type: string
           type: array
-      type: object
-    UpdateFolderShareRequest:
-      example:
-        share:
-          permissions:
-          - READ
-          - READ
-      properties:
-        share:
-          $ref: '#/components/schemas/UpdateShare'
-      type: object
-    UpdateShare:
-      example:
-        permissions:
-        - READ
-        - READ
-      properties:
-        permissions:
-          description: List of share permissions
-          items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            type: string
-          type: array
-      type: object
-    UpdateFolderShareResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: API Response message
-          type: string
       type: object
     AddFolderShareResponse:
       example:

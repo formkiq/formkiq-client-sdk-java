@@ -50,7 +50,7 @@ import com.formkiq.client.invoker.JSON;
 /**
  * OnlyOfficeDocumentSaveResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-05T17:28:01.933058-05:00[America/Winnipeg]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-06T22:07:40.215317-05:00[America/Winnipeg]")
 public class OnlyOfficeDocumentSaveResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
