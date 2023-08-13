@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addDocument**](DocumentsApi.md#addDocument) | **POST** /documents |  |
 | [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload |  |
+| [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress |  |
 | [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} |  |
 | [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} |  |
 | [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content |  |
@@ -145,6 +146,73 @@ public class Example {
 ### Return type
 
 [**GetDocumentUrlResponse**](GetDocumentUrlResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="compressDocuments"></a>
+# **compressDocuments**
+> DocumentsCompressResponse compressDocuments(documentsCompressRequest, siteId)
+
+
+
+Compress documents into an .ZIP archive file, and returns a S3 presigned url for the location of the archive file. The operation is async and processing time depends on the number and size of documents included; a 404 status code is returned until the file is ready.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    DocumentsCompressRequest documentsCompressRequest = new DocumentsCompressRequest(); // DocumentsCompressRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DocumentsCompressResponse result = apiInstance.compressDocuments(documentsCompressRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#compressDocuments");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentsCompressRequest** | [**DocumentsCompressRequest**](DocumentsCompressRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DocumentsCompressResponse**](DocumentsCompressResponse.md)
 
 ### Authorization
 

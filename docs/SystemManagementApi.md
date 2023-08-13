@@ -340,7 +340,7 @@ No authorization required
 
 <a id="getVersion"></a>
 # **getVersion**
-> GetVersionRequest getVersion()
+> GetVersionResponse getVersion()
 
 
 
@@ -365,7 +365,7 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     try {
-      GetVersionRequest result = apiInstance.getVersion();
+      GetVersionResponse result = apiInstance.getVersion();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getVersion");
@@ -383,7 +383,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetVersionRequest**](GetVersionRequest.md)
+[**GetVersionResponse**](GetVersionResponse.md)
 
 ### Authorization
 

@@ -12,7 +12,7 @@
 |**url** | **String** | Webhook: Callback URL |  [optional] |
 |**characterMax** | **String** | Fulltext: Maximum number of characters (-1 unlimited, Typesense defaults to 2048 characters) |  [optional] |
 |**engine** | [**EngineEnum**](#EngineEnum) | DocumentTagging: Engine to use for document tagging generation |  [optional] |
-|**tags** | **List&lt;String&gt;** | DocumentTagging: List of Tags to generate tags for |  [optional] |
+|**tags** | **String** | DocumentTagging: Comma-deliminted list of keywords to generate tags for |  [optional] |
 
 
 

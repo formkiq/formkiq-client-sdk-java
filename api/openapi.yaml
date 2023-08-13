@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetVersionRequest'
+                $ref: '#/components/schemas/GetVersionResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -1614,6 +1614,50 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /documents/compress:
+    post:
+      description: "Compress documents into an .ZIP archive file, and returns a S3\
+        \ presigned url for the location of the archive file. The operation is async\
+        \ and processing time depends on the number and size of documents included;\
+        \ a 404 status code is returned until the file is ready."
+      operationId: CompressDocuments
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentsCompressRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentsCompressResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
       x-accepts: application/json
   /search:
     post:
@@ -5024,6 +5068,28 @@ components:
       required:
       - documentId
       type: object
+    DocumentsCompressRequest:
+      example:
+        documentIds:
+        - documentIds
+        - documentIds
+      properties:
+        documentIds:
+          description: Documents to compress
+          items:
+            type: string
+          type: array
+      required:
+      - documentIds
+      type: object
+    DocumentsCompressResponse:
+      example:
+        downloadUrl: downloadUrl
+      properties:
+        downloadUrl:
+          description: Archive download URL
+          type: string
+      type: object
     DocumentFulltextRequest:
       description: Document full text search
       example:
@@ -5240,9 +5306,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
@@ -5250,9 +5314,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
         tags:
         - values:
           - values
@@ -5318,9 +5380,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
@@ -5328,9 +5388,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
         content: content
         tags:
         - values:
@@ -5853,6 +5911,7 @@ components:
         previous: previous
         documents:
         - lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
             value: value
@@ -5870,6 +5929,7 @@ components:
           contentLength: 0
           contentType: contentType
         - lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
             value: value
@@ -5905,6 +5965,7 @@ components:
         previous: previous
         documents:
         - lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
             value: value
@@ -5922,6 +5983,7 @@ components:
           contentLength: 0
           contentType: contentType
         - lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
             value: value
@@ -5954,6 +6016,7 @@ components:
     SearchResultDocument:
       example:
         lastModifiedDate: lastModifiedDate
+        belongsToDocumentId: belongsToDocumentId
         matchedTag:
           type: type
           value: value
@@ -6006,6 +6069,9 @@ components:
           type: integer
         versionId:
           description: Document version
+          type: string
+        belongsToDocumentId:
+          description: Parent Document Identifier
           type: string
         matchedTag:
           $ref: '#/components/schemas/DocumentSearchMatchTag'
@@ -6447,9 +6513,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
@@ -6457,9 +6521,7 @@ components:
             engine: chatgpt
             addPdfDetectedCharactersAsText: true
             url: url
-            tags:
-            - tags
-            - tags
+            tags: tags
       properties:
         actions:
           description: List of Actions
@@ -6476,9 +6538,7 @@ components:
           engine: chatgpt
           addPdfDetectedCharactersAsText: true
           url: url
-          tags:
-          - tags
-          - tags
+          tags: tags
       properties:
         type:
           description: Type of Document Action
@@ -6501,9 +6561,7 @@ components:
         engine: chatgpt
         addPdfDetectedCharactersAsText: true
         url: url
-        tags:
-        - tags
-        - tags
+        tags: tags
       properties:
         ocrParseTypes:
           description: "OCR: Parse types - TEXT, FORMS, TABLES"
@@ -6525,10 +6583,9 @@ components:
           - chatgpt
           type: string
         tags:
-          description: "DocumentTagging: List of Tags to generate tags for"
-          items:
-            type: string
-          type: array
+          description: "DocumentTagging: Comma-deliminted list of keywords to generate\
+            \ tags for"
+          type: string
       type: object
     AddDocumentOcrRequest:
       example:
@@ -6565,7 +6622,7 @@ components:
       required:
       - content
       type: object
-    GetVersionRequest:
+    GetVersionResponse:
       example:
         type: type
         version: version

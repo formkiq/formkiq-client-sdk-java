@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.12.0
-  - Build date: 2023-08-06T22:48:33.892173-05:00[America/Winnipeg]
+  - Build date: 2023-08-13T13:53:13.529619-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using JWT Authentication
 
@@ -155,6 +155,7 @@ Class | Method | HTTP request | Description
 *DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | 
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | 
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | 
+*DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | 
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | 
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | 
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | 
@@ -246,6 +247,8 @@ Class | Method | HTTP request | Description
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
  - [DocumentSearchRequest](docs/DocumentSearchRequest.md)
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
+ - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
+ - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [Error](docs/Error.md)
  - [ErrorsResponse](docs/ErrorsResponse.md)
  - [EsignatureDocusignCarbonCopy](docs/EsignatureDocusignCarbonCopy.md)
@@ -276,7 +279,7 @@ Class | Method | HTTP request | Description
  - [GetTagSchemaRequest](docs/GetTagSchemaRequest.md)
  - [GetTagSchemasRequest](docs/GetTagSchemasRequest.md)
  - [GetUserShares](docs/GetUserShares.md)
- - [GetVersionRequest](docs/GetVersionRequest.md)
+ - [GetVersionResponse](docs/GetVersionResponse.md)
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
  - [GetWebhooksResponse](docs/GetWebhooksResponse.md)

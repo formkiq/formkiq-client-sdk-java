@@ -61,6 +61,8 @@ docs/DocumentSharesApi.md
 docs/DocumentTagsApi.md
 docs/DocumentVersionsApi.md
 docs/DocumentsApi.md
+docs/DocumentsCompressRequest.md
+docs/DocumentsCompressResponse.md
 docs/ESignatureApi.md
 docs/Error.md
 docs/ErrorsResponse.md
@@ -93,7 +95,7 @@ docs/GetSitesRequest.md
 docs/GetTagSchemaRequest.md
 docs/GetTagSchemasRequest.md
 docs/GetUserShares.md
-docs/GetVersionRequest.md
+docs/GetVersionResponse.md
 docs/GetWebhookResponse.md
 docs/GetWebhookTagsResponse.md
 docs/GetWebhooksResponse.md
@@ -239,6 +241,8 @@ src/main/java/com/formkiq/client/model/DocumentSearchItemTag.java
 src/main/java/com/formkiq/client/model/DocumentSearchMatchTag.java
 src/main/java/com/formkiq/client/model/DocumentSearchRequest.java
 src/main/java/com/formkiq/client/model/DocumentSearchResponse.java
+src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
+src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/Error.java
 src/main/java/com/formkiq/client/model/ErrorsResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
@@ -269,7 +273,7 @@ src/main/java/com/formkiq/client/model/GetSitesRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemasRequest.java
 src/main/java/com/formkiq/client/model/GetUserShares.java
-src/main/java/com/formkiq/client/model/GetVersionRequest.java
+src/main/java/com/formkiq/client/model/GetVersionResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookTagsResponse.java
 src/main/java/com/formkiq/client/model/GetWebhooksResponse.java
@@ -377,6 +381,8 @@ src/test/java/com/formkiq/client/model/DocumentSearchMatchTagTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchTest.java
+src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
+src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
 src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
@@ -407,7 +413,7 @@ src/test/java/com/formkiq/client/model/GetSitesRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasRequestTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesTest.java
-src/test/java/com/formkiq/client/model/GetVersionRequestTest.java
+src/test/java/com/formkiq/client/model/GetVersionResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookTagsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhooksResponseTest.java

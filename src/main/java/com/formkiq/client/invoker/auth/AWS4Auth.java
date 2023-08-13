@@ -58,7 +58,7 @@ public class AWS4Auth implements Authentication {
     requestBuilder = requestBuilder.contentStreamProvider(provider);
 
     SdkHttpFullRequest signableRequest = sign(requestBuilder);
-  
+
     Map<String, String> headers = signableRequest.headers().entrySet().stream()
         .collect(Collectors.toMap(s -> s.getKey(), e -> e.getValue().get(0)));
     // headerParams.putAll(req.getHeaders());
