@@ -1,4 +1,7 @@
-# client
+# FormKiQ Java Client Library
+=====================================
+
+This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
 - API version: 1.12.0
@@ -14,7 +17,7 @@ Formkiq API: Document Management Platform API using JWT Authentication
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.8+
+1. Java 1.11+
 2. Gradle (7.2+)
 
 ## Installation

@@ -5722,7 +5722,6 @@ components:
           type: string
       required:
       - key
-      - value
       type: object
     QueryFulltextRequest:
       description: OpenSearch search API request (https://opensearch.org/docs/latest/opensearch/rest-api/search/)
