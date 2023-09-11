@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDocumentActions**](DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions |  |
-| [**getDocumentActions**](DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions |  |
+| [**addDocumentActions**](DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | Add document action |
+| [**getDocumentActions**](DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | Get document actions |
 
 
 <a id="addDocumentActions"></a>
 # **addDocumentActions**
 > AddDocumentActionsResponse addDocumentActions(documentId, siteId, addDocumentActionsRequest)
 
-
+Add document action
 
 Add one or more actions to a document; this appends actions and does not replace previous actions
 
@@ -82,7 +82,7 @@ No authorization required
 # **getDocumentActions**
 > GetDocumentActionsResponse getDocumentActions(documentId, siteId, shareKey)
 
-
+Get document actions
 
 Get document actions and their status
 

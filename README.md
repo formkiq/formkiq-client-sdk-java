@@ -1,13 +1,28 @@
-# FormKiQ Java Client Library
-=====================================
-
-This is the official supported Java library for the FormKiQ API. 
+# client
 
 FormKiQ HTTP API
-- API version: 1.12.0
-  - Build date: 2023-08-13T13:53:13.529619-05:00[America/Winnipeg]
+- API version: 1.13.0
+  - Build date: 2023-09-10T11:05:27.295949-05:00[America/Winnipeg]
 
-Formkiq API: Document Management Platform API using JWT Authentication
+Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
+
+You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com).
+
+## Introduction
+
+FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all the API endpoints to build your Perfect Document Management Platform.
+
+FormKiQ API was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file with any application that supports the OpenAPI specification.
+
+Open API OAuth Specification - https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml
+
+Open API IAM Specification - https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml
+
+## Authentication
+FormKiQ offers three forms of authentication:
+  - OAuth(JWT)
+  - AWS IAM
+  - API Key
 
   For more information, please visit [https://formkiq.com](https://formkiq.com)
 
@@ -17,16 +32,24 @@ Formkiq API: Document Management Platform API using JWT Authentication
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.11+
-2. Gradle (7.2+)
+1. Java 1.8+
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
 To install the API client library to your local Maven repository, simply execute:
 
 ```shell
-./gradlew clean build
+mvn clean install
 ```
+
+To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
+
+```shell
+mvn clean deploy
+```
+
+Refer to the [OSSRH Guide](http://central.sonatype.org/pages/ossrh-guide.html) for more information.
 
 ### Maven users
 
@@ -36,7 +59,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.12.0</version>
+  <version>1.13.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +75,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.12.0"
+     implementation "com.formkiq:client:1.13.0"
   }
 ```
 
@@ -61,12 +84,12 @@ Add this dependency to your project's build file:
 At first generate the JAR by executing:
 
 ```shell
-./gradlew clean build
+mvn clean package
 ```
 
 Then manually install the following JARs:
 
-* `target/client-1.12.0.jar`
+* `target/client-1.13.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -86,53 +109,18 @@ import com.formkiq.client.api.AdvancedDocumentSearchApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-    // Pick one of the following authorization methods (JWT / IAM / KEY)
-    //
-    // 1. For JWT authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for HttpApiUrl
-    defaultClient.setBasePath("<HttpApiUrl>");
-    defaultClient.addDefaultHeader("Authorization", <JWT Access Token>);
-
-    // 2. For IAM authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for IamApiUrl
-    defaultClient.setBasePath("<IamApiUrl>");
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "execute-api")
-
-    // 3. For Key authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for KeyApiUrl
-    defaultClient.setBasePath("<KeyApiUrl>");
-    defaultClient.addDefaultHeader("Authorization", <Api Key>);    
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
-    // Add New Document
-    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-    AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
-    String siteId = null; // String | Site Identifier
-    String shareKey = null; // String | Share Identifier
+    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey);
+      DeleteFulltextResponse result = apiInstance.deleteDocumentFulltext(documentId, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentsApi#addDocument");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-
-    // Get Documents
-    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-    String date = null; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
-    String tz = null; // String | UTC offset to apply to date parameter (IE: -0600)
-    String next = null; // String | Next page of results token
-    String previous = null; // String | Previous page of results token
-    String siteId = null; // String | Site Identifier
-    String limit = "10"; // String | Limit Results
-    try {
-      GetDocumentsResponse result = apiInstance.getDocuments(date, tz, next, previous, siteId, limit);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentsApi#getDocuments");
+      System.err.println("Exception when calling AdvancedDocumentSearchApi#deleteDocumentFulltext");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -149,84 +137,85 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | 
-*AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | 
-*AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTagAndValue**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | 
-*AdvancedDocumentSearchApi* | [**documentFulltext**](docs/AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext | 
-*AdvancedDocumentSearchApi* | [**getDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext | 
-*AdvancedDocumentSearchApi* | [**queryFulltext**](docs/AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext | 
-*AdvancedDocumentSearchApi* | [**setDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | 
-*AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | 
-*AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | 
+*AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
+*AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag
+*AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTagAndValue**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | Delete document full-text tag/value
+*AdvancedDocumentSearchApi* | [**documentFulltext**](docs/AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext | Document full-text search
+*AdvancedDocumentSearchApi* | [**getDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext | Get document&#39;s full-text
+*AdvancedDocumentSearchApi* | [**queryFulltext**](docs/AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext | Direct opensearch search API
+*AdvancedDocumentSearchApi* | [**setDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text
+*AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
+*AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
 *CustomIndexApi* | [**deleteIndex**](docs/CustomIndexApi.md#deleteIndex) | **DELETE** /indices/{indexType}/{indexKey} | 
 *CustomIndexApi* | [**indexFolderMove**](docs/CustomIndexApi.md#indexFolderMove) | **POST** /indices/{indexType}/move | 
 *CustomIndexApi* | [**indexSearch**](docs/CustomIndexApi.md#indexSearch) | **POST** /indices/search | 
-*DocumentActionsApi* | [**addDocumentActions**](docs/DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | 
-*DocumentActionsApi* | [**getDocumentActions**](docs/DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | 
-*DocumentOcrApi* | [**addDocumentOcr**](docs/DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr | 
-*DocumentOcrApi* | [**deleteDocumentOcr**](docs/DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | 
-*DocumentOcrApi* | [**getDocumentOcr**](docs/DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr | 
-*DocumentOcrApi* | [**setDocumentOcr**](docs/DocumentOcrApi.md#setDocumentOcr) | **PUT** /documents/{documentId}/ocr | 
-*DocumentSearchApi* | [**documentSearch**](docs/DocumentSearchApi.md#documentSearch) | **POST** /search | 
-*DocumentSharesApi* | [**addFolderShare**](docs/DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | 
-*DocumentSharesApi* | [**deleteShare**](docs/DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | 
-*DocumentSharesApi* | [**getUserShares**](docs/DocumentSharesApi.md#getUserShares) | **GET** /shares | 
-*DocumentTagsApi* | [**addDocumentTags**](docs/DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags | 
-*DocumentTagsApi* | [**deleteDocumentTag**](docs/DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} | 
-*DocumentTagsApi* | [**deleteDocumentTagAndValue**](docs/DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} | 
-*DocumentTagsApi* | [**getDocumentTag**](docs/DocumentTagsApi.md#getDocumentTag) | **GET** /documents/{documentId}/tags/{tagKey} | 
-*DocumentTagsApi* | [**getDocumentTags**](docs/DocumentTagsApi.md#getDocumentTags) | **GET** /documents/{documentId}/tags | 
-*DocumentTagsApi* | [**setDocumentTag**](docs/DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} | 
-*DocumentTagsApi* | [**setDocumentTags**](docs/DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags | 
-*DocumentTagsApi* | [**updateDocumentTags**](docs/DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags | 
-*DocumentTagsApi* | [**updateMatchingDocumentTags**](docs/DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags | 
-*DocumentVersionsApi* | [**deleteDocumentVersion**](docs/DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | 
-*DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | 
-*DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | 
-*DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | 
-*DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | 
-*DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | 
-*DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | 
-*DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | 
-*DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | 
-*DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | 
-*DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | 
-*DocumentsApi* | [**getDocumentUpload**](docs/DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | 
-*DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | 
-*DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | 
-*DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | 
-*ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | 
-*ESignatureApi* | [**esignatureDocusign**](docs/ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} | 
-*ESignatureApi* | [**esignatureDocusignConfig**](docs/ESignatureApi.md#esignatureDocusignConfig) | **GET** /esignature/docusign/config | 
-*ESignatureApi* | [**esignatureSetDocusignConfig**](docs/ESignatureApi.md#esignatureSetDocusignConfig) | **PUT** /esignature/docusign/config | 
-*FoldersApi* | [**addFolder**](docs/FoldersApi.md#addFolder) | **POST** /folders | 
-*FoldersApi* | [**deleteFolder**](docs/FoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | 
-*FoldersApi* | [**getFolderDocuments**](docs/FoldersApi.md#getFolderDocuments) | **GET** /folders | 
-*OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | 
-*OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | 
-*OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | 
-*PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | 
-*PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | 
-*SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | 
-*SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | 
-*SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | 
-*SystemManagementApi* | [**getConfigs**](docs/SystemManagementApi.md#getConfigs) | **GET** /configuration | 
-*SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | 
-*SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | 
-*SystemManagementApi* | [**updateConfig**](docs/SystemManagementApi.md#updateConfig) | **PATCH** /configuration | 
+*DocumentActionsApi* | [**addDocumentActions**](docs/DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | Add document action
+*DocumentActionsApi* | [**getDocumentActions**](docs/DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | Get document actions
+*DocumentFoldersApi* | [**addFolder**](docs/DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder
+*DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
+*DocumentFoldersApi* | [**getFolderDocuments**](docs/DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders
+*DocumentOcrApi* | [**addDocumentOcr**](docs/DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr | Perform document ocr
+*DocumentOcrApi* | [**deleteDocumentOcr**](docs/DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | Delete document ocr
+*DocumentOcrApi* | [**getDocumentOcr**](docs/DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr | Get document ocr content
+*DocumentOcrApi* | [**setDocumentOcr**](docs/DocumentOcrApi.md#setDocumentOcr) | **PUT** /documents/{documentId}/ocr | Set document ocr result
+*DocumentSearchApi* | [**documentSearch**](docs/DocumentSearchApi.md#documentSearch) | **POST** /search | Document search
+*DocumentSharesApi* | [**addFolderShare**](docs/DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | Add folder share
+*DocumentSharesApi* | [**deleteShare**](docs/DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | Delete folder share
+*DocumentSharesApi* | [**getUserShares**](docs/DocumentSharesApi.md#getUserShares) | **GET** /shares | Get user shared folders
+*DocumentTagsApi* | [**addDocumentTags**](docs/DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags | Add tag to document
+*DocumentTagsApi* | [**deleteDocumentTag**](docs/DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} | Delete document tag
+*DocumentTagsApi* | [**deleteDocumentTagAndValue**](docs/DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} | Delete document&#39;s tag value
+*DocumentTagsApi* | [**getDocumentTag**](docs/DocumentTagsApi.md#getDocumentTag) | **GET** /documents/{documentId}/tags/{tagKey} | Get document tag by key
+*DocumentTagsApi* | [**getDocumentTags**](docs/DocumentTagsApi.md#getDocumentTags) | **GET** /documents/{documentId}/tags | Get document&#39;s tags
+*DocumentTagsApi* | [**setDocumentTag**](docs/DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} | Update document tag value(s)
+*DocumentTagsApi* | [**setDocumentTags**](docs/DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags | Set document&#39;s tags
+*DocumentTagsApi* | [**updateDocumentTags**](docs/DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags | Update document tags
+*DocumentTagsApi* | [**updateMatchingDocumentTags**](docs/DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags | Mass Update document tag(s)
+*DocumentVersionsApi* | [**deleteDocumentVersion**](docs/DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | Delete document version
+*DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | Get document&#39;s versions
+*DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | Set version of document
+*DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
+*DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
+*DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
+*DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
+*DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
+*DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
+*DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
+*DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs
+*DocumentsApi* | [**getDocumentUpload**](docs/DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document
+*DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url
+*DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
+*DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
+*ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
+*ESignatureApi* | [**esignatureDocusign**](docs/ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
+*ESignatureApi* | [**esignatureDocusignConfig**](docs/ESignatureApi.md#esignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
+*ESignatureApi* | [**esignatureSetDocusignConfig**](docs/ESignatureApi.md#esignatureSetDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
+*OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
+*OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
+*OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
+*PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | Public add document
+*PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | Public add webhook
+*SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key
+*SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
+*SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
+*SystemManagementApi* | [**getConfigs**](docs/SystemManagementApi.md#getConfigs) | **GET** /configuration | Get site configuration
+*SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
+*SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
+*SystemManagementApi* | [**updateConfig**](docs/SystemManagementApi.md#updateConfig) | **PATCH** /configuration | Update site configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
-*TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | 
-*TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | 
-*TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | 
-*TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | 
-*WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | 
-*WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | 
-*WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | 
-*WebhooksApi* | [**deleteWebhook**](docs/WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{webhookId} | 
-*WebhooksApi* | [**getWebhook**](docs/WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhookId} | 
-*WebhooksApi* | [**getWebhookTags**](docs/WebhooksApi.md#getWebhookTags) | **GET** /webhooks/{webhookId}/tags | 
-*WebhooksApi* | [**getWebhooks**](docs/WebhooksApi.md#getWebhooks) | **GET** /webhooks | 
-*WebhooksApi* | [**updateWebhook**](docs/WebhooksApi.md#updateWebhook) | **PATCH** /webhooks/{webhookId} | 
+*TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
+*TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema
+*TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema
+*TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
+*UserManagementApi* | [**getUserGroups**](docs/UserManagementApi.md#getUserGroups) | **GET** /groups | Get configured system group(s)
+*WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook
+*WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | Add webhook
+*WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | Add webhook tag
+*WebhooksApi* | [**deleteWebhook**](docs/WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
+*WebhooksApi* | [**getWebhook**](docs/WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhookId} | Get webhook
+*WebhooksApi* | [**getWebhookTags**](docs/WebhooksApi.md#getWebhookTags) | **GET** /webhooks/{webhookId}/tags | Get webhook tags
+*WebhooksApi* | [**getWebhooks**](docs/WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get webhooks
+*WebhooksApi* | [**updateWebhook**](docs/WebhooksApi.md#updateWebhook) | **PATCH** /webhooks/{webhookId} | Update webhook
 
 
 ## Documentation for Models
@@ -305,7 +294,8 @@ Class | Method | HTTP request | Description
  - [GetDocumentVersionsResponse](docs/GetDocumentVersionsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
- - [GetSitesRequest](docs/GetSitesRequest.md)
+ - [GetGroupsResponse](docs/GetGroupsResponse.md)
+ - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetTagSchemaRequest](docs/GetTagSchemaRequest.md)
  - [GetTagSchemasRequest](docs/GetTagSchemasRequest.md)
  - [GetUserShares](docs/GetUserShares.md)
@@ -313,6 +303,7 @@ Class | Method | HTTP request | Description
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
  - [GetWebhooksResponse](docs/GetWebhooksResponse.md)
+ - [Group](docs/Group.md)
  - [IndexFolderMoveRequest](docs/IndexFolderMoveRequest.md)
  - [IndexFolderMoveResponse](docs/IndexFolderMoveResponse.md)
  - [IndexSearch](docs/IndexSearch.md)

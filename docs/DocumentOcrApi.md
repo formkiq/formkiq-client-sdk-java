@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDocumentOcr**](DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr |  |
-| [**deleteDocumentOcr**](DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr |  |
-| [**getDocumentOcr**](DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr |  |
-| [**setDocumentOcr**](DocumentOcrApi.md#setDocumentOcr) | **PUT** /documents/{documentId}/ocr |  |
+| [**addDocumentOcr**](DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr | Perform document ocr |
+| [**deleteDocumentOcr**](DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | Delete document ocr |
+| [**getDocumentOcr**](DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr | Get document ocr content |
+| [**setDocumentOcr**](DocumentOcrApi.md#setDocumentOcr) | **PUT** /documents/{documentId}/ocr | Set document ocr result |
 
 
 <a id="addDocumentOcr"></a>
 # **addDocumentOcr**
 > AddDocumentOcrResponse addDocumentOcr(documentId, siteId, addDocumentOcrRequest)
 
-
+Perform document ocr
 
 Document optical character recognition (OCR) request; extract text and data from a document; ONLY available with FormKiQ Pro and Enterprise
 
@@ -83,7 +83,7 @@ No authorization required
 # **deleteDocumentOcr**
 > deleteDocumentOcr(documentId, siteId)
 
-
+Delete document ocr
 
 Delete a document&#39;s optical character recognition (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
 
@@ -149,7 +149,7 @@ No authorization required
 # **getDocumentOcr**
 > GetDocumentOcrResponse getDocumentOcr(documentId, siteId, contentUrl, text, shareKey)
 
-
+Get document ocr content
 
 Get a document&#39;s optical character recognition (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
 
@@ -222,7 +222,7 @@ No authorization required
 # **setDocumentOcr**
 > AddDocumentOcrResponse setDocumentOcr(documentId, siteId, setDocumentOcrRequest)
 
-
+Set document ocr result
 
 Set a document&#39;s optical character recognition (OCR) result for a document; ONLY available with FormKiQ Pro and Enterprise
 

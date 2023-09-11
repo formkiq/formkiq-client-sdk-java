@@ -42,6 +42,7 @@ docs/DeleteIndicesResponse.md
 docs/DeleteShareResponse.md
 docs/DocumentAction.md
 docs/DocumentActionsApi.md
+docs/DocumentFoldersApi.md
 docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
@@ -74,7 +75,6 @@ docs/EsignatureDocusignResponse.md
 docs/EsignatureDocusignSigner.md
 docs/EsignatureSetDocusignConfigRequest.md
 docs/EsignatureSetDocusignConfigResponse.md
-docs/FoldersApi.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
 docs/GetConfigurationResponse.md
@@ -91,7 +91,8 @@ docs/GetDocumentUrlResponse.md
 docs/GetDocumentVersionsResponse.md
 docs/GetDocumentsResponse.md
 docs/GetFoldersResponse.md
-docs/GetSitesRequest.md
+docs/GetGroupsResponse.md
+docs/GetSitesResponse.md
 docs/GetTagSchemaRequest.md
 docs/GetTagSchemasRequest.md
 docs/GetUserShares.md
@@ -99,6 +100,7 @@ docs/GetVersionResponse.md
 docs/GetWebhookResponse.md
 docs/GetWebhookTagsResponse.md
 docs/GetWebhooksResponse.md
+docs/Group.md
 docs/IndexFolderMoveRequest.md
 docs/IndexFolderMoveResponse.md
 docs/IndexSearch.md
@@ -140,6 +142,7 @@ docs/UpdateMatchingDocumentTagsRequest.md
 docs/UpdateMatchingDocumentTagsRequestMatch.md
 docs/UpdateMatchingDocumentTagsRequestUpdate.md
 docs/UpdateMatchingDocumentTagsResponse.md
+docs/UserManagementApi.md
 docs/UserShare.md
 docs/ValidationError.md
 docs/ValidationErrorsResponse.md
@@ -158,6 +161,7 @@ src/main/java/com/formkiq/client/api/AdvancedDocumentSearchApi.java
 src/main/java/com/formkiq/client/api/AntivirusApi.java
 src/main/java/com/formkiq/client/api/CustomIndexApi.java
 src/main/java/com/formkiq/client/api/DocumentActionsApi.java
+src/main/java/com/formkiq/client/api/DocumentFoldersApi.java
 src/main/java/com/formkiq/client/api/DocumentOcrApi.java
 src/main/java/com/formkiq/client/api/DocumentSearchApi.java
 src/main/java/com/formkiq/client/api/DocumentSharesApi.java
@@ -165,12 +169,12 @@ src/main/java/com/formkiq/client/api/DocumentTagsApi.java
 src/main/java/com/formkiq/client/api/DocumentVersionsApi.java
 src/main/java/com/formkiq/client/api/DocumentsApi.java
 src/main/java/com/formkiq/client/api/ESignatureApi.java
-src/main/java/com/formkiq/client/api/FoldersApi.java
 src/main/java/com/formkiq/client/api/OnlyofficeApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
 src/main/java/com/formkiq/client/api/SystemManagementApi.java
 src/main/java/com/formkiq/client/api/TagIndexApi.java
 src/main/java/com/formkiq/client/api/TagSchemaApi.java
+src/main/java/com/formkiq/client/api/UserManagementApi.java
 src/main/java/com/formkiq/client/api/WebhooksApi.java
 src/main/java/com/formkiq/client/invoker/ApiCallback.java
 src/main/java/com/formkiq/client/invoker/ApiClient.java
@@ -269,7 +273,8 @@ src/main/java/com/formkiq/client/model/GetDocumentUrlResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
-src/main/java/com/formkiq/client/model/GetSitesRequest.java
+src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetSitesResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemasRequest.java
 src/main/java/com/formkiq/client/model/GetUserShares.java
@@ -277,6 +282,7 @@ src/main/java/com/formkiq/client/model/GetVersionResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookTagsResponse.java
 src/main/java/com/formkiq/client/model/GetWebhooksResponse.java
+src/main/java/com/formkiq/client/model/Group.java
 src/main/java/com/formkiq/client/model/IndexFolderMoveRequest.java
 src/main/java/com/formkiq/client/model/IndexFolderMoveResponse.java
 src/main/java/com/formkiq/client/model/IndexSearch.java
@@ -321,6 +327,7 @@ src/test/java/com/formkiq/client/api/AdvancedDocumentSearchApiTest.java
 src/test/java/com/formkiq/client/api/AntivirusApiTest.java
 src/test/java/com/formkiq/client/api/CustomIndexApiTest.java
 src/test/java/com/formkiq/client/api/DocumentActionsApiTest.java
+src/test/java/com/formkiq/client/api/DocumentFoldersApiTest.java
 src/test/java/com/formkiq/client/api/DocumentOcrApiTest.java
 src/test/java/com/formkiq/client/api/DocumentSearchApiTest.java
 src/test/java/com/formkiq/client/api/DocumentSharesApiTest.java
@@ -328,12 +335,12 @@ src/test/java/com/formkiq/client/api/DocumentTagsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentVersionsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentsApiTest.java
 src/test/java/com/formkiq/client/api/ESignatureApiTest.java
-src/test/java/com/formkiq/client/api/FoldersApiTest.java
 src/test/java/com/formkiq/client/api/OnlyofficeApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
 src/test/java/com/formkiq/client/api/SystemManagementApiTest.java
 src/test/java/com/formkiq/client/api/TagIndexApiTest.java
 src/test/java/com/formkiq/client/api/TagSchemaApiTest.java
+src/test/java/com/formkiq/client/api/UserManagementApiTest.java
 src/test/java/com/formkiq/client/api/WebhooksApiTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
@@ -409,7 +416,8 @@ src/test/java/com/formkiq/client/model/GetDocumentUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
-src/test/java/com/formkiq/client/model/GetSitesRequestTest.java
+src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetSitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasRequestTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesTest.java
@@ -417,6 +425,7 @@ src/test/java/com/formkiq/client/model/GetVersionResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookTagsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhooksResponseTest.java
+src/test/java/com/formkiq/client/model/GroupTest.java
 src/test/java/com/formkiq/client/model/IndexFolderMoveRequestTest.java
 src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java

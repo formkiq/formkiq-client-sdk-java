@@ -4,25 +4,25 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDocument**](DocumentsApi.md#addDocument) | **POST** /documents |  |
-| [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload |  |
-| [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress |  |
-| [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} |  |
-| [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} |  |
-| [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content |  |
-| [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload |  |
-| [**getDocumentSyncs**](DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs |  |
-| [**getDocumentUpload**](DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload |  |
-| [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url |  |
-| [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents |  |
-| [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} |  |
+| [**addDocument**](DocumentsApi.md#addDocument) | **POST** /documents | Add new document |
+| [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document |
+| [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file |
+| [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document |
+| [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document |
+| [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents |
+| [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document |
+| [**getDocumentSyncs**](DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs |
+| [**getDocumentUpload**](DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document |
+| [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url |
+| [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing |
+| [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document |
 
 
 <a id="addDocument"></a>
 # **addDocument**
 > AddDocumentResponse addDocument(addDocumentRequest, siteId, shareKey)
 
-
+Add new document
 
 Creates a new document; body may include document content if less than 5 MB
 
@@ -92,7 +92,7 @@ No authorization required
 # **addDocumentUpload**
 > GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey)
 
-
+Add large document
 
 Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
 
@@ -165,7 +165,7 @@ No authorization required
 # **compressDocuments**
 > DocumentsCompressResponse compressDocuments(documentsCompressRequest, siteId)
 
-
+Compress multiple documents into a .zip file
 
 Compress documents into an .ZIP archive file, and returns a S3 presigned url for the location of the archive file. The operation is async and processing time depends on the number and size of documents included; a 404 status code is returned until the file is ready.
 
@@ -232,7 +232,7 @@ No authorization required
 # **deleteDocument**
 > deleteDocument(documentId, siteId)
 
-
+Delete document
 
 Delete a document
 
@@ -298,7 +298,7 @@ No authorization required
 # **getDocument**
 > GetDocumentResponse getDocument(documentId, siteId, shareKey)
 
-
+Get document
 
 Retrieves a document&#39;s details, i.e., metadata
 
@@ -367,7 +367,7 @@ No authorization required
 # **getDocumentContent**
 > GetDocumentContentResponse getDocumentContent(documentId, versionKey, siteId, shareKey)
 
-
+Get document&#39;s contents
 
 Get a document&#39;s contents. Certain content types, text/_*, application/json, and application/x-www-form-urlencoded. return the  \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
 
@@ -438,7 +438,7 @@ No authorization required
 # **getDocumentIdUpload**
 > GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, contentLength, duration, shareKey)
 
-
+Get url to update large document
 
 Returns a URL that can be used to upload documents for a specific documentId; this endpoint is required in order to add content that is larger than 5 MB. If versions are enabled, this will create a new version of the document.
 
@@ -511,7 +511,7 @@ No authorization required
 # **getDocumentSyncs**
 > GetDocumentSyncResponse getDocumentSyncs(documentId, siteId, limit, shareKey)
 
-
+Get document syncs
 
 Retrieve the document syncs with external services status
 
@@ -582,7 +582,7 @@ No authorization required
 # **getDocumentUpload**
 > GetDocumentUrlResponse getDocumentUpload(path, siteId, contentLength, duration, shareKey)
 
-
+Get url to add large document
 
 Returns a URL that can be used to upload document content and create a new document; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
 
@@ -655,7 +655,7 @@ No authorization required
 # **getDocumentUrl**
 > GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline)
 
-
+Get document content url
 
 Returns a URL for the document&#39;s contents; this URL will expire (the default is 48 hours)
 
@@ -730,7 +730,7 @@ No authorization required
 # **getDocuments**
 > GetDocumentsResponse getDocuments(date, tz, next, previous, siteId, limit)
 
-
+Get Documents listing
 
 Returns a list of the most recent documents added, ordered by inserted, descending
 
@@ -805,7 +805,7 @@ No authorization required
 # **updateDocument**
 > AddDocumentResponse updateDocument(documentId, addDocumentRequest, siteId, shareKey)
 
-
+Update document
 
 Update a document&#39;s details, i.e., metadata
 
