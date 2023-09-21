@@ -145,11 +145,11 @@ public class DocumentsApiTest {
   @Test
   public void getDocumentContentTest() throws ApiException {
     String documentId = null;
-    String versionKey = null;
     String siteId = null;
+    String versionKey = null;
     String shareKey = null;
     GetDocumentContentResponse response =
-        api.getDocumentContent(documentId, versionKey, siteId, shareKey);
+        api.getDocumentContent(documentId, siteId, versionKey, shareKey);
     // TODO: test validations
   }
 

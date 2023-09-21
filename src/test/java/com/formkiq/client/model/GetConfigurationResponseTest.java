@@ -76,4 +76,12 @@ public class GetConfigurationResponseTest {
     // TODO: test maxWebhooks
   }
 
+  /**
+   * Test the property 'notificationEmail'
+   */
+  @Test
+  public void notificationEmailTest() {
+    // TODO: test notificationEmail
+  }
+
 }

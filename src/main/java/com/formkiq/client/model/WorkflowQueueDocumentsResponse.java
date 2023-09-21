@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.UserShare;
+import com.formkiq.client.model.QueueDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,28 +52,27 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetUserShares
+ * WorkflowQueueDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-10T11:05:27.295949-05:00[America/Winnipeg]")
-public class GetUserShares {
+    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+public class WorkflowQueueDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
   private String next;
 
-  public static final String SERIALIZED_NAME_SHARES = "shares";
-  @SerializedName(SERIALIZED_NAME_SHARES)
-  private List<UserShare> shares;
+  public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
+  @SerializedName(SERIALIZED_NAME_DOCUMENTS)
+  private List<QueueDocument> documents;
 
-  public GetUserShares() {}
+  public WorkflowQueueDocumentsResponse() {}
 
-  public GetUserShares next(String next) {
+  public WorkflowQueueDocumentsResponse next(String next) {
 
     this.next = next;
     return this;
@@ -95,33 +94,33 @@ public class GetUserShares {
   }
 
 
-  public GetUserShares shares(List<UserShare> shares) {
+  public WorkflowQueueDocumentsResponse documents(List<QueueDocument> documents) {
 
-    this.shares = shares;
+    this.documents = documents;
     return this;
   }
 
-  public GetUserShares addSharesItem(UserShare sharesItem) {
-    if (this.shares == null) {
-      this.shares = new ArrayList<>();
+  public WorkflowQueueDocumentsResponse addDocumentsItem(QueueDocument documentsItem) {
+    if (this.documents == null) {
+      this.documents = new ArrayList<>();
     }
-    this.shares.add(sharesItem);
+    this.documents.add(documentsItem);
     return this;
   }
 
   /**
-   * List of user&#39;s shares
+   * List of search result documents
    * 
-   * @return shares
+   * @return documents
    **/
   @javax.annotation.Nullable
-  public List<UserShare> getShares() {
-    return shares;
+  public List<QueueDocument> getDocuments() {
+    return documents;
   }
 
 
-  public void setShares(List<UserShare> shares) {
-    this.shares = shares;
+  public void setDocuments(List<QueueDocument> documents) {
+    this.documents = documents;
   }
 
 
@@ -134,22 +133,23 @@ public class GetUserShares {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetUserShares getUserShares = (GetUserShares) o;
-    return Objects.equals(this.next, getUserShares.next)
-        && Objects.equals(this.shares, getUserShares.shares);
+    WorkflowQueueDocumentsResponse workflowQueueDocumentsResponse =
+        (WorkflowQueueDocumentsResponse) o;
+    return Objects.equals(this.next, workflowQueueDocumentsResponse.next)
+        && Objects.equals(this.documents, workflowQueueDocumentsResponse.documents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(next, shares);
+    return Objects.hash(next, documents);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetUserShares {\n");
+    sb.append("class WorkflowQueueDocumentsResponse {\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
-    sb.append("    shares: ").append(toIndentedString(shares)).append("\n");
+    sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -172,7 +172,7 @@ public class GetUserShares {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("next");
-    openapiFields.add("shares");
+    openapiFields.add("documents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -182,24 +182,26 @@ public class GetUserShares {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to GetUserShares
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         WorkflowQueueDocumentsResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!GetUserShares.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
-                                                            // is null
+      if (!WorkflowQueueDocumentsResponse.openapiRequiredFields.isEmpty()) { // has required fields
+                                                                             // but JSON element is
+                                                                             // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in GetUserShares is not found in the empty JSON string",
-            GetUserShares.openapiRequiredFields.toString()));
+            "The required field(s) %s in WorkflowQueueDocumentsResponse is not found in the empty JSON string",
+            WorkflowQueueDocumentsResponse.openapiRequiredFields.toString()));
       }
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
-      if (!GetUserShares.openapiFields.contains(entry.getKey())) {
+    for (Map.Entry<String, JsonElement> entry : entries) {
+      if (!WorkflowQueueDocumentsResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `GetUserShares` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `WorkflowQueueDocumentsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -210,19 +212,19 @@ public class GetUserShares {
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
-    if (jsonObj.get("shares") != null && !jsonObj.get("shares").isJsonNull()) {
-      JsonArray jsonArrayshares = jsonObj.getAsJsonArray("shares");
-      if (jsonArrayshares != null) {
+    if (jsonObj.get("documents") != null && !jsonObj.get("documents").isJsonNull()) {
+      JsonArray jsonArraydocuments = jsonObj.getAsJsonArray("documents");
+      if (jsonArraydocuments != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("shares").isJsonArray()) {
+        if (!jsonObj.get("documents").isJsonArray()) {
           throw new IllegalArgumentException(String.format(
-              "Expected the field `shares` to be an array in the JSON string but got `%s`",
-              jsonObj.get("shares").toString()));
+              "Expected the field `documents` to be an array in the JSON string but got `%s`",
+              jsonObj.get("documents").toString()));
         }
 
-        // validate the optional field `shares` (array)
-        for (int i = 0; i < jsonArrayshares.size(); i++) {
-          UserShare.validateJsonElement(jsonArrayshares.get(i));
+        // validate the optional field `documents` (array)
+        for (int i = 0; i < jsonArraydocuments.size(); i++) {
+          QueueDocument.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }
@@ -232,22 +234,22 @@ public class GetUserShares {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!GetUserShares.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'GetUserShares' and its subtypes
+      if (!WorkflowQueueDocumentsResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'WorkflowQueueDocumentsResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<GetUserShares> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(GetUserShares.class));
+      final TypeAdapter<WorkflowQueueDocumentsResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(WorkflowQueueDocumentsResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<GetUserShares>() {
+      return (TypeAdapter<T>) new TypeAdapter<WorkflowQueueDocumentsResponse>() {
         @Override
-        public void write(JsonWriter out, GetUserShares value) throws IOException {
+        public void write(JsonWriter out, WorkflowQueueDocumentsResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public GetUserShares read(JsonReader in) throws IOException {
+        public WorkflowQueueDocumentsResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -258,18 +260,19 @@ public class GetUserShares {
   }
 
   /**
-   * Create an instance of GetUserShares given an JSON string
+   * Create an instance of WorkflowQueueDocumentsResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of GetUserShares
-   * @throws IOException if the JSON string is invalid with respect to GetUserShares
+   * @return An instance of WorkflowQueueDocumentsResponse
+   * @throws IOException if the JSON string is invalid with respect to
+   *         WorkflowQueueDocumentsResponse
    */
-  public static GetUserShares fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetUserShares.class);
+  public static WorkflowQueueDocumentsResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WorkflowQueueDocumentsResponse.class);
   }
 
   /**
-   * Convert an instance of GetUserShares to an JSON string
+   * Convert an instance of WorkflowQueueDocumentsResponse to an JSON string
    *
    * @return JSON string
    */

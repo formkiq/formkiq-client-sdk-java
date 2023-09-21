@@ -20,7 +20,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.UserShare;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,33 +33,41 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetUserShares
+ * Model tests for DocumentMetadata
  */
-public class GetUserSharesTest {
-  private final GetUserShares model = new GetUserShares();
+public class DocumentMetadataTest {
+  private final DocumentMetadata model = new DocumentMetadata();
 
   /**
-   * Model tests for GetUserShares
+   * Model tests for DocumentMetadata
    */
   @Test
-  public void testGetUserShares() {
-    // TODO: test GetUserShares
+  public void testDocumentMetadata() {
+    // TODO: test DocumentMetadata
   }
 
   /**
-   * Test the property 'next'
+   * Test the property 'key'
    */
   @Test
-  public void nextTest() {
-    // TODO: test next
+  public void keyTest() {
+    // TODO: test key
   }
 
   /**
-   * Test the property 'shares'
+   * Test the property 'value'
    */
   @Test
-  public void sharesTest() {
-    // TODO: test shares
+  public void valueTest() {
+    // TODO: test value
+  }
+
+  /**
+   * Test the property 'values'
+   */
+  @Test
+  public void valuesTest() {
+    // TODO: test values
   }
 
 }

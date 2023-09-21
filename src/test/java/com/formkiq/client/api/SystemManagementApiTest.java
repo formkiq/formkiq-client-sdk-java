@@ -30,6 +30,7 @@ import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetConfigRequest;
 import com.formkiq.client.model.SetConfigResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -98,9 +99,9 @@ public class SystemManagementApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getConfigsTest() throws ApiException {
+  public void getConfigurationTest() throws ApiException {
     String siteId = null;
-    GetConfigurationResponse response = api.getConfigs(siteId);
+    GetConfigurationResponse response = api.getConfiguration(siteId);
     // TODO: test validations
   }
 
@@ -138,10 +139,10 @@ public class SystemManagementApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void updateConfigTest() throws ApiException {
+  public void updateConfigurationTest() throws ApiException {
     SetConfigRequest setConfigRequest = null;
     String siteId = null;
-    SetConfigResponse response = api.updateConfig(setConfigRequest, siteId);
+    SetConfigResponse response = api.updateConfiguration(setConfigRequest, siteId);
     // TODO: test validations
   }
 

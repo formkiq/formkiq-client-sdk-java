@@ -43,6 +43,7 @@ import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetConfigRequest;
 import com.formkiq.client.model.SetConfigResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -628,7 +629,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Build call for getConfigs
+   * Build call for getConfiguration
    * 
    * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
@@ -651,7 +652,7 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getConfigsCall(String siteId, final ApiCallback _callback)
+  public okhttp3.Call getConfigurationCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -701,9 +702,9 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getConfigsValidateBeforeCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
-    return getConfigsCall(siteId, _callback);
+  private okhttp3.Call getConfigurationValidateBeforeCall(String siteId,
+      final ApiCallback _callback) throws ApiException {
+    return getConfigurationCall(siteId, _callback);
 
   }
 
@@ -731,8 +732,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetConfigurationResponse getConfigs(String siteId) throws ApiException {
-    ApiResponse<GetConfigurationResponse> localVarResp = getConfigsWithHttpInfo(siteId);
+  public GetConfigurationResponse getConfiguration(String siteId) throws ApiException {
+    ApiResponse<GetConfigurationResponse> localVarResp = getConfigurationWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -760,9 +761,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetConfigurationResponse> getConfigsWithHttpInfo(String siteId)
+  public ApiResponse<GetConfigurationResponse> getConfigurationWithHttpInfo(String siteId)
       throws ApiException {
-    okhttp3.Call localVarCall = getConfigsValidateBeforeCall(siteId, null);
+    okhttp3.Call localVarCall = getConfigurationValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetConfigurationResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -791,10 +792,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getConfigsAsync(String siteId,
+  public okhttp3.Call getConfigurationAsync(String siteId,
       final ApiCallback<GetConfigurationResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getConfigsValidateBeforeCall(siteId, _callback);
+    okhttp3.Call localVarCall = getConfigurationValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetConfigurationResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1126,7 +1127,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Build call for updateConfig
+   * Build call for updateConfiguration
    * 
    * @param setConfigRequest (required)
    * @param siteId Site Identifier (optional)
@@ -1148,9 +1149,14 @@ public class SystemManagementApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigCall(SetConfigRequest setConfigRequest, String siteId,
+  public okhttp3.Call updateConfigurationCall(SetConfigRequest setConfigRequest, String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1200,15 +1206,15 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateConfigValidateBeforeCall(SetConfigRequest setConfigRequest,
+  private okhttp3.Call updateConfigurationValidateBeforeCall(SetConfigRequest setConfigRequest,
       String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'setConfigRequest' is set
     if (setConfigRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'setConfigRequest' when calling updateConfig(Async)");
+          "Missing the required parameter 'setConfigRequest' when calling updateConfiguration(Async)");
     }
 
-    return updateConfigCall(setConfigRequest, siteId, _callback);
+    return updateConfigurationCall(setConfigRequest, siteId, _callback);
 
   }
 
@@ -1235,12 +1241,17 @@ public class SystemManagementApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public SetConfigResponse updateConfig(SetConfigRequest setConfigRequest, String siteId)
+  public SetConfigResponse updateConfiguration(SetConfigRequest setConfigRequest, String siteId)
       throws ApiException {
     ApiResponse<SetConfigResponse> localVarResp =
-        updateConfigWithHttpInfo(setConfigRequest, siteId);
+        updateConfigurationWithHttpInfo(setConfigRequest, siteId);
     return localVarResp.getData();
   }
 
@@ -1267,11 +1278,17 @@ public class SystemManagementApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetConfigResponse> updateConfigWithHttpInfo(SetConfigRequest setConfigRequest,
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = updateConfigValidateBeforeCall(setConfigRequest, siteId, null);
+  public ApiResponse<SetConfigResponse> updateConfigurationWithHttpInfo(
+      SetConfigRequest setConfigRequest, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        updateConfigurationValidateBeforeCall(setConfigRequest, siteId, null);
     Type localVarReturnType = new TypeToken<SetConfigResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1299,12 +1316,18 @@ public class SystemManagementApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigAsync(SetConfigRequest setConfigRequest, String siteId,
+  public okhttp3.Call updateConfigurationAsync(SetConfigRequest setConfigRequest, String siteId,
       final ApiCallback<SetConfigResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = updateConfigValidateBeforeCall(setConfigRequest, siteId, _callback);
+    okhttp3.Call localVarCall =
+        updateConfigurationValidateBeforeCall(setConfigRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<SetConfigResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

@@ -22,6 +22,7 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.GetGroupsResponse;
+import com.formkiq.client.model.GetUsersInGroupResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -46,10 +47,26 @@ public class UserManagementApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getUserGroupsTest() throws ApiException {
+  public void getGroupsTest() throws ApiException {
     String limit = null;
     String next = null;
-    GetGroupsResponse response = api.getUserGroups(limit, next);
+    GetGroupsResponse response = api.getGroups(limit, next);
+    // TODO: test validations
+  }
+
+  /**
+   * Get users in a group
+   *
+   * Returns the list of users in a group
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getUsersInGroupTest() throws ApiException {
+    String groupName = null;
+    String limit = null;
+    String next = null;
+    GetUsersInGroupResponse response = api.getUsersInGroup(groupName, limit, next);
     // TODO: test validations
   }
 

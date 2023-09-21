@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-09-10T11:05:27.295949-05:00[America/Winnipeg]
+  - Build date: 2023-09-20T17:40:08.427476-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -174,6 +174,13 @@ Class | Method | HTTP request | Description
 *DocumentVersionsApi* | [**deleteDocumentVersion**](docs/DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | Delete document version
 *DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | Get document&#39;s versions
 *DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | Set version of document
+*DocumentWorkflowsApi* | [**addDocumentWorkflow**](docs/DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflow/{workflowId} | Add document workflow
+*DocumentWorkflowsApi* | [**addWorkflow**](docs/DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow
+*DocumentWorkflowsApi* | [**deleteWorkflow**](docs/DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow
+*DocumentWorkflowsApi* | [**documentWorkflow**](docs/DocumentWorkflowsApi.md#documentWorkflow) | **GET** /documents/{documentId}/workflow/{workflowId} | Document search
+*DocumentWorkflowsApi* | [**getWorkflow**](docs/DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow
+*DocumentWorkflowsApi* | [**getWorkflows**](docs/DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows
+*DocumentWorkflowsApi* | [**workflowQueueDocuments**](docs/DocumentWorkflowsApi.md#workflowQueueDocuments) | **GET** /workflows/queue/{queueName}/documents | Document search
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
@@ -198,16 +205,17 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
-*SystemManagementApi* | [**getConfigs**](docs/SystemManagementApi.md#getConfigs) | **GET** /configuration | Get site configuration
+*SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
-*SystemManagementApi* | [**updateConfig**](docs/SystemManagementApi.md#updateConfig) | **PATCH** /configuration | Update site configuration
+*SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
 *TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema
 *TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
-*UserManagementApi* | [**getUserGroups**](docs/UserManagementApi.md#getUserGroups) | **GET** /groups | Get configured system group(s)
+*UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get configured system group(s)
+*UserManagementApi* | [**getUsersInGroup**](docs/UserManagementApi.md#getUsersInGroup) | **GET** /groups/{groupName}/users | Get users in a group
 *WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook
 *WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | Add webhook
 *WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | Add webhook tag
@@ -236,15 +244,21 @@ Class | Method | HTTP request | Description
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
+ - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
+ - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddQueue](docs/AddQueue.md)
  - [AddShare](docs/AddShare.md)
  - [AddTagSchemaRequest](docs/AddTagSchemaRequest.md)
+ - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
+ - [AddWorkflowRequest](docs/AddWorkflowRequest.md)
+ - [AddWorkflowResponse](docs/AddWorkflowResponse.md)
  - [ApiKey](docs/ApiKey.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
@@ -252,6 +266,7 @@ Class | Method | HTTP request | Description
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
+ - [DeleteWorkflowResponse](docs/DeleteWorkflowResponse.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
@@ -260,12 +275,15 @@ Class | Method | HTTP request | Description
  - [DocumentId](docs/DocumentId.md)
  - [DocumentItemResult](docs/DocumentItemResult.md)
  - [DocumentItemVersion](docs/DocumentItemVersion.md)
+ - [DocumentMetadata](docs/DocumentMetadata.md)
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSearchItemMeta](docs/DocumentSearchItemMeta.md)
  - [DocumentSearchItemTag](docs/DocumentSearchItemTag.md)
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
  - [DocumentSearchRequest](docs/DocumentSearchRequest.md)
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
+ - [DocumentWorkflowResponse](docs/DocumentWorkflowResponse.md)
+ - [DocumentWorkflowStep](docs/DocumentWorkflowStep.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [Error](docs/Error.md)
@@ -298,11 +316,14 @@ Class | Method | HTTP request | Description
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetTagSchemaRequest](docs/GetTagSchemaRequest.md)
  - [GetTagSchemasRequest](docs/GetTagSchemasRequest.md)
- - [GetUserShares](docs/GetUserShares.md)
+ - [GetUserSharesResponse](docs/GetUserSharesResponse.md)
+ - [GetUsersInGroupResponse](docs/GetUsersInGroupResponse.md)
  - [GetVersionResponse](docs/GetVersionResponse.md)
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
  - [GetWebhooksResponse](docs/GetWebhooksResponse.md)
+ - [GetWorkflowResponse](docs/GetWorkflowResponse.md)
+ - [GetWorkflowsResponse](docs/GetWorkflowsResponse.md)
  - [Group](docs/Group.md)
  - [IndexFolderMoveRequest](docs/IndexFolderMoveRequest.md)
  - [IndexFolderMoveResponse](docs/IndexFolderMoveResponse.md)
@@ -317,6 +338,7 @@ Class | Method | HTTP request | Description
  - [OnlyOfficeDocumentSaveResponse](docs/OnlyOfficeDocumentSaveResponse.md)
  - [OnlyOfficeEditorConfig](docs/OnlyOfficeEditorConfig.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
+ - [QueueDocument](docs/QueueDocument.md)
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
@@ -331,7 +353,6 @@ Class | Method | HTTP request | Description
  - [Site](docs/Site.md)
  - [TagSchemaCompositeKey](docs/TagSchemaCompositeKey.md)
  - [TagSchemaOptional](docs/TagSchemaOptional.md)
- - [TagSchemaPostResponse](docs/TagSchemaPostResponse.md)
  - [TagSchemaRequired](docs/TagSchemaRequired.md)
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
@@ -340,10 +361,15 @@ Class | Method | HTTP request | Description
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
+ - [User](docs/User.md)
  - [UserShare](docs/UserShare.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
  - [WebhookTag](docs/WebhookTag.md)
+ - [WorkflowConfig](docs/WorkflowConfig.md)
+ - [WorkflowQueueDocumentsResponse](docs/WorkflowQueueDocumentsResponse.md)
+ - [WorkflowStep](docs/WorkflowStep.md)
+ - [WorkflowSummary](docs/WorkflowSummary.md)
 
 
 <a id="documentation-for-authorization"></a>

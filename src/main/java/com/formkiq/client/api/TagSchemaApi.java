@@ -35,10 +35,10 @@ import java.io.IOException;
 
 
 import com.formkiq.client.model.AddTagSchemaRequest;
+import com.formkiq.client.model.AddTagSchemaResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetTagSchemaRequest;
 import com.formkiq.client.model.GetTagSchemasRequest;
-import com.formkiq.client.model.TagSchemaPostResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -183,7 +183,7 @@ public class TagSchemaApi {
    * 
    * @param addTagSchemaRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return TagSchemaPostResponse
+   * @return AddTagSchemaResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -211,9 +211,9 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public TagSchemaPostResponse addTagSchema(AddTagSchemaRequest addTagSchemaRequest, String siteId)
+  public AddTagSchemaResponse addTagSchema(AddTagSchemaRequest addTagSchemaRequest, String siteId)
       throws ApiException {
-    ApiResponse<TagSchemaPostResponse> localVarResp =
+    ApiResponse<AddTagSchemaResponse> localVarResp =
         addTagSchemaWithHttpInfo(addTagSchemaRequest, siteId);
     return localVarResp.getData();
   }
@@ -223,7 +223,7 @@ public class TagSchemaApi {
    * 
    * @param addTagSchemaRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;TagSchemaPostResponse&gt;
+   * @return ApiResponse&lt;AddTagSchemaResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -251,10 +251,10 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<TagSchemaPostResponse> addTagSchemaWithHttpInfo(
+  public ApiResponse<AddTagSchemaResponse> addTagSchemaWithHttpInfo(
       AddTagSchemaRequest addTagSchemaRequest, String siteId) throws ApiException {
     okhttp3.Call localVarCall = addTagSchemaValidateBeforeCall(addTagSchemaRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<TagSchemaPostResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddTagSchemaResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -293,11 +293,11 @@ public class TagSchemaApi {
    *                        </table>
    */
   public okhttp3.Call addTagSchemaAsync(AddTagSchemaRequest addTagSchemaRequest, String siteId,
-      final ApiCallback<TagSchemaPostResponse> _callback) throws ApiException {
+      final ApiCallback<AddTagSchemaResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         addTagSchemaValidateBeforeCall(addTagSchemaRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<TagSchemaPostResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddTagSchemaResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

@@ -37,7 +37,7 @@ import java.io.IOException;
 import com.formkiq.client.model.AddFolderShareRequest;
 import com.formkiq.client.model.AddFolderShareResponse;
 import com.formkiq.client.model.DeleteShareResponse;
-import com.formkiq.client.model.GetUserShares;
+import com.formkiq.client.model.GetUserSharesResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -579,7 +579,7 @@ public class DocumentSharesApi {
    * @param group Group Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
-   * @return GetUserShares
+   * @return GetUserSharesResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -599,8 +599,9 @@ public class DocumentSharesApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUserShares getUserShares(String group, String limit, String next) throws ApiException {
-    ApiResponse<GetUserShares> localVarResp = getUserSharesWithHttpInfo(group, limit, next);
+  public GetUserSharesResponse getUserShares(String group, String limit, String next)
+      throws ApiException {
+    ApiResponse<GetUserSharesResponse> localVarResp = getUserSharesWithHttpInfo(group, limit, next);
     return localVarResp.getData();
   }
 
@@ -611,7 +612,7 @@ public class DocumentSharesApi {
    * @param group Group Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
-   * @return ApiResponse&lt;GetUserShares&gt;
+   * @return ApiResponse&lt;GetUserSharesResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -631,10 +632,10 @@ public class DocumentSharesApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetUserShares> getUserSharesWithHttpInfo(String group, String limit,
+  public ApiResponse<GetUserSharesResponse> getUserSharesWithHttpInfo(String group, String limit,
       String next) throws ApiException {
     okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(group, limit, next, null);
-    Type localVarReturnType = new TypeToken<GetUserShares>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetUserSharesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -666,10 +667,10 @@ public class DocumentSharesApi {
    *                        </table>
    */
   public okhttp3.Call getUserSharesAsync(String group, String limit, String next,
-      final ApiCallback<GetUserShares> _callback) throws ApiException {
+      final ApiCallback<GetUserSharesResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getUserSharesValidateBeforeCall(group, limit, next, _callback);
-    Type localVarReturnType = new TypeToken<GetUserShares>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetUserSharesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

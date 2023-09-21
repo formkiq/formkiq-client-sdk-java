@@ -20,36 +20,64 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.WorkflowConfig;
+import com.formkiq.client.model.WorkflowStep;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for TagSchemaPostResponse
+ * Model tests for GetWorkflowResponse
  */
-public class TagSchemaPostResponseTest {
-  private final TagSchemaPostResponse model = new TagSchemaPostResponse();
+public class GetWorkflowResponseTest {
+  private final GetWorkflowResponse model = new GetWorkflowResponse();
 
   /**
-   * Model tests for TagSchemaPostResponse
+   * Model tests for GetWorkflowResponse
    */
   @Test
-  public void testTagSchemaPostResponse() {
-    // TODO: test TagSchemaPostResponse
+  public void testGetWorkflowResponse() {
+    // TODO: test GetWorkflowResponse
   }
 
   /**
-   * Test the property 'tagSchemaId'
+   * Test the property 'name'
    */
   @Test
-  public void tagSchemaIdTest() {
-    // TODO: test tagSchemaId
+  public void nameTest() {
+    // TODO: test name
+  }
+
+  /**
+   * Test the property 'description'
+   */
+  @Test
+  public void descriptionTest() {
+    // TODO: test description
+  }
+
+  /**
+   * Test the property 'config'
+   */
+  @Test
+  public void configTest() {
+    // TODO: test config
+  }
+
+  /**
+   * Test the property 'steps'
+   */
+  @Test
+  public void stepsTest() {
+    // TODO: test steps
   }
 
 }

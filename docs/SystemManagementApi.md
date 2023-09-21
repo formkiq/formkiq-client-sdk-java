@@ -7,10 +7,10 @@ All URIs are relative to *http://localhost*
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys |
-| [**getConfigs**](SystemManagementApi.md#getConfigs) | **GET** /configuration | Get site configuration |
+| [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
-| [**updateConfig**](SystemManagementApi.md#updateConfig) | **PATCH** /configuration | Update site configuration |
+| [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration |
 
 
 <a id="addApiKey"></a>
@@ -212,9 +212,9 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="getConfigs"></a>
-# **getConfigs**
-> GetConfigurationResponse getConfigs(siteId)
+<a id="getConfiguration"></a>
+# **getConfiguration**
+> GetConfigurationResponse getConfiguration(siteId)
 
 Get site configuration
 
@@ -240,10 +240,10 @@ public class Example {
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      GetConfigurationResponse result = apiInstance.getConfigs(siteId);
+      GetConfigurationResponse result = apiInstance.getConfiguration(siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#getConfigs");
+      System.err.println("Exception when calling SystemManagementApi#getConfiguration");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -399,9 +399,9 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="updateConfig"></a>
-# **updateConfig**
-> SetConfigResponse updateConfig(setConfigRequest, siteId)
+<a id="updateConfiguration"></a>
+# **updateConfiguration**
+> SetConfigResponse updateConfiguration(setConfigRequest, siteId)
 
 Update site configuration
 
@@ -428,10 +428,10 @@ public class Example {
     SetConfigRequest setConfigRequest = new SetConfigRequest(); // SetConfigRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      SetConfigResponse result = apiInstance.updateConfig(setConfigRequest, siteId);
+      SetConfigResponse result = apiInstance.updateConfiguration(setConfigRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#updateConfig");
+      System.err.println("Exception when calling SystemManagementApi#updateConfiguration");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -465,4 +465,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 

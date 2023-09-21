@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addTagSchema"></a>
 # **addTagSchema**
-> TagSchemaPostResponse addTagSchema(addTagSchemaRequest, siteId)
+> AddTagSchemaResponse addTagSchema(addTagSchemaRequest, siteId)
 
 Add tag schemas
 
@@ -39,7 +39,7 @@ public class Example {
     AddTagSchemaRequest addTagSchemaRequest = new AddTagSchemaRequest(); // AddTagSchemaRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      TagSchemaPostResponse result = apiInstance.addTagSchema(addTagSchemaRequest, siteId);
+      AddTagSchemaResponse result = apiInstance.addTagSchema(addTagSchemaRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagSchemaApi#addTagSchema");
@@ -61,7 +61,7 @@ public class Example {
 
 ### Return type
 
-[**TagSchemaPostResponse**](TagSchemaPostResponse.md)
+[**AddTagSchemaResponse**](AddTagSchemaResponse.md)
 
 ### Authorization
 

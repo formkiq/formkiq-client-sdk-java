@@ -49,42 +49,41 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.formkiq.client.invoker.JSON;
 
 /**
- * TagSchemaPostResponse
+ * AddDocumentWorkflowResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-10T11:05:27.295949-05:00[America/Winnipeg]")
-public class TagSchemaPostResponse {
-  public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
-  @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
-  private String tagSchemaId;
+    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+public class AddDocumentWorkflowResponse {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
-  public TagSchemaPostResponse() {}
+  public AddDocumentWorkflowResponse() {}
 
-  public TagSchemaPostResponse tagSchemaId(String tagSchemaId) {
+  public AddDocumentWorkflowResponse message(String message) {
 
-    this.tagSchemaId = tagSchemaId;
+    this.message = message;
     return this;
   }
 
   /**
-   * Tag Schema Identifier
+   * Result message
    * 
-   * @return tagSchemaId
+   * @return message
    **/
   @javax.annotation.Nullable
-  public String getTagSchemaId() {
-    return tagSchemaId;
+  public String getMessage() {
+    return message;
   }
 
 
-  public void setTagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -97,20 +96,20 @@ public class TagSchemaPostResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TagSchemaPostResponse tagSchemaPostResponse = (TagSchemaPostResponse) o;
-    return Objects.equals(this.tagSchemaId, tagSchemaPostResponse.tagSchemaId);
+    AddDocumentWorkflowResponse addDocumentWorkflowResponse = (AddDocumentWorkflowResponse) o;
+    return Objects.equals(this.message, addDocumentWorkflowResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TagSchemaPostResponse {\n");
-    sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
+    sb.append("class AddDocumentWorkflowResponse {\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -132,7 +131,7 @@ public class TagSchemaPostResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("tagSchemaId");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -142,33 +141,33 @@ public class TagSchemaPostResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to TagSchemaPostResponse
+   * @throws IOException if the JSON Element is invalid with respect to AddDocumentWorkflowResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!TagSchemaPostResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                    // element is null
+      if (!AddDocumentWorkflowResponse.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                          // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in TagSchemaPostResponse is not found in the empty JSON string",
-            TagSchemaPostResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocumentWorkflowResponse is not found in the empty JSON string",
+            AddDocumentWorkflowResponse.openapiRequiredFields.toString()));
       }
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
-      if (!TagSchemaPostResponse.openapiFields.contains(entry.getKey())) {
+    for (Map.Entry<String, JsonElement> entry : entries) {
+      if (!AddDocumentWorkflowResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `TagSchemaPostResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("tagSchemaId") != null && !jsonObj.get("tagSchemaId").isJsonNull())
-        && !jsonObj.get("tagSchemaId").isJsonPrimitive()) {
+    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
+        && !jsonObj.get("message").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `tagSchemaId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("tagSchemaId").toString()));
+          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("message").toString()));
     }
   }
 
@@ -176,22 +175,22 @@ public class TagSchemaPostResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!TagSchemaPostResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'TagSchemaPostResponse' and its subtypes
+      if (!AddDocumentWorkflowResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocumentWorkflowResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<TagSchemaPostResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(TagSchemaPostResponse.class));
+      final TypeAdapter<AddDocumentWorkflowResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<TagSchemaPostResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowResponse>() {
         @Override
-        public void write(JsonWriter out, TagSchemaPostResponse value) throws IOException {
+        public void write(JsonWriter out, AddDocumentWorkflowResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public TagSchemaPostResponse read(JsonReader in) throws IOException {
+        public AddDocumentWorkflowResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -202,18 +201,18 @@ public class TagSchemaPostResponse {
   }
 
   /**
-   * Create an instance of TagSchemaPostResponse given an JSON string
+   * Create an instance of AddDocumentWorkflowResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of TagSchemaPostResponse
-   * @throws IOException if the JSON string is invalid with respect to TagSchemaPostResponse
+   * @return An instance of AddDocumentWorkflowResponse
+   * @throws IOException if the JSON string is invalid with respect to AddDocumentWorkflowResponse
    */
-  public static TagSchemaPostResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, TagSchemaPostResponse.class);
+  public static AddDocumentWorkflowResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowResponse.class);
   }
 
   /**
-   * Convert an instance of TagSchemaPostResponse to an JSON string
+   * Convert an instance of AddDocumentWorkflowResponse to an JSON string
    *
    * @return JSON string
    */

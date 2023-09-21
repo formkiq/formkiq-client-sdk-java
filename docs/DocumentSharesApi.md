@@ -146,7 +146,7 @@ No authorization required
 
 <a id="getUserShares"></a>
 # **getUserShares**
-> GetUserShares getUserShares(group, limit, next)
+> GetUserSharesResponse getUserShares(group, limit, next)
 
 Get user shared folders
 
@@ -174,7 +174,7 @@ public class Example {
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      GetUserShares result = apiInstance.getUserShares(group, limit, next);
+      GetUserSharesResponse result = apiInstance.getUserShares(group, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentSharesApi#getUserShares");
@@ -197,7 +197,7 @@ public class Example {
 
 ### Return type
 
-[**GetUserShares**](GetUserShares.md)
+[**GetUserSharesResponse**](GetUserSharesResponse.md)
 
 ### Authorization
 

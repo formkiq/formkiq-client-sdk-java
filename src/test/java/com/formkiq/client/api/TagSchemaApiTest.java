@@ -22,10 +22,10 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddTagSchemaRequest;
+import com.formkiq.client.model.AddTagSchemaResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetTagSchemaRequest;
 import com.formkiq.client.model.GetTagSchemasRequest;
-import com.formkiq.client.model.TagSchemaPostResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ public class TagSchemaApiTest {
   public void addTagSchemaTest() throws ApiException {
     AddTagSchemaRequest addTagSchemaRequest = null;
     String siteId = null;
-    TagSchemaPostResponse response = api.addTagSchema(addTagSchemaRequest, siteId);
+    AddTagSchemaResponse response = api.addTagSchema(addTagSchemaRequest, siteId);
     // TODO: test validations
   }
 

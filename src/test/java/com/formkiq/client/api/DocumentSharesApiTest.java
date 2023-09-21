@@ -24,7 +24,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddFolderShareRequest;
 import com.formkiq.client.model.AddFolderShareResponse;
 import com.formkiq.client.model.DeleteShareResponse;
-import com.formkiq.client.model.GetUserShares;
+import com.formkiq.client.model.GetUserSharesResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -84,7 +84,7 @@ public class DocumentSharesApiTest {
     String group = null;
     String limit = null;
     String next = null;
-    GetUserShares response = api.getUserShares(group, limit, next);
+    GetUserSharesResponse response = api.getUserShares(group, limit, next);
     // TODO: test validations
   }
 

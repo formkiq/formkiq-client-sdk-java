@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentMetadata;
 import com.formkiq.client.model.DocumentSearchMatchTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -27,7 +28,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -147,6 +150,14 @@ public class SearchResultDocumentTest {
   @Test
   public void belongsToDocumentIdTest() {
     // TODO: test belongsToDocumentId
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
   /**

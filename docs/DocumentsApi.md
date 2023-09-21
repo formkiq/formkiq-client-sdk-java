@@ -365,7 +365,7 @@ No authorization required
 
 <a id="getDocumentContent"></a>
 # **getDocumentContent**
-> GetDocumentContentResponse getDocumentContent(documentId, versionKey, siteId, shareKey)
+> GetDocumentContentResponse getDocumentContent(documentId, siteId, versionKey, shareKey)
 
 Get document&#39;s contents
 
@@ -390,11 +390,11 @@ public class Example {
     
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    String versionKey = "versionKey_example"; // String | Version Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String versionKey = "versionKey_example"; // String | Version Key
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, versionKey, siteId, shareKey);
+      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, versionKey, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentContent");
@@ -412,8 +412,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **versionKey** | **String**| Version Key | [optional] |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **versionKey** | **String**| Version Key | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type

@@ -49,7 +49,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.formkiq.client.invoker.JSON;
@@ -58,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * SetConfigRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-10T11:05:27.295949-05:00[America/Winnipeg]")
+    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
 public class SetConfigRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
@@ -75,6 +74,10 @@ public class SetConfigRequest {
   public static final String SERIALIZED_NAME_MAX_WEBHOOKS = "maxWebhooks";
   @SerializedName(SERIALIZED_NAME_MAX_WEBHOOKS)
   private String maxWebhooks;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_EMAIL = "notificationEmail";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_EMAIL)
+  private String notificationEmail;
 
   public SetConfigRequest() {}
 
@@ -166,6 +169,28 @@ public class SetConfigRequest {
   }
 
 
+  public SetConfigRequest notificationEmail(String notificationEmail) {
+
+    this.notificationEmail = notificationEmail;
+    return this;
+  }
+
+  /**
+   * Email address to use for notifications
+   * 
+   * @return notificationEmail
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationEmail() {
+    return notificationEmail;
+  }
+
+
+  public void setNotificationEmail(String notificationEmail) {
+    this.notificationEmail = notificationEmail;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -179,12 +204,14 @@ public class SetConfigRequest {
     return Objects.equals(this.chatGptApiKey, setConfigRequest.chatGptApiKey)
         && Objects.equals(this.maxContentLengthBytes, setConfigRequest.maxContentLengthBytes)
         && Objects.equals(this.maxDocuments, setConfigRequest.maxDocuments)
-        && Objects.equals(this.maxWebhooks, setConfigRequest.maxWebhooks);
+        && Objects.equals(this.maxWebhooks, setConfigRequest.maxWebhooks)
+        && Objects.equals(this.notificationEmail, setConfigRequest.notificationEmail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks);
+    return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
+        notificationEmail);
   }
 
   @Override
@@ -196,6 +223,7 @@ public class SetConfigRequest {
         .append("\n");
     sb.append("    maxDocuments: ").append(toIndentedString(maxDocuments)).append("\n");
     sb.append("    maxWebhooks: ").append(toIndentedString(maxWebhooks)).append("\n");
+    sb.append("    notificationEmail: ").append(toIndentedString(notificationEmail)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,6 +249,7 @@ public class SetConfigRequest {
     openapiFields.add("maxContentLengthBytes");
     openapiFields.add("maxDocuments");
     openapiFields.add("maxWebhooks");
+    openapiFields.add("notificationEmail");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -242,9 +271,9 @@ public class SetConfigRequest {
       }
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
+    for (Map.Entry<String, JsonElement> entry : entries) {
       if (!SetConfigRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
             "The field `%s` in the JSON string is not defined in the `SetConfigRequest` properties. JSON: %s",
@@ -276,6 +305,12 @@ public class SetConfigRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `maxWebhooks` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("maxWebhooks").toString()));
+    }
+    if ((jsonObj.get("notificationEmail") != null && !jsonObj.get("notificationEmail").isJsonNull())
+        && !jsonObj.get("notificationEmail").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationEmail` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationEmail").toString()));
     }
   }
 

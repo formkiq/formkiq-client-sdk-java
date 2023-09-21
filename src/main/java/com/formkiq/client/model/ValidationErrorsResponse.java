@@ -52,7 +52,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.formkiq.client.invoker.JSON;
@@ -61,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * ValidationErrorsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-10T11:05:27.295949-05:00[America/Winnipeg]")
+    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
 public class ValidationErrorsResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -165,9 +164,9 @@ public class ValidationErrorsResponse {
       }
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
+    for (Map.Entry<String, JsonElement> entry : entries) {
       if (!ValidationErrorsResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
             "The field `%s` in the JSON string is not defined in the `ValidationErrorsResponse` properties. JSON: %s",

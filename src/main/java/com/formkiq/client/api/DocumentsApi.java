@@ -1103,8 +1103,8 @@ public class DocumentsApi {
    * Build call for getDocumentContent
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (optional)
    * @param siteId Site Identifier (optional)
+   * @param versionKey Version Key (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -1127,7 +1127,7 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentContentCall(String documentId, String versionKey, String siteId,
+  public okhttp3.Call getDocumentContentCall(String documentId, String siteId, String versionKey,
       String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1154,12 +1154,12 @@ public class DocumentsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    if (versionKey != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("versionKey", versionKey));
-    }
-
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (versionKey != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("versionKey", versionKey));
     }
 
     if (shareKey != null) {
@@ -1186,15 +1186,15 @@ public class DocumentsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentContentValidateBeforeCall(String documentId, String versionKey,
-      String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getDocumentContentValidateBeforeCall(String documentId, String siteId,
+      String versionKey, String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentContent(Async)");
     }
 
-    return getDocumentContentCall(documentId, versionKey, siteId, shareKey, _callback);
+    return getDocumentContentCall(documentId, siteId, versionKey, shareKey, _callback);
 
   }
 
@@ -1204,8 +1204,8 @@ public class DocumentsApi {
    * field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (optional)
    * @param siteId Site Identifier (optional)
+   * @param versionKey Version Key (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentContentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1228,10 +1228,10 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentContentResponse getDocumentContent(String documentId, String versionKey,
-      String siteId, String shareKey) throws ApiException {
+  public GetDocumentContentResponse getDocumentContent(String documentId, String siteId,
+      String versionKey, String shareKey) throws ApiException {
     ApiResponse<GetDocumentContentResponse> localVarResp =
-        getDocumentContentWithHttpInfo(documentId, versionKey, siteId, shareKey);
+        getDocumentContentWithHttpInfo(documentId, siteId, versionKey, shareKey);
     return localVarResp.getData();
   }
 
@@ -1241,8 +1241,8 @@ public class DocumentsApi {
    * field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (optional)
    * @param siteId Site Identifier (optional)
+   * @param versionKey Version Key (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentContentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1266,9 +1266,9 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentContentResponse> getDocumentContentWithHttpInfo(String documentId,
-      String versionKey, String siteId, String shareKey) throws ApiException {
+      String siteId, String versionKey, String shareKey) throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentContentValidateBeforeCall(documentId, versionKey, siteId, shareKey, null);
+        getDocumentContentValidateBeforeCall(documentId, siteId, versionKey, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentContentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1280,8 +1280,8 @@ public class DocumentsApi {
    * retrieving the content.
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (optional)
    * @param siteId Site Identifier (optional)
+   * @param versionKey Version Key (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -1304,12 +1304,12 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentContentAsync(String documentId, String versionKey, String siteId,
+  public okhttp3.Call getDocumentContentAsync(String documentId, String siteId, String versionKey,
       String shareKey, final ApiCallback<GetDocumentContentResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
-        getDocumentContentValidateBeforeCall(documentId, versionKey, siteId, shareKey, _callback);
+        getDocumentContentValidateBeforeCall(documentId, siteId, versionKey, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentContentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

@@ -85,6 +85,54 @@ public class AddActionParametersTest {
   }
 
   /**
+   * Test the property 'notificationType'
+   */
+  @Test
+  public void notificationTypeTest() {
+    // TODO: test notificationType
+  }
+
+  /**
+   * Test the property 'notificationToCc'
+   */
+  @Test
+  public void notificationToCcTest() {
+    // TODO: test notificationToCc
+  }
+
+  /**
+   * Test the property 'notificationToBcc'
+   */
+  @Test
+  public void notificationToBccTest() {
+    // TODO: test notificationToBcc
+  }
+
+  /**
+   * Test the property 'notificationSubject'
+   */
+  @Test
+  public void notificationSubjectTest() {
+    // TODO: test notificationSubject
+  }
+
+  /**
+   * Test the property 'notificationText'
+   */
+  @Test
+  public void notificationTextTest() {
+    // TODO: test notificationText
+  }
+
+  /**
+   * Test the property 'notificationHtml'
+   */
+  @Test
+  public void notificationHtmlTest() {
+    // TODO: test notificationHtml
+  }
+
+  /**
    * Test the property 'tags'
    */
   @Test

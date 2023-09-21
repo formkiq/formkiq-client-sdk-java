@@ -49,7 +49,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.formkiq.client.invoker.JSON;
@@ -58,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-10T11:05:27.295949-05:00[America/Winnipeg]")
+    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -126,6 +125,76 @@ public class AddActionParameters {
   public static final String SERIALIZED_NAME_ENGINE = "engine";
   @SerializedName(SERIALIZED_NAME_ENGINE)
   private EngineEnum engine;
+
+  /**
+   * Notification Type
+   */
+  @JsonAdapter(NotificationTypeEnum.Adapter.class)
+  public enum NotificationTypeEnum {
+    EMAIL("email");
+
+    private String value;
+
+    NotificationTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotificationTypeEnum fromValue(String value) {
+      for (NotificationTypeEnum b : NotificationTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<NotificationTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotificationTypeEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotificationTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotificationTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_TYPE = "notificationType";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_TYPE)
+  private NotificationTypeEnum notificationType;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_TO_CC = "notificationToCc";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_TO_CC)
+  private String notificationToCc;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_TO_BCC = "notificationToBcc";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_TO_BCC)
+  private String notificationToBcc;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_SUBJECT = "notificationSubject";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_SUBJECT)
+  private String notificationSubject;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_TEXT = "notificationText";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_TEXT)
+  private String notificationText;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION_HTML = "notificationHtml";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION_HTML)
+  private String notificationHtml;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -244,6 +313,138 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters notificationType(NotificationTypeEnum notificationType) {
+
+    this.notificationType = notificationType;
+    return this;
+  }
+
+  /**
+   * Notification Type
+   * 
+   * @return notificationType
+   **/
+  @javax.annotation.Nullable
+  public NotificationTypeEnum getNotificationType() {
+    return notificationType;
+  }
+
+
+  public void setNotificationType(NotificationTypeEnum notificationType) {
+    this.notificationType = notificationType;
+  }
+
+
+  public AddActionParameters notificationToCc(String notificationToCc) {
+
+    this.notificationToCc = notificationToCc;
+    return this;
+  }
+
+  /**
+   * Who to carbon copy on the notification to (comma-delimited list)
+   * 
+   * @return notificationToCc
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationToCc() {
+    return notificationToCc;
+  }
+
+
+  public void setNotificationToCc(String notificationToCc) {
+    this.notificationToCc = notificationToCc;
+  }
+
+
+  public AddActionParameters notificationToBcc(String notificationToBcc) {
+
+    this.notificationToBcc = notificationToBcc;
+    return this;
+  }
+
+  /**
+   * Who to blind carbon copy on the notification to (comma-delimited list)
+   * 
+   * @return notificationToBcc
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationToBcc() {
+    return notificationToBcc;
+  }
+
+
+  public void setNotificationToBcc(String notificationToBcc) {
+    this.notificationToBcc = notificationToBcc;
+  }
+
+
+  public AddActionParameters notificationSubject(String notificationSubject) {
+
+    this.notificationSubject = notificationSubject;
+    return this;
+  }
+
+  /**
+   * Subject of the notification
+   * 
+   * @return notificationSubject
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationSubject() {
+    return notificationSubject;
+  }
+
+
+  public void setNotificationSubject(String notificationSubject) {
+    this.notificationSubject = notificationSubject;
+  }
+
+
+  public AddActionParameters notificationText(String notificationText) {
+
+    this.notificationText = notificationText;
+    return this;
+  }
+
+  /**
+   * Text of the notification
+   * 
+   * @return notificationText
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationText() {
+    return notificationText;
+  }
+
+
+  public void setNotificationText(String notificationText) {
+    this.notificationText = notificationText;
+  }
+
+
+  public AddActionParameters notificationHtml(String notificationHtml) {
+
+    this.notificationHtml = notificationHtml;
+    return this;
+  }
+
+  /**
+   * Html of the notification
+   * 
+   * @return notificationHtml
+   **/
+  @javax.annotation.Nullable
+  public String getNotificationHtml() {
+    return notificationHtml;
+  }
+
+
+  public void setNotificationHtml(String notificationHtml) {
+    this.notificationHtml = notificationHtml;
+  }
+
+
   public AddActionParameters tags(String tags) {
 
     this.tags = tags;
@@ -282,13 +483,20 @@ public class AddActionParameters {
         && Objects.equals(this.url, addActionParameters.url)
         && Objects.equals(this.characterMax, addActionParameters.characterMax)
         && Objects.equals(this.engine, addActionParameters.engine)
+        && Objects.equals(this.notificationType, addActionParameters.notificationType)
+        && Objects.equals(this.notificationToCc, addActionParameters.notificationToCc)
+        && Objects.equals(this.notificationToBcc, addActionParameters.notificationToBcc)
+        && Objects.equals(this.notificationSubject, addActionParameters.notificationSubject)
+        && Objects.equals(this.notificationText, addActionParameters.notificationText)
+        && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
         && Objects.equals(this.tags, addActionParameters.tags);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(ocrParseTypes, addPdfDetectedCharactersAsText, url, characterMax, engine,
-        tags);
+        notificationType, notificationToCc, notificationToBcc, notificationSubject,
+        notificationText, notificationHtml, tags);
   }
 
   @Override
@@ -301,6 +509,13 @@ public class AddActionParameters {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    characterMax: ").append(toIndentedString(characterMax)).append("\n");
     sb.append("    engine: ").append(toIndentedString(engine)).append("\n");
+    sb.append("    notificationType: ").append(toIndentedString(notificationType)).append("\n");
+    sb.append("    notificationToCc: ").append(toIndentedString(notificationToCc)).append("\n");
+    sb.append("    notificationToBcc: ").append(toIndentedString(notificationToBcc)).append("\n");
+    sb.append("    notificationSubject: ").append(toIndentedString(notificationSubject))
+        .append("\n");
+    sb.append("    notificationText: ").append(toIndentedString(notificationText)).append("\n");
+    sb.append("    notificationHtml: ").append(toIndentedString(notificationHtml)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -328,6 +543,12 @@ public class AddActionParameters {
     openapiFields.add("url");
     openapiFields.add("characterMax");
     openapiFields.add("engine");
+    openapiFields.add("notificationType");
+    openapiFields.add("notificationToCc");
+    openapiFields.add("notificationToBcc");
+    openapiFields.add("notificationSubject");
+    openapiFields.add("notificationText");
+    openapiFields.add("notificationHtml");
     openapiFields.add("tags");
 
     // a set of required properties/fields (JSON key names)
@@ -350,9 +571,9 @@ public class AddActionParameters {
       }
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
+    for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddActionParameters.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
             "The field `%s` in the JSON string is not defined in the `AddActionParameters` properties. JSON: %s",
@@ -383,6 +604,43 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `engine` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("engine").toString()));
+    }
+    if ((jsonObj.get("notificationType") != null && !jsonObj.get("notificationType").isJsonNull())
+        && !jsonObj.get("notificationType").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationType` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationType").toString()));
+    }
+    if ((jsonObj.get("notificationToCc") != null && !jsonObj.get("notificationToCc").isJsonNull())
+        && !jsonObj.get("notificationToCc").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationToCc` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationToCc").toString()));
+    }
+    if ((jsonObj.get("notificationToBcc") != null && !jsonObj.get("notificationToBcc").isJsonNull())
+        && !jsonObj.get("notificationToBcc").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationToBcc` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationToBcc").toString()));
+    }
+    if ((jsonObj.get("notificationSubject") != null
+        && !jsonObj.get("notificationSubject").isJsonNull())
+        && !jsonObj.get("notificationSubject").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationSubject` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationSubject").toString()));
+    }
+    if ((jsonObj.get("notificationText") != null && !jsonObj.get("notificationText").isJsonNull())
+        && !jsonObj.get("notificationText").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationText` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationText").toString()));
+    }
+    if ((jsonObj.get("notificationHtml") != null && !jsonObj.get("notificationHtml").isJsonNull())
+        && !jsonObj.get("notificationHtml").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `notificationHtml` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("notificationHtml").toString()));
     }
     if ((jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull())
         && !jsonObj.get("tags").isJsonPrimitive()) {

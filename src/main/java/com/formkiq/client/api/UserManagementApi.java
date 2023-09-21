@@ -35,6 +35,7 @@ import java.io.IOException;
 
 
 import com.formkiq.client.model.GetGroupsResponse;
+import com.formkiq.client.model.GetUsersInGroupResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class UserManagementApi {
   }
 
   /**
-   * Build call for getUserGroups
+   * Build call for getGroups
    * 
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
@@ -104,7 +105,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUserGroupsCall(String limit, String next, final ApiCallback _callback)
+  public okhttp3.Call getGroupsCall(String limit, String next, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -158,9 +159,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getUserGroupsValidateBeforeCall(String limit, String next,
+  private okhttp3.Call getGroupsValidateBeforeCall(String limit, String next,
       final ApiCallback _callback) throws ApiException {
-    return getUserGroupsCall(limit, next, _callback);
+    return getGroupsCall(limit, next, _callback);
 
   }
 
@@ -189,8 +190,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetGroupsResponse getUserGroups(String limit, String next) throws ApiException {
-    ApiResponse<GetGroupsResponse> localVarResp = getUserGroupsWithHttpInfo(limit, next);
+  public GetGroupsResponse getGroups(String limit, String next) throws ApiException {
+    ApiResponse<GetGroupsResponse> localVarResp = getGroupsWithHttpInfo(limit, next);
     return localVarResp.getData();
   }
 
@@ -219,9 +220,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetGroupsResponse> getUserGroupsWithHttpInfo(String limit, String next)
+  public ApiResponse<GetGroupsResponse> getGroupsWithHttpInfo(String limit, String next)
       throws ApiException {
-    okhttp3.Call localVarCall = getUserGroupsValidateBeforeCall(limit, next, null);
+    okhttp3.Call localVarCall = getGroupsValidateBeforeCall(limit, next, null);
     Type localVarReturnType = new TypeToken<GetGroupsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -252,11 +253,206 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUserGroupsAsync(String limit, String next,
+  public okhttp3.Call getGroupsAsync(String limit, String next,
       final ApiCallback<GetGroupsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getUserGroupsValidateBeforeCall(limit, next, _callback);
+    okhttp3.Call localVarCall = getGroupsValidateBeforeCall(limit, next, _callback);
     Type localVarReturnType = new TypeToken<GetGroupsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getUsersInGroup
+   * 
+   * @param groupName Fetch documents inserted on a certain date (yyyy-MM-dd) (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getUsersInGroupCall(String groupName, String limit, String next,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/groups/{groupName}/users".replace("{" + "groupName" + "}",
+        localVarApiClient.escapeString(groupName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getUsersInGroupValidateBeforeCall(String groupName, String limit,
+      String next, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'groupName' is set
+    if (groupName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'groupName' when calling getUsersInGroup(Async)");
+    }
+
+    return getUsersInGroupCall(groupName, limit, next, _callback);
+
+  }
+
+  /**
+   * Get users in a group Returns the list of users in a group
+   * 
+   * @param groupName Fetch documents inserted on a certain date (yyyy-MM-dd) (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return GetUsersInGroupResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetUsersInGroupResponse getUsersInGroup(String groupName, String limit, String next)
+      throws ApiException {
+    ApiResponse<GetUsersInGroupResponse> localVarResp =
+        getUsersInGroupWithHttpInfo(groupName, limit, next);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get users in a group Returns the list of users in a group
+   * 
+   * @param groupName Fetch documents inserted on a certain date (yyyy-MM-dd) (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return ApiResponse&lt;GetUsersInGroupResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetUsersInGroupResponse> getUsersInGroupWithHttpInfo(String groupName,
+      String limit, String next) throws ApiException {
+    okhttp3.Call localVarCall = getUsersInGroupValidateBeforeCall(groupName, limit, next, null);
+    Type localVarReturnType = new TypeToken<GetUsersInGroupResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get users in a group (asynchronously) Returns the list of users in a group
+   * 
+   * @param groupName Fetch documents inserted on a certain date (yyyy-MM-dd) (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getUsersInGroupAsync(String groupName, String limit, String next,
+      final ApiCallback<GetUsersInGroupResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getUsersInGroupValidateBeforeCall(groupName, limit, next, _callback);
+    Type localVarReturnType = new TypeToken<GetUsersInGroupResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

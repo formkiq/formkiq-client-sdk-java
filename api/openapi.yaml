@@ -67,6 +67,9 @@ tags:
 - description: Document Shares API
   name: documentShares
   x-displayName: Document Shares
+- description: Document Workflows API
+  name: documentWorkflows
+  x-displayName: Document Workflows
 - description: Tag Schema API
   name: tagSchema
   x-displayName: Tag Schema
@@ -164,7 +167,7 @@ paths:
   /configuration:
     get:
       description: Returns the list of sites that the user has access to
-      operationId: GetConfigs
+      operationId: GetConfiguration
       parameters:
       - description: Site Identifier
         explode: true
@@ -207,7 +210,7 @@ paths:
       x-accepts: application/json
     patch:
       description: Update the System Management configuration
-      operationId: UpdateConfig
+      operationId: UpdateConfiguration
       parameters:
       - description: Site Identifier
         explode: true
@@ -227,6 +230,7 @@ paths:
                   maxContentLengthBytes: "1000000"
                   maxDocuments: "1000"
                   maxWebhooks: "10"
+                  notificationEmail: <email>
             schema:
               $ref: '#/components/schemas/SetConfigRequest'
         required: true
@@ -244,6 +248,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
       summary: Update site configuration
@@ -758,6 +768,14 @@ paths:
         \ all other content types return a 'contentUrl' for retrieving the content."
       operationId: GetDocumentContent
       parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Document Identifier
         explode: false
         in: path
@@ -770,14 +788,6 @@ paths:
         explode: true
         in: query
         name: versionKey
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
         required: false
         schema:
           type: string
@@ -2656,7 +2666,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetUserShares'
+                $ref: '#/components/schemas/GetUserSharesResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -2764,6 +2774,390 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
+  /workflows:
+    get:
+      description: Get a listing of workflows; ONLY available with FormKiQ Enterprise
+      operationId: GetWorkflows
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkflowsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get workflows
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Creates a new Workflow; ONLY available with FormKiQ Pro and Enterprise
+      operationId: AddWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddWorkflowRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddWorkflowResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /workflows/{workflowId}:
+    delete:
+      description: Delete a Workflow; ONLY available with FormKiQ Pro and Enterprise
+      operationId: DeleteWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteWorkflowResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Delete workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Get a workflow; ONLY available with FormKiQ Enterprise
+      operationId: GetWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkflowResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /workflows/queue/{queueName}/documents:
+    get:
+      description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
+        and Enterprise
+      operationId: WorkflowQueueDocuments
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Queue Name
+        explode: false
+        in: path
+        name: queueName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowQueueDocumentsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Document search
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
+      x-accepts: application/json
+  /documents/{documentId}/workflow/{workflowId}:
+    get:
+      description: Get document workflow status; ONLY available with FormKiQ Pro and
+        Enterprise
+      operationId: DocumentWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentWorkflowResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Document search
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Creates a document workflow step status; ONLY available with FormKiQ
+        Pro and Enterprise
+      operationId: AddDocumentWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentWorkflowRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocumentWorkflowResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add document workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
   /tagSchemas:
     get:
       description: Returns the list of tagSchemas; ONLY available with FormKiQ Pro
@@ -2857,7 +3251,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TagSchemaPostResponse'
+                $ref: '#/components/schemas/AddTagSchemaResponse'
           description: 201 CREATED
           headers:
             Access-Control-Allow-Origin:
@@ -3087,14 +3481,6 @@ paths:
       description: "Retrieve an OpenSearch document's details, i.e., metadata"
       operationId: GetDocumentFulltext
       parameters:
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3103,6 +3489,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Share Identifier
         explode: true
         in: query
@@ -3377,14 +3771,6 @@ paths:
       description: Retrieve the document syncs with external services status
       operationId: GetDocumentSyncs
       parameters:
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3393,6 +3779,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Limit Results
         explode: true
         in: query
@@ -3669,14 +4063,6 @@ paths:
         \ of data from external services to this webhook"
       operationId: DeleteWebhook
       parameters:
-      - description: Web Hook Param
-        explode: false
-        in: path
-        name: webhookId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3685,6 +4071,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Web Hook Param
+        explode: false
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content: {}
@@ -3768,14 +4162,6 @@ paths:
       description: "Updates a webhook's details, i.e., its metadata"
       operationId: UpdateWebhook
       parameters:
-      - description: Web Hook Param
-        explode: false
-        in: path
-        name: webhookId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3784,6 +4170,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Web Hook Param
+        explode: false
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -3824,14 +4218,6 @@ paths:
       description: Get a webhook's tags
       operationId: GetWebhookTags
       parameters:
-      - description: Web Hook Param
-        explode: false
-        in: path
-        name: webhookId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3840,6 +4226,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Web Hook Param
+        explode: false
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -3866,14 +4260,6 @@ paths:
       description: Add a tag to a webhook
       operationId: AddWebhookTag
       parameters:
-      - description: Web Hook Param
-        explode: false
-        in: path
-        name: webhookId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Site Identifier
         explode: true
         in: query
@@ -3882,6 +4268,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Web Hook Param
+        explode: false
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -4407,7 +4801,7 @@ paths:
   /groups:
     get:
       description: Returns the list of user groups configured in the application
-      operationId: GetUserGroups
+      operationId: GetGroups
       parameters:
       - description: Limit Results
         explode: true
@@ -4452,6 +4846,67 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Get configured system group(s)
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /groups/{groupName}/users:
+    get:
+      description: Returns the list of users in a group
+      operationId: GetUsersInGroup
+      parameters:
+      - description: Fetch documents inserted on a certain date (yyyy-MM-dd)
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersInGroupResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get users in a group
       tags:
       - User Management
       x-amazon-apigateway-integration:
@@ -4612,6 +5067,24 @@ components:
       explode: false
       in: path
       name: permissionKey
+      required: true
+      schema:
+        type: string
+      style: simple
+    queueNameParam:
+      description: Queue Name
+      explode: false
+      in: path
+      name: queueName
+      required: true
+      schema:
+        type: string
+      style: simple
+    workflowIdParam:
+      description: Workflow Identifier
+      explode: false
+      in: path
+      name: workflowId
       required: true
       schema:
         type: string
@@ -4907,7 +5380,125 @@ components:
           description: Folder Index Key
           type: string
       type: object
-    GetUserShares:
+    GetWorkflowsResponse:
+      example:
+        next: next
+        workflows:
+        - insertedDate: insertedDate
+          name: name
+          description: description
+          documentId: documentId
+          userId: userId
+        - insertedDate: insertedDate
+          name: name
+          description: description
+          documentId: documentId
+          userId: userId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        workflows:
+          description: List of workflows
+          items:
+            $ref: '#/components/schemas/WorkflowSummary'
+          type: array
+      type: object
+    GetWorkflowResponse:
+      example:
+        name: name
+        description: description
+        config:
+          notificationType: email
+        steps:
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              notificationSubject: notificationSubject
+              ocrParseTypes: ocrParseTypes
+              engine: chatgpt
+              notificationText: notificationText
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              notificationHtml: notificationHtml
+              tags: tags
+          id: id
+          type: action
+          queue:
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            name: name
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              notificationSubject: notificationSubject
+              ocrParseTypes: ocrParseTypes
+              engine: chatgpt
+              notificationText: notificationText
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              notificationHtml: notificationHtml
+              tags: tags
+          id: id
+          type: action
+          queue:
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            name: name
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        config:
+          $ref: '#/components/schemas/WorkflowConfig'
+        steps:
+          description: Workflow steps
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+          type: array
+      type: object
+    WorkflowSummary:
+      example:
+        insertedDate: insertedDate
+        name: name
+        description: description
+        documentId: documentId
+        userId: userId
+      properties:
+        name:
+          description: Name of Workflow
+          type: string
+        documentId:
+          description: Workflow identifier
+          type: string
+        description:
+          description: Description of Workflow
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        userId:
+          description: User who created workflow
+          type: string
+      type: object
+    GetUserSharesResponse:
       example:
         next: next
         shares:
@@ -5502,18 +6093,30 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
         tags:
         - values:
@@ -5576,18 +6179,30 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
         content: content
         tags:
@@ -5767,6 +6382,28 @@ components:
           description: List of document tags
           items:
             $ref: '#/components/schemas/AddDocumentTag'
+          type: array
+      type: object
+    DocumentMetadata:
+      description: Document Metadata (use either 'value' or 'values' not both)
+      example:
+        values:
+        - values
+        - values
+        value: value
+        key: key
+      properties:
+        key:
+          description: Metadata key
+          type: string
+        value:
+          description: Metadata value
+          type: string
+        values:
+          description: Metadata values
+          items:
+            description: Metadata value
+            type: string
           type: array
       type: object
     AddDocumentMetadata:
@@ -6109,7 +6746,18 @@ components:
         next: next
         previous: previous
         documents:
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6127,7 +6775,18 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6158,12 +6817,174 @@ components:
             $ref: '#/components/schemas/SearchResultDocument'
           type: array
       type: object
+    DocumentWorkflowResponse:
+      example:
+        steps:
+        - id: id
+          status: COMPLETE
+        - id: id
+          status: COMPLETE
+      properties:
+        steps:
+          description: Document Workflow steps
+          items:
+            $ref: '#/components/schemas/DocumentWorkflowStep'
+          type: array
+      type: object
+    DocumentWorkflowStep:
+      example:
+        id: id
+        status: COMPLETE
+      properties:
+        id:
+          description: Step identifier
+          type: string
+        status:
+          description: Workflow step status
+          enum:
+          - COMPLETE
+          - FAILED
+          type: string
+      type: object
+    WorkflowQueueDocumentsResponse:
+      example:
+        next: next
+        documents:
+        - path: path
+          versionId: versionId
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          checksum: checksum
+          siteId: siteId
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
+          userId: userId
+        - path: path
+          versionId: versionId
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          checksum: checksum
+          siteId: siteId
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
+          userId: userId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        documents:
+          description: List of search result documents
+          items:
+            $ref: '#/components/schemas/QueueDocument'
+          type: array
+      type: object
+    QueueDocument:
+      example:
+        path: path
+        versionId: versionId
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
+        belongsToDocumentId: belongsToDocumentId
+        checksum: checksum
+        siteId: siteId
+        documentId: documentId
+        contentLength: 0
+        contentType: contentType
+        userId: userId
+      properties:
+        siteId:
+          description: Site Identifier
+          type: string
+        path:
+          description: Path or Name of document
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        lastModifiedDate:
+          description: Last Modified Timestamp
+          type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        documentId:
+          description: Document Identifier
+          type: string
+        contentType:
+          description: Document Content-Type
+          type: string
+        userId:
+          description: User who added document
+          type: string
+        contentLength:
+          description: Document size
+          type: integer
+        versionId:
+          description: Document version
+          type: string
+        belongsToDocumentId:
+          description: Parent Document Identifier
+          type: string
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+          type: array
+      type: object
     DocumentSearchResponse:
       example:
         next: next
         previous: previous
         documents:
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6181,7 +7002,18 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6214,6 +7046,17 @@ components:
       type: object
     SearchResultDocument:
       example:
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
         matchedTag:
@@ -6272,6 +7115,11 @@ components:
         belongsToDocumentId:
           description: Parent Document Identifier
           type: string
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+          type: array
         matchedTag:
           $ref: '#/components/schemas/DocumentSearchMatchTag'
         tags:
@@ -6708,18 +7556,30 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
         - type: OCR
           parameters:
             characterMax: characterMax
+            notificationSubject: notificationSubject
             ocrParseTypes: ocrParseTypes
             engine: chatgpt
+            notificationText: notificationText
             addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
             url: url
+            notificationHtml: notificationHtml
             tags: tags
       properties:
         actions:
@@ -6733,10 +7593,16 @@ components:
         type: OCR
         parameters:
           characterMax: characterMax
+          notificationSubject: notificationSubject
           ocrParseTypes: ocrParseTypes
           engine: chatgpt
+          notificationText: notificationText
           addPdfDetectedCharactersAsText: true
+          notificationType: email
+          notificationToCc: notificationToCc
+          notificationToBcc: notificationToBcc
           url: url
+          notificationHtml: notificationHtml
           tags: tags
       properties:
         type:
@@ -6747,6 +7613,7 @@ components:
           - ANTIVIRUS
           - WEBHOOK
           - DOCUMENTTAGGING
+          - NOTIFICATION
           type: string
         parameters:
           $ref: '#/components/schemas/AddActionParameters'
@@ -6756,10 +7623,16 @@ components:
     AddActionParameters:
       example:
         characterMax: characterMax
+        notificationSubject: notificationSubject
         ocrParseTypes: ocrParseTypes
         engine: chatgpt
+        notificationText: notificationText
         addPdfDetectedCharactersAsText: true
+        notificationType: email
+        notificationToCc: notificationToCc
+        notificationToBcc: notificationToBcc
         url: url
+        notificationHtml: notificationHtml
         tags: tags
       properties:
         ocrParseTypes:
@@ -6780,6 +7653,28 @@ components:
           description: "DocumentTagging: Engine to use for document tagging generation"
           enum:
           - chatgpt
+          type: string
+        notificationType:
+          description: Notification Type
+          enum:
+          - email
+          type: string
+        notificationToCc:
+          description: Who to carbon copy on the notification to (comma-delimited
+            list)
+          type: string
+        notificationToBcc:
+          description: Who to blind carbon copy on the notification to (comma-delimited
+            list)
+          type: string
+        notificationSubject:
+          description: Subject of the notification
+          type: string
+        notificationText:
+          description: Text of the notification
+          type: string
+        notificationHtml:
+          description: Html of the notification
           type: string
         tags:
           description: "DocumentTagging: Comma-deliminted list of keywords to generate\
@@ -6847,6 +7742,7 @@ components:
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
         maxWebhooks: maxWebhooks
+        notificationEmail: notificationEmail
       properties:
         chatGptApiKey:
           description: ChatGPT Api Key
@@ -6859,6 +7755,9 @@ components:
           type: string
         maxWebhooks:
           description: Set Maximum number of Webhooks allowed
+          type: string
+        notificationEmail:
+          description: Email address to use for notifications
           type: string
       type: object
     SetConfigResponse:
@@ -6895,6 +7794,14 @@ components:
       properties:
         apiKey:
           description: API Key Identifier
+          type: string
+      type: object
+    DeleteWorkflowResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
           type: string
       type: object
     DeleteFulltextResponse:
@@ -6979,6 +7886,7 @@ components:
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
         maxWebhooks: maxWebhooks
+        notificationEmail: notificationEmail
       properties:
         chatGptApiKey:
           description: ChatGPT API Key
@@ -6991,6 +7899,52 @@ components:
           type: string
         maxWebhooks:
           description: Set Maximum number of Webhooks allowed
+          type: string
+        notificationEmail:
+          description: Email address to use for notifications (Must be verified identity
+            created in AWS SES)
+          type: string
+      type: object
+    GetUsersInGroupResponse:
+      example:
+        next: next
+        users:
+        - userStatus: userStatus
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          username: username
+        - userStatus: userStatus
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          username: username
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        users:
+          description: List of users
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      type: object
+    User:
+      example:
+        userStatus: userStatus
+        insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
+        username: username
+      properties:
+        username:
+          description: Username of user
+          type: string
+        userStatus:
+          description: Status of user
+          type: string
+        insertedDate:
+          description: Inserted timestamp of user
+          type: string
+        lastModifiedDate:
+          description: Last nodified timestamp of user
           type: string
       type: object
     GetGroupsResponse:
@@ -7093,7 +8047,7 @@ components:
           description: SiteId document upload email address
           type: string
       type: object
-    TagSchemaPostResponse:
+    AddTagSchemaResponse:
       example:
         tagSchemaId: tagSchemaId
       properties:
@@ -7140,6 +8094,193 @@ components:
         next:
           type: string
         previous:
+          type: string
+      type: object
+    AddDocumentWorkflowRequest:
+      example:
+        stepId: stepId
+        status: COMPLETE
+      properties:
+        stepId:
+          description: Step identifier
+          type: string
+        status:
+          description: Workflow step status
+          enum:
+          - COMPLETE
+          - FAILED
+          type: string
+      required:
+      - stepId
+      type: object
+    AddWorkflowRequest:
+      example:
+        name: name
+        description: description
+        config:
+          notificationType: email
+        steps:
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              notificationSubject: notificationSubject
+              ocrParseTypes: ocrParseTypes
+              engine: chatgpt
+              notificationText: notificationText
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              notificationHtml: notificationHtml
+              tags: tags
+          id: id
+          type: action
+          queue:
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            name: name
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              notificationSubject: notificationSubject
+              ocrParseTypes: ocrParseTypes
+              engine: chatgpt
+              notificationText: notificationText
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              notificationHtml: notificationHtml
+              tags: tags
+          id: id
+          type: action
+          queue:
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            name: name
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        config:
+          $ref: '#/components/schemas/WorkflowConfig'
+        steps:
+          description: Workflow steps
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+          type: array
+      required:
+      - name
+      - steps
+      type: object
+    WorkflowStep:
+      example:
+        action:
+          type: OCR
+          parameters:
+            characterMax: characterMax
+            notificationSubject: notificationSubject
+            ocrParseTypes: ocrParseTypes
+            engine: chatgpt
+            notificationText: notificationText
+            addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            notificationHtml: notificationHtml
+            tags: tags
+        id: id
+        type: action
+        queue:
+          approvalGroups:
+          - approvalGroups
+          - approvalGroups
+          name: name
+          ifRejectedStepId: ifRejectedStepId
+          ifApprovedStepId: ifApprovedStepId
+      properties:
+        id:
+          description: Step identifier
+          type: string
+        type:
+          description: Workflow step type
+          enum:
+          - action
+          - approvalQueue
+          type: string
+        action:
+          $ref: '#/components/schemas/AddAction'
+        queue:
+          $ref: '#/components/schemas/AddQueue'
+      required:
+      - id
+      - type
+      type: object
+    AddQueue:
+      example:
+        approvalGroups:
+        - approvalGroups
+        - approvalGroups
+        name: name
+        ifRejectedStepId: ifRejectedStepId
+        ifApprovedStepId: ifApprovedStepId
+      properties:
+        name:
+          description: Name of queue
+          type: string
+        ifApprovedStepId:
+          description: If approved goto step id
+          type: string
+        ifRejectedStepId:
+          description: If rejected goto step id
+          type: string
+        approvalGroups:
+          items:
+            type: string
+          type: array
+      required:
+      - name
+      type: object
+    WorkflowConfig:
+      example:
+        notificationType: email
+      properties:
+        notificationType:
+          default: email
+          description: Notification Type
+          enum:
+          - email
+          - none
+          type: string
+      type: object
+    AddWorkflowResponse:
+      example:
+        workflowId: workflowId
+      properties:
+        workflowId:
+          description: Workflow Identifier
+          type: string
+      type: object
+    AddDocumentWorkflowResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
           type: string
       type: object
     AddTagSchemaRequest:
