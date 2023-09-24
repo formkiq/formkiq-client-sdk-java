@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentMetadata;
 import com.formkiq.client.model.DocumentSearchMatchTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -28,7 +29,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-21T15:06:42.052427-05:00[America/Winnipeg]")
+    date = "2023-09-24T10:36:37.984630-05:00[America/Winnipeg]")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -119,6 +122,10 @@ public class SearchResultDocument {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private Object tags;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private List<DocumentMetadata> metadata;
 
   public SearchResultDocument() {}
 
@@ -452,6 +459,36 @@ public class SearchResultDocument {
   }
 
 
+  public SearchResultDocument metadata(List<DocumentMetadata> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public SearchResultDocument addMetadataItem(DocumentMetadata metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new ArrayList<>();
+    }
+    this.metadata.add(metadataItem);
+    return this;
+  }
+
+  /**
+   * List of document Metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentMetadata> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(List<DocumentMetadata> metadata) {
+    this.metadata = metadata;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -476,14 +513,15 @@ public class SearchResultDocument {
         && Objects.equals(this.versionId, searchResultDocument.versionId)
         && Objects.equals(this.belongsToDocumentId, searchResultDocument.belongsToDocumentId)
         && Objects.equals(this.matchedTag, searchResultDocument.matchedTag)
-        && Objects.equals(this.tags, searchResultDocument.tags);
+        && Objects.equals(this.tags, searchResultDocument.tags)
+        && Objects.equals(this.metadata, searchResultDocument.metadata);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, insertedDate, lastModifiedDate, folder, indexKey, checksum,
         documentId, contentType, userId, contentLength, versionId, belongsToDocumentId, matchedTag,
-        tags);
+        tags, metadata);
   }
 
   @Override
@@ -506,6 +544,7 @@ public class SearchResultDocument {
         .append("\n");
     sb.append("    matchedTag: ").append(toIndentedString(matchedTag)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -542,6 +581,7 @@ public class SearchResultDocument {
     openapiFields.add("belongsToDocumentId");
     openapiFields.add("matchedTag");
     openapiFields.add("tags");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -643,6 +683,22 @@ public class SearchResultDocument {
     // validate the optional field `matchedTag`
     if (jsonObj.get("matchedTag") != null && !jsonObj.get("matchedTag").isJsonNull()) {
       DocumentSearchMatchTag.validateJsonElement(jsonObj.get("matchedTag"));
+    }
+    if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
+      JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
+      if (jsonArraymetadata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("metadata").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `metadata` to be an array in the JSON string but got `%s`",
+              jsonObj.get("metadata").toString()));
+        }
+
+        // validate the optional field `metadata` (array)
+        for (int i = 0; i < jsonArraymetadata.size(); i++) {
+          DocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
+        } ;
+      }
     }
   }
 

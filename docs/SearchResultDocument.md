@@ -22,6 +22,7 @@
 |**belongsToDocumentId** | **String** | Parent Document Identifier |  [optional] |
 |**matchedTag** | [**DocumentSearchMatchTag**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**tags** | **Object** |  |  [optional] |
+|**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 
 
 

@@ -18,14 +18,56 @@
  */
 
 
-package com.formkiq.client.invoker.auth;
+package com.formkiq.client.model;
+
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * OAuth flows that are supported by this client
+ * Model tests for DocumentMetadata
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-24T10:36:37.984630-05:00[America/Winnipeg]")
-public enum OAuthFlow {
-  ACCESS_CODE, // called authorizationCode in OpenAPI 3.0
-  IMPLICIT, PASSWORD, APPLICATION // called clientCredentials in OpenAPI 3.0
+public class DocumentMetadataTest {
+  private final DocumentMetadata model = new DocumentMetadata();
+
+  /**
+   * Model tests for DocumentMetadata
+   */
+  @Test
+  public void testDocumentMetadata() {
+    // TODO: test DocumentMetadata
+  }
+
+  /**
+   * Test the property 'key'
+   */
+  @Test
+  public void keyTest() {
+    // TODO: test key
+  }
+
+  /**
+   * Test the property 'value'
+   */
+  @Test
+  public void valueTest() {
+    // TODO: test value
+  }
+
+  /**
+   * Test the property 'values'
+   */
+  @Test
+  public void valuesTest() {
+    // TODO: test values
+  }
+
 }

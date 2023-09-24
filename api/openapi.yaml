@@ -5718,6 +5718,27 @@ components:
             $ref: '#/components/schemas/AddDocumentTag'
           type: array
       type: object
+    DocumentMetadata:
+      description: Document Metadata (use either 'value' or 'values' not both)
+      example:
+        values:
+        - values
+        - values
+        value: value
+        key: key
+      properties:
+        key:
+          description: Metadata key
+          type: string
+        value:
+          description: Metadata value
+          type: string
+        values:
+          description: Metadata values
+          items:
+            description: Metadata value
+            type: string
+          type: array
     AddDocumentMetadata:
       description: Document Metadata (use either 'value' or 'values' not both)
       example:
@@ -6062,7 +6083,18 @@ components:
         next: next
         previous: previous
         documents:
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6080,7 +6112,18 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6116,7 +6159,18 @@ components:
         next: next
         previous: previous
         documents:
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6134,7 +6188,18 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - lastModifiedDate: lastModifiedDate
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTag:
             type: type
@@ -6167,6 +6232,17 @@ components:
       type: object
     SearchResultDocument:
       example:
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
         matchedTag:
@@ -6229,6 +6305,11 @@ components:
           $ref: '#/components/schemas/DocumentSearchMatchTag'
         tags:
           type: object
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+          type: array
       type: object
     DocumentSearchMatchTag:
       example:

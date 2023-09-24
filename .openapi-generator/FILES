@@ -49,6 +49,7 @@ docs/DocumentFulltextSearch.md
 docs/DocumentFulltextTag.md
 docs/DocumentId.md
 docs/DocumentItemResult.md
+docs/DocumentMetadata.md
 docs/DocumentOcrApi.md
 docs/DocumentSearch.md
 docs/DocumentSearchApi.md
@@ -234,6 +235,7 @@ src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
 src/main/java/com/formkiq/client/model/DocumentFulltextTag.java
 src/main/java/com/formkiq/client/model/DocumentId.java
 src/main/java/com/formkiq/client/model/DocumentItemResult.java
+src/main/java/com/formkiq/client/model/DocumentMetadata.java
 src/main/java/com/formkiq/client/model/DocumentSearch.java
 src/main/java/com/formkiq/client/model/DocumentSearchItemMeta.java
 src/main/java/com/formkiq/client/model/DocumentSearchItemTag.java
@@ -374,6 +376,7 @@ src/test/java/com/formkiq/client/model/DocumentFulltextSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextTagTest.java
 src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentItemResultTest.java
+src/test/java/com/formkiq/client/model/DocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchItemMetaTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchItemTagTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMatchTagTest.java
