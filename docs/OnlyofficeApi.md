@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**onlyOfficeDocumentEdit**](OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit |  |
-| [**onlyOfficeDocumentNew**](OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new |  |
-| [**onlyOfficeDocumentSave**](OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save |  |
+| [**onlyOfficeDocumentEdit**](OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document |
+| [**onlyOfficeDocumentNew**](OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document |
+| [**onlyOfficeDocumentSave**](OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document |
 
 
 <a id="onlyOfficeDocumentEdit"></a>
 # **onlyOfficeDocumentEdit**
 > OnlyOfficeDocumentResponse onlyOfficeDocumentEdit(documentId, body, siteId)
 
-
+Edit onlyoffice document
 
 Provide ONLYOFFICE integration for editing documents; ONLY available with FormKiQ Enterprise
 
@@ -82,7 +82,7 @@ No authorization required
 # **onlyOfficeDocumentNew**
 > OnlyOfficeDocumentResponse onlyOfficeDocumentNew(onlyOfficeDocumentNewRequest, siteId)
 
-
+Create onlyoffice document
 
 Provide ONLYOFFICE integration for the creation of new documents; ONLY available with FormKiQ Enterprise
 
@@ -149,7 +149,7 @@ No authorization required
 # **onlyOfficeDocumentSave**
 > OnlyOfficeDocumentSaveResponse onlyOfficeDocumentSave(documentId, siteId)
 
-
+Save onlyoffice document
 
 Save an updated document for ONLYOFFICE integration. ONLY available with FormKiQ Enterprise
 

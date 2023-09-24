@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteDocumentFulltext**](AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext |  |
-| [**deleteDocumentFulltextTag**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} |  |
-| [**deleteDocumentFulltextTagAndValue**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} |  |
-| [**documentFulltext**](AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext |  |
-| [**getDocumentFulltext**](AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext |  |
-| [**queryFulltext**](AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext |  |
-| [**setDocumentFulltext**](AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext |  |
-| [**updateDocumentFulltext**](AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext |  |
+| [**deleteDocumentFulltext**](AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text |
+| [**deleteDocumentFulltextTag**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag |
+| [**deleteDocumentFulltextTagAndValue**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | Delete document full-text tag/value |
+| [**documentFulltext**](AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext | Document full-text search |
+| [**getDocumentFulltext**](AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext | Get document&#39;s full-text |
+| [**queryFulltext**](AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext | Direct opensearch search API |
+| [**setDocumentFulltext**](AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text |
+| [**updateDocumentFulltext**](AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text |
 
 
 <a id="deleteDocumentFulltext"></a>
 # **deleteDocumentFulltext**
 > DeleteFulltextResponse deleteDocumentFulltext(documentId, siteId)
 
-
+Delete document full-text
 
 Remove full text search for a document from OpenSearch; ONLY available with FormKiQ Enterprise
 
@@ -85,7 +85,7 @@ No authorization required
 # **deleteDocumentFulltextTag**
 > deleteDocumentFulltextTag(documentId, tagKey, siteId, shareKey)
 
-
+Delete document full-text tag
 
 Remove document tags from OpenSearch; ONLY available with FormKiQ Enterprise
 
@@ -155,7 +155,7 @@ No authorization required
 # **deleteDocumentFulltextTagAndValue**
 > deleteDocumentFulltextTagAndValue(documentId, tagKey, tagValue, siteId, shareKey)
 
-
+Delete document full-text tag/value
 
 Remove document tag/value from OpenSearch; ONLY available with FormKiQ Enterprise
 
@@ -227,7 +227,7 @@ No authorization required
 # **documentFulltext**
 > DocumentFulltextResponse documentFulltext(documentFulltextRequest, siteId, limit)
 
-
+Document full-text search
 
 Document full-text search (and more robust multi-tag search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
 
@@ -296,7 +296,7 @@ No authorization required
 # **getDocumentFulltext**
 > GetDocumentFulltextResponse getDocumentFulltext(documentId, siteId, shareKey)
 
-
+Get document&#39;s full-text
 
 Retrieve an OpenSearch document&#39;s details, i.e., metadata
 
@@ -365,7 +365,7 @@ No authorization required
 # **queryFulltext**
 > QueryFulltextResponse queryFulltext(body, siteId)
 
-
+Direct opensearch search API
 
 Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise
 
@@ -432,7 +432,7 @@ No authorization required
 # **setDocumentFulltext**
 > SetDocumentFulltextResponse setDocumentFulltext(documentId, siteId, setDocumentFulltextRequest)
 
-
+Set document&#39;s full-text
 
 Set all text/tags found within a document to OpenSearch; ONLY available with FormKiQ Enterprise
 
@@ -501,7 +501,7 @@ No authorization required
 # **updateDocumentFulltext**
 > SetDocumentFulltextResponse updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest)
 
-
+Update document&#39;s full-text
 
 Update a document in OpenSearch; ONLY available with FormKiQ Enterprise
 

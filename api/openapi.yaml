@@ -4,12 +4,31 @@ info:
     email: support@formkiq.com
     name: FormKiQ
     url: https://formkiq.com
-  description: "Formkiq API: Document Management Platform API using JWT Authentication"
+  description: |-
+    Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
+
+    You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com).
+
+    ## Introduction
+
+    FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all the API endpoints to build your Perfect Document Management Platform.
+
+    FormKiQ API was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file with any application that supports the OpenAPI specification.
+
+    Open API OAuth Specification - https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml
+
+    Open API IAM Specification - https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml
+
+    ## Authentication
+    FormKiQ offers three forms of authentication:
+      - OAuth(JWT)
+      - AWS IAM
+      - API Key
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ HTTP API
-  version: 1.12.0
+  version: 1.12.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -17,6 +36,60 @@ info:
 servers:
 - description: Local development server
   url: http://localhost
+tags:
+- description: "API for the add, updating and fetching of documents"
+  name: documents
+  x-displayName: Documents
+- description: "API for the add, updating and fetching of document tags"
+  name: documentTags
+  x-displayName: Document Tags
+- description: API for searching for documents
+  name: documentSearch
+  x-displayName: Document Search
+- description: System Management API
+  name: systemManagement
+  x-displayName: System Management
+- description: Advanced Document Search API
+  name: advancedDocumentSearch
+  x-displayName: Advanced Document Search
+- description: Document Actions API
+  name: documentActions
+  x-displayName: Document Actions
+- description: Document OCR API
+  name: documentOCR
+  x-displayName: Document OCR
+- description: Document Versions API
+  name: documentVersions
+  x-displayName: Document Versions
+- description: Document Folders API
+  name: documentFolders
+  x-displayName: Document Folders
+- description: Document Shares API
+  name: documentShares
+  x-displayName: Document Shares
+- description: Tag Schema API
+  name: tagSchema
+  x-displayName: Tag Schema
+- description: Antivirus API
+  name: antivirus
+  x-displayName: Antivirus
+- description: Public API Endpoints
+  name: public
+  x-displayName: Public Endpoints
+- description: Webhooks API
+  name: webhooks
+  x-displayName: Webhooks
+- description: Onlyoffice API
+  name: onlyoffice
+  x-displayName: Onlyoffice
+- description: E-Signature API
+  name: e-signature
+  x-displayName: E-Signature
+- name: Application
+  x-amazon-apigateway-tag-value: FormKiQ
+- name: AppEnvironment
+  x-amazon-apigateway-tag-value:
+    Fn::Sub: "${AppEnvironment}"
 paths:
   /version:
     get:
@@ -47,6 +120,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get FormKiQ version
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -81,6 +155,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get site(s) access
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -124,6 +199,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get site configuration
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -170,6 +246,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Update site configuration
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -214,6 +291,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get API Keys
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -257,6 +335,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add API Key
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -300,6 +379,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Delete API Key
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -385,6 +465,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get Documents listing
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -482,6 +563,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Add new document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -531,6 +613,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -580,6 +663,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -660,6 +744,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Update document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -723,6 +808,7 @@ paths:
               $ref: '#/components/headers/Location'
       security:
       - ApiAuthorization: []
+      summary: Get document's contents
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -798,6 +884,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document's tags
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -869,6 +956,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Update document tags
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -938,6 +1026,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Add tag to document
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1010,6 +1099,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Set document's tags
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1067,6 +1157,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document tag
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1124,6 +1215,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document tag by key
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1186,6 +1278,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Update document tag value(s)
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1260,6 +1353,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document's tag value
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1310,6 +1404,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Mass Update document tag(s)
       tags:
       - Document Tags
       x-amazon-apigateway-integration:
@@ -1387,6 +1482,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document content url
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -1455,6 +1551,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get url to add large document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -1540,6 +1637,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add large document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -1610,6 +1708,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get url to update large document
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -1653,6 +1752,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Compress multiple documents into a .zip file
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -1750,6 +1850,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Document search
       tags:
       - Document Search
       x-amazon-apigateway-integration:
@@ -1801,6 +1902,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Document full-text search
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -1844,6 +1946,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Direct opensearch search API
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -1895,6 +1998,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document actions
       tags:
       - Document Actions
       x-amazon-apigateway-integration:
@@ -1949,6 +2053,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Add document action
       tags:
       - Document Actions
       x-amazon-apigateway-integration:
@@ -1999,6 +2104,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document ocr
       tags:
       - Document OCR
       x-amazon-apigateway-integration:
@@ -2066,6 +2172,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document ocr content
       tags:
       - Document OCR
       x-amazon-apigateway-integration:
@@ -2114,6 +2221,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Perform document ocr
       tags:
       - Document OCR
       x-amazon-apigateway-integration:
@@ -2163,6 +2271,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Set document ocr result
       tags:
       - Document OCR
       x-amazon-apigateway-integration:
@@ -2223,6 +2332,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document's versions
       tags:
       - Document Versions
       x-amazon-apigateway-integration:
@@ -2277,6 +2387,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Set version of document
       tags:
       - Document Versions
       x-amazon-apigateway-integration:
@@ -2335,6 +2446,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document version
       tags:
       - Document Versions
       x-amazon-apigateway-integration:
@@ -2402,8 +2514,9 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document folders
       tags:
-      - Folders
+      - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
       x-accepts: application/json
@@ -2449,8 +2562,9 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add document folder
       tags:
-      - Folders
+      - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
@@ -2500,8 +2614,9 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Delete document folder
       tags:
-      - Folders
+      - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
@@ -2552,6 +2667,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get user shared folders
       tags:
       - Document Shares
       x-amazon-apigateway-integration:
@@ -2606,6 +2722,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Add folder share
       tags:
       - Document Shares
       x-amazon-apigateway-integration:
@@ -2641,6 +2758,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Delete folder share
       tags:
       - Document Shares
       x-amazon-apigateway-integration:
@@ -2710,6 +2828,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get tag schemas
       tags:
       - Tag Schema
       x-amazon-apigateway-integration:
@@ -2762,6 +2881,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add tag schemas
       tags:
       - Tag Schema
       x-amazon-apigateway-integration:
@@ -2811,6 +2931,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete tag schema
       tags:
       - Tag Schema
       x-amazon-apigateway-integration:
@@ -2853,6 +2974,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get tag schema
       tags:
       - Tag Schema
       x-amazon-apigateway-integration:
@@ -2910,6 +3032,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Antivirus document scan
       tags:
       - Antivirus
       x-amazon-apigateway-integration:
@@ -2954,6 +3077,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Delete document full-text
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3003,6 +3127,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document's full-text
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3050,6 +3175,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Update document's full-text
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3099,6 +3225,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Set document's full-text
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3165,6 +3292,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document full-text tag
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3238,6 +3366,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete document full-text tag/value
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -3297,6 +3426,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get document syncs
       tags:
       - Documents
       x-amazon-apigateway-integration:
@@ -3336,6 +3466,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+      summary: Public add document
       tags:
       - Public
       x-amazon-apigateway-integration:
@@ -3385,6 +3516,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+      summary: Public add webhook
       tags:
       - Public
       x-amazon-apigateway-integration:
@@ -3435,6 +3567,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add webhook
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3481,6 +3614,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get webhooks
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3522,6 +3656,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Add webhook
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3572,6 +3707,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Delete webhook
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3622,6 +3758,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Get webhook
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3675,6 +3812,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Update webhook
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3718,6 +3856,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get webhook tags
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3779,6 +3918,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
+      summary: Add webhook tag
       tags:
       - Webhooks
       x-amazon-apigateway-integration:
@@ -3829,6 +3969,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Edit onlyoffice document
       tags:
       - Onlyoffice
       x-amazon-apigateway-integration:
@@ -3871,6 +4012,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Create onlyoffice document
       tags:
       - Onlyoffice
       x-amazon-apigateway-integration:
@@ -3913,6 +4055,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+      summary: Save onlyoffice document
       tags:
       - Onlyoffice
       x-amazon-apigateway-integration:
@@ -4153,6 +4296,7 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
+      summary: Create E-signature request
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -4188,6 +4332,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Get E-signature config
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -4228,6 +4373,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
+      summary: Set E-signature config
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -4252,6 +4398,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+      summary: Add E-signature event
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -4656,35 +4803,37 @@ components:
     GetDocumentVersionsResponse:
       example:
         next: next
-        versions:
+        documents:
         - path: path
-          versionId: versionId
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          s3version: s3version
           checksum: checksum
           documentId: documentId
           contentLength: 0
           contentType: contentType
           userId: userId
+          version: version
           versionKey: versionKey
         - path: path
-          versionId: versionId
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          s3version: s3version
           checksum: checksum
           documentId: documentId
           contentLength: 0
           contentType: contentType
           userId: userId
+          version: version
           versionKey: versionKey
       properties:
         next:
           description: Next page of results token
           type: string
-        versions:
+        documents:
           description: List of document versions
           items:
-            $ref: '#/components/schemas/DocumentItemVersion'
+            $ref: '#/components/schemas/DocumentVersion'
           type: array
       type: object
     AddFolderRequest:
@@ -5640,17 +5789,18 @@ components:
       required:
       - content
       type: object
-    DocumentItemVersion:
+    DocumentVersion:
       example:
         path: path
-        versionId: versionId
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        s3version: s3version
         checksum: checksum
         documentId: documentId
         contentLength: 0
         contentType: contentType
         userId: userId
+        version: version
         versionKey: versionKey
       properties:
         path:
@@ -5677,11 +5827,14 @@ components:
         contentLength:
           description: Document size
           type: integer
-        versionId:
+        version:
           description: Document version
           type: string
         versionKey:
           description: Document Version Identifier
+          type: string
+        s3version:
+          description: Document storage version
           type: string
       type: object
     GetDocumentTagResponse:
@@ -7495,7 +7648,7 @@ components:
   x-amazon-apigateway-integrations:
     lambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7509,7 +7662,7 @@ components:
       payloadFormatVersion: "1.0"
     ocrLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7523,7 +7676,7 @@ components:
       payloadFormatVersion: "1.0"
     antivirusLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7537,7 +7690,7 @@ components:
       payloadFormatVersion: "1.0"
     searchLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7551,7 +7704,7 @@ components:
       payloadFormatVersion: "1.0"
     fulltextLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7565,7 +7718,7 @@ components:
       payloadFormatVersion: "1.0"
     onlyOfficeLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7579,7 +7732,7 @@ components:
       payloadFormatVersion: "1.0"
     esignatureLambdaApi200:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -7593,7 +7746,7 @@ components:
       payloadFormatVersion: "1.0"
     lambdaApi201:
       uri:
-        Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
       responses:
         default:
           statusCode: "201"
@@ -7612,10 +7765,5 @@ x-amazon-apigateway-gateway-responses:
       gatewayresponse.header.Access-Control-Allow-Methods: '''*'''
       gatewayresponse.header.Access-Control-Allow-Origin: '''*'''
       gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
-x-amazon-apigateway-cors:
-  allowOrigins:
-  - '*'
-  maxAge: 3600
-  allowMethods:
-  - '*'
+x-amazon-apigateway-cors: null
 

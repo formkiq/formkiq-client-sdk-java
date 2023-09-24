@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**setAntivirus**](AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus |  |
+| [**setAntivirus**](AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan |
 
 
 <a id="setAntivirus"></a>
 # **setAntivirus**
 > SetAntivirusResponse setAntivirus(documentId, siteId, shareKey, body)
 
-
+Antivirus document scan
 
 Perform an Anti-Malware / Antivirus scan on a document; ONLY available with FormKiQ Pro and Enterprise
 

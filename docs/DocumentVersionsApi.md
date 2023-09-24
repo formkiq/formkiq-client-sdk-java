@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteDocumentVersion**](DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} |  |
-| [**getDocumentVersions**](DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions |  |
-| [**setDocumentVersion**](DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions |  |
+| [**deleteDocumentVersion**](DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | Delete document version |
+| [**getDocumentVersions**](DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | Get document&#39;s versions |
+| [**setDocumentVersion**](DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | Set version of document |
 
 
 <a id="deleteDocumentVersion"></a>
 # **deleteDocumentVersion**
 > deleteDocumentVersion(documentId, versionKey, shareKey)
 
-
+Delete document version
 
 Delete a specific previous document version; ONLY available with FormKiQ Pro and Enterprise
 
@@ -81,7 +81,7 @@ No authorization required
 # **getDocumentVersions**
 > GetDocumentVersionsResponse getDocumentVersions(documentId, siteId, shareKey, next)
 
-
+Get document&#39;s versions
 
 Get a listing of document content and metadata versions; ONLY available with FormKiQ Pro and Enterprise
 
@@ -152,7 +152,7 @@ No authorization required
 # **setDocumentVersion**
 > SetDocumentVersionResponse setDocumentVersion(documentId, setDocumentVersionRequest, siteId)
 
-
+Set version of document
 
 Set document to a previous document version; ONLY available with FormKiQ Pro and Enterprise
 

@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**publicAddDocument**](PublicApi.md#publicAddDocument) | **POST** /public/documents |  |
-| [**publicAddWebhook**](PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} |  |
+| [**publicAddDocument**](PublicApi.md#publicAddDocument) | **POST** /public/documents | Public add document |
+| [**publicAddWebhook**](PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | Public add webhook |
 
 
 <a id="publicAddDocument"></a>
 # **publicAddDocument**
 > DocumentId publicAddDocument(addDocumentRequest, siteId)
 
-
+Public add document
 
 Allow unauthenticated creation of new documents; must be enabled during installation (disabled by default)
 
@@ -78,7 +78,7 @@ No authorization required
 # **publicAddWebhook**
 > DocumentId publicAddWebhook(webhooksPlus, body, siteId)
 
-
+Public add webhook
 
 Receive an incoming public post to a specified webhook and creates a document based on the data sent; must be enabled during installation (disabled by default)
 

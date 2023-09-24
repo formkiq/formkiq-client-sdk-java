@@ -4,22 +4,22 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDocumentTags**](DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags |  |
-| [**deleteDocumentTag**](DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} |  |
-| [**deleteDocumentTagAndValue**](DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} |  |
-| [**getDocumentTag**](DocumentTagsApi.md#getDocumentTag) | **GET** /documents/{documentId}/tags/{tagKey} |  |
-| [**getDocumentTags**](DocumentTagsApi.md#getDocumentTags) | **GET** /documents/{documentId}/tags |  |
-| [**setDocumentTag**](DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} |  |
-| [**setDocumentTags**](DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags |  |
-| [**updateDocumentTags**](DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags |  |
-| [**updateMatchingDocumentTags**](DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags |  |
+| [**addDocumentTags**](DocumentTagsApi.md#addDocumentTags) | **POST** /documents/{documentId}/tags | Add tag to document |
+| [**deleteDocumentTag**](DocumentTagsApi.md#deleteDocumentTag) | **DELETE** /documents/{documentId}/tags/{tagKey} | Delete document tag |
+| [**deleteDocumentTagAndValue**](DocumentTagsApi.md#deleteDocumentTagAndValue) | **DELETE** /documents/{documentId}/tags/{tagKey}/{tagValue} | Delete document&#39;s tag value |
+| [**getDocumentTag**](DocumentTagsApi.md#getDocumentTag) | **GET** /documents/{documentId}/tags/{tagKey} | Get document tag by key |
+| [**getDocumentTags**](DocumentTagsApi.md#getDocumentTags) | **GET** /documents/{documentId}/tags | Get document&#39;s tags |
+| [**setDocumentTag**](DocumentTagsApi.md#setDocumentTag) | **PUT** /documents/{documentId}/tags/{tagKey} | Update document tag value(s) |
+| [**setDocumentTags**](DocumentTagsApi.md#setDocumentTags) | **PUT** /documents/{documentId}/tags | Set document&#39;s tags |
+| [**updateDocumentTags**](DocumentTagsApi.md#updateDocumentTags) | **PATCH** /documents/{documentId}/tags | Update document tags |
+| [**updateMatchingDocumentTags**](DocumentTagsApi.md#updateMatchingDocumentTags) | **PATCH** /documents/tags | Mass Update document tag(s) |
 
 
 <a id="addDocumentTags"></a>
 # **addDocumentTags**
 > addDocumentTags(documentId, addDocumentTagsRequest, siteId)
 
-
+Add tag to document
 
 Add multiple tags to a document; this endpoint also accepts a different body parameter for adding a single tag
 
@@ -87,7 +87,7 @@ No authorization required
 # **deleteDocumentTag**
 > deleteDocumentTag(documentId, tagKey, siteId)
 
-
+Delete document tag
 
 Delete a document tag by using its key
 
@@ -155,7 +155,7 @@ No authorization required
 # **deleteDocumentTagAndValue**
 > deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey)
 
-
+Delete document&#39;s tag value
 
 Delete a specific document tag&#39;s key/value combination; the request will be ignored if there is no valid key/value combination found
 
@@ -227,7 +227,7 @@ No authorization required
 # **getDocumentTag**
 > GetDocumentTagResponse getDocumentTag(documentId, tagKey, siteId, shareKey)
 
-
+Get document tag by key
 
 Get a document tag by using its key
 
@@ -298,7 +298,7 @@ No authorization required
 # **getDocumentTags**
 > GetDocumentTagsResponse getDocumentTags(documentId, siteId, limit, shareKey, next, previous)
 
-
+Get document&#39;s tags
 
 Get a listing of a document&#39;s tags
 
@@ -373,7 +373,7 @@ No authorization required
 # **setDocumentTag**
 > setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId)
 
-
+Update document tag value(s)
 
 Update any and all values of a document tag, by using its key; you can supply one tag value or a list of tag values in the request body
 
@@ -443,7 +443,7 @@ No authorization required
 # **setDocumentTags**
 > setDocumentTags(documentId, addDocumentTagsRequest, siteId)
 
-
+Set document&#39;s tags
 
 Set multiple tags to a document; this endpoint also accepts a different body parameter for setting a single tag
 
@@ -511,7 +511,7 @@ No authorization required
 # **updateDocumentTags**
 > updateDocumentTags(documentId, addDocumentTagsRequest, siteId)
 
-
+Update document tags
 
 Updates multiple tags to a document; this endpoint also accepts a different body parameter for updating a single tag
 
@@ -579,7 +579,7 @@ No authorization required
 # **updateMatchingDocumentTags**
 > UpdateMatchingDocumentTagsResponse updateMatchingDocumentTags(updateMatchingDocumentTagsRequest, siteId)
 
-
+Mass Update document tag(s)
 
 This API request allows the adding/updating of multiple document tag(s) based on document(s) that have the matching tag.
 

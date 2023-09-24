@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addEsignatureDocusignEvents**](ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events |  |
-| [**esignatureDocusign**](ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} |  |
-| [**esignatureDocusignConfig**](ESignatureApi.md#esignatureDocusignConfig) | **GET** /esignature/docusign/config |  |
-| [**esignatureSetDocusignConfig**](ESignatureApi.md#esignatureSetDocusignConfig) | **PUT** /esignature/docusign/config |  |
+| [**addEsignatureDocusignEvents**](ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event |
+| [**esignatureDocusign**](ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request |
+| [**esignatureDocusignConfig**](ESignatureApi.md#esignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config |
+| [**esignatureSetDocusignConfig**](ESignatureApi.md#esignatureSetDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config |
 
 
 <a id="addEsignatureDocusignEvents"></a>
 # **addEsignatureDocusignEvents**
 > EsignatureDocusignResponse addEsignatureDocusignEvents()
 
-
+Add E-signature event
 
 DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
 
@@ -74,7 +74,7 @@ No authorization required
 # **esignatureDocusign**
 > EsignatureDocusignResponse esignatureDocusign(documentId, esignatureDocusignRequest, siteId)
 
-
+Create E-signature request
 
 Create a DocuSign E-Signature request; ONLY available with FormKiQ Enterprise
 
@@ -144,7 +144,7 @@ No authorization required
 # **esignatureDocusignConfig**
 > EsignatureDocusignConfigResponse esignatureDocusignConfig(siteId)
 
-
+Get E-signature config
 
 Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
 
@@ -209,7 +209,7 @@ No authorization required
 # **esignatureSetDocusignConfig**
 > EsignatureSetDocusignConfigResponse esignatureSetDocusignConfig(esignatureSetDocusignConfigRequest, siteId)
 
-
+Set E-signature config
 
 Set DocuSign configuration, required for integration; ONLY available with FormKiQ Enterprise
 

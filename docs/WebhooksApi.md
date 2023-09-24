@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addWebhook**](WebhooksApi.md#addWebhook) | **POST** /webhooks |  |
-| [**addWebhookDocument**](WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} |  |
-| [**addWebhookTag**](WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags |  |
-| [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{webhookId} |  |
-| [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhookId} |  |
-| [**getWebhookTags**](WebhooksApi.md#getWebhookTags) | **GET** /webhooks/{webhookId}/tags |  |
-| [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks |  |
-| [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PATCH** /webhooks/{webhookId} |  |
+| [**addWebhook**](WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook |
+| [**addWebhookDocument**](WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | Add webhook |
+| [**addWebhookTag**](WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | Add webhook tag |
+| [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{webhookId} | Delete webhook |
+| [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhookId} | Get webhook |
+| [**getWebhookTags**](WebhooksApi.md#getWebhookTags) | **GET** /webhooks/{webhookId}/tags | Get webhook tags |
+| [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get webhooks |
+| [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PATCH** /webhooks/{webhookId} | Update webhook |
 
 
 <a id="addWebhook"></a>
 # **addWebhook**
 > AddWebhookResponse addWebhook(addWebhookRequest, siteId)
 
-
+Add webhook
 
 Create a new webhook; once created, a webhook&#39;s id can be provided to an external service, allowing data to be sent, received, and processed via that webhook
 
@@ -85,7 +85,7 @@ No authorization required
 # **addWebhookDocument**
 > DocumentId addWebhookDocument(webhooksPlus, body, siteId)
 
-
+Add webhook
 
 Receive an incoming private webhook and creates a document based on the webhook&#39;s body; requires authentication
 
@@ -154,7 +154,7 @@ No authorization required
 # **addWebhookTag**
 > addWebhookTag(webhookId, getDocumentTagResponse, siteId)
 
-
+Add webhook tag
 
 Add a tag to a webhook
 
@@ -222,7 +222,7 @@ No authorization required
 # **deleteWebhook**
 > deleteWebhook(webhookId, siteId)
 
-
+Delete webhook
 
 Delete a webhook; this will disable sending, receiving, or processing of data from external services to this webhook
 
@@ -288,7 +288,7 @@ No authorization required
 # **getWebhook**
 > GetWebhookResponse getWebhook(webhookId, siteId)
 
-
+Get webhook
 
 Return a webhook&#39;s details, i.e., its metadata
 
@@ -355,7 +355,7 @@ No authorization required
 # **getWebhookTags**
 > GetWebhookTagsResponse getWebhookTags(webhookId, siteId)
 
-
+Get webhook tags
 
 Get a webhook&#39;s tags
 
@@ -422,7 +422,7 @@ No authorization required
 # **getWebhooks**
 > GetWebhooksResponse getWebhooks(siteId)
 
-
+Get webhooks
 
 Return a list of webhooks; each webhook&#39;s id can be provided to an external service, allowing data to be sent, received, and processed via that webhook
 
@@ -487,7 +487,7 @@ No authorization required
 # **updateWebhook**
 > updateWebhook(webhookId, addWebhookRequest, siteId)
 
-
+Update webhook
 
 Updates a webhook&#39;s details, i.e., its metadata
 
