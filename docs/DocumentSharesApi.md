@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addFolderShare**](DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} |  |
-| [**deleteShare**](DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} |  |
-| [**getUserShares**](DocumentSharesApi.md#getUserShares) | **GET** /shares |  |
+| [**addFolderShare**](DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | Add folder share |
+| [**deleteShare**](DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | Delete folder share |
+| [**getUserShares**](DocumentSharesApi.md#getUserShares) | **GET** /shares | Get user shared folders |
 
 
 <a id="addFolderShare"></a>
 # **addFolderShare**
 > AddFolderShareResponse addFolderShare(indexKey, addFolderShareRequest, siteId)
 
-
+Add folder share
 
 Creates a new folder share; ONLY available with FormKiQ Enterprise
 
@@ -83,7 +83,7 @@ No authorization required
 # **deleteShare**
 > DeleteShareResponse deleteShare(shareKey)
 
-
+Delete folder share
 
 Delete a specific document share; ONLY available with FormKiQ Enterprise
 
@@ -148,7 +148,7 @@ No authorization required
 # **getUserShares**
 > GetUserShares getUserShares(group, limit, next)
 
-
+Get user shared folders
 
 Get a listing of user folder/document shares; ONLY available with FormKiQ Enterprise
 

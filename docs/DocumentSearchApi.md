@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**documentSearch**](DocumentSearchApi.md#documentSearch) | **POST** /search |  |
+| [**documentSearch**](DocumentSearchApi.md#documentSearch) | **POST** /search | Document search |
 
 
 <a id="documentSearch"></a>
 # **documentSearch**
 > DocumentSearchResponse documentSearch(documentSearchRequest, siteId, limit, next, previous)
 
-
+Document search
 
 Document search query request; documents are searched primarily using a document tag key and optional tag value, or if Typesense is enabled, searches on the document path and versioned metadata is also available. An optional documentIds parameter is also available in the DocumentSearchBody to filter, with up to 100 documentIds accepted.
 

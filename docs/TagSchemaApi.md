@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addTagSchema**](TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas |  |
-| [**deleteTagSchema**](TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} |  |
-| [**getTagSchema**](TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} |  |
-| [**getTagSchemas**](TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas |  |
+| [**addTagSchema**](TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas |
+| [**deleteTagSchema**](TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema |
+| [**getTagSchema**](TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema |
+| [**getTagSchemas**](TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas |
 
 
 <a id="addTagSchema"></a>
 # **addTagSchema**
 > TagSchemaPostResponse addTagSchema(addTagSchemaRequest, siteId)
 
-
+Add tag schemas
 
 Creates a new TagSchema; ONLY available with FormKiQ Pro and Enterprise
 
@@ -82,7 +82,7 @@ No authorization required
 # **deleteTagSchema**
 > deleteTagSchema(tagSchemaId, siteId)
 
-
+Delete tag schema
 
 Delete a TagSchema; ONLY available with FormKiQ Pro and Enterprise
 
@@ -148,7 +148,7 @@ No authorization required
 # **getTagSchema**
 > GetTagSchemaRequest getTagSchema(tagSchemaId, siteId)
 
-
+Get tag schema
 
 Retrieves a TagSchema&#39;s details, i.e., metadata; ONLY available with FormKiQ Pro and Enterprise
 
@@ -215,7 +215,7 @@ No authorization required
 # **getTagSchemas**
 > GetTagSchemasRequest getTagSchemas(siteId, limit, next, previous)
 
-
+Get tag schemas
 
 Returns the list of tagSchemas; ONLY available with FormKiQ Pro and Enterprise
 

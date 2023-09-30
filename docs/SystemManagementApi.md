@@ -4,20 +4,20 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys |  |
-| [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} |  |
-| [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys |  |
-| [**getConfigs**](SystemManagementApi.md#getConfigs) | **GET** /configuration |  |
-| [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites |  |
-| [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version |  |
-| [**updateConfig**](SystemManagementApi.md#updateConfig) | **PATCH** /configuration |  |
+| [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key |
+| [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key |
+| [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys |
+| [**getConfigs**](SystemManagementApi.md#getConfigs) | **GET** /configuration | Get site configuration |
+| [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
+| [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
+| [**updateConfig**](SystemManagementApi.md#updateConfig) | **PATCH** /configuration | Update site configuration |
 
 
 <a id="addApiKey"></a>
 # **addApiKey**
 > AddApiKeyResponse addApiKey(addApiKeyRequest, siteId)
 
-
+Add API Key
 
 Adds a new API Key
 
@@ -84,7 +84,7 @@ No authorization required
 # **deleteApiKey**
 > DeleteApiKeyResponse deleteApiKey(apiKey, siteId)
 
-
+Delete API Key
 
 Adds a new API Key
 
@@ -151,7 +151,7 @@ No authorization required
 # **getApiKeys**
 > GetApiKeysResponse getApiKeys(siteId)
 
-
+Get API Keys
 
 Returns the list of ApiKeys
 
@@ -216,7 +216,7 @@ No authorization required
 # **getConfigs**
 > GetConfigurationResponse getConfigs(siteId)
 
-
+Get site configuration
 
 Returns the list of sites that the user has access to
 
@@ -281,7 +281,7 @@ No authorization required
 # **getSites**
 > GetSitesRequest getSites()
 
-
+Get site(s) access
 
 Returns the list of sites that the user has access to
 
@@ -342,7 +342,7 @@ No authorization required
 # **getVersion**
 > GetVersionResponse getVersion()
 
-
+Get FormKiQ version
 
 Return the version of FormKiQ
 
@@ -403,7 +403,7 @@ No authorization required
 # **updateConfig**
 > SetConfigResponse updateConfig(setConfigRequest, siteId)
 
-
+Update site configuration
 
 Update the System Management configuration
 
