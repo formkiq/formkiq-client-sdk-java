@@ -20,8 +20,8 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentSearchItemMeta;
-import com.formkiq.client.model.DocumentSearchItemTag;
+import com.formkiq.client.model.DocumentSearchMeta;
+import com.formkiq.client.model.DocumentSearchTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

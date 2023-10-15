@@ -20,9 +20,9 @@
 |**contentLength** | **Integer** | Document size |  [optional] |
 |**versionId** | **String** | Document version |  [optional] |
 |**belongsToDocumentId** | **String** | Parent Document Identifier |  [optional] |
-|**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 |**matchedTag** | [**DocumentSearchMatchTag**](DocumentSearchMatchTag.md) |  |  [optional] |
-|**tags** | **Object** |  |  [optional] |
+|**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 
 
 

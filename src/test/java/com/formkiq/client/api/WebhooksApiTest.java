@@ -23,8 +23,8 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddWebhookRequest;
 import com.formkiq.client.model.AddWebhookResponse;
+import com.formkiq.client.model.AddWebhookTagRequest;
 import com.formkiq.client.model.DocumentId;
-import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetWebhookResponse;
 import com.formkiq.client.model.GetWebhookTagsResponse;
 import com.formkiq.client.model.GetWebhooksResponse;
@@ -87,9 +87,9 @@ public class WebhooksApiTest {
   @Test
   public void addWebhookTagTest() throws ApiException {
     String webhookId = null;
-    GetDocumentTagResponse getDocumentTagResponse = null;
+    AddWebhookTagRequest addWebhookTagRequest = null;
     String siteId = null;
-    api.addWebhookTag(webhookId, getDocumentTagResponse, siteId);
+    api.addWebhookTag(webhookId, addWebhookTagRequest, siteId);
     // TODO: test validations
   }
 

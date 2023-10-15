@@ -21,16 +21,13 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,15 +54,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * QueueDocument
+ * DocumentVersion
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class QueueDocument {
-  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
-  @SerializedName(SERIALIZED_NAME_SITE_ID)
-  private String siteId;
-
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class DocumentVersion {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
@@ -98,43 +91,21 @@ public class QueueDocument {
   @SerializedName(SERIALIZED_NAME_CONTENT_LENGTH)
   private Integer contentLength;
 
-  public static final String SERIALIZED_NAME_VERSION_ID = "versionId";
-  @SerializedName(SERIALIZED_NAME_VERSION_ID)
-  private String versionId;
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
 
-  public static final String SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID = "belongsToDocumentId";
-  @SerializedName(SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID)
-  private String belongsToDocumentId;
+  public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
+  @SerializedName(SERIALIZED_NAME_VERSION_KEY)
+  private String versionKey;
 
-  public static final String SERIALIZED_NAME_METADATA = "metadata";
-  @SerializedName(SERIALIZED_NAME_METADATA)
-  private List<DocumentMetadata> metadata;
+  public static final String SERIALIZED_NAME_S3VERSION = "s3version";
+  @SerializedName(SERIALIZED_NAME_S3VERSION)
+  private String s3version;
 
-  public QueueDocument() {}
+  public DocumentVersion() {}
 
-  public QueueDocument siteId(String siteId) {
-
-    this.siteId = siteId;
-    return this;
-  }
-
-  /**
-   * Site Identifier
-   * 
-   * @return siteId
-   **/
-  @javax.annotation.Nullable
-  public String getSiteId() {
-    return siteId;
-  }
-
-
-  public void setSiteId(String siteId) {
-    this.siteId = siteId;
-  }
-
-
-  public QueueDocument path(String path) {
+  public DocumentVersion path(String path) {
 
     this.path = path;
     return this;
@@ -156,7 +127,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument insertedDate(String insertedDate) {
+  public DocumentVersion insertedDate(String insertedDate) {
 
     this.insertedDate = insertedDate;
     return this;
@@ -178,7 +149,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument lastModifiedDate(String lastModifiedDate) {
+  public DocumentVersion lastModifiedDate(String lastModifiedDate) {
 
     this.lastModifiedDate = lastModifiedDate;
     return this;
@@ -200,7 +171,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument checksum(String checksum) {
+  public DocumentVersion checksum(String checksum) {
 
     this.checksum = checksum;
     return this;
@@ -222,7 +193,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument documentId(String documentId) {
+  public DocumentVersion documentId(String documentId) {
 
     this.documentId = documentId;
     return this;
@@ -244,7 +215,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument contentType(String contentType) {
+  public DocumentVersion contentType(String contentType) {
 
     this.contentType = contentType;
     return this;
@@ -266,7 +237,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument userId(String userId) {
+  public DocumentVersion userId(String userId) {
 
     this.userId = userId;
     return this;
@@ -288,7 +259,7 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument contentLength(Integer contentLength) {
+  public DocumentVersion contentLength(Integer contentLength) {
 
     this.contentLength = contentLength;
     return this;
@@ -310,77 +281,69 @@ public class QueueDocument {
   }
 
 
-  public QueueDocument versionId(String versionId) {
+  public DocumentVersion version(String version) {
 
-    this.versionId = versionId;
+    this.version = version;
     return this;
   }
 
   /**
    * Document version
    * 
-   * @return versionId
+   * @return version
    **/
   @javax.annotation.Nullable
-  public String getVersionId() {
-    return versionId;
+  public String getVersion() {
+    return version;
   }
 
 
-  public void setVersionId(String versionId) {
-    this.versionId = versionId;
+  public void setVersion(String version) {
+    this.version = version;
   }
 
 
-  public QueueDocument belongsToDocumentId(String belongsToDocumentId) {
+  public DocumentVersion versionKey(String versionKey) {
 
-    this.belongsToDocumentId = belongsToDocumentId;
+    this.versionKey = versionKey;
     return this;
   }
 
   /**
-   * Parent Document Identifier
+   * Document Version Identifier
    * 
-   * @return belongsToDocumentId
+   * @return versionKey
    **/
   @javax.annotation.Nullable
-  public String getBelongsToDocumentId() {
-    return belongsToDocumentId;
+  public String getVersionKey() {
+    return versionKey;
   }
 
 
-  public void setBelongsToDocumentId(String belongsToDocumentId) {
-    this.belongsToDocumentId = belongsToDocumentId;
+  public void setVersionKey(String versionKey) {
+    this.versionKey = versionKey;
   }
 
 
-  public QueueDocument metadata(List<DocumentMetadata> metadata) {
+  public DocumentVersion s3version(String s3version) {
 
-    this.metadata = metadata;
-    return this;
-  }
-
-  public QueueDocument addMetadataItem(DocumentMetadata metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new ArrayList<>();
-    }
-    this.metadata.add(metadataItem);
+    this.s3version = s3version;
     return this;
   }
 
   /**
-   * List of document Metadata
+   * Document storage version
    * 
-   * @return metadata
+   * @return s3version
    **/
   @javax.annotation.Nullable
-  public List<DocumentMetadata> getMetadata() {
-    return metadata;
+  public String getS3version() {
+    return s3version;
   }
 
 
-  public void setMetadata(List<DocumentMetadata> metadata) {
-    this.metadata = metadata;
+  public void setS3version(String s3version) {
+    this.s3version = s3version;
   }
 
 
@@ -393,32 +356,30 @@ public class QueueDocument {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QueueDocument queueDocument = (QueueDocument) o;
-    return Objects.equals(this.siteId, queueDocument.siteId)
-        && Objects.equals(this.path, queueDocument.path)
-        && Objects.equals(this.insertedDate, queueDocument.insertedDate)
-        && Objects.equals(this.lastModifiedDate, queueDocument.lastModifiedDate)
-        && Objects.equals(this.checksum, queueDocument.checksum)
-        && Objects.equals(this.documentId, queueDocument.documentId)
-        && Objects.equals(this.contentType, queueDocument.contentType)
-        && Objects.equals(this.userId, queueDocument.userId)
-        && Objects.equals(this.contentLength, queueDocument.contentLength)
-        && Objects.equals(this.versionId, queueDocument.versionId)
-        && Objects.equals(this.belongsToDocumentId, queueDocument.belongsToDocumentId)
-        && Objects.equals(this.metadata, queueDocument.metadata);
+    DocumentVersion documentVersion = (DocumentVersion) o;
+    return Objects.equals(this.path, documentVersion.path)
+        && Objects.equals(this.insertedDate, documentVersion.insertedDate)
+        && Objects.equals(this.lastModifiedDate, documentVersion.lastModifiedDate)
+        && Objects.equals(this.checksum, documentVersion.checksum)
+        && Objects.equals(this.documentId, documentVersion.documentId)
+        && Objects.equals(this.contentType, documentVersion.contentType)
+        && Objects.equals(this.userId, documentVersion.userId)
+        && Objects.equals(this.contentLength, documentVersion.contentLength)
+        && Objects.equals(this.version, documentVersion.version)
+        && Objects.equals(this.versionKey, documentVersion.versionKey)
+        && Objects.equals(this.s3version, documentVersion.s3version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, insertedDate, lastModifiedDate, checksum, documentId,
-        contentType, userId, contentLength, versionId, belongsToDocumentId, metadata);
+    return Objects.hash(path, insertedDate, lastModifiedDate, checksum, documentId, contentType,
+        userId, contentLength, version, versionKey, s3version);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QueueDocument {\n");
-    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
+    sb.append("class DocumentVersion {\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
@@ -427,10 +388,9 @@ public class QueueDocument {
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
-    sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
-    sb.append("    belongsToDocumentId: ").append(toIndentedString(belongsToDocumentId))
-        .append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
+    sb.append("    s3version: ").append(toIndentedString(s3version)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -452,7 +412,6 @@ public class QueueDocument {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("siteId");
     openapiFields.add("path");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
@@ -461,9 +420,9 @@ public class QueueDocument {
     openapiFields.add("contentType");
     openapiFields.add("userId");
     openapiFields.add("contentLength");
-    openapiFields.add("versionId");
-    openapiFields.add("belongsToDocumentId");
-    openapiFields.add("metadata");
+    openapiFields.add("version");
+    openapiFields.add("versionKey");
+    openapiFields.add("s3version");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -473,34 +432,28 @@ public class QueueDocument {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to QueueDocument
+   * @throws IOException if the JSON Element is invalid with respect to DocumentVersion
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!QueueDocument.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
-                                                            // is null
+      if (!DocumentVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                              // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in QueueDocument is not found in the empty JSON string",
-            QueueDocument.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocumentVersion is not found in the empty JSON string",
+            DocumentVersion.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!QueueDocument.openapiFields.contains(entry.getKey())) {
+      if (!DocumentVersion.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `QueueDocument` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocumentVersion` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
-        && !jsonObj.get("siteId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("siteId").toString()));
-    }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -543,34 +496,23 @@ public class QueueDocument {
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }
-    if ((jsonObj.get("versionId") != null && !jsonObj.get("versionId").isJsonNull())
-        && !jsonObj.get("versionId").isJsonPrimitive()) {
+    if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull())
+        && !jsonObj.get("version").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `versionId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("versionId").toString()));
+          "Expected the field `version` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("version").toString()));
     }
-    if ((jsonObj.get("belongsToDocumentId") != null
-        && !jsonObj.get("belongsToDocumentId").isJsonNull())
-        && !jsonObj.get("belongsToDocumentId").isJsonPrimitive()) {
+    if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
+        && !jsonObj.get("versionKey").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `belongsToDocumentId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("belongsToDocumentId").toString()));
+          "Expected the field `versionKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("versionKey").toString()));
     }
-    if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
-      JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
-      if (jsonArraymetadata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("metadata").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `metadata` to be an array in the JSON string but got `%s`",
-              jsonObj.get("metadata").toString()));
-        }
-
-        // validate the optional field `metadata` (array)
-        for (int i = 0; i < jsonArraymetadata.size(); i++) {
-          DocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
-        } ;
-      }
+    if ((jsonObj.get("s3version") != null && !jsonObj.get("s3version").isJsonNull())
+        && !jsonObj.get("s3version").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `s3version` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("s3version").toString()));
     }
   }
 
@@ -578,22 +520,22 @@ public class QueueDocument {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!QueueDocument.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'QueueDocument' and its subtypes
+      if (!DocumentVersion.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocumentVersion' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<QueueDocument> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(QueueDocument.class));
+      final TypeAdapter<DocumentVersion> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocumentVersion.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<QueueDocument>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocumentVersion>() {
         @Override
-        public void write(JsonWriter out, QueueDocument value) throws IOException {
+        public void write(JsonWriter out, DocumentVersion value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public QueueDocument read(JsonReader in) throws IOException {
+        public DocumentVersion read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -604,18 +546,18 @@ public class QueueDocument {
   }
 
   /**
-   * Create an instance of QueueDocument given an JSON string
+   * Create an instance of DocumentVersion given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of QueueDocument
-   * @throws IOException if the JSON string is invalid with respect to QueueDocument
+   * @return An instance of DocumentVersion
+   * @throws IOException if the JSON string is invalid with respect to DocumentVersion
    */
-  public static QueueDocument fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, QueueDocument.class);
+  public static DocumentVersion fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocumentVersion.class);
   }
 
   /**
-   * Convert an instance of QueueDocument to an JSON string
+   * Convert an instance of DocumentVersion to an JSON string
    *
    * @return JSON string
    */

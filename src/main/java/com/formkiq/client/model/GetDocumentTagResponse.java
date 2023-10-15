@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentTagResponse {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -242,7 +242,7 @@ public class GetDocumentTagResponse {
    * 
    * @return key
    **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getKey() {
     return key;
   }
@@ -319,7 +319,6 @@ public class GetDocumentTagResponse {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("key");
   }
 
   /**
@@ -345,15 +344,6 @@ public class GetDocumentTagResponse {
         throw new IllegalArgumentException(String.format(
             "The field `%s` in the JSON string is not defined in the `GetDocumentTagResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
-      }
-    }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : GetDocumentTagResponse.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -394,7 +384,8 @@ public class GetDocumentTagResponse {
           "Expected the field `values` to be an array in the JSON string but got `%s`",
           jsonObj.get("values").toString()));
     }
-    if (!jsonObj.get("key").isJsonPrimitive()) {
+    if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull())
+        && !jsonObj.get("key").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("key").toString()));

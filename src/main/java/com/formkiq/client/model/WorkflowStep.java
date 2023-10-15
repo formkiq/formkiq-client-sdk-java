@@ -21,8 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.AddAction;
-import com.formkiq.client.model.AddQueue;
+import com.formkiq.client.model.DocumentAction;
+import com.formkiq.client.model.WorkflowQueue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,71 +59,19 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class WorkflowStep {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  /**
-   * Workflow step type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    ACTION("action"),
-
-    APPROVALQUEUE("approvalQueue");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
-  private AddAction action;
+  private DocumentAction action;
 
   public static final String SERIALIZED_NAME_QUEUE = "queue";
   @SerializedName(SERIALIZED_NAME_QUEUE)
-  private AddQueue queue;
+  private WorkflowQueue queue;
 
   public WorkflowStep() {}
 
@@ -138,7 +86,7 @@ public class WorkflowStep {
    * 
    * @return id
    **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getId() {
     return id;
   }
@@ -149,29 +97,7 @@ public class WorkflowStep {
   }
 
 
-  public WorkflowStep type(TypeEnum type) {
-
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Workflow step type
-   * 
-   * @return type
-   **/
-  @javax.annotation.Nonnull
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public WorkflowStep action(AddAction action) {
+  public WorkflowStep action(DocumentAction action) {
 
     this.action = action;
     return this;
@@ -183,17 +109,17 @@ public class WorkflowStep {
    * @return action
    **/
   @javax.annotation.Nullable
-  public AddAction getAction() {
+  public DocumentAction getAction() {
     return action;
   }
 
 
-  public void setAction(AddAction action) {
+  public void setAction(DocumentAction action) {
     this.action = action;
   }
 
 
-  public WorkflowStep queue(AddQueue queue) {
+  public WorkflowStep queue(WorkflowQueue queue) {
 
     this.queue = queue;
     return this;
@@ -205,12 +131,12 @@ public class WorkflowStep {
    * @return queue
    **/
   @javax.annotation.Nullable
-  public AddQueue getQueue() {
+  public WorkflowQueue getQueue() {
     return queue;
   }
 
 
-  public void setQueue(AddQueue queue) {
+  public void setQueue(WorkflowQueue queue) {
     this.queue = queue;
   }
 
@@ -225,14 +151,14 @@ public class WorkflowStep {
       return false;
     }
     WorkflowStep workflowStep = (WorkflowStep) o;
-    return Objects.equals(this.id, workflowStep.id) && Objects.equals(this.type, workflowStep.type)
+    return Objects.equals(this.id, workflowStep.id)
         && Objects.equals(this.action, workflowStep.action)
         && Objects.equals(this.queue, workflowStep.queue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, action, queue);
+    return Objects.hash(id, action, queue);
   }
 
   @Override
@@ -240,7 +166,6 @@ public class WorkflowStep {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowStep {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("}");
@@ -265,14 +190,11 @@ public class WorkflowStep {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
-    openapiFields.add("type");
     openapiFields.add("action");
     openapiFields.add("queue");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("type");
   }
 
   /**
@@ -300,33 +222,20 @@ public class WorkflowStep {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : WorkflowStep.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+        && !jsonObj.get("id").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("id").toString()));
     }
-    if (!jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
-    }
     // validate the optional field `action`
     if (jsonObj.get("action") != null && !jsonObj.get("action").isJsonNull()) {
-      AddAction.validateJsonElement(jsonObj.get("action"));
+      DocumentAction.validateJsonElement(jsonObj.get("action"));
     }
     // validate the optional field `queue`
     if (jsonObj.get("queue") != null && !jsonObj.get("queue").isJsonNull()) {
-      AddQueue.validateJsonElement(jsonObj.get("queue"));
+      WorkflowQueue.validateJsonElement(jsonObj.get("queue"));
     }
   }
 

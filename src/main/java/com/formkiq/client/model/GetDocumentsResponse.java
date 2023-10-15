@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentItemResult;
+import com.formkiq.client.model.Document;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -72,7 +72,7 @@ public class GetDocumentsResponse {
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
-  private List<DocumentItemResult> documents;
+  private List<Document> documents;
 
   public GetDocumentsResponse() {}
 
@@ -120,13 +120,13 @@ public class GetDocumentsResponse {
   }
 
 
-  public GetDocumentsResponse documents(List<DocumentItemResult> documents) {
+  public GetDocumentsResponse documents(List<Document> documents) {
 
     this.documents = documents;
     return this;
   }
 
-  public GetDocumentsResponse addDocumentsItem(DocumentItemResult documentsItem) {
+  public GetDocumentsResponse addDocumentsItem(Document documentsItem) {
     if (this.documents == null) {
       this.documents = new ArrayList<>();
     }
@@ -140,12 +140,12 @@ public class GetDocumentsResponse {
    * @return documents
    **/
   @javax.annotation.Nullable
-  public List<DocumentItemResult> getDocuments() {
+  public List<Document> getDocuments() {
     return documents;
   }
 
 
-  public void setDocuments(List<DocumentItemResult> documents) {
+  public void setDocuments(List<Document> documents) {
     this.documents = documents;
   }
 
@@ -256,7 +256,7 @@ public class GetDocumentsResponse {
 
         // validate the optional field `documents` (array)
         for (int i = 0; i < jsonArraydocuments.size(); i++) {
-          DocumentItemResult.validateJsonElement(jsonArraydocuments.get(i));
+          Document.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }

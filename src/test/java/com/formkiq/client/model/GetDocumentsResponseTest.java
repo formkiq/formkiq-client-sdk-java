@@ -20,7 +20,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentItemResult;
+import com.formkiq.client.model.Document;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

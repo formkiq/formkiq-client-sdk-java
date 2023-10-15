@@ -401,7 +401,7 @@ No authorization required
 
 <a id="updateConfiguration"></a>
 # **updateConfiguration**
-> SetConfigResponse updateConfiguration(setConfigRequest, siteId)
+> UpdateConfigurationResponse updateConfiguration(updateConfigurationRequest, siteId)
 
 Update site configuration
 
@@ -425,10 +425,10 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    SetConfigRequest setConfigRequest = new SetConfigRequest(); // SetConfigRequest | 
+    UpdateConfigurationRequest updateConfigurationRequest = new UpdateConfigurationRequest(); // UpdateConfigurationRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      SetConfigResponse result = apiInstance.updateConfiguration(setConfigRequest, siteId);
+      UpdateConfigurationResponse result = apiInstance.updateConfiguration(updateConfigurationRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#updateConfiguration");
@@ -445,12 +445,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **setConfigRequest** | [**SetConfigRequest**](SetConfigRequest.md)|  | |
+| **updateConfigurationRequest** | [**UpdateConfigurationRequest**](UpdateConfigurationRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
-[**SetConfigResponse**](SetConfigResponse.md)
+[**UpdateConfigurationResponse**](UpdateConfigurationResponse.md)
 
 ### Authorization
 

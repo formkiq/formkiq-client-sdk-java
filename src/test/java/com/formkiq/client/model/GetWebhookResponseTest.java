@@ -77,11 +77,11 @@ public class GetWebhookResponseTest {
   }
 
   /**
-   * Test the property 'id'
+   * Test the property 'webhookId'
    */
   @Test
-  public void idTest() {
-    // TODO: test id
+  public void webhookIdTest() {
+    // TODO: test webhookId
   }
 
   /**
@@ -90,6 +90,14 @@ public class GetWebhookResponseTest {
   @Test
   public void userIdTest() {
     // TODO: test userId
+  }
+
+  /**
+   * Test the property 'enabled'
+   */
+  @Test
+  public void enabledTest() {
+    // TODO: test enabled
   }
 
 }

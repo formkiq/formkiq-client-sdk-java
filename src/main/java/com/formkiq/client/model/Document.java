@@ -21,13 +21,16 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,11 +57,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentItemResult
+ * Document
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class DocumentItemResult {
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class Document {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
   private String siteId;
@@ -95,13 +98,29 @@ public class DocumentItemResult {
   @SerializedName(SERIALIZED_NAME_CONTENT_LENGTH)
   private Integer contentLength;
 
-  public static final String SERIALIZED_NAME_VERSION_ID = "versionId";
-  @SerializedName(SERIALIZED_NAME_VERSION_ID)
-  private String versionId;
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
 
-  public DocumentItemResult() {}
+  public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
+  @SerializedName(SERIALIZED_NAME_VERSION_KEY)
+  private String versionKey;
 
-  public DocumentItemResult siteId(String siteId) {
+  public static final String SERIALIZED_NAME_S3VERSION = "s3version";
+  @SerializedName(SERIALIZED_NAME_S3VERSION)
+  private String s3version;
+
+  public static final String SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID = "belongsToDocumentId";
+  @SerializedName(SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID)
+  private String belongsToDocumentId;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private List<DocumentMetadata> metadata;
+
+  public Document() {}
+
+  public Document siteId(String siteId) {
 
     this.siteId = siteId;
     return this;
@@ -123,7 +142,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult path(String path) {
+  public Document path(String path) {
 
     this.path = path;
     return this;
@@ -145,7 +164,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult insertedDate(String insertedDate) {
+  public Document insertedDate(String insertedDate) {
 
     this.insertedDate = insertedDate;
     return this;
@@ -167,7 +186,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult lastModifiedDate(String lastModifiedDate) {
+  public Document lastModifiedDate(String lastModifiedDate) {
 
     this.lastModifiedDate = lastModifiedDate;
     return this;
@@ -189,7 +208,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult checksum(String checksum) {
+  public Document checksum(String checksum) {
 
     this.checksum = checksum;
     return this;
@@ -211,7 +230,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult documentId(String documentId) {
+  public Document documentId(String documentId) {
 
     this.documentId = documentId;
     return this;
@@ -233,7 +252,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult contentType(String contentType) {
+  public Document contentType(String contentType) {
 
     this.contentType = contentType;
     return this;
@@ -255,7 +274,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult userId(String userId) {
+  public Document userId(String userId) {
 
     this.userId = userId;
     return this;
@@ -277,7 +296,7 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult contentLength(Integer contentLength) {
+  public Document contentLength(Integer contentLength) {
 
     this.contentLength = contentLength;
     return this;
@@ -299,25 +318,121 @@ public class DocumentItemResult {
   }
 
 
-  public DocumentItemResult versionId(String versionId) {
+  public Document version(String version) {
 
-    this.versionId = versionId;
+    this.version = version;
     return this;
   }
 
   /**
    * Document version
    * 
-   * @return versionId
+   * @return version
    **/
   @javax.annotation.Nullable
-  public String getVersionId() {
-    return versionId;
+  public String getVersion() {
+    return version;
   }
 
 
-  public void setVersionId(String versionId) {
-    this.versionId = versionId;
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+
+  public Document versionKey(String versionKey) {
+
+    this.versionKey = versionKey;
+    return this;
+  }
+
+  /**
+   * Document Version Identifier
+   * 
+   * @return versionKey
+   **/
+  @javax.annotation.Nullable
+  public String getVersionKey() {
+    return versionKey;
+  }
+
+
+  public void setVersionKey(String versionKey) {
+    this.versionKey = versionKey;
+  }
+
+
+  public Document s3version(String s3version) {
+
+    this.s3version = s3version;
+    return this;
+  }
+
+  /**
+   * Document storage version
+   * 
+   * @return s3version
+   **/
+  @javax.annotation.Nullable
+  public String getS3version() {
+    return s3version;
+  }
+
+
+  public void setS3version(String s3version) {
+    this.s3version = s3version;
+  }
+
+
+  public Document belongsToDocumentId(String belongsToDocumentId) {
+
+    this.belongsToDocumentId = belongsToDocumentId;
+    return this;
+  }
+
+  /**
+   * Parent Document Identifier
+   * 
+   * @return belongsToDocumentId
+   **/
+  @javax.annotation.Nullable
+  public String getBelongsToDocumentId() {
+    return belongsToDocumentId;
+  }
+
+
+  public void setBelongsToDocumentId(String belongsToDocumentId) {
+    this.belongsToDocumentId = belongsToDocumentId;
+  }
+
+
+  public Document metadata(List<DocumentMetadata> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Document addMetadataItem(DocumentMetadata metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new ArrayList<>();
+    }
+    this.metadata.add(metadataItem);
+    return this;
+  }
+
+  /**
+   * List of document Metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentMetadata> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(List<DocumentMetadata> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -330,29 +445,33 @@ public class DocumentItemResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentItemResult documentItemResult = (DocumentItemResult) o;
-    return Objects.equals(this.siteId, documentItemResult.siteId)
-        && Objects.equals(this.path, documentItemResult.path)
-        && Objects.equals(this.insertedDate, documentItemResult.insertedDate)
-        && Objects.equals(this.lastModifiedDate, documentItemResult.lastModifiedDate)
-        && Objects.equals(this.checksum, documentItemResult.checksum)
-        && Objects.equals(this.documentId, documentItemResult.documentId)
-        && Objects.equals(this.contentType, documentItemResult.contentType)
-        && Objects.equals(this.userId, documentItemResult.userId)
-        && Objects.equals(this.contentLength, documentItemResult.contentLength)
-        && Objects.equals(this.versionId, documentItemResult.versionId);
+    Document document = (Document) o;
+    return Objects.equals(this.siteId, document.siteId) && Objects.equals(this.path, document.path)
+        && Objects.equals(this.insertedDate, document.insertedDate)
+        && Objects.equals(this.lastModifiedDate, document.lastModifiedDate)
+        && Objects.equals(this.checksum, document.checksum)
+        && Objects.equals(this.documentId, document.documentId)
+        && Objects.equals(this.contentType, document.contentType)
+        && Objects.equals(this.userId, document.userId)
+        && Objects.equals(this.contentLength, document.contentLength)
+        && Objects.equals(this.version, document.version)
+        && Objects.equals(this.versionKey, document.versionKey)
+        && Objects.equals(this.s3version, document.s3version)
+        && Objects.equals(this.belongsToDocumentId, document.belongsToDocumentId)
+        && Objects.equals(this.metadata, document.metadata);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, insertedDate, lastModifiedDate, checksum, documentId,
-        contentType, userId, contentLength, versionId);
+        contentType, userId, contentLength, version, versionKey, s3version, belongsToDocumentId,
+        metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentItemResult {\n");
+    sb.append("class Document {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
@@ -362,7 +481,12 @@ public class DocumentItemResult {
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
-    sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
+    sb.append("    s3version: ").append(toIndentedString(s3version)).append("\n");
+    sb.append("    belongsToDocumentId: ").append(toIndentedString(belongsToDocumentId))
+        .append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -393,7 +517,11 @@ public class DocumentItemResult {
     openapiFields.add("contentType");
     openapiFields.add("userId");
     openapiFields.add("contentLength");
-    openapiFields.add("versionId");
+    openapiFields.add("version");
+    openapiFields.add("versionKey");
+    openapiFields.add("s3version");
+    openapiFields.add("belongsToDocumentId");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -403,24 +531,24 @@ public class DocumentItemResult {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentItemResult
+   * @throws IOException if the JSON Element is invalid with respect to Document
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentItemResult.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                 // element is null
+      if (!Document.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
+                                                       // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentItemResult is not found in the empty JSON string",
-            DocumentItemResult.openapiRequiredFields.toString()));
+            "The required field(s) %s in Document is not found in the empty JSON string",
+            Document.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentItemResult.openapiFields.contains(entry.getKey())) {
+      if (!Document.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentItemResult` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `Document` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -473,11 +601,46 @@ public class DocumentItemResult {
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }
-    if ((jsonObj.get("versionId") != null && !jsonObj.get("versionId").isJsonNull())
-        && !jsonObj.get("versionId").isJsonPrimitive()) {
+    if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull())
+        && !jsonObj.get("version").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `versionId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("versionId").toString()));
+          "Expected the field `version` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("version").toString()));
+    }
+    if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
+        && !jsonObj.get("versionKey").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `versionKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("versionKey").toString()));
+    }
+    if ((jsonObj.get("s3version") != null && !jsonObj.get("s3version").isJsonNull())
+        && !jsonObj.get("s3version").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `s3version` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("s3version").toString()));
+    }
+    if ((jsonObj.get("belongsToDocumentId") != null
+        && !jsonObj.get("belongsToDocumentId").isJsonNull())
+        && !jsonObj.get("belongsToDocumentId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `belongsToDocumentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("belongsToDocumentId").toString()));
+    }
+    if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
+      JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
+      if (jsonArraymetadata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("metadata").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `metadata` to be an array in the JSON string but got `%s`",
+              jsonObj.get("metadata").toString()));
+        }
+
+        // validate the optional field `metadata` (array)
+        for (int i = 0; i < jsonArraymetadata.size(); i++) {
+          DocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
+        } ;
+      }
     }
   }
 
@@ -485,22 +648,22 @@ public class DocumentItemResult {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentItemResult.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentItemResult' and its subtypes
+      if (!Document.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'Document' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentItemResult> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentItemResult.class));
+      final TypeAdapter<Document> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(Document.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentItemResult>() {
+      return (TypeAdapter<T>) new TypeAdapter<Document>() {
         @Override
-        public void write(JsonWriter out, DocumentItemResult value) throws IOException {
+        public void write(JsonWriter out, Document value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentItemResult read(JsonReader in) throws IOException {
+        public Document read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -511,18 +674,18 @@ public class DocumentItemResult {
   }
 
   /**
-   * Create an instance of DocumentItemResult given an JSON string
+   * Create an instance of Document given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentItemResult
-   * @throws IOException if the JSON string is invalid with respect to DocumentItemResult
+   * @return An instance of Document
+   * @throws IOException if the JSON string is invalid with respect to Document
    */
-  public static DocumentItemResult fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentItemResult.class);
+  public static Document fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Document.class);
   }
 
   /**
-   * Convert an instance of DocumentItemResult to an JSON string
+   * Convert an instance of Document to an JSON string
    *
    * @return JSON string
    */

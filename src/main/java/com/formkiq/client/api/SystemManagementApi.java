@@ -41,8 +41,8 @@ import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
-import com.formkiq.client.model.SetConfigRequest;
-import com.formkiq.client.model.SetConfigResponse;
+import com.formkiq.client.model.UpdateConfigurationRequest;
+import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -1129,7 +1129,7 @@ public class SystemManagementApi {
   /**
    * Build call for updateConfiguration
    * 
-   * @param setConfigRequest (required)
+   * @param updateConfigurationRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -1156,8 +1156,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigurationCall(SetConfigRequest setConfigRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateConfigurationCall(UpdateConfigurationRequest updateConfigurationRequest,
+      String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1171,7 +1171,7 @@ public class SystemManagementApi {
       basePath = null;
     }
 
-    Object localVarPostBody = setConfigRequest;
+    Object localVarPostBody = updateConfigurationRequest;
 
     // create path and map variables
     String localVarPath = "/configuration";
@@ -1206,24 +1206,25 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateConfigurationValidateBeforeCall(SetConfigRequest setConfigRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'setConfigRequest' is set
-    if (setConfigRequest == null) {
+  private okhttp3.Call updateConfigurationValidateBeforeCall(
+      UpdateConfigurationRequest updateConfigurationRequest, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'updateConfigurationRequest' is set
+    if (updateConfigurationRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'setConfigRequest' when calling updateConfiguration(Async)");
+          "Missing the required parameter 'updateConfigurationRequest' when calling updateConfiguration(Async)");
     }
 
-    return updateConfigurationCall(setConfigRequest, siteId, _callback);
+    return updateConfigurationCall(updateConfigurationRequest, siteId, _callback);
 
   }
 
   /**
    * Update site configuration Update the System Management configuration
    * 
-   * @param setConfigRequest (required)
+   * @param updateConfigurationRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return SetConfigResponse
+   * @return UpdateConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1248,19 +1249,19 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public SetConfigResponse updateConfiguration(SetConfigRequest setConfigRequest, String siteId)
-      throws ApiException {
-    ApiResponse<SetConfigResponse> localVarResp =
-        updateConfigurationWithHttpInfo(setConfigRequest, siteId);
+  public UpdateConfigurationResponse updateConfiguration(
+      UpdateConfigurationRequest updateConfigurationRequest, String siteId) throws ApiException {
+    ApiResponse<UpdateConfigurationResponse> localVarResp =
+        updateConfigurationWithHttpInfo(updateConfigurationRequest, siteId);
     return localVarResp.getData();
   }
 
   /**
    * Update site configuration Update the System Management configuration
    * 
-   * @param setConfigRequest (required)
+   * @param updateConfigurationRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;SetConfigResponse&gt;
+   * @return ApiResponse&lt;UpdateConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1285,18 +1286,18 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetConfigResponse> updateConfigurationWithHttpInfo(
-      SetConfigRequest setConfigRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateConfigurationResponse> updateConfigurationWithHttpInfo(
+      UpdateConfigurationRequest updateConfigurationRequest, String siteId) throws ApiException {
     okhttp3.Call localVarCall =
-        updateConfigurationValidateBeforeCall(setConfigRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<SetConfigResponse>() {}.getType();
+        updateConfigurationValidateBeforeCall(updateConfigurationRequest, siteId, null);
+    Type localVarReturnType = new TypeToken<UpdateConfigurationResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
    * Update site configuration (asynchronously) Update the System Management configuration
    * 
-   * @param setConfigRequest (required)
+   * @param updateConfigurationRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -1323,12 +1324,13 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigurationAsync(SetConfigRequest setConfigRequest, String siteId,
-      final ApiCallback<SetConfigResponse> _callback) throws ApiException {
+  public okhttp3.Call updateConfigurationAsync(
+      UpdateConfigurationRequest updateConfigurationRequest, String siteId,
+      final ApiCallback<UpdateConfigurationResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        updateConfigurationValidateBeforeCall(setConfigRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<SetConfigResponse>() {}.getType();
+        updateConfigurationValidateBeforeCall(updateConfigurationRequest, siteId, _callback);
+    Type localVarReturnType = new TypeToken<UpdateConfigurationResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

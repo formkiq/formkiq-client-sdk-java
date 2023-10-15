@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-09-20T17:40:08.427476-05:00[America/Winnipeg]
+  - Build date: 2023-10-14T22:24:24.582106-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -175,12 +175,13 @@ Class | Method | HTTP request | Description
 *DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | Get document&#39;s versions
 *DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | Set version of document
 *DocumentWorkflowsApi* | [**addDocumentWorkflow**](docs/DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflow/{workflowId} | Add document workflow
+*DocumentWorkflowsApi* | [**addDocumentWorkflowApproval**](docs/DocumentWorkflowsApi.md#addDocumentWorkflowApproval) | **POST** /documents/{documentId}/workflow/{workflowId}/approve/{queueName} | Approve document in approval queue
+*DocumentWorkflowsApi* | [**addDocumentWorkflowReject**](docs/DocumentWorkflowsApi.md#addDocumentWorkflowReject) | **POST** /documents/{documentId}/workflow/{workflowId}/reject/{queueName} | Reject document in approval queue
 *DocumentWorkflowsApi* | [**addWorkflow**](docs/DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow
 *DocumentWorkflowsApi* | [**deleteWorkflow**](docs/DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow
-*DocumentWorkflowsApi* | [**documentWorkflow**](docs/DocumentWorkflowsApi.md#documentWorkflow) | **GET** /documents/{documentId}/workflow/{workflowId} | Document search
 *DocumentWorkflowsApi* | [**getWorkflow**](docs/DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow
+*DocumentWorkflowsApi* | [**getWorkflowQueueDocuments**](docs/DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /workflows/queue/{queueName}/documents | Get list of documents in queue
 *DocumentWorkflowsApi* | [**getWorkflows**](docs/DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows
-*DocumentWorkflowsApi* | [**workflowQueueDocuments**](docs/DocumentWorkflowsApi.md#workflowQueueDocuments) | **GET** /workflows/queue/{queueName}/documents | Document search
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
@@ -244,7 +245,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
- - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
+ - [AddDocumentWorkflowApprovalResponse](docs/AddDocumentWorkflowApprovalResponse.md)
+ - [AddDocumentWorkflowRejectResponse](docs/AddDocumentWorkflowRejectResponse.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
@@ -257,8 +259,10 @@ Class | Method | HTTP request | Description
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
+ - [AddWebhookTagRequest](docs/AddWebhookTagRequest.md)
  - [AddWorkflowRequest](docs/AddWorkflowRequest.md)
  - [AddWorkflowResponse](docs/AddWorkflowResponse.md)
+ - [AddWorkflowStep](docs/AddWorkflowStep.md)
  - [ApiKey](docs/ApiKey.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
@@ -267,23 +271,22 @@ Class | Method | HTTP request | Description
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
  - [DeleteWorkflowResponse](docs/DeleteWorkflowResponse.md)
+ - [Document](docs/Document.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
  - [DocumentFulltextTag](docs/DocumentFulltextTag.md)
  - [DocumentId](docs/DocumentId.md)
- - [DocumentItemResult](docs/DocumentItemResult.md)
- - [DocumentItemVersion](docs/DocumentItemVersion.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)
  - [DocumentSearch](docs/DocumentSearch.md)
- - [DocumentSearchItemMeta](docs/DocumentSearchItemMeta.md)
- - [DocumentSearchItemTag](docs/DocumentSearchItemTag.md)
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
+ - [DocumentSearchMeta](docs/DocumentSearchMeta.md)
  - [DocumentSearchRequest](docs/DocumentSearchRequest.md)
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
- - [DocumentWorkflowResponse](docs/DocumentWorkflowResponse.md)
- - [DocumentWorkflowStep](docs/DocumentWorkflowStep.md)
+ - [DocumentSearchTag](docs/DocumentSearchTag.md)
+ - [DocumentTag](docs/DocumentTag.md)
+ - [DocumentVersion](docs/DocumentVersion.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [Error](docs/Error.md)
@@ -338,12 +341,9 @@ Class | Method | HTTP request | Description
  - [OnlyOfficeDocumentSaveResponse](docs/OnlyOfficeDocumentSaveResponse.md)
  - [OnlyOfficeEditorConfig](docs/OnlyOfficeEditorConfig.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
- - [QueueDocument](docs/QueueDocument.md)
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
- - [SetConfigRequest](docs/SetConfigRequest.md)
- - [SetConfigResponse](docs/SetConfigResponse.md)
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)
  - [SetDocumentFulltextResponse](docs/SetDocumentFulltextResponse.md)
  - [SetDocumentOcrRequest](docs/SetDocumentOcrRequest.md)
@@ -356,6 +356,8 @@ Class | Method | HTTP request | Description
  - [TagSchemaRequired](docs/TagSchemaRequired.md)
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
+ - [UpdateConfigurationRequest](docs/UpdateConfigurationRequest.md)
+ - [UpdateConfigurationResponse](docs/UpdateConfigurationResponse.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
@@ -367,6 +369,7 @@ Class | Method | HTTP request | Description
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
  - [WebhookTag](docs/WebhookTag.md)
  - [WorkflowConfig](docs/WorkflowConfig.md)
+ - [WorkflowQueue](docs/WorkflowQueue.md)
  - [WorkflowQueueDocumentsResponse](docs/WorkflowQueueDocumentsResponse.md)
  - [WorkflowStep](docs/WorkflowStep.md)
  - [WorkflowSummary](docs/WorkflowSummary.md)

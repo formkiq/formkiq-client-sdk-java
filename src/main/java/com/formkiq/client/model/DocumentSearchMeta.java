@@ -54,11 +54,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentSearchItemMeta
+ * DocumentSearchMeta
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class DocumentSearchItemMeta {
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_FOLDER = "folder";
   @SerializedName(SERIALIZED_NAME_FOLDER)
   private String folder;
@@ -121,9 +121,9 @@ public class DocumentSearchItemMeta {
   @SerializedName(SERIALIZED_NAME_INDEX_FILTER_BEGINS_WITH)
   private String indexFilterBeginsWith;
 
-  public DocumentSearchItemMeta() {}
+  public DocumentSearchMeta() {}
 
-  public DocumentSearchItemMeta folder(String folder) {
+  public DocumentSearchMeta folder(String folder) {
 
     this.folder = folder;
     return this;
@@ -145,7 +145,7 @@ public class DocumentSearchItemMeta {
   }
 
 
-  public DocumentSearchItemMeta path(String path) {
+  public DocumentSearchMeta path(String path) {
 
     this.path = path;
     return this;
@@ -167,7 +167,7 @@ public class DocumentSearchItemMeta {
   }
 
 
-  public DocumentSearchItemMeta indexType(IndexTypeEnum indexType) {
+  public DocumentSearchMeta indexType(IndexTypeEnum indexType) {
 
     this.indexType = indexType;
     return this;
@@ -189,7 +189,7 @@ public class DocumentSearchItemMeta {
   }
 
 
-  public DocumentSearchItemMeta indexFilterBeginsWith(String indexFilterBeginsWith) {
+  public DocumentSearchMeta indexFilterBeginsWith(String indexFilterBeginsWith) {
 
     this.indexFilterBeginsWith = indexFilterBeginsWith;
     return this;
@@ -220,11 +220,11 @@ public class DocumentSearchItemMeta {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentSearchItemMeta documentSearchItemMeta = (DocumentSearchItemMeta) o;
-    return Objects.equals(this.folder, documentSearchItemMeta.folder)
-        && Objects.equals(this.path, documentSearchItemMeta.path)
-        && Objects.equals(this.indexType, documentSearchItemMeta.indexType)
-        && Objects.equals(this.indexFilterBeginsWith, documentSearchItemMeta.indexFilterBeginsWith);
+    DocumentSearchMeta documentSearchMeta = (DocumentSearchMeta) o;
+    return Objects.equals(this.folder, documentSearchMeta.folder)
+        && Objects.equals(this.path, documentSearchMeta.path)
+        && Objects.equals(this.indexType, documentSearchMeta.indexType)
+        && Objects.equals(this.indexFilterBeginsWith, documentSearchMeta.indexFilterBeginsWith);
   }
 
   @Override
@@ -235,7 +235,7 @@ public class DocumentSearchItemMeta {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentSearchItemMeta {\n");
+    sb.append("class DocumentSearchMeta {\n");
     sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    indexType: ").append(toIndentedString(indexType)).append("\n");
@@ -275,24 +275,24 @@ public class DocumentSearchItemMeta {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentSearchItemMeta
+   * @throws IOException if the JSON Element is invalid with respect to DocumentSearchMeta
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentSearchItemMeta.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                     // element is null
+      if (!DocumentSearchMeta.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                 // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentSearchItemMeta is not found in the empty JSON string",
-            DocumentSearchItemMeta.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocumentSearchMeta is not found in the empty JSON string",
+            DocumentSearchMeta.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentSearchItemMeta.openapiFields.contains(entry.getKey())) {
+      if (!DocumentSearchMeta.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentSearchItemMeta` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocumentSearchMeta` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -328,22 +328,22 @@ public class DocumentSearchItemMeta {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentSearchItemMeta.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentSearchItemMeta' and its subtypes
+      if (!DocumentSearchMeta.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocumentSearchMeta' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentSearchItemMeta> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentSearchItemMeta.class));
+      final TypeAdapter<DocumentSearchMeta> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocumentSearchMeta.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentSearchItemMeta>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocumentSearchMeta>() {
         @Override
-        public void write(JsonWriter out, DocumentSearchItemMeta value) throws IOException {
+        public void write(JsonWriter out, DocumentSearchMeta value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentSearchItemMeta read(JsonReader in) throws IOException {
+        public DocumentSearchMeta read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -354,18 +354,18 @@ public class DocumentSearchItemMeta {
   }
 
   /**
-   * Create an instance of DocumentSearchItemMeta given an JSON string
+   * Create an instance of DocumentSearchMeta given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentSearchItemMeta
-   * @throws IOException if the JSON string is invalid with respect to DocumentSearchItemMeta
+   * @return An instance of DocumentSearchMeta
+   * @throws IOException if the JSON string is invalid with respect to DocumentSearchMeta
    */
-  public static DocumentSearchItemMeta fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentSearchItemMeta.class);
+  public static DocumentSearchMeta fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocumentSearchMeta.class);
   }
 
   /**
-   * Convert an instance of DocumentSearchItemMeta to an JSON string
+   * Convert an instance of DocumentSearchMeta to an JSON string
    *
    * @return JSON string
    */

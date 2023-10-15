@@ -57,11 +57,11 @@ import com.formkiq.client.invoker.JSON;
  * AddWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class AddWebhookResponse {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_WEBHOOK_ID = "webhookId";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_ID)
+  private String webhookId;
 
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -69,25 +69,25 @@ public class AddWebhookResponse {
 
   public AddWebhookResponse() {}
 
-  public AddWebhookResponse id(String id) {
+  public AddWebhookResponse webhookId(String webhookId) {
 
-    this.id = id;
+    this.webhookId = webhookId;
     return this;
   }
 
   /**
-   * Get id
+   * Get webhookId
    * 
-   * @return id
+   * @return webhookId
    **/
   @javax.annotation.Nullable
-  public String getId() {
-    return id;
+  public String getWebhookId() {
+    return webhookId;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setWebhookId(String webhookId) {
+    this.webhookId = webhookId;
   }
 
 
@@ -123,20 +123,20 @@ public class AddWebhookResponse {
       return false;
     }
     AddWebhookResponse addWebhookResponse = (AddWebhookResponse) o;
-    return Objects.equals(this.id, addWebhookResponse.id)
+    return Objects.equals(this.webhookId, addWebhookResponse.webhookId)
         && Objects.equals(this.siteId, addWebhookResponse.siteId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, siteId);
+    return Objects.hash(webhookId, siteId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddWebhookResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    webhookId: ").append(toIndentedString(webhookId)).append("\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -159,7 +159,7 @@ public class AddWebhookResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
+    openapiFields.add("webhookId");
     openapiFields.add("siteId");
 
     // a set of required properties/fields (JSON key names)
@@ -192,11 +192,11 @@ public class AddWebhookResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-        && !jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("webhookId") != null && !jsonObj.get("webhookId").isJsonNull())
+        && !jsonObj.get("webhookId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
+          "Expected the field `webhookId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("webhookId").toString()));
     }
     if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
         && !jsonObj.get("siteId").isJsonPrimitive()) {

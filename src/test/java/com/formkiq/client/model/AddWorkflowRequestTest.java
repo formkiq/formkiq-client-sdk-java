@@ -20,8 +20,8 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddWorkflowStep;
 import com.formkiq.client.model.WorkflowConfig;
-import com.formkiq.client.model.WorkflowStep;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

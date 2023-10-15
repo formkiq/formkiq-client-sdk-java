@@ -40,6 +40,7 @@
 |---- | -----|
 | METADATA | &quot;METADATA&quot; |
 | TAG | &quot;TAG&quot; |
+| CONTENT | &quot;CONTENT&quot; |
 
 
 

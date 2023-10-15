@@ -21,12 +21,12 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddDocumentWorkflowRequest;
+import com.formkiq.client.model.AddDocumentWorkflowApprovalResponse;
+import com.formkiq.client.model.AddDocumentWorkflowRejectResponse;
 import com.formkiq.client.model.AddDocumentWorkflowResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
 import com.formkiq.client.model.DeleteWorkflowResponse;
-import com.formkiq.client.model.DocumentWorkflowResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
@@ -50,7 +50,7 @@ public class DocumentWorkflowsApiTest {
   /**
    * Add document workflow
    *
-   * Creates a document workflow step status; ONLY available with FormKiQ Pro and Enterprise
+   * Creates a document workflow; ONLY available with FormKiQ Pro and Enterprise
    *
    * @throws ApiException if the Api call fails
    */
@@ -58,10 +58,44 @@ public class DocumentWorkflowsApiTest {
   public void addDocumentWorkflowTest() throws ApiException {
     String documentId = null;
     String workflowId = null;
-    AddDocumentWorkflowRequest addDocumentWorkflowRequest = null;
     String siteId = null;
-    AddDocumentWorkflowResponse response =
-        api.addDocumentWorkflow(documentId, workflowId, addDocumentWorkflowRequest, siteId);
+    AddDocumentWorkflowResponse response = api.addDocumentWorkflow(documentId, workflowId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Approve document in approval queue
+   *
+   * Approve document in approval queue; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentWorkflowApprovalTest() throws ApiException {
+    String documentId = null;
+    String workflowId = null;
+    String queueName = null;
+    String siteId = null;
+    AddDocumentWorkflowApprovalResponse response =
+        api.addDocumentWorkflowApproval(documentId, workflowId, queueName, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Reject document in approval queue
+   *
+   * Reject document in approval queue; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentWorkflowRejectTest() throws ApiException {
+    String documentId = null;
+    String workflowId = null;
+    String queueName = null;
+    String siteId = null;
+    AddDocumentWorkflowRejectResponse response =
+        api.addDocumentWorkflowReject(documentId, workflowId, queueName, siteId);
     // TODO: test validations
   }
 
@@ -96,22 +130,6 @@ public class DocumentWorkflowsApiTest {
   }
 
   /**
-   * Document search
-   *
-   * Get document workflow status; ONLY available with FormKiQ Pro and Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void documentWorkflowTest() throws ApiException {
-    String documentId = null;
-    String workflowId = null;
-    String siteId = null;
-    DocumentWorkflowResponse response = api.documentWorkflow(documentId, workflowId, siteId);
-    // TODO: test validations
-  }
-
-  /**
    * Get workflow
    *
    * Get a workflow; ONLY available with FormKiQ Enterprise
@@ -123,6 +141,24 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     String siteId = null;
     GetWorkflowResponse response = api.getWorkflow(workflowId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get list of documents in queue
+   *
+   * List documents in Workflow Queue; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getWorkflowQueueDocumentsTest() throws ApiException {
+    String queueName = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    WorkflowQueueDocumentsResponse response =
+        api.getWorkflowQueueDocuments(queueName, siteId, limit, next);
     // TODO: test validations
   }
 
@@ -139,24 +175,6 @@ public class DocumentWorkflowsApiTest {
     String next = null;
     String limit = null;
     GetWorkflowsResponse response = api.getWorkflows(siteId, next, limit);
-    // TODO: test validations
-  }
-
-  /**
-   * Document search
-   *
-   * List documents in Workflow Queue; ONLY available with FormKiQ Pro and Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void workflowQueueDocumentsTest() throws ApiException {
-    String queueName = null;
-    String siteId = null;
-    String limit = null;
-    String next = null;
-    WorkflowQueueDocumentsResponse response =
-        api.workflowQueueDocuments(queueName, siteId, limit, next);
     // TODO: test validations
   }
 

@@ -100,4 +100,12 @@ public class GetDocumentOcrResponseTest {
     // TODO: test documentId
   }
 
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
 }

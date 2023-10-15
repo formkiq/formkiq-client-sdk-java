@@ -36,8 +36,8 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddWebhookRequest;
 import com.formkiq.client.model.AddWebhookResponse;
+import com.formkiq.client.model.AddWebhookTagRequest;
 import com.formkiq.client.model.DocumentId;
-import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetWebhookResponse;
 import com.formkiq.client.model.GetWebhookTagsResponse;
 import com.formkiq.client.model.GetWebhooksResponse;
@@ -479,7 +479,7 @@ public class WebhooksApi {
    * Build call for addWebhookTag
    * 
    * @param webhookId Web Hook Param (required)
-   * @param getDocumentTagResponse (required)
+   * @param addWebhookTagRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -501,9 +501,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookTagCall(String webhookId,
-      GetDocumentTagResponse getDocumentTagResponse, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call addWebhookTagCall(String webhookId, AddWebhookTagRequest addWebhookTagRequest,
+      String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -517,7 +516,7 @@ public class WebhooksApi {
       basePath = null;
     }
 
-    Object localVarPostBody = getDocumentTagResponse;
+    Object localVarPostBody = addWebhookTagRequest;
 
     // create path and map variables
     String localVarPath = "/webhooks/{webhookId}/tags".replace("{" + "webhookId" + "}",
@@ -554,7 +553,7 @@ public class WebhooksApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addWebhookTagValidateBeforeCall(String webhookId,
-      GetDocumentTagResponse getDocumentTagResponse, String siteId, final ApiCallback _callback)
+      AddWebhookTagRequest addWebhookTagRequest, String siteId, final ApiCallback _callback)
       throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
@@ -562,13 +561,13 @@ public class WebhooksApi {
           "Missing the required parameter 'webhookId' when calling addWebhookTag(Async)");
     }
 
-    // verify the required parameter 'getDocumentTagResponse' is set
-    if (getDocumentTagResponse == null) {
+    // verify the required parameter 'addWebhookTagRequest' is set
+    if (addWebhookTagRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'getDocumentTagResponse' when calling addWebhookTag(Async)");
+          "Missing the required parameter 'addWebhookTagRequest' when calling addWebhookTag(Async)");
     }
 
-    return addWebhookTagCall(webhookId, getDocumentTagResponse, siteId, _callback);
+    return addWebhookTagCall(webhookId, addWebhookTagRequest, siteId, _callback);
 
   }
 
@@ -576,7 +575,7 @@ public class WebhooksApi {
    * Add webhook tag Add a tag to a webhook
    * 
    * @param webhookId Web Hook Param (required)
-   * @param getDocumentTagResponse (required)
+   * @param addWebhookTagRequest (required)
    * @param siteId Site Identifier (optional)
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -597,16 +596,16 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public void addWebhookTag(String webhookId, GetDocumentTagResponse getDocumentTagResponse,
+  public void addWebhookTag(String webhookId, AddWebhookTagRequest addWebhookTagRequest,
       String siteId) throws ApiException {
-    addWebhookTagWithHttpInfo(webhookId, getDocumentTagResponse, siteId);
+    addWebhookTagWithHttpInfo(webhookId, addWebhookTagRequest, siteId);
   }
 
   /**
    * Add webhook tag Add a tag to a webhook
    * 
    * @param webhookId Web Hook Param (required)
-   * @param getDocumentTagResponse (required)
+   * @param addWebhookTagRequest (required)
    * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -629,9 +628,9 @@ public class WebhooksApi {
    *                        </table>
    */
   public ApiResponse<Void> addWebhookTagWithHttpInfo(String webhookId,
-      GetDocumentTagResponse getDocumentTagResponse, String siteId) throws ApiException {
+      AddWebhookTagRequest addWebhookTagRequest, String siteId) throws ApiException {
     okhttp3.Call localVarCall =
-        addWebhookTagValidateBeforeCall(webhookId, getDocumentTagResponse, siteId, null);
+        addWebhookTagValidateBeforeCall(webhookId, addWebhookTagRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
   }
 
@@ -639,7 +638,7 @@ public class WebhooksApi {
    * Add webhook tag (asynchronously) Add a tag to a webhook
    * 
    * @param webhookId Web Hook Param (required)
-   * @param getDocumentTagResponse (required)
+   * @param addWebhookTagRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -662,11 +661,11 @@ public class WebhooksApi {
    *                        </table>
    */
   public okhttp3.Call addWebhookTagAsync(String webhookId,
-      GetDocumentTagResponse getDocumentTagResponse, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+      AddWebhookTagRequest addWebhookTagRequest, String siteId, final ApiCallback<Void> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        addWebhookTagValidateBeforeCall(webhookId, getDocumentTagResponse, siteId, _callback);
+        addWebhookTagValidateBeforeCall(webhookId, addWebhookTagRequest, siteId, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }

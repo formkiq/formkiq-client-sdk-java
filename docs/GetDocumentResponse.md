@@ -18,6 +18,8 @@
 |**contentLength** | **Integer** | Document size |  [optional] |
 |**versionId** | **String** | Document version |  [optional] |
 |**documents** | [**List&lt;ChildDocument&gt;**](ChildDocument.md) | List of child documents |  [optional] |
+|**belongsToDocumentId** | **String** | Parent Document Identifier |  [optional] |
+|**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 
 
 

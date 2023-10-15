@@ -152,7 +152,7 @@ No authorization required
 
 <a id="addWebhookTag"></a>
 # **addWebhookTag**
-> addWebhookTag(webhookId, getDocumentTagResponse, siteId)
+> addWebhookTag(webhookId, addWebhookTagRequest, siteId)
 
 Add webhook tag
 
@@ -177,10 +177,10 @@ public class Example {
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String webhookId = "webhookId_example"; // String | Web Hook Param
-    GetDocumentTagResponse getDocumentTagResponse = new GetDocumentTagResponse(); // GetDocumentTagResponse | 
+    AddWebhookTagRequest addWebhookTagRequest = new AddWebhookTagRequest(); // AddWebhookTagRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.addWebhookTag(webhookId, getDocumentTagResponse, siteId);
+      apiInstance.addWebhookTag(webhookId, addWebhookTagRequest, siteId);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhooksApi#addWebhookTag");
       System.err.println("Status code: " + e.getCode());
@@ -197,7 +197,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookId** | **String**| Web Hook Param | |
-| **getDocumentTagResponse** | [**GetDocumentTagResponse**](GetDocumentTagResponse.md)|  | |
+| **addWebhookTagRequest** | [**AddWebhookTagRequest**](AddWebhookTagRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type

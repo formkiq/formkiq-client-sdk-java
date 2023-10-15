@@ -54,18 +54,18 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * SetConfigResponse
+ * UpdateConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class SetConfigResponse {
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class UpdateConfigurationResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public SetConfigResponse() {}
+  public UpdateConfigurationResponse() {}
 
-  public SetConfigResponse message(String message) {
+  public UpdateConfigurationResponse message(String message) {
 
     this.message = message;
     return this;
@@ -96,8 +96,8 @@ public class SetConfigResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SetConfigResponse setConfigResponse = (SetConfigResponse) o;
-    return Objects.equals(this.message, setConfigResponse.message);
+    UpdateConfigurationResponse updateConfigurationResponse = (UpdateConfigurationResponse) o;
+    return Objects.equals(this.message, updateConfigurationResponse.message);
   }
 
   @Override
@@ -108,7 +108,7 @@ public class SetConfigResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SetConfigResponse {\n");
+    sb.append("class UpdateConfigurationResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -141,24 +141,24 @@ public class SetConfigResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SetConfigResponse
+   * @throws IOException if the JSON Element is invalid with respect to UpdateConfigurationResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!SetConfigResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                // element is null
+      if (!UpdateConfigurationResponse.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                          // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in SetConfigResponse is not found in the empty JSON string",
-            SetConfigResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in UpdateConfigurationResponse is not found in the empty JSON string",
+            UpdateConfigurationResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!SetConfigResponse.openapiFields.contains(entry.getKey())) {
+      if (!UpdateConfigurationResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `SetConfigResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `UpdateConfigurationResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -175,22 +175,22 @@ public class SetConfigResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!SetConfigResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'SetConfigResponse' and its subtypes
+      if (!UpdateConfigurationResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'UpdateConfigurationResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<SetConfigResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(SetConfigResponse.class));
+      final TypeAdapter<UpdateConfigurationResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(UpdateConfigurationResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<SetConfigResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<UpdateConfigurationResponse>() {
         @Override
-        public void write(JsonWriter out, SetConfigResponse value) throws IOException {
+        public void write(JsonWriter out, UpdateConfigurationResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public SetConfigResponse read(JsonReader in) throws IOException {
+        public UpdateConfigurationResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -201,18 +201,18 @@ public class SetConfigResponse {
   }
 
   /**
-   * Create an instance of SetConfigResponse given an JSON string
+   * Create an instance of UpdateConfigurationResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SetConfigResponse
-   * @throws IOException if the JSON string is invalid with respect to SetConfigResponse
+   * @return An instance of UpdateConfigurationResponse
+   * @throws IOException if the JSON string is invalid with respect to UpdateConfigurationResponse
    */
-  public static SetConfigResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SetConfigResponse.class);
+  public static UpdateConfigurationResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateConfigurationResponse.class);
   }
 
   /**
-   * Convert an instance of SetConfigResponse to an JSON string
+   * Convert an instance of UpdateConfigurationResponse to an JSON string
    *
    * @return JSON string
    */

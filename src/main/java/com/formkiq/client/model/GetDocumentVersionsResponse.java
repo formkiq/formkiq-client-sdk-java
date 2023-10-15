@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentItemVersion;
+import com.formkiq.client.model.DocumentVersion;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,15 +60,15 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentVersionsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentVersionsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
   private String next;
 
-  public static final String SERIALIZED_NAME_VERSIONS = "versions";
-  @SerializedName(SERIALIZED_NAME_VERSIONS)
-  private List<DocumentItemVersion> versions;
+  public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
+  @SerializedName(SERIALIZED_NAME_DOCUMENTS)
+  private List<DocumentVersion> documents;
 
   public GetDocumentVersionsResponse() {}
 
@@ -94,33 +94,33 @@ public class GetDocumentVersionsResponse {
   }
 
 
-  public GetDocumentVersionsResponse versions(List<DocumentItemVersion> versions) {
+  public GetDocumentVersionsResponse documents(List<DocumentVersion> documents) {
 
-    this.versions = versions;
+    this.documents = documents;
     return this;
   }
 
-  public GetDocumentVersionsResponse addVersionsItem(DocumentItemVersion versionsItem) {
-    if (this.versions == null) {
-      this.versions = new ArrayList<>();
+  public GetDocumentVersionsResponse addDocumentsItem(DocumentVersion documentsItem) {
+    if (this.documents == null) {
+      this.documents = new ArrayList<>();
     }
-    this.versions.add(versionsItem);
+    this.documents.add(documentsItem);
     return this;
   }
 
   /**
    * List of document versions
    * 
-   * @return versions
+   * @return documents
    **/
   @javax.annotation.Nullable
-  public List<DocumentItemVersion> getVersions() {
-    return versions;
+  public List<DocumentVersion> getDocuments() {
+    return documents;
   }
 
 
-  public void setVersions(List<DocumentItemVersion> versions) {
-    this.versions = versions;
+  public void setDocuments(List<DocumentVersion> documents) {
+    this.documents = documents;
   }
 
 
@@ -135,12 +135,12 @@ public class GetDocumentVersionsResponse {
     }
     GetDocumentVersionsResponse getDocumentVersionsResponse = (GetDocumentVersionsResponse) o;
     return Objects.equals(this.next, getDocumentVersionsResponse.next)
-        && Objects.equals(this.versions, getDocumentVersionsResponse.versions);
+        && Objects.equals(this.documents, getDocumentVersionsResponse.documents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(next, versions);
+    return Objects.hash(next, documents);
   }
 
   @Override
@@ -148,7 +148,7 @@ public class GetDocumentVersionsResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentVersionsResponse {\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
-    sb.append("    versions: ").append(toIndentedString(versions)).append("\n");
+    sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,7 +171,7 @@ public class GetDocumentVersionsResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("next");
-    openapiFields.add("versions");
+    openapiFields.add("documents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -209,19 +209,19 @@ public class GetDocumentVersionsResponse {
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
-    if (jsonObj.get("versions") != null && !jsonObj.get("versions").isJsonNull()) {
-      JsonArray jsonArrayversions = jsonObj.getAsJsonArray("versions");
-      if (jsonArrayversions != null) {
+    if (jsonObj.get("documents") != null && !jsonObj.get("documents").isJsonNull()) {
+      JsonArray jsonArraydocuments = jsonObj.getAsJsonArray("documents");
+      if (jsonArraydocuments != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("versions").isJsonArray()) {
+        if (!jsonObj.get("documents").isJsonArray()) {
           throw new IllegalArgumentException(String.format(
-              "Expected the field `versions` to be an array in the JSON string but got `%s`",
-              jsonObj.get("versions").toString()));
+              "Expected the field `documents` to be an array in the JSON string but got `%s`",
+              jsonObj.get("documents").toString()));
         }
 
-        // validate the optional field `versions` (array)
-        for (int i = 0; i < jsonArrayversions.size(); i++) {
-          DocumentItemVersion.validateJsonElement(jsonArrayversions.get(i));
+        // validate the optional field `documents` (array)
+        for (int i = 0; i < jsonArraydocuments.size(); i++) {
+          DocumentVersion.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }

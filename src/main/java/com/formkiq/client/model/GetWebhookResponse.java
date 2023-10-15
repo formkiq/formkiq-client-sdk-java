@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetWebhookResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -75,13 +75,17 @@ public class GetWebhookResponse {
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_WEBHOOK_ID = "webhookId";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_ID)
+  private String webhookId;
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_ENABLED = "enabled";
+  @SerializedName(SERIALIZED_NAME_ENABLED)
+  private String enabled;
 
   public GetWebhookResponse() {}
 
@@ -173,25 +177,25 @@ public class GetWebhookResponse {
   }
 
 
-  public GetWebhookResponse id(String id) {
+  public GetWebhookResponse webhookId(String webhookId) {
 
-    this.id = id;
+    this.webhookId = webhookId;
     return this;
   }
 
   /**
    * Webhook Identifier
    * 
-   * @return id
+   * @return webhookId
    **/
   @javax.annotation.Nullable
-  public String getId() {
-    return id;
+  public String getWebhookId() {
+    return webhookId;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setWebhookId(String webhookId) {
+    this.webhookId = webhookId;
   }
 
 
@@ -217,6 +221,28 @@ public class GetWebhookResponse {
   }
 
 
+  public GetWebhookResponse enabled(String enabled) {
+
+    this.enabled = enabled;
+    return this;
+  }
+
+  /**
+   * Is webhook enabled
+   * 
+   * @return enabled
+   **/
+  @javax.annotation.Nullable
+  public String getEnabled() {
+    return enabled;
+  }
+
+
+  public void setEnabled(String enabled) {
+    this.enabled = enabled;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -231,13 +257,14 @@ public class GetWebhookResponse {
         && Objects.equals(this.name, getWebhookResponse.name)
         && Objects.equals(this.url, getWebhookResponse.url)
         && Objects.equals(this.insertedDate, getWebhookResponse.insertedDate)
-        && Objects.equals(this.id, getWebhookResponse.id)
-        && Objects.equals(this.userId, getWebhookResponse.userId);
+        && Objects.equals(this.webhookId, getWebhookResponse.webhookId)
+        && Objects.equals(this.userId, getWebhookResponse.userId)
+        && Objects.equals(this.enabled, getWebhookResponse.enabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, name, url, insertedDate, id, userId);
+    return Objects.hash(siteId, name, url, insertedDate, webhookId, userId, enabled);
   }
 
   @Override
@@ -248,8 +275,9 @@ public class GetWebhookResponse {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    webhookId: ").append(toIndentedString(webhookId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -275,8 +303,9 @@ public class GetWebhookResponse {
     openapiFields.add("name");
     openapiFields.add("url");
     openapiFields.add("insertedDate");
-    openapiFields.add("id");
+    openapiFields.add("webhookId");
     openapiFields.add("userId");
+    openapiFields.add("enabled");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -332,17 +361,23 @@ public class GetWebhookResponse {
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
-    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-        && !jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("webhookId") != null && !jsonObj.get("webhookId").isJsonNull())
+        && !jsonObj.get("webhookId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
+          "Expected the field `webhookId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("webhookId").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
+    }
+    if ((jsonObj.get("enabled") != null && !jsonObj.get("enabled").isJsonNull())
+        && !jsonObj.get("enabled").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `enabled` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("enabled").toString()));
     }
   }
 

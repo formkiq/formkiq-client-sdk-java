@@ -140,4 +140,12 @@ public class AddActionParametersTest {
     // TODO: test tags
   }
 
+  /**
+   * Test the property 'queueName'
+   */
+  @Test
+  public void queueNameTest() {
+    // TODO: test queueName
+  }
+
 }

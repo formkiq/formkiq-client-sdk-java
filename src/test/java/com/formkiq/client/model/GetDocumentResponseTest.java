@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.ChildDocument;
+import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -133,6 +134,22 @@ public class GetDocumentResponseTest {
   @Test
   public void documentsTest() {
     // TODO: test documents
+  }
+
+  /**
+   * Test the property 'belongsToDocumentId'
+   */
+  @Test
+  public void belongsToDocumentIdTest() {
+    // TODO: test belongsToDocumentId
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
 }

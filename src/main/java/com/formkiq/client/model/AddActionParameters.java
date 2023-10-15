@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -199,6 +199,10 @@ public class AddActionParameters {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private String tags;
+
+  public static final String SERIALIZED_NAME_QUEUE_NAME = "queueName";
+  @SerializedName(SERIALIZED_NAME_QUEUE_NAME)
+  private String queueName;
 
   public AddActionParameters() {}
 
@@ -467,6 +471,28 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters queueName(String queueName) {
+
+    this.queueName = queueName;
+    return this;
+  }
+
+  /**
+   * Name of Queue action
+   * 
+   * @return queueName
+   **/
+  @javax.annotation.Nullable
+  public String getQueueName() {
+    return queueName;
+  }
+
+
+  public void setQueueName(String queueName) {
+    this.queueName = queueName;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -489,14 +515,15 @@ public class AddActionParameters {
         && Objects.equals(this.notificationSubject, addActionParameters.notificationSubject)
         && Objects.equals(this.notificationText, addActionParameters.notificationText)
         && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
-        && Objects.equals(this.tags, addActionParameters.tags);
+        && Objects.equals(this.tags, addActionParameters.tags)
+        && Objects.equals(this.queueName, addActionParameters.queueName);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(ocrParseTypes, addPdfDetectedCharactersAsText, url, characterMax, engine,
         notificationType, notificationToCc, notificationToBcc, notificationSubject,
-        notificationText, notificationHtml, tags);
+        notificationText, notificationHtml, tags, queueName);
   }
 
   @Override
@@ -517,6 +544,7 @@ public class AddActionParameters {
     sb.append("    notificationText: ").append(toIndentedString(notificationText)).append("\n");
     sb.append("    notificationHtml: ").append(toIndentedString(notificationHtml)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -550,6 +578,7 @@ public class AddActionParameters {
     openapiFields.add("notificationText");
     openapiFields.add("notificationHtml");
     openapiFields.add("tags");
+    openapiFields.add("queueName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -647,6 +676,12 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `tags` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("tags").toString()));
+    }
+    if ((jsonObj.get("queueName") != null && !jsonObj.get("queueName").isJsonNull())
+        && !jsonObj.get("queueName").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `queueName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueName").toString()));
     }
   }
 

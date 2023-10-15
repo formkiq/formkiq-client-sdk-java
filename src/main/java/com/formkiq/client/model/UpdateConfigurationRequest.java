@@ -54,11 +54,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * SetConfigRequest
+ * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class SetConfigRequest {
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
   private String chatGptApiKey;
@@ -79,9 +79,9 @@ public class SetConfigRequest {
   @SerializedName(SERIALIZED_NAME_NOTIFICATION_EMAIL)
   private String notificationEmail;
 
-  public SetConfigRequest() {}
+  public UpdateConfigurationRequest() {}
 
-  public SetConfigRequest chatGptApiKey(String chatGptApiKey) {
+  public UpdateConfigurationRequest chatGptApiKey(String chatGptApiKey) {
 
     this.chatGptApiKey = chatGptApiKey;
     return this;
@@ -103,7 +103,7 @@ public class SetConfigRequest {
   }
 
 
-  public SetConfigRequest maxContentLengthBytes(String maxContentLengthBytes) {
+  public UpdateConfigurationRequest maxContentLengthBytes(String maxContentLengthBytes) {
 
     this.maxContentLengthBytes = maxContentLengthBytes;
     return this;
@@ -125,7 +125,7 @@ public class SetConfigRequest {
   }
 
 
-  public SetConfigRequest maxDocuments(String maxDocuments) {
+  public UpdateConfigurationRequest maxDocuments(String maxDocuments) {
 
     this.maxDocuments = maxDocuments;
     return this;
@@ -147,7 +147,7 @@ public class SetConfigRequest {
   }
 
 
-  public SetConfigRequest maxWebhooks(String maxWebhooks) {
+  public UpdateConfigurationRequest maxWebhooks(String maxWebhooks) {
 
     this.maxWebhooks = maxWebhooks;
     return this;
@@ -169,7 +169,7 @@ public class SetConfigRequest {
   }
 
 
-  public SetConfigRequest notificationEmail(String notificationEmail) {
+  public UpdateConfigurationRequest notificationEmail(String notificationEmail) {
 
     this.notificationEmail = notificationEmail;
     return this;
@@ -200,12 +200,13 @@ public class SetConfigRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SetConfigRequest setConfigRequest = (SetConfigRequest) o;
-    return Objects.equals(this.chatGptApiKey, setConfigRequest.chatGptApiKey)
-        && Objects.equals(this.maxContentLengthBytes, setConfigRequest.maxContentLengthBytes)
-        && Objects.equals(this.maxDocuments, setConfigRequest.maxDocuments)
-        && Objects.equals(this.maxWebhooks, setConfigRequest.maxWebhooks)
-        && Objects.equals(this.notificationEmail, setConfigRequest.notificationEmail);
+    UpdateConfigurationRequest updateConfigurationRequest = (UpdateConfigurationRequest) o;
+    return Objects.equals(this.chatGptApiKey, updateConfigurationRequest.chatGptApiKey)
+        && Objects.equals(this.maxContentLengthBytes,
+            updateConfigurationRequest.maxContentLengthBytes)
+        && Objects.equals(this.maxDocuments, updateConfigurationRequest.maxDocuments)
+        && Objects.equals(this.maxWebhooks, updateConfigurationRequest.maxWebhooks)
+        && Objects.equals(this.notificationEmail, updateConfigurationRequest.notificationEmail);
   }
 
   @Override
@@ -217,7 +218,7 @@ public class SetConfigRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SetConfigRequest {\n");
+    sb.append("class UpdateConfigurationRequest {\n");
     sb.append("    chatGptApiKey: ").append(toIndentedString(chatGptApiKey)).append("\n");
     sb.append("    maxContentLengthBytes: ").append(toIndentedString(maxContentLengthBytes))
         .append("\n");
@@ -259,24 +260,24 @@ public class SetConfigRequest {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SetConfigRequest
+   * @throws IOException if the JSON Element is invalid with respect to UpdateConfigurationRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!SetConfigRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                               // element is null
+      if (!UpdateConfigurationRequest.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                         // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in SetConfigRequest is not found in the empty JSON string",
-            SetConfigRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in UpdateConfigurationRequest is not found in the empty JSON string",
+            UpdateConfigurationRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!SetConfigRequest.openapiFields.contains(entry.getKey())) {
+      if (!UpdateConfigurationRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `SetConfigRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `UpdateConfigurationRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -318,22 +319,22 @@ public class SetConfigRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!SetConfigRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'SetConfigRequest' and its subtypes
+      if (!UpdateConfigurationRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'UpdateConfigurationRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<SetConfigRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(SetConfigRequest.class));
+      final TypeAdapter<UpdateConfigurationRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(UpdateConfigurationRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<SetConfigRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<UpdateConfigurationRequest>() {
         @Override
-        public void write(JsonWriter out, SetConfigRequest value) throws IOException {
+        public void write(JsonWriter out, UpdateConfigurationRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public SetConfigRequest read(JsonReader in) throws IOException {
+        public UpdateConfigurationRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -344,18 +345,18 @@ public class SetConfigRequest {
   }
 
   /**
-   * Create an instance of SetConfigRequest given an JSON string
+   * Create an instance of UpdateConfigurationRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SetConfigRequest
-   * @throws IOException if the JSON string is invalid with respect to SetConfigRequest
+   * @return An instance of UpdateConfigurationRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdateConfigurationRequest
    */
-  public static SetConfigRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SetConfigRequest.class);
+  public static UpdateConfigurationRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateConfigurationRequest.class);
   }
 
   /**
-   * Convert an instance of SetConfigRequest to an JSON string
+   * Convert an instance of UpdateConfigurationRequest to an JSON string
    *
    * @return JSON string
    */

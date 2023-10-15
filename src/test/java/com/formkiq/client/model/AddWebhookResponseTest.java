@@ -45,11 +45,11 @@ public class AddWebhookResponseTest {
   }
 
   /**
-   * Test the property 'id'
+   * Test the property 'webhookId'
    */
   @Test
-  public void idTest() {
-    // TODO: test id
+  public void webhookIdTest() {
+    // TODO: test webhookId
   }
 
   /**

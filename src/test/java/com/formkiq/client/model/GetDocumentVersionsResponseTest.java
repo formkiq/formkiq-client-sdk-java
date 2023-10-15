@@ -20,7 +20,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentItemVersion;
+import com.formkiq.client.model.DocumentVersion;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,11 +56,11 @@ public class GetDocumentVersionsResponseTest {
   }
 
   /**
-   * Test the property 'versions'
+   * Test the property 'documents'
    */
   @Test
-  public void versionsTest() {
-    // TODO: test versions
+  public void documentsTest() {
+    // TODO: test documents
   }
 
 }

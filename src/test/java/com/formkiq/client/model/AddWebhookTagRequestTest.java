@@ -20,7 +20,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentWorkflowStep;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,25 +33,41 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentWorkflowResponse
+ * Model tests for AddWebhookTagRequest
  */
-public class DocumentWorkflowResponseTest {
-  private final DocumentWorkflowResponse model = new DocumentWorkflowResponse();
+public class AddWebhookTagRequestTest {
+  private final AddWebhookTagRequest model = new AddWebhookTagRequest();
 
   /**
-   * Model tests for DocumentWorkflowResponse
+   * Model tests for AddWebhookTagRequest
    */
   @Test
-  public void testDocumentWorkflowResponse() {
-    // TODO: test DocumentWorkflowResponse
+  public void testAddWebhookTagRequest() {
+    // TODO: test AddWebhookTagRequest
   }
 
   /**
-   * Test the property 'steps'
+   * Test the property 'value'
    */
   @Test
-  public void stepsTest() {
-    // TODO: test steps
+  public void valueTest() {
+    // TODO: test value
+  }
+
+  /**
+   * Test the property 'values'
+   */
+  @Test
+  public void valuesTest() {
+    // TODO: test values
+  }
+
+  /**
+   * Test the property 'key'
+   */
+  @Test
+  public void keyTest() {
+    // TODO: test key
   }
 
 }

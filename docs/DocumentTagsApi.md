@@ -17,7 +17,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentTags"></a>
 # **addDocumentTags**
-> addDocumentTags(documentId, addDocumentTagsRequest, siteId)
+> addDocumentTags(documentId, addDocumentTagsRequest, siteId, ws)
 
 Add tag to document
 
@@ -44,8 +44,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String ws = "ws_example"; // String | Whether to enable WebSocket real-time communication with the request
     try {
-      apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId, ws);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#addDocumentTags");
       System.err.println("Status code: " + e.getCode());
@@ -64,6 +65,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentTagsRequest** | [**AddDocumentTagsRequest**](AddDocumentTagsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **ws** | **String**| Whether to enable WebSocket real-time communication with the request | [optional] |
 
 ### Return type
 

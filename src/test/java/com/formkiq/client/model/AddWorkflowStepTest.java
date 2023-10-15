@@ -20,6 +20,8 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddAction;
+import com.formkiq.client.model.AddQueue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,49 +33,49 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentSearchItemMeta
+ * Model tests for AddWorkflowStep
  */
-public class DocumentSearchItemMetaTest {
-  private final DocumentSearchItemMeta model = new DocumentSearchItemMeta();
+public class AddWorkflowStepTest {
+  private final AddWorkflowStep model = new AddWorkflowStep();
 
   /**
-   * Model tests for DocumentSearchItemMeta
+   * Model tests for AddWorkflowStep
    */
   @Test
-  public void testDocumentSearchItemMeta() {
-    // TODO: test DocumentSearchItemMeta
+  public void testAddWorkflowStep() {
+    // TODO: test AddWorkflowStep
   }
 
   /**
-   * Test the property 'folder'
+   * Test the property 'id'
    */
   @Test
-  public void folderTest() {
-    // TODO: test folder
+  public void idTest() {
+    // TODO: test id
   }
 
   /**
-   * Test the property 'path'
+   * Test the property 'type'
    */
   @Test
-  public void pathTest() {
-    // TODO: test path
+  public void typeTest() {
+    // TODO: test type
   }
 
   /**
-   * Test the property 'indexType'
+   * Test the property 'action'
    */
   @Test
-  public void indexTypeTest() {
-    // TODO: test indexType
+  public void actionTest() {
+    // TODO: test action
   }
 
   /**
-   * Test the property 'indexFilterBeginsWith'
+   * Test the property 'queue'
    */
   @Test
-  public void indexFilterBeginsWithTest() {
-    // TODO: test indexFilterBeginsWith
+  public void queueTest() {
+    // TODO: test queue
   }
 
 }

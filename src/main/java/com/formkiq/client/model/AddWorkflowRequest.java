@@ -21,8 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AddWorkflowStep;
 import com.formkiq.client.model.WorkflowConfig;
-import com.formkiq.client.model.WorkflowStep;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class AddWorkflowRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -77,7 +77,7 @@ public class AddWorkflowRequest {
 
   public static final String SERIALIZED_NAME_STEPS = "steps";
   @SerializedName(SERIALIZED_NAME_STEPS)
-  private List<WorkflowStep> steps = new ArrayList<>();
+  private List<AddWorkflowStep> steps = new ArrayList<>();
 
   public AddWorkflowRequest() {}
 
@@ -147,13 +147,13 @@ public class AddWorkflowRequest {
   }
 
 
-  public AddWorkflowRequest steps(List<WorkflowStep> steps) {
+  public AddWorkflowRequest steps(List<AddWorkflowStep> steps) {
 
     this.steps = steps;
     return this;
   }
 
-  public AddWorkflowRequest addStepsItem(WorkflowStep stepsItem) {
+  public AddWorkflowRequest addStepsItem(AddWorkflowStep stepsItem) {
     if (this.steps == null) {
       this.steps = new ArrayList<>();
     }
@@ -167,12 +167,12 @@ public class AddWorkflowRequest {
    * @return steps
    **/
   @javax.annotation.Nonnull
-  public List<WorkflowStep> getSteps() {
+  public List<AddWorkflowStep> getSteps() {
     return steps;
   }
 
 
-  public void setSteps(List<WorkflowStep> steps) {
+  public void setSteps(List<AddWorkflowStep> steps) {
     this.steps = steps;
   }
 
@@ -298,7 +298,7 @@ public class AddWorkflowRequest {
     JsonArray jsonArraysteps = jsonObj.getAsJsonArray("steps");
     // validate the required field `steps` (array)
     for (int i = 0; i < jsonArraysteps.size(); i++) {
-      WorkflowStep.validateJsonElement(jsonArraysteps.get(i));
+      AddWorkflowStep.validateJsonElement(jsonArraysteps.get(i));
     } ;
   }
 

@@ -31,33 +31,49 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentWorkflowStep
+ * Model tests for DocumentSearchMeta
  */
-public class DocumentWorkflowStepTest {
-  private final DocumentWorkflowStep model = new DocumentWorkflowStep();
+public class DocumentSearchMetaTest {
+  private final DocumentSearchMeta model = new DocumentSearchMeta();
 
   /**
-   * Model tests for DocumentWorkflowStep
+   * Model tests for DocumentSearchMeta
    */
   @Test
-  public void testDocumentWorkflowStep() {
-    // TODO: test DocumentWorkflowStep
+  public void testDocumentSearchMeta() {
+    // TODO: test DocumentSearchMeta
   }
 
   /**
-   * Test the property 'id'
+   * Test the property 'folder'
    */
   @Test
-  public void idTest() {
-    // TODO: test id
+  public void folderTest() {
+    // TODO: test folder
   }
 
   /**
-   * Test the property 'status'
+   * Test the property 'path'
    */
   @Test
-  public void statusTest() {
-    // TODO: test status
+  public void pathTest() {
+    // TODO: test path
+  }
+
+  /**
+   * Test the property 'indexType'
+   */
+  @Test
+  public void indexTypeTest() {
+    // TODO: test indexType
+  }
+
+  /**
+   * Test the property 'indexFilterBeginsWith'
+   */
+  @Test
+  public void indexFilterBeginsWithTest() {
+    // TODO: test indexFilterBeginsWith
   }
 
 }

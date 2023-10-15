@@ -22,6 +22,7 @@
 | WEBHOOK | &quot;WEBHOOK&quot; |
 | DOCUMENTTAGGING | &quot;DOCUMENTTAGGING&quot; |
 | NOTIFICATION | &quot;NOTIFICATION&quot; |
+| QUEUE | &quot;QUEUE&quot; |
 
 
 

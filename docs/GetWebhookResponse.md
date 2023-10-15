@@ -11,8 +11,9 @@
 |**name** | **String** | Webhook name |  [optional] |
 |**url** | **String** | Webhook url |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
-|**id** | **String** | Webhook Identifier |  [optional] |
+|**webhookId** | **String** | Webhook Identifier |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
+|**enabled** | **String** | Is webhook enabled |  [optional] |
 
 
 

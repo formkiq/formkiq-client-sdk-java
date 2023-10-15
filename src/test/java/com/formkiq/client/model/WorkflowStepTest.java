@@ -20,8 +20,8 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.AddAction;
-import com.formkiq.client.model.AddQueue;
+import com.formkiq.client.model.DocumentAction;
+import com.formkiq.client.model.WorkflowQueue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,14 +52,6 @@ public class WorkflowStepTest {
   @Test
   public void idTest() {
     // TODO: test id
-  }
-
-  /**
-   * Test the property 'type'
-   */
-  @Test
-  public void typeTest() {
-    // TODO: test type
   }
 
   /**

@@ -28,6 +28,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class DocumentAction {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -71,9 +73,21 @@ public class DocumentAction {
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
 
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  private String insertedDate;
+
+  public static final String SERIALIZED_NAME_COMPLETED_DATE = "completedDate";
+  @SerializedName(SERIALIZED_NAME_COMPLETED_DATE)
+  private String completedDate;
+
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
-  private Object parameters;
+  private Map<String, String> parameters = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = new HashMap<>();
 
   public DocumentAction() {}
 
@@ -143,9 +157,61 @@ public class DocumentAction {
   }
 
 
-  public DocumentAction parameters(Object parameters) {
+  public DocumentAction insertedDate(String insertedDate) {
+
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   **/
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+
+  public void setInsertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
+
+  public DocumentAction completedDate(String completedDate) {
+
+    this.completedDate = completedDate;
+    return this;
+  }
+
+  /**
+   * Completed Timestamp
+   * 
+   * @return completedDate
+   **/
+  @javax.annotation.Nullable
+  public String getCompletedDate() {
+    return completedDate;
+  }
+
+
+  public void setCompletedDate(String completedDate) {
+    this.completedDate = completedDate;
+  }
+
+
+  public DocumentAction parameters(Map<String, String> parameters) {
 
     this.parameters = parameters;
+    return this;
+  }
+
+  public DocumentAction putParametersItem(String key, String parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new HashMap<>();
+    }
+    this.parameters.put(key, parametersItem);
     return this;
   }
 
@@ -155,13 +221,43 @@ public class DocumentAction {
    * @return parameters
    **/
   @javax.annotation.Nullable
-  public Object getParameters() {
+  public Map<String, String> getParameters() {
     return parameters;
   }
 
 
-  public void setParameters(Object parameters) {
+  public void setParameters(Map<String, String> parameters) {
     this.parameters = parameters;
+  }
+
+
+  public DocumentAction metadata(Map<String, String> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public DocumentAction putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Action metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -178,12 +274,15 @@ public class DocumentAction {
     return Objects.equals(this.status, documentAction.status)
         && Objects.equals(this.type, documentAction.type)
         && Objects.equals(this.userId, documentAction.userId)
-        && Objects.equals(this.parameters, documentAction.parameters);
+        && Objects.equals(this.insertedDate, documentAction.insertedDate)
+        && Objects.equals(this.completedDate, documentAction.completedDate)
+        && Objects.equals(this.parameters, documentAction.parameters)
+        && Objects.equals(this.metadata, documentAction.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, type, userId, parameters);
+    return Objects.hash(status, type, userId, insertedDate, completedDate, parameters, metadata);
   }
 
   @Override
@@ -193,7 +292,10 @@ public class DocumentAction {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    completedDate: ").append(toIndentedString(completedDate)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,7 +320,10 @@ public class DocumentAction {
     openapiFields.add("status");
     openapiFields.add("type");
     openapiFields.add("userId");
+    openapiFields.add("insertedDate");
+    openapiFields.add("completedDate");
     openapiFields.add("parameters");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -267,6 +372,18 @@ public class DocumentAction {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
+    }
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
+    }
+    if ((jsonObj.get("completedDate") != null && !jsonObj.get("completedDate").isJsonNull())
+        && !jsonObj.get("completedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `completedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("completedDate").toString()));
     }
   }
 

@@ -35,6 +35,7 @@ import java.io.IOException;
 
 
 import com.formkiq.client.model.AddDocumentRequest;
+import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.DocumentId;
 
 import java.lang.reflect.Type;
@@ -173,7 +174,7 @@ public class PublicApi {
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return DocumentId
+   * @return AddDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -193,9 +194,9 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public DocumentId publicAddDocument(AddDocumentRequest addDocumentRequest, String siteId)
+  public AddDocumentResponse publicAddDocument(AddDocumentRequest addDocumentRequest, String siteId)
       throws ApiException {
-    ApiResponse<DocumentId> localVarResp =
+    ApiResponse<AddDocumentResponse> localVarResp =
         publicAddDocumentWithHttpInfo(addDocumentRequest, siteId);
     return localVarResp.getData();
   }
@@ -206,7 +207,7 @@ public class PublicApi {
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;DocumentId&gt;
+   * @return ApiResponse&lt;AddDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -226,11 +227,11 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DocumentId> publicAddDocumentWithHttpInfo(
+  public ApiResponse<AddDocumentResponse> publicAddDocumentWithHttpInfo(
       AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         publicAddDocumentValidateBeforeCall(addDocumentRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<DocumentId>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -261,11 +262,11 @@ public class PublicApi {
    *                        </table>
    */
   public okhttp3.Call publicAddDocumentAsync(AddDocumentRequest addDocumentRequest, String siteId,
-      final ApiCallback<DocumentId> _callback) throws ApiException {
+      final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         publicAddDocumentValidateBeforeCall(addDocumentRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<DocumentId>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

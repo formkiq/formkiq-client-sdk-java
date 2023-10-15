@@ -90,6 +90,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -111,8 +112,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentTagsCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -142,6 +143,10 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (ws != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("ws", ws));
+    }
+
     final String[] localVarAccepts = {};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -163,8 +168,8 @@ public class DocumentTagsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addDocumentTagsValidateBeforeCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -177,7 +182,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'addDocumentTagsRequest' when calling addDocumentTags(Async)");
     }
 
-    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, ws, _callback);
 
   }
 
@@ -188,6 +193,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -208,8 +214,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public void addDocumentTags(String documentId, AddDocumentTagsRequest addDocumentTagsRequest,
-      String siteId) throws ApiException {
-    addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
+      String siteId, String ws) throws ApiException {
+    addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId, ws);
   }
 
   /**
@@ -219,6 +225,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -240,9 +247,9 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public ApiResponse<Void> addDocumentTagsWithHttpInfo(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId) throws ApiException {
+      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws) throws ApiException {
     okhttp3.Call localVarCall =
-        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
+        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, ws, null);
     return localVarApiClient.execute(localVarCall);
   }
 
@@ -253,6 +260,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -274,11 +282,11 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentTagsAsync(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId,
+      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
       final ApiCallback<Void> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    okhttp3.Call localVarCall = addDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, ws, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }

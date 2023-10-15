@@ -53,11 +53,11 @@ public class WorkflowSummaryTest {
   }
 
   /**
-   * Test the property 'documentId'
+   * Test the property 'workflowId'
    */
   @Test
-  public void documentIdTest() {
-    // TODO: test documentId
+  public void workflowIdTest() {
+    // TODO: test workflowId
   }
 
   /**

@@ -54,110 +54,36 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentWorkflowStep
+ * AddDocumentWorkflowApprovalResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class DocumentWorkflowStep {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class AddDocumentWorkflowApprovalResponse {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
-  /**
-   * Workflow step status
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    COMPLETE("COMPLETE"),
+  public AddDocumentWorkflowApprovalResponse() {}
 
-    FAILED("FAILED");
+  public AddDocumentWorkflowApprovalResponse message(String message) {
 
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
-
-  public DocumentWorkflowStep() {}
-
-  public DocumentWorkflowStep id(String id) {
-
-    this.id = id;
+    this.message = message;
     return this;
   }
 
   /**
-   * Step identifier
+   * Result message
    * 
-   * @return id
+   * @return message
    **/
   @javax.annotation.Nullable
-  public String getId() {
-    return id;
+  public String getMessage() {
+    return message;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public DocumentWorkflowStep status(StatusEnum status) {
-
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Workflow step status
-   * 
-   * @return status
-   **/
-  @javax.annotation.Nullable
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -170,22 +96,21 @@ public class DocumentWorkflowStep {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentWorkflowStep documentWorkflowStep = (DocumentWorkflowStep) o;
-    return Objects.equals(this.id, documentWorkflowStep.id)
-        && Objects.equals(this.status, documentWorkflowStep.status);
+    AddDocumentWorkflowApprovalResponse addDocumentWorkflowApprovalResponse =
+        (AddDocumentWorkflowApprovalResponse) o;
+    return Objects.equals(this.message, addDocumentWorkflowApprovalResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentWorkflowStep {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("class AddDocumentWorkflowApprovalResponse {\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,8 +132,7 @@ public class DocumentWorkflowStep {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("status");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -218,39 +142,35 @@ public class DocumentWorkflowStep {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentWorkflowStep
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         AddDocumentWorkflowApprovalResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentWorkflowStep.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                   // element is null
+      if (!AddDocumentWorkflowApprovalResponse.openapiRequiredFields.isEmpty()) { // has required
+                                                                                  // fields but JSON
+                                                                                  // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentWorkflowStep is not found in the empty JSON string",
-            DocumentWorkflowStep.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocumentWorkflowApprovalResponse is not found in the empty JSON string",
+            AddDocumentWorkflowApprovalResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentWorkflowStep.openapiFields.contains(entry.getKey())) {
+      if (!AddDocumentWorkflowApprovalResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentWorkflowStep` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowApprovalResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-        && !jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
+        && !jsonObj.get("message").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
-    }
-    if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
-        && !jsonObj.get("status").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("status").toString()));
+          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("message").toString()));
     }
   }
 
@@ -258,22 +178,24 @@ public class DocumentWorkflowStep {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentWorkflowStep.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentWorkflowStep' and its subtypes
+      if (!AddDocumentWorkflowApprovalResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocumentWorkflowApprovalResponse' and its
+                     // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentWorkflowStep> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentWorkflowStep.class));
+      final TypeAdapter<AddDocumentWorkflowApprovalResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowApprovalResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentWorkflowStep>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowApprovalResponse>() {
         @Override
-        public void write(JsonWriter out, DocumentWorkflowStep value) throws IOException {
+        public void write(JsonWriter out, AddDocumentWorkflowApprovalResponse value)
+            throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentWorkflowStep read(JsonReader in) throws IOException {
+        public AddDocumentWorkflowApprovalResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -284,18 +206,19 @@ public class DocumentWorkflowStep {
   }
 
   /**
-   * Create an instance of DocumentWorkflowStep given an JSON string
+   * Create an instance of AddDocumentWorkflowApprovalResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentWorkflowStep
-   * @throws IOException if the JSON string is invalid with respect to DocumentWorkflowStep
+   * @return An instance of AddDocumentWorkflowApprovalResponse
+   * @throws IOException if the JSON string is invalid with respect to
+   *         AddDocumentWorkflowApprovalResponse
    */
-  public static DocumentWorkflowStep fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentWorkflowStep.class);
+  public static AddDocumentWorkflowApprovalResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowApprovalResponse.class);
   }
 
   /**
-   * Convert an instance of DocumentWorkflowStep to an JSON string
+   * Convert an instance of AddDocumentWorkflowApprovalResponse to an JSON string
    *
    * @return JSON string
    */

@@ -14,6 +14,7 @@
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**userId** | **String** | User who requested the OCR |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |
+|**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 
 
 

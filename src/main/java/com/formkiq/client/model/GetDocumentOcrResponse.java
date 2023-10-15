@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -86,6 +86,10 @@ public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   private String documentId;
+
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  private String insertedDate;
 
   public GetDocumentOcrResponse() {}
 
@@ -243,6 +247,28 @@ public class GetDocumentOcrResponse {
   }
 
 
+  public GetDocumentOcrResponse insertedDate(String insertedDate) {
+
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   **/
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+
+  public void setInsertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -259,12 +285,14 @@ public class GetDocumentOcrResponse {
         && Objects.equals(this.contentType, getDocumentOcrResponse.contentType)
         && Objects.equals(this.isBase64, getDocumentOcrResponse.isBase64)
         && Objects.equals(this.userId, getDocumentOcrResponse.userId)
-        && Objects.equals(this.documentId, getDocumentOcrResponse.documentId);
+        && Objects.equals(this.documentId, getDocumentOcrResponse.documentId)
+        && Objects.equals(this.insertedDate, getDocumentOcrResponse.insertedDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, ocrEngine, ocrStatus, contentType, isBase64, userId, documentId);
+    return Objects.hash(data, ocrEngine, ocrStatus, contentType, isBase64, userId, documentId,
+        insertedDate);
   }
 
   @Override
@@ -278,6 +306,7 @@ public class GetDocumentOcrResponse {
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -306,6 +335,7 @@ public class GetDocumentOcrResponse {
     openapiFields.add("isBase64");
     openapiFields.add("userId");
     openapiFields.add("documentId");
+    openapiFields.add("insertedDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -372,6 +402,12 @@ public class GetDocumentOcrResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
     }
   }
 

@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.GetDocumentTagResponse;
+import com.formkiq.client.model.DocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentTagsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -72,7 +72,7 @@ public class GetDocumentTagsResponse {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<GetDocumentTagResponse> tags;
+  private List<DocumentTag> tags;
 
   public GetDocumentTagsResponse() {}
 
@@ -120,13 +120,13 @@ public class GetDocumentTagsResponse {
   }
 
 
-  public GetDocumentTagsResponse tags(List<GetDocumentTagResponse> tags) {
+  public GetDocumentTagsResponse tags(List<DocumentTag> tags) {
 
     this.tags = tags;
     return this;
   }
 
-  public GetDocumentTagsResponse addTagsItem(GetDocumentTagResponse tagsItem) {
+  public GetDocumentTagsResponse addTagsItem(DocumentTag tagsItem) {
     if (this.tags == null) {
       this.tags = new ArrayList<>();
     }
@@ -140,12 +140,12 @@ public class GetDocumentTagsResponse {
    * @return tags
    **/
   @javax.annotation.Nullable
-  public List<GetDocumentTagResponse> getTags() {
+  public List<DocumentTag> getTags() {
     return tags;
   }
 
 
-  public void setTags(List<GetDocumentTagResponse> tags) {
+  public void setTags(List<DocumentTag> tags) {
     this.tags = tags;
   }
 
@@ -256,7 +256,7 @@ public class GetDocumentTagsResponse {
 
         // validate the optional field `tags` (array)
         for (int i = 0; i < jsonArraytags.size(); i++) {
-          GetDocumentTagResponse.validateJsonElement(jsonArraytags.get(i));
+          DocumentTag.validateJsonElement(jsonArraytags.get(i));
         } ;
       }
     }

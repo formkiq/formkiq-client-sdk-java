@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.QueueDocument;
+import com.formkiq.client.model.Document;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowQueueDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class WorkflowQueueDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -68,7 +68,7 @@ public class WorkflowQueueDocumentsResponse {
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
-  private List<QueueDocument> documents;
+  private List<Document> documents;
 
   public WorkflowQueueDocumentsResponse() {}
 
@@ -94,13 +94,13 @@ public class WorkflowQueueDocumentsResponse {
   }
 
 
-  public WorkflowQueueDocumentsResponse documents(List<QueueDocument> documents) {
+  public WorkflowQueueDocumentsResponse documents(List<Document> documents) {
 
     this.documents = documents;
     return this;
   }
 
-  public WorkflowQueueDocumentsResponse addDocumentsItem(QueueDocument documentsItem) {
+  public WorkflowQueueDocumentsResponse addDocumentsItem(Document documentsItem) {
     if (this.documents == null) {
       this.documents = new ArrayList<>();
     }
@@ -114,12 +114,12 @@ public class WorkflowQueueDocumentsResponse {
    * @return documents
    **/
   @javax.annotation.Nullable
-  public List<QueueDocument> getDocuments() {
+  public List<Document> getDocuments() {
     return documents;
   }
 
 
-  public void setDocuments(List<QueueDocument> documents) {
+  public void setDocuments(List<Document> documents) {
     this.documents = documents;
   }
 
@@ -224,7 +224,7 @@ public class WorkflowQueueDocumentsResponse {
 
         // validate the optional field `documents` (array)
         for (int i = 0; i < jsonArraydocuments.size(); i++) {
-          QueueDocument.validateJsonElement(jsonArraydocuments.get(i));
+          Document.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }

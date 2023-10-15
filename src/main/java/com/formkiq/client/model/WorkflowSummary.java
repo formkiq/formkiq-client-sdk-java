@@ -57,15 +57,15 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class WorkflowSummary {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
-  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
-  private String documentId;
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  private String workflowId;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -103,25 +103,25 @@ public class WorkflowSummary {
   }
 
 
-  public WorkflowSummary documentId(String documentId) {
+  public WorkflowSummary workflowId(String workflowId) {
 
-    this.documentId = documentId;
+    this.workflowId = workflowId;
     return this;
   }
 
   /**
    * Workflow identifier
    * 
-   * @return documentId
+   * @return workflowId
    **/
   @javax.annotation.Nullable
-  public String getDocumentId() {
-    return documentId;
+  public String getWorkflowId() {
+    return workflowId;
   }
 
 
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
   }
 
 
@@ -202,7 +202,7 @@ public class WorkflowSummary {
     }
     WorkflowSummary workflowSummary = (WorkflowSummary) o;
     return Objects.equals(this.name, workflowSummary.name)
-        && Objects.equals(this.documentId, workflowSummary.documentId)
+        && Objects.equals(this.workflowId, workflowSummary.workflowId)
         && Objects.equals(this.description, workflowSummary.description)
         && Objects.equals(this.insertedDate, workflowSummary.insertedDate)
         && Objects.equals(this.userId, workflowSummary.userId);
@@ -210,7 +210,7 @@ public class WorkflowSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, documentId, description, insertedDate, userId);
+    return Objects.hash(name, workflowId, description, insertedDate, userId);
   }
 
   @Override
@@ -218,7 +218,7 @@ public class WorkflowSummary {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowSummary {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
@@ -244,7 +244,7 @@ public class WorkflowSummary {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
-    openapiFields.add("documentId");
+    openapiFields.add("workflowId");
     openapiFields.add("description");
     openapiFields.add("insertedDate");
     openapiFields.add("userId");
@@ -285,11 +285,11 @@ public class WorkflowSummary {
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
-    if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
-        && !jsonObj.get("documentId").isJsonPrimitive()) {
+    if ((jsonObj.get("workflowId") != null && !jsonObj.get("workflowId").isJsonNull())
+        && !jsonObj.get("workflowId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("documentId").toString()));
+          "Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("workflowId").toString()));
     }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {

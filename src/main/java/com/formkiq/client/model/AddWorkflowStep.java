@@ -21,6 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AddAction;
+import com.formkiq.client.model.AddQueue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,110 +56,114 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocumentWorkflowRequest
+ * AddWorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class AddDocumentWorkflowRequest {
-  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
-  @SerializedName(SERIALIZED_NAME_STEP_ID)
-  private String stepId;
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class AddWorkflowStep {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-  /**
-   * Workflow step status
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    COMPLETE("COMPLETE"),
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-    FAILED("FAILED");
+  public static final String SERIALIZED_NAME_ACTION = "action";
+  @SerializedName(SERIALIZED_NAME_ACTION)
+  private AddAction action;
 
-    private String value;
+  public static final String SERIALIZED_NAME_QUEUE = "queue";
+  @SerializedName(SERIALIZED_NAME_QUEUE)
+  private AddQueue queue;
 
-    StatusEnum(String value) {
-      this.value = value;
-    }
+  public AddWorkflowStep() {}
 
-    public String getValue() {
-      return value;
-    }
+  public AddWorkflowStep id(String id) {
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
-
-  public AddDocumentWorkflowRequest() {}
-
-  public AddDocumentWorkflowRequest stepId(String stepId) {
-
-    this.stepId = stepId;
+    this.id = id;
     return this;
   }
 
   /**
    * Step identifier
    * 
-   * @return stepId
+   * @return id
    **/
   @javax.annotation.Nonnull
-  public String getStepId() {
-    return stepId;
+  public String getId() {
+    return id;
   }
 
 
-  public void setStepId(String stepId) {
-    this.stepId = stepId;
+  public void setId(String id) {
+    this.id = id;
   }
 
 
-  public AddDocumentWorkflowRequest status(StatusEnum status) {
+  public AddWorkflowStep type(String type) {
 
-    this.status = status;
+    this.type = type;
     return this;
   }
 
   /**
-   * Workflow step status
+   * Workflow step type
    * 
-   * @return status
+   * @return type
    **/
-  @javax.annotation.Nullable
-  public StatusEnum getStatus() {
-    return status;
+  @javax.annotation.Nonnull
+  public String getType() {
+    return type;
   }
 
 
-  public void setStatus(StatusEnum status) {
-    this.status = status;
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public AddWorkflowStep action(AddAction action) {
+
+    this.action = action;
+    return this;
+  }
+
+  /**
+   * Get action
+   * 
+   * @return action
+   **/
+  @javax.annotation.Nullable
+  public AddAction getAction() {
+    return action;
+  }
+
+
+  public void setAction(AddAction action) {
+    this.action = action;
+  }
+
+
+  public AddWorkflowStep queue(AddQueue queue) {
+
+    this.queue = queue;
+    return this;
+  }
+
+  /**
+   * Get queue
+   * 
+   * @return queue
+   **/
+  @javax.annotation.Nullable
+  public AddQueue getQueue() {
+    return queue;
+  }
+
+
+  public void setQueue(AddQueue queue) {
+    this.queue = queue;
   }
 
 
@@ -170,22 +176,26 @@ public class AddDocumentWorkflowRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentWorkflowRequest addDocumentWorkflowRequest = (AddDocumentWorkflowRequest) o;
-    return Objects.equals(this.stepId, addDocumentWorkflowRequest.stepId)
-        && Objects.equals(this.status, addDocumentWorkflowRequest.status);
+    AddWorkflowStep addWorkflowStep = (AddWorkflowStep) o;
+    return Objects.equals(this.id, addWorkflowStep.id)
+        && Objects.equals(this.type, addWorkflowStep.type)
+        && Objects.equals(this.action, addWorkflowStep.action)
+        && Objects.equals(this.queue, addWorkflowStep.queue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stepId, status);
+    return Objects.hash(id, type, action, queue);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentWorkflowRequest {\n");
-    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("class AddWorkflowStep {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,42 +217,45 @@ public class AddDocumentWorkflowRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("stepId");
-    openapiFields.add("status");
+    openapiFields.add("id");
+    openapiFields.add("type");
+    openapiFields.add("action");
+    openapiFields.add("queue");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("stepId");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("type");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocumentWorkflowRequest
+   * @throws IOException if the JSON Element is invalid with respect to AddWorkflowStep
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentWorkflowRequest.openapiRequiredFields.isEmpty()) { // has required fields but
-                                                                         // JSON element is null
+      if (!AddWorkflowStep.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                              // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocumentWorkflowRequest is not found in the empty JSON string",
-            AddDocumentWorkflowRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddWorkflowStep is not found in the empty JSON string",
+            AddWorkflowStep.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentWorkflowRequest.openapiFields.contains(entry.getKey())) {
+      if (!AddWorkflowStep.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddWorkflowStep` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddDocumentWorkflowRequest.openapiRequiredFields) {
+    for (String requiredField : AddWorkflowStep.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(
             String.format("The required field `%s` is not found in the JSON string: %s",
@@ -250,16 +263,23 @@ public class AddDocumentWorkflowRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("stepId").isJsonPrimitive()) {
+    if (!jsonObj.get("id").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("stepId").toString()));
+          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("id").toString()));
     }
-    if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
-        && !jsonObj.get("status").isJsonPrimitive()) {
+    if (!jsonObj.get("type").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("status").toString()));
+          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("type").toString()));
+    }
+    // validate the optional field `action`
+    if (jsonObj.get("action") != null && !jsonObj.get("action").isJsonNull()) {
+      AddAction.validateJsonElement(jsonObj.get("action"));
+    }
+    // validate the optional field `queue`
+    if (jsonObj.get("queue") != null && !jsonObj.get("queue").isJsonNull()) {
+      AddQueue.validateJsonElement(jsonObj.get("queue"));
     }
   }
 
@@ -267,22 +287,22 @@ public class AddDocumentWorkflowRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentWorkflowRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentWorkflowRequest' and its subtypes
+      if (!AddWorkflowStep.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddWorkflowStep' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentWorkflowRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowRequest.class));
+      final TypeAdapter<AddWorkflowStep> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddWorkflowStep.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddWorkflowStep>() {
         @Override
-        public void write(JsonWriter out, AddDocumentWorkflowRequest value) throws IOException {
+        public void write(JsonWriter out, AddWorkflowStep value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentWorkflowRequest read(JsonReader in) throws IOException {
+        public AddWorkflowStep read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -293,18 +313,18 @@ public class AddDocumentWorkflowRequest {
   }
 
   /**
-   * Create an instance of AddDocumentWorkflowRequest given an JSON string
+   * Create an instance of AddWorkflowStep given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentWorkflowRequest
-   * @throws IOException if the JSON string is invalid with respect to AddDocumentWorkflowRequest
+   * @return An instance of AddWorkflowStep
+   * @throws IOException if the JSON string is invalid with respect to AddWorkflowStep
    */
-  public static AddDocumentWorkflowRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowRequest.class);
+  public static AddWorkflowStep fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddWorkflowStep.class);
   }
 
   /**
-   * Convert an instance of AddDocumentWorkflowRequest to an JSON string
+   * Convert an instance of AddWorkflowStep to an JSON string
    *
    * @return JSON string
    */

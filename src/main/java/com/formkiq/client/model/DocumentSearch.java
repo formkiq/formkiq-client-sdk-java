@@ -21,8 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentSearchItemMeta;
-import com.formkiq.client.model.DocumentSearchItemTag;
+import com.formkiq.client.model.DocumentSearchMeta;
+import com.formkiq.client.model.DocumentSearchTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
@@ -69,11 +69,11 @@ public class DocumentSearch {
 
   public static final String SERIALIZED_NAME_META = "meta";
   @SerializedName(SERIALIZED_NAME_META)
-  private DocumentSearchItemMeta meta;
+  private DocumentSearchMeta meta;
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
-  private DocumentSearchItemTag tag;
+  private DocumentSearchTag tag;
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -103,7 +103,7 @@ public class DocumentSearch {
   }
 
 
-  public DocumentSearch meta(DocumentSearchItemMeta meta) {
+  public DocumentSearch meta(DocumentSearchMeta meta) {
 
     this.meta = meta;
     return this;
@@ -115,17 +115,17 @@ public class DocumentSearch {
    * @return meta
    **/
   @javax.annotation.Nullable
-  public DocumentSearchItemMeta getMeta() {
+  public DocumentSearchMeta getMeta() {
     return meta;
   }
 
 
-  public void setMeta(DocumentSearchItemMeta meta) {
+  public void setMeta(DocumentSearchMeta meta) {
     this.meta = meta;
   }
 
 
-  public DocumentSearch tag(DocumentSearchItemTag tag) {
+  public DocumentSearch tag(DocumentSearchTag tag) {
 
     this.tag = tag;
     return this;
@@ -137,12 +137,12 @@ public class DocumentSearch {
    * @return tag
    **/
   @javax.annotation.Nullable
-  public DocumentSearchItemTag getTag() {
+  public DocumentSearchTag getTag() {
     return tag;
   }
 
 
-  public void setTag(DocumentSearchItemTag tag) {
+  public void setTag(DocumentSearchTag tag) {
     this.tag = tag;
   }
 
@@ -270,11 +270,11 @@ public class DocumentSearch {
     }
     // validate the optional field `meta`
     if (jsonObj.get("meta") != null && !jsonObj.get("meta").isJsonNull()) {
-      DocumentSearchItemMeta.validateJsonElement(jsonObj.get("meta"));
+      DocumentSearchMeta.validateJsonElement(jsonObj.get("meta"));
     }
     // validate the optional field `tag`
     if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) {
-      DocumentSearchItemTag.validateJsonElement(jsonObj.get("tag"));
+      DocumentSearchTag.validateJsonElement(jsonObj.get("tag"));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()

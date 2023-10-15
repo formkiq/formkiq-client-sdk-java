@@ -31,57 +31,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SetConfigRequest
+ * Model tests for UpdateConfigurationResponse
  */
-public class SetConfigRequestTest {
-  private final SetConfigRequest model = new SetConfigRequest();
+public class UpdateConfigurationResponseTest {
+  private final UpdateConfigurationResponse model = new UpdateConfigurationResponse();
 
   /**
-   * Model tests for SetConfigRequest
+   * Model tests for UpdateConfigurationResponse
    */
   @Test
-  public void testSetConfigRequest() {
-    // TODO: test SetConfigRequest
+  public void testUpdateConfigurationResponse() {
+    // TODO: test UpdateConfigurationResponse
   }
 
   /**
-   * Test the property 'chatGptApiKey'
+   * Test the property 'message'
    */
   @Test
-  public void chatGptApiKeyTest() {
-    // TODO: test chatGptApiKey
-  }
-
-  /**
-   * Test the property 'maxContentLengthBytes'
-   */
-  @Test
-  public void maxContentLengthBytesTest() {
-    // TODO: test maxContentLengthBytes
-  }
-
-  /**
-   * Test the property 'maxDocuments'
-   */
-  @Test
-  public void maxDocumentsTest() {
-    // TODO: test maxDocuments
-  }
-
-  /**
-   * Test the property 'maxWebhooks'
-   */
-  @Test
-  public void maxWebhooksTest() {
-    // TODO: test maxWebhooks
-  }
-
-  /**
-   * Test the property 'notificationEmail'
-   */
-  @Test
-  public void notificationEmailTest() {
-    // TODO: test notificationEmail
+  public void messageTest() {
+    // TODO: test message
   }
 
 }

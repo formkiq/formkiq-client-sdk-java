@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.ChildDocument;
+import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -105,6 +106,14 @@ public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
   private List<ChildDocument> documents;
+
+  public static final String SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID = "belongsToDocumentId";
+  @SerializedName(SERIALIZED_NAME_BELONGS_TO_DOCUMENT_ID)
+  private String belongsToDocumentId;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private List<DocumentMetadata> metadata;
 
   public GetDocumentResponse() {}
 
@@ -358,6 +367,58 @@ public class GetDocumentResponse {
   }
 
 
+  public GetDocumentResponse belongsToDocumentId(String belongsToDocumentId) {
+
+    this.belongsToDocumentId = belongsToDocumentId;
+    return this;
+  }
+
+  /**
+   * Parent Document Identifier
+   * 
+   * @return belongsToDocumentId
+   **/
+  @javax.annotation.Nullable
+  public String getBelongsToDocumentId() {
+    return belongsToDocumentId;
+  }
+
+
+  public void setBelongsToDocumentId(String belongsToDocumentId) {
+    this.belongsToDocumentId = belongsToDocumentId;
+  }
+
+
+  public GetDocumentResponse metadata(List<DocumentMetadata> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public GetDocumentResponse addMetadataItem(DocumentMetadata metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new ArrayList<>();
+    }
+    this.metadata.add(metadataItem);
+    return this;
+  }
+
+  /**
+   * List of document Metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentMetadata> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(List<DocumentMetadata> metadata) {
+    this.metadata = metadata;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -378,13 +439,15 @@ public class GetDocumentResponse {
         && Objects.equals(this.userId, getDocumentResponse.userId)
         && Objects.equals(this.contentLength, getDocumentResponse.contentLength)
         && Objects.equals(this.versionId, getDocumentResponse.versionId)
-        && Objects.equals(this.documents, getDocumentResponse.documents);
+        && Objects.equals(this.documents, getDocumentResponse.documents)
+        && Objects.equals(this.belongsToDocumentId, getDocumentResponse.belongsToDocumentId)
+        && Objects.equals(this.metadata, getDocumentResponse.metadata);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, insertedDate, lastModifiedDate, checksum, documentId,
-        contentType, userId, contentLength, versionId, documents);
+        contentType, userId, contentLength, versionId, documents, belongsToDocumentId, metadata);
   }
 
   @Override
@@ -402,6 +465,9 @@ public class GetDocumentResponse {
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
     sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
+    sb.append("    belongsToDocumentId: ").append(toIndentedString(belongsToDocumentId))
+        .append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -434,6 +500,8 @@ public class GetDocumentResponse {
     openapiFields.add("contentLength");
     openapiFields.add("versionId");
     openapiFields.add("documents");
+    openapiFields.add("belongsToDocumentId");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -541,6 +609,29 @@ public class GetDocumentResponse {
         // validate the optional field `documents` (array)
         for (int i = 0; i < jsonArraydocuments.size(); i++) {
           ChildDocument.validateJsonElement(jsonArraydocuments.get(i));
+        } ;
+      }
+    }
+    if ((jsonObj.get("belongsToDocumentId") != null
+        && !jsonObj.get("belongsToDocumentId").isJsonNull())
+        && !jsonObj.get("belongsToDocumentId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `belongsToDocumentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("belongsToDocumentId").toString()));
+    }
+    if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
+      JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
+      if (jsonArraymetadata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("metadata").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `metadata` to be an array in the JSON string but got `%s`",
+              jsonObj.get("metadata").toString()));
+        }
+
+        // validate the optional field `metadata` (array)
+        for (int i = 0; i < jsonArraymetadata.size(); i++) {
+          DocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
         } ;
       }
     }

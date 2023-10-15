@@ -26,102 +26,56 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentItemResult
+ * Model tests for DocumentSearchTag
  */
-public class DocumentItemResultTest {
-  private final DocumentItemResult model = new DocumentItemResult();
+public class DocumentSearchTagTest {
+  private final DocumentSearchTag model = new DocumentSearchTag();
 
   /**
-   * Model tests for DocumentItemResult
+   * Model tests for DocumentSearchTag
    */
   @Test
-  public void testDocumentItemResult() {
-    // TODO: test DocumentItemResult
+  public void testDocumentSearchTag() {
+    // TODO: test DocumentSearchTag
   }
 
   /**
-   * Test the property 'siteId'
+   * Test the property 'beginsWith'
    */
   @Test
-  public void siteIdTest() {
-    // TODO: test siteId
+  public void beginsWithTest() {
+    // TODO: test beginsWith
   }
 
   /**
-   * Test the property 'path'
+   * Test the property 'eq'
    */
   @Test
-  public void pathTest() {
-    // TODO: test path
+  public void eqTest() {
+    // TODO: test eq
   }
 
   /**
-   * Test the property 'insertedDate'
+   * Test the property 'eqOr'
    */
   @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
+  public void eqOrTest() {
+    // TODO: test eqOr
   }
 
   /**
-   * Test the property 'lastModifiedDate'
+   * Test the property 'key'
    */
   @Test
-  public void lastModifiedDateTest() {
-    // TODO: test lastModifiedDate
-  }
-
-  /**
-   * Test the property 'checksum'
-   */
-  @Test
-  public void checksumTest() {
-    // TODO: test checksum
-  }
-
-  /**
-   * Test the property 'documentId'
-   */
-  @Test
-  public void documentIdTest() {
-    // TODO: test documentId
-  }
-
-  /**
-   * Test the property 'contentType'
-   */
-  @Test
-  public void contentTypeTest() {
-    // TODO: test contentType
-  }
-
-  /**
-   * Test the property 'userId'
-   */
-  @Test
-  public void userIdTest() {
-    // TODO: test userId
-  }
-
-  /**
-   * Test the property 'contentLength'
-   */
-  @Test
-  public void contentLengthTest() {
-    // TODO: test contentLength
-  }
-
-  /**
-   * Test the property 'versionId'
-   */
-  @Test
-  public void versionIdTest() {
-    // TODO: test versionId
+  public void keyTest() {
+    // TODO: test key
   }
 
 }

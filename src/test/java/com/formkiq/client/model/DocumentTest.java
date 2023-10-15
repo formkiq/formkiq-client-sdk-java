@@ -20,28 +20,39 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentItemVersion
+ * Model tests for Document
  */
-public class DocumentItemVersionTest {
-  private final DocumentItemVersion model = new DocumentItemVersion();
+public class DocumentTest {
+  private final Document model = new Document();
 
   /**
-   * Model tests for DocumentItemVersion
+   * Model tests for Document
    */
   @Test
-  public void testDocumentItemVersion() {
-    // TODO: test DocumentItemVersion
+  public void testDocument() {
+    // TODO: test Document
+  }
+
+  /**
+   * Test the property 'siteId'
+   */
+  @Test
+  public void siteIdTest() {
+    // TODO: test siteId
   }
 
   /**
@@ -109,11 +120,11 @@ public class DocumentItemVersionTest {
   }
 
   /**
-   * Test the property 'versionId'
+   * Test the property 'version'
    */
   @Test
-  public void versionIdTest() {
-    // TODO: test versionId
+  public void versionTest() {
+    // TODO: test version
   }
 
   /**
@@ -122,6 +133,30 @@ public class DocumentItemVersionTest {
   @Test
   public void versionKeyTest() {
     // TODO: test versionKey
+  }
+
+  /**
+   * Test the property 's3version'
+   */
+  @Test
+  public void s3versionTest() {
+    // TODO: test s3version
+  }
+
+  /**
+   * Test the property 'belongsToDocumentId'
+   */
+  @Test
+  public void belongsToDocumentIdTest() {
+    // TODO: test belongsToDocumentId
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
 }

@@ -20,13 +20,17 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddDocumentMetadata;
+import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -74,6 +78,22 @@ public class AddChildDocumentTest {
   @Test
   public void contentTest() {
     // TODO: test content
+  }
+
+  /**
+   * Test the property 'tags'
+   */
+  @Test
+  public void tagsTest() {
+    // TODO: test tags
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
 }

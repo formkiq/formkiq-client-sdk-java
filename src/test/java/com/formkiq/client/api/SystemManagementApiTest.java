@@ -28,8 +28,8 @@ import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
-import com.formkiq.client.model.SetConfigRequest;
-import com.formkiq.client.model.SetConfigResponse;
+import com.formkiq.client.model.UpdateConfigurationRequest;
+import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -140,9 +140,10 @@ public class SystemManagementApiTest {
    */
   @Test
   public void updateConfigurationTest() throws ApiException {
-    SetConfigRequest setConfigRequest = null;
+    UpdateConfigurationRequest updateConfigurationRequest = null;
     String siteId = null;
-    SetConfigResponse response = api.updateConfiguration(setConfigRequest, siteId);
+    UpdateConfigurationResponse response =
+        api.updateConfiguration(updateConfigurationRequest, siteId);
     // TODO: test validations
   }
 

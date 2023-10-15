@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**webhookId** | **String** |  |  [optional] |
 |**siteId** | **String** | Site Identifier |  [optional] |
 
 

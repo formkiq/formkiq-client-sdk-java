@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 
 <a id="publicAddDocument"></a>
 # **publicAddDocument**
-> DocumentId publicAddDocument(addDocumentRequest, siteId)
+> AddDocumentResponse publicAddDocument(addDocumentRequest, siteId)
 
 Public add document
 
@@ -36,7 +36,7 @@ public class Example {
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DocumentId result = apiInstance.publicAddDocument(addDocumentRequest, siteId);
+      AddDocumentResponse result = apiInstance.publicAddDocument(addDocumentRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApi#publicAddDocument");
@@ -58,7 +58,7 @@ public class Example {
 
 ### Return type
 
-[**DocumentId**](DocumentId.md)
+[**AddDocumentResponse**](AddDocumentResponse.md)
 
 ### Authorization
 

@@ -21,13 +21,17 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AddDocumentMetadata;
+import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -74,6 +78,14 @@ public class AddChildDocument {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private String content;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private List<AddDocumentTag> tags;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private List<AddDocumentMetadata> metadata;
 
   public AddChildDocument() {}
 
@@ -165,6 +177,66 @@ public class AddChildDocument {
   }
 
 
+  public AddChildDocument tags(List<AddDocumentTag> tags) {
+
+    this.tags = tags;
+    return this;
+  }
+
+  public AddChildDocument addTagsItem(AddDocumentTag tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * List of document tags
+   * 
+   * @return tags
+   **/
+  @javax.annotation.Nullable
+  public List<AddDocumentTag> getTags() {
+    return tags;
+  }
+
+
+  public void setTags(List<AddDocumentTag> tags) {
+    this.tags = tags;
+  }
+
+
+  public AddChildDocument metadata(List<AddDocumentMetadata> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public AddChildDocument addMetadataItem(AddDocumentMetadata metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new ArrayList<>();
+    }
+    this.metadata.add(metadataItem);
+    return this;
+  }
+
+  /**
+   * List of document Metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public List<AddDocumentMetadata> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(List<AddDocumentMetadata> metadata) {
+    this.metadata = metadata;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -178,12 +250,14 @@ public class AddChildDocument {
     return Objects.equals(this.path, addChildDocument.path)
         && Objects.equals(this.contentType, addChildDocument.contentType)
         && Objects.equals(this.isBase64, addChildDocument.isBase64)
-        && Objects.equals(this.content, addChildDocument.content);
+        && Objects.equals(this.content, addChildDocument.content)
+        && Objects.equals(this.tags, addChildDocument.tags)
+        && Objects.equals(this.metadata, addChildDocument.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, contentType, isBase64, content);
+    return Objects.hash(path, contentType, isBase64, content, tags, metadata);
   }
 
   @Override
@@ -194,6 +268,8 @@ public class AddChildDocument {
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -219,6 +295,8 @@ public class AddChildDocument {
     openapiFields.add("contentType");
     openapiFields.add("isBase64");
     openapiFields.add("content");
+    openapiFields.add("tags");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -276,6 +354,38 @@ public class AddChildDocument {
       throw new IllegalArgumentException(String.format(
           "Expected the field `content` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("content").toString()));
+    }
+    if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
+      JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");
+      if (jsonArraytags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `tags` to be an array in the JSON string but got `%s`",
+              jsonObj.get("tags").toString()));
+        }
+
+        // validate the optional field `tags` (array)
+        for (int i = 0; i < jsonArraytags.size(); i++) {
+          AddDocumentTag.validateJsonElement(jsonArraytags.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
+      JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");
+      if (jsonArraymetadata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("metadata").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `metadata` to be an array in the JSON string but got `%s`",
+              jsonObj.get("metadata").toString()));
+        }
+
+        // validate the optional field `metadata` (array)
+        for (int i = 0; i < jsonArraymetadata.size(); i++) {
+          AddDocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
+        } ;
+      }
     }
   }
 

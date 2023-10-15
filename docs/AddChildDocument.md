@@ -12,6 +12,8 @@ List of related documents
 |**contentType** | **String** | Document Content-Type |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**content** | **String** | Document content |  |
+|**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
+|**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
 
 
 

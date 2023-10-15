@@ -56,115 +56,89 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentSearchItemTag
+ * AddWebhookTagRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-09-20T17:40:08.427476-05:00[America/Winnipeg]")
-public class DocumentSearchItemTag {
-  public static final String SERIALIZED_NAME_BEGINS_WITH = "beginsWith";
-  @SerializedName(SERIALIZED_NAME_BEGINS_WITH)
-  private String beginsWith;
+    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+public class AddWebhookTagRequest {
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
-  public static final String SERIALIZED_NAME_EQ = "eq";
-  @SerializedName(SERIALIZED_NAME_EQ)
-  private String eq;
-
-  public static final String SERIALIZED_NAME_EQ_OR = "eqOr";
-  @SerializedName(SERIALIZED_NAME_EQ_OR)
-  private List<String> eqOr;
+  public static final String SERIALIZED_NAME_VALUES = "values";
+  @SerializedName(SERIALIZED_NAME_VALUES)
+  private List<String> values;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
 
-  public DocumentSearchItemTag() {}
+  public AddWebhookTagRequest() {}
 
-  public DocumentSearchItemTag beginsWith(String beginsWith) {
+  public AddWebhookTagRequest value(String value) {
 
-    this.beginsWith = beginsWith;
+    this.value = value;
     return this;
   }
 
   /**
-   * Searches for strings that begin with
+   * Tag value
    * 
-   * @return beginsWith
+   * @return value
    **/
   @javax.annotation.Nullable
-  public String getBeginsWith() {
-    return beginsWith;
+  public String getValue() {
+    return value;
   }
 
 
-  public void setBeginsWith(String beginsWith) {
-    this.beginsWith = beginsWith;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
-  public DocumentSearchItemTag eq(String eq) {
+  public AddWebhookTagRequest values(List<String> values) {
 
-    this.eq = eq;
+    this.values = values;
     return this;
   }
 
-  /**
-   * Searches for strings that eq
-   * 
-   * @return eq
-   **/
-  @javax.annotation.Nullable
-  public String getEq() {
-    return eq;
-  }
-
-
-  public void setEq(String eq) {
-    this.eq = eq;
-  }
-
-
-  public DocumentSearchItemTag eqOr(List<String> eqOr) {
-
-    this.eqOr = eqOr;
-    return this;
-  }
-
-  public DocumentSearchItemTag addEqOrItem(String eqOrItem) {
-    if (this.eqOr == null) {
-      this.eqOr = new ArrayList<>();
+  public AddWebhookTagRequest addValuesItem(String valuesItem) {
+    if (this.values == null) {
+      this.values = new ArrayList<>();
     }
-    this.eqOr.add(eqOrItem);
+    this.values.add(valuesItem);
     return this;
   }
 
   /**
-   * Searches for ANY strings that eq
+   * Tag values
    * 
-   * @return eqOr
+   * @return values
    **/
   @javax.annotation.Nullable
-  public List<String> getEqOr() {
-    return eqOr;
+  public List<String> getValues() {
+    return values;
   }
 
 
-  public void setEqOr(List<String> eqOr) {
-    this.eqOr = eqOr;
+  public void setValues(List<String> values) {
+    this.values = values;
   }
 
 
-  public DocumentSearchItemTag key(String key) {
+  public AddWebhookTagRequest key(String key) {
 
     this.key = key;
     return this;
   }
 
   /**
-   * Tag key to search
+   * Tag key
    * 
    * @return key
    **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getKey() {
     return key;
   }
@@ -184,25 +158,23 @@ public class DocumentSearchItemTag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentSearchItemTag documentSearchItemTag = (DocumentSearchItemTag) o;
-    return Objects.equals(this.beginsWith, documentSearchItemTag.beginsWith)
-        && Objects.equals(this.eq, documentSearchItemTag.eq)
-        && Objects.equals(this.eqOr, documentSearchItemTag.eqOr)
-        && Objects.equals(this.key, documentSearchItemTag.key);
+    AddWebhookTagRequest addWebhookTagRequest = (AddWebhookTagRequest) o;
+    return Objects.equals(this.value, addWebhookTagRequest.value)
+        && Objects.equals(this.values, addWebhookTagRequest.values)
+        && Objects.equals(this.key, addWebhookTagRequest.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(beginsWith, eq, eqOr, key);
+    return Objects.hash(value, values, key);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentSearchItemTag {\n");
-    sb.append("    beginsWith: ").append(toIndentedString(beginsWith)).append("\n");
-    sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
-    sb.append("    eqOr: ").append(toIndentedString(eqOr)).append("\n");
+    sb.append("class AddWebhookTagRequest {\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -225,71 +197,55 @@ public class DocumentSearchItemTag {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("beginsWith");
-    openapiFields.add("eq");
-    openapiFields.add("eqOr");
+    openapiFields.add("value");
+    openapiFields.add("values");
     openapiFields.add("key");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("key");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentSearchItemTag
+   * @throws IOException if the JSON Element is invalid with respect to AddWebhookTagRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentSearchItemTag.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                    // element is null
+      if (!AddWebhookTagRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                   // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentSearchItemTag is not found in the empty JSON string",
-            DocumentSearchItemTag.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddWebhookTagRequest is not found in the empty JSON string",
+            AddWebhookTagRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentSearchItemTag.openapiFields.contains(entry.getKey())) {
+      if (!AddWebhookTagRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentSearchItemTag` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddWebhookTagRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentSearchItemTag.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("beginsWith") != null && !jsonObj.get("beginsWith").isJsonNull())
-        && !jsonObj.get("beginsWith").isJsonPrimitive()) {
+    if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
+        && !jsonObj.get("value").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `beginsWith` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("beginsWith").toString()));
-    }
-    if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull())
-        && !jsonObj.get("eq").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `eq` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("eq").toString()));
+          "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("value").toString()));
     }
     // ensure the optional json data is an array if present
-    if (jsonObj.get("eqOr") != null && !jsonObj.get("eqOr").isJsonNull()
-        && !jsonObj.get("eqOr").isJsonArray()) {
-      throw new IllegalArgumentException(
-          String.format("Expected the field `eqOr` to be an array in the JSON string but got `%s`",
-              jsonObj.get("eqOr").toString()));
+    if (jsonObj.get("values") != null && !jsonObj.get("values").isJsonNull()
+        && !jsonObj.get("values").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `values` to be an array in the JSON string but got `%s`",
+          jsonObj.get("values").toString()));
     }
-    if (!jsonObj.get("key").isJsonPrimitive()) {
+    if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull())
+        && !jsonObj.get("key").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("key").toString()));
@@ -300,22 +256,22 @@ public class DocumentSearchItemTag {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentSearchItemTag.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentSearchItemTag' and its subtypes
+      if (!AddWebhookTagRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddWebhookTagRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentSearchItemTag> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentSearchItemTag.class));
+      final TypeAdapter<AddWebhookTagRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddWebhookTagRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentSearchItemTag>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddWebhookTagRequest>() {
         @Override
-        public void write(JsonWriter out, DocumentSearchItemTag value) throws IOException {
+        public void write(JsonWriter out, AddWebhookTagRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentSearchItemTag read(JsonReader in) throws IOException {
+        public AddWebhookTagRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -326,18 +282,18 @@ public class DocumentSearchItemTag {
   }
 
   /**
-   * Create an instance of DocumentSearchItemTag given an JSON string
+   * Create an instance of AddWebhookTagRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentSearchItemTag
-   * @throws IOException if the JSON string is invalid with respect to DocumentSearchItemTag
+   * @return An instance of AddWebhookTagRequest
+   * @throws IOException if the JSON string is invalid with respect to AddWebhookTagRequest
    */
-  public static DocumentSearchItemTag fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentSearchItemTag.class);
+  public static AddWebhookTagRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddWebhookTagRequest.class);
   }
 
   /**
-   * Convert an instance of DocumentSearchItemTag to an JSON string
+   * Convert an instance of AddWebhookTagRequest to an JSON string
    *
    * @return JSON string
    */

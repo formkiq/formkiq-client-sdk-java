@@ -56,7 +56,8 @@ public class DocumentTagsApiTest {
     String documentId = null;
     AddDocumentTagsRequest addDocumentTagsRequest = null;
     String siteId = null;
-    api.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+    String ws = null;
+    api.addDocumentTags(documentId, addDocumentTagsRequest, siteId, ws);
     // TODO: test validations
   }
 

@@ -20,7 +20,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,33 +33,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for QueueDocument
+ * Model tests for DocumentTag
  */
-public class QueueDocumentTest {
-  private final QueueDocument model = new QueueDocument();
+public class DocumentTagTest {
+  private final DocumentTag model = new DocumentTag();
 
   /**
-   * Model tests for QueueDocument
+   * Model tests for DocumentTag
    */
   @Test
-  public void testQueueDocument() {
-    // TODO: test QueueDocument
-  }
-
-  /**
-   * Test the property 'siteId'
-   */
-  @Test
-  public void siteIdTest() {
-    // TODO: test siteId
-  }
-
-  /**
-   * Test the property 'path'
-   */
-  @Test
-  public void pathTest() {
-    // TODO: test path
+  public void testDocumentTag() {
+    // TODO: test DocumentTag
   }
 
   /**
@@ -72,22 +55,6 @@ public class QueueDocumentTest {
   }
 
   /**
-   * Test the property 'lastModifiedDate'
-   */
-  @Test
-  public void lastModifiedDateTest() {
-    // TODO: test lastModifiedDate
-  }
-
-  /**
-   * Test the property 'checksum'
-   */
-  @Test
-  public void checksumTest() {
-    // TODO: test checksum
-  }
-
-  /**
    * Test the property 'documentId'
    */
   @Test
@@ -96,11 +63,11 @@ public class QueueDocumentTest {
   }
 
   /**
-   * Test the property 'contentType'
+   * Test the property 'type'
    */
   @Test
-  public void contentTypeTest() {
-    // TODO: test contentType
+  public void typeTest() {
+    // TODO: test type
   }
 
   /**
@@ -112,35 +79,27 @@ public class QueueDocumentTest {
   }
 
   /**
-   * Test the property 'contentLength'
+   * Test the property 'value'
    */
   @Test
-  public void contentLengthTest() {
-    // TODO: test contentLength
+  public void valueTest() {
+    // TODO: test value
   }
 
   /**
-   * Test the property 'versionId'
+   * Test the property 'values'
    */
   @Test
-  public void versionIdTest() {
-    // TODO: test versionId
+  public void valuesTest() {
+    // TODO: test values
   }
 
   /**
-   * Test the property 'belongsToDocumentId'
+   * Test the property 'key'
    */
   @Test
-  public void belongsToDocumentIdTest() {
-    // TODO: test belongsToDocumentId
-  }
-
-  /**
-   * Test the property 'metadata'
-   */
-  @Test
-  public void metadataTest() {
-    // TODO: test metadata
+  public void keyTest() {
+    // TODO: test key
   }
 
 }

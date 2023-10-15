@@ -31,25 +31,105 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SetConfigResponse
+ * Model tests for DocumentVersion
  */
-public class SetConfigResponseTest {
-  private final SetConfigResponse model = new SetConfigResponse();
+public class DocumentVersionTest {
+  private final DocumentVersion model = new DocumentVersion();
 
   /**
-   * Model tests for SetConfigResponse
+   * Model tests for DocumentVersion
    */
   @Test
-  public void testSetConfigResponse() {
-    // TODO: test SetConfigResponse
+  public void testDocumentVersion() {
+    // TODO: test DocumentVersion
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'path'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void pathTest() {
+    // TODO: test path
+  }
+
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
+  /**
+   * Test the property 'lastModifiedDate'
+   */
+  @Test
+  public void lastModifiedDateTest() {
+    // TODO: test lastModifiedDate
+  }
+
+  /**
+   * Test the property 'checksum'
+   */
+  @Test
+  public void checksumTest() {
+    // TODO: test checksum
+  }
+
+  /**
+   * Test the property 'documentId'
+   */
+  @Test
+  public void documentIdTest() {
+    // TODO: test documentId
+  }
+
+  /**
+   * Test the property 'contentType'
+   */
+  @Test
+  public void contentTypeTest() {
+    // TODO: test contentType
+  }
+
+  /**
+   * Test the property 'userId'
+   */
+  @Test
+  public void userIdTest() {
+    // TODO: test userId
+  }
+
+  /**
+   * Test the property 'contentLength'
+   */
+  @Test
+  public void contentLengthTest() {
+    // TODO: test contentLength
+  }
+
+  /**
+   * Test the property 'version'
+   */
+  @Test
+  public void versionTest() {
+    // TODO: test version
+  }
+
+  /**
+   * Test the property 'versionKey'
+   */
+  @Test
+  public void versionKeyTest() {
+    // TODO: test versionKey
+  }
+
+  /**
+   * Test the property 's3version'
+   */
+  @Test
+  public void s3versionTest() {
+    // TODO: test s3version
   }
 
 }

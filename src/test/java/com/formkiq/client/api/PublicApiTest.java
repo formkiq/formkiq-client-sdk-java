@@ -22,6 +22,7 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentRequest;
+import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.DocumentId;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -51,7 +52,7 @@ public class PublicApiTest {
   public void publicAddDocumentTest() throws ApiException {
     AddDocumentRequest addDocumentRequest = null;
     String siteId = null;
-    DocumentId response = api.publicAddDocument(addDocumentRequest, siteId);
+    AddDocumentResponse response = api.publicAddDocument(addDocumentRequest, siteId);
     // TODO: test validations
   }
 
