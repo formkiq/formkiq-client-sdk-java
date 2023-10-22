@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-14T22:24:24.582106-05:00[America/Winnipeg]")
+    date = "2023-10-21T21:53:03.844907-05:00[America/Winnipeg]")
 public class WorkflowConfig {
   /**
    * Notification Type

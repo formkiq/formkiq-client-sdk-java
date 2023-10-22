@@ -52,8 +52,9 @@ public class DocumentVersionsApiTest {
   public void deleteDocumentVersionTest() throws ApiException {
     String documentId = null;
     String versionKey = null;
+    String siteId = null;
     String shareKey = null;
-    api.deleteDocumentVersion(documentId, versionKey, shareKey);
+    api.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
     // TODO: test validations
   }
 

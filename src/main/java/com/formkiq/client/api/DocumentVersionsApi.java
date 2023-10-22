@@ -87,6 +87,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (required)
+   * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -108,7 +109,7 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentVersionCall(String documentId, String versionKey,
+  public okhttp3.Call deleteDocumentVersionCall(String documentId, String versionKey, String siteId,
       String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -136,6 +137,10 @@ public class DocumentVersionsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -161,7 +166,7 @@ public class DocumentVersionsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentVersionValidateBeforeCall(String documentId, String versionKey,
-      String shareKey, final ApiCallback _callback) throws ApiException {
+      String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -174,7 +179,7 @@ public class DocumentVersionsApi {
           "Missing the required parameter 'versionKey' when calling deleteDocumentVersion(Async)");
     }
 
-    return deleteDocumentVersionCall(documentId, versionKey, shareKey, _callback);
+    return deleteDocumentVersionCall(documentId, versionKey, siteId, shareKey, _callback);
 
   }
 
@@ -184,6 +189,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (required)
+   * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -204,9 +210,9 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteDocumentVersion(String documentId, String versionKey, String shareKey)
-      throws ApiException {
-    deleteDocumentVersionWithHttpInfo(documentId, versionKey, shareKey);
+  public void deleteDocumentVersion(String documentId, String versionKey, String siteId,
+      String shareKey) throws ApiException {
+    deleteDocumentVersionWithHttpInfo(documentId, versionKey, siteId, shareKey);
   }
 
   /**
@@ -215,6 +221,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (required)
+   * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -237,9 +244,9 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public ApiResponse<Void> deleteDocumentVersionWithHttpInfo(String documentId, String versionKey,
-      String shareKey) throws ApiException {
+      String siteId, String shareKey) throws ApiException {
     okhttp3.Call localVarCall =
-        deleteDocumentVersionValidateBeforeCall(documentId, versionKey, shareKey, null);
+        deleteDocumentVersionValidateBeforeCall(documentId, versionKey, siteId, shareKey, null);
     return localVarApiClient.execute(localVarCall);
   }
 
@@ -249,6 +256,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (required)
+   * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -271,10 +279,10 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentVersionAsync(String documentId, String versionKey,
-      String shareKey, final ApiCallback<Void> _callback) throws ApiException {
+      String siteId, String shareKey, final ApiCallback<Void> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteDocumentVersionValidateBeforeCall(documentId, versionKey, shareKey, _callback);
+    okhttp3.Call localVarCall = deleteDocumentVersionValidateBeforeCall(documentId, versionKey,
+        siteId, shareKey, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }

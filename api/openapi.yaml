@@ -2419,6 +2419,14 @@ paths:
         FormKiQ Pro and Enterprise
       operationId: DeleteDocumentVersion
       parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Document Identifier
         explode: false
         in: path

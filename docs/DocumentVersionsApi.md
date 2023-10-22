@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="deleteDocumentVersion"></a>
 # **deleteDocumentVersion**
-> deleteDocumentVersion(documentId, versionKey, shareKey)
+> deleteDocumentVersion(documentId, versionKey, siteId, shareKey)
 
 Delete document version
 
@@ -37,9 +37,10 @@ public class Example {
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key
+    String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      apiInstance.deleteDocumentVersion(documentId, versionKey, shareKey);
+      apiInstance.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#deleteDocumentVersion");
       System.err.println("Status code: " + e.getCode());
@@ -57,6 +58,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **versionKey** | **String**| Version Key | |
+| **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
