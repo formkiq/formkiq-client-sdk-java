@@ -54,36 +54,36 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocumentWorkflowRejectResponse
+ * AddDocumentWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-21T21:53:03.844907-05:00[America/Winnipeg]")
-public class AddDocumentWorkflowRejectResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private String message;
+    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+public class AddDocumentWorkflowRequest {
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  private String workflowId;
 
-  public AddDocumentWorkflowRejectResponse() {}
+  public AddDocumentWorkflowRequest() {}
 
-  public AddDocumentWorkflowRejectResponse message(String message) {
+  public AddDocumentWorkflowRequest workflowId(String workflowId) {
 
-    this.message = message;
+    this.workflowId = workflowId;
     return this;
   }
 
   /**
-   * Result message
+   * Workflow Identifier
    * 
-   * @return message
+   * @return workflowId
    **/
-  @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  @javax.annotation.Nonnull
+  public String getWorkflowId() {
+    return workflowId;
   }
 
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
   }
 
 
@@ -96,21 +96,20 @@ public class AddDocumentWorkflowRejectResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentWorkflowRejectResponse addDocumentWorkflowRejectResponse =
-        (AddDocumentWorkflowRejectResponse) o;
-    return Objects.equals(this.message, addDocumentWorkflowRejectResponse.message);
+    AddDocumentWorkflowRequest addDocumentWorkflowRequest = (AddDocumentWorkflowRequest) o;
+    return Objects.equals(this.workflowId, addDocumentWorkflowRequest.workflowId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(workflowId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentWorkflowRejectResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class AddDocumentWorkflowRequest {\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -132,45 +131,52 @@ public class AddDocumentWorkflowRejectResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("message");
+    openapiFields.add("workflowId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("workflowId");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to
-   *         AddDocumentWorkflowRejectResponse
+   * @throws IOException if the JSON Element is invalid with respect to AddDocumentWorkflowRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentWorkflowRejectResponse.openapiRequiredFields.isEmpty()) { // has required
-                                                                                // fields but JSON
-                                                                                // element is null
+      if (!AddDocumentWorkflowRequest.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                         // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocumentWorkflowRejectResponse is not found in the empty JSON string",
-            AddDocumentWorkflowRejectResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocumentWorkflowRequest is not found in the empty JSON string",
+            AddDocumentWorkflowRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentWorkflowRejectResponse.openapiFields.contains(entry.getKey())) {
+      if (!AddDocumentWorkflowRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowRejectResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddDocumentWorkflowRequest.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
+    if (!jsonObj.get("workflowId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+          "Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("workflowId").toString()));
     }
   }
 
@@ -178,24 +184,22 @@ public class AddDocumentWorkflowRejectResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentWorkflowRejectResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentWorkflowRejectResponse' and its
-                     // subtypes
+      if (!AddDocumentWorkflowRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocumentWorkflowRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentWorkflowRejectResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowRejectResponse.class));
+      final TypeAdapter<AddDocumentWorkflowRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowRejectResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowRequest>() {
         @Override
-        public void write(JsonWriter out, AddDocumentWorkflowRejectResponse value)
-            throws IOException {
+        public void write(JsonWriter out, AddDocumentWorkflowRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentWorkflowRejectResponse read(JsonReader in) throws IOException {
+        public AddDocumentWorkflowRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -206,19 +210,18 @@ public class AddDocumentWorkflowRejectResponse {
   }
 
   /**
-   * Create an instance of AddDocumentWorkflowRejectResponse given an JSON string
+   * Create an instance of AddDocumentWorkflowRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentWorkflowRejectResponse
-   * @throws IOException if the JSON string is invalid with respect to
-   *         AddDocumentWorkflowRejectResponse
+   * @return An instance of AddDocumentWorkflowRequest
+   * @throws IOException if the JSON string is invalid with respect to AddDocumentWorkflowRequest
    */
-  public static AddDocumentWorkflowRejectResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowRejectResponse.class);
+  public static AddDocumentWorkflowRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowRequest.class);
   }
 
   /**
-   * Convert an instance of AddDocumentWorkflowRejectResponse to an JSON string
+   * Convert an instance of AddDocumentWorkflowRequest to an JSON string
    *
    * @return JSON string
    */

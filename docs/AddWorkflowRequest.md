@@ -10,7 +10,7 @@
 |**name** | **String** | Workflow name |  |
 |**description** | **String** | Workflow description |  [optional] |
 |**config** | [**WorkflowConfig**](WorkflowConfig.md) |  |  [optional] |
-|**steps** | [**List&lt;AddWorkflowStep&gt;**](AddWorkflowStep.md) | Workflow steps |  |
+|**steps** | [**List&lt;AddWorkflowStep&gt;**](AddWorkflowStep.md) | Workflow Steps |  |
 
 
 

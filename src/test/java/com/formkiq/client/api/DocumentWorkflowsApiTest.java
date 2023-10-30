@@ -21,8 +21,9 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddDocumentWorkflowApprovalResponse;
-import com.formkiq.client.model.AddDocumentWorkflowRejectResponse;
+import com.formkiq.client.model.AddDocumentWorkflowDecisionsRequest;
+import com.formkiq.client.model.AddDocumentWorkflowDecisionsResponse;
+import com.formkiq.client.model.AddDocumentWorkflowRequest;
 import com.formkiq.client.model.AddDocumentWorkflowResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
@@ -57,45 +58,28 @@ public class DocumentWorkflowsApiTest {
   @Test
   public void addDocumentWorkflowTest() throws ApiException {
     String documentId = null;
-    String workflowId = null;
+    AddDocumentWorkflowRequest addDocumentWorkflowRequest = null;
     String siteId = null;
-    AddDocumentWorkflowResponse response = api.addDocumentWorkflow(documentId, workflowId, siteId);
+    AddDocumentWorkflowResponse response =
+        api.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId);
     // TODO: test validations
   }
 
   /**
-   * Approve document in approval queue
+   * Approve/Reject document in approval queue
    *
-   * Approve document in approval queue; ONLY available with FormKiQ Pro and Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void addDocumentWorkflowApprovalTest() throws ApiException {
-    String documentId = null;
-    String workflowId = null;
-    String queueName = null;
-    String siteId = null;
-    AddDocumentWorkflowApprovalResponse response =
-        api.addDocumentWorkflowApproval(documentId, workflowId, queueName, siteId);
-    // TODO: test validations
-  }
-
-  /**
-   * Reject document in approval queue
-   *
-   * Reject document in approval queue; ONLY available with FormKiQ Pro and Enterprise
+   * Approve/Reject document in approval queue; ONLY available with FormKiQ Pro and Enterprise
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void addDocumentWorkflowRejectTest() throws ApiException {
+  public void addDocumentWorkflowDecisionsTest() throws ApiException {
     String documentId = null;
     String workflowId = null;
-    String queueName = null;
+    AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest = null;
     String siteId = null;
-    AddDocumentWorkflowRejectResponse response =
-        api.addDocumentWorkflowReject(documentId, workflowId, queueName, siteId);
+    AddDocumentWorkflowDecisionsResponse response = api.addDocumentWorkflowDecisions(documentId,
+        workflowId, addDocumentWorkflowDecisionsRequest, siteId);
     // TODO: test validations
   }
 

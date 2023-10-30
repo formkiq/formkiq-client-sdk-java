@@ -54,18 +54,18 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocumentWorkflowApprovalResponse
+ * AddDocumentWorkflowDecisionsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-21T21:53:03.844907-05:00[America/Winnipeg]")
-public class AddDocumentWorkflowApprovalResponse {
+    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+public class AddDocumentWorkflowDecisionsResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public AddDocumentWorkflowApprovalResponse() {}
+  public AddDocumentWorkflowDecisionsResponse() {}
 
-  public AddDocumentWorkflowApprovalResponse message(String message) {
+  public AddDocumentWorkflowDecisionsResponse message(String message) {
 
     this.message = message;
     return this;
@@ -96,9 +96,9 @@ public class AddDocumentWorkflowApprovalResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentWorkflowApprovalResponse addDocumentWorkflowApprovalResponse =
-        (AddDocumentWorkflowApprovalResponse) o;
-    return Objects.equals(this.message, addDocumentWorkflowApprovalResponse.message);
+    AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisionsResponse =
+        (AddDocumentWorkflowDecisionsResponse) o;
+    return Objects.equals(this.message, addDocumentWorkflowDecisionsResponse.message);
   }
 
   @Override
@@ -109,7 +109,7 @@ public class AddDocumentWorkflowApprovalResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentWorkflowApprovalResponse {\n");
+    sb.append("class AddDocumentWorkflowDecisionsResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -143,25 +143,26 @@ public class AddDocumentWorkflowApprovalResponse {
    *
    * @param jsonElement JSON Element
    * @throws IOException if the JSON Element is invalid with respect to
-   *         AddDocumentWorkflowApprovalResponse
+   *         AddDocumentWorkflowDecisionsResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentWorkflowApprovalResponse.openapiRequiredFields.isEmpty()) { // has required
-                                                                                  // fields but JSON
-                                                                                  // element is null
+      if (!AddDocumentWorkflowDecisionsResponse.openapiRequiredFields.isEmpty()) { // has required
+                                                                                   // fields but
+                                                                                   // JSON element
+                                                                                   // is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocumentWorkflowApprovalResponse is not found in the empty JSON string",
-            AddDocumentWorkflowApprovalResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocumentWorkflowDecisionsResponse is not found in the empty JSON string",
+            AddDocumentWorkflowDecisionsResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentWorkflowApprovalResponse.openapiFields.contains(entry.getKey())) {
+      if (!AddDocumentWorkflowDecisionsResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowApprovalResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowDecisionsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -178,24 +179,24 @@ public class AddDocumentWorkflowApprovalResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentWorkflowApprovalResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentWorkflowApprovalResponse' and its
+      if (!AddDocumentWorkflowDecisionsResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocumentWorkflowDecisionsResponse' and its
                      // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentWorkflowApprovalResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowApprovalResponse.class));
+      final TypeAdapter<AddDocumentWorkflowDecisionsResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowDecisionsResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowApprovalResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowDecisionsResponse>() {
         @Override
-        public void write(JsonWriter out, AddDocumentWorkflowApprovalResponse value)
+        public void write(JsonWriter out, AddDocumentWorkflowDecisionsResponse value)
             throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentWorkflowApprovalResponse read(JsonReader in) throws IOException {
+        public AddDocumentWorkflowDecisionsResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -206,19 +207,20 @@ public class AddDocumentWorkflowApprovalResponse {
   }
 
   /**
-   * Create an instance of AddDocumentWorkflowApprovalResponse given an JSON string
+   * Create an instance of AddDocumentWorkflowDecisionsResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentWorkflowApprovalResponse
+   * @return An instance of AddDocumentWorkflowDecisionsResponse
    * @throws IOException if the JSON string is invalid with respect to
-   *         AddDocumentWorkflowApprovalResponse
+   *         AddDocumentWorkflowDecisionsResponse
    */
-  public static AddDocumentWorkflowApprovalResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowApprovalResponse.class);
+  public static AddDocumentWorkflowDecisionsResponse fromJson(String jsonString)
+      throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowDecisionsResponse.class);
   }
 
   /**
-   * Convert an instance of AddDocumentWorkflowApprovalResponse to an JSON string
+   * Convert an instance of AddDocumentWorkflowDecisionsResponse to an JSON string
    *
    * @return JSON string
    */

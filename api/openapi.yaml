@@ -2991,7 +2991,7 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
-  /workflows/queue/{queueName}/documents:
+  /queues/{queueName}/documents:
     get:
       description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
         and Enterprise
@@ -3052,7 +3052,7 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
       x-accepts: application/json
-  /documents/{documentId}/workflow/{workflowId}:
+  /documents/{documentId}/workflows:
     post:
       description: Creates a document workflow; ONLY available with FormKiQ Pro and
         Enterprise
@@ -3074,14 +3074,12 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentWorkflowRequest'
         required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "201":
           content:
@@ -3116,12 +3114,13 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
       x-accepts: application/json
-  /documents/{documentId}/workflow/{workflowId}/approve/{queueName}:
+  /documents/{documentId}/workflow/{workflowId}/decisions:
     post:
-      description: Approve document in approval queue; ONLY available with FormKiQ
-        Pro and Enterprise
-      operationId: AddDocumentWorkflowApproval
+      description: Approve/Reject document in approval queue; ONLY available with
+        FormKiQ Pro and Enterprise
+      operationId: AddDocumentWorkflowDecisions
       parameters:
       - description: Site Identifier
         explode: true
@@ -3147,20 +3146,18 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Queue Name
-        explode: false
-        in: path
-        name: queueName
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentWorkflowDecisionsRequest'
         required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddDocumentWorkflowApprovalResponse'
+                $ref: '#/components/schemas/AddDocumentWorkflowDecisionsResponse'
           description: 201 CREATED
           headers:
             Access-Control-Allow-Origin:
@@ -3184,84 +3181,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
-      summary: Approve document in approval queue
+      summary: Approve/Reject document in approval queue
       tags:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
-      x-accepts: application/json
-  /documents/{documentId}/workflow/{workflowId}/reject/{queueName}:
-    post:
-      description: Reject document in approval queue; ONLY available with FormKiQ
-        Pro and Enterprise
-      operationId: AddDocumentWorkflowReject
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Queue Name
-        explode: false
-        in: path
-        name: queueName
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddDocumentWorkflowRejectResponse'
-          description: 201 CREATED
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsResponse'
-          description: 400 BAD REQUEST
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Reject document in approval queue
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
       x-accepts: application/json
   /tagSchemas:
     get:
@@ -8499,7 +8424,7 @@ components:
         config:
           $ref: '#/components/schemas/WorkflowConfig'
         steps:
-          description: Workflow steps
+          description: Workflow Steps
           items:
             $ref: '#/components/schemas/AddWorkflowStep'
           type: array
@@ -8594,6 +8519,16 @@ components:
           description: Workflow Identifier
           type: string
       type: object
+    AddDocumentWorkflowRequest:
+      example:
+        workflowId: workflowId
+      properties:
+        workflowId:
+          description: Workflow Identifier
+          type: string
+      required:
+      - workflowId
+      type: object
     AddDocumentWorkflowResponse:
       example:
         message: message
@@ -8602,15 +8537,24 @@ components:
           description: Result message
           type: string
       type: object
-    AddDocumentWorkflowApprovalResponse:
+    AddDocumentWorkflowDecisionsRequest:
       example:
-        message: message
+        queueName: queueName
+        decision: APPROVE
       properties:
-        message:
-          description: Result message
+        queueName:
+          description: Name of Queue
           type: string
+        decision:
+          enum:
+          - APPROVE
+          - REJECT
+          type: string
+      required:
+      - decision
+      - queueName
       type: object
-    AddDocumentWorkflowRejectResponse:
+    AddDocumentWorkflowDecisionsResponse:
       example:
         message: message
       properties:

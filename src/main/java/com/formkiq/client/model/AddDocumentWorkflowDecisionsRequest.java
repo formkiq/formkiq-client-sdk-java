@@ -54,62 +54,110 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentId
+ * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
     date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
-public class DocumentId {
-  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
-  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
-  private String documentId;
+public class AddDocumentWorkflowDecisionsRequest {
+  public static final String SERIALIZED_NAME_QUEUE_NAME = "queueName";
+  @SerializedName(SERIALIZED_NAME_QUEUE_NAME)
+  private String queueName;
 
-  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
-  @SerializedName(SERIALIZED_NAME_SITE_ID)
-  private String siteId;
+  /**
+   * Gets or Sets decision
+   */
+  @JsonAdapter(DecisionEnum.Adapter.class)
+  public enum DecisionEnum {
+    APPROVE("APPROVE"),
 
-  public DocumentId() {}
+    REJECT("REJECT");
 
-  public DocumentId documentId(String documentId) {
+    private String value;
 
-    this.documentId = documentId;
+    DecisionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DecisionEnum fromValue(String value) {
+      for (DecisionEnum b : DecisionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<DecisionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DecisionEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DecisionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DecisionEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_DECISION = "decision";
+  @SerializedName(SERIALIZED_NAME_DECISION)
+  private DecisionEnum decision;
+
+  public AddDocumentWorkflowDecisionsRequest() {}
+
+  public AddDocumentWorkflowDecisionsRequest queueName(String queueName) {
+
+    this.queueName = queueName;
     return this;
   }
 
   /**
-   * Document Identifier
+   * Name of Queue
    * 
-   * @return documentId
+   * @return queueName
    **/
   @javax.annotation.Nonnull
-  public String getDocumentId() {
-    return documentId;
+  public String getQueueName() {
+    return queueName;
   }
 
 
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setQueueName(String queueName) {
+    this.queueName = queueName;
   }
 
 
-  public DocumentId siteId(String siteId) {
+  public AddDocumentWorkflowDecisionsRequest decision(DecisionEnum decision) {
 
-    this.siteId = siteId;
+    this.decision = decision;
     return this;
   }
 
   /**
-   * Site Identifier
+   * Get decision
    * 
-   * @return siteId
+   * @return decision
    **/
-  @javax.annotation.Nullable
-  public String getSiteId() {
-    return siteId;
+  @javax.annotation.Nonnull
+  public DecisionEnum getDecision() {
+    return decision;
   }
 
 
-  public void setSiteId(String siteId) {
-    this.siteId = siteId;
+  public void setDecision(DecisionEnum decision) {
+    this.decision = decision;
   }
 
 
@@ -122,22 +170,23 @@ public class DocumentId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentId documentId = (DocumentId) o;
-    return Objects.equals(this.documentId, documentId.documentId)
-        && Objects.equals(this.siteId, documentId.siteId);
+    AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest =
+        (AddDocumentWorkflowDecisionsRequest) o;
+    return Objects.equals(this.queueName, addDocumentWorkflowDecisionsRequest.queueName)
+        && Objects.equals(this.decision, addDocumentWorkflowDecisionsRequest.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, siteId);
+    return Objects.hash(queueName, decision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentId {\n");
-    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
-    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
+    sb.append("class AddDocumentWorkflowDecisionsRequest {\n");
+    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,42 +208,45 @@ public class DocumentId {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("documentId");
-    openapiFields.add("siteId");
+    openapiFields.add("queueName");
+    openapiFields.add("decision");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("documentId");
+    openapiRequiredFields.add("queueName");
+    openapiRequiredFields.add("decision");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentId
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         AddDocumentWorkflowDecisionsRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentId.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
-                                                         // null
+      if (!AddDocumentWorkflowDecisionsRequest.openapiRequiredFields.isEmpty()) { // has required
+                                                                                  // fields but JSON
+                                                                                  // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentId is not found in the empty JSON string",
-            DocumentId.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocumentWorkflowDecisionsRequest is not found in the empty JSON string",
+            AddDocumentWorkflowDecisionsRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentId.openapiFields.contains(entry.getKey())) {
+      if (!AddDocumentWorkflowDecisionsRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentId` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocumentWorkflowDecisionsRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentId.openapiRequiredFields) {
+    for (String requiredField : AddDocumentWorkflowDecisionsRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(
             String.format("The required field `%s` is not found in the JSON string: %s",
@@ -202,16 +254,15 @@ public class DocumentId {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("documentId").isJsonPrimitive()) {
+    if (!jsonObj.get("queueName").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("documentId").toString()));
+          "Expected the field `queueName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueName").toString()));
     }
-    if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
-        && !jsonObj.get("siteId").isJsonPrimitive()) {
+    if (!jsonObj.get("decision").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("siteId").toString()));
+          "Expected the field `decision` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("decision").toString()));
     }
   }
 
@@ -219,22 +270,24 @@ public class DocumentId {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentId.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentId' and its subtypes
+      if (!AddDocumentWorkflowDecisionsRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocumentWorkflowDecisionsRequest' and its
+                     // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentId> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentId.class));
+      final TypeAdapter<AddDocumentWorkflowDecisionsRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentWorkflowDecisionsRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentId>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocumentWorkflowDecisionsRequest>() {
         @Override
-        public void write(JsonWriter out, DocumentId value) throws IOException {
+        public void write(JsonWriter out, AddDocumentWorkflowDecisionsRequest value)
+            throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentId read(JsonReader in) throws IOException {
+        public AddDocumentWorkflowDecisionsRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -245,18 +298,19 @@ public class DocumentId {
   }
 
   /**
-   * Create an instance of DocumentId given an JSON string
+   * Create an instance of AddDocumentWorkflowDecisionsRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentId
-   * @throws IOException if the JSON string is invalid with respect to DocumentId
+   * @return An instance of AddDocumentWorkflowDecisionsRequest
+   * @throws IOException if the JSON string is invalid with respect to
+   *         AddDocumentWorkflowDecisionsRequest
    */
-  public static DocumentId fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentId.class);
+  public static AddDocumentWorkflowDecisionsRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocumentWorkflowDecisionsRequest.class);
   }
 
   /**
-   * Convert an instance of DocumentId to an JSON string
+   * Convert an instance of AddDocumentWorkflowDecisionsRequest to an JSON string
    *
    * @return JSON string
    */

@@ -1,13 +1,13 @@
 
 
-# AddDocumentWorkflowRequest
+# AddDocumentWorkflowDecisionsResponse
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**workflowId** | **String** | Workflow Identifier |  |
+|**message** | **String** | Result message |  [optional] |
 
 
 

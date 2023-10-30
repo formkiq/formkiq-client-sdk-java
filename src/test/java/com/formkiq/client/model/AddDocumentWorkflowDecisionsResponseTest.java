@@ -31,18 +31,18 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocumentWorkflowApprovalResponse
+ * Model tests for AddDocumentWorkflowDecisionsResponse
  */
-public class AddDocumentWorkflowApprovalResponseTest {
-  private final AddDocumentWorkflowApprovalResponse model =
-      new AddDocumentWorkflowApprovalResponse();
+public class AddDocumentWorkflowDecisionsResponseTest {
+  private final AddDocumentWorkflowDecisionsResponse model =
+      new AddDocumentWorkflowDecisionsResponse();
 
   /**
-   * Model tests for AddDocumentWorkflowApprovalResponse
+   * Model tests for AddDocumentWorkflowDecisionsResponse
    */
   @Test
-  public void testAddDocumentWorkflowApprovalResponse() {
-    // TODO: test AddDocumentWorkflowApprovalResponse
+  public void testAddDocumentWorkflowDecisionsResponse() {
+    // TODO: test AddDocumentWorkflowDecisionsResponse
   }
 
   /**

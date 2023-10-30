@@ -31,25 +31,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocumentWorkflowRejectResponse
+ * Model tests for AddDocumentWorkflowRequest
  */
-public class AddDocumentWorkflowRejectResponseTest {
-  private final AddDocumentWorkflowRejectResponse model = new AddDocumentWorkflowRejectResponse();
+public class AddDocumentWorkflowRequestTest {
+  private final AddDocumentWorkflowRequest model = new AddDocumentWorkflowRequest();
 
   /**
-   * Model tests for AddDocumentWorkflowRejectResponse
+   * Model tests for AddDocumentWorkflowRequest
    */
   @Test
-  public void testAddDocumentWorkflowRejectResponse() {
-    // TODO: test AddDocumentWorkflowRejectResponse
+  public void testAddDocumentWorkflowRequest() {
+    // TODO: test AddDocumentWorkflowRequest
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'workflowId'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void workflowIdTest() {
+    // TODO: test workflowId
   }
 
 }

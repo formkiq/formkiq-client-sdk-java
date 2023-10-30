@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-21T21:53:03.844907-05:00[America/Winnipeg]")
+    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
 public class GetDocumentSync {
   /**
    * To which service the data was synced

@@ -137,9 +137,11 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentUploadRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddDocumentWorkflowApprovalResponse.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddDocumentWorkflowDecisionsRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddDocumentWorkflowRejectResponse.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddDocumentWorkflowDecisionsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddDocumentWorkflowRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

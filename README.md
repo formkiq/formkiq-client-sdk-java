@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-10-21T21:53:03.844907-05:00[America/Winnipeg]
+  - Build date: 2023-10-25T15:21:33.124089-05:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -174,13 +174,12 @@ Class | Method | HTTP request | Description
 *DocumentVersionsApi* | [**deleteDocumentVersion**](docs/DocumentVersionsApi.md#deleteDocumentVersion) | **DELETE** /documents/{documentId}/versions/{versionKey} | Delete document version
 *DocumentVersionsApi* | [**getDocumentVersions**](docs/DocumentVersionsApi.md#getDocumentVersions) | **GET** /documents/{documentId}/versions | Get document&#39;s versions
 *DocumentVersionsApi* | [**setDocumentVersion**](docs/DocumentVersionsApi.md#setDocumentVersion) | **PUT** /documents/{documentId}/versions | Set version of document
-*DocumentWorkflowsApi* | [**addDocumentWorkflow**](docs/DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflow/{workflowId} | Add document workflow
-*DocumentWorkflowsApi* | [**addDocumentWorkflowApproval**](docs/DocumentWorkflowsApi.md#addDocumentWorkflowApproval) | **POST** /documents/{documentId}/workflow/{workflowId}/approve/{queueName} | Approve document in approval queue
-*DocumentWorkflowsApi* | [**addDocumentWorkflowReject**](docs/DocumentWorkflowsApi.md#addDocumentWorkflowReject) | **POST** /documents/{documentId}/workflow/{workflowId}/reject/{queueName} | Reject document in approval queue
+*DocumentWorkflowsApi* | [**addDocumentWorkflow**](docs/DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflows | Add document workflow
+*DocumentWorkflowsApi* | [**addDocumentWorkflowDecisions**](docs/DocumentWorkflowsApi.md#addDocumentWorkflowDecisions) | **POST** /documents/{documentId}/workflow/{workflowId}/decisions | Approve/Reject document in approval queue
 *DocumentWorkflowsApi* | [**addWorkflow**](docs/DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow
 *DocumentWorkflowsApi* | [**deleteWorkflow**](docs/DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow
 *DocumentWorkflowsApi* | [**getWorkflow**](docs/DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow
-*DocumentWorkflowsApi* | [**getWorkflowQueueDocuments**](docs/DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /workflows/queue/{queueName}/documents | Get list of documents in queue
+*DocumentWorkflowsApi* | [**getWorkflowQueueDocuments**](docs/DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /queues/{queueName}/documents | Get list of documents in queue
 *DocumentWorkflowsApi* | [**getWorkflows**](docs/DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
@@ -245,8 +244,9 @@ Class | Method | HTTP request | Description
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
- - [AddDocumentWorkflowApprovalResponse](docs/AddDocumentWorkflowApprovalResponse.md)
- - [AddDocumentWorkflowRejectResponse](docs/AddDocumentWorkflowRejectResponse.md)
+ - [AddDocumentWorkflowDecisionsRequest](docs/AddDocumentWorkflowDecisionsRequest.md)
+ - [AddDocumentWorkflowDecisionsResponse](docs/AddDocumentWorkflowDecisionsResponse.md)
+ - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)

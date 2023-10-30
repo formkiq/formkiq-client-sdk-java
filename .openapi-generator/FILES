@@ -21,8 +21,9 @@ docs/AddDocumentResponse.md
 docs/AddDocumentTag.md
 docs/AddDocumentTagsRequest.md
 docs/AddDocumentUploadRequest.md
-docs/AddDocumentWorkflowApprovalResponse.md
-docs/AddDocumentWorkflowRejectResponse.md
+docs/AddDocumentWorkflowDecisionsRequest.md
+docs/AddDocumentWorkflowDecisionsResponse.md
+docs/AddDocumentWorkflowRequest.md
 docs/AddDocumentWorkflowResponse.md
 docs/AddFolderRequest.md
 docs/AddFolderResponse.md
@@ -237,8 +238,9 @@ src/main/java/com/formkiq/client/model/AddDocumentResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentTag.java
 src/main/java/com/formkiq/client/model/AddDocumentTagsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentUploadRequest.java
-src/main/java/com/formkiq/client/model/AddDocumentWorkflowApprovalResponse.java
-src/main/java/com/formkiq/client/model/AddDocumentWorkflowRejectResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentWorkflowRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
@@ -401,8 +403,9 @@ src/test/java/com/formkiq/client/model/AddDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentTagTest.java
 src/test/java/com/formkiq/client/model/AddDocumentTagsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentUploadRequestTest.java
-src/test/java/com/formkiq/client/model/AddDocumentWorkflowApprovalResponseTest.java
-src/test/java/com/formkiq/client/model/AddDocumentWorkflowRejectResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java

@@ -4,19 +4,18 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDocumentWorkflow**](DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflow/{workflowId} | Add document workflow |
-| [**addDocumentWorkflowApproval**](DocumentWorkflowsApi.md#addDocumentWorkflowApproval) | **POST** /documents/{documentId}/workflow/{workflowId}/approve/{queueName} | Approve document in approval queue |
-| [**addDocumentWorkflowReject**](DocumentWorkflowsApi.md#addDocumentWorkflowReject) | **POST** /documents/{documentId}/workflow/{workflowId}/reject/{queueName} | Reject document in approval queue |
+| [**addDocumentWorkflow**](DocumentWorkflowsApi.md#addDocumentWorkflow) | **POST** /documents/{documentId}/workflows | Add document workflow |
+| [**addDocumentWorkflowDecisions**](DocumentWorkflowsApi.md#addDocumentWorkflowDecisions) | **POST** /documents/{documentId}/workflow/{workflowId}/decisions | Approve/Reject document in approval queue |
 | [**addWorkflow**](DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow |
 | [**deleteWorkflow**](DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow |
 | [**getWorkflow**](DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow |
-| [**getWorkflowQueueDocuments**](DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /workflows/queue/{queueName}/documents | Get list of documents in queue |
+| [**getWorkflowQueueDocuments**](DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /queues/{queueName}/documents | Get list of documents in queue |
 | [**getWorkflows**](DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows |
 
 
 <a id="addDocumentWorkflow"></a>
 # **addDocumentWorkflow**
-> AddDocumentWorkflowResponse addDocumentWorkflow(documentId, workflowId, siteId)
+> AddDocumentWorkflowResponse addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId)
 
 Add document workflow
 
@@ -41,10 +40,10 @@ public class Example {
     
     DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    String workflowId = "workflowId_example"; // String | Workflow Identifier
+    AddDocumentWorkflowRequest addDocumentWorkflowRequest = new AddDocumentWorkflowRequest(); // AddDocumentWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddDocumentWorkflowResponse result = apiInstance.addDocumentWorkflow(documentId, workflowId, siteId);
+      AddDocumentWorkflowResponse result = apiInstance.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflow");
@@ -62,7 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **workflowId** | **String**| Workflow Identifier | |
+| **addDocumentWorkflowRequest** | [**AddDocumentWorkflowRequest**](AddDocumentWorkflowRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
@@ -75,7 +74,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -84,13 +83,13 @@ No authorization required
 | **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="addDocumentWorkflowApproval"></a>
-# **addDocumentWorkflowApproval**
-> AddDocumentWorkflowApprovalResponse addDocumentWorkflowApproval(documentId, workflowId, queueName, siteId)
+<a id="addDocumentWorkflowDecisions"></a>
+# **addDocumentWorkflowDecisions**
+> AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId)
 
-Approve document in approval queue
+Approve/Reject document in approval queue
 
-Approve document in approval queue; ONLY available with FormKiQ Pro and Enterprise
+Approve/Reject document in approval queue; ONLY available with FormKiQ Pro and Enterprise
 
 ### Example
 ```java
@@ -112,13 +111,13 @@ public class Example {
     DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String workflowId = "workflowId_example"; // String | Workflow Identifier
-    String queueName = "queueName_example"; // String | Queue Name
+    AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest = new AddDocumentWorkflowDecisionsRequest(); // AddDocumentWorkflowDecisionsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddDocumentWorkflowApprovalResponse result = apiInstance.addDocumentWorkflowApproval(documentId, workflowId, queueName, siteId);
+      AddDocumentWorkflowDecisionsResponse result = apiInstance.addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflowApproval");
+      System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflowDecisions");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -134,12 +133,12 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **workflowId** | **String**| Workflow Identifier | |
-| **queueName** | **String**| Queue Name | |
+| **addDocumentWorkflowDecisionsRequest** | [**AddDocumentWorkflowDecisionsRequest**](AddDocumentWorkflowDecisionsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
-[**AddDocumentWorkflowApprovalResponse**](AddDocumentWorkflowApprovalResponse.md)
+[**AddDocumentWorkflowDecisionsResponse**](AddDocumentWorkflowDecisionsResponse.md)
 
 ### Authorization
 
@@ -147,79 +146,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-| **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
-<a id="addDocumentWorkflowReject"></a>
-# **addDocumentWorkflowReject**
-> AddDocumentWorkflowRejectResponse addDocumentWorkflowReject(documentId, workflowId, queueName, siteId)
-
-Reject document in approval queue
-
-Reject document in approval queue; ONLY available with FormKiQ Pro and Enterprise
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.DocumentWorkflowsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
-    String documentId = "documentId_example"; // String | Document Identifier
-    String workflowId = "workflowId_example"; // String | Workflow Identifier
-    String queueName = "queueName_example"; // String | Queue Name
-    String siteId = "siteId_example"; // String | Site Identifier
-    try {
-      AddDocumentWorkflowRejectResponse result = apiInstance.addDocumentWorkflowReject(documentId, workflowId, queueName, siteId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflowReject");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **documentId** | **String**| Document Identifier | |
-| **workflowId** | **String**| Workflow Identifier | |
-| **queueName** | **String**| Queue Name | |
-| **siteId** | **String**| Site Identifier | [optional] |
-
-### Return type
-
-[**AddDocumentWorkflowRejectResponse**](AddDocumentWorkflowRejectResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
