@@ -24,7 +24,7 @@ All URIs are relative to *http://localhost*
 
 Add new document
 
-Creates a new document; body may include document content if less than 5 MB
+Creates a new document; body may include document content if less than 5 MB  See POST /documents/{documentId}/tags for adding tags to document schema  See POST /documents/{documentId}/actions for adding actions to document schema
 
 ### Example
 ```java
@@ -728,7 +728,7 @@ No authorization required
 
 <a id="getDocuments"></a>
 # **getDocuments**
-> GetDocumentsResponse getDocuments(date, tz, next, previous, siteId, limit)
+> GetDocumentsResponse getDocuments(siteId, actionStatus, date, tz, next, previous, limit)
 
 Get Documents listing
 
@@ -752,14 +752,15 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String actionStatus = "FAILED"; // String | Fetch documents with an action status
     String date = "date_example"; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
-    String siteId = "siteId_example"; // String | Site Identifier
     String limit = "10"; // String | Limit Results
     try {
-      GetDocumentsResponse result = apiInstance.getDocuments(date, tz, next, previous, siteId, limit);
+      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, date, tz, next, previous, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocuments");
@@ -776,11 +777,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | [optional] |
+| **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED] |
 | **date** | **String**| Fetch documents inserted on a certain date (yyyy-MM-dd) | [optional] |
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
 | **previous** | **String**| Previous page of results token | [optional] |
-| **siteId** | **String**| Site Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 
 ### Return type

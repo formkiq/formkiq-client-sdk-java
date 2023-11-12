@@ -59,11 +59,11 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class WorkflowQueue {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  private String queueId;
 
   public static final String SERIALIZED_NAME_IF_APPROVED_STEP_ID = "ifApprovedStepId";
   @SerializedName(SERIALIZED_NAME_IF_APPROVED_STEP_ID)
@@ -79,25 +79,25 @@ public class WorkflowQueue {
 
   public WorkflowQueue() {}
 
-  public WorkflowQueue name(String name) {
+  public WorkflowQueue queueId(String queueId) {
 
-    this.name = name;
+    this.queueId = queueId;
     return this;
   }
 
   /**
-   * Name of queue
+   * Queue Id
    * 
-   * @return name
+   * @return queueId
    **/
   @javax.annotation.Nullable
-  public String getName() {
-    return name;
+  public String getQueueId() {
+    return queueId;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setQueueId(String queueId) {
+    this.queueId = queueId;
   }
 
 
@@ -185,7 +185,7 @@ public class WorkflowQueue {
       return false;
     }
     WorkflowQueue workflowQueue = (WorkflowQueue) o;
-    return Objects.equals(this.name, workflowQueue.name)
+    return Objects.equals(this.queueId, workflowQueue.queueId)
         && Objects.equals(this.ifApprovedStepId, workflowQueue.ifApprovedStepId)
         && Objects.equals(this.ifRejectedStepId, workflowQueue.ifRejectedStepId)
         && Objects.equals(this.approvalGroups, workflowQueue.approvalGroups);
@@ -193,14 +193,14 @@ public class WorkflowQueue {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, ifApprovedStepId, ifRejectedStepId, approvalGroups);
+    return Objects.hash(queueId, ifApprovedStepId, ifRejectedStepId, approvalGroups);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowQueue {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
     sb.append("    ifApprovedStepId: ").append(toIndentedString(ifApprovedStepId)).append("\n");
     sb.append("    ifRejectedStepId: ").append(toIndentedString(ifRejectedStepId)).append("\n");
     sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
@@ -225,7 +225,7 @@ public class WorkflowQueue {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
+    openapiFields.add("queueId");
     openapiFields.add("ifApprovedStepId");
     openapiFields.add("ifRejectedStepId");
     openapiFields.add("approvalGroups");
@@ -260,11 +260,11 @@ public class WorkflowQueue {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
-        && !jsonObj.get("name").isJsonPrimitive()) {
+    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
+        && !jsonObj.get("queueId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("name").toString()));
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
     }
     if ((jsonObj.get("ifApprovedStepId") != null && !jsonObj.get("ifApprovedStepId").isJsonNull())
         && !jsonObj.get("ifApprovedStepId").isJsonPrimitive()) {

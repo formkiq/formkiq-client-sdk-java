@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.AddWorkflowStep;
-import com.formkiq.client.model.WorkflowConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -65,11 +64,11 @@ public class AddWorkflowRequestTest {
   }
 
   /**
-   * Test the property 'config'
+   * Test the property 'status'
    */
   @Test
-  public void configTest() {
-    // TODO: test config
+  public void statusTest() {
+    // TODO: test status
   }
 
   /**

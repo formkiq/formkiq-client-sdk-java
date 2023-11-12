@@ -62,4 +62,12 @@ public class AddDocumentOcrRequestTest {
     // TODO: test addPdfDetectedCharactersAsText
   }
 
+  /**
+   * Test the property 'ocrEngine'
+   */
+  @Test
+  public void ocrEngineTest() {
+    // TODO: test ocrEngine
+  }
+
 }

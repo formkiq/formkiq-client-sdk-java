@@ -51,7 +51,9 @@ public class DocumentsApiTest {
   /**
    * Add new document
    *
-   * Creates a new document; body may include document content if less than 5 MB
+   * Creates a new document; body may include document content if less than 5 MB See POST
+   * /documents/{documentId}/tags for adding tags to document schema See POST
+   * /documents/{documentId}/actions for adding actions to document schema
    *
    * @throws ApiException if the Api call fails
    */
@@ -240,13 +242,15 @@ public class DocumentsApiTest {
    */
   @Test
   public void getDocumentsTest() throws ApiException {
+    String siteId = null;
+    String actionStatus = null;
     String date = null;
     String tz = null;
     String next = null;
     String previous = null;
-    String siteId = null;
     String limit = null;
-    GetDocumentsResponse response = api.getDocuments(date, tz, next, previous, siteId, limit);
+    GetDocumentsResponse response =
+        api.getDocuments(siteId, actionStatus, date, tz, next, previous, limit);
     // TODO: test validations
   }
 

@@ -31,25 +31,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for WorkflowConfig
+ * Model tests for AddQueueRequest
  */
-public class WorkflowConfigTest {
-  private final WorkflowConfig model = new WorkflowConfig();
+public class AddQueueRequestTest {
+  private final AddQueueRequest model = new AddQueueRequest();
 
   /**
-   * Model tests for WorkflowConfig
+   * Model tests for AddQueueRequest
    */
   @Test
-  public void testWorkflowConfig() {
-    // TODO: test WorkflowConfig
+  public void testAddQueueRequest() {
+    // TODO: test AddQueueRequest
   }
 
   /**
-   * Test the property 'notificationType'
+   * Test the property 'name'
    */
   @Test
-  public void notificationTypeTest() {
-    // TODO: test notificationType
+  public void nameTest() {
+    // TODO: test name
   }
 
 }

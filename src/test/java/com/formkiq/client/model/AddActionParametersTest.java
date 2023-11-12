@@ -53,6 +53,14 @@ public class AddActionParametersTest {
   }
 
   /**
+   * Test the property 'ocrEngine'
+   */
+  @Test
+  public void ocrEngineTest() {
+    // TODO: test ocrEngine
+  }
+
+  /**
    * Test the property 'addPdfDetectedCharactersAsText'
    */
   @Test

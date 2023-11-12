@@ -12,6 +12,17 @@
 |**description** | **String** | Description of Workflow |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**userId** | **String** | User who created workflow |  [optional] |
+|**inUse** | **Boolean** | Whether the Workflow is in use |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | Type of Document |  [optional] |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| ACTIVE | &quot;ACTIVE&quot; |
+| INACTIVE | &quot;INACTIVE&quot; |
 
 
 

@@ -25,12 +25,19 @@ import com.formkiq.client.model.AddDocumentWorkflowDecisionsRequest;
 import com.formkiq.client.model.AddDocumentWorkflowDecisionsResponse;
 import com.formkiq.client.model.AddDocumentWorkflowRequest;
 import com.formkiq.client.model.AddDocumentWorkflowResponse;
+import com.formkiq.client.model.AddQueueRequest;
+import com.formkiq.client.model.AddQueueResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
+import com.formkiq.client.model.DeleteQueueResponse;
 import com.formkiq.client.model.DeleteWorkflowResponse;
 import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GetQueueResponse;
+import com.formkiq.client.model.GetQueuesResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
+import com.formkiq.client.model.SetWorkflowRequest;
+import com.formkiq.client.model.SetWorkflowResponse;
 import com.formkiq.client.model.WorkflowQueueDocumentsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -84,6 +91,21 @@ public class DocumentWorkflowsApiTest {
   }
 
   /**
+   * Add queue
+   *
+   * Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addQueueTest() throws ApiException {
+    AddQueueRequest addQueueRequest = null;
+    String siteId = null;
+    AddQueueResponse response = api.addQueue(addQueueRequest, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Add workflow
    *
    * Creates a new Workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -99,6 +121,21 @@ public class DocumentWorkflowsApiTest {
   }
 
   /**
+   * Delete queue
+   *
+   * Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteQueueTest() throws ApiException {
+    String queueId = null;
+    String siteId = null;
+    DeleteQueueResponse response = api.deleteQueue(queueId, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Delete workflow
    *
    * Delete a Workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -110,6 +147,37 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     String siteId = null;
     DeleteWorkflowResponse response = api.deleteWorkflow(workflowId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get queue
+   *
+   * Get a queue; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getQueueTest() throws ApiException {
+    String queueId = null;
+    String siteId = null;
+    GetQueueResponse response = api.getQueue(queueId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get queues
+   *
+   * Get a listing of queues; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getQueuesTest() throws ApiException {
+    String siteId = null;
+    String next = null;
+    String limit = null;
+    GetQueuesResponse response = api.getQueues(siteId, next, limit);
     // TODO: test validations
   }
 
@@ -137,12 +205,12 @@ public class DocumentWorkflowsApiTest {
    */
   @Test
   public void getWorkflowQueueDocumentsTest() throws ApiException {
-    String queueName = null;
+    String queueId = null;
     String siteId = null;
     String limit = null;
     String next = null;
     WorkflowQueueDocumentsResponse response =
-        api.getWorkflowQueueDocuments(queueName, siteId, limit, next);
+        api.getWorkflowQueueDocuments(queueId, siteId, limit, next);
     // TODO: test validations
   }
 
@@ -158,7 +226,24 @@ public class DocumentWorkflowsApiTest {
     String siteId = null;
     String next = null;
     String limit = null;
-    GetWorkflowsResponse response = api.getWorkflows(siteId, next, limit);
+    String status = null;
+    GetWorkflowsResponse response = api.getWorkflows(siteId, next, limit, status);
+    // TODO: test validations
+  }
+
+  /**
+   * Add workflow
+   *
+   * Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setWorkflowTest() throws ApiException {
+    String workflowId = null;
+    SetWorkflowRequest setWorkflowRequest = null;
+    String siteId = null;
+    SetWorkflowResponse response = api.setWorkflow(workflowId, setWorkflowRequest, siteId);
     // TODO: test validations
   }
 

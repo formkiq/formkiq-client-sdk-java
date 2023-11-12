@@ -57,11 +57,15 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class AddDocumentWorkflowDecisionsRequest {
-  public static final String SERIALIZED_NAME_QUEUE_NAME = "queueName";
-  @SerializedName(SERIALIZED_NAME_QUEUE_NAME)
-  private String queueName;
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  private String queueId;
+
+  public static final String SERIALIZED_NAME_COMMENTS = "comments";
+  @SerializedName(SERIALIZED_NAME_COMMENTS)
+  private String comments;
 
   /**
    * Gets or Sets decision
@@ -117,25 +121,47 @@ public class AddDocumentWorkflowDecisionsRequest {
 
   public AddDocumentWorkflowDecisionsRequest() {}
 
-  public AddDocumentWorkflowDecisionsRequest queueName(String queueName) {
+  public AddDocumentWorkflowDecisionsRequest queueId(String queueId) {
 
-    this.queueName = queueName;
+    this.queueId = queueId;
     return this;
   }
 
   /**
-   * Name of Queue
+   * Queue Identifier
    * 
-   * @return queueName
+   * @return queueId
    **/
   @javax.annotation.Nonnull
-  public String getQueueName() {
-    return queueName;
+  public String getQueueId() {
+    return queueId;
   }
 
 
-  public void setQueueName(String queueName) {
-    this.queueName = queueName;
+  public void setQueueId(String queueId) {
+    this.queueId = queueId;
+  }
+
+
+  public AddDocumentWorkflowDecisionsRequest comments(String comments) {
+
+    this.comments = comments;
+    return this;
+  }
+
+  /**
+   * Workflow decision comments
+   * 
+   * @return comments
+   **/
+  @javax.annotation.Nullable
+  public String getComments() {
+    return comments;
+  }
+
+
+  public void setComments(String comments) {
+    this.comments = comments;
   }
 
 
@@ -172,20 +198,22 @@ public class AddDocumentWorkflowDecisionsRequest {
     }
     AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest =
         (AddDocumentWorkflowDecisionsRequest) o;
-    return Objects.equals(this.queueName, addDocumentWorkflowDecisionsRequest.queueName)
+    return Objects.equals(this.queueId, addDocumentWorkflowDecisionsRequest.queueId)
+        && Objects.equals(this.comments, addDocumentWorkflowDecisionsRequest.comments)
         && Objects.equals(this.decision, addDocumentWorkflowDecisionsRequest.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(queueName, decision);
+    return Objects.hash(queueId, comments, decision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentWorkflowDecisionsRequest {\n");
-    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -208,12 +236,13 @@ public class AddDocumentWorkflowDecisionsRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("queueName");
+    openapiFields.add("queueId");
+    openapiFields.add("comments");
     openapiFields.add("decision");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("queueName");
+    openapiRequiredFields.add("queueId");
     openapiRequiredFields.add("decision");
   }
 
@@ -254,10 +283,16 @@ public class AddDocumentWorkflowDecisionsRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("queueName").isJsonPrimitive()) {
+    if (!jsonObj.get("queueId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `queueName` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("queueName").toString()));
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
+    }
+    if ((jsonObj.get("comments") != null && !jsonObj.get("comments").isJsonNull())
+        && !jsonObj.get("comments").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `comments` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("comments").toString()));
     }
     if (!jsonObj.get("decision").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

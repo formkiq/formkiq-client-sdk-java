@@ -38,12 +38,19 @@ import com.formkiq.client.model.AddDocumentWorkflowDecisionsRequest;
 import com.formkiq.client.model.AddDocumentWorkflowDecisionsResponse;
 import com.formkiq.client.model.AddDocumentWorkflowRequest;
 import com.formkiq.client.model.AddDocumentWorkflowResponse;
+import com.formkiq.client.model.AddQueueRequest;
+import com.formkiq.client.model.AddQueueResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
+import com.formkiq.client.model.DeleteQueueResponse;
 import com.formkiq.client.model.DeleteWorkflowResponse;
 import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GetQueueResponse;
+import com.formkiq.client.model.GetQueuesResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
+import com.formkiq.client.model.SetWorkflowRequest;
+import com.formkiq.client.model.SetWorkflowResponse;
 import com.formkiq.client.model.WorkflowQueueDocumentsResponse;
 
 import java.lang.reflect.Type;
@@ -578,6 +585,222 @@ public class DocumentWorkflowsApi {
   }
 
   /**
+   * Build call for addQueue
+   * 
+   * @param addQueueRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addQueueCall(AddQueueRequest addQueueRequest, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addQueueRequest;
+
+    // create path and map variables
+    String localVarPath = "/queues";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addQueueValidateBeforeCall(AddQueueRequest addQueueRequest, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'addQueueRequest' is set
+    if (addQueueRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addQueueRequest' when calling addQueue(Async)");
+    }
+
+    return addQueueCall(addQueueRequest, siteId, _callback);
+
+  }
+
+  /**
+   * Add queue Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param addQueueRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @return AddQueueResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddQueueResponse addQueue(AddQueueRequest addQueueRequest, String siteId)
+      throws ApiException {
+    ApiResponse<AddQueueResponse> localVarResp = addQueueWithHttpInfo(addQueueRequest, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add queue Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param addQueueRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;AddQueueResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddQueueResponse> addQueueWithHttpInfo(AddQueueRequest addQueueRequest,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = addQueueValidateBeforeCall(addQueueRequest, siteId, null);
+    Type localVarReturnType = new TypeToken<AddQueueResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add queue (asynchronously) Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param addQueueRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addQueueAsync(AddQueueRequest addQueueRequest, String siteId,
+      final ApiCallback<AddQueueResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = addQueueValidateBeforeCall(addQueueRequest, siteId, _callback);
+    Type localVarReturnType = new TypeToken<AddQueueResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for addWorkflow
    * 
    * @param addWorkflowRequest (required)
@@ -797,6 +1020,190 @@ public class DocumentWorkflowsApi {
   }
 
   /**
+   * Build call for deleteQueue
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteQueueCall(String queueId, String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/queues/{queueId}".replace("{" + "queueId" + "}",
+        localVarApiClient.escapeString(queueId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteQueueValidateBeforeCall(String queueId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'queueId' is set
+    if (queueId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'queueId' when calling deleteQueue(Async)");
+    }
+
+    return deleteQueueCall(queueId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete queue Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteQueueResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteQueueResponse deleteQueue(String queueId, String siteId) throws ApiException {
+    ApiResponse<DeleteQueueResponse> localVarResp = deleteQueueWithHttpInfo(queueId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete queue Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteQueueResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteQueueResponse> deleteQueueWithHttpInfo(String queueId, String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteQueueValidateBeforeCall(queueId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteQueueResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete queue (asynchronously) Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteQueueAsync(String queueId, String siteId,
+      final ApiCallback<DeleteQueueResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteQueueValidateBeforeCall(queueId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteQueueResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for deleteWorkflow
    * 
    * @param workflowId Workflow Identifier (required)
@@ -979,6 +1386,379 @@ public class DocumentWorkflowsApi {
 
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getQueue
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getQueueCall(String queueId, String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/queues/{queueId}".replace("{" + "queueId" + "}",
+        localVarApiClient.escapeString(queueId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getQueueValidateBeforeCall(String queueId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'queueId' is set
+    if (queueId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'queueId' when calling getQueue(Async)");
+    }
+
+    return getQueueCall(queueId, siteId, _callback);
+
+  }
+
+  /**
+   * Get queue Get a queue; ONLY available with FormKiQ Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @return GetQueueResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetQueueResponse getQueue(String queueId, String siteId) throws ApiException {
+    ApiResponse<GetQueueResponse> localVarResp = getQueueWithHttpInfo(queueId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get queue Get a queue; ONLY available with FormKiQ Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GetQueueResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetQueueResponse> getQueueWithHttpInfo(String queueId, String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = getQueueValidateBeforeCall(queueId, siteId, null);
+    Type localVarReturnType = new TypeToken<GetQueueResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get queue (asynchronously) Get a queue; ONLY available with FormKiQ Enterprise
+   * 
+   * @param queueId Queue Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getQueueAsync(String queueId, String siteId,
+      final ApiCallback<GetQueueResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getQueueValidateBeforeCall(queueId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetQueueResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getQueues
+   * 
+   * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getQueuesCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/queues";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getQueuesValidateBeforeCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
+    return getQueuesCall(siteId, next, limit, _callback);
+
+  }
+
+  /**
+   * Get queues Get a listing of queues; ONLY available with FormKiQ Enterprise
+   * 
+   * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return GetQueuesResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetQueuesResponse getQueues(String siteId, String next, String limit) throws ApiException {
+    ApiResponse<GetQueuesResponse> localVarResp = getQueuesWithHttpInfo(siteId, next, limit);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get queues Get a listing of queues; ONLY available with FormKiQ Enterprise
+   * 
+   * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return ApiResponse&lt;GetQueuesResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetQueuesResponse> getQueuesWithHttpInfo(String siteId, String next,
+      String limit) throws ApiException {
+    okhttp3.Call localVarCall = getQueuesValidateBeforeCall(siteId, next, limit, null);
+    Type localVarReturnType = new TypeToken<GetQueuesResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get queues (asynchronously) Get a listing of queues; ONLY available with FormKiQ Enterprise
+   * 
+   * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getQueuesAsync(String siteId, String next, String limit,
+      final ApiCallback<GetQueuesResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getQueuesValidateBeforeCall(siteId, next, limit, _callback);
+    Type localVarReturnType = new TypeToken<GetQueuesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1170,7 +1950,7 @@ public class DocumentWorkflowsApi {
   /**
    * Build call for getWorkflowQueueDocuments
    * 
-   * @param queueName Queue Name (required)
+   * @param queueId Queue Id (required)
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
@@ -1194,7 +1974,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowQueueDocumentsCall(String queueName, String siteId, String limit,
+  public okhttp3.Call getWorkflowQueueDocumentsCall(String queueId, String siteId, String limit,
       String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1212,8 +1992,8 @@ public class DocumentWorkflowsApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/queues/{queueName}/documents".replace("{" + "queueName" + "}",
-        localVarApiClient.escapeString(queueName.toString()));
+    String localVarPath = "/queues/{queueId}/documents".replace("{" + "queueId" + "}",
+        localVarApiClient.escapeString(queueId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1253,15 +2033,15 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWorkflowQueueDocumentsValidateBeforeCall(String queueName, String siteId,
+  private okhttp3.Call getWorkflowQueueDocumentsValidateBeforeCall(String queueId, String siteId,
       String limit, String next, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'queueName' is set
-    if (queueName == null) {
+    // verify the required parameter 'queueId' is set
+    if (queueId == null) {
       throw new ApiException(
-          "Missing the required parameter 'queueName' when calling getWorkflowQueueDocuments(Async)");
+          "Missing the required parameter 'queueId' when calling getWorkflowQueueDocuments(Async)");
     }
 
-    return getWorkflowQueueDocumentsCall(queueName, siteId, limit, next, _callback);
+    return getWorkflowQueueDocumentsCall(queueId, siteId, limit, next, _callback);
 
   }
 
@@ -1269,7 +2049,7 @@ public class DocumentWorkflowsApi {
    * Get list of documents in queue List documents in Workflow Queue; ONLY available with FormKiQ
    * Pro and Enterprise
    * 
-   * @param queueName Queue Name (required)
+   * @param queueId Queue Id (required)
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
@@ -1293,10 +2073,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public WorkflowQueueDocumentsResponse getWorkflowQueueDocuments(String queueName, String siteId,
+  public WorkflowQueueDocumentsResponse getWorkflowQueueDocuments(String queueId, String siteId,
       String limit, String next) throws ApiException {
     ApiResponse<WorkflowQueueDocumentsResponse> localVarResp =
-        getWorkflowQueueDocumentsWithHttpInfo(queueName, siteId, limit, next);
+        getWorkflowQueueDocumentsWithHttpInfo(queueId, siteId, limit, next);
     return localVarResp.getData();
   }
 
@@ -1304,7 +2084,7 @@ public class DocumentWorkflowsApi {
    * Get list of documents in queue List documents in Workflow Queue; ONLY available with FormKiQ
    * Pro and Enterprise
    * 
-   * @param queueName Queue Name (required)
+   * @param queueId Queue Id (required)
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
@@ -1329,9 +2109,9 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<WorkflowQueueDocumentsResponse> getWorkflowQueueDocumentsWithHttpInfo(
-      String queueName, String siteId, String limit, String next) throws ApiException {
+      String queueId, String siteId, String limit, String next) throws ApiException {
     okhttp3.Call localVarCall =
-        getWorkflowQueueDocumentsValidateBeforeCall(queueName, siteId, limit, next, null);
+        getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, null);
     Type localVarReturnType = new TypeToken<WorkflowQueueDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1340,7 +2120,7 @@ public class DocumentWorkflowsApi {
    * Get list of documents in queue (asynchronously) List documents in Workflow Queue; ONLY
    * available with FormKiQ Pro and Enterprise
    * 
-   * @param queueName Queue Name (required)
+   * @param queueId Queue Id (required)
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
@@ -1364,12 +2144,12 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowQueueDocumentsAsync(String queueName, String siteId, String limit,
+  public okhttp3.Call getWorkflowQueueDocumentsAsync(String queueId, String siteId, String limit,
       String next, final ApiCallback<WorkflowQueueDocumentsResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
-        getWorkflowQueueDocumentsValidateBeforeCall(queueName, siteId, limit, next, _callback);
+        getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, _callback);
     Type localVarReturnType = new TypeToken<WorkflowQueueDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1381,6 +2161,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param status Filters Status (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1401,7 +2182,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowsCall(String siteId, String next, String limit,
+  public okhttp3.Call getWorkflowsCall(String siteId, String next, String limit, String status,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1439,6 +2220,10 @@ public class DocumentWorkflowsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
     }
 
+    if (status != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1460,8 +2245,8 @@ public class DocumentWorkflowsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getWorkflowsValidateBeforeCall(String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
-    return getWorkflowsCall(siteId, next, limit, _callback);
+      String status, final ApiCallback _callback) throws ApiException {
+    return getWorkflowsCall(siteId, next, limit, status, _callback);
 
   }
 
@@ -1471,6 +2256,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param status Filters Status (optional)
    * @return GetWorkflowsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1491,9 +2277,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWorkflowsResponse getWorkflows(String siteId, String next, String limit)
+  public GetWorkflowsResponse getWorkflows(String siteId, String next, String limit, String status)
       throws ApiException {
-    ApiResponse<GetWorkflowsResponse> localVarResp = getWorkflowsWithHttpInfo(siteId, next, limit);
+    ApiResponse<GetWorkflowsResponse> localVarResp =
+        getWorkflowsWithHttpInfo(siteId, next, limit, status);
     return localVarResp.getData();
   }
 
@@ -1503,6 +2290,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param status Filters Status (optional)
    * @return ApiResponse&lt;GetWorkflowsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1524,8 +2312,8 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<GetWorkflowsResponse> getWorkflowsWithHttpInfo(String siteId, String next,
-      String limit) throws ApiException {
-    okhttp3.Call localVarCall = getWorkflowsValidateBeforeCall(siteId, next, limit, null);
+      String limit, String status) throws ApiException {
+    okhttp3.Call localVarCall = getWorkflowsValidateBeforeCall(siteId, next, limit, status, null);
     Type localVarReturnType = new TypeToken<GetWorkflowsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1537,6 +2325,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param status Filters Status (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1557,11 +2346,244 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowsAsync(String siteId, String next, String limit,
+  public okhttp3.Call getWorkflowsAsync(String siteId, String next, String limit, String status,
       final ApiCallback<GetWorkflowsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getWorkflowsValidateBeforeCall(siteId, next, limit, _callback);
+    okhttp3.Call localVarCall =
+        getWorkflowsValidateBeforeCall(siteId, next, limit, status, _callback);
     Type localVarReturnType = new TypeToken<GetWorkflowsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setWorkflow
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param setWorkflowRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>20) OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setWorkflowCall(String workflowId, SetWorkflowRequest setWorkflowRequest,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setWorkflowRequest;
+
+    // create path and map variables
+    String localVarPath = "/workflows/{workflowId}".replace("{" + "workflowId" + "}",
+        localVarApiClient.escapeString(workflowId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setWorkflowValidateBeforeCall(String workflowId,
+      SetWorkflowRequest setWorkflowRequest, String siteId, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'workflowId' when calling setWorkflow(Async)");
+    }
+
+    // verify the required parameter 'setWorkflowRequest' is set
+    if (setWorkflowRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setWorkflowRequest' when calling setWorkflow(Async)");
+    }
+
+    return setWorkflowCall(workflowId, setWorkflowRequest, siteId, _callback);
+
+  }
+
+  /**
+   * Add workflow Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param setWorkflowRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @return SetWorkflowResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>20) OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetWorkflowResponse setWorkflow(String workflowId, SetWorkflowRequest setWorkflowRequest,
+      String siteId) throws ApiException {
+    ApiResponse<SetWorkflowResponse> localVarResp =
+        setWorkflowWithHttpInfo(workflowId, setWorkflowRequest, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add workflow Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param setWorkflowRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;SetWorkflowResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>20) OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetWorkflowResponse> setWorkflowWithHttpInfo(String workflowId,
+      SetWorkflowRequest setWorkflowRequest, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, null);
+    Type localVarReturnType = new TypeToken<SetWorkflowResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add workflow (asynchronously) Set a Workflow details; ONLY available with FormKiQ Pro and
+   * Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param setWorkflowRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>20) OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setWorkflowAsync(String workflowId, SetWorkflowRequest setWorkflowRequest,
+      String siteId, final ApiCallback<SetWorkflowResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, _callback);
+    Type localVarReturnType = new TypeToken<SetWorkflowResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

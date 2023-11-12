@@ -22,7 +22,6 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AddWorkflowStep;
-import com.formkiq.client.model.WorkflowConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class AddWorkflowRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -71,9 +70,57 @@ public class AddWorkflowRequest {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_CONFIG = "config";
-  @SerializedName(SERIALIZED_NAME_CONFIG)
-  private WorkflowConfig config;
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("ACTIVE"),
+
+    INACTIVE("INACTIVE");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
 
   public static final String SERIALIZED_NAME_STEPS = "steps";
   @SerializedName(SERIALIZED_NAME_STEPS)
@@ -125,25 +172,25 @@ public class AddWorkflowRequest {
   }
 
 
-  public AddWorkflowRequest config(WorkflowConfig config) {
+  public AddWorkflowRequest status(StatusEnum status) {
 
-    this.config = config;
+    this.status = status;
     return this;
   }
 
   /**
-   * Get config
+   * Get status
    * 
-   * @return config
+   * @return status
    **/
-  @javax.annotation.Nullable
-  public WorkflowConfig getConfig() {
-    return config;
+  @javax.annotation.Nonnull
+  public StatusEnum getStatus() {
+    return status;
   }
 
 
-  public void setConfig(WorkflowConfig config) {
-    this.config = config;
+  public void setStatus(StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -189,13 +236,13 @@ public class AddWorkflowRequest {
     AddWorkflowRequest addWorkflowRequest = (AddWorkflowRequest) o;
     return Objects.equals(this.name, addWorkflowRequest.name)
         && Objects.equals(this.description, addWorkflowRequest.description)
-        && Objects.equals(this.config, addWorkflowRequest.config)
+        && Objects.equals(this.status, addWorkflowRequest.status)
         && Objects.equals(this.steps, addWorkflowRequest.steps);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, config, steps);
+    return Objects.hash(name, description, status, steps);
   }
 
   @Override
@@ -204,7 +251,7 @@ public class AddWorkflowRequest {
     sb.append("class AddWorkflowRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -229,12 +276,13 @@ public class AddWorkflowRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("description");
-    openapiFields.add("config");
+    openapiFields.add("status");
     openapiFields.add("steps");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("status");
     openapiRequiredFields.add("steps");
   }
 
@@ -284,9 +332,10 @@ public class AddWorkflowRequest {
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
     }
-    // validate the optional field `config`
-    if (jsonObj.get("config") != null && !jsonObj.get("config").isJsonNull()) {
-      WorkflowConfig.validateJsonElement(jsonObj.get("config"));
+    if (!jsonObj.get("status").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("status").toString()));
     }
     // ensure the json data is an array
     if (!jsonObj.get("steps").isJsonArray()) {

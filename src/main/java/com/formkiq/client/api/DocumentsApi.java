@@ -188,6 +188,8 @@ public class DocumentsApi {
 
   /**
    * Add new document Creates a new document; body may include document content if less than 5 MB
+   * See POST /documents/{documentId}/tags for adding tags to document schema See POST
+   * /documents/{documentId}/actions for adding actions to document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -226,6 +228,8 @@ public class DocumentsApi {
 
   /**
    * Add new document Creates a new document; body may include document content if less than 5 MB
+   * See POST /documents/{documentId}/tags for adding tags to document schema See POST
+   * /documents/{documentId}/actions for adding actions to document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -265,7 +269,8 @@ public class DocumentsApi {
 
   /**
    * Add new document (asynchronously) Creates a new document; body may include document content if
-   * less than 5 MB
+   * less than 5 MB See POST /documents/{documentId}/tags for adding tags to document schema See
+   * POST /documents/{documentId}/actions for adding actions to document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -2189,11 +2194,12 @@ public class DocumentsApi {
   /**
    * Build call for getDocuments
    * 
+   * @param siteId Site Identifier (optional)
+   * @param actionStatus Fetch documents with an action status (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -2215,8 +2221,8 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentsCall(String date, String tz, String next, String previous,
-      String siteId, String limit, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentsCall(String siteId, String actionStatus, String date, String tz,
+      String next, String previous, String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2241,6 +2247,14 @@ public class DocumentsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (actionStatus != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("actionStatus", actionStatus));
+    }
+
     if (date != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("date", date));
     }
@@ -2255,10 +2269,6 @@ public class DocumentsApi {
 
     if (previous != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("previous", previous));
-    }
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
     if (limit != null) {
@@ -2285,10 +2295,10 @@ public class DocumentsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentsValidateBeforeCall(String date, String tz, String next,
-      String previous, String siteId, String limit, final ApiCallback _callback)
-      throws ApiException {
-    return getDocumentsCall(date, tz, next, previous, siteId, limit, _callback);
+  private okhttp3.Call getDocumentsValidateBeforeCall(String siteId, String actionStatus,
+      String date, String tz, String next, String previous, String limit,
+      final ApiCallback _callback) throws ApiException {
+    return getDocumentsCall(siteId, actionStatus, date, tz, next, previous, limit, _callback);
 
   }
 
@@ -2296,11 +2306,12 @@ public class DocumentsApi {
    * Get Documents listing Returns a list of the most recent documents added, ordered by inserted,
    * descending
    * 
+   * @param siteId Site Identifier (optional)
+   * @param actionStatus Fetch documents with an action status (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @return GetDocumentsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2322,10 +2333,10 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentsResponse getDocuments(String date, String tz, String next, String previous,
-      String siteId, String limit) throws ApiException {
+  public GetDocumentsResponse getDocuments(String siteId, String actionStatus, String date,
+      String tz, String next, String previous, String limit) throws ApiException {
     ApiResponse<GetDocumentsResponse> localVarResp =
-        getDocumentsWithHttpInfo(date, tz, next, previous, siteId, limit);
+        getDocumentsWithHttpInfo(siteId, actionStatus, date, tz, next, previous, limit);
     return localVarResp.getData();
   }
 
@@ -2333,11 +2344,12 @@ public class DocumentsApi {
    * Get Documents listing Returns a list of the most recent documents added, ordered by inserted,
    * descending
    * 
+   * @param siteId Site Identifier (optional)
+   * @param actionStatus Fetch documents with an action status (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @return ApiResponse&lt;GetDocumentsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2359,10 +2371,11 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentsResponse> getDocumentsWithHttpInfo(String date, String tz,
-      String next, String previous, String siteId, String limit) throws ApiException {
+  public ApiResponse<GetDocumentsResponse> getDocumentsWithHttpInfo(String siteId,
+      String actionStatus, String date, String tz, String next, String previous, String limit)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentsValidateBeforeCall(date, tz, next, previous, siteId, limit, null);
+        getDocumentsValidateBeforeCall(siteId, actionStatus, date, tz, next, previous, limit, null);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2371,11 +2384,12 @@ public class DocumentsApi {
    * Get Documents listing (asynchronously) Returns a list of the most recent documents added,
    * ordered by inserted, descending
    * 
+   * @param siteId Site Identifier (optional)
+   * @param actionStatus Fetch documents with an action status (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -2397,12 +2411,12 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentsAsync(String date, String tz, String next, String previous,
-      String siteId, String limit, final ApiCallback<GetDocumentsResponse> _callback)
+  public okhttp3.Call getDocumentsAsync(String siteId, String actionStatus, String date, String tz,
+      String next, String previous, String limit, final ApiCallback<GetDocumentsResponse> _callback)
       throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentsValidateBeforeCall(date, tz, next, previous, siteId, limit, _callback);
+    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, date, tz, next,
+        previous, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

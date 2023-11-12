@@ -45,7 +45,16 @@ public class DocumentActionsApiTest {
    * Add document action
    *
    * Add one or more actions to a document; this appends actions and does not replace previous
-   * actions
+   * actions ### Action Parameters | ActionType | Parameter | Description | | -------- | ------- |
+   * ------- | | OCR | ocrParseTypes | Ocr Parsing strategy to use | | OCR | ocrEngine | Ocr Engine
+   * to use | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert images to text | |
+   * FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | |
+   * DOCUMENTTAGGING | engine | Tagging Engine to use | | DOCUMENTTAGGING | tags | Comma-deliminted
+   * list of keywords | | WEBHOOK | url | Webhook URL | | NOTIFICATION | notificationType | Type of
+   * Notification | | NOTIFICATION | notificationToCc | Notification Carbon Copy | | NOTIFICATION |
+   * notificationToBcc | Notification Blind Carbon Copy | | NOTIFICATION | notificationSubject |
+   * Notification Subject | | NOTIFICATION | notificationText | Notification as Text | |
+   * NOTIFICATION | notificationHtml | Notification as Html | | QUEUE | queueName | Name of Queue |
    *
    * @throws ApiException if the Api call fails
    */

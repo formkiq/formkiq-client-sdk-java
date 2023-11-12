@@ -170,7 +170,8 @@ public class PublicApi {
 
   /**
    * Public add document Allow unauthenticated creation of new documents; must be enabled during
-   * installation (disabled by default)
+   * installation (disabled by default) See POST /documents/{documentId}/tags for adding tags to
+   * document schema See POST /documents/{documentId}/actions for adding actions to document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -203,7 +204,8 @@ public class PublicApi {
 
   /**
    * Public add document Allow unauthenticated creation of new documents; must be enabled during
-   * installation (disabled by default)
+   * installation (disabled by default) See POST /documents/{documentId}/tags for adding tags to
+   * document schema See POST /documents/{documentId}/actions for adding actions to document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -237,7 +239,9 @@ public class PublicApi {
 
   /**
    * Public add document (asynchronously) Allow unauthenticated creation of new documents; must be
-   * enabled during installation (disabled by default)
+   * enabled during installation (disabled by default) See POST /documents/{documentId}/tags for
+   * adding tags to document schema See POST /documents/{documentId}/actions for adding actions to
+   * document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)

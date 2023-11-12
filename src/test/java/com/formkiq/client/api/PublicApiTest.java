@@ -44,7 +44,8 @@ public class PublicApiTest {
    * Public add document
    *
    * Allow unauthenticated creation of new documents; must be enabled during installation (disabled
-   * by default)
+   * by default) See POST /documents/{documentId}/tags for adding tags to document schema See POST
+   * /documents/{documentId}/actions for adding actions to document schema
    *
    * @throws ApiException if the Api call fails
    */

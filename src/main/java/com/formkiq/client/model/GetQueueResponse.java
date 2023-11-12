@@ -54,84 +54,36 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * WorkflowConfig
+ * GetQueueResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
-public class WorkflowConfig {
-  /**
-   * Notification Type
-   */
-  @JsonAdapter(NotificationTypeEnum.Adapter.class)
-  public enum NotificationTypeEnum {
-    EMAIL("email"),
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
+public class GetQueueResponse {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-    NONE("none");
+  public GetQueueResponse() {}
 
-    private String value;
+  public GetQueueResponse name(String name) {
 
-    NotificationTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static NotificationTypeEnum fromValue(String value) {
-      for (NotificationTypeEnum b : NotificationTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<NotificationTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final NotificationTypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public NotificationTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return NotificationTypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_NOTIFICATION_TYPE = "notificationType";
-  @SerializedName(SERIALIZED_NAME_NOTIFICATION_TYPE)
-  private NotificationTypeEnum notificationType = NotificationTypeEnum.EMAIL;
-
-  public WorkflowConfig() {}
-
-  public WorkflowConfig notificationType(NotificationTypeEnum notificationType) {
-
-    this.notificationType = notificationType;
+    this.name = name;
     return this;
   }
 
   /**
-   * Notification Type
+   * Queue name
    * 
-   * @return notificationType
+   * @return name
    **/
   @javax.annotation.Nullable
-  public NotificationTypeEnum getNotificationType() {
-    return notificationType;
+  public String getName() {
+    return name;
   }
 
 
-  public void setNotificationType(NotificationTypeEnum notificationType) {
-    this.notificationType = notificationType;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -144,20 +96,20 @@ public class WorkflowConfig {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowConfig workflowConfig = (WorkflowConfig) o;
-    return Objects.equals(this.notificationType, workflowConfig.notificationType);
+    GetQueueResponse getQueueResponse = (GetQueueResponse) o;
+    return Objects.equals(this.name, getQueueResponse.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(notificationType);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowConfig {\n");
-    sb.append("    notificationType: ").append(toIndentedString(notificationType)).append("\n");
+    sb.append("class GetQueueResponse {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,7 +131,7 @@ public class WorkflowConfig {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("notificationType");
+    openapiFields.add("name");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -189,33 +141,33 @@ public class WorkflowConfig {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to WorkflowConfig
+   * @throws IOException if the JSON Element is invalid with respect to GetQueueResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!WorkflowConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
-                                                             // is null
+      if (!GetQueueResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                               // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in WorkflowConfig is not found in the empty JSON string",
-            WorkflowConfig.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetQueueResponse is not found in the empty JSON string",
+            GetQueueResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!WorkflowConfig.openapiFields.contains(entry.getKey())) {
+      if (!GetQueueResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `WorkflowConfig` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetQueueResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("notificationType") != null && !jsonObj.get("notificationType").isJsonNull())
-        && !jsonObj.get("notificationType").isJsonPrimitive()) {
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `notificationType` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("notificationType").toString()));
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
     }
   }
 
@@ -223,22 +175,22 @@ public class WorkflowConfig {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!WorkflowConfig.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'WorkflowConfig' and its subtypes
+      if (!GetQueueResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetQueueResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<WorkflowConfig> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(WorkflowConfig.class));
+      final TypeAdapter<GetQueueResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetQueueResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<WorkflowConfig>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetQueueResponse>() {
         @Override
-        public void write(JsonWriter out, WorkflowConfig value) throws IOException {
+        public void write(JsonWriter out, GetQueueResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public WorkflowConfig read(JsonReader in) throws IOException {
+        public GetQueueResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -249,18 +201,18 @@ public class WorkflowConfig {
   }
 
   /**
-   * Create an instance of WorkflowConfig given an JSON string
+   * Create an instance of GetQueueResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of WorkflowConfig
-   * @throws IOException if the JSON string is invalid with respect to WorkflowConfig
+   * @return An instance of GetQueueResponse
+   * @throws IOException if the JSON string is invalid with respect to GetQueueResponse
    */
-  public static WorkflowConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, WorkflowConfig.class);
+  public static GetQueueResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetQueueResponse.class);
   }
 
   /**
-   * Convert an instance of WorkflowConfig to an JSON string
+   * Convert an instance of GetQueueResponse to an JSON string
    *
    * @return JSON string
    */

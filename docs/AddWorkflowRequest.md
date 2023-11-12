@@ -9,8 +9,17 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Workflow name |  |
 |**description** | **String** | Workflow description |  [optional] |
-|**config** | [**WorkflowConfig**](WorkflowConfig.md) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**steps** | [**List&lt;AddWorkflowStep&gt;**](AddWorkflowStep.md) | Workflow Steps |  |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| ACTIVE | &quot;ACTIVE&quot; |
+| INACTIVE | &quot;INACTIVE&quot; |
 
 
 

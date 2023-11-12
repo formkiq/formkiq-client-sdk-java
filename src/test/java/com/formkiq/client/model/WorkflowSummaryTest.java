@@ -84,4 +84,20 @@ public class WorkflowSummaryTest {
     // TODO: test userId
   }
 
+  /**
+   * Test the property 'inUse'
+   */
+  @Test
+  public void inUseTest() {
+    // TODO: test inUse
+  }
+
+  /**
+   * Test the property 'status'
+   */
+  @Test
+  public void statusTest() {
+    // TODO: test status
+  }
+
 }

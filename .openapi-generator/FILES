@@ -30,6 +30,8 @@ docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
 docs/AddFolderShareResponse.md
 docs/AddQueue.md
+docs/AddQueueRequest.md
+docs/AddQueueResponse.md
 docs/AddShare.md
 docs/AddTagSchemaRequest.md
 docs/AddTagSchemaResponse.md
@@ -49,6 +51,7 @@ docs/DeleteApiKeyResponse.md
 docs/DeleteFolderResponse.md
 docs/DeleteFulltextResponse.md
 docs/DeleteIndicesResponse.md
+docs/DeleteQueueResponse.md
 docs/DeleteShareResponse.md
 docs/DeleteWorkflowResponse.md
 docs/Document.md
@@ -106,6 +109,8 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentsResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
+docs/GetQueueResponse.md
+docs/GetQueuesResponse.md
 docs/GetSitesResponse.md
 docs/GetTagSchemaRequest.md
 docs/GetTagSchemasRequest.md
@@ -133,6 +138,7 @@ docs/OnlyOfficeEditorConfig.md
 docs/OnlyofficeApi.md
 docs/PublicApi.md
 docs/QueryFulltextResponse.md
+docs/Queue.md
 docs/SearchResponseFields.md
 docs/SearchResultDocument.md
 docs/SetAntivirusResponse.md
@@ -142,6 +148,8 @@ docs/SetDocumentOcrRequest.md
 docs/SetDocumentTagKeyRequest.md
 docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
+docs/SetWorkflowRequest.md
+docs/SetWorkflowResponse.md
 docs/Site.md
 docs/SystemManagementApi.md
 docs/TagIndexApi.md
@@ -165,7 +173,6 @@ docs/ValidationError.md
 docs/ValidationErrorsResponse.md
 docs/WebhookTag.md
 docs/WebhooksApi.md
-docs/WorkflowConfig.md
 docs/WorkflowQueue.md
 docs/WorkflowQueueDocumentsResponse.md
 docs/WorkflowStep.md
@@ -247,6 +254,8 @@ src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
 src/main/java/com/formkiq/client/model/AddFolderShareResponse.java
 src/main/java/com/formkiq/client/model/AddQueue.java
+src/main/java/com/formkiq/client/model/AddQueueRequest.java
+src/main/java/com/formkiq/client/model/AddQueueResponse.java
 src/main/java/com/formkiq/client/model/AddShare.java
 src/main/java/com/formkiq/client/model/AddTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/AddTagSchemaResponse.java
@@ -263,6 +272,7 @@ src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
 src/main/java/com/formkiq/client/model/DeleteFolderResponse.java
 src/main/java/com/formkiq/client/model/DeleteFulltextResponse.java
 src/main/java/com/formkiq/client/model/DeleteIndicesResponse.java
+src/main/java/com/formkiq/client/model/DeleteQueueResponse.java
 src/main/java/com/formkiq/client/model/DeleteShareResponse.java
 src/main/java/com/formkiq/client/model/DeleteWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Document.java
@@ -310,6 +320,8 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetQueueResponse.java
+src/main/java/com/formkiq/client/model/GetQueuesResponse.java
 src/main/java/com/formkiq/client/model/GetSitesResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/GetTagSchemasRequest.java
@@ -335,6 +347,7 @@ src/main/java/com/formkiq/client/model/OnlyOfficeDocumentResponse.java
 src/main/java/com/formkiq/client/model/OnlyOfficeDocumentSaveResponse.java
 src/main/java/com/formkiq/client/model/OnlyOfficeEditorConfig.java
 src/main/java/com/formkiq/client/model/QueryFulltextResponse.java
+src/main/java/com/formkiq/client/model/Queue.java
 src/main/java/com/formkiq/client/model/SearchResponseFields.java
 src/main/java/com/formkiq/client/model/SearchResultDocument.java
 src/main/java/com/formkiq/client/model/SetAntivirusResponse.java
@@ -344,6 +357,8 @@ src/main/java/com/formkiq/client/model/SetDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentTagKeyRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
+src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
+src/main/java/com/formkiq/client/model/SetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Site.java
 src/main/java/com/formkiq/client/model/TagSchemaCompositeKey.java
 src/main/java/com/formkiq/client/model/TagSchemaOptional.java
@@ -362,7 +377,6 @@ src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
 src/main/java/com/formkiq/client/model/WebhookTag.java
-src/main/java/com/formkiq/client/model/WorkflowConfig.java
 src/main/java/com/formkiq/client/model/WorkflowQueue.java
 src/main/java/com/formkiq/client/model/WorkflowQueueDocumentsResponse.java
 src/main/java/com/formkiq/client/model/WorkflowStep.java
@@ -411,6 +425,8 @@ src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareResponseTest.java
+src/test/java/com/formkiq/client/model/AddQueueRequestTest.java
+src/test/java/com/formkiq/client/model/AddQueueResponseTest.java
 src/test/java/com/formkiq/client/model/AddQueueTest.java
 src/test/java/com/formkiq/client/model/AddShareTest.java
 src/test/java/com/formkiq/client/model/AddTagSchemaRequestTest.java
@@ -428,6 +444,7 @@ src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFolderResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteIndicesResponseTest.java
+src/test/java/com/formkiq/client/model/DeleteQueueResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteShareResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTest.java
@@ -475,6 +492,8 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
+src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetSitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasRequestTest.java
@@ -500,6 +519,7 @@ src/test/java/com/formkiq/client/model/OnlyOfficeDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentSaveResponseTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeEditorConfigTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
+src/test/java/com/formkiq/client/model/QueueTest.java
 src/test/java/com/formkiq/client/model/SearchResponseFieldsTest.java
 src/test/java/com/formkiq/client/model/SearchResultDocumentTest.java
 src/test/java/com/formkiq/client/model/SetAntivirusResponseTest.java
@@ -509,6 +529,8 @@ src/test/java/com/formkiq/client/model/SetDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentTagKeyRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
+src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
+src/test/java/com/formkiq/client/model/SetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java
 src/test/java/com/formkiq/client/model/TagSchemaCompositeKeyTest.java
 src/test/java/com/formkiq/client/model/TagSchemaOptionalTest.java
@@ -527,7 +549,6 @@ src/test/java/com/formkiq/client/model/UserTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/WebhookTagTest.java
-src/test/java/com/formkiq/client/model/WorkflowConfigTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueTest.java
 src/test/java/com/formkiq/client/model/WorkflowStepTest.java

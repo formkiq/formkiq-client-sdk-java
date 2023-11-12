@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class WorkflowSummary {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -78,6 +78,62 @@ public class WorkflowSummary {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_IN_USE = "inUse";
+  @SerializedName(SERIALIZED_NAME_IN_USE)
+  private Boolean inUse;
+
+  /**
+   * Type of Document
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("ACTIVE"),
+
+    INACTIVE("INACTIVE");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
 
   public WorkflowSummary() {}
 
@@ -191,6 +247,50 @@ public class WorkflowSummary {
   }
 
 
+  public WorkflowSummary inUse(Boolean inUse) {
+
+    this.inUse = inUse;
+    return this;
+  }
+
+  /**
+   * Whether the Workflow is in use
+   * 
+   * @return inUse
+   **/
+  @javax.annotation.Nullable
+  public Boolean getInUse() {
+    return inUse;
+  }
+
+
+  public void setInUse(Boolean inUse) {
+    this.inUse = inUse;
+  }
+
+
+  public WorkflowSummary status(StatusEnum status) {
+
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Type of Document
+   * 
+   * @return status
+   **/
+  @javax.annotation.Nullable
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -205,12 +305,14 @@ public class WorkflowSummary {
         && Objects.equals(this.workflowId, workflowSummary.workflowId)
         && Objects.equals(this.description, workflowSummary.description)
         && Objects.equals(this.insertedDate, workflowSummary.insertedDate)
-        && Objects.equals(this.userId, workflowSummary.userId);
+        && Objects.equals(this.userId, workflowSummary.userId)
+        && Objects.equals(this.inUse, workflowSummary.inUse)
+        && Objects.equals(this.status, workflowSummary.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, workflowId, description, insertedDate, userId);
+    return Objects.hash(name, workflowId, description, insertedDate, userId, inUse, status);
   }
 
   @Override
@@ -222,6 +324,8 @@ public class WorkflowSummary {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    inUse: ").append(toIndentedString(inUse)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -248,6 +352,8 @@ public class WorkflowSummary {
     openapiFields.add("description");
     openapiFields.add("insertedDate");
     openapiFields.add("userId");
+    openapiFields.add("inUse");
+    openapiFields.add("status");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -308,6 +414,12 @@ public class WorkflowSummary {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
+    }
+    if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
+        && !jsonObj.get("status").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("status").toString()));
     }
   }
 

@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**queueName** | **String** | Name of Queue |  |
+|**queueId** | **String** | Queue Identifier |  |
+|**comments** | **String** | Workflow decision comments |  [optional] |
 |**decision** | [**DecisionEnum**](#DecisionEnum) |  |  |
 
 

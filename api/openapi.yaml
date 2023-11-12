@@ -401,6 +401,28 @@ paths:
         \ inserted, descending"
       operationId: GetDocuments
       parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Fetch documents with an action status
+        explode: true
+        in: query
+        name: actionStatus
+        required: false
+        schema:
+          enum:
+          - FAILED
+          - IN_QUEUE
+          - PENDING
+          - RUNNING
+          - SKIPPED
+          type: string
+        style: form
       - description: Fetch documents inserted on a certain date (yyyy-MM-dd)
         explode: true
         in: query
@@ -429,14 +451,6 @@ paths:
         explode: true
         in: query
         name: previous
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
         required: false
         schema:
           type: string
@@ -482,8 +496,12 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
     post:
-      description: Creates a new document; body may include document content if less
-        than 5 MB
+      description: |-
+        Creates a new document; body may include document content if less than 5 MB
+
+        See POST /documents/{documentId}/tags for adding tags to document schema
+
+        See POST /documents/{documentId}/actions for adding actions to document schema
       operationId: AddDocument
       parameters:
       - description: Site Identifier
@@ -2024,8 +2042,27 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
     post:
-      description: Add one or more actions to a document; this appends actions and
-        does not replace previous actions
+      description: |-
+        Add one or more actions to a document; this appends actions and does not replace previous actions
+
+        ### Action Parameters
+
+        | ActionType | Parameter | Description |
+        | -------- | ------- | ------- |
+        | OCR  | ocrParseTypes | Ocr Parsing strategy to use |
+        | OCR | ocrEngine     | Ocr Engine to use |
+        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text |
+        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination |
+        | DOCUMENTTAGGING    | engine    | Tagging Engine to use |
+        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords |
+        | WEBHOOK    | url    | Webhook URL |
+        | NOTIFICATION    | notificationType | Type of Notification |
+        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy |
+        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy |
+        | NOTIFICATION    | notificationSubject    | Notification Subject |
+        | NOTIFICATION    | notificationText    | Notification as Text |
+        | NOTIFICATION    | notificationHtml    | Notification as Html |
+        | QUEUE    | queueName    | Name of Queue |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -2821,6 +2858,17 @@ paths:
           default: "10"
           type: string
         style: form
+      - description: Filters Status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2991,7 +3039,269 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
-  /queues/{queueName}/documents:
+    put:
+      description: Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+      operationId: SetWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetWorkflowRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetWorkflowResponse'
+          description: 20) OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
+  /queues:
+    get:
+      description: Get a listing of queues; ONLY available with FormKiQ Enterprise
+      operationId: GetQueues
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQueuesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get queues
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+      operationId: AddQueue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddQueueRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddQueueResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add queue
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /queues/{queueId}:
+    delete:
+      description: Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+      operationId: DeleteQueue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Queue Id
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteQueueResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Delete queue
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Get a queue; ONLY available with FormKiQ Enterprise
+      operationId: GetQueue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Queue Id
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQueueResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get queue
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /queues/{queueId}/documents:
     get:
       description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
         and Enterprise
@@ -3005,10 +3315,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: Queue Name
+      - description: Queue Id
         explode: false
         in: path
-        name: queueName
+        name: queueId
         required: true
         schema:
           type: string
@@ -3858,8 +4168,12 @@ paths:
       x-accepts: application/json
   /public/documents:
     post:
-      description: Allow unauthenticated creation of new documents; must be enabled
-        during installation (disabled by default)
+      description: |-
+        Allow unauthenticated creation of new documents; must be enabled during installation (disabled by default)
+
+        See POST /documents/{documentId}/tags for adding tags to document schema
+
+        See POST /documents/{documentId}/actions for adding actions to document schema
       operationId: PublicAddDocument
       parameters:
       - description: Site Identifier
@@ -5055,6 +5369,18 @@ components:
       schema:
         type: string
       style: form
+    statusParam:
+      description: Filters Status
+      explode: true
+      in: query
+      name: status
+      required: false
+      schema:
+        enum:
+        - ACTIVE
+        - INACTIVE
+        type: string
+      style: form
     limitParam:
       description: Limit Results
       explode: true
@@ -5110,11 +5436,11 @@ components:
       schema:
         type: string
       style: simple
-    queueNameParam:
-      description: Queue Name
+    queueIdParam:
+      description: Queue Id
       explode: false
       in: path
-      name: queueName
+      name: queueId
       required: true
       schema:
         type: string
@@ -5421,20 +5747,54 @@ components:
           description: Folder Index Key
           type: string
       type: object
+    GetQueuesResponse:
+      example:
+        next: next
+        queues:
+        - queueId: queueId
+          name: name
+        - queueId: queueId
+          name: name
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        queues:
+          description: List of queues
+          items:
+            $ref: '#/components/schemas/Queue'
+          type: array
+      type: object
+    Queue:
+      example:
+        queueId: queueId
+        name: name
+      properties:
+        name:
+          description: Name of Queue
+          type: string
+        queueId:
+          description: Queue identifier
+          type: string
+      type: object
     GetWorkflowsResponse:
       example:
         next: next
         workflows:
         - insertedDate: insertedDate
           name: name
+          inUse: true
           description: description
           userId: userId
           workflowId: workflowId
+          status: ACTIVE
         - insertedDate: insertedDate
           name: name
+          inUse: true
           description: description
           userId: userId
           workflowId: workflowId
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -5445,49 +5805,59 @@ components:
             $ref: '#/components/schemas/WorkflowSummary'
           type: array
       type: object
+    GetQueueResponse:
+      example:
+        name: name
+      properties:
+        name:
+          description: Queue name
+          type: string
+      type: object
     GetWorkflowResponse:
       example:
         name: name
+        inUse: true
         description: description
-        config:
-          notificationType: email
         steps:
         - action:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: type
+            type: ANTIVIRUS
+            message: message
             userId: userId
             parameters:
               key: parameters
             completedDate: completedDate
-            status: status
+            status: COMPLETE
           id: id
           queue:
+            queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            name: name
             ifRejectedStepId: ifRejectedStepId
             ifApprovedStepId: ifApprovedStepId
         - action:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: type
+            type: ANTIVIRUS
+            message: message
             userId: userId
             parameters:
               key: parameters
             completedDate: completedDate
-            status: status
+            status: COMPLETE
           id: id
           queue:
+            queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            name: name
             ifRejectedStepId: ifRejectedStepId
             ifApprovedStepId: ifApprovedStepId
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -5495,8 +5865,14 @@ components:
         description:
           description: Workflow description
           type: string
-        config:
-          $ref: '#/components/schemas/WorkflowConfig'
+        inUse:
+          description: Whether the Workflow is in use
+          type: boolean
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
         steps:
           description: Workflow steps
           items:
@@ -5509,18 +5885,19 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: type
+          type: ANTIVIRUS
+          message: message
           userId: userId
           parameters:
             key: parameters
           completedDate: completedDate
-          status: status
+          status: COMPLETE
         id: id
         queue:
+          queueId: queueId
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          name: name
           ifRejectedStepId: ifRejectedStepId
           ifApprovedStepId: ifApprovedStepId
       properties:
@@ -5534,15 +5911,15 @@ components:
       type: object
     WorkflowQueue:
       example:
+        queueId: queueId
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        name: name
         ifRejectedStepId: ifRejectedStepId
         ifApprovedStepId: ifApprovedStepId
       properties:
-        name:
-          description: Name of queue
+        queueId:
+          description: Queue Id
           type: string
         ifApprovedStepId:
           description: If approved goto step id
@@ -5559,9 +5936,11 @@ components:
       example:
         insertedDate: insertedDate
         name: name
+        inUse: true
         description: description
         userId: userId
         workflowId: workflowId
+        status: ACTIVE
       properties:
         name:
           description: Name of Workflow
@@ -5577,6 +5956,15 @@ components:
           type: string
         userId:
           description: User who created workflow
+          type: string
+        inUse:
+          description: Whether the Workflow is in use
+          type: boolean
+        status:
+          description: Type of Document
+          enum:
+          - ACTIVE
+          - INACTIVE
           type: string
       type: object
     GetUserSharesResponse:
@@ -6194,6 +6582,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -6209,6 +6598,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -6326,6 +6716,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -6341,6 +6732,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -7561,21 +7953,23 @@ components:
         - metadata:
             key: metadata
           insertedDate: insertedDate
-          type: type
+          type: ANTIVIRUS
+          message: message
           userId: userId
           parameters:
             key: parameters
           completedDate: completedDate
-          status: status
+          status: COMPLETE
         - metadata:
             key: metadata
           insertedDate: insertedDate
-          type: type
+          type: ANTIVIRUS
+          message: message
           userId: userId
           parameters:
             key: parameters
           completedDate: completedDate
-          status: status
+          status: COMPLETE
       properties:
         actions:
           description: List of document actions
@@ -7588,18 +7982,37 @@ components:
         metadata:
           key: metadata
         insertedDate: insertedDate
-        type: type
+        type: ANTIVIRUS
+        message: message
         userId: userId
         parameters:
           key: parameters
         completedDate: completedDate
-        status: status
+        status: COMPLETE
       properties:
         status:
           description: Status of the Document Action
+          enum:
+          - COMPLETE
+          - FAILED
+          - IN_QUEUE
+          - PENDING
+          - RUNNING
+          - SKIPPED
           type: string
         type:
           description: Type of Document Action
+          enum:
+          - ANTIVIRUS
+          - DOCUMENTTAGGING
+          - FULLTEXT
+          - NOTIFICATION
+          - OCR
+          - QUEUE
+          - WEBHOOK
+          type: string
+        message:
+          description: Action message information
           type: string
         userId:
           description: User who requested the Action
@@ -7809,6 +8222,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -7824,6 +8238,7 @@ components:
         - type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -7848,6 +8263,7 @@ components:
         type: OCR
         parameters:
           characterMax: characterMax
+          ocrEngine: TESSERACT
           ocrParseTypes: ocrParseTypes
           addPdfDetectedCharactersAsText: true
           notificationType: email
@@ -7880,6 +8296,7 @@ components:
     AddActionParameters:
       example:
         characterMax: characterMax
+        ocrEngine: TESSERACT
         ocrParseTypes: ocrParseTypes
         addPdfDetectedCharactersAsText: true
         notificationType: email
@@ -7895,6 +8312,12 @@ components:
       properties:
         ocrParseTypes:
           description: "OCR: Parse types - TEXT, FORMS, TABLES"
+          type: string
+        ocrEngine:
+          description: "OCR: Engine to use for Optical character recognition"
+          enum:
+          - TESSERACT
+          - TEXTRACT
           type: string
         addPdfDetectedCharactersAsText:
           description: "OCR: For the rewriting of the PDF document, converting any\
@@ -7958,6 +8381,12 @@ components:
           description: "Rewrite PDF document, converting any Image text to searchable\
             \ text"
           type: boolean
+        ocrEngine:
+          description: "OCR: Engine to use for Optical character recognition"
+          enum:
+          - TESSERACT
+          - TEXTRACT
+          type: string
       type: object
     SetDocumentOcrRequest:
       example:
@@ -8055,6 +8484,14 @@ components:
       properties:
         apiKey:
           description: API Key Identifier
+          type: string
+      type: object
+    DeleteQueueResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
           type: string
       type: object
     DeleteWorkflowResponse:
@@ -8357,17 +8794,26 @@ components:
         previous:
           type: string
       type: object
-    AddWorkflowRequest:
+    AddQueueRequest:
+      example:
+        name: name
+      properties:
+        name:
+          description: Queue name
+          type: string
+      required:
+      - name
+      type: object
+    SetWorkflowRequest:
       example:
         name: name
         description: description
-        config:
-          notificationType: email
         steps:
         - action:
             type: OCR
             parameters:
               characterMax: characterMax
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
               notificationType: email
@@ -8383,16 +8829,17 @@ components:
           id: id
           type: type
           queue:
+            queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            name: name
             ifRejectedStepId: ifRejectedStepId
             ifApprovedStepId: ifApprovedStepId
         - action:
             type: OCR
             parameters:
               characterMax: characterMax
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
               notificationType: email
@@ -8408,12 +8855,13 @@ components:
           id: id
           type: type
           queue:
+            queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            name: name
             ifRejectedStepId: ifRejectedStepId
             ifApprovedStepId: ifApprovedStepId
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -8421,8 +8869,11 @@ components:
         description:
           description: Workflow description
           type: string
-        config:
-          $ref: '#/components/schemas/WorkflowConfig'
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
         steps:
           description: Workflow Steps
           items:
@@ -8430,6 +8881,87 @@ components:
           type: array
       required:
       - name
+      - status
+      - steps
+      type: object
+    AddWorkflowRequest:
+      example:
+        name: name
+        description: description
+        steps:
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrParseTypes: ocrParseTypes
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              notificationSubject: notificationSubject
+              queueName: queueName
+              engine: chatgpt
+              notificationText: notificationText
+              notificationHtml: notificationHtml
+          id: id
+          type: type
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+        - action:
+            type: OCR
+            parameters:
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrParseTypes: ocrParseTypes
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              notificationSubject: notificationSubject
+              queueName: queueName
+              engine: chatgpt
+              notificationText: notificationText
+              notificationHtml: notificationHtml
+          id: id
+          type: type
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+            ifRejectedStepId: ifRejectedStepId
+            ifApprovedStepId: ifApprovedStepId
+        status: ACTIVE
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+        steps:
+          description: Workflow Steps
+          items:
+            $ref: '#/components/schemas/AddWorkflowStep'
+          type: array
+      required:
+      - name
+      - status
       - steps
       type: object
     AddWorkflowStep:
@@ -8438,6 +8970,7 @@ components:
           type: OCR
           parameters:
             characterMax: characterMax
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
             notificationType: email
@@ -8453,10 +8986,10 @@ components:
         id: id
         type: type
         queue:
+          queueId: queueId
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          name: name
           ifRejectedStepId: ifRejectedStepId
           ifApprovedStepId: ifApprovedStepId
       properties:
@@ -8476,15 +9009,15 @@ components:
       type: object
     AddQueue:
       example:
+        queueId: queueId
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        name: name
         ifRejectedStepId: ifRejectedStepId
         ifApprovedStepId: ifApprovedStepId
       properties:
-        name:
-          description: Name of queue
+        queueId:
+          description: Queue Identifier
           type: string
         ifApprovedStepId:
           description: If approved goto step id
@@ -8499,16 +9032,20 @@ components:
       required:
       - name
       type: object
-    WorkflowConfig:
+    AddQueueResponse:
       example:
-        notificationType: email
+        queueId: queueId
       properties:
-        notificationType:
-          default: email
-          description: Notification Type
-          enum:
-          - email
-          - none
+        queueId:
+          description: Queue Identifier
+          type: string
+      type: object
+    SetWorkflowResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
           type: string
       type: object
     AddWorkflowResponse:
@@ -8539,11 +9076,15 @@ components:
       type: object
     AddDocumentWorkflowDecisionsRequest:
       example:
-        queueName: queueName
+        queueId: queueId
+        comments: comments
         decision: APPROVE
       properties:
-        queueName:
-          description: Name of Queue
+        queueId:
+          description: Queue Identifier
+          type: string
+        comments:
+          description: Workflow decision comments
           type: string
         decision:
           enum:
@@ -8552,7 +9093,7 @@ components:
           type: string
       required:
       - decision
-      - queueName
+      - queueId
       type: object
     AddDocumentWorkflowDecisionsResponse:
       example:

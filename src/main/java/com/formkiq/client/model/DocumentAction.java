@@ -59,15 +59,133 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class DocumentAction {
+  /**
+   * Status of the Document Action
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    COMPLETE("COMPLETE"),
+
+    FAILED("FAILED"),
+
+    IN_QUEUE("IN_QUEUE"),
+
+    PENDING("PENDING"),
+
+    RUNNING("RUNNING"),
+
+    SKIPPED("SKIPPED");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private StatusEnum status;
+
+  /**
+   * Type of Document Action
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    ANTIVIRUS("ANTIVIRUS"),
+
+    DOCUMENTTAGGING("DOCUMENTTAGGING"),
+
+    FULLTEXT("FULLTEXT"),
+
+    NOTIFICATION("NOTIFICATION"),
+
+    OCR("OCR"),
+
+    QUEUE("QUEUE"),
+
+    WEBHOOK("WEBHOOK");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+  private TypeEnum type;
+
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -91,7 +209,7 @@ public class DocumentAction {
 
   public DocumentAction() {}
 
-  public DocumentAction status(String status) {
+  public DocumentAction status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -103,17 +221,17 @@ public class DocumentAction {
    * @return status
    **/
   @javax.annotation.Nullable
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
-  public DocumentAction type(String type) {
+  public DocumentAction type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -125,13 +243,35 @@ public class DocumentAction {
    * @return type
    **/
   @javax.annotation.Nullable
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
 
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+
+  public DocumentAction message(String message) {
+
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Action message information
+   * 
+   * @return message
+   **/
+  @javax.annotation.Nullable
+  public String getMessage() {
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -273,6 +413,7 @@ public class DocumentAction {
     DocumentAction documentAction = (DocumentAction) o;
     return Objects.equals(this.status, documentAction.status)
         && Objects.equals(this.type, documentAction.type)
+        && Objects.equals(this.message, documentAction.message)
         && Objects.equals(this.userId, documentAction.userId)
         && Objects.equals(this.insertedDate, documentAction.insertedDate)
         && Objects.equals(this.completedDate, documentAction.completedDate)
@@ -282,7 +423,8 @@ public class DocumentAction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, type, userId, insertedDate, completedDate, parameters, metadata);
+    return Objects.hash(status, type, message, userId, insertedDate, completedDate, parameters,
+        metadata);
   }
 
   @Override
@@ -291,6 +433,7 @@ public class DocumentAction {
     sb.append("class DocumentAction {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    completedDate: ").append(toIndentedString(completedDate)).append("\n");
@@ -319,6 +462,7 @@ public class DocumentAction {
     openapiFields = new HashSet<String>();
     openapiFields.add("status");
     openapiFields.add("type");
+    openapiFields.add("message");
     openapiFields.add("userId");
     openapiFields.add("insertedDate");
     openapiFields.add("completedDate");
@@ -366,6 +510,12 @@ public class DocumentAction {
       throw new IllegalArgumentException(String.format(
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
+    }
+    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
+        && !jsonObj.get("message").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("message").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {

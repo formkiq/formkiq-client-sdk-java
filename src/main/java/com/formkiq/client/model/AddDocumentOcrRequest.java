@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
@@ -69,6 +69,58 @@ public class AddDocumentOcrRequest {
       "addPdfDetectedCharactersAsText";
   @SerializedName(SERIALIZED_NAME_ADD_PDF_DETECTED_CHARACTERS_AS_TEXT)
   private Boolean addPdfDetectedCharactersAsText;
+
+  /**
+   * OCR: Engine to use for Optical character recognition
+   */
+  @JsonAdapter(OcrEngineEnum.Adapter.class)
+  public enum OcrEngineEnum {
+    TESSERACT("TESSERACT"),
+
+    TEXTRACT("TEXTRACT");
+
+    private String value;
+
+    OcrEngineEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OcrEngineEnum fromValue(String value) {
+      for (OcrEngineEnum b : OcrEngineEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<OcrEngineEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OcrEngineEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OcrEngineEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OcrEngineEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OCR_ENGINE = "ocrEngine";
+  @SerializedName(SERIALIZED_NAME_OCR_ENGINE)
+  private OcrEngineEnum ocrEngine;
 
   public AddDocumentOcrRequest() {}
 
@@ -125,6 +177,28 @@ public class AddDocumentOcrRequest {
   }
 
 
+  public AddDocumentOcrRequest ocrEngine(OcrEngineEnum ocrEngine) {
+
+    this.ocrEngine = ocrEngine;
+    return this;
+  }
+
+  /**
+   * OCR: Engine to use for Optical character recognition
+   * 
+   * @return ocrEngine
+   **/
+  @javax.annotation.Nullable
+  public OcrEngineEnum getOcrEngine() {
+    return ocrEngine;
+  }
+
+
+  public void setOcrEngine(OcrEngineEnum ocrEngine) {
+    this.ocrEngine = ocrEngine;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -135,13 +209,15 @@ public class AddDocumentOcrRequest {
       return false;
     }
     AddDocumentOcrRequest addDocumentOcrRequest = (AddDocumentOcrRequest) o;
-    return Objects.equals(this.parseTypes, addDocumentOcrRequest.parseTypes) && Objects.equals(
-        this.addPdfDetectedCharactersAsText, addDocumentOcrRequest.addPdfDetectedCharactersAsText);
+    return Objects.equals(this.parseTypes, addDocumentOcrRequest.parseTypes)
+        && Objects.equals(this.addPdfDetectedCharactersAsText,
+            addDocumentOcrRequest.addPdfDetectedCharactersAsText)
+        && Objects.equals(this.ocrEngine, addDocumentOcrRequest.ocrEngine);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parseTypes, addPdfDetectedCharactersAsText);
+    return Objects.hash(parseTypes, addPdfDetectedCharactersAsText, ocrEngine);
   }
 
   @Override
@@ -151,6 +227,7 @@ public class AddDocumentOcrRequest {
     sb.append("    parseTypes: ").append(toIndentedString(parseTypes)).append("\n");
     sb.append("    addPdfDetectedCharactersAsText: ")
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
+    sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -174,6 +251,7 @@ public class AddDocumentOcrRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("parseTypes");
     openapiFields.add("addPdfDetectedCharactersAsText");
+    openapiFields.add("ocrEngine");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -211,6 +289,12 @@ public class AddDocumentOcrRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `parseTypes` to be an array in the JSON string but got `%s`",
           jsonObj.get("parseTypes").toString()));
+    }
+    if ((jsonObj.get("ocrEngine") != null && !jsonObj.get("ocrEngine").isJsonNull())
+        && !jsonObj.get("ocrEngine").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `ocrEngine` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("ocrEngine").toString()));
     }
   }
 

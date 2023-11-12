@@ -47,11 +47,11 @@ public class AddQueueTest {
   }
 
   /**
-   * Test the property 'name'
+   * Test the property 'queueId'
    */
   @Test
-  public void nameTest() {
-    // TODO: test name
+  public void queueIdTest() {
+    // TODO: test queueId
   }
 
   /**

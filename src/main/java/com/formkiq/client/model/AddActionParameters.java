@@ -57,11 +57,63 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
   private String ocrParseTypes;
+
+  /**
+   * OCR: Engine to use for Optical character recognition
+   */
+  @JsonAdapter(OcrEngineEnum.Adapter.class)
+  public enum OcrEngineEnum {
+    TESSERACT("TESSERACT"),
+
+    TEXTRACT("TEXTRACT");
+
+    private String value;
+
+    OcrEngineEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OcrEngineEnum fromValue(String value) {
+      for (OcrEngineEnum b : OcrEngineEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<OcrEngineEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OcrEngineEnum enumeration)
+          throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OcrEngineEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OcrEngineEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OCR_ENGINE = "ocrEngine";
+  @SerializedName(SERIALIZED_NAME_OCR_ENGINE)
+  private OcrEngineEnum ocrEngine;
 
   public static final String SERIALIZED_NAME_ADD_PDF_DETECTED_CHARACTERS_AS_TEXT =
       "addPdfDetectedCharactersAsText";
@@ -225,6 +277,28 @@ public class AddActionParameters {
 
   public void setOcrParseTypes(String ocrParseTypes) {
     this.ocrParseTypes = ocrParseTypes;
+  }
+
+
+  public AddActionParameters ocrEngine(OcrEngineEnum ocrEngine) {
+
+    this.ocrEngine = ocrEngine;
+    return this;
+  }
+
+  /**
+   * OCR: Engine to use for Optical character recognition
+   * 
+   * @return ocrEngine
+   **/
+  @javax.annotation.Nullable
+  public OcrEngineEnum getOcrEngine() {
+    return ocrEngine;
+  }
+
+
+  public void setOcrEngine(OcrEngineEnum ocrEngine) {
+    this.ocrEngine = ocrEngine;
   }
 
 
@@ -504,6 +578,7 @@ public class AddActionParameters {
     }
     AddActionParameters addActionParameters = (AddActionParameters) o;
     return Objects.equals(this.ocrParseTypes, addActionParameters.ocrParseTypes)
+        && Objects.equals(this.ocrEngine, addActionParameters.ocrEngine)
         && Objects.equals(this.addPdfDetectedCharactersAsText,
             addActionParameters.addPdfDetectedCharactersAsText)
         && Objects.equals(this.url, addActionParameters.url)
@@ -521,8 +596,8 @@ public class AddActionParameters {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ocrParseTypes, addPdfDetectedCharactersAsText, url, characterMax, engine,
-        notificationType, notificationToCc, notificationToBcc, notificationSubject,
+    return Objects.hash(ocrParseTypes, ocrEngine, addPdfDetectedCharactersAsText, url, characterMax,
+        engine, notificationType, notificationToCc, notificationToBcc, notificationSubject,
         notificationText, notificationHtml, tags, queueName);
   }
 
@@ -531,6 +606,7 @@ public class AddActionParameters {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddActionParameters {\n");
     sb.append("    ocrParseTypes: ").append(toIndentedString(ocrParseTypes)).append("\n");
+    sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    addPdfDetectedCharactersAsText: ")
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
@@ -567,6 +643,7 @@ public class AddActionParameters {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("ocrParseTypes");
+    openapiFields.add("ocrEngine");
     openapiFields.add("addPdfDetectedCharactersAsText");
     openapiFields.add("url");
     openapiFields.add("characterMax");
@@ -615,6 +692,12 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `ocrParseTypes` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrParseTypes").toString()));
+    }
+    if ((jsonObj.get("ocrEngine") != null && !jsonObj.get("ocrEngine").isJsonNull())
+        && !jsonObj.get("ocrEngine").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `ocrEngine` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("ocrEngine").toString()));
     }
     if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull())
         && !jsonObj.get("url").isJsonPrimitive()) {

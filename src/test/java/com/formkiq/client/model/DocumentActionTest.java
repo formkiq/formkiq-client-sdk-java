@@ -63,6 +63,14 @@ public class DocumentActionTest {
   }
 
   /**
+   * Test the property 'message'
+   */
+  @Test
+  public void messageTest() {
+    // TODO: test message
+  }
+
+  /**
    * Test the property 'userId'
    */
   @Test

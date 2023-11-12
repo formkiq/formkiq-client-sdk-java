@@ -59,11 +59,11 @@ import com.formkiq.client.invoker.JSON;
  * AddQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-10-25T15:21:33.124089-05:00[America/Winnipeg]")
+    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
 public class AddQueue {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  private String queueId;
 
   public static final String SERIALIZED_NAME_IF_APPROVED_STEP_ID = "ifApprovedStepId";
   @SerializedName(SERIALIZED_NAME_IF_APPROVED_STEP_ID)
@@ -79,25 +79,25 @@ public class AddQueue {
 
   public AddQueue() {}
 
-  public AddQueue name(String name) {
+  public AddQueue queueId(String queueId) {
 
-    this.name = name;
+    this.queueId = queueId;
     return this;
   }
 
   /**
-   * Name of queue
+   * Queue Identifier
    * 
-   * @return name
+   * @return queueId
    **/
-  @javax.annotation.Nonnull
-  public String getName() {
-    return name;
+  @javax.annotation.Nullable
+  public String getQueueId() {
+    return queueId;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setQueueId(String queueId) {
+    this.queueId = queueId;
   }
 
 
@@ -185,7 +185,7 @@ public class AddQueue {
       return false;
     }
     AddQueue addQueue = (AddQueue) o;
-    return Objects.equals(this.name, addQueue.name)
+    return Objects.equals(this.queueId, addQueue.queueId)
         && Objects.equals(this.ifApprovedStepId, addQueue.ifApprovedStepId)
         && Objects.equals(this.ifRejectedStepId, addQueue.ifRejectedStepId)
         && Objects.equals(this.approvalGroups, addQueue.approvalGroups);
@@ -193,14 +193,14 @@ public class AddQueue {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, ifApprovedStepId, ifRejectedStepId, approvalGroups);
+    return Objects.hash(queueId, ifApprovedStepId, ifRejectedStepId, approvalGroups);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddQueue {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
     sb.append("    ifApprovedStepId: ").append(toIndentedString(ifApprovedStepId)).append("\n");
     sb.append("    ifRejectedStepId: ").append(toIndentedString(ifRejectedStepId)).append("\n");
     sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
@@ -225,14 +225,13 @@ public class AddQueue {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
+    openapiFields.add("queueId");
     openapiFields.add("ifApprovedStepId");
     openapiFields.add("ifRejectedStepId");
     openapiFields.add("approvalGroups");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("name");
   }
 
   /**
@@ -260,20 +259,12 @@ public class AddQueue {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddQueue.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("name").isJsonPrimitive()) {
+    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
+        && !jsonObj.get("queueId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("name").toString()));
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
     }
     if ((jsonObj.get("ifApprovedStepId") != null && !jsonObj.get("ifApprovedStepId").isJsonNull())
         && !jsonObj.get("ifApprovedStepId").isJsonPrimitive()) {

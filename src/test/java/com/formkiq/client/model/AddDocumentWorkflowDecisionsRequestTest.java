@@ -46,11 +46,19 @@ public class AddDocumentWorkflowDecisionsRequestTest {
   }
 
   /**
-   * Test the property 'queueName'
+   * Test the property 'queueId'
    */
   @Test
-  public void queueNameTest() {
-    // TODO: test queueName
+  public void queueIdTest() {
+    // TODO: test queueId
+  }
+
+  /**
+   * Test the property 'comments'
+   */
+  @Test
+  public void commentsTest() {
+    // TODO: test comments
   }
 
   /**
