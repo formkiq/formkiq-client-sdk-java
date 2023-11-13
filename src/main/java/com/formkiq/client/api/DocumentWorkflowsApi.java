@@ -45,6 +45,8 @@ import com.formkiq.client.model.AddWorkflowResponse;
 import com.formkiq.client.model.DeleteQueueResponse;
 import com.formkiq.client.model.DeleteWorkflowResponse;
 import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GetDocumentWorkflowResponse;
+import com.formkiq.client.model.GetDocumentWorkflowsResponse;
 import com.formkiq.client.model.GetQueueResponse;
 import com.formkiq.client.model.GetQueuesResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
@@ -1386,6 +1388,460 @@ public class DocumentWorkflowsApi {
 
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getDocumentWorkflow
+   * 
+   * @param documentId Document Identifier (required)
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentWorkflowCall(String documentId, String workflowId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/workflows/{workflowId}"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "workflowId" + "}", localVarApiClient.escapeString(workflowId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getDocumentWorkflowValidateBeforeCall(String documentId, String workflowId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getDocumentWorkflow(Async)");
+    }
+
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'workflowId' when calling getDocumentWorkflow(Async)");
+    }
+
+    return getDocumentWorkflowCall(documentId, workflowId, siteId, _callback);
+
+  }
+
+  /**
+   * Get document workflow Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return GetDocumentWorkflowResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetDocumentWorkflowResponse getDocumentWorkflow(String documentId, String workflowId,
+      String siteId) throws ApiException {
+    ApiResponse<GetDocumentWorkflowResponse> localVarResp =
+        getDocumentWorkflowWithHttpInfo(documentId, workflowId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get document workflow Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GetDocumentWorkflowResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetDocumentWorkflowResponse> getDocumentWorkflowWithHttpInfo(String documentId,
+      String workflowId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, null);
+    Type localVarReturnType = new TypeToken<GetDocumentWorkflowResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get document workflow (asynchronously) Gets a document workflow; ONLY available with FormKiQ
+   * Pro and Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentWorkflowAsync(String documentId, String workflowId, String siteId,
+      final ApiCallback<GetDocumentWorkflowResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetDocumentWorkflowResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getDocumentWorkflows
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentWorkflowsCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/workflows".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getDocumentWorkflowsValidateBeforeCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getDocumentWorkflows(Async)");
+    }
+
+    return getDocumentWorkflowsCall(documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Get document workflows Gets a document workflows; ONLY available with FormKiQ Pro and
+   * Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return GetDocumentWorkflowsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetDocumentWorkflowsResponse getDocumentWorkflows(String documentId, String siteId)
+      throws ApiException {
+    ApiResponse<GetDocumentWorkflowsResponse> localVarResp =
+        getDocumentWorkflowsWithHttpInfo(documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get document workflows Gets a document workflows; ONLY available with FormKiQ Pro and
+   * Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GetDocumentWorkflowsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetDocumentWorkflowsResponse> getDocumentWorkflowsWithHttpInfo(
+      String documentId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentWorkflowsValidateBeforeCall(documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<GetDocumentWorkflowsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get document workflows (asynchronously) Gets a document workflows; ONLY available with FormKiQ
+   * Pro and Enterprise
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 BAD REQUEST</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentWorkflowsAsync(String documentId, String siteId,
+      final ApiCallback<GetDocumentWorkflowsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getDocumentWorkflowsValidateBeforeCall(documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetDocumentWorkflowsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

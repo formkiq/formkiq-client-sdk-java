@@ -10,6 +10,8 @@ All URIs are relative to *http://localhost*
 | [**addWorkflow**](DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow |
 | [**deleteQueue**](DocumentWorkflowsApi.md#deleteQueue) | **DELETE** /queues/{queueId} | Delete queue |
 | [**deleteWorkflow**](DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow |
+| [**getDocumentWorkflow**](DocumentWorkflowsApi.md#getDocumentWorkflow) | **GET** /documents/{documentId}/workflows/{workflowId} | Get document workflow |
+| [**getDocumentWorkflows**](DocumentWorkflowsApi.md#getDocumentWorkflows) | **GET** /documents/{documentId}/workflows | Get document workflows |
 | [**getQueue**](DocumentWorkflowsApi.md#getQueue) | **GET** /queues/{queueId} | Get queue |
 | [**getQueues**](DocumentWorkflowsApi.md#getQueues) | **GET** /queues | Get queues |
 | [**getWorkflow**](DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow |
@@ -429,6 +431,144 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getDocumentWorkflow"></a>
+# **getDocumentWorkflow**
+> GetDocumentWorkflowResponse getDocumentWorkflow(documentId, workflowId, siteId)
+
+Get document workflow
+
+Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentWorkflowsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String workflowId = "workflowId_example"; // String | Workflow Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetDocumentWorkflowResponse result = apiInstance.getDocumentWorkflow(documentId, workflowId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentWorkflowsApi#getDocumentWorkflow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **workflowId** | **String**| Workflow Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GetDocumentWorkflowResponse**](GetDocumentWorkflowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getDocumentWorkflows"></a>
+# **getDocumentWorkflows**
+> GetDocumentWorkflowsResponse getDocumentWorkflows(documentId, siteId)
+
+Get document workflows
+
+Gets a document workflows; ONLY available with FormKiQ Pro and Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentWorkflowsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetDocumentWorkflowsResponse result = apiInstance.getDocumentWorkflows(documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentWorkflowsApi#getDocumentWorkflows");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GetDocumentWorkflowsResponse**](GetDocumentWorkflowsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="getQueue"></a>
 # **getQueue**

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Add/Update of multiple document tag(s) based on document(s) that have the matching tag.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-11T20:33:52.265263-06:00[America/Winnipeg]")
+    date = "2023-11-12T20:44:26.668767-06:00[America/Winnipeg]")
 public class UpdateMatchingDocumentTagsRequest {
   public static final String SERIALIZED_NAME_MATCH = "match";
   @SerializedName(SERIALIZED_NAME_MATCH)

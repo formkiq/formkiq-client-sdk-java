@@ -32,6 +32,8 @@ import com.formkiq.client.model.AddWorkflowResponse;
 import com.formkiq.client.model.DeleteQueueResponse;
 import com.formkiq.client.model.DeleteWorkflowResponse;
 import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GetDocumentWorkflowResponse;
+import com.formkiq.client.model.GetDocumentWorkflowsResponse;
 import com.formkiq.client.model.GetQueueResponse;
 import com.formkiq.client.model.GetQueuesResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
@@ -147,6 +149,37 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     String siteId = null;
     DeleteWorkflowResponse response = api.deleteWorkflow(workflowId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document workflow
+   *
+   * Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentWorkflowTest() throws ApiException {
+    String documentId = null;
+    String workflowId = null;
+    String siteId = null;
+    GetDocumentWorkflowResponse response = api.getDocumentWorkflow(documentId, workflowId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document workflows
+   *
+   * Gets a document workflows; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentWorkflowsTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    GetDocumentWorkflowsResponse response = api.getDocumentWorkflows(documentId, siteId);
     // TODO: test validations
   }
 

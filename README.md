@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-11-11T20:33:52.265263-06:00[America/Winnipeg]
+  - Build date: 2023-11-12T20:44:26.668767-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -180,6 +180,8 @@ Class | Method | HTTP request | Description
 *DocumentWorkflowsApi* | [**addWorkflow**](docs/DocumentWorkflowsApi.md#addWorkflow) | **POST** /workflows | Add workflow
 *DocumentWorkflowsApi* | [**deleteQueue**](docs/DocumentWorkflowsApi.md#deleteQueue) | **DELETE** /queues/{queueId} | Delete queue
 *DocumentWorkflowsApi* | [**deleteWorkflow**](docs/DocumentWorkflowsApi.md#deleteWorkflow) | **DELETE** /workflows/{workflowId} | Delete workflow
+*DocumentWorkflowsApi* | [**getDocumentWorkflow**](docs/DocumentWorkflowsApi.md#getDocumentWorkflow) | **GET** /documents/{documentId}/workflows/{workflowId} | Get document workflow
+*DocumentWorkflowsApi* | [**getDocumentWorkflows**](docs/DocumentWorkflowsApi.md#getDocumentWorkflows) | **GET** /documents/{documentId}/workflows | Get document workflows
 *DocumentWorkflowsApi* | [**getQueue**](docs/DocumentWorkflowsApi.md#getQueue) | **GET** /queues/{queueId} | Get queue
 *DocumentWorkflowsApi* | [**getQueues**](docs/DocumentWorkflowsApi.md#getQueues) | **GET** /queues | Get queues
 *DocumentWorkflowsApi* | [**getWorkflow**](docs/DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow
@@ -321,6 +323,8 @@ Class | Method | HTTP request | Description
  - [GetDocumentTagsResponse](docs/GetDocumentTagsResponse.md)
  - [GetDocumentUrlResponse](docs/GetDocumentUrlResponse.md)
  - [GetDocumentVersionsResponse](docs/GetDocumentVersionsResponse.md)
+ - [GetDocumentWorkflowResponse](docs/GetDocumentWorkflowResponse.md)
+ - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
@@ -381,6 +385,7 @@ Class | Method | HTTP request | Description
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
  - [WebhookTag](docs/WebhookTag.md)
+ - [Workflow](docs/Workflow.md)
  - [WorkflowQueue](docs/WorkflowQueue.md)
  - [WorkflowQueueDocumentsResponse](docs/WorkflowQueueDocumentsResponse.md)
  - [WorkflowStep](docs/WorkflowStep.md)

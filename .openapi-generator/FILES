@@ -106,6 +106,8 @@ docs/GetDocumentTagResponse.md
 docs/GetDocumentTagsResponse.md
 docs/GetDocumentUrlResponse.md
 docs/GetDocumentVersionsResponse.md
+docs/GetDocumentWorkflowResponse.md
+docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
@@ -173,6 +175,7 @@ docs/ValidationError.md
 docs/ValidationErrorsResponse.md
 docs/WebhookTag.md
 docs/WebhooksApi.md
+docs/Workflow.md
 docs/WorkflowQueue.md
 docs/WorkflowQueueDocumentsResponse.md
 docs/WorkflowStep.md
@@ -317,6 +320,8 @@ src/main/java/com/formkiq/client/model/GetDocumentTagResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentTagsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentUrlResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
+src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
+src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
@@ -377,6 +382,7 @@ src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
 src/main/java/com/formkiq/client/model/WebhookTag.java
+src/main/java/com/formkiq/client/model/Workflow.java
 src/main/java/com/formkiq/client/model/WorkflowQueue.java
 src/main/java/com/formkiq/client/model/WorkflowQueueDocumentsResponse.java
 src/main/java/com/formkiq/client/model/WorkflowStep.java
@@ -489,6 +495,8 @@ src/test/java/com/formkiq/client/model/GetDocumentTagResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentTagsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
@@ -553,3 +561,4 @@ src/test/java/com/formkiq/client/model/WorkflowQueueDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueTest.java
 src/test/java/com/formkiq/client/model/WorkflowStepTest.java
 src/test/java/com/formkiq/client/model/WorkflowSummaryTest.java
+src/test/java/com/formkiq/client/model/WorkflowTest.java

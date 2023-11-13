@@ -3363,6 +3363,62 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
       x-accepts: application/json
   /documents/{documentId}/workflows:
+    get:
+      description: Gets a document workflows; ONLY available with FormKiQ Pro and
+        Enterprise
+      operationId: GetDocumentWorkflows
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentWorkflowsResponse'
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document workflows
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
     post:
       description: Creates a document workflow; ONLY available with FormKiQ Pro and
         Enterprise
@@ -3425,6 +3481,70 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
+      x-accepts: application/json
+  /documents/{documentId}/workflows/{workflowId}:
+    get:
+      description: Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+      operationId: GetDocumentWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentWorkflowResponse'
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
   /documents/{documentId}/workflow/{workflowId}/decisions:
     post:
@@ -9065,6 +9185,68 @@ components:
           type: string
       required:
       - workflowId
+      type: object
+    GetDocumentWorkflowsResponse:
+      example:
+        next: next
+        workflows:
+        - currentStepId: currentStepId
+          name: name
+          description: description
+          workflowId: workflowId
+          status: COMPLETE
+        - currentStepId: currentStepId
+          name: name
+          description: description
+          workflowId: workflowId
+          status: COMPLETE
+      properties:
+        workflows:
+          description: List of Workflows
+          items:
+            $ref: '#/components/schemas/Workflow'
+          type: array
+        next:
+          type: string
+      type: object
+    GetDocumentWorkflowResponse:
+      example:
+        workflow:
+          currentStepId: currentStepId
+          name: name
+          description: description
+          workflowId: workflowId
+          status: COMPLETE
+      properties:
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+      type: object
+    Workflow:
+      example:
+        currentStepId: currentStepId
+        name: name
+        description: description
+        workflowId: workflowId
+        status: COMPLETE
+      properties:
+        workflowId:
+          description: Workflow identifier
+          type: string
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        currentStepId:
+          description: The current step workflow is on
+          type: string
+        status:
+          description: Workflow status
+          enum:
+          - COMPLETE
+          - IN_PROGRESS
+          type: string
       type: object
     AddDocumentWorkflowResponse:
       example:
