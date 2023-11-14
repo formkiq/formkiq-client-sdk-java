@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.Document;
+import com.formkiq.client.model.WorkflowDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,22 +57,22 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * WorkflowQueueDocumentsResponse
+ * GetWorkflowDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-12T20:44:26.668767-06:00[America/Winnipeg]")
-public class WorkflowQueueDocumentsResponse {
+    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
+public class GetWorkflowDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
   private String next;
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
-  private List<Document> documents;
+  private List<WorkflowDocument> documents;
 
-  public WorkflowQueueDocumentsResponse() {}
+  public GetWorkflowDocumentsResponse() {}
 
-  public WorkflowQueueDocumentsResponse next(String next) {
+  public GetWorkflowDocumentsResponse next(String next) {
 
     this.next = next;
     return this;
@@ -94,13 +94,13 @@ public class WorkflowQueueDocumentsResponse {
   }
 
 
-  public WorkflowQueueDocumentsResponse documents(List<Document> documents) {
+  public GetWorkflowDocumentsResponse documents(List<WorkflowDocument> documents) {
 
     this.documents = documents;
     return this;
   }
 
-  public WorkflowQueueDocumentsResponse addDocumentsItem(Document documentsItem) {
+  public GetWorkflowDocumentsResponse addDocumentsItem(WorkflowDocument documentsItem) {
     if (this.documents == null) {
       this.documents = new ArrayList<>();
     }
@@ -114,12 +114,12 @@ public class WorkflowQueueDocumentsResponse {
    * @return documents
    **/
   @javax.annotation.Nullable
-  public List<Document> getDocuments() {
+  public List<WorkflowDocument> getDocuments() {
     return documents;
   }
 
 
-  public void setDocuments(List<Document> documents) {
+  public void setDocuments(List<WorkflowDocument> documents) {
     this.documents = documents;
   }
 
@@ -133,10 +133,9 @@ public class WorkflowQueueDocumentsResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowQueueDocumentsResponse workflowQueueDocumentsResponse =
-        (WorkflowQueueDocumentsResponse) o;
-    return Objects.equals(this.next, workflowQueueDocumentsResponse.next)
-        && Objects.equals(this.documents, workflowQueueDocumentsResponse.documents);
+    GetWorkflowDocumentsResponse getWorkflowDocumentsResponse = (GetWorkflowDocumentsResponse) o;
+    return Objects.equals(this.next, getWorkflowDocumentsResponse.next)
+        && Objects.equals(this.documents, getWorkflowDocumentsResponse.documents);
   }
 
   @Override
@@ -147,7 +146,7 @@ public class WorkflowQueueDocumentsResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowQueueDocumentsResponse {\n");
+    sb.append("class GetWorkflowDocumentsResponse {\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
@@ -182,26 +181,25 @@ public class WorkflowQueueDocumentsResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to
-   *         WorkflowQueueDocumentsResponse
+   * @throws IOException if the JSON Element is invalid with respect to GetWorkflowDocumentsResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!WorkflowQueueDocumentsResponse.openapiRequiredFields.isEmpty()) { // has required fields
-                                                                             // but JSON element is
-                                                                             // null
+      if (!GetWorkflowDocumentsResponse.openapiRequiredFields.isEmpty()) { // has required fields
+                                                                           // but JSON element is
+                                                                           // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in WorkflowQueueDocumentsResponse is not found in the empty JSON string",
-            WorkflowQueueDocumentsResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetWorkflowDocumentsResponse is not found in the empty JSON string",
+            GetWorkflowDocumentsResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!WorkflowQueueDocumentsResponse.openapiFields.contains(entry.getKey())) {
+      if (!GetWorkflowDocumentsResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `WorkflowQueueDocumentsResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetWorkflowDocumentsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -224,7 +222,7 @@ public class WorkflowQueueDocumentsResponse {
 
         // validate the optional field `documents` (array)
         for (int i = 0; i < jsonArraydocuments.size(); i++) {
-          Document.validateJsonElement(jsonArraydocuments.get(i));
+          WorkflowDocument.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }
@@ -234,22 +232,22 @@ public class WorkflowQueueDocumentsResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!WorkflowQueueDocumentsResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'WorkflowQueueDocumentsResponse' and its subtypes
+      if (!GetWorkflowDocumentsResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetWorkflowDocumentsResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<WorkflowQueueDocumentsResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(WorkflowQueueDocumentsResponse.class));
+      final TypeAdapter<GetWorkflowDocumentsResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetWorkflowDocumentsResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<WorkflowQueueDocumentsResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetWorkflowDocumentsResponse>() {
         @Override
-        public void write(JsonWriter out, WorkflowQueueDocumentsResponse value) throws IOException {
+        public void write(JsonWriter out, GetWorkflowDocumentsResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public WorkflowQueueDocumentsResponse read(JsonReader in) throws IOException {
+        public GetWorkflowDocumentsResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -260,19 +258,18 @@ public class WorkflowQueueDocumentsResponse {
   }
 
   /**
-   * Create an instance of WorkflowQueueDocumentsResponse given an JSON string
+   * Create an instance of GetWorkflowDocumentsResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of WorkflowQueueDocumentsResponse
-   * @throws IOException if the JSON string is invalid with respect to
-   *         WorkflowQueueDocumentsResponse
+   * @return An instance of GetWorkflowDocumentsResponse
+   * @throws IOException if the JSON string is invalid with respect to GetWorkflowDocumentsResponse
    */
-  public static WorkflowQueueDocumentsResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, WorkflowQueueDocumentsResponse.class);
+  public static GetWorkflowDocumentsResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetWorkflowDocumentsResponse.class);
   }
 
   /**
-   * Convert an instance of WorkflowQueueDocumentsResponse to an JSON string
+   * Convert an instance of GetWorkflowDocumentsResponse to an JSON string
    *
    * @return JSON string
    */

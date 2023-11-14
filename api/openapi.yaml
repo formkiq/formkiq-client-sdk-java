@@ -3101,6 +3101,67 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
       x-accepts: application/json
+  /workflows/{workflowId}/documents:
+    get:
+      description: List documents in Workflow; ONLY available with FormKiQ Pro and
+        Enterprise
+      operationId: GetWorkflowDocuments
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkflowDocumentsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get list of documents in workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
+      x-accepts: application/json
   /queues:
     get:
       description: Get a listing of queues; ONLY available with FormKiQ Enterprise
@@ -3345,7 +3406,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WorkflowQueueDocumentsResponse'
+                $ref: '#/components/schemas/GetWorkflowQueueDocumentsResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -7573,7 +7634,7 @@ components:
             $ref: '#/components/schemas/SearchResultDocument'
           type: array
       type: object
-    WorkflowQueueDocumentsResponse:
+    GetWorkflowQueueDocumentsResponse:
       example:
         next: next
         documents:
@@ -7593,14 +7654,15 @@ components:
           userId: userId
           version: version
           versionKey: versionKey
+          currentStepId: currentStepId
           path: path
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
-          siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          workflowId: workflowId
         - metadata:
           - values:
             - values
@@ -7617,14 +7679,15 @@ components:
           userId: userId
           version: version
           versionKey: versionKey
+          currentStepId: currentStepId
           path: path
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
-          siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          workflowId: workflowId
       properties:
         next:
           description: Next page of results token
@@ -7632,7 +7695,147 @@ components:
         documents:
           description: List of search result documents
           items:
-            $ref: '#/components/schemas/Document'
+            $ref: '#/components/schemas/WorkflowDocument'
+          type: array
+      type: object
+    GetWorkflowDocumentsResponse:
+      example:
+        next: next
+        documents:
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          version: version
+          versionKey: versionKey
+          currentStepId: currentStepId
+          path: path
+          insertedDate: insertedDate
+          s3version: s3version
+          checksum: checksum
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
+          workflowId: workflowId
+        - metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          version: version
+          versionKey: versionKey
+          currentStepId: currentStepId
+          path: path
+          insertedDate: insertedDate
+          s3version: s3version
+          checksum: checksum
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
+          workflowId: workflowId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        documents:
+          description: List of search result documents
+          items:
+            $ref: '#/components/schemas/WorkflowDocument'
+          type: array
+      type: object
+    WorkflowDocument:
+      example:
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        lastModifiedDate: lastModifiedDate
+        belongsToDocumentId: belongsToDocumentId
+        userId: userId
+        version: version
+        versionKey: versionKey
+        currentStepId: currentStepId
+        path: path
+        insertedDate: insertedDate
+        s3version: s3version
+        checksum: checksum
+        documentId: documentId
+        contentLength: 0
+        contentType: contentType
+        workflowId: workflowId
+      properties:
+        workflowId:
+          description: Workflow identifier
+          type: string
+        currentStepId:
+          description: The current step workflow is on
+          type: string
+        path:
+          description: Path or Name of document
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        lastModifiedDate:
+          description: Last Modified Timestamp
+          type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        documentId:
+          description: Document Identifier
+          type: string
+        contentType:
+          description: Document Content-Type
+          type: string
+        userId:
+          description: User who added document
+          type: string
+        contentLength:
+          description: Document size
+          type: integer
+        version:
+          description: Document version
+          type: string
+        versionKey:
+          description: Document Version Identifier
+          type: string
+        s3version:
+          description: Document storage version
+          type: string
+        belongsToDocumentId:
+          description: Parent Document Identifier
+          type: string
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
           type: array
       type: object
     Document:
@@ -9246,6 +9449,7 @@ components:
           enum:
           - COMPLETE
           - IN_PROGRESS
+          - FAILED
           type: string
       type: object
     AddDocumentWorkflowResponse:

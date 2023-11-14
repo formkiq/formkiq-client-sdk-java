@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-12T20:44:26.668767-06:00[America/Winnipeg]")
+    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)

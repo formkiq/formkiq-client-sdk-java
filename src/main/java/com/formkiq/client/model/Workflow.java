@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Workflow
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-12T20:44:26.668767-06:00[America/Winnipeg]")
+    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
 public class Workflow {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
@@ -82,7 +82,9 @@ public class Workflow {
   public enum StatusEnum {
     COMPLETE("COMPLETE"),
 
-    IN_PROGRESS("IN_PROGRESS");
+    IN_PROGRESS("IN_PROGRESS"),
+
+    FAILED("FAILED");
 
     private String value;
 

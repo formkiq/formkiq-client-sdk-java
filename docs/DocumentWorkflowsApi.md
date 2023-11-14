@@ -15,6 +15,7 @@ All URIs are relative to *http://localhost*
 | [**getQueue**](DocumentWorkflowsApi.md#getQueue) | **GET** /queues/{queueId} | Get queue |
 | [**getQueues**](DocumentWorkflowsApi.md#getQueues) | **GET** /queues | Get queues |
 | [**getWorkflow**](DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow |
+| [**getWorkflowDocuments**](DocumentWorkflowsApi.md#getWorkflowDocuments) | **GET** /workflows/{workflowId}/documents | Get list of documents in workflow |
 | [**getWorkflowQueueDocuments**](DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /queues/{queueId}/documents | Get list of documents in queue |
 | [**getWorkflows**](DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows |
 | [**setWorkflow**](DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Add workflow |
@@ -773,9 +774,80 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getWorkflowDocuments"></a>
+# **getWorkflowDocuments**
+> GetWorkflowDocumentsResponse getWorkflowDocuments(workflowId, siteId, limit, next)
+
+Get list of documents in workflow
+
+List documents in Workflow; ONLY available with FormKiQ Pro and Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentWorkflowsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
+    String workflowId = "workflowId_example"; // String | Workflow Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    String next = "next_example"; // String | Next page of results token
+    try {
+      GetWorkflowDocumentsResponse result = apiInstance.getWorkflowDocuments(workflowId, siteId, limit, next);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentWorkflowsApi#getWorkflowDocuments");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**| Workflow Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **next** | **String**| Next page of results token | [optional] |
+
+### Return type
+
+[**GetWorkflowDocumentsResponse**](GetWorkflowDocumentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getWorkflowQueueDocuments"></a>
 # **getWorkflowQueueDocuments**
-> WorkflowQueueDocumentsResponse getWorkflowQueueDocuments(queueId, siteId, limit, next)
+> GetWorkflowQueueDocumentsResponse getWorkflowQueueDocuments(queueId, siteId, limit, next)
 
 Get list of documents in queue
 
@@ -804,7 +876,7 @@ public class Example {
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      WorkflowQueueDocumentsResponse result = apiInstance.getWorkflowQueueDocuments(queueId, siteId, limit, next);
+      GetWorkflowQueueDocumentsResponse result = apiInstance.getWorkflowQueueDocuments(queueId, siteId, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#getWorkflowQueueDocuments");
@@ -828,7 +900,7 @@ public class Example {
 
 ### Return type
 
-[**WorkflowQueueDocumentsResponse**](WorkflowQueueDocumentsResponse.md)
+[**GetWorkflowQueueDocumentsResponse**](GetWorkflowQueueDocumentsResponse.md)
 
 ### Authorization
 

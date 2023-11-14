@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-11-12T20:44:26.668767-06:00[America/Winnipeg]
+  - Build date: 2023-11-13T22:31:30.007635-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -185,6 +185,7 @@ Class | Method | HTTP request | Description
 *DocumentWorkflowsApi* | [**getQueue**](docs/DocumentWorkflowsApi.md#getQueue) | **GET** /queues/{queueId} | Get queue
 *DocumentWorkflowsApi* | [**getQueues**](docs/DocumentWorkflowsApi.md#getQueues) | **GET** /queues | Get queues
 *DocumentWorkflowsApi* | [**getWorkflow**](docs/DocumentWorkflowsApi.md#getWorkflow) | **GET** /workflows/{workflowId} | Get workflow
+*DocumentWorkflowsApi* | [**getWorkflowDocuments**](docs/DocumentWorkflowsApi.md#getWorkflowDocuments) | **GET** /workflows/{workflowId}/documents | Get list of documents in workflow
 *DocumentWorkflowsApi* | [**getWorkflowQueueDocuments**](docs/DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /queues/{queueId}/documents | Get list of documents in queue
 *DocumentWorkflowsApi* | [**getWorkflows**](docs/DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows
 *DocumentWorkflowsApi* | [**setWorkflow**](docs/DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Add workflow
@@ -339,6 +340,8 @@ Class | Method | HTTP request | Description
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
  - [GetWebhooksResponse](docs/GetWebhooksResponse.md)
+ - [GetWorkflowDocumentsResponse](docs/GetWorkflowDocumentsResponse.md)
+ - [GetWorkflowQueueDocumentsResponse](docs/GetWorkflowQueueDocumentsResponse.md)
  - [GetWorkflowResponse](docs/GetWorkflowResponse.md)
  - [GetWorkflowsResponse](docs/GetWorkflowsResponse.md)
  - [Group](docs/Group.md)
@@ -386,8 +389,8 @@ Class | Method | HTTP request | Description
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
  - [WebhookTag](docs/WebhookTag.md)
  - [Workflow](docs/Workflow.md)
+ - [WorkflowDocument](docs/WorkflowDocument.md)
  - [WorkflowQueue](docs/WorkflowQueue.md)
- - [WorkflowQueueDocumentsResponse](docs/WorkflowQueueDocumentsResponse.md)
  - [WorkflowStep](docs/WorkflowStep.md)
  - [WorkflowSummary](docs/WorkflowSummary.md)
 

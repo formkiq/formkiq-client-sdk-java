@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-12T20:44:26.668767-06:00[America/Winnipeg]")
+    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).

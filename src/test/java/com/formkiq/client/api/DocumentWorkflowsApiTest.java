@@ -36,11 +36,12 @@ import com.formkiq.client.model.GetDocumentWorkflowResponse;
 import com.formkiq.client.model.GetDocumentWorkflowsResponse;
 import com.formkiq.client.model.GetQueueResponse;
 import com.formkiq.client.model.GetQueuesResponse;
+import com.formkiq.client.model.GetWorkflowDocumentsResponse;
+import com.formkiq.client.model.GetWorkflowQueueDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
 import com.formkiq.client.model.SetWorkflowRequest;
 import com.formkiq.client.model.SetWorkflowResponse;
-import com.formkiq.client.model.WorkflowQueueDocumentsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -230,6 +231,24 @@ public class DocumentWorkflowsApiTest {
   }
 
   /**
+   * Get list of documents in workflow
+   *
+   * List documents in Workflow; ONLY available with FormKiQ Pro and Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getWorkflowDocumentsTest() throws ApiException {
+    String workflowId = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetWorkflowDocumentsResponse response =
+        api.getWorkflowDocuments(workflowId, siteId, limit, next);
+    // TODO: test validations
+  }
+
+  /**
    * Get list of documents in queue
    *
    * List documents in Workflow Queue; ONLY available with FormKiQ Pro and Enterprise
@@ -242,7 +261,7 @@ public class DocumentWorkflowsApiTest {
     String siteId = null;
     String limit = null;
     String next = null;
-    WorkflowQueueDocumentsResponse response =
+    GetWorkflowQueueDocumentsResponse response =
         api.getWorkflowQueueDocuments(queueId, siteId, limit, next);
     // TODO: test validations
   }

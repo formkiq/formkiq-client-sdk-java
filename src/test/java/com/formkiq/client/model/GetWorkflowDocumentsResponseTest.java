@@ -20,7 +20,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.Document;
+import com.formkiq.client.model.WorkflowDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,17 +34,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for WorkflowQueueDocumentsResponse
+ * Model tests for GetWorkflowDocumentsResponse
  */
-public class WorkflowQueueDocumentsResponseTest {
-  private final WorkflowQueueDocumentsResponse model = new WorkflowQueueDocumentsResponse();
+public class GetWorkflowDocumentsResponseTest {
+  private final GetWorkflowDocumentsResponse model = new GetWorkflowDocumentsResponse();
 
   /**
-   * Model tests for WorkflowQueueDocumentsResponse
+   * Model tests for GetWorkflowDocumentsResponse
    */
   @Test
-  public void testWorkflowQueueDocumentsResponse() {
-    // TODO: test WorkflowQueueDocumentsResponse
+  public void testGetWorkflowDocumentsResponse() {
+    // TODO: test GetWorkflowDocumentsResponse
   }
 
   /**

@@ -49,11 +49,12 @@ import com.formkiq.client.model.GetDocumentWorkflowResponse;
 import com.formkiq.client.model.GetDocumentWorkflowsResponse;
 import com.formkiq.client.model.GetQueueResponse;
 import com.formkiq.client.model.GetQueuesResponse;
+import com.formkiq.client.model.GetWorkflowDocumentsResponse;
+import com.formkiq.client.model.GetWorkflowQueueDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
 import com.formkiq.client.model.SetWorkflowRequest;
 import com.formkiq.client.model.SetWorkflowResponse;
-import com.formkiq.client.model.WorkflowQueueDocumentsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -2404,6 +2405,213 @@ public class DocumentWorkflowsApi {
   }
 
   /**
+   * Build call for getWorkflowDocuments
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getWorkflowDocumentsCall(String workflowId, String siteId, String limit,
+      String next, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/workflows/{workflowId}/documents".replace("{" + "workflowId" + "}",
+        localVarApiClient.escapeString(workflowId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getWorkflowDocumentsValidateBeforeCall(String workflowId, String siteId,
+      String limit, String next, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'workflowId' when calling getWorkflowDocuments(Async)");
+    }
+
+    return getWorkflowDocumentsCall(workflowId, siteId, limit, next, _callback);
+
+  }
+
+  /**
+   * Get list of documents in workflow List documents in Workflow; ONLY available with FormKiQ Pro
+   * and Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return GetWorkflowDocumentsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetWorkflowDocumentsResponse getWorkflowDocuments(String workflowId, String siteId,
+      String limit, String next) throws ApiException {
+    ApiResponse<GetWorkflowDocumentsResponse> localVarResp =
+        getWorkflowDocumentsWithHttpInfo(workflowId, siteId, limit, next);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get list of documents in workflow List documents in Workflow; ONLY available with FormKiQ Pro
+   * and Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return ApiResponse&lt;GetWorkflowDocumentsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetWorkflowDocumentsResponse> getWorkflowDocumentsWithHttpInfo(
+      String workflowId, String siteId, String limit, String next) throws ApiException {
+    okhttp3.Call localVarCall =
+        getWorkflowDocumentsValidateBeforeCall(workflowId, siteId, limit, next, null);
+    Type localVarReturnType = new TypeToken<GetWorkflowDocumentsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get list of documents in workflow (asynchronously) List documents in Workflow; ONLY available
+   * with FormKiQ Pro and Enterprise
+   * 
+   * @param workflowId Workflow Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getWorkflowDocumentsAsync(String workflowId, String siteId, String limit,
+      String next, final ApiCallback<GetWorkflowDocumentsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getWorkflowDocumentsValidateBeforeCall(workflowId, siteId, limit, next, _callback);
+    Type localVarReturnType = new TypeToken<GetWorkflowDocumentsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getWorkflowQueueDocuments
    * 
    * @param queueId Queue Id (required)
@@ -2509,7 +2717,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
-   * @return WorkflowQueueDocumentsResponse
+   * @return GetWorkflowQueueDocumentsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -2529,9 +2737,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public WorkflowQueueDocumentsResponse getWorkflowQueueDocuments(String queueId, String siteId,
+  public GetWorkflowQueueDocumentsResponse getWorkflowQueueDocuments(String queueId, String siteId,
       String limit, String next) throws ApiException {
-    ApiResponse<WorkflowQueueDocumentsResponse> localVarResp =
+    ApiResponse<GetWorkflowQueueDocumentsResponse> localVarResp =
         getWorkflowQueueDocumentsWithHttpInfo(queueId, siteId, limit, next);
     return localVarResp.getData();
   }
@@ -2544,7 +2752,7 @@ public class DocumentWorkflowsApi {
    * @param siteId Site Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
-   * @return ApiResponse&lt;WorkflowQueueDocumentsResponse&gt;
+   * @return ApiResponse&lt;GetWorkflowQueueDocumentsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -2564,11 +2772,11 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<WorkflowQueueDocumentsResponse> getWorkflowQueueDocumentsWithHttpInfo(
+  public ApiResponse<GetWorkflowQueueDocumentsResponse> getWorkflowQueueDocumentsWithHttpInfo(
       String queueId, String siteId, String limit, String next) throws ApiException {
     okhttp3.Call localVarCall =
         getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, null);
-    Type localVarReturnType = new TypeToken<WorkflowQueueDocumentsResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetWorkflowQueueDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -2601,12 +2809,12 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public okhttp3.Call getWorkflowQueueDocumentsAsync(String queueId, String siteId, String limit,
-      String next, final ApiCallback<WorkflowQueueDocumentsResponse> _callback)
+      String next, final ApiCallback<GetWorkflowQueueDocumentsResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
         getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, _callback);
-    Type localVarReturnType = new TypeToken<WorkflowQueueDocumentsResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetWorkflowQueueDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

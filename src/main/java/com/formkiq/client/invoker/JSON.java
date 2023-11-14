@@ -313,6 +313,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetWebhooksResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetWorkflowDocumentsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetWorkflowQueueDocumentsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetWorkflowsResponse.CustomTypeAdapterFactory());
@@ -407,9 +411,9 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.Workflow.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.WorkflowQueue.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.WorkflowDocument.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.WorkflowQueueDocumentsResponse.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.WorkflowQueue.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.WorkflowStep.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

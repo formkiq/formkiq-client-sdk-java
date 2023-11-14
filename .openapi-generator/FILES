@@ -122,6 +122,8 @@ docs/GetVersionResponse.md
 docs/GetWebhookResponse.md
 docs/GetWebhookTagsResponse.md
 docs/GetWebhooksResponse.md
+docs/GetWorkflowDocumentsResponse.md
+docs/GetWorkflowQueueDocumentsResponse.md
 docs/GetWorkflowResponse.md
 docs/GetWorkflowsResponse.md
 docs/Group.md
@@ -176,8 +178,8 @@ docs/ValidationErrorsResponse.md
 docs/WebhookTag.md
 docs/WebhooksApi.md
 docs/Workflow.md
+docs/WorkflowDocument.md
 docs/WorkflowQueue.md
-docs/WorkflowQueueDocumentsResponse.md
 docs/WorkflowStep.md
 docs/WorkflowSummary.md
 git_push.sh
@@ -336,6 +338,8 @@ src/main/java/com/formkiq/client/model/GetVersionResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookTagsResponse.java
 src/main/java/com/formkiq/client/model/GetWebhooksResponse.java
+src/main/java/com/formkiq/client/model/GetWorkflowDocumentsResponse.java
+src/main/java/com/formkiq/client/model/GetWorkflowQueueDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/Group.java
@@ -383,8 +387,8 @@ src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
 src/main/java/com/formkiq/client/model/WebhookTag.java
 src/main/java/com/formkiq/client/model/Workflow.java
+src/main/java/com/formkiq/client/model/WorkflowDocument.java
 src/main/java/com/formkiq/client/model/WorkflowQueue.java
-src/main/java/com/formkiq/client/model/WorkflowQueueDocumentsResponse.java
 src/main/java/com/formkiq/client/model/WorkflowStep.java
 src/main/java/com/formkiq/client/model/WorkflowSummary.java
 src/test/java/com/formkiq/client/api/AdvancedDocumentSearchApiTest.java
@@ -511,6 +515,8 @@ src/test/java/com/formkiq/client/model/GetVersionResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookTagsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhooksResponseTest.java
+src/test/java/com/formkiq/client/model/GetWorkflowDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/GetWorkflowQueueDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GroupTest.java
@@ -557,7 +563,7 @@ src/test/java/com/formkiq/client/model/UserTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/WebhookTagTest.java
-src/test/java/com/formkiq/client/model/WorkflowQueueDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/WorkflowDocumentTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueTest.java
 src/test/java/com/formkiq/client/model/WorkflowStepTest.java
 src/test/java/com/formkiq/client/model/WorkflowSummaryTest.java

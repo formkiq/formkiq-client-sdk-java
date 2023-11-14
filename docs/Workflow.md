@@ -21,6 +21,7 @@
 |---- | -----|
 | COMPLETE | &quot;COMPLETE&quot; |
 | IN_PROGRESS | &quot;IN_PROGRESS&quot; |
+| FAILED | &quot;FAILED&quot; |
 
 
 
