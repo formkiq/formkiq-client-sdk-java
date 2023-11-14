@@ -7638,56 +7638,72 @@ components:
       example:
         next: next
         documents:
-        - metadata:
-          - values:
-            - values
-            - values
-            value: value
-            key: key
-          - values:
-            - values
-            - values
-            value: value
-            key: key
-          lastModifiedDate: lastModifiedDate
-          belongsToDocumentId: belongsToDocumentId
-          userId: userId
-          version: version
-          versionKey: versionKey
-          currentStepId: currentStepId
-          path: path
-          insertedDate: insertedDate
-          s3version: s3version
-          checksum: checksum
-          documentId: documentId
-          contentLength: 0
-          contentType: contentType
-          workflowId: workflowId
-        - metadata:
-          - values:
-            - values
-            - values
-            value: value
-            key: key
-          - values:
-            - values
-            - values
-            value: value
-            key: key
-          lastModifiedDate: lastModifiedDate
-          belongsToDocumentId: belongsToDocumentId
-          userId: userId
-          version: version
-          versionKey: versionKey
-          currentStepId: currentStepId
-          path: path
-          insertedDate: insertedDate
-          s3version: s3version
-          checksum: checksum
-          documentId: documentId
-          contentLength: 0
-          contentType: contentType
-          workflowId: workflowId
+        - workflow:
+            insertedDate: insertedDate
+            name: name
+            inUse: true
+            description: description
+            userId: userId
+            workflowId: workflowId
+            status: ACTIVE
+          document:
+            metadata:
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            lastModifiedDate: lastModifiedDate
+            belongsToDocumentId: belongsToDocumentId
+            userId: userId
+            version: version
+            versionKey: versionKey
+            path: path
+            insertedDate: insertedDate
+            s3version: s3version
+            checksum: checksum
+            siteId: siteId
+            documentId: documentId
+            contentLength: 0
+            contentType: contentType
+        - workflow:
+            insertedDate: insertedDate
+            name: name
+            inUse: true
+            description: description
+            userId: userId
+            workflowId: workflowId
+            status: ACTIVE
+          document:
+            metadata:
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            lastModifiedDate: lastModifiedDate
+            belongsToDocumentId: belongsToDocumentId
+            userId: userId
+            version: version
+            versionKey: versionKey
+            path: path
+            insertedDate: insertedDate
+            s3version: s3version
+            checksum: checksum
+            siteId: siteId
+            documentId: documentId
+            contentLength: 0
+            contentType: contentType
       properties:
         next:
           description: Next page of results token
@@ -7718,15 +7734,14 @@ components:
           userId: userId
           version: version
           versionKey: versionKey
-          currentStepId: currentStepId
           path: path
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
-          workflowId: workflowId
         - metadata:
           - values:
             - values
@@ -7743,100 +7758,64 @@ components:
           userId: userId
           version: version
           versionKey: versionKey
-          currentStepId: currentStepId
           path: path
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
-          workflowId: workflowId
       properties:
         next:
           description: Next page of results token
           type: string
         documents:
-          description: List of search result documents
+          description: List of workflow documents
           items:
-            $ref: '#/components/schemas/WorkflowDocument'
+            $ref: '#/components/schemas/Document'
           type: array
       type: object
     WorkflowDocument:
       example:
-        metadata:
-        - values:
-          - values
-          - values
-          value: value
-          key: key
-        - values:
-          - values
-          - values
-          value: value
-          key: key
-        lastModifiedDate: lastModifiedDate
-        belongsToDocumentId: belongsToDocumentId
-        userId: userId
-        version: version
-        versionKey: versionKey
-        currentStepId: currentStepId
-        path: path
-        insertedDate: insertedDate
-        s3version: s3version
-        checksum: checksum
-        documentId: documentId
-        contentLength: 0
-        contentType: contentType
-        workflowId: workflowId
+        workflow:
+          insertedDate: insertedDate
+          name: name
+          inUse: true
+          description: description
+          userId: userId
+          workflowId: workflowId
+          status: ACTIVE
+        document:
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          version: version
+          versionKey: versionKey
+          path: path
+          insertedDate: insertedDate
+          s3version: s3version
+          checksum: checksum
+          siteId: siteId
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
       properties:
-        workflowId:
-          description: Workflow identifier
-          type: string
-        currentStepId:
-          description: The current step workflow is on
-          type: string
-        path:
-          description: Path or Name of document
-          type: string
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        lastModifiedDate:
-          description: Last Modified Timestamp
-          type: string
-        checksum:
-          description: "Document checksum, changes when document file changes"
-          type: string
-        documentId:
-          description: Document Identifier
-          type: string
-        contentType:
-          description: Document Content-Type
-          type: string
-        userId:
-          description: User who added document
-          type: string
-        contentLength:
-          description: Document size
-          type: integer
-        version:
-          description: Document version
-          type: string
-        versionKey:
-          description: Document Version Identifier
-          type: string
-        s3version:
-          description: Document storage version
-          type: string
-        belongsToDocumentId:
-          description: Parent Document Identifier
-          type: string
-        metadata:
-          description: List of document Metadata
-          items:
-            $ref: '#/components/schemas/DocumentMetadata'
-          type: array
+        workflow:
+          $ref: '#/components/schemas/WorkflowSummary'
+        document:
+          $ref: '#/components/schemas/Document'
       type: object
     Document:
       example:
@@ -9405,9 +9384,9 @@ components:
           status: COMPLETE
       properties:
         workflows:
-          description: List of Workflows
+          description: List of Document Workflows
           items:
-            $ref: '#/components/schemas/Workflow'
+            $ref: '#/components/schemas/DocumentWorkflow'
           type: array
         next:
           type: string
@@ -9422,9 +9401,9 @@ components:
           status: COMPLETE
       properties:
         workflow:
-          $ref: '#/components/schemas/Workflow'
+          $ref: '#/components/schemas/DocumentWorkflow'
       type: object
-    Workflow:
+    DocumentWorkflow:
       example:
         currentStepId: currentStepId
         name: name

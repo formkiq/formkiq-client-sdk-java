@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**workflow** | [**Workflow**](Workflow.md) |  |  [optional] |
+|**workflow** | [**DocumentWorkflow**](DocumentWorkflow.md) |  |  [optional] |
 
 
 

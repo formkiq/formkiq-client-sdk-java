@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.Workflow;
+import com.formkiq.client.model.DocumentWorkflow;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,15 +58,15 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentWorkflowResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
+    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
 public class GetDocumentWorkflowResponse {
   public static final String SERIALIZED_NAME_WORKFLOW = "workflow";
   @SerializedName(SERIALIZED_NAME_WORKFLOW)
-  private Workflow workflow;
+  private DocumentWorkflow workflow;
 
   public GetDocumentWorkflowResponse() {}
 
-  public GetDocumentWorkflowResponse workflow(Workflow workflow) {
+  public GetDocumentWorkflowResponse workflow(DocumentWorkflow workflow) {
 
     this.workflow = workflow;
     return this;
@@ -78,12 +78,12 @@ public class GetDocumentWorkflowResponse {
    * @return workflow
    **/
   @javax.annotation.Nullable
-  public Workflow getWorkflow() {
+  public DocumentWorkflow getWorkflow() {
     return workflow;
   }
 
 
-  public void setWorkflow(Workflow workflow) {
+  public void setWorkflow(DocumentWorkflow workflow) {
     this.workflow = workflow;
   }
 
@@ -166,7 +166,7 @@ public class GetDocumentWorkflowResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     // validate the optional field `workflow`
     if (jsonObj.get("workflow") != null && !jsonObj.get("workflow").isJsonNull()) {
-      Workflow.validateJsonElement(jsonObj.get("workflow"));
+      DocumentWorkflow.validateJsonElement(jsonObj.get("workflow"));
     }
   }
 

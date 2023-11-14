@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.Workflow;
+import com.formkiq.client.model.DocumentWorkflow;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,11 +60,11 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentWorkflowsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
+    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
 public class GetDocumentWorkflowsResponse {
   public static final String SERIALIZED_NAME_WORKFLOWS = "workflows";
   @SerializedName(SERIALIZED_NAME_WORKFLOWS)
-  private List<Workflow> workflows;
+  private List<DocumentWorkflow> workflows;
 
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -72,13 +72,13 @@ public class GetDocumentWorkflowsResponse {
 
   public GetDocumentWorkflowsResponse() {}
 
-  public GetDocumentWorkflowsResponse workflows(List<Workflow> workflows) {
+  public GetDocumentWorkflowsResponse workflows(List<DocumentWorkflow> workflows) {
 
     this.workflows = workflows;
     return this;
   }
 
-  public GetDocumentWorkflowsResponse addWorkflowsItem(Workflow workflowsItem) {
+  public GetDocumentWorkflowsResponse addWorkflowsItem(DocumentWorkflow workflowsItem) {
     if (this.workflows == null) {
       this.workflows = new ArrayList<>();
     }
@@ -87,17 +87,17 @@ public class GetDocumentWorkflowsResponse {
   }
 
   /**
-   * List of Workflows
+   * List of Document Workflows
    * 
    * @return workflows
    **/
   @javax.annotation.Nullable
-  public List<Workflow> getWorkflows() {
+  public List<DocumentWorkflow> getWorkflows() {
     return workflows;
   }
 
 
-  public void setWorkflows(List<Workflow> workflows) {
+  public void setWorkflows(List<DocumentWorkflow> workflows) {
     this.workflows = workflows;
   }
 
@@ -216,7 +216,7 @@ public class GetDocumentWorkflowsResponse {
 
         // validate the optional field `workflows` (array)
         for (int i = 0; i < jsonArrayworkflows.size(); i++) {
-          Workflow.validateJsonElement(jsonArrayworkflows.get(i));
+          DocumentWorkflow.validateJsonElement(jsonArrayworkflows.get(i));
         } ;
       }
     }

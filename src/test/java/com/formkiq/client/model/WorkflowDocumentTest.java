@@ -20,16 +20,15 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentMetadata;
+import com.formkiq.client.model.Document;
+import com.formkiq.client.model.WorkflowSummary;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -48,123 +47,19 @@ public class WorkflowDocumentTest {
   }
 
   /**
-   * Test the property 'workflowId'
+   * Test the property 'workflow'
    */
   @Test
-  public void workflowIdTest() {
-    // TODO: test workflowId
+  public void workflowTest() {
+    // TODO: test workflow
   }
 
   /**
-   * Test the property 'currentStepId'
+   * Test the property 'document'
    */
   @Test
-  public void currentStepIdTest() {
-    // TODO: test currentStepId
-  }
-
-  /**
-   * Test the property 'path'
-   */
-  @Test
-  public void pathTest() {
-    // TODO: test path
-  }
-
-  /**
-   * Test the property 'insertedDate'
-   */
-  @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
-  }
-
-  /**
-   * Test the property 'lastModifiedDate'
-   */
-  @Test
-  public void lastModifiedDateTest() {
-    // TODO: test lastModifiedDate
-  }
-
-  /**
-   * Test the property 'checksum'
-   */
-  @Test
-  public void checksumTest() {
-    // TODO: test checksum
-  }
-
-  /**
-   * Test the property 'documentId'
-   */
-  @Test
-  public void documentIdTest() {
-    // TODO: test documentId
-  }
-
-  /**
-   * Test the property 'contentType'
-   */
-  @Test
-  public void contentTypeTest() {
-    // TODO: test contentType
-  }
-
-  /**
-   * Test the property 'userId'
-   */
-  @Test
-  public void userIdTest() {
-    // TODO: test userId
-  }
-
-  /**
-   * Test the property 'contentLength'
-   */
-  @Test
-  public void contentLengthTest() {
-    // TODO: test contentLength
-  }
-
-  /**
-   * Test the property 'version'
-   */
-  @Test
-  public void versionTest() {
-    // TODO: test version
-  }
-
-  /**
-   * Test the property 'versionKey'
-   */
-  @Test
-  public void versionKeyTest() {
-    // TODO: test versionKey
-  }
-
-  /**
-   * Test the property 's3version'
-   */
-  @Test
-  public void s3versionTest() {
-    // TODO: test s3version
-  }
-
-  /**
-   * Test the property 'belongsToDocumentId'
-   */
-  @Test
-  public void belongsToDocumentIdTest() {
-    // TODO: test belongsToDocumentId
-  }
-
-  /**
-   * Test the property 'metadata'
-   */
-  @Test
-  public void metadataTest() {
-    // TODO: test metadata
+  public void documentTest() {
+    // TODO: test document
   }
 
 }

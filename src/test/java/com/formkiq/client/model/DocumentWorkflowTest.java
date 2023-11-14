@@ -31,17 +31,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for Workflow
+ * Model tests for DocumentWorkflow
  */
-public class WorkflowTest {
-  private final Workflow model = new Workflow();
+public class DocumentWorkflowTest {
+  private final DocumentWorkflow model = new DocumentWorkflow();
 
   /**
-   * Model tests for Workflow
+   * Model tests for DocumentWorkflow
    */
   @Test
-  public void testWorkflow() {
-    // TODO: test Workflow
+  public void testDocumentWorkflow() {
+    // TODO: test DocumentWorkflow
   }
 
   /**

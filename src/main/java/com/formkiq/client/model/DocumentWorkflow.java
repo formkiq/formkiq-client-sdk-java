@@ -54,11 +54,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * Workflow
+ * DocumentWorkflow
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
-public class Workflow {
+    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+public class DocumentWorkflow {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
   private String workflowId;
@@ -129,9 +129,9 @@ public class Workflow {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  public Workflow() {}
+  public DocumentWorkflow() {}
 
-  public Workflow workflowId(String workflowId) {
+  public DocumentWorkflow workflowId(String workflowId) {
 
     this.workflowId = workflowId;
     return this;
@@ -153,7 +153,7 @@ public class Workflow {
   }
 
 
-  public Workflow name(String name) {
+  public DocumentWorkflow name(String name) {
 
     this.name = name;
     return this;
@@ -175,7 +175,7 @@ public class Workflow {
   }
 
 
-  public Workflow description(String description) {
+  public DocumentWorkflow description(String description) {
 
     this.description = description;
     return this;
@@ -197,7 +197,7 @@ public class Workflow {
   }
 
 
-  public Workflow currentStepId(String currentStepId) {
+  public DocumentWorkflow currentStepId(String currentStepId) {
 
     this.currentStepId = currentStepId;
     return this;
@@ -219,7 +219,7 @@ public class Workflow {
   }
 
 
-  public Workflow status(StatusEnum status) {
+  public DocumentWorkflow status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -250,12 +250,12 @@ public class Workflow {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Workflow workflow = (Workflow) o;
-    return Objects.equals(this.workflowId, workflow.workflowId)
-        && Objects.equals(this.name, workflow.name)
-        && Objects.equals(this.description, workflow.description)
-        && Objects.equals(this.currentStepId, workflow.currentStepId)
-        && Objects.equals(this.status, workflow.status);
+    DocumentWorkflow documentWorkflow = (DocumentWorkflow) o;
+    return Objects.equals(this.workflowId, documentWorkflow.workflowId)
+        && Objects.equals(this.name, documentWorkflow.name)
+        && Objects.equals(this.description, documentWorkflow.description)
+        && Objects.equals(this.currentStepId, documentWorkflow.currentStepId)
+        && Objects.equals(this.status, documentWorkflow.status);
   }
 
   @Override
@@ -266,7 +266,7 @@ public class Workflow {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Workflow {\n");
+    sb.append("class DocumentWorkflow {\n");
     sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -307,24 +307,24 @@ public class Workflow {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Workflow
+   * @throws IOException if the JSON Element is invalid with respect to DocumentWorkflow
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!Workflow.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
-                                                       // null
+      if (!DocumentWorkflow.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                               // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in Workflow is not found in the empty JSON string",
-            Workflow.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocumentWorkflow is not found in the empty JSON string",
+            DocumentWorkflow.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!Workflow.openapiFields.contains(entry.getKey())) {
+      if (!DocumentWorkflow.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `Workflow` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocumentWorkflow` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -365,22 +365,22 @@ public class Workflow {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!Workflow.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'Workflow' and its subtypes
+      if (!DocumentWorkflow.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocumentWorkflow' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<Workflow> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(Workflow.class));
+      final TypeAdapter<DocumentWorkflow> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocumentWorkflow.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<Workflow>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocumentWorkflow>() {
         @Override
-        public void write(JsonWriter out, Workflow value) throws IOException {
+        public void write(JsonWriter out, DocumentWorkflow value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public Workflow read(JsonReader in) throws IOException {
+        public DocumentWorkflow read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -391,18 +391,18 @@ public class Workflow {
   }
 
   /**
-   * Create an instance of Workflow given an JSON string
+   * Create an instance of DocumentWorkflow given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of Workflow
-   * @throws IOException if the JSON string is invalid with respect to Workflow
+   * @return An instance of DocumentWorkflow
+   * @throws IOException if the JSON string is invalid with respect to DocumentWorkflow
    */
-  public static Workflow fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Workflow.class);
+  public static DocumentWorkflow fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocumentWorkflow.class);
   }
 
   /**
-   * Convert an instance of Workflow to an JSON string
+   * Convert an instance of DocumentWorkflow to an JSON string
    *
    * @return JSON string
    */

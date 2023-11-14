@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-11-13T22:31:30.007635-06:00[America/Winnipeg]
+  - Build date: 2023-11-14T10:43:04.140627-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -298,6 +298,7 @@ Class | Method | HTTP request | Description
  - [DocumentSearchTag](docs/DocumentSearchTag.md)
  - [DocumentTag](docs/DocumentTag.md)
  - [DocumentVersion](docs/DocumentVersion.md)
+ - [DocumentWorkflow](docs/DocumentWorkflow.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [Error](docs/Error.md)
@@ -388,7 +389,6 @@ Class | Method | HTTP request | Description
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
  - [WebhookTag](docs/WebhookTag.md)
- - [Workflow](docs/Workflow.md)
  - [WorkflowDocument](docs/WorkflowDocument.md)
  - [WorkflowQueue](docs/WorkflowQueue.md)
  - [WorkflowStep](docs/WorkflowStep.md)

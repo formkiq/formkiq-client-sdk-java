@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
+    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)

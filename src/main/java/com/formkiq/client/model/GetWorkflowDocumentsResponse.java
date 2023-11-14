@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.WorkflowDocument;
+import com.formkiq.client.model.Document;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-13T22:31:30.007635-06:00[America/Winnipeg]")
+    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
 public class GetWorkflowDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -68,7 +68,7 @@ public class GetWorkflowDocumentsResponse {
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
-  private List<WorkflowDocument> documents;
+  private List<Document> documents;
 
   public GetWorkflowDocumentsResponse() {}
 
@@ -94,13 +94,13 @@ public class GetWorkflowDocumentsResponse {
   }
 
 
-  public GetWorkflowDocumentsResponse documents(List<WorkflowDocument> documents) {
+  public GetWorkflowDocumentsResponse documents(List<Document> documents) {
 
     this.documents = documents;
     return this;
   }
 
-  public GetWorkflowDocumentsResponse addDocumentsItem(WorkflowDocument documentsItem) {
+  public GetWorkflowDocumentsResponse addDocumentsItem(Document documentsItem) {
     if (this.documents == null) {
       this.documents = new ArrayList<>();
     }
@@ -109,17 +109,17 @@ public class GetWorkflowDocumentsResponse {
   }
 
   /**
-   * List of search result documents
+   * List of workflow documents
    * 
    * @return documents
    **/
   @javax.annotation.Nullable
-  public List<WorkflowDocument> getDocuments() {
+  public List<Document> getDocuments() {
     return documents;
   }
 
 
-  public void setDocuments(List<WorkflowDocument> documents) {
+  public void setDocuments(List<Document> documents) {
     this.documents = documents;
   }
 
@@ -222,7 +222,7 @@ public class GetWorkflowDocumentsResponse {
 
         // validate the optional field `documents` (array)
         for (int i = 0; i < jsonArraydocuments.size(); i++) {
-          WorkflowDocument.validateJsonElement(jsonArraydocuments.get(i));
+          Document.validateJsonElement(jsonArraydocuments.get(i));
         } ;
       }
     }

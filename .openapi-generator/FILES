@@ -77,6 +77,7 @@ docs/DocumentTag.md
 docs/DocumentTagsApi.md
 docs/DocumentVersion.md
 docs/DocumentVersionsApi.md
+docs/DocumentWorkflow.md
 docs/DocumentWorkflowsApi.md
 docs/DocumentsApi.md
 docs/DocumentsCompressRequest.md
@@ -177,7 +178,6 @@ docs/ValidationError.md
 docs/ValidationErrorsResponse.md
 docs/WebhookTag.md
 docs/WebhooksApi.md
-docs/Workflow.md
 docs/WorkflowDocument.md
 docs/WorkflowQueue.md
 docs/WorkflowStep.md
@@ -296,6 +296,7 @@ src/main/java/com/formkiq/client/model/DocumentSearchResponse.java
 src/main/java/com/formkiq/client/model/DocumentSearchTag.java
 src/main/java/com/formkiq/client/model/DocumentTag.java
 src/main/java/com/formkiq/client/model/DocumentVersion.java
+src/main/java/com/formkiq/client/model/DocumentWorkflow.java
 src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
 src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/Error.java
@@ -386,7 +387,6 @@ src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
 src/main/java/com/formkiq/client/model/WebhookTag.java
-src/main/java/com/formkiq/client/model/Workflow.java
 src/main/java/com/formkiq/client/model/WorkflowDocument.java
 src/main/java/com/formkiq/client/model/WorkflowQueue.java
 src/main/java/com/formkiq/client/model/WorkflowStep.java
@@ -473,6 +473,7 @@ src/test/java/com/formkiq/client/model/DocumentSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentTagTest.java
 src/test/java/com/formkiq/client/model/DocumentTest.java
 src/test/java/com/formkiq/client/model/DocumentVersionTest.java
+src/test/java/com/formkiq/client/model/DocumentWorkflowTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
@@ -567,4 +568,3 @@ src/test/java/com/formkiq/client/model/WorkflowDocumentTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueTest.java
 src/test/java/com/formkiq/client/model/WorkflowStepTest.java
 src/test/java/com/formkiq/client/model/WorkflowSummaryTest.java
-src/test/java/com/formkiq/client/model/WorkflowTest.java
