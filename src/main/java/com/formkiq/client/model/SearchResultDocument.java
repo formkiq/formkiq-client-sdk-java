@@ -63,7 +63,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -120,6 +120,10 @@ public class SearchResultDocument {
   public static final String SERIALIZED_NAME_MATCHED_TAG = "matchedTag";
   @SerializedName(SERIALIZED_NAME_MATCHED_TAG)
   private DocumentSearchMatchTag matchedTag;
+
+  public static final String SERIALIZED_NAME_MATCHED_TAGS = "matchedTags";
+  @SerializedName(SERIALIZED_NAME_MATCHED_TAGS)
+  private List<DocumentSearchMatchTag> matchedTags;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -439,6 +443,36 @@ public class SearchResultDocument {
   }
 
 
+  public SearchResultDocument matchedTags(List<DocumentSearchMatchTag> matchedTags) {
+
+    this.matchedTags = matchedTags;
+    return this;
+  }
+
+  public SearchResultDocument addMatchedTagsItem(DocumentSearchMatchTag matchedTagsItem) {
+    if (this.matchedTags == null) {
+      this.matchedTags = new ArrayList<>();
+    }
+    this.matchedTags.add(matchedTagsItem);
+    return this;
+  }
+
+  /**
+   * Get matchedTags
+   * 
+   * @return matchedTags
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentSearchMatchTag> getMatchedTags() {
+    return matchedTags;
+  }
+
+
+  public void setMatchedTags(List<DocumentSearchMatchTag> matchedTags) {
+    this.matchedTags = matchedTags;
+  }
+
+
   public SearchResultDocument tags(Map<String, Object> tags) {
 
     this.tags = tags;
@@ -523,6 +557,7 @@ public class SearchResultDocument {
         && Objects.equals(this.versionId, searchResultDocument.versionId)
         && Objects.equals(this.belongsToDocumentId, searchResultDocument.belongsToDocumentId)
         && Objects.equals(this.matchedTag, searchResultDocument.matchedTag)
+        && Objects.equals(this.matchedTags, searchResultDocument.matchedTags)
         && Objects.equals(this.tags, searchResultDocument.tags)
         && Objects.equals(this.metadata, searchResultDocument.metadata);
   }
@@ -531,7 +566,7 @@ public class SearchResultDocument {
   public int hashCode() {
     return Objects.hash(siteId, path, insertedDate, lastModifiedDate, folder, indexKey, checksum,
         documentId, contentType, userId, contentLength, versionId, belongsToDocumentId, matchedTag,
-        tags, metadata);
+        matchedTags, tags, metadata);
   }
 
   @Override
@@ -553,6 +588,7 @@ public class SearchResultDocument {
     sb.append("    belongsToDocumentId: ").append(toIndentedString(belongsToDocumentId))
         .append("\n");
     sb.append("    matchedTag: ").append(toIndentedString(matchedTag)).append("\n");
+    sb.append("    matchedTags: ").append(toIndentedString(matchedTags)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
@@ -590,6 +626,7 @@ public class SearchResultDocument {
     openapiFields.add("versionId");
     openapiFields.add("belongsToDocumentId");
     openapiFields.add("matchedTag");
+    openapiFields.add("matchedTags");
     openapiFields.add("tags");
     openapiFields.add("metadata");
 
@@ -693,6 +730,22 @@ public class SearchResultDocument {
     // validate the optional field `matchedTag`
     if (jsonObj.get("matchedTag") != null && !jsonObj.get("matchedTag").isJsonNull()) {
       DocumentSearchMatchTag.validateJsonElement(jsonObj.get("matchedTag"));
+    }
+    if (jsonObj.get("matchedTags") != null && !jsonObj.get("matchedTags").isJsonNull()) {
+      JsonArray jsonArraymatchedTags = jsonObj.getAsJsonArray("matchedTags");
+      if (jsonArraymatchedTags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("matchedTags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `matchedTags` to be an array in the JSON string but got `%s`",
+              jsonObj.get("matchedTags").toString()));
+        }
+
+        // validate the optional field `matchedTags` (array)
+        for (int i = 0; i < jsonArraymatchedTags.size(); i++) {
+          DocumentSearchMatchTag.validateJsonElement(jsonArraymatchedTags.get(i));
+        } ;
+      }
     }
     if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
       JsonArray jsonArraymetadata = jsonObj.getAsJsonArray("metadata");

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class GetDocumentSync {
   /**
    * To which service the data was synced
@@ -104,6 +104,11 @@ public class GetDocumentSync {
         String value = jsonReader.nextString();
         return ServiceEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ServiceEnum.fromValue(value);
     }
   }
 
@@ -156,6 +161,11 @@ public class GetDocumentSync {
         String value = jsonReader.nextString();
         return StatusEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
     }
   }
 
@@ -210,6 +220,11 @@ public class GetDocumentSync {
         String value = jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
     }
   }
 
@@ -460,17 +475,29 @@ public class GetDocumentSync {
           "Expected the field `service` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("service").toString()));
     }
+    // validate the optional field `service`
+    if (jsonObj.get("service") != null && !jsonObj.get("service").isJsonNull()) {
+      ServiceEnum.validateJsonElement(jsonObj.get("service"));
+    }
     if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
         && !jsonObj.get("status").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("status").toString()));
     }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
+    }
     if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
         && !jsonObj.get("type").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
+    }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
     }
     if ((jsonObj.get("syncDate") != null && !jsonObj.get("syncDate").isJsonNull())
         && !jsonObj.get("syncDate").isJsonPrimitive()) {

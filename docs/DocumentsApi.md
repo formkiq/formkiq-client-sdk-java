@@ -15,6 +15,7 @@ All URIs are relative to *http://localhost*
 | [**getDocumentUpload**](DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document |
 | [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url |
 | [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing |
+| [**setDocumentRestore**](DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document |
 | [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document |
 
 
@@ -230,7 +231,7 @@ No authorization required
 
 <a id="deleteDocument"></a>
 # **deleteDocument**
-> deleteDocument(documentId, siteId)
+> deleteDocument(documentId, siteId, softDelete)
 
 Delete document
 
@@ -256,8 +257,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    Boolean softDelete = true; // Boolean | Whether to soft delete document
     try {
-      apiInstance.deleteDocument(documentId, siteId);
+      apiInstance.deleteDocument(documentId, siteId, softDelete);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocument");
       System.err.println("Status code: " + e.getCode());
@@ -275,6 +277,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **softDelete** | **Boolean**| Whether to soft delete document | [optional] |
 
 ### Return type
 
@@ -728,7 +731,7 @@ No authorization required
 
 <a id="getDocuments"></a>
 # **getDocuments**
-> GetDocumentsResponse getDocuments(siteId, actionStatus, date, tz, next, previous, limit)
+> GetDocumentsResponse getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit)
 
 Get Documents listing
 
@@ -754,13 +757,14 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String actionStatus = "FAILED"; // String | Fetch documents with an action status
+    Boolean deleted = true; // Boolean | Fetch soft deleted documents
     String date = "date_example"; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
     String limit = "10"; // String | Limit Results
     try {
-      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, date, tz, next, previous, limit);
+      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocuments");
@@ -779,6 +783,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
 | **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED] |
+| **deleted** | **Boolean**| Fetch soft deleted documents | [optional] |
 | **date** | **String**| Fetch documents inserted on a certain date (yyyy-MM-dd) | [optional] |
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
@@ -788,6 +793,73 @@ public class Example {
 ### Return type
 
 [**GetDocumentsResponse**](GetDocumentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setDocumentRestore"></a>
+# **setDocumentRestore**
+> SetDocumentRestoreResponse setDocumentRestore(documentId, siteId)
+
+Restore soft deleted document
+
+Restores a soft deleted document
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      SetDocumentRestoreResponse result = apiInstance.setDocumentRestore(documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#setDocumentRestore");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**SetDocumentRestoreResponse**](SetDocumentRestoreResponse.md)
 
 ### Authorization
 

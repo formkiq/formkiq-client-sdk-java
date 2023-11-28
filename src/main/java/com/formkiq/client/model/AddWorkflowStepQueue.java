@@ -56,30 +56,22 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddQueue
+ * AddWorkflowStepQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
-public class AddQueue {
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+public class AddWorkflowStepQueue {
   public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
   @SerializedName(SERIALIZED_NAME_QUEUE_ID)
   private String queueId;
-
-  public static final String SERIALIZED_NAME_IF_APPROVED_STEP_ID = "ifApprovedStepId";
-  @SerializedName(SERIALIZED_NAME_IF_APPROVED_STEP_ID)
-  private String ifApprovedStepId;
-
-  public static final String SERIALIZED_NAME_IF_REJECTED_STEP_ID = "ifRejectedStepId";
-  @SerializedName(SERIALIZED_NAME_IF_REJECTED_STEP_ID)
-  private String ifRejectedStepId;
 
   public static final String SERIALIZED_NAME_APPROVAL_GROUPS = "approvalGroups";
   @SerializedName(SERIALIZED_NAME_APPROVAL_GROUPS)
   private List<String> approvalGroups;
 
-  public AddQueue() {}
+  public AddWorkflowStepQueue() {}
 
-  public AddQueue queueId(String queueId) {
+  public AddWorkflowStepQueue queueId(String queueId) {
 
     this.queueId = queueId;
     return this;
@@ -90,7 +82,7 @@ public class AddQueue {
    * 
    * @return queueId
    **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getQueueId() {
     return queueId;
   }
@@ -101,57 +93,13 @@ public class AddQueue {
   }
 
 
-  public AddQueue ifApprovedStepId(String ifApprovedStepId) {
-
-    this.ifApprovedStepId = ifApprovedStepId;
-    return this;
-  }
-
-  /**
-   * If approved goto step id
-   * 
-   * @return ifApprovedStepId
-   **/
-  @javax.annotation.Nullable
-  public String getIfApprovedStepId() {
-    return ifApprovedStepId;
-  }
-
-
-  public void setIfApprovedStepId(String ifApprovedStepId) {
-    this.ifApprovedStepId = ifApprovedStepId;
-  }
-
-
-  public AddQueue ifRejectedStepId(String ifRejectedStepId) {
-
-    this.ifRejectedStepId = ifRejectedStepId;
-    return this;
-  }
-
-  /**
-   * If rejected goto step id
-   * 
-   * @return ifRejectedStepId
-   **/
-  @javax.annotation.Nullable
-  public String getIfRejectedStepId() {
-    return ifRejectedStepId;
-  }
-
-
-  public void setIfRejectedStepId(String ifRejectedStepId) {
-    this.ifRejectedStepId = ifRejectedStepId;
-  }
-
-
-  public AddQueue approvalGroups(List<String> approvalGroups) {
+  public AddWorkflowStepQueue approvalGroups(List<String> approvalGroups) {
 
     this.approvalGroups = approvalGroups;
     return this;
   }
 
-  public AddQueue addApprovalGroupsItem(String approvalGroupsItem) {
+  public AddWorkflowStepQueue addApprovalGroupsItem(String approvalGroupsItem) {
     if (this.approvalGroups == null) {
       this.approvalGroups = new ArrayList<>();
     }
@@ -184,25 +132,21 @@ public class AddQueue {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddQueue addQueue = (AddQueue) o;
-    return Objects.equals(this.queueId, addQueue.queueId)
-        && Objects.equals(this.ifApprovedStepId, addQueue.ifApprovedStepId)
-        && Objects.equals(this.ifRejectedStepId, addQueue.ifRejectedStepId)
-        && Objects.equals(this.approvalGroups, addQueue.approvalGroups);
+    AddWorkflowStepQueue addWorkflowStepQueue = (AddWorkflowStepQueue) o;
+    return Objects.equals(this.queueId, addWorkflowStepQueue.queueId)
+        && Objects.equals(this.approvalGroups, addWorkflowStepQueue.approvalGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(queueId, ifApprovedStepId, ifRejectedStepId, approvalGroups);
+    return Objects.hash(queueId, approvalGroups);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddQueue {\n");
+    sb.append("class AddWorkflowStepQueue {\n");
     sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
-    sb.append("    ifApprovedStepId: ").append(toIndentedString(ifApprovedStepId)).append("\n");
-    sb.append("    ifRejectedStepId: ").append(toIndentedString(ifRejectedStepId)).append("\n");
     sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -226,57 +170,52 @@ public class AddQueue {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("queueId");
-    openapiFields.add("ifApprovedStepId");
-    openapiFields.add("ifRejectedStepId");
     openapiFields.add("approvalGroups");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("queueId");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddQueue
+   * @throws IOException if the JSON Element is invalid with respect to AddWorkflowStepQueue
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddQueue.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
-                                                       // null
+      if (!AddWorkflowStepQueue.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                   // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddQueue is not found in the empty JSON string",
-            AddQueue.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddWorkflowStepQueue is not found in the empty JSON string",
+            AddWorkflowStepQueue.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddQueue.openapiFields.contains(entry.getKey())) {
+      if (!AddWorkflowStepQueue.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddQueue` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddWorkflowStepQueue` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddWorkflowStepQueue.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
-        && !jsonObj.get("queueId").isJsonPrimitive()) {
+    if (!jsonObj.get("queueId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("queueId").toString()));
-    }
-    if ((jsonObj.get("ifApprovedStepId") != null && !jsonObj.get("ifApprovedStepId").isJsonNull())
-        && !jsonObj.get("ifApprovedStepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `ifApprovedStepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("ifApprovedStepId").toString()));
-    }
-    if ((jsonObj.get("ifRejectedStepId") != null && !jsonObj.get("ifRejectedStepId").isJsonNull())
-        && !jsonObj.get("ifRejectedStepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `ifRejectedStepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("ifRejectedStepId").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("approvalGroups") != null && !jsonObj.get("approvalGroups").isJsonNull()
@@ -291,22 +230,22 @@ public class AddQueue {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddQueue.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddQueue' and its subtypes
+      if (!AddWorkflowStepQueue.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddWorkflowStepQueue' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddQueue> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddQueue.class));
+      final TypeAdapter<AddWorkflowStepQueue> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddWorkflowStepQueue.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddQueue>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddWorkflowStepQueue>() {
         @Override
-        public void write(JsonWriter out, AddQueue value) throws IOException {
+        public void write(JsonWriter out, AddWorkflowStepQueue value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddQueue read(JsonReader in) throws IOException {
+        public AddWorkflowStepQueue read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -317,18 +256,18 @@ public class AddQueue {
   }
 
   /**
-   * Create an instance of AddQueue given an JSON string
+   * Create an instance of AddWorkflowStepQueue given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddQueue
-   * @throws IOException if the JSON string is invalid with respect to AddQueue
+   * @return An instance of AddWorkflowStepQueue
+   * @throws IOException if the JSON string is invalid with respect to AddWorkflowStepQueue
    */
-  public static AddQueue fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddQueue.class);
+  public static AddWorkflowStepQueue fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddWorkflowStepQueue.class);
   }
 
   /**
-   * Convert an instance of AddQueue to an JSON string
+   * Convert an instance of AddWorkflowStepQueue to an JSON string
    *
    * @return JSON string
    */

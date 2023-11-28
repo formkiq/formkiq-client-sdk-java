@@ -20,7 +20,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.TagSchemaTags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,57 +31,33 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetTagSchemaRequest
+ * Model tests for WorkflowStepDecision
  */
-public class GetTagSchemaRequestTest {
-  private final GetTagSchemaRequest model = new GetTagSchemaRequest();
+public class WorkflowStepDecisionTest {
+  private final WorkflowStepDecision model = new WorkflowStepDecision();
 
   /**
-   * Model tests for GetTagSchemaRequest
+   * Model tests for WorkflowStepDecision
    */
   @Test
-  public void testGetTagSchemaRequest() {
-    // TODO: test GetTagSchemaRequest
+  public void testWorkflowStepDecision() {
+    // TODO: test WorkflowStepDecision
   }
 
   /**
-   * Test the property 'tagSchemaId'
+   * Test the property 'type'
    */
   @Test
-  public void tagSchemaIdTest() {
-    // TODO: test tagSchemaId
+  public void typeTest() {
+    // TODO: test type
   }
 
   /**
-   * Test the property 'name'
+   * Test the property 'nextStepId'
    */
   @Test
-  public void nameTest() {
-    // TODO: test name
-  }
-
-  /**
-   * Test the property 'userId'
-   */
-  @Test
-  public void userIdTest() {
-    // TODO: test userId
-  }
-
-  /**
-   * Test the property 'insertedDate'
-   */
-  @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
-  }
-
-  /**
-   * Test the property 'tags'
-   */
-  @Test
-  public void tagsTest() {
-    // TODO: test tags
+  public void nextStepIdTest() {
+    // TODO: test nextStepId
   }
 
 }

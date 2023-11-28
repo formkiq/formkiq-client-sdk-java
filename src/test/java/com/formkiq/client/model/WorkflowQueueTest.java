@@ -55,22 +55,6 @@ public class WorkflowQueueTest {
   }
 
   /**
-   * Test the property 'ifApprovedStepId'
-   */
-  @Test
-  public void ifApprovedStepIdTest() {
-    // TODO: test ifApprovedStepId
-  }
-
-  /**
-   * Test the property 'ifRejectedStepId'
-   */
-  @Test
-  public void ifRejectedStepIdTest() {
-    // TODO: test ifRejectedStepId
-  }
-
-  /**
    * Test the property 'approvalGroups'
    */
   @Test

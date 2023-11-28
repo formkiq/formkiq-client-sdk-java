@@ -46,11 +46,11 @@ public class AddDocumentWorkflowDecisionsRequestTest {
   }
 
   /**
-   * Test the property 'queueId'
+   * Test the property 'stepId'
    */
   @Test
-  public void queueIdTest() {
-    // TODO: test queueId
+  public void stepIdTest() {
+    // TODO: test stepId
   }
 
   /**

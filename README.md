@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-11-14T10:43:04.140627-06:00[America/Winnipeg]
+  - Build date: 2023-11-27T19:25:02.177117-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -200,6 +200,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getDocumentUpload**](docs/DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document
 *DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url
 *DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
+*DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**esignatureDocusign**](docs/ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
@@ -260,7 +261,6 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
- - [AddQueue](docs/AddQueue.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
  - [AddShare](docs/AddShare.md)
@@ -273,6 +273,8 @@ Class | Method | HTTP request | Description
  - [AddWorkflowRequest](docs/AddWorkflowRequest.md)
  - [AddWorkflowResponse](docs/AddWorkflowResponse.md)
  - [AddWorkflowStep](docs/AddWorkflowStep.md)
+ - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
+ - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
@@ -284,6 +286,7 @@ Class | Method | HTTP request | Description
  - [DeleteWorkflowResponse](docs/DeleteWorkflowResponse.md)
  - [Document](docs/Document.md)
  - [DocumentAction](docs/DocumentAction.md)
+ - [DocumentCompositeSearchTag](docs/DocumentCompositeSearchTag.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
@@ -333,8 +336,8 @@ Class | Method | HTTP request | Description
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
- - [GetTagSchemaRequest](docs/GetTagSchemaRequest.md)
- - [GetTagSchemasRequest](docs/GetTagSchemasRequest.md)
+ - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
+ - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
  - [GetUserSharesResponse](docs/GetUserSharesResponse.md)
  - [GetUsersInGroupResponse](docs/GetUsersInGroupResponse.md)
  - [GetVersionResponse](docs/GetVersionResponse.md)
@@ -366,12 +369,14 @@ Class | Method | HTTP request | Description
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)
  - [SetDocumentFulltextResponse](docs/SetDocumentFulltextResponse.md)
  - [SetDocumentOcrRequest](docs/SetDocumentOcrRequest.md)
+ - [SetDocumentRestoreResponse](docs/SetDocumentRestoreResponse.md)
  - [SetDocumentTagKeyRequest](docs/SetDocumentTagKeyRequest.md)
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)
+ - [TagSchema](docs/TagSchema.md)
  - [TagSchemaCompositeKey](docs/TagSchemaCompositeKey.md)
  - [TagSchemaOptional](docs/TagSchemaOptional.md)
  - [TagSchemaRequired](docs/TagSchemaRequired.md)
@@ -392,6 +397,7 @@ Class | Method | HTTP request | Description
  - [WorkflowDocument](docs/WorkflowDocument.md)
  - [WorkflowQueue](docs/WorkflowQueue.md)
  - [WorkflowStep](docs/WorkflowStep.md)
+ - [WorkflowStepDecision](docs/WorkflowStepDecision.md)
  - [WorkflowSummary](docs/WorkflowSummary.md)
 
 

@@ -21,6 +21,7 @@
 |**versionId** | **String** | Document version |  [optional] |
 |**belongsToDocumentId** | **String** | Parent Document Identifier |  [optional] |
 |**matchedTag** | [**DocumentSearchMatchTag**](DocumentSearchMatchTag.md) |  |  [optional] |
+|**matchedTags** | [**List&lt;DocumentSearchMatchTag&gt;**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 

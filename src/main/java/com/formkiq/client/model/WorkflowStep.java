@@ -23,13 +23,16 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.DocumentAction;
 import com.formkiq.client.model.WorkflowQueue;
+import com.formkiq.client.model.WorkflowStepDecision;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,11 +62,11 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class WorkflowStep {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
+  @SerializedName(SERIALIZED_NAME_STEP_ID)
+  private String stepId;
 
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -73,27 +76,31 @@ public class WorkflowStep {
   @SerializedName(SERIALIZED_NAME_QUEUE)
   private WorkflowQueue queue;
 
+  public static final String SERIALIZED_NAME_DECISIONS = "decisions";
+  @SerializedName(SERIALIZED_NAME_DECISIONS)
+  private List<WorkflowStepDecision> decisions;
+
   public WorkflowStep() {}
 
-  public WorkflowStep id(String id) {
+  public WorkflowStep stepId(String stepId) {
 
-    this.id = id;
+    this.stepId = stepId;
     return this;
   }
 
   /**
-   * Step identifier
+   * Workflow Step Identifier
    * 
-   * @return id
+   * @return stepId
    **/
   @javax.annotation.Nullable
-  public String getId() {
-    return id;
+  public String getStepId() {
+    return stepId;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setStepId(String stepId) {
+    this.stepId = stepId;
   }
 
 
@@ -141,6 +148,36 @@ public class WorkflowStep {
   }
 
 
+  public WorkflowStep decisions(List<WorkflowStepDecision> decisions) {
+
+    this.decisions = decisions;
+    return this;
+  }
+
+  public WorkflowStep addDecisionsItem(WorkflowStepDecision decisionsItem) {
+    if (this.decisions == null) {
+      this.decisions = new ArrayList<>();
+    }
+    this.decisions.add(decisionsItem);
+    return this;
+  }
+
+  /**
+   * Workflow Decisions
+   * 
+   * @return decisions
+   **/
+  @javax.annotation.Nullable
+  public List<WorkflowStepDecision> getDecisions() {
+    return decisions;
+  }
+
+
+  public void setDecisions(List<WorkflowStepDecision> decisions) {
+    this.decisions = decisions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -151,23 +188,25 @@ public class WorkflowStep {
       return false;
     }
     WorkflowStep workflowStep = (WorkflowStep) o;
-    return Objects.equals(this.id, workflowStep.id)
+    return Objects.equals(this.stepId, workflowStep.stepId)
         && Objects.equals(this.action, workflowStep.action)
-        && Objects.equals(this.queue, workflowStep.queue);
+        && Objects.equals(this.queue, workflowStep.queue)
+        && Objects.equals(this.decisions, workflowStep.decisions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, action, queue);
+    return Objects.hash(stepId, action, queue, decisions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowStep {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
+    sb.append("    decisions: ").append(toIndentedString(decisions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -189,9 +228,10 @@ public class WorkflowStep {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
+    openapiFields.add("stepId");
     openapiFields.add("action");
     openapiFields.add("queue");
+    openapiFields.add("decisions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -223,11 +263,11 @@ public class WorkflowStep {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-        && !jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("stepId") != null && !jsonObj.get("stepId").isJsonNull())
+        && !jsonObj.get("stepId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
+          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("stepId").toString()));
     }
     // validate the optional field `action`
     if (jsonObj.get("action") != null && !jsonObj.get("action").isJsonNull()) {
@@ -236,6 +276,22 @@ public class WorkflowStep {
     // validate the optional field `queue`
     if (jsonObj.get("queue") != null && !jsonObj.get("queue").isJsonNull()) {
       WorkflowQueue.validateJsonElement(jsonObj.get("queue"));
+    }
+    if (jsonObj.get("decisions") != null && !jsonObj.get("decisions").isJsonNull()) {
+      JsonArray jsonArraydecisions = jsonObj.getAsJsonArray("decisions");
+      if (jsonArraydecisions != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("decisions").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `decisions` to be an array in the JSON string but got `%s`",
+              jsonObj.get("decisions").toString()));
+        }
+
+        // validate the optional field `decisions` (array)
+        for (int i = 0; i < jsonArraydecisions.size(); i++) {
+          WorkflowStepDecision.validateJsonElement(jsonArraydecisions.get(i));
+        } ;
+      }
     }
   }
 

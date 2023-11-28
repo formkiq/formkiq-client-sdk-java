@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * ONLYOFFICE New Document Request
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class OnlyOfficeDocumentNewRequest {
   /**
    * Gets or Sets extension
@@ -106,6 +106,11 @@ public class OnlyOfficeDocumentNewRequest {
         String value = jsonReader.nextString();
         return ExtensionEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ExtensionEnum.fromValue(value);
     }
   }
 
@@ -219,6 +224,10 @@ public class OnlyOfficeDocumentNewRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `extension` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("extension").toString()));
+    }
+    // validate the optional field `extension`
+    if (jsonObj.get("extension") != null && !jsonObj.get("extension").isJsonNull()) {
+      ExtensionEnum.validateJsonElement(jsonObj.get("extension"));
     }
   }
 

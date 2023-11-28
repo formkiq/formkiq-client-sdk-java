@@ -20,55 +20,69 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.TagSchemaSummary;
+import com.formkiq.client.model.TagSchemaTags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetTagSchemasRequest
+ * Model tests for TagSchema
  */
-public class GetTagSchemasRequestTest {
-  private final GetTagSchemasRequest model = new GetTagSchemasRequest();
+public class TagSchemaTest {
+  private final TagSchema model = new TagSchema();
 
   /**
-   * Model tests for GetTagSchemasRequest
+   * Model tests for TagSchema
    */
   @Test
-  public void testGetTagSchemasRequest() {
-    // TODO: test GetTagSchemasRequest
+  public void testTagSchema() {
+    // TODO: test TagSchema
   }
 
   /**
-   * Test the property 'schemas'
+   * Test the property 'tagSchemaId'
    */
   @Test
-  public void schemasTest() {
-    // TODO: test schemas
+  public void tagSchemaIdTest() {
+    // TODO: test tagSchemaId
   }
 
   /**
-   * Test the property 'next'
+   * Test the property 'name'
    */
   @Test
-  public void nextTest() {
-    // TODO: test next
+  public void nameTest() {
+    // TODO: test name
   }
 
   /**
-   * Test the property 'previous'
+   * Test the property 'userId'
    */
   @Test
-  public void previousTest() {
-    // TODO: test previous
+  public void userIdTest() {
+    // TODO: test userId
+  }
+
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
+  /**
+   * Test the property 'tags'
+   */
+  @Test
+  public void tagsTest() {
+    // TODO: test tags
   }
 
 }

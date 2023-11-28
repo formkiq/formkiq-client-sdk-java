@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class DocumentAction {
   /**
    * Status of the Document Action
@@ -114,6 +114,11 @@ public class DocumentAction {
         String value = jsonReader.nextString();
         return StatusEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
     }
   }
 
@@ -177,11 +182,28 @@ public class DocumentAction {
         return TypeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
+
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  private String queueId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  private String workflowId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_STEP_ID = "workflowStepId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_STEP_ID)
+  private String workflowStepId;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -250,6 +272,72 @@ public class DocumentAction {
 
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+
+  public DocumentAction queueId(String queueId) {
+
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Queue Id
+   * 
+   * @return queueId
+   **/
+  @javax.annotation.Nullable
+  public String getQueueId() {
+    return queueId;
+  }
+
+
+  public void setQueueId(String queueId) {
+    this.queueId = queueId;
+  }
+
+
+  public DocumentAction workflowId(String workflowId) {
+
+    this.workflowId = workflowId;
+    return this;
+  }
+
+  /**
+   * Workflow Id
+   * 
+   * @return workflowId
+   **/
+  @javax.annotation.Nullable
+  public String getWorkflowId() {
+    return workflowId;
+  }
+
+
+  public void setWorkflowId(String workflowId) {
+    this.workflowId = workflowId;
+  }
+
+
+  public DocumentAction workflowStepId(String workflowStepId) {
+
+    this.workflowStepId = workflowStepId;
+    return this;
+  }
+
+  /**
+   * Workflow Step Id
+   * 
+   * @return workflowStepId
+   **/
+  @javax.annotation.Nullable
+  public String getWorkflowStepId() {
+    return workflowStepId;
+  }
+
+
+  public void setWorkflowStepId(String workflowStepId) {
+    this.workflowStepId = workflowStepId;
   }
 
 
@@ -413,6 +501,9 @@ public class DocumentAction {
     DocumentAction documentAction = (DocumentAction) o;
     return Objects.equals(this.status, documentAction.status)
         && Objects.equals(this.type, documentAction.type)
+        && Objects.equals(this.queueId, documentAction.queueId)
+        && Objects.equals(this.workflowId, documentAction.workflowId)
+        && Objects.equals(this.workflowStepId, documentAction.workflowStepId)
         && Objects.equals(this.message, documentAction.message)
         && Objects.equals(this.userId, documentAction.userId)
         && Objects.equals(this.insertedDate, documentAction.insertedDate)
@@ -423,8 +514,8 @@ public class DocumentAction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, type, message, userId, insertedDate, completedDate, parameters,
-        metadata);
+    return Objects.hash(status, type, queueId, workflowId, workflowStepId, message, userId,
+        insertedDate, completedDate, parameters, metadata);
   }
 
   @Override
@@ -433,6 +524,9 @@ public class DocumentAction {
     sb.append("class DocumentAction {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    workflowStepId: ").append(toIndentedString(workflowStepId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
@@ -462,6 +556,9 @@ public class DocumentAction {
     openapiFields = new HashSet<String>();
     openapiFields.add("status");
     openapiFields.add("type");
+    openapiFields.add("queueId");
+    openapiFields.add("workflowId");
+    openapiFields.add("workflowStepId");
     openapiFields.add("message");
     openapiFields.add("userId");
     openapiFields.add("insertedDate");
@@ -505,11 +602,37 @@ public class DocumentAction {
           "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("status").toString()));
     }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
+    }
     if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
         && !jsonObj.get("type").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
+    }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
+    }
+    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
+        && !jsonObj.get("queueId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
+    }
+    if ((jsonObj.get("workflowId") != null && !jsonObj.get("workflowId").isJsonNull())
+        && !jsonObj.get("workflowId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("workflowId").toString()));
+    }
+    if ((jsonObj.get("workflowStepId") != null && !jsonObj.get("workflowStepId").isJsonNull())
+        && !jsonObj.get("workflowStepId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `workflowStepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("workflowStepId").toString()));
     }
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {

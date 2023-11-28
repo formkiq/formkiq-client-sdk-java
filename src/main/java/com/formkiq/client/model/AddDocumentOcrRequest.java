@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
@@ -115,6 +115,11 @@ public class AddDocumentOcrRequest {
         String value = jsonReader.nextString();
         return OcrEngineEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      OcrEngineEnum.fromValue(value);
     }
   }
 
@@ -295,6 +300,10 @@ public class AddDocumentOcrRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `ocrEngine` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrEngine").toString()));
+    }
+    // validate the optional field `ocrEngine`
+    if (jsonObj.get("ocrEngine") != null && !jsonObj.get("ocrEngine").isJsonNull()) {
+      OcrEngineEnum.validateJsonElement(jsonObj.get("ocrEngine"));
     }
   }
 

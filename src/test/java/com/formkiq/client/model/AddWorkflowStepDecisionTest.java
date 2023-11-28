@@ -26,56 +26,38 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddQueue
+ * Model tests for AddWorkflowStepDecision
  */
-public class AddQueueTest {
-  private final AddQueue model = new AddQueue();
+public class AddWorkflowStepDecisionTest {
+  private final AddWorkflowStepDecision model = new AddWorkflowStepDecision();
 
   /**
-   * Model tests for AddQueue
+   * Model tests for AddWorkflowStepDecision
    */
   @Test
-  public void testAddQueue() {
-    // TODO: test AddQueue
+  public void testAddWorkflowStepDecision() {
+    // TODO: test AddWorkflowStepDecision
   }
 
   /**
-   * Test the property 'queueId'
+   * Test the property 'type'
    */
   @Test
-  public void queueIdTest() {
-    // TODO: test queueId
+  public void typeTest() {
+    // TODO: test type
   }
 
   /**
-   * Test the property 'ifApprovedStepId'
+   * Test the property 'nextStepId'
    */
   @Test
-  public void ifApprovedStepIdTest() {
-    // TODO: test ifApprovedStepId
-  }
-
-  /**
-   * Test the property 'ifRejectedStepId'
-   */
-  @Test
-  public void ifRejectedStepIdTest() {
-    // TODO: test ifRejectedStepId
-  }
-
-  /**
-   * Test the property 'approvalGroups'
-   */
-  @Test
-  public void approvalGroupsTest() {
-    // TODO: test approvalGroups
+  public void nextStepIdTest() {
+    // TODO: test nextStepId
   }
 
 }

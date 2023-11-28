@@ -63,6 +63,30 @@ public class DocumentActionTest {
   }
 
   /**
+   * Test the property 'queueId'
+   */
+  @Test
+  public void queueIdTest() {
+    // TODO: test queueId
+  }
+
+  /**
+   * Test the property 'workflowId'
+   */
+  @Test
+  public void workflowIdTest() {
+    // TODO: test workflowId
+  }
+
+  /**
+   * Test the property 'workflowStepId'
+   */
+  @Test
+  public void workflowStepIdTest() {
+    // TODO: test workflowStepId
+  }
+
+  /**
    * Test the property 'message'
    */
   @Test

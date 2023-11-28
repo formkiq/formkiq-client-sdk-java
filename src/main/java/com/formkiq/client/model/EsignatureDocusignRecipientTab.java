@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignRecipientTab
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class EsignatureDocusignRecipientTab {
   /**
    * Type of Recipient
@@ -102,6 +102,11 @@ public class EsignatureDocusignRecipientTab {
         String value = jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
     }
   }
 
@@ -304,6 +309,10 @@ public class EsignatureDocusignRecipientTab {
       throw new IllegalArgumentException(String.format(
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
+    }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
     }
     if ((jsonObj.get("pageNumber") != null && !jsonObj.get("pageNumber").isJsonNull())
         && !jsonObj.get("pageNumber").isJsonPrimitive()) {

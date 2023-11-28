@@ -59,19 +59,11 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class WorkflowQueue {
   public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
   @SerializedName(SERIALIZED_NAME_QUEUE_ID)
   private String queueId;
-
-  public static final String SERIALIZED_NAME_IF_APPROVED_STEP_ID = "ifApprovedStepId";
-  @SerializedName(SERIALIZED_NAME_IF_APPROVED_STEP_ID)
-  private String ifApprovedStepId;
-
-  public static final String SERIALIZED_NAME_IF_REJECTED_STEP_ID = "ifRejectedStepId";
-  @SerializedName(SERIALIZED_NAME_IF_REJECTED_STEP_ID)
-  private String ifRejectedStepId;
 
   public static final String SERIALIZED_NAME_APPROVAL_GROUPS = "approvalGroups";
   @SerializedName(SERIALIZED_NAME_APPROVAL_GROUPS)
@@ -98,50 +90,6 @@ public class WorkflowQueue {
 
   public void setQueueId(String queueId) {
     this.queueId = queueId;
-  }
-
-
-  public WorkflowQueue ifApprovedStepId(String ifApprovedStepId) {
-
-    this.ifApprovedStepId = ifApprovedStepId;
-    return this;
-  }
-
-  /**
-   * If approved goto step id
-   * 
-   * @return ifApprovedStepId
-   **/
-  @javax.annotation.Nullable
-  public String getIfApprovedStepId() {
-    return ifApprovedStepId;
-  }
-
-
-  public void setIfApprovedStepId(String ifApprovedStepId) {
-    this.ifApprovedStepId = ifApprovedStepId;
-  }
-
-
-  public WorkflowQueue ifRejectedStepId(String ifRejectedStepId) {
-
-    this.ifRejectedStepId = ifRejectedStepId;
-    return this;
-  }
-
-  /**
-   * If rejected goto step id
-   * 
-   * @return ifRejectedStepId
-   **/
-  @javax.annotation.Nullable
-  public String getIfRejectedStepId() {
-    return ifRejectedStepId;
-  }
-
-
-  public void setIfRejectedStepId(String ifRejectedStepId) {
-    this.ifRejectedStepId = ifRejectedStepId;
   }
 
 
@@ -186,14 +134,12 @@ public class WorkflowQueue {
     }
     WorkflowQueue workflowQueue = (WorkflowQueue) o;
     return Objects.equals(this.queueId, workflowQueue.queueId)
-        && Objects.equals(this.ifApprovedStepId, workflowQueue.ifApprovedStepId)
-        && Objects.equals(this.ifRejectedStepId, workflowQueue.ifRejectedStepId)
         && Objects.equals(this.approvalGroups, workflowQueue.approvalGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(queueId, ifApprovedStepId, ifRejectedStepId, approvalGroups);
+    return Objects.hash(queueId, approvalGroups);
   }
 
   @Override
@@ -201,8 +147,6 @@ public class WorkflowQueue {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowQueue {\n");
     sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
-    sb.append("    ifApprovedStepId: ").append(toIndentedString(ifApprovedStepId)).append("\n");
-    sb.append("    ifRejectedStepId: ").append(toIndentedString(ifRejectedStepId)).append("\n");
     sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -226,8 +170,6 @@ public class WorkflowQueue {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("queueId");
-    openapiFields.add("ifApprovedStepId");
-    openapiFields.add("ifRejectedStepId");
     openapiFields.add("approvalGroups");
 
     // a set of required properties/fields (JSON key names)
@@ -265,18 +207,6 @@ public class WorkflowQueue {
       throw new IllegalArgumentException(String.format(
           "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("queueId").toString()));
-    }
-    if ((jsonObj.get("ifApprovedStepId") != null && !jsonObj.get("ifApprovedStepId").isJsonNull())
-        && !jsonObj.get("ifApprovedStepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `ifApprovedStepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("ifApprovedStepId").toString()));
-    }
-    if ((jsonObj.get("ifRejectedStepId") != null && !jsonObj.get("ifRejectedStepId").isJsonNull())
-        && !jsonObj.get("ifRejectedStepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `ifRejectedStepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("ifRejectedStepId").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("approvalGroups") != null && !jsonObj.get("approvalGroups").isJsonNull()

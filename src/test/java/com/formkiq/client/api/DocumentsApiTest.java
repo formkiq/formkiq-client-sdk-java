@@ -31,6 +31,7 @@ import com.formkiq.client.model.GetDocumentResponse;
 import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
+import com.formkiq.client.model.SetDocumentRestoreResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -115,7 +116,8 @@ public class DocumentsApiTest {
   public void deleteDocumentTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    api.deleteDocument(documentId, siteId);
+    Boolean softDelete = null;
+    api.deleteDocument(documentId, siteId, softDelete);
     // TODO: test validations
   }
 
@@ -244,13 +246,29 @@ public class DocumentsApiTest {
   public void getDocumentsTest() throws ApiException {
     String siteId = null;
     String actionStatus = null;
+    Boolean deleted = null;
     String date = null;
     String tz = null;
     String next = null;
     String previous = null;
     String limit = null;
     GetDocumentsResponse response =
-        api.getDocuments(siteId, actionStatus, date, tz, next, previous, limit);
+        api.getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Restore soft deleted document
+   *
+   * Restores a soft deleted document
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setDocumentRestoreTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    SetDocumentRestoreResponse response = api.setDocumentRestore(documentId, siteId);
     // TODO: test validations
   }
 

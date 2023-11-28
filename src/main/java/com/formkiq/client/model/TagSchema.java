@@ -55,11 +55,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetTagSchemaRequest
+ * TagSchema
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
-public class GetTagSchemaRequest {
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+public class TagSchema {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
   private String tagSchemaId;
@@ -80,9 +80,9 @@ public class GetTagSchemaRequest {
   @SerializedName(SERIALIZED_NAME_TAGS)
   private TagSchemaTags tags;
 
-  public GetTagSchemaRequest() {}
+  public TagSchema() {}
 
-  public GetTagSchemaRequest tagSchemaId(String tagSchemaId) {
+  public TagSchema tagSchemaId(String tagSchemaId) {
 
     this.tagSchemaId = tagSchemaId;
     return this;
@@ -104,7 +104,7 @@ public class GetTagSchemaRequest {
   }
 
 
-  public GetTagSchemaRequest name(String name) {
+  public TagSchema name(String name) {
 
     this.name = name;
     return this;
@@ -126,7 +126,7 @@ public class GetTagSchemaRequest {
   }
 
 
-  public GetTagSchemaRequest userId(String userId) {
+  public TagSchema userId(String userId) {
 
     this.userId = userId;
     return this;
@@ -148,7 +148,7 @@ public class GetTagSchemaRequest {
   }
 
 
-  public GetTagSchemaRequest insertedDate(String insertedDate) {
+  public TagSchema insertedDate(String insertedDate) {
 
     this.insertedDate = insertedDate;
     return this;
@@ -170,7 +170,7 @@ public class GetTagSchemaRequest {
   }
 
 
-  public GetTagSchemaRequest tags(TagSchemaTags tags) {
+  public TagSchema tags(TagSchemaTags tags) {
 
     this.tags = tags;
     return this;
@@ -201,12 +201,12 @@ public class GetTagSchemaRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetTagSchemaRequest getTagSchemaRequest = (GetTagSchemaRequest) o;
-    return Objects.equals(this.tagSchemaId, getTagSchemaRequest.tagSchemaId)
-        && Objects.equals(this.name, getTagSchemaRequest.name)
-        && Objects.equals(this.userId, getTagSchemaRequest.userId)
-        && Objects.equals(this.insertedDate, getTagSchemaRequest.insertedDate)
-        && Objects.equals(this.tags, getTagSchemaRequest.tags);
+    TagSchema tagSchema = (TagSchema) o;
+    return Objects.equals(this.tagSchemaId, tagSchema.tagSchemaId)
+        && Objects.equals(this.name, tagSchema.name)
+        && Objects.equals(this.userId, tagSchema.userId)
+        && Objects.equals(this.insertedDate, tagSchema.insertedDate)
+        && Objects.equals(this.tags, tagSchema.tags);
   }
 
   @Override
@@ -217,7 +217,7 @@ public class GetTagSchemaRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetTagSchemaRequest {\n");
+    sb.append("class TagSchema {\n");
     sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
@@ -258,24 +258,24 @@ public class GetTagSchemaRequest {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to GetTagSchemaRequest
+   * @throws IOException if the JSON Element is invalid with respect to TagSchema
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!GetTagSchemaRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                  // element is null
+      if (!TagSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
+                                                        // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in GetTagSchemaRequest is not found in the empty JSON string",
-            GetTagSchemaRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in TagSchema is not found in the empty JSON string",
+            TagSchema.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!GetTagSchemaRequest.openapiFields.contains(entry.getKey())) {
+      if (!TagSchema.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `GetTagSchemaRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `TagSchema` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -314,22 +314,22 @@ public class GetTagSchemaRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!GetTagSchemaRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'GetTagSchemaRequest' and its subtypes
+      if (!TagSchema.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'TagSchema' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<GetTagSchemaRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(GetTagSchemaRequest.class));
+      final TypeAdapter<TagSchema> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(TagSchema.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<GetTagSchemaRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<TagSchema>() {
         @Override
-        public void write(JsonWriter out, GetTagSchemaRequest value) throws IOException {
+        public void write(JsonWriter out, TagSchema value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public GetTagSchemaRequest read(JsonReader in) throws IOException {
+        public TagSchema read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -340,18 +340,18 @@ public class GetTagSchemaRequest {
   }
 
   /**
-   * Create an instance of GetTagSchemaRequest given an JSON string
+   * Create an instance of TagSchema given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of GetTagSchemaRequest
-   * @throws IOException if the JSON string is invalid with respect to GetTagSchemaRequest
+   * @return An instance of TagSchema
+   * @throws IOException if the JSON string is invalid with respect to TagSchema
    */
-  public static GetTagSchemaRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetTagSchemaRequest.class);
+  public static TagSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TagSchema.class);
   }
 
   /**
-   * Convert an instance of GetTagSchemaRequest to an JSON string
+   * Convert an instance of TagSchema to an JSON string
    *
    * @return JSON string
    */

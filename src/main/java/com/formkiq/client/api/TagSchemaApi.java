@@ -37,8 +37,8 @@ import java.io.IOException;
 import com.formkiq.client.model.AddTagSchemaRequest;
 import com.formkiq.client.model.AddTagSchemaResponse;
 import com.formkiq.client.model.ErrorsResponse;
-import com.formkiq.client.model.GetTagSchemaRequest;
-import com.formkiq.client.model.GetTagSchemasRequest;
+import com.formkiq.client.model.GetTagSchemaResponse;
+import com.formkiq.client.model.GetTagSchemasResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -577,7 +577,7 @@ public class TagSchemaApi {
    * 
    * @param tagSchemaId Tag Schema Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return GetTagSchemaRequest
+   * @return GetTagSchemaResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -597,8 +597,8 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public GetTagSchemaRequest getTagSchema(String tagSchemaId, String siteId) throws ApiException {
-    ApiResponse<GetTagSchemaRequest> localVarResp = getTagSchemaWithHttpInfo(tagSchemaId, siteId);
+  public GetTagSchemaResponse getTagSchema(String tagSchemaId, String siteId) throws ApiException {
+    ApiResponse<GetTagSchemaResponse> localVarResp = getTagSchemaWithHttpInfo(tagSchemaId, siteId);
     return localVarResp.getData();
   }
 
@@ -608,7 +608,7 @@ public class TagSchemaApi {
    * 
    * @param tagSchemaId Tag Schema Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;GetTagSchemaRequest&gt;
+   * @return ApiResponse&lt;GetTagSchemaResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -628,10 +628,10 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetTagSchemaRequest> getTagSchemaWithHttpInfo(String tagSchemaId,
+  public ApiResponse<GetTagSchemaResponse> getTagSchemaWithHttpInfo(String tagSchemaId,
       String siteId) throws ApiException {
     okhttp3.Call localVarCall = getTagSchemaValidateBeforeCall(tagSchemaId, siteId, null);
-    Type localVarReturnType = new TypeToken<GetTagSchemaRequest>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetTagSchemaResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -662,10 +662,10 @@ public class TagSchemaApi {
    *                        </table>
    */
   public okhttp3.Call getTagSchemaAsync(String tagSchemaId, String siteId,
-      final ApiCallback<GetTagSchemaRequest> _callback) throws ApiException {
+      final ApiCallback<GetTagSchemaResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getTagSchemaValidateBeforeCall(tagSchemaId, siteId, _callback);
-    Type localVarReturnType = new TypeToken<GetTagSchemaRequest>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetTagSchemaResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -772,7 +772,7 @@ public class TagSchemaApi {
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @return GetTagSchemasRequest
+   * @return GetTagSchemasResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -792,9 +792,9 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public GetTagSchemasRequest getTagSchemas(String siteId, String limit, String next,
+  public GetTagSchemasResponse getTagSchemas(String siteId, String limit, String next,
       String previous) throws ApiException {
-    ApiResponse<GetTagSchemasRequest> localVarResp =
+    ApiResponse<GetTagSchemasResponse> localVarResp =
         getTagSchemasWithHttpInfo(siteId, limit, next, previous);
     return localVarResp.getData();
   }
@@ -806,7 +806,7 @@ public class TagSchemaApi {
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
-   * @return ApiResponse&lt;GetTagSchemasRequest&gt;
+   * @return ApiResponse&lt;GetTagSchemasResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -826,11 +826,11 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetTagSchemasRequest> getTagSchemasWithHttpInfo(String siteId, String limit,
+  public ApiResponse<GetTagSchemasResponse> getTagSchemasWithHttpInfo(String siteId, String limit,
       String next, String previous) throws ApiException {
     okhttp3.Call localVarCall =
         getTagSchemasValidateBeforeCall(siteId, limit, next, previous, null);
-    Type localVarReturnType = new TypeToken<GetTagSchemasRequest>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetTagSchemasResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -863,11 +863,11 @@ public class TagSchemaApi {
    *                        </table>
    */
   public okhttp3.Call getTagSchemasAsync(String siteId, String limit, String next, String previous,
-      final ApiCallback<GetTagSchemasRequest> _callback) throws ApiException {
+      final ApiCallback<GetTagSchemasResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getTagSchemasValidateBeforeCall(siteId, limit, next, previous, _callback);
-    Type localVarReturnType = new TypeToken<GetTagSchemasRequest>() {}.getType();
+    Type localVarReturnType = new TypeToken<GetTagSchemasResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

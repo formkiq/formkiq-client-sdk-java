@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * UserShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class UserShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -112,6 +112,11 @@ public class UserShare {
         String value = jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
     }
   }
 
@@ -166,6 +171,11 @@ public class UserShare {
         String value = jsonReader.nextString();
         return PermissionsEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PermissionsEnum.fromValue(value);
     }
   }
 
@@ -228,6 +238,11 @@ public class UserShare {
         String value = jsonReader.nextString();
         return PermissionTypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PermissionTypeEnum.fromValue(value);
     }
   }
 
@@ -536,6 +551,10 @@ public class UserShare {
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
     }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
+    }
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()
         && !jsonObj.get("permissions").isJsonArray()) {
@@ -566,6 +585,10 @@ public class UserShare {
       throw new IllegalArgumentException(String.format(
           "Expected the field `permissionType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("permissionType").toString()));
+    }
+    // validate the optional field `permissionType`
+    if (jsonObj.get("permissionType") != null && !jsonObj.get("permissionType").isJsonNull()) {
+      PermissionTypeEnum.validateJsonElement(jsonObj.get("permissionType"));
     }
   }
 

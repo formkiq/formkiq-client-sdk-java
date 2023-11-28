@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class GetWorkflowResponse {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -119,6 +119,11 @@ public class GetWorkflowResponse {
         String value = jsonReader.nextString();
         return StatusEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
     }
   }
 
@@ -355,6 +360,10 @@ public class GetWorkflowResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("status").toString()));
+    }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
     }
     if (jsonObj.get("steps") != null && !jsonObj.get("steps").isJsonNull()) {
       JsonArray jsonArraysteps = jsonObj.getAsJsonArray("steps");

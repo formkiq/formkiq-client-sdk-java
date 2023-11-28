@@ -163,6 +163,14 @@ public class SearchResultDocumentTest {
   }
 
   /**
+   * Test the property 'matchedTags'
+   */
+  @Test
+  public void matchedTagsTest() {
+    // TODO: test matchedTags
+  }
+
+  /**
    * Test the property 'tags'
    */
   @Test

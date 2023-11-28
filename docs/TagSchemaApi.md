@@ -146,7 +146,7 @@ No authorization required
 
 <a id="getTagSchema"></a>
 # **getTagSchema**
-> GetTagSchemaRequest getTagSchema(tagSchemaId, siteId)
+> GetTagSchemaResponse getTagSchema(tagSchemaId, siteId)
 
 Get tag schema
 
@@ -173,7 +173,7 @@ public class Example {
     String tagSchemaId = "tagSchemaId_example"; // String | Tag Schema Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      GetTagSchemaRequest result = apiInstance.getTagSchema(tagSchemaId, siteId);
+      GetTagSchemaResponse result = apiInstance.getTagSchema(tagSchemaId, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagSchemaApi#getTagSchema");
@@ -195,7 +195,7 @@ public class Example {
 
 ### Return type
 
-[**GetTagSchemaRequest**](GetTagSchemaRequest.md)
+[**GetTagSchemaResponse**](GetTagSchemaResponse.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ No authorization required
 
 <a id="getTagSchemas"></a>
 # **getTagSchemas**
-> GetTagSchemasRequest getTagSchemas(siteId, limit, next, previous)
+> GetTagSchemasResponse getTagSchemas(siteId, limit, next, previous)
 
 Get tag schemas
 
@@ -242,7 +242,7 @@ public class Example {
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
     try {
-      GetTagSchemasRequest result = apiInstance.getTagSchemas(siteId, limit, next, previous);
+      GetTagSchemasResponse result = apiInstance.getTagSchemas(siteId, limit, next, previous);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagSchemaApi#getTagSchemas");
@@ -266,7 +266,7 @@ public class Example {
 
 ### Return type
 
-[**GetTagSchemasRequest**](GetTagSchemasRequest.md)
+[**GetTagSchemasResponse**](GetTagSchemasResponse.md)
 
 ### Authorization
 

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -108,6 +108,11 @@ public class AddActionParameters {
         String value = jsonReader.nextString();
         return OcrEngineEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      OcrEngineEnum.fromValue(value);
     }
   }
 
@@ -172,6 +177,11 @@ public class AddActionParameters {
         return EngineEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      EngineEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_ENGINE = "engine";
@@ -221,6 +231,11 @@ public class AddActionParameters {
         String value = jsonReader.nextString();
         return NotificationTypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      NotificationTypeEnum.fromValue(value);
     }
   }
 
@@ -699,6 +714,10 @@ public class AddActionParameters {
           "Expected the field `ocrEngine` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrEngine").toString()));
     }
+    // validate the optional field `ocrEngine`
+    if (jsonObj.get("ocrEngine") != null && !jsonObj.get("ocrEngine").isJsonNull()) {
+      OcrEngineEnum.validateJsonElement(jsonObj.get("ocrEngine"));
+    }
     if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull())
         && !jsonObj.get("url").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -717,11 +736,19 @@ public class AddActionParameters {
           "Expected the field `engine` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("engine").toString()));
     }
+    // validate the optional field `engine`
+    if (jsonObj.get("engine") != null && !jsonObj.get("engine").isJsonNull()) {
+      EngineEnum.validateJsonElement(jsonObj.get("engine"));
+    }
     if ((jsonObj.get("notificationType") != null && !jsonObj.get("notificationType").isJsonNull())
         && !jsonObj.get("notificationType").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `notificationType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationType").toString()));
+    }
+    // validate the optional field `notificationType`
+    if (jsonObj.get("notificationType") != null && !jsonObj.get("notificationType").isJsonNull()) {
+      NotificationTypeEnum.validateJsonElement(jsonObj.get("notificationType"));
     }
     if ((jsonObj.get("notificationToCc") != null && !jsonObj.get("notificationToCc").isJsonNull())
         && !jsonObj.get("notificationToCc").isJsonPrimitive()) {

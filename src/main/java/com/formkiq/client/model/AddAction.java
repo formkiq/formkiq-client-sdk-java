@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddAction {
   /**
    * Type of Document Action
@@ -115,6 +115,11 @@ public class AddAction {
         String value = jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
     }
   }
 
@@ -266,6 +271,8 @@ public class AddAction {
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
     }
+    // validate the required field `type`
+    TypeEnum.validateJsonElement(jsonObj.get("type"));
     // validate the optional field `parameters`
     if (jsonObj.get("parameters") != null && !jsonObj.get("parameters").isJsonNull()) {
       AddActionParameters.validateJsonElement(jsonObj.get("parameters"));

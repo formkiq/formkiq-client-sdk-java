@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 
 Document search
 
-Document search query request; documents are searched primarily using a document tag key and optional tag value, or if Typesense is enabled, searches on the document path and versioned metadata is also available. An optional documentIds parameter is also available in the DocumentSearchBody to filter, with up to 100 documentIds accepted.
+Document search query request;   Supports searching DynamoDB for document(s) by a single TAG key and/or value. Value can be \&quot;exacted\&quot; or \&quot;begins_with\&quot; matched. Search can be filtered to only check certain documentIds (up to 100 documentIds accepted).  If using Enteprise TagSchema Composite Keys feature then multiple tag(s) can be searched for.  If Typesense is enabled, full text search is supported through the \&quot;text\&quot; parameter. Full text search will look for the text in the \&quot;content\&quot; and/or document \&quot;metadata\&quot;.  See requestBody examples below for commmon examples.
 
 ### Example
 ```java

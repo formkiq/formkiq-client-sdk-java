@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class EsignatureDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
@@ -113,6 +113,11 @@ public class EsignatureDocusignRequest {
         String value = jsonReader.nextString();
         return StatusEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
     }
   }
 
@@ -400,6 +405,10 @@ public class EsignatureDocusignRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("status").toString()));
+    }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
     }
     if (jsonObj.get("signers") != null && !jsonObj.get("signers").isJsonNull()) {
       JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");

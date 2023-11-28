@@ -423,6 +423,14 @@ paths:
           - SKIPPED
           type: string
         style: form
+      - description: Fetch soft deleted documents
+        explode: true
+        in: query
+        name: deleted
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: Fetch documents inserted on a certain date (yyyy-MM-dd)
         explode: true
         in: query
@@ -619,6 +627,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Whether to soft delete document
+        explode: true
+        in: query
+        name: softDelete
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content: {}
@@ -1751,6 +1767,49 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
+  /documents/{documentId}/restore:
+    put:
+      description: Restores a soft deleted document
+      operationId: SetDocumentRestore
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetDocumentRestoreResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Restore soft deleted document
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
   /documents/compress:
     post:
       description: "Compress documents into an .ZIP archive file, and returns a S3\
@@ -1798,11 +1857,14 @@ paths:
       x-accepts: application/json
   /search:
     post:
-      description: "Document search query request; documents are searched primarily\
-        \ using a document tag key and optional tag value, or if Typesense is enabled,\
-        \ searches on the document path and versioned metadata is also available.\
-        \ An optional documentIds parameter is also available in the DocumentSearchBody\
-        \ to filter, with up to 100 documentIds accepted."
+      description: "Document search query request; \n\nSupports searching DynamoDB\
+        \ for document(s) by a single TAG key and/or value. Value can be \"exacted\"\
+        \ or \"begins_with\" matched. Search can be filtered to only check certain\
+        \ documentIds (up to 100 documentIds accepted).\n\nIf using Enteprise TagSchema\
+        \ Composite Keys feature then multiple tag(s) can be searched for.\n\nIf Typesense\
+        \ is enabled, full text search is supported through the \"text\" parameter.\
+        \ Full text search will look for the text in the \"content\" and/or document\
+        \ \"metadata\".\n\nSee requestBody examples below for commmon examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -1868,6 +1930,10 @@ paths:
                     documentIds:
                     - "1"
                     - "2"
+              Typesense_Fulltext_Search:
+                value:
+                  query:
+                    text: my search text
             schema:
               $ref: '#/components/schemas/DocumentSearchRequest'
         required: true
@@ -3723,7 +3789,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetTagSchemasRequest'
+                $ref: '#/components/schemas/GetTagSchemasResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -3878,7 +3944,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetTagSchemaRequest'
+                $ref: '#/components/schemas/GetTagSchemaResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -5523,6 +5589,15 @@ components:
       schema:
         type: string
       style: form
+    documentSearchDeleted:
+      description: Fetch soft deleted documents
+      explode: true
+      in: query
+      name: deleted
+      required: false
+      schema:
+        type: boolean
+      style: form
     wsParam:
       description: Whether to enable WebSocket real-time communication with the request
       explode: true
@@ -6000,7 +6075,9 @@ components:
         inUse: true
         description: description
         steps:
-        - action:
+        - stepId: stepId
+          action:
+            queueId: queueId
             metadata:
               key: metadata
             insertedDate: insertedDate
@@ -6009,17 +6086,23 @@ components:
             userId: userId
             parameters:
               key: parameters
+            workflowId: workflowId
             completedDate: completedDate
             status: COMPLETE
-          id: id
+            workflowStepId: workflowStepId
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
-        - action:
+        - stepId: stepId
+          action:
+            queueId: queueId
             metadata:
               key: metadata
             insertedDate: insertedDate
@@ -6028,16 +6111,20 @@ components:
             userId: userId
             parameters:
               key: parameters
+            workflowId: workflowId
             completedDate: completedDate
             status: COMPLETE
-          id: id
+            workflowStepId: workflowStepId
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
         status: ACTIVE
       properties:
         name:
@@ -6062,7 +6149,9 @@ components:
       type: object
     WorkflowStep:
       example:
+        stepId: stepId
         action:
+          queueId: queueId
           metadata:
             key: metadata
           insertedDate: insertedDate
@@ -6071,24 +6160,33 @@ components:
           userId: userId
           parameters:
             key: parameters
+          workflowId: workflowId
           completedDate: completedDate
           status: COMPLETE
-        id: id
+          workflowStepId: workflowStepId
+        decisions:
+        - nextStepId: nextStepId
+          type: APPROVE
+        - nextStepId: nextStepId
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          ifRejectedStepId: ifRejectedStepId
-          ifApprovedStepId: ifApprovedStepId
       properties:
-        id:
-          description: Step identifier
+        stepId:
+          description: Workflow Step Identifier
           type: string
         action:
           $ref: '#/components/schemas/DocumentAction'
         queue:
           $ref: '#/components/schemas/WorkflowQueue'
+        decisions:
+          description: Workflow Decisions
+          items:
+            $ref: '#/components/schemas/WorkflowStepDecision'
+          type: array
       type: object
     WorkflowQueue:
       example:
@@ -6096,17 +6194,9 @@ components:
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        ifRejectedStepId: ifRejectedStepId
-        ifApprovedStepId: ifApprovedStepId
       properties:
         queueId:
           description: Queue Id
-          type: string
-        ifApprovedStepId:
-          description: If approved goto step id
-          type: string
-        ifRejectedStepId:
-          description: If rejected goto step id
           type: string
         approvalGroups:
           items:
@@ -6299,6 +6389,11 @@ components:
           beginsWith: beginsWith
           eq: eq
           key: key
+        tags:
+        - eq: eq
+          key: key
+        - eq: eq
+          key: key
         documentIds:
         - documentIds
         - documentIds
@@ -6310,6 +6405,11 @@ components:
           $ref: '#/components/schemas/DocumentSearchMeta'
         tag:
           $ref: '#/components/schemas/DocumentSearchTag'
+        tags:
+          description: List of Composite Key tags to filter search results on
+          items:
+            $ref: '#/components/schemas/DocumentCompositeSearchTag'
+          type: array
         documentIds:
           description: List of DocumentIds to filter search results on
           items:
@@ -6648,6 +6748,11 @@ components:
             beginsWith: beginsWith
             eq: eq
             key: key
+          tags:
+          - eq: eq
+            key: key
+          - eq: eq
+            key: key
           documentIds:
           - documentIds
           - documentIds
@@ -6715,6 +6820,20 @@ components:
           items:
             type: string
           type: array
+        key:
+          description: Tag key to search
+          type: string
+      required:
+      - key
+      type: object
+    DocumentCompositeSearchTag:
+      example:
+        eq: eq
+        key: key
+      properties:
+        eq:
+          description: Searches for strings that eq
+          type: string
         key:
           description: Tag key to search
           type: string
@@ -7007,6 +7126,14 @@ components:
             - DELETE
             type: string
           type: array
+      type: object
+    SetDocumentRestoreResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Document Document restore message
+          type: string
       type: object
     AddFolderShareResponse:
       example:
@@ -7574,6 +7701,13 @@ components:
             key: key
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          matchedTags:
+          - type: type
+            value: value
+            key: key
+          - type: type
+            value: value
+            key: key
           matchedTag:
             type: type
             value: value
@@ -7604,6 +7738,13 @@ components:
             key: key
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          matchedTags:
+          - type: type
+            value: value
+            key: key
+          - type: type
+            value: value
+            key: key
           matchedTag:
             type: type
             value: value
@@ -7907,6 +8048,13 @@ components:
             key: key
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          matchedTags:
+          - type: type
+            value: value
+            key: key
+          - type: type
+            value: value
+            key: key
           matchedTag:
             type: type
             value: value
@@ -7937,6 +8085,13 @@ components:
             key: key
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          matchedTags:
+          - type: type
+            value: value
+            key: key
+          - type: type
+            value: value
+            key: key
           matchedTag:
             type: type
             value: value
@@ -7982,6 +8137,13 @@ components:
           key: key
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
+        matchedTags:
+        - type: type
+          value: value
+          key: key
+        - type: type
+          value: value
+          key: key
         matchedTag:
           type: type
           value: value
@@ -8041,6 +8203,10 @@ components:
           type: string
         matchedTag:
           $ref: '#/components/schemas/DocumentSearchMatchTag'
+        matchedTags:
+          items:
+            $ref: '#/components/schemas/DocumentSearchMatchTag'
+          type: array
         tags:
           additionalProperties: true
           type: object
@@ -8252,7 +8418,8 @@ components:
     GetDocumentActionsResponse:
       example:
         actions:
-        - metadata:
+        - queueId: queueId
+          metadata:
             key: metadata
           insertedDate: insertedDate
           type: ANTIVIRUS
@@ -8260,9 +8427,12 @@ components:
           userId: userId
           parameters:
             key: parameters
+          workflowId: workflowId
           completedDate: completedDate
           status: COMPLETE
-        - metadata:
+          workflowStepId: workflowStepId
+        - queueId: queueId
+          metadata:
             key: metadata
           insertedDate: insertedDate
           type: ANTIVIRUS
@@ -8270,8 +8440,10 @@ components:
           userId: userId
           parameters:
             key: parameters
+          workflowId: workflowId
           completedDate: completedDate
           status: COMPLETE
+          workflowStepId: workflowStepId
       properties:
         actions:
           description: List of document actions
@@ -8281,6 +8453,7 @@ components:
       type: object
     DocumentAction:
       example:
+        queueId: queueId
         metadata:
           key: metadata
         insertedDate: insertedDate
@@ -8289,8 +8462,10 @@ components:
         userId: userId
         parameters:
           key: parameters
+        workflowId: workflowId
         completedDate: completedDate
         status: COMPLETE
+        workflowStepId: workflowStepId
       properties:
         status:
           description: Status of the Document Action
@@ -8312,6 +8487,15 @@ components:
           - OCR
           - QUEUE
           - WEBHOOK
+          type: string
+        queueId:
+          description: Queue Id
+          type: string
+        workflowId:
+          description: Workflow Id
+          type: string
+        workflowStepId:
+          description: Workflow Step Id
           type: string
         message:
           description: Action message information
@@ -9072,7 +9256,7 @@ components:
           description: Error Message
           type: string
       type: object
-    GetTagSchemasRequest:
+    GetTagSchemasResponse:
       example:
         next: next
         previous: previous
@@ -9111,7 +9295,8 @@ components:
         name: name
         description: description
         steps:
-        - action:
+        - stepId: stepId
+          action:
             type: OCR
             parameters:
               characterMax: characterMax
@@ -9128,16 +9313,18 @@ components:
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
-          id: id
-          type: type
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
-        - action:
+        - stepId: stepId
+          action:
             type: OCR
             parameters:
               characterMax: characterMax
@@ -9154,15 +9341,16 @@ components:
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
-          id: id
-          type: type
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
         status: ACTIVE
       properties:
         name:
@@ -9191,7 +9379,8 @@ components:
         name: name
         description: description
         steps:
-        - action:
+        - stepId: stepId
+          action:
             type: OCR
             parameters:
               characterMax: characterMax
@@ -9208,16 +9397,18 @@ components:
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
-          id: id
-          type: type
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
-        - action:
+        - stepId: stepId
+          action:
             type: OCR
             parameters:
               characterMax: characterMax
@@ -9234,15 +9425,16 @@ components:
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
-          id: id
-          type: type
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-            ifRejectedStepId: ifRejectedStepId
-            ifApprovedStepId: ifApprovedStepId
         status: ACTIVE
       properties:
         name:
@@ -9268,6 +9460,7 @@ components:
       type: object
     AddWorkflowStep:
       example:
+        stepId: stepId
         action:
           type: OCR
           parameters:
@@ -9285,54 +9478,79 @@ components:
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
-        id: id
-        type: type
+        decisions:
+        - nextStepId: nextStepId
+          type: APPROVE
+        - nextStepId: nextStepId
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          ifRejectedStepId: ifRejectedStepId
-          ifApprovedStepId: ifApprovedStepId
       properties:
-        id:
-          description: Step identifier
-          type: string
-        type:
-          description: Workflow step type
+        stepId:
+          description: Workflow Step Identifier
           type: string
         action:
           $ref: '#/components/schemas/AddAction'
         queue:
-          $ref: '#/components/schemas/AddQueue'
+          $ref: '#/components/schemas/AddWorkflowStepQueue'
+        decisions:
+          description: Workflow Decisions
+          items:
+            $ref: '#/components/schemas/AddWorkflowStepDecision'
+          type: array
+      type: object
+    AddWorkflowStepDecision:
+      example:
+        nextStepId: nextStepId
+        type: APPROVE
+      properties:
+        type:
+          description: Type of Workflow Step Decision
+          enum:
+          - APPROVE
+          - REJECT
+          type: string
+        nextStepId:
+          description: Workflow Step to move to
+          type: string
       required:
-      - id
+      - nextStepId
       - type
       type: object
-    AddQueue:
+    WorkflowStepDecision:
+      example:
+        nextStepId: nextStepId
+        type: APPROVE
+      properties:
+        type:
+          description: Type of Workflow Step Decision
+          enum:
+          - APPROVE
+          - REJECT
+          type: string
+        nextStepId:
+          description: Workflow Step to move to
+          type: string
+      type: object
+    AddWorkflowStepQueue:
       example:
         queueId: queueId
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        ifRejectedStepId: ifRejectedStepId
-        ifApprovedStepId: ifApprovedStepId
       properties:
         queueId:
           description: Queue Identifier
-          type: string
-        ifApprovedStepId:
-          description: If approved goto step id
-          type: string
-        ifRejectedStepId:
-          description: If rejected goto step id
           type: string
         approvalGroups:
           items:
             type: string
           type: array
       required:
-      - name
+      - queueId
       type: object
     AddQueueResponse:
       example:
@@ -9441,12 +9659,12 @@ components:
       type: object
     AddDocumentWorkflowDecisionsRequest:
       example:
-        queueId: queueId
         comments: comments
         decision: APPROVE
+        stepId: stepId
       properties:
-        queueId:
-          description: Queue Identifier
+        stepId:
+          description: Workflow Step Identifier
           type: string
         comments:
           description: Workflow decision comments
@@ -9593,7 +9811,57 @@ components:
           description: Inserted Timestamp
           type: string
       type: object
-    GetTagSchemaRequest:
+    GetTagSchemaResponse:
+      example:
+        tagSchema:
+          tagSchemaId: tagSchemaId
+          insertedDate: insertedDate
+          name: name
+          userId: userId
+          tags:
+            compositeKeys:
+            - key:
+              - key
+              - key
+            - key:
+              - key
+              - key
+            allowAdditionalTags: true
+            optional:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              key: key
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              key: key
+            required:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              key: key
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              key: key
+      properties:
+        tagSchema:
+          $ref: '#/components/schemas/TagSchema'
+      type: object
+    TagSchema:
       example:
         tagSchemaId: tagSchemaId
         insertedDate: insertedDate

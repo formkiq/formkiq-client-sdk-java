@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -112,6 +112,11 @@ public class AddShare {
         String value = jsonReader.nextString();
         return PermissionsEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PermissionsEnum.fromValue(value);
     }
   }
 

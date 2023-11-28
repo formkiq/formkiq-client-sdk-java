@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentCompositeSearchTag;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
 import com.google.gson.TypeAdapter;
@@ -61,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
@@ -74,6 +75,10 @@ public class DocumentSearch {
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
   private DocumentSearchTag tag;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private List<DocumentCompositeSearchTag> tags;
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -147,6 +152,36 @@ public class DocumentSearch {
   }
 
 
+  public DocumentSearch tags(List<DocumentCompositeSearchTag> tags) {
+
+    this.tags = tags;
+    return this;
+  }
+
+  public DocumentSearch addTagsItem(DocumentCompositeSearchTag tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * List of Composite Key tags to filter search results on
+   * 
+   * @return tags
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentCompositeSearchTag> getTags() {
+    return tags;
+  }
+
+
+  public void setTags(List<DocumentCompositeSearchTag> tags) {
+    this.tags = tags;
+  }
+
+
   public DocumentSearch documentIds(List<String> documentIds) {
 
     this.documentIds = documentIds;
@@ -190,12 +225,13 @@ public class DocumentSearch {
     return Objects.equals(this.text, documentSearch.text)
         && Objects.equals(this.meta, documentSearch.meta)
         && Objects.equals(this.tag, documentSearch.tag)
+        && Objects.equals(this.tags, documentSearch.tags)
         && Objects.equals(this.documentIds, documentSearch.documentIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, meta, tag, documentIds);
+    return Objects.hash(text, meta, tag, tags, documentIds);
   }
 
   @Override
@@ -205,6 +241,7 @@ public class DocumentSearch {
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -230,6 +267,7 @@ public class DocumentSearch {
     openapiFields.add("text");
     openapiFields.add("meta");
     openapiFields.add("tag");
+    openapiFields.add("tags");
     openapiFields.add("documentIds");
 
     // a set of required properties/fields (JSON key names)
@@ -275,6 +313,22 @@ public class DocumentSearch {
     // validate the optional field `tag`
     if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) {
       DocumentSearchTag.validateJsonElement(jsonObj.get("tag"));
+    }
+    if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
+      JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");
+      if (jsonArraytags != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tags").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `tags` to be an array in the JSON string but got `%s`",
+              jsonObj.get("tags").toString()));
+        }
+
+        // validate the optional field `tags` (array)
+        for (int i = 0; i < jsonArraytags.size(); i++) {
+          DocumentCompositeSearchTag.validateJsonElement(jsonArraytags.get(i));
+        } ;
+      }
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()

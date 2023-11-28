@@ -24,8 +24,8 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddTagSchemaRequest;
 import com.formkiq.client.model.AddTagSchemaResponse;
 import com.formkiq.client.model.ErrorsResponse;
-import com.formkiq.client.model.GetTagSchemaRequest;
-import com.formkiq.client.model.GetTagSchemasRequest;
+import com.formkiq.client.model.GetTagSchemaResponse;
+import com.formkiq.client.model.GetTagSchemasResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -84,7 +84,7 @@ public class TagSchemaApiTest {
   public void getTagSchemaTest() throws ApiException {
     String tagSchemaId = null;
     String siteId = null;
-    GetTagSchemaRequest response = api.getTagSchema(tagSchemaId, siteId);
+    GetTagSchemaResponse response = api.getTagSchema(tagSchemaId, siteId);
     // TODO: test validations
   }
 
@@ -101,7 +101,7 @@ public class TagSchemaApiTest {
     String limit = null;
     String next = null;
     String previous = null;
-    GetTagSchemasRequest response = api.getTagSchemas(siteId, limit, next, previous);
+    GetTagSchemasResponse response = api.getTagSchemas(siteId, limit, next, previous);
     // TODO: test validations
   }
 

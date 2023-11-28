@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentCompositeSearchTag;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
 import com.google.gson.TypeAdapter;
@@ -70,6 +71,14 @@ public class DocumentSearchTest {
   @Test
   public void tagTest() {
     // TODO: test tag
+  }
+
+  /**
+   * Test the property 'tags'
+   */
+  @Test
+  public void tagsTest() {
+    // TODO: test tags
   }
 
   /**

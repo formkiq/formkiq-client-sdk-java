@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -110,6 +110,11 @@ public class Site {
         String value = jsonReader.nextString();
         return PermissionEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PermissionEnum.fromValue(value);
     }
   }
 
@@ -166,6 +171,11 @@ public class Site {
         String value = jsonReader.nextString();
         return PermissionsEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PermissionsEnum.fromValue(value);
     }
   }
 
@@ -370,6 +380,10 @@ public class Site {
       throw new IllegalArgumentException(String.format(
           "Expected the field `permission` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("permission").toString()));
+    }
+    // validate the optional field `permission`
+    if (jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull()) {
+      PermissionEnum.validateJsonElement(jsonObj.get("permission"));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()

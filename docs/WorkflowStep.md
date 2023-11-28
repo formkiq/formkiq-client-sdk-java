@@ -7,9 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Step identifier |  [optional] |
+|**stepId** | **String** | Workflow Step Identifier |  [optional] |
 |**action** | [**DocumentAction**](DocumentAction.md) |  |  [optional] |
 |**queue** | [**WorkflowQueue**](WorkflowQueue.md) |  |  [optional] |
+|**decisions** | [**List&lt;WorkflowStepDecision&gt;**](WorkflowStepDecision.md) | Workflow Decisions |  [optional] |
 
 
 

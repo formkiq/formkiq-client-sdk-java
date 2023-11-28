@@ -9,6 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**status** | [**StatusEnum**](#StatusEnum) | Status of the Document Action |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | Type of Document Action |  [optional] |
+|**queueId** | **String** | Queue Id |  [optional] |
+|**workflowId** | **String** | Workflow Id |  [optional] |
+|**workflowStepId** | **String** | Workflow Step Id |  [optional] |
 |**message** | **String** | Action message information |  [optional] |
 |**userId** | **String** | User who requested the Action |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |

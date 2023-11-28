@@ -44,6 +44,7 @@ import com.formkiq.client.model.GetDocumentResponse;
 import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
+import com.formkiq.client.model.SetDocumentRestoreResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -734,6 +735,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param softDelete Whether to soft delete document (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -754,7 +756,7 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentCall(String documentId, String siteId,
+  public okhttp3.Call deleteDocumentCall(String documentId, String siteId, Boolean softDelete,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -785,6 +787,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (softDelete != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("softDelete", softDelete));
+    }
+
     final String[] localVarAccepts = {};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -806,14 +812,14 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentValidateBeforeCall(String documentId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      Boolean softDelete, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling deleteDocument(Async)");
     }
 
-    return deleteDocumentCall(documentId, siteId, _callback);
+    return deleteDocumentCall(documentId, siteId, softDelete, _callback);
 
   }
 
@@ -822,6 +828,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param softDelete Whether to soft delete document (optional)
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -841,8 +848,9 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteDocument(String documentId, String siteId) throws ApiException {
-    deleteDocumentWithHttpInfo(documentId, siteId);
+  public void deleteDocument(String documentId, String siteId, Boolean softDelete)
+      throws ApiException {
+    deleteDocumentWithHttpInfo(documentId, siteId, softDelete);
   }
 
   /**
@@ -850,6 +858,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param softDelete Whether to soft delete document (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -870,9 +879,10 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteDocumentWithHttpInfo(String documentId, String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = deleteDocumentValidateBeforeCall(documentId, siteId, null);
+  public ApiResponse<Void> deleteDocumentWithHttpInfo(String documentId, String siteId,
+      Boolean softDelete) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, null);
     return localVarApiClient.execute(localVarCall);
   }
 
@@ -881,6 +891,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param softDelete Whether to soft delete document (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -901,10 +912,11 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentAsync(String documentId, String siteId,
+  public okhttp3.Call deleteDocumentAsync(String documentId, String siteId, Boolean softDelete,
       final ApiCallback<Void> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = deleteDocumentValidateBeforeCall(documentId, siteId, _callback);
+    okhttp3.Call localVarCall =
+        deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }
@@ -2196,6 +2208,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
@@ -2221,8 +2234,9 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentsCall(String siteId, String actionStatus, String date, String tz,
-      String next, String previous, String limit, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentsCall(String siteId, String actionStatus, Boolean deleted,
+      String date, String tz, String next, String previous, String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2253,6 +2267,10 @@ public class DocumentsApi {
 
     if (actionStatus != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("actionStatus", actionStatus));
+    }
+
+    if (deleted != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("deleted", deleted));
     }
 
     if (date != null) {
@@ -2296,9 +2314,10 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentsValidateBeforeCall(String siteId, String actionStatus,
-      String date, String tz, String next, String previous, String limit,
+      Boolean deleted, String date, String tz, String next, String previous, String limit,
       final ApiCallback _callback) throws ApiException {
-    return getDocumentsCall(siteId, actionStatus, date, tz, next, previous, limit, _callback);
+    return getDocumentsCall(siteId, actionStatus, deleted, date, tz, next, previous, limit,
+        _callback);
 
   }
 
@@ -2308,6 +2327,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
@@ -2333,10 +2353,10 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentsResponse getDocuments(String siteId, String actionStatus, String date,
-      String tz, String next, String previous, String limit) throws ApiException {
+  public GetDocumentsResponse getDocuments(String siteId, String actionStatus, Boolean deleted,
+      String date, String tz, String next, String previous, String limit) throws ApiException {
     ApiResponse<GetDocumentsResponse> localVarResp =
-        getDocumentsWithHttpInfo(siteId, actionStatus, date, tz, next, previous, limit);
+        getDocumentsWithHttpInfo(siteId, actionStatus, deleted, date, tz, next, previous, limit);
     return localVarResp.getData();
   }
 
@@ -2346,6 +2366,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
@@ -2372,10 +2393,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentsResponse> getDocumentsWithHttpInfo(String siteId,
-      String actionStatus, String date, String tz, String next, String previous, String limit)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentsValidateBeforeCall(siteId, actionStatus, date, tz, next, previous, limit, null);
+      String actionStatus, Boolean deleted, String date, String tz, String next, String previous,
+      String limit) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, deleted, date,
+        tz, next, previous, limit, null);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2386,6 +2407,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
@@ -2411,13 +2433,199 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentsAsync(String siteId, String actionStatus, String date, String tz,
-      String next, String previous, String limit, final ApiCallback<GetDocumentsResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentsAsync(String siteId, String actionStatus, Boolean deleted,
+      String date, String tz, String next, String previous, String limit,
+      final ApiCallback<GetDocumentsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, date, tz, next,
-        previous, limit, _callback);
+    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, deleted, date,
+        tz, next, previous, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setDocumentRestore
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setDocumentRestoreCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/restore".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setDocumentRestoreValidateBeforeCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling setDocumentRestore(Async)");
+    }
+
+    return setDocumentRestoreCall(documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Restore soft deleted document Restores a soft deleted document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return SetDocumentRestoreResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetDocumentRestoreResponse setDocumentRestore(String documentId, String siteId)
+      throws ApiException {
+    ApiResponse<SetDocumentRestoreResponse> localVarResp =
+        setDocumentRestoreWithHttpInfo(documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Restore soft deleted document Restores a soft deleted document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;SetDocumentRestoreResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetDocumentRestoreResponse> setDocumentRestoreWithHttpInfo(String documentId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = setDocumentRestoreValidateBeforeCall(documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<SetDocumentRestoreResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Restore soft deleted document (asynchronously) Restores a soft deleted document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setDocumentRestoreAsync(String documentId, String siteId,
+      final ApiCallback<SetDocumentRestoreResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = setDocumentRestoreValidateBeforeCall(documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<SetDocumentRestoreResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

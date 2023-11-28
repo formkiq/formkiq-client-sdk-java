@@ -57,11 +57,11 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddDocumentWorkflowDecisionsRequest {
-  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
-  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
-  private String queueId;
+  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
+  @SerializedName(SERIALIZED_NAME_STEP_ID)
+  private String stepId;
 
   public static final String SERIALIZED_NAME_COMMENTS = "comments";
   @SerializedName(SERIALIZED_NAME_COMMENTS)
@@ -113,6 +113,11 @@ public class AddDocumentWorkflowDecisionsRequest {
         return DecisionEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      DecisionEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_DECISION = "decision";
@@ -121,25 +126,25 @@ public class AddDocumentWorkflowDecisionsRequest {
 
   public AddDocumentWorkflowDecisionsRequest() {}
 
-  public AddDocumentWorkflowDecisionsRequest queueId(String queueId) {
+  public AddDocumentWorkflowDecisionsRequest stepId(String stepId) {
 
-    this.queueId = queueId;
+    this.stepId = stepId;
     return this;
   }
 
   /**
-   * Queue Identifier
+   * Workflow Step Identifier
    * 
-   * @return queueId
+   * @return stepId
    **/
-  @javax.annotation.Nonnull
-  public String getQueueId() {
-    return queueId;
+  @javax.annotation.Nullable
+  public String getStepId() {
+    return stepId;
   }
 
 
-  public void setQueueId(String queueId) {
-    this.queueId = queueId;
+  public void setStepId(String stepId) {
+    this.stepId = stepId;
   }
 
 
@@ -198,21 +203,21 @@ public class AddDocumentWorkflowDecisionsRequest {
     }
     AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest =
         (AddDocumentWorkflowDecisionsRequest) o;
-    return Objects.equals(this.queueId, addDocumentWorkflowDecisionsRequest.queueId)
+    return Objects.equals(this.stepId, addDocumentWorkflowDecisionsRequest.stepId)
         && Objects.equals(this.comments, addDocumentWorkflowDecisionsRequest.comments)
         && Objects.equals(this.decision, addDocumentWorkflowDecisionsRequest.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(queueId, comments, decision);
+    return Objects.hash(stepId, comments, decision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentWorkflowDecisionsRequest {\n");
-    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
@@ -236,13 +241,12 @@ public class AddDocumentWorkflowDecisionsRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("queueId");
+    openapiFields.add("stepId");
     openapiFields.add("comments");
     openapiFields.add("decision");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("queueId");
     openapiRequiredFields.add("decision");
   }
 
@@ -283,10 +287,11 @@ public class AddDocumentWorkflowDecisionsRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("queueId").isJsonPrimitive()) {
+    if ((jsonObj.get("stepId") != null && !jsonObj.get("stepId").isJsonNull())
+        && !jsonObj.get("stepId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("queueId").toString()));
+          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("stepId").toString()));
     }
     if ((jsonObj.get("comments") != null && !jsonObj.get("comments").isJsonNull())
         && !jsonObj.get("comments").isJsonPrimitive()) {
@@ -299,6 +304,8 @@ public class AddDocumentWorkflowDecisionsRequest {
           "Expected the field `decision` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("decision").toString()));
     }
+    // validate the required field `decision`
+    DecisionEnum.validateJsonElement(jsonObj.get("decision"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

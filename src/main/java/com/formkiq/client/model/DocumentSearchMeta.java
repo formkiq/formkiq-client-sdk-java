@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchMeta
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_FOLDER = "folder";
   @SerializedName(SERIALIZED_NAME_FOLDER)
@@ -110,6 +110,11 @@ public class DocumentSearchMeta {
         String value = jsonReader.nextString();
         return IndexTypeEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      IndexTypeEnum.fromValue(value);
     }
   }
 
@@ -314,6 +319,10 @@ public class DocumentSearchMeta {
       throw new IllegalArgumentException(String.format(
           "Expected the field `indexType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("indexType").toString()));
+    }
+    // validate the optional field `indexType`
+    if (jsonObj.get("indexType") != null && !jsonObj.get("indexType").isJsonNull()) {
+      IndexTypeEnum.validateJsonElement(jsonObj.get("indexType"));
     }
     if ((jsonObj.get("indexFilterBeginsWith") != null
         && !jsonObj.get("indexFilterBeginsWith").isJsonNull())

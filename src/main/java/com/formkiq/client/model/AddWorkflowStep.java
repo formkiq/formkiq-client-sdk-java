@@ -22,14 +22,17 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AddAction;
-import com.formkiq.client.model.AddQueue;
+import com.formkiq.client.model.AddWorkflowStepDecision;
+import com.formkiq.client.model.AddWorkflowStepQueue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,15 +62,11 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-14T10:43:04.140627-06:00[America/Winnipeg]")
+    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
 public class AddWorkflowStep {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
+  @SerializedName(SERIALIZED_NAME_STEP_ID)
+  private String stepId;
 
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -75,51 +74,33 @@ public class AddWorkflowStep {
 
   public static final String SERIALIZED_NAME_QUEUE = "queue";
   @SerializedName(SERIALIZED_NAME_QUEUE)
-  private AddQueue queue;
+  private AddWorkflowStepQueue queue;
+
+  public static final String SERIALIZED_NAME_DECISIONS = "decisions";
+  @SerializedName(SERIALIZED_NAME_DECISIONS)
+  private List<AddWorkflowStepDecision> decisions;
 
   public AddWorkflowStep() {}
 
-  public AddWorkflowStep id(String id) {
+  public AddWorkflowStep stepId(String stepId) {
 
-    this.id = id;
+    this.stepId = stepId;
     return this;
   }
 
   /**
-   * Step identifier
+   * Workflow Step Identifier
    * 
-   * @return id
+   * @return stepId
    **/
-  @javax.annotation.Nonnull
-  public String getId() {
-    return id;
+  @javax.annotation.Nullable
+  public String getStepId() {
+    return stepId;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public AddWorkflowStep type(String type) {
-
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Workflow step type
-   * 
-   * @return type
-   **/
-  @javax.annotation.Nonnull
-  public String getType() {
-    return type;
-  }
-
-
-  public void setType(String type) {
-    this.type = type;
+  public void setStepId(String stepId) {
+    this.stepId = stepId;
   }
 
 
@@ -145,7 +126,7 @@ public class AddWorkflowStep {
   }
 
 
-  public AddWorkflowStep queue(AddQueue queue) {
+  public AddWorkflowStep queue(AddWorkflowStepQueue queue) {
 
     this.queue = queue;
     return this;
@@ -157,13 +138,43 @@ public class AddWorkflowStep {
    * @return queue
    **/
   @javax.annotation.Nullable
-  public AddQueue getQueue() {
+  public AddWorkflowStepQueue getQueue() {
     return queue;
   }
 
 
-  public void setQueue(AddQueue queue) {
+  public void setQueue(AddWorkflowStepQueue queue) {
     this.queue = queue;
+  }
+
+
+  public AddWorkflowStep decisions(List<AddWorkflowStepDecision> decisions) {
+
+    this.decisions = decisions;
+    return this;
+  }
+
+  public AddWorkflowStep addDecisionsItem(AddWorkflowStepDecision decisionsItem) {
+    if (this.decisions == null) {
+      this.decisions = new ArrayList<>();
+    }
+    this.decisions.add(decisionsItem);
+    return this;
+  }
+
+  /**
+   * Workflow Decisions
+   * 
+   * @return decisions
+   **/
+  @javax.annotation.Nullable
+  public List<AddWorkflowStepDecision> getDecisions() {
+    return decisions;
+  }
+
+
+  public void setDecisions(List<AddWorkflowStepDecision> decisions) {
+    this.decisions = decisions;
   }
 
 
@@ -177,25 +188,25 @@ public class AddWorkflowStep {
       return false;
     }
     AddWorkflowStep addWorkflowStep = (AddWorkflowStep) o;
-    return Objects.equals(this.id, addWorkflowStep.id)
-        && Objects.equals(this.type, addWorkflowStep.type)
+    return Objects.equals(this.stepId, addWorkflowStep.stepId)
         && Objects.equals(this.action, addWorkflowStep.action)
-        && Objects.equals(this.queue, addWorkflowStep.queue);
+        && Objects.equals(this.queue, addWorkflowStep.queue)
+        && Objects.equals(this.decisions, addWorkflowStep.decisions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, action, queue);
+    return Objects.hash(stepId, action, queue, decisions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddWorkflowStep {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
+    sb.append("    decisions: ").append(toIndentedString(decisions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -217,15 +228,13 @@ public class AddWorkflowStep {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("type");
+    openapiFields.add("stepId");
     openapiFields.add("action");
     openapiFields.add("queue");
+    openapiFields.add("decisions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("type");
   }
 
   /**
@@ -253,25 +262,12 @@ public class AddWorkflowStep {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddWorkflowStep.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("id").isJsonPrimitive()) {
+    if ((jsonObj.get("stepId") != null && !jsonObj.get("stepId").isJsonNull())
+        && !jsonObj.get("stepId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
-    }
-    if (!jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
+          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("stepId").toString()));
     }
     // validate the optional field `action`
     if (jsonObj.get("action") != null && !jsonObj.get("action").isJsonNull()) {
@@ -279,7 +275,23 @@ public class AddWorkflowStep {
     }
     // validate the optional field `queue`
     if (jsonObj.get("queue") != null && !jsonObj.get("queue").isJsonNull()) {
-      AddQueue.validateJsonElement(jsonObj.get("queue"));
+      AddWorkflowStepQueue.validateJsonElement(jsonObj.get("queue"));
+    }
+    if (jsonObj.get("decisions") != null && !jsonObj.get("decisions").isJsonNull()) {
+      JsonArray jsonArraydecisions = jsonObj.getAsJsonArray("decisions");
+      if (jsonArraydecisions != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("decisions").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `decisions` to be an array in the JSON string but got `%s`",
+              jsonObj.get("decisions").toString()));
+        }
+
+        // validate the optional field `decisions` (array)
+        for (int i = 0; i < jsonArraydecisions.size(); i++) {
+          AddWorkflowStepDecision.validateJsonElement(jsonArraydecisions.get(i));
+        } ;
+      }
     }
   }
 
