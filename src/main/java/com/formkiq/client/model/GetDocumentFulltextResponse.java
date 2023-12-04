@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -75,9 +75,17 @@ public class GetDocumentFulltextResponse {
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
 
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
+
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
+
+  public static final String SERIALIZED_NAME_LAST_MODIFIED_DATE = "lastModifiedDate";
+  @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
+  private String lastModifiedDate;
 
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -189,6 +197,28 @@ public class GetDocumentFulltextResponse {
   }
 
 
+  public GetDocumentFulltextResponse deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
+  }
+
+
   public GetDocumentFulltextResponse insertedDate(String insertedDate) {
 
     this.insertedDate = insertedDate;
@@ -208,6 +238,28 @@ public class GetDocumentFulltextResponse {
 
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
+  }
+
+
+  public GetDocumentFulltextResponse lastModifiedDate(String lastModifiedDate) {
+
+    this.lastModifiedDate = lastModifiedDate;
+    return this;
+  }
+
+  /**
+   * Last Modified Timestamp
+   * 
+   * @return lastModifiedDate
+   **/
+  @javax.annotation.Nullable
+  public String getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+
+  public void setLastModifiedDate(String lastModifiedDate) {
+    this.lastModifiedDate = lastModifiedDate;
   }
 
 
@@ -335,7 +387,9 @@ public class GetDocumentFulltextResponse {
         && Objects.equals(this.content, getDocumentFulltextResponse.content)
         && Objects.equals(this.contentType, getDocumentFulltextResponse.contentType)
         && Objects.equals(this.path, getDocumentFulltextResponse.path)
+        && Objects.equals(this.deepLinkPath, getDocumentFulltextResponse.deepLinkPath)
         && Objects.equals(this.insertedDate, getDocumentFulltextResponse.insertedDate)
+        && Objects.equals(this.lastModifiedDate, getDocumentFulltextResponse.lastModifiedDate)
         && Objects.equals(this.documentId, getDocumentFulltextResponse.documentId)
         && Objects.equals(this.createdBy, getDocumentFulltextResponse.createdBy)
         && Objects.equals(this.contentLength, getDocumentFulltextResponse.contentLength)
@@ -345,8 +399,8 @@ public class GetDocumentFulltextResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, content, contentType, path, insertedDate, documentId, createdBy,
-        contentLength, tags, metadata);
+    return Objects.hash(siteId, content, contentType, path, deepLinkPath, insertedDate,
+        lastModifiedDate, documentId, createdBy, contentLength, tags, metadata);
   }
 
   @Override
@@ -357,7 +411,9 @@ public class GetDocumentFulltextResponse {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
@@ -388,7 +444,9 @@ public class GetDocumentFulltextResponse {
     openapiFields.add("content");
     openapiFields.add("contentType");
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
+    openapiFields.add("lastModifiedDate");
     openapiFields.add("documentId");
     openapiFields.add("createdBy");
     openapiFields.add("contentLength");
@@ -449,11 +507,23 @@ public class GetDocumentFulltextResponse {
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
+    }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
+    }
+    if ((jsonObj.get("lastModifiedDate") != null && !jsonObj.get("lastModifiedDate").isJsonNull())
+        && !jsonObj.get("lastModifiedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("lastModifiedDate").toString()));
     }
     if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
         && !jsonObj.get("documentId").isJsonPrimitive()) {

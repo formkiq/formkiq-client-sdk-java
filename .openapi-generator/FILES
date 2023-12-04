@@ -13,6 +13,7 @@ docs/AddChildDocument.md
 docs/AddChildDocumentResponse.md
 docs/AddDocumentActionsRequest.md
 docs/AddDocumentActionsResponse.md
+docs/AddDocumentActionsRetryResponse.md
 docs/AddDocumentMetadata.md
 docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
@@ -119,6 +120,7 @@ docs/GetQueuesResponse.md
 docs/GetSitesResponse.md
 docs/GetTagSchemaResponse.md
 docs/GetTagSchemasResponse.md
+docs/GetUserActivitesResponse.md
 docs/GetUserSharesResponse.md
 docs/GetUsersInGroupResponse.md
 docs/GetVersionResponse.md
@@ -176,6 +178,8 @@ docs/UpdateMatchingDocumentTagsRequestMatch.md
 docs/UpdateMatchingDocumentTagsRequestUpdate.md
 docs/UpdateMatchingDocumentTagsResponse.md
 docs/User.md
+docs/UserActivitiesApi.md
+docs/UserActivity.md
 docs/UserManagementApi.md
 docs/UserShare.md
 docs/ValidationError.md
@@ -214,6 +218,7 @@ src/main/java/com/formkiq/client/api/PublicApi.java
 src/main/java/com/formkiq/client/api/SystemManagementApi.java
 src/main/java/com/formkiq/client/api/TagIndexApi.java
 src/main/java/com/formkiq/client/api/TagSchemaApi.java
+src/main/java/com/formkiq/client/api/UserActivitiesApi.java
 src/main/java/com/formkiq/client/api/UserManagementApi.java
 src/main/java/com/formkiq/client/api/WebhooksApi.java
 src/main/java/com/formkiq/client/invoker/ApiCallback.java
@@ -247,6 +252,7 @@ src/main/java/com/formkiq/client/model/AddChildDocument.java
 src/main/java/com/formkiq/client/model/AddChildDocumentResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentActionsRetryResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentMetadata.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
@@ -340,6 +346,7 @@ src/main/java/com/formkiq/client/model/GetQueuesResponse.java
 src/main/java/com/formkiq/client/model/GetSitesResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemaResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemasResponse.java
+src/main/java/com/formkiq/client/model/GetUserActivitesResponse.java
 src/main/java/com/formkiq/client/model/GetUserSharesResponse.java
 src/main/java/com/formkiq/client/model/GetUsersInGroupResponse.java
 src/main/java/com/formkiq/client/model/GetVersionResponse.java
@@ -392,6 +399,7 @@ src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatch.ja
 src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdate.java
 src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsResponse.java
 src/main/java/com/formkiq/client/model/User.java
+src/main/java/com/formkiq/client/model/UserActivity.java
 src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
@@ -419,6 +427,7 @@ src/test/java/com/formkiq/client/api/PublicApiTest.java
 src/test/java/com/formkiq/client/api/SystemManagementApiTest.java
 src/test/java/com/formkiq/client/api/TagIndexApiTest.java
 src/test/java/com/formkiq/client/api/TagSchemaApiTest.java
+src/test/java/com/formkiq/client/api/UserActivitiesApiTest.java
 src/test/java/com/formkiq/client/api/UserManagementApiTest.java
 src/test/java/com/formkiq/client/api/WebhooksApiTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
@@ -429,6 +438,7 @@ src/test/java/com/formkiq/client/model/AddChildDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/AddChildDocumentTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentActionsRetryResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
@@ -522,6 +532,7 @@ src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetSitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasResponseTest.java
+src/test/java/com/formkiq/client/model/GetUserActivitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesResponseTest.java
 src/test/java/com/formkiq/client/model/GetUsersInGroupResponseTest.java
 src/test/java/com/formkiq/client/model/GetVersionResponseTest.java
@@ -573,6 +584,7 @@ src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatchTes
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdateTest.java
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsResponseTest.java
+src/test/java/com/formkiq/client/model/UserActivityTest.java
 src/test/java/com/formkiq/client/model/UserShareTest.java
 src/test/java/com/formkiq/client/model/UserTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorTest.java

@@ -23,6 +23,7 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentActionsRequest;
 import com.formkiq.client.model.AddDocumentActionsResponse;
+import com.formkiq.client.model.AddDocumentActionsRetryResponse;
 import com.formkiq.client.model.GetDocumentActionsResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
@@ -65,6 +66,22 @@ public class DocumentActionsApiTest {
     AddDocumentActionsRequest addDocumentActionsRequest = null;
     AddDocumentActionsResponse response =
         api.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Retries failed document action(s)
+   *
+   * Retries all failed document action(s). Failed action status changes to
+   * \&quot;FAILED_RETRY\&quot; and a new \&quot;PENDING\&quot; action is created.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentRetryActionTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    AddDocumentActionsRetryResponse response = api.addDocumentRetryAction(documentId, siteId);
     // TODO: test validations
   }
 

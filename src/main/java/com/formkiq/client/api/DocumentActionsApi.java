@@ -36,6 +36,7 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddDocumentActionsRequest;
 import com.formkiq.client.model.AddDocumentActionsResponse;
+import com.formkiq.client.model.AddDocumentActionsRetryResponse;
 import com.formkiq.client.model.GetDocumentActionsResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
@@ -326,6 +327,217 @@ public class DocumentActionsApi {
     okhttp3.Call localVarCall = addDocumentActionsValidateBeforeCall(documentId, siteId,
         addDocumentActionsRequest, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentActionsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addDocumentRetryAction
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocumentRetryActionCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/actions/retry".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addDocumentRetryActionValidateBeforeCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling addDocumentRetryAction(Async)");
+    }
+
+    return addDocumentRetryActionCall(documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Retries failed document action(s) Retries all failed document action(s). Failed action status
+   * changes to \&quot;FAILED_RETRY\&quot; and a new \&quot;PENDING\&quot; action is created.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return AddDocumentActionsRetryResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddDocumentActionsRetryResponse addDocumentRetryAction(String documentId, String siteId)
+      throws ApiException {
+    ApiResponse<AddDocumentActionsRetryResponse> localVarResp =
+        addDocumentRetryActionWithHttpInfo(documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Retries failed document action(s) Retries all failed document action(s). Failed action status
+   * changes to \&quot;FAILED_RETRY\&quot; and a new \&quot;PENDING\&quot; action is created.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;AddDocumentActionsRetryResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddDocumentActionsRetryResponse> addDocumentRetryActionWithHttpInfo(
+      String documentId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall = addDocumentRetryActionValidateBeforeCall(documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<AddDocumentActionsRetryResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Retries failed document action(s) (asynchronously) Retries all failed document action(s).
+   * Failed action status changes to \&quot;FAILED_RETRY\&quot; and a new \&quot;PENDING\&quot;
+   * action is created.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocumentRetryActionAsync(String documentId, String siteId,
+      final ApiCallback<AddDocumentActionsRetryResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        addDocumentRetryActionValidateBeforeCall(documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<AddDocumentActionsRetryResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

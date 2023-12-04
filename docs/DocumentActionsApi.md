@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addDocumentActions**](DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | Add document action |
+| [**addDocumentRetryAction**](DocumentActionsApi.md#addDocumentRetryAction) | **POST** /documents/{documentId}/actions/retry | Retries failed document action(s) |
 | [**getDocumentActions**](DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | Get document actions |
 
 
@@ -70,6 +71,74 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
+
+<a id="addDocumentRetryAction"></a>
+# **addDocumentRetryAction**
+> AddDocumentActionsRetryResponse addDocumentRetryAction(documentId, siteId)
+
+Retries failed document action(s)
+
+Retries all failed document action(s). Failed action status changes to \&quot;FAILED_RETRY\&quot; and a new \&quot;PENDING\&quot; action is created.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentActionsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      AddDocumentActionsRetryResponse result = apiInstance.addDocumentRetryAction(documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentActionsApi#addDocumentRetryAction");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**AddDocumentActionsRetryResponse**](AddDocumentActionsRetryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

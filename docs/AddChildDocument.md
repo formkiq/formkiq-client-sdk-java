@@ -9,6 +9,7 @@ List of related documents
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**path** | **String** | Path or Name of document |  [optional] |
+|**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**contentType** | **String** | Document Content-Type |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**content** | **String** | Document content |  |

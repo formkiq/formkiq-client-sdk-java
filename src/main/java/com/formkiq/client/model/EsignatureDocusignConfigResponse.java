@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignConfigResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class EsignatureDocusignConfigResponse {
   public static final String SERIALIZED_NAME_CONFIGURED = "configured";
   @SerializedName(SERIALIZED_NAME_CONFIGURED)

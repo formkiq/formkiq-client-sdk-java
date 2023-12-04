@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -66,6 +66,10 @@ public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -130,6 +134,28 @@ public class FulltextSearchItem {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public FulltextSearchItem deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
   }
 
 
@@ -255,6 +281,7 @@ public class FulltextSearchItem {
     FulltextSearchItem fulltextSearchItem = (FulltextSearchItem) o;
     return Objects.equals(this.siteId, fulltextSearchItem.siteId)
         && Objects.equals(this.path, fulltextSearchItem.path)
+        && Objects.equals(this.deepLinkPath, fulltextSearchItem.deepLinkPath)
         && Objects.equals(this.insertedDate, fulltextSearchItem.insertedDate)
         && Objects.equals(this.documentId, fulltextSearchItem.documentId)
         && Objects.equals(this.contentLength, fulltextSearchItem.contentLength)
@@ -264,7 +291,8 @@ public class FulltextSearchItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, insertedDate, documentId, contentLength, createdBy, tags);
+    return Objects.hash(siteId, path, deepLinkPath, insertedDate, documentId, contentLength,
+        createdBy, tags);
   }
 
   @Override
@@ -273,6 +301,7 @@ public class FulltextSearchItem {
     sb.append("class FulltextSearchItem {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
@@ -301,6 +330,7 @@ public class FulltextSearchItem {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
     openapiFields.add("documentId");
     openapiFields.add("contentLength");
@@ -348,6 +378,12 @@ public class FulltextSearchItem {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

@@ -73,6 +73,9 @@ tags:
 - description: Tag Schema API
   name: tagSchema
   x-displayName: Tag Schema
+- description: User Activities API
+  name: userActivities
+  x-displayName: User Activities
 - description: Antivirus API
   name: antivirus
   x-displayName: Antivirus
@@ -421,6 +424,7 @@ paths:
           - PENDING
           - RUNNING
           - SKIPPED
+          - FAILED_RETRY
           type: string
         style: form
       - description: Fetch soft deleted documents
@@ -2181,6 +2185,56 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
+      x-accepts: application/json
+  /documents/{documentId}/actions/retry:
+    post:
+      description: Retries all failed document action(s). Failed action status changes
+        to "FAILED_RETRY" and a new "PENDING" action is created.
+      operationId: AddDocumentRetryAction
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocumentActionsRetryResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Retries failed document action(s)
+      tags:
+      - Document Actions
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
   /documents/{documentId}/ocr:
     delete:
@@ -4413,6 +4467,178 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
+  /userActivities:
+    get:
+      description: Retrieve a user's activities
+      operationId: GetUserActivities
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserActivitesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get user activities
+      tags:
+      - User Activities
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /userActivities/{userId}:
+    get:
+      description: Retrieve a user's activities
+      operationId: GetSpecificUserActivities
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Fetch specific user activities
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserActivitesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get user activities
+      tags:
+      - User Activities
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /documents/{documentId}/userActivities:
+    get:
+      description: Retrieve a user's activities
+      operationId: GetDocumentUserActivities
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserActivitesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get user activities
+      tags:
+      - User Activities
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
   /public/documents:
     post:
       description: |-
@@ -5952,6 +6178,7 @@ components:
         next: next
         documents:
         - path: path
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           s3version: s3version
@@ -5963,6 +6190,7 @@ components:
           version: version
           versionKey: versionKey
         - path: path
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           s3version: s3version
@@ -6504,10 +6732,12 @@ components:
           - values
           value: value
           key: key
+        deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
         documents:
         - path: path
           versionId: versionId
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
@@ -6518,6 +6748,7 @@ components:
           userId: userId
         - path: path
           versionId: versionId
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
@@ -6542,6 +6773,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -6587,6 +6821,7 @@ components:
       example:
         path: path
         versionId: versionId
+        deepLinkPath: deepLinkPath
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
@@ -6598,6 +6833,9 @@ components:
       properties:
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -6878,6 +7116,7 @@ components:
       example:
         path: path
         tagSchemaId: tagSchemaId
+        deepLinkPath: deepLinkPath
         actions:
         - type: OCR
           parameters:
@@ -6929,6 +7168,9 @@ components:
         path:
           description: Path or Name of document
           type: string
+        deepLinkPath:
+          description: Path or Name of deep link
+          type: string
         tags:
           description: List of document tags
           items:
@@ -6957,6 +7199,7 @@ components:
           value: value
           key: key
         tagSchemaId: tagSchemaId
+        deepLinkPath: deepLinkPath
         documents:
         - path: path
           metadata:
@@ -6970,6 +7213,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           contentType: contentType
           isBase64: true
           content: content
@@ -6996,6 +7240,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           contentType: contentType
           isBase64: true
           content: content
@@ -7063,6 +7308,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         contentType:
           description: Document media type
@@ -7318,6 +7566,7 @@ components:
           - values
           value: value
           key: key
+        deepLinkPath: deepLinkPath
         contentType: contentType
         isBase64: true
         content: content
@@ -7335,6 +7584,9 @@ components:
       properties:
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         contentType:
           description: Document Content-Type
@@ -7361,6 +7613,7 @@ components:
     DocumentVersion:
       example:
         path: path
+        deepLinkPath: deepLinkPath
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         s3version: s3version
@@ -7374,6 +7627,9 @@ components:
       properties:
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -7526,6 +7782,7 @@ components:
       example:
         documents:
         - path: path
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           createdBy: createdBy
           siteId: siteId
@@ -7533,6 +7790,7 @@ components:
           contentLength: 0
           tags: "{}"
         - path: path
+          deepLinkPath: deepLinkPath
           insertedDate: insertedDate
           createdBy: createdBy
           siteId: siteId
@@ -7549,6 +7807,7 @@ components:
     FulltextSearchItem:
       example:
         path: path
+        deepLinkPath: deepLinkPath
         insertedDate: insertedDate
         createdBy: createdBy
         siteId: siteId
@@ -7561,6 +7820,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -7581,7 +7843,9 @@ components:
       example:
         path: path
         metadata: "{}"
+        deepLinkPath: deepLinkPath
         insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
         createdBy: createdBy
         siteId: siteId
         documentId: documentId
@@ -7602,8 +7866,14 @@ components:
         path:
           description: Path or Name of document
           type: string
+        deepLinkPath:
+          description: Path or Name of deep link
+          type: string
         insertedDate:
           description: Inserted Timestamp
+          type: string
+        lastModifiedDate:
+          description: Last Modified Timestamp
           type: string
         documentId:
           description: Document Identifier
@@ -7683,6 +7953,56 @@ components:
           description: Document sync message
           type: string
       type: object
+    GetUserActivitesResponse:
+      example:
+        next: next
+        syncs:
+        - activityId: activityId
+          timeToLive: timeToLive
+          insertedDate: insertedDate
+          type: VIEW
+          userId: userId
+        - activityId: activityId
+          timeToLive: timeToLive
+          insertedDate: insertedDate
+          type: VIEW
+          userId: userId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        syncs:
+          description: List of user activities syncs
+          items:
+            $ref: '#/components/schemas/UserActivity'
+          type: array
+      type: object
+    UserActivity:
+      example:
+        activityId: activityId
+        timeToLive: timeToLive
+        insertedDate: insertedDate
+        type: VIEW
+        userId: userId
+      properties:
+        activityId:
+          description: Activity identifier
+          type: string
+        type:
+          description: The type of the activity
+          enum:
+          - VIEW
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        userId:
+          description: User who added document
+          type: string
+        timeToLive:
+          description: User activity time to live
+          type: string
+      type: object
     GetFoldersResponse:
       example:
         next: next
@@ -7699,6 +8019,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
@@ -7736,6 +8057,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
@@ -7799,6 +8121,7 @@ components:
               - values
               value: value
               key: key
+            deepLinkPath: deepLinkPath
             lastModifiedDate: lastModifiedDate
             belongsToDocumentId: belongsToDocumentId
             userId: userId
@@ -7832,6 +8155,7 @@ components:
               - values
               value: value
               key: key
+            deepLinkPath: deepLinkPath
             lastModifiedDate: lastModifiedDate
             belongsToDocumentId: belongsToDocumentId
             userId: userId
@@ -7870,6 +8194,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           userId: userId
@@ -7894,6 +8219,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           userId: userId
@@ -7939,6 +8265,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           userId: userId
@@ -7971,6 +8298,7 @@ components:
           - values
           value: value
           key: key
+        deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
         userId: userId
@@ -7990,6 +8318,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -8046,6 +8377,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
@@ -8083,6 +8415,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
@@ -8135,6 +8468,7 @@ components:
           - values
           value: value
           key: key
+        deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
         matchedTags:
@@ -8167,6 +8501,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         insertedDate:
           description: Inserted Timestamp
@@ -8248,6 +8585,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           userId: userId
@@ -8272,6 +8610,7 @@ components:
             - values
             value: value
             key: key
+          deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
           userId: userId
@@ -8476,6 +8815,7 @@ components:
           - PENDING
           - RUNNING
           - SKIPPED
+          - FAILED_RETRY
           type: string
         type:
           description: Type of Document Action
@@ -8564,6 +8904,14 @@ components:
           description: Document Action message
           type: string
       type: object
+    AddDocumentActionsRetryResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Document Action message
+          type: string
+      type: object
     AddDocumentOcrResponse:
       example:
         message: message
@@ -8597,6 +8945,7 @@ components:
         contentUrls:
         - contentUrls
         - contentUrls
+        deepLinkPath: deepLinkPath
         contentType: contentType
         content: content
         tags:
@@ -8624,6 +8973,9 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         tags:
           description: List of document tags
@@ -8653,6 +9005,7 @@ components:
         contentUrls:
         - contentUrls
         - contentUrls
+        deepLinkPath: deepLinkPath
         contentType: contentType
         content: content
         tags:
@@ -8680,6 +9033,9 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
           type: string
         tags:
           description: List of document tags

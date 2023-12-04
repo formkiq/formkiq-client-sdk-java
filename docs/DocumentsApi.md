@@ -782,7 +782,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
-| **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED] |
+| **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED, FAILED_RETRY] |
 | **deleted** | **Boolean**| Fetch soft deleted documents | [optional] |
 | **date** | **String**| Fetch documents inserted on a certain date (yyyy-MM-dd) | [optional] |
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |

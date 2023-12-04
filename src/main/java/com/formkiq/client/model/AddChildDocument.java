@@ -61,11 +61,15 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -108,6 +112,28 @@ public class AddChildDocument {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public AddChildDocument deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
   }
 
 
@@ -248,6 +274,7 @@ public class AddChildDocument {
     }
     AddChildDocument addChildDocument = (AddChildDocument) o;
     return Objects.equals(this.path, addChildDocument.path)
+        && Objects.equals(this.deepLinkPath, addChildDocument.deepLinkPath)
         && Objects.equals(this.contentType, addChildDocument.contentType)
         && Objects.equals(this.isBase64, addChildDocument.isBase64)
         && Objects.equals(this.content, addChildDocument.content)
@@ -257,7 +284,7 @@ public class AddChildDocument {
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, contentType, isBase64, content, tags, metadata);
+    return Objects.hash(path, deepLinkPath, contentType, isBase64, content, tags, metadata);
   }
 
   @Override
@@ -265,6 +292,7 @@ public class AddChildDocument {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddChildDocument {\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
@@ -292,6 +320,7 @@ public class AddChildDocument {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("contentType");
     openapiFields.add("isBase64");
     openapiFields.add("content");
@@ -343,6 +372,12 @@ public class AddChildDocument {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {

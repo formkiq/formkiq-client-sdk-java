@@ -65,6 +65,14 @@ public class AddDocumentUploadRequestTest {
   }
 
   /**
+   * Test the property 'deepLinkPath'
+   */
+  @Test
+  public void deepLinkPathTest() {
+    // TODO: test deepLinkPath
+  }
+
+  /**
    * Test the property 'tags'
    */
   @Test

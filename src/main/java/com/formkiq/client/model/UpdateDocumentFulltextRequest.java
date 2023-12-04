@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class UpdateDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -78,6 +78,10 @@ public class UpdateDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -185,6 +189,28 @@ public class UpdateDocumentFulltextRequest {
   }
 
 
+  public UpdateDocumentFulltextRequest deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
+  }
+
+
   public UpdateDocumentFulltextRequest tags(List<AddDocumentTag> tags) {
 
     this.tags = tags;
@@ -259,13 +285,14 @@ public class UpdateDocumentFulltextRequest {
         && Objects.equals(this.content, updateDocumentFulltextRequest.content)
         && Objects.equals(this.contentUrls, updateDocumentFulltextRequest.contentUrls)
         && Objects.equals(this.path, updateDocumentFulltextRequest.path)
+        && Objects.equals(this.deepLinkPath, updateDocumentFulltextRequest.deepLinkPath)
         && Objects.equals(this.tags, updateDocumentFulltextRequest.tags)
         && Objects.equals(this.metadata, updateDocumentFulltextRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, content, contentUrls, path, tags, metadata);
+    return Objects.hash(contentType, content, contentUrls, path, deepLinkPath, tags, metadata);
   }
 
   @Override
@@ -276,6 +303,7 @@ public class UpdateDocumentFulltextRequest {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
@@ -303,6 +331,7 @@ public class UpdateDocumentFulltextRequest {
     openapiFields.add("content");
     openapiFields.add("contentUrls");
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("tags");
     openapiFields.add("metadata");
 
@@ -362,6 +391,12 @@ public class UpdateDocumentFulltextRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
       JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");

@@ -67,6 +67,14 @@ public class AddDocumentRequestTest {
   }
 
   /**
+   * Test the property 'deepLinkPath'
+   */
+  @Test
+  public void deepLinkPathTest() {
+    // TODO: test deepLinkPath
+  }
+
+  /**
    * Test the property 'contentType'
    */
   @Test

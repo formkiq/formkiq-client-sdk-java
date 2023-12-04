@@ -31,6 +31,7 @@
 | PENDING | &quot;PENDING&quot; |
 | RUNNING | &quot;RUNNING&quot; |
 | SKIPPED | &quot;SKIPPED&quot; |
+| FAILED_RETRY | &quot;FAILED_RETRY&quot; |
 
 
 

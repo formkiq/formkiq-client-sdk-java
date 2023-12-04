@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-11-27T19:25:02.177117-06:00[America/Winnipeg]
+  - Build date: 2023-12-03T21:57:24.695816-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -150,6 +150,7 @@ Class | Method | HTTP request | Description
 *CustomIndexApi* | [**indexFolderMove**](docs/CustomIndexApi.md#indexFolderMove) | **POST** /indices/{indexType}/move | 
 *CustomIndexApi* | [**indexSearch**](docs/CustomIndexApi.md#indexSearch) | **POST** /indices/search | 
 *DocumentActionsApi* | [**addDocumentActions**](docs/DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | Add document action
+*DocumentActionsApi* | [**addDocumentRetryAction**](docs/DocumentActionsApi.md#addDocumentRetryAction) | **POST** /documents/{documentId}/actions/retry | Retries failed document action(s)
 *DocumentActionsApi* | [**getDocumentActions**](docs/DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | Get document actions
 *DocumentFoldersApi* | [**addFolder**](docs/DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder
 *DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
@@ -223,6 +224,9 @@ Class | Method | HTTP request | Description
 *TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema
 *TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
+*UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
+*UserActivitiesApi* | [**getSpecificUserActivities**](docs/UserActivitiesApi.md#getSpecificUserActivities) | **GET** /userActivities/{userId} | Get user activities
+*UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get configured system group(s)
 *UserManagementApi* | [**getUsersInGroup**](docs/UserManagementApi.md#getUsersInGroup) | **GET** /groups/{groupName}/users | Get users in a group
 *WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook
@@ -245,6 +249,7 @@ Class | Method | HTTP request | Description
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
  - [AddDocumentActionsResponse](docs/AddDocumentActionsResponse.md)
+ - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
  - [AddDocumentMetadata](docs/AddDocumentMetadata.md)
  - [AddDocumentOcrRequest](docs/AddDocumentOcrRequest.md)
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
@@ -338,6 +343,7 @@ Class | Method | HTTP request | Description
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
  - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
+ - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
  - [GetUserSharesResponse](docs/GetUserSharesResponse.md)
  - [GetUsersInGroupResponse](docs/GetUsersInGroupResponse.md)
  - [GetVersionResponse](docs/GetVersionResponse.md)
@@ -390,6 +396,7 @@ Class | Method | HTTP request | Description
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
  - [User](docs/User.md)
+ - [UserActivity](docs/UserActivity.md)
  - [UserShare](docs/UserShare.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)

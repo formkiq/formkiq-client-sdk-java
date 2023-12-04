@@ -77,11 +77,27 @@ public class GetDocumentFulltextResponseTest {
   }
 
   /**
+   * Test the property 'deepLinkPath'
+   */
+  @Test
+  public void deepLinkPathTest() {
+    // TODO: test deepLinkPath
+  }
+
+  /**
    * Test the property 'insertedDate'
    */
   @Test
   public void insertedDateTest() {
     // TODO: test insertedDate
+  }
+
+  /**
+   * Test the property 'lastModifiedDate'
+   */
+  @Test
+  public void lastModifiedDateTest() {
+    // TODO: test lastModifiedDate
   }
 
   /**

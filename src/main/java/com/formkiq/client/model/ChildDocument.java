@@ -57,11 +57,15 @@ import com.formkiq.client.invoker.JSON;
  * ChildDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class ChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -120,6 +124,28 @@ public class ChildDocument {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public ChildDocument deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
   }
 
 
@@ -332,6 +358,7 @@ public class ChildDocument {
     }
     ChildDocument childDocument = (ChildDocument) o;
     return Objects.equals(this.path, childDocument.path)
+        && Objects.equals(this.deepLinkPath, childDocument.deepLinkPath)
         && Objects.equals(this.insertedDate, childDocument.insertedDate)
         && Objects.equals(this.lastModifiedDate, childDocument.lastModifiedDate)
         && Objects.equals(this.checksum, childDocument.checksum)
@@ -345,8 +372,8 @@ public class ChildDocument {
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, insertedDate, lastModifiedDate, checksum, documentId, contentType,
-        userId, contentLength, versionId, belongsToDocumentId);
+    return Objects.hash(path, deepLinkPath, insertedDate, lastModifiedDate, checksum, documentId,
+        contentType, userId, contentLength, versionId, belongsToDocumentId);
   }
 
   @Override
@@ -354,6 +381,7 @@ public class ChildDocument {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChildDocument {\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
@@ -386,6 +414,7 @@ public class ChildDocument {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
     openapiFields.add("checksum");
@@ -441,6 +470,12 @@ public class ChildDocument {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

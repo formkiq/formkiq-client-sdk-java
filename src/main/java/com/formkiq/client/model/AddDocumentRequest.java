@@ -63,7 +63,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -72,6 +72,10 @@ public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -144,6 +148,28 @@ public class AddDocumentRequest {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public AddDocumentRequest deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
   }
 
 
@@ -345,6 +371,7 @@ public class AddDocumentRequest {
     AddDocumentRequest addDocumentRequest = (AddDocumentRequest) o;
     return Objects.equals(this.tagSchemaId, addDocumentRequest.tagSchemaId)
         && Objects.equals(this.path, addDocumentRequest.path)
+        && Objects.equals(this.deepLinkPath, addDocumentRequest.deepLinkPath)
         && Objects.equals(this.contentType, addDocumentRequest.contentType)
         && Objects.equals(this.isBase64, addDocumentRequest.isBase64)
         && Objects.equals(this.content, addDocumentRequest.content)
@@ -356,8 +383,8 @@ public class AddDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, contentType, isBase64, content, tags, metadata, actions,
-        documents);
+    return Objects.hash(tagSchemaId, path, deepLinkPath, contentType, isBase64, content, tags,
+        metadata, actions, documents);
   }
 
   @Override
@@ -366,6 +393,7 @@ public class AddDocumentRequest {
     sb.append("class AddDocumentRequest {\n");
     sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
@@ -396,6 +424,7 @@ public class AddDocumentRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("tagSchemaId");
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("contentType");
     openapiFields.add("isBase64");
     openapiFields.add("content");
@@ -455,6 +484,12 @@ public class AddDocumentRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {

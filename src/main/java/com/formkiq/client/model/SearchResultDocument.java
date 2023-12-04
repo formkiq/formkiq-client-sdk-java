@@ -63,7 +63,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-11-27T19:25:02.177117-06:00[America/Winnipeg]")
+    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -72,6 +72,10 @@ public class SearchResultDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
+  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
+  private String deepLinkPath;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -176,6 +180,28 @@ public class SearchResultDocument {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public SearchResultDocument deepLinkPath(String deepLinkPath) {
+
+    this.deepLinkPath = deepLinkPath;
+    return this;
+  }
+
+  /**
+   * Path or Name of deep link
+   * 
+   * @return deepLinkPath
+   **/
+  @javax.annotation.Nullable
+  public String getDeepLinkPath() {
+    return deepLinkPath;
+  }
+
+
+  public void setDeepLinkPath(String deepLinkPath) {
+    this.deepLinkPath = deepLinkPath;
   }
 
 
@@ -545,6 +571,7 @@ public class SearchResultDocument {
     SearchResultDocument searchResultDocument = (SearchResultDocument) o;
     return Objects.equals(this.siteId, searchResultDocument.siteId)
         && Objects.equals(this.path, searchResultDocument.path)
+        && Objects.equals(this.deepLinkPath, searchResultDocument.deepLinkPath)
         && Objects.equals(this.insertedDate, searchResultDocument.insertedDate)
         && Objects.equals(this.lastModifiedDate, searchResultDocument.lastModifiedDate)
         && Objects.equals(this.folder, searchResultDocument.folder)
@@ -564,9 +591,9 @@ public class SearchResultDocument {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, insertedDate, lastModifiedDate, folder, indexKey, checksum,
-        documentId, contentType, userId, contentLength, versionId, belongsToDocumentId, matchedTag,
-        matchedTags, tags, metadata);
+    return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, folder,
+        indexKey, checksum, documentId, contentType, userId, contentLength, versionId,
+        belongsToDocumentId, matchedTag, matchedTags, tags, metadata);
   }
 
   @Override
@@ -575,6 +602,7 @@ public class SearchResultDocument {
     sb.append("class SearchResultDocument {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
@@ -614,6 +642,7 @@ public class SearchResultDocument {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("path");
+    openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
     openapiFields.add("folder");
@@ -671,6 +700,12 @@ public class SearchResultDocument {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
+        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
