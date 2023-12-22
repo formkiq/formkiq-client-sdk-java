@@ -21,7 +21,7 @@
 package com.formkiq.client.invoker;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:23:50.813490-06:00[America/Winnipeg]")
+    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
 public class Configuration {
   public static final String VERSION = "1.14.0";
 

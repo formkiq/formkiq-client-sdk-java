@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:23:50.813490-06:00[America/Winnipeg]")
+    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
 public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
