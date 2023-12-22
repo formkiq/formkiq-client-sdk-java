@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -70,6 +70,10 @@ public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
+  @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
+  private String contentType;
 
   public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
@@ -126,6 +130,28 @@ public class AddDocumentUploadRequest {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public AddDocumentUploadRequest contentType(String contentType) {
+
+    this.contentType = contentType;
+    return this;
+  }
+
+  /**
+   * Document media type
+   * 
+   * @return contentType
+   **/
+  @javax.annotation.Nullable
+  public String getContentType() {
+    return contentType;
+  }
+
+
+  public void setContentType(String contentType) {
+    this.contentType = contentType;
   }
 
 
@@ -223,6 +249,7 @@ public class AddDocumentUploadRequest {
     AddDocumentUploadRequest addDocumentUploadRequest = (AddDocumentUploadRequest) o;
     return Objects.equals(this.tagSchemaId, addDocumentUploadRequest.tagSchemaId)
         && Objects.equals(this.path, addDocumentUploadRequest.path)
+        && Objects.equals(this.contentType, addDocumentUploadRequest.contentType)
         && Objects.equals(this.deepLinkPath, addDocumentUploadRequest.deepLinkPath)
         && Objects.equals(this.tags, addDocumentUploadRequest.tags)
         && Objects.equals(this.actions, addDocumentUploadRequest.actions);
@@ -230,7 +257,7 @@ public class AddDocumentUploadRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, deepLinkPath, tags, actions);
+    return Objects.hash(tagSchemaId, path, contentType, deepLinkPath, tags, actions);
   }
 
   @Override
@@ -239,6 +266,7 @@ public class AddDocumentUploadRequest {
     sb.append("class AddDocumentUploadRequest {\n");
     sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
@@ -265,6 +293,7 @@ public class AddDocumentUploadRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("tagSchemaId");
     openapiFields.add("path");
+    openapiFields.add("contentType");
     openapiFields.add("deepLinkPath");
     openapiFields.add("tags");
     openapiFields.add("actions");
@@ -310,6 +339,12 @@ public class AddDocumentUploadRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
+        && !jsonObj.get("contentType").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("contentType").toString()));
     }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {

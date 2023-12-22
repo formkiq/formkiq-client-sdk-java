@@ -147,6 +147,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddEsignatureDocusignRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddEsignatureDocusignResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddFolderRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddFolderResponse.CustomTypeAdapterFactory());
@@ -247,19 +251,9 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.EsignatureDocusignCarbonCopy.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignConfigResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.EsignatureDocusignRecipientTab.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignRequest.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.EsignatureDocusignSigner.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureSetDocusignConfigRequest.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureSetDocusignConfigResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.FulltextSearchItem.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -294,6 +288,8 @@ public class JSON {
         new com.formkiq.client.model.GetDocumentWorkflowsResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetDocumentsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetEsignatureDocusignConfigResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetFoldersResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -380,6 +376,10 @@ public class JSON {
         new com.formkiq.client.model.SetDocumentVersionRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetDocumentVersionResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SetEsignatureDocusignConfigRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SetEsignatureDocusignConfigResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetWorkflowRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

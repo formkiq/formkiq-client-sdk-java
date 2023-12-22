@@ -28,6 +28,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -75,6 +77,10 @@ public class FulltextSearchItem {
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
 
+  public static final String SERIALIZED_NAME_LAST_MODIFIED_DATE = "lastModifiedDate";
+  @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
+  private String lastModifiedDate;
+
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   private String documentId;
@@ -89,7 +95,11 @@ public class FulltextSearchItem {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private Object tags;
+  private Map<String, Object> tags = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
 
   public FulltextSearchItem() {}
 
@@ -181,6 +191,28 @@ public class FulltextSearchItem {
   }
 
 
+  public FulltextSearchItem lastModifiedDate(String lastModifiedDate) {
+
+    this.lastModifiedDate = lastModifiedDate;
+    return this;
+  }
+
+  /**
+   * Last Modified Timestamp
+   * 
+   * @return lastModifiedDate
+   **/
+  @javax.annotation.Nullable
+  public String getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+
+  public void setLastModifiedDate(String lastModifiedDate) {
+    this.lastModifiedDate = lastModifiedDate;
+  }
+
+
   public FulltextSearchItem documentId(String documentId) {
 
     this.documentId = documentId;
@@ -247,9 +279,17 @@ public class FulltextSearchItem {
   }
 
 
-  public FulltextSearchItem tags(Object tags) {
+  public FulltextSearchItem tags(Map<String, Object> tags) {
 
     this.tags = tags;
+    return this;
+  }
+
+  public FulltextSearchItem putTagsItem(String key, Object tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<>();
+    }
+    this.tags.put(key, tagsItem);
     return this;
   }
 
@@ -259,13 +299,43 @@ public class FulltextSearchItem {
    * @return tags
    **/
   @javax.annotation.Nullable
-  public Object getTags() {
+  public Map<String, Object> getTags() {
     return tags;
   }
 
 
-  public void setTags(Object tags) {
+  public void setTags(Map<String, Object> tags) {
     this.tags = tags;
+  }
+
+
+  public FulltextSearchItem metadata(Map<String, Object> metadata) {
+
+    this.metadata = metadata;
+    return this;
+  }
+
+  public FulltextSearchItem putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -283,16 +353,18 @@ public class FulltextSearchItem {
         && Objects.equals(this.path, fulltextSearchItem.path)
         && Objects.equals(this.deepLinkPath, fulltextSearchItem.deepLinkPath)
         && Objects.equals(this.insertedDate, fulltextSearchItem.insertedDate)
+        && Objects.equals(this.lastModifiedDate, fulltextSearchItem.lastModifiedDate)
         && Objects.equals(this.documentId, fulltextSearchItem.documentId)
         && Objects.equals(this.contentLength, fulltextSearchItem.contentLength)
         && Objects.equals(this.createdBy, fulltextSearchItem.createdBy)
-        && Objects.equals(this.tags, fulltextSearchItem.tags);
+        && Objects.equals(this.tags, fulltextSearchItem.tags)
+        && Objects.equals(this.metadata, fulltextSearchItem.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, deepLinkPath, insertedDate, documentId, contentLength,
-        createdBy, tags);
+    return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, documentId,
+        contentLength, createdBy, tags, metadata);
   }
 
   @Override
@@ -303,10 +375,12 @@ public class FulltextSearchItem {
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -332,10 +406,12 @@ public class FulltextSearchItem {
     openapiFields.add("path");
     openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
+    openapiFields.add("lastModifiedDate");
     openapiFields.add("documentId");
     openapiFields.add("contentLength");
     openapiFields.add("createdBy");
     openapiFields.add("tags");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -390,6 +466,12 @@ public class FulltextSearchItem {
       throw new IllegalArgumentException(String.format(
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
+    }
+    if ((jsonObj.get("lastModifiedDate") != null && !jsonObj.get("lastModifiedDate").isJsonNull())
+        && !jsonObj.get("lastModifiedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("lastModifiedDate").toString()));
     }
     if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
         && !jsonObj.get("documentId").isJsonPrimitive()) {

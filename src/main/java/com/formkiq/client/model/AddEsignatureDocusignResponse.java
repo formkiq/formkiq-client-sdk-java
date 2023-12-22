@@ -54,25 +54,51 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * EsignatureSetDocusignConfigResponse
+ * AddEsignatureDocusignResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
-public class EsignatureSetDocusignConfigResponse {
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+public class AddEsignatureDocusignResponse {
+  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
+  private String redirectUrl;
+
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public EsignatureSetDocusignConfigResponse() {}
+  public AddEsignatureDocusignResponse() {}
 
-  public EsignatureSetDocusignConfigResponse message(String message) {
+  public AddEsignatureDocusignResponse redirectUrl(String redirectUrl) {
+
+    this.redirectUrl = redirectUrl;
+    return this;
+  }
+
+  /**
+   * Redirect Url to complete DocuSign workflow
+   * 
+   * @return redirectUrl
+   **/
+  @javax.annotation.Nullable
+  public String getRedirectUrl() {
+    return redirectUrl;
+  }
+
+
+  public void setRedirectUrl(String redirectUrl) {
+    this.redirectUrl = redirectUrl;
+  }
+
+
+  public AddEsignatureDocusignResponse message(String message) {
 
     this.message = message;
     return this;
   }
 
   /**
-   * Message response
+   * Result message
    * 
    * @return message
    **/
@@ -96,20 +122,21 @@ public class EsignatureSetDocusignConfigResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EsignatureSetDocusignConfigResponse esignatureSetDocusignConfigResponse =
-        (EsignatureSetDocusignConfigResponse) o;
-    return Objects.equals(this.message, esignatureSetDocusignConfigResponse.message);
+    AddEsignatureDocusignResponse addEsignatureDocusignResponse = (AddEsignatureDocusignResponse) o;
+    return Objects.equals(this.redirectUrl, addEsignatureDocusignResponse.redirectUrl)
+        && Objects.equals(this.message, addEsignatureDocusignResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(redirectUrl, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EsignatureSetDocusignConfigResponse {\n");
+    sb.append("class AddEsignatureDocusignResponse {\n");
+    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -132,6 +159,7 @@ public class EsignatureSetDocusignConfigResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("redirect_url");
     openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
@@ -143,29 +171,35 @@ public class EsignatureSetDocusignConfigResponse {
    *
    * @param jsonElement JSON Element
    * @throws IOException if the JSON Element is invalid with respect to
-   *         EsignatureSetDocusignConfigResponse
+   *         AddEsignatureDocusignResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!EsignatureSetDocusignConfigResponse.openapiRequiredFields.isEmpty()) { // has required
-                                                                                  // fields but JSON
-                                                                                  // element is null
+      if (!AddEsignatureDocusignResponse.openapiRequiredFields.isEmpty()) { // has required fields
+                                                                            // but JSON element is
+                                                                            // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in EsignatureSetDocusignConfigResponse is not found in the empty JSON string",
-            EsignatureSetDocusignConfigResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddEsignatureDocusignResponse is not found in the empty JSON string",
+            AddEsignatureDocusignResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!EsignatureSetDocusignConfigResponse.openapiFields.contains(entry.getKey())) {
+      if (!AddEsignatureDocusignResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `EsignatureSetDocusignConfigResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddEsignatureDocusignResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("redirect_url") != null && !jsonObj.get("redirect_url").isJsonNull())
+        && !jsonObj.get("redirect_url").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `redirect_url` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("redirect_url").toString()));
+    }
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -178,24 +212,22 @@ public class EsignatureSetDocusignConfigResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!EsignatureSetDocusignConfigResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'EsignatureSetDocusignConfigResponse' and its
-                     // subtypes
+      if (!AddEsignatureDocusignResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddEsignatureDocusignResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<EsignatureSetDocusignConfigResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(EsignatureSetDocusignConfigResponse.class));
+      final TypeAdapter<AddEsignatureDocusignResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddEsignatureDocusignResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<EsignatureSetDocusignConfigResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddEsignatureDocusignResponse>() {
         @Override
-        public void write(JsonWriter out, EsignatureSetDocusignConfigResponse value)
-            throws IOException {
+        public void write(JsonWriter out, AddEsignatureDocusignResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public EsignatureSetDocusignConfigResponse read(JsonReader in) throws IOException {
+        public AddEsignatureDocusignResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -206,19 +238,18 @@ public class EsignatureSetDocusignConfigResponse {
   }
 
   /**
-   * Create an instance of EsignatureSetDocusignConfigResponse given an JSON string
+   * Create an instance of AddEsignatureDocusignResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of EsignatureSetDocusignConfigResponse
-   * @throws IOException if the JSON string is invalid with respect to
-   *         EsignatureSetDocusignConfigResponse
+   * @return An instance of AddEsignatureDocusignResponse
+   * @throws IOException if the JSON string is invalid with respect to AddEsignatureDocusignResponse
    */
-  public static EsignatureSetDocusignConfigResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EsignatureSetDocusignConfigResponse.class);
+  public static AddEsignatureDocusignResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddEsignatureDocusignResponse.class);
   }
 
   /**
-   * Convert an instance of EsignatureSetDocusignConfigResponse to an JSON string
+   * Convert an instance of AddEsignatureDocusignResponse to an JSON string
    *
    * @return JSON string
    */

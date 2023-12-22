@@ -77,6 +77,14 @@ public class UserActivityTest {
   }
 
   /**
+   * Test the property 'versionKey'
+   */
+  @Test
+  public void versionKeyTest() {
+    // TODO: test versionKey
+  }
+
+  /**
    * Test the property 'timeToLive'
    */
   @Test

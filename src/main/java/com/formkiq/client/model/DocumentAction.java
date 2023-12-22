@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class DocumentAction {
   /**
    * Status of the Document Action
@@ -218,6 +218,10 @@ public class DocumentAction {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
 
   public static final String SERIALIZED_NAME_COMPLETED_DATE = "completedDate";
   @SerializedName(SERIALIZED_NAME_COMPLETED_DATE)
@@ -409,6 +413,28 @@ public class DocumentAction {
   }
 
 
+  public DocumentAction startDate(String startDate) {
+
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Started Timestamp
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
   public DocumentAction completedDate(String completedDate) {
 
     this.completedDate = completedDate;
@@ -509,6 +535,7 @@ public class DocumentAction {
         && Objects.equals(this.message, documentAction.message)
         && Objects.equals(this.userId, documentAction.userId)
         && Objects.equals(this.insertedDate, documentAction.insertedDate)
+        && Objects.equals(this.startDate, documentAction.startDate)
         && Objects.equals(this.completedDate, documentAction.completedDate)
         && Objects.equals(this.parameters, documentAction.parameters)
         && Objects.equals(this.metadata, documentAction.metadata);
@@ -517,7 +544,7 @@ public class DocumentAction {
   @Override
   public int hashCode() {
     return Objects.hash(status, type, queueId, workflowId, workflowStepId, message, userId,
-        insertedDate, completedDate, parameters, metadata);
+        insertedDate, startDate, completedDate, parameters, metadata);
   }
 
   @Override
@@ -532,6 +559,7 @@ public class DocumentAction {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    completedDate: ").append(toIndentedString(completedDate)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -564,6 +592,7 @@ public class DocumentAction {
     openapiFields.add("message");
     openapiFields.add("userId");
     openapiFields.add("insertedDate");
+    openapiFields.add("startDate");
     openapiFields.add("completedDate");
     openapiFields.add("parameters");
     openapiFields.add("metadata");
@@ -653,6 +682,12 @@ public class DocumentAction {
       throw new IllegalArgumentException(String.format(
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
+    }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
     }
     if ((jsonObj.get("completedDate") != null && !jsonObj.get("completedDate").isJsonNull())
         && !jsonObj.get("completedDate").isJsonPrimitive()) {

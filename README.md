@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.13.0
-  - Build date: 2023-12-03T21:57:24.695816-06:00[America/Winnipeg]
+  - Build date: 2023-12-16T14:07:54.900671-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -203,10 +203,10 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
 *DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
+*ESignatureApi* | [**addEsignatureDocusign**](docs/ESignatureApi.md#addEsignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
-*ESignatureApi* | [**esignatureDocusign**](docs/ESignatureApi.md#esignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
-*ESignatureApi* | [**esignatureDocusignConfig**](docs/ESignatureApi.md#esignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
-*ESignatureApi* | [**esignatureSetDocusignConfig**](docs/ESignatureApi.md#esignatureSetDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
+*ESignatureApi* | [**getEsignatureDocusignConfig**](docs/ESignatureApi.md#getEsignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
+*ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
@@ -225,7 +225,6 @@ Class | Method | HTTP request | Description
 *TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
-*UserActivitiesApi* | [**getSpecificUserActivities**](docs/UserActivitiesApi.md#getSpecificUserActivities) | **GET** /userActivities/{userId} | Get user activities
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get configured system group(s)
 *UserManagementApi* | [**getUsersInGroup**](docs/UserManagementApi.md#getUsersInGroup) | **GET** /groups/{groupName}/users | Get users in a group
@@ -262,6 +261,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowDecisionsResponse](docs/AddDocumentWorkflowDecisionsResponse.md)
  - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
+ - [AddEsignatureDocusignRequest](docs/AddEsignatureDocusignRequest.md)
+ - [AddEsignatureDocusignResponse](docs/AddEsignatureDocusignResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
@@ -312,13 +313,8 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [ErrorsResponse](docs/ErrorsResponse.md)
  - [EsignatureDocusignCarbonCopy](docs/EsignatureDocusignCarbonCopy.md)
- - [EsignatureDocusignConfigResponse](docs/EsignatureDocusignConfigResponse.md)
  - [EsignatureDocusignRecipientTab](docs/EsignatureDocusignRecipientTab.md)
- - [EsignatureDocusignRequest](docs/EsignatureDocusignRequest.md)
- - [EsignatureDocusignResponse](docs/EsignatureDocusignResponse.md)
  - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
- - [EsignatureSetDocusignConfigRequest](docs/EsignatureSetDocusignConfigRequest.md)
- - [EsignatureSetDocusignConfigResponse](docs/EsignatureSetDocusignConfigResponse.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
@@ -336,6 +332,7 @@ Class | Method | HTTP request | Description
  - [GetDocumentWorkflowResponse](docs/GetDocumentWorkflowResponse.md)
  - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
+ - [GetEsignatureDocusignConfigResponse](docs/GetEsignatureDocusignConfigResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
@@ -379,6 +376,8 @@ Class | Method | HTTP request | Description
  - [SetDocumentTagKeyRequest](docs/SetDocumentTagKeyRequest.md)
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
+ - [SetEsignatureDocusignConfigRequest](docs/SetEsignatureDocusignConfigRequest.md)
+ - [SetEsignatureDocusignConfigResponse](docs/SetEsignatureDocusignConfigResponse.md)
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)

@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class AddWorkflowStep {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)

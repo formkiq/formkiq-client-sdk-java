@@ -284,215 +284,12 @@ public class UserActivitiesApi {
   }
 
   /**
-   * Build call for getSpecificUserActivities
-   * 
-   * @param userId Fetch specific user activities (required)
-   * @param siteId Site Identifier (optional)
-   * @param next Next page of results token (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call getSpecificUserActivitiesCall(String userId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/userActivities/{userId}".replace("{" + "userId" + "}",
-        localVarApiClient.escapeString(userId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    if (next != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
-    }
-
-    if (limit != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call getSpecificUserActivitiesValidateBeforeCall(String userId, String siteId,
-      String next, String limit, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'userId' when calling getSpecificUserActivities(Async)");
-    }
-
-    return getSpecificUserActivitiesCall(userId, siteId, next, limit, _callback);
-
-  }
-
-  /**
-   * Get user activities Retrieve a user&#39;s activities
-   * 
-   * @param userId Fetch specific user activities (required)
-   * @param siteId Site Identifier (optional)
-   * @param next Next page of results token (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @return GetUserActivitesResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public GetUserActivitesResponse getSpecificUserActivities(String userId, String siteId,
-      String next, String limit) throws ApiException {
-    ApiResponse<GetUserActivitesResponse> localVarResp =
-        getSpecificUserActivitiesWithHttpInfo(userId, siteId, next, limit);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Get user activities Retrieve a user&#39;s activities
-   * 
-   * @param userId Fetch specific user activities (required)
-   * @param siteId Site Identifier (optional)
-   * @param next Next page of results token (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @return ApiResponse&lt;GetUserActivitesResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<GetUserActivitesResponse> getSpecificUserActivitiesWithHttpInfo(String userId,
-      String siteId, String next, String limit) throws ApiException {
-    okhttp3.Call localVarCall =
-        getSpecificUserActivitiesValidateBeforeCall(userId, siteId, next, limit, null);
-    Type localVarReturnType = new TypeToken<GetUserActivitesResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Get user activities (asynchronously) Retrieve a user&#39;s activities
-   * 
-   * @param userId Fetch specific user activities (required)
-   * @param siteId Site Identifier (optional)
-   * @param next Next page of results token (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call getSpecificUserActivitiesAsync(String userId, String siteId, String next,
-      String limit, final ApiCallback<GetUserActivitesResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall =
-        getSpecificUserActivitiesValidateBeforeCall(userId, siteId, next, limit, _callback);
-    Type localVarReturnType = new TypeToken<GetUserActivitesResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
    * Build call for getUserActivities
    * 
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param userId Fetch specific user activities (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -513,7 +310,7 @@ public class UserActivitiesApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUserActivitiesCall(String siteId, String next, String limit,
+  public okhttp3.Call getUserActivitiesCall(String siteId, String next, String limit, String userId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -551,6 +348,10 @@ public class UserActivitiesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
     }
 
+    if (userId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("userId", userId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -572,8 +373,8 @@ public class UserActivitiesApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getUserActivitiesValidateBeforeCall(String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
-    return getUserActivitiesCall(siteId, next, limit, _callback);
+      String userId, final ApiCallback _callback) throws ApiException {
+    return getUserActivitiesCall(siteId, next, limit, userId, _callback);
 
   }
 
@@ -583,6 +384,7 @@ public class UserActivitiesApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param userId Fetch specific user activities (optional)
    * @return GetUserActivitesResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -603,10 +405,10 @@ public class UserActivitiesApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUserActivitesResponse getUserActivities(String siteId, String next, String limit)
-      throws ApiException {
+  public GetUserActivitesResponse getUserActivities(String siteId, String next, String limit,
+      String userId) throws ApiException {
     ApiResponse<GetUserActivitesResponse> localVarResp =
-        getUserActivitiesWithHttpInfo(siteId, next, limit);
+        getUserActivitiesWithHttpInfo(siteId, next, limit, userId);
     return localVarResp.getData();
   }
 
@@ -616,6 +418,7 @@ public class UserActivitiesApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param userId Fetch specific user activities (optional)
    * @return ApiResponse&lt;GetUserActivitesResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -637,8 +440,9 @@ public class UserActivitiesApi {
    *                        </table>
    */
   public ApiResponse<GetUserActivitesResponse> getUserActivitiesWithHttpInfo(String siteId,
-      String next, String limit) throws ApiException {
-    okhttp3.Call localVarCall = getUserActivitiesValidateBeforeCall(siteId, next, limit, null);
+      String next, String limit, String userId) throws ApiException {
+    okhttp3.Call localVarCall =
+        getUserActivitiesValidateBeforeCall(siteId, next, limit, userId, null);
     Type localVarReturnType = new TypeToken<GetUserActivitesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -649,6 +453,7 @@ public class UserActivitiesApi {
    * @param siteId Site Identifier (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
+   * @param userId Fetch specific user activities (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -670,9 +475,10 @@ public class UserActivitiesApi {
    *                        </table>
    */
   public okhttp3.Call getUserActivitiesAsync(String siteId, String next, String limit,
-      final ApiCallback<GetUserActivitesResponse> _callback) throws ApiException {
+      String userId, final ApiCallback<GetUserActivitesResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getUserActivitiesValidateBeforeCall(siteId, next, limit, _callback);
+    okhttp3.Call localVarCall =
+        getUserActivitiesValidateBeforeCall(siteId, next, limit, userId, _callback);
     Type localVarReturnType = new TypeToken<GetUserActivitesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

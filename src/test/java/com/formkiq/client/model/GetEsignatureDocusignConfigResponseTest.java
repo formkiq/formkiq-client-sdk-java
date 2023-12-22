@@ -20,81 +20,53 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.EsignatureDocusignCarbonCopy;
-import com.formkiq.client.model.EsignatureDocusignRecipientTab;
-import com.formkiq.client.model.EsignatureDocusignSigner;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for EsignatureDocusignRequest
+ * Model tests for GetEsignatureDocusignConfigResponse
  */
-public class EsignatureDocusignRequestTest {
-  private final EsignatureDocusignRequest model = new EsignatureDocusignRequest();
+public class GetEsignatureDocusignConfigResponseTest {
+  private final GetEsignatureDocusignConfigResponse model =
+      new GetEsignatureDocusignConfigResponse();
 
   /**
-   * Model tests for EsignatureDocusignRequest
+   * Model tests for GetEsignatureDocusignConfigResponse
    */
   @Test
-  public void testEsignatureDocusignRequest() {
-    // TODO: test EsignatureDocusignRequest
+  public void testGetEsignatureDocusignConfigResponse() {
+    // TODO: test GetEsignatureDocusignConfigResponse
   }
 
   /**
-   * Test the property 'emailSubject'
+   * Test the property 'configured'
    */
   @Test
-  public void emailSubjectTest() {
-    // TODO: test emailSubject
+  public void configuredTest() {
+    // TODO: test configured
   }
 
   /**
-   * Test the property 'status'
+   * Test the property 'userId'
    */
   @Test
-  public void statusTest() {
-    // TODO: test status
+  public void userIdTest() {
+    // TODO: test userId
   }
 
   /**
-   * Test the property 'developmentMode'
+   * Test the property 'clientId'
    */
   @Test
-  public void developmentModeTest() {
-    // TODO: test developmentMode
-  }
-
-  /**
-   * Test the property 'signers'
-   */
-  @Test
-  public void signersTest() {
-    // TODO: test signers
-  }
-
-  /**
-   * Test the property 'carbonCopies'
-   */
-  @Test
-  public void carbonCopiesTest() {
-    // TODO: test carbonCopies
-  }
-
-  /**
-   * Test the property 'recipientTabs'
-   */
-  @Test
-  public void recipientTabsTest() {
-    // TODO: test recipientTabs
+  public void clientIdTest() {
+    // TODO: test clientId
   }
 
 }

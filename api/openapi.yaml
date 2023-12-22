@@ -4497,64 +4497,12 @@ paths:
           default: "10"
           type: string
         style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetUserActivitesResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Get user activities
-      tags:
-      - User Activities
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
-  /userActivities/{userId}:
-    get:
-      description: Retrieve a user's activities
-      operationId: GetSpecificUserActivities
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Fetch specific user activities
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: userId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Next page of results token
-        explode: true
-        in: query
-        name: next
         required: false
         schema:
-          type: string
-        style: form
-      - description: Limit Results
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: "10"
           type: string
         style: form
       responses:
@@ -5461,7 +5409,7 @@ paths:
     post:
       description: Create a DocuSign E-Signature request; ONLY available with FormKiQ
         Enterprise
-      operationId: EsignatureDocusign
+      operationId: AddEsignatureDocusign
       parameters:
       - description: Site Identifier
         explode: true
@@ -5483,14 +5431,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EsignatureDocusignRequest'
+              $ref: '#/components/schemas/AddEsignatureDocusignRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EsignatureDocusignResponse'
+                $ref: '#/components/schemas/AddEsignatureDocusignResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -5517,7 +5465,7 @@ paths:
   /esignature/docusign/config:
     get:
       description: Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
-      operationId: EsignatureDocusignConfig
+      operationId: GetEsignatureDocusignConfig
       parameters:
       - description: Site Identifier
         explode: true
@@ -5532,7 +5480,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EsignatureDocusignConfigResponse'
+                $ref: '#/components/schemas/GetEsignatureDocusignConfigResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -5552,7 +5500,7 @@ paths:
     put:
       description: "Set DocuSign configuration, required for integration; ONLY available\
         \ with FormKiQ Enterprise"
-      operationId: EsignatureSetDocusignConfig
+      operationId: SetEsignatureDocusignConfig
       parameters:
       - description: Site Identifier
         explode: true
@@ -5566,14 +5514,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EsignatureSetDocusignConfigRequest'
+              $ref: '#/components/schemas/SetEsignatureDocusignConfigRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EsignatureSetDocusignConfigResponse'
+                $ref: '#/components/schemas/SetEsignatureDocusignConfigResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -5600,7 +5548,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EsignatureDocusignResponse'
+                $ref: '#/components/schemas/AddEsignatureDocusignResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -6315,6 +6263,7 @@ components:
             parameters:
               key: parameters
             workflowId: workflowId
+            startDate: startDate
             completedDate: completedDate
             status: COMPLETE
             workflowStepId: workflowStepId
@@ -6340,6 +6289,7 @@ components:
             parameters:
               key: parameters
             workflowId: workflowId
+            startDate: startDate
             completedDate: completedDate
             status: COMPLETE
             workflowStepId: workflowStepId
@@ -6389,6 +6339,7 @@ components:
           parameters:
             key: parameters
           workflowId: workflowId
+          startDate: startDate
           completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
@@ -7117,6 +7068,7 @@ components:
         path: path
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        contentType: contentType
         actions:
         - type: OCR
           parameters:
@@ -7168,6 +7120,9 @@ components:
         path:
           description: Path or Name of document
           type: string
+        contentType:
+          description: Document media type
+          type: string
         deepLinkPath:
           description: Path or Name of deep link
           type: string
@@ -7181,8 +7136,6 @@ components:
           items:
             $ref: '#/components/schemas/AddAction'
           type: array
-      required:
-      - content
       type: object
     AddDocumentRequest:
       example:
@@ -7782,21 +7735,29 @@ components:
       example:
         documents:
         - path: path
+          metadata:
+            key: "{}"
           deepLinkPath: deepLinkPath
           insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
           createdBy: createdBy
           siteId: siteId
           documentId: documentId
           contentLength: 0
-          tags: "{}"
+          tags:
+            key: "{}"
         - path: path
+          metadata:
+            key: "{}"
           deepLinkPath: deepLinkPath
           insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
           createdBy: createdBy
           siteId: siteId
           documentId: documentId
           contentLength: 0
-          tags: "{}"
+          tags:
+            key: "{}"
       properties:
         documents:
           description: List of search result documents
@@ -7807,13 +7768,17 @@ components:
     FulltextSearchItem:
       example:
         path: path
+        metadata:
+          key: "{}"
         deepLinkPath: deepLinkPath
         insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
         createdBy: createdBy
         siteId: siteId
         documentId: documentId
         contentLength: 0
-        tags: "{}"
+        tags:
+          key: "{}"
       properties:
         siteId:
           description: Site Identifier
@@ -7827,6 +7792,9 @@ components:
         insertedDate:
           description: Inserted Timestamp
           type: string
+        lastModifiedDate:
+          description: Last Modified Timestamp
+          type: string
         documentId:
           description: Document Identifier
           type: string
@@ -7837,6 +7805,12 @@ components:
           description: User who added document
           type: string
         tags:
+          additionalProperties:
+            type: object
+          type: object
+        metadata:
+          additionalProperties:
+            type: object
           type: object
       type: object
     GetDocumentFulltextResponse:
@@ -7956,22 +7930,24 @@ components:
     GetUserActivitesResponse:
       example:
         next: next
-        syncs:
+        userActivities:
         - activityId: activityId
           timeToLive: timeToLive
           insertedDate: insertedDate
           type: VIEW
           userId: userId
+          versionKey: versionKey
         - activityId: activityId
           timeToLive: timeToLive
           insertedDate: insertedDate
           type: VIEW
           userId: userId
+          versionKey: versionKey
       properties:
         next:
           description: Next page of results token
           type: string
-        syncs:
+        userActivities:
           description: List of user activities syncs
           items:
             $ref: '#/components/schemas/UserActivity'
@@ -7984,6 +7960,7 @@ components:
         insertedDate: insertedDate
         type: VIEW
         userId: userId
+        versionKey: versionKey
       properties:
         activityId:
           description: Activity identifier
@@ -7998,6 +7975,9 @@ components:
           type: string
         userId:
           description: User who added document
+          type: string
+        versionKey:
+          description: Document Version Identifier
           type: string
         timeToLive:
           description: User activity time to live
@@ -8767,6 +8747,7 @@ components:
           parameters:
             key: parameters
           workflowId: workflowId
+          startDate: startDate
           completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
@@ -8780,6 +8761,7 @@ components:
           parameters:
             key: parameters
           workflowId: workflowId
+          startDate: startDate
           completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
@@ -8802,6 +8784,7 @@ components:
         parameters:
           key: parameters
         workflowId: workflowId
+        startDate: startDate
         completedDate: completedDate
         status: COMPLETE
         workflowStepId: workflowStepId
@@ -8845,6 +8828,9 @@ components:
           type: string
         insertedDate:
           description: Inserted Timestamp
+          type: string
+        startDate:
+          description: Started Timestamp
           type: string
         completedDate:
           description: Completed Timestamp
@@ -10486,7 +10472,7 @@ components:
         message:
           type: string
       type: object
-    EsignatureDocusignRequest:
+    AddEsignatureDocusignRequest:
       example:
         signers:
         - name: name
@@ -10585,7 +10571,7 @@ components:
           description: Element Y Position
           type: string
       type: object
-    EsignatureDocusignResponse:
+    AddEsignatureDocusignResponse:
       example:
         message: message
         redirect_url: redirect_url
@@ -10597,7 +10583,7 @@ components:
           description: Result message
           type: string
       type: object
-    EsignatureDocusignConfigResponse:
+    GetEsignatureDocusignConfigResponse:
       example:
         configured: true
         clientId: clientId
@@ -10613,7 +10599,7 @@ components:
           description: DocuSign Client configured
           type: string
       type: object
-    EsignatureSetDocusignConfigRequest:
+    SetEsignatureDocusignConfigRequest:
       example:
         privateKey: privateKey
         clientId: clientId
@@ -10633,7 +10619,7 @@ components:
       - privateKey
       - userId
       type: object
-    EsignatureSetDocusignConfigResponse:
+    SetEsignatureDocusignConfigResponse:
       example:
         message: message
       properties:

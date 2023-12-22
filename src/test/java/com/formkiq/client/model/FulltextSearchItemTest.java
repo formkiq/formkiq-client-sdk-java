@@ -27,6 +27,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -77,6 +79,14 @@ public class FulltextSearchItemTest {
   }
 
   /**
+   * Test the property 'lastModifiedDate'
+   */
+  @Test
+  public void lastModifiedDateTest() {
+    // TODO: test lastModifiedDate
+  }
+
+  /**
    * Test the property 'documentId'
    */
   @Test
@@ -106,6 +116,14 @@ public class FulltextSearchItemTest {
   @Test
   public void tagsTest() {
     // TODO: test tags
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
 }

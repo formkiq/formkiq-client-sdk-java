@@ -64,28 +64,12 @@ public class UserActivitiesApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getSpecificUserActivitiesTest() throws ApiException {
-    String userId = null;
-    String siteId = null;
-    String next = null;
-    String limit = null;
-    GetUserActivitesResponse response = api.getSpecificUserActivities(userId, siteId, next, limit);
-    // TODO: test validations
-  }
-
-  /**
-   * Get user activities
-   *
-   * Retrieve a user&#39;s activities
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
   public void getUserActivitiesTest() throws ApiException {
     String siteId = null;
     String next = null;
     String limit = null;
-    GetUserActivitesResponse response = api.getUserActivities(siteId, next, limit);
+    String userId = null;
+    GetUserActivitesResponse response = api.getUserActivities(siteId, next, limit, userId);
     // TODO: test validations
   }
 

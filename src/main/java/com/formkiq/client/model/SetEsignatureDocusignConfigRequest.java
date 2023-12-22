@@ -54,11 +54,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * EsignatureSetDocusignConfigRequest
+ * SetEsignatureDocusignConfigRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
-public class EsignatureSetDocusignConfigRequest {
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+public class SetEsignatureDocusignConfigRequest {
   public static final String SERIALIZED_NAME_PRIVATE_KEY = "privateKey";
   @SerializedName(SERIALIZED_NAME_PRIVATE_KEY)
   private String privateKey;
@@ -71,9 +71,9 @@ public class EsignatureSetDocusignConfigRequest {
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
   private String clientId;
 
-  public EsignatureSetDocusignConfigRequest() {}
+  public SetEsignatureDocusignConfigRequest() {}
 
-  public EsignatureSetDocusignConfigRequest privateKey(String privateKey) {
+  public SetEsignatureDocusignConfigRequest privateKey(String privateKey) {
 
     this.privateKey = privateKey;
     return this;
@@ -95,7 +95,7 @@ public class EsignatureSetDocusignConfigRequest {
   }
 
 
-  public EsignatureSetDocusignConfigRequest userId(String userId) {
+  public SetEsignatureDocusignConfigRequest userId(String userId) {
 
     this.userId = userId;
     return this;
@@ -117,7 +117,7 @@ public class EsignatureSetDocusignConfigRequest {
   }
 
 
-  public EsignatureSetDocusignConfigRequest clientId(String clientId) {
+  public SetEsignatureDocusignConfigRequest clientId(String clientId) {
 
     this.clientId = clientId;
     return this;
@@ -148,11 +148,11 @@ public class EsignatureSetDocusignConfigRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EsignatureSetDocusignConfigRequest esignatureSetDocusignConfigRequest =
-        (EsignatureSetDocusignConfigRequest) o;
-    return Objects.equals(this.privateKey, esignatureSetDocusignConfigRequest.privateKey)
-        && Objects.equals(this.userId, esignatureSetDocusignConfigRequest.userId)
-        && Objects.equals(this.clientId, esignatureSetDocusignConfigRequest.clientId);
+    SetEsignatureDocusignConfigRequest setEsignatureDocusignConfigRequest =
+        (SetEsignatureDocusignConfigRequest) o;
+    return Objects.equals(this.privateKey, setEsignatureDocusignConfigRequest.privateKey)
+        && Objects.equals(this.userId, setEsignatureDocusignConfigRequest.userId)
+        && Objects.equals(this.clientId, setEsignatureDocusignConfigRequest.clientId);
   }
 
   @Override
@@ -163,7 +163,7 @@ public class EsignatureSetDocusignConfigRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EsignatureSetDocusignConfigRequest {\n");
+    sb.append("class SetEsignatureDocusignConfigRequest {\n");
     sb.append("    privateKey: ").append(toIndentedString(privateKey)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
@@ -204,31 +204,31 @@ public class EsignatureSetDocusignConfigRequest {
    *
    * @param jsonElement JSON Element
    * @throws IOException if the JSON Element is invalid with respect to
-   *         EsignatureSetDocusignConfigRequest
+   *         SetEsignatureDocusignConfigRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!EsignatureSetDocusignConfigRequest.openapiRequiredFields.isEmpty()) { // has required
+      if (!SetEsignatureDocusignConfigRequest.openapiRequiredFields.isEmpty()) { // has required
                                                                                  // fields but JSON
                                                                                  // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in EsignatureSetDocusignConfigRequest is not found in the empty JSON string",
-            EsignatureSetDocusignConfigRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in SetEsignatureDocusignConfigRequest is not found in the empty JSON string",
+            SetEsignatureDocusignConfigRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!EsignatureSetDocusignConfigRequest.openapiFields.contains(entry.getKey())) {
+      if (!SetEsignatureDocusignConfigRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `EsignatureSetDocusignConfigRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `SetEsignatureDocusignConfigRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : EsignatureSetDocusignConfigRequest.openapiRequiredFields) {
+    for (String requiredField : SetEsignatureDocusignConfigRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(
             String.format("The required field `%s` is not found in the JSON string: %s",
@@ -257,24 +257,24 @@ public class EsignatureSetDocusignConfigRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!EsignatureSetDocusignConfigRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'EsignatureSetDocusignConfigRequest' and its
+      if (!SetEsignatureDocusignConfigRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'SetEsignatureDocusignConfigRequest' and its
                      // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<EsignatureSetDocusignConfigRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(EsignatureSetDocusignConfigRequest.class));
+      final TypeAdapter<SetEsignatureDocusignConfigRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(SetEsignatureDocusignConfigRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<EsignatureSetDocusignConfigRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<SetEsignatureDocusignConfigRequest>() {
         @Override
-        public void write(JsonWriter out, EsignatureSetDocusignConfigRequest value)
+        public void write(JsonWriter out, SetEsignatureDocusignConfigRequest value)
             throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public EsignatureSetDocusignConfigRequest read(JsonReader in) throws IOException {
+        public SetEsignatureDocusignConfigRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -285,19 +285,19 @@ public class EsignatureSetDocusignConfigRequest {
   }
 
   /**
-   * Create an instance of EsignatureSetDocusignConfigRequest given an JSON string
+   * Create an instance of SetEsignatureDocusignConfigRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of EsignatureSetDocusignConfigRequest
+   * @return An instance of SetEsignatureDocusignConfigRequest
    * @throws IOException if the JSON string is invalid with respect to
-   *         EsignatureSetDocusignConfigRequest
+   *         SetEsignatureDocusignConfigRequest
    */
-  public static EsignatureSetDocusignConfigRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EsignatureSetDocusignConfigRequest.class);
+  public static SetEsignatureDocusignConfigRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SetEsignatureDocusignConfigRequest.class);
   }
 
   /**
-   * Convert an instance of EsignatureSetDocusignConfigRequest to an JSON string
+   * Convert an instance of SetEsignatureDocusignConfigRequest to an JSON string
    *
    * @return JSON string
    */

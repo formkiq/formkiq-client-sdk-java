@@ -26,6 +26,8 @@ docs/AddDocumentWorkflowDecisionsRequest.md
 docs/AddDocumentWorkflowDecisionsResponse.md
 docs/AddDocumentWorkflowRequest.md
 docs/AddDocumentWorkflowResponse.md
+docs/AddEsignatureDocusignRequest.md
+docs/AddEsignatureDocusignResponse.md
 docs/AddFolderRequest.md
 docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
@@ -89,13 +91,8 @@ docs/ESignatureApi.md
 docs/Error.md
 docs/ErrorsResponse.md
 docs/EsignatureDocusignCarbonCopy.md
-docs/EsignatureDocusignConfigResponse.md
 docs/EsignatureDocusignRecipientTab.md
-docs/EsignatureDocusignRequest.md
-docs/EsignatureDocusignResponse.md
 docs/EsignatureDocusignSigner.md
-docs/EsignatureSetDocusignConfigRequest.md
-docs/EsignatureSetDocusignConfigResponse.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
 docs/GetConfigurationResponse.md
@@ -113,6 +110,7 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentWorkflowResponse.md
 docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
+docs/GetEsignatureDocusignConfigResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
 docs/GetQueueResponse.md
@@ -158,6 +156,8 @@ docs/SetDocumentRestoreResponse.md
 docs/SetDocumentTagKeyRequest.md
 docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
+docs/SetEsignatureDocusignConfigRequest.md
+docs/SetEsignatureDocusignConfigResponse.md
 docs/SetWorkflowRequest.md
 docs/SetWorkflowResponse.md
 docs/Site.md
@@ -265,6 +265,8 @@ src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowResponse.java
+src/main/java/com/formkiq/client/model/AddEsignatureDocusignRequest.java
+src/main/java/com/formkiq/client/model/AddEsignatureDocusignResponse.java
 src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
@@ -315,13 +317,8 @@ src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/Error.java
 src/main/java/com/formkiq/client/model/ErrorsResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
-src/main/java/com/formkiq/client/model/EsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignRecipientTab.java
-src/main/java/com/formkiq/client/model/EsignatureDocusignRequest.java
-src/main/java/com/formkiq/client/model/EsignatureDocusignResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignSigner.java
-src/main/java/com/formkiq/client/model/EsignatureSetDocusignConfigRequest.java
-src/main/java/com/formkiq/client/model/EsignatureSetDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
 src/main/java/com/formkiq/client/model/GetConfigurationResponse.java
@@ -339,6 +336,7 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
+src/main/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
 src/main/java/com/formkiq/client/model/GetQueueResponse.java
@@ -382,6 +380,8 @@ src/main/java/com/formkiq/client/model/SetDocumentRestoreResponse.java
 src/main/java/com/formkiq/client/model/SetDocumentTagKeyRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
+src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequest.java
+src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/SetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Site.java
@@ -451,6 +451,8 @@ src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequestTest.j
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowResponseTest.java
+src/test/java/com/formkiq/client/model/AddEsignatureDocusignRequestTest.java
+src/test/java/com/formkiq/client/model/AddEsignatureDocusignResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
@@ -501,13 +503,8 @@ src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
 src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
-src/test/java/com/formkiq/client/model/EsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignRecipientTabTest.java
-src/test/java/com/formkiq/client/model/EsignatureDocusignRequestTest.java
-src/test/java/com/formkiq/client/model/EsignatureDocusignResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignSignerTest.java
-src/test/java/com/formkiq/client/model/EsignatureSetDocusignConfigRequestTest.java
-src/test/java/com/formkiq/client/model/EsignatureSetDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
 src/test/java/com/formkiq/client/model/GetConfigurationResponseTest.java
@@ -525,6 +522,7 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
@@ -568,6 +566,8 @@ src/test/java/com/formkiq/client/model/SetDocumentRestoreResponseTest.java
 src/test/java/com/formkiq/client/model/SetDocumentTagKeyRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
+src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequestTest.java
+src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java

@@ -60,15 +60,15 @@ import com.formkiq.client.invoker.JSON;
  * GetUserActivitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class GetUserActivitesResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
   private String next;
 
-  public static final String SERIALIZED_NAME_SYNCS = "syncs";
-  @SerializedName(SERIALIZED_NAME_SYNCS)
-  private List<UserActivity> syncs;
+  public static final String SERIALIZED_NAME_USER_ACTIVITIES = "userActivities";
+  @SerializedName(SERIALIZED_NAME_USER_ACTIVITIES)
+  private List<UserActivity> userActivities;
 
   public GetUserActivitesResponse() {}
 
@@ -94,33 +94,33 @@ public class GetUserActivitesResponse {
   }
 
 
-  public GetUserActivitesResponse syncs(List<UserActivity> syncs) {
+  public GetUserActivitesResponse userActivities(List<UserActivity> userActivities) {
 
-    this.syncs = syncs;
+    this.userActivities = userActivities;
     return this;
   }
 
-  public GetUserActivitesResponse addSyncsItem(UserActivity syncsItem) {
-    if (this.syncs == null) {
-      this.syncs = new ArrayList<>();
+  public GetUserActivitesResponse addUserActivitiesItem(UserActivity userActivitiesItem) {
+    if (this.userActivities == null) {
+      this.userActivities = new ArrayList<>();
     }
-    this.syncs.add(syncsItem);
+    this.userActivities.add(userActivitiesItem);
     return this;
   }
 
   /**
    * List of user activities syncs
    * 
-   * @return syncs
+   * @return userActivities
    **/
   @javax.annotation.Nullable
-  public List<UserActivity> getSyncs() {
-    return syncs;
+  public List<UserActivity> getUserActivities() {
+    return userActivities;
   }
 
 
-  public void setSyncs(List<UserActivity> syncs) {
-    this.syncs = syncs;
+  public void setUserActivities(List<UserActivity> userActivities) {
+    this.userActivities = userActivities;
   }
 
 
@@ -135,12 +135,12 @@ public class GetUserActivitesResponse {
     }
     GetUserActivitesResponse getUserActivitesResponse = (GetUserActivitesResponse) o;
     return Objects.equals(this.next, getUserActivitesResponse.next)
-        && Objects.equals(this.syncs, getUserActivitesResponse.syncs);
+        && Objects.equals(this.userActivities, getUserActivitesResponse.userActivities);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(next, syncs);
+    return Objects.hash(next, userActivities);
   }
 
   @Override
@@ -148,7 +148,7 @@ public class GetUserActivitesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetUserActivitesResponse {\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
-    sb.append("    syncs: ").append(toIndentedString(syncs)).append("\n");
+    sb.append("    userActivities: ").append(toIndentedString(userActivities)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,7 +171,7 @@ public class GetUserActivitesResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("next");
-    openapiFields.add("syncs");
+    openapiFields.add("userActivities");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -209,19 +209,19 @@ public class GetUserActivitesResponse {
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
-    if (jsonObj.get("syncs") != null && !jsonObj.get("syncs").isJsonNull()) {
-      JsonArray jsonArraysyncs = jsonObj.getAsJsonArray("syncs");
-      if (jsonArraysyncs != null) {
+    if (jsonObj.get("userActivities") != null && !jsonObj.get("userActivities").isJsonNull()) {
+      JsonArray jsonArrayuserActivities = jsonObj.getAsJsonArray("userActivities");
+      if (jsonArrayuserActivities != null) {
         // ensure the json data is an array
-        if (!jsonObj.get("syncs").isJsonArray()) {
+        if (!jsonObj.get("userActivities").isJsonArray()) {
           throw new IllegalArgumentException(String.format(
-              "Expected the field `syncs` to be an array in the JSON string but got `%s`",
-              jsonObj.get("syncs").toString()));
+              "Expected the field `userActivities` to be an array in the JSON string but got `%s`",
+              jsonObj.get("userActivities").toString()));
         }
 
-        // validate the optional field `syncs` (array)
-        for (int i = 0; i < jsonArraysyncs.size(); i++) {
-          UserActivity.validateJsonElement(jsonArraysyncs.get(i));
+        // validate the optional field `userActivities` (array)
+        for (int i = 0; i < jsonArrayuserActivities.size(); i++) {
+          UserActivity.validateJsonElement(jsonArrayuserActivities.get(i));
         } ;
       }
     }

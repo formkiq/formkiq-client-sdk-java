@@ -65,6 +65,14 @@ public class AddDocumentUploadRequestTest {
   }
 
   /**
+   * Test the property 'contentType'
+   */
+  @Test
+  public void contentTypeTest() {
+    // TODO: test contentType
+  }
+
+  /**
    * Test the property 'deepLinkPath'
    */
   @Test

@@ -31,33 +31,41 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for EsignatureDocusignResponse
+ * Model tests for SetEsignatureDocusignConfigRequest
  */
-public class EsignatureDocusignResponseTest {
-  private final EsignatureDocusignResponse model = new EsignatureDocusignResponse();
+public class SetEsignatureDocusignConfigRequestTest {
+  private final SetEsignatureDocusignConfigRequest model = new SetEsignatureDocusignConfigRequest();
 
   /**
-   * Model tests for EsignatureDocusignResponse
+   * Model tests for SetEsignatureDocusignConfigRequest
    */
   @Test
-  public void testEsignatureDocusignResponse() {
-    // TODO: test EsignatureDocusignResponse
+  public void testSetEsignatureDocusignConfigRequest() {
+    // TODO: test SetEsignatureDocusignConfigRequest
   }
 
   /**
-   * Test the property 'redirectUrl'
+   * Test the property 'privateKey'
    */
   @Test
-  public void redirectUrlTest() {
-    // TODO: test redirectUrl
+  public void privateKeyTest() {
+    // TODO: test privateKey
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'userId'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void userIdTest() {
+    // TODO: test userId
+  }
+
+  /**
+   * Test the property 'clientId'
+   */
+  @Test
+  public void clientIdTest() {
+    // TODO: test clientId
   }
 
 }

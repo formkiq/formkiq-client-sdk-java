@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
 public class UserActivity {
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
@@ -125,6 +125,10 @@ public class UserActivity {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
+  @SerializedName(SERIALIZED_NAME_VERSION_KEY)
+  private String versionKey;
 
   public static final String SERIALIZED_NAME_TIME_TO_LIVE = "timeToLive";
   @SerializedName(SERIALIZED_NAME_TIME_TO_LIVE)
@@ -220,6 +224,28 @@ public class UserActivity {
   }
 
 
+  public UserActivity versionKey(String versionKey) {
+
+    this.versionKey = versionKey;
+    return this;
+  }
+
+  /**
+   * Document Version Identifier
+   * 
+   * @return versionKey
+   **/
+  @javax.annotation.Nullable
+  public String getVersionKey() {
+    return versionKey;
+  }
+
+
+  public void setVersionKey(String versionKey) {
+    this.versionKey = versionKey;
+  }
+
+
   public UserActivity timeToLive(String timeToLive) {
 
     this.timeToLive = timeToLive;
@@ -256,12 +282,13 @@ public class UserActivity {
         && Objects.equals(this.type, userActivity.type)
         && Objects.equals(this.insertedDate, userActivity.insertedDate)
         && Objects.equals(this.userId, userActivity.userId)
+        && Objects.equals(this.versionKey, userActivity.versionKey)
         && Objects.equals(this.timeToLive, userActivity.timeToLive);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityId, type, insertedDate, userId, timeToLive);
+    return Objects.hash(activityId, type, insertedDate, userId, versionKey, timeToLive);
   }
 
   @Override
@@ -272,6 +299,7 @@ public class UserActivity {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
     sb.append("    timeToLive: ").append(toIndentedString(timeToLive)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -298,6 +326,7 @@ public class UserActivity {
     openapiFields.add("type");
     openapiFields.add("insertedDate");
     openapiFields.add("userId");
+    openapiFields.add("versionKey");
     openapiFields.add("timeToLive");
 
     // a set of required properties/fields (JSON key names)
@@ -357,6 +386,12 @@ public class UserActivity {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
+    }
+    if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
+        && !jsonObj.get("versionKey").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `versionKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("versionKey").toString()));
     }
     if ((jsonObj.get("timeToLive") != null && !jsonObj.get("timeToLive").isJsonNull())
         && !jsonObj.get("timeToLive").isJsonPrimitive()) {

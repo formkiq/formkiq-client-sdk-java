@@ -59,11 +59,11 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * EsignatureDocusignRequest
+ * AddEsignatureDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-03T21:57:24.695816-06:00[America/Winnipeg]")
-public class EsignatureDocusignRequest {
+    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+public class AddEsignatureDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
   private String emailSubject;
@@ -141,9 +141,9 @@ public class EsignatureDocusignRequest {
   @SerializedName(SERIALIZED_NAME_RECIPIENT_TABS)
   private List<EsignatureDocusignRecipientTab> recipientTabs;
 
-  public EsignatureDocusignRequest() {}
+  public AddEsignatureDocusignRequest() {}
 
-  public EsignatureDocusignRequest emailSubject(String emailSubject) {
+  public AddEsignatureDocusignRequest emailSubject(String emailSubject) {
 
     this.emailSubject = emailSubject;
     return this;
@@ -165,7 +165,7 @@ public class EsignatureDocusignRequest {
   }
 
 
-  public EsignatureDocusignRequest status(StatusEnum status) {
+  public AddEsignatureDocusignRequest status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -187,7 +187,7 @@ public class EsignatureDocusignRequest {
   }
 
 
-  public EsignatureDocusignRequest developmentMode(Boolean developmentMode) {
+  public AddEsignatureDocusignRequest developmentMode(Boolean developmentMode) {
 
     this.developmentMode = developmentMode;
     return this;
@@ -209,13 +209,13 @@ public class EsignatureDocusignRequest {
   }
 
 
-  public EsignatureDocusignRequest signers(List<EsignatureDocusignSigner> signers) {
+  public AddEsignatureDocusignRequest signers(List<EsignatureDocusignSigner> signers) {
 
     this.signers = signers;
     return this;
   }
 
-  public EsignatureDocusignRequest addSignersItem(EsignatureDocusignSigner signersItem) {
+  public AddEsignatureDocusignRequest addSignersItem(EsignatureDocusignSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -239,13 +239,14 @@ public class EsignatureDocusignRequest {
   }
 
 
-  public EsignatureDocusignRequest carbonCopies(List<EsignatureDocusignCarbonCopy> carbonCopies) {
+  public AddEsignatureDocusignRequest carbonCopies(
+      List<EsignatureDocusignCarbonCopy> carbonCopies) {
 
     this.carbonCopies = carbonCopies;
     return this;
   }
 
-  public EsignatureDocusignRequest addCarbonCopiesItem(
+  public AddEsignatureDocusignRequest addCarbonCopiesItem(
       EsignatureDocusignCarbonCopy carbonCopiesItem) {
     if (this.carbonCopies == null) {
       this.carbonCopies = new ArrayList<>();
@@ -270,14 +271,14 @@ public class EsignatureDocusignRequest {
   }
 
 
-  public EsignatureDocusignRequest recipientTabs(
+  public AddEsignatureDocusignRequest recipientTabs(
       List<EsignatureDocusignRecipientTab> recipientTabs) {
 
     this.recipientTabs = recipientTabs;
     return this;
   }
 
-  public EsignatureDocusignRequest addRecipientTabsItem(
+  public AddEsignatureDocusignRequest addRecipientTabsItem(
       EsignatureDocusignRecipientTab recipientTabsItem) {
     if (this.recipientTabs == null) {
       this.recipientTabs = new ArrayList<>();
@@ -311,13 +312,13 @@ public class EsignatureDocusignRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EsignatureDocusignRequest esignatureDocusignRequest = (EsignatureDocusignRequest) o;
-    return Objects.equals(this.emailSubject, esignatureDocusignRequest.emailSubject)
-        && Objects.equals(this.status, esignatureDocusignRequest.status)
-        && Objects.equals(this.developmentMode, esignatureDocusignRequest.developmentMode)
-        && Objects.equals(this.signers, esignatureDocusignRequest.signers)
-        && Objects.equals(this.carbonCopies, esignatureDocusignRequest.carbonCopies)
-        && Objects.equals(this.recipientTabs, esignatureDocusignRequest.recipientTabs);
+    AddEsignatureDocusignRequest addEsignatureDocusignRequest = (AddEsignatureDocusignRequest) o;
+    return Objects.equals(this.emailSubject, addEsignatureDocusignRequest.emailSubject)
+        && Objects.equals(this.status, addEsignatureDocusignRequest.status)
+        && Objects.equals(this.developmentMode, addEsignatureDocusignRequest.developmentMode)
+        && Objects.equals(this.signers, addEsignatureDocusignRequest.signers)
+        && Objects.equals(this.carbonCopies, addEsignatureDocusignRequest.carbonCopies)
+        && Objects.equals(this.recipientTabs, addEsignatureDocusignRequest.recipientTabs);
   }
 
   @Override
@@ -329,7 +330,7 @@ public class EsignatureDocusignRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EsignatureDocusignRequest {\n");
+    sb.append("class AddEsignatureDocusignRequest {\n");
     sb.append("    emailSubject: ").append(toIndentedString(emailSubject)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    developmentMode: ").append(toIndentedString(developmentMode)).append("\n");
@@ -372,24 +373,25 @@ public class EsignatureDocusignRequest {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to EsignatureDocusignRequest
+   * @throws IOException if the JSON Element is invalid with respect to AddEsignatureDocusignRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!EsignatureDocusignRequest.openapiRequiredFields.isEmpty()) { // has required fields but
-                                                                        // JSON element is null
+      if (!AddEsignatureDocusignRequest.openapiRequiredFields.isEmpty()) { // has required fields
+                                                                           // but JSON element is
+                                                                           // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in EsignatureDocusignRequest is not found in the empty JSON string",
-            EsignatureDocusignRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddEsignatureDocusignRequest is not found in the empty JSON string",
+            AddEsignatureDocusignRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!EsignatureDocusignRequest.openapiFields.contains(entry.getKey())) {
+      if (!AddEsignatureDocusignRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `EsignatureDocusignRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddEsignatureDocusignRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -464,22 +466,22 @@ public class EsignatureDocusignRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!EsignatureDocusignRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'EsignatureDocusignRequest' and its subtypes
+      if (!AddEsignatureDocusignRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddEsignatureDocusignRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<EsignatureDocusignRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(EsignatureDocusignRequest.class));
+      final TypeAdapter<AddEsignatureDocusignRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddEsignatureDocusignRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<EsignatureDocusignRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddEsignatureDocusignRequest>() {
         @Override
-        public void write(JsonWriter out, EsignatureDocusignRequest value) throws IOException {
+        public void write(JsonWriter out, AddEsignatureDocusignRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public EsignatureDocusignRequest read(JsonReader in) throws IOException {
+        public AddEsignatureDocusignRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -490,18 +492,18 @@ public class EsignatureDocusignRequest {
   }
 
   /**
-   * Create an instance of EsignatureDocusignRequest given an JSON string
+   * Create an instance of AddEsignatureDocusignRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of EsignatureDocusignRequest
-   * @throws IOException if the JSON string is invalid with respect to EsignatureDocusignRequest
+   * @return An instance of AddEsignatureDocusignRequest
+   * @throws IOException if the JSON string is invalid with respect to AddEsignatureDocusignRequest
    */
-  public static EsignatureDocusignRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EsignatureDocusignRequest.class);
+  public static AddEsignatureDocusignRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddEsignatureDocusignRequest.class);
   }
 
   /**
-   * Convert an instance of EsignatureDocusignRequest to an JSON string
+   * Convert an instance of AddEsignatureDocusignRequest to an JSON string
    *
    * @return JSON string
    */

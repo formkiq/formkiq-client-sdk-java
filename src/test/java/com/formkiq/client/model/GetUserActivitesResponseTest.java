@@ -56,11 +56,11 @@ public class GetUserActivitesResponseTest {
   }
 
   /**
-   * Test the property 'syncs'
+   * Test the property 'userActivities'
    */
   @Test
-  public void syncsTest() {
-    // TODO: test syncs
+  public void userActivitiesTest() {
+    // TODO: test userActivities
   }
 
 }
