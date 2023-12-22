@@ -55,6 +55,7 @@ docs/DeleteApiKeyResponse.md
 docs/DeleteFolderResponse.md
 docs/DeleteFulltextResponse.md
 docs/DeleteIndicesResponse.md
+docs/DeleteOpaConfigurationResponse.md
 docs/DeleteQueueResponse.md
 docs/DeleteShareResponse.md
 docs/DeleteWorkflowResponse.md
@@ -113,6 +114,7 @@ docs/GetDocumentsResponse.md
 docs/GetEsignatureDocusignConfigResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
+docs/GetOpaConfigurationResponse.md
 docs/GetQueueResponse.md
 docs/GetQueuesResponse.md
 docs/GetSitesResponse.md
@@ -158,6 +160,8 @@ docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
 docs/SetEsignatureDocusignConfigRequest.md
 docs/SetEsignatureDocusignConfigResponse.md
+docs/SetOpaConfigurationRequest.md
+docs/SetOpaConfigurationResponse.md
 docs/SetWorkflowRequest.md
 docs/SetWorkflowResponse.md
 docs/Site.md
@@ -291,6 +295,7 @@ src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
 src/main/java/com/formkiq/client/model/DeleteFolderResponse.java
 src/main/java/com/formkiq/client/model/DeleteFulltextResponse.java
 src/main/java/com/formkiq/client/model/DeleteIndicesResponse.java
+src/main/java/com/formkiq/client/model/DeleteOpaConfigurationResponse.java
 src/main/java/com/formkiq/client/model/DeleteQueueResponse.java
 src/main/java/com/formkiq/client/model/DeleteShareResponse.java
 src/main/java/com/formkiq/client/model/DeleteWorkflowResponse.java
@@ -339,6 +344,7 @@ src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetOpaConfigurationResponse.java
 src/main/java/com/formkiq/client/model/GetQueueResponse.java
 src/main/java/com/formkiq/client/model/GetQueuesResponse.java
 src/main/java/com/formkiq/client/model/GetSitesResponse.java
@@ -382,6 +388,8 @@ src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
 src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequest.java
 src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponse.java
+src/main/java/com/formkiq/client/model/SetOpaConfigurationRequest.java
+src/main/java/com/formkiq/client/model/SetOpaConfigurationResponse.java
 src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/SetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Site.java
@@ -477,6 +485,7 @@ src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFolderResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteIndicesResponseTest.java
+src/test/java/com/formkiq/client/model/DeleteOpaConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteQueueResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteShareResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteWorkflowResponseTest.java
@@ -525,6 +534,7 @@ src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetOpaConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetSitesResponseTest.java
@@ -568,6 +578,8 @@ src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
 src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequestTest.java
 src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponseTest.java
+src/test/java/com/formkiq/client/model/SetOpaConfigurationRequestTest.java
+src/test/java/com/formkiq/client/model/SetOpaConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java

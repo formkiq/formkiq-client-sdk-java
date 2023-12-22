@@ -1,8 +1,8 @@
 # client
 
 FormKiQ HTTP API
-- API version: 1.13.0
-  - Build date: 2023-12-16T14:07:54.900671-06:00[America/Winnipeg]
+- API version: 1.14.0
+  - Build date: 2023-12-22T14:23:50.813490-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -59,7 +59,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.13.0</version>
+  <version>1.14.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -75,7 +75,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.13.0"
+     implementation "com.formkiq:client:1.14.0"
   }
 ```
 
@@ -89,7 +89,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.13.0.jar`
+* `target/client-1.14.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -194,6 +194,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
+*DocumentsApi* | [**deleteOpaConfiguration**](docs/DocumentsApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa | Delete OPA Configuration
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
@@ -216,8 +217,10 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration
+*SystemManagementApi* | [**getOpaConfiguration**](docs/SystemManagementApi.md#getOpaConfiguration) | **GET** /configuration/opa | Get OPA Configuration
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
+*SystemManagementApi* | [**setOpaConfiguration**](docs/SystemManagementApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
@@ -287,6 +290,7 @@ Class | Method | HTTP request | Description
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
+ - [DeleteOpaConfigurationResponse](docs/DeleteOpaConfigurationResponse.md)
  - [DeleteQueueResponse](docs/DeleteQueueResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
  - [DeleteWorkflowResponse](docs/DeleteWorkflowResponse.md)
@@ -335,6 +339,7 @@ Class | Method | HTTP request | Description
  - [GetEsignatureDocusignConfigResponse](docs/GetEsignatureDocusignConfigResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
+ - [GetOpaConfigurationResponse](docs/GetOpaConfigurationResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
@@ -378,6 +383,8 @@ Class | Method | HTTP request | Description
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [SetEsignatureDocusignConfigRequest](docs/SetEsignatureDocusignConfigRequest.md)
  - [SetEsignatureDocusignConfigResponse](docs/SetEsignatureDocusignConfigResponse.md)
+ - [SetOpaConfigurationRequest](docs/SetOpaConfigurationRequest.md)
+ - [SetOpaConfigurationResponse](docs/SetOpaConfigurationResponse.md)
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)

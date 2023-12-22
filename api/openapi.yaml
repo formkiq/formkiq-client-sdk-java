@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ HTTP API
-  version: 1.13.0
+  version: 1.14.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -397,6 +397,129 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /configuration/opa:
+    delete:
+      description: Delete OPA Configuration
+      operationId: DeleteOpaConfiguration
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOpaConfigurationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete OPA Configuration
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Returns OPA Configuration
+      operationId: GetOpaConfiguration
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOpaConfigurationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get OPA Configuration
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    put:
+      description: Set OPA Configuration
+      operationId: SetOpaConfiguration
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            examples:
+              AddApiKey:
+                value:
+                  name: My API Key
+            schema:
+              $ref: '#/components/schemas/SetOpaConfigurationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetOpaConfigurationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Set OPA Configuration
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts: application/json
   /documents:
     get:
@@ -1868,7 +1991,9 @@ paths:
         \ Composite Keys feature then multiple tag(s) can be searched for.\n\nIf Typesense\
         \ is enabled, full text search is supported through the \"text\" parameter.\
         \ Full text search will look for the text in the \"content\" and/or document\
-        \ \"metadata\".\n\nSee requestBody examples below for commmon examples."
+        \ \"metadata\".\n\nDocumentIds parameter allows you to filter your results\
+        \ to a specific set of documents. \n\nSee requestBody examples below for commmon\
+        \ examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -2115,24 +2240,26 @@ paths:
       description: |-
         Add one or more actions to a document; this appends actions and does not replace previous actions
 
+        Each action type supports a different set of parameters as shown in the table below:
+
         ### Action Parameters
 
-        | ActionType | Parameter | Description |
-        | -------- | ------- | ------- |
-        | OCR  | ocrParseTypes | Ocr Parsing strategy to use |
-        | OCR | ocrEngine     | Ocr Engine to use |
-        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text |
-        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination |
-        | DOCUMENTTAGGING    | engine    | Tagging Engine to use |
-        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords |
-        | WEBHOOK    | url    | Webhook URL |
-        | NOTIFICATION    | notificationType | Type of Notification |
-        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy |
-        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy |
-        | NOTIFICATION    | notificationSubject    | Notification Subject |
-        | NOTIFICATION    | notificationText    | Notification as Text |
-        | NOTIFICATION    | notificationHtml    | Notification as Html |
-        | QUEUE    | queueName    | Name of Queue |
+        | ActionType | Parameter | Description | Example |
+        | -------- | ------- | ------- | ------- |
+        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
+        | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
+        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
+        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
+        | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
+        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
+        | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint |
+        | NOTIFICATION    | notificationType | Type of Notification | email |
+        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | <email>@yourdomain.com |
+        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | <email>@yourdomain.com |
+        | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
+        | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
+        | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
+        | QUEUE    | queueName    | Name of Queue | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -9339,6 +9466,38 @@ components:
           type: string
       type: object
     DeleteApiKeyResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    GetOpaConfigurationResponse:
+      example:
+        policy: policy
+      properties:
+        policy:
+          description: OPA Policy in YAML format
+          type: string
+      type: object
+    SetOpaConfigurationRequest:
+      example:
+        policy: policy
+      properties:
+        policy:
+          description: OPA Policy in YAML format
+          type: string
+      type: object
+    SetOpaConfigurationResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteOpaConfigurationResponse:
       example:
         message: message
       properties:
