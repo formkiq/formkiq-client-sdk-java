@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -127,7 +127,6 @@ public class AddShare {
   public AddShare() {}
 
   public AddShare group(String group) {
-
     this.group = group;
     return this;
   }
@@ -142,14 +141,12 @@ public class AddShare {
     return group;
   }
 
-
   public void setGroup(String group) {
     this.group = group;
   }
 
 
   public AddShare permissions(List<PermissionsEnum> permissions) {
-
     this.permissions = permissions;
     return this;
   }
@@ -171,7 +168,6 @@ public class AddShare {
   public List<PermissionsEnum> getPermissions() {
     return permissions;
   }
-
 
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;

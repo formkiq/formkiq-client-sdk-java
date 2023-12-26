@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWebhookRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddWebhookRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -81,7 +81,6 @@ public class AddWebhookRequest {
   public AddWebhookRequest() {}
 
   public AddWebhookRequest name(String name) {
-
     this.name = name;
     return this;
   }
@@ -96,14 +95,12 @@ public class AddWebhookRequest {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public AddWebhookRequest ttl(String ttl) {
-
     this.ttl = ttl;
     return this;
   }
@@ -118,14 +115,12 @@ public class AddWebhookRequest {
     return ttl;
   }
 
-
   public void setTtl(String ttl) {
     this.ttl = ttl;
   }
 
 
   public AddWebhookRequest enabled(String enabled) {
-
     this.enabled = enabled;
     return this;
   }
@@ -140,14 +135,12 @@ public class AddWebhookRequest {
     return enabled;
   }
 
-
   public void setEnabled(String enabled) {
     this.enabled = enabled;
   }
 
 
   public AddWebhookRequest tags(List<AddDocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -169,7 +162,6 @@ public class AddWebhookRequest {
   public List<AddDocumentTag> getTags() {
     return tags;
   }
-
 
   public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;

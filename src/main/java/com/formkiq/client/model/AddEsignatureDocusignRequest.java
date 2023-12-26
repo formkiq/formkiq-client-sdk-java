@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * AddEsignatureDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddEsignatureDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
@@ -144,7 +144,6 @@ public class AddEsignatureDocusignRequest {
   public AddEsignatureDocusignRequest() {}
 
   public AddEsignatureDocusignRequest emailSubject(String emailSubject) {
-
     this.emailSubject = emailSubject;
     return this;
   }
@@ -159,14 +158,12 @@ public class AddEsignatureDocusignRequest {
     return emailSubject;
   }
 
-
   public void setEmailSubject(String emailSubject) {
     this.emailSubject = emailSubject;
   }
 
 
   public AddEsignatureDocusignRequest status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -181,14 +178,12 @@ public class AddEsignatureDocusignRequest {
     return status;
   }
 
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
   public AddEsignatureDocusignRequest developmentMode(Boolean developmentMode) {
-
     this.developmentMode = developmentMode;
     return this;
   }
@@ -203,14 +198,12 @@ public class AddEsignatureDocusignRequest {
     return developmentMode;
   }
 
-
   public void setDevelopmentMode(Boolean developmentMode) {
     this.developmentMode = developmentMode;
   }
 
 
   public AddEsignatureDocusignRequest signers(List<EsignatureDocusignSigner> signers) {
-
     this.signers = signers;
     return this;
   }
@@ -233,7 +226,6 @@ public class AddEsignatureDocusignRequest {
     return signers;
   }
 
-
   public void setSigners(List<EsignatureDocusignSigner> signers) {
     this.signers = signers;
   }
@@ -241,7 +233,6 @@ public class AddEsignatureDocusignRequest {
 
   public AddEsignatureDocusignRequest carbonCopies(
       List<EsignatureDocusignCarbonCopy> carbonCopies) {
-
     this.carbonCopies = carbonCopies;
     return this;
   }
@@ -265,7 +256,6 @@ public class AddEsignatureDocusignRequest {
     return carbonCopies;
   }
 
-
   public void setCarbonCopies(List<EsignatureDocusignCarbonCopy> carbonCopies) {
     this.carbonCopies = carbonCopies;
   }
@@ -273,7 +263,6 @@ public class AddEsignatureDocusignRequest {
 
   public AddEsignatureDocusignRequest recipientTabs(
       List<EsignatureDocusignRecipientTab> recipientTabs) {
-
     this.recipientTabs = recipientTabs;
     return this;
   }
@@ -296,7 +285,6 @@ public class AddEsignatureDocusignRequest {
   public List<EsignatureDocusignRecipientTab> getRecipientTabs() {
     return recipientTabs;
   }
-
 
   public void setRecipientTabs(List<EsignatureDocusignRecipientTab> recipientTabs) {
     this.recipientTabs = recipientTabs;

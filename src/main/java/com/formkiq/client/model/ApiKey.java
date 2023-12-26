@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * ApiKey
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class ApiKey {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -143,7 +143,6 @@ public class ApiKey {
   public ApiKey() {}
 
   public ApiKey name(String name) {
-
     this.name = name;
     return this;
   }
@@ -158,14 +157,12 @@ public class ApiKey {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public ApiKey apiKey(String apiKey) {
-
     this.apiKey = apiKey;
     return this;
   }
@@ -180,14 +177,12 @@ public class ApiKey {
     return apiKey;
   }
 
-
   public void setApiKey(String apiKey) {
     this.apiKey = apiKey;
   }
 
 
   public ApiKey userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -202,14 +197,12 @@ public class ApiKey {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public ApiKey siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -224,14 +217,12 @@ public class ApiKey {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public ApiKey insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -246,14 +237,12 @@ public class ApiKey {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public ApiKey permissions(List<PermissionsEnum> permissions) {
-
     this.permissions = permissions;
     return this;
   }
@@ -275,7 +264,6 @@ public class ApiKey {
   public List<PermissionsEnum> getPermissions() {
     return permissions;
   }
-
 
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;

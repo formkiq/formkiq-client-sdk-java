@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentSearchTag {
   public static final String SERIALIZED_NAME_BEGINS_WITH = "beginsWith";
   @SerializedName(SERIALIZED_NAME_BEGINS_WITH)
@@ -80,7 +80,6 @@ public class DocumentSearchTag {
   public DocumentSearchTag() {}
 
   public DocumentSearchTag beginsWith(String beginsWith) {
-
     this.beginsWith = beginsWith;
     return this;
   }
@@ -95,14 +94,12 @@ public class DocumentSearchTag {
     return beginsWith;
   }
 
-
   public void setBeginsWith(String beginsWith) {
     this.beginsWith = beginsWith;
   }
 
 
   public DocumentSearchTag eq(String eq) {
-
     this.eq = eq;
     return this;
   }
@@ -117,14 +114,12 @@ public class DocumentSearchTag {
     return eq;
   }
 
-
   public void setEq(String eq) {
     this.eq = eq;
   }
 
 
   public DocumentSearchTag eqOr(List<String> eqOr) {
-
     this.eqOr = eqOr;
     return this;
   }
@@ -147,14 +142,12 @@ public class DocumentSearchTag {
     return eqOr;
   }
 
-
   public void setEqOr(List<String> eqOr) {
     this.eqOr = eqOr;
   }
 
 
   public DocumentSearchTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -168,7 +161,6 @@ public class DocumentSearchTag {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

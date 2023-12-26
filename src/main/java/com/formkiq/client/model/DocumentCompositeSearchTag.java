@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentCompositeSearchTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentCompositeSearchTag {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -70,7 +70,6 @@ public class DocumentCompositeSearchTag {
   public DocumentCompositeSearchTag() {}
 
   public DocumentCompositeSearchTag eq(String eq) {
-
     this.eq = eq;
     return this;
   }
@@ -85,14 +84,12 @@ public class DocumentCompositeSearchTag {
     return eq;
   }
 
-
   public void setEq(String eq) {
     this.eq = eq;
   }
 
 
   public DocumentCompositeSearchTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -106,7 +103,6 @@ public class DocumentCompositeSearchTag {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

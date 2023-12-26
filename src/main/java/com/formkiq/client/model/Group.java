@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Group
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class Group {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -78,7 +78,6 @@ public class Group {
   public Group() {}
 
   public Group name(String name) {
-
     this.name = name;
     return this;
   }
@@ -93,14 +92,12 @@ public class Group {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public Group description(String description) {
-
     this.description = description;
     return this;
   }
@@ -115,14 +112,12 @@ public class Group {
     return description;
   }
 
-
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public Group insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -137,14 +132,12 @@ public class Group {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public Group lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -158,7 +151,6 @@ public class Group {
   public String getLastModifiedDate() {
     return lastModifiedDate;
   }
-
 
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;

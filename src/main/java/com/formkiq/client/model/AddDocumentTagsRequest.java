@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * Add List of document tags
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentTagsRequest {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -69,7 +69,6 @@ public class AddDocumentTagsRequest {
   public AddDocumentTagsRequest() {}
 
   public AddDocumentTagsRequest tags(List<AddDocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -91,7 +90,6 @@ public class AddDocumentTagsRequest {
   public List<AddDocumentTag> getTags() {
     return tags;
   }
-
 
   public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -190,7 +190,6 @@ public class Site {
   public Site() {}
 
   public Site siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -205,14 +204,12 @@ public class Site {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public Site permission(PermissionEnum permission) {
-
     this.permission = permission;
     return this;
   }
@@ -227,14 +224,12 @@ public class Site {
     return permission;
   }
 
-
   public void setPermission(PermissionEnum permission) {
     this.permission = permission;
   }
 
 
   public Site permissions(List<PermissionsEnum> permissions) {
-
     this.permissions = permissions;
     return this;
   }
@@ -257,14 +252,12 @@ public class Site {
     return permissions;
   }
 
-
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;
   }
 
 
   public Site uploadEmail(String uploadEmail) {
-
     this.uploadEmail = uploadEmail;
     return this;
   }
@@ -278,7 +271,6 @@ public class Site {
   public String getUploadEmail() {
     return uploadEmail;
   }
-
 
   public void setUploadEmail(String uploadEmail) {
     this.uploadEmail = uploadEmail;

@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddWorkflowStep {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
@@ -83,7 +83,6 @@ public class AddWorkflowStep {
   public AddWorkflowStep() {}
 
   public AddWorkflowStep stepId(String stepId) {
-
     this.stepId = stepId;
     return this;
   }
@@ -98,14 +97,12 @@ public class AddWorkflowStep {
     return stepId;
   }
 
-
   public void setStepId(String stepId) {
     this.stepId = stepId;
   }
 
 
   public AddWorkflowStep action(AddAction action) {
-
     this.action = action;
     return this;
   }
@@ -120,14 +117,12 @@ public class AddWorkflowStep {
     return action;
   }
 
-
   public void setAction(AddAction action) {
     this.action = action;
   }
 
 
   public AddWorkflowStep queue(AddWorkflowStepQueue queue) {
-
     this.queue = queue;
     return this;
   }
@@ -142,14 +137,12 @@ public class AddWorkflowStep {
     return queue;
   }
 
-
   public void setQueue(AddWorkflowStepQueue queue) {
     this.queue = queue;
   }
 
 
   public AddWorkflowStep decisions(List<AddWorkflowStepDecision> decisions) {
-
     this.decisions = decisions;
     return this;
   }
@@ -171,7 +164,6 @@ public class AddWorkflowStep {
   public List<AddWorkflowStepDecision> getDecisions() {
     return decisions;
   }
-
 
   public void setDecisions(List<AddWorkflowStepDecision> decisions) {
     this.decisions = decisions;

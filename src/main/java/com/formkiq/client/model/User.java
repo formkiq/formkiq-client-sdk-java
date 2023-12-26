@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * User
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class User {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -78,7 +78,6 @@ public class User {
   public User() {}
 
   public User username(String username) {
-
     this.username = username;
     return this;
   }
@@ -93,14 +92,12 @@ public class User {
     return username;
   }
 
-
   public void setUsername(String username) {
     this.username = username;
   }
 
 
   public User userStatus(String userStatus) {
-
     this.userStatus = userStatus;
     return this;
   }
@@ -115,14 +112,12 @@ public class User {
     return userStatus;
   }
 
-
   public void setUserStatus(String userStatus) {
     this.userStatus = userStatus;
   }
 
 
   public User insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -137,14 +132,12 @@ public class User {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public User lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -158,7 +151,6 @@ public class User {
   public String getLastModifiedDate() {
     return lastModifiedDate;
   }
-
 
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;

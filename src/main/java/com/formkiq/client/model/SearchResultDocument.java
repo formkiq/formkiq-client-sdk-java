@@ -63,7 +63,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -140,7 +140,6 @@ public class SearchResultDocument {
   public SearchResultDocument() {}
 
   public SearchResultDocument siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -155,14 +154,12 @@ public class SearchResultDocument {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public SearchResultDocument path(String path) {
-
     this.path = path;
     return this;
   }
@@ -177,14 +174,12 @@ public class SearchResultDocument {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public SearchResultDocument deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -199,14 +194,12 @@ public class SearchResultDocument {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public SearchResultDocument insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -221,14 +214,12 @@ public class SearchResultDocument {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public SearchResultDocument lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -243,14 +234,12 @@ public class SearchResultDocument {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public SearchResultDocument folder(Boolean folder) {
-
     this.folder = folder;
     return this;
   }
@@ -265,14 +254,12 @@ public class SearchResultDocument {
     return folder;
   }
 
-
   public void setFolder(Boolean folder) {
     this.folder = folder;
   }
 
 
   public SearchResultDocument indexKey(String indexKey) {
-
     this.indexKey = indexKey;
     return this;
   }
@@ -287,14 +274,12 @@ public class SearchResultDocument {
     return indexKey;
   }
 
-
   public void setIndexKey(String indexKey) {
     this.indexKey = indexKey;
   }
 
 
   public SearchResultDocument checksum(String checksum) {
-
     this.checksum = checksum;
     return this;
   }
@@ -309,14 +294,12 @@ public class SearchResultDocument {
     return checksum;
   }
 
-
   public void setChecksum(String checksum) {
     this.checksum = checksum;
   }
 
 
   public SearchResultDocument documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -331,14 +314,12 @@ public class SearchResultDocument {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public SearchResultDocument contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -353,14 +334,12 @@ public class SearchResultDocument {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public SearchResultDocument userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -375,14 +354,12 @@ public class SearchResultDocument {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public SearchResultDocument contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -397,14 +374,12 @@ public class SearchResultDocument {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public SearchResultDocument versionId(String versionId) {
-
     this.versionId = versionId;
     return this;
   }
@@ -419,14 +394,12 @@ public class SearchResultDocument {
     return versionId;
   }
 
-
   public void setVersionId(String versionId) {
     this.versionId = versionId;
   }
 
 
   public SearchResultDocument belongsToDocumentId(String belongsToDocumentId) {
-
     this.belongsToDocumentId = belongsToDocumentId;
     return this;
   }
@@ -441,14 +414,12 @@ public class SearchResultDocument {
     return belongsToDocumentId;
   }
 
-
   public void setBelongsToDocumentId(String belongsToDocumentId) {
     this.belongsToDocumentId = belongsToDocumentId;
   }
 
 
   public SearchResultDocument matchedTag(DocumentSearchMatchTag matchedTag) {
-
     this.matchedTag = matchedTag;
     return this;
   }
@@ -463,14 +434,12 @@ public class SearchResultDocument {
     return matchedTag;
   }
 
-
   public void setMatchedTag(DocumentSearchMatchTag matchedTag) {
     this.matchedTag = matchedTag;
   }
 
 
   public SearchResultDocument matchedTags(List<DocumentSearchMatchTag> matchedTags) {
-
     this.matchedTags = matchedTags;
     return this;
   }
@@ -493,14 +462,12 @@ public class SearchResultDocument {
     return matchedTags;
   }
 
-
   public void setMatchedTags(List<DocumentSearchMatchTag> matchedTags) {
     this.matchedTags = matchedTags;
   }
 
 
   public SearchResultDocument tags(Map<String, Object> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -523,14 +490,12 @@ public class SearchResultDocument {
     return tags;
   }
 
-
   public void setTags(Map<String, Object> tags) {
     this.tags = tags;
   }
 
 
   public SearchResultDocument metadata(List<DocumentMetadata> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -552,7 +517,6 @@ public class SearchResultDocument {
   public List<DocumentMetadata> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(List<DocumentMetadata> metadata) {
     this.metadata = metadata;

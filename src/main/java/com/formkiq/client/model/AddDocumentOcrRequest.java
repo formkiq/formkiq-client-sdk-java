@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
@@ -130,7 +130,6 @@ public class AddDocumentOcrRequest {
   public AddDocumentOcrRequest() {}
 
   public AddDocumentOcrRequest parseTypes(List<String> parseTypes) {
-
     this.parseTypes = parseTypes;
     return this;
   }
@@ -153,7 +152,6 @@ public class AddDocumentOcrRequest {
     return parseTypes;
   }
 
-
   public void setParseTypes(List<String> parseTypes) {
     this.parseTypes = parseTypes;
   }
@@ -161,7 +159,6 @@ public class AddDocumentOcrRequest {
 
   public AddDocumentOcrRequest addPdfDetectedCharactersAsText(
       Boolean addPdfDetectedCharactersAsText) {
-
     this.addPdfDetectedCharactersAsText = addPdfDetectedCharactersAsText;
     return this;
   }
@@ -176,14 +173,12 @@ public class AddDocumentOcrRequest {
     return addPdfDetectedCharactersAsText;
   }
 
-
   public void setAddPdfDetectedCharactersAsText(Boolean addPdfDetectedCharactersAsText) {
     this.addPdfDetectedCharactersAsText = addPdfDetectedCharactersAsText;
   }
 
 
   public AddDocumentOcrRequest ocrEngine(OcrEngineEnum ocrEngine) {
-
     this.ocrEngine = ocrEngine;
     return this;
   }
@@ -197,7 +192,6 @@ public class AddDocumentOcrRequest {
   public OcrEngineEnum getOcrEngine() {
     return ocrEngine;
   }
-
 
   public void setOcrEngine(OcrEngineEnum ocrEngine) {
     this.ocrEngine = ocrEngine;

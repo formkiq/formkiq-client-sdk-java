@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * IndexFolderMoveRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class IndexFolderMoveRequest {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
@@ -70,7 +70,6 @@ public class IndexFolderMoveRequest {
   public IndexFolderMoveRequest() {}
 
   public IndexFolderMoveRequest source(String source) {
-
     this.source = source;
     return this;
   }
@@ -85,14 +84,12 @@ public class IndexFolderMoveRequest {
     return source;
   }
 
-
   public void setSource(String source) {
     this.source = source;
   }
 
 
   public IndexFolderMoveRequest target(String target) {
-
     this.target = target;
     return this;
   }
@@ -106,7 +103,6 @@ public class IndexFolderMoveRequest {
   public String getTarget() {
     return target;
   }
-
 
   public void setTarget(String target) {
     this.target = target;

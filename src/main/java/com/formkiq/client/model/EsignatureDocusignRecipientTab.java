@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignRecipientTab
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class EsignatureDocusignRecipientTab {
   /**
    * Type of Recipient
@@ -129,7 +129,6 @@ public class EsignatureDocusignRecipientTab {
   public EsignatureDocusignRecipientTab() {}
 
   public EsignatureDocusignRecipientTab type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -144,14 +143,12 @@ public class EsignatureDocusignRecipientTab {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public EsignatureDocusignRecipientTab pageNumber(String pageNumber) {
-
     this.pageNumber = pageNumber;
     return this;
   }
@@ -166,14 +163,12 @@ public class EsignatureDocusignRecipientTab {
     return pageNumber;
   }
 
-
   public void setPageNumber(String pageNumber) {
     this.pageNumber = pageNumber;
   }
 
 
   public EsignatureDocusignRecipientTab positionX(String positionX) {
-
     this.positionX = positionX;
     return this;
   }
@@ -188,14 +183,12 @@ public class EsignatureDocusignRecipientTab {
     return positionX;
   }
 
-
   public void setPositionX(String positionX) {
     this.positionX = positionX;
   }
 
 
   public EsignatureDocusignRecipientTab positionY(String positionY) {
-
     this.positionY = positionY;
     return this;
   }
@@ -209,7 +202,6 @@ public class EsignatureDocusignRecipientTab {
   public String getPositionY() {
     return positionY;
   }
-
 
   public void setPositionY(String positionY) {
     this.positionY = positionY;

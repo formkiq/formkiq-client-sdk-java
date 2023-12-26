@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -94,7 +94,6 @@ public class AddChildDocument {
   public AddChildDocument() {}
 
   public AddChildDocument path(String path) {
-
     this.path = path;
     return this;
   }
@@ -109,14 +108,12 @@ public class AddChildDocument {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public AddChildDocument deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -131,14 +128,12 @@ public class AddChildDocument {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public AddChildDocument contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -153,14 +148,12 @@ public class AddChildDocument {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public AddChildDocument isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -175,14 +168,12 @@ public class AddChildDocument {
     return isBase64;
   }
 
-
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;
   }
 
 
   public AddChildDocument content(String content) {
-
     this.content = content;
     return this;
   }
@@ -197,14 +188,12 @@ public class AddChildDocument {
     return content;
   }
 
-
   public void setContent(String content) {
     this.content = content;
   }
 
 
   public AddChildDocument tags(List<AddDocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -227,14 +216,12 @@ public class AddChildDocument {
     return tags;
   }
 
-
   public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;
   }
 
 
   public AddChildDocument metadata(List<AddDocumentMetadata> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -256,7 +243,6 @@ public class AddChildDocument {
   public List<AddDocumentMetadata> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(List<AddDocumentMetadata> metadata) {
     this.metadata = metadata;

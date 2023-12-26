@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetWorkflowResponse {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -138,7 +138,6 @@ public class GetWorkflowResponse {
   public GetWorkflowResponse() {}
 
   public GetWorkflowResponse name(String name) {
-
     this.name = name;
     return this;
   }
@@ -153,14 +152,12 @@ public class GetWorkflowResponse {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public GetWorkflowResponse description(String description) {
-
     this.description = description;
     return this;
   }
@@ -175,14 +172,12 @@ public class GetWorkflowResponse {
     return description;
   }
 
-
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public GetWorkflowResponse inUse(Boolean inUse) {
-
     this.inUse = inUse;
     return this;
   }
@@ -197,14 +192,12 @@ public class GetWorkflowResponse {
     return inUse;
   }
 
-
   public void setInUse(Boolean inUse) {
     this.inUse = inUse;
   }
 
 
   public GetWorkflowResponse status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -219,14 +212,12 @@ public class GetWorkflowResponse {
     return status;
   }
 
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
   public GetWorkflowResponse steps(List<WorkflowStep> steps) {
-
     this.steps = steps;
     return this;
   }
@@ -248,7 +239,6 @@ public class GetWorkflowResponse {
   public List<WorkflowStep> getSteps() {
     return steps;
   }
-
 
   public void setSteps(List<WorkflowStep> steps) {
     this.steps = steps;

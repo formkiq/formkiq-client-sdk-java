@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetDocumentTagResponse {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -92,7 +92,6 @@ public class GetDocumentTagResponse {
   public GetDocumentTagResponse() {}
 
   public GetDocumentTagResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -107,14 +106,12 @@ public class GetDocumentTagResponse {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public GetDocumentTagResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -129,14 +126,12 @@ public class GetDocumentTagResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentTagResponse type(String type) {
-
     this.type = type;
     return this;
   }
@@ -151,14 +146,12 @@ public class GetDocumentTagResponse {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public GetDocumentTagResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -173,14 +166,12 @@ public class GetDocumentTagResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetDocumentTagResponse value(String value) {
-
     this.value = value;
     return this;
   }
@@ -195,14 +186,12 @@ public class GetDocumentTagResponse {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public GetDocumentTagResponse values(List<String> values) {
-
     this.values = values;
     return this;
   }
@@ -225,14 +214,12 @@ public class GetDocumentTagResponse {
     return values;
   }
 
-
   public void setValues(List<String> values) {
     this.values = values;
   }
 
 
   public GetDocumentTagResponse key(String key) {
-
     this.key = key;
     return this;
   }
@@ -246,7 +233,6 @@ public class GetDocumentTagResponse {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

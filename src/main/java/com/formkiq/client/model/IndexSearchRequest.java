@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * IndexSearchRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class IndexSearchRequest {
   public static final String SERIALIZED_NAME_INDEX_TYPE = "indexType";
   @SerializedName(SERIALIZED_NAME_INDEX_TYPE)
@@ -66,7 +66,6 @@ public class IndexSearchRequest {
   public IndexSearchRequest() {}
 
   public IndexSearchRequest indexType(String indexType) {
-
     this.indexType = indexType;
     return this;
   }
@@ -80,7 +79,6 @@ public class IndexSearchRequest {
   public String getIndexType() {
     return indexType;
   }
-
 
   public void setIndexType(String indexType) {
     this.indexType = indexType;

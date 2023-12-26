@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentVersion
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentVersion {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -110,7 +110,6 @@ public class DocumentVersion {
   public DocumentVersion() {}
 
   public DocumentVersion path(String path) {
-
     this.path = path;
     return this;
   }
@@ -125,14 +124,12 @@ public class DocumentVersion {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public DocumentVersion deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -147,14 +144,12 @@ public class DocumentVersion {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public DocumentVersion insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -169,14 +164,12 @@ public class DocumentVersion {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public DocumentVersion lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -191,14 +184,12 @@ public class DocumentVersion {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public DocumentVersion checksum(String checksum) {
-
     this.checksum = checksum;
     return this;
   }
@@ -213,14 +204,12 @@ public class DocumentVersion {
     return checksum;
   }
 
-
   public void setChecksum(String checksum) {
     this.checksum = checksum;
   }
 
 
   public DocumentVersion documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -235,14 +224,12 @@ public class DocumentVersion {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public DocumentVersion contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -257,14 +244,12 @@ public class DocumentVersion {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public DocumentVersion userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -279,14 +264,12 @@ public class DocumentVersion {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public DocumentVersion contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -301,14 +284,12 @@ public class DocumentVersion {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public DocumentVersion version(String version) {
-
     this.version = version;
     return this;
   }
@@ -323,14 +304,12 @@ public class DocumentVersion {
     return version;
   }
 
-
   public void setVersion(String version) {
     this.version = version;
   }
 
 
   public DocumentVersion versionKey(String versionKey) {
-
     this.versionKey = versionKey;
     return this;
   }
@@ -345,14 +324,12 @@ public class DocumentVersion {
     return versionKey;
   }
 
-
   public void setVersionKey(String versionKey) {
     this.versionKey = versionKey;
   }
 
 
   public DocumentVersion s3version(String s3version) {
-
     this.s3version = s3version;
     return this;
   }
@@ -366,7 +343,6 @@ public class DocumentVersion {
   public String getS3version() {
     return s3version;
   }
-
 
   public void setS3version(String s3version) {
     this.s3version = s3version;

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Queue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class Queue {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -70,7 +70,6 @@ public class Queue {
   public Queue() {}
 
   public Queue name(String name) {
-
     this.name = name;
     return this;
   }
@@ -85,14 +84,12 @@ public class Queue {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public Queue queueId(String queueId) {
-
     this.queueId = queueId;
     return this;
   }
@@ -106,7 +103,6 @@ public class Queue {
   public String getQueueId() {
     return queueId;
   }
-
 
   public void setQueueId(String queueId) {
     this.queueId = queueId;

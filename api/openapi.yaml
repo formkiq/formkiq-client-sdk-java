@@ -434,7 +434,7 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
     get:
-      description: Returns OPA Configuration
+      description: "Returns OPA Configuration, can only be requested with ADMIN privileges"
       operationId: GetOpaConfiguration
       parameters:
       - description: Site Identifier
@@ -477,24 +477,11 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
     put:
-      description: Set OPA Configuration
+      description: "Set OPA Configuration, can only be requested with ADMIN privileges"
       operationId: SetOpaConfiguration
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
-            examples:
-              AddApiKey:
-                value:
-                  name: My API Key
             schema:
               $ref: '#/components/schemas/SetOpaConfigurationRequest'
         required: true
@@ -9483,10 +9470,14 @@ components:
       type: object
     SetOpaConfigurationRequest:
       example:
+        siteId: siteId
         policy: policy
       properties:
         policy:
           description: OPA Policy in YAML format
+          type: string
+        siteId:
+          description: "Site Id to apply policy to, leave empty for global policy"
           type: string
       type: object
     SetOpaConfigurationResponse:

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -110,7 +110,6 @@ public class GetDocumentFulltextResponse {
   public GetDocumentFulltextResponse() {}
 
   public GetDocumentFulltextResponse siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -125,14 +124,12 @@ public class GetDocumentFulltextResponse {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public GetDocumentFulltextResponse content(String content) {
-
     this.content = content;
     return this;
   }
@@ -147,14 +144,12 @@ public class GetDocumentFulltextResponse {
     return content;
   }
 
-
   public void setContent(String content) {
     this.content = content;
   }
 
 
   public GetDocumentFulltextResponse contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -169,14 +164,12 @@ public class GetDocumentFulltextResponse {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public GetDocumentFulltextResponse path(String path) {
-
     this.path = path;
     return this;
   }
@@ -191,14 +184,12 @@ public class GetDocumentFulltextResponse {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public GetDocumentFulltextResponse deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -213,14 +204,12 @@ public class GetDocumentFulltextResponse {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public GetDocumentFulltextResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -235,14 +224,12 @@ public class GetDocumentFulltextResponse {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public GetDocumentFulltextResponse lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -257,14 +244,12 @@ public class GetDocumentFulltextResponse {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public GetDocumentFulltextResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -279,14 +264,12 @@ public class GetDocumentFulltextResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentFulltextResponse createdBy(String createdBy) {
-
     this.createdBy = createdBy;
     return this;
   }
@@ -301,14 +284,12 @@ public class GetDocumentFulltextResponse {
     return createdBy;
   }
 
-
   public void setCreatedBy(String createdBy) {
     this.createdBy = createdBy;
   }
 
 
   public GetDocumentFulltextResponse contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -323,14 +304,12 @@ public class GetDocumentFulltextResponse {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public GetDocumentFulltextResponse tags(Object tags) {
-
     this.tags = tags;
     return this;
   }
@@ -345,14 +324,12 @@ public class GetDocumentFulltextResponse {
     return tags;
   }
 
-
   public void setTags(Object tags) {
     this.tags = tags;
   }
 
 
   public GetDocumentFulltextResponse metadata(Object metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -366,7 +343,6 @@ public class GetDocumentFulltextResponse {
   public Object getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(Object metadata) {
     this.metadata = metadata;

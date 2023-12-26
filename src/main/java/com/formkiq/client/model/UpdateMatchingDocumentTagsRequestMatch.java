@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateMatchingDocumentTagsRequestMatch
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class UpdateMatchingDocumentTagsRequestMatch {
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
@@ -67,7 +67,6 @@ public class UpdateMatchingDocumentTagsRequestMatch {
   public UpdateMatchingDocumentTagsRequestMatch() {}
 
   public UpdateMatchingDocumentTagsRequestMatch tag(MatchDocumentTag tag) {
-
     this.tag = tag;
     return this;
   }
@@ -81,7 +80,6 @@ public class UpdateMatchingDocumentTagsRequestMatch {
   public MatchDocumentTag getTag() {
     return tag;
   }
-
 
   public void setTag(MatchDocumentTag tag) {
     this.tag = tag;

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetFoldersResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetFoldersResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -77,7 +77,6 @@ public class GetFoldersResponse {
   public GetFoldersResponse() {}
 
   public GetFoldersResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -92,14 +91,12 @@ public class GetFoldersResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetFoldersResponse previous(String previous) {
-
     this.previous = previous;
     return this;
   }
@@ -114,14 +111,12 @@ public class GetFoldersResponse {
     return previous;
   }
 
-
   public void setPrevious(String previous) {
     this.previous = previous;
   }
 
 
   public GetFoldersResponse documents(List<SearchResultDocument> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -143,7 +138,6 @@ public class GetFoldersResponse {
   public List<SearchResultDocument> getDocuments() {
     return documents;
   }
-
 
   public void setDocuments(List<SearchResultDocument> documents) {
     this.documents = documents;

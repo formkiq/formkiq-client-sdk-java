@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentOcrResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -66,7 +66,6 @@ public class AddDocumentOcrResponse {
   public AddDocumentOcrResponse() {}
 
   public AddDocumentOcrResponse message(String message) {
-
     this.message = message;
     return this;
   }
@@ -80,7 +79,6 @@ public class AddDocumentOcrResponse {
   public String getMessage() {
     return message;
   }
-
 
   public void setMessage(String message) {
     this.message = message;

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DeleteIndicesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DeleteIndicesResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -66,7 +66,6 @@ public class DeleteIndicesResponse {
   public DeleteIndicesResponse() {}
 
   public DeleteIndicesResponse message(String message) {
-
     this.message = message;
     return this;
   }
@@ -80,7 +79,6 @@ public class DeleteIndicesResponse {
   public String getMessage() {
     return message;
   }
-
 
   public void setMessage(String message) {
     this.message = message;

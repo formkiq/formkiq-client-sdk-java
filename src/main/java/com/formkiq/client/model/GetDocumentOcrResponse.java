@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -94,7 +94,6 @@ public class GetDocumentOcrResponse {
   public GetDocumentOcrResponse() {}
 
   public GetDocumentOcrResponse data(String data) {
-
     this.data = data;
     return this;
   }
@@ -109,14 +108,12 @@ public class GetDocumentOcrResponse {
     return data;
   }
 
-
   public void setData(String data) {
     this.data = data;
   }
 
 
   public GetDocumentOcrResponse ocrEngine(String ocrEngine) {
-
     this.ocrEngine = ocrEngine;
     return this;
   }
@@ -131,14 +128,12 @@ public class GetDocumentOcrResponse {
     return ocrEngine;
   }
 
-
   public void setOcrEngine(String ocrEngine) {
     this.ocrEngine = ocrEngine;
   }
 
 
   public GetDocumentOcrResponse ocrStatus(String ocrStatus) {
-
     this.ocrStatus = ocrStatus;
     return this;
   }
@@ -153,14 +148,12 @@ public class GetDocumentOcrResponse {
     return ocrStatus;
   }
 
-
   public void setOcrStatus(String ocrStatus) {
     this.ocrStatus = ocrStatus;
   }
 
 
   public GetDocumentOcrResponse contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -175,14 +168,12 @@ public class GetDocumentOcrResponse {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public GetDocumentOcrResponse isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -197,14 +188,12 @@ public class GetDocumentOcrResponse {
     return isBase64;
   }
 
-
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;
   }
 
 
   public GetDocumentOcrResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -219,14 +208,12 @@ public class GetDocumentOcrResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetDocumentOcrResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -241,14 +228,12 @@ public class GetDocumentOcrResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentOcrResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -262,7 +247,6 @@ public class GetDocumentOcrResponse {
   public String getInsertedDate() {
     return insertedDate;
   }
-
 
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentWorkflow
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentWorkflow {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
@@ -137,7 +137,6 @@ public class DocumentWorkflow {
   public DocumentWorkflow() {}
 
   public DocumentWorkflow workflowId(String workflowId) {
-
     this.workflowId = workflowId;
     return this;
   }
@@ -152,14 +151,12 @@ public class DocumentWorkflow {
     return workflowId;
   }
 
-
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
   }
 
 
   public DocumentWorkflow name(String name) {
-
     this.name = name;
     return this;
   }
@@ -174,14 +171,12 @@ public class DocumentWorkflow {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public DocumentWorkflow description(String description) {
-
     this.description = description;
     return this;
   }
@@ -196,14 +191,12 @@ public class DocumentWorkflow {
     return description;
   }
 
-
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public DocumentWorkflow currentStepId(String currentStepId) {
-
     this.currentStepId = currentStepId;
     return this;
   }
@@ -218,14 +211,12 @@ public class DocumentWorkflow {
     return currentStepId;
   }
 
-
   public void setCurrentStepId(String currentStepId) {
     this.currentStepId = currentStepId;
   }
 
 
   public DocumentWorkflow status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -239,7 +230,6 @@ public class DocumentWorkflow {
   public StatusEnum getStatus() {
     return status;
   }
-
 
   public void setStatus(StatusEnum status) {
     this.status = status;

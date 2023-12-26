@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * ValidationError
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class ValidationError {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -70,7 +70,6 @@ public class ValidationError {
   public ValidationError() {}
 
   public ValidationError key(String key) {
-
     this.key = key;
     return this;
   }
@@ -85,14 +84,12 @@ public class ValidationError {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public ValidationError error(String error) {
-
     this.error = error;
     return this;
   }
@@ -106,7 +103,6 @@ public class ValidationError {
   public String getError() {
     return error;
   }
-
 
   public void setError(String error) {
     this.error = error;

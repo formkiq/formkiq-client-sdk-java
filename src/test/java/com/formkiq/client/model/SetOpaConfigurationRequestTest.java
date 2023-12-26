@@ -52,4 +52,12 @@ public class SetOpaConfigurationRequestTest {
     // TODO: test policy
   }
 
+  /**
+   * Test the property 'siteId'
+   */
+  @Test
+  public void siteIdTest() {
+    // TODO: test siteId
+  }
+
 }

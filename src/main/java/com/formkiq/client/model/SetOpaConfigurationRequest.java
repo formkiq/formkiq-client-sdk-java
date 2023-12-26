@@ -57,16 +57,19 @@ import com.formkiq.client.invoker.JSON;
  * SetOpaConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class SetOpaConfigurationRequest {
   public static final String SERIALIZED_NAME_POLICY = "policy";
   @SerializedName(SERIALIZED_NAME_POLICY)
   private String policy;
 
+  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
+  @SerializedName(SERIALIZED_NAME_SITE_ID)
+  private String siteId;
+
   public SetOpaConfigurationRequest() {}
 
   public SetOpaConfigurationRequest policy(String policy) {
-
     this.policy = policy;
     return this;
   }
@@ -81,9 +84,28 @@ public class SetOpaConfigurationRequest {
     return policy;
   }
 
-
   public void setPolicy(String policy) {
     this.policy = policy;
+  }
+
+
+  public SetOpaConfigurationRequest siteId(String siteId) {
+    this.siteId = siteId;
+    return this;
+  }
+
+  /**
+   * Site Id to apply policy to, leave empty for global policy
+   * 
+   * @return siteId
+   **/
+  @javax.annotation.Nullable
+  public String getSiteId() {
+    return siteId;
+  }
+
+  public void setSiteId(String siteId) {
+    this.siteId = siteId;
   }
 
 
@@ -97,12 +119,13 @@ public class SetOpaConfigurationRequest {
       return false;
     }
     SetOpaConfigurationRequest setOpaConfigurationRequest = (SetOpaConfigurationRequest) o;
-    return Objects.equals(this.policy, setOpaConfigurationRequest.policy);
+    return Objects.equals(this.policy, setOpaConfigurationRequest.policy)
+        && Objects.equals(this.siteId, setOpaConfigurationRequest.siteId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(policy);
+    return Objects.hash(policy, siteId);
   }
 
   @Override
@@ -110,6 +133,7 @@ public class SetOpaConfigurationRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class SetOpaConfigurationRequest {\n");
     sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
+    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -132,6 +156,7 @@ public class SetOpaConfigurationRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("policy");
+    openapiFields.add("siteId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -168,6 +193,12 @@ public class SetOpaConfigurationRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `policy` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("policy").toString()));
+    }
+    if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
+        && !jsonObj.get("siteId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("siteId").toString()));
     }
   }
 

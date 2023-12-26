@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentsCompressRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentsCompressRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -68,7 +68,6 @@ public class DocumentsCompressRequest {
   public DocumentsCompressRequest() {}
 
   public DocumentsCompressRequest documentIds(List<String> documentIds) {
-
     this.documentIds = documentIds;
     return this;
   }
@@ -90,7 +89,6 @@ public class DocumentsCompressRequest {
   public List<String> getDocumentIds() {
     return documentIds;
   }
-
 
   public void setDocumentIds(List<String> documentIds) {
     this.documentIds = documentIds;

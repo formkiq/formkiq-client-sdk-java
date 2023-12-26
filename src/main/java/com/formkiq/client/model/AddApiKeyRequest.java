@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddApiKeyRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddApiKeyRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -127,7 +127,6 @@ public class AddApiKeyRequest {
   public AddApiKeyRequest() {}
 
   public AddApiKeyRequest name(String name) {
-
     this.name = name;
     return this;
   }
@@ -142,14 +141,12 @@ public class AddApiKeyRequest {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public AddApiKeyRequest permissions(List<PermissionsEnum> permissions) {
-
     this.permissions = permissions;
     return this;
   }
@@ -171,7 +168,6 @@ public class AddApiKeyRequest {
   public List<PermissionsEnum> getPermissions() {
     return permissions;
   }
-
 
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;

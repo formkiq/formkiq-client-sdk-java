@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
@@ -82,7 +82,6 @@ public class UpdateConfigurationRequest {
   public UpdateConfigurationRequest() {}
 
   public UpdateConfigurationRequest chatGptApiKey(String chatGptApiKey) {
-
     this.chatGptApiKey = chatGptApiKey;
     return this;
   }
@@ -97,14 +96,12 @@ public class UpdateConfigurationRequest {
     return chatGptApiKey;
   }
 
-
   public void setChatGptApiKey(String chatGptApiKey) {
     this.chatGptApiKey = chatGptApiKey;
   }
 
 
   public UpdateConfigurationRequest maxContentLengthBytes(String maxContentLengthBytes) {
-
     this.maxContentLengthBytes = maxContentLengthBytes;
     return this;
   }
@@ -119,14 +116,12 @@ public class UpdateConfigurationRequest {
     return maxContentLengthBytes;
   }
 
-
   public void setMaxContentLengthBytes(String maxContentLengthBytes) {
     this.maxContentLengthBytes = maxContentLengthBytes;
   }
 
 
   public UpdateConfigurationRequest maxDocuments(String maxDocuments) {
-
     this.maxDocuments = maxDocuments;
     return this;
   }
@@ -141,14 +136,12 @@ public class UpdateConfigurationRequest {
     return maxDocuments;
   }
 
-
   public void setMaxDocuments(String maxDocuments) {
     this.maxDocuments = maxDocuments;
   }
 
 
   public UpdateConfigurationRequest maxWebhooks(String maxWebhooks) {
-
     this.maxWebhooks = maxWebhooks;
     return this;
   }
@@ -163,14 +156,12 @@ public class UpdateConfigurationRequest {
     return maxWebhooks;
   }
 
-
   public void setMaxWebhooks(String maxWebhooks) {
     this.maxWebhooks = maxWebhooks;
   }
 
 
   public UpdateConfigurationRequest notificationEmail(String notificationEmail) {
-
     this.notificationEmail = notificationEmail;
     return this;
   }
@@ -184,7 +175,6 @@ public class UpdateConfigurationRequest {
   public String getNotificationEmail() {
     return notificationEmail;
   }
-
 
   public void setNotificationEmail(String notificationEmail) {
     this.notificationEmail = notificationEmail;

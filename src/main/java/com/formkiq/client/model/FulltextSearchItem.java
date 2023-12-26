@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -104,7 +104,6 @@ public class FulltextSearchItem {
   public FulltextSearchItem() {}
 
   public FulltextSearchItem siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -119,14 +118,12 @@ public class FulltextSearchItem {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public FulltextSearchItem path(String path) {
-
     this.path = path;
     return this;
   }
@@ -141,14 +138,12 @@ public class FulltextSearchItem {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public FulltextSearchItem deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -163,14 +158,12 @@ public class FulltextSearchItem {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public FulltextSearchItem insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -185,14 +178,12 @@ public class FulltextSearchItem {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public FulltextSearchItem lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -207,14 +198,12 @@ public class FulltextSearchItem {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public FulltextSearchItem documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -229,14 +218,12 @@ public class FulltextSearchItem {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public FulltextSearchItem contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -251,14 +238,12 @@ public class FulltextSearchItem {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public FulltextSearchItem createdBy(String createdBy) {
-
     this.createdBy = createdBy;
     return this;
   }
@@ -273,14 +258,12 @@ public class FulltextSearchItem {
     return createdBy;
   }
 
-
   public void setCreatedBy(String createdBy) {
     this.createdBy = createdBy;
   }
 
 
   public FulltextSearchItem tags(Map<String, Object> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -303,14 +286,12 @@ public class FulltextSearchItem {
     return tags;
   }
 
-
   public void setTags(Map<String, Object> tags) {
     this.tags = tags;
   }
 
 
   public FulltextSearchItem metadata(Map<String, Object> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -332,7 +313,6 @@ public class FulltextSearchItem {
   public Map<String, Object> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;

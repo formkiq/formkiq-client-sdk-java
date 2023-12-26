@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetDocumentSync {
   /**
    * To which service the data was synced
@@ -247,7 +247,6 @@ public class GetDocumentSync {
   public GetDocumentSync() {}
 
   public GetDocumentSync service(ServiceEnum service) {
-
     this.service = service;
     return this;
   }
@@ -262,14 +261,12 @@ public class GetDocumentSync {
     return service;
   }
 
-
   public void setService(ServiceEnum service) {
     this.service = service;
   }
 
 
   public GetDocumentSync status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -284,14 +281,12 @@ public class GetDocumentSync {
     return status;
   }
 
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
   public GetDocumentSync type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -306,14 +301,12 @@ public class GetDocumentSync {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public GetDocumentSync syncDate(String syncDate) {
-
     this.syncDate = syncDate;
     return this;
   }
@@ -328,14 +321,12 @@ public class GetDocumentSync {
     return syncDate;
   }
 
-
   public void setSyncDate(String syncDate) {
     this.syncDate = syncDate;
   }
 
 
   public GetDocumentSync userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -350,14 +341,12 @@ public class GetDocumentSync {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetDocumentSync message(String message) {
-
     this.message = message;
     return this;
   }
@@ -371,7 +360,6 @@ public class GetDocumentSync {
   public String getMessage() {
     return message;
   }
-
 
   public void setMessage(String message) {
     this.message = message;

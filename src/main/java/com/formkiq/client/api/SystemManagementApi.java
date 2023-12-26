@@ -885,7 +885,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get OPA Configuration Returns OPA Configuration
+   * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
    * 
    * @param siteId Site Identifier (optional)
    * @return GetOpaConfigurationResponse
@@ -914,7 +914,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get OPA Configuration Returns OPA Configuration
+   * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
    * 
    * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;GetOpaConfigurationResponse&gt;
@@ -945,7 +945,8 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get OPA Configuration (asynchronously) Returns OPA Configuration
+   * Get OPA Configuration (asynchronously) Returns OPA Configuration, can only be requested with
+   * ADMIN privileges
    * 
    * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
@@ -1306,7 +1307,6 @@ public class SystemManagementApi {
    * Build call for setOpaConfiguration
    * 
    * @param setOpaConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1328,7 +1328,7 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call setOpaConfigurationCall(SetOpaConfigurationRequest setOpaConfigurationRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1353,10 +1353,6 @@ public class SystemManagementApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1378,23 +1374,22 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setOpaConfigurationValidateBeforeCall(
-      SetOpaConfigurationRequest setOpaConfigurationRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      SetOpaConfigurationRequest setOpaConfigurationRequest, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'setOpaConfigurationRequest' is set
     if (setOpaConfigurationRequest == null) {
       throw new ApiException(
           "Missing the required parameter 'setOpaConfigurationRequest' when calling setOpaConfiguration(Async)");
     }
 
-    return setOpaConfigurationCall(setOpaConfigurationRequest, siteId, _callback);
+    return setOpaConfigurationCall(setOpaConfigurationRequest, _callback);
 
   }
 
   /**
-   * Set OPA Configuration Set OPA Configuration
+   * Set OPA Configuration Set OPA Configuration, can only be requested with ADMIN privileges
    * 
    * @param setOpaConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return SetOpaConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1416,17 +1411,16 @@ public class SystemManagementApi {
    *                        </table>
    */
   public SetOpaConfigurationResponse setOpaConfiguration(
-      SetOpaConfigurationRequest setOpaConfigurationRequest, String siteId) throws ApiException {
+      SetOpaConfigurationRequest setOpaConfigurationRequest) throws ApiException {
     ApiResponse<SetOpaConfigurationResponse> localVarResp =
-        setOpaConfigurationWithHttpInfo(setOpaConfigurationRequest, siteId);
+        setOpaConfigurationWithHttpInfo(setOpaConfigurationRequest);
     return localVarResp.getData();
   }
 
   /**
-   * Set OPA Configuration Set OPA Configuration
+   * Set OPA Configuration Set OPA Configuration, can only be requested with ADMIN privileges
    * 
    * @param setOpaConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;SetOpaConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1448,18 +1442,18 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<SetOpaConfigurationResponse> setOpaConfigurationWithHttpInfo(
-      SetOpaConfigurationRequest setOpaConfigurationRequest, String siteId) throws ApiException {
+      SetOpaConfigurationRequest setOpaConfigurationRequest) throws ApiException {
     okhttp3.Call localVarCall =
-        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, siteId, null);
+        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, null);
     Type localVarReturnType = new TypeToken<SetOpaConfigurationResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Set OPA Configuration (asynchronously) Set OPA Configuration
+   * Set OPA Configuration (asynchronously) Set OPA Configuration, can only be requested with ADMIN
+   * privileges
    * 
    * @param setOpaConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1481,11 +1475,11 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call setOpaConfigurationAsync(
-      SetOpaConfigurationRequest setOpaConfigurationRequest, String siteId,
+      SetOpaConfigurationRequest setOpaConfigurationRequest,
       final ApiCallback<SetOpaConfigurationResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, siteId, _callback);
+        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, _callback);
     Type localVarReturnType = new TypeToken<SetOpaConfigurationResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

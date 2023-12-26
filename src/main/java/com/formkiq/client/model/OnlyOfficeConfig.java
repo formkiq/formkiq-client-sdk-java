@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class OnlyOfficeConfig {
   public static final String SERIALIZED_NAME_ONLY_OFFICE_URL = "onlyOfficeUrl";
   @SerializedName(SERIALIZED_NAME_ONLY_OFFICE_URL)
@@ -84,7 +84,6 @@ public class OnlyOfficeConfig {
   public OnlyOfficeConfig() {}
 
   public OnlyOfficeConfig onlyOfficeUrl(String onlyOfficeUrl) {
-
     this.onlyOfficeUrl = onlyOfficeUrl;
     return this;
   }
@@ -99,14 +98,12 @@ public class OnlyOfficeConfig {
     return onlyOfficeUrl;
   }
 
-
   public void setOnlyOfficeUrl(String onlyOfficeUrl) {
     this.onlyOfficeUrl = onlyOfficeUrl;
   }
 
 
   public OnlyOfficeConfig token(String token) {
-
     this.token = token;
     return this;
   }
@@ -121,14 +118,12 @@ public class OnlyOfficeConfig {
     return token;
   }
 
-
   public void setToken(String token) {
     this.token = token;
   }
 
 
   public OnlyOfficeConfig documentType(String documentType) {
-
     this.documentType = documentType;
     return this;
   }
@@ -143,14 +138,12 @@ public class OnlyOfficeConfig {
     return documentType;
   }
 
-
   public void setDocumentType(String documentType) {
     this.documentType = documentType;
   }
 
 
   public OnlyOfficeConfig editorConfig(OnlyOfficeEditorConfig editorConfig) {
-
     this.editorConfig = editorConfig;
     return this;
   }
@@ -165,14 +158,12 @@ public class OnlyOfficeConfig {
     return editorConfig;
   }
 
-
   public void setEditorConfig(OnlyOfficeEditorConfig editorConfig) {
     this.editorConfig = editorConfig;
   }
 
 
   public OnlyOfficeConfig document(OnlyOfficeConfigDocument document) {
-
     this.document = document;
     return this;
   }
@@ -186,7 +177,6 @@ public class OnlyOfficeConfig {
   public OnlyOfficeConfigDocument getDocument() {
     return document;
   }
-
 
   public void setDocument(OnlyOfficeConfigDocument document) {
     this.document = document;

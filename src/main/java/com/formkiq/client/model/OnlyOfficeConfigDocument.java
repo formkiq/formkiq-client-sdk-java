@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeConfigDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class OnlyOfficeConfigDocument {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -78,7 +78,6 @@ public class OnlyOfficeConfigDocument {
   public OnlyOfficeConfigDocument() {}
 
   public OnlyOfficeConfigDocument url(String url) {
-
     this.url = url;
     return this;
   }
@@ -93,14 +92,12 @@ public class OnlyOfficeConfigDocument {
     return url;
   }
 
-
   public void setUrl(String url) {
     this.url = url;
   }
 
 
   public OnlyOfficeConfigDocument title(String title) {
-
     this.title = title;
     return this;
   }
@@ -115,14 +112,12 @@ public class OnlyOfficeConfigDocument {
     return title;
   }
 
-
   public void setTitle(String title) {
     this.title = title;
   }
 
 
   public OnlyOfficeConfigDocument key(String key) {
-
     this.key = key;
     return this;
   }
@@ -137,14 +132,12 @@ public class OnlyOfficeConfigDocument {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public OnlyOfficeConfigDocument fileType(String fileType) {
-
     this.fileType = fileType;
     return this;
   }
@@ -158,7 +151,6 @@ public class OnlyOfficeConfigDocument {
   public String getFileType() {
     return fileType;
   }
-
 
   public void setFileType(String fileType) {
     this.fileType = fileType;

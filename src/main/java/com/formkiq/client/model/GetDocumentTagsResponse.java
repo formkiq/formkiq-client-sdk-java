@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetDocumentTagsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -77,7 +77,6 @@ public class GetDocumentTagsResponse {
   public GetDocumentTagsResponse() {}
 
   public GetDocumentTagsResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -92,14 +91,12 @@ public class GetDocumentTagsResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetDocumentTagsResponse previous(String previous) {
-
     this.previous = previous;
     return this;
   }
@@ -114,14 +111,12 @@ public class GetDocumentTagsResponse {
     return previous;
   }
 
-
   public void setPrevious(String previous) {
     this.previous = previous;
   }
 
 
   public GetDocumentTagsResponse tags(List<DocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -143,7 +138,6 @@ public class GetDocumentTagsResponse {
   public List<DocumentTag> getTags() {
     return tags;
   }
-
 
   public void setTags(List<DocumentTag> tags) {
     this.tags = tags;

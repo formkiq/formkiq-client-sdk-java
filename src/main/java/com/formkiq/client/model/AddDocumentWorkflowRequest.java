@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentWorkflowRequest {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
@@ -66,7 +66,6 @@ public class AddDocumentWorkflowRequest {
   public AddDocumentWorkflowRequest() {}
 
   public AddDocumentWorkflowRequest workflowId(String workflowId) {
-
     this.workflowId = workflowId;
     return this;
   }
@@ -80,7 +79,6 @@ public class AddDocumentWorkflowRequest {
   public String getWorkflowId() {
     return workflowId;
   }
-
 
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;

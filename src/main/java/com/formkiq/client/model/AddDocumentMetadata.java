@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Document Metadata (use either &#39;value&#39; or &#39;values&#39; not both)
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentMetadata {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -76,7 +76,6 @@ public class AddDocumentMetadata {
   public AddDocumentMetadata() {}
 
   public AddDocumentMetadata key(String key) {
-
     this.key = key;
     return this;
   }
@@ -91,14 +90,12 @@ public class AddDocumentMetadata {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public AddDocumentMetadata value(String value) {
-
     this.value = value;
     return this;
   }
@@ -113,14 +110,12 @@ public class AddDocumentMetadata {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public AddDocumentMetadata values(List<String> values) {
-
     this.values = values;
     return this;
   }
@@ -142,7 +137,6 @@ public class AddDocumentMetadata {
   public List<String> getValues() {
     return values;
   }
-
 
   public void setValues(List<String> values) {
     this.values = values;

@@ -111,7 +111,7 @@ public class SystemManagementApiTest {
   /**
    * Get OPA Configuration
    *
-   * Returns OPA Configuration
+   * Returns OPA Configuration, can only be requested with ADMIN privileges
    *
    * @throws ApiException if the Api call fails
    */
@@ -151,16 +151,14 @@ public class SystemManagementApiTest {
   /**
    * Set OPA Configuration
    *
-   * Set OPA Configuration
+   * Set OPA Configuration, can only be requested with ADMIN privileges
    *
    * @throws ApiException if the Api call fails
    */
   @Test
   public void setOpaConfigurationTest() throws ApiException {
     SetOpaConfigurationRequest setOpaConfigurationRequest = null;
-    String siteId = null;
-    SetOpaConfigurationResponse response =
-        api.setOpaConfiguration(setOpaConfigurationRequest, siteId);
+    SetOpaConfigurationResponse response = api.setOpaConfiguration(setOpaConfigurationRequest);
     // TODO: test validations
   }
 

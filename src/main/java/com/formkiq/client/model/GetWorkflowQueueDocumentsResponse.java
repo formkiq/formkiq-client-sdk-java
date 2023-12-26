@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowQueueDocumentsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetWorkflowQueueDocumentsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -73,7 +73,6 @@ public class GetWorkflowQueueDocumentsResponse {
   public GetWorkflowQueueDocumentsResponse() {}
 
   public GetWorkflowQueueDocumentsResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -88,14 +87,12 @@ public class GetWorkflowQueueDocumentsResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetWorkflowQueueDocumentsResponse documents(List<WorkflowDocument> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -117,7 +114,6 @@ public class GetWorkflowQueueDocumentsResponse {
   public List<WorkflowDocument> getDocuments() {
     return documents;
   }
-
 
   public void setDocuments(List<WorkflowDocument> documents) {
     this.documents = documents;

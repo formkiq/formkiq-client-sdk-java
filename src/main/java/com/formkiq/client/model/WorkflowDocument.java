@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class WorkflowDocument {
   public static final String SERIALIZED_NAME_WORKFLOW = "workflow";
   @SerializedName(SERIALIZED_NAME_WORKFLOW)
@@ -72,7 +72,6 @@ public class WorkflowDocument {
   public WorkflowDocument() {}
 
   public WorkflowDocument workflow(WorkflowSummary workflow) {
-
     this.workflow = workflow;
     return this;
   }
@@ -87,14 +86,12 @@ public class WorkflowDocument {
     return workflow;
   }
 
-
   public void setWorkflow(WorkflowSummary workflow) {
     this.workflow = workflow;
   }
 
 
   public WorkflowDocument document(Document document) {
-
     this.document = document;
     return this;
   }
@@ -108,7 +105,6 @@ public class WorkflowDocument {
   public Document getDocument() {
     return document;
   }
-
 
   public void setDocument(Document document) {
     this.document = document;

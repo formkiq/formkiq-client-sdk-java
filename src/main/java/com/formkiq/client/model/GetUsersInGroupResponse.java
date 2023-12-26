@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetUsersInGroupResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class GetUsersInGroupResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -73,7 +73,6 @@ public class GetUsersInGroupResponse {
   public GetUsersInGroupResponse() {}
 
   public GetUsersInGroupResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -88,14 +87,12 @@ public class GetUsersInGroupResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetUsersInGroupResponse users(List<User> users) {
-
     this.users = users;
     return this;
   }
@@ -117,7 +114,6 @@ public class GetUsersInGroupResponse {
   public List<User> getUsers() {
     return users;
   }
-
 
   public void setUsers(List<User> users) {
     this.users = users;

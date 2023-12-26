@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddTagSchemaRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddTagSchemaRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -71,7 +71,6 @@ public class AddTagSchemaRequest {
   public AddTagSchemaRequest() {}
 
   public AddTagSchemaRequest name(String name) {
-
     this.name = name;
     return this;
   }
@@ -86,14 +85,12 @@ public class AddTagSchemaRequest {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public AddTagSchemaRequest tags(AddTagSchemaTags tags) {
-
     this.tags = tags;
     return this;
   }
@@ -107,7 +104,6 @@ public class AddTagSchemaRequest {
   public AddTagSchemaTags getTags() {
     return tags;
   }
-
 
   public void setTags(AddTagSchemaTags tags) {
     this.tags = tags;

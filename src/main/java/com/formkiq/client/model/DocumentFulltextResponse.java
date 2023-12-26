@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class DocumentFulltextResponse {
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
@@ -69,7 +69,6 @@ public class DocumentFulltextResponse {
   public DocumentFulltextResponse() {}
 
   public DocumentFulltextResponse documents(List<FulltextSearchItem> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -91,7 +90,6 @@ public class DocumentFulltextResponse {
   public List<FulltextSearchItem> getDocuments() {
     return documents;
   }
-
 
   public void setDocuments(List<FulltextSearchItem> documents) {
     this.documents = documents;

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * Document
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class Document {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -125,7 +125,6 @@ public class Document {
   public Document() {}
 
   public Document siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -140,14 +139,12 @@ public class Document {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public Document path(String path) {
-
     this.path = path;
     return this;
   }
@@ -162,14 +159,12 @@ public class Document {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public Document deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -184,14 +179,12 @@ public class Document {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public Document insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -206,14 +199,12 @@ public class Document {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public Document lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -228,14 +219,12 @@ public class Document {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public Document checksum(String checksum) {
-
     this.checksum = checksum;
     return this;
   }
@@ -250,14 +239,12 @@ public class Document {
     return checksum;
   }
 
-
   public void setChecksum(String checksum) {
     this.checksum = checksum;
   }
 
 
   public Document documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -272,14 +259,12 @@ public class Document {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public Document contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -294,14 +279,12 @@ public class Document {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public Document userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -316,14 +299,12 @@ public class Document {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public Document contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -338,14 +319,12 @@ public class Document {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public Document version(String version) {
-
     this.version = version;
     return this;
   }
@@ -360,14 +339,12 @@ public class Document {
     return version;
   }
 
-
   public void setVersion(String version) {
     this.version = version;
   }
 
 
   public Document versionKey(String versionKey) {
-
     this.versionKey = versionKey;
     return this;
   }
@@ -382,14 +359,12 @@ public class Document {
     return versionKey;
   }
 
-
   public void setVersionKey(String versionKey) {
     this.versionKey = versionKey;
   }
 
 
   public Document s3version(String s3version) {
-
     this.s3version = s3version;
     return this;
   }
@@ -404,14 +379,12 @@ public class Document {
     return s3version;
   }
 
-
   public void setS3version(String s3version) {
     this.s3version = s3version;
   }
 
 
   public Document belongsToDocumentId(String belongsToDocumentId) {
-
     this.belongsToDocumentId = belongsToDocumentId;
     return this;
   }
@@ -426,14 +399,12 @@ public class Document {
     return belongsToDocumentId;
   }
 
-
   public void setBelongsToDocumentId(String belongsToDocumentId) {
     this.belongsToDocumentId = belongsToDocumentId;
   }
 
 
   public Document metadata(List<DocumentMetadata> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -455,7 +426,6 @@ public class Document {
   public List<DocumentMetadata> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(List<DocumentMetadata> metadata) {
     this.metadata = metadata;

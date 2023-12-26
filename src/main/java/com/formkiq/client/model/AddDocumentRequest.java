@@ -63,7 +63,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -108,7 +108,6 @@ public class AddDocumentRequest {
   public AddDocumentRequest() {}
 
   public AddDocumentRequest tagSchemaId(String tagSchemaId) {
-
     this.tagSchemaId = tagSchemaId;
     return this;
   }
@@ -123,14 +122,12 @@ public class AddDocumentRequest {
     return tagSchemaId;
   }
 
-
   public void setTagSchemaId(String tagSchemaId) {
     this.tagSchemaId = tagSchemaId;
   }
 
 
   public AddDocumentRequest path(String path) {
-
     this.path = path;
     return this;
   }
@@ -145,14 +142,12 @@ public class AddDocumentRequest {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public AddDocumentRequest deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -167,14 +162,12 @@ public class AddDocumentRequest {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public AddDocumentRequest contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -189,14 +182,12 @@ public class AddDocumentRequest {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public AddDocumentRequest isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -211,14 +202,12 @@ public class AddDocumentRequest {
     return isBase64;
   }
 
-
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;
   }
 
 
   public AddDocumentRequest content(String content) {
-
     this.content = content;
     return this;
   }
@@ -233,14 +222,12 @@ public class AddDocumentRequest {
     return content;
   }
 
-
   public void setContent(String content) {
     this.content = content;
   }
 
 
   public AddDocumentRequest tags(List<AddDocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -263,14 +250,12 @@ public class AddDocumentRequest {
     return tags;
   }
 
-
   public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;
   }
 
 
   public AddDocumentRequest metadata(List<AddDocumentMetadata> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -293,14 +278,12 @@ public class AddDocumentRequest {
     return metadata;
   }
 
-
   public void setMetadata(List<AddDocumentMetadata> metadata) {
     this.metadata = metadata;
   }
 
 
   public AddDocumentRequest actions(List<AddAction> actions) {
-
     this.actions = actions;
     return this;
   }
@@ -323,14 +306,12 @@ public class AddDocumentRequest {
     return actions;
   }
 
-
   public void setActions(List<AddAction> actions) {
     this.actions = actions;
   }
 
 
   public AddDocumentRequest documents(List<AddChildDocument> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -352,7 +333,6 @@ public class AddDocumentRequest {
   public List<AddChildDocument> getDocuments() {
     return documents;
   }
-
 
   public void setDocuments(List<AddChildDocument> documents) {
     this.documents = documents;

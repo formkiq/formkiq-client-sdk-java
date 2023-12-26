@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * SetDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class SetDocumentOcrRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -74,7 +74,6 @@ public class SetDocumentOcrRequest {
   public SetDocumentOcrRequest() {}
 
   public SetDocumentOcrRequest contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -89,14 +88,12 @@ public class SetDocumentOcrRequest {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public SetDocumentOcrRequest isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -111,14 +108,12 @@ public class SetDocumentOcrRequest {
     return isBase64;
   }
 
-
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;
   }
 
 
   public SetDocumentOcrRequest content(String content) {
-
     this.content = content;
     return this;
   }
@@ -132,7 +127,6 @@ public class SetDocumentOcrRequest {
   public String getContent() {
     return content;
   }
-
 
   public void setContent(String content) {
     this.content = content;

@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaTags
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-22T14:33:09.594006-06:00[America/Winnipeg]")
+    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
 public class TagSchemaTags {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)
@@ -83,7 +83,6 @@ public class TagSchemaTags {
   public TagSchemaTags() {}
 
   public TagSchemaTags compositeKeys(List<TagSchemaCompositeKey> compositeKeys) {
-
     this.compositeKeys = compositeKeys;
     return this;
   }
@@ -106,14 +105,12 @@ public class TagSchemaTags {
     return compositeKeys;
   }
 
-
   public void setCompositeKeys(List<TagSchemaCompositeKey> compositeKeys) {
     this.compositeKeys = compositeKeys;
   }
 
 
   public TagSchemaTags required(List<TagSchemaRequired> required) {
-
     this.required = required;
     return this;
   }
@@ -136,14 +133,12 @@ public class TagSchemaTags {
     return required;
   }
 
-
   public void setRequired(List<TagSchemaRequired> required) {
     this.required = required;
   }
 
 
   public TagSchemaTags optional(List<TagSchemaOptional> optional) {
-
     this.optional = optional;
     return this;
   }
@@ -166,14 +161,12 @@ public class TagSchemaTags {
     return optional;
   }
 
-
   public void setOptional(List<TagSchemaOptional> optional) {
     this.optional = optional;
   }
 
 
   public TagSchemaTags allowAdditionalTags(Boolean allowAdditionalTags) {
-
     this.allowAdditionalTags = allowAdditionalTags;
     return this;
   }
@@ -187,7 +180,6 @@ public class TagSchemaTags {
   public Boolean getAllowAdditionalTags() {
     return allowAdditionalTags;
   }
-
 
   public void setAllowAdditionalTags(Boolean allowAdditionalTags) {
     this.allowAdditionalTags = allowAdditionalTags;

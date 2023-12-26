@@ -285,7 +285,7 @@ No authorization required
 
 Get OPA Configuration
 
-Returns OPA Configuration
+Returns OPA Configuration, can only be requested with ADMIN privileges
 
 ### Example
 ```java
@@ -468,11 +468,11 @@ No authorization required
 
 <a id="setOpaConfiguration"></a>
 # **setOpaConfiguration**
-> SetOpaConfigurationResponse setOpaConfiguration(setOpaConfigurationRequest, siteId)
+> SetOpaConfigurationResponse setOpaConfiguration(setOpaConfigurationRequest)
 
 Set OPA Configuration
 
-Set OPA Configuration
+Set OPA Configuration, can only be requested with ADMIN privileges
 
 ### Example
 ```java
@@ -493,9 +493,8 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     SetOpaConfigurationRequest setOpaConfigurationRequest = new SetOpaConfigurationRequest(); // SetOpaConfigurationRequest | 
-    String siteId = "siteId_example"; // String | Site Identifier
     try {
-      SetOpaConfigurationResponse result = apiInstance.setOpaConfiguration(setOpaConfigurationRequest, siteId);
+      SetOpaConfigurationResponse result = apiInstance.setOpaConfiguration(setOpaConfigurationRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#setOpaConfiguration");
@@ -513,7 +512,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **setOpaConfigurationRequest** | [**SetOpaConfigurationRequest**](SetOpaConfigurationRequest.md)|  | |
-| **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
