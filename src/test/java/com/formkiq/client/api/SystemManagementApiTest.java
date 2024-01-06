@@ -26,11 +26,8 @@ import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
-import com.formkiq.client.model.GetOpaConfigurationResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
-import com.formkiq.client.model.SetOpaConfigurationRequest;
-import com.formkiq.client.model.SetOpaConfigurationResponse;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -109,20 +106,6 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Get OPA Configuration
-   *
-   * Returns OPA Configuration, can only be requested with ADMIN privileges
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void getOpaConfigurationTest() throws ApiException {
-    String siteId = null;
-    GetOpaConfigurationResponse response = api.getOpaConfiguration(siteId);
-    // TODO: test validations
-  }
-
-  /**
    * Get site(s) access
    *
    * Returns the list of sites that the user has access to
@@ -145,20 +128,6 @@ public class SystemManagementApiTest {
   @Test
   public void getVersionTest() throws ApiException {
     GetVersionResponse response = api.getVersion();
-    // TODO: test validations
-  }
-
-  /**
-   * Set OPA Configuration
-   *
-   * Set OPA Configuration, can only be requested with ADMIN privileges
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void setOpaConfigurationTest() throws ApiException {
-    SetOpaConfigurationRequest setOpaConfigurationRequest = null;
-    SetOpaConfigurationResponse response = api.setOpaConfiguration(setOpaConfigurationRequest);
     // TODO: test validations
   }
 

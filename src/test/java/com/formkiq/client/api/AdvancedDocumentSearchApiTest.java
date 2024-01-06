@@ -96,24 +96,6 @@ public class AdvancedDocumentSearchApiTest {
   }
 
   /**
-   * Document full-text search
-   *
-   * Document full-text search (and more robust multi-tag search queries, powered by OpenSearch);
-   * ONLY available with FormKiQ Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void documentFulltextTest() throws ApiException {
-    DocumentFulltextRequest documentFulltextRequest = null;
-    String siteId = null;
-    String limit = null;
-    DocumentFulltextResponse response =
-        api.documentFulltext(documentFulltextRequest, siteId, limit);
-    // TODO: test validations
-  }
-
-  /**
    * Get document&#39;s full-text
    *
    * Retrieve an OpenSearch document&#39;s details, i.e., metadata
@@ -143,6 +125,23 @@ public class AdvancedDocumentSearchApiTest {
     Object body = null;
     String siteId = null;
     QueryFulltextResponse response = api.queryFulltext(body, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Document full-text search
+   *
+   * Document full-text search (and more robust multi-tag search queries, powered by OpenSearch);
+   * ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void searchFulltextTest() throws ApiException {
+    DocumentFulltextRequest documentFulltextRequest = null;
+    String siteId = null;
+    String limit = null;
+    DocumentFulltextResponse response = api.searchFulltext(documentFulltextRequest, siteId, limit);
     // TODO: test validations
   }
 

@@ -8,7 +8,6 @@ All URIs are relative to *http://localhost*
 | [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document |
 | [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file |
 | [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document |
-| [**deleteOpaConfiguration**](DocumentsApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa | Delete OPA Configuration |
 | [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document |
 | [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents |
 | [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document |
@@ -292,71 +291,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
-<a id="deleteOpaConfiguration"></a>
-# **deleteOpaConfiguration**
-> DeleteOpaConfigurationResponse deleteOpaConfiguration(siteId)
-
-Delete OPA Configuration
-
-Delete OPA Configuration
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.DocumentsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-    String siteId = "siteId_example"; // String | Site Identifier
-    try {
-      DeleteOpaConfigurationResponse result = apiInstance.deleteOpaConfiguration(siteId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentsApi#deleteOpaConfiguration");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
-
-### Return type
-
-[**DeleteOpaConfigurationResponse**](DeleteOpaConfigurationResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -943,7 +877,7 @@ No authorization required
 
 <a id="updateDocument"></a>
 # **updateDocument**
-> AddDocumentResponse updateDocument(documentId, addDocumentRequest, siteId, shareKey)
+> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, shareKey)
 
 Update document
 
@@ -968,11 +902,11 @@ public class Example {
     
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
+    UpdateDocumentRequest updateDocumentRequest = new UpdateDocumentRequest(); // UpdateDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.updateDocument(documentId, addDocumentRequest, siteId, shareKey);
+      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#updateDocument");
@@ -990,7 +924,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **addDocumentRequest** | [**AddDocumentRequest**](AddDocumentRequest.md)|  | |
+| **updateDocumentRequest** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 

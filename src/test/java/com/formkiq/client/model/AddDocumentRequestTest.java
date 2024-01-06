@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddAccessAttribute;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentMetadata;
@@ -120,6 +121,14 @@ public class AddDocumentRequestTest {
   @Test
   public void actionsTest() {
     // TODO: test actions
+  }
+
+  /**
+   * Test the property 'accessAttributes'
+   */
+  @Test
+  public void accessAttributesTest() {
+    // TODO: test accessAttributes
   }
 
   /**

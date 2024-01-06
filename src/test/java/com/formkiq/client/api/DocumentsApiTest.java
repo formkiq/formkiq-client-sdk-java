@@ -24,7 +24,6 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentRequest;
 import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentUploadRequest;
-import com.formkiq.client.model.DeleteOpaConfigurationResponse;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -33,6 +32,7 @@ import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
 import com.formkiq.client.model.SetDocumentRestoreResponse;
+import com.formkiq.client.model.UpdateDocumentRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -119,20 +119,6 @@ public class DocumentsApiTest {
     String siteId = null;
     Boolean softDelete = null;
     api.deleteDocument(documentId, siteId, softDelete);
-    // TODO: test validations
-  }
-
-  /**
-   * Delete OPA Configuration
-   *
-   * Delete OPA Configuration
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void deleteOpaConfigurationTest() throws ApiException {
-    String siteId = null;
-    DeleteOpaConfigurationResponse response = api.deleteOpaConfiguration(siteId);
     // TODO: test validations
   }
 
@@ -297,11 +283,11 @@ public class DocumentsApiTest {
   @Test
   public void updateDocumentTest() throws ApiException {
     String documentId = null;
-    AddDocumentRequest addDocumentRequest = null;
+    UpdateDocumentRequest updateDocumentRequest = null;
     String siteId = null;
     String shareKey = null;
     AddDocumentResponse response =
-        api.updateDocument(documentId, addDocumentRequest, siteId, shareKey);
+        api.updateDocument(documentId, updateDocumentRequest, siteId, shareKey);
     // TODO: test validations
   }
 

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-26T12:48:12.925607-06:00[America/Winnipeg]")
+    date = "2024-01-05T21:39:11.737413-06:00[America/Winnipeg]")
 public class AddShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)

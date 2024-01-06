@@ -702,207 +702,6 @@ public class AdvancedDocumentSearchApi {
   }
 
   /**
-   * Build call for documentFulltext
-   * 
-   * @param documentFulltextRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call documentFulltextCall(DocumentFulltextRequest documentFulltextRequest,
-      String siteId, String limit, final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = documentFulltextRequest;
-
-    // create path and map variables
-    String localVarPath = "/searchFulltext";
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    if (limit != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {"application/json"};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call documentFulltextValidateBeforeCall(
-      DocumentFulltextRequest documentFulltextRequest, String siteId, String limit,
-      final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'documentFulltextRequest' is set
-    if (documentFulltextRequest == null) {
-      throw new ApiException(
-          "Missing the required parameter 'documentFulltextRequest' when calling documentFulltext(Async)");
-    }
-
-    return documentFulltextCall(documentFulltextRequest, siteId, limit, _callback);
-
-  }
-
-  /**
-   * Document full-text search Document full-text search (and more robust multi-tag search queries,
-   * powered by OpenSearch); ONLY available with FormKiQ Enterprise
-   * 
-   * @param documentFulltextRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @return DocumentFulltextResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public DocumentFulltextResponse documentFulltext(DocumentFulltextRequest documentFulltextRequest,
-      String siteId, String limit) throws ApiException {
-    ApiResponse<DocumentFulltextResponse> localVarResp =
-        documentFulltextWithHttpInfo(documentFulltextRequest, siteId, limit);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Document full-text search Document full-text search (and more robust multi-tag search queries,
-   * powered by OpenSearch); ONLY available with FormKiQ Enterprise
-   * 
-   * @param documentFulltextRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @return ApiResponse&lt;DocumentFulltextResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<DocumentFulltextResponse> documentFulltextWithHttpInfo(
-      DocumentFulltextRequest documentFulltextRequest, String siteId, String limit)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        documentFulltextValidateBeforeCall(documentFulltextRequest, siteId, limit, null);
-    Type localVarReturnType = new TypeToken<DocumentFulltextResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Document full-text search (asynchronously) Document full-text search (and more robust multi-tag
-   * search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
-   * 
-   * @param documentFulltextRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param limit Limit Results (optional, default to 10)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call documentFulltextAsync(DocumentFulltextRequest documentFulltextRequest,
-      String siteId, String limit, final ApiCallback<DocumentFulltextResponse> _callback)
-      throws ApiException {
-
-    okhttp3.Call localVarCall =
-        documentFulltextValidateBeforeCall(documentFulltextRequest, siteId, limit, _callback);
-    Type localVarReturnType = new TypeToken<DocumentFulltextResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
    * Build call for getDocumentFulltext
    * 
    * @param documentId Document Identifier (required)
@@ -1285,6 +1084,207 @@ public class AdvancedDocumentSearchApi {
 
     okhttp3.Call localVarCall = queryFulltextValidateBeforeCall(body, siteId, _callback);
     Type localVarReturnType = new TypeToken<QueryFulltextResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for searchFulltext
+   * 
+   * @param documentFulltextRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call searchFulltextCall(DocumentFulltextRequest documentFulltextRequest,
+      String siteId, String limit, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = documentFulltextRequest;
+
+    // create path and map variables
+    String localVarPath = "/searchFulltext";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call searchFulltextValidateBeforeCall(
+      DocumentFulltextRequest documentFulltextRequest, String siteId, String limit,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentFulltextRequest' is set
+    if (documentFulltextRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentFulltextRequest' when calling searchFulltext(Async)");
+    }
+
+    return searchFulltextCall(documentFulltextRequest, siteId, limit, _callback);
+
+  }
+
+  /**
+   * Document full-text search Document full-text search (and more robust multi-tag search queries,
+   * powered by OpenSearch); ONLY available with FormKiQ Enterprise
+   * 
+   * @param documentFulltextRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return DocumentFulltextResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DocumentFulltextResponse searchFulltext(DocumentFulltextRequest documentFulltextRequest,
+      String siteId, String limit) throws ApiException {
+    ApiResponse<DocumentFulltextResponse> localVarResp =
+        searchFulltextWithHttpInfo(documentFulltextRequest, siteId, limit);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Document full-text search Document full-text search (and more robust multi-tag search queries,
+   * powered by OpenSearch); ONLY available with FormKiQ Enterprise
+   * 
+   * @param documentFulltextRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return ApiResponse&lt;DocumentFulltextResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DocumentFulltextResponse> searchFulltextWithHttpInfo(
+      DocumentFulltextRequest documentFulltextRequest, String siteId, String limit)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        searchFulltextValidateBeforeCall(documentFulltextRequest, siteId, limit, null);
+    Type localVarReturnType = new TypeToken<DocumentFulltextResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Document full-text search (asynchronously) Document full-text search (and more robust multi-tag
+   * search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
+   * 
+   * @param documentFulltextRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call searchFulltextAsync(DocumentFulltextRequest documentFulltextRequest,
+      String siteId, String limit, final ApiCallback<DocumentFulltextResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        searchFulltextValidateBeforeCall(documentFulltextRequest, siteId, limit, _callback);
+    Type localVarReturnType = new TypeToken<DocumentFulltextResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

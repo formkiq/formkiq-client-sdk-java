@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.14.0
-  - Build date: 2023-12-26T12:48:12.925607-06:00[America/Winnipeg]
+  - Build date: 2024-01-05T21:39:11.737413-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -104,7 +104,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.invoker.Configuration;
 import com.formkiq.client.invoker.auth.*;
 import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.AdvancedDocumentSearchApi;
+import com.formkiq.client.api.AccessControlApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -113,14 +113,15 @@ public class Example {
     // Configure AWS Signature V4 authorization
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
-    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
+    AccessControlApi apiInstance = new AccessControlApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
+    AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest = new AddDocumentAccessAttributesRequest(); // AddDocumentAccessAttributesRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DeleteFulltextResponse result = apiInstance.deleteDocumentFulltext(documentId, siteId);
+      AddDocumentAccessAttributesResponse result = apiInstance.addDocumentAccessAttributes(documentId, addDocumentAccessAttributesRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdvancedDocumentSearchApi#deleteDocumentFulltext");
+      System.err.println("Exception when calling AccessControlApi#addDocumentAccessAttributes");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -137,12 +138,19 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AccessControlApi* | [**addDocumentAccessAttributes**](docs/AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes
+*AccessControlApi* | [**deleteDocumentAccessAttributes**](docs/AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes
+*AccessControlApi* | [**deleteOpaConfiguration**](docs/AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa | Delete OPA Configuration
+*AccessControlApi* | [**getDocumentAccessAttributes**](docs/AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes
+*AccessControlApi* | [**getOpaConfiguration**](docs/AccessControlApi.md#getOpaConfiguration) | **GET** /configuration/opa | Get OPA Configuration
+*AccessControlApi* | [**setDocumentAccessAttributes**](docs/AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes
+*AccessControlApi* | [**setOpaConfiguration**](docs/AccessControlApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTagAndValue**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | Delete document full-text tag/value
-*AdvancedDocumentSearchApi* | [**documentFulltext**](docs/AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext | Document full-text search
 *AdvancedDocumentSearchApi* | [**getDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext | Get document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**queryFulltext**](docs/AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext | Direct opensearch search API
+*AdvancedDocumentSearchApi* | [**searchFulltext**](docs/AdvancedDocumentSearchApi.md#searchFulltext) | **POST** /searchFulltext | Document full-text search
 *AdvancedDocumentSearchApi* | [**setDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
 *AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
@@ -194,7 +202,6 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
-*DocumentsApi* | [**deleteOpaConfiguration**](docs/DocumentsApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa | Delete OPA Configuration
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
@@ -217,10 +224,8 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration
-*SystemManagementApi* | [**getOpaConfiguration**](docs/SystemManagementApi.md#getOpaConfiguration) | **GET** /configuration/opa | Get OPA Configuration
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
-*SystemManagementApi* | [**setOpaConfiguration**](docs/SystemManagementApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
@@ -243,12 +248,16 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AccessAttribute](docs/AccessAttribute.md)
+ - [AddAccessAttribute](docs/AddAccessAttribute.md)
  - [AddAction](docs/AddAction.md)
  - [AddActionParameters](docs/AddActionParameters.md)
  - [AddApiKeyRequest](docs/AddApiKeyRequest.md)
  - [AddApiKeyResponse](docs/AddApiKeyResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
+ - [AddDocumentAccessAttributesRequest](docs/AddDocumentAccessAttributesRequest.md)
+ - [AddDocumentAccessAttributesResponse](docs/AddDocumentAccessAttributesResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
  - [AddDocumentActionsResponse](docs/AddDocumentActionsResponse.md)
  - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
@@ -287,6 +296,7 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
+ - [DeleteDocumentAccessAttributesResponse](docs/DeleteDocumentAccessAttributesResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
@@ -322,6 +332,7 @@ Class | Method | HTTP request | Description
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
+ - [GetDocumentAccessAttributesResponse](docs/GetDocumentAccessAttributesResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
  - [GetDocumentFulltextResponse](docs/GetDocumentFulltextResponse.md)
@@ -374,6 +385,8 @@ Class | Method | HTTP request | Description
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
+ - [SetDocumentAccessAttributesRequest](docs/SetDocumentAccessAttributesRequest.md)
+ - [SetDocumentAccessAttributesResponse](docs/SetDocumentAccessAttributesResponse.md)
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)
  - [SetDocumentFulltextResponse](docs/SetDocumentFulltextResponse.md)
  - [SetDocumentOcrRequest](docs/SetDocumentOcrRequest.md)
@@ -397,6 +410,7 @@ Class | Method | HTTP request | Description
  - [UpdateConfigurationRequest](docs/UpdateConfigurationRequest.md)
  - [UpdateConfigurationResponse](docs/UpdateConfigurationResponse.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
+ - [UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)

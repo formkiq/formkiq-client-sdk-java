@@ -7,9 +7,9 @@ All URIs are relative to *http://localhost*
 | [**deleteDocumentFulltext**](AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text |
 | [**deleteDocumentFulltextTag**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag |
 | [**deleteDocumentFulltextTagAndValue**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | Delete document full-text tag/value |
-| [**documentFulltext**](AdvancedDocumentSearchApi.md#documentFulltext) | **POST** /searchFulltext | Document full-text search |
 | [**getDocumentFulltext**](AdvancedDocumentSearchApi.md#getDocumentFulltext) | **GET** /documents/{documentId}/fulltext | Get document&#39;s full-text |
 | [**queryFulltext**](AdvancedDocumentSearchApi.md#queryFulltext) | **POST** /queryFulltext | Direct opensearch search API |
+| [**searchFulltext**](AdvancedDocumentSearchApi.md#searchFulltext) | **POST** /searchFulltext | Document full-text search |
 | [**setDocumentFulltext**](AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text |
 | [**updateDocumentFulltext**](AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text |
 
@@ -223,75 +223,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="documentFulltext"></a>
-# **documentFulltext**
-> DocumentFulltextResponse documentFulltext(documentFulltextRequest, siteId, limit)
-
-Document full-text search
-
-Document full-text search (and more robust multi-tag search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.AdvancedDocumentSearchApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
-    DocumentFulltextRequest documentFulltextRequest = new DocumentFulltextRequest(); // DocumentFulltextRequest | 
-    String siteId = "siteId_example"; // String | Site Identifier
-    String limit = "10"; // String | Limit Results
-    try {
-      DocumentFulltextResponse result = apiInstance.documentFulltext(documentFulltextRequest, siteId, limit);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AdvancedDocumentSearchApi#documentFulltext");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **documentFulltextRequest** | [**DocumentFulltextRequest**](DocumentFulltextRequest.md)|  | |
-| **siteId** | **String**| Site Identifier | [optional] |
-| **limit** | **String**| Limit Results | [optional] [default to 10] |
-
-### Return type
-
-[**DocumentFulltextResponse**](DocumentFulltextResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
 <a id="getDocumentFulltext"></a>
 # **getDocumentFulltext**
 > GetDocumentFulltextResponse getDocumentFulltext(documentId, siteId, shareKey)
@@ -413,6 +344,75 @@ public class Example {
 ### Return type
 
 [**QueryFulltextResponse**](QueryFulltextResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="searchFulltext"></a>
+# **searchFulltext**
+> DocumentFulltextResponse searchFulltext(documentFulltextRequest, siteId, limit)
+
+Document full-text search
+
+Document full-text search (and more robust multi-tag search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AdvancedDocumentSearchApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
+    DocumentFulltextRequest documentFulltextRequest = new DocumentFulltextRequest(); // DocumentFulltextRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    try {
+      DocumentFulltextResponse result = apiInstance.searchFulltext(documentFulltextRequest, siteId, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdvancedDocumentSearchApi#searchFulltext");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentFulltextRequest** | [**DocumentFulltextRequest**](DocumentFulltextRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+
+### Return type
+
+[**DocumentFulltextResponse**](DocumentFulltextResponse.md)
 
 ### Authorization
 

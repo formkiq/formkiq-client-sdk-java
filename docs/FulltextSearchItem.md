@@ -17,6 +17,7 @@
 |**createdBy** | **String** | User who added document |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**accessAttributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
 
 
 

@@ -37,7 +37,6 @@ import java.io.IOException;
 import com.formkiq.client.model.AddDocumentRequest;
 import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentUploadRequest;
-import com.formkiq.client.model.DeleteOpaConfigurationResponse;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -46,6 +45,7 @@ import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
 import com.formkiq.client.model.SetDocumentRestoreResponse;
+import com.formkiq.client.model.UpdateDocumentRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -919,180 +919,6 @@ public class DocumentsApi {
     okhttp3.Call localVarCall =
         deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for deleteOpaConfiguration
-   * 
-   * @param siteId Site Identifier (optional)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call deleteOpaConfigurationCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/configuration/opa";
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteOpaConfigurationValidateBeforeCall(String siteId,
-      final ApiCallback _callback) throws ApiException {
-    return deleteOpaConfigurationCall(siteId, _callback);
-
-  }
-
-  /**
-   * Delete OPA Configuration Delete OPA Configuration
-   * 
-   * @param siteId Site Identifier (optional)
-   * @return DeleteOpaConfigurationResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public DeleteOpaConfigurationResponse deleteOpaConfiguration(String siteId) throws ApiException {
-    ApiResponse<DeleteOpaConfigurationResponse> localVarResp =
-        deleteOpaConfigurationWithHttpInfo(siteId);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Delete OPA Configuration Delete OPA Configuration
-   * 
-   * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;DeleteOpaConfigurationResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<DeleteOpaConfigurationResponse> deleteOpaConfigurationWithHttpInfo(
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = deleteOpaConfigurationValidateBeforeCall(siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteOpaConfigurationResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Delete OPA Configuration (asynchronously) Delete OPA Configuration
-   * 
-   * @param siteId Site Identifier (optional)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call deleteOpaConfigurationAsync(String siteId,
-      final ApiCallback<DeleteOpaConfigurationResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall = deleteOpaConfigurationValidateBeforeCall(siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteOpaConfigurationResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
@@ -2809,7 +2635,7 @@ public class DocumentsApi {
    * Build call for updateDocument
    * 
    * @param documentId Document Identifier (required)
-   * @param addDocumentRequest (required)
+   * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
@@ -2837,8 +2663,9 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateDocumentCall(String documentId, AddDocumentRequest addDocumentRequest,
-      String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateDocumentCall(String documentId,
+      UpdateDocumentRequest updateDocumentRequest, String siteId, String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2852,7 +2679,7 @@ public class DocumentsApi {
       basePath = null;
     }
 
-    Object localVarPostBody = addDocumentRequest;
+    Object localVarPostBody = updateDocumentRequest;
 
     // create path and map variables
     String localVarPath = "/documents/{documentId}".replace("{" + "documentId" + "}",
@@ -2893,7 +2720,7 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call updateDocumentValidateBeforeCall(String documentId,
-      AddDocumentRequest addDocumentRequest, String siteId, String shareKey,
+      UpdateDocumentRequest updateDocumentRequest, String siteId, String shareKey,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -2901,13 +2728,13 @@ public class DocumentsApi {
           "Missing the required parameter 'documentId' when calling updateDocument(Async)");
     }
 
-    // verify the required parameter 'addDocumentRequest' is set
-    if (addDocumentRequest == null) {
+    // verify the required parameter 'updateDocumentRequest' is set
+    if (updateDocumentRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'addDocumentRequest' when calling updateDocument(Async)");
+          "Missing the required parameter 'updateDocumentRequest' when calling updateDocument(Async)");
     }
 
-    return updateDocumentCall(documentId, addDocumentRequest, siteId, shareKey, _callback);
+    return updateDocumentCall(documentId, updateDocumentRequest, siteId, shareKey, _callback);
 
   }
 
@@ -2915,7 +2742,7 @@ public class DocumentsApi {
    * Update document Update a document&#39;s details, i.e., metadata
    * 
    * @param documentId Document Identifier (required)
-   * @param addDocumentRequest (required)
+   * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return AddDocumentResponse
@@ -2944,9 +2771,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public AddDocumentResponse updateDocument(String documentId,
-      AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+      UpdateDocumentRequest updateDocumentRequest, String siteId, String shareKey)
+      throws ApiException {
     ApiResponse<AddDocumentResponse> localVarResp =
-        updateDocumentWithHttpInfo(documentId, addDocumentRequest, siteId, shareKey);
+        updateDocumentWithHttpInfo(documentId, updateDocumentRequest, siteId, shareKey);
     return localVarResp.getData();
   }
 
@@ -2954,7 +2782,7 @@ public class DocumentsApi {
    * Update document Update a document&#39;s details, i.e., metadata
    * 
    * @param documentId Document Identifier (required)
-   * @param addDocumentRequest (required)
+   * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;AddDocumentResponse&gt;
@@ -2983,9 +2811,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<AddDocumentResponse> updateDocumentWithHttpInfo(String documentId,
-      AddDocumentRequest addDocumentRequest, String siteId, String shareKey) throws ApiException {
+      UpdateDocumentRequest updateDocumentRequest, String siteId, String shareKey)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        updateDocumentValidateBeforeCall(documentId, addDocumentRequest, siteId, shareKey, null);
+        updateDocumentValidateBeforeCall(documentId, updateDocumentRequest, siteId, shareKey, null);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2994,7 +2823,7 @@ public class DocumentsApi {
    * Update document (asynchronously) Update a document&#39;s details, i.e., metadata
    * 
    * @param documentId Document Identifier (required)
-   * @param addDocumentRequest (required)
+   * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
@@ -3022,11 +2851,11 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateDocumentAsync(String documentId, AddDocumentRequest addDocumentRequest,
-      String siteId, String shareKey, final ApiCallback<AddDocumentResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call updateDocumentAsync(String documentId,
+      UpdateDocumentRequest updateDocumentRequest, String siteId, String shareKey,
+      final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, addDocumentRequest,
+    okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, updateDocumentRequest,
         siteId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);

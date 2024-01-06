@@ -64,6 +64,9 @@ tags:
 - description: Document Folders API
   name: documentFolders
   x-displayName: Document Folders
+- description: Access Control API
+  name: accessControl
+  x-displayName: Access Control
 - description: Document Shares API
   name: documentShares
   x-displayName: Document Shares
@@ -429,7 +432,7 @@ paths:
       - ApiAuthorization: []
       summary: Delete OPA Configuration
       tags:
-      - Documents
+      - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
@@ -472,7 +475,7 @@ paths:
       - ApiAuthorization: []
       summary: Get OPA Configuration
       tags:
-      - System Management
+      - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
@@ -503,7 +506,7 @@ paths:
       - ApiAuthorization: []
       summary: Set OPA Configuration
       tags:
-      - System Management
+      - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
@@ -878,7 +881,7 @@ paths:
                       \ sed do eiusmod tempor incididunt ut labore et dolore magna\
                       \ aliqua."
             schema:
-              $ref: '#/components/schemas/AddDocumentRequest'
+              $ref: '#/components/schemas/UpdateDocumentRequest'
         required: true
       responses:
         "200":
@@ -971,6 +974,204 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /documents/{documentId}/accessAttributes:
+    delete:
+      description: Delete a document's access attributes
+      operationId: DeleteDocumentAccessAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteDocumentAccessAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete document's access attributes
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Retrieves a document's access attributes (only "admin" role can
+        call API)
+      operationId: GetDocumentAccessAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentAccessAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document access attributes
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Add a document's access attributes (only "admin" role can call
+        API)
+      operationId: AddDocumentAccessAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentAccessAttributesRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocumentAccessAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add document access attributes
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      description: Set a document's access attributes (only "admin" role can call
+        API)
+      operationId: SetDocumentAccessAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDocumentAccessAttributesRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetDocumentAccessAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Set document access attributes
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts: application/json
   /documents/{documentId}/tags:
     get:
@@ -2080,7 +2281,7 @@ paths:
     post:
       description: "Document full-text search (and more robust multi-tag search queries,\
         \ powered by OpenSearch); ONLY available with FormKiQ Enterprise"
-      operationId: DocumentFulltext
+      operationId: SearchFulltext
       parameters:
       - description: Site Identifier
         explode: true
@@ -7267,6 +7468,180 @@ components:
           key: key
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        accessAttributes:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        documents:
+        - path: path
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          deepLinkPath: deepLinkPath
+          contentType: contentType
+          isBase64: true
+          content: content
+          tags:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+        - path: path
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          deepLinkPath: deepLinkPath
+          contentType: contentType
+          isBase64: true
+          content: content
+          tags:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+        contentType: contentType
+        isBase64: true
+        actions:
+        - type: OCR
+          parameters:
+            characterMax: characterMax
+            ocrEngine: TESSERACT
+            ocrParseTypes: ocrParseTypes
+            addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            tags: tags
+            notificationSubject: notificationSubject
+            queueName: queueName
+            engine: chatgpt
+            notificationText: notificationText
+            notificationHtml: notificationHtml
+        - type: OCR
+          parameters:
+            characterMax: characterMax
+            ocrEngine: TESSERACT
+            ocrParseTypes: ocrParseTypes
+            addPdfDetectedCharactersAsText: true
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            tags: tags
+            notificationSubject: notificationSubject
+            queueName: queueName
+            engine: chatgpt
+            notificationText: notificationText
+            notificationHtml: notificationHtml
+        content: content
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+      properties:
+        tagSchemaId:
+          description: Tag Schema Id
+          type: string
+        path:
+          description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
+          type: string
+        contentType:
+          description: Document media type
+          type: string
+        isBase64:
+          description: Is the content Base64-encoded?
+          type: boolean
+        content:
+          description: Document content
+          type: string
+        tags:
+          description: List of document tags
+          items:
+            $ref: '#/components/schemas/AddDocumentTag'
+          type: array
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/AddDocumentMetadata'
+          type: array
+        actions:
+          description: List of Actions
+          items:
+            $ref: '#/components/schemas/AddAction'
+          type: array
+        accessAttributes:
+          description: List of Access Attributes (only available in pro/enterprise)
+          items:
+            $ref: '#/components/schemas/AddAccessAttribute'
+          type: array
+        documents:
+          description: List of child documents
+          items:
+            $ref: '#/components/schemas/AddChildDocument'
+          type: array
+      required:
+      - content
+      type: object
+    UpdateDocumentRequest:
+      example:
+        path: path
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        tagSchemaId: tagSchemaId
+        deepLinkPath: deepLinkPath
         documents:
         - path: path
           metadata:
@@ -7408,8 +7783,6 @@ components:
           items:
             $ref: '#/components/schemas/AddChildDocument'
           type: array
-      required:
-      - content
       type: object
     AddFolderShareRequest:
       example:
@@ -7591,6 +7964,109 @@ components:
             description: Metadata value
             type: string
           type: array
+      required:
+      - key
+      type: object
+    AddDocumentAccessAttributesRequest:
+      description: List of document access attributes to add
+      example:
+        accessAttributes:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        accessAttributes:
+          description: List of document access attributes
+          items:
+            $ref: '#/components/schemas/AddAccessAttribute'
+          type: array
+      type: object
+    SetDocumentAccessAttributesRequest:
+      description: List of document access attributes to set
+      example:
+        accessAttributes:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        accessAttributes:
+          description: List of document access attributes
+          items:
+            $ref: '#/components/schemas/AddAccessAttribute'
+          type: array
+      type: object
+    GetDocumentAccessAttributesResponse:
+      description: List of document access attributes
+      example:
+        accessAttributes:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        accessAttributes:
+          description: List of document access attributes
+          items:
+            $ref: '#/components/schemas/AccessAttribute'
+          type: array
+      type: object
+    AccessAttribute:
+      description: "Document Access Attribute (requires either: stringValue, numberValue,\
+        \ booleanValue)"
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        numberValue:
+          description: Attribute with number value
+          type: number
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
+      type: object
+    AddAccessAttribute:
+      description: "Document Access Attribute (requires either: stringValue, numberValue,\
+        \ booleanValue)"
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        numberValue:
+          description: Attribute with number value
+          type: number
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
       required:
       - key
       type: object
@@ -7855,6 +8331,8 @@ components:
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           createdBy: createdBy
+          accessAttributes:
+            key: "{}"
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -7867,6 +8345,8 @@ components:
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           createdBy: createdBy
+          accessAttributes:
+            key: "{}"
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -7888,6 +8368,8 @@ components:
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         createdBy: createdBy
+        accessAttributes:
+          key: "{}"
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -7923,6 +8405,10 @@ components:
             type: object
           type: object
         metadata:
+          additionalProperties:
+            type: object
+          type: object
+        accessAttributes:
           additionalProperties:
             type: object
           type: object
@@ -8994,6 +9480,30 @@ components:
           type: string
         insertedDate:
           description: Inserted Timestamp
+          type: string
+      type: object
+    AddDocumentAccessAttributesResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Document Action message
+          type: string
+      type: object
+    SetDocumentAccessAttributesResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Document Action message
+          type: string
+      type: object
+    DeleteDocumentAccessAttributesResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Document Action message
           type: string
       type: object
     AddDocumentActionsResponse:

@@ -8,10 +8,8 @@ All URIs are relative to *http://localhost*
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys |
 | [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration |
-| [**getOpaConfiguration**](SystemManagementApi.md#getOpaConfiguration) | **GET** /configuration/opa | Get OPA Configuration |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
-| [**setOpaConfiguration**](SystemManagementApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration |
 | [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration |
 
 
@@ -279,71 +277,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="getOpaConfiguration"></a>
-# **getOpaConfiguration**
-> GetOpaConfigurationResponse getOpaConfiguration(siteId)
-
-Get OPA Configuration
-
-Returns OPA Configuration, can only be requested with ADMIN privileges
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.SystemManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    String siteId = "siteId_example"; // String | Site Identifier
-    try {
-      GetOpaConfigurationResponse result = apiInstance.getOpaConfiguration(siteId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#getOpaConfiguration");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
-
-### Return type
-
-[**GetOpaConfigurationResponse**](GetOpaConfigurationResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
 <a id="getSites"></a>
 # **getSites**
 > GetSitesResponse getSites()
@@ -459,71 +392,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
-<a id="setOpaConfiguration"></a>
-# **setOpaConfiguration**
-> SetOpaConfigurationResponse setOpaConfiguration(setOpaConfigurationRequest)
-
-Set OPA Configuration
-
-Set OPA Configuration, can only be requested with ADMIN privileges
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.SystemManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    SetOpaConfigurationRequest setOpaConfigurationRequest = new SetOpaConfigurationRequest(); // SetOpaConfigurationRequest | 
-    try {
-      SetOpaConfigurationResponse result = apiInstance.setOpaConfiguration(setOpaConfigurationRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#setOpaConfiguration");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **setOpaConfigurationRequest** | [**SetOpaConfigurationRequest**](SetOpaConfigurationRequest.md)|  | |
-
-### Return type
-
-[**SetOpaConfigurationResponse**](SetOpaConfigurationResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
