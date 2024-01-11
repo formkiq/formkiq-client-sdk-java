@@ -6,6 +6,7 @@ openapi-generator generate -g java -i https://raw.githubusercontent.com/formkiq/
 
 git restore build.gradle
 git restore ./src/main/java/com/formkiq/client/invoker/auth/AWS4Auth.java
+git restore ./src/main/java/com/formkiq/client/invoker/ApiClient.java
 git restore ./src/main/java/com/formkiq/client/invoker/auth/StringContentStreamProvider.java
 
 ./gradlew clean build
