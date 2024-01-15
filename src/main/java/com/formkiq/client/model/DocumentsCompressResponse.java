@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentsCompressResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-05T21:39:11.737413-06:00[America/Winnipeg]")
+    date = "2024-01-13T17:56:16.985602-06:00[America/Winnipeg]")
 public class DocumentsCompressResponse {
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)

@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.14.0
-  - Build date: 2024-01-05T21:39:11.737413-06:00[America/Winnipeg]
+  - Build date: 2024-01-13T17:56:16.985602-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -154,6 +154,17 @@ Class | Method | HTTP request | Description
 *AdvancedDocumentSearchApi* | [**setDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
 *AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
+*CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
+*CaseManagementApi* | [**getCase**](docs/CaseManagementApi.md#getCase) | **GET** /cases/{caseId} | Get Case details
+*CaseManagementApi* | [**getCaseDocuments**](docs/CaseManagementApi.md#getCaseDocuments) | **GET** /cases/{caseId}/documents | Get list of document in a case
+*CaseManagementApi* | [**getCaseNigos**](docs/CaseManagementApi.md#getCaseNigos) | **GET** /cases/{caseId}/nigos | Get list of Nigos in a case
+*CaseManagementApi* | [**getCaseTasks**](docs/CaseManagementApi.md#getCaseTasks) | **GET** /cases/{caseId}/tasks | Get list of tasks in a case
+*CaseManagementApi* | [**getCases**](docs/CaseManagementApi.md#getCases) | **GET** /cases | Get Case listing
+*CaseManagementApi* | [**getNigoDocuments**](docs/CaseManagementApi.md#getNigoDocuments) | **GET** /cases/{caseId}/nigos/{nigoId}/documents | Get list of document in a task
+*CaseManagementApi* | [**getTaskDocuments**](docs/CaseManagementApi.md#getTaskDocuments) | **GET** /cases/{caseId}/tasks/{taskId}/documents | Get list of document in a task
+*CaseManagementApi* | [**updateCase**](docs/CaseManagementApi.md#updateCase) | **PATCH** /cases/{caseId} | Update existing Case
+*CaseManagementApi* | [**updateNigo**](docs/CaseManagementApi.md#updateNigo) | **PATCH** /cases/{caseId}/nigos/{nigoId} | Update existing Nigo
+*CaseManagementApi* | [**updateTask**](docs/CaseManagementApi.md#updateTask) | **PATCH** /cases/{caseId}/tasks/{taskId} | Update existing Task
 *CustomIndexApi* | [**deleteIndex**](docs/CustomIndexApi.md#deleteIndex) | **DELETE** /indices/{indexType}/{indexKey} | 
 *CustomIndexApi* | [**indexFolderMove**](docs/CustomIndexApi.md#indexFolderMove) | **POST** /indices/{indexType}/move | 
 *CustomIndexApi* | [**indexSearch**](docs/CustomIndexApi.md#indexSearch) | **POST** /indices/search | 
@@ -254,6 +265,9 @@ Class | Method | HTTP request | Description
  - [AddActionParameters](docs/AddActionParameters.md)
  - [AddApiKeyRequest](docs/AddApiKeyRequest.md)
  - [AddApiKeyResponse](docs/AddApiKeyResponse.md)
+ - [AddCase](docs/AddCase.md)
+ - [AddCaseRequest](docs/AddCaseRequest.md)
+ - [AddCaseResponse](docs/AddCaseResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
  - [AddDocumentAccessAttributesRequest](docs/AddDocumentAccessAttributesRequest.md)
@@ -279,12 +293,14 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddNigo](docs/AddNigo.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
  - [AddShare](docs/AddShare.md)
  - [AddTagSchemaRequest](docs/AddTagSchemaRequest.md)
  - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
+ - [AddTask](docs/AddTask.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
  - [AddWebhookTagRequest](docs/AddWebhookTagRequest.md)
@@ -294,6 +310,7 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
+ - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteDocumentAccessAttributesResponse](docs/DeleteDocumentAccessAttributesResponse.md)
@@ -331,6 +348,11 @@ Class | Method | HTTP request | Description
  - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
+ - [GetCaseDocumentsResponse](docs/GetCaseDocumentsResponse.md)
+ - [GetCaseNigosResponse](docs/GetCaseNigosResponse.md)
+ - [GetCaseResponse](docs/GetCaseResponse.md)
+ - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
+ - [GetCasesResponse](docs/GetCasesResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
  - [GetDocumentAccessAttributesResponse](docs/GetDocumentAccessAttributesResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
@@ -374,6 +396,9 @@ Class | Method | HTTP request | Description
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
+ - [ModelCase](docs/ModelCase.md)
+ - [Nigo](docs/Nigo.md)
+ - [NigoStatus](docs/NigoStatus.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
@@ -407,6 +432,11 @@ Class | Method | HTTP request | Description
  - [TagSchemaRequired](docs/TagSchemaRequired.md)
  - [TagSchemaSummary](docs/TagSchemaSummary.md)
  - [TagSchemaTags](docs/TagSchemaTags.md)
+ - [Task](docs/Task.md)
+ - [TaskStatus](docs/TaskStatus.md)
+ - [UpdateCase](docs/UpdateCase.md)
+ - [UpdateCaseRequest](docs/UpdateCaseRequest.md)
+ - [UpdateCaseResponse](docs/UpdateCaseResponse.md)
  - [UpdateConfigurationRequest](docs/UpdateConfigurationRequest.md)
  - [UpdateConfigurationResponse](docs/UpdateConfigurationResponse.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
@@ -415,6 +445,12 @@ Class | Method | HTTP request | Description
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
+ - [UpdateNigo](docs/UpdateNigo.md)
+ - [UpdateNigoRequest](docs/UpdateNigoRequest.md)
+ - [UpdateNigoResponse](docs/UpdateNigoResponse.md)
+ - [UpdateTask](docs/UpdateTask.md)
+ - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
+ - [UpdateTaskResponse](docs/UpdateTaskResponse.md)
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
  - [UserShare](docs/UserShare.md)
