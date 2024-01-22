@@ -1,4 +1,7 @@
-# client
+# FormKiQ Java Client Library
+=====================================
+
+This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
 - API version: 1.13.0
@@ -109,18 +112,53 @@ import com.formkiq.client.api.AdvancedDocumentSearchApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+
+    // Pick one of the following authorization methods (JWT / IAM / KEY)
+    //
+    // 1. For JWT authorization
+    // From the FormKiQ installation CloudFormation Outputs, find the value for HttpApiUrl
+    defaultClient.setBasePath("<HttpApiUrl>");
+    defaultClient.addDefaultHeader("Authorization", <JWT Access Token>);
+
+    // 2. For IAM authorization
+    // From the FormKiQ installation CloudFormation Outputs, find the value for IamApiUrl
+    defaultClient.setBasePath("<IamApiUrl>");
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "execute-api")
+
+    // 3. For Key authorization
+    // From the FormKiQ installation CloudFormation Outputs, find the value for KeyApiUrl
+    defaultClient.setBasePath("<KeyApiUrl>");
+    defaultClient.addDefaultHeader("Authorization", <Api Key>);    
     
-    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
-    String documentId = "documentId_example"; // String | Document Identifier
-    String siteId = "siteId_example"; // String | Site Identifier
+    // Add New Document
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
+    String siteId = null; // String | Site Identifier
+    String shareKey = null; // String | Share Identifier
     try {
-      DeleteFulltextResponse result = apiInstance.deleteDocumentFulltext(documentId, siteId);
+      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdvancedDocumentSearchApi#deleteDocumentFulltext");
+      System.err.println("Exception when calling DocumentsApi#addDocument");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Get Documents
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String date = null; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
+    String tz = null; // String | UTC offset to apply to date parameter (IE: -0600)
+    String next = null; // String | Next page of results token
+    String previous = null; // String | Previous page of results token
+    String siteId = null; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    try {
+      GetDocumentsResponse result = apiInstance.getDocuments(date, tz, next, previous, siteId, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#getDocuments");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
