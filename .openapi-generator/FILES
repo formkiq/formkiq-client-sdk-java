@@ -189,6 +189,8 @@ docs/SetOpaConfigurationResponse.md
 docs/SetWorkflowRequest.md
 docs/SetWorkflowResponse.md
 docs/Site.md
+docs/StringFormat.md
+docs/StringGeneratorType.md
 docs/SystemManagementApi.md
 docs/TagIndexApi.md
 docs/TagSchema.md
@@ -453,6 +455,8 @@ src/main/java/com/formkiq/client/model/SetOpaConfigurationResponse.java
 src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/SetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Site.java
+src/main/java/com/formkiq/client/model/StringFormat.java
+src/main/java/com/formkiq/client/model/StringGeneratorType.java
 src/main/java/com/formkiq/client/model/TagSchema.java
 src/main/java/com/formkiq/client/model/TagSchemaCompositeKey.java
 src/main/java/com/formkiq/client/model/TagSchemaOptional.java
@@ -679,6 +683,8 @@ src/test/java/com/formkiq/client/model/SetOpaConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java
+src/test/java/com/formkiq/client/model/StringFormatTest.java
+src/test/java/com/formkiq/client/model/StringGeneratorTypeTest.java
 src/test/java/com/formkiq/client/model/TagSchemaCompositeKeyTest.java
 src/test/java/com/formkiq/client/model/TagSchemaOptionalTest.java
 src/test/java/com/formkiq/client/model/TagSchemaRequiredTest.java

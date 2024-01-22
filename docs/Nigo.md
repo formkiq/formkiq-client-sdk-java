@@ -11,6 +11,7 @@
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**description** | **String** | Description of Task |  [optional] |
 |**status** | **NigoStatus** |  |  [optional] |
+|**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
 
 
 

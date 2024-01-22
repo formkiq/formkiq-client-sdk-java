@@ -24,6 +24,7 @@ import java.util.Objects;
 import com.formkiq.client.model.AddNigo;
 import com.formkiq.client.model.AddTask;
 import com.formkiq.client.model.CaseStatus;
+import com.formkiq.client.model.StringFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,7 +33,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,7 +65,7 @@ import com.formkiq.client.invoker.JSON;
  * AddCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-13T17:56:16.985602-06:00[America/Winnipeg]")
+    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
 public class AddCase {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -71,6 +74,18 @@ public class AddCase {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private CaseStatus status;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT = "documentNumberFormat";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT)
+  private List<StringFormat> documentNumberFormat;
+
+  public static final String SERIALIZED_NAME_CASE_NUMBER_FORMAT = "caseNumberFormat";
+  @SerializedName(SERIALIZED_NAME_CASE_NUMBER_FORMAT)
+  private List<StringFormat> caseNumberFormat;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -123,6 +138,90 @@ public class AddCase {
 
   public void setStatus(CaseStatus status) {
     this.status = status;
+  }
+
+
+  public AddCase documentNumberFormat(List<StringFormat> documentNumberFormat) {
+    this.documentNumberFormat = documentNumberFormat;
+    return this;
+  }
+
+  public AddCase addDocumentNumberFormatItem(StringFormat documentNumberFormatItem) {
+    if (this.documentNumberFormat == null) {
+      this.documentNumberFormat = new ArrayList<>();
+    }
+    this.documentNumberFormat.add(documentNumberFormatItem);
+    return this;
+  }
+
+  /**
+   * Format of Document Number
+   * 
+   * @return documentNumberFormat
+   **/
+  @javax.annotation.Nullable
+  public List<StringFormat> getDocumentNumberFormat() {
+    return documentNumberFormat;
+  }
+
+  public void setDocumentNumberFormat(List<StringFormat> documentNumberFormat) {
+    this.documentNumberFormat = documentNumberFormat;
+  }
+
+
+  public AddCase caseNumberFormat(List<StringFormat> caseNumberFormat) {
+    this.caseNumberFormat = caseNumberFormat;
+    return this;
+  }
+
+  public AddCase addCaseNumberFormatItem(StringFormat caseNumberFormatItem) {
+    if (this.caseNumberFormat == null) {
+      this.caseNumberFormat = new ArrayList<>();
+    }
+    this.caseNumberFormat.add(caseNumberFormatItem);
+    return this;
+  }
+
+  /**
+   * Format of Case Number
+   * 
+   * @return caseNumberFormat
+   **/
+  @javax.annotation.Nullable
+  public List<StringFormat> getCaseNumberFormat() {
+    return caseNumberFormat;
+  }
+
+  public void setCaseNumberFormat(List<StringFormat> caseNumberFormat) {
+    this.caseNumberFormat = caseNumberFormat;
+  }
+
+
+  public AddCase metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public AddCase putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -221,13 +320,17 @@ public class AddCase {
     }
     AddCase addCase = (AddCase) o;
     return Objects.equals(this.name, addCase.name) && Objects.equals(this.status, addCase.status)
+        && Objects.equals(this.documentNumberFormat, addCase.documentNumberFormat)
+        && Objects.equals(this.caseNumberFormat, addCase.caseNumberFormat)
+        && Objects.equals(this.metadata, addCase.metadata)
         && Objects.equals(this.documentIds, addCase.documentIds)
         && Objects.equals(this.tasks, addCase.tasks) && Objects.equals(this.nigos, addCase.nigos);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, documentIds, tasks, nigos);
+    return Objects.hash(name, status, documentNumberFormat, caseNumberFormat, metadata, documentIds,
+        tasks, nigos);
   }
 
   @Override
@@ -236,6 +339,10 @@ public class AddCase {
     sb.append("class AddCase {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    documentNumberFormat: ").append(toIndentedString(documentNumberFormat))
+        .append("\n");
+    sb.append("    caseNumberFormat: ").append(toIndentedString(caseNumberFormat)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
     sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
     sb.append("    nigos: ").append(toIndentedString(nigos)).append("\n");
@@ -262,6 +369,9 @@ public class AddCase {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("status");
+    openapiFields.add("documentNumberFormat");
+    openapiFields.add("caseNumberFormat");
+    openapiFields.add("metadata");
     openapiFields.add("documentIds");
     openapiFields.add("tasks");
     openapiFields.add("nigos");
@@ -314,6 +424,39 @@ public class AddCase {
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       CaseStatus.validateJsonElement(jsonObj.get("status"));
+    }
+    if (jsonObj.get("documentNumberFormat") != null
+        && !jsonObj.get("documentNumberFormat").isJsonNull()) {
+      JsonArray jsonArraydocumentNumberFormat = jsonObj.getAsJsonArray("documentNumberFormat");
+      if (jsonArraydocumentNumberFormat != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("documentNumberFormat").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `documentNumberFormat` to be an array in the JSON string but got `%s`",
+              jsonObj.get("documentNumberFormat").toString()));
+        }
+
+        // validate the optional field `documentNumberFormat` (array)
+        for (int i = 0; i < jsonArraydocumentNumberFormat.size(); i++) {
+          StringFormat.validateJsonElement(jsonArraydocumentNumberFormat.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("caseNumberFormat") != null && !jsonObj.get("caseNumberFormat").isJsonNull()) {
+      JsonArray jsonArraycaseNumberFormat = jsonObj.getAsJsonArray("caseNumberFormat");
+      if (jsonArraycaseNumberFormat != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("caseNumberFormat").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `caseNumberFormat` to be an array in the JSON string but got `%s`",
+              jsonObj.get("caseNumberFormat").toString()));
+        }
+
+        // validate the optional field `caseNumberFormat` (array)
+        for (int i = 0; i < jsonArraycaseNumberFormat.size(); i++) {
+          StringFormat.validateJsonElement(jsonArraycaseNumberFormat.get(i));
+        } ;
+      }
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()

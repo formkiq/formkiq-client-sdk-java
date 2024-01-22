@@ -9872,14 +9872,34 @@ components:
     AddCaseRequest:
       example:
         case:
+          metadata:
+            key: "{}"
+          documentNumberFormat:
+          - padding: 0
+            staticValue: staticValue
+            type: null
+          - padding: 0
+            staticValue: staticValue
+            type: null
           name: name
+          caseNumberFormat:
+          - padding: 0
+            staticValue: staticValue
+            type: null
+          - padding: 0
+            staticValue: staticValue
+            type: null
           tasks:
-          - description: description
+          - metadata:
+              key: "{}"
+            description: description
             status: null
             documentIds:
             - documentIds
             - documentIds
-          - description: description
+          - metadata:
+              key: "{}"
+            description: description
             status: null
             documentIds:
             - documentIds
@@ -9889,12 +9909,16 @@ components:
           - documentIds
           - documentIds
           nigos:
-          - description: description
+          - metadata:
+              key: "{}"
+            description: description
             status: null
             documentIds:
             - documentIds
             - documentIds
-          - description: description
+          - metadata:
+              key: "{}"
+            description: description
             status: null
             documentIds:
             - documentIds
@@ -9907,14 +9931,34 @@ components:
       type: object
     AddCase:
       example:
+        metadata:
+          key: "{}"
+        documentNumberFormat:
+        - padding: 0
+          staticValue: staticValue
+          type: null
+        - padding: 0
+          staticValue: staticValue
+          type: null
         name: name
+        caseNumberFormat:
+        - padding: 0
+          staticValue: staticValue
+          type: null
+        - padding: 0
+          staticValue: staticValue
+          type: null
         tasks:
-        - description: description
+        - metadata:
+            key: "{}"
+          description: description
           status: null
           documentIds:
           - documentIds
           - documentIds
-        - description: description
+        - metadata:
+            key: "{}"
+          description: description
           status: null
           documentIds:
           - documentIds
@@ -9924,12 +9968,16 @@ components:
         - documentIds
         - documentIds
         nigos:
-        - description: description
+        - metadata:
+            key: "{}"
+          description: description
           status: null
           documentIds:
           - documentIds
           - documentIds
-        - description: description
+        - metadata:
+            key: "{}"
+          description: description
           status: null
           documentIds:
           - documentIds
@@ -9940,6 +9988,20 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/CaseStatus'
+        documentNumberFormat:
+          description: Format of Document Number
+          items:
+            $ref: '#/components/schemas/StringFormat'
+          type: array
+        caseNumberFormat:
+          description: Format of Case Number
+          items:
+            $ref: '#/components/schemas/StringFormat'
+          type: array
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         documentIds:
           items:
             type: string
@@ -9954,6 +10016,21 @@ components:
           type: array
       required:
       - name
+      type: object
+    StringFormat:
+      example:
+        padding: 0
+        staticValue: staticValue
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/StringGeneratorType'
+        staticValue:
+          description: Static Value
+          type: string
+        padding:
+          description: Optional padding for AUTO_INCREMENT number
+          type: integer
       type: object
     UpdateCaseResponse:
       example:
@@ -9993,6 +10070,13 @@ components:
             type: string
           type: array
       type: object
+    StringGeneratorType:
+      description: Generate Strings of Type
+      enum:
+      - AUTO_INCREMENT
+      - STATIC
+      - DATE_YYYYMMDD
+      type: string
     CaseStatus:
       description: Status of the Case
       enum:
@@ -10043,6 +10127,8 @@ components:
     UpdateTaskRequest:
       example:
         task:
+          metadata:
+            key: "{}"
           description: description
           status: null
           documentIds:
@@ -10054,6 +10140,8 @@ components:
       type: object
     UpdateTask:
       example:
+        metadata:
+          key: "{}"
         description: description
         status: null
         documentIds:
@@ -10065,6 +10153,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         documentIds:
           items:
             type: string
@@ -10072,6 +10164,8 @@ components:
       type: object
     AddTask:
       example:
+        metadata:
+          key: "{}"
         description: description
         status: null
         documentIds:
@@ -10083,6 +10177,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         documentIds:
           items:
             type: string
@@ -10101,6 +10199,8 @@ components:
     UpdateNigoRequest:
       example:
         nigo:
+          metadata:
+            key: "{}"
           description: description
           status: null
           documentIds:
@@ -10112,6 +10212,8 @@ components:
       type: object
     UpdateNigo:
       example:
+        metadata:
+          key: "{}"
         description: description
         status: null
         documentIds:
@@ -10123,6 +10225,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         documentIds:
           items:
             type: string
@@ -10130,6 +10236,8 @@ components:
       type: object
     AddNigo:
       example:
+        metadata:
+          key: "{}"
         description: description
         status: null
         documentIds:
@@ -10141,6 +10249,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         documentIds:
           items:
             type: string
@@ -10150,6 +10262,8 @@ components:
       type: object
     Task:
       example:
+        metadata:
+          key: "{}"
         insertedDate: insertedDate
         description: description
         taskId: taskId
@@ -10166,9 +10280,15 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
       type: object
     Nigo:
       example:
+        metadata:
+          key: "{}"
         nigoId: nigoId
         insertedDate: insertedDate
         description: description
@@ -10185,16 +10305,28 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
       type: object
     GetCasesResponse:
       example:
         next: next
         cases:
-        - insertedDate: insertedDate
+        - metadata:
+            key: "{}"
+          insertedDate: insertedDate
+          caseNumber: caseNumber
+          documentNumber: documentNumber
           caseId: caseId
           name: name
           status: null
-        - insertedDate: insertedDate
+        - metadata:
+            key: "{}"
+          insertedDate: insertedDate
+          caseNumber: caseNumber
+          documentNumber: documentNumber
           caseId: caseId
           name: name
           status: null
@@ -10212,11 +10344,15 @@ components:
       example:
         next: next
         nigos:
-        - nigoId: nigoId
+        - metadata:
+            key: "{}"
+          nigoId: nigoId
           insertedDate: insertedDate
           description: description
           status: null
-        - nigoId: nigoId
+        - metadata:
+            key: "{}"
+          nigoId: nigoId
           insertedDate: insertedDate
           description: description
           status: null
@@ -10234,11 +10370,15 @@ components:
       example:
         next: next
         tasks:
-        - insertedDate: insertedDate
+        - metadata:
+            key: "{}"
+          insertedDate: insertedDate
           description: description
           taskId: taskId
           status: null
-        - insertedDate: insertedDate
+        - metadata:
+            key: "{}"
+          insertedDate: insertedDate
           description: description
           taskId: taskId
           status: null
@@ -10319,7 +10459,11 @@ components:
     GetCaseResponse:
       example:
         case:
+          metadata:
+            key: "{}"
           insertedDate: insertedDate
+          caseNumber: caseNumber
+          documentNumber: documentNumber
           caseId: caseId
           name: name
           status: null
@@ -10329,7 +10473,11 @@ components:
       type: object
     Case:
       example:
+        metadata:
+          key: "{}"
         insertedDate: insertedDate
+        caseNumber: caseNumber
+        documentNumber: documentNumber
         caseId: caseId
         name: name
         status: null
@@ -10337,12 +10485,22 @@ components:
         caseId:
           description: Case Identifier
           type: string
+        caseNumber:
+          description: Case Number
+          type: string
+        documentNumber:
+          description: Document Number
+          type: string
         insertedDate:
           description: Inserted Timestamp
           type: string
         name:
           description: Case Name
           type: string
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
         status:
           $ref: '#/components/schemas/CaseStatus'
       type: object

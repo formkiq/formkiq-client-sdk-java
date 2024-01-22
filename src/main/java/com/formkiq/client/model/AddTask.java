@@ -30,7 +30,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * AddTask
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-13T17:56:16.985602-06:00[America/Winnipeg]")
+    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
 public class AddTask {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -69,6 +71,10 @@ public class AddTask {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private TaskStatus status;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -116,6 +122,34 @@ public class AddTask {
   }
 
 
+  public AddTask metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public AddTask putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
   public AddTask documentIds(List<String> documentIds) {
     this.documentIds = documentIds;
     return this;
@@ -156,12 +190,13 @@ public class AddTask {
     AddTask addTask = (AddTask) o;
     return Objects.equals(this.description, addTask.description)
         && Objects.equals(this.status, addTask.status)
+        && Objects.equals(this.metadata, addTask.metadata)
         && Objects.equals(this.documentIds, addTask.documentIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, status, documentIds);
+    return Objects.hash(description, status, metadata, documentIds);
   }
 
   @Override
@@ -170,6 +205,7 @@ public class AddTask {
     sb.append("class AddTask {\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -194,6 +230,7 @@ public class AddTask {
     openapiFields = new HashSet<String>();
     openapiFields.add("description");
     openapiFields.add("status");
+    openapiFields.add("metadata");
     openapiFields.add("documentIds");
 
     // a set of required properties/fields (JSON key names)

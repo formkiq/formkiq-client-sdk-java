@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.14.0
-  - Build date: 2024-01-13T17:56:16.985602-06:00[America/Winnipeg]
+  - Build date: 2024-01-21T10:52:57.550791-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -426,6 +426,8 @@ Class | Method | HTTP request | Description
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)
+ - [StringFormat](docs/StringFormat.md)
+ - [StringGeneratorType](docs/StringGeneratorType.md)
  - [TagSchema](docs/TagSchema.md)
  - [TagSchemaCompositeKey](docs/TagSchemaCompositeKey.md)
  - [TagSchemaOptional](docs/TagSchemaOptional.md)

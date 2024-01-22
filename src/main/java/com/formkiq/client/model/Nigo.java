@@ -29,6 +29,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * Nigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-13T17:56:16.985602-06:00[America/Winnipeg]")
+    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
 public class Nigo {
   public static final String SERIALIZED_NAME_NIGO_ID = "nigoId";
   @SerializedName(SERIALIZED_NAME_NIGO_ID)
@@ -75,6 +77,10 @@ public class Nigo {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private NigoStatus status;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
 
   public Nigo() {}
 
@@ -158,6 +164,34 @@ public class Nigo {
   }
 
 
+  public Nigo metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Nigo putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,12 +205,12 @@ public class Nigo {
     return Objects.equals(this.nigoId, nigo.nigoId)
         && Objects.equals(this.insertedDate, nigo.insertedDate)
         && Objects.equals(this.description, nigo.description)
-        && Objects.equals(this.status, nigo.status);
+        && Objects.equals(this.status, nigo.status) && Objects.equals(this.metadata, nigo.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nigoId, insertedDate, description, status);
+    return Objects.hash(nigoId, insertedDate, description, status, metadata);
   }
 
   @Override
@@ -187,6 +221,7 @@ public class Nigo {
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,6 +247,7 @@ public class Nigo {
     openapiFields.add("insertedDate");
     openapiFields.add("description");
     openapiFields.add("status");
+    openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

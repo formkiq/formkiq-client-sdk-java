@@ -28,6 +28,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +56,22 @@ public class ModelCaseTest {
   }
 
   /**
+   * Test the property 'caseNumber'
+   */
+  @Test
+  public void caseNumberTest() {
+    // TODO: test caseNumber
+  }
+
+  /**
+   * Test the property 'documentNumber'
+   */
+  @Test
+  public void documentNumberTest() {
+    // TODO: test documentNumber
+  }
+
+  /**
    * Test the property 'insertedDate'
    */
   @Test
@@ -67,6 +85,14 @@ public class ModelCaseTest {
   @Test
   public void nameTest() {
     // TODO: test name
+  }
+
+  /**
+   * Test the property 'metadata'
+   */
+  @Test
+  public void metadataTest() {
+    // TODO: test metadata
   }
 
   /**

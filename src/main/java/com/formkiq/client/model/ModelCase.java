@@ -29,6 +29,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,11 +60,19 @@ import com.formkiq.client.invoker.JSON;
  * ModelCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-13T17:56:16.985602-06:00[America/Winnipeg]")
+    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
 public class ModelCase {
   public static final String SERIALIZED_NAME_CASE_ID = "caseId";
   @SerializedName(SERIALIZED_NAME_CASE_ID)
   private String caseId;
+
+  public static final String SERIALIZED_NAME_CASE_NUMBER = "caseNumber";
+  @SerializedName(SERIALIZED_NAME_CASE_NUMBER)
+  private String caseNumber;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_NUMBER = "documentNumber";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER)
+  private String documentNumber;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -71,6 +81,10 @@ public class ModelCase {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -95,6 +109,46 @@ public class ModelCase {
 
   public void setCaseId(String caseId) {
     this.caseId = caseId;
+  }
+
+
+  public ModelCase caseNumber(String caseNumber) {
+    this.caseNumber = caseNumber;
+    return this;
+  }
+
+  /**
+   * Case Number
+   * 
+   * @return caseNumber
+   **/
+  @javax.annotation.Nullable
+  public String getCaseNumber() {
+    return caseNumber;
+  }
+
+  public void setCaseNumber(String caseNumber) {
+    this.caseNumber = caseNumber;
+  }
+
+
+  public ModelCase documentNumber(String documentNumber) {
+    this.documentNumber = documentNumber;
+    return this;
+  }
+
+  /**
+   * Document Number
+   * 
+   * @return documentNumber
+   **/
+  @javax.annotation.Nullable
+  public String getDocumentNumber() {
+    return documentNumber;
+  }
+
+  public void setDocumentNumber(String documentNumber) {
+    this.documentNumber = documentNumber;
   }
 
 
@@ -138,6 +192,34 @@ public class ModelCase {
   }
 
 
+  public ModelCase metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public ModelCase putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
   public ModelCase status(CaseStatus status) {
     this.status = status;
     return this;
@@ -169,13 +251,16 @@ public class ModelCase {
     }
     ModelCase _case = (ModelCase) o;
     return Objects.equals(this.caseId, _case.caseId)
+        && Objects.equals(this.caseNumber, _case.caseNumber)
+        && Objects.equals(this.documentNumber, _case.documentNumber)
         && Objects.equals(this.insertedDate, _case.insertedDate)
-        && Objects.equals(this.name, _case.name) && Objects.equals(this.status, _case.status);
+        && Objects.equals(this.name, _case.name) && Objects.equals(this.metadata, _case.metadata)
+        && Objects.equals(this.status, _case.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, insertedDate, name, status);
+    return Objects.hash(caseId, caseNumber, documentNumber, insertedDate, name, metadata, status);
   }
 
   @Override
@@ -183,8 +268,11 @@ public class ModelCase {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModelCase {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
+    sb.append("    caseNumber: ").append(toIndentedString(caseNumber)).append("\n");
+    sb.append("    documentNumber: ").append(toIndentedString(documentNumber)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -208,8 +296,11 @@ public class ModelCase {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("caseId");
+    openapiFields.add("caseNumber");
+    openapiFields.add("documentNumber");
     openapiFields.add("insertedDate");
     openapiFields.add("name");
+    openapiFields.add("metadata");
     openapiFields.add("status");
 
     // a set of required properties/fields (JSON key names)
@@ -247,6 +338,18 @@ public class ModelCase {
       throw new IllegalArgumentException(String.format(
           "Expected the field `caseId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("caseId").toString()));
+    }
+    if ((jsonObj.get("caseNumber") != null && !jsonObj.get("caseNumber").isJsonNull())
+        && !jsonObj.get("caseNumber").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `caseNumber` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("caseNumber").toString()));
+    }
+    if ((jsonObj.get("documentNumber") != null && !jsonObj.get("documentNumber").isJsonNull())
+        && !jsonObj.get("documentNumber").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `documentNumber` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("documentNumber").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
