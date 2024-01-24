@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignCarbonCopy
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class EsignatureDocusignCarbonCopy {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -70,7 +70,6 @@ public class EsignatureDocusignCarbonCopy {
   public EsignatureDocusignCarbonCopy() {}
 
   public EsignatureDocusignCarbonCopy name(String name) {
-
     this.name = name;
     return this;
   }
@@ -85,14 +84,12 @@ public class EsignatureDocusignCarbonCopy {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public EsignatureDocusignCarbonCopy email(String email) {
-
     this.email = email;
     return this;
   }
@@ -106,7 +103,6 @@ public class EsignatureDocusignCarbonCopy {
   public String getEmail() {
     return email;
   }
-
 
   public void setEmail(String email) {
     this.email = email;

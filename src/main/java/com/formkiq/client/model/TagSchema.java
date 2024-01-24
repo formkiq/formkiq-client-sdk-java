@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * TagSchema
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class TagSchema {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -83,7 +83,6 @@ public class TagSchema {
   public TagSchema() {}
 
   public TagSchema tagSchemaId(String tagSchemaId) {
-
     this.tagSchemaId = tagSchemaId;
     return this;
   }
@@ -98,14 +97,12 @@ public class TagSchema {
     return tagSchemaId;
   }
 
-
   public void setTagSchemaId(String tagSchemaId) {
     this.tagSchemaId = tagSchemaId;
   }
 
 
   public TagSchema name(String name) {
-
     this.name = name;
     return this;
   }
@@ -120,14 +117,12 @@ public class TagSchema {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public TagSchema userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -142,14 +137,12 @@ public class TagSchema {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public TagSchema insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -164,14 +157,12 @@ public class TagSchema {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public TagSchema tags(TagSchemaTags tags) {
-
     this.tags = tags;
     return this;
   }
@@ -185,7 +176,6 @@ public class TagSchema {
   public TagSchemaTags getTags() {
     return tags;
   }
-
 
   public void setTags(TagSchemaTags tags) {
     this.tags = tags;

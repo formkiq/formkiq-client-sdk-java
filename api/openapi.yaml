@@ -1868,7 +1868,9 @@ paths:
         \ Composite Keys feature then multiple tag(s) can be searched for.\n\nIf Typesense\
         \ is enabled, full text search is supported through the \"text\" parameter.\
         \ Full text search will look for the text in the \"content\" and/or document\
-        \ \"metadata\".\n\nSee requestBody examples below for commmon examples."
+        \ \"metadata\".\n\nDocumentIds parameter allows you to filter your results\
+        \ to a specific set of documents. \n\nSee requestBody examples below for commmon\
+        \ examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -2115,24 +2117,26 @@ paths:
       description: |-
         Add one or more actions to a document; this appends actions and does not replace previous actions
 
+        Each action type supports a different set of parameters as shown in the table below:
+
         ### Action Parameters
 
-        | ActionType | Parameter | Description |
-        | -------- | ------- | ------- |
-        | OCR  | ocrParseTypes | Ocr Parsing strategy to use |
-        | OCR | ocrEngine     | Ocr Engine to use |
-        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text |
-        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination |
-        | DOCUMENTTAGGING    | engine    | Tagging Engine to use |
-        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords |
-        | WEBHOOK    | url    | Webhook URL |
-        | NOTIFICATION    | notificationType | Type of Notification |
-        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy |
-        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy |
-        | NOTIFICATION    | notificationSubject    | Notification Subject |
-        | NOTIFICATION    | notificationText    | Notification as Text |
-        | NOTIFICATION    | notificationHtml    | Notification as Html |
-        | QUEUE    | queueName    | Name of Queue |
+        | ActionType | Parameter | Description | Example |
+        | -------- | ------- | ------- | ------- |
+        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
+        | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
+        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
+        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
+        | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
+        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
+        | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint |
+        | NOTIFICATION    | notificationType | Type of Notification | email |
+        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | <email>@yourdomain.com |
+        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | <email>@yourdomain.com |
+        | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
+        | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
+        | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
+        | QUEUE    | queueName    | Name of Queue | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -8848,6 +8852,9 @@ components:
       type: object
     GetDocumentOcrResponse:
       example:
+        contentUrls:
+        - contentUrls
+        - contentUrls
         ocrEngine: ocrEngine
         data: data
         insertedDate: insertedDate
@@ -8857,6 +8864,11 @@ components:
         isBase64: true
         userId: userId
       properties:
+        contentUrls:
+          description: Presigned S3 Urls for the OCR content
+          items:
+            type: string
+          type: array
         data:
           description: OCR text result
           type: string

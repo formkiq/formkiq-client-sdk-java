@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddAction {
   /**
    * Type of Document Action
@@ -134,7 +134,6 @@ public class AddAction {
   public AddAction() {}
 
   public AddAction type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -149,14 +148,12 @@ public class AddAction {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public AddAction parameters(AddActionParameters parameters) {
-
     this.parameters = parameters;
     return this;
   }
@@ -170,7 +167,6 @@ public class AddAction {
   public AddActionParameters getParameters() {
     return parameters;
   }
-
 
   public void setParameters(AddActionParameters parameters) {
     this.parameters = parameters;

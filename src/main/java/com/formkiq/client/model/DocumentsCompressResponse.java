@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentsCompressResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentsCompressResponse {
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
@@ -66,7 +66,6 @@ public class DocumentsCompressResponse {
   public DocumentsCompressResponse() {}
 
   public DocumentsCompressResponse downloadUrl(String downloadUrl) {
-
     this.downloadUrl = downloadUrl;
     return this;
   }
@@ -80,7 +79,6 @@ public class DocumentsCompressResponse {
   public String getDownloadUrl() {
     return downloadUrl;
   }
-
 
   public void setDownloadUrl(String downloadUrl) {
     this.downloadUrl = downloadUrl;

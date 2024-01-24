@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class WorkflowStep {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
@@ -83,7 +83,6 @@ public class WorkflowStep {
   public WorkflowStep() {}
 
   public WorkflowStep stepId(String stepId) {
-
     this.stepId = stepId;
     return this;
   }
@@ -98,14 +97,12 @@ public class WorkflowStep {
     return stepId;
   }
 
-
   public void setStepId(String stepId) {
     this.stepId = stepId;
   }
 
 
   public WorkflowStep action(DocumentAction action) {
-
     this.action = action;
     return this;
   }
@@ -120,14 +117,12 @@ public class WorkflowStep {
     return action;
   }
 
-
   public void setAction(DocumentAction action) {
     this.action = action;
   }
 
 
   public WorkflowStep queue(WorkflowQueue queue) {
-
     this.queue = queue;
     return this;
   }
@@ -142,14 +137,12 @@ public class WorkflowStep {
     return queue;
   }
 
-
   public void setQueue(WorkflowQueue queue) {
     this.queue = queue;
   }
 
 
   public WorkflowStep decisions(List<WorkflowStepDecision> decisions) {
-
     this.decisions = decisions;
     return this;
   }
@@ -171,7 +164,6 @@ public class WorkflowStep {
   public List<WorkflowStepDecision> getDecisions() {
     return decisions;
   }
-
 
   public void setDecisions(List<WorkflowStepDecision> decisions) {
     this.decisions = decisions;

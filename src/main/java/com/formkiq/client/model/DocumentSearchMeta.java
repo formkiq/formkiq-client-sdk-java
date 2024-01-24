@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchMeta
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_FOLDER = "folder";
   @SerializedName(SERIALIZED_NAME_FOLDER)
@@ -129,7 +129,6 @@ public class DocumentSearchMeta {
   public DocumentSearchMeta() {}
 
   public DocumentSearchMeta folder(String folder) {
-
     this.folder = folder;
     return this;
   }
@@ -144,14 +143,12 @@ public class DocumentSearchMeta {
     return folder;
   }
 
-
   public void setFolder(String folder) {
     this.folder = folder;
   }
 
 
   public DocumentSearchMeta path(String path) {
-
     this.path = path;
     return this;
   }
@@ -166,14 +163,12 @@ public class DocumentSearchMeta {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public DocumentSearchMeta indexType(IndexTypeEnum indexType) {
-
     this.indexType = indexType;
     return this;
   }
@@ -188,14 +183,12 @@ public class DocumentSearchMeta {
     return indexType;
   }
 
-
   public void setIndexType(IndexTypeEnum indexType) {
     this.indexType = indexType;
   }
 
 
   public DocumentSearchMeta indexFilterBeginsWith(String indexFilterBeginsWith) {
-
     this.indexFilterBeginsWith = indexFilterBeginsWith;
     return this;
   }
@@ -209,7 +202,6 @@ public class DocumentSearchMeta {
   public String getIndexFilterBeginsWith() {
     return indexFilterBeginsWith;
   }
-
 
   public void setIndexFilterBeginsWith(String indexFilterBeginsWith) {
     this.indexFilterBeginsWith = indexFilterBeginsWith;

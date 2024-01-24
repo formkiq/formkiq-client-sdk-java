@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddFolderShareResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddFolderShareResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -70,7 +70,6 @@ public class AddFolderShareResponse {
   public AddFolderShareResponse() {}
 
   public AddFolderShareResponse message(String message) {
-
     this.message = message;
     return this;
   }
@@ -85,14 +84,12 @@ public class AddFolderShareResponse {
     return message;
   }
 
-
   public void setMessage(String message) {
     this.message = message;
   }
 
 
   public AddFolderShareResponse shareKey(String shareKey) {
-
     this.shareKey = shareKey;
     return this;
   }
@@ -106,7 +103,6 @@ public class AddFolderShareResponse {
   public String getShareKey() {
     return shareKey;
   }
-
 
   public void setShareKey(String shareKey) {
     this.shareKey = shareKey;

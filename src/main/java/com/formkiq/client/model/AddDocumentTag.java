@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * List of Document Tags (use either &#39;value&#39; or &#39;values&#39; not both)
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddDocumentTag {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -76,7 +76,6 @@ public class AddDocumentTag {
   public AddDocumentTag() {}
 
   public AddDocumentTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -91,14 +90,12 @@ public class AddDocumentTag {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public AddDocumentTag value(String value) {
-
     this.value = value;
     return this;
   }
@@ -113,14 +110,12 @@ public class AddDocumentTag {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public AddDocumentTag values(List<String> values) {
-
     this.values = values;
     return this;
   }
@@ -142,7 +137,6 @@ public class AddDocumentTag {
   public List<String> getValues() {
     return values;
   }
-
 
   public void setValues(List<String> values) {
     this.values = values;

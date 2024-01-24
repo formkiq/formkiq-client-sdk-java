@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * ValidationErrorsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class ValidationErrorsResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -69,7 +69,6 @@ public class ValidationErrorsResponse {
   public ValidationErrorsResponse() {}
 
   public ValidationErrorsResponse errors(List<ValidationError> errors) {
-
     this.errors = errors;
     return this;
   }
@@ -91,7 +90,6 @@ public class ValidationErrorsResponse {
   public List<ValidationError> getErrors() {
     return errors;
   }
-
 
   public void setErrors(List<ValidationError> errors) {
     this.errors = errors;

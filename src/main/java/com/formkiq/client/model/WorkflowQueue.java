@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class WorkflowQueue {
   public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
   @SerializedName(SERIALIZED_NAME_QUEUE_ID)
@@ -72,7 +72,6 @@ public class WorkflowQueue {
   public WorkflowQueue() {}
 
   public WorkflowQueue queueId(String queueId) {
-
     this.queueId = queueId;
     return this;
   }
@@ -87,14 +86,12 @@ public class WorkflowQueue {
     return queueId;
   }
 
-
   public void setQueueId(String queueId) {
     this.queueId = queueId;
   }
 
 
   public WorkflowQueue approvalGroups(List<String> approvalGroups) {
-
     this.approvalGroups = approvalGroups;
     return this;
   }
@@ -116,7 +113,6 @@ public class WorkflowQueue {
   public List<String> getApprovalGroups() {
     return approvalGroups;
   }
-
 
   public void setApprovalGroups(List<String> approvalGroups) {
     this.approvalGroups = approvalGroups;

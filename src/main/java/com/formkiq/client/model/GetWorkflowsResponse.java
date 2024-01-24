@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetWorkflowsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -73,7 +73,6 @@ public class GetWorkflowsResponse {
   public GetWorkflowsResponse() {}
 
   public GetWorkflowsResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -88,14 +87,12 @@ public class GetWorkflowsResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetWorkflowsResponse workflows(List<WorkflowSummary> workflows) {
-
     this.workflows = workflows;
     return this;
   }
@@ -117,7 +114,6 @@ public class GetWorkflowsResponse {
   public List<WorkflowSummary> getWorkflows() {
     return workflows;
   }
-
 
   public void setWorkflows(List<WorkflowSummary> workflows) {
     this.workflows = workflows;

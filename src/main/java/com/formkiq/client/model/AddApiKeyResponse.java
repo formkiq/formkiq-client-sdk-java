@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddApiKeyResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddApiKeyResponse {
   public static final String SERIALIZED_NAME_API_KEY = "apiKey";
   @SerializedName(SERIALIZED_NAME_API_KEY)
@@ -66,7 +66,6 @@ public class AddApiKeyResponse {
   public AddApiKeyResponse() {}
 
   public AddApiKeyResponse apiKey(String apiKey) {
-
     this.apiKey = apiKey;
     return this;
   }
@@ -80,7 +79,6 @@ public class AddApiKeyResponse {
   public String getApiKey() {
     return apiKey;
   }
-
 
   public void setApiKey(String apiKey) {
     this.apiKey = apiKey;

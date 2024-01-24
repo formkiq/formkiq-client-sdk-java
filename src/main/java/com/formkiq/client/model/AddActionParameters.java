@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -274,7 +274,6 @@ public class AddActionParameters {
   public AddActionParameters() {}
 
   public AddActionParameters ocrParseTypes(String ocrParseTypes) {
-
     this.ocrParseTypes = ocrParseTypes;
     return this;
   }
@@ -289,14 +288,12 @@ public class AddActionParameters {
     return ocrParseTypes;
   }
 
-
   public void setOcrParseTypes(String ocrParseTypes) {
     this.ocrParseTypes = ocrParseTypes;
   }
 
 
   public AddActionParameters ocrEngine(OcrEngineEnum ocrEngine) {
-
     this.ocrEngine = ocrEngine;
     return this;
   }
@@ -311,7 +308,6 @@ public class AddActionParameters {
     return ocrEngine;
   }
 
-
   public void setOcrEngine(OcrEngineEnum ocrEngine) {
     this.ocrEngine = ocrEngine;
   }
@@ -319,7 +315,6 @@ public class AddActionParameters {
 
   public AddActionParameters addPdfDetectedCharactersAsText(
       Boolean addPdfDetectedCharactersAsText) {
-
     this.addPdfDetectedCharactersAsText = addPdfDetectedCharactersAsText;
     return this;
   }
@@ -334,14 +329,12 @@ public class AddActionParameters {
     return addPdfDetectedCharactersAsText;
   }
 
-
   public void setAddPdfDetectedCharactersAsText(Boolean addPdfDetectedCharactersAsText) {
     this.addPdfDetectedCharactersAsText = addPdfDetectedCharactersAsText;
   }
 
 
   public AddActionParameters url(String url) {
-
     this.url = url;
     return this;
   }
@@ -356,14 +349,12 @@ public class AddActionParameters {
     return url;
   }
 
-
   public void setUrl(String url) {
     this.url = url;
   }
 
 
   public AddActionParameters characterMax(String characterMax) {
-
     this.characterMax = characterMax;
     return this;
   }
@@ -378,14 +369,12 @@ public class AddActionParameters {
     return characterMax;
   }
 
-
   public void setCharacterMax(String characterMax) {
     this.characterMax = characterMax;
   }
 
 
   public AddActionParameters engine(EngineEnum engine) {
-
     this.engine = engine;
     return this;
   }
@@ -400,14 +389,12 @@ public class AddActionParameters {
     return engine;
   }
 
-
   public void setEngine(EngineEnum engine) {
     this.engine = engine;
   }
 
 
   public AddActionParameters notificationType(NotificationTypeEnum notificationType) {
-
     this.notificationType = notificationType;
     return this;
   }
@@ -422,14 +409,12 @@ public class AddActionParameters {
     return notificationType;
   }
 
-
   public void setNotificationType(NotificationTypeEnum notificationType) {
     this.notificationType = notificationType;
   }
 
 
   public AddActionParameters notificationToCc(String notificationToCc) {
-
     this.notificationToCc = notificationToCc;
     return this;
   }
@@ -444,14 +429,12 @@ public class AddActionParameters {
     return notificationToCc;
   }
 
-
   public void setNotificationToCc(String notificationToCc) {
     this.notificationToCc = notificationToCc;
   }
 
 
   public AddActionParameters notificationToBcc(String notificationToBcc) {
-
     this.notificationToBcc = notificationToBcc;
     return this;
   }
@@ -466,14 +449,12 @@ public class AddActionParameters {
     return notificationToBcc;
   }
 
-
   public void setNotificationToBcc(String notificationToBcc) {
     this.notificationToBcc = notificationToBcc;
   }
 
 
   public AddActionParameters notificationSubject(String notificationSubject) {
-
     this.notificationSubject = notificationSubject;
     return this;
   }
@@ -488,14 +469,12 @@ public class AddActionParameters {
     return notificationSubject;
   }
 
-
   public void setNotificationSubject(String notificationSubject) {
     this.notificationSubject = notificationSubject;
   }
 
 
   public AddActionParameters notificationText(String notificationText) {
-
     this.notificationText = notificationText;
     return this;
   }
@@ -510,14 +489,12 @@ public class AddActionParameters {
     return notificationText;
   }
 
-
   public void setNotificationText(String notificationText) {
     this.notificationText = notificationText;
   }
 
 
   public AddActionParameters notificationHtml(String notificationHtml) {
-
     this.notificationHtml = notificationHtml;
     return this;
   }
@@ -532,14 +509,12 @@ public class AddActionParameters {
     return notificationHtml;
   }
 
-
   public void setNotificationHtml(String notificationHtml) {
     this.notificationHtml = notificationHtml;
   }
 
 
   public AddActionParameters tags(String tags) {
-
     this.tags = tags;
     return this;
   }
@@ -554,14 +529,12 @@ public class AddActionParameters {
     return tags;
   }
 
-
   public void setTags(String tags) {
     this.tags = tags;
   }
 
 
   public AddActionParameters queueName(String queueName) {
-
     this.queueName = queueName;
     return this;
   }
@@ -575,7 +548,6 @@ public class AddActionParameters {
   public String getQueueName() {
     return queueName;
   }
-
 
   public void setQueueName(String queueName) {
     this.queueName = queueName;

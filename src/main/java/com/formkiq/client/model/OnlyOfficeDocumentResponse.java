@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class OnlyOfficeDocumentResponse {
   public static final String SERIALIZED_NAME_CONFIG = "config";
   @SerializedName(SERIALIZED_NAME_CONFIG)
@@ -67,7 +67,6 @@ public class OnlyOfficeDocumentResponse {
   public OnlyOfficeDocumentResponse() {}
 
   public OnlyOfficeDocumentResponse config(OnlyOfficeConfig config) {
-
     this.config = config;
     return this;
   }
@@ -81,7 +80,6 @@ public class OnlyOfficeDocumentResponse {
   public OnlyOfficeConfig getConfig() {
     return config;
   }
-
 
   public void setConfig(OnlyOfficeConfig config) {
     this.config = config;

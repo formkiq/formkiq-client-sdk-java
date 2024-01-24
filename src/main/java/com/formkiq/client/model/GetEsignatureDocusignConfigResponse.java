@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetEsignatureDocusignConfigResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetEsignatureDocusignConfigResponse {
   public static final String SERIALIZED_NAME_CONFIGURED = "configured";
   @SerializedName(SERIALIZED_NAME_CONFIGURED)
@@ -74,7 +74,6 @@ public class GetEsignatureDocusignConfigResponse {
   public GetEsignatureDocusignConfigResponse() {}
 
   public GetEsignatureDocusignConfigResponse configured(Boolean configured) {
-
     this.configured = configured;
     return this;
   }
@@ -89,14 +88,12 @@ public class GetEsignatureDocusignConfigResponse {
     return configured;
   }
 
-
   public void setConfigured(Boolean configured) {
     this.configured = configured;
   }
 
 
   public GetEsignatureDocusignConfigResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -111,14 +108,12 @@ public class GetEsignatureDocusignConfigResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetEsignatureDocusignConfigResponse clientId(String clientId) {
-
     this.clientId = clientId;
     return this;
   }
@@ -132,7 +127,6 @@ public class GetEsignatureDocusignConfigResponse {
   public String getClientId() {
     return clientId;
   }
-
 
   public void setClientId(String clientId) {
     this.clientId = clientId;

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddDocumentResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -81,7 +81,6 @@ public class AddDocumentResponse {
   public AddDocumentResponse() {}
 
   public AddDocumentResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -96,14 +95,12 @@ public class AddDocumentResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public AddDocumentResponse siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -118,14 +115,12 @@ public class AddDocumentResponse {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public AddDocumentResponse uploadUrl(String uploadUrl) {
-
     this.uploadUrl = uploadUrl;
     return this;
   }
@@ -140,14 +135,12 @@ public class AddDocumentResponse {
     return uploadUrl;
   }
 
-
   public void setUploadUrl(String uploadUrl) {
     this.uploadUrl = uploadUrl;
   }
 
 
   public AddDocumentResponse documents(List<AddChildDocumentResponse> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -169,7 +162,6 @@ public class AddDocumentResponse {
   public List<AddChildDocumentResponse> getDocuments() {
     return documents;
   }
-
 
   public void setDocuments(List<AddChildDocumentResponse> documents) {
     this.documents = documents;

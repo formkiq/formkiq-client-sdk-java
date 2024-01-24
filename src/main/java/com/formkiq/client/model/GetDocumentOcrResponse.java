@@ -27,7 +27,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,8 +59,12 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetDocumentOcrResponse {
+  public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
+  @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
+  private List<String> contentUrls;
+
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   private String data;
@@ -93,8 +99,35 @@ public class GetDocumentOcrResponse {
 
   public GetDocumentOcrResponse() {}
 
-  public GetDocumentOcrResponse data(String data) {
+  public GetDocumentOcrResponse contentUrls(List<String> contentUrls) {
+    this.contentUrls = contentUrls;
+    return this;
+  }
 
+  public GetDocumentOcrResponse addContentUrlsItem(String contentUrlsItem) {
+    if (this.contentUrls == null) {
+      this.contentUrls = new ArrayList<>();
+    }
+    this.contentUrls.add(contentUrlsItem);
+    return this;
+  }
+
+  /**
+   * Presigned S3 Urls for the OCR content
+   * 
+   * @return contentUrls
+   **/
+  @javax.annotation.Nullable
+  public List<String> getContentUrls() {
+    return contentUrls;
+  }
+
+  public void setContentUrls(List<String> contentUrls) {
+    this.contentUrls = contentUrls;
+  }
+
+
+  public GetDocumentOcrResponse data(String data) {
     this.data = data;
     return this;
   }
@@ -109,14 +142,12 @@ public class GetDocumentOcrResponse {
     return data;
   }
 
-
   public void setData(String data) {
     this.data = data;
   }
 
 
   public GetDocumentOcrResponse ocrEngine(String ocrEngine) {
-
     this.ocrEngine = ocrEngine;
     return this;
   }
@@ -131,14 +162,12 @@ public class GetDocumentOcrResponse {
     return ocrEngine;
   }
 
-
   public void setOcrEngine(String ocrEngine) {
     this.ocrEngine = ocrEngine;
   }
 
 
   public GetDocumentOcrResponse ocrStatus(String ocrStatus) {
-
     this.ocrStatus = ocrStatus;
     return this;
   }
@@ -153,14 +182,12 @@ public class GetDocumentOcrResponse {
     return ocrStatus;
   }
 
-
   public void setOcrStatus(String ocrStatus) {
     this.ocrStatus = ocrStatus;
   }
 
 
   public GetDocumentOcrResponse contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -175,14 +202,12 @@ public class GetDocumentOcrResponse {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public GetDocumentOcrResponse isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -197,14 +222,12 @@ public class GetDocumentOcrResponse {
     return isBase64;
   }
 
-
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;
   }
 
 
   public GetDocumentOcrResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -219,14 +242,12 @@ public class GetDocumentOcrResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetDocumentOcrResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -241,14 +262,12 @@ public class GetDocumentOcrResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentOcrResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -262,7 +281,6 @@ public class GetDocumentOcrResponse {
   public String getInsertedDate() {
     return insertedDate;
   }
-
 
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
@@ -279,7 +297,8 @@ public class GetDocumentOcrResponse {
       return false;
     }
     GetDocumentOcrResponse getDocumentOcrResponse = (GetDocumentOcrResponse) o;
-    return Objects.equals(this.data, getDocumentOcrResponse.data)
+    return Objects.equals(this.contentUrls, getDocumentOcrResponse.contentUrls)
+        && Objects.equals(this.data, getDocumentOcrResponse.data)
         && Objects.equals(this.ocrEngine, getDocumentOcrResponse.ocrEngine)
         && Objects.equals(this.ocrStatus, getDocumentOcrResponse.ocrStatus)
         && Objects.equals(this.contentType, getDocumentOcrResponse.contentType)
@@ -291,14 +310,15 @@ public class GetDocumentOcrResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, ocrEngine, ocrStatus, contentType, isBase64, userId, documentId,
-        insertedDate);
+    return Objects.hash(contentUrls, data, ocrEngine, ocrStatus, contentType, isBase64, userId,
+        documentId, insertedDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentOcrResponse {\n");
+    sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrStatus: ").append(toIndentedString(ocrStatus)).append("\n");
@@ -328,6 +348,7 @@ public class GetDocumentOcrResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("contentUrls");
     openapiFields.add("data");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrStatus");
@@ -367,6 +388,13 @@ public class GetDocumentOcrResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("contentUrls") != null && !jsonObj.get("contentUrls").isJsonNull()
+        && !jsonObj.get("contentUrls").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `contentUrls` to be an array in the JSON string but got `%s`",
+          jsonObj.get("contentUrls").toString()));
+    }
     if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull())
         && !jsonObj.get("data").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Document search tag criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentSearchRequest {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
@@ -72,7 +72,6 @@ public class DocumentSearchRequest {
   public DocumentSearchRequest() {}
 
   public DocumentSearchRequest query(DocumentSearch query) {
-
     this.query = query;
     return this;
   }
@@ -87,14 +86,12 @@ public class DocumentSearchRequest {
     return query;
   }
 
-
   public void setQuery(DocumentSearch query) {
     this.query = query;
   }
 
 
   public DocumentSearchRequest responseFields(SearchResponseFields responseFields) {
-
     this.responseFields = responseFields;
     return this;
   }
@@ -108,7 +105,6 @@ public class DocumentSearchRequest {
   public SearchResponseFields getResponseFields() {
     return responseFields;
   }
-
 
   public void setResponseFields(SearchResponseFields responseFields) {
     this.responseFields = responseFields;

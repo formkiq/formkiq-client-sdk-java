@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddFolderShareRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddFolderShareRequest {
   public static final String SERIALIZED_NAME_SHARE = "share";
   @SerializedName(SERIALIZED_NAME_SHARE)
@@ -67,7 +67,6 @@ public class AddFolderShareRequest {
   public AddFolderShareRequest() {}
 
   public AddFolderShareRequest share(AddShare share) {
-
     this.share = share;
     return this;
   }
@@ -81,7 +80,6 @@ public class AddFolderShareRequest {
   public AddShare getShare() {
     return share;
   }
-
 
   public void setShare(AddShare share) {
     this.share = share;

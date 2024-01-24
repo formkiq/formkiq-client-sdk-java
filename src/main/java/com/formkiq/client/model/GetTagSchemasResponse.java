@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetTagSchemasResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetTagSchemasResponse {
   public static final String SERIALIZED_NAME_SCHEMAS = "schemas";
   @SerializedName(SERIALIZED_NAME_SCHEMAS)
@@ -77,7 +77,6 @@ public class GetTagSchemasResponse {
   public GetTagSchemasResponse() {}
 
   public GetTagSchemasResponse schemas(List<TagSchemaSummary> schemas) {
-
     this.schemas = schemas;
     return this;
   }
@@ -100,14 +99,12 @@ public class GetTagSchemasResponse {
     return schemas;
   }
 
-
   public void setSchemas(List<TagSchemaSummary> schemas) {
     this.schemas = schemas;
   }
 
 
   public GetTagSchemasResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -122,14 +119,12 @@ public class GetTagSchemasResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetTagSchemasResponse previous(String previous) {
-
     this.previous = previous;
     return this;
   }
@@ -143,7 +138,6 @@ public class GetTagSchemasResponse {
   public String getPrevious() {
     return previous;
   }
-
 
   public void setPrevious(String previous) {
     this.previous = previous;

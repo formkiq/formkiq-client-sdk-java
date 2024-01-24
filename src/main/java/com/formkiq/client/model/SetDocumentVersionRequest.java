@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * SetDocumentVersionRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class SetDocumentVersionRequest {
   public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
   @SerializedName(SERIALIZED_NAME_VERSION_KEY)
@@ -66,7 +66,6 @@ public class SetDocumentVersionRequest {
   public SetDocumentVersionRequest() {}
 
   public SetDocumentVersionRequest versionKey(String versionKey) {
-
     this.versionKey = versionKey;
     return this;
   }
@@ -80,7 +79,6 @@ public class SetDocumentVersionRequest {
   public String getVersionKey() {
     return versionKey;
   }
-
 
   public void setVersionKey(String versionKey) {
     this.versionKey = versionKey;

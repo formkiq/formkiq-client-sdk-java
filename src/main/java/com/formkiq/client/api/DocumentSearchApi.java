@@ -190,8 +190,9 @@ public class DocumentSearchApi {
    * accepted). If using Enteprise TagSchema Composite Keys feature then multiple tag(s) can be
    * searched for. If Typesense is enabled, full text search is supported through the
    * \&quot;text\&quot; parameter. Full text search will look for the text in the
-   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. See requestBody examples below
-   * for commmon examples.
+   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. DocumentIds parameter allows you
+   * to filter your results to a specific set of documents. See requestBody examples below for
+   * commmon examples.
    * 
    * @param documentSearchRequest (required)
    * @param siteId Site Identifier (optional)
@@ -232,8 +233,9 @@ public class DocumentSearchApi {
    * accepted). If using Enteprise TagSchema Composite Keys feature then multiple tag(s) can be
    * searched for. If Typesense is enabled, full text search is supported through the
    * \&quot;text\&quot; parameter. Full text search will look for the text in the
-   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. See requestBody examples below
-   * for commmon examples.
+   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. DocumentIds parameter allows you
+   * to filter your results to a specific set of documents. See requestBody examples below for
+   * commmon examples.
    * 
    * @param documentSearchRequest (required)
    * @param siteId Site Identifier (optional)
@@ -276,8 +278,9 @@ public class DocumentSearchApi {
    * to 100 documentIds accepted). If using Enteprise TagSchema Composite Keys feature then multiple
    * tag(s) can be searched for. If Typesense is enabled, full text search is supported through the
    * \&quot;text\&quot; parameter. Full text search will look for the text in the
-   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. See requestBody examples below
-   * for commmon examples.
+   * \&quot;content\&quot; and/or document \&quot;metadata\&quot;. DocumentIds parameter allows you
+   * to filter your results to a specific set of documents. See requestBody examples below for
+   * commmon examples.
    * 
    * @param documentSearchRequest (required)
    * @param siteId Site Identifier (optional)

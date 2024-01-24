@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentFulltextTag {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -76,7 +76,6 @@ public class DocumentFulltextTag {
   public DocumentFulltextTag() {}
 
   public DocumentFulltextTag eq(String eq) {
-
     this.eq = eq;
     return this;
   }
@@ -91,14 +90,12 @@ public class DocumentFulltextTag {
     return eq;
   }
 
-
   public void setEq(String eq) {
     this.eq = eq;
   }
 
 
   public DocumentFulltextTag eqOr(List<String> eqOr) {
-
     this.eqOr = eqOr;
     return this;
   }
@@ -121,14 +118,12 @@ public class DocumentFulltextTag {
     return eqOr;
   }
 
-
   public void setEqOr(List<String> eqOr) {
     this.eqOr = eqOr;
   }
 
 
   public DocumentFulltextTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -142,7 +137,6 @@ public class DocumentFulltextTag {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

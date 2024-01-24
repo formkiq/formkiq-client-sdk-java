@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentContentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetDocumentContentResponse {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
@@ -78,7 +78,6 @@ public class GetDocumentContentResponse {
   public GetDocumentContentResponse() {}
 
   public GetDocumentContentResponse content(String content) {
-
     this.content = content;
     return this;
   }
@@ -93,14 +92,12 @@ public class GetDocumentContentResponse {
     return content;
   }
 
-
   public void setContent(String content) {
     this.content = content;
   }
 
 
   public GetDocumentContentResponse contentUrl(String contentUrl) {
-
     this.contentUrl = contentUrl;
     return this;
   }
@@ -115,14 +112,12 @@ public class GetDocumentContentResponse {
     return contentUrl;
   }
 
-
   public void setContentUrl(String contentUrl) {
     this.contentUrl = contentUrl;
   }
 
 
   public GetDocumentContentResponse contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -137,14 +132,12 @@ public class GetDocumentContentResponse {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public GetDocumentContentResponse isBase64(Boolean isBase64) {
-
     this.isBase64 = isBase64;
     return this;
   }
@@ -158,7 +151,6 @@ public class GetDocumentContentResponse {
   public Boolean getIsBase64() {
     return isBase64;
   }
-
 
   public void setIsBase64(Boolean isBase64) {
     this.isBase64 = isBase64;

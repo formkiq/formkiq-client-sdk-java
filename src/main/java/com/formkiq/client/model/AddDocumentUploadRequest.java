@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -90,7 +90,6 @@ public class AddDocumentUploadRequest {
   public AddDocumentUploadRequest() {}
 
   public AddDocumentUploadRequest tagSchemaId(String tagSchemaId) {
-
     this.tagSchemaId = tagSchemaId;
     return this;
   }
@@ -105,14 +104,12 @@ public class AddDocumentUploadRequest {
     return tagSchemaId;
   }
 
-
   public void setTagSchemaId(String tagSchemaId) {
     this.tagSchemaId = tagSchemaId;
   }
 
 
   public AddDocumentUploadRequest path(String path) {
-
     this.path = path;
     return this;
   }
@@ -127,14 +124,12 @@ public class AddDocumentUploadRequest {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public AddDocumentUploadRequest contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -149,14 +144,12 @@ public class AddDocumentUploadRequest {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public AddDocumentUploadRequest deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -171,14 +164,12 @@ public class AddDocumentUploadRequest {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public AddDocumentUploadRequest tags(List<AddDocumentTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -201,14 +192,12 @@ public class AddDocumentUploadRequest {
     return tags;
   }
 
-
   public void setTags(List<AddDocumentTag> tags) {
     this.tags = tags;
   }
 
 
   public AddDocumentUploadRequest actions(List<AddAction> actions) {
-
     this.actions = actions;
     return this;
   }
@@ -230,7 +219,6 @@ public class AddDocumentUploadRequest {
   public List<AddAction> getActions() {
     return actions;
   }
-
 
   public void setActions(List<AddAction> actions) {
     this.actions = actions;

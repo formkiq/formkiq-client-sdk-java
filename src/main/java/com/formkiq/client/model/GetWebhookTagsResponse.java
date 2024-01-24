@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhookTagsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetWebhookTagsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -77,7 +77,6 @@ public class GetWebhookTagsResponse {
   public GetWebhookTagsResponse() {}
 
   public GetWebhookTagsResponse next(String next) {
-
     this.next = next;
     return this;
   }
@@ -92,14 +91,12 @@ public class GetWebhookTagsResponse {
     return next;
   }
 
-
   public void setNext(String next) {
     this.next = next;
   }
 
 
   public GetWebhookTagsResponse previous(String previous) {
-
     this.previous = previous;
     return this;
   }
@@ -114,14 +111,12 @@ public class GetWebhookTagsResponse {
     return previous;
   }
 
-
   public void setPrevious(String previous) {
     this.previous = previous;
   }
 
 
   public GetWebhookTagsResponse tags(List<WebhookTag> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -143,7 +138,6 @@ public class GetWebhookTagsResponse {
   public List<WebhookTag> getTags() {
     return tags;
   }
-
 
   public void setTags(List<WebhookTag> tags) {
     this.tags = tags;

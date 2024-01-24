@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddWebhookResponse {
   public static final String SERIALIZED_NAME_WEBHOOK_ID = "webhookId";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_ID)
@@ -70,7 +70,6 @@ public class AddWebhookResponse {
   public AddWebhookResponse() {}
 
   public AddWebhookResponse webhookId(String webhookId) {
-
     this.webhookId = webhookId;
     return this;
   }
@@ -85,14 +84,12 @@ public class AddWebhookResponse {
     return webhookId;
   }
 
-
   public void setWebhookId(String webhookId) {
     this.webhookId = webhookId;
   }
 
 
   public AddWebhookResponse siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -106,7 +103,6 @@ public class AddWebhookResponse {
   public String getSiteId() {
     return siteId;
   }
-
 
   public void setSiteId(String siteId) {
     this.siteId = siteId;

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class UserActivity {
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
@@ -137,7 +137,6 @@ public class UserActivity {
   public UserActivity() {}
 
   public UserActivity activityId(String activityId) {
-
     this.activityId = activityId;
     return this;
   }
@@ -152,14 +151,12 @@ public class UserActivity {
     return activityId;
   }
 
-
   public void setActivityId(String activityId) {
     this.activityId = activityId;
   }
 
 
   public UserActivity type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -174,14 +171,12 @@ public class UserActivity {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public UserActivity insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -196,14 +191,12 @@ public class UserActivity {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public UserActivity userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -218,14 +211,12 @@ public class UserActivity {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public UserActivity versionKey(String versionKey) {
-
     this.versionKey = versionKey;
     return this;
   }
@@ -240,14 +231,12 @@ public class UserActivity {
     return versionKey;
   }
 
-
   public void setVersionKey(String versionKey) {
     this.versionKey = versionKey;
   }
 
 
   public UserActivity timeToLive(String timeToLive) {
-
     this.timeToLive = timeToLive;
     return this;
   }
@@ -261,7 +250,6 @@ public class UserActivity {
   public String getTimeToLive() {
     return timeToLive;
   }
-
 
   public void setTimeToLive(String timeToLive) {
     this.timeToLive = timeToLive;

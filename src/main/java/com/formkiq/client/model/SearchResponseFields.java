@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResponseFields
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class SearchResponseFields {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -68,7 +68,6 @@ public class SearchResponseFields {
   public SearchResponseFields() {}
 
   public SearchResponseFields tags(List<String> tags) {
-
     this.tags = tags;
     return this;
   }
@@ -90,7 +89,6 @@ public class SearchResponseFields {
   public List<String> getTags() {
     return tags;
   }
-
 
   public void setTags(List<String> tags) {
     this.tags = tags;

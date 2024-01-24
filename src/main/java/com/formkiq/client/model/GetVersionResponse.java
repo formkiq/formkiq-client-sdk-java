@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetVersionResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetVersionResponse {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
@@ -76,7 +76,6 @@ public class GetVersionResponse {
   public GetVersionResponse() {}
 
   public GetVersionResponse version(String version) {
-
     this.version = version;
     return this;
   }
@@ -91,14 +90,12 @@ public class GetVersionResponse {
     return version;
   }
 
-
   public void setVersion(String version) {
     this.version = version;
   }
 
 
   public GetVersionResponse type(String type) {
-
     this.type = type;
     return this;
   }
@@ -113,14 +110,12 @@ public class GetVersionResponse {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public GetVersionResponse modules(List<String> modules) {
-
     this.modules = modules;
     return this;
   }
@@ -142,7 +137,6 @@ public class GetVersionResponse {
   public List<String> getModules() {
     return modules;
   }
-
 
   public void setModules(List<String> modules) {
     this.modules = modules;

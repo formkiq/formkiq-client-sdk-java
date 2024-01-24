@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddDocumentWorkflowDecisionsRequest {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
@@ -127,7 +127,6 @@ public class AddDocumentWorkflowDecisionsRequest {
   public AddDocumentWorkflowDecisionsRequest() {}
 
   public AddDocumentWorkflowDecisionsRequest stepId(String stepId) {
-
     this.stepId = stepId;
     return this;
   }
@@ -142,14 +141,12 @@ public class AddDocumentWorkflowDecisionsRequest {
     return stepId;
   }
 
-
   public void setStepId(String stepId) {
     this.stepId = stepId;
   }
 
 
   public AddDocumentWorkflowDecisionsRequest comments(String comments) {
-
     this.comments = comments;
     return this;
   }
@@ -164,14 +161,12 @@ public class AddDocumentWorkflowDecisionsRequest {
     return comments;
   }
 
-
   public void setComments(String comments) {
     this.comments = comments;
   }
 
 
   public AddDocumentWorkflowDecisionsRequest decision(DecisionEnum decision) {
-
     this.decision = decision;
     return this;
   }
@@ -185,7 +180,6 @@ public class AddDocumentWorkflowDecisionsRequest {
   public DecisionEnum getDecision() {
     return decision;
   }
-
 
   public void setDecision(DecisionEnum decision) {
     this.decision = decision;

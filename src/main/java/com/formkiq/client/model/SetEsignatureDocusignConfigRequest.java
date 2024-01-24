@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * SetEsignatureDocusignConfigRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class SetEsignatureDocusignConfigRequest {
   public static final String SERIALIZED_NAME_PRIVATE_KEY = "privateKey";
   @SerializedName(SERIALIZED_NAME_PRIVATE_KEY)
@@ -74,7 +74,6 @@ public class SetEsignatureDocusignConfigRequest {
   public SetEsignatureDocusignConfigRequest() {}
 
   public SetEsignatureDocusignConfigRequest privateKey(String privateKey) {
-
     this.privateKey = privateKey;
     return this;
   }
@@ -89,14 +88,12 @@ public class SetEsignatureDocusignConfigRequest {
     return privateKey;
   }
 
-
   public void setPrivateKey(String privateKey) {
     this.privateKey = privateKey;
   }
 
 
   public SetEsignatureDocusignConfigRequest userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -111,14 +108,12 @@ public class SetEsignatureDocusignConfigRequest {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public SetEsignatureDocusignConfigRequest clientId(String clientId) {
-
     this.clientId = clientId;
     return this;
   }
@@ -132,7 +127,6 @@ public class SetEsignatureDocusignConfigRequest {
   public String getClientId() {
     return clientId;
   }
-
 
   public void setClientId(String clientId) {
     this.clientId = clientId;

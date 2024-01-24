@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowStepDecision
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddWorkflowStepDecision {
   /**
    * Type of Workflow Step Decision
@@ -123,7 +123,6 @@ public class AddWorkflowStepDecision {
   public AddWorkflowStepDecision() {}
 
   public AddWorkflowStepDecision type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -138,14 +137,12 @@ public class AddWorkflowStepDecision {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public AddWorkflowStepDecision nextStepId(String nextStepId) {
-
     this.nextStepId = nextStepId;
     return this;
   }
@@ -159,7 +156,6 @@ public class AddWorkflowStepDecision {
   public String getNextStepId() {
     return nextStepId;
   }
-
 
   public void setNextStepId(String nextStepId) {
     this.nextStepId = nextStepId;

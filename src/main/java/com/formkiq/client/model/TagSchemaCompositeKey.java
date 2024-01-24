@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaCompositeKey
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class TagSchemaCompositeKey {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -68,7 +68,6 @@ public class TagSchemaCompositeKey {
   public TagSchemaCompositeKey() {}
 
   public TagSchemaCompositeKey key(List<String> key) {
-
     this.key = key;
     return this;
   }
@@ -90,7 +89,6 @@ public class TagSchemaCompositeKey {
   public List<String> getKey() {
     return key;
   }
-
 
   public void setKey(List<String> key) {
     this.key = key;

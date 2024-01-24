@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddFolderRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddFolderRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -66,7 +66,6 @@ public class AddFolderRequest {
   public AddFolderRequest() {}
 
   public AddFolderRequest path(String path) {
-
     this.path = path;
     return this;
   }
@@ -80,7 +79,6 @@ public class AddFolderRequest {
   public String getPath() {
     return path;
   }
-
 
   public void setPath(String path) {
     this.path = path;

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Error
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class Error {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -70,7 +70,6 @@ public class Error {
   public Error() {}
 
   public Error key(String key) {
-
     this.key = key;
     return this;
   }
@@ -85,14 +84,12 @@ public class Error {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public Error error(String error) {
-
     this.error = error;
     return this;
   }
@@ -106,7 +103,6 @@ public class Error {
   public String getError() {
     return error;
   }
-
 
   public void setError(String error) {
     this.error = error;

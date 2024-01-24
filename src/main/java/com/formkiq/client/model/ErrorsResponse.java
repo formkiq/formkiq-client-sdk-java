@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * ErrorsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class ErrorsResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -69,7 +69,6 @@ public class ErrorsResponse {
   public ErrorsResponse() {}
 
   public ErrorsResponse errors(List<Error> errors) {
-
     this.errors = errors;
     return this;
   }
@@ -91,7 +90,6 @@ public class ErrorsResponse {
   public List<Error> getErrors() {
     return errors;
   }
-
 
   public void setErrors(List<Error> errors) {
     this.errors = errors;

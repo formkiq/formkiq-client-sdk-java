@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * WebhookTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class WebhookTag {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -86,7 +86,6 @@ public class WebhookTag {
   public WebhookTag() {}
 
   public WebhookTag insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -101,14 +100,12 @@ public class WebhookTag {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public WebhookTag webhookId(String webhookId) {
-
     this.webhookId = webhookId;
     return this;
   }
@@ -123,14 +120,12 @@ public class WebhookTag {
     return webhookId;
   }
 
-
   public void setWebhookId(String webhookId) {
     this.webhookId = webhookId;
   }
 
 
   public WebhookTag type(String type) {
-
     this.type = type;
     return this;
   }
@@ -145,14 +140,12 @@ public class WebhookTag {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public WebhookTag userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -167,14 +160,12 @@ public class WebhookTag {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public WebhookTag value(String value) {
-
     this.value = value;
     return this;
   }
@@ -189,14 +180,12 @@ public class WebhookTag {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public WebhookTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -210,7 +199,6 @@ public class WebhookTag {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

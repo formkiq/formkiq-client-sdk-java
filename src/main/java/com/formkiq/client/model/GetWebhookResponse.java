@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetWebhookResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -90,7 +90,6 @@ public class GetWebhookResponse {
   public GetWebhookResponse() {}
 
   public GetWebhookResponse siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -105,14 +104,12 @@ public class GetWebhookResponse {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public GetWebhookResponse name(String name) {
-
     this.name = name;
     return this;
   }
@@ -127,14 +124,12 @@ public class GetWebhookResponse {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public GetWebhookResponse url(String url) {
-
     this.url = url;
     return this;
   }
@@ -149,14 +144,12 @@ public class GetWebhookResponse {
     return url;
   }
 
-
   public void setUrl(String url) {
     this.url = url;
   }
 
 
   public GetWebhookResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -171,14 +164,12 @@ public class GetWebhookResponse {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public GetWebhookResponse webhookId(String webhookId) {
-
     this.webhookId = webhookId;
     return this;
   }
@@ -193,14 +184,12 @@ public class GetWebhookResponse {
     return webhookId;
   }
 
-
   public void setWebhookId(String webhookId) {
     this.webhookId = webhookId;
   }
 
 
   public GetWebhookResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -215,14 +204,12 @@ public class GetWebhookResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetWebhookResponse enabled(String enabled) {
-
     this.enabled = enabled;
     return this;
   }
@@ -236,7 +223,6 @@ public class GetWebhookResponse {
   public String getEnabled() {
     return enabled;
   }
-
 
   public void setEnabled(String enabled) {
     this.enabled = enabled;

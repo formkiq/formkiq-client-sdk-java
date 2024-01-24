@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentTag {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -92,7 +92,6 @@ public class DocumentTag {
   public DocumentTag() {}
 
   public DocumentTag insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -107,14 +106,12 @@ public class DocumentTag {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public DocumentTag documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -129,14 +126,12 @@ public class DocumentTag {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public DocumentTag type(String type) {
-
     this.type = type;
     return this;
   }
@@ -151,14 +146,12 @@ public class DocumentTag {
     return type;
   }
 
-
   public void setType(String type) {
     this.type = type;
   }
 
 
   public DocumentTag userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -173,14 +166,12 @@ public class DocumentTag {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public DocumentTag value(String value) {
-
     this.value = value;
     return this;
   }
@@ -195,14 +186,12 @@ public class DocumentTag {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public DocumentTag values(List<String> values) {
-
     this.values = values;
     return this;
   }
@@ -225,14 +214,12 @@ public class DocumentTag {
     return values;
   }
 
-
   public void setValues(List<String> values) {
     this.values = values;
   }
 
 
   public DocumentTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -246,7 +233,6 @@ public class DocumentTag {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhooksResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetWebhooksResponse {
   public static final String SERIALIZED_NAME_WEBHOOKS = "webhooks";
   @SerializedName(SERIALIZED_NAME_WEBHOOKS)
@@ -69,7 +69,6 @@ public class GetWebhooksResponse {
   public GetWebhooksResponse() {}
 
   public GetWebhooksResponse webhooks(List<GetWebhookResponse> webhooks) {
-
     this.webhooks = webhooks;
     return this;
   }
@@ -91,7 +90,6 @@ public class GetWebhooksResponse {
   public List<GetWebhookResponse> getWebhooks() {
     return webhooks;
   }
-
 
   public void setWebhooks(List<GetWebhookResponse> webhooks) {
     this.webhooks = webhooks;

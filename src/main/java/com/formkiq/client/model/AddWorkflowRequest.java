@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddWorkflowRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -134,7 +134,6 @@ public class AddWorkflowRequest {
   public AddWorkflowRequest() {}
 
   public AddWorkflowRequest name(String name) {
-
     this.name = name;
     return this;
   }
@@ -149,14 +148,12 @@ public class AddWorkflowRequest {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public AddWorkflowRequest description(String description) {
-
     this.description = description;
     return this;
   }
@@ -171,14 +168,12 @@ public class AddWorkflowRequest {
     return description;
   }
 
-
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public AddWorkflowRequest status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -193,14 +188,12 @@ public class AddWorkflowRequest {
     return status;
   }
 
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
   public AddWorkflowRequest steps(List<AddWorkflowStep> steps) {
-
     this.steps = steps;
     return this;
   }
@@ -222,7 +215,6 @@ public class AddWorkflowRequest {
   public List<AddWorkflowStep> getSteps() {
     return steps;
   }
-
 
   public void setSteps(List<AddWorkflowStep> steps) {
     this.steps = steps;

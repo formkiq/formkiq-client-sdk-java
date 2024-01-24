@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWebhookTagRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddWebhookTagRequest {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -76,7 +76,6 @@ public class AddWebhookTagRequest {
   public AddWebhookTagRequest() {}
 
   public AddWebhookTagRequest value(String value) {
-
     this.value = value;
     return this;
   }
@@ -91,14 +90,12 @@ public class AddWebhookTagRequest {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public AddWebhookTagRequest values(List<String> values) {
-
     this.values = values;
     return this;
   }
@@ -121,14 +118,12 @@ public class AddWebhookTagRequest {
     return values;
   }
 
-
   public void setValues(List<String> values) {
     this.values = values;
   }
 
 
   public AddWebhookTagRequest key(String key) {
-
     this.key = key;
     return this;
   }
@@ -142,7 +137,6 @@ public class AddWebhookTagRequest {
   public String getKey() {
     return key;
   }
-
 
   public void setKey(String key) {
     this.key = key;

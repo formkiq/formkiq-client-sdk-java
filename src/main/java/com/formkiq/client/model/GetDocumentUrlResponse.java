@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentUrlResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetDocumentUrlResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -70,7 +70,6 @@ public class GetDocumentUrlResponse {
   public GetDocumentUrlResponse() {}
 
   public GetDocumentUrlResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -85,14 +84,12 @@ public class GetDocumentUrlResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentUrlResponse url(String url) {
-
     this.url = url;
     return this;
   }
@@ -106,7 +103,6 @@ public class GetDocumentUrlResponse {
   public String getUrl() {
     return url;
   }
-
 
   public void setUrl(String url) {
     this.url = url;

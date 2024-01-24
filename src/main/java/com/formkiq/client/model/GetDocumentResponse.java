@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -122,7 +122,6 @@ public class GetDocumentResponse {
   public GetDocumentResponse() {}
 
   public GetDocumentResponse siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -137,14 +136,12 @@ public class GetDocumentResponse {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public GetDocumentResponse path(String path) {
-
     this.path = path;
     return this;
   }
@@ -159,14 +156,12 @@ public class GetDocumentResponse {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public GetDocumentResponse deepLinkPath(String deepLinkPath) {
-
     this.deepLinkPath = deepLinkPath;
     return this;
   }
@@ -181,14 +176,12 @@ public class GetDocumentResponse {
     return deepLinkPath;
   }
 
-
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
   }
 
 
   public GetDocumentResponse insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -203,14 +196,12 @@ public class GetDocumentResponse {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public GetDocumentResponse lastModifiedDate(String lastModifiedDate) {
-
     this.lastModifiedDate = lastModifiedDate;
     return this;
   }
@@ -225,14 +216,12 @@ public class GetDocumentResponse {
     return lastModifiedDate;
   }
 
-
   public void setLastModifiedDate(String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
   }
 
 
   public GetDocumentResponse checksum(String checksum) {
-
     this.checksum = checksum;
     return this;
   }
@@ -247,14 +236,12 @@ public class GetDocumentResponse {
     return checksum;
   }
 
-
   public void setChecksum(String checksum) {
     this.checksum = checksum;
   }
 
 
   public GetDocumentResponse documentId(String documentId) {
-
     this.documentId = documentId;
     return this;
   }
@@ -269,14 +256,12 @@ public class GetDocumentResponse {
     return documentId;
   }
 
-
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
   }
 
 
   public GetDocumentResponse contentType(String contentType) {
-
     this.contentType = contentType;
     return this;
   }
@@ -291,14 +276,12 @@ public class GetDocumentResponse {
     return contentType;
   }
 
-
   public void setContentType(String contentType) {
     this.contentType = contentType;
   }
 
 
   public GetDocumentResponse userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -313,14 +296,12 @@ public class GetDocumentResponse {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public GetDocumentResponse contentLength(Integer contentLength) {
-
     this.contentLength = contentLength;
     return this;
   }
@@ -335,14 +316,12 @@ public class GetDocumentResponse {
     return contentLength;
   }
 
-
   public void setContentLength(Integer contentLength) {
     this.contentLength = contentLength;
   }
 
 
   public GetDocumentResponse versionId(String versionId) {
-
     this.versionId = versionId;
     return this;
   }
@@ -357,14 +336,12 @@ public class GetDocumentResponse {
     return versionId;
   }
 
-
   public void setVersionId(String versionId) {
     this.versionId = versionId;
   }
 
 
   public GetDocumentResponse documents(List<ChildDocument> documents) {
-
     this.documents = documents;
     return this;
   }
@@ -387,14 +364,12 @@ public class GetDocumentResponse {
     return documents;
   }
 
-
   public void setDocuments(List<ChildDocument> documents) {
     this.documents = documents;
   }
 
 
   public GetDocumentResponse belongsToDocumentId(String belongsToDocumentId) {
-
     this.belongsToDocumentId = belongsToDocumentId;
     return this;
   }
@@ -409,14 +384,12 @@ public class GetDocumentResponse {
     return belongsToDocumentId;
   }
 
-
   public void setBelongsToDocumentId(String belongsToDocumentId) {
     this.belongsToDocumentId = belongsToDocumentId;
   }
 
 
   public GetDocumentResponse metadata(List<DocumentMetadata> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -438,7 +411,6 @@ public class GetDocumentResponse {
   public List<DocumentMetadata> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(List<DocumentMetadata> metadata) {
     this.metadata = metadata;

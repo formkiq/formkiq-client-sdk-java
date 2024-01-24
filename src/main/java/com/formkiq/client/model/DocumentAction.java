@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentAction {
   /**
    * Status of the Document Action
@@ -238,7 +238,6 @@ public class DocumentAction {
   public DocumentAction() {}
 
   public DocumentAction status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -253,14 +252,12 @@ public class DocumentAction {
     return status;
   }
 
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
   public DocumentAction type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -275,14 +272,12 @@ public class DocumentAction {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public DocumentAction queueId(String queueId) {
-
     this.queueId = queueId;
     return this;
   }
@@ -297,14 +292,12 @@ public class DocumentAction {
     return queueId;
   }
 
-
   public void setQueueId(String queueId) {
     this.queueId = queueId;
   }
 
 
   public DocumentAction workflowId(String workflowId) {
-
     this.workflowId = workflowId;
     return this;
   }
@@ -319,14 +312,12 @@ public class DocumentAction {
     return workflowId;
   }
 
-
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
   }
 
 
   public DocumentAction workflowStepId(String workflowStepId) {
-
     this.workflowStepId = workflowStepId;
     return this;
   }
@@ -341,14 +332,12 @@ public class DocumentAction {
     return workflowStepId;
   }
 
-
   public void setWorkflowStepId(String workflowStepId) {
     this.workflowStepId = workflowStepId;
   }
 
 
   public DocumentAction message(String message) {
-
     this.message = message;
     return this;
   }
@@ -363,14 +352,12 @@ public class DocumentAction {
     return message;
   }
 
-
   public void setMessage(String message) {
     this.message = message;
   }
 
 
   public DocumentAction userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -385,14 +372,12 @@ public class DocumentAction {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public DocumentAction insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -407,14 +392,12 @@ public class DocumentAction {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public DocumentAction startDate(String startDate) {
-
     this.startDate = startDate;
     return this;
   }
@@ -429,14 +412,12 @@ public class DocumentAction {
     return startDate;
   }
 
-
   public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
 
 
   public DocumentAction completedDate(String completedDate) {
-
     this.completedDate = completedDate;
     return this;
   }
@@ -451,14 +432,12 @@ public class DocumentAction {
     return completedDate;
   }
 
-
   public void setCompletedDate(String completedDate) {
     this.completedDate = completedDate;
   }
 
 
   public DocumentAction parameters(Map<String, String> parameters) {
-
     this.parameters = parameters;
     return this;
   }
@@ -481,14 +460,12 @@ public class DocumentAction {
     return parameters;
   }
 
-
   public void setParameters(Map<String, String> parameters) {
     this.parameters = parameters;
   }
 
 
   public DocumentAction metadata(Map<String, String> metadata) {
-
     this.metadata = metadata;
     return this;
   }
@@ -510,7 +487,6 @@ public class DocumentAction {
   public Map<String, String> getMetadata() {
     return metadata;
   }
-
 
   public void setMetadata(Map<String, String> metadata) {
     this.metadata = metadata;

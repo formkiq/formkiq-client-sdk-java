@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Match Document Tag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class MatchDocumentTag {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -74,7 +74,6 @@ public class MatchDocumentTag {
   public MatchDocumentTag() {}
 
   public MatchDocumentTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -89,14 +88,12 @@ public class MatchDocumentTag {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public MatchDocumentTag beginsWith(String beginsWith) {
-
     this.beginsWith = beginsWith;
     return this;
   }
@@ -111,14 +108,12 @@ public class MatchDocumentTag {
     return beginsWith;
   }
 
-
   public void setBeginsWith(String beginsWith) {
     this.beginsWith = beginsWith;
   }
 
 
   public MatchDocumentTag eq(String eq) {
-
     this.eq = eq;
     return this;
   }
@@ -132,7 +127,6 @@ public class MatchDocumentTag {
   public String getEq() {
     return eq;
   }
-
 
   public void setEq(String eq) {
     this.eq = eq;

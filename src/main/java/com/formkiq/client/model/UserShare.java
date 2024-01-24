@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * UserShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class UserShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -253,7 +253,6 @@ public class UserShare {
   public UserShare() {}
 
   public UserShare group(String group) {
-
     this.group = group;
     return this;
   }
@@ -268,14 +267,12 @@ public class UserShare {
     return group;
   }
 
-
   public void setGroup(String group) {
     this.group = group;
   }
 
 
   public UserShare shareKey(String shareKey) {
-
     this.shareKey = shareKey;
     return this;
   }
@@ -290,14 +287,12 @@ public class UserShare {
     return shareKey;
   }
 
-
   public void setShareKey(String shareKey) {
     this.shareKey = shareKey;
   }
 
 
   public UserShare type(TypeEnum type) {
-
     this.type = type;
     return this;
   }
@@ -312,14 +307,12 @@ public class UserShare {
     return type;
   }
 
-
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
 
   public UserShare permissions(List<PermissionsEnum> permissions) {
-
     this.permissions = permissions;
     return this;
   }
@@ -342,14 +335,12 @@ public class UserShare {
     return permissions;
   }
 
-
   public void setPermissions(List<PermissionsEnum> permissions) {
     this.permissions = permissions;
   }
 
 
   public UserShare siteId(String siteId) {
-
     this.siteId = siteId;
     return this;
   }
@@ -364,14 +355,12 @@ public class UserShare {
     return siteId;
   }
 
-
   public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
 
 
   public UserShare path(String path) {
-
     this.path = path;
     return this;
   }
@@ -386,14 +375,12 @@ public class UserShare {
     return path;
   }
 
-
   public void setPath(String path) {
     this.path = path;
   }
 
 
   public UserShare userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -408,14 +395,12 @@ public class UserShare {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public UserShare permissionType(PermissionTypeEnum permissionType) {
-
     this.permissionType = permissionType;
     return this;
   }
@@ -429,7 +414,6 @@ public class UserShare {
   public PermissionTypeEnum getPermissionType() {
     return permissionType;
   }
-
 
   public void setPermissionType(PermissionTypeEnum permissionType) {
     this.permissionType = permissionType;

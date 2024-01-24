@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class WorkflowSummary {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -143,7 +143,6 @@ public class WorkflowSummary {
   public WorkflowSummary() {}
 
   public WorkflowSummary name(String name) {
-
     this.name = name;
     return this;
   }
@@ -158,14 +157,12 @@ public class WorkflowSummary {
     return name;
   }
 
-
   public void setName(String name) {
     this.name = name;
   }
 
 
   public WorkflowSummary workflowId(String workflowId) {
-
     this.workflowId = workflowId;
     return this;
   }
@@ -180,14 +177,12 @@ public class WorkflowSummary {
     return workflowId;
   }
 
-
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
   }
 
 
   public WorkflowSummary description(String description) {
-
     this.description = description;
     return this;
   }
@@ -202,14 +197,12 @@ public class WorkflowSummary {
     return description;
   }
 
-
   public void setDescription(String description) {
     this.description = description;
   }
 
 
   public WorkflowSummary insertedDate(String insertedDate) {
-
     this.insertedDate = insertedDate;
     return this;
   }
@@ -224,14 +217,12 @@ public class WorkflowSummary {
     return insertedDate;
   }
 
-
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
   }
 
 
   public WorkflowSummary userId(String userId) {
-
     this.userId = userId;
     return this;
   }
@@ -246,14 +237,12 @@ public class WorkflowSummary {
     return userId;
   }
 
-
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
 
   public WorkflowSummary inUse(Boolean inUse) {
-
     this.inUse = inUse;
     return this;
   }
@@ -268,14 +257,12 @@ public class WorkflowSummary {
     return inUse;
   }
 
-
   public void setInUse(Boolean inUse) {
     this.inUse = inUse;
   }
 
 
   public WorkflowSummary status(StatusEnum status) {
-
     this.status = status;
     return this;
   }
@@ -289,7 +276,6 @@ public class WorkflowSummary {
   public StatusEnum getStatus() {
     return status;
   }
-
 
   public void setStatus(StatusEnum status) {
     this.status = status;

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Add/Update of multiple document tag(s) based on document(s) that have the matching tag.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class UpdateMatchingDocumentTagsRequest {
   public static final String SERIALIZED_NAME_MATCH = "match";
   @SerializedName(SERIALIZED_NAME_MATCH)
@@ -72,7 +72,6 @@ public class UpdateMatchingDocumentTagsRequest {
   public UpdateMatchingDocumentTagsRequest() {}
 
   public UpdateMatchingDocumentTagsRequest match(UpdateMatchingDocumentTagsRequestMatch match) {
-
     this.match = match;
     return this;
   }
@@ -87,14 +86,12 @@ public class UpdateMatchingDocumentTagsRequest {
     return match;
   }
 
-
   public void setMatch(UpdateMatchingDocumentTagsRequestMatch match) {
     this.match = match;
   }
 
 
   public UpdateMatchingDocumentTagsRequest update(UpdateMatchingDocumentTagsRequestUpdate update) {
-
     this.update = update;
     return this;
   }
@@ -108,7 +105,6 @@ public class UpdateMatchingDocumentTagsRequest {
   public UpdateMatchingDocumentTagsRequestUpdate getUpdate() {
     return update;
   }
-
 
   public void setUpdate(UpdateMatchingDocumentTagsRequestUpdate update) {
     this.update = update;

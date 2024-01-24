@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentActionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class AddDocumentActionsRequest {
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
@@ -69,7 +69,6 @@ public class AddDocumentActionsRequest {
   public AddDocumentActionsRequest() {}
 
   public AddDocumentActionsRequest actions(List<AddAction> actions) {
-
     this.actions = actions;
     return this;
   }
@@ -91,7 +90,6 @@ public class AddDocumentActionsRequest {
   public List<AddAction> getActions() {
     return actions;
   }
-
 
   public void setActions(List<AddAction> actions) {
     this.actions = actions;

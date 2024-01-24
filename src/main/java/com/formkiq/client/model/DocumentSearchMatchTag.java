@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchMatchTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2023-12-16T14:07:54.900671-06:00[America/Winnipeg]")
+    date = "2024-01-23T19:44:28.335991-06:00[America/Winnipeg]")
 public class DocumentSearchMatchTag {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -74,7 +74,6 @@ public class DocumentSearchMatchTag {
   public DocumentSearchMatchTag() {}
 
   public DocumentSearchMatchTag key(String key) {
-
     this.key = key;
     return this;
   }
@@ -89,14 +88,12 @@ public class DocumentSearchMatchTag {
     return key;
   }
 
-
   public void setKey(String key) {
     this.key = key;
   }
 
 
   public DocumentSearchMatchTag value(String value) {
-
     this.value = value;
     return this;
   }
@@ -111,14 +108,12 @@ public class DocumentSearchMatchTag {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
 
 
   public DocumentSearchMatchTag type(String type) {
-
     this.type = type;
     return this;
   }
@@ -132,7 +127,6 @@ public class DocumentSearchMatchTag {
   public String getType() {
     return type;
   }
-
 
   public void setType(String type) {
     this.type = type;
