@@ -26,7 +26,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +44,14 @@ public class GetDocumentOcrResponseTest {
   @Test
   public void testGetDocumentOcrResponse() {
     // TODO: test GetDocumentOcrResponse
+  }
+
+  /**
+   * Test the property 'contentUrls'
+   */
+  @Test
+  public void contentUrlsTest() {
+    // TODO: test contentUrls
   }
 
   /**

@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeConfigDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
+    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
 public class OnlyOfficeConfigDocument {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)

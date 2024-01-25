@@ -27,7 +27,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,8 +59,12 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-21T10:52:57.550791-06:00[America/Winnipeg]")
+    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
 public class GetDocumentOcrResponse {
+  public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
+  @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
+  private List<String> contentUrls;
+
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   private String data;
@@ -92,6 +98,34 @@ public class GetDocumentOcrResponse {
   private String insertedDate;
 
   public GetDocumentOcrResponse() {}
+
+  public GetDocumentOcrResponse contentUrls(List<String> contentUrls) {
+    this.contentUrls = contentUrls;
+    return this;
+  }
+
+  public GetDocumentOcrResponse addContentUrlsItem(String contentUrlsItem) {
+    if (this.contentUrls == null) {
+      this.contentUrls = new ArrayList<>();
+    }
+    this.contentUrls.add(contentUrlsItem);
+    return this;
+  }
+
+  /**
+   * Presigned S3 Urls for the OCR content
+   * 
+   * @return contentUrls
+   **/
+  @javax.annotation.Nullable
+  public List<String> getContentUrls() {
+    return contentUrls;
+  }
+
+  public void setContentUrls(List<String> contentUrls) {
+    this.contentUrls = contentUrls;
+  }
+
 
   public GetDocumentOcrResponse data(String data) {
     this.data = data;
@@ -263,7 +297,8 @@ public class GetDocumentOcrResponse {
       return false;
     }
     GetDocumentOcrResponse getDocumentOcrResponse = (GetDocumentOcrResponse) o;
-    return Objects.equals(this.data, getDocumentOcrResponse.data)
+    return Objects.equals(this.contentUrls, getDocumentOcrResponse.contentUrls)
+        && Objects.equals(this.data, getDocumentOcrResponse.data)
         && Objects.equals(this.ocrEngine, getDocumentOcrResponse.ocrEngine)
         && Objects.equals(this.ocrStatus, getDocumentOcrResponse.ocrStatus)
         && Objects.equals(this.contentType, getDocumentOcrResponse.contentType)
@@ -275,14 +310,15 @@ public class GetDocumentOcrResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, ocrEngine, ocrStatus, contentType, isBase64, userId, documentId,
-        insertedDate);
+    return Objects.hash(contentUrls, data, ocrEngine, ocrStatus, contentType, isBase64, userId,
+        documentId, insertedDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentOcrResponse {\n");
+    sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrStatus: ").append(toIndentedString(ocrStatus)).append("\n");
@@ -312,6 +348,7 @@ public class GetDocumentOcrResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("contentUrls");
     openapiFields.add("data");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrStatus");
@@ -351,6 +388,13 @@ public class GetDocumentOcrResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("contentUrls") != null && !jsonObj.get("contentUrls").isJsonNull()
+        && !jsonObj.get("contentUrls").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `contentUrls` to be an array in the JSON string but got `%s`",
+          jsonObj.get("contentUrls").toString()));
+    }
     if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull())
         && !jsonObj.get("data").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

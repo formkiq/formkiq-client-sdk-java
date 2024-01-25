@@ -82,6 +82,9 @@ tags:
 - description: Antivirus API
   name: antivirus
   x-displayName: Antivirus
+- description: Examine Objects API
+  name: examineObjects
+  x-displayName: ExamineObjects
 - description: Public API Endpoints
   name: public
   x-displayName: Public Endpoints
@@ -97,6 +100,8 @@ tags:
 - description: Case Management API
   name: caseManagement
   x-displayName: Case Management
+- description: Rulesets API
+  name: ruleSets
 - name: Application
   x-amazon-apigateway-tag-value: FormKiQ
 - name: AppEnvironment
@@ -6677,6 +6682,661 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-accepts: application/json
+  /rulesets:
+    get:
+      description: Returns a list of rule sets; ONLY available with FormKiQ Enterprise
+      operationId: GetRulesets
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRulesetsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Rulesets
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Creates a new ruleset; ONLY available with FormKiQ Enterprise
+      operationId: AddRuleset
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRulesetRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRulesetResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add New Ruleset
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /rulesets/{rulesetId}:
+    delete:
+      description: Delete Ruleset; ONLY available with FormKiQ Enterprise
+      operationId: DeleteRuleset
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteRulesetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Ruleset
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Get a rule sets; ONLY available with FormKiQ Enterprise
+      operationId: GetRuleset
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRulesetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Ruleset
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    patch:
+      description: Updates an existing ruleset; ONLY available with FormKiQ Enterprise
+      operationId: UpdateRuleset
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRulesetRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateRulesetResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Update Ruleset
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /rulesets/{rulesetId}/rules:
+    get:
+      description: Returns a list of rules in a ruleset; ONLY available with FormKiQ
+        Enterprise
+      operationId: GetRules
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRulesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Rules
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Creates a new rule; ONLY available with FormKiQ Enterprise
+      operationId: AddRule
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRuleRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRuleResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add New Rule
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /rulesets/{rulesetId}/rules/{ruleId}:
+    delete:
+      description: Delete Rule; ONLY available with FormKiQ Enterprise
+      operationId: DeleteRule
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Rule Identifier
+        explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteRuleResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Rule
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Returns a rule in a ruleset; ONLY available with FormKiQ Enterprise
+      operationId: GetRule
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Rule Identifier
+        explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRuleResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Rule
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    patch:
+      description: Update Rule; ONLY available with FormKiQ Enterprise
+      operationId: UpdateRule
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Ruleset Identifier
+        explode: false
+        in: path
+        name: rulesetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Rule Identifier
+        explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRuleRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateRuleResponse'
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Update Rule
+      tags:
+      - Rulesets
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts: application/json
+  /objects/examine/pdf:
+    get:
+      description: "Gets a URL for temporary upload of a document to be examined by\
+        \ calling POST /objects/examine/{id}/pdf"
+      operationId: GetExaminePdf
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExaminePdfResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Add Examine Pdf
+      tags:
+      - Examine Objects
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /objects/examine/{id}/pdf:
+    post:
+      description: |-
+        Examines a PDF file and returns information about it.
+
+        File must have been uploaded previously using the GET /objects/examine/pdf API.
+      operationId: AddExaminePdf
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddExaminePdfResponse'
+          description: 201 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Add Examine Pdf
+      tags:
+      - Examine Objects
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -6763,6 +7423,15 @@ components:
       schema:
         type: string
       style: form
+    idParam:
+      description: Identifier
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      style: simple
     caseIdParam:
       description: Case Identifier
       explode: false
@@ -6880,6 +7549,24 @@ components:
       explode: false
       in: path
       name: documentId
+      required: true
+      schema:
+        type: string
+      style: simple
+    rulesetIdParam:
+      description: Ruleset Identifier
+      explode: false
+      in: path
+      name: rulesetId
+      required: true
+      schema:
+        type: string
+      style: simple
+    ruleIdParam:
+      description: Rule Identifier
+      explode: false
+      in: path
+      name: ruleId
       required: true
       schema:
         type: string
@@ -10504,6 +11191,324 @@ components:
         status:
           $ref: '#/components/schemas/CaseStatus'
       type: object
+    AddRulesetResponse:
+      example:
+        rulesetId: rulesetId
+      properties:
+        rulesetId:
+          description: Ruleset Identifier
+          type: string
+      type: object
+    UpdateRulesetResponse:
+      example:
+        rulesetId: rulesetId
+      properties:
+        rulesetId:
+          description: Ruleset Identifier
+          type: string
+      type: object
+    UpdateRuleResponse:
+      example:
+        ruleId: ruleId
+      properties:
+        ruleId:
+          description: Rule Identifier
+          type: string
+      type: object
+    AddRuleResponse:
+      example:
+        ruleId: ruleId
+      properties:
+        ruleId:
+          description: Rule Identifier
+          type: string
+      type: object
+    AddRuleRequest:
+      example:
+        ruleset:
+          description: description
+          conditions:
+            must:
+              propertyName: propertyName
+              attribute: TEXT
+              value: value
+              operation: EQ
+          workflowId: workflowId
+      properties:
+        ruleset:
+          $ref: '#/components/schemas/AddRule'
+      required:
+      - case
+      type: object
+    UpdateRuleRequest:
+      example:
+        ruleset:
+          description: description
+          conditions:
+            must:
+              propertyName: propertyName
+              attribute: TEXT
+              value: value
+              operation: EQ
+          workflowId: workflowId
+      properties:
+        ruleset:
+          $ref: '#/components/schemas/AddRule'
+      required:
+      - case
+      type: object
+    AddRule:
+      example:
+        description: description
+        conditions:
+          must:
+            propertyName: propertyName
+            attribute: TEXT
+            value: value
+            operation: EQ
+        workflowId: workflowId
+      properties:
+        description:
+          description: Rule description
+          type: string
+        workflowId:
+          description: Workflow to start on matching of conditions
+          type: string
+        conditions:
+          $ref: '#/components/schemas/RuleCondition'
+      type: object
+    AddRulesetRequest:
+      example:
+        ruleset:
+          description: description
+          priority: 0.8008281904610115
+          version: 6.027456183070403
+      properties:
+        ruleset:
+          $ref: '#/components/schemas/AddRuleset'
+      required:
+      - ruleset
+      type: object
+    UpdateRulesetRequest:
+      example:
+        ruleset:
+          description: description
+          priority: 0.8008281904610115
+          version: 6.027456183070403
+      properties:
+        ruleset:
+          $ref: '#/components/schemas/AddRuleset'
+      required:
+      - ruleset
+      type: object
+    AddRuleset:
+      example:
+        description: description
+        priority: 0.8008281904610115
+        version: 6.027456183070403
+      properties:
+        description:
+          description: Ruleset description
+          type: string
+        priority:
+          description: Ruleset priority
+          type: number
+        version:
+          description: Ruleset version
+          type: number
+      type: object
+    GetRulesResponse:
+      example:
+        next: next
+        rules:
+        - description: description
+          conditions:
+            must:
+              propertyName: propertyName
+              attribute: TEXT
+              value: value
+              operation: EQ
+          workflowId: workflowId
+        - description: description
+          conditions:
+            must:
+              propertyName: propertyName
+              attribute: TEXT
+              value: value
+              operation: EQ
+          workflowId: workflowId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        rules:
+          description: List of rules
+          items:
+            $ref: '#/components/schemas/Rule'
+          type: array
+      type: object
+    GetRuleResponse:
+      example:
+        rule:
+          description: description
+          conditions:
+            must:
+              propertyName: propertyName
+              attribute: TEXT
+              value: value
+              operation: EQ
+          workflowId: workflowId
+      properties:
+        rule:
+          $ref: '#/components/schemas/Rule'
+      type: object
+    GetRulesetsResponse:
+      example:
+        next: next
+        rulesets:
+        - description: description
+          priority: 0.8008281904610115
+          version: 6.027456183070403
+        - description: description
+          priority: 0.8008281904610115
+          version: 6.027456183070403
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        rulesets:
+          description: List of rulesets
+          items:
+            $ref: '#/components/schemas/Ruleset'
+          type: array
+      type: object
+    GetRulesetResponse:
+      example:
+        ruleset:
+          description: description
+          priority: 0.8008281904610115
+          version: 6.027456183070403
+      properties:
+        ruleset:
+          $ref: '#/components/schemas/Ruleset'
+      type: object
+    Ruleset:
+      example:
+        description: description
+        priority: 0.8008281904610115
+        version: 6.027456183070403
+      properties:
+        description:
+          description: Ruleset description
+          type: string
+        priority:
+          description: Ruleset priority
+          type: number
+        version:
+          description: Ruleset version
+          type: number
+      type: object
+    Rule:
+      example:
+        description: description
+        conditions:
+          must:
+            propertyName: propertyName
+            attribute: TEXT
+            value: value
+            operation: EQ
+        workflowId: workflowId
+      properties:
+        description:
+          description: Ruleset description
+          type: string
+        workflowId:
+          description: Workflow to start on matching of conditions
+          type: string
+        conditions:
+          $ref: '#/components/schemas/RuleCondition'
+      type: object
+    RuleCondition:
+      example:
+        must:
+          propertyName: propertyName
+          attribute: TEXT
+          value: value
+          operation: EQ
+      properties:
+        must:
+          $ref: '#/components/schemas/RuleConditionMust'
+      type: object
+    RuleConditionMust:
+      example:
+        propertyName: propertyName
+        attribute: TEXT
+        value: value
+        operation: EQ
+      properties:
+        attribute:
+          description: Rule attribute
+          enum:
+          - TEXT
+          - CONTENT_TYPE
+          - BARCODE
+          - PROPERTY
+          type: string
+        propertyName:
+          description: Rule property name
+          type: string
+        value:
+          description: Rule condition value
+          type: string
+        operation:
+          description: Rule condition operation
+          enum:
+          - EQ
+          - CONTAINS
+          type: string
+      type: object
+    GetExaminePdfResponse:
+      example:
+        uploadUrl: uploadUrl
+        id: id
+      properties:
+        id:
+          description: Uploaded document identifier
+          type: string
+        uploadUrl:
+          description: Url to upload document to
+          type: string
+      type: object
+    AddExaminePdfResponse:
+      example:
+        fileinfo:
+          fields:
+          - field: field
+          - field: field
+      properties:
+        fileinfo:
+          $ref: '#/components/schemas/PdfDocument'
+      type: object
+    PdfDocument:
+      example:
+        fields:
+        - field: field
+        - field: field
+      properties:
+        fields:
+          description: List of document fields
+          items:
+            $ref: '#/components/schemas/PdfDocumentField'
+          type: array
+      type: object
+    PdfDocumentField:
+      example:
+        field: field
+      properties:
+        field:
+          description: Name of Field
+          type: string
+      type: object
     GetDocumentsResponse:
       example:
         next: next
@@ -10803,6 +11808,9 @@ components:
       type: object
     GetDocumentOcrResponse:
       example:
+        contentUrls:
+        - contentUrls
+        - contentUrls
         ocrEngine: ocrEngine
         data: data
         insertedDate: insertedDate
@@ -10812,6 +11820,11 @@ components:
         isBase64: true
         userId: userId
       properties:
+        contentUrls:
+          description: Presigned S3 Urls for the OCR content
+          items:
+            type: string
+          type: array
         data:
           description: OCR text result
           type: string
@@ -11310,6 +12323,22 @@ components:
           type: string
       type: object
     DeleteFulltextResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteRulesetResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteRuleResponse:
       example:
         message: message
       properties:

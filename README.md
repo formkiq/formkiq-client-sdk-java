@@ -2,7 +2,7 @@
 
 FormKiQ HTTP API
 - API version: 1.14.0
-  - Build date: 2024-01-21T10:52:57.550791-06:00[America/Winnipeg]
+  - Build date: 2024-01-25T11:20:19.134152-06:00[America/Winnipeg]
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -226,11 +226,23 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**getEsignatureDocusignConfig**](docs/ESignatureApi.md#getEsignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
+*ExamineObjectsApi* | [**addExaminePdf**](docs/ExamineObjectsApi.md#addExaminePdf) | **POST** /objects/examine/{id}/pdf | Add Examine Pdf
+*ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/pdf | Add Examine Pdf
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
 *PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | Public add document
 *PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | Public add webhook
+*RulesetsApi* | [**addRule**](docs/RulesetsApi.md#addRule) | **POST** /rulesets/{rulesetId}/rules | Add New Rule
+*RulesetsApi* | [**addRuleset**](docs/RulesetsApi.md#addRuleset) | **POST** /rulesets | Add New Ruleset
+*RulesetsApi* | [**deleteRule**](docs/RulesetsApi.md#deleteRule) | **DELETE** /rulesets/{rulesetId}/rules/{ruleId} | Delete Rule
+*RulesetsApi* | [**deleteRuleset**](docs/RulesetsApi.md#deleteRuleset) | **DELETE** /rulesets/{rulesetId} | Delete Ruleset
+*RulesetsApi* | [**getRule**](docs/RulesetsApi.md#getRule) | **GET** /rulesets/{rulesetId}/rules/{ruleId} | Get Rule
+*RulesetsApi* | [**getRules**](docs/RulesetsApi.md#getRules) | **GET** /rulesets/{rulesetId}/rules | Get Rules
+*RulesetsApi* | [**getRuleset**](docs/RulesetsApi.md#getRuleset) | **GET** /rulesets/{rulesetId} | Get Ruleset
+*RulesetsApi* | [**getRulesets**](docs/RulesetsApi.md#getRulesets) | **GET** /rulesets | Get Rulesets
+*RulesetsApi* | [**updateRule**](docs/RulesetsApi.md#updateRule) | **PATCH** /rulesets/{rulesetId}/rules/{ruleId} | Update Rule
+*RulesetsApi* | [**updateRuleset**](docs/RulesetsApi.md#updateRuleset) | **PATCH** /rulesets/{rulesetId} | Update Ruleset
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
@@ -289,6 +301,7 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
  - [AddEsignatureDocusignRequest](docs/AddEsignatureDocusignRequest.md)
  - [AddEsignatureDocusignResponse](docs/AddEsignatureDocusignResponse.md)
+ - [AddExaminePdfResponse](docs/AddExaminePdfResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
@@ -296,6 +309,12 @@ Class | Method | HTTP request | Description
  - [AddNigo](docs/AddNigo.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
+ - [AddRule](docs/AddRule.md)
+ - [AddRuleRequest](docs/AddRuleRequest.md)
+ - [AddRuleResponse](docs/AddRuleResponse.md)
+ - [AddRuleset](docs/AddRuleset.md)
+ - [AddRulesetRequest](docs/AddRulesetRequest.md)
+ - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
  - [AddTagSchemaRequest](docs/AddTagSchemaRequest.md)
  - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
@@ -319,6 +338,8 @@ Class | Method | HTTP request | Description
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
  - [DeleteOpaConfigurationResponse](docs/DeleteOpaConfigurationResponse.md)
  - [DeleteQueueResponse](docs/DeleteQueueResponse.md)
+ - [DeleteRuleResponse](docs/DeleteRuleResponse.md)
+ - [DeleteRulesetResponse](docs/DeleteRulesetResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
  - [DeleteWorkflowResponse](docs/DeleteWorkflowResponse.md)
  - [Document](docs/Document.md)
@@ -370,11 +391,16 @@ Class | Method | HTTP request | Description
  - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
  - [GetEsignatureDocusignConfigResponse](docs/GetEsignatureDocusignConfigResponse.md)
+ - [GetExaminePdfResponse](docs/GetExaminePdfResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
  - [GetOpaConfigurationResponse](docs/GetOpaConfigurationResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
+ - [GetRuleResponse](docs/GetRuleResponse.md)
+ - [GetRulesResponse](docs/GetRulesResponse.md)
+ - [GetRulesetResponse](docs/GetRulesetResponse.md)
+ - [GetRulesetsResponse](docs/GetRulesetsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
  - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
@@ -405,8 +431,14 @@ Class | Method | HTTP request | Description
  - [OnlyOfficeDocumentResponse](docs/OnlyOfficeDocumentResponse.md)
  - [OnlyOfficeDocumentSaveResponse](docs/OnlyOfficeDocumentSaveResponse.md)
  - [OnlyOfficeEditorConfig](docs/OnlyOfficeEditorConfig.md)
+ - [PdfDocument](docs/PdfDocument.md)
+ - [PdfDocumentField](docs/PdfDocumentField.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
+ - [Rule](docs/Rule.md)
+ - [RuleCondition](docs/RuleCondition.md)
+ - [RuleConditionMust](docs/RuleConditionMust.md)
+ - [Ruleset](docs/Ruleset.md)
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
@@ -450,6 +482,10 @@ Class | Method | HTTP request | Description
  - [UpdateNigo](docs/UpdateNigo.md)
  - [UpdateNigoRequest](docs/UpdateNigoRequest.md)
  - [UpdateNigoResponse](docs/UpdateNigoResponse.md)
+ - [UpdateRuleRequest](docs/UpdateRuleRequest.md)
+ - [UpdateRuleResponse](docs/UpdateRuleResponse.md)
+ - [UpdateRulesetRequest](docs/UpdateRulesetRequest.md)
+ - [UpdateRulesetResponse](docs/UpdateRulesetResponse.md)
  - [UpdateTask](docs/UpdateTask.md)
  - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
  - [UpdateTaskResponse](docs/UpdateTaskResponse.md)
