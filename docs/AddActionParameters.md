@@ -20,7 +20,6 @@
 |**notificationText** | **String** | Text of the notification |  [optional] |
 |**notificationHtml** | **String** | Html of the notification |  [optional] |
 |**tags** | **String** | DocumentTagging: Comma-deliminted list of keywords to generate tags for |  [optional] |
-|**queueName** | **String** | Name of Queue action |  [optional] |
 
 
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ruleId** | **String** | Rule Identifier |  [optional] |
+|**message** | **String** | Rule update message |  [optional] |
 
 
 

@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -57,11 +56,16 @@ import com.formkiq.client.invoker.JSON;
  * PdfDocumentField
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class PdfDocumentField {
   public static final String SERIALIZED_NAME_FIELD = "field";
   @SerializedName(SERIALIZED_NAME_FIELD)
   private String field;
+
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   public PdfDocumentField() {}
 
@@ -85,6 +89,26 @@ public class PdfDocumentField {
   }
 
 
+  public PdfDocumentField value(String value) {
+    this.value = value;
+    return this;
+  }
+
+  /**
+   * Value of Field
+   * 
+   * @return value
+   **/
+  @javax.annotation.Nullable
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -95,12 +119,13 @@ public class PdfDocumentField {
       return false;
     }
     PdfDocumentField pdfDocumentField = (PdfDocumentField) o;
-    return Objects.equals(this.field, pdfDocumentField.field);
+    return Objects.equals(this.field, pdfDocumentField.field)
+        && Objects.equals(this.value, pdfDocumentField.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field);
+    return Objects.hash(field, value);
   }
 
   @Override
@@ -108,6 +133,7 @@ public class PdfDocumentField {
     StringBuilder sb = new StringBuilder();
     sb.append("class PdfDocumentField {\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,6 +156,7 @@ public class PdfDocumentField {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("field");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -166,6 +193,12 @@ public class PdfDocumentField {
       throw new IllegalArgumentException(String.format(
           "Expected the field `field` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("field").toString()));
+    }
+    if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
+        && !jsonObj.get("value").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("value").toString()));
     }
   }
 

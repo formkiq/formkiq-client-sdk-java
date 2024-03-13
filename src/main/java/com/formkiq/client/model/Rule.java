@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -22,12 +21,14 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.RuleCondition;
+import com.formkiq.client.model.RulesetStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -58,8 +59,17 @@ import com.formkiq.client.invoker.JSON;
  * Rule
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class Rule {
+  public static final String SERIALIZED_NAME_RULE_ID = "ruleId";
+  @SerializedName(SERIALIZED_NAME_RULE_ID)
+  private String ruleId;
+
+  public static final String SERIALIZED_NAME_PRIORITY = "priority";
+  @SerializedName(SERIALIZED_NAME_PRIORITY)
+  private BigDecimal priority;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -68,11 +78,55 @@ public class Rule {
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
   private String workflowId;
 
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private RulesetStatus status;
+
   public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
   @SerializedName(SERIALIZED_NAME_CONDITIONS)
   private RuleCondition conditions;
 
   public Rule() {}
+
+  public Rule ruleId(String ruleId) {
+    this.ruleId = ruleId;
+    return this;
+  }
+
+  /**
+   * Workflow to start on matching of conditions
+   * 
+   * @return ruleId
+   **/
+  @javax.annotation.Nullable
+  public String getRuleId() {
+    return ruleId;
+  }
+
+  public void setRuleId(String ruleId) {
+    this.ruleId = ruleId;
+  }
+
+
+  public Rule priority(BigDecimal priority) {
+    this.priority = priority;
+    return this;
+  }
+
+  /**
+   * Rule priority
+   * 
+   * @return priority
+   **/
+  @javax.annotation.Nullable
+  public BigDecimal getPriority() {
+    return priority;
+  }
+
+  public void setPriority(BigDecimal priority) {
+    this.priority = priority;
+  }
+
 
   public Rule description(String description) {
     this.description = description;
@@ -114,6 +168,26 @@ public class Rule {
   }
 
 
+  public Rule status(RulesetStatus status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * 
+   * @return status
+   **/
+  @javax.annotation.Nullable
+  public RulesetStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(RulesetStatus status) {
+    this.status = status;
+  }
+
+
   public Rule conditions(RuleCondition conditions) {
     this.conditions = conditions;
     return this;
@@ -144,22 +218,27 @@ public class Rule {
       return false;
     }
     Rule rule = (Rule) o;
-    return Objects.equals(this.description, rule.description)
+    return Objects.equals(this.ruleId, rule.ruleId) && Objects.equals(this.priority, rule.priority)
+        && Objects.equals(this.description, rule.description)
         && Objects.equals(this.workflowId, rule.workflowId)
+        && Objects.equals(this.status, rule.status)
         && Objects.equals(this.conditions, rule.conditions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, workflowId, conditions);
+    return Objects.hash(ruleId, priority, description, workflowId, status, conditions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Rule {\n");
+    sb.append("    ruleId: ").append(toIndentedString(ruleId)).append("\n");
+    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -182,8 +261,11 @@ public class Rule {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("ruleId");
+    openapiFields.add("priority");
     openapiFields.add("description");
     openapiFields.add("workflowId");
+    openapiFields.add("status");
     openapiFields.add("conditions");
 
     // a set of required properties/fields (JSON key names)
@@ -215,6 +297,12 @@ public class Rule {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("ruleId") != null && !jsonObj.get("ruleId").isJsonNull())
+        && !jsonObj.get("ruleId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `ruleId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("ruleId").toString()));
+    }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -226,6 +314,10 @@ public class Rule {
       throw new IllegalArgumentException(String.format(
           "Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("workflowId").toString()));
+    }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      RulesetStatus.validateJsonElement(jsonObj.get("status"));
     }
     // validate the optional field `conditions`
     if (jsonObj.get("conditions") != null && !jsonObj.get("conditions").isJsonNull()) {

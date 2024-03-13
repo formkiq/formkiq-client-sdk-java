@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addDocumentFulltext**](AdvancedDocumentSearchApi.md#addDocumentFulltext) | **POST** /documents/{documentId}/fulltext | Add document&#39;s full-text |
 | [**deleteDocumentFulltext**](AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text |
 | [**deleteDocumentFulltextTag**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag |
 | [**deleteDocumentFulltextTagAndValue**](AdvancedDocumentSearchApi.md#deleteDocumentFulltextTagAndValue) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue} | Delete document full-text tag/value |
@@ -13,6 +14,75 @@ All URIs are relative to *http://localhost*
 | [**setDocumentFulltext**](AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text |
 | [**updateDocumentFulltext**](AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text |
 
+
+<a id="addDocumentFulltext"></a>
+# **addDocumentFulltext**
+> AddDocumentFulltextResponse addDocumentFulltext(documentId, siteId, addDocumentFulltextRequest)
+
+Add document&#39;s full-text
+
+Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AdvancedDocumentSearchApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    AddDocumentFulltextRequest addDocumentFulltextRequest = new AddDocumentFulltextRequest(); // AddDocumentFulltextRequest | 
+    try {
+      AddDocumentFulltextResponse result = apiInstance.addDocumentFulltext(documentId, siteId, addDocumentFulltextRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdvancedDocumentSearchApi#addDocumentFulltext");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **addDocumentFulltextRequest** | [**AddDocumentFulltextRequest**](AddDocumentFulltextRequest.md)|  | [optional] |
+
+### Return type
+
+[**AddDocumentFulltextResponse**](AddDocumentFulltextResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="deleteDocumentFulltext"></a>
 # **deleteDocumentFulltext**
@@ -298,7 +368,7 @@ No authorization required
 
 Direct opensearch search API
 
-Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise
+Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise  Example Request Body: { \&quot;query\&quot;: { \&quot;match_all\&quot;: {} }}
 
 ### Example
 ```java
@@ -499,7 +569,7 @@ No authorization required
 
 <a id="updateDocumentFulltext"></a>
 # **updateDocumentFulltext**
-> SetDocumentFulltextResponse updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest)
+> UpdateDocumentFulltextResponse updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest)
 
 Update document&#39;s full-text
 
@@ -527,7 +597,7 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     UpdateDocumentFulltextRequest updateDocumentFulltextRequest = new UpdateDocumentFulltextRequest(); // UpdateDocumentFulltextRequest | 
     try {
-      SetDocumentFulltextResponse result = apiInstance.updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest);
+      UpdateDocumentFulltextResponse result = apiInstance.updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdvancedDocumentSearchApi#updateDocumentFulltext");
@@ -550,7 +620,7 @@ public class Example {
 
 ### Return type
 
-[**SetDocumentFulltextResponse**](SetDocumentFulltextResponse.md)
+[**UpdateDocumentFulltextResponse**](UpdateDocumentFulltextResponse.md)
 
 ### Authorization
 

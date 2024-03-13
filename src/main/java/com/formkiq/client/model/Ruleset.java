@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.RulesetStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,8 +58,13 @@ import com.formkiq.client.invoker.JSON;
  * Ruleset
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class Ruleset {
+  public static final String SERIALIZED_NAME_RULESET_ID = "rulesetId";
+  @SerializedName(SERIALIZED_NAME_RULESET_ID)
+  private String rulesetId;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -72,7 +77,35 @@ public class Ruleset {
   @SerializedName(SERIALIZED_NAME_VERSION)
   private BigDecimal version;
 
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  private String insertedDate;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private RulesetStatus status;
+
   public Ruleset() {}
+
+  public Ruleset rulesetId(String rulesetId) {
+    this.rulesetId = rulesetId;
+    return this;
+  }
+
+  /**
+   * Ruleset identifier
+   * 
+   * @return rulesetId
+   **/
+  @javax.annotation.Nullable
+  public String getRulesetId() {
+    return rulesetId;
+  }
+
+  public void setRulesetId(String rulesetId) {
+    this.rulesetId = rulesetId;
+  }
+
 
   public Ruleset description(String description) {
     this.description = description;
@@ -134,6 +167,46 @@ public class Ruleset {
   }
 
 
+  public Ruleset insertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   **/
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+  public void setInsertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
+
+  public Ruleset status(RulesetStatus status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * 
+   * @return status
+   **/
+  @javax.annotation.Nullable
+  public RulesetStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(RulesetStatus status) {
+    this.status = status;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -144,23 +217,29 @@ public class Ruleset {
       return false;
     }
     Ruleset ruleset = (Ruleset) o;
-    return Objects.equals(this.description, ruleset.description)
+    return Objects.equals(this.rulesetId, ruleset.rulesetId)
+        && Objects.equals(this.description, ruleset.description)
         && Objects.equals(this.priority, ruleset.priority)
-        && Objects.equals(this.version, ruleset.version);
+        && Objects.equals(this.version, ruleset.version)
+        && Objects.equals(this.insertedDate, ruleset.insertedDate)
+        && Objects.equals(this.status, ruleset.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, priority, version);
+    return Objects.hash(rulesetId, description, priority, version, insertedDate, status);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Ruleset {\n");
+    sb.append("    rulesetId: ").append(toIndentedString(rulesetId)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,9 +261,12 @@ public class Ruleset {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("rulesetId");
     openapiFields.add("description");
     openapiFields.add("priority");
     openapiFields.add("version");
+    openapiFields.add("insertedDate");
+    openapiFields.add("status");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -216,11 +298,27 @@ public class Ruleset {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("rulesetId") != null && !jsonObj.get("rulesetId").isJsonNull())
+        && !jsonObj.get("rulesetId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `rulesetId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("rulesetId").toString()));
+    }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
+    }
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
+    }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      RulesetStatus.validateJsonElement(jsonObj.get("status"));
     }
   }
 

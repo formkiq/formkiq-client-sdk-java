@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -22,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AddActionParameters;
+import com.formkiq.client.model.DocumentActionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,97 +58,39 @@ import com.formkiq.client.invoker.JSON;
  * AddAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class AddAction {
-  /**
-   * Type of Document Action
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    OCR("OCR"),
-
-    FULLTEXT("FULLTEXT"),
-
-    ANTIVIRUS("ANTIVIRUS"),
-
-    WEBHOOK("WEBHOOK"),
-
-    DOCUMENTTAGGING("DOCUMENTTAGGING"),
-
-    NOTIFICATION("NOTIFICATION"),
-
-    QUEUE("QUEUE");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TypeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  private DocumentActionType type;
 
   public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
   @SerializedName(SERIALIZED_NAME_PARAMETERS)
   private AddActionParameters parameters;
 
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  private String queueId;
+
   public AddAction() {}
 
-  public AddAction type(TypeEnum type) {
+  public AddAction type(DocumentActionType type) {
     this.type = type;
     return this;
   }
 
   /**
-   * Type of Document Action
+   * Get type
    * 
    * @return type
    **/
   @javax.annotation.Nonnull
-  public TypeEnum getType() {
+  public DocumentActionType getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(DocumentActionType type) {
     this.type = type;
   }
 
@@ -173,6 +115,26 @@ public class AddAction {
   }
 
 
+  public AddAction queueId(String queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Id of Queue
+   * 
+   * @return queueId
+   **/
+  @javax.annotation.Nullable
+  public String getQueueId() {
+    return queueId;
+  }
+
+  public void setQueueId(String queueId) {
+    this.queueId = queueId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -184,12 +146,13 @@ public class AddAction {
     }
     AddAction addAction = (AddAction) o;
     return Objects.equals(this.type, addAction.type)
-        && Objects.equals(this.parameters, addAction.parameters);
+        && Objects.equals(this.parameters, addAction.parameters)
+        && Objects.equals(this.queueId, addAction.queueId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, parameters);
+    return Objects.hash(type, parameters, queueId);
   }
 
   @Override
@@ -198,6 +161,7 @@ public class AddAction {
     sb.append("class AddAction {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,6 +185,7 @@ public class AddAction {
     openapiFields = new HashSet<String>();
     openapiFields.add("type");
     openapiFields.add("parameters");
+    openapiFields.add("queueId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -262,16 +227,17 @@ public class AddAction {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
-    }
     // validate the required field `type`
-    TypeEnum.validateJsonElement(jsonObj.get("type"));
+    DocumentActionType.validateJsonElement(jsonObj.get("type"));
     // validate the optional field `parameters`
     if (jsonObj.get("parameters") != null && !jsonObj.get("parameters").isJsonNull()) {
       AddActionParameters.validateJsonElement(jsonObj.get("parameters"));
+    }
+    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
+        && !jsonObj.get("queueId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
     }
   }
 

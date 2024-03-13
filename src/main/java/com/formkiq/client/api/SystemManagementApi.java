@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -37,10 +36,14 @@ import java.io.IOException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
+import com.formkiq.client.model.DeleteOpenSearchIndexResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
+import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
+import com.formkiq.client.model.SetOpenSearchIndexRequest;
+import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -457,6 +460,183 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for deleteOpensearchIndex
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpensearchIndexCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/index".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteOpensearchIndexValidateBeforeCall(String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteOpensearchIndex(Async)");
+    }
+
+    return deleteOpensearchIndexCall(siteId, _callback);
+
+  }
+
+  /**
+   * Deletst site(s) OpenSearch index Deletes the OpenSearch index
+   * 
+   * @param siteId Site Identifier (required)
+   * @return DeleteOpenSearchIndexResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteOpenSearchIndexResponse deleteOpensearchIndex(String siteId) throws ApiException {
+    ApiResponse<DeleteOpenSearchIndexResponse> localVarResp =
+        deleteOpensearchIndexWithHttpInfo(siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Deletst site(s) OpenSearch index Deletes the OpenSearch index
+   * 
+   * @param siteId Site Identifier (required)
+   * @return ApiResponse&lt;DeleteOpenSearchIndexResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteOpenSearchIndexResponse> deleteOpensearchIndexWithHttpInfo(String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteOpensearchIndexValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteOpenSearchIndexResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Deletst site(s) OpenSearch index (asynchronously) Deletes the OpenSearch index
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpensearchIndexAsync(String siteId,
+      final ApiCallback<DeleteOpenSearchIndexResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteOpensearchIndexValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteOpenSearchIndexResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getApiKeys
    * 
    * @param siteId Site Identifier (optional)
@@ -802,6 +982,182 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for getOpensearchIndex
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpensearchIndexCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/index".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getOpensearchIndexValidateBeforeCall(String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getOpensearchIndex(Async)");
+    }
+
+    return getOpensearchIndexCall(siteId, _callback);
+
+  }
+
+  /**
+   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @return GetOpenSearchIndexResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetOpenSearchIndexResponse getOpensearchIndex(String siteId) throws ApiException {
+    ApiResponse<GetOpenSearchIndexResponse> localVarResp = getOpensearchIndexWithHttpInfo(siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @return ApiResponse&lt;GetOpenSearchIndexResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetOpenSearchIndexResponse> getOpensearchIndexWithHttpInfo(String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = getOpensearchIndexValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndexResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get site(s) OpenSearch index settings (asynchronously) Returns the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpensearchIndexAsync(String siteId,
+      final ApiCallback<GetOpenSearchIndexResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getOpensearchIndexValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndexResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getSites
    * 
    * @param _callback Callback for upload/download progress
@@ -1122,6 +1478,199 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = getVersionValidateBeforeCall(_callback);
     Type localVarReturnType = new TypeToken<GetVersionResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setOpensearchIndex
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndexRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setOpensearchIndexCall(String siteId,
+      SetOpenSearchIndexRequest setOpenSearchIndexRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setOpenSearchIndexRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/index".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setOpensearchIndexValidateBeforeCall(String siteId,
+      SetOpenSearchIndexRequest setOpenSearchIndexRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setOpensearchIndex(Async)");
+    }
+
+    // verify the required parameter 'setOpenSearchIndexRequest' is set
+    if (setOpenSearchIndexRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setOpenSearchIndexRequest' when calling setOpensearchIndex(Async)");
+    }
+
+    return setOpensearchIndexCall(siteId, setOpenSearchIndexRequest, _callback);
+
+  }
+
+  /**
+   * Set site(s) OpenSearch index settings Sets the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndexRequest (required)
+   * @return SetOpenSearchIndexResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetOpenSearchIndexResponse setOpensearchIndex(String siteId,
+      SetOpenSearchIndexRequest setOpenSearchIndexRequest) throws ApiException {
+    ApiResponse<SetOpenSearchIndexResponse> localVarResp =
+        setOpensearchIndexWithHttpInfo(siteId, setOpenSearchIndexRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set site(s) OpenSearch index settings Sets the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndexRequest (required)
+   * @return ApiResponse&lt;SetOpenSearchIndexResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetOpenSearchIndexResponse> setOpensearchIndexWithHttpInfo(String siteId,
+      SetOpenSearchIndexRequest setOpenSearchIndexRequest) throws ApiException {
+    okhttp3.Call localVarCall =
+        setOpensearchIndexValidateBeforeCall(siteId, setOpenSearchIndexRequest, null);
+    Type localVarReturnType = new TypeToken<SetOpenSearchIndexResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set site(s) OpenSearch index settings (asynchronously) Sets the OpenSearch index settings
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndexRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setOpensearchIndexAsync(String siteId,
+      SetOpenSearchIndexRequest setOpenSearchIndexRequest,
+      final ApiCallback<SetOpenSearchIndexResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        setOpensearchIndexValidateBeforeCall(siteId, setOpenSearchIndexRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetOpenSearchIndexResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

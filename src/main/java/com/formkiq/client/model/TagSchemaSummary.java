@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -57,7 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class TagSchemaSummary {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -70,6 +70,10 @@ public class TagSchemaSummary {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_IN_USE = "inUse";
+  @SerializedName(SERIALIZED_NAME_IN_USE)
+  private Boolean inUse;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -137,6 +141,26 @@ public class TagSchemaSummary {
   }
 
 
+  public TagSchemaSummary inUse(Boolean inUse) {
+    this.inUse = inUse;
+    return this;
+  }
+
+  /**
+   * Whether the TagSchema is in use
+   * 
+   * @return inUse
+   **/
+  @javax.annotation.Nullable
+  public Boolean getInUse() {
+    return inUse;
+  }
+
+  public void setInUse(Boolean inUse) {
+    this.inUse = inUse;
+  }
+
+
   public TagSchemaSummary insertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
     return this;
@@ -170,12 +194,13 @@ public class TagSchemaSummary {
     return Objects.equals(this.tagSchemaId, tagSchemaSummary.tagSchemaId)
         && Objects.equals(this.name, tagSchemaSummary.name)
         && Objects.equals(this.userId, tagSchemaSummary.userId)
+        && Objects.equals(this.inUse, tagSchemaSummary.inUse)
         && Objects.equals(this.insertedDate, tagSchemaSummary.insertedDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, name, userId, insertedDate);
+    return Objects.hash(tagSchemaId, name, userId, inUse, insertedDate);
   }
 
   @Override
@@ -185,6 +210,7 @@ public class TagSchemaSummary {
     sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    inUse: ").append(toIndentedString(inUse)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -210,6 +236,7 @@ public class TagSchemaSummary {
     openapiFields.add("tagSchemaId");
     openapiFields.add("name");
     openapiFields.add("userId");
+    openapiFields.add("inUse");
     openapiFields.add("insertedDate");
 
     // a set of required properties/fields (JSON key names)

@@ -27,7 +27,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: FormKiQ HTTP API
+  title: FormKiQ API
   version: 1.14.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
@@ -177,6 +177,143 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+  /sites/{siteId}/opensearch/index:
+    delete:
+      description: Deletes the OpenSearch index
+      operationId: DeleteOpensearchIndex
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOpenSearchIndexResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Deletst site(s) OpenSearch index
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Returns the OpenSearch index settings
+      operationId: GetOpensearchIndex
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOpenSearchIndexResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get site(s) OpenSearch index settings
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+      x-accepts: application/json
+    put:
+      description: Sets the OpenSearch index settings
+      operationId: SetOpensearchIndex
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetOpenSearchIndexRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetOpenSearchIndexResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Set site(s) OpenSearch index settings
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+      x-content-type: application/json
       x-accepts: application/json
   /configuration:
     get:
@@ -410,58 +547,16 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
   /configuration/opa:
-    delete:
-      description: Delete OPA Configuration
-      operationId: DeleteOpaConfiguration
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteOpaConfigurationResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Delete OPA Configuration
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
     get:
-      description: "Returns OPA Configuration, can only be requested with ADMIN privileges"
-      operationId: GetOpaConfiguration
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
+      description: "Returns a list of OPA Configuration, can only be requested with\
+        \ ADMIN privileges"
+      operationId: GetOpaConfigurations
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetOpaConfigurationResponse'
+                $ref: '#/components/schemas/GetOpaConfigurationsResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -481,7 +576,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
-      summary: Get OPA Configuration
+      summary: Get OPAs Configuration
       tags:
       - Access Control
       x-amazon-apigateway-integration:
@@ -518,6 +613,84 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
+      x-accepts: application/json
+  /configuration/opa/{siteId}:
+    delete:
+      description: Delete OPA Configuration
+      operationId: DeleteOpaConfiguration
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOpaConfigurationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete OPA Configuration
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts: application/json
+    get:
+      description: "Returns OPA Configuration, can only be requested with ADMIN privileges"
+      operationId: GetOpaConfiguration
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOpaConfigurationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get OPA Configuration
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
   /documents:
     get:
@@ -2339,9 +2512,10 @@ paths:
       x-accepts: application/json
   /queryFulltext:
     post:
-      description: "Endpoint for allowing custom, complex queries using the OpenSearch\
-        \ search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/);\
-        \ ONLY available with FormKiQ Enterprise"
+      description: |-
+        Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise
+
+        Example Request Body: { "query": { "match_all": {} }}
       operationId: QueryFulltext
       parameters:
       - description: Site Identifier
@@ -2402,10 +2576,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
       - description: Share Identifier
         explode: true
         in: query
         name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
         required: false
         schema:
           type: string
@@ -2455,7 +2646,7 @@ paths:
         | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
         | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
         | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
-        | QUEUE    | queueName    | Name of Queue | |
+        | QUEUE    | queueId    | Id of Queue | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -2799,6 +2990,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
       - description: Share Identifier
         explode: true
         in: query
@@ -3482,6 +3682,69 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
+    patch:
+      description: Update a Workflow details; ONLY available with FormKiQ Pro and
+        Enterprise
+      operationId: UpdateWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkflowRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateWorkflowResponse'
+          description: 20) OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Update workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
     put:
       description: Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
       operationId: SetWorkflow
@@ -3537,7 +3800,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
-      summary: Add workflow
+      summary: Set workflow
       tags:
       - Document Workflows
       x-amazon-apigateway-integration:
@@ -4522,7 +4785,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SetDocumentFulltextResponse'
+                $ref: '#/components/schemas/UpdateDocumentFulltextResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -4534,6 +4797,55 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Update document's full-text
+      tags:
+      - Advanced Document Search
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
+    post:
+      description: Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
+      operationId: AddDocumentFulltext
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentFulltextRequest'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocumentFulltextResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add document's full-text
       tags:
       - Advanced Document Search
       x-amazon-apigateway-integration:
@@ -7280,7 +7592,7 @@ paths:
       tags:
       - Examine Objects
       x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+        $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
       x-accepts: application/json
   /objects/examine/{id}/pdf:
     post:
@@ -7335,7 +7647,7 @@ paths:
       tags:
       - Examine Objects
       x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+        $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
       x-accepts: application/json
 components:
   headers:
@@ -7423,6 +7735,15 @@ components:
       schema:
         type: string
       style: form
+    siteIdPathParam:
+      description: Site Identifier
+      explode: false
+      in: path
+      name: siteId
+      required: true
+      schema:
+        type: string
+      style: simple
     idParam:
       description: Identifier
       explode: false
@@ -7711,6 +8032,12 @@ components:
           style: simple
   schemas:
     ValidationErrorsResponse:
+      example:
+        errors:
+        - error: error
+          key: key
+        - error: error
+          key: key
       properties:
         errors:
           description: List of errors
@@ -7719,6 +8046,9 @@ components:
           type: array
       type: object
     ValidationError:
+      example:
+        error: error
+        key: key
       properties:
         key:
           description: Error Key
@@ -7933,14 +8263,14 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: ACTIVE
+          status: null
         - insertedDate: insertedDate
           name: name
           inUse: true
           description: description
           userId: userId
           workflowId: workflowId
-          status: ACTIVE
+          status: null
       properties:
         next:
           description: Next page of results token
@@ -7959,6 +8289,12 @@ components:
           description: Queue name
           type: string
       type: object
+    WorkflowStatus:
+      description: Status of the Workflow
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
     GetWorkflowResponse:
       example:
         name: name
@@ -7971,7 +8307,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: ANTIVIRUS
+            type: null
             message: message
             userId: userId
             parameters:
@@ -7979,13 +8315,13 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: COMPLETE
+            status: null
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           queue:
             queueId: queueId
             approvalGroups:
@@ -7997,7 +8333,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: ANTIVIRUS
+            type: null
             message: message
             userId: userId
             parameters:
@@ -8005,19 +8341,19 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: COMPLETE
+            status: null
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: ACTIVE
+        status: null
       properties:
         name:
           description: Workflow name
@@ -8029,10 +8365,7 @@ components:
           description: Whether the Workflow is in use
           type: boolean
         status:
-          enum:
-          - ACTIVE
-          - INACTIVE
-          type: string
+          $ref: '#/components/schemas/WorkflowStatus'
         steps:
           description: Workflow steps
           items:
@@ -8047,7 +8380,7 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: ANTIVIRUS
+          type: null
           message: message
           userId: userId
           parameters:
@@ -8055,13 +8388,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: COMPLETE
+          status: null
           workflowStepId: workflowStepId
         decisions:
         - nextStepId: nextStepId
-          type: APPROVE
+          type: null
         - nextStepId: nextStepId
-          type: APPROVE
+          type: null
         queue:
           queueId: queueId
           approvalGroups:
@@ -8104,7 +8437,7 @@ components:
         description: description
         userId: userId
         workflowId: workflowId
-        status: ACTIVE
+        status: null
       properties:
         name:
           description: Name of Workflow
@@ -8125,31 +8458,27 @@ components:
           description: Whether the Workflow is in use
           type: boolean
         status:
-          description: Type of Document
-          enum:
-          - ACTIVE
-          - INACTIVE
-          type: string
+          $ref: '#/components/schemas/WorkflowStatus'
       type: object
     GetUserSharesResponse:
       example:
         next: next
         shares:
         - path: path
-          permissionType: GROUP
+          permissionType: permissionType
           permissions:
-          - READ
-          - READ
+          - null
+          - null
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
           userId: userId
           group: group
         - path: path
-          permissionType: GROUP
+          permissionType: permissionType
           permissions:
-          - READ
-          - READ
+          - null
+          - null
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
@@ -8165,13 +8494,25 @@ components:
             $ref: '#/components/schemas/UserShare'
           type: array
       type: object
+    UserSharePermission:
+      description: User Share Permission
+      enum:
+      - READ
+      - WRITE
+      - DELETE
+      type: string
+    UserSharePermissionType:
+      description: User Share Permission Type
+      enum:
+      - GROUP
+      type: string
     UserShare:
       example:
         path: path
-        permissionType: GROUP
+        permissionType: permissionType
         permissions:
-        - READ
-        - READ
+        - null
+        - null
         siteId: siteId
         shareKey: shareKey
         type: FOLDER
@@ -8192,11 +8533,7 @@ components:
         permissions:
           description: List of share permissions
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            type: string
+            $ref: '#/components/schemas/UserSharePermission'
           type: array
         siteId:
           description: Site Identifier
@@ -8208,10 +8545,7 @@ components:
           description: User who created share
           type: string
         permissionType:
-          description: Type of share
-          enum:
-          - GROUP
-          type: string
+          $ref: '#/components/schemas/UserSharePermissionType'
       type: object
     GetDocumentTagsResponse:
       example:
@@ -8784,7 +9118,8 @@ components:
         deepLinkPath: deepLinkPath
         contentType: contentType
         actions:
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -8796,11 +9131,11 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -8812,7 +9147,6 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
@@ -8934,7 +9268,8 @@ components:
         contentType: contentType
         isBase64: true
         actions:
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -8946,11 +9281,11 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -8962,7 +9297,6 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
@@ -9099,7 +9433,8 @@ components:
         contentType: contentType
         isBase64: true
         actions:
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9111,11 +9446,11 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9127,7 +9462,6 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
@@ -9187,8 +9521,8 @@ components:
       example:
         share:
           permissions:
-          - READ
-          - READ
+          - null
+          - null
           group: group
       properties:
         share:
@@ -9197,8 +9531,8 @@ components:
     AddShare:
       example:
         permissions:
-        - READ
-        - READ
+        - null
+        - null
         group: group
       properties:
         group:
@@ -9207,11 +9541,7 @@ components:
         permissions:
           description: List of share permissions
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            type: string
+            $ref: '#/components/schemas/UserSharePermission'
           type: array
       type: object
     SetDocumentRestoreResponse:
@@ -9814,18 +10144,22 @@ components:
       type: object
     GetDocumentFulltextResponse:
       example:
-        path: path
-        metadata: "{}"
+        metadata:
+          key: "{}"
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        accessAttributes:
+          key: "{}"
+        content: content
+        tags:
+          key: "{}"
+        path: path
+        insertedDate: insertedDate
         createdBy: createdBy
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
-        content: content
-        tags: "{}"
       properties:
         siteId:
           description: Site Identifier
@@ -9858,8 +10192,16 @@ components:
           description: Document size
           type: integer
         tags:
+          additionalProperties:
+            type: object
           type: object
         metadata:
+          additionalProperties:
+            type: object
+          type: object
+        accessAttributes:
+          additionalProperties:
+            type: object
           type: object
       type: object
     GetDocumentSyncResponse:
@@ -10087,7 +10429,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: ACTIVE
+            status: null
           document:
             metadata:
             - values:
@@ -10121,7 +10463,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: ACTIVE
+            status: null
           document:
             metadata:
             - values:
@@ -10231,7 +10573,7 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: ACTIVE
+          status: null
         document:
           metadata:
           - values:
@@ -11191,6 +11533,18 @@ components:
         status:
           $ref: '#/components/schemas/CaseStatus'
       type: object
+    RulesetStatus:
+      description: Status of the Ruleset
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
+    RuleStatus:
+      description: Status of the Rule
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
     AddRulesetResponse:
       example:
         rulesetId: rulesetId
@@ -11201,18 +11555,18 @@ components:
       type: object
     UpdateRulesetResponse:
       example:
-        rulesetId: rulesetId
+        message: message
       properties:
-        rulesetId:
-          description: Ruleset Identifier
+        message:
+          description: Ruleset update message
           type: string
       type: object
     UpdateRuleResponse:
       example:
-        ruleId: ruleId
+        message: message
       properties:
-        ruleId:
-          description: Rule Identifier
+        message:
+          description: Rule update message
           type: string
       type: object
     AddRuleResponse:
@@ -11225,52 +11579,106 @@ components:
       type: object
     AddRuleRequest:
       example:
-        ruleset:
+        rule:
           description: description
+          priority: 0.8008281904610115
           conditions:
             must:
-              propertyName: propertyName
-              attribute: TEXT
+            - fieldName: fieldName
+              attribute: null
               value: value
-              operation: EQ
+              operation: null
+            - fieldName: fieldName
+              attribute: null
+              value: value
+              operation: null
           workflowId: workflowId
+          status: null
       properties:
-        ruleset:
+        rule:
           $ref: '#/components/schemas/AddRule'
       required:
       - case
       type: object
     UpdateRuleRequest:
       example:
-        ruleset:
+        rule:
           description: description
+          priority: 0.8008281904610115
           conditions:
             must:
-              propertyName: propertyName
-              attribute: TEXT
+            - fieldName: fieldName
+              attribute: null
               value: value
-              operation: EQ
+              operation: null
+            - fieldName: fieldName
+              attribute: null
+              value: value
+              operation: null
           workflowId: workflowId
+          status: null
       properties:
-        ruleset:
-          $ref: '#/components/schemas/AddRule'
+        rule:
+          $ref: '#/components/schemas/UpdateRule'
       required:
       - case
       type: object
     AddRule:
       example:
         description: description
+        priority: 0.8008281904610115
         conditions:
           must:
-            propertyName: propertyName
-            attribute: TEXT
+          - fieldName: fieldName
+            attribute: null
             value: value
-            operation: EQ
+            operation: null
+          - fieldName: fieldName
+            attribute: null
+            value: value
+            operation: null
         workflowId: workflowId
+        status: null
       properties:
+        priority:
+          description: Rule priority
+          type: number
         description:
           description: Rule description
           type: string
+        workflowId:
+          description: Workflow to start on matching of conditions
+          type: string
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
+        conditions:
+          $ref: '#/components/schemas/RuleCondition'
+      type: object
+    UpdateRule:
+      example:
+        description: description
+        priority: 0.8008281904610115
+        conditions:
+          must:
+          - fieldName: fieldName
+            attribute: null
+            value: value
+            operation: null
+          - fieldName: fieldName
+            attribute: null
+            value: value
+            operation: null
+        workflowId: workflowId
+        status: null
+      properties:
+        priority:
+          description: Rule priority
+          type: number
+        description:
+          description: Rule description
+          type: string
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
         workflowId:
           description: Workflow to start on matching of conditions
           type: string
@@ -11283,6 +11691,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
+          status: null
       properties:
         ruleset:
           $ref: '#/components/schemas/AddRuleset'
@@ -11295,9 +11704,10 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
+          status: null
       properties:
         ruleset:
-          $ref: '#/components/schemas/AddRuleset'
+          $ref: '#/components/schemas/UpdateRuleset'
       required:
       - ruleset
       type: object
@@ -11306,6 +11716,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
+        status: null
       properties:
         description:
           description: Ruleset description
@@ -11316,27 +11727,62 @@ components:
         version:
           description: Ruleset version
           type: number
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
+      type: object
+    UpdateRuleset:
+      example:
+        description: description
+        priority: 0.8008281904610115
+        version: 6.027456183070403
+        status: null
+      properties:
+        description:
+          description: Ruleset description
+          type: string
+        priority:
+          description: Ruleset priority
+          type: number
+        version:
+          description: Ruleset version
+          type: number
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
       type: object
     GetRulesResponse:
       example:
         next: next
         rules:
         - description: description
+          ruleId: ruleId
+          priority: 0.8008281904610115
           conditions:
             must:
-              propertyName: propertyName
-              attribute: TEXT
+            - fieldName: fieldName
+              attribute: null
               value: value
-              operation: EQ
+              operation: null
+            - fieldName: fieldName
+              attribute: null
+              value: value
+              operation: null
           workflowId: workflowId
+          status: null
         - description: description
+          ruleId: ruleId
+          priority: 0.8008281904610115
           conditions:
             must:
-              propertyName: propertyName
-              attribute: TEXT
+            - fieldName: fieldName
+              attribute: null
               value: value
-              operation: EQ
+              operation: null
+            - fieldName: fieldName
+              attribute: null
+              value: value
+              operation: null
           workflowId: workflowId
+          status: null
       properties:
         next:
           description: Next page of results token
@@ -11351,13 +11797,20 @@ components:
       example:
         rule:
           description: description
+          ruleId: ruleId
+          priority: 0.8008281904610115
           conditions:
             must:
-              propertyName: propertyName
-              attribute: TEXT
+            - fieldName: fieldName
+              attribute: null
               value: value
-              operation: EQ
+              operation: null
+            - fieldName: fieldName
+              attribute: null
+              value: value
+              operation: null
           workflowId: workflowId
+          status: null
       properties:
         rule:
           $ref: '#/components/schemas/Rule'
@@ -11366,12 +11819,18 @@ components:
       example:
         next: next
         rulesets:
-        - description: description
+        - rulesetId: rulesetId
+          insertedDate: insertedDate
+          description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-        - description: description
+          status: null
+        - rulesetId: rulesetId
+          insertedDate: insertedDate
+          description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
+          status: null
       properties:
         next:
           description: Next page of results token
@@ -11385,19 +11844,28 @@ components:
     GetRulesetResponse:
       example:
         ruleset:
+          rulesetId: rulesetId
+          insertedDate: insertedDate
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
+          status: null
       properties:
         ruleset:
           $ref: '#/components/schemas/Ruleset'
       type: object
     Ruleset:
       example:
+        rulesetId: rulesetId
+        insertedDate: insertedDate
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
+        status: null
       properties:
+        rulesetId:
+          description: Ruleset identifier
+          type: string
         description:
           description: Ruleset description
           type: string
@@ -11407,65 +11875,96 @@ components:
         version:
           description: Ruleset version
           type: number
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
       type: object
     Rule:
       example:
         description: description
+        ruleId: ruleId
+        priority: 0.8008281904610115
         conditions:
           must:
-            propertyName: propertyName
-            attribute: TEXT
+          - fieldName: fieldName
+            attribute: null
             value: value
-            operation: EQ
+            operation: null
+          - fieldName: fieldName
+            attribute: null
+            value: value
+            operation: null
         workflowId: workflowId
+        status: null
       properties:
+        ruleId:
+          description: Workflow to start on matching of conditions
+          type: string
+        priority:
+          description: Rule priority
+          type: number
         description:
           description: Ruleset description
           type: string
         workflowId:
           description: Workflow to start on matching of conditions
           type: string
+        status:
+          $ref: '#/components/schemas/RulesetStatus'
         conditions:
           $ref: '#/components/schemas/RuleCondition'
       type: object
     RuleCondition:
       example:
         must:
-          propertyName: propertyName
-          attribute: TEXT
+        - fieldName: fieldName
+          attribute: null
           value: value
-          operation: EQ
+          operation: null
+        - fieldName: fieldName
+          attribute: null
+          value: value
+          operation: null
       properties:
         must:
-          $ref: '#/components/schemas/RuleConditionMust'
+          description: List of rule conditions
+          items:
+            $ref: '#/components/schemas/RuleConditionMust'
+          type: array
       type: object
+    RuleConditionAttribute:
+      description: Rule condition attribute
+      enum:
+      - TEXT
+      - CONTENT_TYPE
+      - BARCODE
+      - FIELD
+      type: string
+    RuleConditionOperation:
+      description: Rule condition attribute
+      enum:
+      - EQ
+      - CONTAINS
+      type: string
     RuleConditionMust:
       example:
-        propertyName: propertyName
-        attribute: TEXT
+        fieldName: fieldName
+        attribute: null
         value: value
-        operation: EQ
+        operation: null
       properties:
         attribute:
-          description: Rule attribute
-          enum:
-          - TEXT
-          - CONTENT_TYPE
-          - BARCODE
-          - PROPERTY
-          type: string
-        propertyName:
-          description: Rule property name
+          $ref: '#/components/schemas/RuleConditionAttribute'
+        fieldName:
+          description: Rule field name (only required for FIELD attribute)
           type: string
         value:
           description: Rule condition value
           type: string
         operation:
-          description: Rule condition operation
-          enum:
-          - EQ
-          - CONTAINS
-          type: string
+          $ref: '#/components/schemas/RuleConditionOperation'
       type: object
     GetExaminePdfResponse:
       example:
@@ -11484,7 +11983,9 @@ components:
         fileinfo:
           fields:
           - field: field
+            value: value
           - field: field
+            value: value
       properties:
         fileinfo:
           $ref: '#/components/schemas/PdfDocument'
@@ -11493,7 +11994,9 @@ components:
       example:
         fields:
         - field: field
+          value: value
         - field: field
+          value: value
       properties:
         fields:
           description: List of document fields
@@ -11504,9 +12007,13 @@ components:
     PdfDocumentField:
       example:
         field: field
+        value: value
       properties:
         field:
           description: Name of Field
+          type: string
+        value:
+          description: Value of Field
           type: string
       type: object
     GetDocumentsResponse:
@@ -11696,12 +12203,13 @@ components:
       type: object
     GetDocumentActionsResponse:
       example:
+        next: next
         actions:
         - queueId: queueId
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: ANTIVIRUS
+          type: null
           message: message
           userId: userId
           parameters:
@@ -11709,13 +12217,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: COMPLETE
+          status: null
           workflowStepId: workflowStepId
         - queueId: queueId
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: ANTIVIRUS
+          type: null
           message: message
           userId: userId
           parameters:
@@ -11723,22 +12231,47 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: COMPLETE
+          status: null
           workflowStepId: workflowStepId
       properties:
+        next:
+          description: Next page of results token
+          type: string
         actions:
           description: List of document actions
           items:
             $ref: '#/components/schemas/DocumentAction'
           type: array
       type: object
+    DocumentActionStatus:
+      description: Status of the Document Action
+      enum:
+      - COMPLETE
+      - FAILED
+      - IN_QUEUE
+      - PENDING
+      - RUNNING
+      - SKIPPED
+      - FAILED_RETRY
+      type: string
+    DocumentActionType:
+      description: Type of the Document Action
+      enum:
+      - ANTIVIRUS
+      - DOCUMENTTAGGING
+      - FULLTEXT
+      - NOTIFICATION
+      - OCR
+      - QUEUE
+      - WEBHOOK
+      type: string
     DocumentAction:
       example:
         queueId: queueId
         metadata:
           key: metadata
         insertedDate: insertedDate
-        type: ANTIVIRUS
+        type: null
         message: message
         userId: userId
         parameters:
@@ -11746,31 +12279,13 @@ components:
         workflowId: workflowId
         startDate: startDate
         completedDate: completedDate
-        status: COMPLETE
+        status: null
         workflowStepId: workflowStepId
       properties:
         status:
-          description: Status of the Document Action
-          enum:
-          - COMPLETE
-          - FAILED
-          - IN_QUEUE
-          - PENDING
-          - RUNNING
-          - SKIPPED
-          - FAILED_RETRY
-          type: string
+          $ref: '#/components/schemas/DocumentActionStatus'
         type:
-          description: Type of Document Action
-          enum:
-          - ANTIVIRUS
-          - DOCUMENTTAGGING
-          - FULLTEXT
-          - NOTIFICATION
-          - OCR
-          - QUEUE
-          - WEBHOOK
-          type: string
+          $ref: '#/components/schemas/DocumentActionType'
         queueId:
           description: Queue Id
           type: string
@@ -11898,6 +12413,22 @@ components:
           description: OCR processing message
           type: string
       type: object
+    AddDocumentFulltextResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Full text processing message
+          type: string
+      type: object
+    UpdateDocumentFulltextResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Full text processing message
+          type: string
+      type: object
     SetDocumentFulltextResponse:
       example:
         message: message
@@ -11907,6 +12438,66 @@ components:
           type: string
       type: object
     SetDocumentFulltextRequest:
+      example:
+        path: path
+        metadata:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        contentUrls:
+        - contentUrls
+        - contentUrls
+        deepLinkPath: deepLinkPath
+        contentType: contentType
+        content: content
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+      properties:
+        contentType:
+          description: Document Content-Type
+          type: string
+        content:
+          description: Document content
+          type: string
+        contentUrls:
+          description: URL(s) which contain document content
+          items:
+            type: string
+          type: array
+        path:
+          description: Path or Name of document
+          type: string
+        deepLinkPath:
+          description: Path or Name of deep link
+          type: string
+        tags:
+          description: List of document tags
+          items:
+            $ref: '#/components/schemas/AddDocumentTag'
+          type: array
+        metadata:
+          description: List of document Metadata
+          items:
+            $ref: '#/components/schemas/AddDocumentMetadata'
+          type: array
+      type: object
+    AddDocumentFulltextRequest:
       example:
         path: path
         metadata:
@@ -12039,7 +12630,8 @@ components:
     AddDocumentActionsRequest:
       example:
         actions:
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -12051,11 +12643,11 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
-        - type: OCR
+        - queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -12067,7 +12659,6 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
@@ -12080,7 +12671,8 @@ components:
       type: object
     AddAction:
       example:
-        type: OCR
+        queueId: queueId
+        type: null
         parameters:
           characterMax: characterMax
           ocrEngine: TESSERACT
@@ -12092,24 +12684,17 @@ components:
           url: url
           tags: tags
           notificationSubject: notificationSubject
-          queueName: queueName
           engine: chatgpt
           notificationText: notificationText
           notificationHtml: notificationHtml
       properties:
         type:
-          description: Type of Document Action
-          enum:
-          - OCR
-          - FULLTEXT
-          - ANTIVIRUS
-          - WEBHOOK
-          - DOCUMENTTAGGING
-          - NOTIFICATION
-          - QUEUE
-          type: string
+          $ref: '#/components/schemas/DocumentActionType'
         parameters:
           $ref: '#/components/schemas/AddActionParameters'
+        queueId:
+          description: Id of Queue
+          type: string
       required:
       - type
       type: object
@@ -12125,7 +12710,6 @@ components:
         url: url
         tags: tags
         notificationSubject: notificationSubject
-        queueName: queueName
         engine: chatgpt
         notificationText: notificationText
         notificationHtml: notificationHtml
@@ -12180,9 +12764,6 @@ components:
         tags:
           description: "DocumentTagging: Comma-deliminted list of keywords to generate\
             \ tags for"
-          type: string
-        queueName:
-          description: Name of Queue action
           type: string
       type: object
     AddDocumentOcrRequest:
@@ -12354,13 +12935,51 @@ components:
           description: Result message
           type: string
       type: object
-    GetOpaConfigurationResponse:
+    GetOpaConfigurationsResponse:
       example:
+        next: next
+        opaPolicies:
+        - insertedDate: insertedDate
+          siteId: siteId
+          policy: policy
+        - insertedDate: insertedDate
+          siteId: siteId
+          policy: policy
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        opaPolicies:
+          description: List of OPA policies
+          items:
+            $ref: '#/components/schemas/OpaPolicy'
+          type: array
+      type: object
+    OpaPolicy:
+      example:
+        insertedDate: insertedDate
+        siteId: siteId
         policy: policy
       properties:
-        policy:
-          description: OPA Policy in YAML format
+        siteId:
+          description: SiteId to apply OPA Policy to
           type: string
+        policy:
+          description: OPA Policy in REGO format
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+      type: object
+    GetOpaConfigurationResponse:
+      example:
+        opaPolicy:
+          insertedDate: insertedDate
+          siteId: siteId
+          policy: policy
+      properties:
+        opaPolicy:
+          $ref: '#/components/schemas/OpaPolicy'
       type: object
     SetOpaConfigurationRequest:
       example:
@@ -12559,6 +13178,52 @@ components:
           description: Last nodified timestamp of group
           type: string
       type: object
+    SetOpenSearchIndexRequest:
+      example:
+        indexSettings:
+          numberOfReplicas: numberOfReplicas
+          numberOfShards: numberOfShards
+      properties:
+        indexSettings:
+          $ref: '#/components/schemas/OpenSearchIndex'
+      type: object
+    SetOpenSearchIndexResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteOpenSearchIndexResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    GetOpenSearchIndexResponse:
+      example:
+        indexSettings:
+          numberOfReplicas: numberOfReplicas
+          numberOfShards: numberOfShards
+      properties:
+        indexSettings:
+          $ref: '#/components/schemas/OpenSearchIndex'
+      type: object
+    OpenSearchIndex:
+      example:
+        numberOfReplicas: numberOfReplicas
+        numberOfShards: numberOfShards
+      properties:
+        numberOfReplicas:
+          description: The number of replicas per shard
+          type: string
+        numberOfShards:
+          description: The number of shards in index
+          type: string
+      type: object
     GetSitesResponse:
       example:
         sites:
@@ -12626,6 +13291,12 @@ components:
           type: string
       type: object
     ErrorsResponse:
+      example:
+        errors:
+        - error: error
+          key: key
+        - error: error
+          key: key
       properties:
         errors:
           description: List of errors
@@ -12634,6 +13305,9 @@ components:
           type: array
       type: object
     Error:
+      example:
+        error: error
+        key: key
       properties:
         key:
           description: Error Key
@@ -12650,10 +13324,12 @@ components:
         - tagSchemaId: tagSchemaId
           insertedDate: insertedDate
           name: name
+          inUse: true
           userId: userId
         - tagSchemaId: tagSchemaId
           insertedDate: insertedDate
           name: name
+          inUse: true
           userId: userId
       properties:
         schemas:
@@ -12676,68 +13352,11 @@ components:
       required:
       - name
       type: object
-    SetWorkflowRequest:
+    UpdateWorkflowRequest:
       example:
         name: name
         description: description
-        steps:
-        - stepId: stepId
-          action:
-            type: OCR
-            parameters:
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              notificationSubject: notificationSubject
-              queueName: queueName
-              engine: chatgpt
-              notificationText: notificationText
-              notificationHtml: notificationHtml
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        - stepId: stepId
-          action:
-            type: OCR
-            parameters:
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              notificationSubject: notificationSubject
-              queueName: queueName
-              engine: chatgpt
-              notificationText: notificationText
-              notificationHtml: notificationHtml
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        status: ACTIVE
+        status: null
       properties:
         name:
           description: Workflow name
@@ -12746,10 +13365,79 @@ components:
           description: Workflow description
           type: string
         status:
-          enum:
-          - ACTIVE
-          - INACTIVE
+          $ref: '#/components/schemas/WorkflowStatus'
+      type: object
+    SetWorkflowRequest:
+      example:
+        name: name
+        description: description
+        steps:
+        - stepId: stepId
+          action:
+            queueId: queueId
+            type: null
+            parameters:
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrParseTypes: ocrParseTypes
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              notificationHtml: notificationHtml
+          decisions:
+          - nextStepId: nextStepId
+            type: null
+          - nextStepId: nextStepId
+            type: null
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        - stepId: stepId
+          action:
+            queueId: queueId
+            type: null
+            parameters:
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrParseTypes: ocrParseTypes
+              addPdfDetectedCharactersAsText: true
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              notificationHtml: notificationHtml
+          decisions:
+          - nextStepId: nextStepId
+            type: null
+          - nextStepId: nextStepId
+            type: null
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        status: null
+      properties:
+        name:
+          description: Workflow name
           type: string
+        description:
+          description: Workflow description
+          type: string
+        status:
+          $ref: '#/components/schemas/WorkflowStatus'
         steps:
           description: Workflow Steps
           items:
@@ -12767,7 +13455,8 @@ components:
         steps:
         - stepId: stepId
           action:
-            type: OCR
+            queueId: queueId
+            type: null
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -12779,15 +13468,14 @@ components:
               url: url
               tags: tags
               notificationSubject: notificationSubject
-              queueName: queueName
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           queue:
             queueId: queueId
             approvalGroups:
@@ -12795,7 +13483,8 @@ components:
             - approvalGroups
         - stepId: stepId
           action:
-            type: OCR
+            queueId: queueId
+            type: null
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -12807,21 +13496,20 @@ components:
               url: url
               tags: tags
               notificationSubject: notificationSubject
-              queueName: queueName
               engine: chatgpt
               notificationText: notificationText
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           - nextStepId: nextStepId
-            type: APPROVE
+            type: null
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: ACTIVE
+        status: null
       properties:
         name:
           description: Workflow name
@@ -12830,10 +13518,7 @@ components:
           description: Workflow description
           type: string
         status:
-          enum:
-          - ACTIVE
-          - INACTIVE
-          type: string
+          $ref: '#/components/schemas/WorkflowStatus'
         steps:
           description: Workflow Steps
           items:
@@ -12848,7 +13533,8 @@ components:
       example:
         stepId: stepId
         action:
-          type: OCR
+          queueId: queueId
+          type: null
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -12860,15 +13546,14 @@ components:
             url: url
             tags: tags
             notificationSubject: notificationSubject
-            queueName: queueName
             engine: chatgpt
             notificationText: notificationText
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId
-          type: APPROVE
+          type: null
         - nextStepId: nextStepId
-          type: APPROVE
+          type: null
         queue:
           queueId: queueId
           approvalGroups:
@@ -12888,17 +13573,19 @@ components:
             $ref: '#/components/schemas/AddWorkflowStepDecision'
           type: array
       type: object
+    WorkflowStepDecisionType:
+      description: Type of Workflow Step Decision
+      enum:
+      - APPROVE
+      - REJECT
+      type: string
     AddWorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: APPROVE
+        type: null
       properties:
         type:
-          description: Type of Workflow Step Decision
-          enum:
-          - APPROVE
-          - REJECT
-          type: string
+          $ref: '#/components/schemas/WorkflowStepDecisionType'
         nextStepId:
           description: Workflow Step to move to
           type: string
@@ -12909,14 +13596,10 @@ components:
     WorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: APPROVE
+        type: null
       properties:
         type:
-          description: Type of Workflow Step Decision
-          enum:
-          - APPROVE
-          - REJECT
-          type: string
+          $ref: '#/components/schemas/WorkflowStepDecisionType'
         nextStepId:
           description: Workflow Step to move to
           type: string
@@ -12944,6 +13627,14 @@ components:
       properties:
         queueId:
           description: Queue Identifier
+          type: string
+      type: object
+    UpdateWorkflowResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
           type: string
       type: object
     SetWorkflowResponse:
@@ -12980,12 +13671,12 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: COMPLETE
+          status: null
         - currentStepId: currentStepId
           name: name
           description: description
           workflowId: workflowId
-          status: COMPLETE
+          status: null
       properties:
         workflows:
           description: List of Document Workflows
@@ -13002,18 +13693,25 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: COMPLETE
+          status: null
       properties:
         workflow:
           $ref: '#/components/schemas/DocumentWorkflow'
       type: object
+    DocumentWorkflowStatus:
+      description: Status of the Workflow Document
+      enum:
+      - COMPLETE
+      - IN_PROGRESS
+      - FAILED
+      type: string
     DocumentWorkflow:
       example:
         currentStepId: currentStepId
         name: name
         description: description
         workflowId: workflowId
-        status: COMPLETE
+        status: null
       properties:
         workflowId:
           description: Workflow identifier
@@ -13028,12 +13726,7 @@ components:
           description: The current step workflow is on
           type: string
         status:
-          description: Workflow status
-          enum:
-          - COMPLETE
-          - IN_PROGRESS
-          - FAILED
-          type: string
+          $ref: '#/components/schemas/DocumentWorkflowStatus'
       type: object
     AddDocumentWorkflowResponse:
       example:
@@ -13185,6 +13878,7 @@ components:
         tagSchemaId: tagSchemaId
         insertedDate: insertedDate
         name: name
+        inUse: true
         userId: userId
       properties:
         tagSchemaId:
@@ -13193,6 +13887,9 @@ components:
           type: string
         userId:
           type: string
+        inUse:
+          description: Whether the TagSchema is in use
+          type: boolean
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -13203,6 +13900,7 @@ components:
           tagSchemaId: tagSchemaId
           insertedDate: insertedDate
           name: name
+          inUse: true
           userId: userId
           tags:
             compositeKeys:
@@ -13252,6 +13950,7 @@ components:
         tagSchemaId: tagSchemaId
         insertedDate: insertedDate
         name: name
+        inUse: true
         userId: userId
         tags:
           compositeKeys:
@@ -13299,6 +13998,9 @@ components:
           type: string
         userId:
           type: string
+        inUse:
+          description: Whether the TagSchema is in use
+          type: boolean
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -13717,7 +14419,7 @@ components:
   x-amazon-apigateway-integrations:
     lambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13731,7 +14433,7 @@ components:
       payloadFormatVersion: "1.0"
     ocrLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13745,7 +14447,7 @@ components:
       payloadFormatVersion: "1.0"
     antivirusLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13759,7 +14461,7 @@ components:
       payloadFormatVersion: "1.0"
     searchLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13773,7 +14475,21 @@ components:
       payloadFormatVersion: "1.0"
     fulltextLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+      responses:
+        default:
+          statusCode: "200"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Methods: '''*'''
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
+            method.response.header.Access-Control-Allow-Origin: '''*'''
+      passthroughBehavior: when_no_templates
+      httpMethod: POST
+      type: aws_proxy
+      payloadFormatVersion: "1.0"
+    ocrObjectsLambdaApi200:
+      uri:
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${OcrApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13787,7 +14503,7 @@ components:
       payloadFormatVersion: "1.0"
     onlyOfficeLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13801,7 +14517,7 @@ components:
       payloadFormatVersion: "1.0"
     esignatureLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13815,7 +14531,7 @@ components:
       payloadFormatVersion: "1.0"
     caseManagementLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -13829,7 +14545,7 @@ components:
       payloadFormatVersion: "1.0"
     lambdaApi201:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequests.Arn}/invocations"
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "201"
@@ -13848,5 +14564,12 @@ x-amazon-apigateway-gateway-responses:
       gatewayresponse.header.Access-Control-Allow-Methods: '''*'''
       gatewayresponse.header.Access-Control-Allow-Origin: '''*'''
       gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
-x-amazon-apigateway-cors: null
+x-amazon-apigateway-cors:
+  allowOrigins:
+  - '*'
+  maxAge: 3600
+  allowMethods:
+  - '*'
+  allowHeaders:
+  - '*'
 

@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -57,31 +56,32 @@ import com.formkiq.client.invoker.JSON;
  * UpdateRulesetResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class UpdateRulesetResponse {
-  public static final String SERIALIZED_NAME_RULESET_ID = "rulesetId";
-  @SerializedName(SERIALIZED_NAME_RULESET_ID)
-  private String rulesetId;
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
   public UpdateRulesetResponse() {}
 
-  public UpdateRulesetResponse rulesetId(String rulesetId) {
-    this.rulesetId = rulesetId;
+  public UpdateRulesetResponse message(String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * Ruleset Identifier
+   * Ruleset update message
    * 
-   * @return rulesetId
+   * @return message
    **/
   @javax.annotation.Nullable
-  public String getRulesetId() {
-    return rulesetId;
+  public String getMessage() {
+    return message;
   }
 
-  public void setRulesetId(String rulesetId) {
-    this.rulesetId = rulesetId;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -95,19 +95,19 @@ public class UpdateRulesetResponse {
       return false;
     }
     UpdateRulesetResponse updateRulesetResponse = (UpdateRulesetResponse) o;
-    return Objects.equals(this.rulesetId, updateRulesetResponse.rulesetId);
+    return Objects.equals(this.message, updateRulesetResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(rulesetId);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateRulesetResponse {\n");
-    sb.append("    rulesetId: ").append(toIndentedString(rulesetId)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +129,7 @@ public class UpdateRulesetResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("rulesetId");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -161,11 +161,11 @@ public class UpdateRulesetResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("rulesetId") != null && !jsonObj.get("rulesetId").isJsonNull())
-        && !jsonObj.get("rulesetId").isJsonPrimitive()) {
+    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
+        && !jsonObj.get("message").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `rulesetId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("rulesetId").toString()));
+          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("message").toString()));
     }
   }
 

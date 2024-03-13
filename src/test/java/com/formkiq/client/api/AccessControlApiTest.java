@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -27,6 +26,7 @@ import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteOpaConfigurationResponse;
 import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.GetOpaConfigurationResponse;
+import com.formkiq.client.model.GetOpaConfigurationsResponse;
 import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
 import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.SetOpaConfigurationRequest;
@@ -122,6 +122,19 @@ public class AccessControlApiTest {
   public void getOpaConfigurationTest() throws ApiException {
     String siteId = null;
     GetOpaConfigurationResponse response = api.getOpaConfiguration(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get OPAs Configuration
+   *
+   * Returns a list of OPA Configuration, can only be requested with ADMIN privileges
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getOpaConfigurationsTest() throws ApiException {
+    GetOpaConfigurationsResponse response = api.getOpaConfigurations();
     // TODO: test validations
   }
 

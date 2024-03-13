@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -58,31 +57,32 @@ import com.formkiq.client.invoker.JSON;
  * AddRuleRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class AddRuleRequest {
-  public static final String SERIALIZED_NAME_RULESET = "ruleset";
-  @SerializedName(SERIALIZED_NAME_RULESET)
-  private AddRule ruleset;
+  public static final String SERIALIZED_NAME_RULE = "rule";
+  @SerializedName(SERIALIZED_NAME_RULE)
+  private AddRule rule;
 
   public AddRuleRequest() {}
 
-  public AddRuleRequest ruleset(AddRule ruleset) {
-    this.ruleset = ruleset;
+  public AddRuleRequest rule(AddRule rule) {
+    this.rule = rule;
     return this;
   }
 
   /**
-   * Get ruleset
+   * Get rule
    * 
-   * @return ruleset
+   * @return rule
    **/
   @javax.annotation.Nullable
-  public AddRule getRuleset() {
-    return ruleset;
+  public AddRule getRule() {
+    return rule;
   }
 
-  public void setRuleset(AddRule ruleset) {
-    this.ruleset = ruleset;
+  public void setRule(AddRule rule) {
+    this.rule = rule;
   }
 
 
@@ -96,19 +96,19 @@ public class AddRuleRequest {
       return false;
     }
     AddRuleRequest addRuleRequest = (AddRuleRequest) o;
-    return Objects.equals(this.ruleset, addRuleRequest.ruleset);
+    return Objects.equals(this.rule, addRuleRequest.rule);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ruleset);
+    return Objects.hash(rule);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddRuleRequest {\n");
-    sb.append("    ruleset: ").append(toIndentedString(ruleset)).append("\n");
+    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,7 +130,7 @@ public class AddRuleRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("ruleset");
+    openapiFields.add("rule");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -162,9 +162,9 @@ public class AddRuleRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `ruleset`
-    if (jsonObj.get("ruleset") != null && !jsonObj.get("ruleset").isJsonNull()) {
-      AddRule.validateJsonElement(jsonObj.get("ruleset"));
+    // validate the optional field `rule`
+    if (jsonObj.get("rule") != null && !jsonObj.get("rule").isJsonNull()) {
+      AddRule.validateJsonElement(jsonObj.get("rule"));
     }
   }
 

@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +20,8 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocumentFulltextRequest;
+import com.formkiq.client.model.AddDocumentFulltextResponse;
 import com.formkiq.client.model.DeleteFulltextResponse;
 import com.formkiq.client.model.DocumentFulltextRequest;
 import com.formkiq.client.model.DocumentFulltextResponse;
@@ -29,6 +30,7 @@ import com.formkiq.client.model.QueryFulltextResponse;
 import com.formkiq.client.model.SetDocumentFulltextRequest;
 import com.formkiq.client.model.SetDocumentFulltextResponse;
 import com.formkiq.client.model.UpdateDocumentFulltextRequest;
+import com.formkiq.client.model.UpdateDocumentFulltextResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +46,23 @@ import java.util.Map;
 public class AdvancedDocumentSearchApiTest {
 
   private final AdvancedDocumentSearchApi api = new AdvancedDocumentSearchApi();
+
+  /**
+   * Add document&#39;s full-text
+   *
+   * Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentFulltextTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    AddDocumentFulltextRequest addDocumentFulltextRequest = null;
+    AddDocumentFulltextResponse response =
+        api.addDocumentFulltext(documentId, siteId, addDocumentFulltextRequest);
+    // TODO: test validations
+  }
 
   /**
    * Delete document full-text
@@ -116,7 +135,7 @@ public class AdvancedDocumentSearchApiTest {
    *
    * Endpoint for allowing custom, complex queries using the OpenSearch search API
    * (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ
-   * Enterprise
+   * Enterprise Example Request Body: { \&quot;query\&quot;: { \&quot;match_all\&quot;: {} }}
    *
    * @throws ApiException if the Api call fails
    */
@@ -174,7 +193,7 @@ public class AdvancedDocumentSearchApiTest {
     String documentId = null;
     String siteId = null;
     UpdateDocumentFulltextRequest updateDocumentFulltextRequest = null;
-    SetDocumentFulltextResponse response =
+    UpdateDocumentFulltextResponse response =
         api.updateDocumentFulltext(documentId, siteId, updateDocumentFulltextRequest);
     // TODO: test validations
   }

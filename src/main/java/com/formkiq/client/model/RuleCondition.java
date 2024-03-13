@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -28,7 +27,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,30 +59,39 @@ import com.formkiq.client.invoker.JSON;
  * RuleCondition
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class RuleCondition {
   public static final String SERIALIZED_NAME_MUST = "must";
   @SerializedName(SERIALIZED_NAME_MUST)
-  private RuleConditionMust must;
+  private List<RuleConditionMust> must;
 
   public RuleCondition() {}
 
-  public RuleCondition must(RuleConditionMust must) {
+  public RuleCondition must(List<RuleConditionMust> must) {
     this.must = must;
     return this;
   }
 
+  public RuleCondition addMustItem(RuleConditionMust mustItem) {
+    if (this.must == null) {
+      this.must = new ArrayList<>();
+    }
+    this.must.add(mustItem);
+    return this;
+  }
+
   /**
-   * Get must
+   * List of rule conditions
    * 
    * @return must
    **/
   @javax.annotation.Nullable
-  public RuleConditionMust getMust() {
+  public List<RuleConditionMust> getMust() {
     return must;
   }
 
-  public void setMust(RuleConditionMust must) {
+  public void setMust(List<RuleConditionMust> must) {
     this.must = must;
   }
 
@@ -162,9 +172,21 @@ public class RuleCondition {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `must`
     if (jsonObj.get("must") != null && !jsonObj.get("must").isJsonNull()) {
-      RuleConditionMust.validateJsonElement(jsonObj.get("must"));
+      JsonArray jsonArraymust = jsonObj.getAsJsonArray("must");
+      if (jsonArraymust != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("must").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `must` to be an array in the JSON string but got `%s`",
+              jsonObj.get("must").toString()));
+        }
+
+        // validate the optional field `must` (array)
+        for (int i = 0; i < jsonArraymust.size(); i++) {
+          RuleConditionMust.validateJsonElement(jsonArraymust.get(i));
+        } ;
+      }
     }
   }
 

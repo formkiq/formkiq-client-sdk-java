@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -20,11 +19,11 @@
 
 package com.formkiq.client.invoker;
 
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
@@ -38,14 +37,16 @@ import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 /*
  * A JSON utility class
@@ -62,6 +63,10 @@ public class JSON {
       new OffsetDateTimeTypeAdapter();
   private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
   private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+
+  private static final StdDateFormat sdf = new StdDateFormat()
+      .withTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault())).withColonInTimeZone(true);
+  private static final DateTimeFormatter dtf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
   @SuppressWarnings("unchecked")
   public static GsonBuilder createGson() {
@@ -97,7 +102,7 @@ public class JSON {
     return clazz;
   }
 
-  {
+  static {
     GsonBuilder gsonBuilder = createGson();
     gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
     gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
@@ -136,6 +141,10 @@ public class JSON {
         new com.formkiq.client.model.AddDocumentActionsResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentActionsRetryResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddDocumentFulltextRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddDocumentFulltextResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentMetadata.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -234,6 +243,8 @@ public class JSON {
         new com.formkiq.client.model.DeleteIndicesResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DeleteOpaConfigurationResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.DeleteOpenSearchIndexResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DeleteQueueResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -351,6 +362,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetOpaConfigurationResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetOpaConfigurationsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetOpenSearchIndexResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetQueueResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetQueuesResponse.CustomTypeAdapterFactory());
@@ -421,6 +436,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.OnlyOfficeEditorConfig.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OpaPolicy.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OpenSearchIndex.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.PdfDocument.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.PdfDocumentField.CustomTypeAdapterFactory());
@@ -469,6 +488,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetOpaConfigurationResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SetOpenSearchIndexRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SetOpenSearchIndexResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetWorkflowRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetWorkflowResponse.CustomTypeAdapterFactory());
@@ -503,6 +526,8 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateDocumentFulltextRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateDocumentFulltextResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateDocumentRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateMatchingDocumentTagsRequest.CustomTypeAdapterFactory());
@@ -519,9 +544,13 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateNigoResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateRule.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRuleRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRuleResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateRuleset.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRulesetRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -532,6 +561,10 @@ public class JSON {
         new com.formkiq.client.model.UpdateTaskRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateTaskResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateWorkflowRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.User.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -786,7 +819,7 @@ public class JSON {
             if (dateFormat != null) {
               return new java.sql.Date(dateFormat.parse(date).getTime());
             }
-            return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+            return new java.sql.Date(sdf.parse(date).getTime());
           } catch (ParseException e) {
             throw new JsonParseException(e);
           }
@@ -795,7 +828,8 @@ public class JSON {
   }
 
   /**
-   * Gson TypeAdapter for java.util.Date type If the dateFormat is null, ISO8601Utils will be used.
+   * Gson TypeAdapter for java.util.Date type If the dateFormat is null, DateTimeFormatter will be
+   * used.
    */
   public static class DateTypeAdapter extends TypeAdapter<Date> {
 
@@ -820,7 +854,7 @@ public class JSON {
         if (dateFormat != null) {
           value = dateFormat.format(date);
         } else {
-          value = ISO8601Utils.format(date, true);
+          value = date.toInstant().atOffset(ZoneOffset.UTC).format(dtf);
         }
         out.value(value);
       }
@@ -839,7 +873,7 @@ public class JSON {
               if (dateFormat != null) {
                 return dateFormat.parse(date);
               }
-              return ISO8601Utils.parse(date, new ParsePosition(0));
+              return sdf.parse(date);
             } catch (ParseException e) {
               throw new JsonParseException(e);
             }

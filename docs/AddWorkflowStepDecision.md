@@ -7,17 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Type of Workflow Step Decision |  |
+|**type** | **WorkflowStepDecisionType** |  |  |
 |**nextStepId** | **String** | Workflow Step to move to |  |
-
-
-
-## Enum: TypeEnum
-
-| Name | Value |
-|---- | -----|
-| APPROVE | &quot;APPROVE&quot; |
-| REJECT | &quot;REJECT&quot; |
 
 
 

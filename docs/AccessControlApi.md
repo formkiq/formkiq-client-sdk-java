@@ -6,9 +6,10 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addDocumentAccessAttributes**](AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes |
 | [**deleteDocumentAccessAttributes**](AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes |
-| [**deleteOpaConfiguration**](AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa | Delete OPA Configuration |
+| [**deleteOpaConfiguration**](AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa/{siteId} | Delete OPA Configuration |
 | [**getDocumentAccessAttributes**](AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes |
-| [**getOpaConfiguration**](AccessControlApi.md#getOpaConfiguration) | **GET** /configuration/opa | Get OPA Configuration |
+| [**getOpaConfiguration**](AccessControlApi.md#getOpaConfiguration) | **GET** /configuration/opa/{siteId} | Get OPA Configuration |
+| [**getOpaConfigurations**](AccessControlApi.md#getOpaConfigurations) | **GET** /configuration/opa | Get OPAs Configuration |
 | [**setDocumentAccessAttributes**](AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes |
 | [**setOpaConfiguration**](AccessControlApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration |
 
@@ -195,7 +196,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
+| **siteId** | **String**| Site Identifier | |
 
 ### Return type
 
@@ -327,11 +328,72 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
+| **siteId** | **String**| Site Identifier | |
 
 ### Return type
 
 [**GetOpaConfigurationResponse**](GetOpaConfigurationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getOpaConfigurations"></a>
+# **getOpaConfigurations**
+> GetOpaConfigurationsResponse getOpaConfigurations()
+
+Get OPAs Configuration
+
+Returns a list of OPA Configuration, can only be requested with ADMIN privileges
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AccessControlApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AccessControlApi apiInstance = new AccessControlApi(defaultClient);
+    try {
+      GetOpaConfigurationsResponse result = apiInstance.getOpaConfigurations();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccessControlApi#getOpaConfigurations");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetOpaConfigurationsResponse**](GetOpaConfigurationsResponse.md)
 
 ### Authorization
 

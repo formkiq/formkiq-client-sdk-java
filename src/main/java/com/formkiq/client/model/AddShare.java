@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.UserSharePermission;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,70 +59,16 @@ import com.formkiq.client.invoker.JSON;
  * AddShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class AddShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
   private String group;
 
-  /**
-   * Gets or Sets permissions
-   */
-  @JsonAdapter(PermissionsEnum.Adapter.class)
-  public enum PermissionsEnum {
-    READ("READ"),
-
-    WRITE("WRITE"),
-
-    DELETE("DELETE");
-
-    private String value;
-
-    PermissionsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PermissionsEnum fromValue(String value) {
-      for (PermissionsEnum b : PermissionsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PermissionsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return PermissionsEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      PermissionsEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private List<PermissionsEnum> permissions;
+  private List<UserSharePermission> permissions;
 
   public AddShare() {}
 
@@ -146,12 +92,12 @@ public class AddShare {
   }
 
 
-  public AddShare permissions(List<PermissionsEnum> permissions) {
+  public AddShare permissions(List<UserSharePermission> permissions) {
     this.permissions = permissions;
     return this;
   }
 
-  public AddShare addPermissionsItem(PermissionsEnum permissionsItem) {
+  public AddShare addPermissionsItem(UserSharePermission permissionsItem) {
     if (this.permissions == null) {
       this.permissions = new ArrayList<>();
     }
@@ -165,11 +111,11 @@ public class AddShare {
    * @return permissions
    **/
   @javax.annotation.Nullable
-  public List<PermissionsEnum> getPermissions() {
+  public List<UserSharePermission> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(List<PermissionsEnum> permissions) {
+  public void setPermissions(List<UserSharePermission> permissions) {
     this.permissions = permissions;
   }
 

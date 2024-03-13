@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**must** | [**RuleConditionMust**](RuleConditionMust.md) |  |  [optional] |
+|**must** | [**List&lt;RuleConditionMust&gt;**](RuleConditionMust.md) | List of rule conditions |  [optional] |
 
 
 

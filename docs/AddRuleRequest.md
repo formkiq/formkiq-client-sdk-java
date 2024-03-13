@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ruleset** | [**AddRule**](AddRule.md) |  |  [optional] |
+|**rule** | [**AddRule**](AddRule.md) |  |  [optional] |
 
 
 

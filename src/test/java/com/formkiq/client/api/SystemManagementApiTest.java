@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -24,10 +23,14 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
+import com.formkiq.client.model.DeleteOpenSearchIndexResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
+import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
+import com.formkiq.client.model.SetOpenSearchIndexRequest;
+import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -78,6 +81,20 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Deletst site(s) OpenSearch index
+   *
+   * Deletes the OpenSearch index
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteOpensearchIndexTest() throws ApiException {
+    String siteId = null;
+    DeleteOpenSearchIndexResponse response = api.deleteOpensearchIndex(siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get API Keys
    *
    * Returns the list of ApiKeys
@@ -106,6 +123,20 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Get site(s) OpenSearch index settings
+   *
+   * Returns the OpenSearch index settings
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getOpensearchIndexTest() throws ApiException {
+    String siteId = null;
+    GetOpenSearchIndexResponse response = api.getOpensearchIndex(siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get site(s) access
    *
    * Returns the list of sites that the user has access to
@@ -128,6 +159,21 @@ public class SystemManagementApiTest {
   @Test
   public void getVersionTest() throws ApiException {
     GetVersionResponse response = api.getVersion();
+    // TODO: test validations
+  }
+
+  /**
+   * Set site(s) OpenSearch index settings
+   *
+   * Sets the OpenSearch index settings
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setOpensearchIndexTest() throws ApiException {
+    String siteId = null;
+    SetOpenSearchIndexRequest setOpenSearchIndexRequest = null;
+    SetOpenSearchIndexResponse response = api.setOpensearchIndex(siteId, setOpenSearchIndexRequest);
     // TODO: test validations
   }
 

@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -195,7 +194,7 @@ public class DocumentActionsApi {
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification
    * Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text
    * | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE |
-   * queueName | Name of Queue | |
+   * queueId | Id of Queue | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -248,7 +247,7 @@ public class DocumentActionsApi {
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification
    * Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text
    * | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE |
-   * queueName | Name of Queue | |
+   * queueId | Id of Queue | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -302,7 +301,7 @@ public class DocumentActionsApi {
    * Notification Blind Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION |
    * notificationSubject | Notification Subject | Email Subject | | NOTIFICATION | notificationText
    * | Notification as Text | Email Text | | NOTIFICATION | notificationHtml | Notification as Html
-   * | Email HTML Text | | QUEUE | queueName | Name of Queue | |
+   * | Email HTML Text | | QUEUE | queueId | Id of Queue | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -559,7 +558,9 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
+   * @param next Next page of results token (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -580,8 +581,8 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentActionsCall(String documentId, String siteId, String shareKey,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentActionsCall(String documentId, String siteId, String limit,
+      String shareKey, String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -611,8 +612,16 @@ public class DocumentActionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
     }
 
     final String[] localVarAccepts = {"application/json"};
@@ -636,14 +645,14 @@ public class DocumentActionsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentActionsValidateBeforeCall(String documentId, String siteId,
-      String shareKey, final ApiCallback _callback) throws ApiException {
+      String limit, String shareKey, String next, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentActions(Async)");
     }
 
-    return getDocumentActionsCall(documentId, siteId, shareKey, _callback);
+    return getDocumentActionsCall(documentId, siteId, limit, shareKey, next, _callback);
 
   }
 
@@ -652,7 +661,9 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
+   * @param next Next page of results token (optional)
    * @return GetDocumentActionsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -674,9 +685,9 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public GetDocumentActionsResponse getDocumentActions(String documentId, String siteId,
-      String shareKey) throws ApiException {
+      String limit, String shareKey, String next) throws ApiException {
     ApiResponse<GetDocumentActionsResponse> localVarResp =
-        getDocumentActionsWithHttpInfo(documentId, siteId, shareKey);
+        getDocumentActionsWithHttpInfo(documentId, siteId, limit, shareKey, next);
     return localVarResp.getData();
   }
 
@@ -685,7 +696,9 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
+   * @param next Next page of results token (optional)
    * @return ApiResponse&lt;GetDocumentActionsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -707,9 +720,9 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentActionsResponse> getDocumentActionsWithHttpInfo(String documentId,
-      String siteId, String shareKey) throws ApiException {
+      String siteId, String limit, String shareKey, String next) throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentActionsValidateBeforeCall(documentId, siteId, shareKey, null);
+        getDocumentActionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, null);
     Type localVarReturnType = new TypeToken<GetDocumentActionsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -719,7 +732,9 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
+   * @param next Next page of results token (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -740,11 +755,12 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentActionsAsync(String documentId, String siteId, String shareKey,
-      final ApiCallback<GetDocumentActionsResponse> _callback) throws ApiException {
+  public okhttp3.Call getDocumentActionsAsync(String documentId, String siteId, String limit,
+      String shareKey, String next, final ApiCallback<GetDocumentActionsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        getDocumentActionsValidateBeforeCall(documentId, siteId, shareKey, _callback);
+        getDocumentActionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentActionsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

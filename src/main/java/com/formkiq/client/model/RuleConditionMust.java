@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +20,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.RuleConditionAttribute;
+import com.formkiq.client.model.RuleConditionOperation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,173 +58,64 @@ import com.formkiq.client.invoker.JSON;
  * RuleConditionMust
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class RuleConditionMust {
-  /**
-   * Rule attribute
-   */
-  @JsonAdapter(AttributeEnum.Adapter.class)
-  public enum AttributeEnum {
-    TEXT("TEXT"),
-
-    CONTENT_TYPE("CONTENT_TYPE"),
-
-    BARCODE("BARCODE"),
-
-    PROPERTY("PROPERTY");
-
-    private String value;
-
-    AttributeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static AttributeEnum fromValue(String value) {
-      for (AttributeEnum b : AttributeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<AttributeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final AttributeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public AttributeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return AttributeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      AttributeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_ATTRIBUTE = "attribute";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE)
-  private AttributeEnum attribute;
+  private RuleConditionAttribute attribute;
 
-  public static final String SERIALIZED_NAME_PROPERTY_NAME = "propertyName";
-  @SerializedName(SERIALIZED_NAME_PROPERTY_NAME)
-  private String propertyName;
+  public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
+  @SerializedName(SERIALIZED_NAME_FIELD_NAME)
+  private String fieldName;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
 
-  /**
-   * Rule condition operation
-   */
-  @JsonAdapter(OperationEnum.Adapter.class)
-  public enum OperationEnum {
-    EQ("EQ"),
-
-    CONTAINS("CONTAINS");
-
-    private String value;
-
-    OperationEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static OperationEnum fromValue(String value) {
-      for (OperationEnum b : OperationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<OperationEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final OperationEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public OperationEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return OperationEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      OperationEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_OPERATION = "operation";
   @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OperationEnum operation;
+  private RuleConditionOperation operation;
 
   public RuleConditionMust() {}
 
-  public RuleConditionMust attribute(AttributeEnum attribute) {
+  public RuleConditionMust attribute(RuleConditionAttribute attribute) {
     this.attribute = attribute;
     return this;
   }
 
   /**
-   * Rule attribute
+   * Get attribute
    * 
    * @return attribute
    **/
   @javax.annotation.Nullable
-  public AttributeEnum getAttribute() {
+  public RuleConditionAttribute getAttribute() {
     return attribute;
   }
 
-  public void setAttribute(AttributeEnum attribute) {
+  public void setAttribute(RuleConditionAttribute attribute) {
     this.attribute = attribute;
   }
 
 
-  public RuleConditionMust propertyName(String propertyName) {
-    this.propertyName = propertyName;
+  public RuleConditionMust fieldName(String fieldName) {
+    this.fieldName = fieldName;
     return this;
   }
 
   /**
-   * Rule property name
+   * Rule field name (only required for FIELD attribute)
    * 
-   * @return propertyName
+   * @return fieldName
    **/
   @javax.annotation.Nullable
-  public String getPropertyName() {
-    return propertyName;
+  public String getFieldName() {
+    return fieldName;
   }
 
-  public void setPropertyName(String propertyName) {
-    this.propertyName = propertyName;
+  public void setFieldName(String fieldName) {
+    this.fieldName = fieldName;
   }
 
 
@@ -247,22 +139,22 @@ public class RuleConditionMust {
   }
 
 
-  public RuleConditionMust operation(OperationEnum operation) {
+  public RuleConditionMust operation(RuleConditionOperation operation) {
     this.operation = operation;
     return this;
   }
 
   /**
-   * Rule condition operation
+   * Get operation
    * 
    * @return operation
    **/
   @javax.annotation.Nullable
-  public OperationEnum getOperation() {
+  public RuleConditionOperation getOperation() {
     return operation;
   }
 
-  public void setOperation(OperationEnum operation) {
+  public void setOperation(RuleConditionOperation operation) {
     this.operation = operation;
   }
 
@@ -278,14 +170,14 @@ public class RuleConditionMust {
     }
     RuleConditionMust ruleConditionMust = (RuleConditionMust) o;
     return Objects.equals(this.attribute, ruleConditionMust.attribute)
-        && Objects.equals(this.propertyName, ruleConditionMust.propertyName)
+        && Objects.equals(this.fieldName, ruleConditionMust.fieldName)
         && Objects.equals(this.value, ruleConditionMust.value)
         && Objects.equals(this.operation, ruleConditionMust.operation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attribute, propertyName, value, operation);
+    return Objects.hash(attribute, fieldName, value, operation);
   }
 
   @Override
@@ -293,7 +185,7 @@ public class RuleConditionMust {
     StringBuilder sb = new StringBuilder();
     sb.append("class RuleConditionMust {\n");
     sb.append("    attribute: ").append(toIndentedString(attribute)).append("\n");
-    sb.append("    propertyName: ").append(toIndentedString(propertyName)).append("\n");
+    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
     sb.append("}");
@@ -318,7 +210,7 @@ public class RuleConditionMust {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("attribute");
-    openapiFields.add("propertyName");
+    openapiFields.add("fieldName");
     openapiFields.add("value");
     openapiFields.add("operation");
 
@@ -352,21 +244,15 @@ public class RuleConditionMust {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("attribute") != null && !jsonObj.get("attribute").isJsonNull())
-        && !jsonObj.get("attribute").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `attribute` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("attribute").toString()));
-    }
     // validate the optional field `attribute`
     if (jsonObj.get("attribute") != null && !jsonObj.get("attribute").isJsonNull()) {
-      AttributeEnum.validateJsonElement(jsonObj.get("attribute"));
+      RuleConditionAttribute.validateJsonElement(jsonObj.get("attribute"));
     }
-    if ((jsonObj.get("propertyName") != null && !jsonObj.get("propertyName").isJsonNull())
-        && !jsonObj.get("propertyName").isJsonPrimitive()) {
+    if ((jsonObj.get("fieldName") != null && !jsonObj.get("fieldName").isJsonNull())
+        && !jsonObj.get("fieldName").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `propertyName` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("propertyName").toString()));
+          "Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("fieldName").toString()));
     }
     if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
         && !jsonObj.get("value").isJsonPrimitive()) {
@@ -374,15 +260,9 @@ public class RuleConditionMust {
           "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("value").toString()));
     }
-    if ((jsonObj.get("operation") != null && !jsonObj.get("operation").isJsonNull())
-        && !jsonObj.get("operation").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `operation` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("operation").toString()));
-    }
     // validate the optional field `operation`
     if (jsonObj.get("operation") != null && !jsonObj.get("operation").isJsonNull()) {
-      OperationEnum.validateJsonElement(jsonObj.get("operation"));
+      RuleConditionOperation.validateJsonElement(jsonObj.get("operation"));
     }
   }
 

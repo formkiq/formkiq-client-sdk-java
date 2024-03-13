@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -292,6 +291,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
    * @param _callback Callback for upload/download progress
@@ -314,8 +314,8 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentVersionsCall(String documentId, String siteId, String shareKey,
-      String next, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentVersionsCall(String documentId, String siteId, String limit,
+      String shareKey, String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -343,6 +343,10 @@ public class DocumentVersionsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
     }
 
     if (shareKey != null) {
@@ -374,14 +378,14 @@ public class DocumentVersionsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentVersionsValidateBeforeCall(String documentId, String siteId,
-      String shareKey, String next, final ApiCallback _callback) throws ApiException {
+      String limit, String shareKey, String next, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentVersions(Async)");
     }
 
-    return getDocumentVersionsCall(documentId, siteId, shareKey, next, _callback);
+    return getDocumentVersionsCall(documentId, siteId, limit, shareKey, next, _callback);
 
   }
 
@@ -391,6 +395,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
    * @return GetDocumentVersionsResponse
@@ -414,9 +419,9 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public GetDocumentVersionsResponse getDocumentVersions(String documentId, String siteId,
-      String shareKey, String next) throws ApiException {
+      String limit, String shareKey, String next) throws ApiException {
     ApiResponse<GetDocumentVersionsResponse> localVarResp =
-        getDocumentVersionsWithHttpInfo(documentId, siteId, shareKey, next);
+        getDocumentVersionsWithHttpInfo(documentId, siteId, limit, shareKey, next);
     return localVarResp.getData();
   }
 
@@ -426,6 +431,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
    * @return ApiResponse&lt;GetDocumentVersionsResponse&gt;
@@ -449,9 +455,9 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentVersionsResponse> getDocumentVersionsWithHttpInfo(String documentId,
-      String siteId, String shareKey, String next) throws ApiException {
+      String siteId, String limit, String shareKey, String next) throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentVersionsValidateBeforeCall(documentId, siteId, shareKey, next, null);
+        getDocumentVersionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, null);
     Type localVarReturnType = new TypeToken<GetDocumentVersionsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -462,6 +468,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
    * @param _callback The callback to be executed when the API call finishes
@@ -484,11 +491,12 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentVersionsAsync(String documentId, String siteId, String shareKey,
-      String next, final ApiCallback<GetDocumentVersionsResponse> _callback) throws ApiException {
+  public okhttp3.Call getDocumentVersionsAsync(String documentId, String siteId, String limit,
+      String shareKey, String next, final ApiCallback<GetDocumentVersionsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        getDocumentVersionsValidateBeforeCall(documentId, siteId, shareKey, next, _callback);
+        getDocumentVersionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentVersionsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

@@ -18,7 +18,8 @@ All URIs are relative to *http://localhost*
 | [**getWorkflowDocuments**](DocumentWorkflowsApi.md#getWorkflowDocuments) | **GET** /workflows/{workflowId}/documents | Get list of documents in workflow |
 | [**getWorkflowQueueDocuments**](DocumentWorkflowsApi.md#getWorkflowQueueDocuments) | **GET** /queues/{queueId}/documents | Get list of documents in queue |
 | [**getWorkflows**](DocumentWorkflowsApi.md#getWorkflows) | **GET** /workflows | Get workflows |
-| [**setWorkflow**](DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Add workflow |
+| [**setWorkflow**](DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Set workflow |
+| [**updateWorkflow**](DocumentWorkflowsApi.md#updateWorkflow) | **PATCH** /workflows/{workflowId} | Update workflow |
 
 
 <a id="addDocumentWorkflow"></a>
@@ -991,7 +992,7 @@ No authorization required
 # **setWorkflow**
 > SetWorkflowResponse setWorkflow(workflowId, setWorkflowRequest, siteId)
 
-Add workflow
+Set workflow
 
 Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
 
@@ -1041,6 +1042,76 @@ public class Example {
 ### Return type
 
 [**SetWorkflowResponse**](SetWorkflowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 20) OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="updateWorkflow"></a>
+# **updateWorkflow**
+> UpdateWorkflowResponse updateWorkflow(workflowId, updateWorkflowRequest, siteId)
+
+Update workflow
+
+Update a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentWorkflowsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
+    String workflowId = "workflowId_example"; // String | Workflow Identifier
+    UpdateWorkflowRequest updateWorkflowRequest = new UpdateWorkflowRequest(); // UpdateWorkflowRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      UpdateWorkflowResponse result = apiInstance.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentWorkflowsApi#updateWorkflow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**| Workflow Identifier | |
+| **updateWorkflowRequest** | [**UpdateWorkflowRequest**](UpdateWorkflowRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**UpdateWorkflowResponse**](UpdateWorkflowResponse.md)
 
 ### Authorization
 

@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -57,7 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -266,10 +266,6 @@ public class AddActionParameters {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private String tags;
-
-  public static final String SERIALIZED_NAME_QUEUE_NAME = "queueName";
-  @SerializedName(SERIALIZED_NAME_QUEUE_NAME)
-  private String queueName;
 
   public AddActionParameters() {}
 
@@ -534,26 +530,6 @@ public class AddActionParameters {
   }
 
 
-  public AddActionParameters queueName(String queueName) {
-    this.queueName = queueName;
-    return this;
-  }
-
-  /**
-   * Name of Queue action
-   * 
-   * @return queueName
-   **/
-  @javax.annotation.Nullable
-  public String getQueueName() {
-    return queueName;
-  }
-
-  public void setQueueName(String queueName) {
-    this.queueName = queueName;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -577,15 +553,14 @@ public class AddActionParameters {
         && Objects.equals(this.notificationSubject, addActionParameters.notificationSubject)
         && Objects.equals(this.notificationText, addActionParameters.notificationText)
         && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
-        && Objects.equals(this.tags, addActionParameters.tags)
-        && Objects.equals(this.queueName, addActionParameters.queueName);
+        && Objects.equals(this.tags, addActionParameters.tags);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(ocrParseTypes, ocrEngine, addPdfDetectedCharactersAsText, url, characterMax,
         engine, notificationType, notificationToCc, notificationToBcc, notificationSubject,
-        notificationText, notificationHtml, tags, queueName);
+        notificationText, notificationHtml, tags);
   }
 
   @Override
@@ -607,7 +582,6 @@ public class AddActionParameters {
     sb.append("    notificationText: ").append(toIndentedString(notificationText)).append("\n");
     sb.append("    notificationHtml: ").append(toIndentedString(notificationHtml)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -642,7 +616,6 @@ public class AddActionParameters {
     openapiFields.add("notificationText");
     openapiFields.add("notificationHtml");
     openapiFields.add("tags");
-    openapiFields.add("queueName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -758,12 +731,6 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `tags` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("tags").toString()));
-    }
-    if ((jsonObj.get("queueName") != null && !jsonObj.get("queueName").isJsonNull())
-        && !jsonObj.get("queueName").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `queueName` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("queueName").toString()));
     }
   }
 

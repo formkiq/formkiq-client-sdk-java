@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -40,6 +39,7 @@ import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteOpaConfigurationResponse;
 import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.GetOpaConfigurationResponse;
+import com.formkiq.client.model.GetOpaConfigurationsResponse;
 import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
 import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.SetOpaConfigurationRequest;
@@ -509,7 +509,7 @@ public class AccessControlApi {
   /**
    * Build call for deleteOpaConfiguration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -548,17 +548,14 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa";
+    String localVarPath = "/configuration/opa/{siteId}".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -582,6 +579,12 @@ public class AccessControlApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteOpaConfigurationValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteOpaConfiguration(Async)");
+    }
+
     return deleteOpaConfigurationCall(siteId, _callback);
 
   }
@@ -589,7 +592,7 @@ public class AccessControlApi {
   /**
    * Delete OPA Configuration Delete OPA Configuration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return DeleteOpaConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -619,7 +622,7 @@ public class AccessControlApi {
   /**
    * Delete OPA Configuration Delete OPA Configuration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;DeleteOpaConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -650,7 +653,7 @@ public class AccessControlApi {
   /**
    * Delete OPA Configuration (asynchronously) Delete OPA Configuration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -874,7 +877,7 @@ public class AccessControlApi {
   /**
    * Build call for getOpaConfiguration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -913,17 +916,14 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa";
+    String localVarPath = "/configuration/opa/{siteId}".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -947,6 +947,12 @@ public class AccessControlApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getOpaConfigurationValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getOpaConfiguration(Async)");
+    }
+
     return getOpaConfigurationCall(siteId, _callback);
 
   }
@@ -954,7 +960,7 @@ public class AccessControlApi {
   /**
    * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return GetOpaConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -983,7 +989,7 @@ public class AccessControlApi {
   /**
    * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetOpaConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1015,7 +1021,7 @@ public class AccessControlApi {
    * Get OPA Configuration (asynchronously) Returns OPA Configuration, can only be requested with
    * ADMIN privileges
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1041,6 +1047,173 @@ public class AccessControlApi {
 
     okhttp3.Call localVarCall = getOpaConfigurationValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetOpaConfigurationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getOpaConfigurations
+   * 
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpaConfigurationsCall(final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/configuration/opa";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getOpaConfigurationsValidateBeforeCall(final ApiCallback _callback)
+      throws ApiException {
+    return getOpaConfigurationsCall(_callback);
+
+  }
+
+  /**
+   * Get OPAs Configuration Returns a list of OPA Configuration, can only be requested with ADMIN
+   * privileges
+   * 
+   * @return GetOpaConfigurationsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetOpaConfigurationsResponse getOpaConfigurations() throws ApiException {
+    ApiResponse<GetOpaConfigurationsResponse> localVarResp = getOpaConfigurationsWithHttpInfo();
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get OPAs Configuration Returns a list of OPA Configuration, can only be requested with ADMIN
+   * privileges
+   * 
+   * @return ApiResponse&lt;GetOpaConfigurationsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetOpaConfigurationsResponse> getOpaConfigurationsWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getOpaConfigurationsValidateBeforeCall(null);
+    Type localVarReturnType = new TypeToken<GetOpaConfigurationsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get OPAs Configuration (asynchronously) Returns a list of OPA Configuration, can only be
+   * requested with ADMIN privileges
+   * 
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpaConfigurationsAsync(
+      final ApiCallback<GetOpaConfigurationsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getOpaConfigurationsValidateBeforeCall(_callback);
+    Type localVarReturnType = new TypeToken<GetOpaConfigurationsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

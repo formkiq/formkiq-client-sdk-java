@@ -1,11 +1,10 @@
 /*
- * FormKiQ HTTP API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
- * You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
- * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
- * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
- * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
- * API spec file with any application that supports the OpenAPI specification. Open API OAuth
- * Specification -
+ * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
+ * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
+ * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
+ * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
+ * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
+ * with any application that supports the OpenAPI specification. Open API OAuth Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.OpaPolicy;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,31 +57,32 @@ import com.formkiq.client.invoker.JSON;
  * GetOpaConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-01-25T11:20:19.134152-06:00[America/Winnipeg]")
+    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.4.0")
 public class GetOpaConfigurationResponse {
-  public static final String SERIALIZED_NAME_POLICY = "policy";
-  @SerializedName(SERIALIZED_NAME_POLICY)
-  private String policy;
+  public static final String SERIALIZED_NAME_OPA_POLICY = "opaPolicy";
+  @SerializedName(SERIALIZED_NAME_OPA_POLICY)
+  private OpaPolicy opaPolicy;
 
   public GetOpaConfigurationResponse() {}
 
-  public GetOpaConfigurationResponse policy(String policy) {
-    this.policy = policy;
+  public GetOpaConfigurationResponse opaPolicy(OpaPolicy opaPolicy) {
+    this.opaPolicy = opaPolicy;
     return this;
   }
 
   /**
-   * OPA Policy in YAML format
+   * Get opaPolicy
    * 
-   * @return policy
+   * @return opaPolicy
    **/
   @javax.annotation.Nullable
-  public String getPolicy() {
-    return policy;
+  public OpaPolicy getOpaPolicy() {
+    return opaPolicy;
   }
 
-  public void setPolicy(String policy) {
-    this.policy = policy;
+  public void setOpaPolicy(OpaPolicy opaPolicy) {
+    this.opaPolicy = opaPolicy;
   }
 
 
@@ -95,19 +96,19 @@ public class GetOpaConfigurationResponse {
       return false;
     }
     GetOpaConfigurationResponse getOpaConfigurationResponse = (GetOpaConfigurationResponse) o;
-    return Objects.equals(this.policy, getOpaConfigurationResponse.policy);
+    return Objects.equals(this.opaPolicy, getOpaConfigurationResponse.opaPolicy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(policy);
+    return Objects.hash(opaPolicy);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetOpaConfigurationResponse {\n");
-    sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
+    sb.append("    opaPolicy: ").append(toIndentedString(opaPolicy)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +130,7 @@ public class GetOpaConfigurationResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("policy");
+    openapiFields.add("opaPolicy");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -161,11 +162,9 @@ public class GetOpaConfigurationResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("policy") != null && !jsonObj.get("policy").isJsonNull())
-        && !jsonObj.get("policy").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `policy` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("policy").toString()));
+    // validate the optional field `opaPolicy`
+    if (jsonObj.get("opaPolicy") != null && !jsonObj.get("opaPolicy").isJsonNull()) {
+      OpaPolicy.validateJsonElement(jsonObj.get("opaPolicy"));
     }
   }
 
