@@ -315,19 +315,19 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
       x-accepts: application/json
-  /configuration:
+  /sites/{siteId}/configuration:
     get:
       description: Returns the list of sites that the user has access to
       operationId: GetConfiguration
       parameters:
       - description: Site Identifier
-        explode: true
-        in: query
+        explode: false
+        in: path
         name: siteId
-        required: false
+        required: true
         schema:
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
@@ -364,13 +364,13 @@ paths:
       operationId: UpdateConfiguration
       parameters:
       - description: Site Identifier
-        explode: true
-        in: query
+        explode: false
+        in: path
         name: siteId
-        required: false
+        required: true
         schema:
           type: string
-        style: form
+        style: simple
       requestBody:
         content:
           application/json:
@@ -414,19 +414,19 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
       x-accepts: application/json
-  /configuration/apiKeys:
+  /sites/{siteId}/apiKeys:
     get:
       description: Returns the list of ApiKeys
       operationId: GetApiKeys
       parameters:
       - description: Site Identifier
-        explode: true
-        in: query
+        explode: false
+        in: path
         name: siteId
-        required: false
+        required: true
         schema:
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
@@ -463,13 +463,13 @@ paths:
       operationId: AddApiKey
       parameters:
       - description: Site Identifier
-        explode: true
-        in: query
+        explode: false
+        in: path
         name: siteId
-        required: false
+        required: true
         schema:
           type: string
-        style: form
+        style: simple
       requestBody:
         content:
           application/json:
@@ -503,19 +503,19 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
       x-accepts: application/json
-  /configuration/apiKeys/{apiKey}:
+  /sites/{siteId}/apiKeys/{apiKey}:
     delete:
       description: Adds a new API Key
       operationId: DeleteApiKey
       parameters:
       - description: Site Identifier
-        explode: true
-        in: query
+        explode: false
+        in: path
         name: siteId
-        required: false
+        required: true
         schema:
           type: string
-        style: form
+        style: simple
       - description: API Key
         explode: false
         in: path
@@ -546,7 +546,7 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts: application/json
-  /configuration/opa:
+  /sites/opa/accessPolicies:
     get:
       description: "Returns a list of OPA Configuration, can only be requested with\
         \ ADMIN privileges"
@@ -614,7 +614,7 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
       x-accepts: application/json
-  /configuration/opa/{siteId}:
+  /sites/{siteId}/opa/accessPolicy:
     delete:
       description: Delete OPA Configuration
       operationId: DeleteOpaConfiguration

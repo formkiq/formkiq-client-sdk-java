@@ -6,12 +6,12 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addDocumentAccessAttributes**](AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes |
 | [**deleteDocumentAccessAttributes**](AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes |
-| [**deleteOpaConfiguration**](AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa/{siteId} | Delete OPA Configuration |
+| [**deleteOpaConfiguration**](AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /sites/{siteId}/opa/accessPolicy | Delete OPA Configuration |
 | [**getDocumentAccessAttributes**](AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes |
-| [**getOpaConfiguration**](AccessControlApi.md#getOpaConfiguration) | **GET** /configuration/opa/{siteId} | Get OPA Configuration |
-| [**getOpaConfigurations**](AccessControlApi.md#getOpaConfigurations) | **GET** /configuration/opa | Get OPAs Configuration |
+| [**getOpaConfiguration**](AccessControlApi.md#getOpaConfiguration) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Configuration |
+| [**getOpaConfigurations**](AccessControlApi.md#getOpaConfigurations) | **GET** /sites/opa/accessPolicies | Get OPAs Configuration |
 | [**setDocumentAccessAttributes**](AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes |
-| [**setOpaConfiguration**](AccessControlApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration |
+| [**setOpaConfiguration**](AccessControlApi.md#setOpaConfiguration) | **PUT** /sites/opa/accessPolicies | Set OPA Configuration |
 
 
 <a id="addDocumentAccessAttributes"></a>

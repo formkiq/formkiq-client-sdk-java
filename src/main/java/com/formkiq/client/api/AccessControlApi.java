@@ -548,7 +548,7 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa/{siteId}".replace("{" + "siteId" + "}",
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy".replace("{" + "siteId" + "}",
         localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -916,7 +916,7 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa/{siteId}".replace("{" + "siteId" + "}",
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy".replace("{" + "siteId" + "}",
         localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1091,7 +1091,7 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa";
+    String localVarPath = "/sites/opa/accessPolicies";
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1488,7 +1488,7 @@ public class AccessControlApi {
     Object localVarPostBody = setOpaConfigurationRequest;
 
     // create path and map variables
-    String localVarPath = "/configuration/opa";
+    String localVarPath = "/sites/opa/accessPolicies";
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key |
-| [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key |
+| [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
+| [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key |
 | [**deleteOpensearchIndex**](SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index |
-| [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys |
-| [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration |
+| [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys |
+| [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration |
 | [**getOpensearchIndex**](SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
 | [**setOpensearchIndex**](SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings |
-| [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration |
+| [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration |
 
 
 <a id="addApiKey"></a>
 # **addApiKey**
-> AddApiKeyResponse addApiKey(addApiKeyRequest, siteId)
+> AddApiKeyResponse addApiKey(siteId, addApiKeyRequest)
 
 Add API Key
 
@@ -42,10 +42,10 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    AddApiKeyRequest addApiKeyRequest = new AddApiKeyRequest(); // AddApiKeyRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    AddApiKeyRequest addApiKeyRequest = new AddApiKeyRequest(); // AddApiKeyRequest | 
     try {
-      AddApiKeyResponse result = apiInstance.addApiKey(addApiKeyRequest, siteId);
+      AddApiKeyResponse result = apiInstance.addApiKey(siteId, addApiKeyRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#addApiKey");
@@ -62,8 +62,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
 | **addApiKeyRequest** | [**AddApiKeyRequest**](AddApiKeyRequest.md)|  | |
-| **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
@@ -85,7 +85,7 @@ No authorization required
 
 <a id="deleteApiKey"></a>
 # **deleteApiKey**
-> DeleteApiKeyResponse deleteApiKey(apiKey, siteId)
+> DeleteApiKeyResponse deleteApiKey(siteId, apiKey)
 
 Delete API Key
 
@@ -109,10 +109,10 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    String apiKey = "apiKey_example"; // String | API Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String apiKey = "apiKey_example"; // String | API Key
     try {
-      DeleteApiKeyResponse result = apiInstance.deleteApiKey(apiKey, siteId);
+      DeleteApiKeyResponse result = apiInstance.deleteApiKey(siteId, apiKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#deleteApiKey");
@@ -129,8 +129,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
 | **apiKey** | **String**| API Key | |
-| **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
@@ -260,7 +260,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
+| **siteId** | **String**| Site Identifier | |
 
 ### Return type
 
@@ -325,7 +325,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | [optional] |
+| **siteId** | **String**| Site Identifier | |
 
 ### Return type
 
@@ -601,7 +601,7 @@ No authorization required
 
 <a id="updateConfiguration"></a>
 # **updateConfiguration**
-> UpdateConfigurationResponse updateConfiguration(updateConfigurationRequest, siteId)
+> UpdateConfigurationResponse updateConfiguration(siteId, updateConfigurationRequest)
 
 Update site configuration
 
@@ -625,10 +625,10 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    UpdateConfigurationRequest updateConfigurationRequest = new UpdateConfigurationRequest(); // UpdateConfigurationRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    UpdateConfigurationRequest updateConfigurationRequest = new UpdateConfigurationRequest(); // UpdateConfigurationRequest | 
     try {
-      UpdateConfigurationResponse result = apiInstance.updateConfiguration(updateConfigurationRequest, siteId);
+      UpdateConfigurationResponse result = apiInstance.updateConfiguration(siteId, updateConfigurationRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#updateConfiguration");
@@ -645,8 +645,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
 | **updateConfigurationRequest** | [**UpdateConfigurationRequest**](UpdateConfigurationRequest.md)|  | |
-| **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 

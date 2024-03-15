@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-12T17:22:35.784319-05:00[America/Winnipeg]",
+    date = "2024-03-14T20:54:36.803660-05:00[America/Winnipeg]",
     comments = "Generator version: 7.4.0")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";

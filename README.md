@@ -2,7 +2,7 @@
 
 FormKiQ API
 - API version: 1.14.0
-  - Build date: 2024-03-12T17:22:35.784319-05:00[America/Winnipeg]
+  - Build date: 2024-03-14T20:54:36.803660-05:00[America/Winnipeg]
   - Generator version: 7.4.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
@@ -141,12 +141,12 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccessControlApi* | [**addDocumentAccessAttributes**](docs/AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes
 *AccessControlApi* | [**deleteDocumentAccessAttributes**](docs/AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes
-*AccessControlApi* | [**deleteOpaConfiguration**](docs/AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /configuration/opa/{siteId} | Delete OPA Configuration
+*AccessControlApi* | [**deleteOpaConfiguration**](docs/AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /sites/{siteId}/opa/accessPolicy | Delete OPA Configuration
 *AccessControlApi* | [**getDocumentAccessAttributes**](docs/AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes
-*AccessControlApi* | [**getOpaConfiguration**](docs/AccessControlApi.md#getOpaConfiguration) | **GET** /configuration/opa/{siteId} | Get OPA Configuration
-*AccessControlApi* | [**getOpaConfigurations**](docs/AccessControlApi.md#getOpaConfigurations) | **GET** /configuration/opa | Get OPAs Configuration
+*AccessControlApi* | [**getOpaConfiguration**](docs/AccessControlApi.md#getOpaConfiguration) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Configuration
+*AccessControlApi* | [**getOpaConfigurations**](docs/AccessControlApi.md#getOpaConfigurations) | **GET** /sites/opa/accessPolicies | Get OPAs Configuration
 *AccessControlApi* | [**setDocumentAccessAttributes**](docs/AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes
-*AccessControlApi* | [**setOpaConfiguration**](docs/AccessControlApi.md#setOpaConfiguration) | **PUT** /configuration/opa | Set OPA Configuration
+*AccessControlApi* | [**setOpaConfiguration**](docs/AccessControlApi.md#setOpaConfiguration) | **PUT** /sites/opa/accessPolicies | Set OPA Configuration
 *AdvancedDocumentSearchApi* | [**addDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#addDocumentFulltext) | **POST** /documents/{documentId}/fulltext | Add document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag
@@ -247,16 +247,16 @@ Class | Method | HTTP request | Description
 *RulesetsApi* | [**getRulesets**](docs/RulesetsApi.md#getRulesets) | **GET** /rulesets | Get Rulesets
 *RulesetsApi* | [**updateRule**](docs/RulesetsApi.md#updateRule) | **PATCH** /rulesets/{rulesetId}/rules/{ruleId} | Update Rule
 *RulesetsApi* | [**updateRuleset**](docs/RulesetsApi.md#updateRuleset) | **PATCH** /rulesets/{rulesetId} | Update Ruleset
-*SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /configuration/apiKeys | Add API Key
-*SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /configuration/apiKeys/{apiKey} | Delete API Key
+*SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
+*SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index
-*SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /configuration/apiKeys | Get API Keys
-*SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /configuration | Get site configuration
+*SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
+*SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration
 *SystemManagementApi* | [**getOpensearchIndex**](docs/SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
 *SystemManagementApi* | [**setOpensearchIndex**](docs/SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
-*SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /configuration | Update site configuration
+*SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
 *TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema

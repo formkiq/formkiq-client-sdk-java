@@ -94,8 +94,8 @@ public class SystemManagementApi {
   /**
    * Build call for addApiKey
    * 
+   * @param siteId Site Identifier (required)
    * @param addApiKeyRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -116,7 +116,7 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addApiKeyCall(AddApiKeyRequest addApiKeyRequest, String siteId,
+  public okhttp3.Call addApiKeyCall(String siteId, AddApiKeyRequest addApiKeyRequest,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -134,17 +134,14 @@ public class SystemManagementApi {
     Object localVarPostBody = addApiKeyRequest;
 
     // create path and map variables
-    String localVarPath = "/configuration/apiKeys";
+    String localVarPath = "/sites/{siteId}/apiKeys".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -166,23 +163,29 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addApiKeyValidateBeforeCall(AddApiKeyRequest addApiKeyRequest, String siteId,
+  private okhttp3.Call addApiKeyValidateBeforeCall(String siteId, AddApiKeyRequest addApiKeyRequest,
       final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling addApiKey(Async)");
+    }
+
     // verify the required parameter 'addApiKeyRequest' is set
     if (addApiKeyRequest == null) {
       throw new ApiException(
           "Missing the required parameter 'addApiKeyRequest' when calling addApiKey(Async)");
     }
 
-    return addApiKeyCall(addApiKeyRequest, siteId, _callback);
+    return addApiKeyCall(siteId, addApiKeyRequest, _callback);
 
   }
 
   /**
    * Add API Key Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param addApiKeyRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return AddApiKeyResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -203,17 +206,17 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddApiKeyResponse addApiKey(AddApiKeyRequest addApiKeyRequest, String siteId)
+  public AddApiKeyResponse addApiKey(String siteId, AddApiKeyRequest addApiKeyRequest)
       throws ApiException {
-    ApiResponse<AddApiKeyResponse> localVarResp = addApiKeyWithHttpInfo(addApiKeyRequest, siteId);
+    ApiResponse<AddApiKeyResponse> localVarResp = addApiKeyWithHttpInfo(siteId, addApiKeyRequest);
     return localVarResp.getData();
   }
 
   /**
    * Add API Key Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param addApiKeyRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;AddApiKeyResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -234,9 +237,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddApiKeyResponse> addApiKeyWithHttpInfo(AddApiKeyRequest addApiKeyRequest,
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(addApiKeyRequest, siteId, null);
+  public ApiResponse<AddApiKeyResponse> addApiKeyWithHttpInfo(String siteId,
+      AddApiKeyRequest addApiKeyRequest) throws ApiException {
+    okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(siteId, addApiKeyRequest, null);
     Type localVarReturnType = new TypeToken<AddApiKeyResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -244,8 +247,8 @@ public class SystemManagementApi {
   /**
    * Add API Key (asynchronously) Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param addApiKeyRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -266,10 +269,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addApiKeyAsync(AddApiKeyRequest addApiKeyRequest, String siteId,
+  public okhttp3.Call addApiKeyAsync(String siteId, AddApiKeyRequest addApiKeyRequest,
       final ApiCallback<AddApiKeyResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(addApiKeyRequest, siteId, _callback);
+    okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(siteId, addApiKeyRequest, _callback);
     Type localVarReturnType = new TypeToken<AddApiKeyResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -278,8 +281,8 @@ public class SystemManagementApi {
   /**
    * Build call for deleteApiKey
    * 
+   * @param siteId Site Identifier (required)
    * @param apiKey API Key (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -300,7 +303,7 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteApiKeyCall(String apiKey, String siteId, final ApiCallback _callback)
+  public okhttp3.Call deleteApiKeyCall(String siteId, String apiKey, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -318,18 +321,15 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/apiKeys/{apiKey}".replace("{" + "apiKey" + "}",
-        localVarApiClient.escapeString(apiKey.toString()));
+    String localVarPath = "/sites/{siteId}/apiKeys/{apiKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "apiKey" + "}", localVarApiClient.escapeString(apiKey.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -351,23 +351,29 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteApiKeyValidateBeforeCall(String apiKey, String siteId,
+  private okhttp3.Call deleteApiKeyValidateBeforeCall(String siteId, String apiKey,
       final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteApiKey(Async)");
+    }
+
     // verify the required parameter 'apiKey' is set
     if (apiKey == null) {
       throw new ApiException(
           "Missing the required parameter 'apiKey' when calling deleteApiKey(Async)");
     }
 
-    return deleteApiKeyCall(apiKey, siteId, _callback);
+    return deleteApiKeyCall(siteId, apiKey, _callback);
 
   }
 
   /**
    * Delete API Key Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param apiKey API Key (required)
-   * @param siteId Site Identifier (optional)
    * @return DeleteApiKeyResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -388,16 +394,16 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteApiKeyResponse deleteApiKey(String apiKey, String siteId) throws ApiException {
-    ApiResponse<DeleteApiKeyResponse> localVarResp = deleteApiKeyWithHttpInfo(apiKey, siteId);
+  public DeleteApiKeyResponse deleteApiKey(String siteId, String apiKey) throws ApiException {
+    ApiResponse<DeleteApiKeyResponse> localVarResp = deleteApiKeyWithHttpInfo(siteId, apiKey);
     return localVarResp.getData();
   }
 
   /**
    * Delete API Key Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param apiKey API Key (required)
-   * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;DeleteApiKeyResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -418,9 +424,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteApiKeyResponse> deleteApiKeyWithHttpInfo(String apiKey, String siteId)
+  public ApiResponse<DeleteApiKeyResponse> deleteApiKeyWithHttpInfo(String siteId, String apiKey)
       throws ApiException {
-    okhttp3.Call localVarCall = deleteApiKeyValidateBeforeCall(apiKey, siteId, null);
+    okhttp3.Call localVarCall = deleteApiKeyValidateBeforeCall(siteId, apiKey, null);
     Type localVarReturnType = new TypeToken<DeleteApiKeyResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -428,8 +434,8 @@ public class SystemManagementApi {
   /**
    * Delete API Key (asynchronously) Adds a new API Key
    * 
+   * @param siteId Site Identifier (required)
    * @param apiKey API Key (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -450,10 +456,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteApiKeyAsync(String apiKey, String siteId,
+  public okhttp3.Call deleteApiKeyAsync(String siteId, String apiKey,
       final ApiCallback<DeleteApiKeyResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = deleteApiKeyValidateBeforeCall(apiKey, siteId, _callback);
+    okhttp3.Call localVarCall = deleteApiKeyValidateBeforeCall(siteId, apiKey, _callback);
     Type localVarReturnType = new TypeToken<DeleteApiKeyResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -639,7 +645,7 @@ public class SystemManagementApi {
   /**
    * Build call for getApiKeys
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -678,17 +684,14 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration/apiKeys";
+    String localVarPath = "/sites/{siteId}/apiKeys".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -712,6 +715,12 @@ public class SystemManagementApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getApiKeysValidateBeforeCall(String siteId, final ApiCallback _callback)
       throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getApiKeys(Async)");
+    }
+
     return getApiKeysCall(siteId, _callback);
 
   }
@@ -719,7 +728,7 @@ public class SystemManagementApi {
   /**
    * Get API Keys Returns the list of ApiKeys
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return GetApiKeysResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -748,7 +757,7 @@ public class SystemManagementApi {
   /**
    * Get API Keys Returns the list of ApiKeys
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetApiKeysResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -778,7 +787,7 @@ public class SystemManagementApi {
   /**
    * Get API Keys (asynchronously) Returns the list of ApiKeys
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -811,7 +820,7 @@ public class SystemManagementApi {
   /**
    * Build call for getConfiguration
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -850,17 +859,14 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/configuration";
+    String localVarPath = "/sites/{siteId}/configuration".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -884,6 +890,12 @@ public class SystemManagementApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getConfigurationValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getConfiguration(Async)");
+    }
+
     return getConfigurationCall(siteId, _callback);
 
   }
@@ -891,7 +903,7 @@ public class SystemManagementApi {
   /**
    * Get site configuration Returns the list of sites that the user has access to
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return GetConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -920,7 +932,7 @@ public class SystemManagementApi {
   /**
    * Get site configuration Returns the list of sites that the user has access to
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -951,7 +963,7 @@ public class SystemManagementApi {
   /**
    * Get site configuration (asynchronously) Returns the list of sites that the user has access to
    * 
-   * @param siteId Site Identifier (optional)
+   * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1678,8 +1690,8 @@ public class SystemManagementApi {
   /**
    * Build call for updateConfiguration
    * 
+   * @param siteId Site Identifier (required)
    * @param updateConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1705,8 +1717,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigurationCall(UpdateConfigurationRequest updateConfigurationRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateConfigurationCall(String siteId,
+      UpdateConfigurationRequest updateConfigurationRequest, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1723,17 +1736,14 @@ public class SystemManagementApi {
     Object localVarPostBody = updateConfigurationRequest;
 
     // create path and map variables
-    String localVarPath = "/configuration";
+    String localVarPath = "/sites/{siteId}/configuration".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -1755,24 +1765,30 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateConfigurationValidateBeforeCall(
-      UpdateConfigurationRequest updateConfigurationRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call updateConfigurationValidateBeforeCall(String siteId,
+      UpdateConfigurationRequest updateConfigurationRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling updateConfiguration(Async)");
+    }
+
     // verify the required parameter 'updateConfigurationRequest' is set
     if (updateConfigurationRequest == null) {
       throw new ApiException(
           "Missing the required parameter 'updateConfigurationRequest' when calling updateConfiguration(Async)");
     }
 
-    return updateConfigurationCall(updateConfigurationRequest, siteId, _callback);
+    return updateConfigurationCall(siteId, updateConfigurationRequest, _callback);
 
   }
 
   /**
    * Update site configuration Update the System Management configuration
    * 
+   * @param siteId Site Identifier (required)
    * @param updateConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return UpdateConfigurationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1798,18 +1814,18 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateConfigurationResponse updateConfiguration(
-      UpdateConfigurationRequest updateConfigurationRequest, String siteId) throws ApiException {
+  public UpdateConfigurationResponse updateConfiguration(String siteId,
+      UpdateConfigurationRequest updateConfigurationRequest) throws ApiException {
     ApiResponse<UpdateConfigurationResponse> localVarResp =
-        updateConfigurationWithHttpInfo(updateConfigurationRequest, siteId);
+        updateConfigurationWithHttpInfo(siteId, updateConfigurationRequest);
     return localVarResp.getData();
   }
 
   /**
    * Update site configuration Update the System Management configuration
    * 
+   * @param siteId Site Identifier (required)
    * @param updateConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;UpdateConfigurationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1835,10 +1851,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateConfigurationResponse> updateConfigurationWithHttpInfo(
-      UpdateConfigurationRequest updateConfigurationRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateConfigurationResponse> updateConfigurationWithHttpInfo(String siteId,
+      UpdateConfigurationRequest updateConfigurationRequest) throws ApiException {
     okhttp3.Call localVarCall =
-        updateConfigurationValidateBeforeCall(updateConfigurationRequest, siteId, null);
+        updateConfigurationValidateBeforeCall(siteId, updateConfigurationRequest, null);
     Type localVarReturnType = new TypeToken<UpdateConfigurationResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1846,8 +1862,8 @@ public class SystemManagementApi {
   /**
    * Update site configuration (asynchronously) Update the System Management configuration
    * 
+   * @param siteId Site Identifier (required)
    * @param updateConfigurationRequest (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1873,12 +1889,12 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateConfigurationAsync(
-      UpdateConfigurationRequest updateConfigurationRequest, String siteId,
+  public okhttp3.Call updateConfigurationAsync(String siteId,
+      UpdateConfigurationRequest updateConfigurationRequest,
       final ApiCallback<UpdateConfigurationResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        updateConfigurationValidateBeforeCall(updateConfigurationRequest, siteId, _callback);
+        updateConfigurationValidateBeforeCall(siteId, updateConfigurationRequest, _callback);
     Type localVarReturnType = new TypeToken<UpdateConfigurationResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

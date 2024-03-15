@@ -59,9 +59,9 @@ public class SystemManagementApiTest {
    */
   @Test
   public void addApiKeyTest() throws ApiException {
-    AddApiKeyRequest addApiKeyRequest = null;
     String siteId = null;
-    AddApiKeyResponse response = api.addApiKey(addApiKeyRequest, siteId);
+    AddApiKeyRequest addApiKeyRequest = null;
+    AddApiKeyResponse response = api.addApiKey(siteId, addApiKeyRequest);
     // TODO: test validations
   }
 
@@ -74,9 +74,9 @@ public class SystemManagementApiTest {
    */
   @Test
   public void deleteApiKeyTest() throws ApiException {
-    String apiKey = null;
     String siteId = null;
-    DeleteApiKeyResponse response = api.deleteApiKey(apiKey, siteId);
+    String apiKey = null;
+    DeleteApiKeyResponse response = api.deleteApiKey(siteId, apiKey);
     // TODO: test validations
   }
 
@@ -186,10 +186,10 @@ public class SystemManagementApiTest {
    */
   @Test
   public void updateConfigurationTest() throws ApiException {
-    UpdateConfigurationRequest updateConfigurationRequest = null;
     String siteId = null;
+    UpdateConfigurationRequest updateConfigurationRequest = null;
     UpdateConfigurationResponse response =
-        api.updateConfiguration(updateConfigurationRequest, siteId);
+        api.updateConfiguration(siteId, updateConfigurationRequest);
     // TODO: test validations
   }
 
