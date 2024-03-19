@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addExaminePdf**](ExamineObjectsApi.md#addExaminePdf) | **POST** /objects/examine/{id}/pdf | Add Examine Pdf |
+| [**addExaminePdf**](ExamineObjectsApi.md#addExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf |
 | [**getExaminePdf**](ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/pdf | Add Examine Pdf |
 
 
@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 
 Add Examine Pdf
 
-Examines a PDF file and returns information about it.  File must have been uploaded previously using the GET /objects/examine/pdf API.
+Get PDF details  File must have been uploaded previously using the GET /objects/examine/pdf API.
 
 ### Example
 ```java
@@ -81,7 +81,7 @@ No authorization required
 
 Add Examine Pdf
 
-Gets a URL for temporary upload of a document to be examined by calling POST /objects/examine/{id}/pdf
+Get Signed URL for PDF Object Upload of a document to be examined by calling GET /objects/examine/{id}/pdf
 
 ### Example
 ```java

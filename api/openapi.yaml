@@ -7551,8 +7551,8 @@ paths:
       x-accepts: application/json
   /objects/examine/pdf:
     get:
-      description: "Gets a URL for temporary upload of a document to be examined by\
-        \ calling POST /objects/examine/{id}/pdf"
+      description: "Get Signed URL for PDF Object Upload of a document to be examined\
+        \ by calling GET /objects/examine/{id}/pdf"
       operationId: GetExaminePdf
       parameters:
       - description: Site Identifier
@@ -7595,9 +7595,9 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
       x-accepts: application/json
   /objects/examine/{id}/pdf:
-    post:
+    get:
       description: |-
-        Examines a PDF file and returns information about it.
+        Get PDF details
 
         File must have been uploaded previously using the GET /objects/examine/pdf API.
       operationId: AddExaminePdf

@@ -2,7 +2,7 @@
 
 FormKiQ API
 - API version: 1.14.0
-  - Build date: 2024-03-14T20:54:36.803660-05:00[America/Winnipeg]
+  - Build date: 2024-03-18T19:11:59.103684-05:00[America/Winnipeg]
   - Generator version: 7.4.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
@@ -230,7 +230,7 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**getEsignatureDocusignConfig**](docs/ESignatureApi.md#getEsignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
-*ExamineObjectsApi* | [**addExaminePdf**](docs/ExamineObjectsApi.md#addExaminePdf) | **POST** /objects/examine/{id}/pdf | Add Examine Pdf
+*ExamineObjectsApi* | [**addExaminePdf**](docs/ExamineObjectsApi.md#addExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/pdf | Add Examine Pdf
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document

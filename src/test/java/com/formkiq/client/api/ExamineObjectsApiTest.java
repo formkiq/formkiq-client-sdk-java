@@ -41,8 +41,7 @@ public class ExamineObjectsApiTest {
   /**
    * Add Examine Pdf
    *
-   * Examines a PDF file and returns information about it. File must have been uploaded previously
-   * using the GET /objects/examine/pdf API.
+   * Get PDF details File must have been uploaded previously using the GET /objects/examine/pdf API.
    *
    * @throws ApiException if the Api call fails
    */
@@ -57,7 +56,7 @@ public class ExamineObjectsApiTest {
   /**
    * Add Examine Pdf
    *
-   * Gets a URL for temporary upload of a document to be examined by calling POST
+   * Get Signed URL for PDF Object Upload of a document to be examined by calling GET
    * /objects/examine/{id}/pdf
    *
    * @throws ApiException if the Api call fails

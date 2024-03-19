@@ -149,7 +149,7 @@ public class ExamineObjectsApi {
     }
 
     String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
         localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
         localVarFormParams, localVarAuthNames, _callback);
   }
@@ -168,8 +168,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf Examines a PDF file and returns information about it. File must have been
-   * uploaded previously using the GET /objects/examine/pdf API.
+   * Add Examine Pdf Get PDF details File must have been uploaded previously using the GET
+   * /objects/examine/pdf API.
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -199,8 +199,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf Examines a PDF file and returns information about it. File must have been
-   * uploaded previously using the GET /objects/examine/pdf API.
+   * Add Examine Pdf Get PDF details File must have been uploaded previously using the GET
+   * /objects/examine/pdf API.
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -232,8 +232,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf (asynchronously) Examines a PDF file and returns information about it. File
-   * must have been uploaded previously using the GET /objects/examine/pdf API.
+   * Add Examine Pdf (asynchronously) Get PDF details File must have been uploaded previously using
+   * the GET /objects/examine/pdf API.
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -347,8 +347,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf Gets a URL for temporary upload of a document to be examined by calling POST
-   * /objects/examine/{id}/pdf
+   * Add Examine Pdf Get Signed URL for PDF Object Upload of a document to be examined by calling
+   * GET /objects/examine/{id}/pdf
    * 
    * @param siteId Site Identifier (optional)
    * @return GetExaminePdfResponse
@@ -377,8 +377,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf Gets a URL for temporary upload of a document to be examined by calling POST
-   * /objects/examine/{id}/pdf
+   * Add Examine Pdf Get Signed URL for PDF Object Upload of a document to be examined by calling
+   * GET /objects/examine/{id}/pdf
    * 
    * @param siteId Site Identifier (optional)
    * @return ApiResponse&lt;GetExaminePdfResponse&gt;
@@ -409,8 +409,8 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Add Examine Pdf (asynchronously) Gets a URL for temporary upload of a document to be examined
-   * by calling POST /objects/examine/{id}/pdf
+   * Add Examine Pdf (asynchronously) Get Signed URL for PDF Object Upload of a document to be
+   * examined by calling GET /objects/examine/{id}/pdf
    * 
    * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes

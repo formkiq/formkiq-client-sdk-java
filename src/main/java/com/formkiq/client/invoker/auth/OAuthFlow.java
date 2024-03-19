@@ -23,7 +23,7 @@ package com.formkiq.client.invoker.auth;
  * OAuth flows that are supported by this client
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-14T20:54:36.803660-05:00[America/Winnipeg]",
+    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
     comments = "Generator version: 7.4.0")
 public enum OAuthFlow {
   ACCESS_CODE, // called authorizationCode in OpenAPI 3.0

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * SetDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-14T20:54:36.803660-05:00[America/Winnipeg]",
+    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
     comments = "Generator version: 7.4.0")
 public class SetDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
