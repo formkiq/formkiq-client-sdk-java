@@ -81,7 +81,7 @@ No authorization required
 
 <a id="getDocumentVersions"></a>
 # **getDocumentVersions**
-> GetDocumentVersionsResponse getDocumentVersions(documentId, siteId, shareKey, next)
+> GetDocumentVersionsResponse getDocumentVersions(documentId, siteId, limit, shareKey, next)
 
 Get document&#39;s versions
 
@@ -107,10 +107,11 @@ public class Example {
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentVersionsResponse result = apiInstance.getDocumentVersions(documentId, siteId, shareKey, next);
+      GetDocumentVersionsResponse result = apiInstance.getDocumentVersions(documentId, siteId, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#getDocumentVersions");
@@ -129,6 +130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
 

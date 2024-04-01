@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**folder** | **String** | Searches for a folder |  [optional] |
 |**path** | **String** | Searches for a Path of document |  [optional] |
+|**eq** | **String** | Searches for strings that eq |  [optional] |
 |**indexType** | [**IndexTypeEnum**](#IndexTypeEnum) | Searches in an index |  [optional] |
 |**indexFilterBeginsWith** | **String** | Returns index records that begins with a particular substring |  [optional] |
 

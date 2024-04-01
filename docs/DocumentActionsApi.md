@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Add document action
 
-Add one or more actions to a document; this appends actions and does not replace previous actions  Each action type supports a different set of parameters as shown in the table below:  ### Action Parameters  | ActionType | Parameter | Description | Example | | -------- | ------- | ------- | ------- | | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES | | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract | | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description | | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION    | notificationType | Type of Notification | email | | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject | | NOTIFICATION    | notificationText    | Notification as Text | Email Text | | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text | | QUEUE    | queueName    | Name of Queue | |
+Add one or more actions to a document; this appends actions and does not replace previous actions  Each action type supports a different set of parameters as shown in the table below:  ### Action Parameters  | ActionType | Parameter | Description | Example | | -------- | ------- | ------- | ------- | | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES | | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract | | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description | | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION    | notificationType | Type of Notification | email | | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject | | NOTIFICATION    | notificationText    | Notification as Text | Email Text | | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text | | QUEUE    | queueId    | Id of Queue | |
 
 ### Example
 ```java
@@ -149,7 +149,7 @@ No authorization required
 
 <a id="getDocumentActions"></a>
 # **getDocumentActions**
-> GetDocumentActionsResponse getDocumentActions(documentId, siteId, shareKey)
+> GetDocumentActionsResponse getDocumentActions(documentId, siteId, limit, shareKey, next)
 
 Get document actions
 
@@ -175,9 +175,11 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
+    String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, shareKey);
+      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#getDocumentActions");
@@ -196,7 +198,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **next** | **String**| Next page of results token | [optional] |
 
 ### Return type
 

@@ -17,8 +17,9 @@
 |**documentId** | **String** | Document Identifier |  [optional] |
 |**createdBy** | **String** | User who added document |  [optional] |
 |**contentLength** | **Integer** | Document size |  [optional] |
-|**tags** | **Object** |  |  [optional] |
-|**metadata** | **Object** |  |  [optional] |
+|**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**accessAttributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
 
 
 

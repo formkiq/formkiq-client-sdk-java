@@ -877,7 +877,7 @@ No authorization required
 
 <a id="updateDocument"></a>
 # **updateDocument**
-> AddDocumentResponse updateDocument(documentId, addDocumentRequest, siteId, shareKey)
+> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, shareKey)
 
 Update document
 
@@ -902,11 +902,11 @@ public class Example {
     
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
+    UpdateDocumentRequest updateDocumentRequest = new UpdateDocumentRequest(); // UpdateDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.updateDocument(documentId, addDocumentRequest, siteId, shareKey);
+      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#updateDocument");
@@ -924,7 +924,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **addDocumentRequest** | [**AddDocumentRequest**](AddDocumentRequest.md)|  | |
+| **updateDocumentRequest** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
