@@ -19,9 +19,9 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentCompositeSearchTag;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
+import com.formkiq.client.model.DocumentSearchTags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

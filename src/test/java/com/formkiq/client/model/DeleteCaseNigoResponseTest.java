@@ -19,7 +19,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.PdfDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,25 +30,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddExaminePdfResponse
+ * Model tests for DeleteCaseNigoResponse
  */
-public class AddExaminePdfResponseTest {
-  private final AddExaminePdfResponse model = new AddExaminePdfResponse();
+public class DeleteCaseNigoResponseTest {
+  private final DeleteCaseNigoResponse model = new DeleteCaseNigoResponse();
 
   /**
-   * Model tests for AddExaminePdfResponse
+   * Model tests for DeleteCaseNigoResponse
    */
   @Test
-  public void testAddExaminePdfResponse() {
-    // TODO: test AddExaminePdfResponse
+  public void testDeleteCaseNigoResponse() {
+    // TODO: test DeleteCaseNigoResponse
   }
 
   /**
-   * Test the property 'fileinfo'
+   * Test the property 'message'
    */
   @Test
-  public void fileinfoTest() {
-    // TODO: test fileinfo
+  public void messageTest() {
+    // TODO: test message
   }
 
 }

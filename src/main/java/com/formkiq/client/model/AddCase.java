@@ -64,7 +64,7 @@ import com.formkiq.client.invoker.JSON;
  * AddCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class AddCase {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -74,6 +74,18 @@ public class AddCase {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private CaseStatus status;
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private String endDate;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
   public static final String SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT = "documentNumberFormat";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT)
@@ -138,6 +150,66 @@ public class AddCase {
 
   public void setStatus(CaseStatus status) {
     this.status = status;
+  }
+
+
+  public AddCase startDate(String startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Start Date
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public AddCase endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+  /**
+   * End Date
+   * 
+   * @return endDate
+   **/
+  @javax.annotation.Nullable
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+
+  public AddCase description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Case Description
+   * 
+   * @return description
+   **/
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -320,6 +392,9 @@ public class AddCase {
     }
     AddCase addCase = (AddCase) o;
     return Objects.equals(this.name, addCase.name) && Objects.equals(this.status, addCase.status)
+        && Objects.equals(this.startDate, addCase.startDate)
+        && Objects.equals(this.endDate, addCase.endDate)
+        && Objects.equals(this.description, addCase.description)
         && Objects.equals(this.documentNumberFormat, addCase.documentNumberFormat)
         && Objects.equals(this.caseNumberFormat, addCase.caseNumberFormat)
         && Objects.equals(this.metadata, addCase.metadata)
@@ -329,8 +404,8 @@ public class AddCase {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, documentNumberFormat, caseNumberFormat, metadata, documentIds,
-        tasks, nigos);
+    return Objects.hash(name, status, startDate, endDate, description, documentNumberFormat,
+        caseNumberFormat, metadata, documentIds, tasks, nigos);
   }
 
   @Override
@@ -339,6 +414,9 @@ public class AddCase {
     sb.append("class AddCase {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    documentNumberFormat: ").append(toIndentedString(documentNumberFormat))
         .append("\n");
     sb.append("    caseNumberFormat: ").append(toIndentedString(caseNumberFormat)).append("\n");
@@ -369,6 +447,9 @@ public class AddCase {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("status");
+    openapiFields.add("startDate");
+    openapiFields.add("endDate");
+    openapiFields.add("description");
     openapiFields.add("documentNumberFormat");
     openapiFields.add("caseNumberFormat");
     openapiFields.add("metadata");
@@ -424,6 +505,24 @@ public class AddCase {
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       CaseStatus.validateJsonElement(jsonObj.get("status"));
+    }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
+    }
+    if ((jsonObj.get("endDate") != null && !jsonObj.get("endDate").isJsonNull())
+        && !jsonObj.get("endDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
+        && !jsonObj.get("description").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("description").toString()));
     }
     if (jsonObj.get("documentNumberFormat") != null
         && !jsonObj.get("documentNumberFormat").isJsonNull()) {

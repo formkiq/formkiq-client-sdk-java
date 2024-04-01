@@ -33,8 +33,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.formkiq.client.model.AddExaminePdfResponse;
 import com.formkiq.client.model.GetExaminePdfResponse;
+import com.formkiq.client.model.GetExaminePdfUrlResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -80,7 +80,7 @@ public class ExamineObjectsApi {
   }
 
   /**
-   * Build call for addExaminePdf
+   * Build call for getExaminePdf
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -104,7 +104,7 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addExaminePdfCall(String id, String siteId, final ApiCallback _callback)
+  public okhttp3.Call getExaminePdfCall(String id, String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -155,15 +155,15 @@ public class ExamineObjectsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addExaminePdfValidateBeforeCall(String id, String siteId,
+  private okhttp3.Call getExaminePdfValidateBeforeCall(String id, String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(
-          "Missing the required parameter 'id' when calling addExaminePdf(Async)");
+          "Missing the required parameter 'id' when calling getExaminePdf(Async)");
     }
 
-    return addExaminePdfCall(id, siteId, _callback);
+    return getExaminePdfCall(id, siteId, _callback);
 
   }
 
@@ -173,7 +173,7 @@ public class ExamineObjectsApi {
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return AddExaminePdfResponse
+   * @return GetExaminePdfResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -193,8 +193,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddExaminePdfResponse addExaminePdf(String id, String siteId) throws ApiException {
-    ApiResponse<AddExaminePdfResponse> localVarResp = addExaminePdfWithHttpInfo(id, siteId);
+  public GetExaminePdfResponse getExaminePdf(String id, String siteId) throws ApiException {
+    ApiResponse<GetExaminePdfResponse> localVarResp = getExaminePdfWithHttpInfo(id, siteId);
     return localVarResp.getData();
   }
 
@@ -204,7 +204,7 @@ public class ExamineObjectsApi {
    * 
    * @param id Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;AddExaminePdfResponse&gt;
+   * @return ApiResponse&lt;GetExaminePdfResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -224,10 +224,10 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddExaminePdfResponse> addExaminePdfWithHttpInfo(String id, String siteId)
+  public ApiResponse<GetExaminePdfResponse> getExaminePdfWithHttpInfo(String id, String siteId)
       throws ApiException {
-    okhttp3.Call localVarCall = addExaminePdfValidateBeforeCall(id, siteId, null);
-    Type localVarReturnType = new TypeToken<AddExaminePdfResponse>() {}.getType();
+    okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(id, siteId, null);
+    Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -257,17 +257,17 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addExaminePdfAsync(String id, String siteId,
-      final ApiCallback<AddExaminePdfResponse> _callback) throws ApiException {
+  public okhttp3.Call getExaminePdfAsync(String id, String siteId,
+      final ApiCallback<GetExaminePdfResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = addExaminePdfValidateBeforeCall(id, siteId, _callback);
-    Type localVarReturnType = new TypeToken<AddExaminePdfResponse>() {}.getType();
+    okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(id, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
   /**
-   * Build call for getExaminePdf
+   * Build call for getExaminePdfUrl
    * 
    * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
@@ -290,7 +290,7 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfCall(String siteId, final ApiCallback _callback)
+  public okhttp3.Call getExaminePdfUrlCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -340,9 +340,9 @@ public class ExamineObjectsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getExaminePdfValidateBeforeCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
-    return getExaminePdfCall(siteId, _callback);
+  private okhttp3.Call getExaminePdfUrlValidateBeforeCall(String siteId,
+      final ApiCallback _callback) throws ApiException {
+    return getExaminePdfUrlCall(siteId, _callback);
 
   }
 
@@ -351,7 +351,7 @@ public class ExamineObjectsApi {
    * GET /objects/examine/{id}/pdf
    * 
    * @param siteId Site Identifier (optional)
-   * @return GetExaminePdfResponse
+   * @return GetExaminePdfUrlResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -371,8 +371,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetExaminePdfResponse getExaminePdf(String siteId) throws ApiException {
-    ApiResponse<GetExaminePdfResponse> localVarResp = getExaminePdfWithHttpInfo(siteId);
+  public GetExaminePdfUrlResponse getExaminePdfUrl(String siteId) throws ApiException {
+    ApiResponse<GetExaminePdfUrlResponse> localVarResp = getExaminePdfUrlWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -381,7 +381,7 @@ public class ExamineObjectsApi {
    * GET /objects/examine/{id}/pdf
    * 
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;GetExaminePdfResponse&gt;
+   * @return ApiResponse&lt;GetExaminePdfUrlResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -401,10 +401,10 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetExaminePdfResponse> getExaminePdfWithHttpInfo(String siteId)
+  public ApiResponse<GetExaminePdfUrlResponse> getExaminePdfUrlWithHttpInfo(String siteId)
       throws ApiException {
-    okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(siteId, null);
-    Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
+    okhttp3.Call localVarCall = getExaminePdfUrlValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetExaminePdfUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -433,11 +433,11 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfAsync(String siteId,
-      final ApiCallback<GetExaminePdfResponse> _callback) throws ApiException {
+  public okhttp3.Call getExaminePdfUrlAsync(String siteId,
+      final ApiCallback<GetExaminePdfUrlResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(siteId, _callback);
-    Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
+    okhttp3.Call localVarCall = getExaminePdfUrlValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetExaminePdfUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

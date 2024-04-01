@@ -35,9 +35,17 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddCaseRequest;
 import com.formkiq.client.model.AddCaseResponse;
+import com.formkiq.client.model.DeleteCaseDocumentResponse;
+import com.formkiq.client.model.DeleteCaseNigoDocumentResponse;
+import com.formkiq.client.model.DeleteCaseNigoResponse;
+import com.formkiq.client.model.DeleteCaseResponse;
+import com.formkiq.client.model.DeleteCaseTaskDocumentResponse;
+import com.formkiq.client.model.DeleteCaseTaskResponse;
 import com.formkiq.client.model.GetCaseDocumentsResponse;
+import com.formkiq.client.model.GetCaseNigoResponse;
 import com.formkiq.client.model.GetCaseNigosResponse;
 import com.formkiq.client.model.GetCaseResponse;
+import com.formkiq.client.model.GetCaseTaskResponse;
 import com.formkiq.client.model.GetCaseTasksResponse;
 import com.formkiq.client.model.GetCasesResponse;
 import com.formkiq.client.model.UpdateCaseRequest;
@@ -269,6 +277,1205 @@ public class CaseManagementApi {
 
     okhttp3.Call localVarCall = addCaseValidateBeforeCall(addCaseRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddCaseResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteCase
+   * 
+   * @param caseId Case Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteCaseCall(String caseId, String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}".replace("{" + "caseId" + "}",
+        localVarApiClient.escapeString(caseId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteCaseValidateBeforeCall(String caseId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteCase(Async)");
+    }
+
+    return deleteCaseCall(caseId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Case Delete Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseResponse deleteCase(String caseId, String siteId) throws ApiException {
+    ApiResponse<DeleteCaseResponse> localVarResp = deleteCaseWithHttpInfo(caseId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Case Delete Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseResponse> deleteCaseWithHttpInfo(String caseId, String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteCaseValidateBeforeCall(caseId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Case (asynchronously) Delete Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteCaseAsync(String caseId, String siteId,
+      final ApiCallback<DeleteCaseResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteCaseValidateBeforeCall(caseId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteCaseDocument
+   * 
+   * @param caseId Case Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteCaseDocumentCall(String caseId, String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/documents/{documentId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteCaseDocumentValidateBeforeCall(String caseId, String documentId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteCaseDocument(Async)");
+    }
+
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling deleteCaseDocument(Async)");
+    }
+
+    return deleteCaseDocumentCall(caseId, documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Document from Case Delete Document from Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseDocumentResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseDocumentResponse deleteCaseDocument(String caseId, String documentId,
+      String siteId) throws ApiException {
+    ApiResponse<DeleteCaseDocumentResponse> localVarResp =
+        deleteCaseDocumentWithHttpInfo(caseId, documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Document from Case Delete Document from Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseDocumentResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseDocumentResponse> deleteCaseDocumentWithHttpInfo(String caseId,
+      String documentId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseDocumentResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Document from Case (asynchronously) Delete Document from Case
+   * 
+   * @param caseId Case Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteCaseDocumentAsync(String caseId, String documentId, String siteId,
+      final ApiCallback<DeleteCaseDocumentResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseDocumentResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteNigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteNigoCall(String caseId, String nigoId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/nigos/{nigoId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "nigoId" + "}", localVarApiClient.escapeString(nigoId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteNigoValidateBeforeCall(String caseId, String nigoId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteNigo(Async)");
+    }
+
+    // verify the required parameter 'nigoId' is set
+    if (nigoId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'nigoId' when calling deleteNigo(Async)");
+    }
+
+    return deleteNigoCall(caseId, nigoId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Nigo Delete Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseNigoResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseNigoResponse deleteNigo(String caseId, String nigoId, String siteId)
+      throws ApiException {
+    ApiResponse<DeleteCaseNigoResponse> localVarResp =
+        deleteNigoWithHttpInfo(caseId, nigoId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Nigo Delete Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseNigoResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseNigoResponse> deleteNigoWithHttpInfo(String caseId, String nigoId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = deleteNigoValidateBeforeCall(caseId, nigoId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseNigoResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Nigo (asynchronously) Delete Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteNigoAsync(String caseId, String nigoId, String siteId,
+      final ApiCallback<DeleteCaseNigoResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteNigoValidateBeforeCall(caseId, nigoId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseNigoResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteNigoDocument
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteNigoDocumentCall(String caseId, String nigoId, String documentId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/nigos/{nigoId}/documents/{documentId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "nigoId" + "}", localVarApiClient.escapeString(nigoId.toString()))
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteNigoDocumentValidateBeforeCall(String caseId, String nigoId,
+      String documentId, String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteNigoDocument(Async)");
+    }
+
+    // verify the required parameter 'nigoId' is set
+    if (nigoId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'nigoId' when calling deleteNigoDocument(Async)");
+    }
+
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling deleteNigoDocument(Async)");
+    }
+
+    return deleteNigoDocumentCall(caseId, nigoId, documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Document from Nigo Delete Document from Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseNigoDocumentResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseNigoDocumentResponse deleteNigoDocument(String caseId, String nigoId,
+      String documentId, String siteId) throws ApiException {
+    ApiResponse<DeleteCaseNigoDocumentResponse> localVarResp =
+        deleteNigoDocumentWithHttpInfo(caseId, nigoId, documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Document from Nigo Delete Document from Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseNigoDocumentResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseNigoDocumentResponse> deleteNigoDocumentWithHttpInfo(String caseId,
+      String nigoId, String documentId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseNigoDocumentResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Document from Nigo (asynchronously) Delete Document from Nigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteNigoDocumentAsync(String caseId, String nigoId, String documentId,
+      String siteId, final ApiCallback<DeleteCaseNigoDocumentResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseNigoDocumentResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteTask
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteTaskCall(String caseId, String taskId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/tasks/{taskId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "taskId" + "}", localVarApiClient.escapeString(taskId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteTaskValidateBeforeCall(String caseId, String taskId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteTask(Async)");
+    }
+
+    // verify the required parameter 'taskId' is set
+    if (taskId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'taskId' when calling deleteTask(Async)");
+    }
+
+    return deleteTaskCall(caseId, taskId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Task Delete Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseTaskResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseTaskResponse deleteTask(String caseId, String taskId, String siteId)
+      throws ApiException {
+    ApiResponse<DeleteCaseTaskResponse> localVarResp =
+        deleteTaskWithHttpInfo(caseId, taskId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Task Delete Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseTaskResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseTaskResponse> deleteTaskWithHttpInfo(String caseId, String taskId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = deleteTaskValidateBeforeCall(caseId, taskId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseTaskResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Task (asynchronously) Delete Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteTaskAsync(String caseId, String taskId, String siteId,
+      final ApiCallback<DeleteCaseTaskResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteTaskValidateBeforeCall(caseId, taskId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseTaskResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteTaskDocument
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteTaskDocumentCall(String caseId, String taskId, String documentId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/tasks/{taskId}/documents/{documentId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "taskId" + "}", localVarApiClient.escapeString(taskId.toString()))
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteTaskDocumentValidateBeforeCall(String caseId, String taskId,
+      String documentId, String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling deleteTaskDocument(Async)");
+    }
+
+    // verify the required parameter 'taskId' is set
+    if (taskId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'taskId' when calling deleteTaskDocument(Async)");
+    }
+
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling deleteTaskDocument(Async)");
+    }
+
+    return deleteTaskDocumentCall(caseId, taskId, documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete Document from Task Delete Document from Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteCaseTaskDocumentResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteCaseTaskDocumentResponse deleteTaskDocument(String caseId, String taskId,
+      String documentId, String siteId) throws ApiException {
+    ApiResponse<DeleteCaseTaskDocumentResponse> localVarResp =
+        deleteTaskDocumentWithHttpInfo(caseId, taskId, documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Document from Task Delete Document from Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteCaseTaskDocumentResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteCaseTaskDocumentResponse> deleteTaskDocumentWithHttpInfo(String caseId,
+      String taskId, String documentId, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteCaseTaskDocumentResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Document from Task (asynchronously) Delete Document from Task
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteTaskDocumentAsync(String caseId, String taskId, String documentId,
+      String siteId, final ApiCallback<DeleteCaseTaskDocumentResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteCaseTaskDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -664,6 +1871,203 @@ public class CaseManagementApi {
   }
 
   /**
+   * Build call for getCaseNigo
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getCaseNigoCall(String caseId, String nigoId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/nigos/{nigoId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "nigoId" + "}", localVarApiClient.escapeString(nigoId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getCaseNigoValidateBeforeCall(String caseId, String nigoId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling getCaseNigo(Async)");
+    }
+
+    // verify the required parameter 'nigoId' is set
+    if (nigoId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'nigoId' when calling getCaseNigo(Async)");
+    }
+
+    return getCaseNigoCall(caseId, nigoId, siteId, _callback);
+
+  }
+
+  /**
+   * Get nigo in a case Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return GetCaseNigoResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetCaseNigoResponse getCaseNigo(String caseId, String nigoId, String siteId)
+      throws ApiException {
+    ApiResponse<GetCaseNigoResponse> localVarResp = getCaseNigoWithHttpInfo(caseId, nigoId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get nigo in a case Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GetCaseNigoResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetCaseNigoResponse> getCaseNigoWithHttpInfo(String caseId, String nigoId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getCaseNigoValidateBeforeCall(caseId, nigoId, siteId, null);
+    Type localVarReturnType = new TypeToken<GetCaseNigoResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get nigo in a case (asynchronously) Returns a Nigo in Case; ONLY available with FormKiQ
+   * Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param nigoId Nigo Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getCaseNigoAsync(String caseId, String nigoId, String siteId,
+      final ApiCallback<GetCaseNigoResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getCaseNigoValidateBeforeCall(caseId, nigoId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetCaseNigoResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getCaseNigos
    * 
    * @param caseId Case Identifier (required)
@@ -863,6 +2267,203 @@ public class CaseManagementApi {
     okhttp3.Call localVarCall =
         getCaseNigosValidateBeforeCall(caseId, siteId, next, limit, _callback);
     Type localVarReturnType = new TypeToken<GetCaseNigosResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getCaseTask
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getCaseTaskCall(String caseId, String taskId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/cases/{caseId}/tasks/{taskId}"
+        .replace("{" + "caseId" + "}", localVarApiClient.escapeString(caseId.toString()))
+        .replace("{" + "taskId" + "}", localVarApiClient.escapeString(taskId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getCaseTaskValidateBeforeCall(String caseId, String taskId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'caseId' is set
+    if (caseId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'caseId' when calling getCaseTask(Async)");
+    }
+
+    // verify the required parameter 'taskId' is set
+    if (taskId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'taskId' when calling getCaseTask(Async)");
+    }
+
+    return getCaseTaskCall(caseId, taskId, siteId, _callback);
+
+  }
+
+  /**
+   * Get task in a case Returns a Task in Case; ONLY available with FormKiQ Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return GetCaseTaskResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetCaseTaskResponse getCaseTask(String caseId, String taskId, String siteId)
+      throws ApiException {
+    ApiResponse<GetCaseTaskResponse> localVarResp = getCaseTaskWithHttpInfo(caseId, taskId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get task in a case Returns a Task in Case; ONLY available with FormKiQ Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GetCaseTaskResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetCaseTaskResponse> getCaseTaskWithHttpInfo(String caseId, String taskId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getCaseTaskValidateBeforeCall(caseId, taskId, siteId, null);
+    Type localVarReturnType = new TypeToken<GetCaseTaskResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get task in a case (asynchronously) Returns a Task in Case; ONLY available with FormKiQ
+   * Enterprise
+   * 
+   * @param caseId Case Identifier (required)
+   * @param taskId Task Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getCaseTaskAsync(String caseId, String taskId, String siteId,
+      final ApiCallback<GetCaseTaskResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getCaseTaskValidateBeforeCall(caseId, taskId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetCaseTaskResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

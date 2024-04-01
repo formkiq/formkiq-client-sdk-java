@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.Nigo;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -30,33 +31,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentCompositeSearchTag
+ * Model tests for GetCaseNigoResponse
  */
-public class DocumentCompositeSearchTagTest {
-  private final DocumentCompositeSearchTag model = new DocumentCompositeSearchTag();
+public class GetCaseNigoResponseTest {
+  private final GetCaseNigoResponse model = new GetCaseNigoResponse();
 
   /**
-   * Model tests for DocumentCompositeSearchTag
+   * Model tests for GetCaseNigoResponse
    */
   @Test
-  public void testDocumentCompositeSearchTag() {
-    // TODO: test DocumentCompositeSearchTag
+  public void testGetCaseNigoResponse() {
+    // TODO: test GetCaseNigoResponse
   }
 
   /**
-   * Test the property 'eq'
+   * Test the property 'nigo'
    */
   @Test
-  public void eqTest() {
-    // TODO: test eq
-  }
-
-  /**
-   * Test the property 'key'
-   */
-  @Test
-  public void keyTest() {
-    // TODO: test key
+  public void nigoTest() {
+    // TODO: test nigo
   }
 
 }

@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.PdfDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,19 +45,11 @@ public class GetExaminePdfResponseTest {
   }
 
   /**
-   * Test the property 'id'
+   * Test the property 'fileinfo'
    */
   @Test
-  public void idTest() {
-    // TODO: test id
-  }
-
-  /**
-   * Test the property 'uploadUrl'
-   */
-  @Test
-  public void uploadUrlTest() {
-    // TODO: test uploadUrl
+  public void fileinfoTest() {
+    // TODO: test fileinfo
   }
 
 }

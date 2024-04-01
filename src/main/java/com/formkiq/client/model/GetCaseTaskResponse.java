@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.Task;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,59 +54,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentCompositeSearchTag
+ * GetCaseTaskResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
-public class DocumentCompositeSearchTag {
-  public static final String SERIALIZED_NAME_EQ = "eq";
-  @SerializedName(SERIALIZED_NAME_EQ)
-  private String eq;
+public class GetCaseTaskResponse {
+  public static final String SERIALIZED_NAME_TASK = "task";
+  @SerializedName(SERIALIZED_NAME_TASK)
+  private Task task;
 
-  public static final String SERIALIZED_NAME_KEY = "key";
-  @SerializedName(SERIALIZED_NAME_KEY)
-  private String key;
+  public GetCaseTaskResponse() {}
 
-  public DocumentCompositeSearchTag() {}
-
-  public DocumentCompositeSearchTag eq(String eq) {
-    this.eq = eq;
+  public GetCaseTaskResponse task(Task task) {
+    this.task = task;
     return this;
   }
 
   /**
-   * Searches for strings that eq
+   * Get task
    * 
-   * @return eq
+   * @return task
    **/
   @javax.annotation.Nullable
-  public String getEq() {
-    return eq;
+  public Task getTask() {
+    return task;
   }
 
-  public void setEq(String eq) {
-    this.eq = eq;
-  }
-
-
-  public DocumentCompositeSearchTag key(String key) {
-    this.key = key;
-    return this;
-  }
-
-  /**
-   * Tag key to search
-   * 
-   * @return key
-   **/
-  @javax.annotation.Nonnull
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
+  public void setTask(Task task) {
+    this.task = task;
   }
 
 
@@ -118,22 +95,20 @@ public class DocumentCompositeSearchTag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentCompositeSearchTag documentCompositeSearchTag = (DocumentCompositeSearchTag) o;
-    return Objects.equals(this.eq, documentCompositeSearchTag.eq)
-        && Objects.equals(this.key, documentCompositeSearchTag.key);
+    GetCaseTaskResponse getCaseTaskResponse = (GetCaseTaskResponse) o;
+    return Objects.equals(this.task, getCaseTaskResponse.task);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eq, key);
+    return Objects.hash(task);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentCompositeSearchTag {\n");
-    sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("class GetCaseTaskResponse {\n");
+    sb.append("    task: ").append(toIndentedString(task)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -155,59 +130,41 @@ public class DocumentCompositeSearchTag {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("eq");
-    openapiFields.add("key");
+    openapiFields.add("task");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("key");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocumentCompositeSearchTag
+   * @throws IOException if the JSON Element is invalid with respect to GetCaseTaskResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentCompositeSearchTag.openapiRequiredFields.isEmpty()) { // has required fields but
-                                                                         // JSON element is null
+      if (!GetCaseTaskResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                  // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocumentCompositeSearchTag is not found in the empty JSON string",
-            DocumentCompositeSearchTag.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetCaseTaskResponse is not found in the empty JSON string",
+            GetCaseTaskResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentCompositeSearchTag.openapiFields.contains(entry.getKey())) {
+      if (!GetCaseTaskResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocumentCompositeSearchTag` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetCaseTaskResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentCompositeSearchTag.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull())
-        && !jsonObj.get("eq").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `eq` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("eq").toString()));
-    }
-    if (!jsonObj.get("key").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("key").toString()));
+    // validate the optional field `task`
+    if (jsonObj.get("task") != null && !jsonObj.get("task").isJsonNull()) {
+      Task.validateJsonElement(jsonObj.get("task"));
     }
   }
 
@@ -215,22 +172,22 @@ public class DocumentCompositeSearchTag {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentCompositeSearchTag.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentCompositeSearchTag' and its subtypes
+      if (!GetCaseTaskResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetCaseTaskResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentCompositeSearchTag> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentCompositeSearchTag.class));
+      final TypeAdapter<GetCaseTaskResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetCaseTaskResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentCompositeSearchTag>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetCaseTaskResponse>() {
         @Override
-        public void write(JsonWriter out, DocumentCompositeSearchTag value) throws IOException {
+        public void write(JsonWriter out, GetCaseTaskResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentCompositeSearchTag read(JsonReader in) throws IOException {
+        public GetCaseTaskResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -241,18 +198,18 @@ public class DocumentCompositeSearchTag {
   }
 
   /**
-   * Create an instance of DocumentCompositeSearchTag given an JSON string
+   * Create an instance of GetCaseTaskResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentCompositeSearchTag
-   * @throws IOException if the JSON string is invalid with respect to DocumentCompositeSearchTag
+   * @return An instance of GetCaseTaskResponse
+   * @throws IOException if the JSON string is invalid with respect to GetCaseTaskResponse
    */
-  public static DocumentCompositeSearchTag fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentCompositeSearchTag.class);
+  public static GetCaseTaskResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetCaseTaskResponse.class);
   }
 
   /**
-   * Convert an instance of DocumentCompositeSearchTag to an JSON string
+   * Convert an instance of GetCaseTaskResponse to an JSON string
    *
    * @return JSON string
    */

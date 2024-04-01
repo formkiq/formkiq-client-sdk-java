@@ -22,9 +22,17 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddCaseRequest;
 import com.formkiq.client.model.AddCaseResponse;
+import com.formkiq.client.model.DeleteCaseDocumentResponse;
+import com.formkiq.client.model.DeleteCaseNigoDocumentResponse;
+import com.formkiq.client.model.DeleteCaseNigoResponse;
+import com.formkiq.client.model.DeleteCaseResponse;
+import com.formkiq.client.model.DeleteCaseTaskDocumentResponse;
+import com.formkiq.client.model.DeleteCaseTaskResponse;
 import com.formkiq.client.model.GetCaseDocumentsResponse;
+import com.formkiq.client.model.GetCaseNigoResponse;
 import com.formkiq.client.model.GetCaseNigosResponse;
 import com.formkiq.client.model.GetCaseResponse;
+import com.formkiq.client.model.GetCaseTaskResponse;
 import com.formkiq.client.model.GetCaseTasksResponse;
 import com.formkiq.client.model.GetCasesResponse;
 import com.formkiq.client.model.UpdateCaseRequest;
@@ -65,6 +73,105 @@ public class CaseManagementApiTest {
   }
 
   /**
+   * Delete Case
+   *
+   * Delete Case
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteCaseTest() throws ApiException {
+    String caseId = null;
+    String siteId = null;
+    DeleteCaseResponse response = api.deleteCase(caseId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Document from Case
+   *
+   * Delete Document from Case
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteCaseDocumentTest() throws ApiException {
+    String caseId = null;
+    String documentId = null;
+    String siteId = null;
+    DeleteCaseDocumentResponse response = api.deleteCaseDocument(caseId, documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Nigo
+   *
+   * Delete Nigo
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteNigoTest() throws ApiException {
+    String caseId = null;
+    String nigoId = null;
+    String siteId = null;
+    DeleteCaseNigoResponse response = api.deleteNigo(caseId, nigoId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Document from Nigo
+   *
+   * Delete Document from Nigo
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteNigoDocumentTest() throws ApiException {
+    String caseId = null;
+    String nigoId = null;
+    String documentId = null;
+    String siteId = null;
+    DeleteCaseNigoDocumentResponse response =
+        api.deleteNigoDocument(caseId, nigoId, documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Task
+   *
+   * Delete Task
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteTaskTest() throws ApiException {
+    String caseId = null;
+    String taskId = null;
+    String siteId = null;
+    DeleteCaseTaskResponse response = api.deleteTask(caseId, taskId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Document from Task
+   *
+   * Delete Document from Task
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteTaskDocumentTest() throws ApiException {
+    String caseId = null;
+    String taskId = null;
+    String documentId = null;
+    String siteId = null;
+    DeleteCaseTaskDocumentResponse response =
+        api.deleteTaskDocument(caseId, taskId, documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get Case details
    *
    * Returns a Case; ONLY available with FormKiQ Enterprise
@@ -97,6 +204,22 @@ public class CaseManagementApiTest {
   }
 
   /**
+   * Get nigo in a case
+   *
+   * Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getCaseNigoTest() throws ApiException {
+    String caseId = null;
+    String nigoId = null;
+    String siteId = null;
+    GetCaseNigoResponse response = api.getCaseNigo(caseId, nigoId, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get list of Nigos in a case
    *
    * Returns a Nigos of Case; ONLY available with FormKiQ Enterprise
@@ -110,6 +233,22 @@ public class CaseManagementApiTest {
     String next = null;
     String limit = null;
     GetCaseNigosResponse response = api.getCaseNigos(caseId, siteId, next, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Get task in a case
+   *
+   * Returns a Task in Case; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getCaseTaskTest() throws ApiException {
+    String caseId = null;
+    String taskId = null;
+    String siteId = null;
+    GetCaseTaskResponse response = api.getCaseTask(caseId, taskId, siteId);
     // TODO: test validations
   }
 

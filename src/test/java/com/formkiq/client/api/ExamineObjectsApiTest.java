@@ -20,8 +20,8 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddExaminePdfResponse;
 import com.formkiq.client.model.GetExaminePdfResponse;
+import com.formkiq.client.model.GetExaminePdfUrlResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -46,10 +46,10 @@ public class ExamineObjectsApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void addExaminePdfTest() throws ApiException {
+  public void getExaminePdfTest() throws ApiException {
     String id = null;
     String siteId = null;
-    AddExaminePdfResponse response = api.addExaminePdf(id, siteId);
+    GetExaminePdfResponse response = api.getExaminePdf(id, siteId);
     // TODO: test validations
   }
 
@@ -62,9 +62,9 @@ public class ExamineObjectsApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getExaminePdfTest() throws ApiException {
+  public void getExaminePdfUrlTest() throws ApiException {
     String siteId = null;
-    GetExaminePdfResponse response = api.getExaminePdf(siteId);
+    GetExaminePdfUrlResponse response = api.getExaminePdfUrl(siteId);
     // TODO: test validations
   }
 

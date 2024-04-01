@@ -29,7 +29,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class UpdateCase {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -69,6 +71,22 @@ public class UpdateCase {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private CaseStatus status;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, Object> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private String endDate;
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -116,6 +134,94 @@ public class UpdateCase {
   }
 
 
+  public UpdateCase description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Case Description
+   * 
+   * @return description
+   **/
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public UpdateCase metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UpdateCase putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * 
+   * @return metadata
+   **/
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public UpdateCase startDate(String startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Start Date
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public UpdateCase endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+  /**
+   * End Date
+   * 
+   * @return endDate
+   **/
+  @javax.annotation.Nullable
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+
   public UpdateCase documentIds(List<String> documentIds) {
     this.documentIds = documentIds;
     return this;
@@ -156,12 +262,16 @@ public class UpdateCase {
     UpdateCase updateCase = (UpdateCase) o;
     return Objects.equals(this.name, updateCase.name)
         && Objects.equals(this.status, updateCase.status)
+        && Objects.equals(this.description, updateCase.description)
+        && Objects.equals(this.metadata, updateCase.metadata)
+        && Objects.equals(this.startDate, updateCase.startDate)
+        && Objects.equals(this.endDate, updateCase.endDate)
         && Objects.equals(this.documentIds, updateCase.documentIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, documentIds);
+    return Objects.hash(name, status, description, metadata, startDate, endDate, documentIds);
   }
 
   @Override
@@ -170,6 +280,10 @@ public class UpdateCase {
     sb.append("class UpdateCase {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -194,6 +308,10 @@ public class UpdateCase {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("status");
+    openapiFields.add("description");
+    openapiFields.add("metadata");
+    openapiFields.add("startDate");
+    openapiFields.add("endDate");
     openapiFields.add("documentIds");
 
     // a set of required properties/fields (JSON key names)
@@ -235,6 +353,24 @@ public class UpdateCase {
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       CaseStatus.validateJsonElement(jsonObj.get("status"));
+    }
+    if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
+        && !jsonObj.get("description").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("description").toString()));
+    }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
+    }
+    if ((jsonObj.get("endDate") != null && !jsonObj.get("endDate").isJsonNull())
+        && !jsonObj.get("endDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("endDate").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addExaminePdf**](ExamineObjectsApi.md#addExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf |
-| [**getExaminePdf**](ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/pdf | Add Examine Pdf |
+| [**getExaminePdf**](ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf |
+| [**getExaminePdfUrl**](ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf |
 
 
-<a id="addExaminePdf"></a>
-# **addExaminePdf**
-> AddExaminePdfResponse addExaminePdf(id, siteId)
+<a id="getExaminePdf"></a>
+# **getExaminePdf**
+> GetExaminePdfResponse getExaminePdf(id, siteId)
 
 Add Examine Pdf
 
@@ -37,10 +37,10 @@ public class Example {
     String id = "id_example"; // String | Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddExaminePdfResponse result = apiInstance.addExaminePdf(id, siteId);
+      GetExaminePdfResponse result = apiInstance.getExaminePdf(id, siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ExamineObjectsApi#addExaminePdf");
+      System.err.println("Exception when calling ExamineObjectsApi#getExaminePdf");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,7 +59,7 @@ public class Example {
 
 ### Return type
 
-[**AddExaminePdfResponse**](AddExaminePdfResponse.md)
+[**GetExaminePdfResponse**](GetExaminePdfResponse.md)
 
 ### Authorization
 
@@ -75,9 +75,9 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | 201 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="getExaminePdf"></a>
-# **getExaminePdf**
-> GetExaminePdfResponse getExaminePdf(siteId)
+<a id="getExaminePdfUrl"></a>
+# **getExaminePdfUrl**
+> GetExaminePdfUrlResponse getExaminePdfUrl(siteId)
 
 Add Examine Pdf
 
@@ -103,10 +103,10 @@ public class Example {
     ExamineObjectsApi apiInstance = new ExamineObjectsApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      GetExaminePdfResponse result = apiInstance.getExaminePdf(siteId);
+      GetExaminePdfUrlResponse result = apiInstance.getExaminePdfUrl(siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ExamineObjectsApi#getExaminePdf");
+      System.err.println("Exception when calling ExamineObjectsApi#getExaminePdfUrl");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -124,7 +124,7 @@ public class Example {
 
 ### Return type
 
-[**GetExaminePdfResponse**](GetExaminePdfResponse.md)
+[**GetExaminePdfUrlResponse**](GetExaminePdfUrlResponse.md)
 
 ### Authorization
 

@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentSearchRange;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -67,6 +68,14 @@ public class DocumentSearchTagTest {
   @Test
   public void eqOrTest() {
     // TODO: test eqOr
+  }
+
+  /**
+   * Test the property 'range'
+   */
+  @Test
+  public void rangeTest() {
+    // TODO: test range
   }
 
   /**

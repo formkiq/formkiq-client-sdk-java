@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentSearchRange;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class DocumentSearchTag {
   public static final String SERIALIZED_NAME_BEGINS_WITH = "beginsWith";
@@ -72,6 +73,10 @@ public class DocumentSearchTag {
   public static final String SERIALIZED_NAME_EQ_OR = "eqOr";
   @SerializedName(SERIALIZED_NAME_EQ_OR)
   private List<String> eqOr;
+
+  public static final String SERIALIZED_NAME_RANGE = "range";
+  @SerializedName(SERIALIZED_NAME_RANGE)
+  private DocumentSearchRange range;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -147,6 +152,26 @@ public class DocumentSearchTag {
   }
 
 
+  public DocumentSearchTag range(DocumentSearchRange range) {
+    this.range = range;
+    return this;
+  }
+
+  /**
+   * Get range
+   * 
+   * @return range
+   **/
+  @javax.annotation.Nullable
+  public DocumentSearchRange getRange() {
+    return range;
+  }
+
+  public void setRange(DocumentSearchRange range) {
+    this.range = range;
+  }
+
+
   public DocumentSearchTag key(String key) {
     this.key = key;
     return this;
@@ -180,12 +205,13 @@ public class DocumentSearchTag {
     return Objects.equals(this.beginsWith, documentSearchTag.beginsWith)
         && Objects.equals(this.eq, documentSearchTag.eq)
         && Objects.equals(this.eqOr, documentSearchTag.eqOr)
+        && Objects.equals(this.range, documentSearchTag.range)
         && Objects.equals(this.key, documentSearchTag.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(beginsWith, eq, eqOr, key);
+    return Objects.hash(beginsWith, eq, eqOr, range, key);
   }
 
   @Override
@@ -195,6 +221,7 @@ public class DocumentSearchTag {
     sb.append("    beginsWith: ").append(toIndentedString(beginsWith)).append("\n");
     sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
     sb.append("    eqOr: ").append(toIndentedString(eqOr)).append("\n");
+    sb.append("    range: ").append(toIndentedString(range)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -220,6 +247,7 @@ public class DocumentSearchTag {
     openapiFields.add("beginsWith");
     openapiFields.add("eq");
     openapiFields.add("eqOr");
+    openapiFields.add("range");
     openapiFields.add("key");
 
     // a set of required properties/fields (JSON key names)
@@ -280,6 +308,10 @@ public class DocumentSearchTag {
       throw new IllegalArgumentException(
           String.format("Expected the field `eqOr` to be an array in the JSON string but got `%s`",
               jsonObj.get("eqOr").toString()));
+    }
+    // validate the optional field `range`
+    if (jsonObj.get("range") != null && !jsonObj.get("range").isJsonNull()) {
+      DocumentSearchRange.validateJsonElement(jsonObj.get("range"));
     }
     if (!jsonObj.get("key").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

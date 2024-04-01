@@ -60,6 +60,14 @@ public class DocumentSearchMetaTest {
   }
 
   /**
+   * Test the property 'eq'
+   */
+  @Test
+  public void eqTest() {
+    // TODO: test eq
+  }
+
+  /**
    * Test the property 'indexType'
    */
   @Test

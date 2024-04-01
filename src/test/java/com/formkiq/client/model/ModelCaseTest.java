@@ -71,6 +71,22 @@ public class ModelCaseTest {
   }
 
   /**
+   * Test the property 'startDate'
+   */
+  @Test
+  public void startDateTest() {
+    // TODO: test startDate
+  }
+
+  /**
+   * Test the property 'endDate'
+   */
+  @Test
+  public void endDateTest() {
+    // TODO: test endDate
+  }
+
+  /**
    * Test the property 'insertedDate'
    */
   @Test
@@ -87,6 +103,14 @@ public class ModelCaseTest {
   }
 
   /**
+   * Test the property 'description'
+   */
+  @Test
+  public void descriptionTest() {
+    // TODO: test description
+  }
+
+  /**
    * Test the property 'metadata'
    */
   @Test
@@ -100,6 +124,14 @@ public class ModelCaseTest {
   @Test
   public void statusTest() {
     // TODO: test status
+  }
+
+  /**
+   * Test the property 'userId'
+   */
+  @Test
+  public void userIdTest() {
+    // TODO: test userId
   }
 
 }

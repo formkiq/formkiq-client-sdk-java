@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * ModelCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class ModelCase {
   public static final String SERIALIZED_NAME_CASE_ID = "caseId";
@@ -74,6 +74,14 @@ public class ModelCase {
   @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER)
   private String documentNumber;
 
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private String endDate;
+
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
@@ -82,6 +90,10 @@ public class ModelCase {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, Object> metadata = new HashMap<>();
@@ -89,6 +101,10 @@ public class ModelCase {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private CaseStatus status;
+
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
   public ModelCase() {}
 
@@ -152,6 +168,46 @@ public class ModelCase {
   }
 
 
+  public ModelCase startDate(String startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Start Date
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public ModelCase endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+  /**
+   * End Date
+   * 
+   * @return endDate
+   **/
+  @javax.annotation.Nullable
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+
   public ModelCase insertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
     return this;
@@ -189,6 +245,26 @@ public class ModelCase {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public ModelCase description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Case Description
+   * 
+   * @return description
+   **/
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -240,6 +316,26 @@ public class ModelCase {
   }
 
 
+  public ModelCase userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * User who added document
+   * 
+   * @return userId
+   **/
+  @javax.annotation.Nullable
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -253,14 +349,19 @@ public class ModelCase {
     return Objects.equals(this.caseId, _case.caseId)
         && Objects.equals(this.caseNumber, _case.caseNumber)
         && Objects.equals(this.documentNumber, _case.documentNumber)
+        && Objects.equals(this.startDate, _case.startDate)
+        && Objects.equals(this.endDate, _case.endDate)
         && Objects.equals(this.insertedDate, _case.insertedDate)
-        && Objects.equals(this.name, _case.name) && Objects.equals(this.metadata, _case.metadata)
-        && Objects.equals(this.status, _case.status);
+        && Objects.equals(this.name, _case.name)
+        && Objects.equals(this.description, _case.description)
+        && Objects.equals(this.metadata, _case.metadata)
+        && Objects.equals(this.status, _case.status) && Objects.equals(this.userId, _case.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, caseNumber, documentNumber, insertedDate, name, metadata, status);
+    return Objects.hash(caseId, caseNumber, documentNumber, startDate, endDate, insertedDate, name,
+        description, metadata, status, userId);
   }
 
   @Override
@@ -270,10 +371,14 @@ public class ModelCase {
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    caseNumber: ").append(toIndentedString(caseNumber)).append("\n");
     sb.append("    documentNumber: ").append(toIndentedString(documentNumber)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -298,10 +403,14 @@ public class ModelCase {
     openapiFields.add("caseId");
     openapiFields.add("caseNumber");
     openapiFields.add("documentNumber");
+    openapiFields.add("startDate");
+    openapiFields.add("endDate");
     openapiFields.add("insertedDate");
     openapiFields.add("name");
+    openapiFields.add("description");
     openapiFields.add("metadata");
     openapiFields.add("status");
+    openapiFields.add("userId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -351,6 +460,18 @@ public class ModelCase {
           "Expected the field `documentNumber` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentNumber").toString()));
     }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
+    }
+    if ((jsonObj.get("endDate") != null && !jsonObj.get("endDate").isJsonNull())
+        && !jsonObj.get("endDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("endDate").toString()));
+    }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -363,9 +484,21 @@ public class ModelCase {
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
+    if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
+        && !jsonObj.get("description").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("description").toString()));
+    }
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       CaseStatus.validateJsonElement(jsonObj.get("status"));
+    }
+    if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
+        && !jsonObj.get("userId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("userId").toString()));
     }
   }
 

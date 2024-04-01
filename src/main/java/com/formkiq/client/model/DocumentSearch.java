@@ -20,9 +20,9 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentCompositeSearchTag;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
+import com.formkiq.client.model.DocumentSearchTags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
@@ -78,7 +78,7 @@ public class DocumentSearch {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<DocumentCompositeSearchTag> tags;
+  private List<DocumentSearchTags> tags;
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
@@ -146,12 +146,12 @@ public class DocumentSearch {
   }
 
 
-  public DocumentSearch tags(List<DocumentCompositeSearchTag> tags) {
+  public DocumentSearch tags(List<DocumentSearchTags> tags) {
     this.tags = tags;
     return this;
   }
 
-  public DocumentSearch addTagsItem(DocumentCompositeSearchTag tagsItem) {
+  public DocumentSearch addTagsItem(DocumentSearchTags tagsItem) {
     if (this.tags == null) {
       this.tags = new ArrayList<>();
     }
@@ -165,11 +165,11 @@ public class DocumentSearch {
    * @return tags
    **/
   @javax.annotation.Nullable
-  public List<DocumentCompositeSearchTag> getTags() {
+  public List<DocumentSearchTags> getTags() {
     return tags;
   }
 
-  public void setTags(List<DocumentCompositeSearchTag> tags) {
+  public void setTags(List<DocumentSearchTags> tags) {
     this.tags = tags;
   }
 
@@ -316,7 +316,7 @@ public class DocumentSearch {
 
         // validate the optional field `tags` (array)
         for (int i = 0; i < jsonArraytags.size(); i++) {
-          DocumentCompositeSearchTag.validateJsonElement(jsonArraytags.get(i));
+          DocumentSearchTags.validateJsonElement(jsonArraytags.get(i));
         } ;
       }
     }

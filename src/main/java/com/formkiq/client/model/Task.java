@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Task
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class Task {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
@@ -70,9 +70,25 @@ public class Task {
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private String endDate;
+
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -124,6 +140,26 @@ public class Task {
   }
 
 
+  public Task name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of Task
+   * 
+   * @return name
+   **/
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
   public Task description(String description) {
     this.description = description;
     return this;
@@ -141,6 +177,66 @@ public class Task {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public Task startDate(String startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Start Date of Task
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public Task endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+  /**
+   * End Date of Task
+   * 
+   * @return endDate
+   **/
+  @javax.annotation.Nullable
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+
+  public Task userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * User who added Task
+   * 
+   * @return userId
+   **/
+  @javax.annotation.Nullable
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
 
@@ -204,13 +300,17 @@ public class Task {
     Task task = (Task) o;
     return Objects.equals(this.taskId, task.taskId)
         && Objects.equals(this.insertedDate, task.insertedDate)
+        && Objects.equals(this.name, task.name)
         && Objects.equals(this.description, task.description)
+        && Objects.equals(this.startDate, task.startDate)
+        && Objects.equals(this.endDate, task.endDate) && Objects.equals(this.userId, task.userId)
         && Objects.equals(this.status, task.status) && Objects.equals(this.metadata, task.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(taskId, insertedDate, description, status, metadata);
+    return Objects.hash(taskId, insertedDate, name, description, startDate, endDate, userId, status,
+        metadata);
   }
 
   @Override
@@ -219,7 +319,11 @@ public class Task {
     sb.append("class Task {\n");
     sb.append("    taskId: ").append(toIndentedString(taskId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
@@ -245,7 +349,11 @@ public class Task {
     openapiFields = new HashSet<String>();
     openapiFields.add("taskId");
     openapiFields.add("insertedDate");
+    openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("startDate");
+    openapiFields.add("endDate");
+    openapiFields.add("userId");
     openapiFields.add("status");
     openapiFields.add("metadata");
 
@@ -290,11 +398,35 @@ public class Task {
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
+    }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
+    }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
+    }
+    if ((jsonObj.get("endDate") != null && !jsonObj.get("endDate").isJsonNull())
+        && !jsonObj.get("endDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
+        && !jsonObj.get("userId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("userId").toString()));
     }
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {

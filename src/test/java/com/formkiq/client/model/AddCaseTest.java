@@ -68,6 +68,30 @@ public class AddCaseTest {
   }
 
   /**
+   * Test the property 'startDate'
+   */
+  @Test
+  public void startDateTest() {
+    // TODO: test startDate
+  }
+
+  /**
+   * Test the property 'endDate'
+   */
+  @Test
+  public void endDateTest() {
+    // TODO: test endDate
+  }
+
+  /**
+   * Test the property 'description'
+   */
+  @Test
+  public void descriptionTest() {
+    // TODO: test description
+  }
+
+  /**
    * Test the property 'documentNumberFormat'
    */
   @Test

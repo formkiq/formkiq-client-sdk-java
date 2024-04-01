@@ -5,9 +5,17 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addCase**](CaseManagementApi.md#addCase) | **POST** /cases | Add New Case |
+| [**deleteCase**](CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case |
+| [**deleteCaseDocument**](CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case |
+| [**deleteNigo**](CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo |
+| [**deleteNigoDocument**](CaseManagementApi.md#deleteNigoDocument) | **DELETE** /cases/{caseId}/nigos/{nigoId}/documents/{documentId} | Delete Document from Nigo |
+| [**deleteTask**](CaseManagementApi.md#deleteTask) | **DELETE** /cases/{caseId}/tasks/{taskId} | Delete Task |
+| [**deleteTaskDocument**](CaseManagementApi.md#deleteTaskDocument) | **DELETE** /cases/{caseId}/tasks/{taskId}/documents/{documentId} | Delete Document from Task |
 | [**getCase**](CaseManagementApi.md#getCase) | **GET** /cases/{caseId} | Get Case details |
 | [**getCaseDocuments**](CaseManagementApi.md#getCaseDocuments) | **GET** /cases/{caseId}/documents | Get list of document in a case |
+| [**getCaseNigo**](CaseManagementApi.md#getCaseNigo) | **GET** /cases/{caseId}/nigos/{nigoId} | Get nigo in a case |
 | [**getCaseNigos**](CaseManagementApi.md#getCaseNigos) | **GET** /cases/{caseId}/nigos | Get list of Nigos in a case |
+| [**getCaseTask**](CaseManagementApi.md#getCaseTask) | **GET** /cases/{caseId}/tasks/{taskId} | Get task in a case |
 | [**getCaseTasks**](CaseManagementApi.md#getCaseTasks) | **GET** /cases/{caseId}/tasks | Get list of tasks in a case |
 | [**getCases**](CaseManagementApi.md#getCases) | **GET** /cases | Get Case listing |
 | [**getNigoDocuments**](CaseManagementApi.md#getNigoDocuments) | **GET** /cases/{caseId}/nigos/{nigoId}/documents | Get list of document in a task |
@@ -77,6 +85,422 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteCase"></a>
+# **deleteCase**
+> DeleteCaseResponse deleteCase(caseId, siteId)
+
+Delete Case
+
+Delete Case
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseResponse result = apiInstance.deleteCase(caseId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteCase");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseResponse**](DeleteCaseResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteCaseDocument"></a>
+# **deleteCaseDocument**
+> DeleteCaseDocumentResponse deleteCaseDocument(caseId, documentId, siteId)
+
+Delete Document from Case
+
+Delete Document from Case
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseDocumentResponse result = apiInstance.deleteCaseDocument(caseId, documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteCaseDocument");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseDocumentResponse**](DeleteCaseDocumentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteNigo"></a>
+# **deleteNigo**
+> DeleteCaseNigoResponse deleteNigo(caseId, nigoId, siteId)
+
+Delete Nigo
+
+Delete Nigo
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String nigoId = "nigoId_example"; // String | Nigo Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseNigoResponse result = apiInstance.deleteNigo(caseId, nigoId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteNigo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **nigoId** | **String**| Nigo Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseNigoResponse**](DeleteCaseNigoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteNigoDocument"></a>
+# **deleteNigoDocument**
+> DeleteCaseNigoDocumentResponse deleteNigoDocument(caseId, nigoId, documentId, siteId)
+
+Delete Document from Nigo
+
+Delete Document from Nigo
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String nigoId = "nigoId_example"; // String | Nigo Identifier
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseNigoDocumentResponse result = apiInstance.deleteNigoDocument(caseId, nigoId, documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteNigoDocument");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **nigoId** | **String**| Nigo Identifier | |
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseNigoDocumentResponse**](DeleteCaseNigoDocumentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteTask"></a>
+# **deleteTask**
+> DeleteCaseTaskResponse deleteTask(caseId, taskId, siteId)
+
+Delete Task
+
+Delete Task
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String taskId = "taskId_example"; // String | Task Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseTaskResponse result = apiInstance.deleteTask(caseId, taskId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteTask");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **taskId** | **String**| Task Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseTaskResponse**](DeleteCaseTaskResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteTaskDocument"></a>
+# **deleteTaskDocument**
+> DeleteCaseTaskDocumentResponse deleteTaskDocument(caseId, taskId, documentId, siteId)
+
+Delete Document from Task
+
+Delete Document from Task
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String taskId = "taskId_example"; // String | Task Identifier
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteCaseTaskDocumentResponse result = apiInstance.deleteTaskDocument(caseId, taskId, documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#deleteTaskDocument");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **taskId** | **String**| Task Identifier | |
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteCaseTaskDocumentResponse**](DeleteCaseTaskDocumentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -222,6 +646,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getCaseNigo"></a>
+# **getCaseNigo**
+> GetCaseNigoResponse getCaseNigo(caseId, nigoId, siteId)
+
+Get nigo in a case
+
+Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String nigoId = "nigoId_example"; // String | Nigo Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetCaseNigoResponse result = apiInstance.getCaseNigo(caseId, nigoId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#getCaseNigo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **nigoId** | **String**| Nigo Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GetCaseNigoResponse**](GetCaseNigoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getCaseNigos"></a>
 # **getCaseNigos**
 > GetCaseNigosResponse getCaseNigos(caseId, siteId, next, limit)
@@ -278,6 +771,75 @@ public class Example {
 ### Return type
 
 [**GetCaseNigosResponse**](GetCaseNigosResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getCaseTask"></a>
+# **getCaseTask**
+> GetCaseTaskResponse getCaseTask(caseId, taskId, siteId)
+
+Get task in a case
+
+Returns a Task in Case; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    String taskId = "taskId_example"; // String | Task Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetCaseTaskResponse result = apiInstance.getCaseTask(caseId, taskId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#getCaseTask");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **taskId** | **String**| Task Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GetCaseTaskResponse**](GetCaseTaskResponse.md)
 
 ### Authorization
 

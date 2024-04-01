@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.PdfDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,56 +57,32 @@ import com.formkiq.client.invoker.JSON;
  * GetExaminePdfResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class GetExaminePdfResponse {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_UPLOAD_URL = "uploadUrl";
-  @SerializedName(SERIALIZED_NAME_UPLOAD_URL)
-  private String uploadUrl;
+  public static final String SERIALIZED_NAME_FILEINFO = "fileinfo";
+  @SerializedName(SERIALIZED_NAME_FILEINFO)
+  private PdfDocument fileinfo;
 
   public GetExaminePdfResponse() {}
 
-  public GetExaminePdfResponse id(String id) {
-    this.id = id;
+  public GetExaminePdfResponse fileinfo(PdfDocument fileinfo) {
+    this.fileinfo = fileinfo;
     return this;
   }
 
   /**
-   * Uploaded document identifier
+   * Get fileinfo
    * 
-   * @return id
+   * @return fileinfo
    **/
   @javax.annotation.Nullable
-  public String getId() {
-    return id;
+  public PdfDocument getFileinfo() {
+    return fileinfo;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public GetExaminePdfResponse uploadUrl(String uploadUrl) {
-    this.uploadUrl = uploadUrl;
-    return this;
-  }
-
-  /**
-   * Url to upload document to
-   * 
-   * @return uploadUrl
-   **/
-  @javax.annotation.Nullable
-  public String getUploadUrl() {
-    return uploadUrl;
-  }
-
-  public void setUploadUrl(String uploadUrl) {
-    this.uploadUrl = uploadUrl;
+  public void setFileinfo(PdfDocument fileinfo) {
+    this.fileinfo = fileinfo;
   }
 
 
@@ -119,21 +96,19 @@ public class GetExaminePdfResponse {
       return false;
     }
     GetExaminePdfResponse getExaminePdfResponse = (GetExaminePdfResponse) o;
-    return Objects.equals(this.id, getExaminePdfResponse.id)
-        && Objects.equals(this.uploadUrl, getExaminePdfResponse.uploadUrl);
+    return Objects.equals(this.fileinfo, getExaminePdfResponse.fileinfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, uploadUrl);
+    return Objects.hash(fileinfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetExaminePdfResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    uploadUrl: ").append(toIndentedString(uploadUrl)).append("\n");
+    sb.append("    fileinfo: ").append(toIndentedString(fileinfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -155,8 +130,7 @@ public class GetExaminePdfResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("uploadUrl");
+    openapiFields.add("fileinfo");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -188,17 +162,9 @@ public class GetExaminePdfResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-        && !jsonObj.get("id").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `id` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("id").toString()));
-    }
-    if ((jsonObj.get("uploadUrl") != null && !jsonObj.get("uploadUrl").isJsonNull())
-        && !jsonObj.get("uploadUrl").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `uploadUrl` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("uploadUrl").toString()));
+    // validate the optional field `fileinfo`
+    if (jsonObj.get("fileinfo") != null && !jsonObj.get("fileinfo").isJsonNull()) {
+      PdfDocument.validateJsonElement(jsonObj.get("fileinfo"));
     }
   }
 

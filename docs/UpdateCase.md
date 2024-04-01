@@ -9,6 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Case Name |  [optional] |
 |**status** | **CaseStatus** |  |  [optional] |
+|**description** | **String** | Case Description |  [optional] |
+|**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**startDate** | **String** | Start Date |  [optional] |
+|**endDate** | **String** | End Date |  [optional] |
 |**documentIds** | **List&lt;String&gt;** |  |  [optional] |
 
 

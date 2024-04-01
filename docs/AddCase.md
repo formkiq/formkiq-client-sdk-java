@@ -9,6 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Case Name |  |
 |**status** | **CaseStatus** |  |  [optional] |
+|**startDate** | **String** | Start Date |  [optional] |
+|**endDate** | **String** | End Date |  [optional] |
+|**description** | **String** | Case Description |  [optional] |
 |**documentNumberFormat** | [**List&lt;StringFormat&gt;**](StringFormat.md) | Format of Document Number |  [optional] |
 |**caseNumberFormat** | [**List&lt;StringFormat&gt;**](StringFormat.md) | Format of Case Number |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |

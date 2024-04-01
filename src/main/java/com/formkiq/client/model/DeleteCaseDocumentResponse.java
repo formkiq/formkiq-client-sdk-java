@@ -20,7 +20,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.PdfDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,35 +53,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddExaminePdfResponse
+ * DeleteCaseDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
-public class AddExaminePdfResponse {
-  public static final String SERIALIZED_NAME_FILEINFO = "fileinfo";
-  @SerializedName(SERIALIZED_NAME_FILEINFO)
-  private PdfDocument fileinfo;
+public class DeleteCaseDocumentResponse {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
 
-  public AddExaminePdfResponse() {}
+  public DeleteCaseDocumentResponse() {}
 
-  public AddExaminePdfResponse fileinfo(PdfDocument fileinfo) {
-    this.fileinfo = fileinfo;
+  public DeleteCaseDocumentResponse message(String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * Get fileinfo
+   * Result message
    * 
-   * @return fileinfo
+   * @return message
    **/
   @javax.annotation.Nullable
-  public PdfDocument getFileinfo() {
-    return fileinfo;
+  public String getMessage() {
+    return message;
   }
 
-  public void setFileinfo(PdfDocument fileinfo) {
-    this.fileinfo = fileinfo;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -95,20 +94,20 @@ public class AddExaminePdfResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddExaminePdfResponse addExaminePdfResponse = (AddExaminePdfResponse) o;
-    return Objects.equals(this.fileinfo, addExaminePdfResponse.fileinfo);
+    DeleteCaseDocumentResponse deleteCaseDocumentResponse = (DeleteCaseDocumentResponse) o;
+    return Objects.equals(this.message, deleteCaseDocumentResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileinfo);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddExaminePdfResponse {\n");
-    sb.append("    fileinfo: ").append(toIndentedString(fileinfo)).append("\n");
+    sb.append("class DeleteCaseDocumentResponse {\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,7 +129,7 @@ public class AddExaminePdfResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fileinfo");
+    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -140,31 +139,33 @@ public class AddExaminePdfResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddExaminePdfResponse
+   * @throws IOException if the JSON Element is invalid with respect to DeleteCaseDocumentResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddExaminePdfResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                    // element is null
+      if (!DeleteCaseDocumentResponse.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                         // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddExaminePdfResponse is not found in the empty JSON string",
-            AddExaminePdfResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in DeleteCaseDocumentResponse is not found in the empty JSON string",
+            DeleteCaseDocumentResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddExaminePdfResponse.openapiFields.contains(entry.getKey())) {
+      if (!DeleteCaseDocumentResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddExaminePdfResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DeleteCaseDocumentResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `fileinfo`
-    if (jsonObj.get("fileinfo") != null && !jsonObj.get("fileinfo").isJsonNull()) {
-      PdfDocument.validateJsonElement(jsonObj.get("fileinfo"));
+    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
+        && !jsonObj.get("message").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("message").toString()));
     }
   }
 
@@ -172,22 +173,22 @@ public class AddExaminePdfResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddExaminePdfResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddExaminePdfResponse' and its subtypes
+      if (!DeleteCaseDocumentResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DeleteCaseDocumentResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddExaminePdfResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddExaminePdfResponse.class));
+      final TypeAdapter<DeleteCaseDocumentResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DeleteCaseDocumentResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddExaminePdfResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<DeleteCaseDocumentResponse>() {
         @Override
-        public void write(JsonWriter out, AddExaminePdfResponse value) throws IOException {
+        public void write(JsonWriter out, DeleteCaseDocumentResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddExaminePdfResponse read(JsonReader in) throws IOException {
+        public DeleteCaseDocumentResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -198,18 +199,18 @@ public class AddExaminePdfResponse {
   }
 
   /**
-   * Create an instance of AddExaminePdfResponse given an JSON string
+   * Create an instance of DeleteCaseDocumentResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddExaminePdfResponse
-   * @throws IOException if the JSON string is invalid with respect to AddExaminePdfResponse
+   * @return An instance of DeleteCaseDocumentResponse
+   * @throws IOException if the JSON string is invalid with respect to DeleteCaseDocumentResponse
    */
-  public static AddExaminePdfResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddExaminePdfResponse.class);
+  public static DeleteCaseDocumentResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DeleteCaseDocumentResponse.class);
   }
 
   /**
-   * Convert an instance of AddExaminePdfResponse to an JSON string
+   * Convert an instance of DeleteCaseDocumentResponse to an JSON string
    *
    * @return JSON string
    */

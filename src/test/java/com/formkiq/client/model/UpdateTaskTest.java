@@ -49,11 +49,35 @@ public class UpdateTaskTest {
   }
 
   /**
+   * Test the property 'name'
+   */
+  @Test
+  public void nameTest() {
+    // TODO: test name
+  }
+
+  /**
    * Test the property 'description'
    */
   @Test
   public void descriptionTest() {
     // TODO: test description
+  }
+
+  /**
+   * Test the property 'startDate'
+   */
+  @Test
+  public void startDateTest() {
+    // TODO: test startDate
+  }
+
+  /**
+   * Test the property 'endDate'
+   */
+  @Test
+  public void endDateTest() {
+    // TODO: test endDate
   }
 
   /**

@@ -61,12 +61,24 @@ import com.formkiq.client.invoker.JSON;
  * UpdateNigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class UpdateNigo {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private String startDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private String endDate;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -81,6 +93,26 @@ public class UpdateNigo {
   private List<String> documentIds;
 
   public UpdateNigo() {}
+
+  public UpdateNigo name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of Nigo
+   * 
+   * @return name
+   **/
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   public UpdateNigo description(String description) {
     this.description = description;
@@ -99,6 +131,46 @@ public class UpdateNigo {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public UpdateNigo startDate(String startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Start Date
+   * 
+   * @return startDate
+   **/
+  @javax.annotation.Nullable
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public UpdateNigo endDate(String endDate) {
+    this.endDate = endDate;
+    return this;
+  }
+
+  /**
+   * End Date
+   * 
+   * @return endDate
+   **/
+  @javax.annotation.Nullable
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
   }
 
 
@@ -188,7 +260,10 @@ public class UpdateNigo {
       return false;
     }
     UpdateNigo updateNigo = (UpdateNigo) o;
-    return Objects.equals(this.description, updateNigo.description)
+    return Objects.equals(this.name, updateNigo.name)
+        && Objects.equals(this.description, updateNigo.description)
+        && Objects.equals(this.startDate, updateNigo.startDate)
+        && Objects.equals(this.endDate, updateNigo.endDate)
         && Objects.equals(this.status, updateNigo.status)
         && Objects.equals(this.metadata, updateNigo.metadata)
         && Objects.equals(this.documentIds, updateNigo.documentIds);
@@ -196,14 +271,17 @@ public class UpdateNigo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, status, metadata, documentIds);
+    return Objects.hash(name, description, startDate, endDate, status, metadata, documentIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateNigo {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
@@ -228,7 +306,10 @@ public class UpdateNigo {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("startDate");
+    openapiFields.add("endDate");
     openapiFields.add("status");
     openapiFields.add("metadata");
     openapiFields.add("documentIds");
@@ -263,11 +344,29 @@ public class UpdateNigo {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
+    }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
+    }
+    if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
+        && !jsonObj.get("startDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `startDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("startDate").toString()));
+    }
+    if ((jsonObj.get("endDate") != null && !jsonObj.get("endDate").isJsonNull())
+        && !jsonObj.get("endDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("endDate").toString()));
     }
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {

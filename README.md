@@ -2,7 +2,7 @@
 
 FormKiQ API
 - API version: 1.14.0
-  - Build date: 2024-03-18T19:11:59.103684-05:00[America/Winnipeg]
+  - Build date: 2024-03-28T19:56:05.484023-05:00[America/Chicago]
   - Generator version: 7.4.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
@@ -158,9 +158,17 @@ Class | Method | HTTP request | Description
 *AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
 *AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
 *CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
+*CaseManagementApi* | [**deleteCase**](docs/CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case
+*CaseManagementApi* | [**deleteCaseDocument**](docs/CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case
+*CaseManagementApi* | [**deleteNigo**](docs/CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo
+*CaseManagementApi* | [**deleteNigoDocument**](docs/CaseManagementApi.md#deleteNigoDocument) | **DELETE** /cases/{caseId}/nigos/{nigoId}/documents/{documentId} | Delete Document from Nigo
+*CaseManagementApi* | [**deleteTask**](docs/CaseManagementApi.md#deleteTask) | **DELETE** /cases/{caseId}/tasks/{taskId} | Delete Task
+*CaseManagementApi* | [**deleteTaskDocument**](docs/CaseManagementApi.md#deleteTaskDocument) | **DELETE** /cases/{caseId}/tasks/{taskId}/documents/{documentId} | Delete Document from Task
 *CaseManagementApi* | [**getCase**](docs/CaseManagementApi.md#getCase) | **GET** /cases/{caseId} | Get Case details
 *CaseManagementApi* | [**getCaseDocuments**](docs/CaseManagementApi.md#getCaseDocuments) | **GET** /cases/{caseId}/documents | Get list of document in a case
+*CaseManagementApi* | [**getCaseNigo**](docs/CaseManagementApi.md#getCaseNigo) | **GET** /cases/{caseId}/nigos/{nigoId} | Get nigo in a case
 *CaseManagementApi* | [**getCaseNigos**](docs/CaseManagementApi.md#getCaseNigos) | **GET** /cases/{caseId}/nigos | Get list of Nigos in a case
+*CaseManagementApi* | [**getCaseTask**](docs/CaseManagementApi.md#getCaseTask) | **GET** /cases/{caseId}/tasks/{taskId} | Get task in a case
 *CaseManagementApi* | [**getCaseTasks**](docs/CaseManagementApi.md#getCaseTasks) | **GET** /cases/{caseId}/tasks | Get list of tasks in a case
 *CaseManagementApi* | [**getCases**](docs/CaseManagementApi.md#getCases) | **GET** /cases | Get Case listing
 *CaseManagementApi* | [**getNigoDocuments**](docs/CaseManagementApi.md#getNigoDocuments) | **GET** /cases/{caseId}/nigos/{nigoId}/documents | Get list of document in a task
@@ -230,8 +238,8 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**getEsignatureDocusignConfig**](docs/ESignatureApi.md#getEsignatureDocusignConfig) | **GET** /esignature/docusign/config | Get E-signature config
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
-*ExamineObjectsApi* | [**addExaminePdf**](docs/ExamineObjectsApi.md#addExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
-*ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/pdf | Add Examine Pdf
+*ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
+*ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
@@ -310,7 +318,6 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
  - [AddEsignatureDocusignRequest](docs/AddEsignatureDocusignRequest.md)
  - [AddEsignatureDocusignResponse](docs/AddEsignatureDocusignResponse.md)
- - [AddExaminePdfResponse](docs/AddExaminePdfResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
@@ -341,6 +348,12 @@ Class | Method | HTTP request | Description
  - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
+ - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
+ - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
+ - [DeleteCaseNigoResponse](docs/DeleteCaseNigoResponse.md)
+ - [DeleteCaseResponse](docs/DeleteCaseResponse.md)
+ - [DeleteCaseTaskDocumentResponse](docs/DeleteCaseTaskDocumentResponse.md)
+ - [DeleteCaseTaskResponse](docs/DeleteCaseTaskResponse.md)
  - [DeleteDocumentAccessAttributesResponse](docs/DeleteDocumentAccessAttributesResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
@@ -356,7 +369,6 @@ Class | Method | HTTP request | Description
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
- - [DocumentCompositeSearchTag](docs/DocumentCompositeSearchTag.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
@@ -366,9 +378,11 @@ Class | Method | HTTP request | Description
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
  - [DocumentSearchMeta](docs/DocumentSearchMeta.md)
+ - [DocumentSearchRange](docs/DocumentSearchRange.md)
  - [DocumentSearchRequest](docs/DocumentSearchRequest.md)
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
  - [DocumentSearchTag](docs/DocumentSearchTag.md)
+ - [DocumentSearchTags](docs/DocumentSearchTags.md)
  - [DocumentTag](docs/DocumentTag.md)
  - [DocumentVersion](docs/DocumentVersion.md)
  - [DocumentWorkflow](docs/DocumentWorkflow.md)
@@ -383,8 +397,10 @@ Class | Method | HTTP request | Description
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
  - [GetCaseDocumentsResponse](docs/GetCaseDocumentsResponse.md)
+ - [GetCaseNigoResponse](docs/GetCaseNigoResponse.md)
  - [GetCaseNigosResponse](docs/GetCaseNigosResponse.md)
  - [GetCaseResponse](docs/GetCaseResponse.md)
+ - [GetCaseTaskResponse](docs/GetCaseTaskResponse.md)
  - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
  - [GetCasesResponse](docs/GetCasesResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
@@ -405,6 +421,7 @@ Class | Method | HTTP request | Description
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
  - [GetEsignatureDocusignConfigResponse](docs/GetEsignatureDocusignConfigResponse.md)
  - [GetExaminePdfResponse](docs/GetExaminePdfResponse.md)
+ - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
  - [GetOpaConfigurationResponse](docs/GetOpaConfigurationResponse.md)

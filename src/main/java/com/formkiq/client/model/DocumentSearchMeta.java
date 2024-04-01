@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchMeta
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-03-18T19:11:59.103684-05:00[America/Winnipeg]",
+    date = "2024-03-28T19:56:05.484023-05:00[America/Chicago]",
     comments = "Generator version: 7.4.0")
 public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_FOLDER = "folder";
@@ -66,6 +66,10 @@ public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_EQ = "eq";
+  @SerializedName(SERIALIZED_NAME_EQ)
+  private String eq;
 
   /**
    * Searches in an index
@@ -168,6 +172,26 @@ public class DocumentSearchMeta {
   }
 
 
+  public DocumentSearchMeta eq(String eq) {
+    this.eq = eq;
+    return this;
+  }
+
+  /**
+   * Searches for strings that eq
+   * 
+   * @return eq
+   **/
+  @javax.annotation.Nullable
+  public String getEq() {
+    return eq;
+  }
+
+  public void setEq(String eq) {
+    this.eq = eq;
+  }
+
+
   public DocumentSearchMeta indexType(IndexTypeEnum indexType) {
     this.indexType = indexType;
     return this;
@@ -220,13 +244,14 @@ public class DocumentSearchMeta {
     DocumentSearchMeta documentSearchMeta = (DocumentSearchMeta) o;
     return Objects.equals(this.folder, documentSearchMeta.folder)
         && Objects.equals(this.path, documentSearchMeta.path)
+        && Objects.equals(this.eq, documentSearchMeta.eq)
         && Objects.equals(this.indexType, documentSearchMeta.indexType)
         && Objects.equals(this.indexFilterBeginsWith, documentSearchMeta.indexFilterBeginsWith);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(folder, path, indexType, indexFilterBeginsWith);
+    return Objects.hash(folder, path, eq, indexType, indexFilterBeginsWith);
   }
 
   @Override
@@ -235,6 +260,7 @@ public class DocumentSearchMeta {
     sb.append("class DocumentSearchMeta {\n");
     sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
     sb.append("    indexType: ").append(toIndentedString(indexType)).append("\n");
     sb.append("    indexFilterBeginsWith: ").append(toIndentedString(indexFilterBeginsWith))
         .append("\n");
@@ -261,6 +287,7 @@ public class DocumentSearchMeta {
     openapiFields = new HashSet<String>();
     openapiFields.add("folder");
     openapiFields.add("path");
+    openapiFields.add("eq");
     openapiFields.add("indexType");
     openapiFields.add("indexFilterBeginsWith");
 
@@ -305,6 +332,12 @@ public class DocumentSearchMeta {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull())
+        && !jsonObj.get("eq").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `eq` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("eq").toString()));
     }
     if ((jsonObj.get("indexType") != null && !jsonObj.get("indexType").isJsonNull())
         && !jsonObj.get("indexType").isJsonPrimitive()) {

@@ -6415,6 +6415,48 @@ paths:
       x-content-type: application/json
       x-accepts: application/json
   /cases/{caseId}:
+    delete:
+      description: Delete Case
+      operationId: DeleteCase
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Case
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
     get:
       description: Returns a Case; ONLY available with FormKiQ Enterprise
       operationId: GetCase
@@ -6584,7 +6626,167 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-accepts: application/json
+  /cases/{caseId}/documents/{documentId}:
+    delete:
+      description: Delete Document from Case
+      operationId: DeleteCaseDocument
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseDocumentResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Document from Case
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
   /cases/{caseId}/tasks/{taskId}:
+    delete:
+      description: Delete Task
+      operationId: DeleteTask
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task Identifier
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseTaskResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Task
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Returns a Task in Case; ONLY available with FormKiQ Enterprise
+      operationId: GetCaseTask
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task Identifier
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCaseTaskResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get task in a case
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
     patch:
       description: Updates existing task; ONLY available with FormKiQ Enterprise
       operationId: UpdateTask
@@ -6720,7 +6922,175 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-accepts: application/json
+  /cases/{caseId}/tasks/{taskId}/documents/{documentId}:
+    delete:
+      description: Delete Document from Task
+      operationId: DeleteTaskDocument
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task Identifier
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseTaskDocumentResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Document from Task
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
   /cases/{caseId}/nigos/{nigoId}:
+    delete:
+      description: Delete Nigo
+      operationId: DeleteNigo
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Nigo Identifier
+        explode: false
+        in: path
+        name: nigoId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseNigoResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Nigo
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
+    get:
+      description: Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+      operationId: GetCaseNigo
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Nigo Identifier
+        explode: false
+        in: path
+        name: nigoId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCaseNigoResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get nigo in a case
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
     patch:
       description: Updates existing nigo; ONLY available with FormKiQ Enterprise
       operationId: UpdateNigo
@@ -6851,6 +7221,65 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Get list of document in a task
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
+  /cases/{caseId}/nigos/{nigoId}/documents/{documentId}:
+    delete:
+      description: Delete Document from Nigo
+      operationId: DeleteNigoDocument
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Nigo Identifier
+        explode: false
+        in: path
+        name: nigoId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCaseNigoDocumentResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Document from Nigo
       tags:
       - Case Management
       x-amazon-apigateway-integration:
@@ -7553,7 +7982,7 @@ paths:
     get:
       description: "Get Signed URL for PDF Object Upload of a document to be examined\
         \ by calling GET /objects/examine/{id}/pdf"
-      operationId: GetExaminePdf
+      operationId: GetExaminePdfUrl
       parameters:
       - description: Site Identifier
         explode: true
@@ -7568,7 +7997,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetExaminePdfResponse'
+                $ref: '#/components/schemas/GetExaminePdfUrlResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -7600,7 +8029,7 @@ paths:
         Get PDF details
 
         File must have been uploaded previously using the GET /objects/examine/pdf API.
-      operationId: AddExaminePdf
+      operationId: GetExaminePdf
       parameters:
       - description: Site Identifier
         explode: true
@@ -7623,7 +8052,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddExaminePdfResponse'
+                $ref: '#/components/schemas/GetExaminePdfResponse'
           description: 201 OK
           headers:
             Access-Control-Allow-Origin:
@@ -8608,18 +9037,30 @@ components:
           indexFilterBeginsWith: indexFilterBeginsWith
           indexType: folder
           folder: folder
+          eq: eq
         text: text
         tag:
           eqOr:
           - eqOr
           - eqOr
           beginsWith: beginsWith
+          range:
+            start: start
+            end: end
           eq: eq
           key: key
         tags:
-        - eq: eq
+        - beginsWith: beginsWith
+          range:
+            start: start
+            end: end
+          eq: eq
           key: key
-        - eq: eq
+        - beginsWith: beginsWith
+          range:
+            start: start
+            end: end
+          eq: eq
           key: key
         documentIds:
         - documentIds
@@ -8635,7 +9076,7 @@ components:
         tags:
           description: List of Composite Key tags to filter search results on
           items:
-            $ref: '#/components/schemas/DocumentCompositeSearchTag'
+            $ref: '#/components/schemas/DocumentSearchTags'
           type: array
         documentIds:
           description: List of DocumentIds to filter search results on
@@ -8977,18 +9418,30 @@ components:
             indexFilterBeginsWith: indexFilterBeginsWith
             indexType: folder
             folder: folder
+            eq: eq
           text: text
           tag:
             eqOr:
             - eqOr
             - eqOr
             beginsWith: beginsWith
+            range:
+              start: start
+              end: end
             eq: eq
             key: key
           tags:
-          - eq: eq
+          - beginsWith: beginsWith
+            range:
+              start: start
+              end: end
+            eq: eq
             key: key
-          - eq: eq
+          - beginsWith: beginsWith
+            range:
+              start: start
+              end: end
+            eq: eq
             key: key
           documentIds:
           - documentIds
@@ -9021,12 +9474,16 @@ components:
         indexFilterBeginsWith: indexFilterBeginsWith
         indexType: folder
         folder: folder
+        eq: eq
       properties:
         folder:
           description: Searches for a folder
           type: string
         path:
           description: Searches for a Path of document
+          type: string
+        eq:
+          description: Searches for strings that eq
           type: string
         indexType:
           description: Searches in an index
@@ -9043,6 +9500,9 @@ components:
         - eqOr
         - eqOr
         beginsWith: beginsWith
+        range:
+          start: start
+          end: end
         eq: eq
         key: key
       properties:
@@ -9057,20 +9517,46 @@ components:
           items:
             type: string
           type: array
+        range:
+          $ref: '#/components/schemas/DocumentSearchRange'
         key:
           description: Tag key to search
           type: string
       required:
       - key
       type: object
-    DocumentCompositeSearchTag:
+    DocumentSearchRange:
       example:
+        start: start
+        end: end
+      properties:
+        start:
+          description: Start of range query
+          type: string
+        end:
+          description: End of range query
+          type: string
+      required:
+      - end
+      - start
+      type: object
+    DocumentSearchTags:
+      example:
+        beginsWith: beginsWith
+        range:
+          start: start
+          end: end
         eq: eq
         key: key
       properties:
         eq:
           description: Searches for strings that eq
           type: string
+        beginsWith:
+          description: Searches for strings that begin with
+          type: string
+        range:
+          $ref: '#/components/schemas/DocumentSearchRange'
         key:
           description: Tag key to search
           type: string
@@ -10903,6 +11389,7 @@ components:
         case:
           metadata:
             key: "{}"
+          endDate: endDate
           documentNumberFormat:
           - padding: 0
             staticValue: staticValue
@@ -10911,6 +11398,8 @@ components:
             staticValue: staticValue
             type: null
           name: name
+          description: description
+          startDate: startDate
           caseNumberFormat:
           - padding: 0
             staticValue: staticValue
@@ -10962,6 +11451,7 @@ components:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
         documentNumberFormat:
         - padding: 0
           staticValue: staticValue
@@ -10970,6 +11460,8 @@ components:
           staticValue: staticValue
           type: null
         name: name
+        description: description
+        startDate: startDate
         caseNumberFormat:
         - padding: 0
           staticValue: staticValue
@@ -11017,6 +11509,15 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/CaseStatus'
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
+        description:
+          description: Case Description
+          type: string
         documentNumberFormat:
           description: Format of Document Number
           items:
@@ -11072,7 +11573,12 @@ components:
     UpdateCaseRequest:
       example:
         case:
+          metadata:
+            key: "{}"
+          endDate: endDate
           name: name
+          description: description
+          startDate: startDate
           status: null
           documentIds:
           - documentIds
@@ -11083,7 +11589,12 @@ components:
       type: object
     UpdateCase:
       example:
+        metadata:
+          key: "{}"
+        endDate: endDate
         name: name
+        description: description
+        startDate: startDate
         status: null
         documentIds:
         - documentIds
@@ -11094,6 +11605,19 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/CaseStatus'
+        description:
+          description: Case Description
+          type: string
+        metadata:
+          additionalProperties:
+            type: object
+          type: object
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
         documentIds:
           items:
             type: string
@@ -11158,7 +11682,10 @@ components:
         task:
           metadata:
             key: "{}"
+          endDate: endDate
+          name: name
           description: description
+          startDate: startDate
           status: null
           documentIds:
           - documentIds
@@ -11171,14 +11698,26 @@ components:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
+        name: name
         description: description
+        startDate: startDate
         status: null
         documentIds:
         - documentIds
         - documentIds
       properties:
+        name:
+          description: Name of Task
+          type: string
         description:
           description: Description of Task
+          type: string
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
@@ -11230,7 +11769,10 @@ components:
         nigo:
           metadata:
             key: "{}"
+          endDate: endDate
+          name: name
           description: description
+          startDate: startDate
           status: null
           documentIds:
           - documentIds
@@ -11243,14 +11785,26 @@ components:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
+        name: name
         description: description
+        startDate: startDate
         status: null
         documentIds:
         - documentIds
         - documentIds
       properties:
+        name:
+          description: Name of Nigo
+          type: string
         description:
           description: Description of Nigo
+          type: string
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
@@ -11294,8 +11848,12 @@ components:
         metadata:
           key: "{}"
         insertedDate: insertedDate
+        endDate: endDate
+        name: name
         description: description
+        userId: userId
         taskId: taskId
+        startDate: startDate
         status: null
       properties:
         taskId:
@@ -11304,8 +11862,20 @@ components:
         insertedDate:
           description: Inserted Timestamp
           type: string
+        name:
+          description: Name of Task
+          type: string
         description:
           description: Description of Task
+          type: string
+        startDate:
+          description: Start Date of Task
+          type: string
+        endDate:
+          description: End Date of Task
+          type: string
+        userId:
+          description: User who added Task
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
@@ -11320,7 +11890,11 @@ components:
           key: "{}"
         nigoId: nigoId
         insertedDate: insertedDate
+        endDate: endDate
+        name: name
         description: description
+        userId: userId
+        startDate: startDate
         status: null
       properties:
         nigoId:
@@ -11329,8 +11903,20 @@ components:
         insertedDate:
           description: Inserted Timestamp
           type: string
+        name:
+          description: Name of Nigo
+          type: string
         description:
-          description: Description of Task
+          description: Description of Nigo
+          type: string
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
+        userId:
+          description: User who added Nigo
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
@@ -11345,19 +11931,27 @@ components:
         cases:
         - metadata:
             key: "{}"
+          endDate: endDate
           insertedDate: insertedDate
           caseNumber: caseNumber
           documentNumber: documentNumber
           caseId: caseId
           name: name
+          description: description
+          userId: userId
+          startDate: startDate
           status: null
         - metadata:
             key: "{}"
+          endDate: endDate
           insertedDate: insertedDate
           caseNumber: caseNumber
           documentNumber: documentNumber
           caseId: caseId
           name: name
+          description: description
+          userId: userId
+          startDate: startDate
           status: null
       properties:
         next:
@@ -11377,13 +11971,21 @@ components:
             key: "{}"
           nigoId: nigoId
           insertedDate: insertedDate
+          endDate: endDate
+          name: name
           description: description
+          userId: userId
+          startDate: startDate
           status: null
         - metadata:
             key: "{}"
           nigoId: nigoId
           insertedDate: insertedDate
+          endDate: endDate
+          name: name
           description: description
+          userId: userId
+          startDate: startDate
           status: null
       properties:
         next:
@@ -11395,6 +11997,40 @@ components:
             $ref: '#/components/schemas/Nigo'
           type: array
       type: object
+    GetCaseNigoResponse:
+      example:
+        nigo:
+          metadata:
+            key: "{}"
+          nigoId: nigoId
+          insertedDate: insertedDate
+          endDate: endDate
+          name: name
+          description: description
+          userId: userId
+          startDate: startDate
+          status: null
+      properties:
+        nigo:
+          $ref: '#/components/schemas/Nigo'
+      type: object
+    GetCaseTaskResponse:
+      example:
+        task:
+          metadata:
+            key: "{}"
+          insertedDate: insertedDate
+          endDate: endDate
+          name: name
+          description: description
+          userId: userId
+          taskId: taskId
+          startDate: startDate
+          status: null
+      properties:
+        task:
+          $ref: '#/components/schemas/Task'
+      type: object
     GetCaseTasksResponse:
       example:
         next: next
@@ -11402,14 +12038,22 @@ components:
         - metadata:
             key: "{}"
           insertedDate: insertedDate
+          endDate: endDate
+          name: name
           description: description
+          userId: userId
           taskId: taskId
+          startDate: startDate
           status: null
         - metadata:
             key: "{}"
           insertedDate: insertedDate
+          endDate: endDate
+          name: name
           description: description
+          userId: userId
           taskId: taskId
+          startDate: startDate
           status: null
       properties:
         next:
@@ -11490,11 +12134,15 @@ components:
         case:
           metadata:
             key: "{}"
+          endDate: endDate
           insertedDate: insertedDate
           caseNumber: caseNumber
           documentNumber: documentNumber
           caseId: caseId
           name: name
+          description: description
+          userId: userId
+          startDate: startDate
           status: null
       properties:
         case:
@@ -11504,11 +12152,15 @@ components:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
         insertedDate: insertedDate
         caseNumber: caseNumber
         documentNumber: documentNumber
         caseId: caseId
         name: name
+        description: description
+        userId: userId
+        startDate: startDate
         status: null
       properties:
         caseId:
@@ -11520,11 +12172,20 @@ components:
         documentNumber:
           description: Document Number
           type: string
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
         insertedDate:
           description: Inserted Timestamp
           type: string
         name:
           description: Case Name
+          type: string
+        description:
+          description: Case Description
           type: string
         metadata:
           additionalProperties:
@@ -11532,6 +12193,9 @@ components:
           type: object
         status:
           $ref: '#/components/schemas/CaseStatus'
+        userId:
+          description: User who added document
+          type: string
       type: object
     RulesetStatus:
       description: Status of the Ruleset
@@ -11966,7 +12630,7 @@ components:
         operation:
           $ref: '#/components/schemas/RuleConditionOperation'
       type: object
-    GetExaminePdfResponse:
+    GetExaminePdfUrlResponse:
       example:
         uploadUrl: uploadUrl
         id: id
@@ -11978,7 +12642,7 @@ components:
           description: Url to upload document to
           type: string
       type: object
-    AddExaminePdfResponse:
+    GetExaminePdfResponse:
       example:
         fileinfo:
           fields:
@@ -12994,6 +13658,54 @@ components:
           type: string
       type: object
     SetOpaConfigurationResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseNigoDocumentResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseNigoResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseDocumentResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseTaskDocumentResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteCaseTaskResponse:
       example:
         message: message
       properties:
