@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.14.0</version>
+  <version>1.15.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.14.0"
+     implementation "com.formkiq:client:1.15.0"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.14.0.jar`
+* `target/client-1.15.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -195,6 +195,8 @@ Class | Method | HTTP request | Description
 *AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
 *AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
 *CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
+*CaseManagementApi* | [**addNigo**](docs/CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo
+*CaseManagementApi* | [**addTask**](docs/CaseManagementApi.md#addTask) | **POST** /cases/{caseId}/tasks | Add New Task
 *CaseManagementApi* | [**deleteCase**](docs/CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case
 *CaseManagementApi* | [**deleteCaseDocument**](docs/CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case
 *CaseManagementApi* | [**deleteNigo**](docs/CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo
@@ -360,6 +362,8 @@ Class | Method | HTTP request | Description
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
  - [AddNigo](docs/AddNigo.md)
+ - [AddNigoRequest](docs/AddNigoRequest.md)
+ - [AddNigoResponse](docs/AddNigoResponse.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
  - [AddRule](docs/AddRule.md)
@@ -373,6 +377,8 @@ Class | Method | HTTP request | Description
  - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
  - [AddTask](docs/AddTask.md)
+ - [AddTaskRequest](docs/AddTaskRequest.md)
+ - [AddTaskResponse](docs/AddTaskResponse.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
  - [AddWebhookTagRequest](docs/AddWebhookTagRequest.md)
@@ -494,6 +500,7 @@ Class | Method | HTTP request | Description
  - [ModelCase](docs/ModelCase.md)
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)
+ - [OcrEngine](docs/OcrEngine.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)

@@ -5,6 +5,8 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addCase**](CaseManagementApi.md#addCase) | **POST** /cases | Add New Case |
+| [**addNigo**](CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo |
+| [**addTask**](CaseManagementApi.md#addTask) | **POST** /cases/{caseId}/tasks | Add New Task |
 | [**deleteCase**](CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case |
 | [**deleteCaseDocument**](CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case |
 | [**deleteNigo**](CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo |
@@ -77,6 +79,144 @@ public class Example {
 ### Return type
 
 [**AddCaseResponse**](AddCaseResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="addNigo"></a>
+# **addNigo**
+> AddNigoResponse addNigo(caseId, addNigoRequest, siteId)
+
+Add New Nigo
+
+Adds new nigo; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    AddNigoRequest addNigoRequest = new AddNigoRequest(); // AddNigoRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      AddNigoResponse result = apiInstance.addNigo(caseId, addNigoRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#addNigo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **addNigoRequest** | [**AddNigoRequest**](AddNigoRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**AddNigoResponse**](AddNigoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="addTask"></a>
+# **addTask**
+> AddTaskResponse addTask(caseId, addTaskRequest, siteId)
+
+Add New Task
+
+Adds new task; ONLY available with FormKiQ Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.CaseManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    CaseManagementApi apiInstance = new CaseManagementApi(defaultClient);
+    String caseId = "caseId_example"; // String | Case Identifier
+    AddTaskRequest addTaskRequest = new AddTaskRequest(); // AddTaskRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      AddTaskResponse result = apiInstance.addTask(caseId, addTaskRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CaseManagementApi#addTask");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseId** | **String**| Case Identifier | |
+| **addTaskRequest** | [**AddTaskRequest**](AddTaskRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**AddTaskResponse**](AddTaskResponse.md)
 
 ### Authorization
 

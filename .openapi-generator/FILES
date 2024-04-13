@@ -43,6 +43,8 @@ docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
 docs/AddFolderShareResponse.md
 docs/AddNigo.md
+docs/AddNigoRequest.md
+docs/AddNigoResponse.md
 docs/AddQueueRequest.md
 docs/AddQueueResponse.md
 docs/AddRule.md
@@ -56,6 +58,8 @@ docs/AddTagSchemaRequest.md
 docs/AddTagSchemaResponse.md
 docs/AddTagSchemaTags.md
 docs/AddTask.md
+docs/AddTaskRequest.md
+docs/AddTaskResponse.md
 docs/AddWebhookRequest.md
 docs/AddWebhookResponse.md
 docs/AddWebhookTagRequest.md
@@ -192,6 +196,7 @@ docs/MatchDocumentTag.md
 docs/ModelCase.md
 docs/Nigo.md
 docs/NigoStatus.md
+docs/OcrEngine.md
 docs/OnlyOfficeConfig.md
 docs/OnlyOfficeConfigDocument.md
 docs/OnlyOfficeDocumentNewRequest.md
@@ -387,6 +392,8 @@ src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
 src/main/java/com/formkiq/client/model/AddFolderShareResponse.java
 src/main/java/com/formkiq/client/model/AddNigo.java
+src/main/java/com/formkiq/client/model/AddNigoRequest.java
+src/main/java/com/formkiq/client/model/AddNigoResponse.java
 src/main/java/com/formkiq/client/model/AddQueueRequest.java
 src/main/java/com/formkiq/client/model/AddQueueResponse.java
 src/main/java/com/formkiq/client/model/AddRule.java
@@ -400,6 +407,8 @@ src/main/java/com/formkiq/client/model/AddTagSchemaRequest.java
 src/main/java/com/formkiq/client/model/AddTagSchemaResponse.java
 src/main/java/com/formkiq/client/model/AddTagSchemaTags.java
 src/main/java/com/formkiq/client/model/AddTask.java
+src/main/java/com/formkiq/client/model/AddTaskRequest.java
+src/main/java/com/formkiq/client/model/AddTaskResponse.java
 src/main/java/com/formkiq/client/model/AddWebhookRequest.java
 src/main/java/com/formkiq/client/model/AddWebhookResponse.java
 src/main/java/com/formkiq/client/model/AddWebhookTagRequest.java
@@ -521,6 +530,7 @@ src/main/java/com/formkiq/client/model/MatchDocumentTag.java
 src/main/java/com/formkiq/client/model/ModelCase.java
 src/main/java/com/formkiq/client/model/Nigo.java
 src/main/java/com/formkiq/client/model/NigoStatus.java
+src/main/java/com/formkiq/client/model/OcrEngine.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfig.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfigDocument.java
 src/main/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequest.java
@@ -674,6 +684,8 @@ src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareResponseTest.java
+src/test/java/com/formkiq/client/model/AddNigoRequestTest.java
+src/test/java/com/formkiq/client/model/AddNigoResponseTest.java
 src/test/java/com/formkiq/client/model/AddNigoTest.java
 src/test/java/com/formkiq/client/model/AddQueueRequestTest.java
 src/test/java/com/formkiq/client/model/AddQueueResponseTest.java
@@ -687,6 +699,8 @@ src/test/java/com/formkiq/client/model/AddShareTest.java
 src/test/java/com/formkiq/client/model/AddTagSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/AddTagSchemaResponseTest.java
 src/test/java/com/formkiq/client/model/AddTagSchemaTagsTest.java
+src/test/java/com/formkiq/client/model/AddTaskRequestTest.java
+src/test/java/com/formkiq/client/model/AddTaskResponseTest.java
 src/test/java/com/formkiq/client/model/AddTaskTest.java
 src/test/java/com/formkiq/client/model/AddWebhookRequestTest.java
 src/test/java/com/formkiq/client/model/AddWebhookResponseTest.java
@@ -809,6 +823,7 @@ src/test/java/com/formkiq/client/model/MatchDocumentTagTest.java
 src/test/java/com/formkiq/client/model/ModelCaseTest.java
 src/test/java/com/formkiq/client/model/NigoStatusTest.java
 src/test/java/com/formkiq/client/model/NigoTest.java
+src/test/java/com/formkiq/client/model/OcrEngineTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigDocumentTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequestTest.java

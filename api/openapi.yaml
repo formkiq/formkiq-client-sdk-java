@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API
-  version: 1.14.0
+  version: 1.15.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -2635,6 +2635,7 @@ paths:
         | -------- | ------- | ------- | ------- |
         | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
         | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
+        | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
         | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
@@ -7354,6 +7355,55 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-accepts: application/json
+    post:
+      description: Adds new task; ONLY available with FormKiQ Enterprise
+      operationId: AddTask
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTaskRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddTaskResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add New Task
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-content-type: application/json
+      x-accepts: application/json
   /cases/{caseId}/nigos:
     get:
       description: Returns a Nigos of Case; ONLY available with FormKiQ Enterprise
@@ -7422,6 +7472,55 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts: application/json
+    post:
+      description: Adds new nigo; ONLY available with FormKiQ Enterprise
+      operationId: AddNigo
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Case Identifier
+        explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddNigoRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddNigoResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add New Nigo
+      tags:
+      - Case Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-content-type: application/json
       x-accepts: application/json
   /rulesets:
     get:
@@ -9608,9 +9707,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -9624,9 +9724,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -9758,9 +9859,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -9774,9 +9876,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -9923,9 +10026,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -9939,9 +10043,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -11384,6 +11489,22 @@ components:
           description: Case Identifier
           type: string
       type: object
+    AddTaskResponse:
+      example:
+        taskId: taskId
+      properties:
+        taskId:
+          description: Task Identifier
+          type: string
+      type: object
+    AddNigoResponse:
+      example:
+        nigoId: nigoId
+      properties:
+        nigoId:
+          description: Nigo Identifier
+          type: string
+      type: object
     AddCaseRequest:
       example:
         case:
@@ -11407,40 +11528,10 @@ components:
           - padding: 0
             staticValue: staticValue
             type: null
-          tasks:
-          - metadata:
-              key: "{}"
-            description: description
-            status: null
-            documentIds:
-            - documentIds
-            - documentIds
-          - metadata:
-              key: "{}"
-            description: description
-            status: null
-            documentIds:
-            - documentIds
-            - documentIds
           status: null
           documentIds:
           - documentIds
           - documentIds
-          nigos:
-          - metadata:
-              key: "{}"
-            description: description
-            status: null
-            documentIds:
-            - documentIds
-            - documentIds
-          - metadata:
-              key: "{}"
-            description: description
-            status: null
-            documentIds:
-            - documentIds
-            - documentIds
       properties:
         case:
           $ref: '#/components/schemas/AddCase'
@@ -11469,40 +11560,10 @@ components:
         - padding: 0
           staticValue: staticValue
           type: null
-        tasks:
-        - metadata:
-            key: "{}"
-          description: description
-          status: null
-          documentIds:
-          - documentIds
-          - documentIds
-        - metadata:
-            key: "{}"
-          description: description
-          status: null
-          documentIds:
-          - documentIds
-          - documentIds
         status: null
         documentIds:
         - documentIds
         - documentIds
-        nigos:
-        - metadata:
-            key: "{}"
-          description: description
-          status: null
-          documentIds:
-          - documentIds
-          - documentIds
-        - metadata:
-            key: "{}"
-          description: description
-          status: null
-          documentIds:
-          - documentIds
-          - documentIds
       properties:
         name:
           description: Case Name
@@ -11535,14 +11596,6 @@ components:
         documentIds:
           items:
             type: string
-          type: array
-        tasks:
-          items:
-            $ref: '#/components/schemas/AddTask'
-          type: array
-        nigos:
-          items:
-            $ref: '#/components/schemas/AddNigo'
           type: array
       required:
       - name
@@ -11730,11 +11783,31 @@ components:
             type: string
           type: array
       type: object
+    AddTaskRequest:
+      example:
+        task:
+          metadata:
+            key: "{}"
+          endDate: endDate
+          description: description
+          startDate: startDate
+          status: null
+          documentIds:
+          - documentIds
+          - documentIds
+      properties:
+        task:
+          $ref: '#/components/schemas/AddTask'
+      required:
+      - task
+      type: object
     AddTask:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
         description: description
+        startDate: startDate
         status: null
         documentIds:
         - documentIds
@@ -11745,6 +11818,12 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
         metadata:
           additionalProperties:
             type: object
@@ -11817,11 +11896,31 @@ components:
             type: string
           type: array
       type: object
+    AddNigoRequest:
+      example:
+        nigo:
+          metadata:
+            key: "{}"
+          endDate: endDate
+          description: description
+          startDate: startDate
+          status: null
+          documentIds:
+          - documentIds
+          - documentIds
+      properties:
+        nigo:
+          $ref: '#/components/schemas/AddNigo'
+      required:
+      - nigo
+      type: object
     AddNigo:
       example:
         metadata:
           key: "{}"
+        endDate: endDate
         description: description
+        startDate: startDate
         status: null
         documentIds:
         - documentIds
@@ -11832,6 +11931,12 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
+        startDate:
+          description: Start Date
+          type: string
+        endDate:
+          description: End Date
+          type: string
         metadata:
           additionalProperties:
             type: object
@@ -13298,9 +13403,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -13314,9 +13420,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
@@ -13339,9 +13446,10 @@ components:
         type: null
         parameters:
           characterMax: characterMax
-          ocrEngine: TESSERACT
+          ocrEngine: null
           ocrParseTypes: ocrParseTypes
           addPdfDetectedCharactersAsText: true
+          ocrNumberOfPages: ocrNumberOfPages
           notificationType: email
           notificationToCc: notificationToCc
           notificationToBcc: notificationToBcc
@@ -13362,12 +13470,19 @@ components:
       required:
       - type
       type: object
+    OcrEngine:
+      description: Type of OCR Engine to use
+      enum:
+      - TESSERACT
+      - TEXTRACT
+      type: string
     AddActionParameters:
       example:
         characterMax: characterMax
-        ocrEngine: TESSERACT
+        ocrEngine: null
         ocrParseTypes: ocrParseTypes
         addPdfDetectedCharactersAsText: true
+        ocrNumberOfPages: ocrNumberOfPages
         notificationType: email
         notificationToCc: notificationToCc
         notificationToBcc: notificationToBcc
@@ -13382,10 +13497,9 @@ components:
           description: "OCR: Parse types - TEXT, FORMS, TABLES"
           type: string
         ocrEngine:
-          description: "OCR: Engine to use for Optical character recognition"
-          enum:
-          - TESSERACT
-          - TEXTRACT
+          $ref: '#/components/schemas/OcrEngine'
+        ocrNumberOfPages:
+          description: Number of pages to OCR (from start) (-1 all)
           type: string
         addPdfDetectedCharactersAsText:
           description: "OCR: For the rewriting of the PDF document, converting any\
@@ -13447,10 +13561,9 @@ components:
             \ text"
           type: boolean
         ocrEngine:
-          description: "OCR: Engine to use for Optical character recognition"
-          enum:
-          - TESSERACT
-          - TEXTRACT
+          $ref: '#/components/schemas/OcrEngine'
+        ocrNumberOfPages:
+          description: Number of pages to OCR (from start) (-1 all)
           type: string
       type: object
     SetDocumentOcrRequest:
@@ -14090,9 +14203,10 @@ components:
             type: null
             parameters:
               characterMax: characterMax
-              ocrEngine: TESSERACT
+              ocrEngine: null
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
+              ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
@@ -14118,9 +14232,10 @@ components:
             type: null
             parameters:
               characterMax: characterMax
-              ocrEngine: TESSERACT
+              ocrEngine: null
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
+              ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
@@ -14171,9 +14286,10 @@ components:
             type: null
             parameters:
               characterMax: characterMax
-              ocrEngine: TESSERACT
+              ocrEngine: null
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
+              ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
@@ -14199,9 +14315,10 @@ components:
             type: null
             parameters:
               characterMax: characterMax
-              ocrEngine: TESSERACT
+              ocrEngine: null
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: true
+              ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
@@ -14249,9 +14366,10 @@ components:
           type: null
           parameters:
             characterMax: characterMax
-            ocrEngine: TESSERACT
+            ocrEngine: null
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: true
+            ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
