@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -181,7 +181,7 @@ public class Site {
 
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private List<PermissionsEnum> permissions;
+  private List<PermissionsEnum> permissions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPLOAD_EMAIL = "uploadEmail";
   @SerializedName(SERIALIZED_NAME_UPLOAD_EMAIL)

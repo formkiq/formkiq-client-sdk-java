@@ -35,6 +35,7 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddTagSchemaRequest;
 import com.formkiq.client.model.AddTagSchemaResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetTagSchemaResponse;
 import com.formkiq.client.model.GetTagSchemasResponse;
@@ -357,7 +358,7 @@ public class TagSchemaApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -394,6 +395,7 @@ public class TagSchemaApi {
    * 
    * @param tagSchemaId Tag Schema Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -413,8 +415,9 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteTagSchema(String tagSchemaId, String siteId) throws ApiException {
-    deleteTagSchemaWithHttpInfo(tagSchemaId, siteId);
+  public DeleteResponse deleteTagSchema(String tagSchemaId, String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteTagSchemaWithHttpInfo(tagSchemaId, siteId);
+    return localVarResp.getData();
   }
 
   /**
@@ -422,7 +425,7 @@ public class TagSchemaApi {
    * 
    * @param tagSchemaId Tag Schema Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -442,10 +445,11 @@ public class TagSchemaApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteTagSchemaWithHttpInfo(String tagSchemaId, String siteId)
+  public ApiResponse<DeleteResponse> deleteTagSchemaWithHttpInfo(String tagSchemaId, String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteTagSchemaValidateBeforeCall(tagSchemaId, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -475,10 +479,11 @@ public class TagSchemaApi {
    *                        </table>
    */
   public okhttp3.Call deleteTagSchemaAsync(String tagSchemaId, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteTagSchemaValidateBeforeCall(tagSchemaId, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 

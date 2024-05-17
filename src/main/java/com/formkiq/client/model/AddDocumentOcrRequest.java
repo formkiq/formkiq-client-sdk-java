@@ -59,12 +59,12 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
-  private List<String> parseTypes;
+  private List<String> parseTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ADD_PDF_DETECTED_CHARACTERS_AS_TEXT =
       "addPdfDetectedCharactersAsText";
@@ -78,6 +78,10 @@ public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_OCR_NUMBER_OF_PAGES = "ocrNumberOfPages";
   @SerializedName(SERIALIZED_NAME_OCR_NUMBER_OF_PAGES)
   private String ocrNumberOfPages;
+
+  public static final String SERIALIZED_NAME_OCR_EXPORT_TO_CSV = "ocrExportToCsv";
+  @SerializedName(SERIALIZED_NAME_OCR_EXPORT_TO_CSV)
+  private Boolean ocrExportToCsv;
 
   public AddDocumentOcrRequest() {}
 
@@ -170,6 +174,26 @@ public class AddDocumentOcrRequest {
   }
 
 
+  public AddDocumentOcrRequest ocrExportToCsv(Boolean ocrExportToCsv) {
+    this.ocrExportToCsv = ocrExportToCsv;
+    return this;
+  }
+
+  /**
+   * Whether to Export to CSV
+   * 
+   * @return ocrExportToCsv
+   **/
+  @javax.annotation.Nullable
+  public Boolean getOcrExportToCsv() {
+    return ocrExportToCsv;
+  }
+
+  public void setOcrExportToCsv(Boolean ocrExportToCsv) {
+    this.ocrExportToCsv = ocrExportToCsv;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -184,12 +208,14 @@ public class AddDocumentOcrRequest {
         && Objects.equals(this.addPdfDetectedCharactersAsText,
             addDocumentOcrRequest.addPdfDetectedCharactersAsText)
         && Objects.equals(this.ocrEngine, addDocumentOcrRequest.ocrEngine)
-        && Objects.equals(this.ocrNumberOfPages, addDocumentOcrRequest.ocrNumberOfPages);
+        && Objects.equals(this.ocrNumberOfPages, addDocumentOcrRequest.ocrNumberOfPages)
+        && Objects.equals(this.ocrExportToCsv, addDocumentOcrRequest.ocrExportToCsv);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parseTypes, addPdfDetectedCharactersAsText, ocrEngine, ocrNumberOfPages);
+    return Objects.hash(parseTypes, addPdfDetectedCharactersAsText, ocrEngine, ocrNumberOfPages,
+        ocrExportToCsv);
   }
 
   @Override
@@ -201,6 +227,7 @@ public class AddDocumentOcrRequest {
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrNumberOfPages: ").append(toIndentedString(ocrNumberOfPages)).append("\n");
+    sb.append("    ocrExportToCsv: ").append(toIndentedString(ocrExportToCsv)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -226,6 +253,7 @@ public class AddDocumentOcrRequest {
     openapiFields.add("addPdfDetectedCharactersAsText");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrNumberOfPages");
+    openapiFields.add("ocrExportToCsv");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

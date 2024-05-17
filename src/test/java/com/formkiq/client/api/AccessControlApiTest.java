@@ -23,14 +23,15 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentAccessAttributesRequest;
 import com.formkiq.client.model.AddDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
-import com.formkiq.client.model.DeleteOpaConfigurationResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
-import com.formkiq.client.model.GetOpaConfigurationResponse;
+import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
+import com.formkiq.client.model.GetOpaAccessPolicyResponse;
 import com.formkiq.client.model.GetOpaConfigurationsResponse;
 import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
 import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
-import com.formkiq.client.model.SetOpaConfigurationRequest;
-import com.formkiq.client.model.SetOpaConfigurationResponse;
+import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -82,16 +83,16 @@ public class AccessControlApiTest {
   }
 
   /**
-   * Delete OPA Configuration
+   * Delete OPA Access Policy Items
    *
-   * Delete OPA Configuration
+   * Delete OPA Access Policy Items
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void deleteOpaConfigurationTest() throws ApiException {
+  public void deleteOpaAccessPolicyItemTest() throws ApiException {
     String siteId = null;
-    DeleteOpaConfigurationResponse response = api.deleteOpaConfiguration(siteId);
+    DeleteResponse response = api.deleteOpaAccessPolicyItem(siteId);
     // TODO: test validations
   }
 
@@ -112,16 +113,30 @@ public class AccessControlApiTest {
   }
 
   /**
-   * Get OPA Configuration
+   * Get OPA Access Policy
    *
-   * Returns OPA Configuration, can only be requested with ADMIN privileges
+   * Returns OPA Access Policy, can only be requested with ADMIN privileges
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getOpaConfigurationTest() throws ApiException {
+  public void getOpaAccessPolicyTest() throws ApiException {
     String siteId = null;
-    GetOpaConfigurationResponse response = api.getOpaConfiguration(siteId);
+    GetOpaAccessPolicyResponse response = api.getOpaAccessPolicy(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get OPA Access Policy Items
+   *
+   * Returns OPA Access Policy Items, can only be requested with ADMIN privileges
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getOpaAccessPolicyItemsTest() throws ApiException {
+    String siteId = null;
+    GetOpaAccessPolicyItemsResponse response = api.getOpaAccessPolicyItems(siteId);
     // TODO: test validations
   }
 
@@ -156,16 +171,17 @@ public class AccessControlApiTest {
   }
 
   /**
-   * Set OPA Configuration
+   * Set opa access policy items, can only be requested with ADMIN privileges
    *
-   * Set OPA Configuration, can only be requested with ADMIN privileges
+   * Sets opa access policy items
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void setOpaConfigurationTest() throws ApiException {
-    SetOpaConfigurationRequest setOpaConfigurationRequest = null;
-    SetOpaConfigurationResponse response = api.setOpaConfiguration(setOpaConfigurationRequest);
+  public void setOpaAccessPolicyItemsTest() throws ApiException {
+    String siteId = null;
+    SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest = null;
+    SetResponse response = api.setOpaAccessPolicyItems(siteId, setOpaAccessPolicyItemsRequest);
     // TODO: test validations
   }
 

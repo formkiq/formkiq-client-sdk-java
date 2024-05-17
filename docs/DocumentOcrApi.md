@@ -81,7 +81,7 @@ No authorization required
 
 <a id="deleteDocumentOcr"></a>
 # **deleteDocumentOcr**
-> deleteDocumentOcr(documentId, siteId)
+> DeleteResponse deleteDocumentOcr(documentId, siteId)
 
 Delete document ocr
 
@@ -108,7 +108,8 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteDocumentOcr(documentId, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentOcr(documentId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#deleteDocumentOcr");
       System.err.println("Status code: " + e.getCode());
@@ -129,7 +130,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -138,7 +139,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -62,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * AddCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class AddCase {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -87,11 +87,11 @@ public class AddCase {
 
   public static final String SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT = "documentNumberFormat";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER_FORMAT)
-  private List<StringFormat> documentNumberFormat;
+  private List<StringFormat> documentNumberFormat = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CASE_NUMBER_FORMAT = "caseNumberFormat";
   @SerializedName(SERIALIZED_NAME_CASE_NUMBER_FORMAT)
-  private List<StringFormat> caseNumberFormat;
+  private List<StringFormat> caseNumberFormat = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -99,7 +99,7 @@ public class AddCase {
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
-  private List<String> documentIds;
+  private List<String> documentIds = new ArrayList<>();
 
   public AddCase() {}
 

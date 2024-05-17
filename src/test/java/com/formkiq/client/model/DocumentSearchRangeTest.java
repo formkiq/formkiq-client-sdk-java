@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.SearchRangeDataType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,6 +58,14 @@ public class DocumentSearchRangeTest {
   @Test
   public void endTest() {
     // TODO: test end
+  }
+
+  /**
+   * Test the property 'type'
+   */
+  @Test
+  public void typeTest() {
+    // TODO: test type
   }
 
 }

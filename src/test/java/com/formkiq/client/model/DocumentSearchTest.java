@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentSearchAttribute;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
 import com.formkiq.client.model.DocumentSearchTags;
@@ -62,6 +63,22 @@ public class DocumentSearchTest {
   @Test
   public void metaTest() {
     // TODO: test meta
+  }
+
+  /**
+   * Test the property 'attribute'
+   */
+  @Test
+  public void attributeTest() {
+    // TODO: test attribute
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
   /**

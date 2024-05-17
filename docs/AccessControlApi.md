@@ -6,12 +6,13 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addDocumentAccessAttributes**](AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes |
 | [**deleteDocumentAccessAttributes**](AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes |
-| [**deleteOpaConfiguration**](AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /sites/{siteId}/opa/accessPolicy | Delete OPA Configuration |
+| [**deleteOpaAccessPolicyItem**](AccessControlApi.md#deleteOpaAccessPolicyItem) | **DELETE** /sites/{siteId}/opa/accessPolicy/policyItems | Delete OPA Access Policy Items |
 | [**getDocumentAccessAttributes**](AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes |
-| [**getOpaConfiguration**](AccessControlApi.md#getOpaConfiguration) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Configuration |
+| [**getOpaAccessPolicy**](AccessControlApi.md#getOpaAccessPolicy) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Access Policy |
+| [**getOpaAccessPolicyItems**](AccessControlApi.md#getOpaAccessPolicyItems) | **GET** /sites/{siteId}/opa/accessPolicy/policyItems | Get OPA Access Policy Items |
 | [**getOpaConfigurations**](AccessControlApi.md#getOpaConfigurations) | **GET** /sites/opa/accessPolicies | Get OPAs Configuration |
 | [**setDocumentAccessAttributes**](AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes |
-| [**setOpaConfiguration**](AccessControlApi.md#setOpaConfiguration) | **PUT** /sites/opa/accessPolicies | Set OPA Configuration |
+| [**setOpaAccessPolicyItems**](AccessControlApi.md#setOpaAccessPolicyItems) | **PUT** /sites/{siteId}/opa/accessPolicy/policyItems | Set opa access policy items, can only be requested with ADMIN privileges |
 
 
 <a id="addDocumentAccessAttributes"></a>
@@ -151,13 +152,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="deleteOpaConfiguration"></a>
-# **deleteOpaConfiguration**
-> DeleteOpaConfigurationResponse deleteOpaConfiguration(siteId)
+<a id="deleteOpaAccessPolicyItem"></a>
+# **deleteOpaAccessPolicyItem**
+> DeleteResponse deleteOpaAccessPolicyItem(siteId)
 
-Delete OPA Configuration
+Delete OPA Access Policy Items
 
-Delete OPA Configuration
+Delete OPA Access Policy Items
 
 ### Example
 ```java
@@ -179,10 +180,10 @@ public class Example {
     AccessControlApi apiInstance = new AccessControlApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DeleteOpaConfigurationResponse result = apiInstance.deleteOpaConfiguration(siteId);
+      DeleteResponse result = apiInstance.deleteOpaAccessPolicyItem(siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccessControlApi#deleteOpaConfiguration");
+      System.err.println("Exception when calling AccessControlApi#deleteOpaAccessPolicyItem");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -200,7 +201,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteOpaConfigurationResponse**](DeleteOpaConfigurationResponse.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -283,13 +284,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
-<a id="getOpaConfiguration"></a>
-# **getOpaConfiguration**
-> GetOpaConfigurationResponse getOpaConfiguration(siteId)
+<a id="getOpaAccessPolicy"></a>
+# **getOpaAccessPolicy**
+> GetOpaAccessPolicyResponse getOpaAccessPolicy(siteId)
 
-Get OPA Configuration
+Get OPA Access Policy
 
-Returns OPA Configuration, can only be requested with ADMIN privileges
+Returns OPA Access Policy, can only be requested with ADMIN privileges
 
 ### Example
 ```java
@@ -311,10 +312,10 @@ public class Example {
     AccessControlApi apiInstance = new AccessControlApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      GetOpaConfigurationResponse result = apiInstance.getOpaConfiguration(siteId);
+      GetOpaAccessPolicyResponse result = apiInstance.getOpaAccessPolicy(siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccessControlApi#getOpaConfiguration");
+      System.err.println("Exception when calling AccessControlApi#getOpaAccessPolicy");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -332,7 +333,72 @@ public class Example {
 
 ### Return type
 
-[**GetOpaConfigurationResponse**](GetOpaConfigurationResponse.md)
+[**GetOpaAccessPolicyResponse**](GetOpaAccessPolicyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getOpaAccessPolicyItems"></a>
+# **getOpaAccessPolicyItems**
+> GetOpaAccessPolicyItemsResponse getOpaAccessPolicyItems(siteId)
+
+Get OPA Access Policy Items
+
+Returns OPA Access Policy Items, can only be requested with ADMIN privileges
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AccessControlApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AccessControlApi apiInstance = new AccessControlApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetOpaAccessPolicyItemsResponse result = apiInstance.getOpaAccessPolicyItems(siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccessControlApi#getOpaAccessPolicyItems");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+
+### Return type
+
+[**GetOpaAccessPolicyItemsResponse**](GetOpaAccessPolicyItemsResponse.md)
 
 ### Authorization
 
@@ -479,13 +545,13 @@ No authorization required
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 OK |  -  |
 
-<a id="setOpaConfiguration"></a>
-# **setOpaConfiguration**
-> SetOpaConfigurationResponse setOpaConfiguration(setOpaConfigurationRequest)
+<a id="setOpaAccessPolicyItems"></a>
+# **setOpaAccessPolicyItems**
+> SetResponse setOpaAccessPolicyItems(siteId, setOpaAccessPolicyItemsRequest)
 
-Set OPA Configuration
+Set opa access policy items, can only be requested with ADMIN privileges
 
-Set OPA Configuration, can only be requested with ADMIN privileges
+Sets opa access policy items
 
 ### Example
 ```java
@@ -505,12 +571,13 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     AccessControlApi apiInstance = new AccessControlApi(defaultClient);
-    SetOpaConfigurationRequest setOpaConfigurationRequest = new SetOpaConfigurationRequest(); // SetOpaConfigurationRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest = new SetOpaAccessPolicyItemsRequest(); // SetOpaAccessPolicyItemsRequest | 
     try {
-      SetOpaConfigurationResponse result = apiInstance.setOpaConfiguration(setOpaConfigurationRequest);
+      SetResponse result = apiInstance.setOpaAccessPolicyItems(siteId, setOpaAccessPolicyItemsRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccessControlApi#setOpaConfiguration");
+      System.err.println("Exception when calling AccessControlApi#setOpaAccessPolicyItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -524,11 +591,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **setOpaConfigurationRequest** | [**SetOpaConfigurationRequest**](SetOpaConfigurationRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | |
+| **setOpaAccessPolicyItemsRequest** | [**SetOpaAccessPolicyItemsRequest**](SetOpaAccessPolicyItemsRequest.md)|  | |
 
 ### Return type
 
-[**SetOpaConfigurationResponse**](SetOpaConfigurationResponse.md)
+[**SetResponse**](SetResponse.md)
 
 ### Authorization
 
@@ -542,5 +610,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **200** | 200 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 

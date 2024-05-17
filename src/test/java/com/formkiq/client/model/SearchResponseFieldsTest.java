@@ -46,6 +46,14 @@ public class SearchResponseFieldsTest {
   }
 
   /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
+  }
+
+  /**
    * Test the property 'tags'
    */
   @Test

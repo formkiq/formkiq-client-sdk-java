@@ -36,14 +36,15 @@ import java.io.IOException;
 import com.formkiq.client.model.AddDocumentAccessAttributesRequest;
 import com.formkiq.client.model.AddDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
-import com.formkiq.client.model.DeleteOpaConfigurationResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
-import com.formkiq.client.model.GetOpaConfigurationResponse;
+import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
+import com.formkiq.client.model.GetOpaAccessPolicyResponse;
 import com.formkiq.client.model.GetOpaConfigurationsResponse;
 import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
 import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
-import com.formkiq.client.model.SetOpaConfigurationRequest;
-import com.formkiq.client.model.SetOpaConfigurationResponse;
+import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -507,7 +508,7 @@ public class AccessControlApi {
   }
 
   /**
-   * Build call for deleteOpaConfiguration
+   * Build call for deleteOpaAccessPolicyItem
    * 
    * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
@@ -530,7 +531,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaConfigurationCall(String siteId, final ApiCallback _callback)
+  public okhttp3.Call deleteOpaAccessPolicyItemCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -548,8 +549,8 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/sites/{siteId}/opa/accessPolicy".replace("{" + "siteId" + "}",
-        localVarApiClient.escapeString(siteId.toString()));
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy/policyItems"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -577,23 +578,23 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteOpaConfigurationValidateBeforeCall(String siteId,
+  private okhttp3.Call deleteOpaAccessPolicyItemValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
-          "Missing the required parameter 'siteId' when calling deleteOpaConfiguration(Async)");
+          "Missing the required parameter 'siteId' when calling deleteOpaAccessPolicyItem(Async)");
     }
 
-    return deleteOpaConfigurationCall(siteId, _callback);
+    return deleteOpaAccessPolicyItemCall(siteId, _callback);
 
   }
 
   /**
-   * Delete OPA Configuration Delete OPA Configuration
+   * Delete OPA Access Policy Items Delete OPA Access Policy Items
    * 
    * @param siteId Site Identifier (required)
-   * @return DeleteOpaConfigurationResponse
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -613,17 +614,16 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteOpaConfigurationResponse deleteOpaConfiguration(String siteId) throws ApiException {
-    ApiResponse<DeleteOpaConfigurationResponse> localVarResp =
-        deleteOpaConfigurationWithHttpInfo(siteId);
+  public DeleteResponse deleteOpaAccessPolicyItem(String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteOpaAccessPolicyItemWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
   /**
-   * Delete OPA Configuration Delete OPA Configuration
+   * Delete OPA Access Policy Items Delete OPA Access Policy Items
    * 
    * @param siteId Site Identifier (required)
-   * @return ApiResponse&lt;DeleteOpaConfigurationResponse&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -643,15 +643,15 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteOpaConfigurationResponse> deleteOpaConfigurationWithHttpInfo(
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = deleteOpaConfigurationValidateBeforeCall(siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteOpaConfigurationResponse>() {}.getType();
+  public ApiResponse<DeleteResponse> deleteOpaAccessPolicyItemWithHttpInfo(String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Delete OPA Configuration (asynchronously) Delete OPA Configuration
+   * Delete OPA Access Policy Items (asynchronously) Delete OPA Access Policy Items
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -674,11 +674,11 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaConfigurationAsync(String siteId,
-      final ApiCallback<DeleteOpaConfigurationResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteOpaAccessPolicyItemAsync(String siteId,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = deleteOpaConfigurationValidateBeforeCall(siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteOpaConfigurationResponse>() {}.getType();
+    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -875,7 +875,7 @@ public class AccessControlApi {
   }
 
   /**
-   * Build call for getOpaConfiguration
+   * Build call for getOpaAccessPolicy
    * 
    * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
@@ -898,7 +898,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaConfigurationCall(String siteId, final ApiCallback _callback)
+  public okhttp3.Call getOpaAccessPolicyCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -945,23 +945,23 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getOpaConfigurationValidateBeforeCall(String siteId,
+  private okhttp3.Call getOpaAccessPolicyValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
-          "Missing the required parameter 'siteId' when calling getOpaConfiguration(Async)");
+          "Missing the required parameter 'siteId' when calling getOpaAccessPolicy(Async)");
     }
 
-    return getOpaConfigurationCall(siteId, _callback);
+    return getOpaAccessPolicyCall(siteId, _callback);
 
   }
 
   /**
-   * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
+   * Get OPA Access Policy Returns OPA Access Policy, can only be requested with ADMIN privileges
    * 
    * @param siteId Site Identifier (required)
-   * @return GetOpaConfigurationResponse
+   * @return GetOpaAccessPolicyResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -981,16 +981,16 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public GetOpaConfigurationResponse getOpaConfiguration(String siteId) throws ApiException {
-    ApiResponse<GetOpaConfigurationResponse> localVarResp = getOpaConfigurationWithHttpInfo(siteId);
+  public GetOpaAccessPolicyResponse getOpaAccessPolicy(String siteId) throws ApiException {
+    ApiResponse<GetOpaAccessPolicyResponse> localVarResp = getOpaAccessPolicyWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
   /**
-   * Get OPA Configuration Returns OPA Configuration, can only be requested with ADMIN privileges
+   * Get OPA Access Policy Returns OPA Access Policy, can only be requested with ADMIN privileges
    * 
    * @param siteId Site Identifier (required)
-   * @return ApiResponse&lt;GetOpaConfigurationResponse&gt;
+   * @return ApiResponse&lt;GetOpaAccessPolicyResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1010,15 +1010,15 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetOpaConfigurationResponse> getOpaConfigurationWithHttpInfo(String siteId)
+  public ApiResponse<GetOpaAccessPolicyResponse> getOpaAccessPolicyWithHttpInfo(String siteId)
       throws ApiException {
-    okhttp3.Call localVarCall = getOpaConfigurationValidateBeforeCall(siteId, null);
-    Type localVarReturnType = new TypeToken<GetOpaConfigurationResponse>() {}.getType();
+    okhttp3.Call localVarCall = getOpaAccessPolicyValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPolicyResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Get OPA Configuration (asynchronously) Returns OPA Configuration, can only be requested with
+   * Get OPA Access Policy (asynchronously) Returns OPA Access Policy, can only be requested with
    * ADMIN privileges
    * 
    * @param siteId Site Identifier (required)
@@ -1042,11 +1042,192 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaConfigurationAsync(String siteId,
-      final ApiCallback<GetOpaConfigurationResponse> _callback) throws ApiException {
+  public okhttp3.Call getOpaAccessPolicyAsync(String siteId,
+      final ApiCallback<GetOpaAccessPolicyResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getOpaConfigurationValidateBeforeCall(siteId, _callback);
-    Type localVarReturnType = new TypeToken<GetOpaConfigurationResponse>() {}.getType();
+    okhttp3.Call localVarCall = getOpaAccessPolicyValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPolicyResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getOpaAccessPolicyItems
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpaAccessPolicyItemsCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy/policyItems"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getOpaAccessPolicyItemsValidateBeforeCall(String siteId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getOpaAccessPolicyItems(Async)");
+    }
+
+    return getOpaAccessPolicyItemsCall(siteId, _callback);
+
+  }
+
+  /**
+   * Get OPA Access Policy Items Returns OPA Access Policy Items, can only be requested with ADMIN
+   * privileges
+   * 
+   * @param siteId Site Identifier (required)
+   * @return GetOpaAccessPolicyItemsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetOpaAccessPolicyItemsResponse getOpaAccessPolicyItems(String siteId)
+      throws ApiException {
+    ApiResponse<GetOpaAccessPolicyItemsResponse> localVarResp =
+        getOpaAccessPolicyItemsWithHttpInfo(siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get OPA Access Policy Items Returns OPA Access Policy Items, can only be requested with ADMIN
+   * privileges
+   * 
+   * @param siteId Site Identifier (required)
+   * @return ApiResponse&lt;GetOpaAccessPolicyItemsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetOpaAccessPolicyItemsResponse> getOpaAccessPolicyItemsWithHttpInfo(
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getOpaAccessPolicyItemsValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPolicyItemsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get OPA Access Policy Items (asynchronously) Returns OPA Access Policy Items, can only be
+   * requested with ADMIN privileges
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpaAccessPolicyItemsAsync(String siteId,
+      final ApiCallback<GetOpaAccessPolicyItemsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getOpaAccessPolicyItemsValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPolicyItemsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1447,9 +1628,10 @@ public class AccessControlApi {
   }
 
   /**
-   * Build call for setOpaConfiguration
+   * Build call for setOpaAccessPolicyItems
    * 
-   * @param setOpaConfigurationRequest (required)
+   * @param siteId Site Identifier (required)
+   * @param setOpaAccessPolicyItemsRequest (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1462,16 +1644,22 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 OK</td>
+   *                        <td>200 CREATED</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setOpaConfigurationCall(SetOpaConfigurationRequest setOpaConfigurationRequest,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call setOpaAccessPolicyItemsCall(String siteId,
+      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1485,10 +1673,11 @@ public class AccessControlApi {
       basePath = null;
     }
 
-    Object localVarPostBody = setOpaConfigurationRequest;
+    Object localVarPostBody = setOpaAccessPolicyItemsRequest;
 
     // create path and map variables
-    String localVarPath = "/sites/opa/accessPolicies";
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy/policyItems"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1516,24 +1705,32 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setOpaConfigurationValidateBeforeCall(
-      SetOpaConfigurationRequest setOpaConfigurationRequest, final ApiCallback _callback)
+  private okhttp3.Call setOpaAccessPolicyItemsValidateBeforeCall(String siteId,
+      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest, final ApiCallback _callback)
       throws ApiException {
-    // verify the required parameter 'setOpaConfigurationRequest' is set
-    if (setOpaConfigurationRequest == null) {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
       throw new ApiException(
-          "Missing the required parameter 'setOpaConfigurationRequest' when calling setOpaConfiguration(Async)");
+          "Missing the required parameter 'siteId' when calling setOpaAccessPolicyItems(Async)");
     }
 
-    return setOpaConfigurationCall(setOpaConfigurationRequest, _callback);
+    // verify the required parameter 'setOpaAccessPolicyItemsRequest' is set
+    if (setOpaAccessPolicyItemsRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setOpaAccessPolicyItemsRequest' when calling setOpaAccessPolicyItems(Async)");
+    }
+
+    return setOpaAccessPolicyItemsCall(siteId, setOpaAccessPolicyItemsRequest, _callback);
 
   }
 
   /**
-   * Set OPA Configuration Set OPA Configuration, can only be requested with ADMIN privileges
+   * Set opa access policy items, can only be requested with ADMIN privileges Sets opa access policy
+   * items
    * 
-   * @param setOpaConfigurationRequest (required)
-   * @return SetOpaConfigurationResponse
+   * @param siteId Site Identifier (required)
+   * @param setOpaAccessPolicyItemsRequest (required)
+   * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1545,26 +1742,33 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 OK</td>
+   *                        <td>200 CREATED</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public SetOpaConfigurationResponse setOpaConfiguration(
-      SetOpaConfigurationRequest setOpaConfigurationRequest) throws ApiException {
-    ApiResponse<SetOpaConfigurationResponse> localVarResp =
-        setOpaConfigurationWithHttpInfo(setOpaConfigurationRequest);
+  public SetResponse setOpaAccessPolicyItems(String siteId,
+      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest) throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setOpaAccessPolicyItemsWithHttpInfo(siteId, setOpaAccessPolicyItemsRequest);
     return localVarResp.getData();
   }
 
   /**
-   * Set OPA Configuration Set OPA Configuration, can only be requested with ADMIN privileges
+   * Set opa access policy items, can only be requested with ADMIN privileges Sets opa access policy
+   * items
    * 
-   * @param setOpaConfigurationRequest (required)
-   * @return ApiResponse&lt;SetOpaConfigurationResponse&gt;
+   * @param siteId Site Identifier (required)
+   * @param setOpaAccessPolicyItemsRequest (required)
+   * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1576,27 +1780,33 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 OK</td>
+   *                        <td>200 CREATED</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetOpaConfigurationResponse> setOpaConfigurationWithHttpInfo(
-      SetOpaConfigurationRequest setOpaConfigurationRequest) throws ApiException {
+  public ApiResponse<SetResponse> setOpaAccessPolicyItemsWithHttpInfo(String siteId,
+      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest) throws ApiException {
     okhttp3.Call localVarCall =
-        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, null);
-    Type localVarReturnType = new TypeToken<SetOpaConfigurationResponse>() {}.getType();
+        setOpaAccessPolicyItemsValidateBeforeCall(siteId, setOpaAccessPolicyItemsRequest, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Set OPA Configuration (asynchronously) Set OPA Configuration, can only be requested with ADMIN
-   * privileges
+   * Set opa access policy items, can only be requested with ADMIN privileges (asynchronously) Sets
+   * opa access policy items
    * 
-   * @param setOpaConfigurationRequest (required)
+   * @param siteId Site Identifier (required)
+   * @param setOpaAccessPolicyItemsRequest (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1609,21 +1819,26 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 OK</td>
+   *                        <td>200 CREATED</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setOpaConfigurationAsync(
-      SetOpaConfigurationRequest setOpaConfigurationRequest,
-      final ApiCallback<SetOpaConfigurationResponse> _callback) throws ApiException {
+  public okhttp3.Call setOpaAccessPolicyItemsAsync(String siteId,
+      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        setOpaConfigurationValidateBeforeCall(setOpaConfigurationRequest, _callback);
-    Type localVarReturnType = new TypeToken<SetOpaConfigurationResponse>() {}.getType();
+    okhttp3.Call localVarCall = setOpaAccessPolicyItemsValidateBeforeCall(siteId,
+        setOpaAccessPolicyItemsRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

@@ -21,9 +21,11 @@
 |**contentLength** | **Integer** | Document size |  [optional] |
 |**versionId** | **String** | Document version |  [optional] |
 |**belongsToDocumentId** | **String** | Parent Document Identifier |  [optional] |
+|**matchedAttribute** | [**DocumentSearchMatchAttribute**](DocumentSearchMatchAttribute.md) |  |  [optional] |
 |**matchedTag** | [**DocumentSearchMatchTag**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**matchedTags** | [**List&lt;DocumentSearchMatchTag&gt;**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**responseAttributes** | [**List&lt;SearchResponseAttributeField&gt;**](SearchResponseAttributeField.md) | List of document response attributes |  [optional] |
 |**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 
 

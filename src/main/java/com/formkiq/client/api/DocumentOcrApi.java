@@ -35,6 +35,7 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddDocumentOcrRequest;
 import com.formkiq.client.model.AddDocumentOcrResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentOcrResponse;
 import com.formkiq.client.model.SetDocumentOcrRequest;
 
@@ -335,7 +336,7 @@ public class DocumentOcrApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -373,6 +374,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -392,8 +394,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteDocumentOcr(String documentId, String siteId) throws ApiException {
-    deleteDocumentOcrWithHttpInfo(documentId, siteId);
+  public DeleteResponse deleteDocumentOcr(String documentId, String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteDocumentOcrWithHttpInfo(documentId, siteId);
+    return localVarResp.getData();
   }
 
   /**
@@ -402,7 +405,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -422,10 +425,11 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteDocumentOcrWithHttpInfo(String documentId, String siteId)
+  public ApiResponse<DeleteResponse> deleteDocumentOcrWithHttpInfo(String documentId, String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -455,10 +459,11 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentOcrAsync(String documentId, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 

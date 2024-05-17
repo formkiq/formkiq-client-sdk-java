@@ -20,6 +20,7 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentVersionsResponse;
 import com.formkiq.client.model.SetDocumentVersionRequest;
 import com.formkiq.client.model.SetDocumentVersionResponse;
@@ -53,7 +54,7 @@ public class DocumentVersionsApiTest {
     String versionKey = null;
     String siteId = null;
     String shareKey = null;
-    api.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
+    DeleteResponse response = api.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
     // TODO: test validations
   }
 

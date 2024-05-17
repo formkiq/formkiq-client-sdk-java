@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetCasesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class GetCasesResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -68,7 +68,7 @@ public class GetCasesResponse {
 
   public static final String SERIALIZED_NAME_CASES = "cases";
   @SerializedName(SERIALIZED_NAME_CASES)
-  private List<ModelCase> cases;
+  private List<ModelCase> cases = new ArrayList<>();
 
   public GetCasesResponse() {}
 

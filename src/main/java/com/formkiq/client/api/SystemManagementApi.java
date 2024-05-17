@@ -36,7 +36,7 @@ import java.io.IOException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
-import com.formkiq.client.model.DeleteOpenSearchIndexResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
@@ -552,7 +552,7 @@ public class SystemManagementApi {
    * Deletst site(s) OpenSearch index Deletes the OpenSearch index
    * 
    * @param siteId Site Identifier (required)
-   * @return DeleteOpenSearchIndexResponse
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -572,9 +572,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteOpenSearchIndexResponse deleteOpensearchIndex(String siteId) throws ApiException {
-    ApiResponse<DeleteOpenSearchIndexResponse> localVarResp =
-        deleteOpensearchIndexWithHttpInfo(siteId);
+  public DeleteResponse deleteOpensearchIndex(String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteOpensearchIndexWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -582,7 +581,7 @@ public class SystemManagementApi {
    * Deletst site(s) OpenSearch index Deletes the OpenSearch index
    * 
    * @param siteId Site Identifier (required)
-   * @return ApiResponse&lt;DeleteOpenSearchIndexResponse&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -602,10 +601,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteOpenSearchIndexResponse> deleteOpensearchIndexWithHttpInfo(String siteId)
+  public ApiResponse<DeleteResponse> deleteOpensearchIndexWithHttpInfo(String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteOpensearchIndexValidateBeforeCall(siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteOpenSearchIndexResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -634,10 +633,10 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call deleteOpensearchIndexAsync(String siteId,
-      final ApiCallback<DeleteOpenSearchIndexResponse> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteOpensearchIndexValidateBeforeCall(siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteOpenSearchIndexResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

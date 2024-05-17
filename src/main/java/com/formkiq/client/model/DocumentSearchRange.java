@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.SearchRangeDataType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchRange
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class DocumentSearchRange {
   public static final String SERIALIZED_NAME_START = "start";
   @SerializedName(SERIALIZED_NAME_START)
@@ -66,6 +67,10 @@ public class DocumentSearchRange {
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
   private String end;
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private SearchRangeDataType type = SearchRangeDataType.STRING;
 
   public DocumentSearchRange() {}
 
@@ -109,6 +114,26 @@ public class DocumentSearchRange {
   }
 
 
+  public DocumentSearchRange type(SearchRangeDataType type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * 
+   * @return type
+   **/
+  @javax.annotation.Nullable
+  public SearchRangeDataType getType() {
+    return type;
+  }
+
+  public void setType(SearchRangeDataType type) {
+    this.type = type;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -120,12 +145,13 @@ public class DocumentSearchRange {
     }
     DocumentSearchRange documentSearchRange = (DocumentSearchRange) o;
     return Objects.equals(this.start, documentSearchRange.start)
-        && Objects.equals(this.end, documentSearchRange.end);
+        && Objects.equals(this.end, documentSearchRange.end)
+        && Objects.equals(this.type, documentSearchRange.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end);
+    return Objects.hash(start, end, type);
   }
 
   @Override
@@ -134,6 +160,7 @@ public class DocumentSearchRange {
     sb.append("class DocumentSearchRange {\n");
     sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,6 +184,7 @@ public class DocumentSearchRange {
     openapiFields = new HashSet<String>();
     openapiFields.add("start");
     openapiFields.add("end");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -208,6 +236,10 @@ public class DocumentSearchRange {
       throw new IllegalArgumentException(String.format(
           "Expected the field `end` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("end").toString()));
+    }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      SearchRangeDataType.validateJsonElement(jsonObj.get("type"));
     }
   }
 

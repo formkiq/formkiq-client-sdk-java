@@ -23,6 +23,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentRequest;
 import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentUploadRequest;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -117,7 +118,7 @@ public class DocumentsApiTest {
     String documentId = null;
     String siteId = null;
     Boolean softDelete = null;
-    api.deleteDocument(documentId, siteId, softDelete);
+    DeleteResponse response = api.deleteDocument(documentId, siteId, softDelete);
     // TODO: test validations
   }
 

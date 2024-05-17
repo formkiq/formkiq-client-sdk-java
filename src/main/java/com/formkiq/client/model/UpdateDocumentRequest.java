@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
+import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
@@ -62,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class UpdateDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -91,19 +92,23 @@ public class UpdateDocumentRequest {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<AddDocumentTag> tags;
+  private List<AddDocumentTag> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private List<AddDocumentMetadata> metadata;
+  private List<AddDocumentMetadata> metadata = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private List<AddDocumentAttribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
-  private List<AddAction> actions;
+  private List<AddAction> actions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
-  private List<AddChildDocument> documents;
+  private List<AddChildDocument> documents = new ArrayList<>();
 
   public UpdateDocumentRequest() {}
 
@@ -283,6 +288,34 @@ public class UpdateDocumentRequest {
   }
 
 
+  public UpdateDocumentRequest attributes(List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public UpdateDocumentRequest addAttributesItem(AddDocumentAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * List of document attributes
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public List<AddDocumentAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
   public UpdateDocumentRequest actions(List<AddAction> actions) {
     this.actions = actions;
     return this;
@@ -357,6 +390,7 @@ public class UpdateDocumentRequest {
         && Objects.equals(this.content, updateDocumentRequest.content)
         && Objects.equals(this.tags, updateDocumentRequest.tags)
         && Objects.equals(this.metadata, updateDocumentRequest.metadata)
+        && Objects.equals(this.attributes, updateDocumentRequest.attributes)
         && Objects.equals(this.actions, updateDocumentRequest.actions)
         && Objects.equals(this.documents, updateDocumentRequest.documents);
   }
@@ -364,7 +398,7 @@ public class UpdateDocumentRequest {
   @Override
   public int hashCode() {
     return Objects.hash(tagSchemaId, path, deepLinkPath, contentType, isBase64, content, tags,
-        metadata, actions, documents);
+        metadata, attributes, actions, documents);
   }
 
   @Override
@@ -379,6 +413,7 @@ public class UpdateDocumentRequest {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
@@ -410,6 +445,7 @@ public class UpdateDocumentRequest {
     openapiFields.add("content");
     openapiFields.add("tags");
     openapiFields.add("metadata");
+    openapiFields.add("attributes");
     openapiFields.add("actions");
     openapiFields.add("documents");
 
@@ -502,6 +538,22 @@ public class UpdateDocumentRequest {
         // validate the optional field `metadata` (array)
         for (int i = 0; i < jsonArraymetadata.size(); i++) {
           AddDocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+      if (jsonArrayattributes != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("attributes").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+              jsonObj.get("attributes").toString()));
+        }
+
+        // validate the optional field `attributes` (array)
+        for (int i = 0; i < jsonArrayattributes.size(); i++) {
+          AddDocumentAttribute.validateJsonElement(jsonArrayattributes.get(i));
         } ;
       }
     }

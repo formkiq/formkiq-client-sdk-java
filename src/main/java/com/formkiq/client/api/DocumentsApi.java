@@ -36,6 +36,7 @@ import java.io.IOException;
 import com.formkiq.client.model.AddDocumentRequest;
 import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentUploadRequest;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -791,7 +792,7 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("softDelete", softDelete));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -829,6 +830,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -848,9 +850,11 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteDocument(String documentId, String siteId, Boolean softDelete)
+  public DeleteResponse deleteDocument(String documentId, String siteId, Boolean softDelete)
       throws ApiException {
-    deleteDocumentWithHttpInfo(documentId, siteId, softDelete);
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteDocumentWithHttpInfo(documentId, siteId, softDelete);
+    return localVarResp.getData();
   }
 
   /**
@@ -859,7 +863,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -879,11 +883,12 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteDocumentWithHttpInfo(String documentId, String siteId,
+  public ApiResponse<DeleteResponse> deleteDocumentWithHttpInfo(String documentId, String siteId,
       Boolean softDelete) throws ApiException {
     okhttp3.Call localVarCall =
         deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -913,11 +918,12 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentAsync(String documentId, String siteId, Boolean softDelete,
-      final ApiCallback<Void> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 

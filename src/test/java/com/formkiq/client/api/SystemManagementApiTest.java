@@ -23,7 +23,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
-import com.formkiq.client.model.DeleteOpenSearchIndexResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
@@ -90,7 +90,7 @@ public class SystemManagementApiTest {
   @Test
   public void deleteOpensearchIndexTest() throws ApiException {
     String siteId = null;
-    DeleteOpenSearchIndexResponse response = api.deleteOpensearchIndex(siteId);
+    DeleteResponse response = api.deleteOpensearchIndex(siteId);
     // TODO: test validations
   }
 

@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.AddAction;
+import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -77,6 +78,14 @@ public class AddDocumentUploadRequestTest {
   @Test
   public void deepLinkPathTest() {
     // TODO: test deepLinkPath
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
   /**

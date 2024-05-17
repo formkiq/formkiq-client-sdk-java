@@ -21,6 +21,7 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentTagsRequest;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
 import com.formkiq.client.model.SetDocumentTagKeyRequest;
@@ -72,7 +73,7 @@ public class DocumentTagsApiTest {
     String documentId = null;
     String tagKey = null;
     String siteId = null;
-    api.deleteDocumentTag(documentId, tagKey, siteId);
+    DeleteResponse response = api.deleteDocumentTag(documentId, tagKey, siteId);
     // TODO: test validations
   }
 
@@ -91,7 +92,8 @@ public class DocumentTagsApiTest {
     String tagValue = null;
     String siteId = null;
     String shareKey = null;
-    api.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
+    DeleteResponse response =
+        api.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
     // TODO: test validations
   }
 

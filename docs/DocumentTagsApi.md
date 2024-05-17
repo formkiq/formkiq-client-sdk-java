@@ -87,7 +87,7 @@ No authorization required
 
 <a id="deleteDocumentTag"></a>
 # **deleteDocumentTag**
-> deleteDocumentTag(documentId, tagKey, siteId)
+> DeleteResponse deleteDocumentTag(documentId, tagKey, siteId)
 
 Delete document tag
 
@@ -115,7 +115,8 @@ public class Example {
     String tagKey = "tagKey_example"; // String | Tag Key
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteDocumentTag(documentId, tagKey, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentTag(documentId, tagKey, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#deleteDocumentTag");
       System.err.println("Status code: " + e.getCode());
@@ -137,7 +138,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -146,7 +147,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -155,7 +156,7 @@ No authorization required
 
 <a id="deleteDocumentTagAndValue"></a>
 # **deleteDocumentTagAndValue**
-> deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey)
+> DeleteResponse deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey)
 
 Delete document&#39;s tag value
 
@@ -185,7 +186,8 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      apiInstance.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
+      DeleteResponse result = apiInstance.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#deleteDocumentTagAndValue");
       System.err.println("Status code: " + e.getCode());
@@ -209,7 +211,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -218,7 +220,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

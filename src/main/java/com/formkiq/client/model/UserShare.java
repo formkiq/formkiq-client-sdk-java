@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * UserShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class UserShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -128,7 +128,7 @@ public class UserShare {
 
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private List<UserSharePermission> permissions;
+  private List<UserSharePermission> permissions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -459,12 +459,6 @@ public class UserShare {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
-    }
-    if ((jsonObj.get("permissionType") != null && !jsonObj.get("permissionType").isJsonNull())
-        && !jsonObj.get("permissionType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `permissionType` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("permissionType").toString()));
     }
     // validate the optional field `permissionType`
     if (jsonObj.get("permissionType") != null && !jsonObj.get("permissionType").isJsonNull()) {

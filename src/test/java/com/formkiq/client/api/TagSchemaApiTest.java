@@ -22,6 +22,7 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddTagSchemaRequest;
 import com.formkiq.client.model.AddTagSchemaResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetTagSchemaResponse;
 import com.formkiq.client.model.GetTagSchemasResponse;
@@ -67,7 +68,7 @@ public class TagSchemaApiTest {
   public void deleteTagSchemaTest() throws ApiException {
     String tagSchemaId = null;
     String siteId = null;
-    api.deleteTagSchema(tagSchemaId, siteId);
+    DeleteResponse response = api.deleteTagSchema(tagSchemaId, siteId);
     // TODO: test validations
   }
 

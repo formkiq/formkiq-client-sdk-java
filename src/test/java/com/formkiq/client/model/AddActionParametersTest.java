@@ -61,6 +61,14 @@ public class AddActionParametersTest {
   }
 
   /**
+   * Test the property 'ocrExportToCsv'
+   */
+  @Test
+  public void ocrExportToCsvTest() {
+    // TODO: test ocrExportToCsv
+  }
+
+  /**
    * Test the property 'ocrNumberOfPages'
    */
   @Test

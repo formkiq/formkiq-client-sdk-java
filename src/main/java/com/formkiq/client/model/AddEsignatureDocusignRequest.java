@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddEsignatureDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class AddEsignatureDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
@@ -131,15 +131,15 @@ public class AddEsignatureDocusignRequest {
 
   public static final String SERIALIZED_NAME_SIGNERS = "signers";
   @SerializedName(SERIALIZED_NAME_SIGNERS)
-  private List<EsignatureDocusignSigner> signers;
+  private List<EsignatureDocusignSigner> signers = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CARBON_COPIES = "carbonCopies";
   @SerializedName(SERIALIZED_NAME_CARBON_COPIES)
-  private List<EsignatureDocusignCarbonCopy> carbonCopies;
+  private List<EsignatureDocusignCarbonCopy> carbonCopies = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RECIPIENT_TABS = "recipientTabs";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_TABS)
-  private List<EsignatureDocusignRecipientTab> recipientTabs;
+  private List<EsignatureDocusignRecipientTab> recipientTabs = new ArrayList<>();
 
   public AddEsignatureDocusignRequest() {}
 

@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentSearchAttribute;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
 import com.formkiq.client.model.DocumentSearchTags;
@@ -61,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
@@ -72,17 +73,25 @@ public class DocumentSearch {
   @SerializedName(SERIALIZED_NAME_META)
   private DocumentSearchMeta meta;
 
+  public static final String SERIALIZED_NAME_ATTRIBUTE = "attribute";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE)
+  private DocumentSearchAttribute attribute;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private List<DocumentSearchAttribute> attributes = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
   private DocumentSearchTag tag;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<DocumentSearchTags> tags;
+  private List<DocumentSearchTags> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
-  private List<String> documentIds;
+  private List<String> documentIds = new ArrayList<>();
 
   public DocumentSearch() {}
 
@@ -123,6 +132,54 @@ public class DocumentSearch {
 
   public void setMeta(DocumentSearchMeta meta) {
     this.meta = meta;
+  }
+
+
+  public DocumentSearch attribute(DocumentSearchAttribute attribute) {
+    this.attribute = attribute;
+    return this;
+  }
+
+  /**
+   * Get attribute
+   * 
+   * @return attribute
+   **/
+  @javax.annotation.Nullable
+  public DocumentSearchAttribute getAttribute() {
+    return attribute;
+  }
+
+  public void setAttribute(DocumentSearchAttribute attribute) {
+    this.attribute = attribute;
+  }
+
+
+  public DocumentSearch attributes(List<DocumentSearchAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public DocumentSearch addAttributesItem(DocumentSearchAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * List of Composite Key attributes to filter search results on
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentSearchAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(List<DocumentSearchAttribute> attributes) {
+    this.attributes = attributes;
   }
 
 
@@ -214,6 +271,8 @@ public class DocumentSearch {
     DocumentSearch documentSearch = (DocumentSearch) o;
     return Objects.equals(this.text, documentSearch.text)
         && Objects.equals(this.meta, documentSearch.meta)
+        && Objects.equals(this.attribute, documentSearch.attribute)
+        && Objects.equals(this.attributes, documentSearch.attributes)
         && Objects.equals(this.tag, documentSearch.tag)
         && Objects.equals(this.tags, documentSearch.tags)
         && Objects.equals(this.documentIds, documentSearch.documentIds);
@@ -221,7 +280,7 @@ public class DocumentSearch {
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, meta, tag, tags, documentIds);
+    return Objects.hash(text, meta, attribute, attributes, tag, tags, documentIds);
   }
 
   @Override
@@ -230,6 +289,8 @@ public class DocumentSearch {
     sb.append("class DocumentSearch {\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    attribute: ").append(toIndentedString(attribute)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
@@ -256,6 +317,8 @@ public class DocumentSearch {
     openapiFields = new HashSet<String>();
     openapiFields.add("text");
     openapiFields.add("meta");
+    openapiFields.add("attribute");
+    openapiFields.add("attributes");
     openapiFields.add("tag");
     openapiFields.add("tags");
     openapiFields.add("documentIds");
@@ -299,6 +362,26 @@ public class DocumentSearch {
     // validate the optional field `meta`
     if (jsonObj.get("meta") != null && !jsonObj.get("meta").isJsonNull()) {
       DocumentSearchMeta.validateJsonElement(jsonObj.get("meta"));
+    }
+    // validate the optional field `attribute`
+    if (jsonObj.get("attribute") != null && !jsonObj.get("attribute").isJsonNull()) {
+      DocumentSearchAttribute.validateJsonElement(jsonObj.get("attribute"));
+    }
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+      if (jsonArrayattributes != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("attributes").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+              jsonObj.get("attributes").toString()));
+        }
+
+        // validate the optional field `attributes` (array)
+        for (int i = 0; i < jsonArrayattributes.size(); i++) {
+          DocumentSearchAttribute.validateJsonElement(jsonArrayattributes.get(i));
+        } ;
+      }
     }
     // validate the optional field `tag`
     if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) {

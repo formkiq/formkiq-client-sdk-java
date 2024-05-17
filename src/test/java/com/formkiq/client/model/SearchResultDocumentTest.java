@@ -20,7 +20,9 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocumentMetadata;
+import com.formkiq.client.model.DocumentSearchMatchAttribute;
 import com.formkiq.client.model.DocumentSearchMatchTag;
+import com.formkiq.client.model.SearchResponseAttributeField;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -162,6 +164,14 @@ public class SearchResultDocumentTest {
   }
 
   /**
+   * Test the property 'matchedAttribute'
+   */
+  @Test
+  public void matchedAttributeTest() {
+    // TODO: test matchedAttribute
+  }
+
+  /**
    * Test the property 'matchedTag'
    */
   @Test
@@ -183,6 +193,14 @@ public class SearchResultDocumentTest {
   @Test
   public void tagsTest() {
     // TODO: test tags
+  }
+
+  /**
+   * Test the property 'responseAttributes'
+   */
+  @Test
+  public void responseAttributesTest() {
+    // TODO: test responseAttributes
   }
 
   /**

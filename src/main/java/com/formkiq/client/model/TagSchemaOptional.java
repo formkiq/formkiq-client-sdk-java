@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaOptional
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class TagSchemaOptional {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -67,11 +67,11 @@ public class TagSchemaOptional {
 
   public static final String SERIALIZED_NAME_DEFAULT_VALUES = "defaultValues";
   @SerializedName(SERIALIZED_NAME_DEFAULT_VALUES)
-  private List<String> defaultValues;
+  private List<String> defaultValues = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ALLOWED_VALUES = "allowedValues";
   @SerializedName(SERIALIZED_NAME_ALLOWED_VALUES)
-  private List<String> allowedValues;
+  private List<String> allowedValues = new ArrayList<>();
 
   public TagSchemaOptional() {}
 

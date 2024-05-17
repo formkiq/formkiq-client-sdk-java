@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AddAction;
+import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -60,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -79,13 +80,17 @@ public class AddDocumentUploadRequest {
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   private String deepLinkPath;
 
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private List<AddDocumentAttribute> attributes = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<AddDocumentTag> tags;
+  private List<AddDocumentTag> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACTIONS = "actions";
   @SerializedName(SERIALIZED_NAME_ACTIONS)
-  private List<AddAction> actions;
+  private List<AddAction> actions = new ArrayList<>();
 
   public AddDocumentUploadRequest() {}
 
@@ -169,6 +174,34 @@ public class AddDocumentUploadRequest {
   }
 
 
+  public AddDocumentUploadRequest attributes(List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public AddDocumentUploadRequest addAttributesItem(AddDocumentAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * List of Attributes to add to document
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public List<AddDocumentAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
   public AddDocumentUploadRequest tags(List<AddDocumentTag> tags) {
     this.tags = tags;
     return this;
@@ -239,13 +272,14 @@ public class AddDocumentUploadRequest {
         && Objects.equals(this.path, addDocumentUploadRequest.path)
         && Objects.equals(this.contentType, addDocumentUploadRequest.contentType)
         && Objects.equals(this.deepLinkPath, addDocumentUploadRequest.deepLinkPath)
+        && Objects.equals(this.attributes, addDocumentUploadRequest.attributes)
         && Objects.equals(this.tags, addDocumentUploadRequest.tags)
         && Objects.equals(this.actions, addDocumentUploadRequest.actions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, contentType, deepLinkPath, tags, actions);
+    return Objects.hash(tagSchemaId, path, contentType, deepLinkPath, attributes, tags, actions);
   }
 
   @Override
@@ -256,6 +290,7 @@ public class AddDocumentUploadRequest {
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("}");
@@ -283,6 +318,7 @@ public class AddDocumentUploadRequest {
     openapiFields.add("path");
     openapiFields.add("contentType");
     openapiFields.add("deepLinkPath");
+    openapiFields.add("attributes");
     openapiFields.add("tags");
     openapiFields.add("actions");
 
@@ -339,6 +375,22 @@ public class AddDocumentUploadRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+      if (jsonArrayattributes != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("attributes").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+              jsonObj.get("attributes").toString()));
+        }
+
+        // validate the optional field `attributes` (array)
+        for (int i = 0; i < jsonArrayattributes.size(); i++) {
+          AddDocumentAttribute.validateJsonElement(jsonArrayattributes.get(i));
+        } ;
+      }
     }
     if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
       JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");

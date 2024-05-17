@@ -59,12 +59,4 @@ public class OpaPolicyTest {
     // TODO: test policy
   }
 
-  /**
-   * Test the property 'insertedDate'
-   */
-  @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
-  }
-
 }

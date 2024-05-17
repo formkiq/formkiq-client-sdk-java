@@ -78,4 +78,12 @@ public class AddDocumentOcrRequestTest {
     // TODO: test ocrNumberOfPages
   }
 
+  /**
+   * Test the property 'ocrExportToCsv'
+   */
+  @Test
+  public void ocrExportToCsvTest() {
+    // TODO: test ocrExportToCsv
+  }
+
 }

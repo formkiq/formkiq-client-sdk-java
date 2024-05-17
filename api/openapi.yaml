@@ -40,9 +40,18 @@ tags:
 - description: "API for the add, updating and fetching of documents"
   name: documents
   x-displayName: Documents
+- description: "API for the add, updating and fetching of atttributes"
+  name: attributes
+  x-displayName: Attributes
+- description: "API for the add, updating and fetching of schemas"
+  name: schemas
+  x-displayName: Schemas
 - description: "API for the add, updating and fetching of document tags"
   name: documentTags
   x-displayName: Document Tags
+- description: "API for the add, updating and fetching of document attributes"
+  name: documentAttributes
+  x-displayName: Document Attributes
 - description: API for searching for documents
   name: documentSearch
   x-displayName: Document Search
@@ -142,7 +151,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites:
     get:
       description: Returns the list of sites that the user has access to
@@ -177,7 +187,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/opensearch/index:
     delete:
       description: Deletes the OpenSearch index
@@ -196,7 +207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteOpenSearchIndexResponse'
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -221,7 +232,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns the OpenSearch index settings
       operationId: GetOpensearchIndex
@@ -264,7 +276,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Sets the OpenSearch index settings
       operationId: SetOpensearchIndex
@@ -314,7 +327,109 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/schema/document:
+    get:
+      description: Gets Sites schema
+      operationId: GetSitesSchema
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Version
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSitesSchemaResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Sites Schema
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Sets Sites schema
+      operationId: SetSitesSchema
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetSitesSchemaRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Set Sites Schema
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/configuration:
     get:
       description: Returns the list of sites that the user has access to
@@ -358,7 +473,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update the System Management configuration
       operationId: UpdateConfiguration
@@ -413,7 +529,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/apiKeys:
     get:
       description: Returns the list of ApiKeys
@@ -457,7 +574,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds a new API Key
       operationId: AddApiKey
@@ -502,7 +620,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/apiKeys/{apiKey}:
     delete:
       description: Adds a new API Key
@@ -545,7 +664,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/opa/accessPolicies:
     get:
       description: "Returns a list of OPA Configuration, can only be requested with\
@@ -581,23 +701,159 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/opa/accessPolicy:
+    get:
+      description: "Returns OPA Access Policy, can only be requested with ADMIN privileges"
+      operationId: GetOpaAccessPolicy
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOpaAccessPolicyResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get OPA Access Policy
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /sites/{siteId}/opa/accessPolicy/policyItems:
+    delete:
+      description: Delete OPA Access Policy Items
+      operationId: DeleteOpaAccessPolicyItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete OPA Access Policy Items
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: "Returns OPA Access Policy Items, can only be requested with ADMIN\
+        \ privileges"
+      operationId: GetOpaAccessPolicyItems
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOpaAccessPolicyItemsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get OPA Access Policy Items
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
     put:
-      description: "Set OPA Configuration, can only be requested with ADMIN privileges"
-      operationId: SetOpaConfiguration
+      description: Sets opa access policy items
+      operationId: SetOpaAccessPolicyItems
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SetOpaConfigurationRequest'
+              $ref: '#/components/schemas/SetOpaAccessPolicyItemsRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SetOpaConfigurationResponse'
-          description: 200 OK
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 CREATED
           headers:
             Access-Control-Allow-Origin:
               $ref: '#/components/headers/AccessControlAllowOrigin'
@@ -605,93 +861,22 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
-      summary: Set OPA Configuration
+      summary: "Set opa access policy items, can only be requested with ADMIN privileges"
       tags:
       - Access Control
       x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
-  /sites/{siteId}/opa/accessPolicy:
-    delete:
-      description: Delete OPA Configuration
-      operationId: DeleteOpaConfiguration
-      parameters:
-      - description: Site Identifier
-        explode: false
-        in: path
-        name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteOpaConfigurationResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Delete OPA Configuration
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
-    get:
-      description: "Returns OPA Configuration, can only be requested with ADMIN privileges"
-      operationId: GetOpaConfiguration
-      parameters:
-      - description: Site Identifier
-        explode: false
-        in: path
-        name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOpaConfigurationResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
-            Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
-            Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
-      security:
-      - ApiAuthorization: []
-      summary: Get OPA Configuration
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents:
     get:
       description: "Returns a list of the most recent documents added, ordered by\
@@ -800,7 +985,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Creates a new document; body may include document content if less than 5 MB
@@ -903,7 +1089,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}:
     delete:
       description: Delete a document
@@ -935,7 +1122,10 @@ paths:
         style: form
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -960,7 +1150,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieves a document's details, i.e., metadata"
       operationId: GetDocument
@@ -1010,7 +1201,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: "Update a document's details, i.e., metadata"
       operationId: UpdateDocument
@@ -1092,7 +1284,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/content:
     get:
       description: "Get a document's contents. Certain content types, text/*, application/json,\
@@ -1155,7 +1348,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/accessAttributes:
     delete:
       description: Delete a document's access attributes
@@ -1198,7 +1392,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Retrieves a document's access attributes (only "admin" role can
         call API)
@@ -1241,7 +1436,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add a document's access attributes (only "admin" role can call
         API)
@@ -1297,7 +1493,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a document's access attributes (only "admin" role can call
         API)
@@ -1353,7 +1550,447 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/attributes:
+    get:
+      description: Get a listing of a document's attributes
+      operationId: GetDocumentAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document's attributes
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add multiple attributes to a document; this endpoint also accepts
+        a different body parameter for adding a single attribute
+      operationId: AddDocumentAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Whether to enable WebSocket real-time communication with the
+          request
+        explode: true
+        in: query
+        name: ws
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentAttributesRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Add attribute to document
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      description: Set multiple attributes to a document; this endpoint also accepts
+        a different body parameter for setting a single attribute
+      operationId: SetDocumentAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDocumentAttributesRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Set document's attributes
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/attributes/{attributeKey}:
+    delete:
+      description: Delete a document attribute by using its key
+      operationId: DeleteDocumentAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Delete document attribute
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Get a document attribute by using its key
+      operationId: GetDocumentAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentAttributeResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document attribute by key
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Set attributes value to a document
+      operationId: SetDocumentAttributeValue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDocumentAttributeRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Set document's attributes value
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/attributes/{attributeKey}/{attributeValue}:
+    delete:
+      description: Delete a specific document attribute key/value combination; the
+        request will be ignored if there is no valid key/value combination found
+      operationId: DeleteDocumentAttributeAndValue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Value
+        explode: false
+        in: path
+        name: attributeValue
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Delete document's attribute value
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags:
     get:
       description: Get a listing of a document's tags
@@ -1429,7 +2066,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates multiple tags to a document; this endpoint also accepts
         a different body parameter for updating a single tag
@@ -1502,7 +2140,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add multiple tags to a document; this endpoint also accepts a different
         body parameter for adding a single tag
@@ -1581,7 +2220,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set multiple tags to a document; this endpoint also accepts a different
         body parameter for setting a single tag
@@ -1654,7 +2294,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags/{tagKey}:
     delete:
       description: Delete a document tag by using its key
@@ -1686,7 +2327,10 @@ paths:
         style: simple
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -1711,7 +2355,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a document tag by using its key
       operationId: GetDocumentTag
@@ -1769,7 +2414,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Update any and all values of a document tag, by using its key;\
         \ you can supply one tag value or a list of tag values in the request body"
@@ -1833,7 +2479,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags/{tagKey}/{tagValue}:
     delete:
       description: Delete a specific document tag's key/value combination; the request
@@ -1882,7 +2529,10 @@ paths:
         style: form
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -1907,7 +2557,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/tags:
     patch:
       description: This API request allows the adding/updating of multiple document
@@ -1959,7 +2610,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/url:
     get:
       description: Returns a URL for the document's contents; this URL will expire
@@ -2036,7 +2688,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/upload:
     get:
       description: Returns a URL that can be used to upload document content and create
@@ -2105,7 +2758,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "Returns a URL that can be used to upload document content and\
         \ create a new document, while allowing metadata to also be sent; this endpoint\
@@ -2192,7 +2846,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/upload:
     get:
       description: "Returns a URL that can be used to upload documents for a specific\
@@ -2262,7 +2917,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/restore:
     put:
       description: Restores a soft deleted document
@@ -2305,7 +2961,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/compress:
     post:
       description: "Compress documents into an .ZIP archive file, and returns a S3\
@@ -2350,7 +3007,220 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+  /attributes:
+    get:
+      description: Returns a list of attributes
+      operationId: GetAttributes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttributesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Attributes listing
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a new attribute
+      operationId: AddAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAttributeRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddAttributeResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add new attribute
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /attributes/{key}:
+    delete:
+      description: Delete a attribute
+      operationId: DeleteAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAttributeResponse'
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Delete attribute
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a attribute
+      operationId: GetAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttributeResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Attribute
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
   /search:
     post:
       description: "Document search query request; \n\nSupports searching DynamoDB\
@@ -2457,7 +3327,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /searchFulltext:
     post:
       description: "Document full-text search (and more robust multi-tag search queries,\
@@ -2509,7 +3380,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queryFulltext:
     post:
       description: |-
@@ -2554,7 +3426,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/actions:
     get:
       description: Get document actions and their status
@@ -2622,7 +3495,8 @@ paths:
       - Document Actions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Add one or more actions to a document; this appends actions and does not replace previous actions
@@ -2635,6 +3509,7 @@ paths:
         | -------- | ------- | ------- | ------- |
         | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
         | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
+        | OCR | ocrExportToCsv     | Convert OCR result to CSV (textract table only) | true |
         | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
@@ -2700,7 +3575,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/actions/retry:
     post:
       description: Retries all failed document action(s). Failed action status changes
@@ -2750,7 +3626,8 @@ paths:
       - Document Actions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/ocr:
     delete:
       description: "Delete a document's optical character recognition (OCR) result,\
@@ -2775,7 +3652,10 @@ paths:
         style: simple
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -2800,7 +3680,8 @@ paths:
       - Document OCR
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Get a document's optical character recognition (OCR) result, if\
         \ exists; ONLY available with FormKiQ Pro and Enterprise"
@@ -2868,7 +3749,8 @@ paths:
       - Document OCR
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Document optical character recognition (OCR) request; extract text
         and data from a document; ONLY available with FormKiQ Pro and Enterprise
@@ -2918,7 +3800,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a document's optical character recognition (OCR) result for
         a document; ONLY available with FormKiQ Pro and Enterprise
@@ -2968,7 +3851,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/versions:
     get:
       description: Get a listing of document content and metadata versions; ONLY available
@@ -3037,7 +3921,8 @@ paths:
       - Document Versions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set document to a previous document version; ONLY available with
         FormKiQ Pro and Enterprise
@@ -3093,7 +3978,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/versions/{versionKey}:
     delete:
       description: Delete a specific previous document version; ONLY available with
@@ -3134,7 +4020,10 @@ paths:
         style: form
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -3159,7 +4048,8 @@ paths:
       - Document Versions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /folders:
     get:
       description: Get list of documents in a folder
@@ -3227,7 +4117,8 @@ paths:
       - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new folder
       operationId: AddFolder
@@ -3276,7 +4167,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /folders/{indexKey}:
     delete:
       description: Delete a specific folder; folder must be empty
@@ -3327,7 +4219,8 @@ paths:
       - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares:
     get:
       description: Get a listing of user folder/document shares; ONLY available with
@@ -3380,7 +4273,8 @@ paths:
       - Document Shares
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares/folders/{indexKey}:
     post:
       description: Creates a new folder share; ONLY available with FormKiQ Enterprise
@@ -3436,7 +4330,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares/{shareKey}:
     delete:
       description: Delete a specific document share; ONLY available with FormKiQ Enterprise
@@ -3471,7 +4366,8 @@ paths:
       - Document Shares
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows:
     get:
       description: Get a listing of workflows; ONLY available with FormKiQ Enterprise
@@ -3534,7 +4430,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new Workflow; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddWorkflow
@@ -3588,7 +4485,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows/{workflowId}:
     delete:
       description: Delete a Workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -3640,7 +4538,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a workflow; ONLY available with FormKiQ Enterprise
       operationId: GetWorkflow
@@ -3682,7 +4581,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update a Workflow details; ONLY available with FormKiQ Pro and
         Enterprise
@@ -3745,7 +4645,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
       operationId: SetWorkflow
@@ -3807,7 +4708,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows/{workflowId}/documents:
     get:
       description: List documents in Workflow; ONLY available with FormKiQ Pro and
@@ -3868,7 +4770,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues:
     get:
       description: Get a listing of queues; ONLY available with FormKiQ Enterprise
@@ -3920,7 +4823,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddQueue
@@ -3974,7 +4878,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues/{queueId}:
     delete:
       description: Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
@@ -4026,7 +4931,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a queue; ONLY available with FormKiQ Enterprise
       operationId: GetQueue
@@ -4068,7 +4974,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues/{queueId}/documents:
     get:
       description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
@@ -4129,7 +5036,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflows:
     get:
       description: Gets a document workflows; ONLY available with FormKiQ Pro and
@@ -4186,7 +5094,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a document workflow; ONLY available with FormKiQ Pro and
         Enterprise
@@ -4249,7 +5158,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflows/{workflowId}:
     get:
       description: Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -4313,7 +5223,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflow/{workflowId}/decisions:
     post:
       description: Approve/Reject document in approval queue; ONLY available with
@@ -4385,7 +5296,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /tagSchemas:
     get:
       description: Returns the list of tagSchemas; ONLY available with FormKiQ Pro
@@ -4455,7 +5367,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new TagSchema; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddTagSchema
@@ -4509,7 +5422,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /tagSchemas/{tagSchemaId}:
     delete:
       description: Delete a TagSchema; ONLY available with FormKiQ Pro and Enterprise
@@ -4533,7 +5447,10 @@ paths:
         style: simple
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -4558,7 +5475,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieves a TagSchema's details, i.e., metadata; ONLY available\
         \ with FormKiQ Pro and Enterprise"
@@ -4601,7 +5519,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/antivirus:
     put:
       description: Perform an Anti-Malware / Antivirus scan on a document; ONLY available
@@ -4660,7 +5579,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext:
     delete:
       description: Remove full text search for a document from OpenSearch; ONLY available
@@ -4704,7 +5624,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieve an OpenSearch document's details, i.e., metadata"
       operationId: GetDocumentFulltext
@@ -4754,7 +5675,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update a document in OpenSearch; ONLY available with FormKiQ Enterprise
       operationId: UpdateDocumentFulltext
@@ -4803,7 +5725,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
       operationId: AddDocumentFulltext
@@ -4852,7 +5775,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set all text/tags found within a document to OpenSearch; ONLY available
         with FormKiQ Enterprise
@@ -4902,7 +5826,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}:
     delete:
       description: Remove document tags from OpenSearch; ONLY available with FormKiQ
@@ -4968,7 +5893,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue}:
     delete:
       description: Remove document tag/value from OpenSearch; ONLY available with
@@ -5042,7 +5968,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/syncs:
     get:
       description: Retrieve the document syncs with external services status
@@ -5102,7 +6029,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /userActivities:
     get:
       description: Retrieve a user's activities
@@ -5162,7 +6090,8 @@ paths:
       - User Activities
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/userActivities:
     get:
       description: Retrieve a user's activities
@@ -5222,7 +6151,8 @@ paths:
       - User Activities
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /public/documents:
     post:
       description: |-
@@ -5267,7 +6197,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /public/webhooks/{webhooks+}:
     post:
       description: Receive an incoming public post to a specified webhook and creates
@@ -5317,7 +6248,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /private/webhooks/{webhooks+}:
     post:
       description: Receive an incoming private webhook and creates a document based
@@ -5368,7 +6300,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks:
     get:
       description: "Return a list of webhooks; each webhook's id can be provided to\
@@ -5414,7 +6347,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "Create a new webhook; once created, a webhook's id can be provided\
         \ to an external service, allowing data to be sent, received, and processed\
@@ -5457,7 +6391,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks/{webhookId}:
     delete:
       description: "Delete a webhook; this will disable sending, receiving, or processing\
@@ -5507,7 +6442,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Return a webhook's details, i.e., its metadata"
       operationId: GetWebhook
@@ -5558,7 +6494,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: "Updates a webhook's details, i.e., its metadata"
       operationId: UpdateWebhook
@@ -5613,7 +6550,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks/{webhookId}/tags:
     get:
       description: Get a webhook's tags
@@ -5656,7 +6594,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add a tag to a webhook
       operationId: AddWebhookTag
@@ -5719,7 +6658,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/{documentId}/edit:
     post:
       description: Provide ONLYOFFICE integration for editing documents; ONLY available
@@ -5770,7 +6710,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/new:
     post:
       description: Provide ONLYOFFICE integration for the creation of new documents;
@@ -5813,7 +6754,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/{documentId}/save:
     post:
       description: Save an updated document for ONLYOFFICE integration. ONLY available
@@ -5855,7 +6797,8 @@ paths:
       - Onlyoffice
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/{indexType}/move:
     post:
       description: Perform an Folder Index Move
@@ -5910,7 +6853,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/{indexType}/{indexKey}:
     delete:
       description: Perform a delete on the Folder Index
@@ -5966,7 +6910,8 @@ paths:
       - Custom Index
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/search:
     post:
       description: Perform a search on a index; this is currently available for both
@@ -6040,7 +6985,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/{documentId}:
     post:
       description: Create a DocuSign E-Signature request; ONLY available with FormKiQ
@@ -6097,7 +7043,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/config:
     get:
       description: Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
@@ -6132,7 +7079,8 @@ paths:
       - E-Signature
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Set DocuSign configuration, required for integration; ONLY available\
         \ with FormKiQ Enterprise"
@@ -6174,7 +7122,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/events:
     post:
       description: DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
@@ -6198,7 +7147,8 @@ paths:
       - E-Signature
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /groups:
     get:
       description: Returns the list of user groups configured in the application
@@ -6251,7 +7201,8 @@ paths:
       - User Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /groups/{groupName}/users:
     get:
       description: Returns the list of users in a group
@@ -6312,7 +7263,8 @@ paths:
       - User Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases:
     get:
       description: Returns a list of the Cases; ONLY available with FormKiQ Enterprise
@@ -6373,7 +7325,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds new case; ONLY available with FormKiQ Enterprise
       operationId: AddCase
@@ -6414,7 +7367,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}:
     delete:
       description: Delete Case
@@ -6457,7 +7411,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Case; ONLY available with FormKiQ Enterprise
       operationId: GetCase
@@ -6508,7 +7463,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing case; ONLY available with FormKiQ Enterprise
       operationId: UpdateCase
@@ -6557,7 +7513,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/documents:
     get:
       description: Returns documents in a Case; ONLY available with FormKiQ Enterprise
@@ -6626,7 +7583,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/documents/{documentId}:
     delete:
       description: Delete Document from Case
@@ -6677,7 +7635,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}:
     delete:
       description: Delete Task
@@ -6728,7 +7687,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Task in Case; ONLY available with FormKiQ Enterprise
       operationId: GetCaseTask
@@ -6787,7 +7747,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing task; ONLY available with FormKiQ Enterprise
       operationId: UpdateTask
@@ -6844,7 +7805,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}/documents:
     get:
       description: Returns a list documents in a Case; ONLY available with FormKiQ
@@ -6922,7 +7884,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}/documents/{documentId}:
     delete:
       description: Delete Document from Task
@@ -6981,7 +7944,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}:
     delete:
       description: Delete Nigo
@@ -7032,7 +7996,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
       operationId: GetCaseNigo
@@ -7091,7 +8056,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing nigo; ONLY available with FormKiQ Enterprise
       operationId: UpdateNigo
@@ -7148,7 +8114,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}/documents:
     get:
       description: Returns a list documents in a Case; ONLY available with FormKiQ
@@ -7226,7 +8193,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}/documents/{documentId}:
     delete:
       description: Delete Document from Nigo
@@ -7285,7 +8253,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks:
     get:
       description: Returns a Case; ONLY available with FormKiQ Enterprise
@@ -7354,7 +8323,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds new task; ONLY available with FormKiQ Enterprise
       operationId: AddTask
@@ -7403,7 +8373,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos:
     get:
       description: Returns a Nigos of Case; ONLY available with FormKiQ Enterprise
@@ -7472,7 +8443,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds new nigo; ONLY available with FormKiQ Enterprise
       operationId: AddNigo
@@ -7521,7 +8493,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets:
     get:
       description: Returns a list of rule sets; ONLY available with FormKiQ Enterprise
@@ -7582,7 +8555,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new ruleset; ONLY available with FormKiQ Enterprise
       operationId: AddRuleset
@@ -7629,7 +8603,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}:
     delete:
       description: Delete Ruleset; ONLY available with FormKiQ Enterprise
@@ -7672,7 +8647,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a rule sets; ONLY available with FormKiQ Enterprise
       operationId: GetRuleset
@@ -7723,7 +8699,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates an existing ruleset; ONLY available with FormKiQ Enterprise
       operationId: UpdateRuleset
@@ -7778,7 +8755,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}/rules:
     get:
       description: Returns a list of rules in a ruleset; ONLY available with FormKiQ
@@ -7848,7 +8826,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new rule; ONLY available with FormKiQ Enterprise
       operationId: AddRule
@@ -7903,7 +8882,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}/rules/{ruleId}:
     delete:
       description: Delete Rule; ONLY available with FormKiQ Enterprise
@@ -7954,7 +8934,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a rule in a ruleset; ONLY available with FormKiQ Enterprise
       operationId: GetRule
@@ -8013,7 +8994,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update Rule; ONLY available with FormKiQ Enterprise
       operationId: UpdateRule
@@ -8076,7 +9058,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /objects/examine/pdf:
     get:
       description: "Get Signed URL for PDF Object Upload of a document to be examined\
@@ -8121,7 +9104,8 @@ paths:
       - Examine Objects
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /objects/examine/{id}/pdf:
     get:
       description: |-
@@ -8176,7 +9160,8 @@ paths:
       - Examine Objects
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -8209,6 +9194,15 @@ components:
       schema:
         type: string
       style: simple
+    versionParam:
+      description: Version
+      explode: true
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
+      style: form
     versionKeyParam:
       description: Version Key
       explode: true
@@ -8232,6 +9226,15 @@ components:
       explode: false
       in: path
       name: webhookId
+      required: true
+      schema:
+        type: string
+      style: simple
+    keyParam:
+      description: Key Identifier
+      explode: false
+      in: path
+      name: key
       required: true
       schema:
         type: string
@@ -8263,6 +9266,15 @@ components:
       schema:
         type: string
       style: form
+    policyItemIdPathParam:
+      description: Policy Item Identifier
+      explode: false
+      in: path
+      name: policyItemId
+      required: true
+      schema:
+        type: string
+      style: simple
     siteIdPathParam:
       description: Site Identifier
       explode: false
@@ -8456,6 +9468,24 @@ components:
       schema:
         type: string
       style: simple
+    attributeKeyParam:
+      description: Attribute Key
+      explode: false
+      in: path
+      name: attributeKey
+      required: true
+      schema:
+        type: string
+      style: simple
+    attributeValueParam:
+      description: Attribute Value
+      explode: false
+      in: path
+      name: attributeValue
+      required: true
+      schema:
+        type: string
+      style: simple
     tagkeyParam:
       description: Tag Key
       explode: false
@@ -8539,6 +9569,72 @@ components:
         type: string
       style: simple
   responses:
+    "200CorsAddResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddResponse'
+      description: 200 OK
+      headers:
+        Access-Control-Allow-Origin:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Methods:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Headers:
+          explode: false
+          schema:
+            type: string
+          style: simple
+    "200CorsSetResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SetResponse'
+      description: 200 OK
+      headers:
+        Access-Control-Allow-Origin:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Methods:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Headers:
+          explode: false
+          schema:
+            type: string
+          style: simple
+    "200CorsDeleteResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteResponse'
+      description: 200 OK
+      headers:
+        Access-Control-Allow-Origin:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Methods:
+          explode: false
+          schema:
+            type: string
+          style: simple
+        Access-Control-Allow-Headers:
+          explode: false
+          schema:
+            type: string
+          style: simple
     "200Cors":
       content: {}
       description: 200 OK
@@ -8993,7 +10089,7 @@ components:
         next: next
         shares:
         - path: path
-          permissionType: permissionType
+          permissionType: null
           permissions:
           - null
           - null
@@ -9003,7 +10099,7 @@ components:
           userId: userId
           group: group
         - path: path
-          permissionType: permissionType
+          permissionType: null
           permissions:
           - null
           - null
@@ -9037,7 +10133,7 @@ components:
     UserShare:
       example:
         path: path
-        permissionType: permissionType
+        permissionType: null
         permissions:
         - null
         - null
@@ -9074,6 +10170,57 @@ components:
           type: string
         permissionType:
           $ref: '#/components/schemas/UserSharePermissionType'
+      type: object
+    GetDocumentAttributeResponse:
+      example:
+        attribute:
+          numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        attribute:
+          $ref: '#/components/schemas/DocumentAttribute'
+      type: object
+    GetDocumentAttributesResponse:
+      example:
+        next: next
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        attributes:
+          description: List of attributes
+          items:
+            $ref: '#/components/schemas/DocumentAttribute'
+          type: array
       type: object
     GetDocumentTagsResponse:
       example:
@@ -9137,7 +10284,39 @@ components:
           indexType: folder
           folder: folder
           eq: eq
+        attributes:
+        - eqOr:
+          - eqOr
+          - eqOr
+          beginsWith: beginsWith
+          range:
+            start: start
+            end: end
+            type: null
+          eq: eq
+          key: key
+        - eqOr:
+          - eqOr
+          - eqOr
+          beginsWith: beginsWith
+          range:
+            start: start
+            end: end
+            type: null
+          eq: eq
+          key: key
         text: text
+        attribute:
+          eqOr:
+          - eqOr
+          - eqOr
+          beginsWith: beginsWith
+          range:
+            start: start
+            end: end
+            type: null
+          eq: eq
+          key: key
         tag:
           eqOr:
           - eqOr
@@ -9146,6 +10325,7 @@ components:
           range:
             start: start
             end: end
+            type: null
           eq: eq
           key: key
         tags:
@@ -9153,12 +10333,14 @@ components:
           range:
             start: start
             end: end
+            type: null
           eq: eq
           key: key
         - beginsWith: beginsWith
           range:
             start: start
             end: end
+            type: null
           eq: eq
           key: key
         documentIds:
@@ -9170,6 +10352,13 @@ components:
           type: string
         meta:
           $ref: '#/components/schemas/DocumentSearchMeta'
+        attribute:
+          $ref: '#/components/schemas/DocumentSearchAttribute'
+        attributes:
+          description: List of Composite Key attributes to filter search results on
+          items:
+            $ref: '#/components/schemas/DocumentSearchAttribute'
+          type: array
         tag:
           $ref: '#/components/schemas/DocumentSearchTag'
         tags:
@@ -9446,6 +10635,9 @@ components:
             eq: eq
             key: key
         responseFields:
+          attributes:
+          - attributes
+          - attributes
           tags:
           - tags
           - tags
@@ -9518,7 +10710,39 @@ components:
             indexType: folder
             folder: folder
             eq: eq
+          attributes:
+          - eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            range:
+              start: start
+              end: end
+              type: null
+            eq: eq
+            key: key
+          - eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            range:
+              start: start
+              end: end
+              type: null
+            eq: eq
+            key: key
           text: text
+          attribute:
+            eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            range:
+              start: start
+              end: end
+              type: null
+            eq: eq
+            key: key
           tag:
             eqOr:
             - eqOr
@@ -9527,6 +10751,7 @@ components:
             range:
               start: start
               end: end
+              type: null
             eq: eq
             key: key
           tags:
@@ -9534,18 +10759,23 @@ components:
             range:
               start: start
               end: end
+              type: null
             eq: eq
             key: key
           - beginsWith: beginsWith
             range:
               start: start
               end: end
+              type: null
             eq: eq
             key: key
           documentIds:
           - documentIds
           - documentIds
         responseFields:
+          attributes:
+          - attributes
+          - attributes
           tags:
           - tags
           - tags
@@ -9559,14 +10789,40 @@ components:
       type: object
     SearchResponseFields:
       example:
+        attributes:
+        - attributes
+        - attributes
         tags:
         - tags
         - tags
       properties:
+        attributes:
+          items:
+            type: string
+          type: array
         tags:
           items:
             type: string
           type: array
+    SearchResponseAttributeField:
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 1.4658129805029452
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        numberValue:
+          description: Attribute with number value
+          type: number
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
     DocumentSearchMeta:
       example:
         path: path
@@ -9602,6 +10858,7 @@ components:
         range:
           start: start
           end: end
+          type: null
         eq: eq
         key: key
       properties:
@@ -9624,10 +10881,18 @@ components:
       required:
       - key
       type: object
+    SearchRangeDataType:
+      default: STRING
+      description: Search Range Data Type
+      enum:
+      - STRING
+      - NUMBER
+      type: string
     DocumentSearchRange:
       example:
         start: start
         end: end
+        type: null
       properties:
         start:
           description: Start of range query
@@ -9635,6 +10900,8 @@ components:
         end:
           description: End of range query
           type: string
+        type:
+          $ref: '#/components/schemas/SearchRangeDataType'
       required:
       - end
       - start
@@ -9645,6 +10912,7 @@ components:
         range:
           start: start
           end: end
+          type: null
         eq: eq
         key: key
       properties:
@@ -9658,6 +10926,38 @@ components:
           $ref: '#/components/schemas/DocumentSearchRange'
         key:
           description: Tag key to search
+          type: string
+      required:
+      - key
+      type: object
+    DocumentSearchAttribute:
+      example:
+        eqOr:
+        - eqOr
+        - eqOr
+        beginsWith: beginsWith
+        range:
+          start: start
+          end: end
+          type: null
+        eq: eq
+        key: key
+      properties:
+        eq:
+          description: Searches for strings that eq
+          type: string
+        eqOr:
+          description: Searches for ANY strings that eq
+          items:
+            type: string
+          type: array
+        beginsWith:
+          description: Searches for strings that begin with
+          type: string
+        range:
+          $ref: '#/components/schemas/DocumentSearchRange'
+        key:
+          description: Attribute key to search
           type: string
       required:
       - key
@@ -9701,6 +11001,27 @@ components:
         path: path
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
         contentType: contentType
         actions:
         - queueId: queueId
@@ -9709,7 +11030,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -9719,6 +11040,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: null
@@ -9726,7 +11048,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -9736,6 +11058,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         tags:
         - values:
@@ -9761,6 +11084,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        attributes:
+          description: List of Attributes to add to document
+          items:
+            $ref: '#/components/schemas/AddDocumentAttribute'
+          type: array
         tags:
           description: List of document tags
           items:
@@ -9791,11 +11119,11 @@ components:
         accessAttributes:
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         documents:
         - path: path
@@ -9852,6 +11180,27 @@ components:
             - values
             value: value
             key: key
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
         contentType: contentType
         isBase64: true
         actions:
@@ -9861,7 +11210,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -9871,6 +11220,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: null
@@ -9878,7 +11228,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -9888,6 +11238,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         content: content
         tags:
@@ -9934,6 +11285,11 @@ components:
           description: List of Actions
           items:
             $ref: '#/components/schemas/AddAction'
+          type: array
+        attributes:
+          description: List of Attributes to add to document
+          items:
+            $ref: '#/components/schemas/AddDocumentAttribute'
           type: array
         accessAttributes:
           description: List of Access Attributes (only available in pro/enterprise)
@@ -10019,6 +11375,27 @@ components:
             - values
             value: value
             key: key
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
         contentType: contentType
         isBase64: true
         actions:
@@ -10028,7 +11405,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -10038,6 +11415,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: null
@@ -10045,7 +11423,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -10055,6 +11433,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         content: content
         tags:
@@ -10096,6 +11475,11 @@ components:
           description: List of document Metadata
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
+          type: array
+        attributes:
+          description: List of document attributes
+          items:
+            $ref: '#/components/schemas/AddDocumentAttribute'
           type: array
         actions:
           description: List of Actions
@@ -10220,6 +11604,85 @@ components:
       - match
       - update
       type: object
+    SetDocumentAttributeRequest:
+      description: Set List of document attributes
+      example:
+        attribute:
+          numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+      properties:
+        attribute:
+          $ref: '#/components/schemas/AddDocumentAttributeValue'
+      type: object
+    SetDocumentAttributesRequest:
+      description: Set List of document attributes
+      example:
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        attributes:
+          description: List of document attributes
+          items:
+            $ref: '#/components/schemas/AddDocumentAttribute'
+          type: array
+      type: object
+    AddDocumentAttributesRequest:
+      description: Add List of document attributes
+      example:
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        attributes:
+          description: List of document attributes
+          items:
+            $ref: '#/components/schemas/AddDocumentAttribute'
+          type: array
+      type: object
     AddDocumentTagsRequest:
       description: Add List of document tags
       example:
@@ -10293,11 +11756,11 @@ components:
         accessAttributes:
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
       properties:
         accessAttributes:
@@ -10312,11 +11775,11 @@ components:
         accessAttributes:
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         - stringValue: stringValue
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
       properties:
         accessAttributes:
@@ -10366,13 +11829,85 @@ components:
           description: Attribute with boolean value
           type: boolean
       type: object
+    AddDocumentAttributeValue:
+      description: Document Attribute Value
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+        numberValue: 0.8008281904610115
+      properties:
+        stringValue:
+          description: Attribute with string value
+          type: string
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValue:
+          description: Attribute with number value
+          type: number
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
+      type: object
+    AddDocumentAttribute:
+      description: Document Attribute
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValue:
+          description: Attribute with number value
+          type: number
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
+      required:
+      - key
+      type: object
     AddAccessAttribute:
       description: "Document Access Attribute (requires either: stringValue, numberValue,\
         \ booleanValue)"
       example:
         stringValue: stringValue
         booleanValue: true
-        numberValue: 0.8008281904610115
+        numberValue: 1.4658129805029452
         key: key
       properties:
         key:
@@ -10524,6 +12059,42 @@ components:
         s3version:
           description: Document storage version
           type: string
+      type: object
+    DocumentAttribute:
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValue:
+          description: Attribute with number value
+          type: number
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
       type: object
     DocumentTag:
       example:
@@ -10920,7 +12491,12 @@ components:
         next: next
         previous: previous
         documents:
-        - metadata:
+        - matchedAttribute:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+            key: key
+          metadata:
           - values:
             - values
             - values
@@ -10933,6 +12509,15 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
+          responseAttributes:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -10958,7 +12543,12 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - metadata:
+        - matchedAttribute:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+            key: key
+          metadata:
           - values:
             - values
             - values
@@ -10971,6 +12561,15 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
+          responseAttributes:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -11278,7 +12877,12 @@ components:
         next: next
         previous: previous
         documents:
-        - metadata:
+        - matchedAttribute:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+            key: key
+          metadata:
           - values:
             - values
             - values
@@ -11291,6 +12895,15 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
+          responseAttributes:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -11316,7 +12929,12 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
-        - metadata:
+        - matchedAttribute:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+            key: key
+          metadata:
           - values:
             - values
             - values
@@ -11329,6 +12947,15 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
+          responseAttributes:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -11369,6 +12996,11 @@ components:
       type: object
     SearchResultDocument:
       example:
+        matchedAttribute:
+          stringValue: stringValue
+          booleanValue: true
+          numberValue: 6.027456183070403
+          key: key
         metadata:
         - values:
           - values
@@ -11382,6 +13014,15 @@ components:
           key: key
         deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
+        responseAttributes:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 1.4658129805029452
+          key: key
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 1.4658129805029452
+          key: key
         belongsToDocumentId: belongsToDocumentId
         matchedTags:
         - type: type
@@ -11450,6 +13091,8 @@ components:
         belongsToDocumentId:
           description: Parent Document Identifier
           type: string
+        matchedAttribute:
+          $ref: '#/components/schemas/DocumentSearchMatchAttribute'
         matchedTag:
           $ref: '#/components/schemas/DocumentSearchMatchTag'
         matchedTags:
@@ -11459,11 +13102,36 @@ components:
         tags:
           additionalProperties: true
           type: object
+        responseAttributes:
+          description: List of document response attributes
+          items:
+            $ref: '#/components/schemas/SearchResponseAttributeField'
+          type: array
         metadata:
           description: List of document Metadata
           items:
             $ref: '#/components/schemas/DocumentMetadata'
           type: array
+      type: object
+    DocumentSearchMatchAttribute:
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 6.027456183070403
+        key: key
+      properties:
+        key:
+          description: Tag key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        numberValue:
+          description: Attribute with number value
+          type: number
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
       type: object
     DocumentSearchMatchTag:
       example:
@@ -12308,12 +13976,6 @@ components:
       - ACTIVE
       - INACTIVE
       type: string
-    RuleStatus:
-      description: Status of the Rule
-      enum:
-      - ACTIVE
-      - INACTIVE
-      type: string
     AddRulesetResponse:
       example:
         rulesetId: rulesetId
@@ -12783,6 +14445,100 @@ components:
           type: string
         value:
           description: Value of Field
+          type: string
+      type: object
+    GetAttributeResponse:
+      example:
+        attribute:
+          type: null
+          key: key
+      properties:
+        attribute:
+          $ref: '#/components/schemas/Attribute'
+      type: object
+    DeleteAttributeResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Attribute message
+          type: string
+      type: object
+    GetAttributesResponse:
+      example:
+        next: next
+        attributes:
+        - type: null
+          key: key
+        - type: null
+          key: key
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        attributes:
+          description: List of attributes
+          items:
+            $ref: '#/components/schemas/Attribute'
+          type: array
+      type: object
+    Attribute:
+      example:
+        type: null
+        key: key
+      properties:
+        type:
+          $ref: '#/components/schemas/AttributeType'
+        key:
+          description: Attribute Key
+          type: string
+      type: object
+    AttributeType:
+      description: Type of Attribute
+      enum:
+      - STANDARD
+      - OPA
+      type: string
+    AttributeDataType:
+      default: STRING
+      description: Data Type of Attribute
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - KEY_ONLY
+      - COMPOSITE_STRING
+      type: string
+    AddAttributeRequest:
+      example:
+        attribute:
+          dataType: null
+          key: key
+      properties:
+        attribute:
+          $ref: '#/components/schemas/AddAttribute'
+      required:
+      - attribute
+      type: object
+    AddAttribute:
+      example:
+        dataType: null
+        key: key
+      properties:
+        key:
+          description: Attribute Key
+          type: string
+        dataType:
+          $ref: '#/components/schemas/AttributeDataType'
+      required:
+      - key
+      type: object
+    AddAttributeResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Response Message
           type: string
       type: object
     GetDocumentsResponse:
@@ -13405,7 +15161,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -13415,6 +15171,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: null
@@ -13422,7 +15179,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -13432,6 +15189,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
       properties:
         actions:
@@ -13448,7 +15206,7 @@ components:
           characterMax: characterMax
           ocrEngine: null
           ocrParseTypes: ocrParseTypes
-          addPdfDetectedCharactersAsText: true
+          addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
           ocrNumberOfPages: ocrNumberOfPages
           notificationType: email
           notificationToCc: notificationToCc
@@ -13458,6 +15216,7 @@ components:
           notificationSubject: notificationSubject
           engine: chatgpt
           notificationText: notificationText
+          ocrExportToCsv: ocrExportToCsv
           notificationHtml: notificationHtml
       properties:
         type:
@@ -13481,7 +15240,7 @@ components:
         characterMax: characterMax
         ocrEngine: null
         ocrParseTypes: ocrParseTypes
-        addPdfDetectedCharactersAsText: true
+        addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
         ocrNumberOfPages: ocrNumberOfPages
         notificationType: email
         notificationToCc: notificationToCc
@@ -13491,6 +15250,7 @@ components:
         notificationSubject: notificationSubject
         engine: chatgpt
         notificationText: notificationText
+        ocrExportToCsv: ocrExportToCsv
         notificationHtml: notificationHtml
       properties:
         ocrParseTypes:
@@ -13498,13 +15258,16 @@ components:
           type: string
         ocrEngine:
           $ref: '#/components/schemas/OcrEngine'
+        ocrExportToCsv:
+          description: Convert OCR result to CSV (textract table only)
+          type: string
         ocrNumberOfPages:
           description: Number of pages to OCR (from start) (-1 all)
           type: string
         addPdfDetectedCharactersAsText:
           description: "OCR: For the rewriting of the PDF document, converting any\
             \ image text to searchable text"
-          type: boolean
+          type: string
         url:
           description: "Webhook: Callback URL"
           type: string
@@ -13565,6 +15328,9 @@ components:
         ocrNumberOfPages:
           description: Number of pages to OCR (from start) (-1 all)
           type: string
+        ocrExportToCsv:
+          description: Whether to Export to CSV
+          type: boolean
       type: object
     SetDocumentOcrRequest:
       example:
@@ -13716,11 +15482,9 @@ components:
       example:
         next: next
         opaPolicies:
-        - insertedDate: insertedDate
-          siteId: siteId
+        - siteId: siteId
           policy: policy
-        - insertedDate: insertedDate
-          siteId: siteId
+        - siteId: siteId
           policy: policy
       properties:
         next:
@@ -13734,7 +15498,6 @@ components:
       type: object
     OpaPolicy:
       example:
-        insertedDate: insertedDate
         siteId: siteId
         policy: policy
       properties:
@@ -13744,39 +15507,182 @@ components:
         policy:
           description: OPA Policy in REGO format
           type: string
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
       type: object
-    GetOpaConfigurationResponse:
+    OpaPolicyAttribute:
       example:
-        opaPolicy:
-          insertedDate: insertedDate
-          siteId: siteId
-          policy: policy
+        eq:
+          input:
+            matchUsername: true
+          text: text
+        key: key
+      properties:
+        key:
+          description: Attribute Key
+          type: string
+        eq:
+          $ref: '#/components/schemas/OpaPolicyAttributeEq'
+      type: object
+    OpaPolicyAttributeEq:
+      example:
+        input:
+          matchUsername: true
+        text: text
+      properties:
+        text:
+          description: The value to compare the Attribute Key value to
+          type: string
+        input:
+          $ref: '#/components/schemas/OpaPolicyAttributeInput'
+      type: object
+    OpaPolicyAttributeInput:
+      example:
+        matchUsername: true
+      properties:
+        matchUsername:
+          description: Match Input Username
+          type: boolean
+      type: object
+    OpaPolicyItemType:
+      description: Type of Opa Policy Item
+      enum:
+      - ALLOW
+      type: string
+    OpaPolicyItem:
+      example:
+        anyRoles:
+        - anyRoles
+        - anyRoles
+        allRoles:
+        - allRoles
+        - allRoles
+        attributes:
+        - eq:
+            input:
+              matchUsername: true
+            text: text
+          key: key
+        - eq:
+            input:
+              matchUsername: true
+            text: text
+          key: key
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/OpaPolicyItemType'
+        allRoles:
+          description: User must match all roles
+          items:
+            type: string
+          type: array
+        anyRoles:
+          description: User must match any role
+          items:
+            type: string
+          type: array
+        attributes:
+          items:
+            $ref: '#/components/schemas/OpaPolicyAttribute'
+          type: array
+      type: object
+    SetOpaAccessPolicyItemsRequest:
+      example:
+        policyItems:
+        - anyRoles:
+          - anyRoles
+          - anyRoles
+          allRoles:
+          - allRoles
+          - allRoles
+          attributes:
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          type: null
+        - anyRoles:
+          - anyRoles
+          - anyRoles
+          allRoles:
+          - allRoles
+          - allRoles
+          attributes:
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          type: null
+      properties:
+        policyItems:
+          description: List of OPA policy items
+          items:
+            $ref: '#/components/schemas/OpaPolicyItem'
+          type: array
+      type: object
+    GetOpaAccessPolicyResponse:
+      example:
+        opaPolicy: opaPolicy
       properties:
         opaPolicy:
-          $ref: '#/components/schemas/OpaPolicy'
-      type: object
-    SetOpaConfigurationRequest:
-      example:
-        siteId: siteId
-        policy: policy
-      properties:
-        policy:
-          description: OPA Policy in YAML format
-          type: string
-        siteId:
-          description: "Site Id to apply policy to, leave empty for global policy"
+          description: OPA Policy in REGO format
           type: string
       type: object
-    SetOpaConfigurationResponse:
+    GetOpaAccessPolicyItemsResponse:
       example:
-        message: message
+        policyItems:
+        - anyRoles:
+          - anyRoles
+          - anyRoles
+          allRoles:
+          - allRoles
+          - allRoles
+          attributes:
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          type: null
+        - anyRoles:
+          - anyRoles
+          - anyRoles
+          allRoles:
+          - allRoles
+          - allRoles
+          attributes:
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          - eq:
+              input:
+                matchUsername: true
+              text: text
+            key: key
+          type: null
       properties:
-        message:
-          description: Result message
-          type: string
+        policyItems:
+          items:
+            $ref: '#/components/schemas/OpaPolicyItem'
+          type: array
       type: object
     DeleteCaseResponse:
       example:
@@ -13819,14 +15725,6 @@ components:
           type: string
       type: object
     DeleteCaseTaskResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Result message
-          type: string
-      type: object
-    DeleteOpaConfigurationResponse:
       example:
         message: message
       properties:
@@ -14020,7 +15918,23 @@ components:
           description: Result message
           type: string
       type: object
-    DeleteOpenSearchIndexResponse:
+    AddResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    SetResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
+    DeleteResponse:
       example:
         message: message
       properties:
@@ -14205,7 +16119,7 @@ components:
               characterMax: characterMax
               ocrEngine: null
               ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
@@ -14215,6 +16129,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -14234,7 +16149,7 @@ components:
               characterMax: characterMax
               ocrEngine: null
               ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
@@ -14244,6 +16159,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -14288,7 +16204,7 @@ components:
               characterMax: characterMax
               ocrEngine: null
               ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
@@ -14298,6 +16214,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -14317,7 +16234,7 @@ components:
               characterMax: characterMax
               ocrEngine: null
               ocrParseTypes: ocrParseTypes
-              addPdfDetectedCharactersAsText: true
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
@@ -14327,6 +16244,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -14368,7 +16286,7 @@ components:
             characterMax: characterMax
             ocrEngine: null
             ocrParseTypes: ocrParseTypes
-            addPdfDetectedCharactersAsText: true
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
@@ -14378,6 +16296,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId
@@ -14594,6 +16513,156 @@ components:
         message:
           description: Result message
           type: string
+      type: object
+    GetSitesSchemaResponse:
+      example:
+        name: name
+        attributes:
+          compositeKeys:
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          allowAdditionalAttributes: true
+          optional:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          required:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+        version: 0
+      properties:
+        name:
+          description: Name of schema
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SchemaAttributes'
+        version:
+          description: Version of schema
+          type: integer
+      type: object
+    SetSitesSchemaRequest:
+      example:
+        name: name
+        attributes:
+          compositeKeys:
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          allowAdditionalAttributes: true
+          optional:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          required:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+      properties:
+        name:
+          description: Name of schema
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SchemaAttributes'
+      type: object
+    SchemaAttributes:
+      example:
+        compositeKeys:
+        - attributeKeys:
+          - attributeKeys
+          - attributeKeys
+        - attributeKeys:
+          - attributeKeys
+          - attributeKeys
+        allowAdditionalAttributes: true
+        optional:
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          attributeKey: attributeKey
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          attributeKey: attributeKey
+        required:
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+      properties:
+        compositeKeys:
+          description: List of Composite Keys
+          items:
+            $ref: '#/components/schemas/AttributeSchemaCompositeKey'
+          type: array
+        required:
+          description: List of Required Attributes
+          items:
+            $ref: '#/components/schemas/AttributeSchemaRequired'
+          type: array
+        optional:
+          description: List of Optional Attribute
+          items:
+            $ref: '#/components/schemas/AttributeSchemaOptional'
+          type: array
+        allowAdditionalAttributes:
+          default: true
+          type: boolean
       type: object
     AddTagSchemaRequest:
       example:
@@ -14897,6 +16966,17 @@ components:
           default: true
           type: boolean
       type: object
+    AttributeSchemaCompositeKey:
+      example:
+        attributeKeys:
+        - attributeKeys
+        - attributeKeys
+      properties:
+        attributeKeys:
+          items:
+            type: string
+          type: array
+      type: object
     TagSchemaCompositeKey:
       example:
         key:
@@ -14904,6 +16984,33 @@ components:
         - key
       properties:
         key:
+          items:
+            type: string
+          type: array
+      type: object
+    AttributeSchemaRequired:
+      example:
+        allowedValues:
+        - allowedValues
+        - allowedValues
+        defaultValue: defaultValue
+        defaultValues:
+        - defaultValues
+        - defaultValues
+        attributeKey: attributeKey
+      properties:
+        attributeKey:
+          type: string
+        defaultValue:
+          description: Default value
+          type: string
+        defaultValues:
+          description: Default values
+          items:
+            type: string
+          type: array
+        allowedValues:
+          description: Only valid string values
           items:
             type: string
           type: array
@@ -14927,6 +17034,21 @@ components:
           type: array
         allowedValues:
           description: Only valid values
+          items:
+            type: string
+          type: array
+      type: object
+    AttributeSchemaOptional:
+      example:
+        allowedValues:
+        - allowedValues
+        - allowedValues
+        attributeKey: attributeKey
+      properties:
+        attributeKey:
+          type: string
+        allowedValues:
+          description: Only valid string values
           items:
             type: string
           type: array

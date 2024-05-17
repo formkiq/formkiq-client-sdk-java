@@ -231,7 +231,7 @@ No authorization required
 
 <a id="deleteDocument"></a>
 # **deleteDocument**
-> deleteDocument(documentId, siteId, softDelete)
+> DeleteResponse deleteDocument(documentId, siteId, softDelete)
 
 Delete document
 
@@ -259,7 +259,8 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     Boolean softDelete = true; // Boolean | Whether to soft delete document
     try {
-      apiInstance.deleteDocument(documentId, siteId, softDelete);
+      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, softDelete);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocument");
       System.err.println("Status code: " + e.getCode());
@@ -281,7 +282,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -290,7 +291,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

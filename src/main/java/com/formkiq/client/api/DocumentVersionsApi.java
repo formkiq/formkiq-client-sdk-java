@@ -33,6 +33,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentVersionsResponse;
 import com.formkiq.client.model.SetDocumentVersionRequest;
 import com.formkiq.client.model.SetDocumentVersionResponse;
@@ -144,7 +145,7 @@ public class DocumentVersionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -190,6 +191,7 @@ public class DocumentVersionsApi {
    * @param versionKey Version Key (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -209,9 +211,11 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteDocumentVersion(String documentId, String versionKey, String siteId,
+  public DeleteResponse deleteDocumentVersion(String documentId, String versionKey, String siteId,
       String shareKey) throws ApiException {
-    deleteDocumentVersionWithHttpInfo(documentId, versionKey, siteId, shareKey);
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteDocumentVersionWithHttpInfo(documentId, versionKey, siteId, shareKey);
+    return localVarResp.getData();
   }
 
   /**
@@ -222,7 +226,7 @@ public class DocumentVersionsApi {
    * @param versionKey Version Key (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -242,11 +246,12 @@ public class DocumentVersionsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteDocumentVersionWithHttpInfo(String documentId, String versionKey,
-      String siteId, String shareKey) throws ApiException {
+  public ApiResponse<DeleteResponse> deleteDocumentVersionWithHttpInfo(String documentId,
+      String versionKey, String siteId, String shareKey) throws ApiException {
     okhttp3.Call localVarCall =
         deleteDocumentVersionValidateBeforeCall(documentId, versionKey, siteId, shareKey, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -278,11 +283,13 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentVersionAsync(String documentId, String versionKey,
-      String siteId, String shareKey, final ApiCallback<Void> _callback) throws ApiException {
+      String siteId, String shareKey, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentVersionValidateBeforeCall(documentId, versionKey,
         siteId, shareKey, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 

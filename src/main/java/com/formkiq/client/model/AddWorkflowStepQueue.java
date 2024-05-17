@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowStepQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class AddWorkflowStepQueue {
   public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
   @SerializedName(SERIALIZED_NAME_QUEUE_ID)
@@ -67,7 +67,7 @@ public class AddWorkflowStepQueue {
 
   public static final String SERIALIZED_NAME_APPROVAL_GROUPS = "approvalGroups";
   @SerializedName(SERIALIZED_NAME_APPROVAL_GROUPS)
-  private List<String> approvalGroups;
+  private List<String> approvalGroups = new ArrayList<>();
 
   public AddWorkflowStepQueue() {}
 

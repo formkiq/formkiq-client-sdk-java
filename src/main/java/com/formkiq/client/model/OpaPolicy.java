@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicy
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class OpaPolicy {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -66,10 +66,6 @@ public class OpaPolicy {
   public static final String SERIALIZED_NAME_POLICY = "policy";
   @SerializedName(SERIALIZED_NAME_POLICY)
   private String policy;
-
-  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
-  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
-  private String insertedDate;
 
   public OpaPolicy() {}
 
@@ -113,26 +109,6 @@ public class OpaPolicy {
   }
 
 
-  public OpaPolicy insertedDate(String insertedDate) {
-    this.insertedDate = insertedDate;
-    return this;
-  }
-
-  /**
-   * Inserted Timestamp
-   * 
-   * @return insertedDate
-   **/
-  @javax.annotation.Nullable
-  public String getInsertedDate() {
-    return insertedDate;
-  }
-
-  public void setInsertedDate(String insertedDate) {
-    this.insertedDate = insertedDate;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -144,13 +120,12 @@ public class OpaPolicy {
     }
     OpaPolicy opaPolicy = (OpaPolicy) o;
     return Objects.equals(this.siteId, opaPolicy.siteId)
-        && Objects.equals(this.policy, opaPolicy.policy)
-        && Objects.equals(this.insertedDate, opaPolicy.insertedDate);
+        && Objects.equals(this.policy, opaPolicy.policy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, policy, insertedDate);
+    return Objects.hash(siteId, policy);
   }
 
   @Override
@@ -159,7 +134,6 @@ public class OpaPolicy {
     sb.append("class OpaPolicy {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
-    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,7 +157,6 @@ public class OpaPolicy {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("policy");
-    openapiFields.add("insertedDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -226,12 +199,6 @@ public class OpaPolicy {
       throw new IllegalArgumentException(String.format(
           "Expected the field `policy` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("policy").toString()));
-    }
-    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
-        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("insertedDate").toString()));
     }
   }
 

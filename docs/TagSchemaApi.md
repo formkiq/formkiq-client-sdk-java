@@ -80,7 +80,7 @@ No authorization required
 
 <a id="deleteTagSchema"></a>
 # **deleteTagSchema**
-> deleteTagSchema(tagSchemaId, siteId)
+> DeleteResponse deleteTagSchema(tagSchemaId, siteId)
 
 Delete tag schema
 
@@ -107,7 +107,8 @@ public class Example {
     String tagSchemaId = "tagSchemaId_example"; // String | Tag Schema Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteTagSchema(tagSchemaId, siteId);
+      DeleteResponse result = apiInstance.deleteTagSchema(tagSchemaId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagSchemaApi#deleteTagSchema");
       System.err.println("Status code: " + e.getCode());
@@ -128,7 +129,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -137,7 +138,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

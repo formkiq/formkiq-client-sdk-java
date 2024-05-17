@@ -61,20 +61,20 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaTags
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class TagSchemaTags {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)
-  private List<TagSchemaCompositeKey> compositeKeys;
+  private List<TagSchemaCompositeKey> compositeKeys = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUIRED = "required";
   @SerializedName(SERIALIZED_NAME_REQUIRED)
-  private List<TagSchemaRequired> required;
+  private List<TagSchemaRequired> required = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_OPTIONAL = "optional";
   @SerializedName(SERIALIZED_NAME_OPTIONAL)
-  private List<TagSchemaOptional> optional;
+  private List<TagSchemaOptional> optional = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ALLOW_ADDITIONAL_TAGS = "allowAdditionalTags";
   @SerializedName(SERIALIZED_NAME_ALLOW_ADDITIONAL_TAGS)

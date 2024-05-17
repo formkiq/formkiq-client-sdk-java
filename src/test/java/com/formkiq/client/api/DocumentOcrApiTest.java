@@ -22,6 +22,7 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentOcrRequest;
 import com.formkiq.client.model.AddDocumentOcrResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentOcrResponse;
 import com.formkiq.client.model.SetDocumentOcrRequest;
 import org.junit.jupiter.api.Disabled;
@@ -69,7 +70,7 @@ public class DocumentOcrApiTest {
   public void deleteDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    api.deleteDocumentOcr(documentId, siteId);
+    DeleteResponse response = api.deleteDocumentOcr(documentId, siteId);
     // TODO: test validations
   }
 

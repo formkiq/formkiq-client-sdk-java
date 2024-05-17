@@ -58,14 +58,46 @@ import com.formkiq.client.invoker.JSON;
  * SearchResponseFields
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-04-12T19:05:00.461233-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.4.0")
+    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.5.0")
 public class SearchResponseFields {
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private List<String> attributes = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
+  private List<String> tags = new ArrayList<>();
 
   public SearchResponseFields() {}
+
+  public SearchResponseFields attributes(List<String> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public SearchResponseFields addAttributesItem(String attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * Get attributes
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public List<String> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(List<String> attributes) {
+    this.attributes = attributes;
+  }
+
 
   public SearchResponseFields tags(List<String> tags) {
     this.tags = tags;
@@ -105,18 +137,20 @@ public class SearchResponseFields {
       return false;
     }
     SearchResponseFields searchResponseFields = (SearchResponseFields) o;
-    return Objects.equals(this.tags, searchResponseFields.tags);
+    return Objects.equals(this.attributes, searchResponseFields.attributes)
+        && Objects.equals(this.tags, searchResponseFields.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tags);
+    return Objects.hash(attributes, tags);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchResponseFields {\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -139,6 +173,7 @@ public class SearchResponseFields {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("attributes");
     openapiFields.add("tags");
 
     // a set of required properties/fields (JSON key names)
@@ -171,6 +206,13 @@ public class SearchResponseFields {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()
+        && !jsonObj.get("attributes").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+          jsonObj.get("attributes").toString()));
+    }
     // ensure the optional json data is an array if present
     if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()
         && !jsonObj.get("tags").isJsonArray()) {

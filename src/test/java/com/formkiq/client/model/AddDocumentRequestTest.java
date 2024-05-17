@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.AddAccessAttribute;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
+import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
@@ -120,6 +121,14 @@ public class AddDocumentRequestTest {
   @Test
   public void actionsTest() {
     // TODO: test actions
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
   /**
