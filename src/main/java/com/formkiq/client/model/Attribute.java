@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AttributeDataType;
 import com.formkiq.client.model.AttributeType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -57,16 +58,24 @@ import com.formkiq.client.invoker.JSON;
  * Attribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class Attribute {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private AttributeType type;
+  private AttributeType type = AttributeType.STANDARD;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
+
+  public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
+  @SerializedName(SERIALIZED_NAME_DATA_TYPE)
+  private AttributeDataType dataType = AttributeDataType.STRING;
+
+  public static final String SERIALIZED_NAME_IN_USE = "inUse";
+  @SerializedName(SERIALIZED_NAME_IN_USE)
+  private Boolean inUse;
 
   public Attribute() {}
 
@@ -110,6 +119,46 @@ public class Attribute {
   }
 
 
+  public Attribute dataType(AttributeDataType dataType) {
+    this.dataType = dataType;
+    return this;
+  }
+
+  /**
+   * Get dataType
+   * 
+   * @return dataType
+   **/
+  @javax.annotation.Nullable
+  public AttributeDataType getDataType() {
+    return dataType;
+  }
+
+  public void setDataType(AttributeDataType dataType) {
+    this.dataType = dataType;
+  }
+
+
+  public Attribute inUse(Boolean inUse) {
+    this.inUse = inUse;
+    return this;
+  }
+
+  /**
+   * Whether the Attribute is in use
+   * 
+   * @return inUse
+   **/
+  @javax.annotation.Nullable
+  public Boolean getInUse() {
+    return inUse;
+  }
+
+  public void setInUse(Boolean inUse) {
+    this.inUse = inUse;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -120,12 +169,14 @@ public class Attribute {
       return false;
     }
     Attribute attribute = (Attribute) o;
-    return Objects.equals(this.type, attribute.type) && Objects.equals(this.key, attribute.key);
+    return Objects.equals(this.type, attribute.type) && Objects.equals(this.key, attribute.key)
+        && Objects.equals(this.dataType, attribute.dataType)
+        && Objects.equals(this.inUse, attribute.inUse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, key);
+    return Objects.hash(type, key, dataType, inUse);
   }
 
   @Override
@@ -134,6 +185,8 @@ public class Attribute {
     sb.append("class Attribute {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
+    sb.append("    inUse: ").append(toIndentedString(inUse)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,6 +210,8 @@ public class Attribute {
     openapiFields = new HashSet<String>();
     openapiFields.add("type");
     openapiFields.add("key");
+    openapiFields.add("dataType");
+    openapiFields.add("inUse");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -197,6 +252,10 @@ public class Attribute {
       throw new IllegalArgumentException(String.format(
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("key").toString()));
+    }
+    // validate the optional field `dataType`
+    if (jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) {
+      AttributeDataType.validateJsonElement(jsonObj.get("dataType"));
     }
   }
 

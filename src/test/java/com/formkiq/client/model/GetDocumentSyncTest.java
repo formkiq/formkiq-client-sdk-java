@@ -19,6 +19,9 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentSyncService;
+import com.formkiq.client.model.DocumentSyncStatus;
+import com.formkiq.client.model.DocumentSyncType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

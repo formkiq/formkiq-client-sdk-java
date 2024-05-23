@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class UpdateDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)

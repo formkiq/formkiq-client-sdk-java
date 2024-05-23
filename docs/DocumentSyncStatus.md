@@ -1,0 +1,13 @@
+
+
+# DocumentSyncStatus
+
+## Enum
+
+
+* `COMPLETE` (value: `"COMPLETE"`)
+
+* `FAILED` (value: `"FAILED"`)
+
+
+

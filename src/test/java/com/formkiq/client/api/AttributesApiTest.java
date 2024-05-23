@@ -22,7 +22,7 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddAttributeRequest;
 import com.formkiq.client.model.AddAttributeResponse;
-import com.formkiq.client.model.DeleteAttributeResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetAttributeResponse;
 import com.formkiq.client.model.GetAttributesResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -68,7 +68,7 @@ public class AttributesApiTest {
   public void deleteAttributeTest() throws ApiException {
     String key = null;
     String siteId = null;
-    DeleteAttributeResponse response = api.deleteAttribute(key, siteId);
+    DeleteResponse response = api.deleteAttribute(key, siteId);
     // TODO: test validations
   }
 

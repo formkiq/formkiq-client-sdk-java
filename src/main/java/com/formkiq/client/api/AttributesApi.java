@@ -35,7 +35,7 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddAttributeRequest;
 import com.formkiq.client.model.AddAttributeResponse;
-import com.formkiq.client.model.DeleteAttributeResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetAttributeResponse;
 import com.formkiq.client.model.GetAttributesResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -306,7 +306,7 @@ public class AttributesApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -387,7 +387,7 @@ public class AttributesApi {
    * 
    * @param key Key Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return DeleteAttributeResponse
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -399,7 +399,7 @@ public class AttributesApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -412,8 +412,8 @@ public class AttributesApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteAttributeResponse deleteAttribute(String key, String siteId) throws ApiException {
-    ApiResponse<DeleteAttributeResponse> localVarResp = deleteAttributeWithHttpInfo(key, siteId);
+  public DeleteResponse deleteAttribute(String key, String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteAttributeWithHttpInfo(key, siteId);
     return localVarResp.getData();
   }
 
@@ -422,7 +422,7 @@ public class AttributesApi {
    * 
    * @param key Key Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;DeleteAttributeResponse&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -434,7 +434,7 @@ public class AttributesApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -447,10 +447,10 @@ public class AttributesApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteAttributeResponse> deleteAttributeWithHttpInfo(String key, String siteId)
+  public ApiResponse<DeleteResponse> deleteAttributeWithHttpInfo(String key, String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteAttributeValidateBeforeCall(key, siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteAttributeResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -471,7 +471,7 @@ public class AttributesApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -485,10 +485,10 @@ public class AttributesApi {
    *                        </table>
    */
   public okhttp3.Call deleteAttributeAsync(String key, String siteId,
-      final ApiCallback<DeleteAttributeResponse> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteAttributeValidateBeforeCall(key, siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteAttributeResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

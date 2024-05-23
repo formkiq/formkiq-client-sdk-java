@@ -19,61 +19,20 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AccessAttribute
+ * Model tests for DocumentSyncType
  */
-public class AccessAttributeTest {
-  private final AccessAttribute model = new AccessAttribute();
-
+public class DocumentSyncTypeTest {
   /**
-   * Model tests for AccessAttribute
+   * Model tests for DocumentSyncType
    */
   @Test
-  public void testAccessAttribute() {
-    // TODO: test AccessAttribute
-  }
-
-  /**
-   * Test the property 'key'
-   */
-  @Test
-  public void keyTest() {
-    // TODO: test key
-  }
-
-  /**
-   * Test the property 'stringValue'
-   */
-  @Test
-  public void stringValueTest() {
-    // TODO: test stringValue
-  }
-
-  /**
-   * Test the property 'numberValue'
-   */
-  @Test
-  public void numberValueTest() {
-    // TODO: test numberValue
-  }
-
-  /**
-   * Test the property 'booleanValue'
-   */
-  @Test
-  public void booleanValueTest() {
-    // TODO: test booleanValue
+  public void testDocumentSyncType() {
+    // TODO: test DocumentSyncType
   }
 
 }

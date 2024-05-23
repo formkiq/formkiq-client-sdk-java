@@ -20,8 +20,8 @@
 package com.formkiq.client.invoker;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class Configuration {
   public static final String VERSION = "1.15.0";
 

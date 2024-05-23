@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AttributeDataType;
 import com.formkiq.client.model.AttributeType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -58,6 +59,22 @@ public class AttributeTest {
   @Test
   public void keyTest() {
     // TODO: test key
+  }
+
+  /**
+   * Test the property 'dataType'
+   */
+  @Test
+  public void dataTypeTest() {
+    // TODO: test dataType
+  }
+
+  /**
+   * Test the property 'inUse'
+   */
+  @Test
+  public void inUseTest() {
+    // TODO: test inUse
   }
 
 }

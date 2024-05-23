@@ -17,7 +17,6 @@
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
 |**actions** | [**List&lt;AddAction&gt;**](AddAction.md) | List of Actions |  [optional] |
 |**attributes** | [**List&lt;AddDocumentAttribute&gt;**](AddDocumentAttribute.md) | List of Attributes to add to document |  [optional] |
-|**accessAttributes** | [**List&lt;AddAccessAttribute&gt;**](AddAccessAttribute.md) | List of Access Attributes (only available in pro/enterprise) |  [optional] |
 |**documents** | [**List&lt;AddChildDocument&gt;**](AddChildDocument.md) | List of child documents |  [optional] |
 
 

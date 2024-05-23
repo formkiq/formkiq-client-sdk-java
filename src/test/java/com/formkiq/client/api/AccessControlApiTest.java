@@ -20,16 +20,10 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddDocumentAccessAttributesRequest;
-import com.formkiq.client.model.AddDocumentAccessAttributesResponse;
-import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteResponse;
-import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
+import com.formkiq.client.model.GetOpaAccessPoliciesResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyResponse;
-import com.formkiq.client.model.GetOpaConfigurationsResponse;
-import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
-import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -50,39 +44,6 @@ public class AccessControlApiTest {
   private final AccessControlApi api = new AccessControlApi();
 
   /**
-   * Add document access attributes
-   *
-   * Add a document&#39;s access attributes (only \&quot;admin\&quot; role can call API)
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void addDocumentAccessAttributesTest() throws ApiException {
-    String documentId = null;
-    AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest = null;
-    String siteId = null;
-    AddDocumentAccessAttributesResponse response =
-        api.addDocumentAccessAttributes(documentId, addDocumentAccessAttributesRequest, siteId);
-    // TODO: test validations
-  }
-
-  /**
-   * Delete document&#39;s access attributes
-   *
-   * Delete a document&#39;s access attributes
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void deleteDocumentAccessAttributesTest() throws ApiException {
-    String documentId = null;
-    String siteId = null;
-    DeleteDocumentAccessAttributesResponse response =
-        api.deleteDocumentAccessAttributes(documentId, siteId);
-    // TODO: test validations
-  }
-
-  /**
    * Delete OPA Access Policy Items
    *
    * Delete OPA Access Policy Items
@@ -90,25 +51,22 @@ public class AccessControlApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void deleteOpaAccessPolicyItemTest() throws ApiException {
+  public void deleteOpaAccessPolicyItemsTest() throws ApiException {
     String siteId = null;
-    DeleteResponse response = api.deleteOpaAccessPolicyItem(siteId);
+    DeleteResponse response = api.deleteOpaAccessPolicyItems(siteId);
     // TODO: test validations
   }
 
   /**
-   * Get document access attributes
+   * Get OPAs Access Policies
    *
-   * Retrieves a document&#39;s access attributes (only \&quot;admin\&quot; role can call API)
+   * Returns a list of OPA Access Policies, can only be requested with ADMIN privileges
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void getDocumentAccessAttributesTest() throws ApiException {
-    String documentId = null;
-    String siteId = null;
-    GetDocumentAccessAttributesResponse response =
-        api.getDocumentAccessAttributes(documentId, siteId);
+  public void getOpaAccessPoliciesTest() throws ApiException {
+    GetOpaAccessPoliciesResponse response = api.getOpaAccessPolicies();
     // TODO: test validations
   }
 
@@ -137,36 +95,6 @@ public class AccessControlApiTest {
   public void getOpaAccessPolicyItemsTest() throws ApiException {
     String siteId = null;
     GetOpaAccessPolicyItemsResponse response = api.getOpaAccessPolicyItems(siteId);
-    // TODO: test validations
-  }
-
-  /**
-   * Get OPAs Configuration
-   *
-   * Returns a list of OPA Configuration, can only be requested with ADMIN privileges
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void getOpaConfigurationsTest() throws ApiException {
-    GetOpaConfigurationsResponse response = api.getOpaConfigurations();
-    // TODO: test validations
-  }
-
-  /**
-   * Set document access attributes
-   *
-   * Set a document&#39;s access attributes (only \&quot;admin\&quot; role can call API)
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void setDocumentAccessAttributesTest() throws ApiException {
-    String documentId = null;
-    SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest = null;
-    String siteId = null;
-    SetDocumentAccessAttributesResponse response =
-        api.setDocumentAccessAttributes(documentId, setDocumentAccessAttributesRequest, siteId);
     // TODO: test validations
   }
 

@@ -56,12 +56,12 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetOpaConfigurationsResponse
+ * GetOpaAccessPoliciesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
-public class GetOpaConfigurationsResponse {
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
+public class GetOpaAccessPoliciesResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
   private String next;
@@ -70,9 +70,9 @@ public class GetOpaConfigurationsResponse {
   @SerializedName(SERIALIZED_NAME_OPA_POLICIES)
   private List<OpaPolicy> opaPolicies = new ArrayList<>();
 
-  public GetOpaConfigurationsResponse() {}
+  public GetOpaAccessPoliciesResponse() {}
 
-  public GetOpaConfigurationsResponse next(String next) {
+  public GetOpaAccessPoliciesResponse next(String next) {
     this.next = next;
     return this;
   }
@@ -92,12 +92,12 @@ public class GetOpaConfigurationsResponse {
   }
 
 
-  public GetOpaConfigurationsResponse opaPolicies(List<OpaPolicy> opaPolicies) {
+  public GetOpaAccessPoliciesResponse opaPolicies(List<OpaPolicy> opaPolicies) {
     this.opaPolicies = opaPolicies;
     return this;
   }
 
-  public GetOpaConfigurationsResponse addOpaPoliciesItem(OpaPolicy opaPoliciesItem) {
+  public GetOpaAccessPoliciesResponse addOpaPoliciesItem(OpaPolicy opaPoliciesItem) {
     if (this.opaPolicies == null) {
       this.opaPolicies = new ArrayList<>();
     }
@@ -129,9 +129,9 @@ public class GetOpaConfigurationsResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetOpaConfigurationsResponse getOpaConfigurationsResponse = (GetOpaConfigurationsResponse) o;
-    return Objects.equals(this.next, getOpaConfigurationsResponse.next)
-        && Objects.equals(this.opaPolicies, getOpaConfigurationsResponse.opaPolicies);
+    GetOpaAccessPoliciesResponse getOpaAccessPoliciesResponse = (GetOpaAccessPoliciesResponse) o;
+    return Objects.equals(this.next, getOpaAccessPoliciesResponse.next)
+        && Objects.equals(this.opaPolicies, getOpaAccessPoliciesResponse.opaPolicies);
   }
 
   @Override
@@ -142,7 +142,7 @@ public class GetOpaConfigurationsResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetOpaConfigurationsResponse {\n");
+    sb.append("class GetOpaAccessPoliciesResponse {\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    opaPolicies: ").append(toIndentedString(opaPolicies)).append("\n");
     sb.append("}");
@@ -177,25 +177,25 @@ public class GetOpaConfigurationsResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to GetOpaConfigurationsResponse
+   * @throws IOException if the JSON Element is invalid with respect to GetOpaAccessPoliciesResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!GetOpaConfigurationsResponse.openapiRequiredFields.isEmpty()) { // has required fields
+      if (!GetOpaAccessPoliciesResponse.openapiRequiredFields.isEmpty()) { // has required fields
                                                                            // but JSON element is
                                                                            // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in GetOpaConfigurationsResponse is not found in the empty JSON string",
-            GetOpaConfigurationsResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetOpaAccessPoliciesResponse is not found in the empty JSON string",
+            GetOpaAccessPoliciesResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!GetOpaConfigurationsResponse.openapiFields.contains(entry.getKey())) {
+      if (!GetOpaAccessPoliciesResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `GetOpaConfigurationsResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetOpaAccessPoliciesResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -228,22 +228,22 @@ public class GetOpaConfigurationsResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!GetOpaConfigurationsResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'GetOpaConfigurationsResponse' and its subtypes
+      if (!GetOpaAccessPoliciesResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetOpaAccessPoliciesResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<GetOpaConfigurationsResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(GetOpaConfigurationsResponse.class));
+      final TypeAdapter<GetOpaAccessPoliciesResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetOpaAccessPoliciesResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<GetOpaConfigurationsResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetOpaAccessPoliciesResponse>() {
         @Override
-        public void write(JsonWriter out, GetOpaConfigurationsResponse value) throws IOException {
+        public void write(JsonWriter out, GetOpaAccessPoliciesResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public GetOpaConfigurationsResponse read(JsonReader in) throws IOException {
+        public GetOpaAccessPoliciesResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -254,18 +254,18 @@ public class GetOpaConfigurationsResponse {
   }
 
   /**
-   * Create an instance of GetOpaConfigurationsResponse given an JSON string
+   * Create an instance of GetOpaAccessPoliciesResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of GetOpaConfigurationsResponse
-   * @throws IOException if the JSON string is invalid with respect to GetOpaConfigurationsResponse
+   * @return An instance of GetOpaAccessPoliciesResponse
+   * @throws IOException if the JSON string is invalid with respect to GetOpaAccessPoliciesResponse
    */
-  public static GetOpaConfigurationsResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetOpaConfigurationsResponse.class);
+  public static GetOpaAccessPoliciesResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetOpaAccessPoliciesResponse.class);
   }
 
   /**
-   * Convert an instance of GetOpaConfigurationsResponse to an JSON string
+   * Convert an instance of GetOpaAccessPoliciesResponse to an JSON string
    *
    * @return JSON string
    */

@@ -176,14 +176,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccessControlApi* | [**addDocumentAccessAttributes**](docs/AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes
-*AccessControlApi* | [**deleteDocumentAccessAttributes**](docs/AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes
-*AccessControlApi* | [**deleteOpaAccessPolicyItem**](docs/AccessControlApi.md#deleteOpaAccessPolicyItem) | **DELETE** /sites/{siteId}/opa/accessPolicy/policyItems | Delete OPA Access Policy Items
-*AccessControlApi* | [**getDocumentAccessAttributes**](docs/AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes
+*AccessControlApi* | [**deleteOpaAccessPolicyItems**](docs/AccessControlApi.md#deleteOpaAccessPolicyItems) | **DELETE** /sites/{siteId}/opa/accessPolicy/policyItems | Delete OPA Access Policy Items
+*AccessControlApi* | [**getOpaAccessPolicies**](docs/AccessControlApi.md#getOpaAccessPolicies) | **GET** /sites/opa/accessPolicies | Get OPAs Access Policies
 *AccessControlApi* | [**getOpaAccessPolicy**](docs/AccessControlApi.md#getOpaAccessPolicy) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Access Policy
 *AccessControlApi* | [**getOpaAccessPolicyItems**](docs/AccessControlApi.md#getOpaAccessPolicyItems) | **GET** /sites/{siteId}/opa/accessPolicy/policyItems | Get OPA Access Policy Items
-*AccessControlApi* | [**getOpaConfigurations**](docs/AccessControlApi.md#getOpaConfigurations) | **GET** /sites/opa/accessPolicies | Get OPAs Configuration
-*AccessControlApi* | [**setDocumentAccessAttributes**](docs/AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes
 *AccessControlApi* | [**setOpaAccessPolicyItems**](docs/AccessControlApi.md#setOpaAccessPolicyItems) | **PUT** /sites/{siteId}/opa/accessPolicy/policyItems | Set opa access policy items, can only be requested with ADMIN privileges
 *AdvancedDocumentSearchApi* | [**addDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#addDocumentFulltext) | **POST** /documents/{documentId}/fulltext | Add document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
@@ -339,8 +335,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AccessAttribute](docs/AccessAttribute.md)
- - [AddAccessAttribute](docs/AddAccessAttribute.md)
  - [AddAction](docs/AddAction.md)
  - [AddActionParameters](docs/AddActionParameters.md)
  - [AddApiKeyRequest](docs/AddApiKeyRequest.md)
@@ -353,8 +347,6 @@ Class | Method | HTTP request | Description
  - [AddCaseResponse](docs/AddCaseResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
- - [AddDocumentAccessAttributesRequest](docs/AddDocumentAccessAttributesRequest.md)
- - [AddDocumentAccessAttributesResponse](docs/AddDocumentAccessAttributesResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
  - [AddDocumentActionsResponse](docs/AddDocumentActionsResponse.md)
  - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
@@ -418,14 +410,12 @@ Class | Method | HTTP request | Description
  - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
- - [DeleteAttributeResponse](docs/DeleteAttributeResponse.md)
  - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
  - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
  - [DeleteCaseNigoResponse](docs/DeleteCaseNigoResponse.md)
  - [DeleteCaseResponse](docs/DeleteCaseResponse.md)
  - [DeleteCaseTaskDocumentResponse](docs/DeleteCaseTaskDocumentResponse.md)
  - [DeleteCaseTaskResponse](docs/DeleteCaseTaskResponse.md)
- - [DeleteDocumentAccessAttributesResponse](docs/DeleteDocumentAccessAttributesResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
@@ -456,6 +446,9 @@ Class | Method | HTTP request | Description
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
  - [DocumentSearchTag](docs/DocumentSearchTag.md)
  - [DocumentSearchTags](docs/DocumentSearchTags.md)
+ - [DocumentSyncService](docs/DocumentSyncService.md)
+ - [DocumentSyncStatus](docs/DocumentSyncStatus.md)
+ - [DocumentSyncType](docs/DocumentSyncType.md)
  - [DocumentTag](docs/DocumentTag.md)
  - [DocumentVersion](docs/DocumentVersion.md)
  - [DocumentWorkflow](docs/DocumentWorkflow.md)
@@ -479,7 +472,6 @@ Class | Method | HTTP request | Description
  - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
  - [GetCasesResponse](docs/GetCasesResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
- - [GetDocumentAccessAttributesResponse](docs/GetDocumentAccessAttributesResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
  - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
  - [GetDocumentAttributesResponse](docs/GetDocumentAttributesResponse.md)
@@ -501,9 +493,9 @@ Class | Method | HTTP request | Description
  - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
+ - [GetOpaAccessPoliciesResponse](docs/GetOpaAccessPoliciesResponse.md)
  - [GetOpaAccessPolicyItemsResponse](docs/GetOpaAccessPolicyItemsResponse.md)
  - [GetOpaAccessPolicyResponse](docs/GetOpaAccessPolicyResponse.md)
- - [GetOpaConfigurationsResponse](docs/GetOpaConfigurationsResponse.md)
  - [GetOpenSearchIndexResponse](docs/GetOpenSearchIndexResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
@@ -567,8 +559,6 @@ Class | Method | HTTP request | Description
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
- - [SetDocumentAccessAttributesRequest](docs/SetDocumentAccessAttributesRequest.md)
- - [SetDocumentAccessAttributesResponse](docs/SetDocumentAccessAttributesResponse.md)
  - [SetDocumentAttributeRequest](docs/SetDocumentAttributeRequest.md)
  - [SetDocumentAttributesRequest](docs/SetDocumentAttributesRequest.md)
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)
@@ -626,6 +616,7 @@ Class | Method | HTTP request | Description
  - [UpdateWorkflowResponse](docs/UpdateWorkflowResponse.md)
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
+ - [UserActivityType](docs/UserActivityType.md)
  - [UserShare](docs/UserShare.md)
  - [UserSharePermission](docs/UserSharePermission.md)
  - [UserSharePermissionType](docs/UserSharePermissionType.md)

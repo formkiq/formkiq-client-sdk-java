@@ -19,61 +19,69 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddAccessAttribute
+ * Type of Document Sync
  */
-public class AddAccessAttributeTest {
-  private final AddAccessAttribute model = new AddAccessAttribute();
+@JsonAdapter(DocumentSyncType.Adapter.class)
+public enum DocumentSyncType {
 
-  /**
-   * Model tests for AddAccessAttribute
-   */
-  @Test
-  public void testAddAccessAttribute() {
-    // TODO: test AddAccessAttribute
+  METADATA("METADATA"),
+
+  TAG("TAG"),
+
+  CONTENT("CONTENT");
+
+  private String value;
+
+  DocumentSyncType(String value) {
+    this.value = value;
   }
 
-  /**
-   * Test the property 'key'
-   */
-  @Test
-  public void keyTest() {
-    // TODO: test key
+  public String getValue() {
+    return value;
   }
 
-  /**
-   * Test the property 'stringValue'
-   */
-  @Test
-  public void stringValueTest() {
-    // TODO: test stringValue
+  @Override
+  public String toString() {
+    return String.valueOf(value);
   }
 
-  /**
-   * Test the property 'numberValue'
-   */
-  @Test
-  public void numberValueTest() {
-    // TODO: test numberValue
+  public static DocumentSyncType fromValue(String value) {
+    for (DocumentSyncType b : DocumentSyncType.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  /**
-   * Test the property 'booleanValue'
-   */
-  @Test
-  public void booleanValueTest() {
-    // TODO: test booleanValue
+  public static class Adapter extends TypeAdapter<DocumentSyncType> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final DocumentSyncType enumeration)
+        throws IOException {
+      jsonWriter.value(enumeration.getValue());
+    }
+
+    @Override
+    public DocumentSyncType read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return DocumentSyncType.fromValue(value);
+    }
   }
 
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    DocumentSyncType.fromValue(value);
+  }
 }
+

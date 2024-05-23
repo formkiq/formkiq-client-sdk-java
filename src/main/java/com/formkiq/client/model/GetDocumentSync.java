@@ -20,6 +20,9 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentSyncService;
+import com.formkiq.client.model.DocumentSyncStatus;
+import com.formkiq.client.model.DocumentSyncType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,181 +59,20 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class GetDocumentSync {
-  /**
-   * To which service the data was synced
-   */
-  @JsonAdapter(ServiceEnum.Adapter.class)
-  public enum ServiceEnum {
-    TYPESENSE("TYPESENSE"),
-
-    OPENSEARCH("OPENSEARCH");
-
-    private String value;
-
-    ServiceEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ServiceEnum fromValue(String value) {
-      for (ServiceEnum b : ServiceEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ServiceEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ServiceEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ServiceEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return ServiceEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ServiceEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_SERVICE = "service";
   @SerializedName(SERIALIZED_NAME_SERVICE)
-  private ServiceEnum service;
-
-  /**
-   * The status of the sync
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    COMPLETE("COMPLETE"),
-
-    FAILED("FAILED");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      StatusEnum.fromValue(value);
-    }
-  }
+  private DocumentSyncService service;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
-
-  /**
-   * The type of the sync
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    METADATA("METADATA"),
-
-    TAG("TAG"),
-
-    CONTENT("CONTENT");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TypeEnum.fromValue(value);
-    }
-  }
+  private DocumentSyncStatus status;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  private DocumentSyncType type;
 
   public static final String SERIALIZED_NAME_SYNC_DATE = "syncDate";
   @SerializedName(SERIALIZED_NAME_SYNC_DATE)
@@ -246,62 +88,62 @@ public class GetDocumentSync {
 
   public GetDocumentSync() {}
 
-  public GetDocumentSync service(ServiceEnum service) {
+  public GetDocumentSync service(DocumentSyncService service) {
     this.service = service;
     return this;
   }
 
   /**
-   * To which service the data was synced
+   * Get service
    * 
    * @return service
    **/
   @javax.annotation.Nullable
-  public ServiceEnum getService() {
+  public DocumentSyncService getService() {
     return service;
   }
 
-  public void setService(ServiceEnum service) {
+  public void setService(DocumentSyncService service) {
     this.service = service;
   }
 
 
-  public GetDocumentSync status(StatusEnum status) {
+  public GetDocumentSync status(DocumentSyncStatus status) {
     this.status = status;
     return this;
   }
 
   /**
-   * The status of the sync
+   * Get status
    * 
    * @return status
    **/
   @javax.annotation.Nullable
-  public StatusEnum getStatus() {
+  public DocumentSyncStatus getStatus() {
     return status;
   }
 
-  public void setStatus(StatusEnum status) {
+  public void setStatus(DocumentSyncStatus status) {
     this.status = status;
   }
 
 
-  public GetDocumentSync type(TypeEnum type) {
+  public GetDocumentSync type(DocumentSyncType type) {
     this.type = type;
     return this;
   }
 
   /**
-   * The type of the sync
+   * Get type
    * 
    * @return type
    **/
   @javax.annotation.Nullable
-  public TypeEnum getType() {
+  public DocumentSyncType getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(DocumentSyncType type) {
     this.type = type;
   }
 
@@ -457,35 +299,17 @@ public class GetDocumentSync {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("service") != null && !jsonObj.get("service").isJsonNull())
-        && !jsonObj.get("service").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `service` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("service").toString()));
-    }
     // validate the optional field `service`
     if (jsonObj.get("service") != null && !jsonObj.get("service").isJsonNull()) {
-      ServiceEnum.validateJsonElement(jsonObj.get("service"));
-    }
-    if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
-        && !jsonObj.get("status").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("status").toString()));
+      DocumentSyncService.validateJsonElement(jsonObj.get("service"));
     }
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
-      StatusEnum.validateJsonElement(jsonObj.get("status"));
-    }
-    if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
-        && !jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
+      DocumentSyncStatus.validateJsonElement(jsonObj.get("status"));
     }
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-      TypeEnum.validateJsonElement(jsonObj.get("type"));
+      DocumentSyncType.validateJsonElement(jsonObj.get("type"));
     }
     if ((jsonObj.get("syncDate") != null && !jsonObj.get("syncDate").isJsonNull())
         && !jsonObj.get("syncDate").isJsonPrimitive()) {

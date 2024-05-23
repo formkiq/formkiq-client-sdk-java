@@ -20,7 +20,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.AddAccessAttribute;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentAttribute;
@@ -64,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -106,10 +105,6 @@ public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private List<AddDocumentAttribute> attributes = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_ACCESS_ATTRIBUTES = "accessAttributes";
-  @SerializedName(SERIALIZED_NAME_ACCESS_ATTRIBUTES)
-  private List<AddAccessAttribute> accessAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
@@ -349,34 +344,6 @@ public class AddDocumentRequest {
   }
 
 
-  public AddDocumentRequest accessAttributes(List<AddAccessAttribute> accessAttributes) {
-    this.accessAttributes = accessAttributes;
-    return this;
-  }
-
-  public AddDocumentRequest addAccessAttributesItem(AddAccessAttribute accessAttributesItem) {
-    if (this.accessAttributes == null) {
-      this.accessAttributes = new ArrayList<>();
-    }
-    this.accessAttributes.add(accessAttributesItem);
-    return this;
-  }
-
-  /**
-   * List of Access Attributes (only available in pro/enterprise)
-   * 
-   * @return accessAttributes
-   **/
-  @javax.annotation.Nullable
-  public List<AddAccessAttribute> getAccessAttributes() {
-    return accessAttributes;
-  }
-
-  public void setAccessAttributes(List<AddAccessAttribute> accessAttributes) {
-    this.accessAttributes = accessAttributes;
-  }
-
-
   public AddDocumentRequest documents(List<AddChildDocument> documents) {
     this.documents = documents;
     return this;
@@ -425,14 +392,13 @@ public class AddDocumentRequest {
         && Objects.equals(this.metadata, addDocumentRequest.metadata)
         && Objects.equals(this.actions, addDocumentRequest.actions)
         && Objects.equals(this.attributes, addDocumentRequest.attributes)
-        && Objects.equals(this.accessAttributes, addDocumentRequest.accessAttributes)
         && Objects.equals(this.documents, addDocumentRequest.documents);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(tagSchemaId, path, deepLinkPath, contentType, isBase64, content, tags,
-        metadata, actions, attributes, accessAttributes, documents);
+        metadata, actions, attributes, documents);
   }
 
   @Override
@@ -449,7 +415,6 @@ public class AddDocumentRequest {
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
-    sb.append("    accessAttributes: ").append(toIndentedString(accessAttributes)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -482,7 +447,6 @@ public class AddDocumentRequest {
     openapiFields.add("metadata");
     openapiFields.add("actions");
     openapiFields.add("attributes");
-    openapiFields.add("accessAttributes");
     openapiFields.add("documents");
 
     // a set of required properties/fields (JSON key names)
@@ -615,22 +579,6 @@ public class AddDocumentRequest {
         // validate the optional field `attributes` (array)
         for (int i = 0; i < jsonArrayattributes.size(); i++) {
           AddDocumentAttribute.validateJsonElement(jsonArrayattributes.get(i));
-        } ;
-      }
-    }
-    if (jsonObj.get("accessAttributes") != null && !jsonObj.get("accessAttributes").isJsonNull()) {
-      JsonArray jsonArrayaccessAttributes = jsonObj.getAsJsonArray("accessAttributes");
-      if (jsonArrayaccessAttributes != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("accessAttributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `accessAttributes` to be an array in the JSON string but got `%s`",
-              jsonObj.get("accessAttributes").toString()));
-        }
-
-        // validate the optional field `accessAttributes` (array)
-        for (int i = 0; i < jsonArrayaccessAttributes.size(); i++) {
-          AddAccessAttribute.validateJsonElement(jsonArrayaccessAttributes.get(i));
         } ;
       }
     }

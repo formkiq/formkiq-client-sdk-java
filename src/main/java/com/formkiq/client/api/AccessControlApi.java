@@ -33,16 +33,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.formkiq.client.model.AddDocumentAccessAttributesRequest;
-import com.formkiq.client.model.AddDocumentAccessAttributesResponse;
-import com.formkiq.client.model.DeleteDocumentAccessAttributesResponse;
 import com.formkiq.client.model.DeleteResponse;
-import com.formkiq.client.model.GetDocumentAccessAttributesResponse;
+import com.formkiq.client.model.GetOpaAccessPoliciesResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyResponse;
-import com.formkiq.client.model.GetOpaConfigurationsResponse;
-import com.formkiq.client.model.SetDocumentAccessAttributesRequest;
-import com.formkiq.client.model.SetDocumentAccessAttributesResponse;
 import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -91,424 +85,7 @@ public class AccessControlApi {
   }
 
   /**
-   * Build call for addDocumentAccessAttributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param addDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call addDocumentAccessAttributesCall(String documentId,
-      AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = addDocumentAccessAttributesRequest;
-
-    // create path and map variables
-    String localVarPath = "/documents/{documentId}/accessAttributes"
-        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {"application/json"};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentAccessAttributesValidateBeforeCall(String documentId,
-      AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'documentId' is set
-    if (documentId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'documentId' when calling addDocumentAccessAttributes(Async)");
-    }
-
-    // verify the required parameter 'addDocumentAccessAttributesRequest' is set
-    if (addDocumentAccessAttributesRequest == null) {
-      throw new ApiException(
-          "Missing the required parameter 'addDocumentAccessAttributesRequest' when calling addDocumentAccessAttributes(Async)");
-    }
-
-    return addDocumentAccessAttributesCall(documentId, addDocumentAccessAttributesRequest, siteId,
-        _callback);
-
-  }
-
-  /**
-   * Add document access attributes Add a document&#39;s access attributes (only \&quot;admin\&quot;
-   * role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param addDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @return AddDocumentAccessAttributesResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public AddDocumentAccessAttributesResponse addDocumentAccessAttributes(String documentId,
-      AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest, String siteId)
-      throws ApiException {
-    ApiResponse<AddDocumentAccessAttributesResponse> localVarResp =
-        addDocumentAccessAttributesWithHttpInfo(documentId, addDocumentAccessAttributesRequest,
-            siteId);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Add document access attributes Add a document&#39;s access attributes (only \&quot;admin\&quot;
-   * role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param addDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;AddDocumentAccessAttributesResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<AddDocumentAccessAttributesResponse> addDocumentAccessAttributesWithHttpInfo(
-      String documentId, AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest,
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = addDocumentAccessAttributesValidateBeforeCall(documentId,
-        addDocumentAccessAttributesRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<AddDocumentAccessAttributesResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Add document access attributes (asynchronously) Add a document&#39;s access attributes (only
-   * \&quot;admin\&quot; role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param addDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call addDocumentAccessAttributesAsync(String documentId,
-      AddDocumentAccessAttributesRequest addDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback<AddDocumentAccessAttributesResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall = addDocumentAccessAttributesValidateBeforeCall(documentId,
-        addDocumentAccessAttributesRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<AddDocumentAccessAttributesResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for deleteDocumentAccessAttributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call deleteDocumentAccessAttributesCall(String documentId, String siteId,
-      final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/documents/{documentId}/accessAttributes"
-        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteDocumentAccessAttributesValidateBeforeCall(String documentId,
-      String siteId, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'documentId' is set
-    if (documentId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'documentId' when calling deleteDocumentAccessAttributes(Async)");
-    }
-
-    return deleteDocumentAccessAttributesCall(documentId, siteId, _callback);
-
-  }
-
-  /**
-   * Delete document&#39;s access attributes Delete a document&#39;s access attributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @return DeleteDocumentAccessAttributesResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public DeleteDocumentAccessAttributesResponse deleteDocumentAccessAttributes(String documentId,
-      String siteId) throws ApiException {
-    ApiResponse<DeleteDocumentAccessAttributesResponse> localVarResp =
-        deleteDocumentAccessAttributesWithHttpInfo(documentId, siteId);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Delete document&#39;s access attributes Delete a document&#39;s access attributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;DeleteDocumentAccessAttributesResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<DeleteDocumentAccessAttributesResponse> deleteDocumentAccessAttributesWithHttpInfo(
-      String documentId, String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        deleteDocumentAccessAttributesValidateBeforeCall(documentId, siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteDocumentAccessAttributesResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Delete document&#39;s access attributes (asynchronously) Delete a document&#39;s access
-   * attributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call deleteDocumentAccessAttributesAsync(String documentId, String siteId,
-      final ApiCallback<DeleteDocumentAccessAttributesResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall =
-        deleteDocumentAccessAttributesValidateBeforeCall(documentId, siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteDocumentAccessAttributesResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for deleteOpaAccessPolicyItem
+   * Build call for deleteOpaAccessPolicyItems
    * 
    * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
@@ -531,7 +108,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaAccessPolicyItemCall(String siteId, final ApiCallback _callback)
+  public okhttp3.Call deleteOpaAccessPolicyItemsCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -578,15 +155,15 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteOpaAccessPolicyItemValidateBeforeCall(String siteId,
+  private okhttp3.Call deleteOpaAccessPolicyItemsValidateBeforeCall(String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
-          "Missing the required parameter 'siteId' when calling deleteOpaAccessPolicyItem(Async)");
+          "Missing the required parameter 'siteId' when calling deleteOpaAccessPolicyItems(Async)");
     }
 
-    return deleteOpaAccessPolicyItemCall(siteId, _callback);
+    return deleteOpaAccessPolicyItemsCall(siteId, _callback);
 
   }
 
@@ -614,8 +191,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteOpaAccessPolicyItem(String siteId) throws ApiException {
-    ApiResponse<DeleteResponse> localVarResp = deleteOpaAccessPolicyItemWithHttpInfo(siteId);
+  public DeleteResponse deleteOpaAccessPolicyItems(String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteOpaAccessPolicyItemsWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -643,9 +220,9 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteOpaAccessPolicyItemWithHttpInfo(String siteId)
+  public ApiResponse<DeleteResponse> deleteOpaAccessPolicyItemsWithHttpInfo(String siteId)
       throws ApiException {
-    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemValidateBeforeCall(siteId, null);
+    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemsValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -674,20 +251,18 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaAccessPolicyItemAsync(String siteId,
+  public okhttp3.Call deleteOpaAccessPolicyItemsAsync(String siteId,
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemValidateBeforeCall(siteId, _callback);
+    okhttp3.Call localVarCall = deleteOpaAccessPolicyItemsValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
   /**
-   * Build call for getDocumentAccessAttributes
+   * Build call for getOpaAccessPolicies
    * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -708,8 +283,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentAccessAttributesCall(String documentId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getOpaAccessPoliciesCall(final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -726,18 +300,13 @@ public class AccessControlApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/documents/{documentId}/accessAttributes"
-        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
+    String localVarPath = "/sites/opa/accessPolicies";
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
 
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
@@ -759,25 +328,17 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentAccessAttributesValidateBeforeCall(String documentId,
-      String siteId, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'documentId' is set
-    if (documentId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'documentId' when calling getDocumentAccessAttributes(Async)");
-    }
-
-    return getDocumentAccessAttributesCall(documentId, siteId, _callback);
+  private okhttp3.Call getOpaAccessPoliciesValidateBeforeCall(final ApiCallback _callback)
+      throws ApiException {
+    return getOpaAccessPoliciesCall(_callback);
 
   }
 
   /**
-   * Get document access attributes Retrieves a document&#39;s access attributes (only
-   * \&quot;admin\&quot; role can call API)
+   * Get OPAs Access Policies Returns a list of OPA Access Policies, can only be requested with
+   * ADMIN privileges
    * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @return GetDocumentAccessAttributesResponse
+   * @return GetOpaAccessPoliciesResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -797,20 +358,16 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentAccessAttributesResponse getDocumentAccessAttributes(String documentId,
-      String siteId) throws ApiException {
-    ApiResponse<GetDocumentAccessAttributesResponse> localVarResp =
-        getDocumentAccessAttributesWithHttpInfo(documentId, siteId);
+  public GetOpaAccessPoliciesResponse getOpaAccessPolicies() throws ApiException {
+    ApiResponse<GetOpaAccessPoliciesResponse> localVarResp = getOpaAccessPoliciesWithHttpInfo();
     return localVarResp.getData();
   }
 
   /**
-   * Get document access attributes Retrieves a document&#39;s access attributes (only
-   * \&quot;admin\&quot; role can call API)
+   * Get OPAs Access Policies Returns a list of OPA Access Policies, can only be requested with
+   * ADMIN privileges
    * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;GetDocumentAccessAttributesResponse&gt;
+   * @return ApiResponse&lt;GetOpaAccessPoliciesResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -830,20 +387,17 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentAccessAttributesResponse> getDocumentAccessAttributesWithHttpInfo(
-      String documentId, String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentAccessAttributesValidateBeforeCall(documentId, siteId, null);
-    Type localVarReturnType = new TypeToken<GetDocumentAccessAttributesResponse>() {}.getType();
+  public ApiResponse<GetOpaAccessPoliciesResponse> getOpaAccessPoliciesWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getOpaAccessPoliciesValidateBeforeCall(null);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPoliciesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Get document access attributes (asynchronously) Retrieves a document&#39;s access attributes
-   * (only \&quot;admin\&quot; role can call API)
+   * Get OPAs Access Policies (asynchronously) Returns a list of OPA Access Policies, can only be
+   * requested with ADMIN privileges
    * 
-   * @param documentId Document Identifier (required)
-   * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -864,12 +418,11 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentAccessAttributesAsync(String documentId, String siteId,
-      final ApiCallback<GetDocumentAccessAttributesResponse> _callback) throws ApiException {
+  public okhttp3.Call getOpaAccessPoliciesAsync(
+      final ApiCallback<GetOpaAccessPoliciesResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentAccessAttributesValidateBeforeCall(documentId, siteId, _callback);
-    Type localVarReturnType = new TypeToken<GetDocumentAccessAttributesResponse>() {}.getType();
+    okhttp3.Call localVarCall = getOpaAccessPoliciesValidateBeforeCall(_callback);
+    Type localVarReturnType = new TypeToken<GetOpaAccessPoliciesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1228,401 +781,6 @@ public class AccessControlApi {
 
     okhttp3.Call localVarCall = getOpaAccessPolicyItemsValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetOpaAccessPolicyItemsResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for getOpaConfigurations
-   * 
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call getOpaConfigurationsCall(final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/sites/opa/accessPolicies";
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call getOpaConfigurationsValidateBeforeCall(final ApiCallback _callback)
-      throws ApiException {
-    return getOpaConfigurationsCall(_callback);
-
-  }
-
-  /**
-   * Get OPAs Configuration Returns a list of OPA Configuration, can only be requested with ADMIN
-   * privileges
-   * 
-   * @return GetOpaConfigurationsResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public GetOpaConfigurationsResponse getOpaConfigurations() throws ApiException {
-    ApiResponse<GetOpaConfigurationsResponse> localVarResp = getOpaConfigurationsWithHttpInfo();
-    return localVarResp.getData();
-  }
-
-  /**
-   * Get OPAs Configuration Returns a list of OPA Configuration, can only be requested with ADMIN
-   * privileges
-   * 
-   * @return ApiResponse&lt;GetOpaConfigurationsResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<GetOpaConfigurationsResponse> getOpaConfigurationsWithHttpInfo()
-      throws ApiException {
-    okhttp3.Call localVarCall = getOpaConfigurationsValidateBeforeCall(null);
-    Type localVarReturnType = new TypeToken<GetOpaConfigurationsResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Get OPAs Configuration (asynchronously) Returns a list of OPA Configuration, can only be
-   * requested with ADMIN privileges
-   * 
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call getOpaConfigurationsAsync(
-      final ApiCallback<GetOpaConfigurationsResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall = getOpaConfigurationsValidateBeforeCall(_callback);
-    Type localVarReturnType = new TypeToken<GetOpaConfigurationsResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for setDocumentAccessAttributes
-   * 
-   * @param documentId Document Identifier (required)
-   * @param setDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call setDocumentAccessAttributesCall(String documentId,
-      SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = setDocumentAccessAttributesRequest;
-
-    // create path and map variables
-    String localVarPath = "/documents/{documentId}/accessAttributes"
-        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    if (siteId != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
-    }
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {"application/json"};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call setDocumentAccessAttributesValidateBeforeCall(String documentId,
-      SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'documentId' is set
-    if (documentId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'documentId' when calling setDocumentAccessAttributes(Async)");
-    }
-
-    // verify the required parameter 'setDocumentAccessAttributesRequest' is set
-    if (setDocumentAccessAttributesRequest == null) {
-      throw new ApiException(
-          "Missing the required parameter 'setDocumentAccessAttributesRequest' when calling setDocumentAccessAttributes(Async)");
-    }
-
-    return setDocumentAccessAttributesCall(documentId, setDocumentAccessAttributesRequest, siteId,
-        _callback);
-
-  }
-
-  /**
-   * Set document access attributes Set a document&#39;s access attributes (only \&quot;admin\&quot;
-   * role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param setDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @return SetDocumentAccessAttributesResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public SetDocumentAccessAttributesResponse setDocumentAccessAttributes(String documentId,
-      SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest, String siteId)
-      throws ApiException {
-    ApiResponse<SetDocumentAccessAttributesResponse> localVarResp =
-        setDocumentAccessAttributesWithHttpInfo(documentId, setDocumentAccessAttributesRequest,
-            siteId);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Set document access attributes Set a document&#39;s access attributes (only \&quot;admin\&quot;
-   * role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param setDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;SetDocumentAccessAttributesResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<SetDocumentAccessAttributesResponse> setDocumentAccessAttributesWithHttpInfo(
-      String documentId, SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest,
-      String siteId) throws ApiException {
-    okhttp3.Call localVarCall = setDocumentAccessAttributesValidateBeforeCall(documentId,
-        setDocumentAccessAttributesRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<SetDocumentAccessAttributesResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Set document access attributes (asynchronously) Set a document&#39;s access attributes (only
-   * \&quot;admin\&quot; role can call API)
-   * 
-   * @param documentId Document Identifier (required)
-   * @param setDocumentAccessAttributesRequest (required)
-   * @param siteId Site Identifier (optional)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table summary="Response Details" border="1">
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>400</td>
-   *                        <td>400 OK</td>
-   *                        <td>-</td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call setDocumentAccessAttributesAsync(String documentId,
-      SetDocumentAccessAttributesRequest setDocumentAccessAttributesRequest, String siteId,
-      final ApiCallback<SetDocumentAccessAttributesResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall = setDocumentAccessAttributesValidateBeforeCall(documentId,
-        setDocumentAccessAttributesRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<SetDocumentAccessAttributesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

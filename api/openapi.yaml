@@ -668,15 +668,15 @@ paths:
       - application/json
   /sites/opa/accessPolicies:
     get:
-      description: "Returns a list of OPA Configuration, can only be requested with\
+      description: "Returns a list of OPA Access Policies, can only be requested with\
         \ ADMIN privileges"
-      operationId: GetOpaConfigurations
+      operationId: GetOpaAccessPolicies
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetOpaConfigurationsResponse'
+                $ref: '#/components/schemas/GetOpaAccessPoliciesResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -696,7 +696,7 @@ paths:
               style: simple
       security:
       - ApiAuthorization: []
-      summary: Get OPAs Configuration
+      summary: Get OPAs Access Policies
       tags:
       - Access Control
       x-amazon-apigateway-integration:
@@ -751,7 +751,7 @@ paths:
   /sites/{siteId}/opa/accessPolicy/policyItems:
     delete:
       description: Delete OPA Access Policy Items
-      operationId: DeleteOpaAccessPolicyItem
+      operationId: DeleteOpaAccessPolicyItems
       parameters:
       - description: Site Identifier
         explode: false
@@ -1348,208 +1348,6 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
-  /documents/{documentId}/accessAttributes:
-    delete:
-      description: Delete a document's access attributes
-      operationId: DeleteDocumentAccessAttributes
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteDocumentAccessAttributesResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Delete document's access attributes
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
-    get:
-      description: Retrieves a document's access attributes (only "admin" role can
-        call API)
-      operationId: GetDocumentAccessAttributes
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetDocumentAccessAttributesResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Get document access attributes
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
-    post:
-      description: Add a document's access attributes (only "admin" role can call
-        API)
-      operationId: AddDocumentAccessAttributes
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddDocumentAccessAttributesRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddDocumentAccessAttributesResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorsResponse'
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      summary: Add document access attributes
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-    put:
-      description: Set a document's access attributes (only "admin" role can call
-        API)
-      operationId: SetDocumentAccessAttributes
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetDocumentAccessAttributesRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SetDocumentAccessAttributesResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorsResponse'
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      summary: Set document access attributes
-      tags:
-      - Access Control
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-content-type: application/json
       x-accepts:
       - application/json
   /documents/{documentId}/attributes:
@@ -3145,15 +2943,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteAttributeResponse'
-          description: 200 CREATED
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
+              explode: false
+              schema:
+                type: string
+              style: simple
             Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
+              explode: false
+              schema:
+                type: string
+              style: simple
             Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           content:
             application/json:
@@ -3272,12 +3079,29 @@ paths:
         content:
           application/json:
             examples:
-              Search_By_Key:
+              Search_By_Attribute_Key:
+                value:
+                  query:
+                    attribute:
+                      key: category
+              Search_By_Attribute_Value:
+                value:
+                  query:
+                    attribute:
+                      key: category
+                      eq: person
+              Search_By_Attribute_Value_Begins_With:
+                value:
+                  query:
+                    attribute:
+                      key: firstname
+                      beginsWith: jo
+              Search_By_Tag_Key:
                 value:
                   query:
                     tag:
                       key: category
-              Search_By_Value:
+              Search_By_Tag_Value:
                 value:
                   query:
                     tag:
@@ -9887,14 +9711,14 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         - insertedDate: insertedDate
           name: name
           inUse: true
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -9931,7 +9755,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: null
+            type: ANTIVIRUS
             message: message
             userId: userId
             parameters:
@@ -9939,13 +9763,13 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: null
+            status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -9957,7 +9781,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: null
+            type: ANTIVIRUS
             message: message
             userId: userId
             parameters:
@@ -9965,19 +9789,19 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: null
+            status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -10004,7 +9828,7 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -10012,13 +9836,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
         decisions:
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
@@ -10061,7 +9885,7 @@ components:
         description: description
         userId: userId
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Name of Workflow
@@ -10089,20 +9913,20 @@ components:
         next: next
         shares:
         - path: path
-          permissionType: null
+          permissionType: GROUP
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
           userId: userId
           group: group
         - path: path
-          permissionType: null
+          permissionType: GROUP
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
@@ -10133,10 +9957,10 @@ components:
     UserShare:
       example:
         path: path
-        permissionType: null
+        permissionType: GROUP
         permissions:
-        - null
-        - null
+        - READ
+        - READ
         siteId: siteId
         shareKey: shareKey
         type: FOLDER
@@ -10292,7 +10116,7 @@ components:
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         - eqOr:
@@ -10302,7 +10126,7 @@ components:
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         text: text
@@ -10314,7 +10138,7 @@ components:
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         tag:
@@ -10325,7 +10149,7 @@ components:
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         tags:
@@ -10333,14 +10157,14 @@ components:
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         - beginsWith: beginsWith
           range:
             start: start
             end: end
-            type: null
+            type: STRING
           eq: eq
           key: key
         documentIds:
@@ -10718,7 +10542,7 @@ components:
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           - eqOr:
@@ -10728,7 +10552,7 @@ components:
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           text: text
@@ -10740,7 +10564,7 @@ components:
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           tag:
@@ -10751,7 +10575,7 @@ components:
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           tags:
@@ -10759,14 +10583,14 @@ components:
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           - beginsWith: beginsWith
             range:
               start: start
               end: end
-              type: null
+              type: STRING
             eq: eq
             key: key
           documentIds:
@@ -10858,7 +10682,7 @@ components:
         range:
           start: start
           end: end
-          type: null
+          type: STRING
         eq: eq
         key: key
       properties:
@@ -10892,7 +10716,7 @@ components:
       example:
         start: start
         end: end
-        type: null
+        type: STRING
       properties:
         start:
           description: Start of range query
@@ -10912,7 +10736,7 @@ components:
         range:
           start: start
           end: end
-          type: null
+          type: STRING
         eq: eq
         key: key
       properties:
@@ -10939,7 +10763,7 @@ components:
         range:
           start: start
           end: end
-          type: null
+          type: STRING
         eq: eq
         key: key
       properties:
@@ -11025,10 +10849,10 @@ components:
         contentType: contentType
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11043,10 +10867,10 @@ components:
             ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11116,15 +10940,6 @@ components:
           key: key
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
-        accessAttributes:
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
         documents:
         - path: path
           metadata:
@@ -11205,10 +11020,10 @@ components:
         isBase64: true
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11223,10 +11038,10 @@ components:
             ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11290,11 +11105,6 @@ components:
           description: List of Attributes to add to document
           items:
             $ref: '#/components/schemas/AddDocumentAttribute'
-          type: array
-        accessAttributes:
-          description: List of Access Attributes (only available in pro/enterprise)
-          items:
-            $ref: '#/components/schemas/AddAccessAttribute'
           type: array
         documents:
           description: List of child documents
@@ -11400,10 +11210,10 @@ components:
         isBase64: true
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11418,10 +11228,10 @@ components:
             ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -11496,8 +11306,8 @@ components:
       example:
         share:
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           group: group
       properties:
         share:
@@ -11506,8 +11316,8 @@ components:
     AddShare:
       example:
         permissions:
-        - null
-        - null
+        - READ
+        - READ
         group: group
       properties:
         group:
@@ -11750,85 +11560,6 @@ components:
       required:
       - key
       type: object
-    AddDocumentAccessAttributesRequest:
-      description: List of document access attributes to add
-      example:
-        accessAttributes:
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-      properties:
-        accessAttributes:
-          description: List of document access attributes
-          items:
-            $ref: '#/components/schemas/AddAccessAttribute'
-          type: array
-      type: object
-    SetDocumentAccessAttributesRequest:
-      description: List of document access attributes to set
-      example:
-        accessAttributes:
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-      properties:
-        accessAttributes:
-          description: List of document access attributes
-          items:
-            $ref: '#/components/schemas/AddAccessAttribute'
-          type: array
-      type: object
-    GetDocumentAccessAttributesResponse:
-      description: List of document access attributes
-      example:
-        accessAttributes:
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 0.8008281904610115
-          key: key
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 0.8008281904610115
-          key: key
-      properties:
-        accessAttributes:
-          description: List of document access attributes
-          items:
-            $ref: '#/components/schemas/AccessAttribute'
-          type: array
-      type: object
-    AccessAttribute:
-      description: "Document Access Attribute (requires either: stringValue, numberValue,\
-        \ booleanValue)"
-      example:
-        stringValue: stringValue
-        booleanValue: true
-        numberValue: 0.8008281904610115
-        key: key
-      properties:
-        key:
-          description: Attribute key
-          type: string
-        stringValue:
-          description: Attribute with string value
-          type: string
-        numberValue:
-          description: Attribute with number value
-          type: number
-        booleanValue:
-          description: Attribute with boolean value
-          type: boolean
-      type: object
     AddDocumentAttributeValue:
       description: Document Attribute Value
       example:
@@ -11895,30 +11626,6 @@ components:
           items:
             type: number
           type: array
-        booleanValue:
-          description: Attribute with boolean value
-          type: boolean
-      required:
-      - key
-      type: object
-    AddAccessAttribute:
-      description: "Document Access Attribute (requires either: stringValue, numberValue,\
-        \ booleanValue)"
-      example:
-        stringValue: stringValue
-        booleanValue: true
-        numberValue: 1.4658129805029452
-        key: key
-      properties:
-        key:
-          description: Attribute key
-          type: string
-        stringValue:
-          description: Attribute with string value
-          type: string
-        numberValue:
-          description: Attribute with number value
-          type: number
         booleanValue:
           description: Attribute with boolean value
           type: boolean
@@ -12392,6 +12099,25 @@ components:
             $ref: '#/components/schemas/GetDocumentSync'
           type: array
       type: object
+    DocumentSyncService:
+      description: Service of Document Sync
+      enum:
+      - TYPESENSE
+      - OPENSEARCH
+      type: string
+    DocumentSyncStatus:
+      description: Status of Document Sync
+      enum:
+      - COMPLETE
+      - FAILED
+      type: string
+    DocumentSyncType:
+      description: Type of Document Sync
+      enum:
+      - METADATA
+      - TAG
+      - CONTENT
+      type: string
     GetDocumentSync:
       example:
         service: TYPESENSE
@@ -12402,24 +12128,11 @@ components:
         status: COMPLETE
       properties:
         service:
-          description: To which service the data was synced
-          enum:
-          - TYPESENSE
-          - OPENSEARCH
-          type: string
+          $ref: '#/components/schemas/DocumentSyncService'
         status:
-          description: The status of the sync
-          enum:
-          - COMPLETE
-          - FAILED
-          type: string
+          $ref: '#/components/schemas/DocumentSyncStatus'
         type:
-          description: The type of the sync
-          enum:
-          - METADATA
-          - TAG
-          - CONTENT
-          type: string
+          $ref: '#/components/schemas/DocumentSyncType'
         syncDate:
           description: Timestamp of synchronization
           type: string
@@ -12456,6 +12169,11 @@ components:
             $ref: '#/components/schemas/UserActivity'
           type: array
       type: object
+    UserActivityType:
+      description: The type of the activity
+      enum:
+      - VIEW
+      type: string
     UserActivity:
       example:
         activityId: activityId
@@ -12469,10 +12187,7 @@ components:
           description: Activity identifier
           type: string
         type:
-          description: The type of the activity
-          enum:
-          - VIEW
-          type: string
+          $ref: '#/components/schemas/UserActivityType'
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -12619,7 +12334,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: null
+            status: ACTIVE
           document:
             metadata:
             - values:
@@ -12653,7 +12368,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: null
+            status: ACTIVE
           document:
             metadata:
             - values:
@@ -12763,7 +12478,7 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         document:
           metadata:
           - values:
@@ -13182,21 +12897,21 @@ components:
           documentNumberFormat:
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           name: name
           description: description
           startDate: startDate
           caseNumberFormat:
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           - padding: 0
             staticValue: staticValue
-            type: null
-          status: null
+            type: AUTO_INCREMENT
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13214,21 +12929,21 @@ components:
         documentNumberFormat:
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         name: name
         description: description
         startDate: startDate
         caseNumberFormat:
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         - padding: 0
           staticValue: staticValue
-          type: null
-        status: null
+          type: AUTO_INCREMENT
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13272,7 +12987,7 @@ components:
       example:
         padding: 0
         staticValue: staticValue
-        type: null
+        type: AUTO_INCREMENT
       properties:
         type:
           $ref: '#/components/schemas/StringGeneratorType'
@@ -13300,7 +13015,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13316,7 +13031,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13407,7 +13122,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13423,7 +13138,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13459,7 +13174,7 @@ components:
           endDate: endDate
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13476,7 +13191,7 @@ components:
         endDate: endDate
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13520,7 +13235,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13536,7 +13251,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13572,7 +13287,7 @@ components:
           endDate: endDate
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -13589,7 +13304,7 @@ components:
         endDate: endDate
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -13627,7 +13342,7 @@ components:
         userId: userId
         taskId: taskId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         taskId:
           description: Task Identifier
@@ -13668,7 +13383,7 @@ components:
         description: description
         userId: userId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         nigoId:
           description: Nigo Identifier
@@ -13713,7 +13428,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           endDate: endDate
@@ -13725,7 +13440,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -13749,7 +13464,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           nigoId: nigoId
@@ -13759,7 +13474,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -13782,7 +13497,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         nigo:
           $ref: '#/components/schemas/Nigo'
@@ -13799,7 +13514,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         task:
           $ref: '#/components/schemas/Task'
@@ -13817,7 +13532,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           insertedDate: insertedDate
@@ -13827,7 +13542,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -13916,7 +13631,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         case:
           $ref: '#/components/schemas/Case'
@@ -13934,7 +13649,7 @@ components:
         description: description
         userId: userId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         caseId:
           description: Case Identifier
@@ -14016,15 +13731,15 @@ components:
           conditions:
             must:
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/AddRule'
@@ -14039,15 +13754,15 @@ components:
           conditions:
             must:
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/UpdateRule'
@@ -14061,15 +13776,15 @@ components:
         conditions:
           must:
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         priority:
           description: Rule priority
@@ -14092,15 +13807,15 @@ components:
         conditions:
           must:
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         priority:
           description: Rule priority
@@ -14122,7 +13837,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/AddRuleset'
@@ -14135,7 +13850,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/UpdateRuleset'
@@ -14147,7 +13862,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         description:
           description: Ruleset description
@@ -14166,7 +13881,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         description:
           description: Ruleset description
@@ -14190,30 +13905,30 @@ components:
           conditions:
             must:
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         - description: description
           ruleId: ruleId
           priority: 0.8008281904610115
           conditions:
             must:
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -14233,15 +13948,15 @@ components:
           conditions:
             must:
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
             - fieldName: fieldName
-              attribute: null
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/Rule'
@@ -14255,13 +13970,13 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
         - rulesetId: rulesetId
           insertedDate: insertedDate
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -14280,7 +13995,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/Ruleset'
@@ -14292,7 +14007,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         rulesetId:
           description: Ruleset identifier
@@ -14320,15 +14035,15 @@ components:
         conditions:
           must:
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
           - fieldName: fieldName
-            attribute: null
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         ruleId:
           description: Workflow to start on matching of conditions
@@ -14351,13 +14066,13 @@ components:
       example:
         must:
         - fieldName: fieldName
-          attribute: null
+          attribute: TEXT
           value: value
-          operation: null
+          operation: EQ
         - fieldName: fieldName
-          attribute: null
+          attribute: TEXT
           value: value
-          operation: null
+          operation: EQ
       properties:
         must:
           description: List of rule conditions
@@ -14382,9 +14097,9 @@ components:
     RuleConditionMust:
       example:
         fieldName: fieldName
-        attribute: null
+        attribute: TEXT
         value: value
-        operation: null
+        operation: EQ
       properties:
         attribute:
           $ref: '#/components/schemas/RuleConditionAttribute'
@@ -14450,27 +14165,25 @@ components:
     GetAttributeResponse:
       example:
         attribute:
-          type: null
+          dataType: STRING
+          inUse: true
+          type: STANDARD
           key: key
       properties:
         attribute:
           $ref: '#/components/schemas/Attribute'
       type: object
-    DeleteAttributeResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Attribute message
-          type: string
-      type: object
     GetAttributesResponse:
       example:
         next: next
         attributes:
-        - type: null
+        - dataType: STRING
+          inUse: true
+          type: STANDARD
           key: key
-        - type: null
+        - dataType: STRING
+          inUse: true
+          type: STANDARD
           key: key
       properties:
         next:
@@ -14484,7 +14197,9 @@ components:
       type: object
     Attribute:
       example:
-        type: null
+        dataType: STRING
+        inUse: true
+        type: STANDARD
         key: key
       properties:
         type:
@@ -14492,8 +14207,14 @@ components:
         key:
           description: Attribute Key
           type: string
+        dataType:
+          $ref: '#/components/schemas/AttributeDataType'
+        inUse:
+          description: Whether the Attribute is in use
+          type: boolean
       type: object
     AttributeType:
+      default: STANDARD
       description: Type of Attribute
       enum:
       - STANDARD
@@ -14512,7 +14233,8 @@ components:
     AddAttributeRequest:
       example:
         attribute:
-          dataType: null
+          dataType: STRING
+          type: STANDARD
           key: key
       properties:
         attribute:
@@ -14522,7 +14244,8 @@ components:
       type: object
     AddAttribute:
       example:
-        dataType: null
+        dataType: STRING
+        type: STANDARD
         key: key
       properties:
         key:
@@ -14530,6 +14253,8 @@ components:
           type: string
         dataType:
           $ref: '#/components/schemas/AttributeDataType'
+        type:
+          $ref: '#/components/schemas/AttributeType'
       required:
       - key
       type: object
@@ -14734,7 +14459,7 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -14742,13 +14467,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
         - queueId: queueId
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -14756,7 +14481,7 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
       properties:
         next:
@@ -14796,7 +14521,7 @@ components:
         metadata:
           key: metadata
         insertedDate: insertedDate
-        type: null
+        type: ANTIVIRUS
         message: message
         userId: userId
         parameters:
@@ -14804,7 +14529,7 @@ components:
         workflowId: workflowId
         startDate: startDate
         completedDate: completedDate
-        status: null
+        status: COMPLETE
         workflowStepId: workflowStepId
       properties:
         status:
@@ -14888,30 +14613,6 @@ components:
           type: string
         insertedDate:
           description: Inserted Timestamp
-          type: string
-      type: object
-    AddDocumentAccessAttributesResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Document Action message
-          type: string
-      type: object
-    SetDocumentAccessAttributesResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Document Action message
-          type: string
-      type: object
-    DeleteDocumentAccessAttributesResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Document Action message
           type: string
       type: object
     AddDocumentActionsResponse:
@@ -15156,10 +14857,10 @@ components:
       example:
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -15174,10 +14875,10 @@ components:
             ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -15201,10 +14902,10 @@ components:
     AddAction:
       example:
         queueId: queueId
-        type: null
+        type: ANTIVIRUS
         parameters:
           characterMax: characterMax
-          ocrEngine: null
+          ocrEngine: TESSERACT
           ocrParseTypes: ocrParseTypes
           addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
           ocrNumberOfPages: ocrNumberOfPages
@@ -15238,7 +14939,7 @@ components:
     AddActionParameters:
       example:
         characterMax: characterMax
-        ocrEngine: null
+        ocrEngine: TESSERACT
         ocrParseTypes: ocrParseTypes
         addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
         ocrNumberOfPages: ocrNumberOfPages
@@ -15478,7 +15179,7 @@ components:
           description: Result message
           type: string
       type: object
-    GetOpaConfigurationsResponse:
+    GetOpaAccessPoliciesResponse:
       example:
         next: next
         opaPolicies:
@@ -15566,7 +15267,7 @@ components:
               matchUsername: true
             text: text
           key: key
-        type: null
+        type: ALLOW
       properties:
         type:
           $ref: '#/components/schemas/OpaPolicyItemType'
@@ -15605,7 +15306,7 @@ components:
                 matchUsername: true
               text: text
             key: key
-          type: null
+          type: ALLOW
         - anyRoles:
           - anyRoles
           - anyRoles
@@ -15623,7 +15324,7 @@ components:
                 matchUsername: true
               text: text
             key: key
-          type: null
+          type: ALLOW
       properties:
         policyItems:
           description: List of OPA policy items
@@ -15659,7 +15360,7 @@ components:
                 matchUsername: true
               text: text
             key: key
-          type: null
+          type: ALLOW
         - anyRoles:
           - anyRoles
           - anyRoles
@@ -15677,7 +15378,7 @@ components:
                 matchUsername: true
               text: text
             key: key
-          type: null
+          type: ALLOW
       properties:
         policyItems:
           items:
@@ -16095,7 +15796,7 @@ components:
       example:
         name: name
         description: description
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -16114,10 +15815,10 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
-              ocrEngine: null
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
@@ -16133,9 +15834,9 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -16144,10 +15845,10 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
-              ocrEngine: null
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
@@ -16163,15 +15864,15 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -16199,10 +15900,10 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
-              ocrEngine: null
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
@@ -16218,9 +15919,9 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -16229,10 +15930,10 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
-              ocrEngine: null
+              ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
@@ -16248,15 +15949,15 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -16281,10 +15982,10 @@ components:
         stepId: stepId
         action:
           queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
-            ocrEngine: null
+            ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
@@ -16300,9 +16001,9 @@ components:
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
@@ -16331,7 +16032,7 @@ components:
     AddWorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: null
+        type: APPROVE
       properties:
         type:
           $ref: '#/components/schemas/WorkflowStepDecisionType'
@@ -16345,7 +16046,7 @@ components:
     WorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: null
+        type: APPROVE
       properties:
         type:
           $ref: '#/components/schemas/WorkflowStepDecisionType'
@@ -16420,12 +16121,12 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
         - currentStepId: currentStepId
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
       properties:
         workflows:
           description: List of Document Workflows
@@ -16442,7 +16143,7 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
       properties:
         workflow:
           $ref: '#/components/schemas/DocumentWorkflow'
@@ -16460,7 +16161,7 @@ components:
         name: name
         description: description
         workflowId: workflowId
-        status: null
+        status: COMPLETE
       properties:
         workflowId:
           description: Workflow identifier

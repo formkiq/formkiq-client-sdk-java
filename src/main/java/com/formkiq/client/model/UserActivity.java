@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.UserActivityType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,67 +57,16 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class UserActivity {
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
   private String activityId;
 
-  /**
-   * The type of the activity
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    VIEW("VIEW");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TypeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  private UserActivityType type;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -156,22 +106,22 @@ public class UserActivity {
   }
 
 
-  public UserActivity type(TypeEnum type) {
+  public UserActivity type(UserActivityType type) {
     this.type = type;
     return this;
   }
 
   /**
-   * The type of the activity
+   * Get type
    * 
    * @return type
    **/
   @javax.annotation.Nullable
-  public TypeEnum getType() {
+  public UserActivityType getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(UserActivityType type) {
     this.type = type;
   }
 
@@ -353,15 +303,9 @@ public class UserActivity {
           "Expected the field `activityId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("activityId").toString()));
     }
-    if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
-        && !jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
-    }
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-      TypeEnum.validateJsonElement(jsonObj.get("type"));
+      UserActivityType.validateJsonElement(jsonObj.get("type"));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

@@ -5,9 +5,7 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
-docs/AccessAttribute.md
 docs/AccessControlApi.md
-docs/AddAccessAttribute.md
 docs/AddAction.md
 docs/AddActionParameters.md
 docs/AddApiKeyRequest.md
@@ -20,8 +18,6 @@ docs/AddCaseRequest.md
 docs/AddCaseResponse.md
 docs/AddChildDocument.md
 docs/AddChildDocumentResponse.md
-docs/AddDocumentAccessAttributesRequest.md
-docs/AddDocumentAccessAttributesResponse.md
 docs/AddDocumentActionsRequest.md
 docs/AddDocumentActionsResponse.md
 docs/AddDocumentActionsRetryResponse.md
@@ -90,14 +86,12 @@ docs/CaseStatus.md
 docs/ChildDocument.md
 docs/CustomIndexApi.md
 docs/DeleteApiKeyResponse.md
-docs/DeleteAttributeResponse.md
 docs/DeleteCaseDocumentResponse.md
 docs/DeleteCaseNigoDocumentResponse.md
 docs/DeleteCaseNigoResponse.md
 docs/DeleteCaseResponse.md
 docs/DeleteCaseTaskDocumentResponse.md
 docs/DeleteCaseTaskResponse.md
-docs/DeleteDocumentAccessAttributesResponse.md
 docs/DeleteFolderResponse.md
 docs/DeleteFulltextResponse.md
 docs/DeleteIndicesResponse.md
@@ -134,6 +128,9 @@ docs/DocumentSearchResponse.md
 docs/DocumentSearchTag.md
 docs/DocumentSearchTags.md
 docs/DocumentSharesApi.md
+docs/DocumentSyncService.md
+docs/DocumentSyncStatus.md
+docs/DocumentSyncType.md
 docs/DocumentTag.md
 docs/DocumentTagsApi.md
 docs/DocumentVersion.md
@@ -163,7 +160,6 @@ docs/GetCaseTaskResponse.md
 docs/GetCaseTasksResponse.md
 docs/GetCasesResponse.md
 docs/GetConfigurationResponse.md
-docs/GetDocumentAccessAttributesResponse.md
 docs/GetDocumentActionsResponse.md
 docs/GetDocumentAttributeResponse.md
 docs/GetDocumentAttributesResponse.md
@@ -185,9 +181,9 @@ docs/GetExaminePdfResponse.md
 docs/GetExaminePdfUrlResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
+docs/GetOpaAccessPoliciesResponse.md
 docs/GetOpaAccessPolicyItemsResponse.md
 docs/GetOpaAccessPolicyResponse.md
-docs/GetOpaConfigurationsResponse.md
 docs/GetOpenSearchIndexResponse.md
 docs/GetQueueResponse.md
 docs/GetQueuesResponse.md
@@ -255,8 +251,6 @@ docs/SearchResponseAttributeField.md
 docs/SearchResponseFields.md
 docs/SearchResultDocument.md
 docs/SetAntivirusResponse.md
-docs/SetDocumentAccessAttributesRequest.md
-docs/SetDocumentAccessAttributesResponse.md
 docs/SetDocumentAttributeRequest.md
 docs/SetDocumentAttributesRequest.md
 docs/SetDocumentFulltextRequest.md
@@ -318,6 +312,7 @@ docs/UpdateWorkflowResponse.md
 docs/User.md
 docs/UserActivitiesApi.md
 docs/UserActivity.md
+docs/UserActivityType.md
 docs/UserManagementApi.md
 docs/UserShare.md
 docs/UserSharePermission.md
@@ -393,8 +388,6 @@ src/main/java/com/formkiq/client/invoker/auth/OAuthFlow.java
 src/main/java/com/formkiq/client/invoker/auth/OAuthOkHttpClient.java
 src/main/java/com/formkiq/client/invoker/auth/RetryingOAuth.java
 src/main/java/com/formkiq/client/model/AbstractOpenApiSchema.java
-src/main/java/com/formkiq/client/model/AccessAttribute.java
-src/main/java/com/formkiq/client/model/AddAccessAttribute.java
 src/main/java/com/formkiq/client/model/AddAction.java
 src/main/java/com/formkiq/client/model/AddActionParameters.java
 src/main/java/com/formkiq/client/model/AddApiKeyRequest.java
@@ -407,8 +400,6 @@ src/main/java/com/formkiq/client/model/AddCaseRequest.java
 src/main/java/com/formkiq/client/model/AddCaseResponse.java
 src/main/java/com/formkiq/client/model/AddChildDocument.java
 src/main/java/com/formkiq/client/model/AddChildDocumentResponse.java
-src/main/java/com/formkiq/client/model/AddDocumentAccessAttributesRequest.java
-src/main/java/com/formkiq/client/model/AddDocumentAccessAttributesResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRetryResponse.java
@@ -472,14 +463,12 @@ src/main/java/com/formkiq/client/model/AttributeType.java
 src/main/java/com/formkiq/client/model/CaseStatus.java
 src/main/java/com/formkiq/client/model/ChildDocument.java
 src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
-src/main/java/com/formkiq/client/model/DeleteAttributeResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseDocumentResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseNigoDocumentResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseNigoResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseTaskDocumentResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseTaskResponse.java
-src/main/java/com/formkiq/client/model/DeleteDocumentAccessAttributesResponse.java
 src/main/java/com/formkiq/client/model/DeleteFolderResponse.java
 src/main/java/com/formkiq/client/model/DeleteFulltextResponse.java
 src/main/java/com/formkiq/client/model/DeleteIndicesResponse.java
@@ -510,6 +499,9 @@ src/main/java/com/formkiq/client/model/DocumentSearchRequest.java
 src/main/java/com/formkiq/client/model/DocumentSearchResponse.java
 src/main/java/com/formkiq/client/model/DocumentSearchTag.java
 src/main/java/com/formkiq/client/model/DocumentSearchTags.java
+src/main/java/com/formkiq/client/model/DocumentSyncService.java
+src/main/java/com/formkiq/client/model/DocumentSyncStatus.java
+src/main/java/com/formkiq/client/model/DocumentSyncType.java
 src/main/java/com/formkiq/client/model/DocumentTag.java
 src/main/java/com/formkiq/client/model/DocumentVersion.java
 src/main/java/com/formkiq/client/model/DocumentWorkflow.java
@@ -533,7 +525,6 @@ src/main/java/com/formkiq/client/model/GetCaseTaskResponse.java
 src/main/java/com/formkiq/client/model/GetCaseTasksResponse.java
 src/main/java/com/formkiq/client/model/GetCasesResponse.java
 src/main/java/com/formkiq/client/model/GetConfigurationResponse.java
-src/main/java/com/formkiq/client/model/GetDocumentAccessAttributesResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentAttributeResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentAttributesResponse.java
@@ -555,9 +546,9 @@ src/main/java/com/formkiq/client/model/GetExaminePdfResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetOpaAccessPoliciesResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyResponse.java
-src/main/java/com/formkiq/client/model/GetOpaConfigurationsResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchIndexResponse.java
 src/main/java/com/formkiq/client/model/GetQueueResponse.java
 src/main/java/com/formkiq/client/model/GetQueuesResponse.java
@@ -621,8 +612,6 @@ src/main/java/com/formkiq/client/model/SearchResponseAttributeField.java
 src/main/java/com/formkiq/client/model/SearchResponseFields.java
 src/main/java/com/formkiq/client/model/SearchResultDocument.java
 src/main/java/com/formkiq/client/model/SetAntivirusResponse.java
-src/main/java/com/formkiq/client/model/SetDocumentAccessAttributesRequest.java
-src/main/java/com/formkiq/client/model/SetDocumentAccessAttributesResponse.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributeRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributesRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentFulltextRequest.java
@@ -680,6 +669,7 @@ src/main/java/com/formkiq/client/model/UpdateWorkflowRequest.java
 src/main/java/com/formkiq/client/model/UpdateWorkflowResponse.java
 src/main/java/com/formkiq/client/model/User.java
 src/main/java/com/formkiq/client/model/UserActivity.java
+src/main/java/com/formkiq/client/model/UserActivityType.java
 src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/UserSharePermission.java
 src/main/java/com/formkiq/client/model/UserSharePermissionType.java
@@ -721,8 +711,6 @@ src/test/java/com/formkiq/client/api/TagSchemaApiTest.java
 src/test/java/com/formkiq/client/api/UserActivitiesApiTest.java
 src/test/java/com/formkiq/client/api/UserManagementApiTest.java
 src/test/java/com/formkiq/client/api/WebhooksApiTest.java
-src/test/java/com/formkiq/client/model/AccessAttributeTest.java
-src/test/java/com/formkiq/client/model/AddAccessAttributeTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyRequestTest.java
@@ -735,8 +723,6 @@ src/test/java/com/formkiq/client/model/AddCaseResponseTest.java
 src/test/java/com/formkiq/client/model/AddCaseTest.java
 src/test/java/com/formkiq/client/model/AddChildDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/AddChildDocumentTest.java
-src/test/java/com/formkiq/client/model/AddDocumentAccessAttributesRequestTest.java
-src/test/java/com/formkiq/client/model/AddDocumentAccessAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRetryResponseTest.java
@@ -800,14 +786,12 @@ src/test/java/com/formkiq/client/model/AttributeTypeTest.java
 src/test/java/com/formkiq/client/model/CaseStatusTest.java
 src/test/java/com/formkiq/client/model/ChildDocumentTest.java
 src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
-src/test/java/com/formkiq/client/model/DeleteAttributeResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseNigoDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseNigoResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseTaskDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseTaskResponseTest.java
-src/test/java/com/formkiq/client/model/DeleteDocumentAccessAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFolderResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteIndicesResponseTest.java
@@ -837,6 +821,9 @@ src/test/java/com/formkiq/client/model/DocumentSearchResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchTagTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchTagsTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchTest.java
+src/test/java/com/formkiq/client/model/DocumentSyncServiceTest.java
+src/test/java/com/formkiq/client/model/DocumentSyncStatusTest.java
+src/test/java/com/formkiq/client/model/DocumentSyncTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentTagTest.java
 src/test/java/com/formkiq/client/model/DocumentTest.java
 src/test/java/com/formkiq/client/model/DocumentVersionTest.java
@@ -861,7 +848,6 @@ src/test/java/com/formkiq/client/model/GetCaseTaskResponseTest.java
 src/test/java/com/formkiq/client/model/GetCaseTasksResponseTest.java
 src/test/java/com/formkiq/client/model/GetCasesResponseTest.java
 src/test/java/com/formkiq/client/model/GetConfigurationResponseTest.java
-src/test/java/com/formkiq/client/model/GetDocumentAccessAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentAttributeResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentAttributesResponseTest.java
@@ -883,9 +869,9 @@ src/test/java/com/formkiq/client/model/GetExaminePdfResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetOpaAccessPoliciesResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyResponseTest.java
-src/test/java/com/formkiq/client/model/GetOpaConfigurationsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchIndexResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
@@ -949,8 +935,6 @@ src/test/java/com/formkiq/client/model/SearchResponseAttributeFieldTest.java
 src/test/java/com/formkiq/client/model/SearchResponseFieldsTest.java
 src/test/java/com/formkiq/client/model/SearchResultDocumentTest.java
 src/test/java/com/formkiq/client/model/SetAntivirusResponseTest.java
-src/test/java/com/formkiq/client/model/SetDocumentAccessAttributesRequestTest.java
-src/test/java/com/formkiq/client/model/SetDocumentAccessAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/SetDocumentAttributeRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentAttributesRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentFulltextRequestTest.java
@@ -1007,6 +991,7 @@ src/test/java/com/formkiq/client/model/UpdateTaskTest.java
 src/test/java/com/formkiq/client/model/UpdateWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/UserActivityTest.java
+src/test/java/com/formkiq/client/model/UserActivityTypeTest.java
 src/test/java/com/formkiq/client/model/UserSharePermissionTest.java
 src/test/java/com/formkiq/client/model/UserSharePermissionTypeTest.java
 src/test/java/com/formkiq/client/model/UserShareTest.java

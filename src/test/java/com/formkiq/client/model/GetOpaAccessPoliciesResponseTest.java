@@ -19,37 +19,47 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.OpaPolicy;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DeleteDocumentAccessAttributesResponse
+ * Model tests for GetOpaAccessPoliciesResponse
  */
-public class DeleteDocumentAccessAttributesResponseTest {
-  private final DeleteDocumentAccessAttributesResponse model =
-      new DeleteDocumentAccessAttributesResponse();
+public class GetOpaAccessPoliciesResponseTest {
+  private final GetOpaAccessPoliciesResponse model = new GetOpaAccessPoliciesResponse();
 
   /**
-   * Model tests for DeleteDocumentAccessAttributesResponse
+   * Model tests for GetOpaAccessPoliciesResponse
    */
   @Test
-  public void testDeleteDocumentAccessAttributesResponse() {
-    // TODO: test DeleteDocumentAccessAttributesResponse
+  public void testGetOpaAccessPoliciesResponse() {
+    // TODO: test GetOpaAccessPoliciesResponse
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'next'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void nextTest() {
+    // TODO: test next
+  }
+
+  /**
+   * Test the property 'opaPolicies'
+   */
+  @Test
+  public void opaPoliciesTest() {
+    // TODO: test opaPolicies
   }
 
 }

@@ -19,37 +19,65 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SetDocumentAccessAttributesResponse
+ * The type of the activity
  */
-public class SetDocumentAccessAttributesResponseTest {
-  private final SetDocumentAccessAttributesResponse model =
-      new SetDocumentAccessAttributesResponse();
+@JsonAdapter(UserActivityType.Adapter.class)
+public enum UserActivityType {
 
-  /**
-   * Model tests for SetDocumentAccessAttributesResponse
-   */
-  @Test
-  public void testSetDocumentAccessAttributesResponse() {
-    // TODO: test SetDocumentAccessAttributesResponse
+  VIEW("VIEW");
+
+  private String value;
+
+  UserActivityType(String value) {
+    this.value = value;
   }
 
-  /**
-   * Test the property 'message'
-   */
-  @Test
-  public void messageTest() {
-    // TODO: test message
+  public String getValue() {
+    return value;
   }
 
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  public static UserActivityType fromValue(String value) {
+    for (UserActivityType b : UserActivityType.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<UserActivityType> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final UserActivityType enumeration)
+        throws IOException {
+      jsonWriter.value(enumeration.getValue());
+    }
+
+    @Override
+    public UserActivityType read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return UserActivityType.fromValue(value);
+    }
+  }
+
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    UserActivityType.fromValue(value);
+  }
 }
+

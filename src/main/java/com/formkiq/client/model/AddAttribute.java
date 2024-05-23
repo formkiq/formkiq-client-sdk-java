@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AttributeDataType;
+import com.formkiq.client.model.AttributeType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AddAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-16T22:28:17.043903-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.5.0")
+    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.6.0")
 public class AddAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -67,6 +68,10 @@ public class AddAttribute {
   public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
   @SerializedName(SERIALIZED_NAME_DATA_TYPE)
   private AttributeDataType dataType = AttributeDataType.STRING;
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private AttributeType type = AttributeType.STANDARD;
 
   public AddAttribute() {}
 
@@ -110,6 +115,26 @@ public class AddAttribute {
   }
 
 
+  public AddAttribute type(AttributeType type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * 
+   * @return type
+   **/
+  @javax.annotation.Nullable
+  public AttributeType getType() {
+    return type;
+  }
+
+  public void setType(AttributeType type) {
+    this.type = type;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -121,12 +146,13 @@ public class AddAttribute {
     }
     AddAttribute addAttribute = (AddAttribute) o;
     return Objects.equals(this.key, addAttribute.key)
-        && Objects.equals(this.dataType, addAttribute.dataType);
+        && Objects.equals(this.dataType, addAttribute.dataType)
+        && Objects.equals(this.type, addAttribute.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, dataType);
+    return Objects.hash(key, dataType, type);
   }
 
   @Override
@@ -135,6 +161,7 @@ public class AddAttribute {
     sb.append("class AddAttribute {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -158,6 +185,7 @@ public class AddAttribute {
     openapiFields = new HashSet<String>();
     openapiFields.add("key");
     openapiFields.add("dataType");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -207,6 +235,10 @@ public class AddAttribute {
     // validate the optional field `dataType`
     if (jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) {
       AttributeDataType.validateJsonElement(jsonObj.get("dataType"));
+    }
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      AttributeType.validateJsonElement(jsonObj.get("type"));
     }
   }
 
