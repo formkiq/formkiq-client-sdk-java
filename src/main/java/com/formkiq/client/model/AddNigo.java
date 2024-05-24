@@ -61,9 +61,13 @@ import com.formkiq.client.invoker.JSON;
  * AddNigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class AddNigo {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -90,13 +94,33 @@ public class AddNigo {
 
   public AddNigo() {}
 
+  public AddNigo name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of Nigo
+   * 
+   * @return name
+   **/
+  @javax.annotation.Nonnull
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
   public AddNigo description(String description) {
     this.description = description;
     return this;
   }
 
   /**
-   * Description of Task
+   * Description of Nigo
    * 
    * @return description
    **/
@@ -236,7 +260,8 @@ public class AddNigo {
       return false;
     }
     AddNigo addNigo = (AddNigo) o;
-    return Objects.equals(this.description, addNigo.description)
+    return Objects.equals(this.name, addNigo.name)
+        && Objects.equals(this.description, addNigo.description)
         && Objects.equals(this.status, addNigo.status)
         && Objects.equals(this.startDate, addNigo.startDate)
         && Objects.equals(this.endDate, addNigo.endDate)
@@ -246,13 +271,14 @@ public class AddNigo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, status, startDate, endDate, metadata, documentIds);
+    return Objects.hash(name, description, status, startDate, endDate, metadata, documentIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddNigo {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
@@ -280,6 +306,7 @@ public class AddNigo {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("status");
     openapiFields.add("startDate");
@@ -289,6 +316,7 @@ public class AddNigo {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
   }
 
   /**
@@ -316,7 +344,21 @@ public class AddNigo {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddNigo.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if (!jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
+    }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

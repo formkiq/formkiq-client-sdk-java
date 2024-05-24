@@ -549,6 +549,7 @@ Class | Method | HTTP request | Description
  - [Rule](docs/Rule.md)
  - [RuleCondition](docs/RuleCondition.md)
  - [RuleConditionAttribute](docs/RuleConditionAttribute.md)
+ - [RuleConditionCriterion](docs/RuleConditionCriterion.md)
  - [RuleConditionMust](docs/RuleConditionMust.md)
  - [RuleConditionOperation](docs/RuleConditionOperation.md)
  - [Ruleset](docs/Ruleset.md)

@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.RuleConditionAttribute;
+import com.formkiq.client.model.RuleConditionCriterion;
 import com.formkiq.client.model.RuleConditionOperation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -51,6 +52,14 @@ public class RuleConditionMustTest {
   @Test
   public void attributeTest() {
     // TODO: test attribute
+  }
+
+  /**
+   * Test the property 'criterion'
+   */
+  @Test
+  public void criterionTest() {
+    // TODO: test criterion
   }
 
   /**

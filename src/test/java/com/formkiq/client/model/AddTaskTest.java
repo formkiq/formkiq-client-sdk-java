@@ -49,6 +49,14 @@ public class AddTaskTest {
   }
 
   /**
+   * Test the property 'name'
+   */
+  @Test
+  public void nameTest() {
+    // TODO: test name
+  }
+
+  /**
    * Test the property 'description'
    */
   @Test

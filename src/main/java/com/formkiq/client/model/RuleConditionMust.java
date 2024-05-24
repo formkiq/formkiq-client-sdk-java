@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.RuleConditionAttribute;
+import com.formkiq.client.model.RuleConditionCriterion;
 import com.formkiq.client.model.RuleConditionOperation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -58,12 +59,16 @@ import com.formkiq.client.invoker.JSON;
  * RuleConditionMust
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class RuleConditionMust {
   public static final String SERIALIZED_NAME_ATTRIBUTE = "attribute";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE)
   private RuleConditionAttribute attribute;
+
+  public static final String SERIALIZED_NAME_CRITERION = "criterion";
+  @SerializedName(SERIALIZED_NAME_CRITERION)
+  private RuleConditionCriterion criterion;
 
   public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
   @SerializedName(SERIALIZED_NAME_FIELD_NAME)
@@ -99,13 +104,33 @@ public class RuleConditionMust {
   }
 
 
+  public RuleConditionMust criterion(RuleConditionCriterion criterion) {
+    this.criterion = criterion;
+    return this;
+  }
+
+  /**
+   * Get criterion
+   * 
+   * @return criterion
+   **/
+  @javax.annotation.Nullable
+  public RuleConditionCriterion getCriterion() {
+    return criterion;
+  }
+
+  public void setCriterion(RuleConditionCriterion criterion) {
+    this.criterion = criterion;
+  }
+
+
   public RuleConditionMust fieldName(String fieldName) {
     this.fieldName = fieldName;
     return this;
   }
 
   /**
-   * Rule field name (only required for FIELD attribute)
+   * Rule field name (only required for FIELD criterion)
    * 
    * @return fieldName
    **/
@@ -170,6 +195,7 @@ public class RuleConditionMust {
     }
     RuleConditionMust ruleConditionMust = (RuleConditionMust) o;
     return Objects.equals(this.attribute, ruleConditionMust.attribute)
+        && Objects.equals(this.criterion, ruleConditionMust.criterion)
         && Objects.equals(this.fieldName, ruleConditionMust.fieldName)
         && Objects.equals(this.value, ruleConditionMust.value)
         && Objects.equals(this.operation, ruleConditionMust.operation);
@@ -177,7 +203,7 @@ public class RuleConditionMust {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attribute, fieldName, value, operation);
+    return Objects.hash(attribute, criterion, fieldName, value, operation);
   }
 
   @Override
@@ -185,6 +211,7 @@ public class RuleConditionMust {
     StringBuilder sb = new StringBuilder();
     sb.append("class RuleConditionMust {\n");
     sb.append("    attribute: ").append(toIndentedString(attribute)).append("\n");
+    sb.append("    criterion: ").append(toIndentedString(criterion)).append("\n");
     sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
@@ -210,6 +237,7 @@ public class RuleConditionMust {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("attribute");
+    openapiFields.add("criterion");
     openapiFields.add("fieldName");
     openapiFields.add("value");
     openapiFields.add("operation");
@@ -247,6 +275,10 @@ public class RuleConditionMust {
     // validate the optional field `attribute`
     if (jsonObj.get("attribute") != null && !jsonObj.get("attribute").isJsonNull()) {
       RuleConditionAttribute.validateJsonElement(jsonObj.get("attribute"));
+    }
+    // validate the optional field `criterion`
+    if (jsonObj.get("criterion") != null && !jsonObj.get("criterion").isJsonNull()) {
+      RuleConditionCriterion.validateJsonElement(jsonObj.get("criterion"));
     }
     if ((jsonObj.get("fieldName") != null && !jsonObj.get("fieldName").isJsonNull())
         && !jsonObj.get("fieldName").isJsonPrimitive()) {

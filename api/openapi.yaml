@@ -11929,8 +11929,6 @@ components:
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           createdBy: createdBy
-          accessAttributes:
-            key: "{}"
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -11943,8 +11941,6 @@ components:
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           createdBy: createdBy
-          accessAttributes:
-            key: "{}"
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -11966,8 +11962,6 @@ components:
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         createdBy: createdBy
-        accessAttributes:
-          key: "{}"
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -12006,29 +12000,23 @@ components:
           additionalProperties:
             type: object
           type: object
-        accessAttributes:
-          additionalProperties:
-            type: object
-          type: object
       type: object
     GetDocumentFulltextResponse:
       example:
+        path: path
         metadata:
           key: "{}"
         deepLinkPath: deepLinkPath
-        lastModifiedDate: lastModifiedDate
-        accessAttributes:
-          key: "{}"
-        content: content
-        tags:
-          key: "{}"
-        path: path
         insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
         createdBy: createdBy
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
+        content: content
+        tags:
+          key: "{}"
       properties:
         siteId:
           description: Site Identifier
@@ -12065,10 +12053,6 @@ components:
             type: object
           type: object
         metadata:
-          additionalProperties:
-            type: object
-          type: object
-        accessAttributes:
           additionalProperties:
             type: object
           type: object
@@ -13172,6 +13156,7 @@ components:
           metadata:
             key: "{}"
           endDate: endDate
+          name: name
           description: description
           startDate: startDate
           status: NEW
@@ -13189,6 +13174,7 @@ components:
         metadata:
           key: "{}"
         endDate: endDate
+        name: name
         description: description
         startDate: startDate
         status: NEW
@@ -13196,6 +13182,9 @@ components:
         - documentIds
         - documentIds
       properties:
+        name:
+          description: Name of Task
+          type: string
         description:
           description: Description of Task
           type: string
@@ -13285,6 +13274,7 @@ components:
           metadata:
             key: "{}"
           endDate: endDate
+          name: name
           description: description
           startDate: startDate
           status: NEW
@@ -13302,6 +13292,7 @@ components:
         metadata:
           key: "{}"
         endDate: endDate
+        name: name
         description: description
         startDate: startDate
         status: NEW
@@ -13309,8 +13300,11 @@ components:
         - documentIds
         - documentIds
       properties:
+        name:
+          description: Name of Nigo
+          type: string
         description:
-          description: Description of Task
+          description: Description of Nigo
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
@@ -13730,11 +13724,13 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
@@ -13753,11 +13749,13 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
@@ -13775,11 +13773,13 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
@@ -13806,11 +13806,13 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
@@ -13904,11 +13906,13 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
@@ -13919,11 +13923,13 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
@@ -13947,11 +13953,13 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
-            - fieldName: fieldName
+            - criterion: TEXT
+              fieldName: fieldName
               attribute: TEXT
               value: value
               operation: EQ
@@ -14034,11 +14042,13 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
-          - fieldName: fieldName
+          - criterion: TEXT
+            fieldName: fieldName
             attribute: TEXT
             value: value
             operation: EQ
@@ -14065,11 +14075,13 @@ components:
     RuleCondition:
       example:
         must:
-        - fieldName: fieldName
+        - criterion: TEXT
+          fieldName: fieldName
           attribute: TEXT
           value: value
           operation: EQ
-        - fieldName: fieldName
+        - criterion: TEXT
+          fieldName: fieldName
           attribute: TEXT
           value: value
           operation: EQ
@@ -14080,8 +14092,16 @@ components:
             $ref: '#/components/schemas/RuleConditionMust'
           type: array
       type: object
+    RuleConditionCriterion:
+      description: "Rule condition attribute (deprecated, use Criterion)"
+      enum:
+      - TEXT
+      - CONTENT_TYPE
+      - BARCODE
+      - FIELD
+      type: string
     RuleConditionAttribute:
-      description: Rule condition attribute
+      description: "Rule condition attribute (deprecated, use Criterion)"
       enum:
       - TEXT
       - CONTENT_TYPE
@@ -14096,6 +14116,7 @@ components:
       type: string
     RuleConditionMust:
       example:
+        criterion: TEXT
         fieldName: fieldName
         attribute: TEXT
         value: value
@@ -14103,8 +14124,10 @@ components:
       properties:
         attribute:
           $ref: '#/components/schemas/RuleConditionAttribute'
+        criterion:
+          $ref: '#/components/schemas/RuleConditionCriterion'
         fieldName:
-          description: Rule field name (only required for FIELD attribute)
+          description: Rule field name (only required for FIELD criterion)
           type: string
         value:
           description: Rule condition value

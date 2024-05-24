@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**name** | **String** | Name of Task |  [optional] |
 |**description** | **String** | Description of Task |  |
 |**status** | **TaskStatus** |  |  [optional] |
 |**startDate** | **String** | Start Date |  [optional] |

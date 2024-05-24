@@ -32,8 +32,8 @@ import com.google.gson.stream.JsonWriter;
 /**
  * Rule condition attribute (deprecated, use Criterion)
  */
-@JsonAdapter(RuleConditionAttribute.Adapter.class)
-public enum RuleConditionAttribute {
+@JsonAdapter(RuleConditionCriterion.Adapter.class)
+public enum RuleConditionCriterion {
 
   TEXT("TEXT"),
 
@@ -45,7 +45,7 @@ public enum RuleConditionAttribute {
 
   private String value;
 
-  RuleConditionAttribute(String value) {
+  RuleConditionCriterion(String value) {
     this.value = value;
   }
 
@@ -58,8 +58,8 @@ public enum RuleConditionAttribute {
     return String.valueOf(value);
   }
 
-  public static RuleConditionAttribute fromValue(String value) {
-    for (RuleConditionAttribute b : RuleConditionAttribute.values()) {
+  public static RuleConditionCriterion fromValue(String value) {
+    for (RuleConditionCriterion b : RuleConditionCriterion.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -67,23 +67,23 @@ public enum RuleConditionAttribute {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<RuleConditionAttribute> {
+  public static class Adapter extends TypeAdapter<RuleConditionCriterion> {
     @Override
-    public void write(final JsonWriter jsonWriter, final RuleConditionAttribute enumeration)
+    public void write(final JsonWriter jsonWriter, final RuleConditionCriterion enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public RuleConditionAttribute read(final JsonReader jsonReader) throws IOException {
+    public RuleConditionCriterion read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return RuleConditionAttribute.fromValue(value);
+      return RuleConditionCriterion.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    RuleConditionAttribute.fromValue(value);
+    RuleConditionCriterion.fromValue(value);
   }
 }
 

@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -108,10 +108,6 @@ public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, Object> metadata = new HashMap<>();
-
-  public static final String SERIALIZED_NAME_ACCESS_ATTRIBUTES = "accessAttributes";
-  @SerializedName(SERIALIZED_NAME_ACCESS_ATTRIBUTES)
-  private Map<String, Object> accessAttributes = new HashMap<>();
 
   public GetDocumentFulltextResponse() {}
 
@@ -371,35 +367,6 @@ public class GetDocumentFulltextResponse {
   }
 
 
-  public GetDocumentFulltextResponse accessAttributes(Map<String, Object> accessAttributes) {
-    this.accessAttributes = accessAttributes;
-    return this;
-  }
-
-  public GetDocumentFulltextResponse putAccessAttributesItem(String key,
-      Object accessAttributesItem) {
-    if (this.accessAttributes == null) {
-      this.accessAttributes = new HashMap<>();
-    }
-    this.accessAttributes.put(key, accessAttributesItem);
-    return this;
-  }
-
-  /**
-   * Get accessAttributes
-   * 
-   * @return accessAttributes
-   **/
-  @javax.annotation.Nullable
-  public Map<String, Object> getAccessAttributes() {
-    return accessAttributes;
-  }
-
-  public void setAccessAttributes(Map<String, Object> accessAttributes) {
-    this.accessAttributes = accessAttributes;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -421,14 +388,13 @@ public class GetDocumentFulltextResponse {
         && Objects.equals(this.createdBy, getDocumentFulltextResponse.createdBy)
         && Objects.equals(this.contentLength, getDocumentFulltextResponse.contentLength)
         && Objects.equals(this.tags, getDocumentFulltextResponse.tags)
-        && Objects.equals(this.metadata, getDocumentFulltextResponse.metadata)
-        && Objects.equals(this.accessAttributes, getDocumentFulltextResponse.accessAttributes);
+        && Objects.equals(this.metadata, getDocumentFulltextResponse.metadata);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(siteId, content, contentType, path, deepLinkPath, insertedDate,
-        lastModifiedDate, documentId, createdBy, contentLength, tags, metadata, accessAttributes);
+        lastModifiedDate, documentId, createdBy, contentLength, tags, metadata);
   }
 
   @Override
@@ -447,7 +413,6 @@ public class GetDocumentFulltextResponse {
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    accessAttributes: ").append(toIndentedString(accessAttributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -481,7 +446,6 @@ public class GetDocumentFulltextResponse {
     openapiFields.add("contentLength");
     openapiFields.add("tags");
     openapiFields.add("metadata");
-    openapiFields.add("accessAttributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

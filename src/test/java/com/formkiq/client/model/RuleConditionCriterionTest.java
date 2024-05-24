@@ -17,35 +17,22 @@
  */
 
 
-package com.formkiq.client.invoker.auth;
+package com.formkiq.client.model;
 
-import com.formkiq.client.invoker.Pair;
-import com.formkiq.client.invoker.ApiException;
+import com.google.gson.annotations.SerializedName;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import java.net.URI;
-import java.util.Map;
-import java.util.List;
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
-public class OAuth implements Authentication {
-  private String accessToken;
-
-  public String getAccessToken() {
-    return accessToken;
+/**
+ * Model tests for RuleConditionCriterion
+ */
+public class RuleConditionCriterionTest {
+  /**
+   * Model tests for RuleConditionCriterion
+   */
+  @Test
+  public void testRuleConditionCriterion() {
+    // TODO: test RuleConditionCriterion
   }
 
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
-  }
-
-  @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams,
-      Map<String, String> cookieParams, String payload, String method, URI uri)
-      throws ApiException {
-    if (accessToken != null) {
-      headerParams.put("Authorization", "Bearer " + accessToken);
-    }
-  }
 }

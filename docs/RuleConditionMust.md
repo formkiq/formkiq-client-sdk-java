@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attribute** | **RuleConditionAttribute** |  |  [optional] |
-|**fieldName** | **String** | Rule field name (only required for FIELD attribute) |  [optional] |
+|**criterion** | **RuleConditionCriterion** |  |  [optional] |
+|**fieldName** | **String** | Rule field name (only required for FIELD criterion) |  [optional] |
 |**value** | **String** | Rule condition value |  [optional] |
 |**operation** | **RuleConditionOperation** |  |  [optional] |
 

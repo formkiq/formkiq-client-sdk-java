@@ -61,9 +61,13 @@ import com.formkiq.client.invoker.JSON;
  * AddTask
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-21T14:06:01.586937-05:00[America/Winnipeg]",
+    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class AddTask {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -89,6 +93,26 @@ public class AddTask {
   private List<String> documentIds = new ArrayList<>();
 
   public AddTask() {}
+
+  public AddTask name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of Task
+   * 
+   * @return name
+   **/
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   public AddTask description(String description) {
     this.description = description;
@@ -236,7 +260,8 @@ public class AddTask {
       return false;
     }
     AddTask addTask = (AddTask) o;
-    return Objects.equals(this.description, addTask.description)
+    return Objects.equals(this.name, addTask.name)
+        && Objects.equals(this.description, addTask.description)
         && Objects.equals(this.status, addTask.status)
         && Objects.equals(this.startDate, addTask.startDate)
         && Objects.equals(this.endDate, addTask.endDate)
@@ -246,13 +271,14 @@ public class AddTask {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, status, startDate, endDate, metadata, documentIds);
+    return Objects.hash(name, description, status, startDate, endDate, metadata, documentIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddTask {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
@@ -280,6 +306,7 @@ public class AddTask {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("status");
     openapiFields.add("startDate");
@@ -327,6 +354,12 @@ public class AddTask {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
+    }
     if (!jsonObj.get("description").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",

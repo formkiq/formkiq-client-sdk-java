@@ -141,12 +141,4 @@ public class GetDocumentFulltextResponseTest {
     // TODO: test metadata
   }
 
-  /**
-   * Test the property 'accessAttributes'
-   */
-  @Test
-  public void accessAttributesTest() {
-    // TODO: test accessAttributes
-  }
-
 }
