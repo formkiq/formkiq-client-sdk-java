@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API
-  version: 1.14.0
+  version: 1.14.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -142,7 +142,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites:
     get:
       description: Returns the list of sites that the user has access to
@@ -177,7 +178,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/opensearch/index:
     delete:
       description: Deletes the OpenSearch index
@@ -221,7 +223,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns the OpenSearch index settings
       operationId: GetOpensearchIndex
@@ -264,7 +267,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Sets the OpenSearch index settings
       operationId: SetOpensearchIndex
@@ -314,7 +318,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/configuration:
     get:
       description: Returns the list of sites that the user has access to
@@ -358,7 +363,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update the System Management configuration
       operationId: UpdateConfiguration
@@ -413,7 +419,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/apiKeys:
     get:
       description: Returns the list of ApiKeys
@@ -457,7 +464,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds a new API Key
       operationId: AddApiKey
@@ -502,7 +510,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/apiKeys/{apiKey}:
     delete:
       description: Adds a new API Key
@@ -545,7 +554,8 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/opa/accessPolicies:
     get:
       description: "Returns a list of OPA Configuration, can only be requested with\
@@ -581,7 +591,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Set OPA Configuration, can only be requested with ADMIN privileges"
       operationId: SetOpaConfiguration
@@ -613,7 +624,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/opa/accessPolicy:
     delete:
       description: Delete OPA Configuration
@@ -648,7 +660,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Returns OPA Configuration, can only be requested with ADMIN privileges"
       operationId: GetOpaConfiguration
@@ -691,7 +704,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents:
     get:
       description: "Returns a list of the most recent documents added, ordered by\
@@ -800,7 +814,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Creates a new document; body may include document content if less than 5 MB
@@ -903,7 +918,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}:
     delete:
       description: Delete a document
@@ -960,7 +976,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieves a document's details, i.e., metadata"
       operationId: GetDocument
@@ -1010,7 +1027,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: "Update a document's details, i.e., metadata"
       operationId: UpdateDocument
@@ -1092,7 +1110,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/content:
     get:
       description: "Get a document's contents. Certain content types, text/*, application/json,\
@@ -1155,7 +1174,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/accessAttributes:
     delete:
       description: Delete a document's access attributes
@@ -1198,7 +1218,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Retrieves a document's access attributes (only "admin" role can
         call API)
@@ -1241,7 +1262,8 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add a document's access attributes (only "admin" role can call
         API)
@@ -1297,7 +1319,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a document's access attributes (only "admin" role can call
         API)
@@ -1353,7 +1376,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags:
     get:
       description: Get a listing of a document's tags
@@ -1429,7 +1453,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates multiple tags to a document; this endpoint also accepts
         a different body parameter for updating a single tag
@@ -1502,7 +1527,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add multiple tags to a document; this endpoint also accepts a different
         body parameter for adding a single tag
@@ -1581,7 +1607,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set multiple tags to a document; this endpoint also accepts a different
         body parameter for setting a single tag
@@ -1654,7 +1681,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags/{tagKey}:
     delete:
       description: Delete a document tag by using its key
@@ -1711,7 +1739,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a document tag by using its key
       operationId: GetDocumentTag
@@ -1769,7 +1798,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Update any and all values of a document tag, by using its key;\
         \ you can supply one tag value or a list of tag values in the request body"
@@ -1833,7 +1863,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/tags/{tagKey}/{tagValue}:
     delete:
       description: Delete a specific document tag's key/value combination; the request
@@ -1907,7 +1938,8 @@ paths:
       - Document Tags
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/tags:
     patch:
       description: This API request allows the adding/updating of multiple document
@@ -1959,7 +1991,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/url:
     get:
       description: Returns a URL for the document's contents; this URL will expire
@@ -2036,7 +2069,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/upload:
     get:
       description: Returns a URL that can be used to upload document content and create
@@ -2105,7 +2139,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "Returns a URL that can be used to upload document content and\
         \ create a new document, while allowing metadata to also be sent; this endpoint\
@@ -2192,7 +2227,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/upload:
     get:
       description: "Returns a URL that can be used to upload documents for a specific\
@@ -2262,7 +2298,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/restore:
     put:
       description: Restores a soft deleted document
@@ -2305,7 +2342,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/compress:
     post:
       description: "Compress documents into an .ZIP archive file, and returns a S3\
@@ -2350,7 +2388,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /search:
     post:
       description: "Document search query request; \n\nSupports searching DynamoDB\
@@ -2457,7 +2496,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /searchFulltext:
     post:
       description: "Document full-text search (and more robust multi-tag search queries,\
@@ -2509,7 +2549,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queryFulltext:
     post:
       description: |-
@@ -2554,7 +2595,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/actions:
     get:
       description: Get document actions and their status
@@ -2622,7 +2664,8 @@ paths:
       - Document Actions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: |-
         Add one or more actions to a document; this appends actions and does not replace previous actions
@@ -2699,7 +2742,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/actions/retry:
     post:
       description: Retries all failed document action(s). Failed action status changes
@@ -2749,7 +2793,8 @@ paths:
       - Document Actions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/ocr:
     delete:
       description: "Delete a document's optical character recognition (OCR) result,\
@@ -2799,7 +2844,8 @@ paths:
       - Document OCR
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Get a document's optical character recognition (OCR) result, if\
         \ exists; ONLY available with FormKiQ Pro and Enterprise"
@@ -2867,7 +2913,8 @@ paths:
       - Document OCR
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Document optical character recognition (OCR) request; extract text
         and data from a document; ONLY available with FormKiQ Pro and Enterprise
@@ -2917,7 +2964,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a document's optical character recognition (OCR) result for
         a document; ONLY available with FormKiQ Pro and Enterprise
@@ -2967,7 +3015,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/versions:
     get:
       description: Get a listing of document content and metadata versions; ONLY available
@@ -3036,7 +3085,8 @@ paths:
       - Document Versions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set document to a previous document version; ONLY available with
         FormKiQ Pro and Enterprise
@@ -3092,7 +3142,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/versions/{versionKey}:
     delete:
       description: Delete a specific previous document version; ONLY available with
@@ -3158,7 +3209,8 @@ paths:
       - Document Versions
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /folders:
     get:
       description: Get list of documents in a folder
@@ -3226,7 +3278,8 @@ paths:
       - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new folder
       operationId: AddFolder
@@ -3275,7 +3328,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /folders/{indexKey}:
     delete:
       description: Delete a specific folder; folder must be empty
@@ -3326,7 +3380,8 @@ paths:
       - Document Folders
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares:
     get:
       description: Get a listing of user folder/document shares; ONLY available with
@@ -3379,7 +3434,8 @@ paths:
       - Document Shares
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares/folders/{indexKey}:
     post:
       description: Creates a new folder share; ONLY available with FormKiQ Enterprise
@@ -3435,7 +3491,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /shares/{shareKey}:
     delete:
       description: Delete a specific document share; ONLY available with FormKiQ Enterprise
@@ -3470,7 +3527,8 @@ paths:
       - Document Shares
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows:
     get:
       description: Get a listing of workflows; ONLY available with FormKiQ Enterprise
@@ -3533,7 +3591,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new Workflow; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddWorkflow
@@ -3587,7 +3646,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows/{workflowId}:
     delete:
       description: Delete a Workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -3639,7 +3699,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a workflow; ONLY available with FormKiQ Enterprise
       operationId: GetWorkflow
@@ -3681,7 +3742,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update a Workflow details; ONLY available with FormKiQ Pro and
         Enterprise
@@ -3744,7 +3806,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
       operationId: SetWorkflow
@@ -3806,7 +3869,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /workflows/{workflowId}/documents:
     get:
       description: List documents in Workflow; ONLY available with FormKiQ Pro and
@@ -3867,7 +3931,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues:
     get:
       description: Get a listing of queues; ONLY available with FormKiQ Enterprise
@@ -3919,7 +3984,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddQueue
@@ -3973,7 +4039,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues/{queueId}:
     delete:
       description: Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
@@ -4025,7 +4092,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a queue; ONLY available with FormKiQ Enterprise
       operationId: GetQueue
@@ -4067,7 +4135,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queues/{queueId}/documents:
     get:
       description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
@@ -4128,7 +4197,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/searchLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflows:
     get:
       description: Gets a document workflows; ONLY available with FormKiQ Pro and
@@ -4185,7 +4255,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a document workflow; ONLY available with FormKiQ Pro and
         Enterprise
@@ -4248,7 +4319,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflows/{workflowId}:
     get:
       description: Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
@@ -4312,7 +4384,8 @@ paths:
       - Document Workflows
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/workflow/{workflowId}/decisions:
     post:
       description: Approve/Reject document in approval queue; ONLY available with
@@ -4384,7 +4457,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /tagSchemas:
     get:
       description: Returns the list of tagSchemas; ONLY available with FormKiQ Pro
@@ -4454,7 +4528,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new TagSchema; ONLY available with FormKiQ Pro and Enterprise
       operationId: AddTagSchema
@@ -4508,7 +4583,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /tagSchemas/{tagSchemaId}:
     delete:
       description: Delete a TagSchema; ONLY available with FormKiQ Pro and Enterprise
@@ -4557,7 +4633,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieves a TagSchema's details, i.e., metadata; ONLY available\
         \ with FormKiQ Pro and Enterprise"
@@ -4600,7 +4677,8 @@ paths:
       - Tag Schema
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/antivirus:
     put:
       description: Perform an Anti-Malware / Antivirus scan on a document; ONLY available
@@ -4659,7 +4737,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext:
     delete:
       description: Remove full text search for a document from OpenSearch; ONLY available
@@ -4703,7 +4782,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Retrieve an OpenSearch document's details, i.e., metadata"
       operationId: GetDocumentFulltext
@@ -4753,7 +4833,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update a document in OpenSearch; ONLY available with FormKiQ Enterprise
       operationId: UpdateDocumentFulltext
@@ -4802,7 +4883,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
       operationId: AddDocumentFulltext
@@ -4851,7 +4933,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Set all text/tags found within a document to OpenSearch; ONLY available
         with FormKiQ Enterprise
@@ -4901,7 +4984,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}:
     delete:
       description: Remove document tags from OpenSearch; ONLY available with FormKiQ
@@ -4967,7 +5051,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue}:
     delete:
       description: Remove document tag/value from OpenSearch; ONLY available with
@@ -5041,7 +5126,8 @@ paths:
       - Advanced Document Search
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/syncs:
     get:
       description: Retrieve the document syncs with external services status
@@ -5101,7 +5187,8 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /userActivities:
     get:
       description: Retrieve a user's activities
@@ -5161,7 +5248,8 @@ paths:
       - User Activities
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /documents/{documentId}/userActivities:
     get:
       description: Retrieve a user's activities
@@ -5221,7 +5309,8 @@ paths:
       - User Activities
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /public/documents:
     post:
       description: |-
@@ -5266,7 +5355,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /public/webhooks/{webhooks+}:
     post:
       description: Receive an incoming public post to a specified webhook and creates
@@ -5316,7 +5406,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /private/webhooks/{webhooks+}:
     post:
       description: Receive an incoming private webhook and creates a document based
@@ -5367,7 +5458,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks:
     get:
       description: "Return a list of webhooks; each webhook's id can be provided to\
@@ -5413,7 +5505,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "Create a new webhook; once created, a webhook's id can be provided\
         \ to an external service, allowing data to be sent, received, and processed\
@@ -5456,7 +5549,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks/{webhookId}:
     delete:
       description: "Delete a webhook; this will disable sending, receiving, or processing\
@@ -5506,7 +5600,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: "Return a webhook's details, i.e., its metadata"
       operationId: GetWebhook
@@ -5557,7 +5652,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: "Updates a webhook's details, i.e., its metadata"
       operationId: UpdateWebhook
@@ -5612,7 +5708,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /webhooks/{webhookId}/tags:
     get:
       description: Get a webhook's tags
@@ -5655,7 +5752,8 @@ paths:
       - Webhooks
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Add a tag to a webhook
       operationId: AddWebhookTag
@@ -5718,7 +5816,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/{documentId}/edit:
     post:
       description: Provide ONLYOFFICE integration for editing documents; ONLY available
@@ -5769,7 +5868,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/new:
     post:
       description: Provide ONLYOFFICE integration for the creation of new documents;
@@ -5812,7 +5912,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /onlyoffice/{documentId}/save:
     post:
       description: Save an updated document for ONLYOFFICE integration. ONLY available
@@ -5854,7 +5955,8 @@ paths:
       - Onlyoffice
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/{indexType}/move:
     post:
       description: Perform an Folder Index Move
@@ -5909,7 +6011,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/{indexType}/{indexKey}:
     delete:
       description: Perform a delete on the Folder Index
@@ -5965,7 +6068,8 @@ paths:
       - Custom Index
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /indices/search:
     post:
       description: Perform a search on a index; this is currently available for both
@@ -6039,7 +6143,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/{documentId}:
     post:
       description: Create a DocuSign E-Signature request; ONLY available with FormKiQ
@@ -6096,7 +6201,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/config:
     get:
       description: Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
@@ -6131,7 +6237,8 @@ paths:
       - E-Signature
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Set DocuSign configuration, required for integration; ONLY available\
         \ with FormKiQ Enterprise"
@@ -6173,7 +6280,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/events:
     post:
       description: DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
@@ -6197,7 +6305,8 @@ paths:
       - E-Signature
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /groups:
     get:
       description: Returns the list of user groups configured in the application
@@ -6250,7 +6359,8 @@ paths:
       - User Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /groups/{groupName}/users:
     get:
       description: Returns the list of users in a group
@@ -6311,7 +6421,8 @@ paths:
       - User Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases:
     get:
       description: Returns a list of the Cases; ONLY available with FormKiQ Enterprise
@@ -6372,7 +6483,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds new case; ONLY available with FormKiQ Enterprise
       operationId: AddCase
@@ -6413,7 +6525,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}:
     delete:
       description: Delete Case
@@ -6456,7 +6569,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Case; ONLY available with FormKiQ Enterprise
       operationId: GetCase
@@ -6507,7 +6621,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing case; ONLY available with FormKiQ Enterprise
       operationId: UpdateCase
@@ -6556,7 +6671,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/documents:
     get:
       description: Returns documents in a Case; ONLY available with FormKiQ Enterprise
@@ -6625,7 +6741,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/documents/{documentId}:
     delete:
       description: Delete Document from Case
@@ -6676,7 +6793,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}:
     delete:
       description: Delete Task
@@ -6727,7 +6845,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Task in Case; ONLY available with FormKiQ Enterprise
       operationId: GetCaseTask
@@ -6786,7 +6905,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing task; ONLY available with FormKiQ Enterprise
       operationId: UpdateTask
@@ -6843,7 +6963,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}/documents:
     get:
       description: Returns a list documents in a Case; ONLY available with FormKiQ
@@ -6921,7 +7042,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks/{taskId}/documents/{documentId}:
     delete:
       description: Delete Document from Task
@@ -6980,7 +7102,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}:
     delete:
       description: Delete Nigo
@@ -7031,7 +7154,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
       operationId: GetCaseNigo
@@ -7090,7 +7214,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates existing nigo; ONLY available with FormKiQ Enterprise
       operationId: UpdateNigo
@@ -7147,7 +7272,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}/documents:
     get:
       description: Returns a list documents in a Case; ONLY available with FormKiQ
@@ -7225,7 +7351,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos/{nigoId}/documents/{documentId}:
     delete:
       description: Delete Document from Nigo
@@ -7284,7 +7411,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/tasks:
     get:
       description: Returns a Case; ONLY available with FormKiQ Enterprise
@@ -7353,7 +7481,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /cases/{caseId}/nigos:
     get:
       description: Returns a Nigos of Case; ONLY available with FormKiQ Enterprise
@@ -7422,7 +7551,8 @@ paths:
       - Case Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets:
     get:
       description: Returns a list of rule sets; ONLY available with FormKiQ Enterprise
@@ -7483,7 +7613,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new ruleset; ONLY available with FormKiQ Enterprise
       operationId: AddRuleset
@@ -7530,7 +7661,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}:
     delete:
       description: Delete Ruleset; ONLY available with FormKiQ Enterprise
@@ -7573,7 +7705,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Get a rule sets; ONLY available with FormKiQ Enterprise
       operationId: GetRuleset
@@ -7624,7 +7757,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Updates an existing ruleset; ONLY available with FormKiQ Enterprise
       operationId: UpdateRuleset
@@ -7679,7 +7813,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}/rules:
     get:
       description: Returns a list of rules in a ruleset; ONLY available with FormKiQ
@@ -7749,7 +7884,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Creates a new rule; ONLY available with FormKiQ Enterprise
       operationId: AddRule
@@ -7804,7 +7940,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rulesets/{rulesetId}/rules/{ruleId}:
     delete:
       description: Delete Rule; ONLY available with FormKiQ Enterprise
@@ -7855,7 +7992,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     get:
       description: Returns a rule in a ruleset; ONLY available with FormKiQ Enterprise
       operationId: GetRule
@@ -7914,7 +8052,8 @@ paths:
       - Rulesets
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Update Rule; ONLY available with FormKiQ Enterprise
       operationId: UpdateRule
@@ -7977,7 +8116,8 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /objects/examine/pdf:
     get:
       description: "Get Signed URL for PDF Object Upload of a document to be examined\
@@ -8022,7 +8162,8 @@ paths:
       - Examine Objects
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /objects/examine/{id}/pdf:
     get:
       description: |-
@@ -8077,7 +8218,8 @@ paths:
       - Examine Objects
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -8692,14 +8834,14 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         - insertedDate: insertedDate
           name: name
           inUse: true
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -8736,7 +8878,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: null
+            type: ANTIVIRUS
             message: message
             userId: userId
             parameters:
@@ -8744,13 +8886,13 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: null
+            status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -8762,7 +8904,7 @@ components:
             metadata:
               key: metadata
             insertedDate: insertedDate
-            type: null
+            type: ANTIVIRUS
             message: message
             userId: userId
             parameters:
@@ -8770,19 +8912,19 @@ components:
             workflowId: workflowId
             startDate: startDate
             completedDate: completedDate
-            status: null
+            status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -8809,7 +8951,7 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -8817,13 +8959,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
         decisions:
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
@@ -8866,7 +9008,7 @@ components:
         description: description
         userId: userId
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Name of Workflow
@@ -8896,8 +9038,8 @@ components:
         - path: path
           permissionType: permissionType
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
@@ -8906,8 +9048,8 @@ components:
         - path: path
           permissionType: permissionType
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           siteId: siteId
           shareKey: shareKey
           type: FOLDER
@@ -8940,8 +9082,8 @@ components:
         path: path
         permissionType: permissionType
         permissions:
-        - null
-        - null
+        - READ
+        - READ
         siteId: siteId
         shareKey: shareKey
         type: FOLDER
@@ -9605,7 +9747,7 @@ components:
         contentType: contentType
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9621,7 +9763,7 @@ components:
             notificationText: notificationText
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9755,7 +9897,7 @@ components:
         isBase64: true
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9771,7 +9913,7 @@ components:
             notificationText: notificationText
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9920,7 +10062,7 @@ components:
         isBase64: true
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -9936,7 +10078,7 @@ components:
             notificationText: notificationText
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -10007,8 +10149,8 @@ components:
       example:
         share:
           permissions:
-          - null
-          - null
+          - READ
+          - READ
           group: group
       properties:
         share:
@@ -10017,8 +10159,8 @@ components:
     AddShare:
       example:
         permissions:
-        - null
-        - null
+        - READ
+        - READ
         group: group
       properties:
         group:
@@ -10915,7 +11057,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: null
+            status: ACTIVE
           document:
             metadata:
             - values:
@@ -10949,7 +11091,7 @@ components:
             description: description
             userId: userId
             workflowId: workflowId
-            status: null
+            status: ACTIVE
           document:
             metadata:
             - values:
@@ -11059,7 +11201,7 @@ components:
           description: description
           userId: userId
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         document:
           metadata:
           - values:
@@ -11393,36 +11535,36 @@ components:
           documentNumberFormat:
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           name: name
           description: description
           startDate: startDate
           caseNumberFormat:
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           - padding: 0
             staticValue: staticValue
-            type: null
+            type: AUTO_INCREMENT
           tasks:
           - metadata:
               key: "{}"
             description: description
-            status: null
+            status: NEW
             documentIds:
             - documentIds
             - documentIds
           - metadata:
               key: "{}"
             description: description
-            status: null
+            status: NEW
             documentIds:
             - documentIds
             - documentIds
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -11430,14 +11572,14 @@ components:
           - metadata:
               key: "{}"
             description: description
-            status: null
+            status: NEW
             documentIds:
             - documentIds
             - documentIds
           - metadata:
               key: "{}"
             description: description
-            status: null
+            status: NEW
             documentIds:
             - documentIds
             - documentIds
@@ -11455,36 +11597,36 @@ components:
         documentNumberFormat:
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         name: name
         description: description
         startDate: startDate
         caseNumberFormat:
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         - padding: 0
           staticValue: staticValue
-          type: null
+          type: AUTO_INCREMENT
         tasks:
         - metadata:
             key: "{}"
           description: description
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
         - metadata:
             key: "{}"
           description: description
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11492,14 +11634,14 @@ components:
         - metadata:
             key: "{}"
           description: description
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
         - metadata:
             key: "{}"
           description: description
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -11551,7 +11693,7 @@ components:
       example:
         padding: 0
         staticValue: staticValue
-        type: null
+        type: AUTO_INCREMENT
       properties:
         type:
           $ref: '#/components/schemas/StringGeneratorType'
@@ -11579,7 +11721,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -11595,7 +11737,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11686,7 +11828,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -11702,7 +11844,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11735,7 +11877,7 @@ components:
         metadata:
           key: "{}"
         description: description
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11773,7 +11915,7 @@ components:
           name: name
           description: description
           startDate: startDate
-          status: null
+          status: NEW
           documentIds:
           - documentIds
           - documentIds
@@ -11789,7 +11931,7 @@ components:
         name: name
         description: description
         startDate: startDate
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11822,7 +11964,7 @@ components:
         metadata:
           key: "{}"
         description: description
-        status: null
+        status: NEW
         documentIds:
         - documentIds
         - documentIds
@@ -11854,7 +11996,7 @@ components:
         userId: userId
         taskId: taskId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         taskId:
           description: Task Identifier
@@ -11895,7 +12037,7 @@ components:
         description: description
         userId: userId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         nigoId:
           description: Nigo Identifier
@@ -11940,7 +12082,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           endDate: endDate
@@ -11952,7 +12094,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -11976,7 +12118,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           nigoId: nigoId
@@ -11986,7 +12128,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -12009,7 +12151,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         nigo:
           $ref: '#/components/schemas/Nigo'
@@ -12026,7 +12168,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         task:
           $ref: '#/components/schemas/Task'
@@ -12044,7 +12186,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
         - metadata:
             key: "{}"
           insertedDate: insertedDate
@@ -12054,7 +12196,7 @@ components:
           userId: userId
           taskId: taskId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         next:
           description: Next page of results token
@@ -12143,7 +12285,7 @@ components:
           description: description
           userId: userId
           startDate: startDate
-          status: null
+          status: NEW
       properties:
         case:
           $ref: '#/components/schemas/Case'
@@ -12161,7 +12303,7 @@ components:
         description: description
         userId: userId
         startDate: startDate
-        status: null
+        status: NEW
       properties:
         caseId:
           description: Case Identifier
@@ -12248,16 +12390,18 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
-              attribute: null
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
-            - fieldName: fieldName
-              attribute: null
+              operation: EQ
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/AddRule'
@@ -12271,16 +12415,18 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
-              attribute: null
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
-            - fieldName: fieldName
-              attribute: null
+              operation: EQ
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/UpdateRule'
@@ -12293,16 +12439,18 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
-            attribute: null
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
-          - fieldName: fieldName
-            attribute: null
+            operation: EQ
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         priority:
           description: Rule priority
@@ -12324,16 +12472,18 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
-            attribute: null
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
-          - fieldName: fieldName
-            attribute: null
+            operation: EQ
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         priority:
           description: Rule priority
@@ -12355,7 +12505,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/AddRuleset'
@@ -12368,7 +12518,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/UpdateRuleset'
@@ -12380,7 +12530,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         description:
           description: Ruleset description
@@ -12399,7 +12549,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         description:
           description: Ruleset description
@@ -12422,31 +12572,35 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
-              attribute: null
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
-            - fieldName: fieldName
-              attribute: null
+              operation: EQ
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
         - description: description
           ruleId: ruleId
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
-              attribute: null
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
-            - fieldName: fieldName
-              attribute: null
+              operation: EQ
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -12465,16 +12619,18 @@ components:
           priority: 0.8008281904610115
           conditions:
             must:
-            - fieldName: fieldName
-              attribute: null
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
-            - fieldName: fieldName
-              attribute: null
+              operation: EQ
+            - criterion: TEXT
+              fieldName: fieldName
+              attribute: TEXT
               value: value
-              operation: null
+              operation: EQ
           workflowId: workflowId
-          status: null
+          status: ACTIVE
       properties:
         rule:
           $ref: '#/components/schemas/Rule'
@@ -12488,13 +12644,13 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
         - rulesetId: rulesetId
           insertedDate: insertedDate
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         next:
           description: Next page of results token
@@ -12513,7 +12669,7 @@ components:
           description: description
           priority: 0.8008281904610115
           version: 6.027456183070403
-          status: null
+          status: ACTIVE
       properties:
         ruleset:
           $ref: '#/components/schemas/Ruleset'
@@ -12525,7 +12681,7 @@ components:
         description: description
         priority: 0.8008281904610115
         version: 6.027456183070403
-        status: null
+        status: ACTIVE
       properties:
         rulesetId:
           description: Ruleset identifier
@@ -12552,16 +12708,18 @@ components:
         priority: 0.8008281904610115
         conditions:
           must:
-          - fieldName: fieldName
-            attribute: null
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
-          - fieldName: fieldName
-            attribute: null
+            operation: EQ
+          - criterion: TEXT
+            fieldName: fieldName
+            attribute: TEXT
             value: value
-            operation: null
+            operation: EQ
         workflowId: workflowId
-        status: null
+        status: ACTIVE
       properties:
         ruleId:
           description: Workflow to start on matching of conditions
@@ -12583,14 +12741,16 @@ components:
     RuleCondition:
       example:
         must:
-        - fieldName: fieldName
-          attribute: null
+        - criterion: TEXT
+          fieldName: fieldName
+          attribute: TEXT
           value: value
-          operation: null
-        - fieldName: fieldName
-          attribute: null
+          operation: EQ
+        - criterion: TEXT
+          fieldName: fieldName
+          attribute: TEXT
           value: value
-          operation: null
+          operation: EQ
       properties:
         must:
           description: List of rule conditions
@@ -12598,8 +12758,16 @@ components:
             $ref: '#/components/schemas/RuleConditionMust'
           type: array
       type: object
+    RuleConditionCriterion:
+      description: "Rule condition attribute (deprecated, use Criterion)"
+      enum:
+      - TEXT
+      - CONTENT_TYPE
+      - BARCODE
+      - FIELD
+      type: string
     RuleConditionAttribute:
-      description: Rule condition attribute
+      description: "Rule condition attribute (deprecated, use Criterion)"
       enum:
       - TEXT
       - CONTENT_TYPE
@@ -12614,15 +12782,18 @@ components:
       type: string
     RuleConditionMust:
       example:
+        criterion: TEXT
         fieldName: fieldName
-        attribute: null
+        attribute: TEXT
         value: value
-        operation: null
+        operation: EQ
       properties:
         attribute:
           $ref: '#/components/schemas/RuleConditionAttribute'
+        criterion:
+          $ref: '#/components/schemas/RuleConditionCriterion'
         fieldName:
-          description: Rule field name (only required for FIELD attribute)
+          description: Rule field name (only required for FIELD criterion)
           type: string
         value:
           description: Rule condition value
@@ -12873,7 +13044,7 @@ components:
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -12881,13 +13052,13 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
         - queueId: queueId
           metadata:
             key: metadata
           insertedDate: insertedDate
-          type: null
+          type: ANTIVIRUS
           message: message
           userId: userId
           parameters:
@@ -12895,7 +13066,7 @@ components:
           workflowId: workflowId
           startDate: startDate
           completedDate: completedDate
-          status: null
+          status: COMPLETE
           workflowStepId: workflowStepId
       properties:
         next:
@@ -12935,7 +13106,7 @@ components:
         metadata:
           key: metadata
         insertedDate: insertedDate
-        type: null
+        type: ANTIVIRUS
         message: message
         userId: userId
         parameters:
@@ -12943,7 +13114,7 @@ components:
         workflowId: workflowId
         startDate: startDate
         completedDate: completedDate
-        status: null
+        status: COMPLETE
         workflowStepId: workflowStepId
       properties:
         status:
@@ -13295,7 +13466,7 @@ components:
       example:
         actions:
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -13311,7 +13482,7 @@ components:
             notificationText: notificationText
             notificationHtml: notificationHtml
         - queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -13336,7 +13507,7 @@ components:
     AddAction:
       example:
         queueId: queueId
-        type: null
+        type: ANTIVIRUS
         parameters:
           characterMax: characterMax
           ocrEngine: TESSERACT
@@ -14068,7 +14239,7 @@ components:
       example:
         name: name
         description: description
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -14087,7 +14258,7 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -14104,9 +14275,9 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -14115,7 +14286,7 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -14132,15 +14303,15 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -14168,7 +14339,7 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -14185,9 +14356,9 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
@@ -14196,7 +14367,7 @@ components:
         - stepId: stepId
           action:
             queueId: queueId
-            type: null
+            type: ANTIVIRUS
             parameters:
               characterMax: characterMax
               ocrEngine: TESSERACT
@@ -14213,15 +14384,15 @@ components:
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           - nextStepId: nextStepId
-            type: null
+            type: APPROVE
           queue:
             queueId: queueId
             approvalGroups:
             - approvalGroups
             - approvalGroups
-        status: null
+        status: ACTIVE
       properties:
         name:
           description: Workflow name
@@ -14246,7 +14417,7 @@ components:
         stepId: stepId
         action:
           queueId: queueId
-          type: null
+          type: ANTIVIRUS
           parameters:
             characterMax: characterMax
             ocrEngine: TESSERACT
@@ -14263,9 +14434,9 @@ components:
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         - nextStepId: nextStepId
-          type: null
+          type: APPROVE
         queue:
           queueId: queueId
           approvalGroups:
@@ -14294,7 +14465,7 @@ components:
     AddWorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: null
+        type: APPROVE
       properties:
         type:
           $ref: '#/components/schemas/WorkflowStepDecisionType'
@@ -14308,7 +14479,7 @@ components:
     WorkflowStepDecision:
       example:
         nextStepId: nextStepId
-        type: null
+        type: APPROVE
       properties:
         type:
           $ref: '#/components/schemas/WorkflowStepDecisionType'
@@ -14383,12 +14554,12 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
         - currentStepId: currentStepId
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
       properties:
         workflows:
           description: List of Document Workflows
@@ -14405,7 +14576,7 @@ components:
           name: name
           description: description
           workflowId: workflowId
-          status: null
+          status: COMPLETE
       properties:
         workflow:
           $ref: '#/components/schemas/DocumentWorkflow'
@@ -14423,7 +14594,7 @@ components:
         name: name
         description: description
         workflowId: workflowId
-        status: null
+        status: COMPLETE
       properties:
         workflowId:
           description: Workflow identifier

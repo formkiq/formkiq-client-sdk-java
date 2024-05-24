@@ -209,6 +209,7 @@ docs/Queue.md
 docs/Rule.md
 docs/RuleCondition.md
 docs/RuleConditionAttribute.md
+docs/RuleConditionCriterion.md
 docs/RuleConditionMust.md
 docs/RuleConditionOperation.md
 docs/RuleStatus.md
@@ -536,6 +537,7 @@ src/main/java/com/formkiq/client/model/Queue.java
 src/main/java/com/formkiq/client/model/Rule.java
 src/main/java/com/formkiq/client/model/RuleCondition.java
 src/main/java/com/formkiq/client/model/RuleConditionAttribute.java
+src/main/java/com/formkiq/client/model/RuleConditionCriterion.java
 src/main/java/com/formkiq/client/model/RuleConditionMust.java
 src/main/java/com/formkiq/client/model/RuleConditionOperation.java
 src/main/java/com/formkiq/client/model/RuleStatus.java
@@ -822,6 +824,7 @@ src/test/java/com/formkiq/client/model/PdfDocumentTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/QueueTest.java
 src/test/java/com/formkiq/client/model/RuleConditionAttributeTest.java
+src/test/java/com/formkiq/client/model/RuleConditionCriterionTest.java
 src/test/java/com/formkiq/client/model/RuleConditionMustTest.java
 src/test/java/com/formkiq/client/model/RuleConditionOperationTest.java
 src/test/java/com/formkiq/client/model/RuleConditionTest.java

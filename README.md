@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.14.0</version>
+  <version>1.14.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.14.0"
+     implementation "com.formkiq:client:1.14.1"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.14.0.jar`
+* `target/client-1.14.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -509,6 +509,7 @@ Class | Method | HTTP request | Description
  - [Rule](docs/Rule.md)
  - [RuleCondition](docs/RuleCondition.md)
  - [RuleConditionAttribute](docs/RuleConditionAttribute.md)
+ - [RuleConditionCriterion](docs/RuleConditionCriterion.md)
  - [RuleConditionMust](docs/RuleConditionMust.md)
  - [RuleConditionOperation](docs/RuleConditionOperation.md)
  - [RuleStatus](docs/RuleStatus.md)
