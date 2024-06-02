@@ -45,7 +45,8 @@ public class DocumentOcrApiTest {
    * Perform document ocr
    *
    * Document optical character recognition (OCR) request; extract text and data from a document;
-   * ONLY available with FormKiQ Pro and Enterprise
+   * Tesseract available for all editions, but Textract engine and tables and forms options ONLY
+   * available with FormKiQ Pro and Enterprise
    *
    * @throws ApiException if the Api call fails
    */
@@ -61,7 +62,8 @@ public class DocumentOcrApiTest {
   /**
    * Delete document ocr
    *
-   * Delete a document&#39;s optical character recognition (OCR) result, if exists; ONLY available
+   * Delete a document&#39;s optical character recognition (OCR) result, if exists; Tesseract
+   * available for all editions, but Textract engine and tables and forms options ONLY available
    * with FormKiQ Pro and Enterprise
    *
    * @throws ApiException if the Api call fails
@@ -77,8 +79,9 @@ public class DocumentOcrApiTest {
   /**
    * Get document ocr content
    *
-   * Get a document&#39;s optical character recognition (OCR) result, if exists; ONLY available with
-   * FormKiQ Pro and Enterprise
+   * Get a document&#39;s optical character recognition (OCR) result, if exists; Tesseract available
+   * for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ
+   * Pro and Enterprise
    *
    * @throws ApiException if the Api call fails
    */
@@ -97,7 +100,8 @@ public class DocumentOcrApiTest {
   /**
    * Set document ocr result
    *
-   * Set a document&#39;s optical character recognition (OCR) result for a document; ONLY available
+   * Set a document&#39;s optical character recognition (OCR) result for a document; Tesseract
+   * available for all editions, but Textract engine and tables and forms options ONLY available
    * with FormKiQ Pro and Enterprise
    *
    * @throws ApiException if the Api call fails

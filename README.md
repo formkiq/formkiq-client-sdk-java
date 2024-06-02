@@ -287,6 +287,11 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
+*MappingsApi* | [**addMapping**](docs/MappingsApi.md#addMapping) | **POST** /mappings | Add New Mapping
+*MappingsApi* | [**deleteMapping**](docs/MappingsApi.md#deleteMapping) | **DELETE** /mappings/{mappingId} | Delete Mapping
+*MappingsApi* | [**getMapping**](docs/MappingsApi.md#getMapping) | **GET** /mappings/{mappingId} | Get Mapping
+*MappingsApi* | [**getMappings**](docs/MappingsApi.md#getMappings) | **GET** /mappings | Get Mappings
+*MappingsApi* | [**setMapping**](docs/MappingsApi.md#setMapping) | **PUT** /mappings/{mappingId} | Set Mapping
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
@@ -373,6 +378,9 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddMapping](docs/AddMapping.md)
+ - [AddMappingRequest](docs/AddMappingRequest.md)
+ - [AddMappingResponse](docs/AddMappingResponse.md)
  - [AddNigo](docs/AddNigo.md)
  - [AddNigoRequest](docs/AddNigoRequest.md)
  - [AddNigoResponse](docs/AddNigoResponse.md)
@@ -493,6 +501,8 @@ Class | Method | HTTP request | Description
  - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
+ - [GetMappingResponse](docs/GetMappingResponse.md)
+ - [GetMappingsResponse](docs/GetMappingsResponse.md)
  - [GetOpaAccessPoliciesResponse](docs/GetOpaAccessPoliciesResponse.md)
  - [GetOpaAccessPolicyItemsResponse](docs/GetOpaAccessPolicyItemsResponse.md)
  - [GetOpaAccessPolicyResponse](docs/GetOpaAccessPolicyResponse.md)
@@ -524,6 +534,11 @@ Class | Method | HTTP request | Description
  - [IndexSearch](docs/IndexSearch.md)
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
+ - [Mapping](docs/Mapping.md)
+ - [MappingAttribute](docs/MappingAttribute.md)
+ - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)
+ - [MappingAttributeMetadataField](docs/MappingAttributeMetadataField.md)
+ - [MappingAttributeSourceType](docs/MappingAttributeSourceType.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [ModelCase](docs/ModelCase.md)
  - [Nigo](docs/Nigo.md)
@@ -571,6 +586,7 @@ Class | Method | HTTP request | Description
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [SetEsignatureDocusignConfigRequest](docs/SetEsignatureDocusignConfigRequest.md)
  - [SetEsignatureDocusignConfigResponse](docs/SetEsignatureDocusignConfigResponse.md)
+ - [SetMappingRequest](docs/SetMappingRequest.md)
  - [SetOpaAccessPolicyItemsRequest](docs/SetOpaAccessPolicyItemsRequest.md)
  - [SetOpenSearchIndexRequest](docs/SetOpenSearchIndexRequest.md)
  - [SetOpenSearchIndexResponse](docs/SetOpenSearchIndexResponse.md)

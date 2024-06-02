@@ -44,6 +44,9 @@ docs/AddFolderRequest.md
 docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
 docs/AddFolderShareResponse.md
+docs/AddMapping.md
+docs/AddMappingRequest.md
+docs/AddMappingResponse.md
 docs/AddNigo.md
 docs/AddNigoRequest.md
 docs/AddNigoResponse.md
@@ -181,6 +184,8 @@ docs/GetExaminePdfResponse.md
 docs/GetExaminePdfUrlResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupsResponse.md
+docs/GetMappingResponse.md
+docs/GetMappingsResponse.md
 docs/GetOpaAccessPoliciesResponse.md
 docs/GetOpaAccessPolicyItemsResponse.md
 docs/GetOpaAccessPolicyResponse.md
@@ -212,6 +217,12 @@ docs/IndexFolderMoveResponse.md
 docs/IndexSearch.md
 docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
+docs/Mapping.md
+docs/MappingAttribute.md
+docs/MappingAttributeLabelMatchingType.md
+docs/MappingAttributeMetadataField.md
+docs/MappingAttributeSourceType.md
+docs/MappingsApi.md
 docs/MatchDocumentTag.md
 docs/ModelCase.md
 docs/Nigo.md
@@ -263,6 +274,7 @@ docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
 docs/SetEsignatureDocusignConfigRequest.md
 docs/SetEsignatureDocusignConfigResponse.md
+docs/SetMappingRequest.md
 docs/SetOpaAccessPolicyItemsRequest.md
 docs/SetOpenSearchIndexRequest.md
 docs/SetOpenSearchIndexResponse.md
@@ -356,6 +368,7 @@ src/main/java/com/formkiq/client/api/DocumentWorkflowsApi.java
 src/main/java/com/formkiq/client/api/DocumentsApi.java
 src/main/java/com/formkiq/client/api/ESignatureApi.java
 src/main/java/com/formkiq/client/api/ExamineObjectsApi.java
+src/main/java/com/formkiq/client/api/MappingsApi.java
 src/main/java/com/formkiq/client/api/OnlyofficeApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
 src/main/java/com/formkiq/client/api/RulesetsApi.java
@@ -427,6 +440,9 @@ src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
 src/main/java/com/formkiq/client/model/AddFolderShareResponse.java
+src/main/java/com/formkiq/client/model/AddMapping.java
+src/main/java/com/formkiq/client/model/AddMappingRequest.java
+src/main/java/com/formkiq/client/model/AddMappingResponse.java
 src/main/java/com/formkiq/client/model/AddNigo.java
 src/main/java/com/formkiq/client/model/AddNigoRequest.java
 src/main/java/com/formkiq/client/model/AddNigoResponse.java
@@ -547,6 +563,8 @@ src/main/java/com/formkiq/client/model/GetExaminePdfResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetMappingResponse.java
+src/main/java/com/formkiq/client/model/GetMappingsResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPoliciesResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyResponse.java
@@ -578,6 +596,11 @@ src/main/java/com/formkiq/client/model/IndexFolderMoveResponse.java
 src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
+src/main/java/com/formkiq/client/model/Mapping.java
+src/main/java/com/formkiq/client/model/MappingAttribute.java
+src/main/java/com/formkiq/client/model/MappingAttributeLabelMatchingType.java
+src/main/java/com/formkiq/client/model/MappingAttributeMetadataField.java
+src/main/java/com/formkiq/client/model/MappingAttributeSourceType.java
 src/main/java/com/formkiq/client/model/MatchDocumentTag.java
 src/main/java/com/formkiq/client/model/ModelCase.java
 src/main/java/com/formkiq/client/model/Nigo.java
@@ -625,6 +648,7 @@ src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
 src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequest.java
 src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponse.java
+src/main/java/com/formkiq/client/model/SetMappingRequest.java
 src/main/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexResponse.java
@@ -703,6 +727,7 @@ src/test/java/com/formkiq/client/api/DocumentWorkflowsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentsApiTest.java
 src/test/java/com/formkiq/client/api/ESignatureApiTest.java
 src/test/java/com/formkiq/client/api/ExamineObjectsApiTest.java
+src/test/java/com/formkiq/client/api/MappingsApiTest.java
 src/test/java/com/formkiq/client/api/OnlyofficeApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
 src/test/java/com/formkiq/client/api/RulesetsApiTest.java
@@ -751,6 +776,9 @@ src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareResponseTest.java
+src/test/java/com/formkiq/client/model/AddMappingRequestTest.java
+src/test/java/com/formkiq/client/model/AddMappingResponseTest.java
+src/test/java/com/formkiq/client/model/AddMappingTest.java
 src/test/java/com/formkiq/client/model/AddNigoRequestTest.java
 src/test/java/com/formkiq/client/model/AddNigoResponseTest.java
 src/test/java/com/formkiq/client/model/AddNigoTest.java
@@ -871,6 +899,8 @@ src/test/java/com/formkiq/client/model/GetExaminePdfResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetMappingResponseTest.java
+src/test/java/com/formkiq/client/model/GetMappingsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPoliciesResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyResponseTest.java
@@ -902,6 +932,11 @@ src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
+src/test/java/com/formkiq/client/model/MappingAttributeLabelMatchingTypeTest.java
+src/test/java/com/formkiq/client/model/MappingAttributeMetadataFieldTest.java
+src/test/java/com/formkiq/client/model/MappingAttributeSourceTypeTest.java
+src/test/java/com/formkiq/client/model/MappingAttributeTest.java
+src/test/java/com/formkiq/client/model/MappingTest.java
 src/test/java/com/formkiq/client/model/MatchDocumentTagTest.java
 src/test/java/com/formkiq/client/model/ModelCaseTest.java
 src/test/java/com/formkiq/client/model/NigoStatusTest.java
@@ -949,6 +984,7 @@ src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
 src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequestTest.java
 src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponseTest.java
+src/test/java/com/formkiq/client/model/SetMappingRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexResponseTest.java

@@ -19,5 +19,7 @@
 
 * `WEBHOOK` (value: `"WEBHOOK"`)
 
+* `IDP` (value: `"IDP"`)
+
 
 

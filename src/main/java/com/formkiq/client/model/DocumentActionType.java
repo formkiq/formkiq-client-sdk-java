@@ -47,7 +47,9 @@ public enum DocumentActionType {
 
   QUEUE("QUEUE"),
 
-  WEBHOOK("WEBHOOK");
+  WEBHOOK("WEBHOOK"),
+
+  IDP("IDP");
 
   private String value;
 

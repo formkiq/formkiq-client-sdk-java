@@ -175,7 +175,8 @@ public class DocumentOcrApi {
 
   /**
    * Perform document ocr Document optical character recognition (OCR) request; extract text and
-   * data from a document; ONLY available with FormKiQ Pro and Enterprise
+   * data from a document; Tesseract available for all editions, but Textract engine and tables and
+   * forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -209,7 +210,8 @@ public class DocumentOcrApi {
 
   /**
    * Perform document ocr Document optical character recognition (OCR) request; extract text and
-   * data from a document; ONLY available with FormKiQ Pro and Enterprise
+   * data from a document; Tesseract available for all editions, but Textract engine and tables and
+   * forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -244,7 +246,8 @@ public class DocumentOcrApi {
 
   /**
    * Perform document ocr (asynchronously) Document optical character recognition (OCR) request;
-   * extract text and data from a document; ONLY available with FormKiQ Pro and Enterprise
+   * extract text and data from a document; Tesseract available for all editions, but Textract
+   * engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -370,7 +373,8 @@ public class DocumentOcrApi {
 
   /**
    * Delete document ocr Delete a document&#39;s optical character recognition (OCR) result, if
-   * exists; ONLY available with FormKiQ Pro and Enterprise
+   * exists; Tesseract available for all editions, but Textract engine and tables and forms options
+   * ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -401,7 +405,8 @@ public class DocumentOcrApi {
 
   /**
    * Delete document ocr Delete a document&#39;s optical character recognition (OCR) result, if
-   * exists; ONLY available with FormKiQ Pro and Enterprise
+   * exists; Tesseract available for all editions, but Textract engine and tables and forms options
+   * ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -434,7 +439,8 @@ public class DocumentOcrApi {
 
   /**
    * Delete document ocr (asynchronously) Delete a document&#39;s optical character recognition
-   * (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
+   * (OCR) result, if exists; Tesseract available for all editions, but Textract engine and tables
+   * and forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -575,7 +581,8 @@ public class DocumentOcrApi {
 
   /**
    * Get document ocr content Get a document&#39;s optical character recognition (OCR) result, if
-   * exists; ONLY available with FormKiQ Pro and Enterprise
+   * exists; Tesseract available for all editions, but Textract engine and tables and forms options
+   * ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -613,7 +620,8 @@ public class DocumentOcrApi {
 
   /**
    * Get document ocr content Get a document&#39;s optical character recognition (OCR) result, if
-   * exists; ONLY available with FormKiQ Pro and Enterprise
+   * exists; Tesseract available for all editions, but Textract engine and tables and forms options
+   * ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -652,7 +660,8 @@ public class DocumentOcrApi {
 
   /**
    * Get document ocr content (asynchronously) Get a document&#39;s optical character recognition
-   * (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
+   * (OCR) result, if exists; Tesseract available for all editions, but Textract engine and tables
+   * and forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -785,7 +794,8 @@ public class DocumentOcrApi {
 
   /**
    * Set document ocr result Set a document&#39;s optical character recognition (OCR) result for a
-   * document; ONLY available with FormKiQ Pro and Enterprise
+   * document; Tesseract available for all editions, but Textract engine and tables and forms
+   * options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -819,7 +829,8 @@ public class DocumentOcrApi {
 
   /**
    * Set document ocr result Set a document&#39;s optical character recognition (OCR) result for a
-   * document; ONLY available with FormKiQ Pro and Enterprise
+   * document; Tesseract available for all editions, but Textract engine and tables and forms
+   * options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -854,7 +865,8 @@ public class DocumentOcrApi {
 
   /**
    * Set document ocr result (asynchronously) Set a document&#39;s optical character recognition
-   * (OCR) result for a document; ONLY available with FormKiQ Pro and Enterprise
+   * (OCR) result for a document; Tesseract available for all editions, but Textract engine and
+   * tables and forms options ONLY available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)

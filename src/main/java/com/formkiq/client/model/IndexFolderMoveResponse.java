@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * IndexFolderMoveResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
+    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class IndexFolderMoveResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";

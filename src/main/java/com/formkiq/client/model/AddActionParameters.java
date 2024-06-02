@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-23T22:26:09.868659-05:00[America/Winnipeg]",
+    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
@@ -222,6 +222,10 @@ public class AddActionParameters {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private String tags;
+
+  public static final String SERIALIZED_NAME_MAPPING_ID = "mappingId";
+  @SerializedName(SERIALIZED_NAME_MAPPING_ID)
+  private String mappingId;
 
   public AddActionParameters() {}
 
@@ -525,6 +529,26 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters mappingId(String mappingId) {
+    this.mappingId = mappingId;
+    return this;
+  }
+
+  /**
+   * Id of Mapping
+   * 
+   * @return mappingId
+   **/
+  @javax.annotation.Nullable
+  public String getMappingId() {
+    return mappingId;
+  }
+
+  public void setMappingId(String mappingId) {
+    this.mappingId = mappingId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -550,7 +574,8 @@ public class AddActionParameters {
         && Objects.equals(this.notificationSubject, addActionParameters.notificationSubject)
         && Objects.equals(this.notificationText, addActionParameters.notificationText)
         && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
-        && Objects.equals(this.tags, addActionParameters.tags);
+        && Objects.equals(this.tags, addActionParameters.tags)
+        && Objects.equals(this.mappingId, addActionParameters.mappingId);
   }
 
   @Override
@@ -558,7 +583,7 @@ public class AddActionParameters {
     return Objects.hash(ocrParseTypes, ocrEngine, ocrExportToCsv, ocrNumberOfPages,
         addPdfDetectedCharactersAsText, url, characterMax, engine, notificationType,
         notificationToCc, notificationToBcc, notificationSubject, notificationText,
-        notificationHtml, tags);
+        notificationHtml, tags, mappingId);
   }
 
   @Override
@@ -582,6 +607,7 @@ public class AddActionParameters {
     sb.append("    notificationText: ").append(toIndentedString(notificationText)).append("\n");
     sb.append("    notificationHtml: ").append(toIndentedString(notificationHtml)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    mappingId: ").append(toIndentedString(mappingId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -618,6 +644,7 @@ public class AddActionParameters {
     openapiFields.add("notificationText");
     openapiFields.add("notificationHtml");
     openapiFields.add("tags");
+    openapiFields.add("mappingId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -746,6 +773,12 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `tags` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("tags").toString()));
+    }
+    if ((jsonObj.get("mappingId") != null && !jsonObj.get("mappingId").isJsonNull())
+        && !jsonObj.get("mappingId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `mappingId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("mappingId").toString()));
     }
   }
 

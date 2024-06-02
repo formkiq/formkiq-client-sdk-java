@@ -164,4 +164,12 @@ public class AddActionParametersTest {
     // TODO: test tags
   }
 
+  /**
+   * Test the property 'mappingId'
+   */
+  @Test
+  public void mappingIdTest() {
+    // TODO: test mappingId
+  }
+
 }

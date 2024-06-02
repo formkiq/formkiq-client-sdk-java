@@ -82,6 +82,9 @@ tags:
 - description: Document Workflows API
   name: documentWorkflows
   x-displayName: Document Workflows
+- description: Mappings API
+  name: mappings
+  x-displayName: Mappings
 - description: Tag Schema API
   name: tagSchema
   x-displayName: Tag Schema
@@ -3347,6 +3350,7 @@ paths:
         | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
         | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
         | QUEUE    | queueId    | Id of Queue | |
+        | IDP    | mappingId    | Id of Mapping | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -3455,7 +3459,8 @@ paths:
   /documents/{documentId}/ocr:
     delete:
       description: "Delete a document's optical character recognition (OCR) result,\
-        \ if exists; ONLY available with FormKiQ Pro and Enterprise"
+        \ if exists; \n\nTesseract available for all editions, but Textract engine\
+        \ and tables and forms options ONLY available with FormKiQ Pro and Enterprise"
       operationId: DeleteDocumentOcr
       parameters:
       - description: Site Identifier
@@ -3508,7 +3513,8 @@ paths:
       - application/json
     get:
       description: "Get a document's optical character recognition (OCR) result, if\
-        \ exists; ONLY available with FormKiQ Pro and Enterprise"
+        \ exists; \n\nTesseract available for all editions, but Textract engine and\
+        \ tables and forms options ONLY available with FormKiQ Pro and Enterprise"
       operationId: GetDocumentOcr
       parameters:
       - description: Site Identifier
@@ -3576,8 +3582,10 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Document optical character recognition (OCR) request; extract text
-        and data from a document; ONLY available with FormKiQ Pro and Enterprise
+      description: "Document optical character recognition (OCR) request; extract\
+        \ text and data from a document; \n\nTesseract available for all editions,\
+        \ but Textract engine and tables and forms options ONLY available with FormKiQ\
+        \ Pro and Enterprise"
       operationId: AddDocumentOcr
       parameters:
       - description: Site Identifier
@@ -3627,8 +3635,9 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Set a document's optical character recognition (OCR) result for
-        a document; ONLY available with FormKiQ Pro and Enterprise
+      description: "Set a document's optical character recognition (OCR) result for\
+        \ a document; \n\nTesseract available for all editions, but Textract engine\
+        \ and tables and forms options ONLY available with FormKiQ Pro and Enterprise"
       operationId: SetDocumentOcr
       parameters:
       - description: Site Identifier
@@ -8319,6 +8328,268 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /mappings:
+    get:
+      description: Returns a list of mappings; ONLY available with FormKiQ Enterprise
+      operationId: GetMappings
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMappingsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Mappings
+      tags:
+      - Mappings
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a new mapping; ONLY available with FormKiQ Enterprise
+      operationId: AddMapping
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddMappingRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddMappingResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add New Mapping
+      tags:
+      - Mappings
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /mappings/{mappingId}:
+    delete:
+      description: Delete Mapping; ONLY available with FormKiQ Enterprise
+      operationId: DeleteMapping
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Mapping Identifier
+        explode: false
+        in: path
+        name: mappingId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Mapping
+      tags:
+      - Mappings
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Get a mapping; ONLY available with FormKiQ Enterprise
+      operationId: GetMapping
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Mapping Identifier
+        explode: false
+        in: path
+        name: mappingId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMappingResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Mapping
+      tags:
+      - Mappings
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Sets an mapping; ONLY available with FormKiQ Enterprise
+      operationId: SetMapping
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Mapping Identifier
+        explode: false
+        in: path
+        name: mappingId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMappingRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Set Mapping
+      tags:
+      - Mappings
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /rulesets:
     get:
       description: Returns a list of rule sets; ONLY available with FormKiQ Enterprise
@@ -8557,7 +8828,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateRulesetResponse'
-          description: 201 CREATED
+          description: 200 OK
           headers:
             Access-Control-Allow-Origin:
               $ref: '#/components/headers/AccessControlAllowOrigin'
@@ -9234,6 +9505,15 @@ components:
       explode: false
       in: path
       name: documentId
+      required: true
+      schema:
+        type: string
+      style: simple
+    mappingIdParam:
+      description: Mapping Identifier
+      explode: false
+      in: path
+      name: mappingId
       required: true
       schema:
         type: string
@@ -10851,6 +11131,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -10869,6 +11150,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -11022,6 +11304,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -11040,6 +11323,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -11212,6 +11496,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -11230,6 +11515,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -14185,6 +14471,329 @@ components:
           description: Value of Field
           type: string
       type: object
+    AddMappingResponse:
+      example:
+        mappingId: mappingId
+      properties:
+        mappingId:
+          description: Mapping Identifier
+          type: string
+      type: object
+    SetMappingRequest:
+      example:
+        mapping:
+          name: name
+          description: description
+          attributes:
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+      properties:
+        mapping:
+          $ref: '#/components/schemas/AddMapping'
+      type: object
+    AddMappingRequest:
+      example:
+        mapping:
+          name: name
+          description: description
+          attributes:
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+      properties:
+        mapping:
+          $ref: '#/components/schemas/AddMapping'
+      type: object
+    AddMapping:
+      example:
+        name: name
+        description: description
+        attributes:
+        - labelMatchingType: FUZZY
+          sourceType: CONTENT
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+          metadataField: USERNAME
+          validationRegex: validationRegex
+          labelTexts:
+          - labelTexts
+          - labelTexts
+        - labelMatchingType: FUZZY
+          sourceType: CONTENT
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+          metadataField: USERNAME
+          validationRegex: validationRegex
+          labelTexts:
+          - labelTexts
+          - labelTexts
+      properties:
+        name:
+          description: Name of Mapping
+          type: string
+        description:
+          description: Description of Mapping
+          type: string
+        attributes:
+          description: List of attributes
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+          type: array
+      type: object
+    GetMappingsResponse:
+      example:
+        next: next
+        mappings:
+        - name: name
+          description: description
+          attributes:
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+        - name: name
+          description: description
+          attributes:
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+      properties:
+        mappings:
+          items:
+            $ref: '#/components/schemas/Mapping'
+          type: array
+        next:
+          description: Next page of results token
+          type: string
+      type: object
+    GetMappingResponse:
+      example:
+        mapping:
+          name: name
+          description: description
+          attributes:
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+          - labelMatchingType: FUZZY
+            sourceType: CONTENT
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+            metadataField: USERNAME
+            validationRegex: validationRegex
+            labelTexts:
+            - labelTexts
+            - labelTexts
+      properties:
+        mapping:
+          $ref: '#/components/schemas/Mapping'
+      type: object
+    Mapping:
+      example:
+        name: name
+        description: description
+        attributes:
+        - labelMatchingType: FUZZY
+          sourceType: CONTENT
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+          metadataField: USERNAME
+          validationRegex: validationRegex
+          labelTexts:
+          - labelTexts
+          - labelTexts
+        - labelMatchingType: FUZZY
+          sourceType: CONTENT
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          attributeKey: attributeKey
+          metadataField: USERNAME
+          validationRegex: validationRegex
+          labelTexts:
+          - labelTexts
+          - labelTexts
+      properties:
+        name:
+          description: Name of Mapping
+          type: string
+        description:
+          description: Description of Mapping
+          type: string
+        attributes:
+          description: List of attributes
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+          type: array
+      type: object
+    MappingAttribute:
+      example:
+        labelMatchingType: FUZZY
+        sourceType: CONTENT
+        defaultValue: defaultValue
+        defaultValues:
+        - defaultValues
+        - defaultValues
+        attributeKey: attributeKey
+        metadataField: USERNAME
+        validationRegex: validationRegex
+        labelTexts:
+        - labelTexts
+        - labelTexts
+      properties:
+        attributeKey:
+          description: Attribute Key
+          type: string
+        sourceType:
+          $ref: '#/components/schemas/MappingAttributeSourceType'
+        defaultValue:
+          description: Default value
+          type: string
+        defaultValues:
+          description: Default values
+          items:
+            type: string
+          type: array
+        labelTexts:
+          items:
+            description: Label Text
+            type: string
+          type: array
+        labelMatchingType:
+          $ref: '#/components/schemas/MappingAttributeLabelMatchingType'
+        metadataField:
+          $ref: '#/components/schemas/MappingAttributeMetadataField'
+        validationRegex:
+          description: Attribute Value Regex Validation
+          type: string
+      type: object
+    MappingAttributeMetadataField:
+      description: Attribute Metadata Field
+      enum:
+      - USERNAME
+      - PATH
+      - CONTENT_TYPE
+      type: string
+    MappingAttributeLabelMatchingType:
+      description: Attribute Label Matching Type
+      enum:
+      - FUZZY
+      - EXACT
+      - BEGINS_WITH
+      - CONTAINS
+      type: string
+    MappingAttributeSourceType:
+      description: Attribute Source Type
+      enum:
+      - CONTENT
+      - METADATA
+      type: string
     GetAttributeResponse:
       example:
         attribute:
@@ -14537,6 +15146,7 @@ components:
       - OCR
       - QUEUE
       - WEBHOOK
+      - IDP
       type: string
     DocumentAction:
       example:
@@ -14882,6 +15492,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -14900,6 +15511,7 @@ components:
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
@@ -14927,6 +15539,7 @@ components:
         queueId: queueId
         type: ANTIVIRUS
         parameters:
+          mappingId: mappingId
           characterMax: characterMax
           ocrEngine: TESSERACT
           ocrParseTypes: ocrParseTypes
@@ -14961,6 +15574,7 @@ components:
       type: string
     AddActionParameters:
       example:
+        mappingId: mappingId
         characterMax: characterMax
         ocrEngine: TESSERACT
         ocrParseTypes: ocrParseTypes
@@ -15029,6 +15643,9 @@ components:
         tags:
           description: "DocumentTagging: Comma-deliminted list of keywords to generate\
             \ tags for"
+          type: string
+        mappingId:
+          description: Id of Mapping
           type: string
       type: object
     AddDocumentOcrRequest:
@@ -15840,6 +16457,7 @@ components:
             queueId: queueId
             type: ANTIVIRUS
             parameters:
+              mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
@@ -15870,6 +16488,7 @@ components:
             queueId: queueId
             type: ANTIVIRUS
             parameters:
+              mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
@@ -15925,6 +16544,7 @@ components:
             queueId: queueId
             type: ANTIVIRUS
             parameters:
+              mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
@@ -15955,6 +16575,7 @@ components:
             queueId: queueId
             type: ANTIVIRUS
             parameters:
+              mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
@@ -16007,6 +16628,7 @@ components:
           queueId: queueId
           type: ANTIVIRUS
           parameters:
+            mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes

@@ -60,7 +60,7 @@ public class DocumentActionsApiTest {
    * Notification Blind Carbon Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION |
    * notificationSubject | Notification Subject | Email Subject | | NOTIFICATION | notificationText
    * | Notification as Text | Email Text | | NOTIFICATION | notificationHtml | Notification as Html
-   * | Email HTML Text | | QUEUE | queueId | Id of Queue | |
+   * | Email HTML Text | | QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | |
    *
    * @throws ApiException if the Api call fails
    */
