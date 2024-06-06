@@ -19,6 +19,7 @@
 |**contentLength** | **Integer** | Document size |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**attributes** | [**Map&lt;String, FulltextAttribute&gt;**](FulltextAttribute.md) |  |  [optional] |
 
 
 

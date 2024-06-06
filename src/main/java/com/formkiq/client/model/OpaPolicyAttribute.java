@@ -21,6 +21,11 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.OpaPolicyAttributeEq;
+import com.formkiq.client.model.OpaPolicyAttributeGt;
+import com.formkiq.client.model.OpaPolicyAttributeGte;
+import com.formkiq.client.model.OpaPolicyAttributeLt;
+import com.formkiq.client.model.OpaPolicyAttributeLte;
+import com.formkiq.client.model.OpaPolicyAttributeNeq;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
+    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class OpaPolicyAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
@@ -67,6 +72,26 @@ public class OpaPolicyAttribute {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
   private OpaPolicyAttributeEq eq;
+
+  public static final String SERIALIZED_NAME_GT = "gt";
+  @SerializedName(SERIALIZED_NAME_GT)
+  private OpaPolicyAttributeGt gt;
+
+  public static final String SERIALIZED_NAME_GTE = "gte";
+  @SerializedName(SERIALIZED_NAME_GTE)
+  private OpaPolicyAttributeGte gte;
+
+  public static final String SERIALIZED_NAME_LT = "lt";
+  @SerializedName(SERIALIZED_NAME_LT)
+  private OpaPolicyAttributeLt lt;
+
+  public static final String SERIALIZED_NAME_LTE = "lte";
+  @SerializedName(SERIALIZED_NAME_LTE)
+  private OpaPolicyAttributeLte lte;
+
+  public static final String SERIALIZED_NAME_NEQ = "neq";
+  @SerializedName(SERIALIZED_NAME_NEQ)
+  private OpaPolicyAttributeNeq neq;
 
   public OpaPolicyAttribute() {}
 
@@ -110,6 +135,106 @@ public class OpaPolicyAttribute {
   }
 
 
+  public OpaPolicyAttribute gt(OpaPolicyAttributeGt gt) {
+    this.gt = gt;
+    return this;
+  }
+
+  /**
+   * Get gt
+   * 
+   * @return gt
+   **/
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeGt getGt() {
+    return gt;
+  }
+
+  public void setGt(OpaPolicyAttributeGt gt) {
+    this.gt = gt;
+  }
+
+
+  public OpaPolicyAttribute gte(OpaPolicyAttributeGte gte) {
+    this.gte = gte;
+    return this;
+  }
+
+  /**
+   * Get gte
+   * 
+   * @return gte
+   **/
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeGte getGte() {
+    return gte;
+  }
+
+  public void setGte(OpaPolicyAttributeGte gte) {
+    this.gte = gte;
+  }
+
+
+  public OpaPolicyAttribute lt(OpaPolicyAttributeLt lt) {
+    this.lt = lt;
+    return this;
+  }
+
+  /**
+   * Get lt
+   * 
+   * @return lt
+   **/
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeLt getLt() {
+    return lt;
+  }
+
+  public void setLt(OpaPolicyAttributeLt lt) {
+    this.lt = lt;
+  }
+
+
+  public OpaPolicyAttribute lte(OpaPolicyAttributeLte lte) {
+    this.lte = lte;
+    return this;
+  }
+
+  /**
+   * Get lte
+   * 
+   * @return lte
+   **/
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeLte getLte() {
+    return lte;
+  }
+
+  public void setLte(OpaPolicyAttributeLte lte) {
+    this.lte = lte;
+  }
+
+
+  public OpaPolicyAttribute neq(OpaPolicyAttributeNeq neq) {
+    this.neq = neq;
+    return this;
+  }
+
+  /**
+   * Get neq
+   * 
+   * @return neq
+   **/
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeNeq getNeq() {
+    return neq;
+  }
+
+  public void setNeq(OpaPolicyAttributeNeq neq) {
+    this.neq = neq;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -121,12 +246,17 @@ public class OpaPolicyAttribute {
     }
     OpaPolicyAttribute opaPolicyAttribute = (OpaPolicyAttribute) o;
     return Objects.equals(this.key, opaPolicyAttribute.key)
-        && Objects.equals(this.eq, opaPolicyAttribute.eq);
+        && Objects.equals(this.eq, opaPolicyAttribute.eq)
+        && Objects.equals(this.gt, opaPolicyAttribute.gt)
+        && Objects.equals(this.gte, opaPolicyAttribute.gte)
+        && Objects.equals(this.lt, opaPolicyAttribute.lt)
+        && Objects.equals(this.lte, opaPolicyAttribute.lte)
+        && Objects.equals(this.neq, opaPolicyAttribute.neq);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, eq);
+    return Objects.hash(key, eq, gt, gte, lt, lte, neq);
   }
 
   @Override
@@ -135,6 +265,11 @@ public class OpaPolicyAttribute {
     sb.append("class OpaPolicyAttribute {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
+    sb.append("    gt: ").append(toIndentedString(gt)).append("\n");
+    sb.append("    gte: ").append(toIndentedString(gte)).append("\n");
+    sb.append("    lt: ").append(toIndentedString(lt)).append("\n");
+    sb.append("    lte: ").append(toIndentedString(lte)).append("\n");
+    sb.append("    neq: ").append(toIndentedString(neq)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -158,6 +293,11 @@ public class OpaPolicyAttribute {
     openapiFields = new HashSet<String>();
     openapiFields.add("key");
     openapiFields.add("eq");
+    openapiFields.add("gt");
+    openapiFields.add("gte");
+    openapiFields.add("lt");
+    openapiFields.add("lte");
+    openapiFields.add("neq");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -198,6 +338,26 @@ public class OpaPolicyAttribute {
     // validate the optional field `eq`
     if (jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull()) {
       OpaPolicyAttributeEq.validateJsonElement(jsonObj.get("eq"));
+    }
+    // validate the optional field `gt`
+    if (jsonObj.get("gt") != null && !jsonObj.get("gt").isJsonNull()) {
+      OpaPolicyAttributeGt.validateJsonElement(jsonObj.get("gt"));
+    }
+    // validate the optional field `gte`
+    if (jsonObj.get("gte") != null && !jsonObj.get("gte").isJsonNull()) {
+      OpaPolicyAttributeGte.validateJsonElement(jsonObj.get("gte"));
+    }
+    // validate the optional field `lt`
+    if (jsonObj.get("lt") != null && !jsonObj.get("lt").isJsonNull()) {
+      OpaPolicyAttributeLt.validateJsonElement(jsonObj.get("lt"));
+    }
+    // validate the optional field `lte`
+    if (jsonObj.get("lte") != null && !jsonObj.get("lte").isJsonNull()) {
+      OpaPolicyAttributeLte.validateJsonElement(jsonObj.get("lte"));
+    }
+    // validate the optional field `neq`
+    if (jsonObj.get("neq") != null && !jsonObj.get("neq").isJsonNull()) {
+      OpaPolicyAttributeNeq.validateJsonElement(jsonObj.get("neq"));
     }
   }
 

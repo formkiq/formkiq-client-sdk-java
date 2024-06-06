@@ -27,6 +27,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -54,15 +55,23 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * OpaPolicyAttributeEq
+ * Attribute EQ criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
+    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class OpaPolicyAttributeEq {
-  public static final String SERIALIZED_NAME_TEXT = "text";
-  @SerializedName(SERIALIZED_NAME_TEXT)
-  private String text;
+  public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
+  @SerializedName(SERIALIZED_NAME_STRING_VALUE)
+  private String stringValue;
+
+  public static final String SERIALIZED_NAME_NUMBER_VALUE = "numberValue";
+  @SerializedName(SERIALIZED_NAME_NUMBER_VALUE)
+  private BigDecimal numberValue;
+
+  public static final String SERIALIZED_NAME_BOOLEAN_VALUE = "booleanValue";
+  @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
+  private Boolean booleanValue;
 
   public static final String SERIALIZED_NAME_INPUT = "input";
   @SerializedName(SERIALIZED_NAME_INPUT)
@@ -70,23 +79,63 @@ public class OpaPolicyAttributeEq {
 
   public OpaPolicyAttributeEq() {}
 
-  public OpaPolicyAttributeEq text(String text) {
-    this.text = text;
+  public OpaPolicyAttributeEq stringValue(String stringValue) {
+    this.stringValue = stringValue;
     return this;
   }
 
   /**
    * The value to compare the Attribute Key value to
    * 
-   * @return text
+   * @return stringValue
    **/
   @javax.annotation.Nullable
-  public String getText() {
-    return text;
+  public String getStringValue() {
+    return stringValue;
   }
 
-  public void setText(String text) {
-    this.text = text;
+  public void setStringValue(String stringValue) {
+    this.stringValue = stringValue;
+  }
+
+
+  public OpaPolicyAttributeEq numberValue(BigDecimal numberValue) {
+    this.numberValue = numberValue;
+    return this;
+  }
+
+  /**
+   * The value to compare the Attribute Key value to
+   * 
+   * @return numberValue
+   **/
+  @javax.annotation.Nullable
+  public BigDecimal getNumberValue() {
+    return numberValue;
+  }
+
+  public void setNumberValue(BigDecimal numberValue) {
+    this.numberValue = numberValue;
+  }
+
+
+  public OpaPolicyAttributeEq booleanValue(Boolean booleanValue) {
+    this.booleanValue = booleanValue;
+    return this;
+  }
+
+  /**
+   * The value to compare the Attribute Key value to
+   * 
+   * @return booleanValue
+   **/
+  @javax.annotation.Nullable
+  public Boolean getBooleanValue() {
+    return booleanValue;
+  }
+
+  public void setBooleanValue(Boolean booleanValue) {
+    this.booleanValue = booleanValue;
   }
 
 
@@ -120,20 +169,24 @@ public class OpaPolicyAttributeEq {
       return false;
     }
     OpaPolicyAttributeEq opaPolicyAttributeEq = (OpaPolicyAttributeEq) o;
-    return Objects.equals(this.text, opaPolicyAttributeEq.text)
+    return Objects.equals(this.stringValue, opaPolicyAttributeEq.stringValue)
+        && Objects.equals(this.numberValue, opaPolicyAttributeEq.numberValue)
+        && Objects.equals(this.booleanValue, opaPolicyAttributeEq.booleanValue)
         && Objects.equals(this.input, opaPolicyAttributeEq.input);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, input);
+    return Objects.hash(stringValue, numberValue, booleanValue, input);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OpaPolicyAttributeEq {\n");
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    stringValue: ").append(toIndentedString(stringValue)).append("\n");
+    sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
+    sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
     sb.append("    input: ").append(toIndentedString(input)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -156,7 +209,9 @@ public class OpaPolicyAttributeEq {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("text");
+    openapiFields.add("stringValue");
+    openapiFields.add("numberValue");
+    openapiFields.add("booleanValue");
     openapiFields.add("input");
 
     // a set of required properties/fields (JSON key names)
@@ -189,11 +244,11 @@ public class OpaPolicyAttributeEq {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("text") != null && !jsonObj.get("text").isJsonNull())
-        && !jsonObj.get("text").isJsonPrimitive()) {
+    if ((jsonObj.get("stringValue") != null && !jsonObj.get("stringValue").isJsonNull())
+        && !jsonObj.get("stringValue").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `text` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("text").toString()));
+          "Expected the field `stringValue` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("stringValue").toString()));
     }
     // validate the optional field `input`
     if (jsonObj.get("input") != null && !jsonObj.get("input").isJsonNull()) {

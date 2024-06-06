@@ -112,6 +112,8 @@ docs/DocumentActionsApi.md
 docs/DocumentAttribute.md
 docs/DocumentAttributesApi.md
 docs/DocumentFoldersApi.md
+docs/DocumentFulltextAttribute.md
+docs/DocumentFulltextAttributeEq.md
 docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
@@ -151,6 +153,7 @@ docs/EsignatureDocusignCarbonCopy.md
 docs/EsignatureDocusignRecipientTab.md
 docs/EsignatureDocusignSigner.md
 docs/ExamineObjectsApi.md
+docs/FulltextAttribute.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
 docs/GetAttributeResponse.md
@@ -238,7 +241,12 @@ docs/OnlyofficeApi.md
 docs/OpaPolicy.md
 docs/OpaPolicyAttribute.md
 docs/OpaPolicyAttributeEq.md
+docs/OpaPolicyAttributeGt.md
+docs/OpaPolicyAttributeGte.md
 docs/OpaPolicyAttributeInput.md
+docs/OpaPolicyAttributeLt.md
+docs/OpaPolicyAttributeLte.md
+docs/OpaPolicyAttributeNeq.md
 docs/OpaPolicyItem.md
 docs/OpaPolicyItemType.md
 docs/OpenSearchIndex.md
@@ -500,6 +508,8 @@ src/main/java/com/formkiq/client/model/DocumentAction.java
 src/main/java/com/formkiq/client/model/DocumentActionStatus.java
 src/main/java/com/formkiq/client/model/DocumentActionType.java
 src/main/java/com/formkiq/client/model/DocumentAttribute.java
+src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
+src/main/java/com/formkiq/client/model/DocumentFulltextAttributeEq.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
@@ -530,6 +540,7 @@ src/main/java/com/formkiq/client/model/ErrorsResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignRecipientTab.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignSigner.java
+src/main/java/com/formkiq/client/model/FulltextAttribute.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
 src/main/java/com/formkiq/client/model/GetAttributeResponse.java
@@ -615,7 +626,12 @@ src/main/java/com/formkiq/client/model/OnlyOfficeEditorConfig.java
 src/main/java/com/formkiq/client/model/OpaPolicy.java
 src/main/java/com/formkiq/client/model/OpaPolicyAttribute.java
 src/main/java/com/formkiq/client/model/OpaPolicyAttributeEq.java
+src/main/java/com/formkiq/client/model/OpaPolicyAttributeGt.java
+src/main/java/com/formkiq/client/model/OpaPolicyAttributeGte.java
 src/main/java/com/formkiq/client/model/OpaPolicyAttributeInput.java
+src/main/java/com/formkiq/client/model/OpaPolicyAttributeLt.java
+src/main/java/com/formkiq/client/model/OpaPolicyAttributeLte.java
+src/main/java/com/formkiq/client/model/OpaPolicyAttributeNeq.java
 src/main/java/com/formkiq/client/model/OpaPolicyItem.java
 src/main/java/com/formkiq/client/model/OpaPolicyItemType.java
 src/main/java/com/formkiq/client/model/OpenSearchIndex.java
@@ -835,6 +851,8 @@ src/test/java/com/formkiq/client/model/DocumentActionStatusTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentAttributeTest.java
+src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
+src/test/java/com/formkiq/client/model/DocumentFulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextSearchTest.java
@@ -866,6 +884,7 @@ src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignRecipientTabTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignSignerTest.java
+src/test/java/com/formkiq/client/model/FulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributeResponseTest.java
@@ -949,7 +968,12 @@ src/test/java/com/formkiq/client/model/OnlyOfficeDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentSaveResponseTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeEditorConfigTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeEqTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyAttributeGtTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyAttributeGteTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeInputTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyAttributeLtTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyAttributeLteTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyAttributeNeqTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyItemTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyItemTypeTest.java

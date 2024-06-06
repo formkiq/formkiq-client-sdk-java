@@ -26,6 +26,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -45,11 +46,27 @@ public class OpaPolicyAttributeEqTest {
   }
 
   /**
-   * Test the property 'text'
+   * Test the property 'stringValue'
    */
   @Test
-  public void textTest() {
-    // TODO: test text
+  public void stringValueTest() {
+    // TODO: test stringValue
+  }
+
+  /**
+   * Test the property 'numberValue'
+   */
+  @Test
+  public void numberValueTest() {
+    // TODO: test numberValue
+  }
+
+  /**
+   * Test the property 'booleanValue'
+   */
+  @Test
+  public void booleanValueTest() {
+    // TODO: test booleanValue
   }
 
   /**

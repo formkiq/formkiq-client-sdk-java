@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
+    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -100,6 +101,10 @@ public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, Object> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private Map<String, FulltextAttribute> attributes = new HashMap<>();
 
   public FulltextSearchItem() {}
 
@@ -319,6 +324,34 @@ public class FulltextSearchItem {
   }
 
 
+  public FulltextSearchItem attributes(Map<String, FulltextAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public FulltextSearchItem putAttributesItem(String key, FulltextAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new HashMap<>();
+    }
+    this.attributes.put(key, attributesItem);
+    return this;
+  }
+
+  /**
+   * Get attributes
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public Map<String, FulltextAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(Map<String, FulltextAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -338,13 +371,14 @@ public class FulltextSearchItem {
         && Objects.equals(this.contentLength, fulltextSearchItem.contentLength)
         && Objects.equals(this.createdBy, fulltextSearchItem.createdBy)
         && Objects.equals(this.tags, fulltextSearchItem.tags)
-        && Objects.equals(this.metadata, fulltextSearchItem.metadata);
+        && Objects.equals(this.metadata, fulltextSearchItem.metadata)
+        && Objects.equals(this.attributes, fulltextSearchItem.attributes);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, documentId,
-        contentLength, createdBy, tags, metadata);
+        contentLength, createdBy, tags, metadata, attributes);
   }
 
   @Override
@@ -361,6 +395,7 @@ public class FulltextSearchItem {
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -392,6 +427,7 @@ public class FulltextSearchItem {
     openapiFields.add("createdBy");
     openapiFields.add("tags");
     openapiFields.add("metadata");
+    openapiFields.add("attributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

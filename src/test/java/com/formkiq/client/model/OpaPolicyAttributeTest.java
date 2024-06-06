@@ -20,6 +20,11 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.OpaPolicyAttributeEq;
+import com.formkiq.client.model.OpaPolicyAttributeGt;
+import com.formkiq.client.model.OpaPolicyAttributeGte;
+import com.formkiq.client.model.OpaPolicyAttributeLt;
+import com.formkiq.client.model.OpaPolicyAttributeLte;
+import com.formkiq.client.model.OpaPolicyAttributeNeq;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,6 +63,46 @@ public class OpaPolicyAttributeTest {
   @Test
   public void eqTest() {
     // TODO: test eq
+  }
+
+  /**
+   * Test the property 'gt'
+   */
+  @Test
+  public void gtTest() {
+    // TODO: test gt
+  }
+
+  /**
+   * Test the property 'gte'
+   */
+  @Test
+  public void gteTest() {
+    // TODO: test gte
+  }
+
+  /**
+   * Test the property 'lt'
+   */
+  @Test
+  public void ltTest() {
+    // TODO: test lt
+  }
+
+  /**
+   * Test the property 'lte'
+   */
+  @Test
+  public void lteTest() {
+    // TODO: test lte
+  }
+
+  /**
+   * Test the property 'neq'
+   */
+  @Test
+  public void neqTest() {
+    // TODO: test neq
   }
 
 }

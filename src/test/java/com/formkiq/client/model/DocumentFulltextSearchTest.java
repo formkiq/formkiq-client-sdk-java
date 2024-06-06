@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentFulltextAttribute;
 import com.formkiq.client.model.DocumentFulltextTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -68,6 +69,14 @@ public class DocumentFulltextSearchTest {
   @Test
   public void tagsTest() {
     // TODO: test tags
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
 }

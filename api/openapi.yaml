@@ -3199,6 +3199,12 @@ paths:
               $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
               $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
       security:
       - ApiAuthorization: []
       summary: Document full-text search
@@ -10725,6 +10731,31 @@ components:
       description: Document full text search
       example:
         query:
+          attributes:
+          - eqOr:
+            - stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            - stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            eq:
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            key: key
+          - eqOr:
+            - stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            - stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            eq:
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 6.027456183070403
+            key: key
           page: 0
           text: text
           tags:
@@ -10756,6 +10787,31 @@ components:
     DocumentFulltextSearch:
       description: Document full text search criteria
       example:
+        attributes:
+        - eqOr:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          eq:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          key: key
+        - eqOr:
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          - stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          eq:
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 6.027456183070403
+          key: key
         page: 0
         text: text
         tags:
@@ -10781,7 +10837,55 @@ components:
           items:
             $ref: '#/components/schemas/DocumentFulltextTag'
           type: array
+        attributes:
+          description: List of search attributes
+          items:
+            $ref: '#/components/schemas/DocumentFulltextAttribute'
+          type: array
       type: object
+    DocumentFulltextAttribute:
+      example:
+        eqOr:
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 6.027456183070403
+        - stringValue: stringValue
+          booleanValue: true
+          numberValue: 6.027456183070403
+        eq:
+          stringValue: stringValue
+          booleanValue: true
+          numberValue: 6.027456183070403
+        key: key
+      properties:
+        eq:
+          $ref: '#/components/schemas/DocumentFulltextAttributeEq'
+        eqOr:
+          description: Searches for ANY strings that eq
+          items:
+            $ref: '#/components/schemas/DocumentFulltextAttributeEq'
+          type: array
+        key:
+          description: Tag key to search
+          type: string
+      required:
+      - key
+      type: object
+    DocumentFulltextAttributeEq:
+      example:
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 6.027456183070403
+      properties:
+        stringValue:
+          description: Search for string value
+          type: string
+        numberValue:
+          description: Search for number value
+          type: number
+        booleanValue:
+          description: Search for boolean value
+          type: boolean
     DocumentFulltextTag:
       example:
         eqOr:
@@ -12218,6 +12322,15 @@ components:
           siteId: siteId
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 6.027456183070403
+              - 6.027456183070403
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
           tags:
             key: "{}"
         - path: path
@@ -12230,6 +12343,15 @@ components:
           siteId: siteId
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 6.027456183070403
+              - 6.027456183070403
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
           tags:
             key: "{}"
       properties:
@@ -12251,6 +12373,15 @@ components:
         siteId: siteId
         documentId: documentId
         contentLength: 0
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
         tags:
           key: "{}"
       properties:
@@ -12286,23 +12417,60 @@ components:
           additionalProperties:
             type: object
           type: object
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
+      type: object
+    FulltextAttribute:
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+      properties:
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
       type: object
     GetDocumentFulltextResponse:
       example:
-        path: path
         metadata:
           key: "{}"
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        content: content
+        tags:
+          key: "{}"
+        path: path
+        insertedDate: insertedDate
         createdBy: createdBy
         siteId: siteId
         documentId: documentId
         contentLength: 0
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
         contentType: contentType
-        content: content
-        tags:
-          key: "{}"
       properties:
         siteId:
           description: Site Identifier
@@ -12341,6 +12509,10 @@ components:
         metadata:
           additionalProperties:
             type: object
+          type: object
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
           type: object
       type: object
     GetDocumentSyncResponse:
@@ -15851,10 +16023,22 @@ components:
       type: object
     OpaPolicyAttribute:
       example:
+        lt:
+          numberValue: 5.962133916683182
+        gte:
+          numberValue: 1.4658129805029452
+        neq:
+          stringValue: stringValue
         eq:
           input:
             matchUsername: true
-          text: text
+          stringValue: stringValue
+          booleanValue: true
+          numberValue: 0.8008281904610115
+        lte:
+          numberValue: 5.637376656633329
+        gt:
+          numberValue: 6.027456183070403
         key: key
       properties:
         key:
@@ -15862,18 +16046,82 @@ components:
           type: string
         eq:
           $ref: '#/components/schemas/OpaPolicyAttributeEq'
+        gt:
+          $ref: '#/components/schemas/OpaPolicyAttributeGt'
+        gte:
+          $ref: '#/components/schemas/OpaPolicyAttributeGte'
+        lt:
+          $ref: '#/components/schemas/OpaPolicyAttributeLt'
+        lte:
+          $ref: '#/components/schemas/OpaPolicyAttributeLte'
+        neq:
+          $ref: '#/components/schemas/OpaPolicyAttributeNeq'
       type: object
     OpaPolicyAttributeEq:
+      description: Attribute EQ criteria
       example:
         input:
           matchUsername: true
-        text: text
+        stringValue: stringValue
+        booleanValue: true
+        numberValue: 0.8008281904610115
       properties:
-        text:
+        stringValue:
           description: The value to compare the Attribute Key value to
           type: string
+        numberValue:
+          description: The value to compare the Attribute Key value to
+          type: number
+        booleanValue:
+          description: The value to compare the Attribute Key value to
+          type: boolean
         input:
           $ref: '#/components/schemas/OpaPolicyAttributeInput'
+      type: object
+    OpaPolicyAttributeGt:
+      description: Attribute greater than criteria
+      example:
+        numberValue: 6.027456183070403
+      properties:
+        numberValue:
+          description: The value to compare the Attribute Key value to
+          type: number
+      type: object
+    OpaPolicyAttributeGte:
+      description: Attribute greater than and equals to criteria
+      example:
+        numberValue: 1.4658129805029452
+      properties:
+        numberValue:
+          description: The value to compare the Attribute Key value to
+          type: number
+      type: object
+    OpaPolicyAttributeLt:
+      description: Attribute less than criteria
+      example:
+        numberValue: 5.962133916683182
+      properties:
+        numberValue:
+          description: The value to compare the Attribute Key value to
+          type: number
+      type: object
+    OpaPolicyAttributeLte:
+      description: Attribute less than and equals to criteria
+      example:
+        numberValue: 5.637376656633329
+      properties:
+        numberValue:
+          description: The value to compare the Attribute Key value to
+          type: number
+      type: object
+    OpaPolicyAttributeNeq:
+      description: Attribute not equal to criteria
+      example:
+        stringValue: stringValue
+      properties:
+        stringValue:
+          description: The value to compare the Attribute Key value to
+          type: string
       type: object
     OpaPolicyAttributeInput:
       example:
@@ -15897,15 +16145,39 @@ components:
         - allRoles
         - allRoles
         attributes:
-        - eq:
+        - lt:
+            numberValue: 5.962133916683182
+          gte:
+            numberValue: 1.4658129805029452
+          neq:
+            stringValue: stringValue
+          eq:
             input:
               matchUsername: true
-            text: text
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 0.8008281904610115
+          lte:
+            numberValue: 5.637376656633329
+          gt:
+            numberValue: 6.027456183070403
           key: key
-        - eq:
+        - lt:
+            numberValue: 5.962133916683182
+          gte:
+            numberValue: 1.4658129805029452
+          neq:
+            stringValue: stringValue
+          eq:
             input:
               matchUsername: true
-            text: text
+            stringValue: stringValue
+            booleanValue: true
+            numberValue: 0.8008281904610115
+          lte:
+            numberValue: 5.637376656633329
+          gt:
+            numberValue: 6.027456183070403
           key: key
         type: ALLOW
       properties:
@@ -15936,15 +16208,39 @@ components:
           - allRoles
           - allRoles
           attributes:
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
           type: ALLOW
         - anyRoles:
@@ -15954,15 +16250,39 @@ components:
           - allRoles
           - allRoles
           attributes:
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
           type: ALLOW
       properties:
@@ -15990,15 +16310,39 @@ components:
           - allRoles
           - allRoles
           attributes:
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
           type: ALLOW
         - anyRoles:
@@ -16008,15 +16352,39 @@ components:
           - allRoles
           - allRoles
           attributes:
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
-          - eq:
+          - lt:
+              numberValue: 5.962133916683182
+            gte:
+              numberValue: 1.4658129805029452
+            neq:
+              stringValue: stringValue
+            eq:
               input:
                 matchUsername: true
-              text: text
+              stringValue: stringValue
+              booleanValue: true
+              numberValue: 0.8008281904610115
+            lte:
+              numberValue: 5.637376656633329
+            gt:
+              numberValue: 6.027456183070403
             key: key
           type: ALLOW
       properties:

@@ -31,6 +31,7 @@ import com.formkiq.client.model.SetDocumentFulltextRequest;
 import com.formkiq.client.model.SetDocumentFulltextResponse;
 import com.formkiq.client.model.UpdateDocumentFulltextRequest;
 import com.formkiq.client.model.UpdateDocumentFulltextResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

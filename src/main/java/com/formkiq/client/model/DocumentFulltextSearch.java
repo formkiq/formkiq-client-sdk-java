@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentFulltextAttribute;
 import com.formkiq.client.model.DocumentFulltextTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * Document full text search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
+    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class DocumentFulltextSearch {
   public static final String SERIALIZED_NAME_PAGE = "page";
@@ -73,6 +74,10 @@ public class DocumentFulltextSearch {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<DocumentFulltextTag> tags = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private List<DocumentFulltextAttribute> attributes = new ArrayList<>();
 
   public DocumentFulltextSearch() {}
 
@@ -144,6 +149,34 @@ public class DocumentFulltextSearch {
   }
 
 
+  public DocumentFulltextSearch attributes(List<DocumentFulltextAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public DocumentFulltextSearch addAttributesItem(DocumentFulltextAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * List of search attributes
+   * 
+   * @return attributes
+   **/
+  @javax.annotation.Nullable
+  public List<DocumentFulltextAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(List<DocumentFulltextAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -156,12 +189,13 @@ public class DocumentFulltextSearch {
     DocumentFulltextSearch documentFulltextSearch = (DocumentFulltextSearch) o;
     return Objects.equals(this.page, documentFulltextSearch.page)
         && Objects.equals(this.text, documentFulltextSearch.text)
-        && Objects.equals(this.tags, documentFulltextSearch.tags);
+        && Objects.equals(this.tags, documentFulltextSearch.tags)
+        && Objects.equals(this.attributes, documentFulltextSearch.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(page, text, tags);
+    return Objects.hash(page, text, tags, attributes);
   }
 
   @Override
@@ -171,6 +205,7 @@ public class DocumentFulltextSearch {
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -195,6 +230,7 @@ public class DocumentFulltextSearch {
     openapiFields.add("page");
     openapiFields.add("text");
     openapiFields.add("tags");
+    openapiFields.add("attributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -245,6 +281,22 @@ public class DocumentFulltextSearch {
         // validate the optional field `tags` (array)
         for (int i = 0; i < jsonArraytags.size(); i++) {
           DocumentFulltextTag.validateJsonElement(jsonArraytags.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+      if (jsonArrayattributes != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("attributes").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+              jsonObj.get("attributes").toString()));
+        }
+
+        // validate the optional field `attributes` (array)
+        for (int i = 0; i < jsonArrayattributes.size(); i++) {
+          DocumentFulltextAttribute.validateJsonElement(jsonArrayattributes.get(i));
         } ;
       }
     }

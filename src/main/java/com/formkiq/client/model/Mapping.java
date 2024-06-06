@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Mapping
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-05-31T23:04:19.034052-05:00[America/Winnipeg]",
+    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class Mapping {
   public static final String SERIALIZED_NAME_NAME = "name";

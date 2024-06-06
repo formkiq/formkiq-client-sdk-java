@@ -44,6 +44,7 @@ import com.formkiq.client.model.SetDocumentFulltextRequest;
 import com.formkiq.client.model.SetDocumentFulltextResponse;
 import com.formkiq.client.model.UpdateDocumentFulltextRequest;
 import com.formkiq.client.model.UpdateDocumentFulltextResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1314,6 +1315,11 @@ public class AdvancedDocumentSearchApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public okhttp3.Call searchFulltextCall(DocumentFulltextRequest documentFulltextRequest,
@@ -1408,6 +1414,11 @@ public class AdvancedDocumentSearchApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public DocumentFulltextResponse searchFulltext(DocumentFulltextRequest documentFulltextRequest,
@@ -1441,6 +1452,11 @@ public class AdvancedDocumentSearchApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */
@@ -1477,6 +1493,11 @@ public class AdvancedDocumentSearchApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */
