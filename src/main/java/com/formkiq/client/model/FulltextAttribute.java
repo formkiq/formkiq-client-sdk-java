@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.FulltextAttributeValueType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-05T21:01:53.120424-05:00[America/Winnipeg]",
+    date = "2024-06-06T21:21:56.182904-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class FulltextAttribute {
   public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
@@ -73,6 +74,10 @@ public class FulltextAttribute {
   public static final String SERIALIZED_NAME_BOOLEAN_VALUE = "booleanValue";
   @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
   private Boolean booleanValue;
+
+  public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
+  @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
+  private FulltextAttributeValueType valueType;
 
   public FulltextAttribute() {}
 
@@ -152,6 +157,26 @@ public class FulltextAttribute {
   }
 
 
+  public FulltextAttribute valueType(FulltextAttributeValueType valueType) {
+    this.valueType = valueType;
+    return this;
+  }
+
+  /**
+   * Get valueType
+   * 
+   * @return valueType
+   **/
+  @javax.annotation.Nullable
+  public FulltextAttributeValueType getValueType() {
+    return valueType;
+  }
+
+  public void setValueType(FulltextAttributeValueType valueType) {
+    this.valueType = valueType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -164,12 +189,13 @@ public class FulltextAttribute {
     FulltextAttribute fulltextAttribute = (FulltextAttribute) o;
     return Objects.equals(this.stringValues, fulltextAttribute.stringValues)
         && Objects.equals(this.numberValues, fulltextAttribute.numberValues)
-        && Objects.equals(this.booleanValue, fulltextAttribute.booleanValue);
+        && Objects.equals(this.booleanValue, fulltextAttribute.booleanValue)
+        && Objects.equals(this.valueType, fulltextAttribute.valueType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stringValues, numberValues, booleanValue);
+    return Objects.hash(stringValues, numberValues, booleanValue, valueType);
   }
 
   @Override
@@ -179,6 +205,7 @@ public class FulltextAttribute {
     sb.append("    stringValues: ").append(toIndentedString(stringValues)).append("\n");
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -203,6 +230,7 @@ public class FulltextAttribute {
     openapiFields.add("stringValues");
     openapiFields.add("numberValues");
     openapiFields.add("booleanValue");
+    openapiFields.add("valueType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -247,6 +275,10 @@ public class FulltextAttribute {
       throw new IllegalArgumentException(String.format(
           "Expected the field `numberValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("numberValues").toString()));
+    }
+    // validate the optional field `valueType`
+    if (jsonObj.get("valueType") != null && !jsonObj.get("valueType").isJsonNull()) {
+      FulltextAttributeValueType.validateJsonElement(jsonObj.get("valueType"));
     }
   }
 

@@ -471,6 +471,7 @@ Class | Method | HTTP request | Description
  - [EsignatureDocusignRecipientTab](docs/EsignatureDocusignRecipientTab.md)
  - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
  - [FulltextAttribute](docs/FulltextAttribute.md)
+ - [FulltextAttributeValueType](docs/FulltextAttributeValueType.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
  - [GetAttributeResponse](docs/GetAttributeResponse.md)

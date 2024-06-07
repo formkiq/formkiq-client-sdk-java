@@ -19,64 +19,20 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.FulltextAttributeValueType;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FulltextAttribute
+ * Model tests for FulltextAttributeValueType
  */
-public class FulltextAttributeTest {
-  private final FulltextAttribute model = new FulltextAttribute();
-
+public class FulltextAttributeValueTypeTest {
   /**
-   * Model tests for FulltextAttribute
+   * Model tests for FulltextAttributeValueType
    */
   @Test
-  public void testFulltextAttribute() {
-    // TODO: test FulltextAttribute
-  }
-
-  /**
-   * Test the property 'stringValues'
-   */
-  @Test
-  public void stringValuesTest() {
-    // TODO: test stringValues
-  }
-
-  /**
-   * Test the property 'numberValues'
-   */
-  @Test
-  public void numberValuesTest() {
-    // TODO: test numberValues
-  }
-
-  /**
-   * Test the property 'booleanValue'
-   */
-  @Test
-  public void booleanValueTest() {
-    // TODO: test booleanValue
-  }
-
-  /**
-   * Test the property 'valueType'
-   */
-  @Test
-  public void valueTypeTest() {
-    // TODO: test valueType
+  public void testFulltextAttributeValueType() {
+    // TODO: test FulltextAttributeValueType
   }
 
 }

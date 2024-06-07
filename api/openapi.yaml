@@ -12330,6 +12330,7 @@ components:
               stringValues:
               - stringValues
               - stringValues
+              valueType: BOOLEAN
               booleanValue: true
           tags:
             key: "{}"
@@ -12351,6 +12352,7 @@ components:
               stringValues:
               - stringValues
               - stringValues
+              valueType: BOOLEAN
               booleanValue: true
           tags:
             key: "{}"
@@ -12381,6 +12383,7 @@ components:
             stringValues:
             - stringValues
             - stringValues
+            valueType: BOOLEAN
             booleanValue: true
         tags:
           key: "{}"
@@ -12422,6 +12425,14 @@ components:
             $ref: '#/components/schemas/FulltextAttribute'
           type: object
       type: object
+    FulltextAttributeValueType:
+      description: Attribute Value Type
+      enum:
+      - BOOLEAN
+      - KEY_ONLY
+      - NUMBER
+      - STRING
+      type: string
     FulltextAttribute:
       example:
         numberValues:
@@ -12430,6 +12441,7 @@ components:
         stringValues:
         - stringValues
         - stringValues
+        valueType: BOOLEAN
         booleanValue: true
       properties:
         stringValues:
@@ -12445,6 +12457,8 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        valueType:
+          $ref: '#/components/schemas/FulltextAttributeValueType'
       type: object
     GetDocumentFulltextResponse:
       example:
@@ -12469,6 +12483,7 @@ components:
             stringValues:
             - stringValues
             - stringValues
+            valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
       properties:

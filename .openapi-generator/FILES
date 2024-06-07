@@ -154,6 +154,7 @@ docs/EsignatureDocusignRecipientTab.md
 docs/EsignatureDocusignSigner.md
 docs/ExamineObjectsApi.md
 docs/FulltextAttribute.md
+docs/FulltextAttributeValueType.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
 docs/GetAttributeResponse.md
@@ -541,6 +542,7 @@ src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignRecipientTab.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignSigner.java
 src/main/java/com/formkiq/client/model/FulltextAttribute.java
+src/main/java/com/formkiq/client/model/FulltextAttributeValueType.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
 src/main/java/com/formkiq/client/model/GetAttributeResponse.java
@@ -885,6 +887,7 @@ src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignRecipientTabTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignSignerTest.java
 src/test/java/com/formkiq/client/model/FulltextAttributeTest.java
+src/test/java/com/formkiq/client/model/FulltextAttributeValueTypeTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributeResponseTest.java
