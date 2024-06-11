@@ -23,7 +23,7 @@ import java.util.Objects;
 import com.formkiq.client.model.DocumentMetadata;
 import com.formkiq.client.model.DocumentSearchMatchAttribute;
 import com.formkiq.client.model.DocumentSearchMatchTag;
-import com.formkiq.client.model.SearchResponseAttributeField;
+import com.formkiq.client.model.SearchResultDocumentAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -64,7 +64,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-06T21:21:56.182904-05:00[America/Winnipeg]",
+    date = "2024-06-10T20:23:40.951984-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -139,9 +139,9 @@ public class SearchResultDocument {
   @SerializedName(SERIALIZED_NAME_TAGS)
   private Map<String, Object> tags = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_RESPONSE_ATTRIBUTES = "responseAttributes";
-  @SerializedName(SERIALIZED_NAME_RESPONSE_ATTRIBUTES)
-  private List<SearchResponseAttributeField> responseAttributes = new ArrayList<>();
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private Map<String, SearchResultDocumentAttribute> attributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -525,33 +525,32 @@ public class SearchResultDocument {
   }
 
 
-  public SearchResultDocument responseAttributes(
-      List<SearchResponseAttributeField> responseAttributes) {
-    this.responseAttributes = responseAttributes;
+  public SearchResultDocument attributes(Map<String, SearchResultDocumentAttribute> attributes) {
+    this.attributes = attributes;
     return this;
   }
 
-  public SearchResultDocument addResponseAttributesItem(
-      SearchResponseAttributeField responseAttributesItem) {
-    if (this.responseAttributes == null) {
-      this.responseAttributes = new ArrayList<>();
+  public SearchResultDocument putAttributesItem(String key,
+      SearchResultDocumentAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new HashMap<>();
     }
-    this.responseAttributes.add(responseAttributesItem);
+    this.attributes.put(key, attributesItem);
     return this;
   }
 
   /**
-   * List of document response attributes
+   * Get attributes
    * 
-   * @return responseAttributes
+   * @return attributes
    **/
   @javax.annotation.Nullable
-  public List<SearchResponseAttributeField> getResponseAttributes() {
-    return responseAttributes;
+  public Map<String, SearchResultDocumentAttribute> getAttributes() {
+    return attributes;
   }
 
-  public void setResponseAttributes(List<SearchResponseAttributeField> responseAttributes) {
-    this.responseAttributes = responseAttributes;
+  public void setAttributes(Map<String, SearchResultDocumentAttribute> attributes) {
+    this.attributes = attributes;
   }
 
 
@@ -611,7 +610,7 @@ public class SearchResultDocument {
         && Objects.equals(this.matchedTag, searchResultDocument.matchedTag)
         && Objects.equals(this.matchedTags, searchResultDocument.matchedTags)
         && Objects.equals(this.tags, searchResultDocument.tags)
-        && Objects.equals(this.responseAttributes, searchResultDocument.responseAttributes)
+        && Objects.equals(this.attributes, searchResultDocument.attributes)
         && Objects.equals(this.metadata, searchResultDocument.metadata);
   }
 
@@ -619,8 +618,7 @@ public class SearchResultDocument {
   public int hashCode() {
     return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, folder,
         indexKey, checksum, documentId, contentType, userId, contentLength, versionId,
-        belongsToDocumentId, matchedAttribute, matchedTag, matchedTags, tags, responseAttributes,
-        metadata);
+        belongsToDocumentId, matchedAttribute, matchedTag, matchedTags, tags, attributes, metadata);
   }
 
   @Override
@@ -646,7 +644,7 @@ public class SearchResultDocument {
     sb.append("    matchedTag: ").append(toIndentedString(matchedTag)).append("\n");
     sb.append("    matchedTags: ").append(toIndentedString(matchedTags)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    responseAttributes: ").append(toIndentedString(responseAttributes)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -687,7 +685,7 @@ public class SearchResultDocument {
     openapiFields.add("matchedTag");
     openapiFields.add("matchedTags");
     openapiFields.add("tags");
-    openapiFields.add("responseAttributes");
+    openapiFields.add("attributes");
     openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
@@ -814,23 +812,6 @@ public class SearchResultDocument {
         // validate the optional field `matchedTags` (array)
         for (int i = 0; i < jsonArraymatchedTags.size(); i++) {
           DocumentSearchMatchTag.validateJsonElement(jsonArraymatchedTags.get(i));
-        } ;
-      }
-    }
-    if (jsonObj.get("responseAttributes") != null
-        && !jsonObj.get("responseAttributes").isJsonNull()) {
-      JsonArray jsonArrayresponseAttributes = jsonObj.getAsJsonArray("responseAttributes");
-      if (jsonArrayresponseAttributes != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("responseAttributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `responseAttributes` to be an array in the JSON string but got `%s`",
-              jsonObj.get("responseAttributes").toString()));
-        }
-
-        // validate the optional field `responseAttributes` (array)
-        for (int i = 0; i < jsonArrayresponseAttributes.size(); i++) {
-          SearchResponseAttributeField.validateJsonElement(jsonArrayresponseAttributes.get(i));
         } ;
       }
     }

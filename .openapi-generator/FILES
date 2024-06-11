@@ -83,6 +83,7 @@ docs/AttributeSchemaCompositeKey.md
 docs/AttributeSchemaOptional.md
 docs/AttributeSchemaRequired.md
 docs/AttributeType.md
+docs/AttributeValueType.md
 docs/AttributesApi.md
 docs/CaseManagementApi.md
 docs/CaseStatus.md
@@ -154,7 +155,6 @@ docs/EsignatureDocusignRecipientTab.md
 docs/EsignatureDocusignSigner.md
 docs/ExamineObjectsApi.md
 docs/FulltextAttribute.md
-docs/FulltextAttributeValueType.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
 docs/GetAttributeResponse.md
@@ -169,6 +169,7 @@ docs/GetCasesResponse.md
 docs/GetConfigurationResponse.md
 docs/GetDocumentActionsResponse.md
 docs/GetDocumentAttributeResponse.md
+docs/GetDocumentAttributeVersionsResponse.md
 docs/GetDocumentAttributesResponse.md
 docs/GetDocumentContentResponse.md
 docs/GetDocumentFulltextResponse.md
@@ -268,9 +269,9 @@ docs/RulesetsApi.md
 docs/SchemaAttributes.md
 docs/SchemasApi.md
 docs/SearchRangeDataType.md
-docs/SearchResponseAttributeField.md
 docs/SearchResponseFields.md
 docs/SearchResultDocument.md
+docs/SearchResultDocumentAttribute.md
 docs/SetAntivirusResponse.md
 docs/SetDocumentAttributeRequest.md
 docs/SetDocumentAttributesRequest.md
@@ -486,6 +487,7 @@ src/main/java/com/formkiq/client/model/AttributeSchemaCompositeKey.java
 src/main/java/com/formkiq/client/model/AttributeSchemaOptional.java
 src/main/java/com/formkiq/client/model/AttributeSchemaRequired.java
 src/main/java/com/formkiq/client/model/AttributeType.java
+src/main/java/com/formkiq/client/model/AttributeValueType.java
 src/main/java/com/formkiq/client/model/CaseStatus.java
 src/main/java/com/formkiq/client/model/ChildDocument.java
 src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
@@ -542,7 +544,6 @@ src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignRecipientTab.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignSigner.java
 src/main/java/com/formkiq/client/model/FulltextAttribute.java
-src/main/java/com/formkiq/client/model/FulltextAttributeValueType.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
 src/main/java/com/formkiq/client/model/GetAttributeResponse.java
@@ -557,6 +558,7 @@ src/main/java/com/formkiq/client/model/GetCasesResponse.java
 src/main/java/com/formkiq/client/model/GetConfigurationResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentAttributeResponse.java
+src/main/java/com/formkiq/client/model/GetDocumentAttributeVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentAttributesResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentContentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentFulltextResponse.java
@@ -651,9 +653,9 @@ src/main/java/com/formkiq/client/model/Ruleset.java
 src/main/java/com/formkiq/client/model/RulesetStatus.java
 src/main/java/com/formkiq/client/model/SchemaAttributes.java
 src/main/java/com/formkiq/client/model/SearchRangeDataType.java
-src/main/java/com/formkiq/client/model/SearchResponseAttributeField.java
 src/main/java/com/formkiq/client/model/SearchResponseFields.java
 src/main/java/com/formkiq/client/model/SearchResultDocument.java
+src/main/java/com/formkiq/client/model/SearchResultDocumentAttribute.java
 src/main/java/com/formkiq/client/model/SetAntivirusResponse.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributeRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributesRequest.java
@@ -831,6 +833,7 @@ src/test/java/com/formkiq/client/model/AttributeSchemaOptionalTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaRequiredTest.java
 src/test/java/com/formkiq/client/model/AttributeTest.java
 src/test/java/com/formkiq/client/model/AttributeTypeTest.java
+src/test/java/com/formkiq/client/model/AttributeValueTypeTest.java
 src/test/java/com/formkiq/client/model/CaseStatusTest.java
 src/test/java/com/formkiq/client/model/ChildDocumentTest.java
 src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
@@ -887,7 +890,6 @@ src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignRecipientTabTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignSignerTest.java
 src/test/java/com/formkiq/client/model/FulltextAttributeTest.java
-src/test/java/com/formkiq/client/model/FulltextAttributeValueTypeTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributeResponseTest.java
@@ -902,6 +904,7 @@ src/test/java/com/formkiq/client/model/GetCasesResponseTest.java
 src/test/java/com/formkiq/client/model/GetConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentAttributeResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocumentAttributeVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentContentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentFulltextResponseTest.java
@@ -996,8 +999,8 @@ src/test/java/com/formkiq/client/model/RulesetStatusTest.java
 src/test/java/com/formkiq/client/model/RulesetTest.java
 src/test/java/com/formkiq/client/model/SchemaAttributesTest.java
 src/test/java/com/formkiq/client/model/SearchRangeDataTypeTest.java
-src/test/java/com/formkiq/client/model/SearchResponseAttributeFieldTest.java
 src/test/java/com/formkiq/client/model/SearchResponseFieldsTest.java
+src/test/java/com/formkiq/client/model/SearchResultDocumentAttributeTest.java
 src/test/java/com/formkiq/client/model/SearchResultDocumentTest.java
 src/test/java/com/formkiq/client/model/SetAntivirusResponseTest.java
 src/test/java/com/formkiq/client/model/SetDocumentAttributeRequestTest.java

@@ -24,15 +24,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FulltextAttributeValueType
+ * Model tests for AttributeValueType
  */
-public class FulltextAttributeValueTypeTest {
+public class AttributeValueTypeTest {
   /**
-   * Model tests for FulltextAttributeValueType
+   * Model tests for AttributeValueType
    */
   @Test
-  public void testFulltextAttributeValueType() {
-    // TODO: test FulltextAttributeValueType
+  public void testAttributeValueType() {
+    // TODO: test AttributeValueType
   }
 
 }

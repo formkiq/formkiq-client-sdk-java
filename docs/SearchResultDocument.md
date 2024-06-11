@@ -25,7 +25,7 @@
 |**matchedTag** | [**DocumentSearchMatchTag**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**matchedTags** | [**List&lt;DocumentSearchMatchTag&gt;**](DocumentSearchMatchTag.md) |  |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**responseAttributes** | [**List&lt;SearchResponseAttributeField&gt;**](SearchResponseAttributeField.md) | List of document response attributes |  [optional] |
+|**attributes** | [**Map&lt;String, SearchResultDocumentAttribute&gt;**](SearchResultDocumentAttribute.md) |  |  [optional] |
 |**metadata** | [**List&lt;DocumentMetadata&gt;**](DocumentMetadata.md) | List of document Metadata |  [optional] |
 
 

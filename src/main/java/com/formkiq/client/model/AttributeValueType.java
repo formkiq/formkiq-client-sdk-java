@@ -32,8 +32,8 @@ import com.google.gson.stream.JsonWriter;
 /**
  * Attribute Value Type
  */
-@JsonAdapter(FulltextAttributeValueType.Adapter.class)
-public enum FulltextAttributeValueType {
+@JsonAdapter(AttributeValueType.Adapter.class)
+public enum AttributeValueType {
 
   BOOLEAN("BOOLEAN"),
 
@@ -45,7 +45,7 @@ public enum FulltextAttributeValueType {
 
   private String value;
 
-  FulltextAttributeValueType(String value) {
+  AttributeValueType(String value) {
     this.value = value;
   }
 
@@ -58,8 +58,8 @@ public enum FulltextAttributeValueType {
     return String.valueOf(value);
   }
 
-  public static FulltextAttributeValueType fromValue(String value) {
-    for (FulltextAttributeValueType b : FulltextAttributeValueType.values()) {
+  public static AttributeValueType fromValue(String value) {
+    for (AttributeValueType b : AttributeValueType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -67,23 +67,23 @@ public enum FulltextAttributeValueType {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<FulltextAttributeValueType> {
+  public static class Adapter extends TypeAdapter<AttributeValueType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final FulltextAttributeValueType enumeration)
+    public void write(final JsonWriter jsonWriter, final AttributeValueType enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public FulltextAttributeValueType read(final JsonReader jsonReader) throws IOException {
+    public AttributeValueType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return FulltextAttributeValueType.fromValue(value);
+      return AttributeValueType.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    FulltextAttributeValueType.fromValue(value);
+    AttributeValueType.fromValue(value);
   }
 }
 

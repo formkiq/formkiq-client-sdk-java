@@ -3889,6 +3889,76 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
+  /documents/{documentId}/attributes/{attributeKey}/versions:
+    get:
+      description: Get a listing of a document's attribute versions; ONLY available
+        with FormKiQ Pro and Enterprise
+      operationId: GetDocumentAttributeVersions
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDocumentAttributeVersionsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get document attribute's versions
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
   /folders:
     get:
       description: Get list of documents in a folder
@@ -9899,6 +9969,44 @@ components:
           description: Is the content Base64-encoded?
           type: boolean
       type: object
+    GetDocumentAttributeVersionsResponse:
+      example:
+        next: next
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          insertedDate: insertedDate
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          userId: userId
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          insertedDate: insertedDate
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          userId: userId
+          key: key
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        attributes:
+          description: List of document attribute versions
+          items:
+            $ref: '#/components/schemas/DocumentAttribute'
+          type: array
+      type: object
     GetDocumentVersionsResponse:
       example:
         next: next
@@ -10291,8 +10399,10 @@ components:
           stringValues:
           - stringValues
           - stringValues
+          insertedDate: insertedDate
           booleanValue: true
           numberValue: 0.8008281904610115
+          userId: userId
           key: key
       properties:
         attribute:
@@ -10309,8 +10419,10 @@ components:
           stringValues:
           - stringValues
           - stringValues
+          insertedDate: insertedDate
           booleanValue: true
           numberValue: 0.8008281904610115
+          userId: userId
           key: key
         - numberValues:
           - 6.027456183070403
@@ -10319,8 +10431,10 @@ components:
           stringValues:
           - stringValues
           - stringValues
+          insertedDate: insertedDate
           booleanValue: true
           numberValue: 0.8008281904610115
+          userId: userId
           key: key
       properties:
         next:
@@ -11012,25 +11126,36 @@ components:
           items:
             type: string
           type: array
-    SearchResponseAttributeField:
+    SearchResultDocumentAttribute:
       example:
-        stringValue: stringValue
+        numberValues:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        stringValues:
+        - stringValues
+        - stringValues
+        insertedDate: insertedDate
+        valueType: BOOLEAN
         booleanValue: true
-        numberValue: 1.4658129805029452
-        key: key
       properties:
-        key:
-          description: Attribute key
-          type: string
-        stringValue:
-          description: Attribute with string value
-          type: string
-        numberValue:
-          description: Attribute with number value
-          type: number
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        valueType:
+          $ref: '#/components/schemas/AttributeValueType'
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
     DocumentSearchMeta:
       example:
         path: path
@@ -12166,8 +12291,10 @@ components:
         stringValues:
         - stringValues
         - stringValues
+        insertedDate: insertedDate
         booleanValue: true
         numberValue: 0.8008281904610115
+        userId: userId
         key: key
       properties:
         key:
@@ -12192,6 +12319,12 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        userId:
+          description: User who added attribute
+          type: string
       type: object
     DocumentTag:
       example:
@@ -12425,7 +12558,7 @@ components:
             $ref: '#/components/schemas/FulltextAttribute'
           type: object
       type: object
-    FulltextAttributeValueType:
+    AttributeValueType:
       description: Attribute Value Type
       enum:
       - BOOLEAN
@@ -12458,7 +12591,7 @@ components:
           description: Attribute with boolean value
           type: boolean
         valueType:
-          $ref: '#/components/schemas/FulltextAttributeValueType'
+          $ref: '#/components/schemas/AttributeValueType'
       type: object
     GetDocumentFulltextResponse:
       example:
@@ -12681,15 +12814,6 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
-          responseAttributes:
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -12714,6 +12838,17 @@ components:
           indexKey: indexKey
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 1.4658129805029452
+              - 1.4658129805029452
+              stringValues:
+              - stringValues
+              - stringValues
+              insertedDate: insertedDate
+              valueType: BOOLEAN
+              booleanValue: true
           contentType: contentType
         - matchedAttribute:
             stringValue: stringValue
@@ -12733,15 +12868,6 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
-          responseAttributes:
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -12766,6 +12892,17 @@ components:
           indexKey: indexKey
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 1.4658129805029452
+              - 1.4658129805029452
+              stringValues:
+              - stringValues
+              - stringValues
+              insertedDate: insertedDate
+              valueType: BOOLEAN
+              booleanValue: true
           contentType: contentType
       properties:
         next:
@@ -13067,15 +13204,6 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
-          responseAttributes:
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -13100,6 +13228,17 @@ components:
           indexKey: indexKey
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 1.4658129805029452
+              - 1.4658129805029452
+              stringValues:
+              - stringValues
+              - stringValues
+              insertedDate: insertedDate
+              valueType: BOOLEAN
+              booleanValue: true
           contentType: contentType
         - matchedAttribute:
             stringValue: stringValue
@@ -13119,15 +13258,6 @@ components:
             key: key
           deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
-          responseAttributes:
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
-          - stringValue: stringValue
-            booleanValue: true
-            numberValue: 1.4658129805029452
-            key: key
           belongsToDocumentId: belongsToDocumentId
           matchedTags:
           - type: type
@@ -13152,6 +13282,17 @@ components:
           indexKey: indexKey
           documentId: documentId
           contentLength: 0
+          attributes:
+            key:
+              numberValues:
+              - 1.4658129805029452
+              - 1.4658129805029452
+              stringValues:
+              - stringValues
+              - stringValues
+              insertedDate: insertedDate
+              valueType: BOOLEAN
+              booleanValue: true
           contentType: contentType
       properties:
         next:
@@ -13186,15 +13327,6 @@ components:
           key: key
         deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
-        responseAttributes:
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
-        - stringValue: stringValue
-          booleanValue: true
-          numberValue: 1.4658129805029452
-          key: key
         belongsToDocumentId: belongsToDocumentId
         matchedTags:
         - type: type
@@ -13219,6 +13351,17 @@ components:
         indexKey: indexKey
         documentId: documentId
         contentLength: 0
+        attributes:
+          key:
+            numberValues:
+            - 1.4658129805029452
+            - 1.4658129805029452
+            stringValues:
+            - stringValues
+            - stringValues
+            insertedDate: insertedDate
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
       properties:
         siteId:
@@ -13274,11 +13417,10 @@ components:
         tags:
           additionalProperties: true
           type: object
-        responseAttributes:
-          description: List of document response attributes
-          items:
-            $ref: '#/components/schemas/SearchResponseAttributeField'
-          type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/SearchResultDocumentAttribute'
+          type: object
         metadata:
           description: List of document Metadata
           items:
@@ -16195,9 +16337,13 @@ components:
             numberValue: 6.027456183070403
           key: key
         type: ALLOW
+        policy: policy
       properties:
         type:
           $ref: '#/components/schemas/OpaPolicyItemType'
+        policy:
+          description: OPA Policy in REGO format
+          type: string
         allRoles:
           description: User must match all roles
           items:
@@ -16258,6 +16404,7 @@ components:
               numberValue: 6.027456183070403
             key: key
           type: ALLOW
+          policy: policy
         - anyRoles:
           - anyRoles
           - anyRoles
@@ -16300,6 +16447,7 @@ components:
               numberValue: 6.027456183070403
             key: key
           type: ALLOW
+          policy: policy
       properties:
         policyItems:
           description: List of OPA policy items
@@ -16360,6 +16508,7 @@ components:
               numberValue: 6.027456183070403
             key: key
           type: ALLOW
+          policy: policy
         - anyRoles:
           - anyRoles
           - anyRoles
@@ -16402,6 +16551,7 @@ components:
               numberValue: 6.027456183070403
             key: key
           type: ALLOW
+          policy: policy
       properties:
         policyItems:
           items:

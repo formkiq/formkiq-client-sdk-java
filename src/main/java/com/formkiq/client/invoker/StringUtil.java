@@ -23,7 +23,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-06T21:21:56.182904-05:00[America/Winnipeg]",
+    date = "2024-06-10T20:23:40.951984-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class StringUtil {
   /**

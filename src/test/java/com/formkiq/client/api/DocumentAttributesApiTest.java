@@ -24,6 +24,7 @@ import com.formkiq.client.model.AddDocumentAttributesRequest;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentAttributeResponse;
+import com.formkiq.client.model.GetDocumentAttributeVersionsResponse;
 import com.formkiq.client.model.GetDocumentAttributesResponse;
 import com.formkiq.client.model.SetDocumentAttributeRequest;
 import com.formkiq.client.model.SetDocumentAttributesRequest;
@@ -112,6 +113,26 @@ public class DocumentAttributesApiTest {
     String siteId = null;
     GetDocumentAttributeResponse response =
         api.getDocumentAttribute(documentId, attributeKey, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document attribute&#39;s versions
+   *
+   * Get a listing of a document&#39;s attribute versions; ONLY available with FormKiQ Pro and
+   * Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentAttributeVersionsTest() throws ApiException {
+    String documentId = null;
+    String attributeKey = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetDocumentAttributeVersionsResponse response =
+        api.getDocumentAttributeVersions(documentId, attributeKey, siteId, limit, next);
     // TODO: test validations
   }
 

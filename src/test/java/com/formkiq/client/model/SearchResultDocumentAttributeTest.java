@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AttributeValueType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -26,46 +27,40 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SearchResponseAttributeField
+ * Model tests for SearchResultDocumentAttribute
  */
-public class SearchResponseAttributeFieldTest {
-  private final SearchResponseAttributeField model = new SearchResponseAttributeField();
+public class SearchResultDocumentAttributeTest {
+  private final SearchResultDocumentAttribute model = new SearchResultDocumentAttribute();
 
   /**
-   * Model tests for SearchResponseAttributeField
+   * Model tests for SearchResultDocumentAttribute
    */
   @Test
-  public void testSearchResponseAttributeField() {
-    // TODO: test SearchResponseAttributeField
+  public void testSearchResultDocumentAttribute() {
+    // TODO: test SearchResultDocumentAttribute
   }
 
   /**
-   * Test the property 'key'
+   * Test the property 'stringValues'
    */
   @Test
-  public void keyTest() {
-    // TODO: test key
+  public void stringValuesTest() {
+    // TODO: test stringValues
   }
 
   /**
-   * Test the property 'stringValue'
+   * Test the property 'numberValues'
    */
   @Test
-  public void stringValueTest() {
-    // TODO: test stringValue
-  }
-
-  /**
-   * Test the property 'numberValue'
-   */
-  @Test
-  public void numberValueTest() {
-    // TODO: test numberValue
+  public void numberValuesTest() {
+    // TODO: test numberValues
   }
 
   /**
@@ -74,6 +69,22 @@ public class SearchResponseAttributeFieldTest {
   @Test
   public void booleanValueTest() {
     // TODO: test booleanValue
+  }
+
+  /**
+   * Test the property 'valueType'
+   */
+  @Test
+  public void valueTypeTest() {
+    // TODO: test valueType
+  }
+
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
   }
 
 }

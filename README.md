@@ -226,6 +226,7 @@ Class | Method | HTTP request | Description
 *DocumentAttributesApi* | [**deleteDocumentAttribute**](docs/DocumentAttributesApi.md#deleteDocumentAttribute) | **DELETE** /documents/{documentId}/attributes/{attributeKey} | Delete document attribute
 *DocumentAttributesApi* | [**deleteDocumentAttributeAndValue**](docs/DocumentAttributesApi.md#deleteDocumentAttributeAndValue) | **DELETE** /documents/{documentId}/attributes/{attributeKey}/{attributeValue} | Delete document&#39;s attribute value
 *DocumentAttributesApi* | [**getDocumentAttribute**](docs/DocumentAttributesApi.md#getDocumentAttribute) | **GET** /documents/{documentId}/attributes/{attributeKey} | Get document attribute by key
+*DocumentAttributesApi* | [**getDocumentAttributeVersions**](docs/DocumentAttributesApi.md#getDocumentAttributeVersions) | **GET** /documents/{documentId}/attributes/{attributeKey}/versions | Get document attribute&#39;s versions
 *DocumentAttributesApi* | [**getDocumentAttributes**](docs/DocumentAttributesApi.md#getDocumentAttributes) | **GET** /documents/{documentId}/attributes | Get document&#39;s attributes
 *DocumentAttributesApi* | [**setDocumentAttributeValue**](docs/DocumentAttributesApi.md#setDocumentAttributeValue) | **PUT** /documents/{documentId}/attributes/{attributeKey} | Set document&#39;s attributes value
 *DocumentAttributesApi* | [**setDocumentAttributes**](docs/DocumentAttributesApi.md#setDocumentAttributes) | **PUT** /documents/{documentId}/attributes | Set document&#39;s attributes
@@ -415,6 +416,7 @@ Class | Method | HTTP request | Description
  - [AttributeSchemaOptional](docs/AttributeSchemaOptional.md)
  - [AttributeSchemaRequired](docs/AttributeSchemaRequired.md)
  - [AttributeType](docs/AttributeType.md)
+ - [AttributeValueType](docs/AttributeValueType.md)
  - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
@@ -471,7 +473,6 @@ Class | Method | HTTP request | Description
  - [EsignatureDocusignRecipientTab](docs/EsignatureDocusignRecipientTab.md)
  - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
  - [FulltextAttribute](docs/FulltextAttribute.md)
- - [FulltextAttributeValueType](docs/FulltextAttributeValueType.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
  - [GetAttributeResponse](docs/GetAttributeResponse.md)
@@ -486,6 +487,7 @@ Class | Method | HTTP request | Description
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
  - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
+ - [GetDocumentAttributeVersionsResponse](docs/GetDocumentAttributeVersionsResponse.md)
  - [GetDocumentAttributesResponse](docs/GetDocumentAttributesResponse.md)
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
  - [GetDocumentFulltextResponse](docs/GetDocumentFulltextResponse.md)
@@ -580,9 +582,9 @@ Class | Method | HTTP request | Description
  - [RulesetStatus](docs/RulesetStatus.md)
  - [SchemaAttributes](docs/SchemaAttributes.md)
  - [SearchRangeDataType](docs/SearchRangeDataType.md)
- - [SearchResponseAttributeField](docs/SearchResponseAttributeField.md)
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
+ - [SearchResultDocumentAttribute](docs/SearchResultDocumentAttribute.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
  - [SetDocumentAttributeRequest](docs/SetDocumentAttributeRequest.md)
  - [SetDocumentAttributesRequest](docs/SetDocumentAttributesRequest.md)

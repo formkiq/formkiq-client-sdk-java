@@ -8,6 +8,7 @@ All URIs are relative to *http://localhost*
 | [**deleteDocumentAttribute**](DocumentAttributesApi.md#deleteDocumentAttribute) | **DELETE** /documents/{documentId}/attributes/{attributeKey} | Delete document attribute |
 | [**deleteDocumentAttributeAndValue**](DocumentAttributesApi.md#deleteDocumentAttributeAndValue) | **DELETE** /documents/{documentId}/attributes/{attributeKey}/{attributeValue} | Delete document&#39;s attribute value |
 | [**getDocumentAttribute**](DocumentAttributesApi.md#getDocumentAttribute) | **GET** /documents/{documentId}/attributes/{attributeKey} | Get document attribute by key |
+| [**getDocumentAttributeVersions**](DocumentAttributesApi.md#getDocumentAttributeVersions) | **GET** /documents/{documentId}/attributes/{attributeKey}/versions | Get document attribute&#39;s versions |
 | [**getDocumentAttributes**](DocumentAttributesApi.md#getDocumentAttributes) | **GET** /documents/{documentId}/attributes | Get document&#39;s attributes |
 | [**setDocumentAttributeValue**](DocumentAttributesApi.md#setDocumentAttributeValue) | **PUT** /documents/{documentId}/attributes/{attributeKey} | Set document&#39;s attributes value |
 | [**setDocumentAttributes**](DocumentAttributesApi.md#setDocumentAttributes) | **PUT** /documents/{documentId}/attributes | Set document&#39;s attributes |
@@ -278,6 +279,79 @@ public class Example {
 ### Return type
 
 [**GetDocumentAttributeResponse**](GetDocumentAttributeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getDocumentAttributeVersions"></a>
+# **getDocumentAttributeVersions**
+> GetDocumentAttributeVersionsResponse getDocumentAttributeVersions(documentId, attributeKey, siteId, limit, next)
+
+Get document attribute&#39;s versions
+
+Get a listing of a document&#39;s attribute versions; ONLY available with FormKiQ Pro and Enterprise
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentAttributesApi apiInstance = new DocumentAttributesApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
+    String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    String next = "next_example"; // String | Next page of results token
+    try {
+      GetDocumentAttributeVersionsResponse result = apiInstance.getDocumentAttributeVersions(documentId, attributeKey, siteId, limit, next);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentAttributesApi#getDocumentAttributeVersions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **attributeKey** | **String**| Attribute Key | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **next** | **String**| Next page of results token | [optional] |
+
+### Return type
+
+[**GetDocumentAttributeVersionsResponse**](GetDocumentAttributeVersionsResponse.md)
 
 ### Authorization
 

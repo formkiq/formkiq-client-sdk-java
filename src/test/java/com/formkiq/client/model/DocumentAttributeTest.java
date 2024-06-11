@@ -94,4 +94,20 @@ public class DocumentAttributeTest {
     // TODO: test booleanValue
   }
 
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
+  /**
+   * Test the property 'userId'
+   */
+  @Test
+  public void userIdTest() {
+    // TODO: test userId
+  }
+
 }

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-06T21:21:56.182904-05:00[America/Winnipeg]",
+    date = "2024-06-10T20:23:40.951984-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class DocumentAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
@@ -85,6 +85,14 @@ public class DocumentAttribute {
   public static final String SERIALIZED_NAME_BOOLEAN_VALUE = "booleanValue";
   @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
   private Boolean booleanValue;
+
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  private String insertedDate;
+
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
   public DocumentAttribute() {}
 
@@ -224,6 +232,46 @@ public class DocumentAttribute {
   }
 
 
+  public DocumentAttribute insertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   **/
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+  public void setInsertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
+
+  public DocumentAttribute userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * User who added attribute
+   * 
+   * @return userId
+   **/
+  @javax.annotation.Nullable
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -239,12 +287,15 @@ public class DocumentAttribute {
         && Objects.equals(this.stringValues, documentAttribute.stringValues)
         && Objects.equals(this.numberValue, documentAttribute.numberValue)
         && Objects.equals(this.numberValues, documentAttribute.numberValues)
-        && Objects.equals(this.booleanValue, documentAttribute.booleanValue);
+        && Objects.equals(this.booleanValue, documentAttribute.booleanValue)
+        && Objects.equals(this.insertedDate, documentAttribute.insertedDate)
+        && Objects.equals(this.userId, documentAttribute.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, stringValue, stringValues, numberValue, numberValues, booleanValue);
+    return Objects.hash(key, stringValue, stringValues, numberValue, numberValues, booleanValue,
+        insertedDate, userId);
   }
 
   @Override
@@ -257,6 +308,8 @@ public class DocumentAttribute {
     sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -284,6 +337,8 @@ public class DocumentAttribute {
     openapiFields.add("numberValue");
     openapiFields.add("numberValues");
     openapiFields.add("booleanValue");
+    openapiFields.add("insertedDate");
+    openapiFields.add("userId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -340,6 +395,18 @@ public class DocumentAttribute {
       throw new IllegalArgumentException(String.format(
           "Expected the field `numberValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("numberValues").toString()));
+    }
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
+    }
+    if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
+        && !jsonObj.get("userId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("userId").toString()));
     }
   }
 
