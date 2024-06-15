@@ -233,6 +233,7 @@ docs/ModelCase.md
 docs/Nigo.md
 docs/NigoStatus.md
 docs/OcrEngine.md
+docs/OcrOutputType.md
 docs/OnlyOfficeConfig.md
 docs/OnlyOfficeConfigDocument.md
 docs/OnlyOfficeDocumentNewRequest.md
@@ -621,6 +622,7 @@ src/main/java/com/formkiq/client/model/ModelCase.java
 src/main/java/com/formkiq/client/model/Nigo.java
 src/main/java/com/formkiq/client/model/NigoStatus.java
 src/main/java/com/formkiq/client/model/OcrEngine.java
+src/main/java/com/formkiq/client/model/OcrOutputType.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfig.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfigDocument.java
 src/main/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequest.java
@@ -967,6 +969,7 @@ src/test/java/com/formkiq/client/model/ModelCaseTest.java
 src/test/java/com/formkiq/client/model/NigoStatusTest.java
 src/test/java/com/formkiq/client/model/NigoTest.java
 src/test/java/com/formkiq/client/model/OcrEngineTest.java
+src/test/java/com/formkiq/client/model/OcrOutputTypeTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigDocumentTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequestTest.java

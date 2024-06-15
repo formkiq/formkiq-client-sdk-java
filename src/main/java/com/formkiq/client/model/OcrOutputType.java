@@ -30,22 +30,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Rule condition attribute
+ * OCR Engine output format (textract table only)
  */
-@JsonAdapter(RuleConditionCriterion.Adapter.class)
-public enum RuleConditionCriterion {
+@JsonAdapter(OcrOutputType.Adapter.class)
+public enum OcrOutputType {
 
-  TEXT("TEXT"),
-
-  CONTENT_TYPE("CONTENT_TYPE"),
-
-  BARCODE("BARCODE"),
-
-  FIELD("FIELD");
+  CSV("CSV");
 
   private String value;
 
-  RuleConditionCriterion(String value) {
+  OcrOutputType(String value) {
     this.value = value;
   }
 
@@ -58,8 +52,8 @@ public enum RuleConditionCriterion {
     return String.valueOf(value);
   }
 
-  public static RuleConditionCriterion fromValue(String value) {
-    for (RuleConditionCriterion b : RuleConditionCriterion.values()) {
+  public static OcrOutputType fromValue(String value) {
+    for (OcrOutputType b : OcrOutputType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -67,23 +61,23 @@ public enum RuleConditionCriterion {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<RuleConditionCriterion> {
+  public static class Adapter extends TypeAdapter<OcrOutputType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final RuleConditionCriterion enumeration)
+    public void write(final JsonWriter jsonWriter, final OcrOutputType enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public RuleConditionCriterion read(final JsonReader jsonReader) throws IOException {
+    public OcrOutputType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return RuleConditionCriterion.fromValue(value);
+      return OcrOutputType.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    RuleConditionCriterion.fromValue(value);
+    OcrOutputType.fromValue(value);
   }
 }
 

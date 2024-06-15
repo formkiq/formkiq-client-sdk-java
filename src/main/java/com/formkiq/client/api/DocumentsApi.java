@@ -928,6 +928,203 @@ public class DocumentsApi {
   }
 
   /**
+   * Build call for deletePublishedDocumentContent
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deletePublishedDocumentContentCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/published/documents/{documentId}".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deletePublishedDocumentContentValidateBeforeCall(String documentId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling deletePublishedDocumentContent(Async)");
+    }
+
+    return deletePublishedDocumentContentCall(documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Delete published document&#39;s contents Delete a published document&#39;s contents. Certain
+   * content types, text/_*, application/json, and application/x-www-form-urlencoded. return the
+   * \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for
+   * retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deletePublishedDocumentContent(String documentId, String siteId)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        deletePublishedDocumentContentWithHttpInfo(documentId, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete published document&#39;s contents Delete a published document&#39;s contents. Certain
+   * content types, text/_*, application/json, and application/x-www-form-urlencoded. return the
+   * \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for
+   * retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deletePublishedDocumentContentWithHttpInfo(String documentId,
+      String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deletePublishedDocumentContentValidateBeforeCall(documentId, siteId, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete published document&#39;s contents (asynchronously) Delete a published document&#39;s
+   * contents. Certain content types, text/_*, application/json, and
+   * application/x-www-form-urlencoded. return the \&quot;content\&quot; field, while all other
+   * content types return a &#39;contentUrl&#39; for retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deletePublishedDocumentContentAsync(String documentId, String siteId,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deletePublishedDocumentContentValidateBeforeCall(documentId, siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getDocument
    * 
    * @param documentId Document Identifier (required)
@@ -2447,6 +2644,189 @@ public class DocumentsApi {
         tz, next, previous, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getPublishedDocumentContent
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>307</td>
+   *                        <td>Temporary Redirect</td>
+   *                        <td>* Location - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getPublishedDocumentContentCall(String documentId, String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/published/documents/{documentId}".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getPublishedDocumentContentValidateBeforeCall(String documentId,
+      String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getPublishedDocumentContent(Async)");
+    }
+
+    return getPublishedDocumentContentCall(documentId, siteId, _callback);
+
+  }
+
+  /**
+   * Get published document&#39;s contents Get a published document&#39;s contents. Certain content
+   * types, text/_*, application/json, and application/x-www-form-urlencoded. return the
+   * \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for
+   * retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>307</td>
+   *                        <td>Temporary Redirect</td>
+   *                        <td>* Location - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public void getPublishedDocumentContent(String documentId, String siteId) throws ApiException {
+    getPublishedDocumentContentWithHttpInfo(documentId, siteId);
+  }
+
+  /**
+   * Get published document&#39;s contents Get a published document&#39;s contents. Certain content
+   * types, text/_*, application/json, and application/x-www-form-urlencoded. return the
+   * \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for
+   * retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>307</td>
+   *                        <td>Temporary Redirect</td>
+   *                        <td>* Location - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<Void> getPublishedDocumentContentWithHttpInfo(String documentId, String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        getPublishedDocumentContentValidateBeforeCall(documentId, siteId, null);
+    return localVarApiClient.execute(localVarCall);
+  }
+
+  /**
+   * Get published document&#39;s contents (asynchronously) Get a published document&#39;s contents.
+   * Certain content types, text/_*, application/json, and application/x-www-form-urlencoded. return
+   * the \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39;
+   * for retrieving the content.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>307</td>
+   *                        <td>Temporary Redirect</td>
+   *                        <td>* Location - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getPublishedDocumentContentAsync(String documentId, String siteId,
+      final ApiCallback<Void> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getPublishedDocumentContentValidateBeforeCall(documentId, siteId, _callback);
+    localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }
 

@@ -184,7 +184,7 @@ public class DocumentActionsApi {
    * the table below: ### Action Parameters | ActionType | Parameter | Description | Example | |
    * -------- | ------- | ------- | ------- | | OCR | ocrParseTypes | Ocr Parsing strategy to use |
    * TEXT, FORMS, TABLES | | OCR | ocrEngine | Ocr Engine to use | tesseract or textract | | OCR |
-   * ocrExportToCsv | Convert OCR result to CSV (textract table only) | true | | OCR |
+   * ocrOutputType | Convert OCR result to an Output format (textract table only) | true | | OCR |
    * ocrNumberOfPages | Number of pages to OCR (from start) | -1 | | OCR |
    * addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | |
    * FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
@@ -239,7 +239,7 @@ public class DocumentActionsApi {
    * the table below: ### Action Parameters | ActionType | Parameter | Description | Example | |
    * -------- | ------- | ------- | ------- | | OCR | ocrParseTypes | Ocr Parsing strategy to use |
    * TEXT, FORMS, TABLES | | OCR | ocrEngine | Ocr Engine to use | tesseract or textract | | OCR |
-   * ocrExportToCsv | Convert OCR result to CSV (textract table only) | true | | OCR |
+   * ocrOutputType | Convert OCR result to an Output format (textract table only) | true | | OCR |
    * ocrNumberOfPages | Number of pages to OCR (from start) | -1 | | OCR |
    * addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | |
    * FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
@@ -295,13 +295,13 @@ public class DocumentActionsApi {
    * parameters as shown in the table below: ### Action Parameters | ActionType | Parameter |
    * Description | Example | | -------- | ------- | ------- | ------- | | OCR | ocrParseTypes | Ocr
    * Parsing strategy to use | TEXT, FORMS, TABLES | | OCR | ocrEngine | Ocr Engine to use |
-   * tesseract or textract | | OCR | ocrExportToCsv | Convert OCR result to CSV (textract table
-   * only) | true | | OCR | ocrNumberOfPages | Number of pages to OCR (from start) | -1 | | OCR |
-   * addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | |
-   * FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
-   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
-   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
-   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
+   * tesseract or textract | | OCR | ocrOutputType | Convert OCR result to an Output format
+   * (textract table only) | true | | OCR | ocrNumberOfPages | Number of pages to OCR (from start) |
+   * -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or
+   * false | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination
+   * | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags
+   * | Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL
+   * | https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification

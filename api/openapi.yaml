@@ -3342,7 +3342,7 @@ paths:
         | -------- | ------- | ------- | ------- |
         | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
         | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
-        | OCR | ocrExportToCsv     | Convert OCR result to CSV (textract table only) | true |
+        | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true |
         | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
@@ -9333,6 +9333,103 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
       x-accepts:
       - application/json
+  /published/documents/{documentId}:
+    delete:
+      description: "Delete a published document's contents. Certain content types,\
+        \ text/*, application/json, and application/x-www-form-urlencoded. return\
+        \ the  \"content\" field, while all other content types return a 'contentUrl'\
+        \ for retrieving the content."
+      operationId: DeletePublishedDocumentContent
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Delete published document's contents
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: "Get a published document's contents. Certain content types, text/*,\
+        \ application/json, and application/x-www-form-urlencoded. return the  \"\
+        content\" field, while all other content types return a 'contentUrl' for retrieving\
+        \ the content."
+      operationId: GetPublishedDocumentContent
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "307":
+          description: Temporary Redirect
+          headers:
+            Location:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get published document's contents
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -11364,6 +11461,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11374,7 +11472,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -11383,6 +11480,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11393,7 +11491,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         tags:
         - values:
@@ -11537,6 +11634,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11547,7 +11645,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -11556,6 +11653,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11566,7 +11664,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         content: content
         tags:
@@ -11729,6 +11826,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11739,7 +11837,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -11748,6 +11845,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -11758,7 +11856,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         content: content
         tags:
@@ -14708,7 +14805,7 @@ components:
           type: array
       type: object
     RuleConditionCriterion:
-      description: "Rule condition attribute (deprecated, use Criterion)"
+      description: Rule condition attribute
       enum:
       - TEXT
       - CONTENT_TYPE
@@ -15189,7 +15286,6 @@ components:
       - NUMBER
       - BOOLEAN
       - KEY_ONLY
-      - COMPOSITE_STRING
       type: string
     AddAttributeRequest:
       example:
@@ -15476,6 +15572,7 @@ components:
       - QUEUE
       - WEBHOOK
       - IDP
+      - PUBLISH
       type: string
     DocumentAction:
       example:
@@ -15825,6 +15922,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -15835,7 +15933,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -15844,6 +15941,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -15854,7 +15952,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
       properties:
         actions:
@@ -15872,6 +15969,7 @@ components:
           characterMax: characterMax
           ocrEngine: TESSERACT
           ocrParseTypes: ocrParseTypes
+          ocrOutputType: CSV
           addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
           ocrNumberOfPages: ocrNumberOfPages
           notificationType: email
@@ -15882,7 +15980,6 @@ components:
           notificationSubject: notificationSubject
           engine: chatgpt
           notificationText: notificationText
-          ocrExportToCsv: ocrExportToCsv
           notificationHtml: notificationHtml
       properties:
         type:
@@ -15901,12 +15998,18 @@ components:
       - TESSERACT
       - TEXTRACT
       type: string
+    OcrOutputType:
+      description: OCR Engine output format (textract table only)
+      enum:
+      - CSV
+      type: string
     AddActionParameters:
       example:
         mappingId: mappingId
         characterMax: characterMax
         ocrEngine: TESSERACT
         ocrParseTypes: ocrParseTypes
+        ocrOutputType: CSV
         addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
         ocrNumberOfPages: ocrNumberOfPages
         notificationType: email
@@ -15917,7 +16020,6 @@ components:
         notificationSubject: notificationSubject
         engine: chatgpt
         notificationText: notificationText
-        ocrExportToCsv: ocrExportToCsv
         notificationHtml: notificationHtml
       properties:
         ocrParseTypes:
@@ -15925,9 +16027,8 @@ components:
           type: string
         ocrEngine:
           $ref: '#/components/schemas/OcrEngine'
-        ocrExportToCsv:
-          description: Convert OCR result to CSV (textract table only)
-          type: string
+        ocrOutputType:
+          $ref: '#/components/schemas/OcrOutputType'
         ocrNumberOfPages:
           description: Number of pages to OCR (from start) (-1 all)
           type: string
@@ -15998,9 +16099,8 @@ components:
         ocrNumberOfPages:
           description: Number of pages to OCR (from start) (-1 all)
           type: string
-        ocrExportToCsv:
-          description: Whether to Export to CSV
-          type: boolean
+        ocrOutputType:
+          $ref: '#/components/schemas/OcrOutputType'
       type: object
     SetDocumentOcrRequest:
       example:
@@ -16994,6 +17094,7 @@ components:
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
@@ -17004,7 +17105,6 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
-              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17025,6 +17125,7 @@ components:
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
@@ -17035,7 +17136,6 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
-              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17081,6 +17181,7 @@ components:
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
@@ -17091,7 +17192,6 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
-              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17112,6 +17212,7 @@ components:
               characterMax: characterMax
               ocrEngine: TESSERACT
               ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
@@ -17122,7 +17223,6 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
-              ocrExportToCsv: ocrExportToCsv
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17165,6 +17265,7 @@ components:
             characterMax: characterMax
             ocrEngine: TESSERACT
             ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
@@ -17175,7 +17276,6 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
-            ocrExportToCsv: ocrExportToCsv
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId

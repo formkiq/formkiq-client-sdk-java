@@ -21,5 +21,7 @@
 
 * `IDP` (value: `"IDP"`)
 
+* `PUBLISH` (value: `"PUBLISH"`)
+
 
 

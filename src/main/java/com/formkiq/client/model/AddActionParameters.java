@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.OcrEngine;
+import com.formkiq.client.model.OcrOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-10T20:23:40.951984-05:00[America/Winnipeg]",
+    date = "2024-06-14T22:07:09.313909-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
@@ -68,9 +69,9 @@ public class AddActionParameters {
   @SerializedName(SERIALIZED_NAME_OCR_ENGINE)
   private OcrEngine ocrEngine;
 
-  public static final String SERIALIZED_NAME_OCR_EXPORT_TO_CSV = "ocrExportToCsv";
-  @SerializedName(SERIALIZED_NAME_OCR_EXPORT_TO_CSV)
-  private String ocrExportToCsv;
+  public static final String SERIALIZED_NAME_OCR_OUTPUT_TYPE = "ocrOutputType";
+  @SerializedName(SERIALIZED_NAME_OCR_OUTPUT_TYPE)
+  private OcrOutputType ocrOutputType;
 
   public static final String SERIALIZED_NAME_OCR_NUMBER_OF_PAGES = "ocrNumberOfPages";
   @SerializedName(SERIALIZED_NAME_OCR_NUMBER_OF_PAGES)
@@ -269,23 +270,23 @@ public class AddActionParameters {
   }
 
 
-  public AddActionParameters ocrExportToCsv(String ocrExportToCsv) {
-    this.ocrExportToCsv = ocrExportToCsv;
+  public AddActionParameters ocrOutputType(OcrOutputType ocrOutputType) {
+    this.ocrOutputType = ocrOutputType;
     return this;
   }
 
   /**
-   * Convert OCR result to CSV (textract table only)
+   * Get ocrOutputType
    * 
-   * @return ocrExportToCsv
+   * @return ocrOutputType
    **/
   @javax.annotation.Nullable
-  public String getOcrExportToCsv() {
-    return ocrExportToCsv;
+  public OcrOutputType getOcrOutputType() {
+    return ocrOutputType;
   }
 
-  public void setOcrExportToCsv(String ocrExportToCsv) {
-    this.ocrExportToCsv = ocrExportToCsv;
+  public void setOcrOutputType(OcrOutputType ocrOutputType) {
+    this.ocrOutputType = ocrOutputType;
   }
 
 
@@ -561,7 +562,7 @@ public class AddActionParameters {
     AddActionParameters addActionParameters = (AddActionParameters) o;
     return Objects.equals(this.ocrParseTypes, addActionParameters.ocrParseTypes)
         && Objects.equals(this.ocrEngine, addActionParameters.ocrEngine)
-        && Objects.equals(this.ocrExportToCsv, addActionParameters.ocrExportToCsv)
+        && Objects.equals(this.ocrOutputType, addActionParameters.ocrOutputType)
         && Objects.equals(this.ocrNumberOfPages, addActionParameters.ocrNumberOfPages)
         && Objects.equals(this.addPdfDetectedCharactersAsText,
             addActionParameters.addPdfDetectedCharactersAsText)
@@ -580,7 +581,7 @@ public class AddActionParameters {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ocrParseTypes, ocrEngine, ocrExportToCsv, ocrNumberOfPages,
+    return Objects.hash(ocrParseTypes, ocrEngine, ocrOutputType, ocrNumberOfPages,
         addPdfDetectedCharactersAsText, url, characterMax, engine, notificationType,
         notificationToCc, notificationToBcc, notificationSubject, notificationText,
         notificationHtml, tags, mappingId);
@@ -592,7 +593,7 @@ public class AddActionParameters {
     sb.append("class AddActionParameters {\n");
     sb.append("    ocrParseTypes: ").append(toIndentedString(ocrParseTypes)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
-    sb.append("    ocrExportToCsv: ").append(toIndentedString(ocrExportToCsv)).append("\n");
+    sb.append("    ocrOutputType: ").append(toIndentedString(ocrOutputType)).append("\n");
     sb.append("    ocrNumberOfPages: ").append(toIndentedString(ocrNumberOfPages)).append("\n");
     sb.append("    addPdfDetectedCharactersAsText: ")
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
@@ -631,7 +632,7 @@ public class AddActionParameters {
     openapiFields = new HashSet<String>();
     openapiFields.add("ocrParseTypes");
     openapiFields.add("ocrEngine");
-    openapiFields.add("ocrExportToCsv");
+    openapiFields.add("ocrOutputType");
     openapiFields.add("ocrNumberOfPages");
     openapiFields.add("addPdfDetectedCharactersAsText");
     openapiFields.add("url");
@@ -686,11 +687,9 @@ public class AddActionParameters {
     if (jsonObj.get("ocrEngine") != null && !jsonObj.get("ocrEngine").isJsonNull()) {
       OcrEngine.validateJsonElement(jsonObj.get("ocrEngine"));
     }
-    if ((jsonObj.get("ocrExportToCsv") != null && !jsonObj.get("ocrExportToCsv").isJsonNull())
-        && !jsonObj.get("ocrExportToCsv").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `ocrExportToCsv` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("ocrExportToCsv").toString()));
+    // validate the optional field `ocrOutputType`
+    if (jsonObj.get("ocrOutputType") != null && !jsonObj.get("ocrOutputType").isJsonNull()) {
+      OcrOutputType.validateJsonElement(jsonObj.get("ocrOutputType"));
     }
     if ((jsonObj.get("ocrNumberOfPages") != null && !jsonObj.get("ocrNumberOfPages").isJsonNull())
         && !jsonObj.get("ocrNumberOfPages").isJsonPrimitive()) {

@@ -123,6 +123,23 @@ public class DocumentsApiTest {
   }
 
   /**
+   * Delete published document&#39;s contents
+   *
+   * Delete a published document&#39;s contents. Certain content types, text/_*, application/json,
+   * and application/x-www-form-urlencoded. return the \&quot;content\&quot; field, while all other
+   * content types return a &#39;contentUrl&#39; for retrieving the content.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deletePublishedDocumentContentTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    DeleteResponse response = api.deletePublishedDocumentContent(documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get document
    *
    * Retrieves a document&#39;s details, i.e., metadata
@@ -255,6 +272,23 @@ public class DocumentsApiTest {
     String limit = null;
     GetDocumentsResponse response =
         api.getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Get published document&#39;s contents
+   *
+   * Get a published document&#39;s contents. Certain content types, text/_*, application/json, and
+   * application/x-www-form-urlencoded. return the \&quot;content\&quot; field, while all other
+   * content types return a &#39;contentUrl&#39; for retrieving the content.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getPublishedDocumentContentTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    api.getPublishedDocumentContent(documentId, siteId);
     // TODO: test validations
   }
 

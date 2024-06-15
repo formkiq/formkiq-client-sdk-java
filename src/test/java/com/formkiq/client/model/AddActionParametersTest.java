@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.OcrEngine;
+import com.formkiq.client.model.OcrOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,11 +62,11 @@ public class AddActionParametersTest {
   }
 
   /**
-   * Test the property 'ocrExportToCsv'
+   * Test the property 'ocrOutputType'
    */
   @Test
-  public void ocrExportToCsvTest() {
-    // TODO: test ocrExportToCsv
+  public void ocrOutputTypeTest() {
+    // TODO: test ocrOutputType
   }
 
   /**

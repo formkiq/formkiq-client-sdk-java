@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.OcrEngine;
+import com.formkiq.client.model.OcrOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-10T20:23:40.951984-05:00[America/Winnipeg]",
+    date = "2024-06-14T22:07:09.313909-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
@@ -79,9 +80,9 @@ public class AddDocumentOcrRequest {
   @SerializedName(SERIALIZED_NAME_OCR_NUMBER_OF_PAGES)
   private String ocrNumberOfPages;
 
-  public static final String SERIALIZED_NAME_OCR_EXPORT_TO_CSV = "ocrExportToCsv";
-  @SerializedName(SERIALIZED_NAME_OCR_EXPORT_TO_CSV)
-  private Boolean ocrExportToCsv;
+  public static final String SERIALIZED_NAME_OCR_OUTPUT_TYPE = "ocrOutputType";
+  @SerializedName(SERIALIZED_NAME_OCR_OUTPUT_TYPE)
+  private OcrOutputType ocrOutputType;
 
   public AddDocumentOcrRequest() {}
 
@@ -174,23 +175,23 @@ public class AddDocumentOcrRequest {
   }
 
 
-  public AddDocumentOcrRequest ocrExportToCsv(Boolean ocrExportToCsv) {
-    this.ocrExportToCsv = ocrExportToCsv;
+  public AddDocumentOcrRequest ocrOutputType(OcrOutputType ocrOutputType) {
+    this.ocrOutputType = ocrOutputType;
     return this;
   }
 
   /**
-   * Whether to Export to CSV
+   * Get ocrOutputType
    * 
-   * @return ocrExportToCsv
+   * @return ocrOutputType
    **/
   @javax.annotation.Nullable
-  public Boolean getOcrExportToCsv() {
-    return ocrExportToCsv;
+  public OcrOutputType getOcrOutputType() {
+    return ocrOutputType;
   }
 
-  public void setOcrExportToCsv(Boolean ocrExportToCsv) {
-    this.ocrExportToCsv = ocrExportToCsv;
+  public void setOcrOutputType(OcrOutputType ocrOutputType) {
+    this.ocrOutputType = ocrOutputType;
   }
 
 
@@ -209,13 +210,13 @@ public class AddDocumentOcrRequest {
             addDocumentOcrRequest.addPdfDetectedCharactersAsText)
         && Objects.equals(this.ocrEngine, addDocumentOcrRequest.ocrEngine)
         && Objects.equals(this.ocrNumberOfPages, addDocumentOcrRequest.ocrNumberOfPages)
-        && Objects.equals(this.ocrExportToCsv, addDocumentOcrRequest.ocrExportToCsv);
+        && Objects.equals(this.ocrOutputType, addDocumentOcrRequest.ocrOutputType);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(parseTypes, addPdfDetectedCharactersAsText, ocrEngine, ocrNumberOfPages,
-        ocrExportToCsv);
+        ocrOutputType);
   }
 
   @Override
@@ -227,7 +228,7 @@ public class AddDocumentOcrRequest {
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrNumberOfPages: ").append(toIndentedString(ocrNumberOfPages)).append("\n");
-    sb.append("    ocrExportToCsv: ").append(toIndentedString(ocrExportToCsv)).append("\n");
+    sb.append("    ocrOutputType: ").append(toIndentedString(ocrOutputType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -253,7 +254,7 @@ public class AddDocumentOcrRequest {
     openapiFields.add("addPdfDetectedCharactersAsText");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrNumberOfPages");
-    openapiFields.add("ocrExportToCsv");
+    openapiFields.add("ocrOutputType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -301,6 +302,10 @@ public class AddDocumentOcrRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `ocrNumberOfPages` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrNumberOfPages").toString()));
+    }
+    // validate the optional field `ocrOutputType`
+    if (jsonObj.get("ocrOutputType") != null && !jsonObj.get("ocrOutputType").isJsonNull()) {
+      OcrOutputType.validateJsonElement(jsonObj.get("ocrOutputType"));
     }
   }
 

@@ -49,7 +49,9 @@ public enum DocumentActionType {
 
   WEBHOOK("WEBHOOK"),
 
-  IDP("IDP");
+  IDP("IDP"),
+
+  PUBLISH("PUBLISH");
 
   private String value;
 

@@ -13,7 +13,5 @@
 
 * `KEY_ONLY` (value: `"KEY_ONLY"`)
 
-* `COMPOSITE_STRING` (value: `"COMPOSITE_STRING"`)
-
 
 

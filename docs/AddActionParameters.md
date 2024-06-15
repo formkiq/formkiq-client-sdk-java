@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**ocrParseTypes** | **String** | OCR: Parse types - TEXT, FORMS, TABLES |  [optional] |
 |**ocrEngine** | **OcrEngine** |  |  [optional] |
-|**ocrExportToCsv** | **String** | Convert OCR result to CSV (textract table only) |  [optional] |
+|**ocrOutputType** | **OcrOutputType** |  |  [optional] |
 |**ocrNumberOfPages** | **String** | Number of pages to OCR (from start) (-1 all) |  [optional] |
 |**addPdfDetectedCharactersAsText** | **String** | OCR: For the rewriting of the PDF document, converting any image text to searchable text |  [optional] |
 |**url** | **String** | Webhook: Callback URL |  [optional] |

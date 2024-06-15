@@ -41,9 +41,7 @@ public enum AttributeDataType {
 
   BOOLEAN("BOOLEAN"),
 
-  KEY_ONLY("KEY_ONLY"),
-
-  COMPOSITE_STRING("COMPOSITE_STRING");
+  KEY_ONLY("KEY_ONLY");
 
   private String value;
 

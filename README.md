@@ -273,6 +273,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
+*DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /published/documents/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
@@ -280,6 +281,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getDocumentUpload**](docs/DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document
 *DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url
 *DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
+*DocumentsApi* | [**getPublishedDocumentContent**](docs/DocumentsApi.md#getPublishedDocumentContent) | **GET** /published/documents/{documentId} | Get published document&#39;s contents
 *DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
 *ESignatureApi* | [**addEsignatureDocusign**](docs/ESignatureApi.md#addEsignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
@@ -550,6 +552,7 @@ Class | Method | HTTP request | Description
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)
  - [OcrEngine](docs/OcrEngine.md)
+ - [OcrOutputType](docs/OcrOutputType.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
