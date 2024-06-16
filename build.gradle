@@ -83,9 +83,15 @@ publishing {
           credentials {
             username project.repoUser
             password project.repoPassword
+            // username project.githubUser
+            // password project.githubToken
           }
+          // maven central
           //url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
           url "https://oss.sonatype.org/content/repositories/snapshots/"
+          
+          // github packages
+          //url "https://maven.pkg.github.com/formkiq/formkiq-client-sdk-java"
         }
     }
 }

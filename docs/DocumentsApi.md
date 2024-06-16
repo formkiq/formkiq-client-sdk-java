@@ -8,7 +8,7 @@ All URIs are relative to *http://localhost*
 | [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document |
 | [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file |
 | [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document |
-| [**deletePublishedDocumentContent**](DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /published/documents/{documentId} | Delete published document&#39;s contents |
+| [**deletePublishedDocumentContent**](DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents |
 | [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document |
 | [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents |
 | [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document |
@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 | [**getDocumentUpload**](DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document |
 | [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url |
 | [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing |
-| [**getPublishedDocumentContent**](DocumentsApi.md#getPublishedDocumentContent) | **GET** /published/documents/{documentId} | Get published document&#39;s contents |
+| [**getPublishedDocumentContent**](DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents |
 | [**setDocumentRestore**](DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document |
 | [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document |
 

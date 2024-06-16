@@ -9333,7 +9333,7 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200'
       x-accepts:
       - application/json
-  /published/documents/{documentId}:
+  /publications/{documentId}:
     delete:
       description: "Delete a published document's contents. Certain content types,\
         \ text/*, application/json, and application/x-www-form-urlencoded. return\

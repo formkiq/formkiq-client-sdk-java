@@ -970,7 +970,7 @@ public class DocumentsApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/published/documents/{documentId}".replace("{" + "documentId" + "}",
+    String localVarPath = "/publications/{documentId}".replace("{" + "documentId" + "}",
         localVarApiClient.escapeString(documentId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2688,7 +2688,7 @@ public class DocumentsApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/published/documents/{documentId}".replace("{" + "documentId" + "}",
+    String localVarPath = "/publications/{documentId}".replace("{" + "documentId" + "}",
         localVarApiClient.escapeString(documentId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();

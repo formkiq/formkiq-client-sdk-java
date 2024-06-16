@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-14T22:07:09.313909-05:00[America/Winnipeg]",
+    date = "2024-06-15T14:16:48.642984-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class OnlyOfficeConfig {
   public static final String SERIALIZED_NAME_ONLY_OFFICE_URL = "onlyOfficeUrl";
