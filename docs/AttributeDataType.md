@@ -13,5 +13,7 @@
 
 * `KEY_ONLY` (value: `"KEY_ONLY"`)
 
+* `PUBLICATION` (value: `"PUBLICATION"`)
+
 
 

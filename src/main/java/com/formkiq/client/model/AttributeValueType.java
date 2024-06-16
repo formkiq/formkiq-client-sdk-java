@@ -41,7 +41,9 @@ public enum AttributeValueType {
 
   NUMBER("NUMBER"),
 
-  STRING("STRING");
+  STRING("STRING"),
+
+  PUBLICATION("PUBLICATION");
 
   private String value;
 

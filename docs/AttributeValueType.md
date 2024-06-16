@@ -13,5 +13,7 @@
 
 * `STRING` (value: `"STRING"`)
 
+* `PUBLICATION` (value: `"PUBLICATION"`)
+
 
 

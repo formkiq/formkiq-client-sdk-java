@@ -12662,6 +12662,7 @@ components:
       - KEY_ONLY
       - NUMBER
       - STRING
+      - PUBLICATION
       type: string
     FulltextAttribute:
       example:
@@ -15286,6 +15287,7 @@ components:
       - NUMBER
       - BOOLEAN
       - KEY_ONLY
+      - PUBLICATION
       type: string
     AddAttributeRequest:
       example:
