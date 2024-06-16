@@ -4,7 +4,7 @@
 This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
-- API version: 1.14.0
+- API version: 1.15.0
   - Build date: 2024-03-28T19:56:05.484023-05:00[America/Winnipeg]
   - Generator version: 7.4.0
 
