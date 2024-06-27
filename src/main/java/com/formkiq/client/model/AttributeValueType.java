@@ -43,7 +43,11 @@ public enum AttributeValueType {
 
   STRING("STRING"),
 
-  PUBLICATION("PUBLICATION");
+  PUBLICATION("PUBLICATION"),
+
+  CLASSIFICATION("CLASSIFICATION"),
+
+  COMPOSITE_STRING("COMPOSITE_STRING");
 
   private String value;
 

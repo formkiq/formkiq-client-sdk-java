@@ -20,6 +20,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AddDocumentAttributeClassification;
+import com.formkiq.client.model.AddDocumentAttributeStandard;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,326 +33,46 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
+
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParseException;
 
 import com.formkiq.client.invoker.JSON;
 
-/**
- * Document Attribute
- */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-16T11:16:04.034590-05:00[America/Winnipeg]",
+    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
-public class AddDocumentAttribute {
-  public static final String SERIALIZED_NAME_KEY = "key";
-  @SerializedName(SERIALIZED_NAME_KEY)
-  private String key;
-
-  public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
-  @SerializedName(SERIALIZED_NAME_STRING_VALUE)
-  private String stringValue;
-
-  public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
-  @SerializedName(SERIALIZED_NAME_STRING_VALUES)
-  private List<String> stringValues = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_NUMBER_VALUE = "numberValue";
-  @SerializedName(SERIALIZED_NAME_NUMBER_VALUE)
-  private BigDecimal numberValue;
-
-  public static final String SERIALIZED_NAME_NUMBER_VALUES = "numberValues";
-  @SerializedName(SERIALIZED_NAME_NUMBER_VALUES)
-  private List<BigDecimal> numberValues = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_BOOLEAN_VALUE = "booleanValue";
-  @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
-  private Boolean booleanValue;
-
-  public AddDocumentAttribute() {}
-
-  public AddDocumentAttribute key(String key) {
-    this.key = key;
-    return this;
-  }
-
-  /**
-   * Attribute key
-   * 
-   * @return key
-   **/
-  @javax.annotation.Nonnull
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
-  }
-
-
-  public AddDocumentAttribute stringValue(String stringValue) {
-    this.stringValue = stringValue;
-    return this;
-  }
-
-  /**
-   * Attribute with string value
-   * 
-   * @return stringValue
-   **/
-  @javax.annotation.Nullable
-  public String getStringValue() {
-    return stringValue;
-  }
-
-  public void setStringValue(String stringValue) {
-    this.stringValue = stringValue;
-  }
-
-
-  public AddDocumentAttribute stringValues(List<String> stringValues) {
-    this.stringValues = stringValues;
-    return this;
-  }
-
-  public AddDocumentAttribute addStringValuesItem(String stringValuesItem) {
-    if (this.stringValues == null) {
-      this.stringValues = new ArrayList<>();
-    }
-    this.stringValues.add(stringValuesItem);
-    return this;
-  }
-
-  /**
-   * Attribute with string values
-   * 
-   * @return stringValues
-   **/
-  @javax.annotation.Nullable
-  public List<String> getStringValues() {
-    return stringValues;
-  }
-
-  public void setStringValues(List<String> stringValues) {
-    this.stringValues = stringValues;
-  }
-
-
-  public AddDocumentAttribute numberValue(BigDecimal numberValue) {
-    this.numberValue = numberValue;
-    return this;
-  }
-
-  /**
-   * Attribute with number value
-   * 
-   * @return numberValue
-   **/
-  @javax.annotation.Nullable
-  public BigDecimal getNumberValue() {
-    return numberValue;
-  }
-
-  public void setNumberValue(BigDecimal numberValue) {
-    this.numberValue = numberValue;
-  }
-
-
-  public AddDocumentAttribute numberValues(List<BigDecimal> numberValues) {
-    this.numberValues = numberValues;
-    return this;
-  }
-
-  public AddDocumentAttribute addNumberValuesItem(BigDecimal numberValuesItem) {
-    if (this.numberValues == null) {
-      this.numberValues = new ArrayList<>();
-    }
-    this.numberValues.add(numberValuesItem);
-    return this;
-  }
-
-  /**
-   * Attribute with number values
-   * 
-   * @return numberValues
-   **/
-  @javax.annotation.Nullable
-  public List<BigDecimal> getNumberValues() {
-    return numberValues;
-  }
-
-  public void setNumberValues(List<BigDecimal> numberValues) {
-    this.numberValues = numberValues;
-  }
-
-
-  public AddDocumentAttribute booleanValue(Boolean booleanValue) {
-    this.booleanValue = booleanValue;
-    return this;
-  }
-
-  /**
-   * Attribute with boolean value
-   * 
-   * @return booleanValue
-   **/
-  @javax.annotation.Nullable
-  public Boolean getBooleanValue() {
-    return booleanValue;
-  }
-
-  public void setBooleanValue(Boolean booleanValue) {
-    this.booleanValue = booleanValue;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AddDocumentAttribute addDocumentAttribute = (AddDocumentAttribute) o;
-    return Objects.equals(this.key, addDocumentAttribute.key)
-        && Objects.equals(this.stringValue, addDocumentAttribute.stringValue)
-        && Objects.equals(this.stringValues, addDocumentAttribute.stringValues)
-        && Objects.equals(this.numberValue, addDocumentAttribute.numberValue)
-        && Objects.equals(this.numberValues, addDocumentAttribute.numberValues)
-        && Objects.equals(this.booleanValue, addDocumentAttribute.booleanValue);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(key, stringValue, stringValues, numberValue, numberValues, booleanValue);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentAttribute {\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    stringValue: ").append(toIndentedString(stringValue)).append("\n");
-    sb.append("    stringValues: ").append(toIndentedString(stringValues)).append("\n");
-    sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
-    sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
-    sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("key");
-    openapiFields.add("stringValue");
-    openapiFields.add("stringValues");
-    openapiFields.add("numberValue");
-    openapiFields.add("numberValues");
-    openapiFields.add("booleanValue");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("key");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocumentAttribute
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    if (jsonElement == null) {
-      if (!AddDocumentAttribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                   // element is null
-        throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocumentAttribute is not found in the empty JSON string",
-            AddDocumentAttribute.openapiRequiredFields.toString()));
-      }
-    }
-
-    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-    // check to see if the JSON string contains additional fields
-    for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentAttribute.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocumentAttribute` properties. JSON: %s",
-            entry.getKey(), jsonElement.toString()));
-      }
-    }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddDocumentAttribute.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
-    JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("key").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("key").toString()));
-    }
-    if ((jsonObj.get("stringValue") != null && !jsonObj.get("stringValue").isJsonNull())
-        && !jsonObj.get("stringValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `stringValue` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("stringValue").toString()));
-    }
-    // ensure the optional json data is an array if present
-    if (jsonObj.get("stringValues") != null && !jsonObj.get("stringValues").isJsonNull()
-        && !jsonObj.get("stringValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `stringValues` to be an array in the JSON string but got `%s`",
-          jsonObj.get("stringValues").toString()));
-    }
-    // ensure the optional json data is an array if present
-    if (jsonObj.get("numberValues") != null && !jsonObj.get("numberValues").isJsonNull()
-        && !jsonObj.get("numberValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `numberValues` to be an array in the JSON string but got `%s`",
-          jsonObj.get("numberValues").toString()));
-    }
-  }
+public class AddDocumentAttribute extends AbstractOpenApiSchema {
+  private static final Logger log = Logger.getLogger(AddDocumentAttribute.class.getName());
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
@@ -360,24 +82,204 @@ public class AddDocumentAttribute {
         return null; // this class only serializes 'AddDocumentAttribute' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentAttribute> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttribute.class));
+      final TypeAdapter<AddDocumentAttributeStandard> adapterAddDocumentAttributeStandard =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttributeStandard.class));
+      final TypeAdapter<AddDocumentAttributeClassification> adapterAddDocumentAttributeClassification =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttributeClassification.class));
 
       return (TypeAdapter<T>) new TypeAdapter<AddDocumentAttribute>() {
         @Override
         public void write(JsonWriter out, AddDocumentAttribute value) throws IOException {
-          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-          elementAdapter.write(out, obj);
+          if (value == null || value.getActualInstance() == null) {
+            elementAdapter.write(out, null);
+            return;
+          }
+
+          // check if the actual instance is of the type `AddDocumentAttributeStandard`
+          if (value.getActualInstance() instanceof AddDocumentAttributeStandard) {
+            JsonElement element = adapterAddDocumentAttributeStandard
+                .toJsonTree((AddDocumentAttributeStandard) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `AddDocumentAttributeClassification`
+          if (value.getActualInstance() instanceof AddDocumentAttributeClassification) {
+            JsonElement element = adapterAddDocumentAttributeClassification
+                .toJsonTree((AddDocumentAttributeClassification) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          throw new IOException(
+              "Failed to serialize as the type doesn't match oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeStandard");
         }
 
         @Override
         public AddDocumentAttribute read(JsonReader in) throws IOException {
+          Object deserialized = null;
           JsonElement jsonElement = elementAdapter.read(in);
-          validateJsonElement(jsonElement);
-          return thisAdapter.fromJsonTree(jsonElement);
-        }
 
+          int match = 0;
+          ArrayList<String> errorMessages = new ArrayList<>();
+          TypeAdapter actualAdapter = elementAdapter;
+
+          // deserialize AddDocumentAttributeStandard
+          try {
+            // validate the JSON object to see if any exception is thrown
+            AddDocumentAttributeStandard.validateJsonElement(jsonElement);
+            actualAdapter = adapterAddDocumentAttributeStandard;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeStandard'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(
+                String.format("Deserialization for AddDocumentAttributeStandard failed with `%s`.",
+                    e.getMessage()));
+            log.log(Level.FINER, "Input data does not match schema 'AddDocumentAttributeStandard'",
+                e);
+          }
+          // deserialize AddDocumentAttributeClassification
+          try {
+            // validate the JSON object to see if any exception is thrown
+            AddDocumentAttributeClassification.validateJsonElement(jsonElement);
+            actualAdapter = adapterAddDocumentAttributeClassification;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeClassification'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(
+                "Deserialization for AddDocumentAttributeClassification failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'AddDocumentAttributeClassification'", e);
+          }
+
+          if (match == 1) {
+            AddDocumentAttribute ret = new AddDocumentAttribute();
+            ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+            return ret;
+          }
+
+          throw new IOException(String.format(
+              "Failed deserialization for AddDocumentAttribute: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
+              match, errorMessages, jsonElement.toString()));
+        }
       }.nullSafe();
+    }
+  }
+
+  // store a list of schema names defined in oneOf
+  public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+  public AddDocumentAttribute() {
+    super("oneOf", Boolean.FALSE);
+  }
+
+  public AddDocumentAttribute(Object o) {
+    super("oneOf", Boolean.FALSE);
+    setActualInstance(o);
+  }
+
+  static {
+    schemas.put("AddDocumentAttributeStandard", AddDocumentAttributeStandard.class);
+    schemas.put("AddDocumentAttributeClassification", AddDocumentAttributeClassification.class);
+  }
+
+  @Override
+  public Map<String, Class<?>> getSchemas() {
+    return AddDocumentAttribute.schemas;
+  }
+
+  /**
+   * Set the instance that matches the oneOf child schema, check the instance parameter is valid
+   * against the oneOf child schemas: AddDocumentAttributeClassification,
+   * AddDocumentAttributeStandard
+   *
+   * It could be an instance of the 'oneOf' schemas.
+   */
+  @Override
+  public void setActualInstance(Object instance) {
+    if (instance instanceof AddDocumentAttributeStandard) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof AddDocumentAttributeClassification) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    throw new RuntimeException(
+        "Invalid instance type. Must be AddDocumentAttributeClassification, AddDocumentAttributeStandard");
+  }
+
+  /**
+   * Get the actual instance, which can be the following: AddDocumentAttributeClassification,
+   * AddDocumentAttributeStandard
+   *
+   * @return The actual instance (AddDocumentAttributeClassification, AddDocumentAttributeStandard)
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public Object getActualInstance() {
+    return super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `AddDocumentAttributeStandard`. If the actual instance is not
+   * `AddDocumentAttributeStandard`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `AddDocumentAttributeStandard`
+   * @throws ClassCastException if the instance is not `AddDocumentAttributeStandard`
+   */
+  public AddDocumentAttributeStandard getAddDocumentAttributeStandard() throws ClassCastException {
+    return (AddDocumentAttributeStandard) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `AddDocumentAttributeClassification`. If the actual instance is not
+   * `AddDocumentAttributeClassification`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `AddDocumentAttributeClassification`
+   * @throws ClassCastException if the instance is not `AddDocumentAttributeClassification`
+   */
+  public AddDocumentAttributeClassification getAddDocumentAttributeClassification()
+      throws ClassCastException {
+    return (AddDocumentAttributeClassification) super.getActualInstance();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AddDocumentAttribute
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    // validate oneOf schemas one by one
+    int validCount = 0;
+    ArrayList<String> errorMessages = new ArrayList<>();
+    // validate the json string with AddDocumentAttributeStandard
+    try {
+      AddDocumentAttributeStandard.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format(
+          "Deserialization for AddDocumentAttributeStandard failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
+    // validate the json string with AddDocumentAttributeClassification
+    try {
+      AddDocumentAttributeClassification.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(
+          String.format("Deserialization for AddDocumentAttributeClassification failed with `%s`.",
+              e.getMessage()));
+      // continue to the next one
+    }
+    if (validCount != 1) {
+      throw new IOException(String.format(
+          "The JSON string is invalid for AddDocumentAttribute with oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeStandard. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
+          validCount, errorMessages, jsonElement.toString()));
     }
   }
 

@@ -345,14 +345,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Version
-        explode: true
-        in: query
-        name: version
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -382,7 +374,7 @@ paths:
       tags:
       - Schemas
       x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200'
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
     put:
@@ -426,6 +418,268 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Set Sites Schema
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/classifications:
+    get:
+      description: Gets Sites Classifications
+      operationId: GetSitesClassifications
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClassificationsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Sites Classifications
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add Classification
+      operationId: AddClassification
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddClassificationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddClassificationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add Classification
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/classifications/{classificationId}:
+    delete:
+      description: Delete Classification
+      operationId: DeleteClassification
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Classification Identifier
+        explode: false
+        in: path
+        name: classificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Classification
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Get Classification
+      operationId: GetClassification
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Classification Identifier
+        explode: false
+        in: path
+        name: classificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClassificationResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - ApiAuthorization: []
+      summary: Get Classification
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Sets Classification
+      operationId: SetClassification
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Classification Identifier
+        explode: false
+        in: path
+        name: classificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetClassificationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Set Classification
       tags:
       - Schemas
       x-amazon-apigateway-integration:
@@ -9673,6 +9927,15 @@ components:
       schema:
         type: string
       style: simple
+    classificationIdParam:
+      description: Classification Identifier
+      explode: false
+      in: path
+      name: classificationId
+      required: true
+      schema:
+        type: string
+      style: simple
     documentIdParam:
       description: Document Identifier
       explode: false
@@ -10078,6 +10341,7 @@ components:
           - stringValues
           - stringValues
           insertedDate: insertedDate
+          valueType: BOOLEAN
           booleanValue: true
           numberValue: 0.8008281904610115
           userId: userId
@@ -10090,6 +10354,7 @@ components:
           - stringValues
           - stringValues
           insertedDate: insertedDate
+          valueType: BOOLEAN
           booleanValue: true
           numberValue: 0.8008281904610115
           userId: userId
@@ -10497,6 +10762,7 @@ components:
           - stringValues
           - stringValues
           insertedDate: insertedDate
+          valueType: BOOLEAN
           booleanValue: true
           numberValue: 0.8008281904610115
           userId: userId
@@ -10517,6 +10783,7 @@ components:
           - stringValues
           - stringValues
           insertedDate: insertedDate
+          valueType: BOOLEAN
           booleanValue: true
           numberValue: 0.8008281904610115
           userId: userId
@@ -10529,6 +10796,7 @@ components:
           - stringValues
           - stringValues
           insertedDate: insertedDate
+          valueType: BOOLEAN
           booleanValue: true
           numberValue: 0.8008281904610115
           userId: userId
@@ -12206,6 +12474,19 @@ components:
           type: boolean
       type: object
     AddDocumentAttribute:
+      oneOf:
+      - $ref: '#/components/schemas/AddDocumentAttributeStandard'
+      - $ref: '#/components/schemas/AddDocumentAttributeClassification'
+    AddDocumentAttributeClassification:
+      description: Document Classification
+      properties:
+        classificationId:
+          description: Classification Identifier
+          type: string
+      required:
+      - classificationKey
+      type: object
+    AddDocumentAttributeStandard:
       description: Document Attribute
       example:
         numberValues:
@@ -12389,6 +12670,7 @@ components:
         - stringValues
         - stringValues
         insertedDate: insertedDate
+        valueType: BOOLEAN
         booleanValue: true
         numberValue: 0.8008281904610115
         userId: userId
@@ -12422,6 +12704,8 @@ components:
         userId:
           description: User who added attribute
           type: string
+        valueType:
+          $ref: '#/components/schemas/AttributeValueType'
       type: object
     DocumentTag:
       example:
@@ -12663,6 +12947,8 @@ components:
       - NUMBER
       - STRING
       - PUBLICATION
+      - CLASSIFICATION
+      - COMPOSITE_STRING
       type: string
     FulltextAttribute:
       example:
@@ -15225,7 +15511,6 @@ components:
       example:
         attribute:
           dataType: STRING
-          inUse: true
           type: STANDARD
           key: key
       properties:
@@ -15237,11 +15522,9 @@ components:
         next: next
         attributes:
         - dataType: STRING
-          inUse: true
           type: STANDARD
           key: key
         - dataType: STRING
-          inUse: true
           type: STANDARD
           key: key
       properties:
@@ -15257,7 +15540,6 @@ components:
     Attribute:
       example:
         dataType: STRING
-        inUse: true
         type: STANDARD
         key: key
       properties:
@@ -15268,9 +15550,6 @@ components:
           type: string
         dataType:
           $ref: '#/components/schemas/AttributeDataType'
-        inUse:
-          description: Whether the Attribute is in use
-          type: boolean
       type: object
     AttributeType:
       default: STANDARD
@@ -16997,6 +17276,14 @@ components:
           description: SiteId document upload email address
           type: string
       type: object
+    AddClassificationResponse:
+      example:
+        classificationId: classificationId
+      properties:
+        classificationId:
+          description: Classification Identifier
+          type: string
+      type: object
     AddTagSchemaResponse:
       example:
         tagSchemaId: tagSchemaId
@@ -17533,16 +17820,275 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
-        version: 0
       properties:
         name:
           description: Name of schema
           type: string
         attributes:
           $ref: '#/components/schemas/SchemaAttributes'
-        version:
-          description: Version of schema
-          type: integer
+      type: object
+    GetClassificationResponse:
+      example:
+        classification:
+          insertedDate: insertedDate
+          name: name
+          attributes:
+            compositeKeys:
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            allowAdditionalAttributes: true
+            optional:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            required:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+          userId: userId
+      properties:
+        classification:
+          $ref: '#/components/schemas/Classification'
+      type: object
+    GetClassificationsResponse:
+      example:
+        next: next
+        classifications:
+        - insertedDate: insertedDate
+          name: name
+          userId: userId
+        - insertedDate: insertedDate
+          name: name
+          userId: userId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        classifications:
+          description: List of classifications
+          items:
+            $ref: '#/components/schemas/ClassificationSummary'
+          type: array
+      type: object
+    ClassificationSummary:
+      example:
+        insertedDate: insertedDate
+        name: name
+        userId: userId
+      properties:
+        name:
+          description: Name of Classification
+          type: string
+        userId:
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+      type: object
+    Classification:
+      example:
+        insertedDate: insertedDate
+        name: name
+        attributes:
+          compositeKeys:
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          allowAdditionalAttributes: true
+          optional:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          required:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+        userId: userId
+      properties:
+        name:
+          description: Name of Classification
+          type: string
+        userId:
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SchemaAttributes'
+      type: object
+    AddClassification:
+      example:
+        name: name
+        attributes:
+          compositeKeys:
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          - attributeKeys:
+            - attributeKeys
+            - attributeKeys
+          allowAdditionalAttributes: true
+          optional:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            attributeKey: attributeKey
+          required:
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+          - allowedValues:
+            - allowedValues
+            - allowedValues
+            defaultValue: defaultValue
+            defaultValues:
+            - defaultValues
+            - defaultValues
+            attributeKey: attributeKey
+      properties:
+        name:
+          description: Name of Classification
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SchemaAttributes'
+      type: object
+    SetClassificationRequest:
+      example:
+        classification:
+          name: name
+          attributes:
+            compositeKeys:
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            allowAdditionalAttributes: true
+            optional:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            required:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+      properties:
+        classification:
+          $ref: '#/components/schemas/AddClassification'
+      type: object
+    AddClassificationRequest:
+      example:
+        classification:
+          name: name
+          attributes:
+            compositeKeys:
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            - attributeKeys:
+              - attributeKeys
+              - attributeKeys
+            allowAdditionalAttributes: true
+            optional:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              attributeKey: attributeKey
+            required:
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+            - allowedValues:
+              - allowedValues
+              - allowedValues
+              defaultValue: defaultValue
+              defaultValues:
+              - defaultValues
+              - defaultValues
+              attributeKey: attributeKey
+      properties:
+        classification:
+          $ref: '#/components/schemas/AddClassification'
       type: object
     SetSitesSchemaRequest:
       example:

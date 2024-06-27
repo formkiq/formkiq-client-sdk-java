@@ -15,5 +15,9 @@
 
 * `PUBLICATION` (value: `"PUBLICATION"`)
 
+* `CLASSIFICATION` (value: `"CLASSIFICATION"`)
+
+* `COMPOSITE_STRING` (value: `"COMPOSITE_STRING"`)
+
 
 

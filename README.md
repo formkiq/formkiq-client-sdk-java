@@ -310,7 +310,12 @@ Class | Method | HTTP request | Description
 *RulesetsApi* | [**getRulesets**](docs/RulesetsApi.md#getRulesets) | **GET** /rulesets | Get Rulesets
 *RulesetsApi* | [**updateRule**](docs/RulesetsApi.md#updateRule) | **PATCH** /rulesets/{rulesetId}/rules/{ruleId} | Update Rule
 *RulesetsApi* | [**updateRuleset**](docs/RulesetsApi.md#updateRuleset) | **PATCH** /rulesets/{rulesetId} | Update Ruleset
+*SchemasApi* | [**addClassification**](docs/SchemasApi.md#addClassification) | **POST** /sites/{siteId}/classifications | Add Classification
+*SchemasApi* | [**deleteClassification**](docs/SchemasApi.md#deleteClassification) | **DELETE** /sites/{siteId}/classifications/{classificationId} | Delete Classification
+*SchemasApi* | [**getClassification**](docs/SchemasApi.md#getClassification) | **GET** /sites/{siteId}/classifications/{classificationId} | Get Classification
+*SchemasApi* | [**getSitesClassifications**](docs/SchemasApi.md#getSitesClassifications) | **GET** /sites/{siteId}/classifications | Get Sites Classifications
 *SchemasApi* | [**getSitesSchema**](docs/SchemasApi.md#getSitesSchema) | **GET** /sites/{siteId}/schema/document | Get Sites Schema
+*SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
@@ -355,10 +360,15 @@ Class | Method | HTTP request | Description
  - [AddCaseResponse](docs/AddCaseResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
+ - [AddClassification](docs/AddClassification.md)
+ - [AddClassificationRequest](docs/AddClassificationRequest.md)
+ - [AddClassificationResponse](docs/AddClassificationResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
  - [AddDocumentActionsResponse](docs/AddDocumentActionsResponse.md)
  - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
  - [AddDocumentAttribute](docs/AddDocumentAttribute.md)
+ - [AddDocumentAttributeClassification](docs/AddDocumentAttributeClassification.md)
+ - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
  - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
  - [AddDocumentAttributesRequest](docs/AddDocumentAttributesRequest.md)
  - [AddDocumentFulltextRequest](docs/AddDocumentFulltextRequest.md)
@@ -421,6 +431,8 @@ Class | Method | HTTP request | Description
  - [AttributeValueType](docs/AttributeValueType.md)
  - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
+ - [Classification](docs/Classification.md)
+ - [ClassificationSummary](docs/ClassificationSummary.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
  - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
@@ -486,6 +498,8 @@ Class | Method | HTTP request | Description
  - [GetCaseTaskResponse](docs/GetCaseTaskResponse.md)
  - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
  - [GetCasesResponse](docs/GetCasesResponse.md)
+ - [GetClassificationResponse](docs/GetClassificationResponse.md)
+ - [GetClassificationsResponse](docs/GetClassificationsResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
  - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
@@ -589,6 +603,7 @@ Class | Method | HTTP request | Description
  - [SearchResultDocument](docs/SearchResultDocument.md)
  - [SearchResultDocumentAttribute](docs/SearchResultDocumentAttribute.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
+ - [SetClassificationRequest](docs/SetClassificationRequest.md)
  - [SetDocumentAttributeRequest](docs/SetDocumentAttributeRequest.md)
  - [SetDocumentAttributesRequest](docs/SetDocumentAttributesRequest.md)
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)

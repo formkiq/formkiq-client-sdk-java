@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesSchemaResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-16T11:16:04.034590-05:00[America/Winnipeg]",
+    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class GetSitesSchemaResponse {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -67,10 +67,6 @@ public class GetSitesSchemaResponse {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private SchemaAttributes attributes;
-
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private Integer version;
 
   public GetSitesSchemaResponse() {}
 
@@ -114,26 +110,6 @@ public class GetSitesSchemaResponse {
   }
 
 
-  public GetSitesSchemaResponse version(Integer version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Version of schema
-   * 
-   * @return version
-   **/
-  @javax.annotation.Nullable
-  public Integer getVersion() {
-    return version;
-  }
-
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -145,13 +121,12 @@ public class GetSitesSchemaResponse {
     }
     GetSitesSchemaResponse getSitesSchemaResponse = (GetSitesSchemaResponse) o;
     return Objects.equals(this.name, getSitesSchemaResponse.name)
-        && Objects.equals(this.attributes, getSitesSchemaResponse.attributes)
-        && Objects.equals(this.version, getSitesSchemaResponse.version);
+        && Objects.equals(this.attributes, getSitesSchemaResponse.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, attributes, version);
+    return Objects.hash(name, attributes);
   }
 
   @Override
@@ -160,7 +135,6 @@ public class GetSitesSchemaResponse {
     sb.append("class GetSitesSchemaResponse {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -184,7 +158,6 @@ public class GetSitesSchemaResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("attributes");
-    openapiFields.add("version");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

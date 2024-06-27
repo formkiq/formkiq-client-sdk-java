@@ -60,12 +60,4 @@ public class GetSitesSchemaResponseTest {
     // TODO: test attributes
   }
 
-  /**
-   * Test the property 'version'
-   */
-  @Test
-  public void versionTest() {
-    // TODO: test version
-  }
-
 }

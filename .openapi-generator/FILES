@@ -18,10 +18,15 @@ docs/AddCaseRequest.md
 docs/AddCaseResponse.md
 docs/AddChildDocument.md
 docs/AddChildDocumentResponse.md
+docs/AddClassification.md
+docs/AddClassificationRequest.md
+docs/AddClassificationResponse.md
 docs/AddDocumentActionsRequest.md
 docs/AddDocumentActionsResponse.md
 docs/AddDocumentActionsRetryResponse.md
 docs/AddDocumentAttribute.md
+docs/AddDocumentAttributeClassification.md
+docs/AddDocumentAttributeStandard.md
 docs/AddDocumentAttributeValue.md
 docs/AddDocumentAttributesRequest.md
 docs/AddDocumentFulltextRequest.md
@@ -88,6 +93,8 @@ docs/AttributesApi.md
 docs/CaseManagementApi.md
 docs/CaseStatus.md
 docs/ChildDocument.md
+docs/Classification.md
+docs/ClassificationSummary.md
 docs/CustomIndexApi.md
 docs/DeleteApiKeyResponse.md
 docs/DeleteCaseDocumentResponse.md
@@ -166,6 +173,8 @@ docs/GetCaseResponse.md
 docs/GetCaseTaskResponse.md
 docs/GetCaseTasksResponse.md
 docs/GetCasesResponse.md
+docs/GetClassificationResponse.md
+docs/GetClassificationsResponse.md
 docs/GetConfigurationResponse.md
 docs/GetDocumentActionsResponse.md
 docs/GetDocumentAttributeResponse.md
@@ -274,6 +283,7 @@ docs/SearchResponseFields.md
 docs/SearchResultDocument.md
 docs/SearchResultDocumentAttribute.md
 docs/SetAntivirusResponse.md
+docs/SetClassificationRequest.md
 docs/SetDocumentAttributeRequest.md
 docs/SetDocumentAttributesRequest.md
 docs/SetDocumentFulltextRequest.md
@@ -425,10 +435,15 @@ src/main/java/com/formkiq/client/model/AddCaseRequest.java
 src/main/java/com/formkiq/client/model/AddCaseResponse.java
 src/main/java/com/formkiq/client/model/AddChildDocument.java
 src/main/java/com/formkiq/client/model/AddChildDocumentResponse.java
+src/main/java/com/formkiq/client/model/AddClassification.java
+src/main/java/com/formkiq/client/model/AddClassificationRequest.java
+src/main/java/com/formkiq/client/model/AddClassificationResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRetryResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentAttribute.java
+src/main/java/com/formkiq/client/model/AddDocumentAttributeClassification.java
+src/main/java/com/formkiq/client/model/AddDocumentAttributeStandard.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeValue.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributesRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentFulltextRequest.java
@@ -491,6 +506,8 @@ src/main/java/com/formkiq/client/model/AttributeType.java
 src/main/java/com/formkiq/client/model/AttributeValueType.java
 src/main/java/com/formkiq/client/model/CaseStatus.java
 src/main/java/com/formkiq/client/model/ChildDocument.java
+src/main/java/com/formkiq/client/model/Classification.java
+src/main/java/com/formkiq/client/model/ClassificationSummary.java
 src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseDocumentResponse.java
 src/main/java/com/formkiq/client/model/DeleteCaseNigoDocumentResponse.java
@@ -556,6 +573,8 @@ src/main/java/com/formkiq/client/model/GetCaseResponse.java
 src/main/java/com/formkiq/client/model/GetCaseTaskResponse.java
 src/main/java/com/formkiq/client/model/GetCaseTasksResponse.java
 src/main/java/com/formkiq/client/model/GetCasesResponse.java
+src/main/java/com/formkiq/client/model/GetClassificationResponse.java
+src/main/java/com/formkiq/client/model/GetClassificationsResponse.java
 src/main/java/com/formkiq/client/model/GetConfigurationResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentAttributeResponse.java
@@ -659,6 +678,7 @@ src/main/java/com/formkiq/client/model/SearchResponseFields.java
 src/main/java/com/formkiq/client/model/SearchResultDocument.java
 src/main/java/com/formkiq/client/model/SearchResultDocumentAttribute.java
 src/main/java/com/formkiq/client/model/SetAntivirusResponse.java
+src/main/java/com/formkiq/client/model/SetClassificationRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributeRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentAttributesRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentFulltextRequest.java
@@ -772,9 +792,14 @@ src/test/java/com/formkiq/client/model/AddCaseResponseTest.java
 src/test/java/com/formkiq/client/model/AddCaseTest.java
 src/test/java/com/formkiq/client/model/AddChildDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/AddChildDocumentTest.java
+src/test/java/com/formkiq/client/model/AddClassificationRequestTest.java
+src/test/java/com/formkiq/client/model/AddClassificationResponseTest.java
+src/test/java/com/formkiq/client/model/AddClassificationTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRetryResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentAttributeClassificationTest.java
+src/test/java/com/formkiq/client/model/AddDocumentAttributeStandardTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeValueTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributesRequestTest.java
@@ -838,6 +863,8 @@ src/test/java/com/formkiq/client/model/AttributeTypeTest.java
 src/test/java/com/formkiq/client/model/AttributeValueTypeTest.java
 src/test/java/com/formkiq/client/model/CaseStatusTest.java
 src/test/java/com/formkiq/client/model/ChildDocumentTest.java
+src/test/java/com/formkiq/client/model/ClassificationSummaryTest.java
+src/test/java/com/formkiq/client/model/ClassificationTest.java
 src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteCaseNigoDocumentResponseTest.java
@@ -903,6 +930,8 @@ src/test/java/com/formkiq/client/model/GetCaseResponseTest.java
 src/test/java/com/formkiq/client/model/GetCaseTaskResponseTest.java
 src/test/java/com/formkiq/client/model/GetCaseTasksResponseTest.java
 src/test/java/com/formkiq/client/model/GetCasesResponseTest.java
+src/test/java/com/formkiq/client/model/GetClassificationResponseTest.java
+src/test/java/com/formkiq/client/model/GetClassificationsResponseTest.java
 src/test/java/com/formkiq/client/model/GetConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentAttributeResponseTest.java
@@ -1006,6 +1035,7 @@ src/test/java/com/formkiq/client/model/SearchResponseFieldsTest.java
 src/test/java/com/formkiq/client/model/SearchResultDocumentAttributeTest.java
 src/test/java/com/formkiq/client/model/SearchResultDocumentTest.java
 src/test/java/com/formkiq/client/model/SetAntivirusResponseTest.java
+src/test/java/com/formkiq/client/model/SetClassificationRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentAttributeRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentAttributesRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentFulltextRequestTest.java

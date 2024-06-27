@@ -33,7 +33,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.AddClassificationRequest;
+import com.formkiq.client.model.AddClassificationResponse;
+import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.GetClassificationResponse;
+import com.formkiq.client.model.GetClassificationsResponse;
 import com.formkiq.client.model.GetSitesSchemaResponse;
+import com.formkiq.client.model.SetClassificationRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SetSitesSchemaRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -82,10 +88,223 @@ public class SchemasApi {
   }
 
   /**
-   * Build call for getSitesSchema
+   * Build call for addClassification
    * 
    * @param siteId Site Identifier (required)
-   * @param version Version (optional)
+   * @param addClassificationRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addClassificationCall(String siteId,
+      AddClassificationRequest addClassificationRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addClassificationRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/classifications".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addClassificationValidateBeforeCall(String siteId,
+      AddClassificationRequest addClassificationRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling addClassification(Async)");
+    }
+
+    // verify the required parameter 'addClassificationRequest' is set
+    if (addClassificationRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addClassificationRequest' when calling addClassification(Async)");
+    }
+
+    return addClassificationCall(siteId, addClassificationRequest, _callback);
+
+  }
+
+  /**
+   * Add Classification Add Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addClassificationRequest (required)
+   * @return AddClassificationResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddClassificationResponse addClassification(String siteId,
+      AddClassificationRequest addClassificationRequest) throws ApiException {
+    ApiResponse<AddClassificationResponse> localVarResp =
+        addClassificationWithHttpInfo(siteId, addClassificationRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add Classification Add Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addClassificationRequest (required)
+   * @return ApiResponse&lt;AddClassificationResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddClassificationResponse> addClassificationWithHttpInfo(String siteId,
+      AddClassificationRequest addClassificationRequest) throws ApiException {
+    okhttp3.Call localVarCall =
+        addClassificationValidateBeforeCall(siteId, addClassificationRequest, null);
+    Type localVarReturnType = new TypeToken<AddClassificationResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add Classification (asynchronously) Add Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addClassificationRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addClassificationAsync(String siteId,
+      AddClassificationRequest addClassificationRequest,
+      final ApiCallback<AddClassificationResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        addClassificationValidateBeforeCall(siteId, addClassificationRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddClassificationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteClassification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -106,7 +325,585 @@ public class SchemasApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getSitesSchemaCall(String siteId, String version, final ApiCallback _callback)
+  public okhttp3.Call deleteClassificationCall(String siteId, String classificationId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/classifications/{classificationId}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "classificationId" + "}",
+            localVarApiClient.escapeString(classificationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteClassificationValidateBeforeCall(String siteId,
+      String classificationId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteClassification(Async)");
+    }
+
+    // verify the required parameter 'classificationId' is set
+    if (classificationId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'classificationId' when calling deleteClassification(Async)");
+    }
+
+    return deleteClassificationCall(siteId, classificationId, _callback);
+
+  }
+
+  /**
+   * Delete Classification Delete Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deleteClassification(String siteId, String classificationId)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteClassificationWithHttpInfo(siteId, classificationId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Classification Delete Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deleteClassificationWithHttpInfo(String siteId,
+      String classificationId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteClassificationValidateBeforeCall(siteId, classificationId, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Classification (asynchronously) Delete Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteClassificationAsync(String siteId, String classificationId,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteClassificationValidateBeforeCall(siteId, classificationId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getClassification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getClassificationCall(String siteId, String classificationId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/classifications/{classificationId}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "classificationId" + "}",
+            localVarApiClient.escapeString(classificationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getClassificationValidateBeforeCall(String siteId, String classificationId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getClassification(Async)");
+    }
+
+    // verify the required parameter 'classificationId' is set
+    if (classificationId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'classificationId' when calling getClassification(Async)");
+    }
+
+    return getClassificationCall(siteId, classificationId, _callback);
+
+  }
+
+  /**
+   * Get Classification Get Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @return GetClassificationResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetClassificationResponse getClassification(String siteId, String classificationId)
+      throws ApiException {
+    ApiResponse<GetClassificationResponse> localVarResp =
+        getClassificationWithHttpInfo(siteId, classificationId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Classification Get Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @return ApiResponse&lt;GetClassificationResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetClassificationResponse> getClassificationWithHttpInfo(String siteId,
+      String classificationId) throws ApiException {
+    okhttp3.Call localVarCall = getClassificationValidateBeforeCall(siteId, classificationId, null);
+    Type localVarReturnType = new TypeToken<GetClassificationResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Classification (asynchronously) Get Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getClassificationAsync(String siteId, String classificationId,
+      final ApiCallback<GetClassificationResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getClassificationValidateBeforeCall(siteId, classificationId, _callback);
+    Type localVarReturnType = new TypeToken<GetClassificationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSitesClassifications
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSitesClassificationsCall(String siteId, String limit, String next,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/classifications".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSitesClassificationsValidateBeforeCall(String siteId, String limit,
+      String next, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getSitesClassifications(Async)");
+    }
+
+    return getSitesClassificationsCall(siteId, limit, next, _callback);
+
+  }
+
+  /**
+   * Get Sites Classifications Gets Sites Classifications
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return GetClassificationsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetClassificationsResponse getSitesClassifications(String siteId, String limit,
+      String next) throws ApiException {
+    ApiResponse<GetClassificationsResponse> localVarResp =
+        getSitesClassificationsWithHttpInfo(siteId, limit, next);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Sites Classifications Gets Sites Classifications
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return ApiResponse&lt;GetClassificationsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetClassificationsResponse> getSitesClassificationsWithHttpInfo(String siteId,
+      String limit, String next) throws ApiException {
+    okhttp3.Call localVarCall =
+        getSitesClassificationsValidateBeforeCall(siteId, limit, next, null);
+    Type localVarReturnType = new TypeToken<GetClassificationsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Sites Classifications (asynchronously) Gets Sites Classifications
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSitesClassificationsAsync(String siteId, String limit, String next,
+      final ApiCallback<GetClassificationsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getSitesClassificationsValidateBeforeCall(siteId, limit, next, _callback);
+    Type localVarReturnType = new TypeToken<GetClassificationsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSitesSchema
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSitesSchemaCall(String siteId, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -133,10 +930,6 @@ public class SchemasApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    if (version != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("version", version));
-    }
-
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -157,15 +950,15 @@ public class SchemasApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getSitesSchemaValidateBeforeCall(String siteId, String version,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getSitesSchemaValidateBeforeCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling getSitesSchema(Async)");
     }
 
-    return getSitesSchemaCall(siteId, version, _callback);
+    return getSitesSchemaCall(siteId, _callback);
 
   }
 
@@ -173,7 +966,6 @@ public class SchemasApi {
    * Get Sites Schema Gets Sites schema
    * 
    * @param siteId Site Identifier (required)
-   * @param version Version (optional)
    * @return GetSitesSchemaResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -194,8 +986,8 @@ public class SchemasApi {
    *                        </tr>
    *                        </table>
    */
-  public GetSitesSchemaResponse getSitesSchema(String siteId, String version) throws ApiException {
-    ApiResponse<GetSitesSchemaResponse> localVarResp = getSitesSchemaWithHttpInfo(siteId, version);
+  public GetSitesSchemaResponse getSitesSchema(String siteId) throws ApiException {
+    ApiResponse<GetSitesSchemaResponse> localVarResp = getSitesSchemaWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -203,7 +995,6 @@ public class SchemasApi {
    * Get Sites Schema Gets Sites schema
    * 
    * @param siteId Site Identifier (required)
-   * @param version Version (optional)
    * @return ApiResponse&lt;GetSitesSchemaResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -224,9 +1015,9 @@ public class SchemasApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetSitesSchemaResponse> getSitesSchemaWithHttpInfo(String siteId,
-      String version) throws ApiException {
-    okhttp3.Call localVarCall = getSitesSchemaValidateBeforeCall(siteId, version, null);
+  public ApiResponse<GetSitesSchemaResponse> getSitesSchemaWithHttpInfo(String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = getSitesSchemaValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetSitesSchemaResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -235,7 +1026,6 @@ public class SchemasApi {
    * Get Sites Schema (asynchronously) Gets Sites schema
    * 
    * @param siteId Site Identifier (required)
-   * @param version Version (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -256,11 +1046,237 @@ public class SchemasApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getSitesSchemaAsync(String siteId, String version,
+  public okhttp3.Call getSitesSchemaAsync(String siteId,
       final ApiCallback<GetSitesSchemaResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getSitesSchemaValidateBeforeCall(siteId, version, _callback);
+    okhttp3.Call localVarCall = getSitesSchemaValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetSitesSchemaResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setClassification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param setClassificationRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setClassificationCall(String siteId, String classificationId,
+      SetClassificationRequest setClassificationRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setClassificationRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/classifications/{classificationId}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "classificationId" + "}",
+            localVarApiClient.escapeString(classificationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setClassificationValidateBeforeCall(String siteId, String classificationId,
+      SetClassificationRequest setClassificationRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setClassification(Async)");
+    }
+
+    // verify the required parameter 'classificationId' is set
+    if (classificationId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'classificationId' when calling setClassification(Async)");
+    }
+
+    // verify the required parameter 'setClassificationRequest' is set
+    if (setClassificationRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setClassificationRequest' when calling setClassification(Async)");
+    }
+
+    return setClassificationCall(siteId, classificationId, setClassificationRequest, _callback);
+
+  }
+
+  /**
+   * Set Classification Sets Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param setClassificationRequest (required)
+   * @return SetResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetResponse setClassification(String siteId, String classificationId,
+      SetClassificationRequest setClassificationRequest) throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setClassificationWithHttpInfo(siteId, classificationId, setClassificationRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set Classification Sets Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param setClassificationRequest (required)
+   * @return ApiResponse&lt;SetResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetResponse> setClassificationWithHttpInfo(String siteId,
+      String classificationId, SetClassificationRequest setClassificationRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall = setClassificationValidateBeforeCall(siteId, classificationId,
+        setClassificationRequest, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set Classification (asynchronously) Sets Classification
+   * 
+   * @param siteId Site Identifier (required)
+   * @param classificationId Classification Identifier (required)
+   * @param setClassificationRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setClassificationAsync(String siteId, String classificationId,
+      SetClassificationRequest setClassificationRequest, final ApiCallback<SetResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall = setClassificationValidateBeforeCall(siteId, classificationId,
+        setClassificationRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * Attribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-16T11:16:04.034590-05:00[America/Winnipeg]",
+    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class Attribute {
   public static final String SERIALIZED_NAME_TYPE = "type";
@@ -72,10 +72,6 @@ public class Attribute {
   public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
   @SerializedName(SERIALIZED_NAME_DATA_TYPE)
   private AttributeDataType dataType = AttributeDataType.STRING;
-
-  public static final String SERIALIZED_NAME_IN_USE = "inUse";
-  @SerializedName(SERIALIZED_NAME_IN_USE)
-  private Boolean inUse;
 
   public Attribute() {}
 
@@ -139,26 +135,6 @@ public class Attribute {
   }
 
 
-  public Attribute inUse(Boolean inUse) {
-    this.inUse = inUse;
-    return this;
-  }
-
-  /**
-   * Whether the Attribute is in use
-   * 
-   * @return inUse
-   **/
-  @javax.annotation.Nullable
-  public Boolean getInUse() {
-    return inUse;
-  }
-
-  public void setInUse(Boolean inUse) {
-    this.inUse = inUse;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -170,13 +146,12 @@ public class Attribute {
     }
     Attribute attribute = (Attribute) o;
     return Objects.equals(this.type, attribute.type) && Objects.equals(this.key, attribute.key)
-        && Objects.equals(this.dataType, attribute.dataType)
-        && Objects.equals(this.inUse, attribute.inUse);
+        && Objects.equals(this.dataType, attribute.dataType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, key, dataType, inUse);
+    return Objects.hash(type, key, dataType);
   }
 
   @Override
@@ -186,7 +161,6 @@ public class Attribute {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
-    sb.append("    inUse: ").append(toIndentedString(inUse)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,7 +185,6 @@ public class Attribute {
     openapiFields.add("type");
     openapiFields.add("key");
     openapiFields.add("dataType");
-    openapiFields.add("inUse");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

@@ -20,7 +20,13 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddClassificationRequest;
+import com.formkiq.client.model.AddClassificationResponse;
+import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.GetClassificationResponse;
+import com.formkiq.client.model.GetClassificationsResponse;
 import com.formkiq.client.model.GetSitesSchemaResponse;
+import com.formkiq.client.model.SetClassificationRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SetSitesSchemaRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -41,6 +47,67 @@ public class SchemasApiTest {
   private final SchemasApi api = new SchemasApi();
 
   /**
+   * Add Classification
+   *
+   * Add Classification
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addClassificationTest() throws ApiException {
+    String siteId = null;
+    AddClassificationRequest addClassificationRequest = null;
+    AddClassificationResponse response = api.addClassification(siteId, addClassificationRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Classification
+   *
+   * Delete Classification
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteClassificationTest() throws ApiException {
+    String siteId = null;
+    String classificationId = null;
+    DeleteResponse response = api.deleteClassification(siteId, classificationId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Classification
+   *
+   * Get Classification
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getClassificationTest() throws ApiException {
+    String siteId = null;
+    String classificationId = null;
+    GetClassificationResponse response = api.getClassification(siteId, classificationId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Sites Classifications
+   *
+   * Gets Sites Classifications
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSitesClassificationsTest() throws ApiException {
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetClassificationsResponse response = api.getSitesClassifications(siteId, limit, next);
+    // TODO: test validations
+  }
+
+  /**
    * Get Sites Schema
    *
    * Gets Sites schema
@@ -50,8 +117,24 @@ public class SchemasApiTest {
   @Test
   public void getSitesSchemaTest() throws ApiException {
     String siteId = null;
-    String version = null;
-    GetSitesSchemaResponse response = api.getSitesSchema(siteId, version);
+    GetSitesSchemaResponse response = api.getSitesSchema(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Set Classification
+   *
+   * Sets Classification
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setClassificationTest() throws ApiException {
+    String siteId = null;
+    String classificationId = null;
+    SetClassificationRequest setClassificationRequest = null;
+    SetResponse response =
+        api.setClassification(siteId, classificationId, setClassificationRequest);
     // TODO: test validations
   }
 

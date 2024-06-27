@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AttributeValueType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-16T11:16:04.034590-05:00[America/Winnipeg]",
+    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
     comments = "Generator version: 7.6.0")
 public class DocumentAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
@@ -93,6 +94,10 @@ public class DocumentAttribute {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
+  @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
+  private AttributeValueType valueType;
 
   public DocumentAttribute() {}
 
@@ -272,6 +277,26 @@ public class DocumentAttribute {
   }
 
 
+  public DocumentAttribute valueType(AttributeValueType valueType) {
+    this.valueType = valueType;
+    return this;
+  }
+
+  /**
+   * Get valueType
+   * 
+   * @return valueType
+   **/
+  @javax.annotation.Nullable
+  public AttributeValueType getValueType() {
+    return valueType;
+  }
+
+  public void setValueType(AttributeValueType valueType) {
+    this.valueType = valueType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -289,13 +314,14 @@ public class DocumentAttribute {
         && Objects.equals(this.numberValues, documentAttribute.numberValues)
         && Objects.equals(this.booleanValue, documentAttribute.booleanValue)
         && Objects.equals(this.insertedDate, documentAttribute.insertedDate)
-        && Objects.equals(this.userId, documentAttribute.userId);
+        && Objects.equals(this.userId, documentAttribute.userId)
+        && Objects.equals(this.valueType, documentAttribute.valueType);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(key, stringValue, stringValues, numberValue, numberValues, booleanValue,
-        insertedDate, userId);
+        insertedDate, userId, valueType);
   }
 
   @Override
@@ -310,6 +336,7 @@ public class DocumentAttribute {
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -339,6 +366,7 @@ public class DocumentAttribute {
     openapiFields.add("booleanValue");
     openapiFields.add("insertedDate");
     openapiFields.add("userId");
+    openapiFields.add("valueType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -407,6 +435,10 @@ public class DocumentAttribute {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
+    }
+    // validate the optional field `valueType`
+    if (jsonObj.get("valueType") != null && !jsonObj.get("valueType").isJsonNull()) {
+      AttributeValueType.validateJsonElement(jsonObj.get("valueType"));
     }
   }
 

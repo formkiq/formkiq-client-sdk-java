@@ -69,12 +69,4 @@ public class AttributeTest {
     // TODO: test dataType
   }
 
-  /**
-   * Test the property 'inUse'
-   */
-  @Test
-  public void inUseTest() {
-    // TODO: test inUse
-  }
-
 }
