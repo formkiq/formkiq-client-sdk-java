@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * TagSchemaTags
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class TagSchemaTags {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)
@@ -99,7 +99,7 @@ public class TagSchemaTags {
    * List of Composite Keys
    * 
    * @return compositeKeys
-   **/
+   */
   @javax.annotation.Nullable
   public List<TagSchemaCompositeKey> getCompositeKeys() {
     return compositeKeys;
@@ -127,7 +127,7 @@ public class TagSchemaTags {
    * List of Required Tags
    * 
    * @return required
-   **/
+   */
   @javax.annotation.Nullable
   public List<TagSchemaRequired> getRequired() {
     return required;
@@ -155,7 +155,7 @@ public class TagSchemaTags {
    * List of Optional Tags
    * 
    * @return optional
-   **/
+   */
   @javax.annotation.Nullable
   public List<TagSchemaOptional> getOptional() {
     return optional;
@@ -175,7 +175,7 @@ public class TagSchemaTags {
    * Get allowAdditionalTags
    * 
    * @return allowAdditionalTags
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getAllowAdditionalTags() {
     return allowAdditionalTags;

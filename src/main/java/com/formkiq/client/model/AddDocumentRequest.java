@@ -63,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -121,7 +121,7 @@ public class AddDocumentRequest {
    * Tag Schema Id
    * 
    * @return tagSchemaId
-   **/
+   */
   @javax.annotation.Nullable
   public String getTagSchemaId() {
     return tagSchemaId;
@@ -141,7 +141,7 @@ public class AddDocumentRequest {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -161,7 +161,7 @@ public class AddDocumentRequest {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -181,7 +181,7 @@ public class AddDocumentRequest {
    * Document media type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -201,7 +201,7 @@ public class AddDocumentRequest {
    * Is the content Base64-encoded?
    * 
    * @return isBase64
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsBase64() {
     return isBase64;
@@ -221,7 +221,7 @@ public class AddDocumentRequest {
    * Document content
    * 
    * @return content
-   **/
+   */
   @javax.annotation.Nonnull
   public String getContent() {
     return content;
@@ -249,7 +249,7 @@ public class AddDocumentRequest {
    * List of document tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentTag> getTags() {
     return tags;
@@ -277,7 +277,7 @@ public class AddDocumentRequest {
    * List of document Metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentMetadata> getMetadata() {
     return metadata;
@@ -305,7 +305,7 @@ public class AddDocumentRequest {
    * List of Actions
    * 
    * @return actions
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddAction> getActions() {
     return actions;
@@ -333,7 +333,7 @@ public class AddDocumentRequest {
    * List of Attributes to add to document
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentAttribute> getAttributes() {
     return attributes;
@@ -361,7 +361,7 @@ public class AddDocumentRequest {
    * List of child documents
    * 
    * @return documents
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddChildDocument> getDocuments() {
     return documents;

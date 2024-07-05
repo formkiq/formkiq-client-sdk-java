@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Nigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Nigo {
   public static final String SERIALIZED_NAME_NIGO_ID = "nigoId";
   @SerializedName(SERIALIZED_NAME_NIGO_ID)
@@ -109,7 +109,7 @@ public class Nigo {
    * Nigo Identifier
    * 
    * @return nigoId
-   **/
+   */
   @javax.annotation.Nullable
   public String getNigoId() {
     return nigoId;
@@ -129,7 +129,7 @@ public class Nigo {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -149,7 +149,7 @@ public class Nigo {
    * Name of Nigo
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -169,7 +169,7 @@ public class Nigo {
    * Description of Nigo
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -189,7 +189,7 @@ public class Nigo {
    * Start Date
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -209,7 +209,7 @@ public class Nigo {
    * End Date
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -229,7 +229,7 @@ public class Nigo {
    * User who added Nigo
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -249,7 +249,7 @@ public class Nigo {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public NigoStatus getStatus() {
     return status;
@@ -277,7 +277,7 @@ public class Nigo {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;

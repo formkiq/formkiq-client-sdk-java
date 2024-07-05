@@ -62,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
@@ -104,7 +104,7 @@ public class DocumentSearch {
    * Full text search
    * 
    * @return text
-   **/
+   */
   @javax.annotation.Nullable
   public String getText() {
     return text;
@@ -124,7 +124,7 @@ public class DocumentSearch {
    * Get meta
    * 
    * @return meta
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchMeta getMeta() {
     return meta;
@@ -144,7 +144,7 @@ public class DocumentSearch {
    * Get attribute
    * 
    * @return attribute
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchAttribute getAttribute() {
     return attribute;
@@ -172,7 +172,7 @@ public class DocumentSearch {
    * List of Composite Key attributes to filter search results on
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentSearchAttribute> getAttributes() {
     return attributes;
@@ -192,7 +192,7 @@ public class DocumentSearch {
    * Get tag
    * 
    * @return tag
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchTag getTag() {
     return tag;
@@ -220,7 +220,7 @@ public class DocumentSearch {
    * List of Composite Key tags to filter search results on
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentSearchTags> getTags() {
     return tags;
@@ -248,7 +248,7 @@ public class DocumentSearch {
    * List of DocumentIds to filter search results on
    * 
    * @return documentIds
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getDocumentIds() {
     return documentIds;

@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AttributeSchemaOptional
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AttributeSchemaOptional {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -80,7 +80,7 @@ public class AttributeSchemaOptional {
    * Get attributeKey
    * 
    * @return attributeKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getAttributeKey() {
     return attributeKey;
@@ -108,7 +108,7 @@ public class AttributeSchemaOptional {
    * Only valid string values
    * 
    * @return allowedValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getAllowedValues() {
     return allowedValues;

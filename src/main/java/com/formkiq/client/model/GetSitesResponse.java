@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetSitesResponse {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -81,7 +81,7 @@ public class GetSitesResponse {
    * Username of request caller
    * 
    * @return username
-   **/
+   */
   @javax.annotation.Nullable
   public String getUsername() {
     return username;
@@ -109,7 +109,7 @@ public class GetSitesResponse {
    * List of sites
    * 
    * @return sites
-   **/
+   */
   @javax.annotation.Nullable
   public List<Site> getSites() {
     return sites;

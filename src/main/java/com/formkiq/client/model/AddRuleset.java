@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AddRuleset
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddRuleset {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -88,7 +88,7 @@ public class AddRuleset {
    * Ruleset description
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -108,7 +108,7 @@ public class AddRuleset {
    * Ruleset priority
    * 
    * @return priority
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getPriority() {
     return priority;
@@ -128,7 +128,7 @@ public class AddRuleset {
    * Ruleset version
    * 
    * @return version
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getVersion() {
     return version;
@@ -148,7 +148,7 @@ public class AddRuleset {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public RulesetStatus getStatus() {
     return status;

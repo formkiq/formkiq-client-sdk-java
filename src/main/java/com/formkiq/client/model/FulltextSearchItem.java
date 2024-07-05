@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -117,7 +117,7 @@ public class FulltextSearchItem {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -137,7 +137,7 @@ public class FulltextSearchItem {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -157,7 +157,7 @@ public class FulltextSearchItem {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -177,7 +177,7 @@ public class FulltextSearchItem {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -197,7 +197,7 @@ public class FulltextSearchItem {
    * Last Modified Timestamp
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -217,7 +217,7 @@ public class FulltextSearchItem {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -237,7 +237,7 @@ public class FulltextSearchItem {
    * Document size
    * 
    * @return contentLength
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getContentLength() {
     return contentLength;
@@ -257,7 +257,7 @@ public class FulltextSearchItem {
    * User who added document
    * 
    * @return createdBy
-   **/
+   */
   @javax.annotation.Nullable
   public String getCreatedBy() {
     return createdBy;
@@ -285,7 +285,7 @@ public class FulltextSearchItem {
    * Get tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getTags() {
     return tags;
@@ -313,7 +313,7 @@ public class FulltextSearchItem {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -341,7 +341,7 @@ public class FulltextSearchItem {
    * Get attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, FulltextAttribute> getAttributes() {
     return attributes;

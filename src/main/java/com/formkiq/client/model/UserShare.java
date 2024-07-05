@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * UserShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class UserShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -157,7 +157,7 @@ public class UserShare {
    * Name of Share Group
    * 
    * @return group
-   **/
+   */
   @javax.annotation.Nullable
   public String getGroup() {
     return group;
@@ -177,7 +177,7 @@ public class UserShare {
    * Share Identifier
    * 
    * @return shareKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getShareKey() {
     return shareKey;
@@ -197,7 +197,7 @@ public class UserShare {
    * Type of Document
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public TypeEnum getType() {
     return type;
@@ -225,7 +225,7 @@ public class UserShare {
    * List of share permissions
    * 
    * @return permissions
-   **/
+   */
   @javax.annotation.Nullable
   public List<UserSharePermission> getPermissions() {
     return permissions;
@@ -245,7 +245,7 @@ public class UserShare {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -265,7 +265,7 @@ public class UserShare {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -285,7 +285,7 @@ public class UserShare {
    * User who created share
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -305,7 +305,7 @@ public class UserShare {
    * Get permissionType
    * 
    * @return permissionType
-   **/
+   */
   @javax.annotation.Nullable
   public UserSharePermissionType getPermissionType() {
     return permissionType;

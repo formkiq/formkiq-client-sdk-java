@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
@@ -103,7 +103,7 @@ public class AddDocumentOcrRequest {
    * OCR Parse types - TEXT, FORMS, TABLES
    * 
    * @return parseTypes
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getParseTypes() {
     return parseTypes;
@@ -124,7 +124,7 @@ public class AddDocumentOcrRequest {
    * Rewrite PDF document, converting any Image text to searchable text
    * 
    * @return addPdfDetectedCharactersAsText
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getAddPdfDetectedCharactersAsText() {
     return addPdfDetectedCharactersAsText;
@@ -144,7 +144,7 @@ public class AddDocumentOcrRequest {
    * Get ocrEngine
    * 
    * @return ocrEngine
-   **/
+   */
   @javax.annotation.Nullable
   public OcrEngine getOcrEngine() {
     return ocrEngine;
@@ -164,7 +164,7 @@ public class AddDocumentOcrRequest {
    * Number of pages to OCR (from start) (-1 all)
    * 
    * @return ocrNumberOfPages
-   **/
+   */
   @javax.annotation.Nullable
   public String getOcrNumberOfPages() {
     return ocrNumberOfPages;
@@ -184,7 +184,7 @@ public class AddDocumentOcrRequest {
    * Get ocrOutputType
    * 
    * @return ocrOutputType
-   **/
+   */
   @javax.annotation.Nullable
   public OcrOutputType getOcrOutputType() {
     return ocrOutputType;

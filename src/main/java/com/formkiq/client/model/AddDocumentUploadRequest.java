@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -103,7 +103,7 @@ public class AddDocumentUploadRequest {
    * Tag Schema Id
    * 
    * @return tagSchemaId
-   **/
+   */
   @javax.annotation.Nullable
   public String getTagSchemaId() {
     return tagSchemaId;
@@ -123,7 +123,7 @@ public class AddDocumentUploadRequest {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -143,7 +143,7 @@ public class AddDocumentUploadRequest {
    * Document media type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -163,7 +163,7 @@ public class AddDocumentUploadRequest {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -191,7 +191,7 @@ public class AddDocumentUploadRequest {
    * List of Attributes to add to document
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentAttribute> getAttributes() {
     return attributes;
@@ -219,7 +219,7 @@ public class AddDocumentUploadRequest {
    * List of document tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentTag> getTags() {
     return tags;
@@ -247,7 +247,7 @@ public class AddDocumentUploadRequest {
    * List of Actions
    * 
    * @return actions
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddAction> getActions() {
     return actions;

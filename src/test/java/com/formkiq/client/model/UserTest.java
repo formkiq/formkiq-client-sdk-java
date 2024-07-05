@@ -52,6 +52,22 @@ public class UserTest {
   }
 
   /**
+   * Test the property 'email'
+   */
+  @Test
+  public void emailTest() {
+    // TODO: test email
+  }
+
+  /**
+   * Test the property 'enabled'
+   */
+  @Test
+  public void enabledTest() {
+    // TODO: test enabled
+  }
+
+  /**
    * Test the property 'userStatus'
    */
   @Test

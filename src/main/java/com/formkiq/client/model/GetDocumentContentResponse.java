@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentContentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentContentResponse {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
@@ -86,7 +86,7 @@ public class GetDocumentContentResponse {
    * Document content
    * 
    * @return content
-   **/
+   */
   @javax.annotation.Nullable
   public String getContent() {
     return content;
@@ -106,7 +106,7 @@ public class GetDocumentContentResponse {
    * URL to retrieve document content
    * 
    * @return contentUrl
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentUrl() {
     return contentUrl;
@@ -126,7 +126,7 @@ public class GetDocumentContentResponse {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -146,7 +146,7 @@ public class GetDocumentContentResponse {
    * Is the content Base64-encoded?
    * 
    * @return isBase64
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsBase64() {
     return isBase64;

@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateTaskRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class UpdateTaskRequest {
   public static final String SERIALIZED_NAME_TASK = "task";
   @SerializedName(SERIALIZED_NAME_TASK)
@@ -75,7 +75,7 @@ public class UpdateTaskRequest {
    * Get task
    * 
    * @return task
-   **/
+   */
   @javax.annotation.Nullable
   public UpdateTask getTask() {
     return task;

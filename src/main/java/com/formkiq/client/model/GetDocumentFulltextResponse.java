@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -125,7 +125,7 @@ public class GetDocumentFulltextResponse {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -145,7 +145,7 @@ public class GetDocumentFulltextResponse {
    * Content of document
    * 
    * @return content
-   **/
+   */
   @javax.annotation.Nullable
   public String getContent() {
     return content;
@@ -165,7 +165,7 @@ public class GetDocumentFulltextResponse {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -185,7 +185,7 @@ public class GetDocumentFulltextResponse {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -205,7 +205,7 @@ public class GetDocumentFulltextResponse {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -225,7 +225,7 @@ public class GetDocumentFulltextResponse {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -245,7 +245,7 @@ public class GetDocumentFulltextResponse {
    * Last Modified Timestamp
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -265,7 +265,7 @@ public class GetDocumentFulltextResponse {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -285,7 +285,7 @@ public class GetDocumentFulltextResponse {
    * User who added document
    * 
    * @return createdBy
-   **/
+   */
   @javax.annotation.Nullable
   public String getCreatedBy() {
     return createdBy;
@@ -305,7 +305,7 @@ public class GetDocumentFulltextResponse {
    * Document size
    * 
    * @return contentLength
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getContentLength() {
     return contentLength;
@@ -333,7 +333,7 @@ public class GetDocumentFulltextResponse {
    * Get tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getTags() {
     return tags;
@@ -361,7 +361,7 @@ public class GetDocumentFulltextResponse {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -390,7 +390,7 @@ public class GetDocumentFulltextResponse {
    * Get attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, FulltextAttribute> getAttributes() {
     return attributes;

@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentSync {
   public static final String SERIALIZED_NAME_SERVICE = "service";
   @SerializedName(SERIALIZED_NAME_SERVICE)
@@ -97,7 +97,7 @@ public class GetDocumentSync {
    * Get service
    * 
    * @return service
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSyncService getService() {
     return service;
@@ -117,7 +117,7 @@ public class GetDocumentSync {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSyncStatus getStatus() {
     return status;
@@ -137,7 +137,7 @@ public class GetDocumentSync {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSyncType getType() {
     return type;
@@ -157,7 +157,7 @@ public class GetDocumentSync {
    * Timestamp of synchronization
    * 
    * @return syncDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getSyncDate() {
     return syncDate;
@@ -177,7 +177,7 @@ public class GetDocumentSync {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -197,7 +197,7 @@ public class GetDocumentSync {
    * Document sync message
    * 
    * @return message
-   **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;

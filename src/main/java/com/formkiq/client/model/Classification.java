@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * Classification
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Classification {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -87,7 +87,7 @@ public class Classification {
    * Name of Classification
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -107,7 +107,7 @@ public class Classification {
    * Get userId
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -127,7 +127,7 @@ public class Classification {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -147,7 +147,7 @@ public class Classification {
    * Get attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public SchemaAttributes getAttributes() {
     return attributes;

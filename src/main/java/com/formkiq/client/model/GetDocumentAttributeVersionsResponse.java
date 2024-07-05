@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentAttributeVersionsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentAttributeVersionsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -81,7 +81,7 @@ public class GetDocumentAttributeVersionsResponse {
    * Next page of results token
    * 
    * @return next
-   **/
+   */
   @javax.annotation.Nullable
   public String getNext() {
     return next;
@@ -109,7 +109,7 @@ public class GetDocumentAttributeVersionsResponse {
    * List of document attribute versions
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentAttribute> getAttributes() {
     return attributes;

@@ -5,8 +5,8 @@ This is the official supported Java library for the FormKiQ API.
 
 FormKiQ HTTP API
 - API version: 1.15.0
-  - Build date: 2024-03-28T19:56:05.484023-05:00[America/Winnipeg]
-  - Generator version: 7.4.0
+  - Build date: 2024-07-04T16:10:39.847247-05:00[America/Winnipeg]
+  - Generator version: 7.7.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -334,8 +334,19 @@ Class | Method | HTTP request | Description
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
-*UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get configured system group(s)
+*UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group
+*UserManagementApi* | [**addUser**](docs/UserManagementApi.md#addUser) | **POST** /users | Add User
+*UserManagementApi* | [**addUserToGroup**](docs/UserManagementApi.md#addUserToGroup) | **POST** /groups/{groupName}/users | Add User to a group
+*UserManagementApi* | [**deleteGroup**](docs/UserManagementApi.md#deleteGroup) | **DELETE** /groups/{groupName} | Delete Group
+*UserManagementApi* | [**deleteUsername**](docs/UserManagementApi.md#deleteUsername) | **DELETE** /users/{username} | Delete Username
+*UserManagementApi* | [**getGroup**](docs/UserManagementApi.md#getGroup) | **GET** /groups/{groupName} | Get a user group
+*UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get list of user group(s)
+*UserManagementApi* | [**getListOfUserGroups**](docs/UserManagementApi.md#getListOfUserGroups) | **GET** /users/{username}/groups | Returns a list of group user belongs to
+*UserManagementApi* | [**getUser**](docs/UserManagementApi.md#getUser) | **GET** /users/{username} | Get a user
+*UserManagementApi* | [**getUsers**](docs/UserManagementApi.md#getUsers) | **GET** /users | Get list of user(s)
 *UserManagementApi* | [**getUsersInGroup**](docs/UserManagementApi.md#getUsersInGroup) | **GET** /groups/{groupName}/users | Get users in a group
+*UserManagementApi* | [**removeUsernameFromGroup**](docs/UserManagementApi.md#removeUsernameFromGroup) | **DELETE** /groups/{groupName}/users/{username} | Remove Username From Group
+*UserManagementApi* | [**setUserOperation**](docs/UserManagementApi.md#setUserOperation) | **PUT** /users/{username}/{userOperation} | Set User Operation
 *WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook
 *WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | Add webhook
 *WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | Add webhook tag
@@ -391,6 +402,8 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddGroup](docs/AddGroup.md)
+ - [AddGroupRequest](docs/AddGroupRequest.md)
  - [AddMapping](docs/AddMapping.md)
  - [AddMappingRequest](docs/AddMappingRequest.md)
  - [AddMappingResponse](docs/AddMappingResponse.md)
@@ -413,6 +426,8 @@ Class | Method | HTTP request | Description
  - [AddTask](docs/AddTask.md)
  - [AddTaskRequest](docs/AddTaskRequest.md)
  - [AddTaskResponse](docs/AddTaskResponse.md)
+ - [AddUser](docs/AddUser.md)
+ - [AddUserRequest](docs/AddUserRequest.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
  - [AddWebhookTagRequest](docs/AddWebhookTagRequest.md)
@@ -522,6 +537,7 @@ Class | Method | HTTP request | Description
  - [GetExaminePdfResponse](docs/GetExaminePdfResponse.md)
  - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
+ - [GetGroupResponse](docs/GetGroupResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
  - [GetMappingResponse](docs/GetMappingResponse.md)
  - [GetMappingsResponse](docs/GetMappingsResponse.md)
@@ -540,8 +556,11 @@ Class | Method | HTTP request | Description
  - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
  - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
+ - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
+ - [GetUserResponse](docs/GetUserResponse.md)
  - [GetUserSharesResponse](docs/GetUserSharesResponse.md)
  - [GetUsersInGroupResponse](docs/GetUsersInGroupResponse.md)
+ - [GetUsersResponse](docs/GetUsersResponse.md)
  - [GetVersionResponse](docs/GetVersionResponse.md)
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)

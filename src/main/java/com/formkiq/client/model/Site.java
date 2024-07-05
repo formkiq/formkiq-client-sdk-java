@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -198,7 +198,7 @@ public class Site {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -218,7 +218,7 @@ public class Site {
    * SiteId permission level
    * 
    * @return permission
-   **/
+   */
   @javax.annotation.Nullable
   public PermissionEnum getPermission() {
     return permission;
@@ -246,7 +246,7 @@ public class Site {
    * List of caller permissions
    * 
    * @return permissions
-   **/
+   */
   @javax.annotation.Nullable
   public List<PermissionsEnum> getPermissions() {
     return permissions;
@@ -266,7 +266,7 @@ public class Site {
    * SiteId document upload email address
    * 
    * @return uploadEmail
-   **/
+   */
   @javax.annotation.Nullable
   public String getUploadEmail() {
     return uploadEmail;

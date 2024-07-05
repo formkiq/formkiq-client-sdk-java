@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * TagSchema
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class TagSchema {
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
@@ -95,7 +95,7 @@ public class TagSchema {
    * Get tagSchemaId
    * 
    * @return tagSchemaId
-   **/
+   */
   @javax.annotation.Nullable
   public String getTagSchemaId() {
     return tagSchemaId;
@@ -115,7 +115,7 @@ public class TagSchema {
    * Get name
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -135,7 +135,7 @@ public class TagSchema {
    * Get userId
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -155,7 +155,7 @@ public class TagSchema {
    * Whether the TagSchema is in use
    * 
    * @return inUse
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getInUse() {
     return inUse;
@@ -175,7 +175,7 @@ public class TagSchema {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -195,7 +195,7 @@ public class TagSchema {
    * Get tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public TagSchemaTags getTags() {
     return tags;

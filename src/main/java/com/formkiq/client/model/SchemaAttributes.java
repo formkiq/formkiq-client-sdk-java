@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * SchemaAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class SchemaAttributes {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)
@@ -100,7 +100,7 @@ public class SchemaAttributes {
    * List of Composite Keys
    * 
    * @return compositeKeys
-   **/
+   */
   @javax.annotation.Nullable
   public List<AttributeSchemaCompositeKey> getCompositeKeys() {
     return compositeKeys;
@@ -128,7 +128,7 @@ public class SchemaAttributes {
    * List of Required Attributes
    * 
    * @return required
-   **/
+   */
   @javax.annotation.Nullable
   public List<AttributeSchemaRequired> getRequired() {
     return required;
@@ -156,7 +156,7 @@ public class SchemaAttributes {
    * List of Optional Attribute
    * 
    * @return optional
-   **/
+   */
   @javax.annotation.Nullable
   public List<AttributeSchemaOptional> getOptional() {
     return optional;
@@ -176,7 +176,7 @@ public class SchemaAttributes {
    * Get allowAdditionalAttributes
    * 
    * @return allowAdditionalAttributes
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getAllowAdditionalAttributes() {
     return allowAdditionalAttributes;

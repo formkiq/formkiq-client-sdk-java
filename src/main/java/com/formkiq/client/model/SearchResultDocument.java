@@ -64,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -158,7 +158,7 @@ public class SearchResultDocument {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -178,7 +178,7 @@ public class SearchResultDocument {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -198,7 +198,7 @@ public class SearchResultDocument {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -218,7 +218,7 @@ public class SearchResultDocument {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -238,7 +238,7 @@ public class SearchResultDocument {
    * Last Modified Timestamp
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -258,7 +258,7 @@ public class SearchResultDocument {
    * Is Result a Document Folder
    * 
    * @return folder
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getFolder() {
     return folder;
@@ -278,7 +278,7 @@ public class SearchResultDocument {
    * populated if search result are from an index
    * 
    * @return indexKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getIndexKey() {
     return indexKey;
@@ -298,7 +298,7 @@ public class SearchResultDocument {
    * Document checksum, changes when document file changes
    * 
    * @return checksum
-   **/
+   */
   @javax.annotation.Nullable
   public String getChecksum() {
     return checksum;
@@ -318,7 +318,7 @@ public class SearchResultDocument {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -338,7 +338,7 @@ public class SearchResultDocument {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -358,7 +358,7 @@ public class SearchResultDocument {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -378,7 +378,7 @@ public class SearchResultDocument {
    * Document size
    * 
    * @return contentLength
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getContentLength() {
     return contentLength;
@@ -398,7 +398,7 @@ public class SearchResultDocument {
    * Document version
    * 
    * @return versionId
-   **/
+   */
   @javax.annotation.Nullable
   public String getVersionId() {
     return versionId;
@@ -418,7 +418,7 @@ public class SearchResultDocument {
    * Parent Document Identifier
    * 
    * @return belongsToDocumentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getBelongsToDocumentId() {
     return belongsToDocumentId;
@@ -438,7 +438,7 @@ public class SearchResultDocument {
    * Get matchedAttribute
    * 
    * @return matchedAttribute
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchMatchAttribute getMatchedAttribute() {
     return matchedAttribute;
@@ -458,7 +458,7 @@ public class SearchResultDocument {
    * Get matchedTag
    * 
    * @return matchedTag
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchMatchTag getMatchedTag() {
     return matchedTag;
@@ -486,7 +486,7 @@ public class SearchResultDocument {
    * Get matchedTags
    * 
    * @return matchedTags
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentSearchMatchTag> getMatchedTags() {
     return matchedTags;
@@ -514,7 +514,7 @@ public class SearchResultDocument {
    * Get tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getTags() {
     return tags;
@@ -543,7 +543,7 @@ public class SearchResultDocument {
    * Get attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, SearchResultDocumentAttribute> getAttributes() {
     return attributes;
@@ -571,7 +571,7 @@ public class SearchResultDocument {
    * List of document Metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentMetadata> getMetadata() {
     return metadata;

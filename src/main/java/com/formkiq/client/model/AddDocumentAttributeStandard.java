@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Document Attribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentAttributeStandard {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -97,7 +97,7 @@ public class AddDocumentAttributeStandard {
    * Attribute key
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nonnull
   public String getKey() {
     return key;
@@ -117,7 +117,7 @@ public class AddDocumentAttributeStandard {
    * Attribute with string value
    * 
    * @return stringValue
-   **/
+   */
   @javax.annotation.Nullable
   public String getStringValue() {
     return stringValue;
@@ -145,7 +145,7 @@ public class AddDocumentAttributeStandard {
    * Attribute with string values
    * 
    * @return stringValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getStringValues() {
     return stringValues;
@@ -165,7 +165,7 @@ public class AddDocumentAttributeStandard {
    * Attribute with number value
    * 
    * @return numberValue
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getNumberValue() {
     return numberValue;
@@ -193,7 +193,7 @@ public class AddDocumentAttributeStandard {
    * Attribute with number values
    * 
    * @return numberValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<BigDecimal> getNumberValues() {
     return numberValues;
@@ -213,7 +213,7 @@ public class AddDocumentAttributeStandard {
    * Attribute with boolean value
    * 
    * @return booleanValue
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getBooleanValue() {
     return booleanValue;

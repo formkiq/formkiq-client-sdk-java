@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentTagResponse {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -100,7 +100,7 @@ public class GetDocumentTagResponse {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -120,7 +120,7 @@ public class GetDocumentTagResponse {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -140,7 +140,7 @@ public class GetDocumentTagResponse {
    * Tag type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
@@ -160,7 +160,7 @@ public class GetDocumentTagResponse {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -180,7 +180,7 @@ public class GetDocumentTagResponse {
    * Tag value
    * 
    * @return value
-   **/
+   */
   @javax.annotation.Nullable
   public String getValue() {
     return value;
@@ -208,7 +208,7 @@ public class GetDocumentTagResponse {
    * Tag values
    * 
    * @return values
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getValues() {
     return values;
@@ -228,7 +228,7 @@ public class GetDocumentTagResponse {
    * Tag key
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nullable
   public String getKey() {
     return key;

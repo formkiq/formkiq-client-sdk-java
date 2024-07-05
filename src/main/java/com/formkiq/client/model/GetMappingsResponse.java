@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetMappingsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetMappingsResponse {
   public static final String SERIALIZED_NAME_MAPPINGS = "mappings";
   @SerializedName(SERIALIZED_NAME_MAPPINGS)
@@ -89,7 +89,7 @@ public class GetMappingsResponse {
    * Get mappings
    * 
    * @return mappings
-   **/
+   */
   @javax.annotation.Nullable
   public List<Mapping> getMappings() {
     return mappings;
@@ -109,7 +109,7 @@ public class GetMappingsResponse {
    * Next page of results token
    * 
    * @return next
-   **/
+   */
   @javax.annotation.Nullable
   public String getNext() {
     return next;

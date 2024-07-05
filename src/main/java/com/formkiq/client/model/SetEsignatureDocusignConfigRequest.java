@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * SetEsignatureDocusignConfigRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class SetEsignatureDocusignConfigRequest {
   public static final String SERIALIZED_NAME_PRIVATE_KEY = "privateKey";
   @SerializedName(SERIALIZED_NAME_PRIVATE_KEY)
@@ -82,7 +82,7 @@ public class SetEsignatureDocusignConfigRequest {
    * DocuSign App RSA PRIVATE KEY
    * 
    * @return privateKey
-   **/
+   */
   @javax.annotation.Nonnull
   public String getPrivateKey() {
     return privateKey;
@@ -102,7 +102,7 @@ public class SetEsignatureDocusignConfigRequest {
    * DocuSign App UserId
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nonnull
   public String getUserId() {
     return userId;
@@ -122,7 +122,7 @@ public class SetEsignatureDocusignConfigRequest {
    * DocuSign App Client
    * 
    * @return clientId
-   **/
+   */
   @javax.annotation.Nonnull
   public String getClientId() {
     return clientId;

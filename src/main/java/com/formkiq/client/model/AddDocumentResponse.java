@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -89,7 +89,7 @@ public class AddDocumentResponse {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -109,7 +109,7 @@ public class AddDocumentResponse {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -129,7 +129,7 @@ public class AddDocumentResponse {
    * Url to upload document to
    * 
    * @return uploadUrl
-   **/
+   */
   @javax.annotation.Nullable
   public String getUploadUrl() {
     return uploadUrl;
@@ -157,7 +157,7 @@ public class AddDocumentResponse {
    * List of child documents
    * 
    * @return documents
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddChildDocumentResponse> getDocuments() {
     return documents;

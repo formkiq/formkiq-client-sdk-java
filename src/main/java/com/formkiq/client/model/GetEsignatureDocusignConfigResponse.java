@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * GetEsignatureDocusignConfigResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetEsignatureDocusignConfigResponse {
   public static final String SERIALIZED_NAME_CONFIGURED = "configured";
   @SerializedName(SERIALIZED_NAME_CONFIGURED)
@@ -82,7 +82,7 @@ public class GetEsignatureDocusignConfigResponse {
    * Whether DocuSign is configured
    * 
    * @return configured
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getConfigured() {
     return configured;
@@ -102,7 +102,7 @@ public class GetEsignatureDocusignConfigResponse {
    * DocuSign UserId configured
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -122,7 +122,7 @@ public class GetEsignatureDocusignConfigResponse {
    * DocuSign Client configured
    * 
    * @return clientId
-   **/
+   */
   @javax.annotation.Nullable
   public String getClientId() {
     return clientId;

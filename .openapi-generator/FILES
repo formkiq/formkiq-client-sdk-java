@@ -49,6 +49,8 @@ docs/AddFolderRequest.md
 docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
 docs/AddFolderShareResponse.md
+docs/AddGroup.md
+docs/AddGroupRequest.md
 docs/AddMapping.md
 docs/AddMappingRequest.md
 docs/AddMappingResponse.md
@@ -71,6 +73,8 @@ docs/AddTagSchemaTags.md
 docs/AddTask.md
 docs/AddTaskRequest.md
 docs/AddTaskResponse.md
+docs/AddUser.md
+docs/AddUserRequest.md
 docs/AddWebhookRequest.md
 docs/AddWebhookResponse.md
 docs/AddWebhookTagRequest.md
@@ -197,6 +201,7 @@ docs/GetEsignatureDocusignConfigResponse.md
 docs/GetExaminePdfResponse.md
 docs/GetExaminePdfUrlResponse.md
 docs/GetFoldersResponse.md
+docs/GetGroupResponse.md
 docs/GetGroupsResponse.md
 docs/GetMappingResponse.md
 docs/GetMappingsResponse.md
@@ -215,8 +220,11 @@ docs/GetSitesSchemaResponse.md
 docs/GetTagSchemaResponse.md
 docs/GetTagSchemasResponse.md
 docs/GetUserActivitesResponse.md
+docs/GetUserGroupsResponse.md
+docs/GetUserResponse.md
 docs/GetUserSharesResponse.md
 docs/GetUsersInGroupResponse.md
+docs/GetUsersResponse.md
 docs/GetVersionResponse.md
 docs/GetWebhookResponse.md
 docs/GetWebhookTagsResponse.md
@@ -466,6 +474,8 @@ src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
 src/main/java/com/formkiq/client/model/AddFolderShareResponse.java
+src/main/java/com/formkiq/client/model/AddGroup.java
+src/main/java/com/formkiq/client/model/AddGroupRequest.java
 src/main/java/com/formkiq/client/model/AddMapping.java
 src/main/java/com/formkiq/client/model/AddMappingRequest.java
 src/main/java/com/formkiq/client/model/AddMappingResponse.java
@@ -488,6 +498,8 @@ src/main/java/com/formkiq/client/model/AddTagSchemaTags.java
 src/main/java/com/formkiq/client/model/AddTask.java
 src/main/java/com/formkiq/client/model/AddTaskRequest.java
 src/main/java/com/formkiq/client/model/AddTaskResponse.java
+src/main/java/com/formkiq/client/model/AddUser.java
+src/main/java/com/formkiq/client/model/AddUserRequest.java
 src/main/java/com/formkiq/client/model/AddWebhookRequest.java
 src/main/java/com/formkiq/client/model/AddWebhookResponse.java
 src/main/java/com/formkiq/client/model/AddWebhookTagRequest.java
@@ -597,6 +609,7 @@ src/main/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
+src/main/java/com/formkiq/client/model/GetGroupResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
 src/main/java/com/formkiq/client/model/GetMappingResponse.java
 src/main/java/com/formkiq/client/model/GetMappingsResponse.java
@@ -615,8 +628,11 @@ src/main/java/com/formkiq/client/model/GetSitesSchemaResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemaResponse.java
 src/main/java/com/formkiq/client/model/GetTagSchemasResponse.java
 src/main/java/com/formkiq/client/model/GetUserActivitesResponse.java
+src/main/java/com/formkiq/client/model/GetUserGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetUserResponse.java
 src/main/java/com/formkiq/client/model/GetUserSharesResponse.java
 src/main/java/com/formkiq/client/model/GetUsersInGroupResponse.java
+src/main/java/com/formkiq/client/model/GetUsersResponse.java
 src/main/java/com/formkiq/client/model/GetVersionResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookResponse.java
 src/main/java/com/formkiq/client/model/GetWebhookTagsResponse.java
@@ -823,6 +839,8 @@ src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareResponseTest.java
+src/test/java/com/formkiq/client/model/AddGroupRequestTest.java
+src/test/java/com/formkiq/client/model/AddGroupTest.java
 src/test/java/com/formkiq/client/model/AddMappingRequestTest.java
 src/test/java/com/formkiq/client/model/AddMappingResponseTest.java
 src/test/java/com/formkiq/client/model/AddMappingTest.java
@@ -845,6 +863,8 @@ src/test/java/com/formkiq/client/model/AddTagSchemaTagsTest.java
 src/test/java/com/formkiq/client/model/AddTaskRequestTest.java
 src/test/java/com/formkiq/client/model/AddTaskResponseTest.java
 src/test/java/com/formkiq/client/model/AddTaskTest.java
+src/test/java/com/formkiq/client/model/AddUserRequestTest.java
+src/test/java/com/formkiq/client/model/AddUserTest.java
 src/test/java/com/formkiq/client/model/AddWebhookRequestTest.java
 src/test/java/com/formkiq/client/model/AddWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/AddWebhookTagRequestTest.java
@@ -954,6 +974,7 @@ src/test/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponseTest.j
 src/test/java/com/formkiq/client/model/GetExaminePdfResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
+src/test/java/com/formkiq/client/model/GetGroupResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingsResponseTest.java
@@ -972,8 +993,11 @@ src/test/java/com/formkiq/client/model/GetSitesSchemaResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemaResponseTest.java
 src/test/java/com/formkiq/client/model/GetTagSchemasResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserActivitesResponseTest.java
+src/test/java/com/formkiq/client/model/GetUserGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetUserResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesResponseTest.java
 src/test/java/com/formkiq/client/model/GetUsersInGroupResponseTest.java
+src/test/java/com/formkiq/client/model/GetUsersResponseTest.java
 src/test/java/com/formkiq/client/model/GetVersionResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookResponseTest.java
 src/test/java/com/formkiq/client/model/GetWebhookTagsResponseTest.java

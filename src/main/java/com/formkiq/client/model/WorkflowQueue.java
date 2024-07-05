@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowQueue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class WorkflowQueue {
   public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
   @SerializedName(SERIALIZED_NAME_QUEUE_ID)
@@ -80,7 +80,7 @@ public class WorkflowQueue {
    * Queue Id
    * 
    * @return queueId
-   **/
+   */
   @javax.annotation.Nullable
   public String getQueueId() {
     return queueId;
@@ -108,7 +108,7 @@ public class WorkflowQueue {
    * Get approvalGroups
    * 
    * @return approvalGroups
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getApprovalGroups() {
     return approvalGroups;

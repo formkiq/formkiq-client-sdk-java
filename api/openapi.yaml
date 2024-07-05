@@ -133,20 +133,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get FormKiQ version
@@ -169,20 +160,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get site(s) access
@@ -214,20 +196,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Deletst site(s) OpenSearch index
@@ -258,20 +231,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get site(s) OpenSearch index settings
@@ -308,20 +272,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Set site(s) OpenSearch index settings
@@ -354,20 +309,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Sites Schema
@@ -464,20 +410,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Sites Classifications
@@ -608,20 +545,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Classification
@@ -709,20 +637,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get site configuration
@@ -810,20 +729,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get API Keys
@@ -937,20 +847,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get OPAs Access Policies
@@ -982,20 +883,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get OPA Access Policy
@@ -1063,20 +955,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get OPA Access Policy Items
@@ -1221,20 +1104,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Documents listing
@@ -1386,20 +1260,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document
@@ -1713,20 +1578,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Add attribute to document
@@ -1773,20 +1629,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Set document's attributes
@@ -1835,20 +1682,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document attribute
@@ -1952,20 +1790,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Set document's attributes value
@@ -2023,20 +1852,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document's attribute value
@@ -2173,20 +1993,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Update document tags
@@ -2253,20 +2064,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Add tag to document
@@ -2327,20 +2129,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Set document's tags
@@ -2389,20 +2182,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document tag
@@ -2512,20 +2296,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Update document tag value(s)
@@ -2591,20 +2366,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document's tag value
@@ -2643,20 +2409,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Mass Update document tag(s)
@@ -3103,20 +2860,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Attributes listing
@@ -3204,20 +2952,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
         "400":
           content:
             application/json:
@@ -3262,20 +3001,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Attribute
@@ -3748,20 +3478,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document ocr
@@ -4120,20 +3841,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document version
@@ -4680,20 +4392,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete workflow
@@ -5073,20 +4776,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete queue
@@ -5509,20 +5203,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get tag schemas
@@ -5617,20 +5302,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete tag schema
@@ -6035,20 +5711,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document full-text tag
@@ -6110,20 +5777,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete document full-text tag/value
@@ -6489,20 +6147,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get webhooks
@@ -6584,20 +6233,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete webhook
@@ -6636,20 +6276,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get webhook
@@ -6691,20 +6322,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Update webhook
@@ -6799,20 +6421,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Add webhook tag
@@ -7314,7 +6927,7 @@ paths:
       - application/json
   /groups:
     get:
-      description: Returns the list of user groups configured in the application
+      description: Returns the list of user groups
       operationId: GetGroups
       parameters:
       - description: Limit Results
@@ -7343,23 +6956,118 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
-      summary: Get configured system group(s)
+      summary: Get list of user group(s)
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add a new group
+      operationId: AddGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddGroupRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add a group
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /groups/{groupName}:
+    delete:
+      description: Delete Group
+      operationId: DeleteGroup
+      parameters:
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Group
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a user group
+      operationId: GetGroup
+      parameters:
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get a user group
       tags:
       - User Management
       x-amazon-apigateway-integration:
@@ -7371,7 +7079,7 @@ paths:
       description: Returns the list of users in a group
       operationId: GetUsersInGroup
       parameters:
-      - description: Fetch documents inserted on a certain date (yyyy-MM-dd)
+      - description: Group Name
         explode: false
         in: path
         name: groupName
@@ -7405,23 +7113,350 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get users in a group
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Adds a user to a group
+      operationId: AddUserToGroup
+      parameters:
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add User to a group
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /groups/{groupName}/users/{username}:
+    delete:
+      description: Remove Username From Group
+      operationId: RemoveUsernameFromGroup
+      parameters:
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Remove Username From Group
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /users:
+    get:
+      description: Returns the list of users
+      operationId: GetUsers
+      parameters:
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get list of user(s)
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Adds a user
+      operationId: AddUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add User
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /users/{username}:
+    delete:
+      description: Delete Username
+      operationId: DeleteUsername
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Username
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a user
+      operationId: GetUser
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get a user
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /users/{username}/groups:
+    get:
+      description: Returns a list of group user belongs to
+      operationId: GetListOfUserGroups
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserGroupsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Returns a list of group user belongs to
+      tags:
+      - User Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /users/{username}/{userOperation}:
+    put:
+      description: "Set User Operation (disable, enable, reset-password)"
+      operationId: SetUserOperation
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Username Operation
+        explode: false
+        in: path
+        name: userOperation
+        required: true
+        schema:
+          enum:
+          - DISABLE
+          - ENABLE
+          - RESET_PASSWORD
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Set User Operation
       tags:
       - User Management
       x-amazon-apigateway-integration:
@@ -7467,20 +7502,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Case listing
@@ -7605,20 +7631,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Case details
@@ -7725,20 +7742,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get list of document in a case
@@ -7889,20 +7897,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get task in a case
@@ -8026,20 +8025,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get list of document in a task
@@ -8198,20 +8188,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get nigo in a case
@@ -8335,20 +8316,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get list of document in a task
@@ -8465,20 +8437,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get list of tasks in a case
@@ -8585,20 +8548,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get list of Nigos in a case
@@ -8697,20 +8651,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Mappings
@@ -8841,20 +8786,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Mapping
@@ -8959,20 +8895,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Rulesets
@@ -9103,20 +9030,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Ruleset
@@ -9230,20 +9148,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Rules
@@ -9398,20 +9307,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Get Rule
@@ -9508,20 +9408,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Add Examine Pdf
@@ -9564,20 +9455,11 @@ paths:
           description: 201 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Add Examine Pdf
@@ -9620,20 +9502,11 @@ paths:
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowOrigin'
             Access-Control-Allow-Methods:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowMethods'
             Access-Control-Allow-Headers:
-              explode: false
-              schema:
-                type: string
-              style: simple
+              $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
       summary: Delete published document's contents
@@ -9707,6 +9580,37 @@ components:
         type: string
       style: simple
   parameters:
+    usernamePath:
+      description: Username
+      explode: false
+      in: path
+      name: username
+      required: true
+      schema:
+        type: string
+      style: simple
+    usernameOperationPath:
+      description: Username Operation
+      explode: false
+      in: path
+      name: userOperation
+      required: true
+      schema:
+        enum:
+        - DISABLE
+        - ENABLE
+        - RESET_PASSWORD
+        type: string
+      style: simple
+    groupNamePath:
+      description: Group Name
+      explode: false
+      in: path
+      name: groupName
+      required: true
+      schema:
+        type: string
+      style: simple
     versionKeyPath:
       description: Version Key
       explode: false
@@ -10109,7 +10013,7 @@ components:
         type: string
       style: simple
   responses:
-    "200CorsAddResponse":
+    "201CorsAddResponse":
       content:
         application/json:
           schema:
@@ -10117,20 +10021,11 @@ components:
       description: 200 OK
       headers:
         Access-Control-Allow-Origin:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowOrigin'
         Access-Control-Allow-Methods:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowMethods'
         Access-Control-Allow-Headers:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowHeaders'
     "200CorsSetResponse":
       content:
         application/json:
@@ -10139,20 +10034,11 @@ components:
       description: 200 OK
       headers:
         Access-Control-Allow-Origin:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowOrigin'
         Access-Control-Allow-Methods:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowMethods'
         Access-Control-Allow-Headers:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowHeaders'
     "200CorsDeleteResponse":
       content:
         application/json:
@@ -10161,39 +10047,21 @@ components:
       description: 200 OK
       headers:
         Access-Control-Allow-Origin:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowOrigin'
         Access-Control-Allow-Methods:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowMethods'
         Access-Control-Allow-Headers:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowHeaders'
     "200Cors":
       content: {}
       description: 200 OK
       headers:
         Access-Control-Allow-Origin:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowOrigin'
         Access-Control-Allow-Methods:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowMethods'
         Access-Control-Allow-Headers:
-          explode: false
-          schema:
-            type: string
-          style: simple
+          $ref: '#/components/headers/AccessControlAllowHeaders'
   schemas:
     ValidationErrorsResponse:
       example:
@@ -17079,10 +16947,14 @@ components:
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          email: email
+          enabled: true
           username: username
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          email: email
+          enabled: true
           username: username
       properties:
         next:
@@ -17094,16 +16966,60 @@ components:
             $ref: '#/components/schemas/User'
           type: array
       type: object
-    User:
+    AddGroupRequest:
       example:
-        userStatus: userStatus
-        insertedDate: insertedDate
-        lastModifiedDate: lastModifiedDate
+        group:
+          name: name
+      properties:
+        group:
+          $ref: '#/components/schemas/AddGroup'
+      required:
+      - group
+      type: object
+    AddGroup:
+      example:
+        name: name
+      properties:
+        name:
+          description: Name of Group
+          type: string
+      type: object
+    AddUserRequest:
+      example:
+        user:
+          username: username
+      properties:
+        user:
+          $ref: '#/components/schemas/AddUser'
+      required:
+      - user
+      type: object
+    AddUser:
+      example:
         username: username
       properties:
         username:
           description: Username of user
           type: string
+      type: object
+    User:
+      example:
+        userStatus: userStatus
+        insertedDate: insertedDate
+        lastModifiedDate: lastModifiedDate
+        email: email
+        enabled: true
+        username: username
+      properties:
+        username:
+          description: Username of user
+          type: string
+        email:
+          description: Email of user
+          type: string
+        enabled:
+          description: whether the user is enabled
+          type: boolean
         userStatus:
           description: Status of user
           type: string
@@ -17134,6 +17050,78 @@ components:
           description: List of groups
           items:
             $ref: '#/components/schemas/Group'
+          type: array
+      type: object
+    GetGroupResponse:
+      example:
+        group:
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          name: name
+          description: description
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
+      type: object
+    GetUserResponse:
+      example:
+        user:
+          userStatus: userStatus
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          email: email
+          enabled: true
+          username: username
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      type: object
+    GetUserGroupsResponse:
+      example:
+        next: next
+        groups:
+        - insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          name: name
+          description: description
+        - insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          name: name
+          description: description
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        groups:
+          description: List of groups
+          items:
+            $ref: '#/components/schemas/Group'
+          type: array
+      type: object
+    GetUsersResponse:
+      example:
+        next: next
+        users:
+        - userStatus: userStatus
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          email: email
+          enabled: true
+          username: username
+        - userStatus: userStatus
+          insertedDate: insertedDate
+          lastModifiedDate: lastModifiedDate
+          email: email
+          enabled: true
+          username: username
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        users:
+          description: List of users
+          items:
+            $ref: '#/components/schemas/User'
           type: array
       type: object
     Group:

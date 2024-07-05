@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextAttributeEq
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentFulltextAttributeEq {
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -83,7 +83,7 @@ public class DocumentFulltextAttributeEq {
    * Search for string value
    * 
    * @return stringValue
-   **/
+   */
   @javax.annotation.Nullable
   public String getStringValue() {
     return stringValue;
@@ -103,7 +103,7 @@ public class DocumentFulltextAttributeEq {
    * Search for number value
    * 
    * @return numberValue
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getNumberValue() {
     return numberValue;
@@ -123,7 +123,7 @@ public class DocumentFulltextAttributeEq {
    * Search for boolean value
    * 
    * @return booleanValue
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getBooleanValue() {
     return booleanValue;

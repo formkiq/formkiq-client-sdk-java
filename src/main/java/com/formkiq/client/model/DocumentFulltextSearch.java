@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * Document full text search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentFulltextSearch {
   public static final String SERIALIZED_NAME_PAGE = "page";
   @SerializedName(SERIALIZED_NAME_PAGE)
@@ -90,7 +90,7 @@ public class DocumentFulltextSearch {
    * Result page to return (starting at 1)
    * 
    * @return page
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getPage() {
     return page;
@@ -110,7 +110,7 @@ public class DocumentFulltextSearch {
    * Full text search
    * 
    * @return text
-   **/
+   */
   @javax.annotation.Nullable
   public String getText() {
     return text;
@@ -138,7 +138,7 @@ public class DocumentFulltextSearch {
    * List of search tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentFulltextTag> getTags() {
     return tags;
@@ -166,7 +166,7 @@ public class DocumentFulltextSearch {
    * List of search attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentFulltextAttribute> getAttributes() {
     return attributes;

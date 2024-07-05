@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentWorkflowDecisionsRequest {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
@@ -135,7 +135,7 @@ public class AddDocumentWorkflowDecisionsRequest {
    * Workflow Step Identifier
    * 
    * @return stepId
-   **/
+   */
   @javax.annotation.Nullable
   public String getStepId() {
     return stepId;
@@ -155,7 +155,7 @@ public class AddDocumentWorkflowDecisionsRequest {
    * Workflow decision comments
    * 
    * @return comments
-   **/
+   */
   @javax.annotation.Nullable
   public String getComments() {
     return comments;
@@ -175,7 +175,7 @@ public class AddDocumentWorkflowDecisionsRequest {
    * Get decision
    * 
    * @return decision
-   **/
+   */
   @javax.annotation.Nonnull
   public DecisionEnum getDecision() {
     return decision;

@@ -62,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class OpaPolicyAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -104,7 +104,7 @@ public class OpaPolicyAttribute {
    * Attribute Key
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nullable
   public String getKey() {
     return key;
@@ -124,7 +124,7 @@ public class OpaPolicyAttribute {
    * Get eq
    * 
    * @return eq
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeEq getEq() {
     return eq;
@@ -144,7 +144,7 @@ public class OpaPolicyAttribute {
    * Get gt
    * 
    * @return gt
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeGt getGt() {
     return gt;
@@ -164,7 +164,7 @@ public class OpaPolicyAttribute {
    * Get gte
    * 
    * @return gte
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeGte getGte() {
     return gte;
@@ -184,7 +184,7 @@ public class OpaPolicyAttribute {
    * Get lt
    * 
    * @return lt
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeLt getLt() {
     return lt;
@@ -204,7 +204,7 @@ public class OpaPolicyAttribute {
    * Get lte
    * 
    * @return lte
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeLte getLte() {
     return lte;
@@ -224,7 +224,7 @@ public class OpaPolicyAttribute {
    * Get neq
    * 
    * @return neq
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyAttributeNeq getNeq() {
     return neq;

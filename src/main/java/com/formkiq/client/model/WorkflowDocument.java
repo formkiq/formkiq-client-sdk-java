@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class WorkflowDocument {
   public static final String SERIALIZED_NAME_WORKFLOW = "workflow";
   @SerializedName(SERIALIZED_NAME_WORKFLOW)
@@ -80,7 +80,7 @@ public class WorkflowDocument {
    * Get workflow
    * 
    * @return workflow
-   **/
+   */
   @javax.annotation.Nullable
   public WorkflowSummary getWorkflow() {
     return workflow;
@@ -100,7 +100,7 @@ public class WorkflowDocument {
    * Get document
    * 
    * @return document
-   **/
+   */
   @javax.annotation.Nullable
   public Document getDocument() {
     return document;

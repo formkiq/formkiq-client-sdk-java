@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchMeta
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentSearchMeta {
   public static final String SERIALIZED_NAME_FOLDER = "folder";
   @SerializedName(SERIALIZED_NAME_FOLDER)
@@ -141,7 +141,7 @@ public class DocumentSearchMeta {
    * Searches for a folder
    * 
    * @return folder
-   **/
+   */
   @javax.annotation.Nullable
   public String getFolder() {
     return folder;
@@ -161,7 +161,7 @@ public class DocumentSearchMeta {
    * Searches for a Path of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -181,7 +181,7 @@ public class DocumentSearchMeta {
    * Searches for strings that eq
    * 
    * @return eq
-   **/
+   */
   @javax.annotation.Nullable
   public String getEq() {
     return eq;
@@ -201,7 +201,7 @@ public class DocumentSearchMeta {
    * Searches in an index
    * 
    * @return indexType
-   **/
+   */
   @javax.annotation.Nullable
   public IndexTypeEnum getIndexType() {
     return indexType;
@@ -221,7 +221,7 @@ public class DocumentSearchMeta {
    * Returns index records that begins with a particular substring
    * 
    * @return indexFilterBeginsWith
-   **/
+   */
   @javax.annotation.Nullable
   public String getIndexFilterBeginsWith() {
     return indexFilterBeginsWith;

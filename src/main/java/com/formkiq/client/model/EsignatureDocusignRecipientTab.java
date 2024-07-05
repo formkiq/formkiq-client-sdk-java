@@ -56,15 +56,15 @@ import com.formkiq.client.invoker.JSON;
  * EsignatureDocusignRecipientTab
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class EsignatureDocusignRecipientTab {
   /**
    * Type of Recipient
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    SIGNHERE("signHere");
+    SIGN_HERE("signHere");
 
     private String value;
 
@@ -137,7 +137,7 @@ public class EsignatureDocusignRecipientTab {
    * Type of Recipient
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public TypeEnum getType() {
     return type;
@@ -157,7 +157,7 @@ public class EsignatureDocusignRecipientTab {
    * Document Page Number
    * 
    * @return pageNumber
-   **/
+   */
   @javax.annotation.Nullable
   public String getPageNumber() {
     return pageNumber;
@@ -177,7 +177,7 @@ public class EsignatureDocusignRecipientTab {
    * Element X Position
    * 
    * @return positionX
-   **/
+   */
   @javax.annotation.Nullable
   public String getPositionX() {
     return positionX;
@@ -197,7 +197,7 @@ public class EsignatureDocusignRecipientTab {
    * Element Y Position
    * 
    * @return positionY
-   **/
+   */
   @javax.annotation.Nullable
   public String getPositionY() {
     return positionY;

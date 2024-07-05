@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * OpenSearchIndex
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class OpenSearchIndex {
   public static final String SERIALIZED_NAME_NUMBER_OF_REPLICAS = "numberOfReplicas";
   @SerializedName(SERIALIZED_NAME_NUMBER_OF_REPLICAS)
@@ -78,7 +78,7 @@ public class OpenSearchIndex {
    * The number of replicas per shard
    * 
    * @return numberOfReplicas
-   **/
+   */
   @javax.annotation.Nullable
   public String getNumberOfReplicas() {
     return numberOfReplicas;
@@ -98,7 +98,7 @@ public class OpenSearchIndex {
    * The number of shards in index
    * 
    * @return numberOfShards
-   **/
+   */
   @javax.annotation.Nullable
   public String getNumberOfShards() {
     return numberOfShards;

@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * MappingAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class MappingAttribute {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -107,7 +107,7 @@ public class MappingAttribute {
    * Attribute Key
    * 
    * @return attributeKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getAttributeKey() {
     return attributeKey;
@@ -127,7 +127,7 @@ public class MappingAttribute {
    * Get sourceType
    * 
    * @return sourceType
-   **/
+   */
   @javax.annotation.Nullable
   public MappingAttributeSourceType getSourceType() {
     return sourceType;
@@ -147,7 +147,7 @@ public class MappingAttribute {
    * Default value
    * 
    * @return defaultValue
-   **/
+   */
   @javax.annotation.Nullable
   public String getDefaultValue() {
     return defaultValue;
@@ -175,7 +175,7 @@ public class MappingAttribute {
    * Default values
    * 
    * @return defaultValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getDefaultValues() {
     return defaultValues;
@@ -203,7 +203,7 @@ public class MappingAttribute {
    * Get labelTexts
    * 
    * @return labelTexts
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getLabelTexts() {
     return labelTexts;
@@ -223,7 +223,7 @@ public class MappingAttribute {
    * Get labelMatchingType
    * 
    * @return labelMatchingType
-   **/
+   */
   @javax.annotation.Nullable
   public MappingAttributeLabelMatchingType getLabelMatchingType() {
     return labelMatchingType;
@@ -243,7 +243,7 @@ public class MappingAttribute {
    * Get metadataField
    * 
    * @return metadataField
-   **/
+   */
   @javax.annotation.Nullable
   public MappingAttributeMetadataField getMetadataField() {
     return metadataField;
@@ -263,7 +263,7 @@ public class MappingAttribute {
    * Attribute Value Regex Validation
    * 
    * @return validationRegex
-   **/
+   */
   @javax.annotation.Nullable
   public String getValidationRegex() {
     return validationRegex;

@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentFulltextAttribute {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -85,7 +85,7 @@ public class DocumentFulltextAttribute {
    * Get eq
    * 
    * @return eq
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentFulltextAttributeEq getEq() {
     return eq;
@@ -113,7 +113,7 @@ public class DocumentFulltextAttribute {
    * Searches for ANY strings that eq
    * 
    * @return eqOr
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentFulltextAttributeEq> getEqOr() {
     return eqOr;
@@ -133,7 +133,7 @@ public class DocumentFulltextAttribute {
    * Tag key to search
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nonnull
   public String getKey() {
     return key;

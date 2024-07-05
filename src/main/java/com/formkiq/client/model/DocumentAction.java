@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAction
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentAction {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -122,7 +122,7 @@ public class DocumentAction {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentActionStatus getStatus() {
     return status;
@@ -142,7 +142,7 @@ public class DocumentAction {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentActionType getType() {
     return type;
@@ -162,7 +162,7 @@ public class DocumentAction {
    * Queue Id
    * 
    * @return queueId
-   **/
+   */
   @javax.annotation.Nullable
   public String getQueueId() {
     return queueId;
@@ -182,7 +182,7 @@ public class DocumentAction {
    * Workflow Id
    * 
    * @return workflowId
-   **/
+   */
   @javax.annotation.Nullable
   public String getWorkflowId() {
     return workflowId;
@@ -202,7 +202,7 @@ public class DocumentAction {
    * Workflow Step Id
    * 
    * @return workflowStepId
-   **/
+   */
   @javax.annotation.Nullable
   public String getWorkflowStepId() {
     return workflowStepId;
@@ -222,7 +222,7 @@ public class DocumentAction {
    * Action message information
    * 
    * @return message
-   **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;
@@ -242,7 +242,7 @@ public class DocumentAction {
    * User who requested the Action
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -262,7 +262,7 @@ public class DocumentAction {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -282,7 +282,7 @@ public class DocumentAction {
    * Started Timestamp
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -302,7 +302,7 @@ public class DocumentAction {
    * Completed Timestamp
    * 
    * @return completedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getCompletedDate() {
     return completedDate;
@@ -330,7 +330,7 @@ public class DocumentAction {
    * Action parameters
    * 
    * @return parameters
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, String> getParameters() {
     return parameters;
@@ -358,7 +358,7 @@ public class DocumentAction {
    * Action metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, String> getMetadata() {
     return metadata;

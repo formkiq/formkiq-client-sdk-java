@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * IndexFolderMoveRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class IndexFolderMoveRequest {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
@@ -78,7 +78,7 @@ public class IndexFolderMoveRequest {
    * Source path
    * 
    * @return source
-   **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
@@ -98,7 +98,7 @@ public class IndexFolderMoveRequest {
    * Target path
    * 
    * @return target
-   **/
+   */
   @javax.annotation.Nullable
   public String getTarget() {
     return target;

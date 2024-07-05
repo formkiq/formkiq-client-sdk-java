@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class OpaPolicyItem {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -94,7 +94,7 @@ public class OpaPolicyItem {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public OpaPolicyItemType getType() {
     return type;
@@ -114,7 +114,7 @@ public class OpaPolicyItem {
    * OPA Policy in REGO format
    * 
    * @return policy
-   **/
+   */
   @javax.annotation.Nullable
   public String getPolicy() {
     return policy;
@@ -142,7 +142,7 @@ public class OpaPolicyItem {
    * User must match all roles
    * 
    * @return allRoles
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getAllRoles() {
     return allRoles;
@@ -170,7 +170,7 @@ public class OpaPolicyItem {
    * User must match any role
    * 
    * @return anyRoles
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getAnyRoles() {
     return anyRoles;
@@ -198,7 +198,7 @@ public class OpaPolicyItem {
    * Get attributes
    * 
    * @return attributes
-   **/
+   */
   @javax.annotation.Nullable
   public List<OpaPolicyAttribute> getAttributes() {
     return attributes;

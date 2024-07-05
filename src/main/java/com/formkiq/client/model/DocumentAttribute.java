@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -110,7 +110,7 @@ public class DocumentAttribute {
    * Attribute key
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nullable
   public String getKey() {
     return key;
@@ -130,7 +130,7 @@ public class DocumentAttribute {
    * Attribute with string value
    * 
    * @return stringValue
-   **/
+   */
   @javax.annotation.Nullable
   public String getStringValue() {
     return stringValue;
@@ -158,7 +158,7 @@ public class DocumentAttribute {
    * Attribute with string values
    * 
    * @return stringValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getStringValues() {
     return stringValues;
@@ -178,7 +178,7 @@ public class DocumentAttribute {
    * Attribute with number value
    * 
    * @return numberValue
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getNumberValue() {
     return numberValue;
@@ -206,7 +206,7 @@ public class DocumentAttribute {
    * Attribute with number values
    * 
    * @return numberValues
-   **/
+   */
   @javax.annotation.Nullable
   public List<BigDecimal> getNumberValues() {
     return numberValues;
@@ -226,7 +226,7 @@ public class DocumentAttribute {
    * Attribute with boolean value
    * 
    * @return booleanValue
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getBooleanValue() {
     return booleanValue;
@@ -246,7 +246,7 @@ public class DocumentAttribute {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -266,7 +266,7 @@ public class DocumentAttribute {
    * User who added attribute
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -286,7 +286,7 @@ public class DocumentAttribute {
    * Get valueType
    * 
    * @return valueType
-   **/
+   */
   @javax.annotation.Nullable
   public AttributeValueType getValueType() {
     return valueType;

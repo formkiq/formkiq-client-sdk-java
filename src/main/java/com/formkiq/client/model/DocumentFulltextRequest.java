@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Document full text search
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentFulltextRequest {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
@@ -80,7 +80,7 @@ public class DocumentFulltextRequest {
    * Get query
    * 
    * @return query
-   **/
+   */
   @javax.annotation.Nonnull
   public DocumentFulltextSearch getQuery() {
     return query;
@@ -100,7 +100,7 @@ public class DocumentFulltextRequest {
    * Get responseFields
    * 
    * @return responseFields
-   **/
+   */
   @javax.annotation.Nullable
   public SearchResponseFields getResponseFields() {
     return responseFields;

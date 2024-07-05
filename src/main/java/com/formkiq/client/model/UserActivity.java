@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class UserActivity {
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
@@ -95,7 +95,7 @@ public class UserActivity {
    * Activity identifier
    * 
    * @return activityId
-   **/
+   */
   @javax.annotation.Nullable
   public String getActivityId() {
     return activityId;
@@ -115,7 +115,7 @@ public class UserActivity {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public UserActivityType getType() {
     return type;
@@ -135,7 +135,7 @@ public class UserActivity {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -155,7 +155,7 @@ public class UserActivity {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -175,7 +175,7 @@ public class UserActivity {
    * Document Version Identifier
    * 
    * @return versionKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getVersionKey() {
     return versionKey;
@@ -195,7 +195,7 @@ public class UserActivity {
    * User activity time to live
    * 
    * @return timeToLive
-   **/
+   */
   @javax.annotation.Nullable
   public String getTimeToLive() {
     return timeToLive;

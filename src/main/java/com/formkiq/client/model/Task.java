@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Task
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Task {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)
@@ -109,7 +109,7 @@ public class Task {
    * Task Identifier
    * 
    * @return taskId
-   **/
+   */
   @javax.annotation.Nullable
   public String getTaskId() {
     return taskId;
@@ -129,7 +129,7 @@ public class Task {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -149,7 +149,7 @@ public class Task {
    * Name of Task
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -169,7 +169,7 @@ public class Task {
    * Description of Task
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -189,7 +189,7 @@ public class Task {
    * Start Date of Task
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -209,7 +209,7 @@ public class Task {
    * End Date of Task
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -229,7 +229,7 @@ public class Task {
    * User who added Task
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -249,7 +249,7 @@ public class Task {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public TaskStatus getStatus() {
     return status;
@@ -277,7 +277,7 @@ public class Task {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;

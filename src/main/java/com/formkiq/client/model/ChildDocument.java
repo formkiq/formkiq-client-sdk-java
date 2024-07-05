@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * ChildDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class ChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -114,7 +114,7 @@ public class ChildDocument {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -134,7 +134,7 @@ public class ChildDocument {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -154,7 +154,7 @@ public class ChildDocument {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -174,7 +174,7 @@ public class ChildDocument {
    * Last Modified Timestamp
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -194,7 +194,7 @@ public class ChildDocument {
    * Document checksum, changes when document file changes
    * 
    * @return checksum
-   **/
+   */
   @javax.annotation.Nullable
   public String getChecksum() {
     return checksum;
@@ -214,7 +214,7 @@ public class ChildDocument {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nonnull
   public String getDocumentId() {
     return documentId;
@@ -234,7 +234,7 @@ public class ChildDocument {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -254,7 +254,7 @@ public class ChildDocument {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -274,7 +274,7 @@ public class ChildDocument {
    * Document size
    * 
    * @return contentLength
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getContentLength() {
     return contentLength;
@@ -294,7 +294,7 @@ public class ChildDocument {
    * Document version
    * 
    * @return versionId
-   **/
+   */
   @javax.annotation.Nullable
   public String getVersionId() {
     return versionId;
@@ -314,7 +314,7 @@ public class ChildDocument {
    * Parent Document Identifier
    * 
    * @return belongsToDocumentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getBelongsToDocumentId() {
     return belongsToDocumentId;

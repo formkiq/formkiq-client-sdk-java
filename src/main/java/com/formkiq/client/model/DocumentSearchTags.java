@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchTags
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentSearchTags {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -87,7 +87,7 @@ public class DocumentSearchTags {
    * Searches for strings that eq
    * 
    * @return eq
-   **/
+   */
   @javax.annotation.Nullable
   public String getEq() {
     return eq;
@@ -107,7 +107,7 @@ public class DocumentSearchTags {
    * Searches for strings that begin with
    * 
    * @return beginsWith
-   **/
+   */
   @javax.annotation.Nullable
   public String getBeginsWith() {
     return beginsWith;
@@ -127,7 +127,7 @@ public class DocumentSearchTags {
    * Get range
    * 
    * @return range
-   **/
+   */
   @javax.annotation.Nullable
   public DocumentSearchRange getRange() {
     return range;
@@ -147,7 +147,7 @@ public class DocumentSearchTags {
    * Tag key to search
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nonnull
   public String getKey() {
     return key;

@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddTask
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddTask {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -103,7 +103,7 @@ public class AddTask {
    * Name of Task
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -123,7 +123,7 @@ public class AddTask {
    * Description of Task
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nonnull
   public String getDescription() {
     return description;
@@ -143,7 +143,7 @@ public class AddTask {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public TaskStatus getStatus() {
     return status;
@@ -163,7 +163,7 @@ public class AddTask {
    * Start Date
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -183,7 +183,7 @@ public class AddTask {
    * End Date
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -211,7 +211,7 @@ public class AddTask {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -239,7 +239,7 @@ public class AddTask {
    * Get documentIds
    * 
    * @return documentIds
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getDocumentIds() {
     return documentIds;

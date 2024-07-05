@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * RuleConditionMust
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class RuleConditionMust {
   public static final String SERIALIZED_NAME_ATTRIBUTE = "attribute";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE)
@@ -93,7 +93,7 @@ public class RuleConditionMust {
    * Get attribute
    * 
    * @return attribute
-   **/
+   */
   @javax.annotation.Nullable
   public RuleConditionAttribute getAttribute() {
     return attribute;
@@ -113,7 +113,7 @@ public class RuleConditionMust {
    * Get criterion
    * 
    * @return criterion
-   **/
+   */
   @javax.annotation.Nullable
   public RuleConditionCriterion getCriterion() {
     return criterion;
@@ -133,7 +133,7 @@ public class RuleConditionMust {
    * Rule field name (only required for FIELD criterion)
    * 
    * @return fieldName
-   **/
+   */
   @javax.annotation.Nullable
   public String getFieldName() {
     return fieldName;
@@ -153,7 +153,7 @@ public class RuleConditionMust {
    * Rule condition value
    * 
    * @return value
-   **/
+   */
   @javax.annotation.Nullable
   public String getValue() {
     return value;
@@ -173,7 +173,7 @@ public class RuleConditionMust {
    * Get operation
    * 
    * @return operation
-   **/
+   */
   @javax.annotation.Nullable
   public RuleConditionOperation getOperation() {
     return operation;

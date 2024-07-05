@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AddAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -84,7 +84,7 @@ public class AddAttribute {
    * Attribute Key
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nonnull
   public String getKey() {
     return key;
@@ -104,7 +104,7 @@ public class AddAttribute {
    * Get dataType
    * 
    * @return dataType
-   **/
+   */
   @javax.annotation.Nullable
   public AttributeDataType getDataType() {
     return dataType;
@@ -124,7 +124,7 @@ public class AddAttribute {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public AttributeType getType() {
     return type;

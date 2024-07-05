@@ -19,11 +19,11 @@
 
 package com.formkiq.client.invoker;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
@@ -37,16 +37,14 @@ import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 /*
  * A JSON utility class
@@ -63,10 +61,6 @@ public class JSON {
       new OffsetDateTimeTypeAdapter();
   private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
   private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
-
-  private static final StdDateFormat sdf = new StdDateFormat()
-      .withTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault())).withColonInTimeZone(true);
-  private static final DateTimeFormatter dtf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
   @SuppressWarnings("unchecked")
   public static GsonBuilder createGson() {
@@ -196,6 +190,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddFolderShareResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddGroup.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddGroupRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddMapping.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddMappingRequest.CustomTypeAdapterFactory());
@@ -239,6 +237,10 @@ public class JSON {
         new com.formkiq.client.model.AddTaskRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddTaskResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddUser.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddUserRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddWebhookRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -438,6 +440,8 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetFoldersResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetGroupResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetGroupsResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetMappingResponse.CustomTypeAdapterFactory());
@@ -474,9 +478,15 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetUserActivitesResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetUserGroupsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetUserResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetUserSharesResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetUsersInGroupResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetUsersResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetVersionResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -939,7 +949,7 @@ public class JSON {
             if (dateFormat != null) {
               return new java.sql.Date(dateFormat.parse(date).getTime());
             }
-            return new java.sql.Date(sdf.parse(date).getTime());
+            return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
           } catch (ParseException e) {
             throw new JsonParseException(e);
           }
@@ -948,8 +958,7 @@ public class JSON {
   }
 
   /**
-   * Gson TypeAdapter for java.util.Date type If the dateFormat is null, DateTimeFormatter will be
-   * used.
+   * Gson TypeAdapter for java.util.Date type If the dateFormat is null, ISO8601Utils will be used.
    */
   public static class DateTypeAdapter extends TypeAdapter<Date> {
 
@@ -974,7 +983,7 @@ public class JSON {
         if (dateFormat != null) {
           value = dateFormat.format(date);
         } else {
-          value = date.toInstant().atOffset(ZoneOffset.UTC).format(dtf);
+          value = ISO8601Utils.format(date, true);
         }
         out.value(value);
       }
@@ -993,7 +1002,7 @@ public class JSON {
               if (dateFormat != null) {
                 return dateFormat.parse(date);
               }
-              return sdf.parse(date);
+              return ISO8601Utils.parse(date, new ParsePosition(0));
             } catch (ParseException e) {
               throw new JsonParseException(e);
             }

@@ -56,12 +56,20 @@ import com.formkiq.client.invoker.JSON;
  * User
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class User {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
   private String username;
+
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  private String email;
+
+  public static final String SERIALIZED_NAME_ENABLED = "enabled";
+  @SerializedName(SERIALIZED_NAME_ENABLED)
+  private Boolean enabled;
 
   public static final String SERIALIZED_NAME_USER_STATUS = "userStatus";
   @SerializedName(SERIALIZED_NAME_USER_STATUS)
@@ -86,7 +94,7 @@ public class User {
    * Username of user
    * 
    * @return username
-   **/
+   */
   @javax.annotation.Nullable
   public String getUsername() {
     return username;
@@ -94,6 +102,46 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+
+  public User email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * Email of user
+   * 
+   * @return email
+   */
+  @javax.annotation.Nullable
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+
+  public User enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+  /**
+   * whether the user is enabled
+   * 
+   * @return enabled
+   */
+  @javax.annotation.Nullable
+  public Boolean getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
   }
 
 
@@ -106,7 +154,7 @@ public class User {
    * Status of user
    * 
    * @return userStatus
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserStatus() {
     return userStatus;
@@ -126,7 +174,7 @@ public class User {
    * Inserted timestamp of user
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -146,7 +194,7 @@ public class User {
    * Last nodified timestamp of user
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -167,7 +215,8 @@ public class User {
       return false;
     }
     User user = (User) o;
-    return Objects.equals(this.username, user.username)
+    return Objects.equals(this.username, user.username) && Objects.equals(this.email, user.email)
+        && Objects.equals(this.enabled, user.enabled)
         && Objects.equals(this.userStatus, user.userStatus)
         && Objects.equals(this.insertedDate, user.insertedDate)
         && Objects.equals(this.lastModifiedDate, user.lastModifiedDate);
@@ -175,7 +224,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userStatus, insertedDate, lastModifiedDate);
+    return Objects.hash(username, email, enabled, userStatus, insertedDate, lastModifiedDate);
   }
 
   @Override
@@ -183,6 +232,8 @@ public class User {
     StringBuilder sb = new StringBuilder();
     sb.append("class User {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    userStatus: ").append(toIndentedString(userStatus)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
@@ -208,6 +259,8 @@ public class User {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("username");
+    openapiFields.add("email");
+    openapiFields.add("enabled");
     openapiFields.add("userStatus");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
@@ -246,6 +299,12 @@ public class User {
       throw new IllegalArgumentException(String.format(
           "Expected the field `username` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("username").toString()));
+    }
+    if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
+        && !jsonObj.get("email").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `email` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("email").toString()));
     }
     if ((jsonObj.get("userStatus") != null && !jsonObj.get("userStatus").isJsonNull())
         && !jsonObj.get("userStatus").isJsonPrimitive()) {

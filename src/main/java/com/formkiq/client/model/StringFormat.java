@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * StringFormat
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class StringFormat {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -83,7 +83,7 @@ public class StringFormat {
    * Get type
    * 
    * @return type
-   **/
+   */
   @javax.annotation.Nullable
   public StringGeneratorType getType() {
     return type;
@@ -103,7 +103,7 @@ public class StringFormat {
    * Static Value
    * 
    * @return staticValue
-   **/
+   */
   @javax.annotation.Nullable
   public String getStaticValue() {
     return staticValue;
@@ -123,7 +123,7 @@ public class StringFormat {
    * Optional padding for AUTO_INCREMENT number
    * 
    * @return padding
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getPadding() {
     return padding;

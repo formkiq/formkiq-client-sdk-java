@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * ModelCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class ModelCase {
   public static final String SERIALIZED_NAME_CASE_ID = "caseId";
   @SerializedName(SERIALIZED_NAME_CASE_ID)
@@ -117,7 +117,7 @@ public class ModelCase {
    * Case Identifier
    * 
    * @return caseId
-   **/
+   */
   @javax.annotation.Nullable
   public String getCaseId() {
     return caseId;
@@ -137,7 +137,7 @@ public class ModelCase {
    * Case Number
    * 
    * @return caseNumber
-   **/
+   */
   @javax.annotation.Nullable
   public String getCaseNumber() {
     return caseNumber;
@@ -157,7 +157,7 @@ public class ModelCase {
    * Document Number
    * 
    * @return documentNumber
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentNumber() {
     return documentNumber;
@@ -177,7 +177,7 @@ public class ModelCase {
    * Start Date
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -197,7 +197,7 @@ public class ModelCase {
    * End Date
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -217,7 +217,7 @@ public class ModelCase {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -237,7 +237,7 @@ public class ModelCase {
    * Case Name
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -257,7 +257,7 @@ public class ModelCase {
    * Case Description
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -285,7 +285,7 @@ public class ModelCase {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -305,7 +305,7 @@ public class ModelCase {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public CaseStatus getStatus() {
     return status;
@@ -325,7 +325,7 @@ public class ModelCase {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;

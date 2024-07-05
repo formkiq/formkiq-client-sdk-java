@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Document
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Document {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -133,7 +133,7 @@ public class Document {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -153,7 +153,7 @@ public class Document {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -173,7 +173,7 @@ public class Document {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -193,7 +193,7 @@ public class Document {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -213,7 +213,7 @@ public class Document {
    * Last Modified Timestamp
    * 
    * @return lastModifiedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getLastModifiedDate() {
     return lastModifiedDate;
@@ -233,7 +233,7 @@ public class Document {
    * Document checksum, changes when document file changes
    * 
    * @return checksum
-   **/
+   */
   @javax.annotation.Nullable
   public String getChecksum() {
     return checksum;
@@ -253,7 +253,7 @@ public class Document {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -273,7 +273,7 @@ public class Document {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -293,7 +293,7 @@ public class Document {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -313,7 +313,7 @@ public class Document {
    * Document size
    * 
    * @return contentLength
-   **/
+   */
   @javax.annotation.Nullable
   public Integer getContentLength() {
     return contentLength;
@@ -333,7 +333,7 @@ public class Document {
    * Document version
    * 
    * @return version
-   **/
+   */
   @javax.annotation.Nullable
   public String getVersion() {
     return version;
@@ -353,7 +353,7 @@ public class Document {
    * Document Version Identifier
    * 
    * @return versionKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getVersionKey() {
     return versionKey;
@@ -373,7 +373,7 @@ public class Document {
    * Document storage version
    * 
    * @return s3version
-   **/
+   */
   @javax.annotation.Nullable
   public String getS3version() {
     return s3version;
@@ -393,7 +393,7 @@ public class Document {
    * Parent Document Identifier
    * 
    * @return belongsToDocumentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getBelongsToDocumentId() {
     return belongsToDocumentId;
@@ -421,7 +421,7 @@ public class Document {
    * List of document Metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public List<DocumentMetadata> getMetadata() {
     return metadata;

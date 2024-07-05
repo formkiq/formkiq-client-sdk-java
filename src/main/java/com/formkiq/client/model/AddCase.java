@@ -62,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * AddCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddCase {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -112,7 +112,7 @@ public class AddCase {
    * Case Name
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nonnull
   public String getName() {
     return name;
@@ -132,7 +132,7 @@ public class AddCase {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public CaseStatus getStatus() {
     return status;
@@ -152,7 +152,7 @@ public class AddCase {
    * Start Date
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -172,7 +172,7 @@ public class AddCase {
    * End Date
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -192,7 +192,7 @@ public class AddCase {
    * Case Description
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -220,7 +220,7 @@ public class AddCase {
    * Format of Document Number
    * 
    * @return documentNumberFormat
-   **/
+   */
   @javax.annotation.Nullable
   public List<StringFormat> getDocumentNumberFormat() {
     return documentNumberFormat;
@@ -248,7 +248,7 @@ public class AddCase {
    * Format of Case Number
    * 
    * @return caseNumberFormat
-   **/
+   */
   @javax.annotation.Nullable
   public List<StringFormat> getCaseNumberFormat() {
     return caseNumberFormat;
@@ -276,7 +276,7 @@ public class AddCase {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -304,7 +304,7 @@ public class AddCase {
    * Get documentIds
    * 
    * @return documentIds
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getDocumentIds() {
     return documentIds;

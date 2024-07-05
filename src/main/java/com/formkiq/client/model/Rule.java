@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Rule
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class Rule {
   public static final String SERIALIZED_NAME_RULE_ID = "ruleId";
   @SerializedName(SERIALIZED_NAME_RULE_ID)
@@ -97,7 +97,7 @@ public class Rule {
    * Workflow to start on matching of conditions
    * 
    * @return ruleId
-   **/
+   */
   @javax.annotation.Nullable
   public String getRuleId() {
     return ruleId;
@@ -117,7 +117,7 @@ public class Rule {
    * Rule priority
    * 
    * @return priority
-   **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getPriority() {
     return priority;
@@ -137,7 +137,7 @@ public class Rule {
    * Ruleset description
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -157,7 +157,7 @@ public class Rule {
    * Workflow to start on matching of conditions
    * 
    * @return workflowId
-   **/
+   */
   @javax.annotation.Nullable
   public String getWorkflowId() {
     return workflowId;
@@ -177,7 +177,7 @@ public class Rule {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public RulesetStatus getStatus() {
     return status;
@@ -197,7 +197,7 @@ public class Rule {
    * Get conditions
    * 
    * @return conditions
-   **/
+   */
   @javax.annotation.Nullable
   public RuleCondition getConditions() {
     return conditions;

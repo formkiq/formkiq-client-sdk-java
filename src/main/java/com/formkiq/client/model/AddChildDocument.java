@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -102,7 +102,7 @@ public class AddChildDocument {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -122,7 +122,7 @@ public class AddChildDocument {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -142,7 +142,7 @@ public class AddChildDocument {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -162,7 +162,7 @@ public class AddChildDocument {
    * Is the content Base64-encoded?
    * 
    * @return isBase64
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsBase64() {
     return isBase64;
@@ -182,7 +182,7 @@ public class AddChildDocument {
    * Document content
    * 
    * @return content
-   **/
+   */
   @javax.annotation.Nonnull
   public String getContent() {
     return content;
@@ -210,7 +210,7 @@ public class AddChildDocument {
    * List of document tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentTag> getTags() {
     return tags;
@@ -238,7 +238,7 @@ public class AddChildDocument {
    * List of document Metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentMetadata> getMetadata() {
     return metadata;

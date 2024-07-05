@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
@@ -90,7 +90,7 @@ public class UpdateConfigurationRequest {
    * ChatGPT Api Key
    * 
    * @return chatGptApiKey
-   **/
+   */
   @javax.annotation.Nullable
   public String getChatGptApiKey() {
     return chatGptApiKey;
@@ -110,7 +110,7 @@ public class UpdateConfigurationRequest {
    * Set Maximum Document Content Length in Bytes
    * 
    * @return maxContentLengthBytes
-   **/
+   */
   @javax.annotation.Nullable
   public String getMaxContentLengthBytes() {
     return maxContentLengthBytes;
@@ -130,7 +130,7 @@ public class UpdateConfigurationRequest {
    * Set Maximum number of Documents allowed
    * 
    * @return maxDocuments
-   **/
+   */
   @javax.annotation.Nullable
   public String getMaxDocuments() {
     return maxDocuments;
@@ -150,7 +150,7 @@ public class UpdateConfigurationRequest {
    * Set Maximum number of Webhooks allowed
    * 
    * @return maxWebhooks
-   **/
+   */
   @javax.annotation.Nullable
   public String getMaxWebhooks() {
     return maxWebhooks;
@@ -170,7 +170,7 @@ public class UpdateConfigurationRequest {
    * Email address to use for notifications
    * 
    * @return notificationEmail
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationEmail() {
     return notificationEmail;

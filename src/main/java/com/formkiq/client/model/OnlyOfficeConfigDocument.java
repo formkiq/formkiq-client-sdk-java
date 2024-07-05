@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * OnlyOfficeConfigDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class OnlyOfficeConfigDocument {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -86,7 +86,7 @@ public class OnlyOfficeConfigDocument {
    * Defines the absolute URL where the source viewed or edited document is stored
    * 
    * @return url
-   **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
@@ -106,7 +106,7 @@ public class OnlyOfficeConfigDocument {
    * Defines the desired file name for the viewed or edited document
    * 
    * @return title
-   **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
@@ -126,7 +126,7 @@ public class OnlyOfficeConfigDocument {
    * Defines the unique document identifier used by the service to recognize the document
    * 
    * @return key
-   **/
+   */
   @javax.annotation.Nullable
   public String getKey() {
     return key;
@@ -146,7 +146,7 @@ public class OnlyOfficeConfigDocument {
    * Defines the type of the file for the source viewed or edited document
    * 
    * @return fileType
-   **/
+   */
   @javax.annotation.Nullable
   public String getFileType() {
     return fileType;

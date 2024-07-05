@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -239,7 +239,7 @@ public class AddActionParameters {
    * OCR: Parse types - TEXT, FORMS, TABLES
    * 
    * @return ocrParseTypes
-   **/
+   */
   @javax.annotation.Nullable
   public String getOcrParseTypes() {
     return ocrParseTypes;
@@ -259,7 +259,7 @@ public class AddActionParameters {
    * Get ocrEngine
    * 
    * @return ocrEngine
-   **/
+   */
   @javax.annotation.Nullable
   public OcrEngine getOcrEngine() {
     return ocrEngine;
@@ -279,7 +279,7 @@ public class AddActionParameters {
    * Get ocrOutputType
    * 
    * @return ocrOutputType
-   **/
+   */
   @javax.annotation.Nullable
   public OcrOutputType getOcrOutputType() {
     return ocrOutputType;
@@ -299,7 +299,7 @@ public class AddActionParameters {
    * Number of pages to OCR (from start) (-1 all)
    * 
    * @return ocrNumberOfPages
-   **/
+   */
   @javax.annotation.Nullable
   public String getOcrNumberOfPages() {
     return ocrNumberOfPages;
@@ -319,7 +319,7 @@ public class AddActionParameters {
    * OCR: For the rewriting of the PDF document, converting any image text to searchable text
    * 
    * @return addPdfDetectedCharactersAsText
-   **/
+   */
   @javax.annotation.Nullable
   public String getAddPdfDetectedCharactersAsText() {
     return addPdfDetectedCharactersAsText;
@@ -339,7 +339,7 @@ public class AddActionParameters {
    * Webhook: Callback URL
    * 
    * @return url
-   **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
@@ -359,7 +359,7 @@ public class AddActionParameters {
    * Fulltext: Maximum number of characters (-1 unlimited, Typesense defaults to 2048 characters)
    * 
    * @return characterMax
-   **/
+   */
   @javax.annotation.Nullable
   public String getCharacterMax() {
     return characterMax;
@@ -379,7 +379,7 @@ public class AddActionParameters {
    * DocumentTagging: Engine to use for document tagging generation
    * 
    * @return engine
-   **/
+   */
   @javax.annotation.Nullable
   public EngineEnum getEngine() {
     return engine;
@@ -399,7 +399,7 @@ public class AddActionParameters {
    * Notification Type
    * 
    * @return notificationType
-   **/
+   */
   @javax.annotation.Nullable
   public NotificationTypeEnum getNotificationType() {
     return notificationType;
@@ -419,7 +419,7 @@ public class AddActionParameters {
    * Who to carbon copy on the notification to (comma-delimited list)
    * 
    * @return notificationToCc
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationToCc() {
     return notificationToCc;
@@ -439,7 +439,7 @@ public class AddActionParameters {
    * Who to blind carbon copy on the notification to (comma-delimited list)
    * 
    * @return notificationToBcc
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationToBcc() {
     return notificationToBcc;
@@ -459,7 +459,7 @@ public class AddActionParameters {
    * Subject of the notification
    * 
    * @return notificationSubject
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationSubject() {
     return notificationSubject;
@@ -479,7 +479,7 @@ public class AddActionParameters {
    * Text of the notification
    * 
    * @return notificationText
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationText() {
     return notificationText;
@@ -499,7 +499,7 @@ public class AddActionParameters {
    * Html of the notification
    * 
    * @return notificationHtml
-   **/
+   */
   @javax.annotation.Nullable
   public String getNotificationHtml() {
     return notificationHtml;
@@ -519,7 +519,7 @@ public class AddActionParameters {
    * DocumentTagging: Comma-deliminted list of keywords to generate tags for
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public String getTags() {
     return tags;
@@ -539,7 +539,7 @@ public class AddActionParameters {
    * Id of Mapping
    * 
    * @return mappingId
-   **/
+   */
   @javax.annotation.Nullable
   public String getMappingId() {
     return mappingId;

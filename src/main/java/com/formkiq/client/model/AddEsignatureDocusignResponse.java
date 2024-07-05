@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddEsignatureDocusignResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddEsignatureDocusignResponse {
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
@@ -78,7 +78,7 @@ public class AddEsignatureDocusignResponse {
    * Redirect Url to complete DocuSign workflow
    * 
    * @return redirectUrl
-   **/
+   */
   @javax.annotation.Nullable
   public String getRedirectUrl() {
     return redirectUrl;
@@ -98,7 +98,7 @@ public class AddEsignatureDocusignResponse {
    * Result message
    * 
    * @return message
-   **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;

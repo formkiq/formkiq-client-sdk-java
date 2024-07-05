@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class WorkflowSummary {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -99,7 +99,7 @@ public class WorkflowSummary {
    * Name of Workflow
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -119,7 +119,7 @@ public class WorkflowSummary {
    * Workflow identifier
    * 
    * @return workflowId
-   **/
+   */
   @javax.annotation.Nullable
   public String getWorkflowId() {
     return workflowId;
@@ -139,7 +139,7 @@ public class WorkflowSummary {
    * Description of Workflow
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -159,7 +159,7 @@ public class WorkflowSummary {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -179,7 +179,7 @@ public class WorkflowSummary {
    * User who created workflow
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -199,7 +199,7 @@ public class WorkflowSummary {
    * Whether the Workflow is in use
    * 
    * @return inUse
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getInUse() {
     return inUse;
@@ -219,7 +219,7 @@ public class WorkflowSummary {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public WorkflowStatus getStatus() {
     return status;

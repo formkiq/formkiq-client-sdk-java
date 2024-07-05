@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateNigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class UpdateNigo {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -103,7 +103,7 @@ public class UpdateNigo {
    * Name of Nigo
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -123,7 +123,7 @@ public class UpdateNigo {
    * Description of Nigo
    * 
    * @return description
-   **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -143,7 +143,7 @@ public class UpdateNigo {
    * Start Date
    * 
    * @return startDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getStartDate() {
     return startDate;
@@ -163,7 +163,7 @@ public class UpdateNigo {
    * End Date
    * 
    * @return endDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getEndDate() {
     return endDate;
@@ -183,7 +183,7 @@ public class UpdateNigo {
    * Get status
    * 
    * @return status
-   **/
+   */
   @javax.annotation.Nullable
   public NigoStatus getStatus() {
     return status;
@@ -211,7 +211,7 @@ public class UpdateNigo {
    * Get metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -239,7 +239,7 @@ public class UpdateNigo {
    * Get documentIds
    * 
    * @return documentIds
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getDocumentIds() {
     return documentIds;

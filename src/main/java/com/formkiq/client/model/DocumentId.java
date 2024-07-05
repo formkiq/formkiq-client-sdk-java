@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentId
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class DocumentId {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -78,7 +78,7 @@ public class DocumentId {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nonnull
   public String getDocumentId() {
     return documentId;
@@ -98,7 +98,7 @@ public class DocumentId {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;

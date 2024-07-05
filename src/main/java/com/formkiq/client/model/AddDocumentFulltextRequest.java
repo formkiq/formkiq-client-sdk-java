@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class AddDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -102,7 +102,7 @@ public class AddDocumentFulltextRequest {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -122,7 +122,7 @@ public class AddDocumentFulltextRequest {
    * Document content
    * 
    * @return content
-   **/
+   */
   @javax.annotation.Nullable
   public String getContent() {
     return content;
@@ -150,7 +150,7 @@ public class AddDocumentFulltextRequest {
    * URL(s) which contain document content
    * 
    * @return contentUrls
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getContentUrls() {
     return contentUrls;
@@ -170,7 +170,7 @@ public class AddDocumentFulltextRequest {
    * Path or Name of document
    * 
    * @return path
-   **/
+   */
   @javax.annotation.Nullable
   public String getPath() {
     return path;
@@ -190,7 +190,7 @@ public class AddDocumentFulltextRequest {
    * Path or Name of deep link
    * 
    * @return deepLinkPath
-   **/
+   */
   @javax.annotation.Nullable
   public String getDeepLinkPath() {
     return deepLinkPath;
@@ -218,7 +218,7 @@ public class AddDocumentFulltextRequest {
    * List of document tags
    * 
    * @return tags
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentTag> getTags() {
     return tags;
@@ -246,7 +246,7 @@ public class AddDocumentFulltextRequest {
    * List of document Metadata
    * 
    * @return metadata
-   **/
+   */
   @javax.annotation.Nullable
   public List<AddDocumentMetadata> getMetadata() {
     return metadata;

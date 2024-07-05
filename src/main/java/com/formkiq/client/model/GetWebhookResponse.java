@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetWebhookResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -98,7 +98,7 @@ public class GetWebhookResponse {
    * Site Identifier
    * 
    * @return siteId
-   **/
+   */
   @javax.annotation.Nullable
   public String getSiteId() {
     return siteId;
@@ -118,7 +118,7 @@ public class GetWebhookResponse {
    * Webhook name
    * 
    * @return name
-   **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -138,7 +138,7 @@ public class GetWebhookResponse {
    * Webhook url
    * 
    * @return url
-   **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
@@ -158,7 +158,7 @@ public class GetWebhookResponse {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
@@ -178,7 +178,7 @@ public class GetWebhookResponse {
    * Webhook Identifier
    * 
    * @return webhookId
-   **/
+   */
   @javax.annotation.Nullable
   public String getWebhookId() {
     return webhookId;
@@ -198,7 +198,7 @@ public class GetWebhookResponse {
    * User who added document
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -218,7 +218,7 @@ public class GetWebhookResponse {
    * Is webhook enabled
    * 
    * @return enabled
-   **/
+   */
   @javax.annotation.Nullable
   public String getEnabled() {
     return enabled;

@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-06-25T13:37:25.002662-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.6.0")
+    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.7.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
   @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
@@ -116,7 +116,7 @@ public class GetDocumentOcrResponse {
    * Presigned S3 Urls for the OCR content
    * 
    * @return contentUrls
-   **/
+   */
   @javax.annotation.Nullable
   public List<String> getContentUrls() {
     return contentUrls;
@@ -136,7 +136,7 @@ public class GetDocumentOcrResponse {
    * OCR text result
    * 
    * @return data
-   **/
+   */
   @javax.annotation.Nullable
   public String getData() {
     return data;
@@ -156,7 +156,7 @@ public class GetDocumentOcrResponse {
    * The OCR technique used
    * 
    * @return ocrEngine
-   **/
+   */
   @javax.annotation.Nullable
   public String getOcrEngine() {
     return ocrEngine;
@@ -176,7 +176,7 @@ public class GetDocumentOcrResponse {
    * The status of the OCR request
    * 
    * @return ocrStatus
-   **/
+   */
   @javax.annotation.Nullable
   public String getOcrStatus() {
     return ocrStatus;
@@ -196,7 +196,7 @@ public class GetDocumentOcrResponse {
    * Document Content-Type
    * 
    * @return contentType
-   **/
+   */
   @javax.annotation.Nullable
   public String getContentType() {
     return contentType;
@@ -216,7 +216,7 @@ public class GetDocumentOcrResponse {
    * Is the content Base64-encoded?
    * 
    * @return isBase64
-   **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsBase64() {
     return isBase64;
@@ -236,7 +236,7 @@ public class GetDocumentOcrResponse {
    * User who requested the OCR
    * 
    * @return userId
-   **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -256,7 +256,7 @@ public class GetDocumentOcrResponse {
    * Document Identifier
    * 
    * @return documentId
-   **/
+   */
   @javax.annotation.Nullable
   public String getDocumentId() {
     return documentId;
@@ -276,7 +276,7 @@ public class GetDocumentOcrResponse {
    * Inserted Timestamp
    * 
    * @return insertedDate
-   **/
+   */
   @javax.annotation.Nullable
   public String getInsertedDate() {
     return insertedDate;
