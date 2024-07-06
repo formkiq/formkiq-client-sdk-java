@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetOpenSearchIndexResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-04T16:10:39.847247-05:00[America/Winnipeg]",
+    date = "2024-07-06T13:14:53.148809-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetOpenSearchIndexResponse {
   public static final String SERIALIZED_NAME_INDEX_SETTINGS = "indexSettings";

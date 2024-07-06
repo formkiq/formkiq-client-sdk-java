@@ -51,4 +51,12 @@ public class AddGroupTest {
     // TODO: test name
   }
 
+  /**
+   * Test the property 'description'
+   */
+  @Test
+  public void descriptionTest() {
+    // TODO: test description
+  }
+
 }

@@ -16970,6 +16970,7 @@ components:
       example:
         group:
           name: name
+          description: description
       properties:
         group:
           $ref: '#/components/schemas/AddGroup'
@@ -16979,9 +16980,13 @@ components:
     AddGroup:
       example:
         name: name
+        description: description
       properties:
         name:
           description: Name of Group
+          type: string
+        description:
+          description: Description of Group
           type: string
       type: object
     AddUserRequest:
