@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**start** | **String** | Start of range query |  |
 |**end** | **String** | End of range query |  |
+|**type** | **SearchRangeDataType** |  |  [optional] |
 
 
 

@@ -1,0 +1,14 @@
+
+
+# GetDocumentAttributesResponse
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**next** | **String** | Next page of results token |  [optional] |
+|**attributes** | [**List&lt;DocumentAttribute&gt;**](DocumentAttribute.md) | List of attributes |  [optional] |
+
+
+

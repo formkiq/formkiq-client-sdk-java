@@ -15,6 +15,7 @@
 |**content** | **String** | Document content |  [optional] |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
+|**attributes** | [**List&lt;AddDocumentAttribute&gt;**](AddDocumentAttribute.md) | List of document attributes |  [optional] |
 |**actions** | [**List&lt;AddAction&gt;**](AddAction.md) | List of Actions |  [optional] |
 |**documents** | [**List&lt;AddChildDocument&gt;**](AddChildDocument.md) | List of child documents |  [optional] |
 

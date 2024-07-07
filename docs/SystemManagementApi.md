@@ -152,7 +152,7 @@ No authorization required
 
 <a id="deleteOpensearchIndex"></a>
 # **deleteOpensearchIndex**
-> DeleteOpenSearchIndexResponse deleteOpensearchIndex(siteId)
+> DeleteResponse deleteOpensearchIndex(siteId)
 
 Deletst site(s) OpenSearch index
 
@@ -178,7 +178,7 @@ public class Example {
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DeleteOpenSearchIndexResponse result = apiInstance.deleteOpensearchIndex(siteId);
+      DeleteResponse result = apiInstance.deleteOpensearchIndex(siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#deleteOpensearchIndex");
@@ -199,7 +199,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteOpenSearchIndexResponse**](DeleteOpenSearchIndexResponse.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 

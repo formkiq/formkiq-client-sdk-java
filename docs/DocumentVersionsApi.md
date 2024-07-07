@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="deleteDocumentVersion"></a>
 # **deleteDocumentVersion**
-> deleteDocumentVersion(documentId, versionKey, siteId, shareKey)
+> DeleteResponse deleteDocumentVersion(documentId, versionKey, siteId, shareKey)
 
 Delete document version
 
@@ -40,7 +40,8 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      apiInstance.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
+      DeleteResponse result = apiInstance.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#deleteDocumentVersion");
       System.err.println("Status code: " + e.getCode());
@@ -63,7 +64,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -72,7 +73,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

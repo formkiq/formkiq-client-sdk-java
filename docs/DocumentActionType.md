@@ -19,5 +19,9 @@
 
 * `WEBHOOK` (value: `"WEBHOOK"`)
 
+* `IDP` (value: `"IDP"`)
+
+* `PUBLISH` (value: `"PUBLISH"`)
+
 
 

@@ -8,6 +8,7 @@ All URIs are relative to *http://localhost*
 | [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document |
 | [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file |
 | [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document |
+| [**deletePublishedDocumentContent**](DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents |
 | [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document |
 | [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents |
 | [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document |
@@ -15,6 +16,7 @@ All URIs are relative to *http://localhost*
 | [**getDocumentUpload**](DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document |
 | [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url |
 | [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing |
+| [**getPublishedDocumentContent**](DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents |
 | [**setDocumentRestore**](DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document |
 | [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document |
 
@@ -231,7 +233,7 @@ No authorization required
 
 <a id="deleteDocument"></a>
 # **deleteDocument**
-> deleteDocument(documentId, siteId, softDelete)
+> DeleteResponse deleteDocument(documentId, siteId, softDelete)
 
 Delete document
 
@@ -259,7 +261,8 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     Boolean softDelete = true; // Boolean | Whether to soft delete document
     try {
-      apiInstance.deleteDocument(documentId, siteId, softDelete);
+      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, softDelete);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocument");
       System.err.println("Status code: " + e.getCode());
@@ -281,7 +284,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -290,7 +293,74 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deletePublishedDocumentContent"></a>
+# **deletePublishedDocumentContent**
+> DeleteResponse deletePublishedDocumentContent(documentId, siteId)
+
+Delete published document&#39;s contents
+
+Delete a published document&#39;s contents. Certain content types, text/_*, application/json, and application/x-www-form-urlencoded. return the  \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteResponse result = apiInstance.deletePublishedDocumentContent(documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#deletePublishedDocumentContent");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -807,6 +877,72 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getPublishedDocumentContent"></a>
+# **getPublishedDocumentContent**
+> getPublishedDocumentContent(documentId, siteId)
+
+Get published document&#39;s contents
+
+Get a published document&#39;s contents. Certain content types, text/_*, application/json, and application/x-www-form-urlencoded. return the  \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      apiInstance.getPublishedDocumentContent(documentId, siteId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#getPublishedDocumentContent");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **307** | Temporary Redirect |  * Location -  <br>  |
 
 <a id="setDocumentRestore"></a>
 # **setDocumentRestore**

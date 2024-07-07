@@ -4,9 +4,9 @@
 This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
-- API version: 1.14.0
-  - Build date: 2024-03-28T19:56:05.484023-05:00[America/Winnipeg]
-  - Generator version: 7.4.0
+- API version: 1.15.0
+  - Build date: 2024-07-04T16:10:39.847247-05:00[America/Winnipeg]
+  - Generator version: 7.7.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.14.1</version>
+  <version>1.15.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.14.1"
+     implementation "com.formkiq:client:1.15.0"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.14.1.jar`
+* `target/client-1.15.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -176,14 +176,11 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccessControlApi* | [**addDocumentAccessAttributes**](docs/AccessControlApi.md#addDocumentAccessAttributes) | **POST** /documents/{documentId}/accessAttributes | Add document access attributes
-*AccessControlApi* | [**deleteDocumentAccessAttributes**](docs/AccessControlApi.md#deleteDocumentAccessAttributes) | **DELETE** /documents/{documentId}/accessAttributes | Delete document&#39;s access attributes
-*AccessControlApi* | [**deleteOpaConfiguration**](docs/AccessControlApi.md#deleteOpaConfiguration) | **DELETE** /sites/{siteId}/opa/accessPolicy | Delete OPA Configuration
-*AccessControlApi* | [**getDocumentAccessAttributes**](docs/AccessControlApi.md#getDocumentAccessAttributes) | **GET** /documents/{documentId}/accessAttributes | Get document access attributes
-*AccessControlApi* | [**getOpaConfiguration**](docs/AccessControlApi.md#getOpaConfiguration) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Configuration
-*AccessControlApi* | [**getOpaConfigurations**](docs/AccessControlApi.md#getOpaConfigurations) | **GET** /sites/opa/accessPolicies | Get OPAs Configuration
-*AccessControlApi* | [**setDocumentAccessAttributes**](docs/AccessControlApi.md#setDocumentAccessAttributes) | **PUT** /documents/{documentId}/accessAttributes | Set document access attributes
-*AccessControlApi* | [**setOpaConfiguration**](docs/AccessControlApi.md#setOpaConfiguration) | **PUT** /sites/opa/accessPolicies | Set OPA Configuration
+*AccessControlApi* | [**deleteOpaAccessPolicyItems**](docs/AccessControlApi.md#deleteOpaAccessPolicyItems) | **DELETE** /sites/{siteId}/opa/accessPolicy/policyItems | Delete OPA Access Policy Items
+*AccessControlApi* | [**getOpaAccessPolicies**](docs/AccessControlApi.md#getOpaAccessPolicies) | **GET** /sites/opa/accessPolicies | Get OPAs Access Policies
+*AccessControlApi* | [**getOpaAccessPolicy**](docs/AccessControlApi.md#getOpaAccessPolicy) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Access Policy
+*AccessControlApi* | [**getOpaAccessPolicyItems**](docs/AccessControlApi.md#getOpaAccessPolicyItems) | **GET** /sites/{siteId}/opa/accessPolicy/policyItems | Get OPA Access Policy Items
+*AccessControlApi* | [**setOpaAccessPolicyItems**](docs/AccessControlApi.md#setOpaAccessPolicyItems) | **PUT** /sites/{siteId}/opa/accessPolicy/policyItems | Set opa access policy items, can only be requested with ADMIN privileges
 *AdvancedDocumentSearchApi* | [**addDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#addDocumentFulltext) | **POST** /documents/{documentId}/fulltext | Add document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag
@@ -194,7 +191,13 @@ Class | Method | HTTP request | Description
 *AdvancedDocumentSearchApi* | [**setDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#setDocumentFulltext) | **PUT** /documents/{documentId}/fulltext | Set document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**updateDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#updateDocumentFulltext) | **PATCH** /documents/{documentId}/fulltext | Update document&#39;s full-text
 *AntivirusApi* | [**setAntivirus**](docs/AntivirusApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
+*AttributesApi* | [**addAttribute**](docs/AttributesApi.md#addAttribute) | **POST** /attributes | Add new attribute
+*AttributesApi* | [**deleteAttribute**](docs/AttributesApi.md#deleteAttribute) | **DELETE** /attributes/{key} | Delete attribute
+*AttributesApi* | [**getAttribute**](docs/AttributesApi.md#getAttribute) | **GET** /attributes/{key} | Get Attribute
+*AttributesApi* | [**getAttributes**](docs/AttributesApi.md#getAttributes) | **GET** /attributes | Get Attributes listing
 *CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
+*CaseManagementApi* | [**addNigo**](docs/CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo
+*CaseManagementApi* | [**addTask**](docs/CaseManagementApi.md#addTask) | **POST** /cases/{caseId}/tasks | Add New Task
 *CaseManagementApi* | [**deleteCase**](docs/CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case
 *CaseManagementApi* | [**deleteCaseDocument**](docs/CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case
 *CaseManagementApi* | [**deleteNigo**](docs/CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo
@@ -219,6 +222,14 @@ Class | Method | HTTP request | Description
 *DocumentActionsApi* | [**addDocumentActions**](docs/DocumentActionsApi.md#addDocumentActions) | **POST** /documents/{documentId}/actions | Add document action
 *DocumentActionsApi* | [**addDocumentRetryAction**](docs/DocumentActionsApi.md#addDocumentRetryAction) | **POST** /documents/{documentId}/actions/retry | Retries failed document action(s)
 *DocumentActionsApi* | [**getDocumentActions**](docs/DocumentActionsApi.md#getDocumentActions) | **GET** /documents/{documentId}/actions | Get document actions
+*DocumentAttributesApi* | [**addDocumentAttributes**](docs/DocumentAttributesApi.md#addDocumentAttributes) | **POST** /documents/{documentId}/attributes | Add attribute to document
+*DocumentAttributesApi* | [**deleteDocumentAttribute**](docs/DocumentAttributesApi.md#deleteDocumentAttribute) | **DELETE** /documents/{documentId}/attributes/{attributeKey} | Delete document attribute
+*DocumentAttributesApi* | [**deleteDocumentAttributeAndValue**](docs/DocumentAttributesApi.md#deleteDocumentAttributeAndValue) | **DELETE** /documents/{documentId}/attributes/{attributeKey}/{attributeValue} | Delete document&#39;s attribute value
+*DocumentAttributesApi* | [**getDocumentAttribute**](docs/DocumentAttributesApi.md#getDocumentAttribute) | **GET** /documents/{documentId}/attributes/{attributeKey} | Get document attribute by key
+*DocumentAttributesApi* | [**getDocumentAttributeVersions**](docs/DocumentAttributesApi.md#getDocumentAttributeVersions) | **GET** /documents/{documentId}/attributes/{attributeKey}/versions | Get document attribute&#39;s versions
+*DocumentAttributesApi* | [**getDocumentAttributes**](docs/DocumentAttributesApi.md#getDocumentAttributes) | **GET** /documents/{documentId}/attributes | Get document&#39;s attributes
+*DocumentAttributesApi* | [**setDocumentAttributeValue**](docs/DocumentAttributesApi.md#setDocumentAttributeValue) | **PUT** /documents/{documentId}/attributes/{attributeKey} | Set document&#39;s attributes value
+*DocumentAttributesApi* | [**setDocumentAttributes**](docs/DocumentAttributesApi.md#setDocumentAttributes) | **PUT** /documents/{documentId}/attributes | Set document&#39;s attributes
 *DocumentFoldersApi* | [**addFolder**](docs/DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder
 *DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
 *DocumentFoldersApi* | [**getFolderDocuments**](docs/DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders
@@ -262,6 +273,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
+*DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
@@ -269,6 +281,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getDocumentUpload**](docs/DocumentsApi.md#getDocumentUpload) | **GET** /documents/upload | Get url to add large document
 *DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url
 *DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
+*DocumentsApi* | [**getPublishedDocumentContent**](docs/DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents
 *DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
 *ESignatureApi* | [**addEsignatureDocusign**](docs/ESignatureApi.md#addEsignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
@@ -277,6 +290,11 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
+*MappingsApi* | [**addMapping**](docs/MappingsApi.md#addMapping) | **POST** /mappings | Add New Mapping
+*MappingsApi* | [**deleteMapping**](docs/MappingsApi.md#deleteMapping) | **DELETE** /mappings/{mappingId} | Delete Mapping
+*MappingsApi* | [**getMapping**](docs/MappingsApi.md#getMapping) | **GET** /mappings/{mappingId} | Get Mapping
+*MappingsApi* | [**getMappings**](docs/MappingsApi.md#getMappings) | **GET** /mappings | Get Mappings
+*MappingsApi* | [**setMapping**](docs/MappingsApi.md#setMapping) | **PUT** /mappings/{mappingId} | Set Mapping
 *OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
@@ -292,6 +310,13 @@ Class | Method | HTTP request | Description
 *RulesetsApi* | [**getRulesets**](docs/RulesetsApi.md#getRulesets) | **GET** /rulesets | Get Rulesets
 *RulesetsApi* | [**updateRule**](docs/RulesetsApi.md#updateRule) | **PATCH** /rulesets/{rulesetId}/rules/{ruleId} | Update Rule
 *RulesetsApi* | [**updateRuleset**](docs/RulesetsApi.md#updateRuleset) | **PATCH** /rulesets/{rulesetId} | Update Ruleset
+*SchemasApi* | [**addClassification**](docs/SchemasApi.md#addClassification) | **POST** /sites/{siteId}/classifications | Add Classification
+*SchemasApi* | [**deleteClassification**](docs/SchemasApi.md#deleteClassification) | **DELETE** /sites/{siteId}/classifications/{classificationId} | Delete Classification
+*SchemasApi* | [**getClassification**](docs/SchemasApi.md#getClassification) | **GET** /sites/{siteId}/classifications/{classificationId} | Get Classification
+*SchemasApi* | [**getSitesClassifications**](docs/SchemasApi.md#getSitesClassifications) | **GET** /sites/{siteId}/classifications | Get Sites Classifications
+*SchemasApi* | [**getSitesSchema**](docs/SchemasApi.md#getSitesSchema) | **GET** /sites/{siteId}/schema/document | Get Sites Schema
+*SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
+*SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index
@@ -309,8 +334,19 @@ Class | Method | HTTP request | Description
 *TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
-*UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get configured system group(s)
+*UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group
+*UserManagementApi* | [**addUser**](docs/UserManagementApi.md#addUser) | **POST** /users | Add User
+*UserManagementApi* | [**addUserToGroup**](docs/UserManagementApi.md#addUserToGroup) | **POST** /groups/{groupName}/users | Add User to a group
+*UserManagementApi* | [**deleteGroup**](docs/UserManagementApi.md#deleteGroup) | **DELETE** /groups/{groupName} | Delete Group
+*UserManagementApi* | [**deleteUsername**](docs/UserManagementApi.md#deleteUsername) | **DELETE** /users/{username} | Delete Username
+*UserManagementApi* | [**getGroup**](docs/UserManagementApi.md#getGroup) | **GET** /groups/{groupName} | Get a user group
+*UserManagementApi* | [**getGroups**](docs/UserManagementApi.md#getGroups) | **GET** /groups | Get list of user group(s)
+*UserManagementApi* | [**getListOfUserGroups**](docs/UserManagementApi.md#getListOfUserGroups) | **GET** /users/{username}/groups | Returns a list of group user belongs to
+*UserManagementApi* | [**getUser**](docs/UserManagementApi.md#getUser) | **GET** /users/{username} | Get a user
+*UserManagementApi* | [**getUsers**](docs/UserManagementApi.md#getUsers) | **GET** /users | Get list of user(s)
 *UserManagementApi* | [**getUsersInGroup**](docs/UserManagementApi.md#getUsersInGroup) | **GET** /groups/{groupName}/users | Get users in a group
+*UserManagementApi* | [**removeUsernameFromGroup**](docs/UserManagementApi.md#removeUsernameFromGroup) | **DELETE** /groups/{groupName}/users/{username} | Remove Username From Group
+*UserManagementApi* | [**setUserOperation**](docs/UserManagementApi.md#setUserOperation) | **PUT** /users/{username}/{userOperation} | Set User Operation
 *WebhooksApi* | [**addWebhook**](docs/WebhooksApi.md#addWebhook) | **POST** /webhooks | Add webhook
 *WebhooksApi* | [**addWebhookDocument**](docs/WebhooksApi.md#addWebhookDocument) | **POST** /private/webhooks/{webhooks+} | Add webhook
 *WebhooksApi* | [**addWebhookTag**](docs/WebhooksApi.md#addWebhookTag) | **POST** /webhooks/{webhookId}/tags | Add webhook tag
@@ -323,22 +359,29 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AccessAttribute](docs/AccessAttribute.md)
- - [AddAccessAttribute](docs/AddAccessAttribute.md)
  - [AddAction](docs/AddAction.md)
  - [AddActionParameters](docs/AddActionParameters.md)
  - [AddApiKeyRequest](docs/AddApiKeyRequest.md)
  - [AddApiKeyResponse](docs/AddApiKeyResponse.md)
+ - [AddAttribute](docs/AddAttribute.md)
+ - [AddAttributeRequest](docs/AddAttributeRequest.md)
+ - [AddAttributeResponse](docs/AddAttributeResponse.md)
  - [AddCase](docs/AddCase.md)
  - [AddCaseRequest](docs/AddCaseRequest.md)
  - [AddCaseResponse](docs/AddCaseResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
- - [AddDocumentAccessAttributesRequest](docs/AddDocumentAccessAttributesRequest.md)
- - [AddDocumentAccessAttributesResponse](docs/AddDocumentAccessAttributesResponse.md)
+ - [AddClassification](docs/AddClassification.md)
+ - [AddClassificationRequest](docs/AddClassificationRequest.md)
+ - [AddClassificationResponse](docs/AddClassificationResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
  - [AddDocumentActionsResponse](docs/AddDocumentActionsResponse.md)
  - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
+ - [AddDocumentAttribute](docs/AddDocumentAttribute.md)
+ - [AddDocumentAttributeClassification](docs/AddDocumentAttributeClassification.md)
+ - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
+ - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
+ - [AddDocumentAttributesRequest](docs/AddDocumentAttributesRequest.md)
  - [AddDocumentFulltextRequest](docs/AddDocumentFulltextRequest.md)
  - [AddDocumentFulltextResponse](docs/AddDocumentFulltextResponse.md)
  - [AddDocumentMetadata](docs/AddDocumentMetadata.md)
@@ -359,9 +402,17 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddGroup](docs/AddGroup.md)
+ - [AddGroupRequest](docs/AddGroupRequest.md)
+ - [AddMapping](docs/AddMapping.md)
+ - [AddMappingRequest](docs/AddMappingRequest.md)
+ - [AddMappingResponse](docs/AddMappingResponse.md)
  - [AddNigo](docs/AddNigo.md)
+ - [AddNigoRequest](docs/AddNigoRequest.md)
+ - [AddNigoResponse](docs/AddNigoResponse.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
+ - [AddResponse](docs/AddResponse.md)
  - [AddRule](docs/AddRule.md)
  - [AddRuleRequest](docs/AddRuleRequest.md)
  - [AddRuleResponse](docs/AddRuleResponse.md)
@@ -373,6 +424,10 @@ Class | Method | HTTP request | Description
  - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
  - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
  - [AddTask](docs/AddTask.md)
+ - [AddTaskRequest](docs/AddTaskRequest.md)
+ - [AddTaskResponse](docs/AddTaskResponse.md)
+ - [AddUser](docs/AddUser.md)
+ - [AddUserRequest](docs/AddUserRequest.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
  - [AddWebhookResponse](docs/AddWebhookResponse.md)
  - [AddWebhookTagRequest](docs/AddWebhookTagRequest.md)
@@ -382,8 +437,17 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
+ - [Attribute](docs/Attribute.md)
+ - [AttributeDataType](docs/AttributeDataType.md)
+ - [AttributeSchemaCompositeKey](docs/AttributeSchemaCompositeKey.md)
+ - [AttributeSchemaOptional](docs/AttributeSchemaOptional.md)
+ - [AttributeSchemaRequired](docs/AttributeSchemaRequired.md)
+ - [AttributeType](docs/AttributeType.md)
+ - [AttributeValueType](docs/AttributeValueType.md)
  - [CaseStatus](docs/CaseStatus.md)
  - [ChildDocument](docs/ChildDocument.md)
+ - [Classification](docs/Classification.md)
+ - [ClassificationSummary](docs/ClassificationSummary.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
  - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
@@ -391,13 +455,11 @@ Class | Method | HTTP request | Description
  - [DeleteCaseResponse](docs/DeleteCaseResponse.md)
  - [DeleteCaseTaskDocumentResponse](docs/DeleteCaseTaskDocumentResponse.md)
  - [DeleteCaseTaskResponse](docs/DeleteCaseTaskResponse.md)
- - [DeleteDocumentAccessAttributesResponse](docs/DeleteDocumentAccessAttributesResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
- - [DeleteOpaConfigurationResponse](docs/DeleteOpaConfigurationResponse.md)
- - [DeleteOpenSearchIndexResponse](docs/DeleteOpenSearchIndexResponse.md)
  - [DeleteQueueResponse](docs/DeleteQueueResponse.md)
+ - [DeleteResponse](docs/DeleteResponse.md)
  - [DeleteRuleResponse](docs/DeleteRuleResponse.md)
  - [DeleteRulesetResponse](docs/DeleteRulesetResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
@@ -406,6 +468,9 @@ Class | Method | HTTP request | Description
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
+ - [DocumentAttribute](docs/DocumentAttribute.md)
+ - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
+ - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
@@ -413,6 +478,8 @@ Class | Method | HTTP request | Description
  - [DocumentId](docs/DocumentId.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)
  - [DocumentSearch](docs/DocumentSearch.md)
+ - [DocumentSearchAttribute](docs/DocumentSearchAttribute.md)
+ - [DocumentSearchMatchAttribute](docs/DocumentSearchMatchAttribute.md)
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
  - [DocumentSearchMeta](docs/DocumentSearchMeta.md)
  - [DocumentSearchRange](docs/DocumentSearchRange.md)
@@ -420,6 +487,9 @@ Class | Method | HTTP request | Description
  - [DocumentSearchResponse](docs/DocumentSearchResponse.md)
  - [DocumentSearchTag](docs/DocumentSearchTag.md)
  - [DocumentSearchTags](docs/DocumentSearchTags.md)
+ - [DocumentSyncService](docs/DocumentSyncService.md)
+ - [DocumentSyncStatus](docs/DocumentSyncStatus.md)
+ - [DocumentSyncType](docs/DocumentSyncType.md)
  - [DocumentTag](docs/DocumentTag.md)
  - [DocumentVersion](docs/DocumentVersion.md)
  - [DocumentWorkflow](docs/DocumentWorkflow.md)
@@ -431,8 +501,11 @@ Class | Method | HTTP request | Description
  - [EsignatureDocusignCarbonCopy](docs/EsignatureDocusignCarbonCopy.md)
  - [EsignatureDocusignRecipientTab](docs/EsignatureDocusignRecipientTab.md)
  - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
+ - [FulltextAttribute](docs/FulltextAttribute.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
+ - [GetAttributeResponse](docs/GetAttributeResponse.md)
+ - [GetAttributesResponse](docs/GetAttributesResponse.md)
  - [GetCaseDocumentsResponse](docs/GetCaseDocumentsResponse.md)
  - [GetCaseNigoResponse](docs/GetCaseNigoResponse.md)
  - [GetCaseNigosResponse](docs/GetCaseNigosResponse.md)
@@ -440,9 +513,13 @@ Class | Method | HTTP request | Description
  - [GetCaseTaskResponse](docs/GetCaseTaskResponse.md)
  - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
  - [GetCasesResponse](docs/GetCasesResponse.md)
+ - [GetClassificationResponse](docs/GetClassificationResponse.md)
+ - [GetClassificationsResponse](docs/GetClassificationsResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
- - [GetDocumentAccessAttributesResponse](docs/GetDocumentAccessAttributesResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
+ - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
+ - [GetDocumentAttributeVersionsResponse](docs/GetDocumentAttributeVersionsResponse.md)
+ - [GetDocumentAttributesResponse](docs/GetDocumentAttributesResponse.md)
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
  - [GetDocumentFulltextResponse](docs/GetDocumentFulltextResponse.md)
  - [GetDocumentOcrResponse](docs/GetDocumentOcrResponse.md)
@@ -460,9 +537,13 @@ Class | Method | HTTP request | Description
  - [GetExaminePdfResponse](docs/GetExaminePdfResponse.md)
  - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
+ - [GetGroupResponse](docs/GetGroupResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
- - [GetOpaConfigurationResponse](docs/GetOpaConfigurationResponse.md)
- - [GetOpaConfigurationsResponse](docs/GetOpaConfigurationsResponse.md)
+ - [GetMappingResponse](docs/GetMappingResponse.md)
+ - [GetMappingsResponse](docs/GetMappingsResponse.md)
+ - [GetOpaAccessPoliciesResponse](docs/GetOpaAccessPoliciesResponse.md)
+ - [GetOpaAccessPolicyItemsResponse](docs/GetOpaAccessPolicyItemsResponse.md)
+ - [GetOpaAccessPolicyResponse](docs/GetOpaAccessPolicyResponse.md)
  - [GetOpenSearchIndexResponse](docs/GetOpenSearchIndexResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
@@ -471,11 +552,15 @@ Class | Method | HTTP request | Description
  - [GetRulesetResponse](docs/GetRulesetResponse.md)
  - [GetRulesetsResponse](docs/GetRulesetsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
+ - [GetSitesSchemaResponse](docs/GetSitesSchemaResponse.md)
  - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
  - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
+ - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
+ - [GetUserResponse](docs/GetUserResponse.md)
  - [GetUserSharesResponse](docs/GetUserSharesResponse.md)
  - [GetUsersInGroupResponse](docs/GetUsersInGroupResponse.md)
+ - [GetUsersResponse](docs/GetUsersResponse.md)
  - [GetVersionResponse](docs/GetVersionResponse.md)
  - [GetWebhookResponse](docs/GetWebhookResponse.md)
  - [GetWebhookTagsResponse](docs/GetWebhookTagsResponse.md)
@@ -490,10 +575,17 @@ Class | Method | HTTP request | Description
  - [IndexSearch](docs/IndexSearch.md)
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
+ - [Mapping](docs/Mapping.md)
+ - [MappingAttribute](docs/MappingAttribute.md)
+ - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)
+ - [MappingAttributeMetadataField](docs/MappingAttributeMetadataField.md)
+ - [MappingAttributeSourceType](docs/MappingAttributeSourceType.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [ModelCase](docs/ModelCase.md)
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)
+ - [OcrEngine](docs/OcrEngine.md)
+ - [OcrOutputType](docs/OcrOutputType.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
@@ -501,6 +593,16 @@ Class | Method | HTTP request | Description
  - [OnlyOfficeDocumentSaveResponse](docs/OnlyOfficeDocumentSaveResponse.md)
  - [OnlyOfficeEditorConfig](docs/OnlyOfficeEditorConfig.md)
  - [OpaPolicy](docs/OpaPolicy.md)
+ - [OpaPolicyAttribute](docs/OpaPolicyAttribute.md)
+ - [OpaPolicyAttributeEq](docs/OpaPolicyAttributeEq.md)
+ - [OpaPolicyAttributeGt](docs/OpaPolicyAttributeGt.md)
+ - [OpaPolicyAttributeGte](docs/OpaPolicyAttributeGte.md)
+ - [OpaPolicyAttributeInput](docs/OpaPolicyAttributeInput.md)
+ - [OpaPolicyAttributeLt](docs/OpaPolicyAttributeLt.md)
+ - [OpaPolicyAttributeLte](docs/OpaPolicyAttributeLte.md)
+ - [OpaPolicyAttributeNeq](docs/OpaPolicyAttributeNeq.md)
+ - [OpaPolicyItem](docs/OpaPolicyItem.md)
+ - [OpaPolicyItemType](docs/OpaPolicyItemType.md)
  - [OpenSearchIndex](docs/OpenSearchIndex.md)
  - [PdfDocument](docs/PdfDocument.md)
  - [PdfDocumentField](docs/PdfDocumentField.md)
@@ -512,14 +614,17 @@ Class | Method | HTTP request | Description
  - [RuleConditionCriterion](docs/RuleConditionCriterion.md)
  - [RuleConditionMust](docs/RuleConditionMust.md)
  - [RuleConditionOperation](docs/RuleConditionOperation.md)
- - [RuleStatus](docs/RuleStatus.md)
  - [Ruleset](docs/Ruleset.md)
  - [RulesetStatus](docs/RulesetStatus.md)
+ - [SchemaAttributes](docs/SchemaAttributes.md)
+ - [SearchRangeDataType](docs/SearchRangeDataType.md)
  - [SearchResponseFields](docs/SearchResponseFields.md)
  - [SearchResultDocument](docs/SearchResultDocument.md)
+ - [SearchResultDocumentAttribute](docs/SearchResultDocumentAttribute.md)
  - [SetAntivirusResponse](docs/SetAntivirusResponse.md)
- - [SetDocumentAccessAttributesRequest](docs/SetDocumentAccessAttributesRequest.md)
- - [SetDocumentAccessAttributesResponse](docs/SetDocumentAccessAttributesResponse.md)
+ - [SetClassificationRequest](docs/SetClassificationRequest.md)
+ - [SetDocumentAttributeRequest](docs/SetDocumentAttributeRequest.md)
+ - [SetDocumentAttributesRequest](docs/SetDocumentAttributesRequest.md)
  - [SetDocumentFulltextRequest](docs/SetDocumentFulltextRequest.md)
  - [SetDocumentFulltextResponse](docs/SetDocumentFulltextResponse.md)
  - [SetDocumentOcrRequest](docs/SetDocumentOcrRequest.md)
@@ -529,10 +634,12 @@ Class | Method | HTTP request | Description
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [SetEsignatureDocusignConfigRequest](docs/SetEsignatureDocusignConfigRequest.md)
  - [SetEsignatureDocusignConfigResponse](docs/SetEsignatureDocusignConfigResponse.md)
- - [SetOpaConfigurationRequest](docs/SetOpaConfigurationRequest.md)
- - [SetOpaConfigurationResponse](docs/SetOpaConfigurationResponse.md)
+ - [SetMappingRequest](docs/SetMappingRequest.md)
+ - [SetOpaAccessPolicyItemsRequest](docs/SetOpaAccessPolicyItemsRequest.md)
  - [SetOpenSearchIndexRequest](docs/SetOpenSearchIndexRequest.md)
  - [SetOpenSearchIndexResponse](docs/SetOpenSearchIndexResponse.md)
+ - [SetResponse](docs/SetResponse.md)
+ - [SetSitesSchemaRequest](docs/SetSitesSchemaRequest.md)
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)
@@ -574,6 +681,7 @@ Class | Method | HTTP request | Description
  - [UpdateWorkflowResponse](docs/UpdateWorkflowResponse.md)
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
+ - [UserActivityType](docs/UserActivityType.md)
  - [UserShare](docs/UserShare.md)
  - [UserSharePermission](docs/UserSharePermission.md)
  - [UserSharePermissionType](docs/UserSharePermissionType.md)

@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 
 Perform document ocr
 
-Document optical character recognition (OCR) request; extract text and data from a document; ONLY available with FormKiQ Pro and Enterprise
+Document optical character recognition (OCR) request; extract text and data from a document;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
 
 ### Example
 ```java
@@ -81,11 +81,11 @@ No authorization required
 
 <a id="deleteDocumentOcr"></a>
 # **deleteDocumentOcr**
-> deleteDocumentOcr(documentId, siteId)
+> DeleteResponse deleteDocumentOcr(documentId, siteId)
 
 Delete document ocr
 
-Delete a document&#39;s optical character recognition (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
+Delete a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
 
 ### Example
 ```java
@@ -108,7 +108,8 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteDocumentOcr(documentId, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentOcr(documentId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#deleteDocumentOcr");
       System.err.println("Status code: " + e.getCode());
@@ -129,7 +130,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -138,7 +139,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -151,7 +152,7 @@ No authorization required
 
 Get document ocr content
 
-Get a document&#39;s optical character recognition (OCR) result, if exists; ONLY available with FormKiQ Pro and Enterprise
+Get a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
 
 ### Example
 ```java
@@ -224,7 +225,7 @@ No authorization required
 
 Set document ocr result
 
-Set a document&#39;s optical character recognition (OCR) result for a document; ONLY available with FormKiQ Pro and Enterprise
+Set a document&#39;s optical character recognition (OCR) result for a document;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
 
 ### Example
 ```java
