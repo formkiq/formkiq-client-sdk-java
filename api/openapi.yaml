@@ -7324,7 +7324,7 @@ paths:
       tags:
       - User Management
       x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/caseManagementLambdaApi200'
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
     get:
@@ -17871,9 +17871,11 @@ components:
         classifications:
         - insertedDate: insertedDate
           name: name
+          classificationId: classificationId
           userId: userId
         - insertedDate: insertedDate
           name: name
+          classificationId: classificationId
           userId: userId
       properties:
         next:
@@ -17889,8 +17891,12 @@ components:
       example:
         insertedDate: insertedDate
         name: name
+        classificationId: classificationId
         userId: userId
       properties:
+        classificationId:
+          description: Classification Identifier
+          type: string
         name:
           description: Name of Classification
           type: string

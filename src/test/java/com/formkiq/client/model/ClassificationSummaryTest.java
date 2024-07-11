@@ -44,6 +44,14 @@ public class ClassificationSummaryTest {
   }
 
   /**
+   * Test the property 'classificationId'
+   */
+  @Test
+  public void classificationIdTest() {
+    // TODO: test classificationId
+  }
+
+  /**
    * Test the property 'name'
    */
   @Test

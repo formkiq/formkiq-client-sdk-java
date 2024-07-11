@@ -4,7 +4,7 @@
 This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
-- API version: 1.15.0
+- API version: 1.15.1
   - Build date: 2024-07-04T16:10:39.847247-05:00[America/Winnipeg]
   - Generator version: 7.7.0
 
@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.15.0</version>
+  <version>1.15.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.15.0"
+     implementation "com.formkiq:client:1.15.1"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.15.0.jar`
+* `target/client-1.15.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

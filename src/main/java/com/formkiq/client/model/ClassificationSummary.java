@@ -56,9 +56,13 @@ import com.formkiq.client.invoker.JSON;
  * ClassificationSummary
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-07T10:53:55.848206-05:00[America/Winnipeg]",
+    date = "2024-07-10T20:04:34.204538-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class ClassificationSummary {
+  public static final String SERIALIZED_NAME_CLASSIFICATION_ID = "classificationId";
+  @SerializedName(SERIALIZED_NAME_CLASSIFICATION_ID)
+  private String classificationId;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -72,6 +76,26 @@ public class ClassificationSummary {
   private String insertedDate;
 
   public ClassificationSummary() {}
+
+  public ClassificationSummary classificationId(String classificationId) {
+    this.classificationId = classificationId;
+    return this;
+  }
+
+  /**
+   * Classification Identifier
+   * 
+   * @return classificationId
+   */
+  @javax.annotation.Nullable
+  public String getClassificationId() {
+    return classificationId;
+  }
+
+  public void setClassificationId(String classificationId) {
+    this.classificationId = classificationId;
+  }
+
 
   public ClassificationSummary name(String name) {
     this.name = name;
@@ -143,20 +167,22 @@ public class ClassificationSummary {
       return false;
     }
     ClassificationSummary classificationSummary = (ClassificationSummary) o;
-    return Objects.equals(this.name, classificationSummary.name)
+    return Objects.equals(this.classificationId, classificationSummary.classificationId)
+        && Objects.equals(this.name, classificationSummary.name)
         && Objects.equals(this.userId, classificationSummary.userId)
         && Objects.equals(this.insertedDate, classificationSummary.insertedDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, userId, insertedDate);
+    return Objects.hash(classificationId, name, userId, insertedDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ClassificationSummary {\n");
+    sb.append("    classificationId: ").append(toIndentedString(classificationId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
@@ -181,6 +207,7 @@ public class ClassificationSummary {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("classificationId");
     openapiFields.add("name");
     openapiFields.add("userId");
     openapiFields.add("insertedDate");
@@ -215,6 +242,12 @@ public class ClassificationSummary {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("classificationId") != null && !jsonObj.get("classificationId").isJsonNull())
+        && !jsonObj.get("classificationId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `classificationId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("classificationId").toString()));
+    }
     if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
         && !jsonObj.get("name").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
