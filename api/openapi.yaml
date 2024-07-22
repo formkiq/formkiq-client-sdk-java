@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API
-  version: 1.15.0
+  version: 1.15.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -15174,7 +15174,8 @@ components:
       example:
         next: next
         mappings:
-        - name: name
+        - mappingId: mappingId
+          name: name
           description: description
           attributes:
           - labelMatchingType: FUZZY
@@ -15201,7 +15202,8 @@ components:
             labelTexts:
             - labelTexts
             - labelTexts
-        - name: name
+        - mappingId: mappingId
+          name: name
           description: description
           attributes:
           - labelMatchingType: FUZZY
@@ -15240,6 +15242,7 @@ components:
     GetMappingResponse:
       example:
         mapping:
+          mappingId: mappingId
           name: name
           description: description
           attributes:
@@ -15273,6 +15276,7 @@ components:
       type: object
     Mapping:
       example:
+        mappingId: mappingId
         name: name
         description: description
         attributes:
@@ -15301,6 +15305,9 @@ components:
           - labelTexts
           - labelTexts
       properties:
+        mappingId:
+          description: Mapping Identifier
+          type: string
         name:
           description: Name of Mapping
           type: string
