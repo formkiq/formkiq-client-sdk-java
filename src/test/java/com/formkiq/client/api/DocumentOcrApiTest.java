@@ -89,11 +89,12 @@ public class DocumentOcrApiTest {
   public void getDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String outputType = null;
     String contentUrl = null;
     String text = null;
     String shareKey = null;
     GetDocumentOcrResponse response =
-        api.getDocumentOcr(documentId, siteId, contentUrl, text, shareKey);
+        api.getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey);
     // TODO: test validations
   }
 

@@ -30,7 +30,7 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-21T21:52:14.648567-05:00[America/Winnipeg]",
+    date = "2024-07-22T23:17:53.660045-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class ApiException extends Exception {
   private static final long serialVersionUID = 1L;

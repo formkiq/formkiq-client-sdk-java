@@ -478,10 +478,11 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
-   *        (optional)
+   *        (deprecated) (optional)
    * @param text Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting
-   *        parameter to &#39;true&#39; converts JSON to Text (optional)
+   *        parameter to &#39;true&#39; converts JSON to Text (deprecated) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -503,8 +504,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentOcrCall(String documentId, String siteId, String contentUrl,
-      String text, String shareKey, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentOcrCall(String documentId, String siteId, String outputType,
+      String contentUrl, String text, String shareKey, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -532,6 +534,10 @@ public class DocumentOcrApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (outputType != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("outputType", outputType));
     }
 
     if (contentUrl != null) {
@@ -567,15 +573,16 @@ public class DocumentOcrApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentOcrValidateBeforeCall(String documentId, String siteId,
-      String contentUrl, String text, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+      String outputType, String contentUrl, String text, String shareKey,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentOcr(Async)");
     }
 
-    return getDocumentOcrCall(documentId, siteId, contentUrl, text, shareKey, _callback);
+    return getDocumentOcrCall(documentId, siteId, outputType, contentUrl, text, shareKey,
+        _callback);
 
   }
 
@@ -586,10 +593,11 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
-   *        (optional)
+   *        (deprecated) (optional)
    * @param text Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting
-   *        parameter to &#39;true&#39; converts JSON to Text (optional)
+   *        parameter to &#39;true&#39; converts JSON to Text (deprecated) (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentOcrResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -611,10 +619,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentOcrResponse getDocumentOcr(String documentId, String siteId, String contentUrl,
-      String text, String shareKey) throws ApiException {
+  public GetDocumentOcrResponse getDocumentOcr(String documentId, String siteId, String outputType,
+      String contentUrl, String text, String shareKey) throws ApiException {
     ApiResponse<GetDocumentOcrResponse> localVarResp =
-        getDocumentOcrWithHttpInfo(documentId, siteId, contentUrl, text, shareKey);
+        getDocumentOcrWithHttpInfo(documentId, siteId, outputType, contentUrl, text, shareKey);
     return localVarResp.getData();
   }
 
@@ -625,10 +633,11 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
-   *        (optional)
+   *        (deprecated) (optional)
    * @param text Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting
-   *        parameter to &#39;true&#39; converts JSON to Text (optional)
+   *        parameter to &#39;true&#39; converts JSON to Text (deprecated) (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentOcrResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -651,9 +660,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentOcrResponse> getDocumentOcrWithHttpInfo(String documentId,
-      String siteId, String contentUrl, String text, String shareKey) throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentOcrValidateBeforeCall(documentId, siteId, contentUrl, text, shareKey, null);
+      String siteId, String outputType, String contentUrl, String text, String shareKey)
+      throws ApiException {
+    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
+        contentUrl, text, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentOcrResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -665,10 +675,11 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
-   *        (optional)
+   *        (deprecated) (optional)
    * @param text Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting
-   *        parameter to &#39;true&#39; converts JSON to Text (optional)
+   *        parameter to &#39;true&#39; converts JSON to Text (deprecated) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -690,12 +701,12 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentOcrAsync(String documentId, String siteId, String contentUrl,
-      String text, String shareKey, final ApiCallback<GetDocumentOcrResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentOcrAsync(String documentId, String siteId, String outputType,
+      String contentUrl, String text, String shareKey,
+      final ApiCallback<GetDocumentOcrResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentOcrValidateBeforeCall(documentId, siteId, contentUrl, text, shareKey, _callback);
+    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
+        contentUrl, text, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentOcrResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

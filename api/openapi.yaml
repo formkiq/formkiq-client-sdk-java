@@ -3514,7 +3514,19 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Whether to return a \"contentUrl\", set value to 'true'"
+      - description: Output Format Type
+        explode: true
+        in: query
+        name: outputType
+        required: false
+        schema:
+          enum:
+          - TEXT
+          - KEY_VALUE
+          - CONTENT_URL
+          type: string
+        style: form
+      - description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
         explode: true
         in: query
         name: contentUrl
@@ -3523,7 +3535,7 @@ paths:
           type: string
         style: form
       - description: "Returns raw 'text' of OCR content. e.g. AWS Textract returns\
-          \ JSON, setting parameter to 'true' converts JSON to Text"
+          \ JSON, setting parameter to 'true' converts JSON to Text (deprecated)"
         explode: true
         in: query
         name: text
@@ -9794,6 +9806,19 @@ components:
         - INACTIVE
         type: string
       style: form
+    ocrOutputTypeParam:
+      description: Output Format Type
+      explode: true
+      in: query
+      name: outputType
+      required: false
+      schema:
+        enum:
+        - TEXT
+        - KEY_VALUE
+        - CONTENT_URL
+        type: string
+      style: form
     limitParam:
       description: Limit Results
       explode: true
@@ -9967,7 +9992,7 @@ components:
         type: integer
       style: form
     contentUrlParam:
-      description: "Whether to return a \"contentUrl\", set value to 'true'"
+      description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
       explode: true
       in: query
       name: contentUrl
@@ -9977,7 +10002,7 @@ components:
       style: form
     textParam:
       description: "Returns raw 'text' of OCR content. e.g. AWS Textract returns JSON,\
-        \ setting parameter to 'true' converts JSON to Text"
+        \ setting parameter to 'true' converts JSON to Text (deprecated)"
       explode: true
       in: query
       name: text
