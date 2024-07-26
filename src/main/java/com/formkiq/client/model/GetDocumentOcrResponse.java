@@ -28,7 +28,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,12 +60,16 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-22T23:17:53.660045-05:00[America/Winnipeg]",
+    date = "2024-07-25T18:07:03.096053-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
   @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
   private List<String> contentUrls = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_KEY_VALUES = "keyValues";
+  @SerializedName(SERIALIZED_NAME_KEY_VALUES)
+  private Map<String, String> keyValues = new HashMap<>();
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -124,6 +130,34 @@ public class GetDocumentOcrResponse {
 
   public void setContentUrls(List<String> contentUrls) {
     this.contentUrls = contentUrls;
+  }
+
+
+  public GetDocumentOcrResponse keyValues(Map<String, String> keyValues) {
+    this.keyValues = keyValues;
+    return this;
+  }
+
+  public GetDocumentOcrResponse putKeyValuesItem(String key, String keyValuesItem) {
+    if (this.keyValues == null) {
+      this.keyValues = new HashMap<>();
+    }
+    this.keyValues.put(key, keyValuesItem);
+    return this;
+  }
+
+  /**
+   * Get keyValues
+   * 
+   * @return keyValues
+   */
+  @javax.annotation.Nullable
+  public Map<String, String> getKeyValues() {
+    return keyValues;
+  }
+
+  public void setKeyValues(Map<String, String> keyValues) {
+    this.keyValues = keyValues;
   }
 
 
@@ -298,6 +332,7 @@ public class GetDocumentOcrResponse {
     }
     GetDocumentOcrResponse getDocumentOcrResponse = (GetDocumentOcrResponse) o;
     return Objects.equals(this.contentUrls, getDocumentOcrResponse.contentUrls)
+        && Objects.equals(this.keyValues, getDocumentOcrResponse.keyValues)
         && Objects.equals(this.data, getDocumentOcrResponse.data)
         && Objects.equals(this.ocrEngine, getDocumentOcrResponse.ocrEngine)
         && Objects.equals(this.ocrStatus, getDocumentOcrResponse.ocrStatus)
@@ -310,8 +345,8 @@ public class GetDocumentOcrResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentUrls, data, ocrEngine, ocrStatus, contentType, isBase64, userId,
-        documentId, insertedDate);
+    return Objects.hash(contentUrls, keyValues, data, ocrEngine, ocrStatus, contentType, isBase64,
+        userId, documentId, insertedDate);
   }
 
   @Override
@@ -319,6 +354,7 @@ public class GetDocumentOcrResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentOcrResponse {\n");
     sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
+    sb.append("    keyValues: ").append(toIndentedString(keyValues)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrStatus: ").append(toIndentedString(ocrStatus)).append("\n");
@@ -349,6 +385,7 @@ public class GetDocumentOcrResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("contentUrls");
+    openapiFields.add("keyValues");
     openapiFields.add("data");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrStatus");

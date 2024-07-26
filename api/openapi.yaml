@@ -15405,6 +15405,7 @@ components:
       description: Attribute Source Type
       enum:
       - CONTENT
+      - CONTENT_KEY_VALUE
       - METADATA
       type: string
     GetAttributeResponse:
@@ -15821,6 +15822,8 @@ components:
         insertedDate: insertedDate
         ocrStatus: ocrStatus
         documentId: documentId
+        keyValues:
+          key: keyValues
         contentType: contentType
         isBase64: true
         userId: userId
@@ -15830,6 +15833,10 @@ components:
           items:
             type: string
           type: array
+        keyValues:
+          additionalProperties:
+            type: string
+          type: object
         data:
           description: OCR text result
           type: string
