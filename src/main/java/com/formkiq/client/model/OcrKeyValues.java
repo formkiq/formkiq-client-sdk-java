@@ -20,14 +20,15 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.ModelCase;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,35 +55,67 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetCaseResponse
+ * OcrKeyValues
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
     date = "2024-07-26T14:53:51.186347-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
-public class GetCaseResponse {
-  public static final String SERIALIZED_NAME_CASE = "case";
-  @SerializedName(SERIALIZED_NAME_CASE)
-  private ModelCase _case;
+public class OcrKeyValues {
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
 
-  public GetCaseResponse() {}
+  public static final String SERIALIZED_NAME_VALUES = "values";
+  @SerializedName(SERIALIZED_NAME_VALUES)
+  private List<String> values = new ArrayList<>();
 
-  public GetCaseResponse _case(ModelCase _case) {
-    this._case = _case;
+  public OcrKeyValues() {}
+
+  public OcrKeyValues key(String key) {
+    this.key = key;
     return this;
   }
 
   /**
-   * Get _case
+   * Ocr Key
    * 
-   * @return _case
+   * @return key
    */
   @javax.annotation.Nullable
-  public ModelCase getCase() {
-    return _case;
+  public String getKey() {
+    return key;
   }
 
-  public void setCase(ModelCase _case) {
-    this._case = _case;
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+
+  public OcrKeyValues values(List<String> values) {
+    this.values = values;
+    return this;
+  }
+
+  public OcrKeyValues addValuesItem(String valuesItem) {
+    if (this.values == null) {
+      this.values = new ArrayList<>();
+    }
+    this.values.add(valuesItem);
+    return this;
+  }
+
+  /**
+   * Get values
+   * 
+   * @return values
+   */
+  @javax.annotation.Nullable
+  public List<String> getValues() {
+    return values;
+  }
+
+  public void setValues(List<String> values) {
+    this.values = values;
   }
 
 
@@ -95,20 +128,22 @@ public class GetCaseResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetCaseResponse getCaseResponse = (GetCaseResponse) o;
-    return Objects.equals(this._case, getCaseResponse._case);
+    OcrKeyValues ocrKeyValues = (OcrKeyValues) o;
+    return Objects.equals(this.key, ocrKeyValues.key)
+        && Objects.equals(this.values, ocrKeyValues.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_case);
+    return Objects.hash(key, values);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetCaseResponse {\n");
-    sb.append("    _case: ").append(toIndentedString(_case)).append("\n");
+    sb.append("class OcrKeyValues {\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,7 +165,8 @@ public class GetCaseResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("case");
+    openapiFields.add("key");
+    openapiFields.add("values");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -140,31 +176,40 @@ public class GetCaseResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to GetCaseResponse
+   * @throws IOException if the JSON Element is invalid with respect to OcrKeyValues
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!GetCaseResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                              // element is null
+      if (!OcrKeyValues.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
+                                                           // is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in GetCaseResponse is not found in the empty JSON string",
-            GetCaseResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in OcrKeyValues is not found in the empty JSON string",
+            OcrKeyValues.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!GetCaseResponse.openapiFields.contains(entry.getKey())) {
+      if (!OcrKeyValues.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `GetCaseResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `OcrKeyValues` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `case`
-    if (jsonObj.get("case") != null && !jsonObj.get("case").isJsonNull()) {
-      ModelCase.validateJsonElement(jsonObj.get("case"));
+    if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull())
+        && !jsonObj.get("key").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("key").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("values") != null && !jsonObj.get("values").isJsonNull()
+        && !jsonObj.get("values").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `values` to be an array in the JSON string but got `%s`",
+          jsonObj.get("values").toString()));
     }
   }
 
@@ -172,22 +217,22 @@ public class GetCaseResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!GetCaseResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'GetCaseResponse' and its subtypes
+      if (!OcrKeyValues.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'OcrKeyValues' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<GetCaseResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(GetCaseResponse.class));
+      final TypeAdapter<OcrKeyValues> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(OcrKeyValues.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<GetCaseResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<OcrKeyValues>() {
         @Override
-        public void write(JsonWriter out, GetCaseResponse value) throws IOException {
+        public void write(JsonWriter out, OcrKeyValues value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public GetCaseResponse read(JsonReader in) throws IOException {
+        public OcrKeyValues read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -198,18 +243,18 @@ public class GetCaseResponse {
   }
 
   /**
-   * Create an instance of GetCaseResponse given an JSON string
+   * Create an instance of OcrKeyValues given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of GetCaseResponse
-   * @throws IOException if the JSON string is invalid with respect to GetCaseResponse
+   * @return An instance of OcrKeyValues
+   * @throws IOException if the JSON string is invalid with respect to OcrKeyValues
    */
-  public static GetCaseResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetCaseResponse.class);
+  public static OcrKeyValues fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OcrKeyValues.class);
   }
 
   /**
-   * Convert an instance of GetCaseResponse to an JSON string
+   * Convert an instance of OcrKeyValues to an JSON string
    *
    * @return JSON string
    */

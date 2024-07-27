@@ -19,7 +19,6 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.OcrKeyValues;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -33,97 +32,33 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetDocumentOcrResponse
+ * Model tests for OcrKeyValues
  */
-public class GetDocumentOcrResponseTest {
-  private final GetDocumentOcrResponse model = new GetDocumentOcrResponse();
+public class OcrKeyValuesTest {
+  private final OcrKeyValues model = new OcrKeyValues();
 
   /**
-   * Model tests for GetDocumentOcrResponse
+   * Model tests for OcrKeyValues
    */
   @Test
-  public void testGetDocumentOcrResponse() {
-    // TODO: test GetDocumentOcrResponse
+  public void testOcrKeyValues() {
+    // TODO: test OcrKeyValues
   }
 
   /**
-   * Test the property 'contentUrls'
+   * Test the property 'key'
    */
   @Test
-  public void contentUrlsTest() {
-    // TODO: test contentUrls
+  public void keyTest() {
+    // TODO: test key
   }
 
   /**
-   * Test the property 'keyValues'
+   * Test the property 'values'
    */
   @Test
-  public void keyValuesTest() {
-    // TODO: test keyValues
-  }
-
-  /**
-   * Test the property 'data'
-   */
-  @Test
-  public void dataTest() {
-    // TODO: test data
-  }
-
-  /**
-   * Test the property 'ocrEngine'
-   */
-  @Test
-  public void ocrEngineTest() {
-    // TODO: test ocrEngine
-  }
-
-  /**
-   * Test the property 'ocrStatus'
-   */
-  @Test
-  public void ocrStatusTest() {
-    // TODO: test ocrStatus
-  }
-
-  /**
-   * Test the property 'contentType'
-   */
-  @Test
-  public void contentTypeTest() {
-    // TODO: test contentType
-  }
-
-  /**
-   * Test the property 'isBase64'
-   */
-  @Test
-  public void isBase64Test() {
-    // TODO: test isBase64
-  }
-
-  /**
-   * Test the property 'userId'
-   */
-  @Test
-  public void userIdTest() {
-    // TODO: test userId
-  }
-
-  /**
-   * Test the property 'documentId'
-   */
-  @Test
-  public void documentIdTest() {
-    // TODO: test documentId
-  }
-
-  /**
-   * Test the property 'insertedDate'
-   */
-  @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
+  public void valuesTest() {
+    // TODO: test values
   }
 
 }

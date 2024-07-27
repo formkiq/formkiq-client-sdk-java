@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.OcrKeyValues;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,9 +29,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-25T18:07:03.096053-05:00[America/Winnipeg]",
+    date = "2024-07-26T14:53:51.186347-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
@@ -69,7 +68,7 @@ public class GetDocumentOcrResponse {
 
   public static final String SERIALIZED_NAME_KEY_VALUES = "keyValues";
   @SerializedName(SERIALIZED_NAME_KEY_VALUES)
-  private Map<String, String> keyValues = new HashMap<>();
+  private List<OcrKeyValues> keyValues = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -133,30 +132,30 @@ public class GetDocumentOcrResponse {
   }
 
 
-  public GetDocumentOcrResponse keyValues(Map<String, String> keyValues) {
+  public GetDocumentOcrResponse keyValues(List<OcrKeyValues> keyValues) {
     this.keyValues = keyValues;
     return this;
   }
 
-  public GetDocumentOcrResponse putKeyValuesItem(String key, String keyValuesItem) {
+  public GetDocumentOcrResponse addKeyValuesItem(OcrKeyValues keyValuesItem) {
     if (this.keyValues == null) {
-      this.keyValues = new HashMap<>();
+      this.keyValues = new ArrayList<>();
     }
-    this.keyValues.put(key, keyValuesItem);
+    this.keyValues.add(keyValuesItem);
     return this;
   }
 
   /**
-   * Get keyValues
+   * List of ocr key / values
    * 
    * @return keyValues
    */
   @javax.annotation.Nullable
-  public Map<String, String> getKeyValues() {
+  public List<OcrKeyValues> getKeyValues() {
     return keyValues;
   }
 
-  public void setKeyValues(Map<String, String> keyValues) {
+  public void setKeyValues(List<OcrKeyValues> keyValues) {
     this.keyValues = keyValues;
   }
 
@@ -431,6 +430,22 @@ public class GetDocumentOcrResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `contentUrls` to be an array in the JSON string but got `%s`",
           jsonObj.get("contentUrls").toString()));
+    }
+    if (jsonObj.get("keyValues") != null && !jsonObj.get("keyValues").isJsonNull()) {
+      JsonArray jsonArraykeyValues = jsonObj.getAsJsonArray("keyValues");
+      if (jsonArraykeyValues != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("keyValues").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `keyValues` to be an array in the JSON string but got `%s`",
+              jsonObj.get("keyValues").toString()));
+        }
+
+        // validate the optional field `keyValues` (array)
+        for (int i = 0; i < jsonArraykeyValues.size(); i++) {
+          OcrKeyValues.validateJsonElement(jsonArraykeyValues.get(i));
+        } ;
+      }
     }
     if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull())
         && !jsonObj.get("data").isJsonPrimitive()) {

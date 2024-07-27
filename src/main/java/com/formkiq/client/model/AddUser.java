@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * AddUser
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-25T18:07:03.096053-05:00[America/Winnipeg]",
+    date = "2024-07-26T14:53:51.186347-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddUser {
   public static final String SERIALIZED_NAME_USERNAME = "username";
@@ -71,7 +71,7 @@ public class AddUser {
   }
 
   /**
-   * Username of user
+   * Email address of user
    * 
    * @return username
    */

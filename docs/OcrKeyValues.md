@@ -1,13 +1,14 @@
 
 
-# AddUser
+# OcrKeyValues
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**username** | **String** | Email address of user |  [optional] |
+|**key** | **String** | Ocr Key |  [optional] |
+|**values** | **List&lt;String&gt;** |  |  [optional] |
 
 
 

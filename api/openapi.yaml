@@ -15812,6 +15812,21 @@ components:
           description: Action metadata
           type: object
       type: object
+    OcrKeyValues:
+      example:
+        values:
+        - values
+        - values
+        key: key
+      properties:
+        key:
+          description: Ocr Key
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      type: object
     GetDocumentOcrResponse:
       example:
         contentUrls:
@@ -15823,7 +15838,14 @@ components:
         ocrStatus: ocrStatus
         documentId: documentId
         keyValues:
-          key: keyValues
+        - values:
+          - values
+          - values
+          key: key
+        - values:
+          - values
+          - values
+          key: key
         contentType: contentType
         isBase64: true
         userId: userId
@@ -15834,9 +15856,10 @@ components:
             type: string
           type: array
         keyValues:
-          additionalProperties:
-            type: string
-          type: object
+          description: List of ocr key / values
+          items:
+            $ref: '#/components/schemas/OcrKeyValues'
+          type: array
         data:
           description: OCR text result
           type: string
@@ -17043,7 +17066,7 @@ components:
         username: username
       properties:
         username:
-          description: Username of user
+          description: Email address of user
           type: string
       type: object
     User:
