@@ -11592,6 +11592,7 @@ components:
         path: path
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        documentId: documentId
         attributes:
         - numberValues:
           - 6.027456183070403
@@ -11665,6 +11666,9 @@ components:
           value: value
           key: key
       properties:
+        documentId:
+          description: "optional Document Identifier, if skipped one will be assigned"
+          type: string
         tagSchemaId:
           description: Tag Schema Id
           type: string
@@ -11764,6 +11768,7 @@ components:
             - values
             value: value
             key: key
+        documentId: documentId
         attributes:
         - numberValues:
           - 6.027456183070403
@@ -11839,6 +11844,9 @@ components:
           value: value
           key: key
       properties:
+        documentId:
+          description: "optional Document Identifier, if skipped one will be assigned"
+          type: string
         tagSchemaId:
           description: Tag Schema Id
           type: string

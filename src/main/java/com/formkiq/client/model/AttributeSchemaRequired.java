@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AttributeSchemaRequired
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-07-26T14:53:51.186347-05:00[America/Winnipeg]",
+    date = "2024-07-28T14:34:11.210797-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AttributeSchemaRequired {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
