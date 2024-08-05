@@ -23,6 +23,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddAttributeRequest;
 import com.formkiq.client.model.AddAttributeResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.GetAttributeAllowedValuesResponse;
 import com.formkiq.client.model.GetAttributeResponse;
 import com.formkiq.client.model.GetAttributesResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -88,6 +89,21 @@ public class AttributesApiTest {
   }
 
   /**
+   * Get Attribute Allowed Values
+   *
+   * Returns an attribute&#39;s allowed values that spans across all classifications and site schema
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getAttributeAllowedValuesTest() throws ApiException {
+    String key = null;
+    String siteId = null;
+    GetAttributeAllowedValuesResponse response = api.getAttributeAllowedValues(key, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get Attributes listing
    *
    * Returns a list of attributes
@@ -100,6 +116,24 @@ public class AttributesApiTest {
     String next = null;
     String limit = null;
     GetAttributesResponse response = api.getAttributes(siteId, next, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Classification&#39;s Attribute Allowed Values
+   *
+   * Returns an attribute&#39;s allowed values that spans for a specific classifications and site
+   * schema
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getClassificationAttributeAllowedValuesTest() throws ApiException {
+    String siteId = null;
+    String classificationId = null;
+    String key = null;
+    GetAttributeAllowedValuesResponse response =
+        api.getClassificationAttributeAllowedValues(siteId, classificationId, key);
     // TODO: test validations
   }
 

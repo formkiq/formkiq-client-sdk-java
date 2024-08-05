@@ -168,6 +168,7 @@ docs/ExamineObjectsApi.md
 docs/FulltextAttribute.md
 docs/FulltextSearchItem.md
 docs/GetApiKeysResponse.md
+docs/GetAttributeAllowedValuesResponse.md
 docs/GetAttributeResponse.md
 docs/GetAttributesResponse.md
 docs/GetCaseDocumentsResponse.md
@@ -576,6 +577,7 @@ src/main/java/com/formkiq/client/model/EsignatureDocusignSigner.java
 src/main/java/com/formkiq/client/model/FulltextAttribute.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
+src/main/java/com/formkiq/client/model/GetAttributeAllowedValuesResponse.java
 src/main/java/com/formkiq/client/model/GetAttributeResponse.java
 src/main/java/com/formkiq/client/model/GetAttributesResponse.java
 src/main/java/com/formkiq/client/model/GetCaseDocumentsResponse.java
@@ -941,6 +943,7 @@ src/test/java/com/formkiq/client/model/EsignatureDocusignSignerTest.java
 src/test/java/com/formkiq/client/model/FulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
+src/test/java/com/formkiq/client/model/GetAttributeAllowedValuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributeResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/GetCaseDocumentsResponseTest.java

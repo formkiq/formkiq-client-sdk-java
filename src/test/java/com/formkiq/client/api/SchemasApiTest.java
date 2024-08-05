@@ -23,6 +23,7 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddClassificationRequest;
 import com.formkiq.client.model.AddClassificationResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.GetAttributeAllowedValuesResponse;
 import com.formkiq.client.model.GetClassificationResponse;
 import com.formkiq.client.model.GetClassificationsResponse;
 import com.formkiq.client.model.GetSitesSchemaResponse;
@@ -118,6 +119,22 @@ public class SchemasApiTest {
   public void getSitesSchemaTest() throws ApiException {
     String siteId = null;
     GetSitesSchemaResponse response = api.getSitesSchema(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Attribute Allowed Values
+   *
+   * Returns an attribute&#39;s allowed values from the site schema
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSitesSchemaAttributeAllowedValuesTest() throws ApiException {
+    String siteId = null;
+    String key = null;
+    GetAttributeAllowedValuesResponse response =
+        api.getSitesSchemaAttributeAllowedValues(siteId, key);
     // TODO: test validations
   }
 

@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * Attribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T20:12:43.895378-05:00[America/Winnipeg]",
+    date = "2024-08-04T20:18:01.828394-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class Attribute {
   public static final String SERIALIZED_NAME_TYPE = "type";

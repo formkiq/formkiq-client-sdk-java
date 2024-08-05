@@ -36,6 +36,7 @@ import java.io.IOException;
 import com.formkiq.client.model.AddClassificationRequest;
 import com.formkiq.client.model.AddClassificationResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.GetAttributeAllowedValuesResponse;
 import com.formkiq.client.model.GetClassificationResponse;
 import com.formkiq.client.model.GetClassificationsResponse;
 import com.formkiq.client.model.GetSitesSchemaResponse;
@@ -1051,6 +1052,198 @@ public class SchemasApi {
 
     okhttp3.Call localVarCall = getSitesSchemaValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetSitesSchemaResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSitesSchemaAttributeAllowedValues
+   * 
+   * @param siteId Site Identifier (required)
+   * @param key Key Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSitesSchemaAttributeAllowedValuesCall(String siteId, String key,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/schema/document/attributes/{key}/allowedValues"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "key" + "}", localVarApiClient.escapeString(key.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSitesSchemaAttributeAllowedValuesValidateBeforeCall(String siteId,
+      String key, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getSitesSchemaAttributeAllowedValues(Async)");
+    }
+
+    // verify the required parameter 'key' is set
+    if (key == null) {
+      throw new ApiException(
+          "Missing the required parameter 'key' when calling getSitesSchemaAttributeAllowedValues(Async)");
+    }
+
+    return getSitesSchemaAttributeAllowedValuesCall(siteId, key, _callback);
+
+  }
+
+  /**
+   * Get Attribute Allowed Values Returns an attribute&#39;s allowed values from the site schema
+   * 
+   * @param siteId Site Identifier (required)
+   * @param key Key Identifier (required)
+   * @return GetAttributeAllowedValuesResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetAttributeAllowedValuesResponse getSitesSchemaAttributeAllowedValues(String siteId,
+      String key) throws ApiException {
+    ApiResponse<GetAttributeAllowedValuesResponse> localVarResp =
+        getSitesSchemaAttributeAllowedValuesWithHttpInfo(siteId, key);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Attribute Allowed Values Returns an attribute&#39;s allowed values from the site schema
+   * 
+   * @param siteId Site Identifier (required)
+   * @param key Key Identifier (required)
+   * @return ApiResponse&lt;GetAttributeAllowedValuesResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetAttributeAllowedValuesResponse> getSitesSchemaAttributeAllowedValuesWithHttpInfo(
+      String siteId, String key) throws ApiException {
+    okhttp3.Call localVarCall =
+        getSitesSchemaAttributeAllowedValuesValidateBeforeCall(siteId, key, null);
+    Type localVarReturnType = new TypeToken<GetAttributeAllowedValuesResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Attribute Allowed Values (asynchronously) Returns an attribute&#39;s allowed values from
+   * the site schema
+   * 
+   * @param siteId Site Identifier (required)
+   * @param key Key Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSitesSchemaAttributeAllowedValuesAsync(String siteId, String key,
+      final ApiCallback<GetAttributeAllowedValuesResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getSitesSchemaAttributeAllowedValuesValidateBeforeCall(siteId, key, _callback);
+    Type localVarReturnType = new TypeToken<GetAttributeAllowedValuesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

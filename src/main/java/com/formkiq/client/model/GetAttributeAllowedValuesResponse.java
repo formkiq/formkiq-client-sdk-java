@@ -20,7 +20,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.AddDocumentTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,43 +55,43 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * Add List of document tags
+ * GetAttributeAllowedValuesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
     date = "2024-08-04T20:18:01.828394-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
-public class AddDocumentTagsRequest {
-  public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<AddDocumentTag> tags = new ArrayList<>();
+public class GetAttributeAllowedValuesResponse {
+  public static final String SERIALIZED_NAME_ALLOWED_VALUES = "allowedValues";
+  @SerializedName(SERIALIZED_NAME_ALLOWED_VALUES)
+  private List<String> allowedValues = new ArrayList<>();
 
-  public AddDocumentTagsRequest() {}
+  public GetAttributeAllowedValuesResponse() {}
 
-  public AddDocumentTagsRequest tags(List<AddDocumentTag> tags) {
-    this.tags = tags;
+  public GetAttributeAllowedValuesResponse allowedValues(List<String> allowedValues) {
+    this.allowedValues = allowedValues;
     return this;
   }
 
-  public AddDocumentTagsRequest addTagsItem(AddDocumentTag tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
+  public GetAttributeAllowedValuesResponse addAllowedValuesItem(String allowedValuesItem) {
+    if (this.allowedValues == null) {
+      this.allowedValues = new ArrayList<>();
     }
-    this.tags.add(tagsItem);
+    this.allowedValues.add(allowedValuesItem);
     return this;
   }
 
   /**
-   * List of document tags
+   * Attribute&#39;s allowed values
    * 
-   * @return tags
+   * @return allowedValues
    */
   @javax.annotation.Nullable
-  public List<AddDocumentTag> getTags() {
-    return tags;
+  public List<String> getAllowedValues() {
+    return allowedValues;
   }
 
-  public void setTags(List<AddDocumentTag> tags) {
-    this.tags = tags;
+  public void setAllowedValues(List<String> allowedValues) {
+    this.allowedValues = allowedValues;
   }
 
 
@@ -105,20 +104,21 @@ public class AddDocumentTagsRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentTagsRequest addDocumentTagsRequest = (AddDocumentTagsRequest) o;
-    return Objects.equals(this.tags, addDocumentTagsRequest.tags);
+    GetAttributeAllowedValuesResponse getAttributeAllowedValuesResponse =
+        (GetAttributeAllowedValuesResponse) o;
+    return Objects.equals(this.allowedValues, getAttributeAllowedValuesResponse.allowedValues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tags);
+    return Objects.hash(allowedValues);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentTagsRequest {\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("class GetAttributeAllowedValuesResponse {\n");
+    sb.append("    allowedValues: ").append(toIndentedString(allowedValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,7 +140,7 @@ public class AddDocumentTagsRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("tags");
+    openapiFields.add("allowedValues");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -150,43 +150,36 @@ public class AddDocumentTagsRequest {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocumentTagsRequest
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         GetAttributeAllowedValuesResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentTagsRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                     // element is null
+      if (!GetAttributeAllowedValuesResponse.openapiRequiredFields.isEmpty()) { // has required
+                                                                                // fields but JSON
+                                                                                // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocumentTagsRequest is not found in the empty JSON string",
-            AddDocumentTagsRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetAttributeAllowedValuesResponse is not found in the empty JSON string",
+            GetAttributeAllowedValuesResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentTagsRequest.openapiFields.contains(entry.getKey())) {
+      if (!GetAttributeAllowedValuesResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocumentTagsRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetAttributeAllowedValuesResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
-      JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");
-      if (jsonArraytags != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("tags").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `tags` to be an array in the JSON string but got `%s`",
-              jsonObj.get("tags").toString()));
-        }
-
-        // validate the optional field `tags` (array)
-        for (int i = 0; i < jsonArraytags.size(); i++) {
-          AddDocumentTag.validateJsonElement(jsonArraytags.get(i));
-        } ;
-      }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("allowedValues") != null && !jsonObj.get("allowedValues").isJsonNull()
+        && !jsonObj.get("allowedValues").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `allowedValues` to be an array in the JSON string but got `%s`",
+          jsonObj.get("allowedValues").toString()));
     }
   }
 
@@ -194,22 +187,24 @@ public class AddDocumentTagsRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentTagsRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentTagsRequest' and its subtypes
+      if (!GetAttributeAllowedValuesResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetAttributeAllowedValuesResponse' and its
+                     // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentTagsRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentTagsRequest.class));
+      final TypeAdapter<GetAttributeAllowedValuesResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetAttributeAllowedValuesResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentTagsRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetAttributeAllowedValuesResponse>() {
         @Override
-        public void write(JsonWriter out, AddDocumentTagsRequest value) throws IOException {
+        public void write(JsonWriter out, GetAttributeAllowedValuesResponse value)
+            throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentTagsRequest read(JsonReader in) throws IOException {
+        public GetAttributeAllowedValuesResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -220,18 +215,19 @@ public class AddDocumentTagsRequest {
   }
 
   /**
-   * Create an instance of AddDocumentTagsRequest given an JSON string
+   * Create an instance of GetAttributeAllowedValuesResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentTagsRequest
-   * @throws IOException if the JSON string is invalid with respect to AddDocumentTagsRequest
+   * @return An instance of GetAttributeAllowedValuesResponse
+   * @throws IOException if the JSON string is invalid with respect to
+   *         GetAttributeAllowedValuesResponse
    */
-  public static AddDocumentTagsRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentTagsRequest.class);
+  public static GetAttributeAllowedValuesResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetAttributeAllowedValuesResponse.class);
   }
 
   /**
-   * Convert an instance of AddDocumentTagsRequest to an JSON string
+   * Convert an instance of GetAttributeAllowedValuesResponse to an JSON string
    *
    * @return JSON string
    */

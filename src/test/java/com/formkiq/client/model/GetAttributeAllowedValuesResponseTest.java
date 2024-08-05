@@ -17,33 +17,40 @@
  */
 
 
-package com.formkiq.client.invoker;
+package com.formkiq.client.model;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T20:18:01.828394-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.7.0")
-public class Configuration {
-  public static final String VERSION = "1.16.0";
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-  private static ApiClient defaultApiClient = new ApiClient();
+/**
+ * Model tests for GetAttributeAllowedValuesResponse
+ */
+public class GetAttributeAllowedValuesResponseTest {
+  private final GetAttributeAllowedValuesResponse model = new GetAttributeAllowedValuesResponse();
 
   /**
-   * Get the default API client, which would be used when creating API instances without providing
-   * an API client.
-   *
-   * @return Default API client
+   * Model tests for GetAttributeAllowedValuesResponse
    */
-  public static ApiClient getDefaultApiClient() {
-    return defaultApiClient;
+  @Test
+  public void testGetAttributeAllowedValuesResponse() {
+    // TODO: test GetAttributeAllowedValuesResponse
   }
 
   /**
-   * Set the default API client, which would be used when creating API instances without providing
-   * an API client.
-   *
-   * @param apiClient API client
+   * Test the property 'allowedValues'
    */
-  public static void setDefaultApiClient(ApiClient apiClient) {
-    defaultApiClient = apiClient;
+  @Test
+  public void allowedValuesTest() {
+    // TODO: test allowedValues
   }
+
 }

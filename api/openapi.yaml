@@ -371,6 +371,50 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /sites/{siteId}/schema/document/attributes/{key}/allowedValues:
+    get:
+      description: Returns an attribute's allowed values from the site schema
+      operationId: GetSitesSchemaAttributeAllowedValues
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttributeAllowedValuesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Attribute Allowed Values
+      tags:
+      - Schemas
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
   /sites/{siteId}/classifications:
     get:
       description: Gets Sites Classifications
@@ -613,6 +657,59 @@ paths:
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/classifications/{classificationId}/attributes/{key}/allowedValues:
+    get:
+      description: Returns an attribute's allowed values that spans for a specific
+        classifications and site schema
+      operationId: GetClassificationAttributeAllowedValues
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Classification Identifier
+        explode: false
+        in: path
+        name: classificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttributeAllowedValuesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Classification's Attribute Allowed Values
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
   /sites/{siteId}/configuration:
@@ -3009,6 +3106,51 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Get Attribute
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /attributes/{key}/allowedValues:
+    get:
+      description: Returns an attribute's allowed values that spans across all classifications
+        and site schema
+      operationId: GetAttributeAllowedValues
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAttributeAllowedValuesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Attribute Allowed Values
       tags:
       - Attributes
       x-amazon-apigateway-integration:
@@ -15375,6 +15517,18 @@ components:
       - CONTENT
       - METADATA
       type: string
+    GetAttributeAllowedValuesResponse:
+      example:
+        allowedValues:
+        - allowedValues
+        - allowedValues
+      properties:
+        allowedValues:
+          description: Attribute's allowed values
+          items:
+            type: string
+          type: array
+      type: object
     GetAttributeResponse:
       example:
         attribute:

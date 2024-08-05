@@ -9,6 +9,7 @@ All URIs are relative to *http://localhost*
 | [**getClassification**](SchemasApi.md#getClassification) | **GET** /sites/{siteId}/classifications/{classificationId} | Get Classification |
 | [**getSitesClassifications**](SchemasApi.md#getSitesClassifications) | **GET** /sites/{siteId}/classifications | Get Sites Classifications |
 | [**getSitesSchema**](SchemasApi.md#getSitesSchema) | **GET** /sites/{siteId}/schema/document | Get Sites Schema |
+| [**getSitesSchemaAttributeAllowedValues**](SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values |
 | [**setClassification**](SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification |
 | [**setSitesSchema**](SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema |
 
@@ -334,6 +335,73 @@ public class Example {
 ### Return type
 
 [**GetSitesSchemaResponse**](GetSitesSchemaResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getSitesSchemaAttributeAllowedValues"></a>
+# **getSitesSchemaAttributeAllowedValues**
+> GetAttributeAllowedValuesResponse getSitesSchemaAttributeAllowedValues(siteId, key)
+
+Get Attribute Allowed Values
+
+Returns an attribute&#39;s allowed values from the site schema
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SchemasApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SchemasApi apiInstance = new SchemasApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String key = "key_example"; // String | Key Identifier
+    try {
+      GetAttributeAllowedValuesResponse result = apiInstance.getSitesSchemaAttributeAllowedValues(siteId, key);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SchemasApi#getSitesSchemaAttributeAllowedValues");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **key** | **String**| Key Identifier | |
+
+### Return type
+
+[**GetAttributeAllowedValuesResponse**](GetAttributeAllowedValuesResponse.md)
 
 ### Authorization
 
