@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T20:18:01.828394-05:00[America/Winnipeg]",
+    date = "2024-08-04T21:20:41.950279-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class OpaPolicyItem {
   public static final String SERIALIZED_NAME_TYPE = "type";

@@ -119,22 +119,4 @@ public class AttributesApiTest {
     // TODO: test validations
   }
 
-  /**
-   * Get Classification&#39;s Attribute Allowed Values
-   *
-   * Returns an attribute&#39;s allowed values that spans for a specific classifications and site
-   * schema
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void getClassificationAttributeAllowedValuesTest() throws ApiException {
-    String siteId = null;
-    String classificationId = null;
-    String key = null;
-    GetAttributeAllowedValuesResponse response =
-        api.getClassificationAttributeAllowedValues(siteId, classificationId, key);
-    // TODO: test validations
-  }
-
 }

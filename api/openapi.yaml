@@ -707,7 +707,7 @@ paths:
       - ApiAuthorization: []
       summary: Get Classification's Attribute Allowed Values
       tags:
-      - Attributes
+      - Schemas
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
