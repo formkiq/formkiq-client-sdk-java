@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**username** | **String** | Username of user |  [optional] |
+|**username** | **String** | Email address of user |  [optional] |
 
 
 
