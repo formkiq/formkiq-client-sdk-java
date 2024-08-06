@@ -37,6 +37,8 @@ public enum MappingAttributeSourceType {
 
   CONTENT("CONTENT"),
 
+  CONTENT_KEY_VALUE("CONTENT_KEY_VALUE"),
+
   METADATA("METADATA");
 
   private String value;

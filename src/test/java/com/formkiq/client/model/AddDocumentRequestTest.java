@@ -51,6 +51,14 @@ public class AddDocumentRequestTest {
   }
 
   /**
+   * Test the property 'documentId'
+   */
+  @Test
+  public void documentIdTest() {
+    // TODO: test documentId
+  }
+
+  /**
    * Test the property 'tagSchemaId'
    */
   @Test

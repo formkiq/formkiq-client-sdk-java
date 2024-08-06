@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * GetConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T21:20:41.950279-05:00[America/Winnipeg]",
+    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetConfigurationResponse {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";

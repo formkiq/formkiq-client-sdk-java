@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**contentUrls** | **List&lt;String&gt;** | Presigned S3 Urls for the OCR content |  [optional] |
+|**keyValues** | [**List&lt;OcrKeyValues&gt;**](OcrKeyValues.md) | List of ocr key / values |  [optional] |
 |**data** | **String** | OCR text result |  [optional] |
 |**ocrEngine** | **String** | The OCR technique used |  [optional] |
 |**ocrStatus** | **String** | The status of the OCR request |  [optional] |

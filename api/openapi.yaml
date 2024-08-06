@@ -3656,7 +3656,19 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Whether to return a \"contentUrl\", set value to 'true'"
+      - description: Output Format Type
+        explode: true
+        in: query
+        name: outputType
+        required: false
+        schema:
+          enum:
+          - TEXT
+          - KEY_VALUE
+          - CONTENT_URL
+          type: string
+        style: form
+      - description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
         explode: true
         in: query
         name: contentUrl
@@ -3665,7 +3677,7 @@ paths:
           type: string
         style: form
       - description: "Returns raw 'text' of OCR content. e.g. AWS Textract returns\
-          \ JSON, setting parameter to 'true' converts JSON to Text"
+          \ JSON, setting parameter to 'true' converts JSON to Text (deprecated)"
         explode: true
         in: query
         name: text
@@ -9936,6 +9948,19 @@ components:
         - INACTIVE
         type: string
       style: form
+    ocrOutputTypeParam:
+      description: Output Format Type
+      explode: true
+      in: query
+      name: outputType
+      required: false
+      schema:
+        enum:
+        - TEXT
+        - KEY_VALUE
+        - CONTENT_URL
+        type: string
+      style: form
     limitParam:
       description: Limit Results
       explode: true
@@ -10109,7 +10134,7 @@ components:
         type: integer
       style: form
     contentUrlParam:
-      description: "Whether to return a \"contentUrl\", set value to 'true'"
+      description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
       explode: true
       in: query
       name: contentUrl
@@ -10119,7 +10144,7 @@ components:
       style: form
     textParam:
       description: "Returns raw 'text' of OCR content. e.g. AWS Textract returns JSON,\
-        \ setting parameter to 'true' converts JSON to Text"
+        \ setting parameter to 'true' converts JSON to Text (deprecated)"
       explode: true
       in: query
       name: text
@@ -11709,6 +11734,7 @@ components:
         path: path
         tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        documentId: documentId
         attributes:
         - numberValues:
           - 6.027456183070403
@@ -11782,6 +11808,9 @@ components:
           value: value
           key: key
       properties:
+        documentId:
+          description: "optional Document Identifier, if skipped one will be assigned"
+          type: string
         tagSchemaId:
           description: Tag Schema Id
           type: string
@@ -11881,6 +11910,7 @@ components:
             - values
             value: value
             key: key
+        documentId: documentId
         attributes:
         - numberValues:
           - 6.027456183070403
@@ -11956,6 +11986,9 @@ components:
           value: value
           key: key
       properties:
+        documentId:
+          description: "optional Document Identifier, if skipped one will be assigned"
+          type: string
         tagSchemaId:
           description: Tag Schema Id
           type: string
@@ -15316,7 +15349,8 @@ components:
       example:
         next: next
         mappings:
-        - name: name
+        - mappingId: mappingId
+          name: name
           description: description
           attributes:
           - labelMatchingType: FUZZY
@@ -15343,7 +15377,8 @@ components:
             labelTexts:
             - labelTexts
             - labelTexts
-        - name: name
+        - mappingId: mappingId
+          name: name
           description: description
           attributes:
           - labelMatchingType: FUZZY
@@ -15382,6 +15417,7 @@ components:
     GetMappingResponse:
       example:
         mapping:
+          mappingId: mappingId
           name: name
           description: description
           attributes:
@@ -15415,6 +15451,7 @@ components:
       type: object
     Mapping:
       example:
+        mappingId: mappingId
         name: name
         description: description
         attributes:
@@ -15443,6 +15480,9 @@ components:
           - labelTexts
           - labelTexts
       properties:
+        mappingId:
+          description: Mapping Identifier
+          type: string
         name:
           description: Name of Mapping
           type: string
@@ -15515,6 +15555,7 @@ components:
       description: Attribute Source Type
       enum:
       - CONTENT
+      - CONTENT_KEY_VALUE
       - METADATA
       type: string
     GetAttributeAllowedValuesResponse:
@@ -15933,6 +15974,21 @@ components:
           description: Action metadata
           type: object
       type: object
+    OcrKeyValues:
+      example:
+        values:
+        - values
+        - values
+        key: key
+      properties:
+        key:
+          description: Ocr Key
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      type: object
     GetDocumentOcrResponse:
       example:
         contentUrls:
@@ -15943,6 +15999,15 @@ components:
         insertedDate: insertedDate
         ocrStatus: ocrStatus
         documentId: documentId
+        keyValues:
+        - values:
+          - values
+          - values
+          key: key
+        - values:
+          - values
+          - values
+          key: key
         contentType: contentType
         isBase64: true
         userId: userId
@@ -15951,6 +16016,11 @@ components:
           description: Presigned S3 Urls for the OCR content
           items:
             type: string
+          type: array
+        keyValues:
+          description: List of ocr key / values
+          items:
+            $ref: '#/components/schemas/OcrKeyValues'
           type: array
         data:
           description: OCR text result
@@ -17158,7 +17228,7 @@ components:
         username: username
       properties:
         username:
-          description: Username of user
+          description: Email address of user
           type: string
       type: object
     User:

@@ -148,7 +148,7 @@ No authorization required
 
 <a id="getDocumentOcr"></a>
 # **getDocumentOcr**
-> GetDocumentOcrResponse getDocumentOcr(documentId, siteId, contentUrl, text, shareKey)
+> GetDocumentOcrResponse getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey)
 
 Get document ocr content
 
@@ -174,11 +174,12 @@ public class Example {
     DocumentOcrApi apiInstance = new DocumentOcrApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
-    String contentUrl = "contentUrl_example"; // String | Whether to return a \"contentUrl\", set value to 'true'
-    String text = "text_example"; // String | Returns raw 'text' of OCR content. e.g. AWS Textract returns JSON, setting parameter to 'true' converts JSON to Text
+    String outputType = "TEXT"; // String | Output Format Type
+    String contentUrl = "contentUrl_example"; // String | Whether to return a \"contentUrl\", set value to 'true' (deprecated)
+    String text = "text_example"; // String | Returns raw 'text' of OCR content. e.g. AWS Textract returns JSON, setting parameter to 'true' converts JSON to Text (deprecated)
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentOcrResponse result = apiInstance.getDocumentOcr(documentId, siteId, contentUrl, text, shareKey);
+      GetDocumentOcrResponse result = apiInstance.getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#getDocumentOcr");
@@ -197,8 +198,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
-| **contentUrl** | **String**| Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39; | [optional] |
-| **text** | **String**| Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting parameter to &#39;true&#39; converts JSON to Text | [optional] |
+| **outputType** | **String**| Output Format Type | [optional] [enum: TEXT, KEY_VALUE, CONTENT_URL] |
+| **contentUrl** | **String**| Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39; (deprecated) | [optional] |
+| **text** | **String**| Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting parameter to &#39;true&#39; converts JSON to Text (deprecated) | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type

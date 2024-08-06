@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**documentId** | **String** | optional Document Identifier, if skipped one will be assigned |  [optional] |
 |**tagSchemaId** | **String** | Tag Schema Id |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |

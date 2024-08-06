@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * MappingAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T21:20:41.950279-05:00[America/Winnipeg]",
+    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class MappingAttribute {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";

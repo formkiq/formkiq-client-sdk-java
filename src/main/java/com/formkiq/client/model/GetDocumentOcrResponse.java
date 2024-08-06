@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.OcrKeyValues;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,12 +59,16 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T21:20:41.950279-05:00[America/Winnipeg]",
+    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
   @SerializedName(SERIALIZED_NAME_CONTENT_URLS)
   private List<String> contentUrls = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_KEY_VALUES = "keyValues";
+  @SerializedName(SERIALIZED_NAME_KEY_VALUES)
+  private List<OcrKeyValues> keyValues = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -124,6 +129,34 @@ public class GetDocumentOcrResponse {
 
   public void setContentUrls(List<String> contentUrls) {
     this.contentUrls = contentUrls;
+  }
+
+
+  public GetDocumentOcrResponse keyValues(List<OcrKeyValues> keyValues) {
+    this.keyValues = keyValues;
+    return this;
+  }
+
+  public GetDocumentOcrResponse addKeyValuesItem(OcrKeyValues keyValuesItem) {
+    if (this.keyValues == null) {
+      this.keyValues = new ArrayList<>();
+    }
+    this.keyValues.add(keyValuesItem);
+    return this;
+  }
+
+  /**
+   * List of ocr key / values
+   * 
+   * @return keyValues
+   */
+  @javax.annotation.Nullable
+  public List<OcrKeyValues> getKeyValues() {
+    return keyValues;
+  }
+
+  public void setKeyValues(List<OcrKeyValues> keyValues) {
+    this.keyValues = keyValues;
   }
 
 
@@ -298,6 +331,7 @@ public class GetDocumentOcrResponse {
     }
     GetDocumentOcrResponse getDocumentOcrResponse = (GetDocumentOcrResponse) o;
     return Objects.equals(this.contentUrls, getDocumentOcrResponse.contentUrls)
+        && Objects.equals(this.keyValues, getDocumentOcrResponse.keyValues)
         && Objects.equals(this.data, getDocumentOcrResponse.data)
         && Objects.equals(this.ocrEngine, getDocumentOcrResponse.ocrEngine)
         && Objects.equals(this.ocrStatus, getDocumentOcrResponse.ocrStatus)
@@ -310,8 +344,8 @@ public class GetDocumentOcrResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentUrls, data, ocrEngine, ocrStatus, contentType, isBase64, userId,
-        documentId, insertedDate);
+    return Objects.hash(contentUrls, keyValues, data, ocrEngine, ocrStatus, contentType, isBase64,
+        userId, documentId, insertedDate);
   }
 
   @Override
@@ -319,6 +353,7 @@ public class GetDocumentOcrResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentOcrResponse {\n");
     sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
+    sb.append("    keyValues: ").append(toIndentedString(keyValues)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrStatus: ").append(toIndentedString(ocrStatus)).append("\n");
@@ -349,6 +384,7 @@ public class GetDocumentOcrResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("contentUrls");
+    openapiFields.add("keyValues");
     openapiFields.add("data");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrStatus");
@@ -394,6 +430,22 @@ public class GetDocumentOcrResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `contentUrls` to be an array in the JSON string but got `%s`",
           jsonObj.get("contentUrls").toString()));
+    }
+    if (jsonObj.get("keyValues") != null && !jsonObj.get("keyValues").isJsonNull()) {
+      JsonArray jsonArraykeyValues = jsonObj.getAsJsonArray("keyValues");
+      if (jsonArraykeyValues != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("keyValues").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `keyValues` to be an array in the JSON string but got `%s`",
+              jsonObj.get("keyValues").toString()));
+        }
+
+        // validate the optional field `keyValues` (array)
+        for (int i = 0; i < jsonArraykeyValues.size(); i++) {
+          OcrKeyValues.validateJsonElement(jsonArraykeyValues.get(i));
+        } ;
+      }
     }
     if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull())
         && !jsonObj.get("data").isJsonPrimitive()) {

@@ -61,9 +61,13 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-04T21:20:41.950279-05:00[America/Winnipeg]",
+    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentUploadRequest {
+  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
+  private String documentId;
+
   public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
   @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
   private String tagSchemaId;
@@ -93,6 +97,26 @@ public class AddDocumentUploadRequest {
   private List<AddAction> actions = new ArrayList<>();
 
   public AddDocumentUploadRequest() {}
+
+  public AddDocumentUploadRequest documentId(String documentId) {
+    this.documentId = documentId;
+    return this;
+  }
+
+  /**
+   * optional Document Identifier, if skipped one will be assigned
+   * 
+   * @return documentId
+   */
+  @javax.annotation.Nullable
+  public String getDocumentId() {
+    return documentId;
+  }
+
+  public void setDocumentId(String documentId) {
+    this.documentId = documentId;
+  }
+
 
   public AddDocumentUploadRequest tagSchemaId(String tagSchemaId) {
     this.tagSchemaId = tagSchemaId;
@@ -268,7 +292,8 @@ public class AddDocumentUploadRequest {
       return false;
     }
     AddDocumentUploadRequest addDocumentUploadRequest = (AddDocumentUploadRequest) o;
-    return Objects.equals(this.tagSchemaId, addDocumentUploadRequest.tagSchemaId)
+    return Objects.equals(this.documentId, addDocumentUploadRequest.documentId)
+        && Objects.equals(this.tagSchemaId, addDocumentUploadRequest.tagSchemaId)
         && Objects.equals(this.path, addDocumentUploadRequest.path)
         && Objects.equals(this.contentType, addDocumentUploadRequest.contentType)
         && Objects.equals(this.deepLinkPath, addDocumentUploadRequest.deepLinkPath)
@@ -279,13 +304,15 @@ public class AddDocumentUploadRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, contentType, deepLinkPath, attributes, tags, actions);
+    return Objects.hash(documentId, tagSchemaId, path, contentType, deepLinkPath, attributes, tags,
+        actions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentUploadRequest {\n");
+    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
@@ -314,6 +341,7 @@ public class AddDocumentUploadRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("documentId");
     openapiFields.add("tagSchemaId");
     openapiFields.add("path");
     openapiFields.add("contentType");
@@ -352,6 +380,12 @@ public class AddDocumentUploadRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
+        && !jsonObj.get("documentId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("documentId").toString()));
+    }
     if ((jsonObj.get("tagSchemaId") != null && !jsonObj.get("tagSchemaId").isJsonNull())
         && !jsonObj.get("tagSchemaId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

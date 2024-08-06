@@ -49,6 +49,14 @@ public class AddDocumentUploadRequestTest {
   }
 
   /**
+   * Test the property 'documentId'
+   */
+  @Test
+  public void documentIdTest() {
+    // TODO: test documentId
+  }
+
+  /**
    * Test the property 'tagSchemaId'
    */
   @Test

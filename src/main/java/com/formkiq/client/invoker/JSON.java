@@ -528,6 +528,8 @@ public class JSON {
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Nigo.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OcrKeyValues.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.OnlyOfficeConfig.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.OnlyOfficeConfigDocument.CustomTypeAdapterFactory());

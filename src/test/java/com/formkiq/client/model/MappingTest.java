@@ -47,6 +47,14 @@ public class MappingTest {
   }
 
   /**
+   * Test the property 'mappingId'
+   */
+  @Test
+  public void mappingIdTest() {
+    // TODO: test mappingId
+  }
+
+  /**
    * Test the property 'name'
    */
   @Test
