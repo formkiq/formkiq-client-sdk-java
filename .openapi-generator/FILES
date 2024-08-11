@@ -49,6 +49,8 @@ docs/AddFolderRequest.md
 docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
 docs/AddFolderShareResponse.md
+docs/AddGoogleDocumentExportRequest.md
+docs/AddGoogleDocumentExportResponse.md
 docs/AddGroup.md
 docs/AddGroupRequest.md
 docs/AddMapping.md
@@ -234,6 +236,9 @@ docs/GetWorkflowDocumentsResponse.md
 docs/GetWorkflowQueueDocumentsResponse.md
 docs/GetWorkflowResponse.md
 docs/GetWorkflowsResponse.md
+docs/GoogleConfig.md
+docs/GoogleExportOutputType.md
+docs/GoogleIntegrationApi.md
 docs/Group.md
 docs/IndexFolderMoveRequest.md
 docs/IndexFolderMoveResponse.md
@@ -399,6 +404,7 @@ src/main/java/com/formkiq/client/api/DocumentWorkflowsApi.java
 src/main/java/com/formkiq/client/api/DocumentsApi.java
 src/main/java/com/formkiq/client/api/ESignatureApi.java
 src/main/java/com/formkiq/client/api/ExamineObjectsApi.java
+src/main/java/com/formkiq/client/api/GoogleIntegrationApi.java
 src/main/java/com/formkiq/client/api/MappingsApi.java
 src/main/java/com/formkiq/client/api/OnlyofficeApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
@@ -476,6 +482,8 @@ src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
 src/main/java/com/formkiq/client/model/AddFolderShareResponse.java
+src/main/java/com/formkiq/client/model/AddGoogleDocumentExportRequest.java
+src/main/java/com/formkiq/client/model/AddGoogleDocumentExportResponse.java
 src/main/java/com/formkiq/client/model/AddGroup.java
 src/main/java/com/formkiq/client/model/AddGroupRequest.java
 src/main/java/com/formkiq/client/model/AddMapping.java
@@ -644,6 +652,8 @@ src/main/java/com/formkiq/client/model/GetWorkflowDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetWorkflowQueueDocumentsResponse.java
 src/main/java/com/formkiq/client/model/GetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetWorkflowsResponse.java
+src/main/java/com/formkiq/client/model/GoogleConfig.java
+src/main/java/com/formkiq/client/model/GoogleExportOutputType.java
 src/main/java/com/formkiq/client/model/Group.java
 src/main/java/com/formkiq/client/model/IndexFolderMoveRequest.java
 src/main/java/com/formkiq/client/model/IndexFolderMoveResponse.java
@@ -789,6 +799,7 @@ src/test/java/com/formkiq/client/api/DocumentWorkflowsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentsApiTest.java
 src/test/java/com/formkiq/client/api/ESignatureApiTest.java
 src/test/java/com/formkiq/client/api/ExamineObjectsApiTest.java
+src/test/java/com/formkiq/client/api/GoogleIntegrationApiTest.java
 src/test/java/com/formkiq/client/api/MappingsApiTest.java
 src/test/java/com/formkiq/client/api/OnlyofficeApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
@@ -843,6 +854,8 @@ src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareResponseTest.java
+src/test/java/com/formkiq/client/model/AddGoogleDocumentExportRequestTest.java
+src/test/java/com/formkiq/client/model/AddGoogleDocumentExportResponseTest.java
 src/test/java/com/formkiq/client/model/AddGroupRequestTest.java
 src/test/java/com/formkiq/client/model/AddGroupTest.java
 src/test/java/com/formkiq/client/model/AddMappingRequestTest.java
@@ -1011,6 +1024,8 @@ src/test/java/com/formkiq/client/model/GetWorkflowDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWorkflowQueueDocumentsResponseTest.java
 src/test/java/com/formkiq/client/model/GetWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetWorkflowsResponseTest.java
+src/test/java/com/formkiq/client/model/GoogleConfigTest.java
+src/test/java/com/formkiq/client/model/GoogleExportOutputTypeTest.java
 src/test/java/com/formkiq/client/model/GroupTest.java
 src/test/java/com/formkiq/client/model/IndexFolderMoveRequestTest.java
 src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java

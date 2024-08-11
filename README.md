@@ -194,6 +194,7 @@ Class | Method | HTTP request | Description
 *AttributesApi* | [**addAttribute**](docs/AttributesApi.md#addAttribute) | **POST** /attributes | Add new attribute
 *AttributesApi* | [**deleteAttribute**](docs/AttributesApi.md#deleteAttribute) | **DELETE** /attributes/{key} | Delete attribute
 *AttributesApi* | [**getAttribute**](docs/AttributesApi.md#getAttribute) | **GET** /attributes/{key} | Get Attribute
+*AttributesApi* | [**getAttributeAllowedValues**](docs/AttributesApi.md#getAttributeAllowedValues) | **GET** /attributes/{key}/allowedValues | Get Attribute Allowed Values
 *AttributesApi* | [**getAttributes**](docs/AttributesApi.md#getAttributes) | **GET** /attributes | Get Attributes listing
 *CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
 *CaseManagementApi* | [**addNigo**](docs/CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo
@@ -290,6 +291,7 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**setEsignatureDocusignConfig**](docs/ESignatureApi.md#setEsignatureDocusignConfig) | **PUT** /esignature/docusign/config | Set E-signature config
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
+*GoogleIntegrationApi* | [**addGoogleDocumentExport**](docs/GoogleIntegrationApi.md#addGoogleDocumentExport) | **POST** /integrations/google/drive/documents/{documentId}/export | Add Google Document Export
 *MappingsApi* | [**addMapping**](docs/MappingsApi.md#addMapping) | **POST** /mappings | Add New Mapping
 *MappingsApi* | [**deleteMapping**](docs/MappingsApi.md#deleteMapping) | **DELETE** /mappings/{mappingId} | Delete Mapping
 *MappingsApi* | [**getMapping**](docs/MappingsApi.md#getMapping) | **GET** /mappings/{mappingId} | Get Mapping
@@ -313,8 +315,10 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**addClassification**](docs/SchemasApi.md#addClassification) | **POST** /sites/{siteId}/classifications | Add Classification
 *SchemasApi* | [**deleteClassification**](docs/SchemasApi.md#deleteClassification) | **DELETE** /sites/{siteId}/classifications/{classificationId} | Delete Classification
 *SchemasApi* | [**getClassification**](docs/SchemasApi.md#getClassification) | **GET** /sites/{siteId}/classifications/{classificationId} | Get Classification
+*SchemasApi* | [**getClassificationAttributeAllowedValues**](docs/SchemasApi.md#getClassificationAttributeAllowedValues) | **GET** /sites/{siteId}/classifications/{classificationId}/attributes/{key}/allowedValues | Get Classification&#39;s Attribute Allowed Values
 *SchemasApi* | [**getSitesClassifications**](docs/SchemasApi.md#getSitesClassifications) | **GET** /sites/{siteId}/classifications | Get Sites Classifications
 *SchemasApi* | [**getSitesSchema**](docs/SchemasApi.md#getSitesSchema) | **GET** /sites/{siteId}/schema/document | Get Sites Schema
+*SchemasApi* | [**getSitesSchemaAttributeAllowedValues**](docs/SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
@@ -402,6 +406,8 @@ Class | Method | HTTP request | Description
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
  - [AddFolderShareResponse](docs/AddFolderShareResponse.md)
+ - [AddGoogleDocumentExportRequest](docs/AddGoogleDocumentExportRequest.md)
+ - [AddGoogleDocumentExportResponse](docs/AddGoogleDocumentExportResponse.md)
  - [AddGroup](docs/AddGroup.md)
  - [AddGroupRequest](docs/AddGroupRequest.md)
  - [AddMapping](docs/AddMapping.md)
@@ -504,6 +510,7 @@ Class | Method | HTTP request | Description
  - [FulltextAttribute](docs/FulltextAttribute.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
+ - [GetAttributeAllowedValuesResponse](docs/GetAttributeAllowedValuesResponse.md)
  - [GetAttributeResponse](docs/GetAttributeResponse.md)
  - [GetAttributesResponse](docs/GetAttributesResponse.md)
  - [GetCaseDocumentsResponse](docs/GetCaseDocumentsResponse.md)
@@ -569,6 +576,8 @@ Class | Method | HTTP request | Description
  - [GetWorkflowQueueDocumentsResponse](docs/GetWorkflowQueueDocumentsResponse.md)
  - [GetWorkflowResponse](docs/GetWorkflowResponse.md)
  - [GetWorkflowsResponse](docs/GetWorkflowsResponse.md)
+ - [GoogleConfig](docs/GoogleConfig.md)
+ - [GoogleExportOutputType](docs/GoogleExportOutputType.md)
  - [Group](docs/Group.md)
  - [IndexFolderMoveRequest](docs/IndexFolderMoveRequest.md)
  - [IndexFolderMoveResponse](docs/IndexFolderMoveResponse.md)
@@ -585,6 +594,7 @@ Class | Method | HTTP request | Description
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)
  - [OcrEngine](docs/OcrEngine.md)
+ - [OcrKeyValues](docs/OcrKeyValues.md)
  - [OcrOutputType](docs/OcrOutputType.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)

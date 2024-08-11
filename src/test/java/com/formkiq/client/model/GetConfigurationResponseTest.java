@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.GoogleConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -81,6 +82,14 @@ public class GetConfigurationResponseTest {
   @Test
   public void notificationEmailTest() {
     // TODO: test notificationEmail
+  }
+
+  /**
+   * Test the property 'google'
+   */
+  @Test
+  public void googleTest() {
+    // TODO: test google
   }
 
 }

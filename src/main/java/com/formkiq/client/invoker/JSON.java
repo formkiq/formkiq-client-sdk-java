@@ -190,6 +190,10 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddFolderShareResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddGoogleDocumentExportRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.AddGoogleDocumentExportResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddGroup.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddGroupRequest.CustomTypeAdapterFactory());
@@ -505,6 +509,8 @@ public class JSON {
         new com.formkiq.client.model.GetWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetWorkflowsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GoogleConfig.CustomTypeAdapterFactory());
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Group.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

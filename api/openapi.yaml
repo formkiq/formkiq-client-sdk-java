@@ -763,14 +763,6 @@ paths:
       requestBody:
         content:
           application/json:
-            examples:
-              Config:
-                value:
-                  chatGptApiKey: ABC
-                  maxContentLengthBytes: "1000000"
-                  maxDocuments: "1000"
-                  maxWebhooks: "10"
-                  notificationEmail: <email>
             schema:
               $ref: '#/components/schemas/UpdateConfigurationRequest'
         required: true
@@ -9711,6 +9703,63 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
+  /integrations/google/drive/documents/{documentId}/export:
+    post:
+      description: Exports a Google Document; ONLY available with FormKiQ Enterprise
+      operationId: AddGoogleDocumentExport
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddGoogleDocumentExportRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddGoogleDocumentExportResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add Google Document Export
+      tags:
+      - Google Integration
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/googleLambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -15177,6 +15226,30 @@ components:
         operation:
           $ref: '#/components/schemas/RuleConditionOperation'
       type: object
+    GoogleExportOutputType:
+      description: Google Export Output Type
+      enum:
+      - PDF
+      type: string
+    AddGoogleDocumentExportRequest:
+      example:
+        path: path
+        outputType: PDF
+      properties:
+        path:
+          description: Path of exported file
+          type: string
+        outputType:
+          $ref: '#/components/schemas/GoogleExportOutputType'
+      type: object
+    AddGoogleDocumentExportResponse:
+      example:
+        documentId: documentId
+      properties:
+        documentId:
+          description: Exported document identifier
+          type: string
+      type: object
     GetExaminePdfUrlResponse:
       example:
         uploadUrl: uploadUrl
@@ -16518,6 +16591,9 @@ components:
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
+        google:
+          workloadIdentityServiceAccount: workloadIdentityServiceAccount
+          workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
       properties:
@@ -16536,6 +16612,8 @@ components:
         notificationEmail:
           description: Email address to use for notifications
           type: string
+        google:
+          $ref: '#/components/schemas/GoogleConfig'
       type: object
     UpdateConfigurationResponse:
       example:
@@ -17144,6 +17222,9 @@ components:
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
+        google:
+          workloadIdentityServiceAccount: workloadIdentityServiceAccount
+          workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
       properties:
@@ -17162,6 +17243,20 @@ components:
         notificationEmail:
           description: Email address to use for notifications (Must be verified identity
             created in AWS SES)
+          type: string
+        google:
+          $ref: '#/components/schemas/GoogleConfig'
+      type: object
+    GoogleConfig:
+      example:
+        workloadIdentityServiceAccount: workloadIdentityServiceAccount
+        workloadIdentityAudience: workloadIdentityAudience
+      properties:
+        workloadIdentityAudience:
+          description: Workload Identity Audience
+          type: string
+        workloadIdentityServiceAccount:
+          description: Workload Service Account
           type: string
       type: object
     GetUsersInGroupResponse:
@@ -19237,6 +19332,20 @@ components:
       responses:
         default:
           statusCode: "200"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Methods: '''*'''
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
+            method.response.header.Access-Control-Allow-Origin: '''*'''
+      passthroughBehavior: when_no_templates
+      httpMethod: POST
+      type: aws_proxy
+      payloadFormatVersion: "1.0"
+    googleLambdaApi201:
+      uri:
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+      responses:
+        default:
+          statusCode: "201"
           responseParameters:
             method.response.header.Access-Control-Allow-Methods: '''*'''
             method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"

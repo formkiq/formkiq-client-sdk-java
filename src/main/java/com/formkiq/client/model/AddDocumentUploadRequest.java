@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
+    date = "2024-08-10T23:08:52.578418-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";

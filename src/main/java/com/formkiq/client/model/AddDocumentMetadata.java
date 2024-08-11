@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * Document Metadata (use either &#39;value&#39; or &#39;values&#39; not both)
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
+    date = "2024-08-10T23:08:52.578418-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentMetadata {
   public static final String SERIALIZED_NAME_KEY = "key";

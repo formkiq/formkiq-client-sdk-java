@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.GoogleConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * GetConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-06T13:20:48.482805-05:00[America/Winnipeg]",
+    date = "2024-08-10T23:08:52.578418-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetConfigurationResponse {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
@@ -78,6 +79,10 @@ public class GetConfigurationResponse {
   public static final String SERIALIZED_NAME_NOTIFICATION_EMAIL = "notificationEmail";
   @SerializedName(SERIALIZED_NAME_NOTIFICATION_EMAIL)
   private String notificationEmail;
+
+  public static final String SERIALIZED_NAME_GOOGLE = "google";
+  @SerializedName(SERIALIZED_NAME_GOOGLE)
+  private GoogleConfig google;
 
   public GetConfigurationResponse() {}
 
@@ -181,6 +186,26 @@ public class GetConfigurationResponse {
   }
 
 
+  public GetConfigurationResponse google(GoogleConfig google) {
+    this.google = google;
+    return this;
+  }
+
+  /**
+   * Get google
+   * 
+   * @return google
+   */
+  @javax.annotation.Nullable
+  public GoogleConfig getGoogle() {
+    return google;
+  }
+
+  public void setGoogle(GoogleConfig google) {
+    this.google = google;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -196,13 +221,14 @@ public class GetConfigurationResponse {
             getConfigurationResponse.maxContentLengthBytes)
         && Objects.equals(this.maxDocuments, getConfigurationResponse.maxDocuments)
         && Objects.equals(this.maxWebhooks, getConfigurationResponse.maxWebhooks)
-        && Objects.equals(this.notificationEmail, getConfigurationResponse.notificationEmail);
+        && Objects.equals(this.notificationEmail, getConfigurationResponse.notificationEmail)
+        && Objects.equals(this.google, getConfigurationResponse.google);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
-        notificationEmail);
+        notificationEmail, google);
   }
 
   @Override
@@ -215,6 +241,7 @@ public class GetConfigurationResponse {
     sb.append("    maxDocuments: ").append(toIndentedString(maxDocuments)).append("\n");
     sb.append("    maxWebhooks: ").append(toIndentedString(maxWebhooks)).append("\n");
     sb.append("    notificationEmail: ").append(toIndentedString(notificationEmail)).append("\n");
+    sb.append("    google: ").append(toIndentedString(google)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -241,6 +268,7 @@ public class GetConfigurationResponse {
     openapiFields.add("maxDocuments");
     openapiFields.add("maxWebhooks");
     openapiFields.add("notificationEmail");
+    openapiFields.add("google");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -302,6 +330,10 @@ public class GetConfigurationResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `notificationEmail` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationEmail").toString()));
+    }
+    // validate the optional field `google`
+    if (jsonObj.get("google") != null && !jsonObj.get("google").isJsonNull()) {
+      GoogleConfig.validateJsonElement(jsonObj.get("google"));
     }
   }
 
