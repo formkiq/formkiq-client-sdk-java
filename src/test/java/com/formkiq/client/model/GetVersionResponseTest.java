@@ -62,6 +62,14 @@ public class GetVersionResponseTest {
   }
 
   /**
+   * Test the property 'appEnvironment'
+   */
+  @Test
+  public void appEnvironmentTest() {
+    // TODO: test appEnvironment
+  }
+
+  /**
    * Test the property 'modules'
    */
   @Test

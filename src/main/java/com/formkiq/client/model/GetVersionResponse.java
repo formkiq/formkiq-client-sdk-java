@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * GetVersionResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-10T23:08:52.578418-05:00[America/Winnipeg]",
+    date = "2024-08-12T21:50:46.977398-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetVersionResponse {
   public static final String SERIALIZED_NAME_VERSION = "version";
@@ -68,6 +68,10 @@ public class GetVersionResponse {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
+
+  public static final String SERIALIZED_NAME_APP_ENVIRONMENT = "appEnvironment";
+  @SerializedName(SERIALIZED_NAME_APP_ENVIRONMENT)
+  private String appEnvironment;
 
   public static final String SERIALIZED_NAME_MODULES = "modules";
   @SerializedName(SERIALIZED_NAME_MODULES)
@@ -115,6 +119,26 @@ public class GetVersionResponse {
   }
 
 
+  public GetVersionResponse appEnvironment(String appEnvironment) {
+    this.appEnvironment = appEnvironment;
+    return this;
+  }
+
+  /**
+   * FormKiQ App Environment
+   * 
+   * @return appEnvironment
+   */
+  @javax.annotation.Nullable
+  public String getAppEnvironment() {
+    return appEnvironment;
+  }
+
+  public void setAppEnvironment(String appEnvironment) {
+    this.appEnvironment = appEnvironment;
+  }
+
+
   public GetVersionResponse modules(List<String> modules) {
     this.modules = modules;
     return this;
@@ -155,12 +179,13 @@ public class GetVersionResponse {
     GetVersionResponse getVersionResponse = (GetVersionResponse) o;
     return Objects.equals(this.version, getVersionResponse.version)
         && Objects.equals(this.type, getVersionResponse.type)
+        && Objects.equals(this.appEnvironment, getVersionResponse.appEnvironment)
         && Objects.equals(this.modules, getVersionResponse.modules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, type, modules);
+    return Objects.hash(version, type, appEnvironment, modules);
   }
 
   @Override
@@ -169,6 +194,7 @@ public class GetVersionResponse {
     sb.append("class GetVersionResponse {\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    appEnvironment: ").append(toIndentedString(appEnvironment)).append("\n");
     sb.append("    modules: ").append(toIndentedString(modules)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -193,6 +219,7 @@ public class GetVersionResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("version");
     openapiFields.add("type");
+    openapiFields.add("appEnvironment");
     openapiFields.add("modules");
 
     // a set of required properties/fields (JSON key names)
@@ -236,6 +263,12 @@ public class GetVersionResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
+    }
+    if ((jsonObj.get("appEnvironment") != null && !jsonObj.get("appEnvironment").isJsonNull())
+        && !jsonObj.get("appEnvironment").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `appEnvironment` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("appEnvironment").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("modules") != null && !jsonObj.get("modules").isJsonNull()

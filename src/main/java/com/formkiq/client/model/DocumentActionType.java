@@ -51,7 +51,9 @@ public enum DocumentActionType {
 
   IDP("IDP"),
 
-  PUBLISH("PUBLISH");
+  PUBLISH("PUBLISH"),
+
+  PDFEXPORT("PDFEXPORT");
 
   private String value;
 

@@ -23,5 +23,7 @@
 
 * `PUBLISH` (value: `"PUBLISH"`)
 
+* `PDFEXPORT` (value: `"PDFEXPORT"`)
+
 
 

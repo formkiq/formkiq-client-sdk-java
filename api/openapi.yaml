@@ -15990,6 +15990,7 @@ components:
       - WEBHOOK
       - IDP
       - PUBLISH
+      - PDFEXPORT
       type: string
     DocumentAction:
       example:
@@ -16570,6 +16571,7 @@ components:
       example:
         type: type
         version: version
+        appEnvironment: appEnvironment
         modules:
         - modules
         - modules
@@ -16579,6 +16581,9 @@ components:
           type: string
         type:
           description: FormKiQ type
+          type: string
+        appEnvironment:
+          description: FormKiQ App Environment
           type: string
         modules:
           description: List of installed modules

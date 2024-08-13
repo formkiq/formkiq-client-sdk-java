@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhooksResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-10T23:08:52.578418-05:00[America/Winnipeg]",
+    date = "2024-08-12T21:50:46.977398-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class GetWebhooksResponse {
   public static final String SERIALIZED_NAME_WEBHOOKS = "webhooks";
