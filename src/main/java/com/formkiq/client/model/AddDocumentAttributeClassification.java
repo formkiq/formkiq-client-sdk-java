@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * Document Classification
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-12T21:50:46.977398-05:00[America/Winnipeg]",
+    date = "2024-08-13T11:58:14.990579-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentAttributeClassification {
   public static final String SERIALIZED_NAME_CLASSIFICATION_ID = "classificationId";
@@ -75,7 +75,7 @@ public class AddDocumentAttributeClassification {
    * 
    * @return classificationId
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getClassificationId() {
     return classificationId;
   }
@@ -135,6 +135,7 @@ public class AddDocumentAttributeClassification {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("classificationId");
   }
 
   /**
@@ -164,9 +165,17 @@ public class AddDocumentAttributeClassification {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddDocumentAttributeClassification.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("classificationId") != null && !jsonObj.get("classificationId").isJsonNull())
-        && !jsonObj.get("classificationId").isJsonPrimitive()) {
+    if (!jsonObj.get("classificationId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `classificationId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("classificationId").toString()));

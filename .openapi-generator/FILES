@@ -26,6 +26,7 @@ docs/AddDocumentActionsResponse.md
 docs/AddDocumentActionsRetryResponse.md
 docs/AddDocumentAttribute.md
 docs/AddDocumentAttributeClassification.md
+docs/AddDocumentAttributeRelationship.md
 docs/AddDocumentAttributeStandard.md
 docs/AddDocumentAttributeValue.md
 docs/AddDocumentAttributesRequest.md
@@ -135,6 +136,7 @@ docs/DocumentFulltextTag.md
 docs/DocumentId.md
 docs/DocumentMetadata.md
 docs/DocumentOcrApi.md
+docs/DocumentRelationshipType.md
 docs/DocumentSearch.md
 docs/DocumentSearchApi.md
 docs/DocumentSearchAttribute.md
@@ -459,6 +461,7 @@ src/main/java/com/formkiq/client/model/AddDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRetryResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentAttribute.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeClassification.java
+src/main/java/com/formkiq/client/model/AddDocumentAttributeRelationship.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeStandard.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeValue.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributesRequest.java
@@ -559,6 +562,7 @@ src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
 src/main/java/com/formkiq/client/model/DocumentFulltextTag.java
 src/main/java/com/formkiq/client/model/DocumentId.java
 src/main/java/com/formkiq/client/model/DocumentMetadata.java
+src/main/java/com/formkiq/client/model/DocumentRelationshipType.java
 src/main/java/com/formkiq/client/model/DocumentSearch.java
 src/main/java/com/formkiq/client/model/DocumentSearchAttribute.java
 src/main/java/com/formkiq/client/model/DocumentSearchMatchAttribute.java
@@ -830,6 +834,7 @@ src/test/java/com/formkiq/client/model/AddDocumentActionsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRetryResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeClassificationTest.java
+src/test/java/com/formkiq/client/model/AddDocumentAttributeRelationshipTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeStandardTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeValueTest.java
@@ -930,6 +935,7 @@ src/test/java/com/formkiq/client/model/DocumentFulltextSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextTagTest.java
 src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentMetadataTest.java
+src/test/java/com/formkiq/client/model/DocumentRelationshipTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMatchAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMatchTagTest.java

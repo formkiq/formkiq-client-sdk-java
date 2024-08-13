@@ -12569,6 +12569,30 @@ components:
       oneOf:
       - $ref: '#/components/schemas/AddDocumentAttributeStandard'
       - $ref: '#/components/schemas/AddDocumentAttributeClassification'
+      - $ref: '#/components/schemas/AddDocumentAttributeRelationship'
+    DocumentRelationshipType:
+      description: Document Relationship Type
+      enum:
+      - PRIMARY
+      - ATTACHMENT
+      - APPENDIX
+      - SUPPLEMENT
+      - ASSOCIATED
+      - RENDITION
+      type: string
+    AddDocumentAttributeRelationship:
+      description: Document Relationship
+      properties:
+        documentId:
+          description: Relationship To Document Identifier
+          type: string
+        relationship:
+          $ref: '#/components/schemas/DocumentRelationshipType'
+        inverseRelationship:
+          $ref: '#/components/schemas/DocumentRelationshipType'
+      required:
+      - classificationKey
+      type: object
     AddDocumentAttributeClassification:
       description: Document Classification
       properties:
@@ -12576,7 +12600,7 @@ components:
           description: Classification Identifier
           type: string
       required:
-      - classificationKey
+      - classificationId
       type: object
     AddDocumentAttributeStandard:
       description: Document Attribute

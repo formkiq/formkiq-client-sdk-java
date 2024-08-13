@@ -20,7 +20,9 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.AddDocumentAttributeClassification;
+import com.formkiq.client.model.AddDocumentAttributeRelationship;
 import com.formkiq.client.model.AddDocumentAttributeStandard;
+import com.formkiq.client.model.DocumentRelationshipType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -102,6 +104,30 @@ public class AddDocumentAttributeTest {
   @Test
   public void classificationIdTest() {
     // TODO: test classificationId
+  }
+
+  /**
+   * Test the property 'documentId'
+   */
+  @Test
+  public void documentIdTest() {
+    // TODO: test documentId
+  }
+
+  /**
+   * Test the property 'relationship'
+   */
+  @Test
+  public void relationshipTest() {
+    // TODO: test relationship
+  }
+
+  /**
+   * Test the property 'inverseRelationship'
+   */
+  @Test
+  public void inverseRelationshipTest() {
+    // TODO: test inverseRelationship
   }
 
 }

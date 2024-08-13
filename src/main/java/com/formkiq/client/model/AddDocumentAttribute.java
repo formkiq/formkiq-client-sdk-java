@@ -21,7 +21,9 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AddDocumentAttributeClassification;
+import com.formkiq.client.model.AddDocumentAttributeRelationship;
 import com.formkiq.client.model.AddDocumentAttributeStandard;
+import com.formkiq.client.model.DocumentRelationshipType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -69,7 +71,7 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-12T21:50:46.977398-05:00[America/Winnipeg]",
+    date = "2024-08-13T11:58:14.990579-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentAttribute extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddDocumentAttribute.class.getName());
@@ -86,6 +88,8 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
           gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttributeStandard.class));
       final TypeAdapter<AddDocumentAttributeClassification> adapterAddDocumentAttributeClassification =
           gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttributeClassification.class));
+      final TypeAdapter<AddDocumentAttributeRelationship> adapterAddDocumentAttributeRelationship =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentAttributeRelationship.class));
 
       return (TypeAdapter<T>) new TypeAdapter<AddDocumentAttribute>() {
         @Override
@@ -109,8 +113,15 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             elementAdapter.write(out, element);
             return;
           }
+          // check if the actual instance is of the type `AddDocumentAttributeRelationship`
+          if (value.getActualInstance() instanceof AddDocumentAttributeRelationship) {
+            JsonElement element = adapterAddDocumentAttributeRelationship
+                .toJsonTree((AddDocumentAttributeRelationship) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
           throw new IOException(
-              "Failed to serialize as the type doesn't match oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeStandard");
+              "Failed to serialize as the type doesn't match oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeRelationship, AddDocumentAttributeStandard");
         }
 
         @Override
@@ -152,6 +163,21 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             log.log(Level.FINER,
                 "Input data does not match schema 'AddDocumentAttributeClassification'", e);
           }
+          // deserialize AddDocumentAttributeRelationship
+          try {
+            // validate the JSON object to see if any exception is thrown
+            AddDocumentAttributeRelationship.validateJsonElement(jsonElement);
+            actualAdapter = adapterAddDocumentAttributeRelationship;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeRelationship'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(
+                "Deserialization for AddDocumentAttributeRelationship failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'AddDocumentAttributeRelationship'", e);
+          }
 
           if (match == 1) {
             AddDocumentAttribute ret = new AddDocumentAttribute();
@@ -182,6 +208,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
   static {
     schemas.put("AddDocumentAttributeStandard", AddDocumentAttributeStandard.class);
     schemas.put("AddDocumentAttributeClassification", AddDocumentAttributeClassification.class);
+    schemas.put("AddDocumentAttributeRelationship", AddDocumentAttributeRelationship.class);
   }
 
   @Override
@@ -192,7 +219,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
   /**
    * Set the instance that matches the oneOf child schema, check the instance parameter is valid
    * against the oneOf child schemas: AddDocumentAttributeClassification,
-   * AddDocumentAttributeStandard
+   * AddDocumentAttributeRelationship, AddDocumentAttributeStandard
    *
    * It could be an instance of the 'oneOf' schemas.
    */
@@ -208,15 +235,21 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
       return;
     }
 
+    if (instance instanceof AddDocumentAttributeRelationship) {
+      super.setActualInstance(instance);
+      return;
+    }
+
     throw new RuntimeException(
-        "Invalid instance type. Must be AddDocumentAttributeClassification, AddDocumentAttributeStandard");
+        "Invalid instance type. Must be AddDocumentAttributeClassification, AddDocumentAttributeRelationship, AddDocumentAttributeStandard");
   }
 
   /**
    * Get the actual instance, which can be the following: AddDocumentAttributeClassification,
-   * AddDocumentAttributeStandard
+   * AddDocumentAttributeRelationship, AddDocumentAttributeStandard
    *
-   * @return The actual instance (AddDocumentAttributeClassification, AddDocumentAttributeStandard)
+   * @return The actual instance (AddDocumentAttributeClassification,
+   *         AddDocumentAttributeRelationship, AddDocumentAttributeStandard)
    */
   @SuppressWarnings("unchecked")
   @Override
@@ -248,6 +281,18 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
   }
 
   /**
+   * Get the actual instance of `AddDocumentAttributeRelationship`. If the actual instance is not
+   * `AddDocumentAttributeRelationship`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `AddDocumentAttributeRelationship`
+   * @throws ClassCastException if the instance is not `AddDocumentAttributeRelationship`
+   */
+  public AddDocumentAttributeRelationship getAddDocumentAttributeRelationship()
+      throws ClassCastException {
+    return (AddDocumentAttributeRelationship) super.getActualInstance();
+  }
+
+  /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
@@ -276,9 +321,19 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
               e.getMessage()));
       // continue to the next one
     }
+    // validate the json string with AddDocumentAttributeRelationship
+    try {
+      AddDocumentAttributeRelationship.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(
+          String.format("Deserialization for AddDocumentAttributeRelationship failed with `%s`.",
+              e.getMessage()));
+      // continue to the next one
+    }
     if (validCount != 1) {
       throw new IOException(String.format(
-          "The JSON string is invalid for AddDocumentAttribute with oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeStandard. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
+          "The JSON string is invalid for AddDocumentAttribute with oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeRelationship, AddDocumentAttributeStandard. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
           validCount, errorMessages, jsonElement.toString()));
     }
   }

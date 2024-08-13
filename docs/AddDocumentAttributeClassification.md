@@ -8,7 +8,7 @@ Document Classification
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**classificationId** | **String** | Classification Identifier |  [optional] |
+|**classificationId** | **String** | Classification Identifier |  |
 
 
 
