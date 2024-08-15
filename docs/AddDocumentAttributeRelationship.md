@@ -8,8 +8,8 @@ Document Relationship
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**documentId** | **String** | Relationship To Document Identifier |  [optional] |
-|**relationship** | **DocumentRelationshipType** |  |  [optional] |
+|**documentId** | **String** | Relationship To Document Identifier |  |
+|**relationship** | **DocumentRelationshipType** |  |  |
 |**inverseRelationship** | **DocumentRelationshipType** |  |  [optional] |
 
 

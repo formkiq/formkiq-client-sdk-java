@@ -12591,7 +12591,8 @@ components:
         inverseRelationship:
           $ref: '#/components/schemas/DocumentRelationshipType'
       required:
-      - classificationKey
+      - documentId
+      - relationship
       type: object
     AddDocumentAttributeClassification:
       description: Document Classification
@@ -13065,6 +13066,7 @@ components:
       - PUBLICATION
       - CLASSIFICATION
       - COMPOSITE_STRING
+      - RELATIONSHIPS
       type: string
     FulltextAttribute:
       example:

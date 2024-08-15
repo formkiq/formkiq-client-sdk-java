@@ -14,8 +14,8 @@
 |**numberValues** | **List&lt;BigDecimal&gt;** | Attribute with number values |  [optional] |
 |**booleanValue** | **Boolean** | Attribute with boolean value |  [optional] |
 |**classificationId** | **String** | Classification Identifier |  |
-|**documentId** | **String** | Relationship To Document Identifier |  [optional] |
-|**relationship** | **DocumentRelationshipType** |  |  [optional] |
+|**documentId** | **String** | Relationship To Document Identifier |  |
+|**relationship** | **DocumentRelationshipType** |  |  |
 |**inverseRelationship** | **DocumentRelationshipType** |  |  [optional] |
 
 

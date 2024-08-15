@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * AddEsignatureDocusignResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-13T11:58:14.990579-05:00[America/Winnipeg]",
+    date = "2024-08-13T19:59:27.914669-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddEsignatureDocusignResponse {
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";

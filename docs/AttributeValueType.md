@@ -19,5 +19,7 @@
 
 * `COMPOSITE_STRING` (value: `"COMPOSITE_STRING"`)
 
+* `RELATIONSHIPS` (value: `"RELATIONSHIPS"`)
+
 
 

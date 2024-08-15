@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * Document Relationship
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-13T11:58:14.990579-05:00[America/Winnipeg]",
+    date = "2024-08-13T19:59:27.914669-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddDocumentAttributeRelationship {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
@@ -84,7 +84,7 @@ public class AddDocumentAttributeRelationship {
    * 
    * @return documentId
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getDocumentId() {
     return documentId;
   }
@@ -104,7 +104,7 @@ public class AddDocumentAttributeRelationship {
    * 
    * @return relationship
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public DocumentRelationshipType getRelationship() {
     return relationship;
   }
@@ -192,6 +192,8 @@ public class AddDocumentAttributeRelationship {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("documentId");
+    openapiRequiredFields.add("relationship");
   }
 
   /**
@@ -221,17 +223,23 @@ public class AddDocumentAttributeRelationship {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddDocumentAttributeRelationship.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
-        && !jsonObj.get("documentId").isJsonPrimitive()) {
+    if (!jsonObj.get("documentId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
     }
-    // validate the optional field `relationship`
-    if (jsonObj.get("relationship") != null && !jsonObj.get("relationship").isJsonNull()) {
-      DocumentRelationshipType.validateJsonElement(jsonObj.get("relationship"));
-    }
+    // validate the required field `relationship`
+    DocumentRelationshipType.validateJsonElement(jsonObj.get("relationship"));
     // validate the optional field `inverseRelationship`
     if (jsonObj.get("inverseRelationship") != null
         && !jsonObj.get("inverseRelationship").isJsonNull()) {
