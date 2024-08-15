@@ -32,6 +32,8 @@ docs/AddDocumentAttributeValue.md
 docs/AddDocumentAttributesRequest.md
 docs/AddDocumentFulltextRequest.md
 docs/AddDocumentFulltextResponse.md
+docs/AddDocumentGenerateRequest.md
+docs/AddDocumentGenerateResponse.md
 docs/AddDocumentMetadata.md
 docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
@@ -133,6 +135,8 @@ docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
 docs/DocumentFulltextTag.md
+docs/DocumentGenerateOutputType.md
+docs/DocumentGenerationApi.md
 docs/DocumentId.md
 docs/DocumentMetadata.md
 docs/DocumentOcrApi.md
@@ -397,6 +401,7 @@ src/main/java/com/formkiq/client/api/CustomIndexApi.java
 src/main/java/com/formkiq/client/api/DocumentActionsApi.java
 src/main/java/com/formkiq/client/api/DocumentAttributesApi.java
 src/main/java/com/formkiq/client/api/DocumentFoldersApi.java
+src/main/java/com/formkiq/client/api/DocumentGenerationApi.java
 src/main/java/com/formkiq/client/api/DocumentOcrApi.java
 src/main/java/com/formkiq/client/api/DocumentSearchApi.java
 src/main/java/com/formkiq/client/api/DocumentSharesApi.java
@@ -467,6 +472,8 @@ src/main/java/com/formkiq/client/model/AddDocumentAttributeValue.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributesRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentFulltextResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentGenerateRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentGenerateResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentMetadata.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
@@ -560,6 +567,7 @@ src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
 src/main/java/com/formkiq/client/model/DocumentFulltextTag.java
+src/main/java/com/formkiq/client/model/DocumentGenerateOutputType.java
 src/main/java/com/formkiq/client/model/DocumentId.java
 src/main/java/com/formkiq/client/model/DocumentMetadata.java
 src/main/java/com/formkiq/client/model/DocumentRelationshipType.java
@@ -794,6 +802,7 @@ src/test/java/com/formkiq/client/api/CustomIndexApiTest.java
 src/test/java/com/formkiq/client/api/DocumentActionsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentAttributesApiTest.java
 src/test/java/com/formkiq/client/api/DocumentFoldersApiTest.java
+src/test/java/com/formkiq/client/api/DocumentGenerationApiTest.java
 src/test/java/com/formkiq/client/api/DocumentOcrApiTest.java
 src/test/java/com/formkiq/client/api/DocumentSearchApiTest.java
 src/test/java/com/formkiq/client/api/DocumentSharesApiTest.java
@@ -841,6 +850,8 @@ src/test/java/com/formkiq/client/model/AddDocumentAttributeValueTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributesRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentFulltextResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentGenerateRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentGenerateResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
@@ -933,6 +944,7 @@ src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextTagTest.java
+src/test/java/com/formkiq/client/model/DocumentGenerateOutputTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/DocumentRelationshipTypeTest.java

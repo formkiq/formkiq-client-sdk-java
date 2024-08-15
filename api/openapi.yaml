@@ -112,6 +112,9 @@ tags:
 - description: Case Management API
   name: caseManagement
   x-displayName: Case Management
+- description: Document Generation API
+  name: documentGeneration
+  x-displayName: Document Generation
 - description: Rulesets API
   name: ruleSets
 - name: Application
@@ -9703,6 +9706,60 @@ paths:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
       - application/json
+  /documents/{documentId}/generate:
+    post:
+      description: Generates a document based from a template file; ONLY available
+        with FormKiQ Enterprise
+      operationId: AddDocumentGenerate
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentGenerateRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocumentGenerateResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      summary: Add Document Generate
+      tags:
+      - Document Generation
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /integrations/google/drive/documents/{documentId}/export:
     post:
       description: Exports a Google Document; ONLY available with FormKiQ Enterprise
@@ -15274,6 +15331,30 @@ components:
       properties:
         documentId:
           description: Exported document identifier
+          type: string
+      type: object
+    AddDocumentGenerateRequest:
+      example:
+        templateDocumentId: templateDocumentId
+        outputType: DOCX
+      properties:
+        templateDocumentId:
+          description: Document Identifier of the template to use
+          type: string
+        outputType:
+          $ref: '#/components/schemas/DocumentGenerateOutputType'
+      type: object
+    DocumentGenerateOutputType:
+      description: Document Generate Output Type
+      enum:
+      - DOCX
+      type: string
+    AddDocumentGenerateResponse:
+      example:
+        documentId: documentId
+      properties:
+        documentId:
+          description: Generated document identifier
           type: string
       type: object
     GetExaminePdfUrlResponse:

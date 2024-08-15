@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddTask
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-13T19:59:27.914669-05:00[America/Winnipeg]",
+    date = "2024-08-15T10:59:01.662743-05:00[America/Winnipeg]",
     comments = "Generator version: 7.7.0")
 public class AddTask {
   public static final String SERIALIZED_NAME_NAME = "name";

@@ -234,6 +234,7 @@ Class | Method | HTTP request | Description
 *DocumentFoldersApi* | [**addFolder**](docs/DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder
 *DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
 *DocumentFoldersApi* | [**getFolderDocuments**](docs/DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders
+*DocumentGenerationApi* | [**addDocumentGenerate**](docs/DocumentGenerationApi.md#addDocumentGenerate) | **POST** /documents/{documentId}/generate | Add Document Generate
 *DocumentOcrApi* | [**addDocumentOcr**](docs/DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr | Perform document ocr
 *DocumentOcrApi* | [**deleteDocumentOcr**](docs/DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | Delete document ocr
 *DocumentOcrApi* | [**getDocumentOcr**](docs/DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr | Get document ocr content
@@ -389,6 +390,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentAttributesRequest](docs/AddDocumentAttributesRequest.md)
  - [AddDocumentFulltextRequest](docs/AddDocumentFulltextRequest.md)
  - [AddDocumentFulltextResponse](docs/AddDocumentFulltextResponse.md)
+ - [AddDocumentGenerateRequest](docs/AddDocumentGenerateRequest.md)
+ - [AddDocumentGenerateResponse](docs/AddDocumentGenerateResponse.md)
  - [AddDocumentMetadata](docs/AddDocumentMetadata.md)
  - [AddDocumentOcrRequest](docs/AddDocumentOcrRequest.md)
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
@@ -482,6 +485,7 @@ Class | Method | HTTP request | Description
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
  - [DocumentFulltextTag](docs/DocumentFulltextTag.md)
+ - [DocumentGenerateOutputType](docs/DocumentGenerateOutputType.md)
  - [DocumentId](docs/DocumentId.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)
  - [DocumentRelationshipType](docs/DocumentRelationshipType.md)
