@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -90,6 +91,14 @@ public class UpdateConfigurationRequestTest {
   @Test
   public void googleTest() {
     // TODO: test google
+  }
+
+  /**
+   * Test the property 'docusign'
+   */
+  @Test
+  public void docusignTest() {
+    // TODO: test docusign
   }
 
 }

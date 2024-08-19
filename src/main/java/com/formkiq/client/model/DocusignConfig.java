@@ -53,35 +53,83 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * SetEsignatureDocusignConfigResponse
+ * DocusignConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-15T10:59:01.662743-05:00[America/Winnipeg]",
+    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
     comments = "Generator version: 7.7.0")
-public class SetEsignatureDocusignConfigResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private String message;
+public class DocusignConfig {
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
-  public SetEsignatureDocusignConfigResponse() {}
+  public static final String SERIALIZED_NAME_INTEGRATION_KEY = "integrationKey";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_KEY)
+  private String integrationKey;
 
-  public SetEsignatureDocusignConfigResponse message(String message) {
-    this.message = message;
+  public static final String SERIALIZED_NAME_RSA_PRIVATE_KEY = "rsaPrivateKey";
+  @SerializedName(SERIALIZED_NAME_RSA_PRIVATE_KEY)
+  private String rsaPrivateKey;
+
+  public DocusignConfig() {}
+
+  public DocusignConfig userId(String userId) {
+    this.userId = userId;
     return this;
   }
 
   /**
-   * Message response
+   * Docusign UserId
    * 
-   * @return message
+   * @return userId
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public String getUserId() {
+    return userId;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+
+  public DocusignConfig integrationKey(String integrationKey) {
+    this.integrationKey = integrationKey;
+    return this;
+  }
+
+  /**
+   * Docusign Integration Key or ClientId
+   * 
+   * @return integrationKey
+   */
+  @javax.annotation.Nullable
+  public String getIntegrationKey() {
+    return integrationKey;
+  }
+
+  public void setIntegrationKey(String integrationKey) {
+    this.integrationKey = integrationKey;
+  }
+
+
+  public DocusignConfig rsaPrivateKey(String rsaPrivateKey) {
+    this.rsaPrivateKey = rsaPrivateKey;
+    return this;
+  }
+
+  /**
+   * Docusign Rsa Private Key
+   * 
+   * @return rsaPrivateKey
+   */
+  @javax.annotation.Nullable
+  public String getRsaPrivateKey() {
+    return rsaPrivateKey;
+  }
+
+  public void setRsaPrivateKey(String rsaPrivateKey) {
+    this.rsaPrivateKey = rsaPrivateKey;
   }
 
 
@@ -94,21 +142,24 @@ public class SetEsignatureDocusignConfigResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SetEsignatureDocusignConfigResponse setEsignatureDocusignConfigResponse =
-        (SetEsignatureDocusignConfigResponse) o;
-    return Objects.equals(this.message, setEsignatureDocusignConfigResponse.message);
+    DocusignConfig docusignConfig = (DocusignConfig) o;
+    return Objects.equals(this.userId, docusignConfig.userId)
+        && Objects.equals(this.integrationKey, docusignConfig.integrationKey)
+        && Objects.equals(this.rsaPrivateKey, docusignConfig.rsaPrivateKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(userId, integrationKey, rsaPrivateKey);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SetEsignatureDocusignConfigResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class DocusignConfig {\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    integrationKey: ").append(toIndentedString(integrationKey)).append("\n");
+    sb.append("    rsaPrivateKey: ").append(toIndentedString(rsaPrivateKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,7 +181,9 @@ public class SetEsignatureDocusignConfigResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("message");
+    openapiFields.add("userId");
+    openapiFields.add("integrationKey");
+    openapiFields.add("rsaPrivateKey");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -140,35 +193,45 @@ public class SetEsignatureDocusignConfigResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to
-   *         SetEsignatureDocusignConfigResponse
+   * @throws IOException if the JSON Element is invalid with respect to DocusignConfig
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!SetEsignatureDocusignConfigResponse.openapiRequiredFields.isEmpty()) { // has required
-                                                                                  // fields but JSON
-                                                                                  // element is null
+      if (!DocusignConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
+                                                             // is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in SetEsignatureDocusignConfigResponse is not found in the empty JSON string",
-            SetEsignatureDocusignConfigResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocusignConfig is not found in the empty JSON string",
+            DocusignConfig.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!SetEsignatureDocusignConfigResponse.openapiFields.contains(entry.getKey())) {
+      if (!DocusignConfig.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `SetEsignatureDocusignConfigResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocusignConfig` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
+    if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
+        && !jsonObj.get("userId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+          "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("userId").toString()));
+    }
+    if ((jsonObj.get("integrationKey") != null && !jsonObj.get("integrationKey").isJsonNull())
+        && !jsonObj.get("integrationKey").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `integrationKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("integrationKey").toString()));
+    }
+    if ((jsonObj.get("rsaPrivateKey") != null && !jsonObj.get("rsaPrivateKey").isJsonNull())
+        && !jsonObj.get("rsaPrivateKey").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `rsaPrivateKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("rsaPrivateKey").toString()));
     }
   }
 
@@ -176,24 +239,22 @@ public class SetEsignatureDocusignConfigResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!SetEsignatureDocusignConfigResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'SetEsignatureDocusignConfigResponse' and its
-                     // subtypes
+      if (!DocusignConfig.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocusignConfig' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<SetEsignatureDocusignConfigResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(SetEsignatureDocusignConfigResponse.class));
+      final TypeAdapter<DocusignConfig> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocusignConfig.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<SetEsignatureDocusignConfigResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocusignConfig>() {
         @Override
-        public void write(JsonWriter out, SetEsignatureDocusignConfigResponse value)
-            throws IOException {
+        public void write(JsonWriter out, DocusignConfig value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public SetEsignatureDocusignConfigResponse read(JsonReader in) throws IOException {
+        public DocusignConfig read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -204,19 +265,18 @@ public class SetEsignatureDocusignConfigResponse {
   }
 
   /**
-   * Create an instance of SetEsignatureDocusignConfigResponse given an JSON string
+   * Create an instance of DocusignConfig given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SetEsignatureDocusignConfigResponse
-   * @throws IOException if the JSON string is invalid with respect to
-   *         SetEsignatureDocusignConfigResponse
+   * @return An instance of DocusignConfig
+   * @throws IOException if the JSON string is invalid with respect to DocusignConfig
    */
-  public static SetEsignatureDocusignConfigResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SetEsignatureDocusignConfigResponse.class);
+  public static DocusignConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocusignConfig.class);
   }
 
   /**
-   * Convert an instance of SetEsignatureDocusignConfigResponse to an JSON string
+   * Convert an instance of DocusignConfig to an JSON string
    *
    * @return JSON string
    */

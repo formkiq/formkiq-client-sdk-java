@@ -13,6 +13,7 @@
 |**maxWebhooks** | **String** | Set Maximum number of Webhooks allowed |  [optional] |
 |**notificationEmail** | **String** | Email address to use for notifications |  [optional] |
 |**google** | [**GoogleConfig**](GoogleConfig.md) |  |  [optional] |
+|**docusign** | [**DocusignConfig**](DocusignConfig.md) |  |  [optional] |
 
 
 

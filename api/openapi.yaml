@@ -6970,85 +6970,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /esignature/docusign/config:
-    get:
-      description: Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
-      operationId: GetEsignatureDocusignConfig
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetEsignatureDocusignConfigResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Get E-signature config
-      tags:
-      - E-Signature
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-accepts:
-      - application/json
-    put:
-      description: "Set DocuSign configuration, required for integration; ONLY available\
-        \ with FormKiQ Enterprise"
-      operationId: SetEsignatureDocusignConfig
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetEsignatureDocusignConfigRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SetEsignatureDocusignConfigResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Set E-signature config
-      tags:
-      - E-Signature
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /esignature/docusign/events:
     post:
       description: DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
@@ -9754,9 +9675,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationErrorsResponse'
           description: 400 OK
+      security:
+      - ApiAuthorization: []
       summary: Add Document Generate
       tags:
       - Document Generation
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/documentGenerationLambdaApi201'
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -16703,6 +16628,10 @@ components:
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
+        docusign:
+          rsaPrivateKey: rsaPrivateKey
+          userId: userId
+          integrationKey: integrationKey
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -16726,6 +16655,8 @@ components:
           type: string
         google:
           $ref: '#/components/schemas/GoogleConfig'
+        docusign:
+          $ref: '#/components/schemas/DocusignConfig'
       type: object
     UpdateConfigurationResponse:
       example:
@@ -17334,6 +17265,10 @@ components:
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
         chatGptApiKey: chatGptApiKey
+        docusign:
+          rsaPrivateKey: rsaPrivateKey
+          userId: userId
+          integrationKey: integrationKey
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -17358,6 +17293,8 @@ components:
           type: string
         google:
           $ref: '#/components/schemas/GoogleConfig'
+        docusign:
+          $ref: '#/components/schemas/DocusignConfig'
       type: object
     GoogleConfig:
       example:
@@ -17369,6 +17306,22 @@ components:
           type: string
         workloadIdentityServiceAccount:
           description: Workload Service Account
+          type: string
+      type: object
+    DocusignConfig:
+      example:
+        rsaPrivateKey: rsaPrivateKey
+        userId: userId
+        integrationKey: integrationKey
+      properties:
+        userId:
+          description: Docusign UserId
+          type: string
+        integrationKey:
+          description: Docusign Integration Key or ClientId
+          type: string
+        rsaPrivateKey:
+          description: Docusign Rsa Private Key
           type: string
       type: object
     GetUsersInGroupResponse:
@@ -19238,50 +19191,6 @@ components:
           description: Result message
           type: string
       type: object
-    GetEsignatureDocusignConfigResponse:
-      example:
-        configured: true
-        clientId: clientId
-        userId: userId
-      properties:
-        configured:
-          description: Whether DocuSign is configured
-          type: boolean
-        userId:
-          description: DocuSign UserId configured
-          type: string
-        clientId:
-          description: DocuSign Client configured
-          type: string
-      type: object
-    SetEsignatureDocusignConfigRequest:
-      example:
-        privateKey: privateKey
-        clientId: clientId
-        userId: userId
-      properties:
-        privateKey:
-          description: DocuSign App RSA PRIVATE KEY
-          type: string
-        userId:
-          description: DocuSign App UserId
-          type: string
-        clientId:
-          description: DocuSign App Client
-          type: string
-      required:
-      - clientId
-      - privateKey
-      - userId
-      type: object
-    SetEsignatureDocusignConfigResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Message response
-          type: string
-      type: object
     UpdateMatchingDocumentTagsRequest_match:
       example:
         tag:
@@ -19453,6 +19362,20 @@ components:
       type: aws_proxy
       payloadFormatVersion: "1.0"
     googleLambdaApi201:
+      uri:
+        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+      responses:
+        default:
+          statusCode: "201"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Methods: '''*'''
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
+            method.response.header.Access-Control-Allow-Origin: '''*'''
+      passthroughBehavior: when_no_templates
+      httpMethod: POST
+      type: aws_proxy
+      payloadFormatVersion: "1.0"
+    documentGenerationLambdaApi201:
       uri:
         Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:

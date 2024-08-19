@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -57,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * GetConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-15T10:59:01.662743-05:00[America/Winnipeg]",
+    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
     comments = "Generator version: 7.7.0")
 public class GetConfigurationResponse {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
@@ -83,6 +84,10 @@ public class GetConfigurationResponse {
   public static final String SERIALIZED_NAME_GOOGLE = "google";
   @SerializedName(SERIALIZED_NAME_GOOGLE)
   private GoogleConfig google;
+
+  public static final String SERIALIZED_NAME_DOCUSIGN = "docusign";
+  @SerializedName(SERIALIZED_NAME_DOCUSIGN)
+  private DocusignConfig docusign;
 
   public GetConfigurationResponse() {}
 
@@ -206,6 +211,26 @@ public class GetConfigurationResponse {
   }
 
 
+  public GetConfigurationResponse docusign(DocusignConfig docusign) {
+    this.docusign = docusign;
+    return this;
+  }
+
+  /**
+   * Get docusign
+   * 
+   * @return docusign
+   */
+  @javax.annotation.Nullable
+  public DocusignConfig getDocusign() {
+    return docusign;
+  }
+
+  public void setDocusign(DocusignConfig docusign) {
+    this.docusign = docusign;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -222,13 +247,14 @@ public class GetConfigurationResponse {
         && Objects.equals(this.maxDocuments, getConfigurationResponse.maxDocuments)
         && Objects.equals(this.maxWebhooks, getConfigurationResponse.maxWebhooks)
         && Objects.equals(this.notificationEmail, getConfigurationResponse.notificationEmail)
-        && Objects.equals(this.google, getConfigurationResponse.google);
+        && Objects.equals(this.google, getConfigurationResponse.google)
+        && Objects.equals(this.docusign, getConfigurationResponse.docusign);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
-        notificationEmail, google);
+        notificationEmail, google, docusign);
   }
 
   @Override
@@ -242,6 +268,7 @@ public class GetConfigurationResponse {
     sb.append("    maxWebhooks: ").append(toIndentedString(maxWebhooks)).append("\n");
     sb.append("    notificationEmail: ").append(toIndentedString(notificationEmail)).append("\n");
     sb.append("    google: ").append(toIndentedString(google)).append("\n");
+    sb.append("    docusign: ").append(toIndentedString(docusign)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -269,6 +296,7 @@ public class GetConfigurationResponse {
     openapiFields.add("maxWebhooks");
     openapiFields.add("notificationEmail");
     openapiFields.add("google");
+    openapiFields.add("docusign");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -334,6 +362,10 @@ public class GetConfigurationResponse {
     // validate the optional field `google`
     if (jsonObj.get("google") != null && !jsonObj.get("google").isJsonNull()) {
       GoogleConfig.validateJsonElement(jsonObj.get("google"));
+    }
+    // validate the optional field `docusign`
+    if (jsonObj.get("docusign") != null && !jsonObj.get("docusign").isJsonNull()) {
+      DocusignConfig.validateJsonElement(jsonObj.get("docusign"));
     }
   }
 

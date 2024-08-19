@@ -21,6 +21,7 @@ Generates a document based from a template file; ONLY available with FormKiQ Ent
 import com.formkiq.client.invoker.ApiClient;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
 import com.formkiq.client.invoker.models.*;
 import com.formkiq.client.api.DocumentGenerationApi;
 
@@ -30,7 +31,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
     // Configure AWS Signature V4 authorization
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-
+    
     DocumentGenerationApi apiInstance = new DocumentGenerationApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentGenerateRequest addDocumentGenerateRequest = new AddDocumentGenerateRequest(); // AddDocumentGenerateRequest | 

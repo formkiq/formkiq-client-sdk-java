@@ -22,9 +22,6 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddEsignatureDocusignRequest;
 import com.formkiq.client.model.AddEsignatureDocusignResponse;
-import com.formkiq.client.model.GetEsignatureDocusignConfigResponse;
-import com.formkiq.client.model.SetEsignatureDocusignConfigRequest;
-import com.formkiq.client.model.SetEsignatureDocusignConfigResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -69,36 +66,6 @@ public class ESignatureApiTest {
   @Test
   public void addEsignatureDocusignEventsTest() throws ApiException {
     AddEsignatureDocusignResponse response = api.addEsignatureDocusignEvents();
-    // TODO: test validations
-  }
-
-  /**
-   * Get E-signature config
-   *
-   * Get DocuSign configuration info; ONLY available with FormKiQ Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void getEsignatureDocusignConfigTest() throws ApiException {
-    String siteId = null;
-    GetEsignatureDocusignConfigResponse response = api.getEsignatureDocusignConfig(siteId);
-    // TODO: test validations
-  }
-
-  /**
-   * Set E-signature config
-   *
-   * Set DocuSign configuration, required for integration; ONLY available with FormKiQ Enterprise
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void setEsignatureDocusignConfigTest() throws ApiException {
-    SetEsignatureDocusignConfigRequest setEsignatureDocusignConfigRequest = null;
-    String siteId = null;
-    SetEsignatureDocusignConfigResponse response =
-        api.setEsignatureDocusignConfig(setEsignatureDocusignConfigRequest, siteId);
     // TODO: test validations
   }
 

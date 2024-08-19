@@ -166,6 +166,7 @@ docs/DocumentWorkflowsApi.md
 docs/DocumentsApi.md
 docs/DocumentsCompressRequest.md
 docs/DocumentsCompressResponse.md
+docs/DocusignConfig.md
 docs/ESignatureApi.md
 docs/Error.md
 docs/ErrorsResponse.md
@@ -206,7 +207,6 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentWorkflowResponse.md
 docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
-docs/GetEsignatureDocusignConfigResponse.md
 docs/GetExaminePdfResponse.md
 docs/GetExaminePdfUrlResponse.md
 docs/GetFoldersResponse.md
@@ -314,8 +314,6 @@ docs/SetDocumentRestoreResponse.md
 docs/SetDocumentTagKeyRequest.md
 docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
-docs/SetEsignatureDocusignConfigRequest.md
-docs/SetEsignatureDocusignConfigResponse.md
 docs/SetMappingRequest.md
 docs/SetOpaAccessPolicyItemsRequest.md
 docs/SetOpenSearchIndexRequest.md
@@ -590,6 +588,7 @@ src/main/java/com/formkiq/client/model/DocumentWorkflow.java
 src/main/java/com/formkiq/client/model/DocumentWorkflowStatus.java
 src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
 src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
+src/main/java/com/formkiq/client/model/DocusignConfig.java
 src/main/java/com/formkiq/client/model/Error.java
 src/main/java/com/formkiq/client/model/ErrorsResponse.java
 src/main/java/com/formkiq/client/model/EsignatureDocusignCarbonCopy.java
@@ -628,7 +627,6 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
-src/main/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
@@ -730,8 +728,6 @@ src/main/java/com/formkiq/client/model/SetDocumentRestoreResponse.java
 src/main/java/com/formkiq/client/model/SetDocumentTagKeyRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
-src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequest.java
-src/main/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponse.java
 src/main/java/com/formkiq/client/model/SetMappingRequest.java
 src/main/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexRequest.java
@@ -968,6 +964,7 @@ src/test/java/com/formkiq/client/model/DocumentWorkflowStatusTest.java
 src/test/java/com/formkiq/client/model/DocumentWorkflowTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
+src/test/java/com/formkiq/client/model/DocusignConfigTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
 src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
 src/test/java/com/formkiq/client/model/EsignatureDocusignCarbonCopyTest.java
@@ -1006,7 +1003,6 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
-src/test/java/com/formkiq/client/model/GetEsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
@@ -1108,8 +1104,6 @@ src/test/java/com/formkiq/client/model/SetDocumentRestoreResponseTest.java
 src/test/java/com/formkiq/client/model/SetDocumentTagKeyRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
-src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigRequestTest.java
-src/test/java/com/formkiq/client/model/SetEsignatureDocusignConfigResponseTest.java
 src/test/java/com/formkiq/client/model/SetMappingRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexRequestTest.java

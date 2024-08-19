@@ -30,26 +30,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetEsignatureDocusignConfigResponse
+ * Model tests for DocusignConfig
  */
-public class GetEsignatureDocusignConfigResponseTest {
-  private final GetEsignatureDocusignConfigResponse model =
-      new GetEsignatureDocusignConfigResponse();
+public class DocusignConfigTest {
+  private final DocusignConfig model = new DocusignConfig();
 
   /**
-   * Model tests for GetEsignatureDocusignConfigResponse
+   * Model tests for DocusignConfig
    */
   @Test
-  public void testGetEsignatureDocusignConfigResponse() {
-    // TODO: test GetEsignatureDocusignConfigResponse
-  }
-
-  /**
-   * Test the property 'configured'
-   */
-  @Test
-  public void configuredTest() {
-    // TODO: test configured
+  public void testDocusignConfig() {
+    // TODO: test DocusignConfig
   }
 
   /**
@@ -61,11 +52,19 @@ public class GetEsignatureDocusignConfigResponseTest {
   }
 
   /**
-   * Test the property 'clientId'
+   * Test the property 'integrationKey'
    */
   @Test
-  public void clientIdTest() {
-    // TODO: test clientId
+  public void integrationKeyTest() {
+    // TODO: test integrationKey
+  }
+
+  /**
+   * Test the property 'rsaPrivateKey'
+   */
+  @Test
+  public void rsaPrivateKeyTest() {
+    // TODO: test rsaPrivateKey
   }
 
 }
