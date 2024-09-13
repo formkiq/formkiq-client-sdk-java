@@ -509,7 +509,7 @@ No authorization required
 
 <a id="getDocumentIdUpload"></a>
 # **getDocumentIdUpload**
-> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, contentLength, duration, shareKey)
+> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, checksumType, checksum, contentLength, duration, shareKey)
 
 Get url to update large document
 
@@ -535,11 +535,13 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String checksumType = "SHA1"; // String | Checksum Type
+    String checksum = "checksum_example"; // String | Checksum value
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, checksumType, checksum, contentLength, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentIdUpload");
@@ -558,6 +560,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **checksumType** | **String**| Checksum Type | [optional] [enum: SHA1, SHA256] |
+| **checksum** | **String**| Checksum value | [optional] |
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
@@ -653,7 +657,7 @@ No authorization required
 
 <a id="getDocumentUpload"></a>
 # **getDocumentUpload**
-> GetDocumentUrlResponse getDocumentUpload(path, siteId, contentLength, duration, shareKey)
+> GetDocumentUrlResponse getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey)
 
 Get url to add large document
 
@@ -679,11 +683,13 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String path = "path_example"; // String | The upload file's path
     String siteId = "siteId_example"; // String | Site Identifier
+    String checksumType = "SHA1"; // String | Checksum Type
+    String checksum = "checksum_example"; // String | Checksum value
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUpload");
@@ -702,6 +708,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **path** | **String**| The upload file&#39;s path | [optional] |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **checksumType** | **String**| Checksum Type | [optional] [enum: SHA1, SHA256] |
+| **checksum** | **String**| Checksum value | [optional] |
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |

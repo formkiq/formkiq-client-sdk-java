@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,14 +58,6 @@ public class AddDocumentUploadRequestTest {
   }
 
   /**
-   * Test the property 'tagSchemaId'
-   */
-  @Test
-  public void tagSchemaIdTest() {
-    // TODO: test tagSchemaId
-  }
-
-  /**
    * Test the property 'path'
    */
   @Test
@@ -86,6 +79,22 @@ public class AddDocumentUploadRequestTest {
   @Test
   public void deepLinkPathTest() {
     // TODO: test deepLinkPath
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
+  }
+
+  /**
+   * Test the property 'checksum'
+   */
+  @Test
+  public void checksumTest() {
+    // TODO: test checksum
   }
 
   /**

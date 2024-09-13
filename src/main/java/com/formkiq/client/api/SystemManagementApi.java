@@ -35,17 +35,25 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
+import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
+import com.formkiq.client.model.GetSiteGroupResponse;
+import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
+import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
+import com.formkiq.client.model.UpdateResponse;
+import com.formkiq.client.model.UpdateSiteRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -274,6 +282,201 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(siteId, addApiKeyRequest, _callback);
     Type localVarReturnType = new TypeToken<AddApiKeyResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addSite
+   * 
+   * @param addSiteRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addSiteCall(AddSiteRequest addSiteRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addSiteRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addSiteValidateBeforeCall(AddSiteRequest addSiteRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'addSiteRequest' is set
+    if (addSiteRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addSiteRequest' when calling addSite(Async)");
+    }
+
+    return addSiteCall(addSiteRequest, _callback);
+
+  }
+
+  /**
+   * Add Site Add Site
+   * 
+   * @param addSiteRequest (required)
+   * @return AddResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddResponse addSite(AddSiteRequest addSiteRequest) throws ApiException {
+    ApiResponse<AddResponse> localVarResp = addSiteWithHttpInfo(addSiteRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add Site Add Site
+   * 
+   * @param addSiteRequest (required)
+   * @return ApiResponse&lt;AddResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddResponse> addSiteWithHttpInfo(AddSiteRequest addSiteRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall = addSiteValidateBeforeCall(addSiteRequest, null);
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add Site (asynchronously) Add Site
+   * 
+   * @param addSiteRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>201</td>
+   *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addSiteAsync(AddSiteRequest addSiteRequest,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = addSiteValidateBeforeCall(addSiteRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1169,6 +1372,375 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for getSiteGroup
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSiteGroupCall(String siteId, String groupName, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/groups/{groupName}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "groupName" + "}", localVarApiClient.escapeString(groupName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSiteGroupValidateBeforeCall(String siteId, String groupName,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getSiteGroup(Async)");
+    }
+
+    // verify the required parameter 'groupName' is set
+    if (groupName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'groupName' when calling getSiteGroup(Async)");
+    }
+
+    return getSiteGroupCall(siteId, groupName, _callback);
+
+  }
+
+  /**
+   * Get group and permissions belonging to site Returns details of a group and permissions
+   * belonging to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @return GetSiteGroupResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetSiteGroupResponse getSiteGroup(String siteId, String groupName) throws ApiException {
+    ApiResponse<GetSiteGroupResponse> localVarResp = getSiteGroupWithHttpInfo(siteId, groupName);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get group and permissions belonging to site Returns details of a group and permissions
+   * belonging to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @return ApiResponse&lt;GetSiteGroupResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetSiteGroupResponse> getSiteGroupWithHttpInfo(String siteId, String groupName)
+      throws ApiException {
+    okhttp3.Call localVarCall = getSiteGroupValidateBeforeCall(siteId, groupName, null);
+    Type localVarReturnType = new TypeToken<GetSiteGroupResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get group and permissions belonging to site (asynchronously) Returns details of a group and
+   * permissions belonging to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSiteGroupAsync(String siteId, String groupName,
+      final ApiCallback<GetSiteGroupResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getSiteGroupValidateBeforeCall(siteId, groupName, _callback);
+    Type localVarReturnType = new TypeToken<GetSiteGroupResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSiteGroups
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSiteGroupsCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/groups".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSiteGroupsValidateBeforeCall(String siteId, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getSiteGroups(Async)");
+    }
+
+    return getSiteGroupsCall(siteId, _callback);
+
+  }
+
+  /**
+   * Get group(s) and permissions belonging to site Returns list of groups and permissions belonging
+   * to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @return GetSiteGroupsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetSiteGroupsResponse getSiteGroups(String siteId) throws ApiException {
+    ApiResponse<GetSiteGroupsResponse> localVarResp = getSiteGroupsWithHttpInfo(siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get group(s) and permissions belonging to site Returns list of groups and permissions belonging
+   * to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @return ApiResponse&lt;GetSiteGroupsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetSiteGroupsResponse> getSiteGroupsWithHttpInfo(String siteId)
+      throws ApiException {
+    okhttp3.Call localVarCall = getSiteGroupsValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetSiteGroupsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get group(s) and permissions belonging to site (asynchronously) Returns list of groups and
+   * permissions belonging to site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSiteGroupsAsync(String siteId,
+      final ApiCallback<GetSiteGroupsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getSiteGroupsValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetSiteGroupsResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getSites
    * 
    * @param _callback Callback for upload/download progress
@@ -1687,6 +2259,210 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for setSiteGroupPermissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param setGroupPermissionsRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setSiteGroupPermissionsCall(String siteId, String groupName,
+      SetGroupPermissionsRequest setGroupPermissionsRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setGroupPermissionsRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/groups/{groupName}/permissions"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "groupName" + "}", localVarApiClient.escapeString(groupName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setSiteGroupPermissionsValidateBeforeCall(String siteId, String groupName,
+      SetGroupPermissionsRequest setGroupPermissionsRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setSiteGroupPermissions(Async)");
+    }
+
+    // verify the required parameter 'groupName' is set
+    if (groupName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'groupName' when calling setSiteGroupPermissions(Async)");
+    }
+
+    // verify the required parameter 'setGroupPermissionsRequest' is set
+    if (setGroupPermissionsRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setGroupPermissionsRequest' when calling setSiteGroupPermissions(Async)");
+    }
+
+    return setSiteGroupPermissionsCall(siteId, groupName, setGroupPermissionsRequest, _callback);
+
+  }
+
+  /**
+   * Set Site&#39;s Group Permissions Set Site&#39;s Group Permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param setGroupPermissionsRequest (required)
+   * @return SetResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetResponse setSiteGroupPermissions(String siteId, String groupName,
+      SetGroupPermissionsRequest setGroupPermissionsRequest) throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setSiteGroupPermissionsWithHttpInfo(siteId, groupName, setGroupPermissionsRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set Site&#39;s Group Permissions Set Site&#39;s Group Permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param setGroupPermissionsRequest (required)
+   * @return ApiResponse&lt;SetResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetResponse> setSiteGroupPermissionsWithHttpInfo(String siteId,
+      String groupName, SetGroupPermissionsRequest setGroupPermissionsRequest) throws ApiException {
+    okhttp3.Call localVarCall = setSiteGroupPermissionsValidateBeforeCall(siteId, groupName,
+        setGroupPermissionsRequest, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set Site&#39;s Group Permissions (asynchronously) Set Site&#39;s Group Permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param setGroupPermissionsRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setSiteGroupPermissionsAsync(String siteId, String groupName,
+      SetGroupPermissionsRequest setGroupPermissionsRequest,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = setSiteGroupPermissionsValidateBeforeCall(siteId, groupName,
+        setGroupPermissionsRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for updateConfiguration
    * 
    * @param siteId Site Identifier (required)
@@ -1895,6 +2671,193 @@ public class SystemManagementApi {
     okhttp3.Call localVarCall =
         updateConfigurationValidateBeforeCall(siteId, updateConfigurationRequest, _callback);
     Type localVarReturnType = new TypeToken<UpdateConfigurationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for updateSite
+   * 
+   * @param siteId Site Identifier (required)
+   * @param updateSiteRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call updateSiteCall(String siteId, UpdateSiteRequest updateSiteRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = updateSiteRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call updateSiteValidateBeforeCall(String siteId,
+      UpdateSiteRequest updateSiteRequest, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling updateSite(Async)");
+    }
+
+    // verify the required parameter 'updateSiteRequest' is set
+    if (updateSiteRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'updateSiteRequest' when calling updateSite(Async)");
+    }
+
+    return updateSiteCall(siteId, updateSiteRequest, _callback);
+
+  }
+
+  /**
+   * Update Site Update Site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param updateSiteRequest (required)
+   * @return UpdateResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public UpdateResponse updateSite(String siteId, UpdateSiteRequest updateSiteRequest)
+      throws ApiException {
+    ApiResponse<UpdateResponse> localVarResp = updateSiteWithHttpInfo(siteId, updateSiteRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Update Site Update Site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param updateSiteRequest (required)
+   * @return ApiResponse&lt;UpdateResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<UpdateResponse> updateSiteWithHttpInfo(String siteId,
+      UpdateSiteRequest updateSiteRequest) throws ApiException {
+    okhttp3.Call localVarCall = updateSiteValidateBeforeCall(siteId, updateSiteRequest, null);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Update Site (asynchronously) Update Site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param updateSiteRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call updateSiteAsync(String siteId, UpdateSiteRequest updateSiteRequest,
+      final ApiCallback<UpdateResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = updateSiteValidateBeforeCall(siteId, updateSiteRequest, _callback);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

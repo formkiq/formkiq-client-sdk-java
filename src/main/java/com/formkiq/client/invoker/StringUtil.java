@@ -23,8 +23,8 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).

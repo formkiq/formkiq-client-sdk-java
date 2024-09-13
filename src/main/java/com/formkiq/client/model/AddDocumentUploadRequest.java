@@ -23,6 +23,7 @@ import java.util.Objects;
 import com.formkiq.client.model.AddAction;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,7 +49,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,16 +61,12 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   private String documentId;
-
-  public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
-  @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
-  private String tagSchemaId;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -83,6 +79,14 @@ public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   private String deepLinkPath;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
+
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  private String checksum;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -115,26 +119,6 @@ public class AddDocumentUploadRequest {
 
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
-  }
-
-
-  public AddDocumentUploadRequest tagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
-    return this;
-  }
-
-  /**
-   * Tag Schema Id
-   * 
-   * @return tagSchemaId
-   */
-  @javax.annotation.Nullable
-  public String getTagSchemaId() {
-    return tagSchemaId;
-  }
-
-  public void setTagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
   }
 
 
@@ -195,6 +179,46 @@ public class AddDocumentUploadRequest {
 
   public void setDeepLinkPath(String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
+  }
+
+
+  public AddDocumentUploadRequest checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+  }
+
+
+  public AddDocumentUploadRequest checksum(String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * The checksum value to validate the file against
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(String checksum) {
+    this.checksum = checksum;
   }
 
 
@@ -293,10 +317,11 @@ public class AddDocumentUploadRequest {
     }
     AddDocumentUploadRequest addDocumentUploadRequest = (AddDocumentUploadRequest) o;
     return Objects.equals(this.documentId, addDocumentUploadRequest.documentId)
-        && Objects.equals(this.tagSchemaId, addDocumentUploadRequest.tagSchemaId)
         && Objects.equals(this.path, addDocumentUploadRequest.path)
         && Objects.equals(this.contentType, addDocumentUploadRequest.contentType)
         && Objects.equals(this.deepLinkPath, addDocumentUploadRequest.deepLinkPath)
+        && Objects.equals(this.checksumType, addDocumentUploadRequest.checksumType)
+        && Objects.equals(this.checksum, addDocumentUploadRequest.checksum)
         && Objects.equals(this.attributes, addDocumentUploadRequest.attributes)
         && Objects.equals(this.tags, addDocumentUploadRequest.tags)
         && Objects.equals(this.actions, addDocumentUploadRequest.actions);
@@ -304,8 +329,8 @@ public class AddDocumentUploadRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, tagSchemaId, path, contentType, deepLinkPath, attributes, tags,
-        actions);
+    return Objects.hash(documentId, path, contentType, deepLinkPath, checksumType, checksum,
+        attributes, tags, actions);
   }
 
   @Override
@@ -313,10 +338,11 @@ public class AddDocumentUploadRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentUploadRequest {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
-    sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
@@ -342,10 +368,11 @@ public class AddDocumentUploadRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("documentId");
-    openapiFields.add("tagSchemaId");
     openapiFields.add("path");
     openapiFields.add("contentType");
     openapiFields.add("deepLinkPath");
+    openapiFields.add("checksumType");
+    openapiFields.add("checksum");
     openapiFields.add("attributes");
     openapiFields.add("tags");
     openapiFields.add("actions");
@@ -386,12 +413,6 @@ public class AddDocumentUploadRequest {
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
     }
-    if ((jsonObj.get("tagSchemaId") != null && !jsonObj.get("tagSchemaId").isJsonNull())
-        && !jsonObj.get("tagSchemaId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `tagSchemaId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("tagSchemaId").toString()));
-    }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -409,6 +430,16 @@ public class AddDocumentUploadRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
     }
     if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
       JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");

@@ -321,20 +321,21 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
+*SystemManagementApi* | [**addSite**](docs/SystemManagementApi.md#addSite) | **POST** /sites | Add Site
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration
 *SystemManagementApi* | [**getOpensearchIndex**](docs/SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
+*SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
+*SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
 *SystemManagementApi* | [**setOpensearchIndex**](docs/SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
+*SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
+*SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
-*TagSchemaApi* | [**addTagSchema**](docs/TagSchemaApi.md#addTagSchema) | **POST** /tagSchemas | Add tag schemas
-*TagSchemaApi* | [**deleteTagSchema**](docs/TagSchemaApi.md#deleteTagSchema) | **DELETE** /tagSchemas/{tagSchemaId} | Delete tag schema
-*TagSchemaApi* | [**getTagSchema**](docs/TagSchemaApi.md#getTagSchema) | **GET** /tagSchemas/{tagSchemaId} | Get tag schema
-*TagSchemaApi* | [**getTagSchemas**](docs/TagSchemaApi.md#getTagSchemas) | **GET** /tagSchemas | Get tag schemas
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group
@@ -402,8 +403,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowDecisionsResponse](docs/AddDocumentWorkflowDecisionsResponse.md)
  - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
- - [AddEsignatureDocusignRequest](docs/AddEsignatureDocusignRequest.md)
- - [AddEsignatureDocusignResponse](docs/AddEsignatureDocusignResponse.md)
+ - [AddDocusignRequest](docs/AddDocusignRequest.md)
+ - [AddDocusignResponse](docs/AddDocusignResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
@@ -428,9 +429,8 @@ Class | Method | HTTP request | Description
  - [AddRulesetRequest](docs/AddRulesetRequest.md)
  - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
- - [AddTagSchemaRequest](docs/AddTagSchemaRequest.md)
- - [AddTagSchemaResponse](docs/AddTagSchemaResponse.md)
- - [AddTagSchemaTags](docs/AddTagSchemaTags.md)
+ - [AddSite](docs/AddSite.md)
+ - [AddSiteRequest](docs/AddSiteRequest.md)
  - [AddTask](docs/AddTask.md)
  - [AddTaskRequest](docs/AddTaskRequest.md)
  - [AddTaskResponse](docs/AddTaskResponse.md)
@@ -453,6 +453,7 @@ Class | Method | HTTP request | Description
  - [AttributeType](docs/AttributeType.md)
  - [AttributeValueType](docs/AttributeValueType.md)
  - [CaseStatus](docs/CaseStatus.md)
+ - [ChecksumType](docs/ChecksumType.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [Classification](docs/Classification.md)
  - [ClassificationSummary](docs/ClassificationSummary.md)
@@ -506,12 +507,14 @@ Class | Method | HTTP request | Description
  - [DocumentWorkflowStatus](docs/DocumentWorkflowStatus.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
+ - [DocusignCarbonCopy](docs/DocusignCarbonCopy.md)
  - [DocusignConfig](docs/DocusignConfig.md)
+ - [DocusignRecipientTab](docs/DocusignRecipientTab.md)
+ - [DocusignRecipientType](docs/DocusignRecipientType.md)
+ - [DocusignRequestStatus](docs/DocusignRequestStatus.md)
+ - [DocusignSigner](docs/DocusignSigner.md)
  - [Error](docs/Error.md)
  - [ErrorsResponse](docs/ErrorsResponse.md)
- - [EsignatureDocusignCarbonCopy](docs/EsignatureDocusignCarbonCopy.md)
- - [EsignatureDocusignRecipientTab](docs/EsignatureDocusignRecipientTab.md)
- - [EsignatureDocusignSigner](docs/EsignatureDocusignSigner.md)
  - [FulltextAttribute](docs/FulltextAttribute.md)
  - [FulltextSearchItem](docs/FulltextSearchItem.md)
  - [GetApiKeysResponse](docs/GetApiKeysResponse.md)
@@ -562,10 +565,10 @@ Class | Method | HTTP request | Description
  - [GetRulesResponse](docs/GetRulesResponse.md)
  - [GetRulesetResponse](docs/GetRulesetResponse.md)
  - [GetRulesetsResponse](docs/GetRulesetsResponse.md)
+ - [GetSiteGroupResponse](docs/GetSiteGroupResponse.md)
+ - [GetSiteGroupsResponse](docs/GetSiteGroupsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetSitesSchemaResponse](docs/GetSitesSchemaResponse.md)
- - [GetTagSchemaResponse](docs/GetTagSchemaResponse.md)
- - [GetTagSchemasResponse](docs/GetTagSchemasResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
  - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
@@ -646,6 +649,7 @@ Class | Method | HTTP request | Description
  - [SetDocumentTagKeyRequest](docs/SetDocumentTagKeyRequest.md)
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
+ - [SetGroupPermissionsRequest](docs/SetGroupPermissionsRequest.md)
  - [SetMappingRequest](docs/SetMappingRequest.md)
  - [SetOpaAccessPolicyItemsRequest](docs/SetOpaAccessPolicyItemsRequest.md)
  - [SetOpenSearchIndexRequest](docs/SetOpenSearchIndexRequest.md)
@@ -655,14 +659,11 @@ Class | Method | HTTP request | Description
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)
+ - [SiteGroup](docs/SiteGroup.md)
+ - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
+ - [SiteStatus](docs/SiteStatus.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
- - [TagSchema](docs/TagSchema.md)
- - [TagSchemaCompositeKey](docs/TagSchemaCompositeKey.md)
- - [TagSchemaOptional](docs/TagSchemaOptional.md)
- - [TagSchemaRequired](docs/TagSchemaRequired.md)
- - [TagSchemaSummary](docs/TagSchemaSummary.md)
- - [TagSchemaTags](docs/TagSchemaTags.md)
  - [Task](docs/Task.md)
  - [TaskStatus](docs/TaskStatus.md)
  - [UpdateCase](docs/UpdateCase.md)
@@ -680,12 +681,15 @@ Class | Method | HTTP request | Description
  - [UpdateNigo](docs/UpdateNigo.md)
  - [UpdateNigoRequest](docs/UpdateNigoRequest.md)
  - [UpdateNigoResponse](docs/UpdateNigoResponse.md)
+ - [UpdateResponse](docs/UpdateResponse.md)
  - [UpdateRule](docs/UpdateRule.md)
  - [UpdateRuleRequest](docs/UpdateRuleRequest.md)
  - [UpdateRuleResponse](docs/UpdateRuleResponse.md)
  - [UpdateRuleset](docs/UpdateRuleset.md)
  - [UpdateRulesetRequest](docs/UpdateRulesetRequest.md)
  - [UpdateRulesetResponse](docs/UpdateRulesetResponse.md)
+ - [UpdateSite](docs/UpdateSite.md)
+ - [UpdateSiteRequest](docs/UpdateSiteRequest.md)
  - [UpdateTask](docs/UpdateTask.md)
  - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
  - [UpdateTaskResponse](docs/UpdateTaskResponse.md)
@@ -694,6 +698,7 @@ Class | Method | HTTP request | Description
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
  - [UserActivityType](docs/UserActivityType.md)
+ - [UserAttributes](docs/UserAttributes.md)
  - [UserShare](docs/UserShare.md)
  - [UserSharePermission](docs/UserSharePermission.md)
  - [UserSharePermissionType](docs/UserSharePermissionType.md)

@@ -11,6 +11,8 @@ List of related documents
 |**path** | **String** | Path or Name of document |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**contentType** | **String** | Document Content-Type |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
+|**checksum** | **String** | The checksum value to validate the file against |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**content** | **String** | Document content |  |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |

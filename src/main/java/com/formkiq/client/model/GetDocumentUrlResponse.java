@@ -27,6 +27,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,7 +45,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentUrlResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class GetDocumentUrlResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -66,6 +67,10 @@ public class GetDocumentUrlResponse {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
+
+  public static final String SERIALIZED_NAME_HEADERS = "headers";
+  @SerializedName(SERIALIZED_NAME_HEADERS)
+  private Map<String, Object> headers = new HashMap<>();
 
   public GetDocumentUrlResponse() {}
 
@@ -109,6 +114,34 @@ public class GetDocumentUrlResponse {
   }
 
 
+  public GetDocumentUrlResponse headers(Map<String, Object> headers) {
+    this.headers = headers;
+    return this;
+  }
+
+  public GetDocumentUrlResponse putHeadersItem(String key, Object headersItem) {
+    if (this.headers == null) {
+      this.headers = new HashMap<>();
+    }
+    this.headers.put(key, headersItem);
+    return this;
+  }
+
+  /**
+   * Get headers
+   * 
+   * @return headers
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(Map<String, Object> headers) {
+    this.headers = headers;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -120,12 +153,13 @@ public class GetDocumentUrlResponse {
     }
     GetDocumentUrlResponse getDocumentUrlResponse = (GetDocumentUrlResponse) o;
     return Objects.equals(this.documentId, getDocumentUrlResponse.documentId)
-        && Objects.equals(this.url, getDocumentUrlResponse.url);
+        && Objects.equals(this.url, getDocumentUrlResponse.url)
+        && Objects.equals(this.headers, getDocumentUrlResponse.headers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, url);
+    return Objects.hash(documentId, url, headers);
   }
 
   @Override
@@ -134,6 +168,7 @@ public class GetDocumentUrlResponse {
     sb.append("class GetDocumentUrlResponse {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,6 +192,7 @@ public class GetDocumentUrlResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("documentId");
     openapiFields.add("url");
+    openapiFields.add("headers");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

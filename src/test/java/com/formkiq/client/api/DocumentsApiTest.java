@@ -188,11 +188,13 @@ public class DocumentsApiTest {
   public void getDocumentIdUploadTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String checksumType = null;
+    String checksum = null;
     Integer contentLength = null;
     Integer duration = null;
     String shareKey = null;
-    GetDocumentUrlResponse response =
-        api.getDocumentIdUpload(documentId, siteId, contentLength, duration, shareKey);
+    GetDocumentUrlResponse response = api.getDocumentIdUpload(documentId, siteId, checksumType,
+        checksum, contentLength, duration, shareKey);
     // TODO: test validations
   }
 
@@ -225,11 +227,13 @@ public class DocumentsApiTest {
   public void getDocumentUploadTest() throws ApiException {
     String path = null;
     String siteId = null;
+    String checksumType = null;
+    String checksum = null;
     Integer contentLength = null;
     Integer duration = null;
     String shareKey = null;
-    GetDocumentUrlResponse response =
-        api.getDocumentUpload(path, siteId, contentLength, duration, shareKey);
+    GetDocumentUrlResponse response = api.getDocumentUpload(path, siteId, checksumType, checksum,
+        contentLength, duration, shareKey);
     // TODO: test validations
   }
 

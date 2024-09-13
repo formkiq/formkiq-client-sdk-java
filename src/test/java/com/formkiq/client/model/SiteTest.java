@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.SiteGroupPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,6 +52,14 @@ public class SiteTest {
   @Test
   public void siteIdTest() {
     // TODO: test siteId
+  }
+
+  /**
+   * Test the property 'title'
+   */
+  @Test
+  public void titleTest() {
+    // TODO: test title
   }
 
   /**

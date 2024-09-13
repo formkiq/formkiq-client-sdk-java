@@ -51,14 +51,6 @@ public class UpdateDocumentRequestTest {
   }
 
   /**
-   * Test the property 'tagSchemaId'
-   */
-  @Test
-  public void tagSchemaIdTest() {
-    // TODO: test tagSchemaId
-  }
-
-  /**
    * Test the property 'path'
    */
   @Test

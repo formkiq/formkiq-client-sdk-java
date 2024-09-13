@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.UserAttributes;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,6 +50,14 @@ public class AddUserTest {
   @Test
   public void usernameTest() {
     // TODO: test username
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
 }

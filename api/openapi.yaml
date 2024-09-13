@@ -85,9 +85,6 @@ tags:
 - description: Mappings API
   name: mappings
   x-displayName: Mappings
-- description: Tag Schema API
-  name: tagSchema
-  x-displayName: Tag Schema
 - description: User Activities API
   name: userActivities
   x-displayName: User Activities
@@ -175,6 +172,219 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add Site
+      operationId: AddSite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSiteRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add Site
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}:
+    patch:
+      description: Update Site
+      operationId: UpdateSite
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSiteRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Update Site
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/groups:
+    get:
+      description: Returns list of groups and permissions belonging to site
+      operationId: GetSiteGroups
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSiteGroupsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get group(s) and permissions belonging to site
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /sites/{siteId}/groups/{groupName}:
+    get:
+      description: Returns details of a group and permissions belonging to site
+      operationId: GetSiteGroup
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSiteGroupResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get group and permissions belonging to site
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /sites/{siteId}/groups/{groupName}/permissions:
+    put:
+      description: Set Site's Group Permissions
+      operationId: SetSiteGroupPermissions
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetGroupPermissionsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Set Site's Group Permissions
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts:
       - application/json
   /sites/{siteId}/opensearch/index:
@@ -2617,6 +2827,25 @@ paths:
         schema:
           type: string
         style: form
+      - description: Checksum Type
+        explode: true
+        in: query
+        name: checksumType
+        required: false
+        schema:
+          enum:
+          - SHA1
+          - SHA256
+          type: string
+        style: form
+      - description: Checksum value
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Indicates the size of the entity-body
         explode: true
         in: query
@@ -2711,8 +2940,6 @@ paths:
                 value:
                   path: test.txt
                   contentType: text/plain
-                  isBase64: false
-                  content: This is sample data file
                   tags:
                   - key: category
                     value: sample
@@ -2776,6 +3003,25 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Checksum Type
+        explode: true
+        in: query
+        name: checksumType
+        required: false
+        schema:
+          enum:
+          - SHA1
+          - SHA256
+          type: string
+        style: form
+      - description: Checksum value
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Indicates the size of the entity-body
         explode: true
         in: query
@@ -3157,12 +3403,12 @@ paths:
       description: "Document search query request; \n\nSupports searching DynamoDB\
         \ for document(s) by a single TAG key and/or value. Value can be \"exacted\"\
         \ or \"begins_with\" matched. Search can be filtered to only check certain\
-        \ documentIds (up to 100 documentIds accepted).\n\nIf using Enteprise TagSchema\
-        \ Composite Keys feature then multiple tag(s) can be searched for.\n\nIf Typesense\
-        \ is enabled, full text search is supported through the \"text\" parameter.\
-        \ Full text search will look for the text in the \"content\" and/or document\
-        \ \"metadata\".\n\nDocumentIds parameter allows you to filter your results\
-        \ to a specific set of documents. \n\nSee requestBody examples below for commmon\
+        \ documentIds (up to 100 documentIds accepted).\n\nIf using Enteprise Composite\
+        \ Keys feature then multiple tag(s) can be searched for.\n\nIf Typesense is\
+        \ enabled, full text search is supported through the \"text\" parameter. Full\
+        \ text search will look for the text in the \"content\" and/or document \"\
+        metadata\".\n\nDocumentIds parameter allows you to filter your results to\
+        \ a specific set of documents. \n\nSee requestBody examples below for commmon\
         \ examples."
       operationId: DocumentSearch
       parameters:
@@ -3478,6 +3724,7 @@ paths:
         | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
         | QUEUE    | queueId    | Id of Queue | |
         | IDP    | mappingId    | Id of Mapping | |
+        | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -5304,211 +5551,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /tagSchemas:
-    get:
-      description: Returns the list of tagSchemas; ONLY available with FormKiQ Pro
-        and Enterprise
-      operationId: GetTagSchemas
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Limit Results
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: "10"
-          type: string
-        style: form
-      - description: Next page of results token
-        explode: true
-        in: query
-        name: next
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Previous page of results token
-        explode: true
-        in: query
-        name: previous
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetTagSchemasResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Get tag schemas
-      tags:
-      - Tag Schema
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
-    post:
-      description: Creates a new TagSchema; ONLY available with FormKiQ Pro and Enterprise
-      operationId: AddTagSchema
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddTagSchemaRequest'
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddTagSchemaResponse'
-          description: 201 CREATED
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsResponse'
-          description: 400 BAD REQUEST
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Add tag schemas
-      tags:
-      - Tag Schema
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /tagSchemas/{tagSchemaId}:
-    delete:
-      description: Delete a TagSchema; ONLY available with FormKiQ Pro and Enterprise
-      operationId: DeleteTagSchema
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Tag Schema Identifier
-        explode: false
-        in: path
-        name: tagSchemaId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Delete tag schema
-      tags:
-      - Tag Schema
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
-    get:
-      description: "Retrieves a TagSchema's details, i.e., metadata; ONLY available\
-        \ with FormKiQ Pro and Enterprise"
-      operationId: GetTagSchema
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Tag Schema Identifier
-        explode: false
-        in: path
-        name: tagSchemaId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetTagSchemaResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Get tag schema
-      tags:
-      - Tag Schema
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
-      x-accepts:
-      - application/json
   /documents/{documentId}/antivirus:
     put:
       description: Perform an Anti-Malware / Antivirus scan on a document; ONLY available
@@ -6938,14 +6980,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddEsignatureDocusignRequest'
+              $ref: '#/components/schemas/AddDocusignRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddEsignatureDocusignResponse'
+                $ref: '#/components/schemas/AddDocusignResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -6979,7 +7021,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddEsignatureDocusignResponse'
+                $ref: '#/components/schemas/AddDocusignResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -10029,6 +10071,27 @@ components:
       schema:
         type: string
       style: simple
+    checksumParam:
+      description: Checksum value
+      explode: true
+      in: query
+      name: checksum
+      required: false
+      schema:
+        type: string
+      style: form
+    checksumTypeParam:
+      description: Checksum Type
+      explode: true
+      in: query
+      name: checksumType
+      required: false
+      schema:
+        enum:
+        - SHA1
+        - SHA256
+        type: string
+      style: form
     classificationIdParam:
       description: Classification Identifier
       explode: false
@@ -10097,15 +10160,6 @@ components:
       explode: false
       in: path
       name: workflowId
-      required: true
-      schema:
-        type: string
-      style: simple
-    tagSchemaIdParam:
-      description: Tag Schema Identifier
-      explode: false
-      in: path
-      name: tagSchemaId
       required: true
       schema:
         type: string
@@ -11092,6 +11146,8 @@ components:
       type: object
     GetDocumentUrlResponse:
       example:
+        headers:
+          key: "{}"
         documentId: documentId
         url: url
       properties:
@@ -11101,6 +11157,10 @@ components:
         url:
           description: Document content url
           type: string
+        headers:
+          additionalProperties:
+            type: object
+          type: object
       type: object
     GetDocumentResponse:
       example:
@@ -11146,6 +11206,7 @@ components:
         versionId: versionId
         insertedDate: insertedDate
         checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -11169,6 +11230,8 @@ components:
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         documentId:
           description: Document Identifier
           type: string
@@ -11763,8 +11826,9 @@ components:
     AddDocumentUploadRequest:
       example:
         path: path
-        tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
+        checksumType: SHA1
+        checksum: checksum
         documentId: documentId
         attributes:
         - numberValues:
@@ -11807,6 +11871,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -11826,6 +11891,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         tags:
         - values:
@@ -11842,9 +11908,6 @@ components:
         documentId:
           description: "optional Document Identifier, if skipped one will be assigned"
           type: string
-        tagSchemaId:
-          description: Tag Schema Id
-          type: string
         path:
           description: Path or Name of document
           type: string
@@ -11853,6 +11916,11 @@ components:
           type: string
         deepLinkPath:
           description: Path or Name of deep link
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
+        checksum:
+          description: The checksum value to validate the file against
           type: string
         attributes:
           description: List of Attributes to add to document
@@ -11870,9 +11938,14 @@ components:
             $ref: '#/components/schemas/AddAction'
           type: array
       type: object
+    ChecksumType:
+      description: The type of checksum to use for file validation
+      enum:
+      - SHA1
+      - SHA256
+      type: string
     AddDocumentRequest:
       example:
-        path: path
         metadata:
         - values:
           - values
@@ -11884,7 +11957,6 @@ components:
           - values
           value: value
           key: key
-        tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
         documents:
         - path: path
@@ -11900,6 +11972,8 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          checksumType: null
+          checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
@@ -11927,6 +12001,8 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          checksumType: null
+          checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
@@ -11941,6 +12017,22 @@ components:
             - values
             value: value
             key: key
+        isBase64: true
+        content: content
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        path: path
+        checksumType: SHA1
+        checksum: checksum
         documentId: documentId
         attributes:
         - numberValues:
@@ -11964,7 +12056,6 @@ components:
           numberValue: 0.8008281904610115
           key: key
         contentType: contentType
-        isBase64: true
         actions:
         - queueId: queueId
           type: ANTIVIRUS
@@ -11984,6 +12075,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -12003,28 +12095,19 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
-        content: content
-        tags:
-        - values:
-          - values
-          - values
-          value: value
-          key: key
-        - values:
-          - values
-          - values
-          value: value
-          key: key
       properties:
         documentId:
           description: "optional Document Identifier, if skipped one will be assigned"
           type: string
-        tagSchemaId:
-          description: Tag Schema Id
-          type: string
         path:
           description: Path or Name of document
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
+        checksum:
+          description: The checksum value to validate the file against
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12080,7 +12163,6 @@ components:
           - values
           value: value
           key: key
-        tagSchemaId: tagSchemaId
         deepLinkPath: deepLinkPath
         documents:
         - path: path
@@ -12096,6 +12178,8 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          checksumType: null
+          checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
@@ -12123,6 +12207,8 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          checksumType: null
+          checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
@@ -12179,6 +12265,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -12198,6 +12285,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         content: content
         tags:
@@ -12212,9 +12300,6 @@ components:
           value: value
           key: key
       properties:
-        tagSchemaId:
-          description: Tag Schema Id
-          type: string
         path:
           description: Path or Name of document
           type: string
@@ -12664,6 +12749,8 @@ components:
           value: value
           key: key
         deepLinkPath: deepLinkPath
+        checksumType: null
+        checksum: checksum
         contentType: contentType
         isBase64: true
         content: content
@@ -12687,6 +12774,11 @@ components:
           type: string
         contentType:
           description: Document Content-Type
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
+        checksum:
+          description: The checksum value to validate the file against
           type: string
         isBase64:
           description: Is the content Base64-encoded?
@@ -13435,6 +13527,7 @@ components:
             insertedDate: insertedDate
             s3version: s3version
             checksum: checksum
+            checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
@@ -13469,6 +13562,7 @@ components:
             insertedDate: insertedDate
             s3version: s3version
             checksum: checksum
+            checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
@@ -13508,6 +13602,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13533,6 +13628,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13579,6 +13675,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13612,6 +13709,7 @@ components:
         insertedDate: insertedDate
         s3version: s3version
         checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -13635,6 +13733,8 @@ components:
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         documentId:
           description: Document Identifier
           type: string
@@ -14671,6 +14771,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -14696,6 +14797,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -15798,6 +15900,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -15823,6 +15926,7 @@ components:
           insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -16023,6 +16127,7 @@ components:
       - IDP
       - PUBLISH
       - PDFEXPORT
+      - EVENTBRIDGE
       type: string
     DocumentAction:
       example:
@@ -16412,6 +16517,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         - queueId: queueId
           type: ANTIVIRUS
@@ -16431,6 +16537,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
       properties:
         actions:
@@ -16459,6 +16566,7 @@ components:
           notificationSubject: notificationSubject
           engine: chatgpt
           notificationText: notificationText
+          eventBusName: eventBusName
           notificationHtml: notificationHtml
       properties:
         type:
@@ -16499,6 +16607,7 @@ components:
         notificationSubject: notificationSubject
         engine: chatgpt
         notificationText: notificationText
+        eventBusName: eventBusName
         notificationHtml: notificationHtml
       properties:
         ocrParseTypes:
@@ -16555,6 +16664,9 @@ components:
           type: string
         mappingId:
           description: Id of Mapping
+          type: string
+        eventBusName:
+          description: The name or ARN of the event bus to receive the event
           type: string
       type: object
     AddDocumentOcrRequest:
@@ -17331,12 +17443,46 @@ components:
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           email: email
           enabled: true
           username: username
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           email: email
           enabled: true
           username: username
@@ -17376,6 +17522,23 @@ components:
     AddUserRequest:
       example:
         user:
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           username: username
       properties:
         user:
@@ -17385,17 +17548,53 @@ components:
       type: object
     AddUser:
       example:
+        attributes:
+          zoneinfo: zoneinfo
+          website: website
+          address: address
+          birthdate: birthdate
+          gender: gender
+          preferredUsername: preferredUsername
+          givenName: givenName
+          profile: profile
+          locale: locale
+          picture: picture
+          phoneNumber: phoneNumber
+          familyName: familyName
+          name: name
+          nickname: nickname
+          middleName: middleName
+          updatedAt: updatedAt
         username: username
       properties:
         username:
           description: Email address of user
           type: string
+        attributes:
+          $ref: '#/components/schemas/UserAttributes'
       type: object
     User:
       example:
         userStatus: userStatus
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        attributes:
+          zoneinfo: zoneinfo
+          website: website
+          address: address
+          birthdate: birthdate
+          gender: gender
+          preferredUsername: preferredUsername
+          givenName: givenName
+          profile: profile
+          locale: locale
+          picture: picture
+          phoneNumber: phoneNumber
+          familyName: familyName
+          name: name
+          nickname: nickname
+          middleName: middleName
+          updatedAt: updatedAt
         email: email
         enabled: true
         username: username
@@ -17417,6 +17616,76 @@ components:
           type: string
         lastModifiedDate:
           description: Last nodified timestamp of user
+          type: string
+        attributes:
+          $ref: '#/components/schemas/UserAttributes'
+      type: object
+    UserAttributes:
+      example:
+        zoneinfo: zoneinfo
+        website: website
+        address: address
+        birthdate: birthdate
+        gender: gender
+        preferredUsername: preferredUsername
+        givenName: givenName
+        profile: profile
+        locale: locale
+        picture: picture
+        phoneNumber: phoneNumber
+        familyName: familyName
+        name: name
+        nickname: nickname
+        middleName: middleName
+        updatedAt: updatedAt
+      properties:
+        address:
+          description: Address of user
+          type: string
+        birthdate:
+          description: Birthdate of user
+          type: string
+        familyName:
+          description: Family name of user
+          type: string
+        gender:
+          description: Gender of user
+          type: string
+        givenName:
+          description: Given name of user
+          type: string
+        locale:
+          description: Locale of user
+          type: string
+        middleName:
+          description: Middle name of user
+          type: string
+        name:
+          description: Name of user
+          type: string
+        nickname:
+          description: Nickname of user
+          type: string
+        phoneNumber:
+          description: Phone number of user
+          type: string
+        picture:
+          description: Picture of user
+          type: string
+        preferredUsername:
+          description: Preferred username of user
+          type: string
+        profile:
+          description: Profile of user
+          type: string
+        zoneinfo:
+          description: Zoneinfo of user
+          type: string
+        updatedAt:
+          description: Updated at date of user
+          type: string
+        website:
+          description: Website of user
           type: string
       type: object
     GetGroupsResponse:
@@ -17458,6 +17727,23 @@ components:
           userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           email: email
           enabled: true
           username: username
@@ -17494,12 +17780,46 @@ components:
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           email: email
           enabled: true
           username: username
         - userStatus: userStatus
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          attributes:
+            zoneinfo: zoneinfo
+            website: website
+            address: address
+            birthdate: birthdate
+            gender: gender
+            preferredUsername: preferredUsername
+            givenName: givenName
+            profile: profile
+            locale: locale
+            picture: picture
+            phoneNumber: phoneNumber
+            familyName: familyName
+            name: name
+            nickname: nickname
+            middleName: middleName
+            updatedAt: updatedAt
           email: email
           enabled: true
           username: username
@@ -17533,6 +17853,17 @@ components:
           description: Last nodified timestamp of group
           type: string
       type: object
+    SetGroupPermissionsRequest:
+      example:
+        permissions:
+        - ADMIN
+        - ADMIN
+      properties:
+        permissions:
+          items:
+            $ref: '#/components/schemas/SiteGroupPermissions'
+          type: array
+      type: object
     SetOpenSearchIndexRequest:
       example:
         indexSettings:
@@ -17558,6 +17889,14 @@ components:
           description: Result message
           type: string
       type: object
+    UpdateResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Result message
+          type: string
+      type: object
     SetResponse:
       example:
         message: message
@@ -17573,6 +17912,38 @@ components:
         message:
           description: Result message
           type: string
+      type: object
+    GetSiteGroupsResponse:
+      example:
+        groupNames:
+        - groupNames
+        - groupNames
+      properties:
+        groupNames:
+          items:
+            type: string
+          type: array
+      type: object
+    GetSiteGroupResponse:
+      example:
+        group:
+          permissions:
+          - ADMIN
+          - ADMIN
+      properties:
+        group:
+          $ref: '#/components/schemas/SiteGroup'
+      type: object
+    SiteGroup:
+      example:
+        permissions:
+        - ADMIN
+        - ADMIN
+      properties:
+        permissions:
+          items:
+            $ref: '#/components/schemas/SiteGroupPermissions'
+          type: array
       type: object
     GetOpenSearchIndexResponse:
       example:
@@ -17604,12 +17975,14 @@ components:
           - ADMIN
           siteId: siteId
           permission: READ_WRITE
+          title: title
         - uploadEmail: uploadEmail
           permissions:
           - ADMIN
           - ADMIN
           siteId: siteId
           permission: READ_WRITE
+          title: title
         username: username
       properties:
         username:
@@ -17629,9 +18002,13 @@ components:
         - ADMIN
         siteId: siteId
         permission: READ_WRITE
+        title: title
       properties:
         siteId:
           description: Site Identifier
+          type: string
+        title:
+          description: Site Title
           type: string
         permission:
           description: SiteId permission level
@@ -17640,14 +18017,8 @@ components:
           - READ_ONLY
           type: string
         permissions:
-          description: List of caller permissions
           items:
-            enum:
-            - ADMIN
-            - DELETE
-            - READ
-            - WRITE
-            type: string
+            $ref: '#/components/schemas/SiteGroupPermissions'
           type: array
         uploadEmail:
           description: SiteId document upload email address
@@ -17659,14 +18030,6 @@ components:
       properties:
         classificationId:
           description: Classification Identifier
-          type: string
-      type: object
-    AddTagSchemaResponse:
-      example:
-        tagSchemaId: tagSchemaId
-      properties:
-        tagSchemaId:
-          description: Tag Schema Identifier
           type: string
       type: object
     ErrorsResponse:
@@ -17693,32 +18056,6 @@ components:
           type: string
         error:
           description: Error Message
-          type: string
-      type: object
-    GetTagSchemasResponse:
-      example:
-        next: next
-        previous: previous
-        schemas:
-        - tagSchemaId: tagSchemaId
-          insertedDate: insertedDate
-          name: name
-          inUse: true
-          userId: userId
-        - tagSchemaId: tagSchemaId
-          insertedDate: insertedDate
-          name: name
-          inUse: true
-          userId: userId
-      properties:
-        schemas:
-          description: List of Tag Schemas
-          items:
-            $ref: '#/components/schemas/TagSchemaSummary'
-          type: array
-        next:
-          type: string
-        previous:
           type: string
       type: object
     AddQueueRequest:
@@ -17771,6 +18108,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              eventBusName: eventBusName
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17802,6 +18140,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              eventBusName: eventBusName
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17858,6 +18197,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              eventBusName: eventBusName
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17889,6 +18229,7 @@ components:
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
+              eventBusName: eventBusName
               notificationHtml: notificationHtml
           decisions:
           - nextStepId: nextStepId
@@ -17942,6 +18283,7 @@ components:
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
+            eventBusName: eventBusName
             notificationHtml: notificationHtml
         decisions:
         - nextStepId: nextStepId
@@ -18430,6 +18772,65 @@ components:
         classification:
           $ref: '#/components/schemas/AddClassification'
       type: object
+    AddSiteRequest:
+      example:
+        site:
+          id: id
+          title: title
+          status: ACTIVE
+      properties:
+        site:
+          $ref: '#/components/schemas/AddSite'
+      type: object
+    AddSite:
+      example:
+        id: id
+        title: title
+        status: ACTIVE
+      properties:
+        id:
+          description: Site Id
+          type: string
+        title:
+          description: Title of Site
+          type: string
+        status:
+          $ref: '#/components/schemas/SiteStatus'
+      type: object
+    UpdateSiteRequest:
+      example:
+        site:
+          title: title
+          status: ACTIVE
+      properties:
+        site:
+          $ref: '#/components/schemas/UpdateSite'
+      type: object
+    UpdateSite:
+      example:
+        title: title
+        status: ACTIVE
+      properties:
+        title:
+          description: Title of Site
+          type: string
+        status:
+          $ref: '#/components/schemas/SiteStatus'
+      type: object
+    SiteStatus:
+      description: Site status
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
+    SiteGroupPermissions:
+      description: Site Group Permissions
+      enum:
+      - ADMIN
+      - DELETE
+      - READ
+      - WRITE
+      type: string
     AddClassificationRequest:
       example:
         classification:
@@ -18574,308 +18975,6 @@ components:
           default: true
           type: boolean
       type: object
-    AddTagSchemaRequest:
-      example:
-        name: name
-        tags:
-          compositeKeys:
-          - key:
-            - key
-            - key
-          - key:
-            - key
-            - key
-          allowAdditionalTags: true
-          optional:
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          required:
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-      properties:
-        name:
-          type: string
-        tags:
-          $ref: '#/components/schemas/AddTagSchemaTags'
-      type: object
-    AddTagSchemaTags:
-      example:
-        compositeKeys:
-        - key:
-          - key
-          - key
-        - key:
-          - key
-          - key
-        allowAdditionalTags: true
-        optional:
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        required:
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-      properties:
-        compositeKeys:
-          description: List of Composite Keys
-          items:
-            $ref: '#/components/schemas/TagSchemaCompositeKey'
-          type: array
-        required:
-          description: List of Required Tags
-          items:
-            $ref: '#/components/schemas/TagSchemaRequired'
-          type: array
-        optional:
-          description: List of Optional Tags
-          items:
-            $ref: '#/components/schemas/TagSchemaOptional'
-          type: array
-        allowAdditionalTags:
-          default: true
-          type: boolean
-      type: object
-    TagSchemaSummary:
-      example:
-        tagSchemaId: tagSchemaId
-        insertedDate: insertedDate
-        name: name
-        inUse: true
-        userId: userId
-      properties:
-        tagSchemaId:
-          type: string
-        name:
-          type: string
-        userId:
-          type: string
-        inUse:
-          description: Whether the TagSchema is in use
-          type: boolean
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-      type: object
-    GetTagSchemaResponse:
-      example:
-        tagSchema:
-          tagSchemaId: tagSchemaId
-          insertedDate: insertedDate
-          name: name
-          inUse: true
-          userId: userId
-          tags:
-            compositeKeys:
-            - key:
-              - key
-              - key
-            - key:
-              - key
-              - key
-            allowAdditionalTags: true
-            optional:
-            - allowedValues:
-              - allowedValues
-              - allowedValues
-              defaultValues:
-              - defaultValues
-              - defaultValues
-              key: key
-            - allowedValues:
-              - allowedValues
-              - allowedValues
-              defaultValues:
-              - defaultValues
-              - defaultValues
-              key: key
-            required:
-            - allowedValues:
-              - allowedValues
-              - allowedValues
-              defaultValues:
-              - defaultValues
-              - defaultValues
-              key: key
-            - allowedValues:
-              - allowedValues
-              - allowedValues
-              defaultValues:
-              - defaultValues
-              - defaultValues
-              key: key
-      properties:
-        tagSchema:
-          $ref: '#/components/schemas/TagSchema'
-      type: object
-    TagSchema:
-      example:
-        tagSchemaId: tagSchemaId
-        insertedDate: insertedDate
-        name: name
-        inUse: true
-        userId: userId
-        tags:
-          compositeKeys:
-          - key:
-            - key
-            - key
-          - key:
-            - key
-            - key
-          allowAdditionalTags: true
-          optional:
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          required:
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-          - allowedValues:
-            - allowedValues
-            - allowedValues
-            defaultValues:
-            - defaultValues
-            - defaultValues
-            key: key
-      properties:
-        tagSchemaId:
-          type: string
-        name:
-          type: string
-        userId:
-          type: string
-        inUse:
-          description: Whether the TagSchema is in use
-          type: boolean
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        tags:
-          $ref: '#/components/schemas/TagSchemaTags'
-      type: object
-    TagSchemaTags:
-      example:
-        compositeKeys:
-        - key:
-          - key
-          - key
-        - key:
-          - key
-          - key
-        allowAdditionalTags: true
-        optional:
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        required:
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-        - allowedValues:
-          - allowedValues
-          - allowedValues
-          defaultValues:
-          - defaultValues
-          - defaultValues
-          key: key
-      properties:
-        compositeKeys:
-          description: List of Composite Keys
-          items:
-            $ref: '#/components/schemas/TagSchemaCompositeKey'
-          type: array
-        required:
-          description: List of Required Tags
-          items:
-            $ref: '#/components/schemas/TagSchemaRequired'
-          type: array
-        optional:
-          description: List of Optional Tags
-          items:
-            $ref: '#/components/schemas/TagSchemaOptional'
-          type: array
-        allowAdditionalTags:
-          default: true
-          type: boolean
-      type: object
     AttributeSchemaCompositeKey:
       example:
         attributeKeys:
@@ -18883,17 +18982,6 @@ components:
         - attributeKeys
       properties:
         attributeKeys:
-          items:
-            type: string
-          type: array
-      type: object
-    TagSchemaCompositeKey:
-      example:
-        key:
-        - key
-        - key
-      properties:
-        key:
           items:
             type: string
           type: array
@@ -18925,29 +19013,6 @@ components:
             type: string
           type: array
       type: object
-    TagSchemaRequired:
-      example:
-        allowedValues:
-        - allowedValues
-        - allowedValues
-        defaultValues:
-        - defaultValues
-        - defaultValues
-        key: key
-      properties:
-        key:
-          type: string
-        defaultValues:
-          description: Default values
-          items:
-            type: string
-          type: array
-        allowedValues:
-          description: Only valid values
-          items:
-            type: string
-          type: array
-      type: object
     AttributeSchemaOptional:
       example:
         allowedValues:
@@ -18959,29 +19024,6 @@ components:
           type: string
         allowedValues:
           description: Only valid string values
-          items:
-            type: string
-          type: array
-      type: object
-    TagSchemaOptional:
-      example:
-        allowedValues:
-        - allowedValues
-        - allowedValues
-        defaultValues:
-        - defaultValues
-        - defaultValues
-        key: key
-      properties:
-        key:
-          type: string
-        defaultValues:
-          description: Default values
-          items:
-            type: string
-          type: array
-        allowedValues:
-          description: Only valid values
           items:
             type: string
           type: array
@@ -19080,7 +19122,13 @@ components:
         message:
           type: string
       type: object
-    AddEsignatureDocusignRequest:
+    DocusignRequestStatus:
+      description: Docusign Request status
+      enum:
+      - CREATED
+      - SENT
+      type: string
+    AddDocusignRequest:
       example:
         signers:
         - name: name
@@ -19095,45 +19143,41 @@ components:
         recipientTabs:
         - positionY: positionY
           pageNumber: pageNumber
-          type: signHere
+          type: SIGNHERE
           positionX: positionX
         - positionY: positionY
           pageNumber: pageNumber
-          type: signHere
+          type: SIGNHERE
           positionX: positionX
         developmentMode: true
         emailSubject: emailSubject
-        status: created
+        status: CREATED
       properties:
         emailSubject:
           description: Email Subject
           type: string
         status:
-          description: The status of the request
-          enum:
-          - created
-          - sent
-          type: string
+          $ref: '#/components/schemas/DocusignRequestStatus'
         developmentMode:
           description: Whether to enable developer mode
           type: boolean
         signers:
           description: List of DocuSign Signers
           items:
-            $ref: '#/components/schemas/EsignatureDocusignSigner'
+            $ref: '#/components/schemas/DocusignSigner'
           type: array
         carbonCopies:
           description: List of DocuSign Carbon Copies
           items:
-            $ref: '#/components/schemas/EsignatureDocusignCarbonCopy'
+            $ref: '#/components/schemas/DocusignCarbonCopy'
           type: array
         recipientTabs:
           description: List of DocuSign Recipient Tabs
           items:
-            $ref: '#/components/schemas/EsignatureDocusignRecipientTab'
+            $ref: '#/components/schemas/DocusignRecipientTab'
           type: array
       type: object
-    EsignatureDocusignSigner:
+    DocusignSigner:
       example:
         name: name
         email: email
@@ -19145,7 +19189,7 @@ components:
           description: Email of Signer
           type: string
       type: object
-    EsignatureDocusignCarbonCopy:
+    DocusignCarbonCopy:
       example:
         name: name
         email: email
@@ -19157,18 +19201,20 @@ components:
           description: Email of Signer
           type: string
       type: object
-    EsignatureDocusignRecipientTab:
+    DocusignRecipientType:
+      description: Type of Recipient
+      enum:
+      - SIGNHERE
+      type: string
+    DocusignRecipientTab:
       example:
         positionY: positionY
         pageNumber: pageNumber
-        type: signHere
+        type: SIGNHERE
         positionX: positionX
       properties:
         type:
-          description: Type of Recipient
-          enum:
-          - signHere
-          type: string
+          $ref: '#/components/schemas/DocusignRecipientType'
         pageNumber:
           description: Document Page Number
           type: string
@@ -19179,7 +19225,7 @@ components:
           description: Element Y Position
           type: string
       type: object
-    AddEsignatureDocusignResponse:
+    AddDocusignResponse:
       example:
         message: message
         redirect_url: redirect_url

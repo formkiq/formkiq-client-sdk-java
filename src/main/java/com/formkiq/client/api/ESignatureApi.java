@@ -33,8 +33,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.formkiq.client.model.AddEsignatureDocusignRequest;
-import com.formkiq.client.model.AddEsignatureDocusignResponse;
+import com.formkiq.client.model.AddDocusignRequest;
+import com.formkiq.client.model.AddDocusignResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -84,7 +84,7 @@ public class ESignatureApi {
    * Build call for addEsignatureDocusign
    * 
    * @param documentId Document Identifier (required)
-   * @param addEsignatureDocusignRequest (required)
+   * @param addDocusignRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -112,8 +112,8 @@ public class ESignatureApi {
    *                        </table>
    */
   public okhttp3.Call addEsignatureDocusignCall(String documentId,
-      AddEsignatureDocusignRequest addEsignatureDocusignRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      AddDocusignRequest addDocusignRequest, String siteId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -127,7 +127,7 @@ public class ESignatureApi {
       basePath = null;
     }
 
-    Object localVarPostBody = addEsignatureDocusignRequest;
+    Object localVarPostBody = addDocusignRequest;
 
     // create path and map variables
     String localVarPath = "/esignature/docusign/{documentId}".replace("{" + "documentId" + "}",
@@ -164,21 +164,21 @@ public class ESignatureApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addEsignatureDocusignValidateBeforeCall(String documentId,
-      AddEsignatureDocusignRequest addEsignatureDocusignRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      AddDocusignRequest addDocusignRequest, String siteId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling addEsignatureDocusign(Async)");
     }
 
-    // verify the required parameter 'addEsignatureDocusignRequest' is set
-    if (addEsignatureDocusignRequest == null) {
+    // verify the required parameter 'addDocusignRequest' is set
+    if (addDocusignRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'addEsignatureDocusignRequest' when calling addEsignatureDocusign(Async)");
+          "Missing the required parameter 'addDocusignRequest' when calling addEsignatureDocusign(Async)");
     }
 
-    return addEsignatureDocusignCall(documentId, addEsignatureDocusignRequest, siteId, _callback);
+    return addEsignatureDocusignCall(documentId, addDocusignRequest, siteId, _callback);
 
   }
 
@@ -187,9 +187,9 @@ public class ESignatureApi {
    * Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param addEsignatureDocusignRequest (required)
+   * @param addDocusignRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return AddEsignatureDocusignResponse
+   * @return AddDocusignResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -214,11 +214,10 @@ public class ESignatureApi {
    *                        </tr>
    *                        </table>
    */
-  public AddEsignatureDocusignResponse addEsignatureDocusign(String documentId,
-      AddEsignatureDocusignRequest addEsignatureDocusignRequest, String siteId)
-      throws ApiException {
-    ApiResponse<AddEsignatureDocusignResponse> localVarResp =
-        addEsignatureDocusignWithHttpInfo(documentId, addEsignatureDocusignRequest, siteId);
+  public AddDocusignResponse addEsignatureDocusign(String documentId,
+      AddDocusignRequest addDocusignRequest, String siteId) throws ApiException {
+    ApiResponse<AddDocusignResponse> localVarResp =
+        addEsignatureDocusignWithHttpInfo(documentId, addDocusignRequest, siteId);
     return localVarResp.getData();
   }
 
@@ -227,9 +226,9 @@ public class ESignatureApi {
    * Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param addEsignatureDocusignRequest (required)
+   * @param addDocusignRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;AddEsignatureDocusignResponse&gt;
+   * @return ApiResponse&lt;AddDocusignResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -254,12 +253,11 @@ public class ESignatureApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddEsignatureDocusignResponse> addEsignatureDocusignWithHttpInfo(
-      String documentId, AddEsignatureDocusignRequest addEsignatureDocusignRequest, String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = addEsignatureDocusignValidateBeforeCall(documentId,
-        addEsignatureDocusignRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<AddEsignatureDocusignResponse>() {}.getType();
+  public ApiResponse<AddDocusignResponse> addEsignatureDocusignWithHttpInfo(String documentId,
+      AddDocusignRequest addDocusignRequest, String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        addEsignatureDocusignValidateBeforeCall(documentId, addDocusignRequest, siteId, null);
+    Type localVarReturnType = new TypeToken<AddDocusignResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -268,7 +266,7 @@ public class ESignatureApi {
    * available with FormKiQ Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param addEsignatureDocusignRequest (required)
+   * @param addDocusignRequest (required)
    * @param siteId Site Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -296,12 +294,12 @@ public class ESignatureApi {
    *                        </table>
    */
   public okhttp3.Call addEsignatureDocusignAsync(String documentId,
-      AddEsignatureDocusignRequest addEsignatureDocusignRequest, String siteId,
-      final ApiCallback<AddEsignatureDocusignResponse> _callback) throws ApiException {
+      AddDocusignRequest addDocusignRequest, String siteId,
+      final ApiCallback<AddDocusignResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = addEsignatureDocusignValidateBeforeCall(documentId,
-        addEsignatureDocusignRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<AddEsignatureDocusignResponse>() {}.getType();
+    okhttp3.Call localVarCall =
+        addEsignatureDocusignValidateBeforeCall(documentId, addDocusignRequest, siteId, _callback);
+    Type localVarReturnType = new TypeToken<AddDocusignResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -384,7 +382,7 @@ public class ESignatureApi {
   /**
    * Add E-signature event DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
    * 
-   * @return AddEsignatureDocusignResponse
+   * @return AddDocusignResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -404,16 +402,15 @@ public class ESignatureApi {
    *                        </tr>
    *                        </table>
    */
-  public AddEsignatureDocusignResponse addEsignatureDocusignEvents() throws ApiException {
-    ApiResponse<AddEsignatureDocusignResponse> localVarResp =
-        addEsignatureDocusignEventsWithHttpInfo();
+  public AddDocusignResponse addEsignatureDocusignEvents() throws ApiException {
+    ApiResponse<AddDocusignResponse> localVarResp = addEsignatureDocusignEventsWithHttpInfo();
     return localVarResp.getData();
   }
 
   /**
    * Add E-signature event DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
    * 
-   * @return ApiResponse&lt;AddEsignatureDocusignResponse&gt;
+   * @return ApiResponse&lt;AddDocusignResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -433,10 +430,10 @@ public class ESignatureApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddEsignatureDocusignResponse> addEsignatureDocusignEventsWithHttpInfo()
+  public ApiResponse<AddDocusignResponse> addEsignatureDocusignEventsWithHttpInfo()
       throws ApiException {
     okhttp3.Call localVarCall = addEsignatureDocusignEventsValidateBeforeCall(null);
-    Type localVarReturnType = new TypeToken<AddEsignatureDocusignResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddDocusignResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -465,10 +462,10 @@ public class ESignatureApi {
    *                        </table>
    */
   public okhttp3.Call addEsignatureDocusignEventsAsync(
-      final ApiCallback<AddEsignatureDocusignResponse> _callback) throws ApiException {
+      final ApiCallback<AddDocusignResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addEsignatureDocusignEventsValidateBeforeCall(_callback);
-    Type localVarReturnType = new TypeToken<AddEsignatureDocusignResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddDocusignResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.UserAttributes;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * User
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class User {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -82,6 +82,10 @@ public class User {
   public static final String SERIALIZED_NAME_LAST_MODIFIED_DATE = "lastModifiedDate";
   @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
   private String lastModifiedDate;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private UserAttributes attributes;
 
   public User() {}
 
@@ -205,6 +209,26 @@ public class User {
   }
 
 
+  public User attributes(UserAttributes attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  /**
+   * Get attributes
+   * 
+   * @return attributes
+   */
+  @javax.annotation.Nullable
+  public UserAttributes getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(UserAttributes attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -219,12 +243,14 @@ public class User {
         && Objects.equals(this.enabled, user.enabled)
         && Objects.equals(this.userStatus, user.userStatus)
         && Objects.equals(this.insertedDate, user.insertedDate)
-        && Objects.equals(this.lastModifiedDate, user.lastModifiedDate);
+        && Objects.equals(this.lastModifiedDate, user.lastModifiedDate)
+        && Objects.equals(this.attributes, user.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, email, enabled, userStatus, insertedDate, lastModifiedDate);
+    return Objects.hash(username, email, enabled, userStatus, insertedDate, lastModifiedDate,
+        attributes);
   }
 
   @Override
@@ -237,6 +263,7 @@ public class User {
     sb.append("    userStatus: ").append(toIndentedString(userStatus)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -264,6 +291,7 @@ public class User {
     openapiFields.add("userStatus");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
+    openapiFields.add("attributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -323,6 +351,10 @@ public class User {
       throw new IllegalArgumentException(String.format(
           "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("lastModifiedDate").toString()));
+    }
+    // validate the optional field `attributes`
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      UserAttributes.validateJsonElement(jsonObj.get("attributes"));
     }
   }
 

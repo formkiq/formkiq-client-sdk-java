@@ -1540,6 +1540,8 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -1563,9 +1565,9 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentIdUploadCall(String documentId, String siteId,
-      Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentIdUploadCall(String documentId, String siteId, String checksumType,
+      String checksum, Integer contentLength, Integer duration, String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1593,6 +1595,14 @@ public class DocumentsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (checksumType != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("checksumType", checksumType));
+    }
+
+    if (checksum != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("checksum", checksum));
     }
 
     if (contentLength != null) {
@@ -1628,16 +1638,16 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentIdUploadValidateBeforeCall(String documentId, String siteId,
-      Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+      String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentIdUpload(Async)");
     }
 
-    return getDocumentIdUploadCall(documentId, siteId, contentLength, duration, shareKey,
-        _callback);
+    return getDocumentIdUploadCall(documentId, siteId, checksumType, checksum, contentLength,
+        duration, shareKey, _callback);
 
   }
 
@@ -1648,6 +1658,8 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -1672,9 +1684,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentUrlResponse getDocumentIdUpload(String documentId, String siteId,
-      Integer contentLength, Integer duration, String shareKey) throws ApiException {
-    ApiResponse<GetDocumentUrlResponse> localVarResp =
-        getDocumentIdUploadWithHttpInfo(documentId, siteId, contentLength, duration, shareKey);
+      String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey) throws ApiException {
+    ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentIdUploadWithHttpInfo(documentId,
+        siteId, checksumType, checksum, contentLength, duration, shareKey);
     return localVarResp.getData();
   }
 
@@ -1685,6 +1698,8 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -1709,9 +1724,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentUrlResponse> getDocumentIdUploadWithHttpInfo(String documentId,
-      String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
+      String siteId, String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey) throws ApiException {
     okhttp3.Call localVarCall = getDocumentIdUploadValidateBeforeCall(documentId, siteId,
-        contentLength, duration, shareKey, null);
+        checksumType, checksum, contentLength, duration, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1723,6 +1739,8 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -1747,11 +1765,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentIdUploadAsync(String documentId, String siteId,
-      Integer contentLength, Integer duration, String shareKey,
-      final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
+      String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentIdUploadValidateBeforeCall(documentId, siteId,
-        contentLength, duration, shareKey, _callback);
+        checksumType, checksum, contentLength, duration, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1966,6 +1984,8 @@ public class DocumentsApi {
    * 
    * @param path The upload file&#39;s path (optional)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -1989,8 +2009,9 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentUploadCall(String path, String siteId, Integer contentLength,
-      Integer duration, String shareKey, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentUploadCall(String path, String siteId, String checksumType,
+      String checksum, Integer contentLength, Integer duration, String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2021,6 +2042,14 @@ public class DocumentsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (checksumType != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("checksumType", checksumType));
+    }
+
+    if (checksum != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("checksum", checksum));
     }
 
     if (contentLength != null) {
@@ -2056,9 +2085,10 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentUploadValidateBeforeCall(String path, String siteId,
-      Integer contentLength, Integer duration, String shareKey, final ApiCallback _callback)
-      throws ApiException {
-    return getDocumentUploadCall(path, siteId, contentLength, duration, shareKey, _callback);
+      String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey, final ApiCallback _callback) throws ApiException {
+    return getDocumentUploadCall(path, siteId, checksumType, checksum, contentLength, duration,
+        shareKey, _callback);
 
   }
 
@@ -2069,6 +2099,8 @@ public class DocumentsApi {
    * 
    * @param path The upload file&#39;s path (optional)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -2092,10 +2124,11 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentUrlResponse getDocumentUpload(String path, String siteId, Integer contentLength,
-      Integer duration, String shareKey) throws ApiException {
-    ApiResponse<GetDocumentUrlResponse> localVarResp =
-        getDocumentUploadWithHttpInfo(path, siteId, contentLength, duration, shareKey);
+  public GetDocumentUrlResponse getDocumentUpload(String path, String siteId, String checksumType,
+      String checksum, Integer contentLength, Integer duration, String shareKey)
+      throws ApiException {
+    ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentUploadWithHttpInfo(path, siteId,
+        checksumType, checksum, contentLength, duration, shareKey);
     return localVarResp.getData();
   }
 
@@ -2106,6 +2139,8 @@ public class DocumentsApi {
    * 
    * @param path The upload file&#39;s path (optional)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -2130,9 +2165,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentUrlResponse> getDocumentUploadWithHttpInfo(String path,
-      String siteId, Integer contentLength, Integer duration, String shareKey) throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentUploadValidateBeforeCall(path, siteId, contentLength, duration, shareKey, null);
+      String siteId, String checksumType, String checksum, Integer contentLength, Integer duration,
+      String shareKey) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, checksumType,
+        checksum, contentLength, duration, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2144,6 +2180,8 @@ public class DocumentsApi {
    * 
    * @param path The upload file&#39;s path (optional)
    * @param siteId Site Identifier (optional)
+   * @param checksumType Checksum Type (optional)
+   * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
@@ -2167,12 +2205,12 @@ public class DocumentsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentUploadAsync(String path, String siteId, Integer contentLength,
-      Integer duration, String shareKey, final ApiCallback<GetDocumentUrlResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentUploadAsync(String path, String siteId, String checksumType,
+      String checksum, Integer contentLength, Integer duration, String shareKey,
+      final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, contentLength,
-        duration, shareKey, _callback);
+    okhttp3.Call localVarCall = getDocumentUploadValidateBeforeCall(path, siteId, checksumType,
+        checksum, contentLength, duration, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

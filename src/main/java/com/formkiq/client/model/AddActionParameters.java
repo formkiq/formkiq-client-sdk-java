@@ -45,7 +45,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
@@ -227,6 +226,10 @@ public class AddActionParameters {
   public static final String SERIALIZED_NAME_MAPPING_ID = "mappingId";
   @SerializedName(SERIALIZED_NAME_MAPPING_ID)
   private String mappingId;
+
+  public static final String SERIALIZED_NAME_EVENT_BUS_NAME = "eventBusName";
+  @SerializedName(SERIALIZED_NAME_EVENT_BUS_NAME)
+  private String eventBusName;
 
   public AddActionParameters() {}
 
@@ -550,6 +553,26 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters eventBusName(String eventBusName) {
+    this.eventBusName = eventBusName;
+    return this;
+  }
+
+  /**
+   * The name or ARN of the event bus to receive the event
+   * 
+   * @return eventBusName
+   */
+  @javax.annotation.Nullable
+  public String getEventBusName() {
+    return eventBusName;
+  }
+
+  public void setEventBusName(String eventBusName) {
+    this.eventBusName = eventBusName;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -576,7 +599,8 @@ public class AddActionParameters {
         && Objects.equals(this.notificationText, addActionParameters.notificationText)
         && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
         && Objects.equals(this.tags, addActionParameters.tags)
-        && Objects.equals(this.mappingId, addActionParameters.mappingId);
+        && Objects.equals(this.mappingId, addActionParameters.mappingId)
+        && Objects.equals(this.eventBusName, addActionParameters.eventBusName);
   }
 
   @Override
@@ -584,7 +608,7 @@ public class AddActionParameters {
     return Objects.hash(ocrParseTypes, ocrEngine, ocrOutputType, ocrNumberOfPages,
         addPdfDetectedCharactersAsText, url, characterMax, engine, notificationType,
         notificationToCc, notificationToBcc, notificationSubject, notificationText,
-        notificationHtml, tags, mappingId);
+        notificationHtml, tags, mappingId, eventBusName);
   }
 
   @Override
@@ -609,6 +633,7 @@ public class AddActionParameters {
     sb.append("    notificationHtml: ").append(toIndentedString(notificationHtml)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    mappingId: ").append(toIndentedString(mappingId)).append("\n");
+    sb.append("    eventBusName: ").append(toIndentedString(eventBusName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -646,6 +671,7 @@ public class AddActionParameters {
     openapiFields.add("notificationHtml");
     openapiFields.add("tags");
     openapiFields.add("mappingId");
+    openapiFields.add("eventBusName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -778,6 +804,12 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `mappingId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("mappingId").toString()));
+    }
+    if ((jsonObj.get("eventBusName") != null && !jsonObj.get("eventBusName").isJsonNull())
+        && !jsonObj.get("eventBusName").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `eventBusName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("eventBusName").toString()));
     }
   }
 

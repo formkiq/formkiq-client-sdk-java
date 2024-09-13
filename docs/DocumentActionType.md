@@ -25,5 +25,7 @@
 
 * `PDFEXPORT` (value: `"PDFEXPORT"`)
 
+* `EVENTBRIDGE` (value: `"EVENTBRIDGE"`)
+
 
 

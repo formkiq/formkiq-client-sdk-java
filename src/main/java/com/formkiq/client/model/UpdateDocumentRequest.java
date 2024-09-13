@@ -50,7 +50,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,13 +62,9 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class UpdateDocumentRequest {
-  public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
-  @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
-  private String tagSchemaId;
-
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
@@ -111,26 +106,6 @@ public class UpdateDocumentRequest {
   private List<AddChildDocument> documents = new ArrayList<>();
 
   public UpdateDocumentRequest() {}
-
-  public UpdateDocumentRequest tagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
-    return this;
-  }
-
-  /**
-   * Tag Schema Id
-   * 
-   * @return tagSchemaId
-   */
-  @javax.annotation.Nullable
-  public String getTagSchemaId() {
-    return tagSchemaId;
-  }
-
-  public void setTagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
-  }
-
 
   public UpdateDocumentRequest path(String path) {
     this.path = path;
@@ -382,8 +357,7 @@ public class UpdateDocumentRequest {
       return false;
     }
     UpdateDocumentRequest updateDocumentRequest = (UpdateDocumentRequest) o;
-    return Objects.equals(this.tagSchemaId, updateDocumentRequest.tagSchemaId)
-        && Objects.equals(this.path, updateDocumentRequest.path)
+    return Objects.equals(this.path, updateDocumentRequest.path)
         && Objects.equals(this.deepLinkPath, updateDocumentRequest.deepLinkPath)
         && Objects.equals(this.contentType, updateDocumentRequest.contentType)
         && Objects.equals(this.isBase64, updateDocumentRequest.isBase64)
@@ -397,15 +371,14 @@ public class UpdateDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tagSchemaId, path, deepLinkPath, contentType, isBase64, content, tags,
-        metadata, attributes, actions, documents);
+    return Objects.hash(path, deepLinkPath, contentType, isBase64, content, tags, metadata,
+        attributes, actions, documents);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateDocumentRequest {\n");
-    sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
@@ -437,7 +410,6 @@ public class UpdateDocumentRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("tagSchemaId");
     openapiFields.add("path");
     openapiFields.add("deepLinkPath");
     openapiFields.add("contentType");
@@ -479,12 +451,6 @@ public class UpdateDocumentRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("tagSchemaId") != null && !jsonObj.get("tagSchemaId").isJsonNull())
-        && !jsonObj.get("tagSchemaId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `tagSchemaId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("tagSchemaId").toString()));
-    }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

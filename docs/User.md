@@ -13,6 +13,7 @@
 |**userStatus** | **String** | Status of user |  [optional] |
 |**insertedDate** | **String** | Inserted timestamp of user |  [optional] |
 |**lastModifiedDate** | **String** | Last nodified timestamp of user |  [optional] |
+|**attributes** | [**UserAttributes**](UserAttributes.md) |  |  [optional] |
 
 
 

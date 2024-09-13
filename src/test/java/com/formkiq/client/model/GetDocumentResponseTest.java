@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.ChildDocument;
 import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
@@ -93,6 +94,14 @@ public class GetDocumentResponseTest {
   @Test
   public void checksumTest() {
     // TODO: test checksum
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
   }
 
   /**

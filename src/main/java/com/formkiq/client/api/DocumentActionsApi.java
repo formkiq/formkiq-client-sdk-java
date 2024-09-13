@@ -196,7 +196,8 @@ public class DocumentActionsApi {
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification
    * Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text
    * | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE |
-   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | |
+   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName |
+   * The name or ARN of the Amazon EventBridge to receive the event. | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -251,7 +252,8 @@ public class DocumentActionsApi {
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification
    * Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text
    * | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE |
-   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | |
+   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName |
+   * The name or ARN of the Amazon EventBridge to receive the event. | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -307,7 +309,8 @@ public class DocumentActionsApi {
    * Copy | &lt;email&gt;@yourdomain.com | | NOTIFICATION | notificationSubject | Notification
    * Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text
    * | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE |
-   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | |
+   * queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName |
+   * The name or ARN of the Amazon EventBridge to receive the event. | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)

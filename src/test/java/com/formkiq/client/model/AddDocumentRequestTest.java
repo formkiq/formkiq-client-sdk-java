@@ -24,6 +24,7 @@ import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,19 +60,27 @@ public class AddDocumentRequestTest {
   }
 
   /**
-   * Test the property 'tagSchemaId'
-   */
-  @Test
-  public void tagSchemaIdTest() {
-    // TODO: test tagSchemaId
-  }
-
-  /**
    * Test the property 'path'
    */
   @Test
   public void pathTest() {
     // TODO: test path
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
+  }
+
+  /**
+   * Test the property 'checksum'
+   */
+  @Test
+  public void checksumTest() {
+    // TODO: test checksum
   }
 
   /**

@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.UserAttributes;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,12 +56,16 @@ import com.formkiq.client.invoker.JSON;
  * AddUser
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class AddUser {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
   private String username;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private UserAttributes attributes;
 
   public AddUser() {}
 
@@ -85,6 +89,26 @@ public class AddUser {
   }
 
 
+  public AddUser attributes(UserAttributes attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  /**
+   * Get attributes
+   * 
+   * @return attributes
+   */
+  @javax.annotation.Nullable
+  public UserAttributes getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(UserAttributes attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -95,12 +119,13 @@ public class AddUser {
       return false;
     }
     AddUser addUser = (AddUser) o;
-    return Objects.equals(this.username, addUser.username);
+    return Objects.equals(this.username, addUser.username)
+        && Objects.equals(this.attributes, addUser.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username);
+    return Objects.hash(username, attributes);
   }
 
   @Override
@@ -108,6 +133,7 @@ public class AddUser {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddUser {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,6 +156,7 @@ public class AddUser {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("username");
+    openapiFields.add("attributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -166,6 +193,10 @@ public class AddUser {
       throw new IllegalArgumentException(String.format(
           "Expected the field `username` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("username").toString()));
+    }
+    // validate the optional field `attributes`
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      UserAttributes.validateJsonElement(jsonObj.get("attributes"));
     }
   }
 

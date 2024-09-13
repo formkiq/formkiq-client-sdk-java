@@ -22,17 +22,25 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
+import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
+import com.formkiq.client.model.GetSiteGroupResponse;
+import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
+import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
+import com.formkiq.client.model.UpdateResponse;
+import com.formkiq.client.model.UpdateSiteRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -62,6 +70,20 @@ public class SystemManagementApiTest {
     String siteId = null;
     AddApiKeyRequest addApiKeyRequest = null;
     AddApiKeyResponse response = api.addApiKey(siteId, addApiKeyRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Add Site
+   *
+   * Add Site
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addSiteTest() throws ApiException {
+    AddSiteRequest addSiteRequest = null;
+    AddResponse response = api.addSite(addSiteRequest);
     // TODO: test validations
   }
 
@@ -137,6 +159,35 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Get group and permissions belonging to site
+   *
+   * Returns details of a group and permissions belonging to site
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSiteGroupTest() throws ApiException {
+    String siteId = null;
+    String groupName = null;
+    GetSiteGroupResponse response = api.getSiteGroup(siteId, groupName);
+    // TODO: test validations
+  }
+
+  /**
+   * Get group(s) and permissions belonging to site
+   *
+   * Returns list of groups and permissions belonging to site
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSiteGroupsTest() throws ApiException {
+    String siteId = null;
+    GetSiteGroupsResponse response = api.getSiteGroups(siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Get site(s) access
    *
    * Returns the list of sites that the user has access to
@@ -178,6 +229,23 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Set Site&#39;s Group Permissions
+   *
+   * Set Site&#39;s Group Permissions
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setSiteGroupPermissionsTest() throws ApiException {
+    String siteId = null;
+    String groupName = null;
+    SetGroupPermissionsRequest setGroupPermissionsRequest = null;
+    SetResponse response =
+        api.setSiteGroupPermissions(siteId, groupName, setGroupPermissionsRequest);
+    // TODO: test validations
+  }
+
+  /**
    * Update site configuration
    *
    * Update the System Management configuration
@@ -190,6 +258,21 @@ public class SystemManagementApiTest {
     UpdateConfigurationRequest updateConfigurationRequest = null;
     UpdateConfigurationResponse response =
         api.updateConfiguration(siteId, updateConfigurationRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Update Site
+   *
+   * Update Site
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void updateSiteTest() throws ApiException {
+    String siteId = null;
+    UpdateSiteRequest updateSiteRequest = null;
+    UpdateResponse response = api.updateSite(siteId, updateSiteRequest);
     // TODO: test validations
   }
 

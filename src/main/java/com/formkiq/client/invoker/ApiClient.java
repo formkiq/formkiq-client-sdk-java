@@ -771,6 +771,30 @@ public class ApiClient {
   }
 
   /**
+   * Formats the specified free-form query parameters to a list of {@code Pair} objects.
+   *
+   * @param value The free-form query parameters.
+   * @return A list of {@code Pair} objects.
+   */
+  public List<Pair> freeFormParameterToPairs(Object value) {
+    List<Pair> params = new ArrayList<>();
+
+    // preconditions
+    if (value == null || !(value instanceof Map)) {
+      return params;
+    }
+
+    final Map<String, Object> valuesMap = (Map<String, Object>) value;
+
+    for (Map.Entry<String, Object> entry : valuesMap.entrySet()) {
+      params.add(new Pair(entry.getKey(), parameterToString(entry.getValue())));
+    }
+
+    return params;
+  }
+
+
+  /**
    * Formats the specified collection path parameter to a string value.
    *
    * @param collectionFormat The collection format of the parameter.
@@ -1211,10 +1235,6 @@ public class ApiClient {
       List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams,
       Map<String, String> cookieParams, Map<String, Object> formParams, String[] authNames,
       ApiCallback callback) throws ApiException {
-    // aggregate queryParams (non-collection) and collectionQueryParams into allQueryParams
-    List<Pair> allQueryParams = new ArrayList<Pair>(queryParams);
-    allQueryParams.addAll(collectionQueryParams);
-
     final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
 
     // prepare HTTP request body
@@ -1242,11 +1262,14 @@ public class ApiClient {
       reqBody = serialize(body, contentType);
     }
 
+    List<Pair> updatedQueryParams = new ArrayList<>(queryParams);
+
     // update parameters with authentication settings
-    updateParamsForAuth(authNames, allQueryParams, headerParams, cookieParams,
+    updateParamsForAuth(authNames, updatedQueryParams, headerParams, cookieParams,
         requestBodyToString(reqBody), method, URI.create(url));
 
-    final Request.Builder reqBuilder = new Request.Builder().url(url);
+    final Request.Builder reqBuilder = new Request.Builder()
+        .url(buildUrl(baseUrl, path, updatedQueryParams, collectionQueryParams));
     processHeaderParams(headerParams, reqBuilder);
     processCookieParams(cookieParams, reqBuilder);
 

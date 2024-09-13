@@ -173,4 +173,12 @@ public class AddActionParametersTest {
     // TODO: test mappingId
   }
 
+  /**
+   * Test the property 'eventBusName'
+   */
+  @Test
+  public void eventBusNameTest() {
+    // TODO: test eventBusName
+  }
+
 }

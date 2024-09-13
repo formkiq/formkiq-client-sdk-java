@@ -7,7 +7,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tagSchemaId** | **String** | Tag Schema Id |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**contentType** | **String** | Document media type |  [optional] |

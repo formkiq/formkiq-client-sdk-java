@@ -20,8 +20,8 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddEsignatureDocusignRequest;
-import com.formkiq.client.model.AddEsignatureDocusignResponse;
+import com.formkiq.client.model.AddDocusignRequest;
+import com.formkiq.client.model.AddDocusignResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -49,10 +49,10 @@ public class ESignatureApiTest {
   @Test
   public void addEsignatureDocusignTest() throws ApiException {
     String documentId = null;
-    AddEsignatureDocusignRequest addEsignatureDocusignRequest = null;
+    AddDocusignRequest addDocusignRequest = null;
     String siteId = null;
-    AddEsignatureDocusignResponse response =
-        api.addEsignatureDocusign(documentId, addEsignatureDocusignRequest, siteId);
+    AddDocusignResponse response =
+        api.addEsignatureDocusign(documentId, addDocusignRequest, siteId);
     // TODO: test validations
   }
 
@@ -65,7 +65,7 @@ public class ESignatureApiTest {
    */
   @Test
   public void addEsignatureDocusignEventsTest() throws ApiException {
-    AddEsignatureDocusignResponse response = api.addEsignatureDocusignEvents();
+    AddDocusignResponse response = api.addEsignatureDocusignEvents();
     // TODO: test validations
   }
 

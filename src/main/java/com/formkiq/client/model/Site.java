@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.SiteGroupPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -45,7 +46,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,12 +58,16 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
   private String siteId;
+
+  public static final String SERIALIZED_NAME_TITLE = "title";
+  @SerializedName(SERIALIZED_NAME_TITLE)
+  private String title;
 
   /**
    * SiteId permission level
@@ -122,66 +126,9 @@ public class Site {
   @SerializedName(SERIALIZED_NAME_PERMISSION)
   private PermissionEnum permission;
 
-  /**
-   * Gets or Sets permissions
-   */
-  @JsonAdapter(PermissionsEnum.Adapter.class)
-  public enum PermissionsEnum {
-    ADMIN("ADMIN"),
-
-    DELETE("DELETE"),
-
-    READ("READ"),
-
-    WRITE("WRITE");
-
-    private String value;
-
-    PermissionsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PermissionsEnum fromValue(String value) {
-      for (PermissionsEnum b : PermissionsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PermissionsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return PermissionsEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      PermissionsEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private List<PermissionsEnum> permissions = new ArrayList<>();
+  private List<SiteGroupPermissions> permissions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPLOAD_EMAIL = "uploadEmail";
   @SerializedName(SERIALIZED_NAME_UPLOAD_EMAIL)
@@ -209,6 +156,26 @@ public class Site {
   }
 
 
+  public Site title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * Site Title
+   * 
+   * @return title
+   */
+  @javax.annotation.Nullable
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+
   public Site permission(PermissionEnum permission) {
     this.permission = permission;
     return this;
@@ -229,12 +196,12 @@ public class Site {
   }
 
 
-  public Site permissions(List<PermissionsEnum> permissions) {
+  public Site permissions(List<SiteGroupPermissions> permissions) {
     this.permissions = permissions;
     return this;
   }
 
-  public Site addPermissionsItem(PermissionsEnum permissionsItem) {
+  public Site addPermissionsItem(SiteGroupPermissions permissionsItem) {
     if (this.permissions == null) {
       this.permissions = new ArrayList<>();
     }
@@ -243,16 +210,16 @@ public class Site {
   }
 
   /**
-   * List of caller permissions
+   * Get permissions
    * 
    * @return permissions
    */
   @javax.annotation.Nullable
-  public List<PermissionsEnum> getPermissions() {
+  public List<SiteGroupPermissions> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(List<PermissionsEnum> permissions) {
+  public void setPermissions(List<SiteGroupPermissions> permissions) {
     this.permissions = permissions;
   }
 
@@ -287,7 +254,7 @@ public class Site {
       return false;
     }
     Site site = (Site) o;
-    return Objects.equals(this.siteId, site.siteId)
+    return Objects.equals(this.siteId, site.siteId) && Objects.equals(this.title, site.title)
         && Objects.equals(this.permission, site.permission)
         && Objects.equals(this.permissions, site.permissions)
         && Objects.equals(this.uploadEmail, site.uploadEmail);
@@ -295,7 +262,7 @@ public class Site {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, permission, permissions, uploadEmail);
+    return Objects.hash(siteId, title, permission, permissions, uploadEmail);
   }
 
   @Override
@@ -303,6 +270,7 @@ public class Site {
     StringBuilder sb = new StringBuilder();
     sb.append("class Site {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
@@ -328,6 +296,7 @@ public class Site {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
+    openapiFields.add("title");
     openapiFields.add("permission");
     openapiFields.add("permissions");
     openapiFields.add("uploadEmail");
@@ -366,6 +335,12 @@ public class Site {
       throw new IllegalArgumentException(String.format(
           "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("siteId").toString()));
+    }
+    if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull())
+        && !jsonObj.get("title").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `title` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("title").toString()));
     }
     if ((jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull())
         && !jsonObj.get("permission").isJsonPrimitive()) {

@@ -23,6 +23,7 @@
 |**notificationHtml** | **String** | Html of the notification |  [optional] |
 |**tags** | **String** | DocumentTagging: Comma-deliminted list of keywords to generate tags for |  [optional] |
 |**mappingId** | **String** | Id of Mapping |  [optional] |
+|**eventBusName** | **String** | The name or ARN of the event bus to receive the event |  [optional] |
 
 
 

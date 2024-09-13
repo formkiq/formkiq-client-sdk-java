@@ -25,6 +25,7 @@ import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +51,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,20 +63,24 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   private String documentId;
 
-  public static final String SERIALIZED_NAME_TAG_SCHEMA_ID = "tagSchemaId";
-  @SerializedName(SERIALIZED_NAME_TAG_SCHEMA_ID)
-  private String tagSchemaId;
-
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   private String path;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
+
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  private String checksum;
 
   public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
@@ -136,26 +140,6 @@ public class AddDocumentRequest {
   }
 
 
-  public AddDocumentRequest tagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
-    return this;
-  }
-
-  /**
-   * Tag Schema Id
-   * 
-   * @return tagSchemaId
-   */
-  @javax.annotation.Nullable
-  public String getTagSchemaId() {
-    return tagSchemaId;
-  }
-
-  public void setTagSchemaId(String tagSchemaId) {
-    this.tagSchemaId = tagSchemaId;
-  }
-
-
   public AddDocumentRequest path(String path) {
     this.path = path;
     return this;
@@ -173,6 +157,46 @@ public class AddDocumentRequest {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+
+  public AddDocumentRequest checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+  }
+
+
+  public AddDocumentRequest checksum(String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * The checksum value to validate the file against
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(String checksum) {
+    this.checksum = checksum;
   }
 
 
@@ -407,8 +431,9 @@ public class AddDocumentRequest {
     }
     AddDocumentRequest addDocumentRequest = (AddDocumentRequest) o;
     return Objects.equals(this.documentId, addDocumentRequest.documentId)
-        && Objects.equals(this.tagSchemaId, addDocumentRequest.tagSchemaId)
         && Objects.equals(this.path, addDocumentRequest.path)
+        && Objects.equals(this.checksumType, addDocumentRequest.checksumType)
+        && Objects.equals(this.checksum, addDocumentRequest.checksum)
         && Objects.equals(this.deepLinkPath, addDocumentRequest.deepLinkPath)
         && Objects.equals(this.contentType, addDocumentRequest.contentType)
         && Objects.equals(this.isBase64, addDocumentRequest.isBase64)
@@ -422,8 +447,8 @@ public class AddDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, tagSchemaId, path, deepLinkPath, contentType, isBase64, content,
-        tags, metadata, actions, attributes, documents);
+    return Objects.hash(documentId, path, checksumType, checksum, deepLinkPath, contentType,
+        isBase64, content, tags, metadata, actions, attributes, documents);
   }
 
   @Override
@@ -431,8 +456,9 @@ public class AddDocumentRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentRequest {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
-    sb.append("    tagSchemaId: ").append(toIndentedString(tagSchemaId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
@@ -464,8 +490,9 @@ public class AddDocumentRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("documentId");
-    openapiFields.add("tagSchemaId");
     openapiFields.add("path");
+    openapiFields.add("checksumType");
+    openapiFields.add("checksum");
     openapiFields.add("deepLinkPath");
     openapiFields.add("contentType");
     openapiFields.add("isBase64");
@@ -522,17 +549,21 @@ public class AddDocumentRequest {
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
     }
-    if ((jsonObj.get("tagSchemaId") != null && !jsonObj.get("tagSchemaId").isJsonNull())
-        && !jsonObj.get("tagSchemaId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `tagSchemaId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("tagSchemaId").toString()));
-    }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
     }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {

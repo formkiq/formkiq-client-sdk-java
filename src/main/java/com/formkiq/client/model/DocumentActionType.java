@@ -53,7 +53,9 @@ public enum DocumentActionType {
 
   PUBLISH("PUBLISH"),
 
-  PDFEXPORT("PDFEXPORT");
+  PDFEXPORT("PDFEXPORT"),
+
+  EVENTBRIDGE("EVENTBRIDGE");
 
   private String value;
 

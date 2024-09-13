@@ -184,9 +184,9 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddDocumentWorkflowResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddEsignatureDocusignRequest.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddDocusignRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddEsignatureDocusignResponse.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddDocusignResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddFolderRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -236,11 +236,9 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddShare.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddTagSchemaRequest.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddSite.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddTagSchemaResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddTagSchemaTags.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.AddSiteRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddTask.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -368,17 +366,17 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocumentsCompressResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.DocusignCarbonCopy.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocusignConfig.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.DocusignRecipientTab.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.DocusignSigner.CustomTypeAdapterFactory());
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Error.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.ErrorsResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignCarbonCopy.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignRecipientTab.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.EsignatureDocusignSigner.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.FulltextAttribute.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -480,13 +478,13 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetRulesetsResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetSiteGroupResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.GetSiteGroupsResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetSitesResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetSitesSchemaResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.GetTagSchemaResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.GetTagSchemasResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.GetUserActivitesResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -622,6 +620,8 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetDocumentVersionResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SetGroupPermissionsRequest.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetMappingRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SetOpaAccessPolicyItemsRequest.CustomTypeAdapterFactory());
@@ -640,19 +640,9 @@ public class JSON {
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Site.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SiteGroup.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.StringFormat.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchema.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchemaCompositeKey.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchemaOptional.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchemaRequired.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchemaSummary.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.TagSchemaTags.CustomTypeAdapterFactory());
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Task.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -686,6 +676,8 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateNigoResponse.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRule.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRuleRequest.CustomTypeAdapterFactory());
@@ -697,6 +689,10 @@ public class JSON {
         new com.formkiq.client.model.UpdateRulesetRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateRulesetResponse.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateSite.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateSiteRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateTask.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -711,6 +707,8 @@ public class JSON {
         .registerTypeAdapterFactory(new com.formkiq.client.model.User.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UserActivity.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UserAttributes.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UserShare.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

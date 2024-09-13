@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addEsignatureDocusign"></a>
 # **addEsignatureDocusign**
-> AddEsignatureDocusignResponse addEsignatureDocusign(documentId, addEsignatureDocusignRequest, siteId)
+> AddDocusignResponse addEsignatureDocusign(documentId, addDocusignRequest, siteId)
 
 Create E-signature request
 
@@ -35,10 +35,10 @@ public class Example {
     
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    AddEsignatureDocusignRequest addEsignatureDocusignRequest = new AddEsignatureDocusignRequest(); // AddEsignatureDocusignRequest | 
+    AddDocusignRequest addDocusignRequest = new AddDocusignRequest(); // AddDocusignRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddEsignatureDocusignResponse result = apiInstance.addEsignatureDocusign(documentId, addEsignatureDocusignRequest, siteId);
+      AddDocusignResponse result = apiInstance.addEsignatureDocusign(documentId, addDocusignRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ESignatureApi#addEsignatureDocusign");
@@ -56,12 +56,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **addEsignatureDocusignRequest** | [**AddEsignatureDocusignRequest**](AddEsignatureDocusignRequest.md)|  | |
+| **addDocusignRequest** | [**AddDocusignRequest**](AddDocusignRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type
 
-[**AddEsignatureDocusignResponse**](AddEsignatureDocusignResponse.md)
+[**AddDocusignResponse**](AddDocusignResponse.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ No authorization required
 
 <a id="addEsignatureDocusignEvents"></a>
 # **addEsignatureDocusignEvents**
-> AddEsignatureDocusignResponse addEsignatureDocusignEvents()
+> AddDocusignResponse addEsignatureDocusignEvents()
 
 Add E-signature event
 
@@ -104,7 +104,7 @@ public class Example {
 
     ESignatureApi apiInstance = new ESignatureApi(defaultClient);
     try {
-      AddEsignatureDocusignResponse result = apiInstance.addEsignatureDocusignEvents();
+      AddDocusignResponse result = apiInstance.addEsignatureDocusignEvents();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ESignatureApi#addEsignatureDocusignEvents");
@@ -122,7 +122,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AddEsignatureDocusignResponse**](AddEsignatureDocusignResponse.md)
+[**AddDocusignResponse**](AddDocusignResponse.md)
 
 ### Authorization
 

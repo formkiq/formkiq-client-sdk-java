@@ -5,15 +5,20 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
+| [**addSite**](SystemManagementApi.md#addSite) | **POST** /sites | Add Site |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key |
 | [**deleteOpensearchIndex**](SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys |
 | [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration |
 | [**getOpensearchIndex**](SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
+| [**getSiteGroup**](SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site |
+| [**getSiteGroups**](SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
 | [**setOpensearchIndex**](SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings |
+| [**setSiteGroupPermissions**](SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions |
 | [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration |
+| [**updateSite**](SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site |
 
 
 <a id="addApiKey"></a>
@@ -82,6 +87,72 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="addSite"></a>
+# **addSite**
+> AddResponse addSite(addSiteRequest)
+
+Add Site
+
+Add Site
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    AddSiteRequest addSiteRequest = new AddSiteRequest(); // AddSiteRequest | 
+    try {
+      AddResponse result = apiInstance.addSite(addSiteRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#addSite");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addSiteRequest** | [**AddSiteRequest**](AddSiteRequest.md)|  | |
+
+### Return type
+
+[**AddResponse**](AddResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 
 <a id="deleteApiKey"></a>
 # **deleteApiKey**
@@ -410,6 +481,138 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getSiteGroup"></a>
+# **getSiteGroup**
+> GetSiteGroupResponse getSiteGroup(siteId, groupName)
+
+Get group and permissions belonging to site
+
+Returns details of a group and permissions belonging to site
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String groupName = "groupName_example"; // String | Group Name
+    try {
+      GetSiteGroupResponse result = apiInstance.getSiteGroup(siteId, groupName);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getSiteGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **groupName** | **String**| Group Name | |
+
+### Return type
+
+[**GetSiteGroupResponse**](GetSiteGroupResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getSiteGroups"></a>
+# **getSiteGroups**
+> GetSiteGroupsResponse getSiteGroups(siteId)
+
+Get group(s) and permissions belonging to site
+
+Returns list of groups and permissions belonging to site
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetSiteGroupsResponse result = apiInstance.getSiteGroups(siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getSiteGroups");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+
+### Return type
+
+[**GetSiteGroupsResponse**](GetSiteGroupsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getSites"></a>
 # **getSites**
 > GetSitesResponse getSites()
@@ -599,6 +802,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="setSiteGroupPermissions"></a>
+# **setSiteGroupPermissions**
+> SetResponse setSiteGroupPermissions(siteId, groupName, setGroupPermissionsRequest)
+
+Set Site&#39;s Group Permissions
+
+Set Site&#39;s Group Permissions
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String groupName = "groupName_example"; // String | Group Name
+    SetGroupPermissionsRequest setGroupPermissionsRequest = new SetGroupPermissionsRequest(); // SetGroupPermissionsRequest | 
+    try {
+      SetResponse result = apiInstance.setSiteGroupPermissions(siteId, groupName, setGroupPermissionsRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#setSiteGroupPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **groupName** | **String**| Group Name | |
+| **setGroupPermissionsRequest** | [**SetGroupPermissionsRequest**](SetGroupPermissionsRequest.md)|  | |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="updateConfiguration"></a>
 # **updateConfiguration**
 > UpdateConfigurationResponse updateConfiguration(siteId, updateConfigurationRequest)
@@ -666,4 +938,71 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 OK |  -  |
+
+<a id="updateSite"></a>
+# **updateSite**
+> UpdateResponse updateSite(siteId, updateSiteRequest)
+
+Update Site
+
+Update Site
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    UpdateSiteRequest updateSiteRequest = new UpdateSiteRequest(); // UpdateSiteRequest | 
+    try {
+      UpdateResponse result = apiInstance.updateSite(siteId, updateSiteRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#updateSite");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **updateSiteRequest** | [**UpdateSiteRequest**](UpdateSiteRequest.md)|  | |
+
+### Return type
+
+[**UpdateResponse**](UpdateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 

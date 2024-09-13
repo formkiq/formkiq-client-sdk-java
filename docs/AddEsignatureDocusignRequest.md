@@ -20,8 +20,8 @@
 
 | Name | Value |
 |---- | -----|
-| CREATED | &quot;created&quot; |
-| SENT | &quot;sent&quot; |
+| CREATED | &quot;CREATED&quot; |
+| SENT | &quot;SENT&quot; |
 
 
 

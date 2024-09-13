@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.ChildDocument;
 import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
@@ -47,7 +48,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-08-19T17:49:09.619199-04:00[America/New_York]",
-    comments = "Generator version: 7.7.0")
+    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.8.0")
 public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -86,6 +86,10 @@ public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
   @SerializedName(SERIALIZED_NAME_CHECKSUM)
   private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -238,6 +242,26 @@ public class GetDocumentResponse {
 
   public void setChecksum(String checksum) {
     this.checksum = checksum;
+  }
+
+
+  public GetDocumentResponse checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
   }
 
 
@@ -433,6 +457,7 @@ public class GetDocumentResponse {
         && Objects.equals(this.insertedDate, getDocumentResponse.insertedDate)
         && Objects.equals(this.lastModifiedDate, getDocumentResponse.lastModifiedDate)
         && Objects.equals(this.checksum, getDocumentResponse.checksum)
+        && Objects.equals(this.checksumType, getDocumentResponse.checksumType)
         && Objects.equals(this.documentId, getDocumentResponse.documentId)
         && Objects.equals(this.contentType, getDocumentResponse.contentType)
         && Objects.equals(this.userId, getDocumentResponse.userId)
@@ -446,8 +471,8 @@ public class GetDocumentResponse {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, checksum,
-        documentId, contentType, userId, contentLength, versionId, documents, belongsToDocumentId,
-        metadata);
+        checksumType, documentId, contentType, userId, contentLength, versionId, documents,
+        belongsToDocumentId, metadata);
   }
 
   @Override
@@ -460,6 +485,7 @@ public class GetDocumentResponse {
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
@@ -496,6 +522,7 @@ public class GetDocumentResponse {
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
     openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("documentId");
     openapiFields.add("contentType");
     openapiFields.add("userId");
@@ -580,6 +607,10 @@ public class GetDocumentResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if (!jsonObj.get("documentId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
