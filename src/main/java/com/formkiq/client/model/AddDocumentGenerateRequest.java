@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -27,7 +28,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,12 +59,12 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-13T15:19:27.358609-05:00[America/Winnipeg]",
+    date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
     comments = "Generator version: 7.8.0")
 public class AddDocumentGenerateRequest {
-  public static final String SERIALIZED_NAME_TEMPLATE_DOCUMENT_ID = "templateDocumentId";
-  @SerializedName(SERIALIZED_NAME_TEMPLATE_DOCUMENT_ID)
-  private String templateDocumentId;
+  public static final String SERIALIZED_NAME_DATASOURCES = "datasources";
+  @SerializedName(SERIALIZED_NAME_DATASOURCES)
+  private List<DocumentGenerateDataSource> datasources = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_OUTPUT_TYPE = "outputType";
   @SerializedName(SERIALIZED_NAME_OUTPUT_TYPE)
@@ -69,23 +72,31 @@ public class AddDocumentGenerateRequest {
 
   public AddDocumentGenerateRequest() {}
 
-  public AddDocumentGenerateRequest templateDocumentId(String templateDocumentId) {
-    this.templateDocumentId = templateDocumentId;
+  public AddDocumentGenerateRequest datasources(List<DocumentGenerateDataSource> datasources) {
+    this.datasources = datasources;
+    return this;
+  }
+
+  public AddDocumentGenerateRequest addDatasourcesItem(DocumentGenerateDataSource datasourcesItem) {
+    if (this.datasources == null) {
+      this.datasources = new ArrayList<>();
+    }
+    this.datasources.add(datasourcesItem);
     return this;
   }
 
   /**
-   * Document Identifier of the template to use
+   * List of data sources
    * 
-   * @return templateDocumentId
+   * @return datasources
    */
   @javax.annotation.Nullable
-  public String getTemplateDocumentId() {
-    return templateDocumentId;
+  public List<DocumentGenerateDataSource> getDatasources() {
+    return datasources;
   }
 
-  public void setTemplateDocumentId(String templateDocumentId) {
-    this.templateDocumentId = templateDocumentId;
+  public void setDatasources(List<DocumentGenerateDataSource> datasources) {
+    this.datasources = datasources;
   }
 
 
@@ -119,20 +130,20 @@ public class AddDocumentGenerateRequest {
       return false;
     }
     AddDocumentGenerateRequest addDocumentGenerateRequest = (AddDocumentGenerateRequest) o;
-    return Objects.equals(this.templateDocumentId, addDocumentGenerateRequest.templateDocumentId)
+    return Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
         && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateDocumentId, outputType);
+    return Objects.hash(datasources, outputType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentGenerateRequest {\n");
-    sb.append("    templateDocumentId: ").append(toIndentedString(templateDocumentId)).append("\n");
+    sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -155,7 +166,7 @@ public class AddDocumentGenerateRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("templateDocumentId");
+    openapiFields.add("datasources");
     openapiFields.add("outputType");
 
     // a set of required properties/fields (JSON key names)
@@ -188,12 +199,21 @@ public class AddDocumentGenerateRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("templateDocumentId") != null
-        && !jsonObj.get("templateDocumentId").isJsonNull())
-        && !jsonObj.get("templateDocumentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `templateDocumentId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("templateDocumentId").toString()));
+    if (jsonObj.get("datasources") != null && !jsonObj.get("datasources").isJsonNull()) {
+      JsonArray jsonArraydatasources = jsonObj.getAsJsonArray("datasources");
+      if (jsonArraydatasources != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("datasources").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `datasources` to be an array in the JSON string but got `%s`",
+              jsonObj.get("datasources").toString()));
+        }
+
+        // validate the optional field `datasources` (array)
+        for (int i = 0; i < jsonArraydatasources.size(); i++) {
+          DocumentGenerateDataSource.validateJsonElement(jsonArraydatasources.get(i));
+        } ;
+      }
     }
     // validate the optional field `outputType`
     if (jsonObj.get("outputType") != null && !jsonObj.get("outputType").isJsonNull()) {

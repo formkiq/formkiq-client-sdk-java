@@ -17,35 +17,46 @@
  */
 
 
-package com.formkiq.client.invoker.auth;
+package com.formkiq.client.model;
 
-import com.formkiq.client.invoker.Pair;
-import com.formkiq.client.invoker.ApiException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import java.net.URI;
-import java.util.Map;
-import java.util.List;
+/**
+ * Model tests for DocumentGenerateDataSource
+ */
+public class DocumentGenerateDataSourceTest {
+  private final DocumentGenerateDataSource model = new DocumentGenerateDataSource();
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
-public class OAuth implements Authentication {
-  private String accessToken;
-
-  public String getAccessToken() {
-    return accessToken;
+  /**
+   * Model tests for DocumentGenerateDataSource
+   */
+  @Test
+  public void testDocumentGenerateDataSource() {
+    // TODO: test DocumentGenerateDataSource
   }
 
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
+  /**
+   * Test the property 'name'
+   */
+  @Test
+  public void nameTest() {
+    // TODO: test name
   }
 
-  @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams,
-      Map<String, String> cookieParams, String payload, String method, URI uri)
-      throws ApiException {
-    if (accessToken != null) {
-      headerParams.put("Authorization", "Bearer " + accessToken);
-    }
+  /**
+   * Test the property 'documentId'
+   */
+  @Test
+  public void documentIdTest() {
+    // TODO: test documentId
   }
+
 }

@@ -26,9 +26,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,91 +52,59 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddWebhookTagRequest
+ * DocumentGenerateDataSource
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
     date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
     comments = "Generator version: 7.8.0")
-public class AddWebhookTagRequest {
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
+public class DocumentGenerateDataSource {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String SERIALIZED_NAME_VALUES = "values";
-  @SerializedName(SERIALIZED_NAME_VALUES)
-  private List<String> values = new ArrayList<>();
+  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
+  private String documentId;
 
-  public static final String SERIALIZED_NAME_KEY = "key";
-  @SerializedName(SERIALIZED_NAME_KEY)
-  private String key;
+  public DocumentGenerateDataSource() {}
 
-  public AddWebhookTagRequest() {}
-
-  public AddWebhookTagRequest value(String value) {
-    this.value = value;
+  public DocumentGenerateDataSource name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Tag value
+   * The data source name
    * 
-   * @return value
+   * @return name
    */
   @javax.annotation.Nullable
-  public String getValue() {
-    return value;
+  public String getName() {
+    return name;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
-  public AddWebhookTagRequest values(List<String> values) {
-    this.values = values;
-    return this;
-  }
-
-  public AddWebhookTagRequest addValuesItem(String valuesItem) {
-    if (this.values == null) {
-      this.values = new ArrayList<>();
-    }
-    this.values.add(valuesItem);
+  public DocumentGenerateDataSource documentId(String documentId) {
+    this.documentId = documentId;
     return this;
   }
 
   /**
-   * Tag values
+   * Document Identifier of the data source document
    * 
-   * @return values
+   * @return documentId
    */
-  @javax.annotation.Nullable
-  public List<String> getValues() {
-    return values;
+  @javax.annotation.Nonnull
+  public String getDocumentId() {
+    return documentId;
   }
 
-  public void setValues(List<String> values) {
-    this.values = values;
-  }
-
-
-  public AddWebhookTagRequest key(String key) {
-    this.key = key;
-    return this;
-  }
-
-  /**
-   * Tag key
-   * 
-   * @return key
-   */
-  @javax.annotation.Nullable
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
+  public void setDocumentId(String documentId) {
+    this.documentId = documentId;
   }
 
 
@@ -151,24 +117,22 @@ public class AddWebhookTagRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddWebhookTagRequest addWebhookTagRequest = (AddWebhookTagRequest) o;
-    return Objects.equals(this.value, addWebhookTagRequest.value)
-        && Objects.equals(this.values, addWebhookTagRequest.values)
-        && Objects.equals(this.key, addWebhookTagRequest.key);
+    DocumentGenerateDataSource documentGenerateDataSource = (DocumentGenerateDataSource) o;
+    return Objects.equals(this.name, documentGenerateDataSource.name)
+        && Objects.equals(this.documentId, documentGenerateDataSource.documentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, values, key);
+    return Objects.hash(name, documentId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddWebhookTagRequest {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    values: ").append(toIndentedString(values)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("class DocumentGenerateDataSource {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -190,58 +154,59 @@ public class AddWebhookTagRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
-    openapiFields.add("values");
-    openapiFields.add("key");
+    openapiFields.add("name");
+    openapiFields.add("documentId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("documentId");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddWebhookTagRequest
+   * @throws IOException if the JSON Element is invalid with respect to DocumentGenerateDataSource
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddWebhookTagRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                   // element is null
+      if (!DocumentGenerateDataSource.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                         // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddWebhookTagRequest is not found in the empty JSON string",
-            AddWebhookTagRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocumentGenerateDataSource is not found in the empty JSON string",
+            DocumentGenerateDataSource.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddWebhookTagRequest.openapiFields.contains(entry.getKey())) {
+      if (!DocumentGenerateDataSource.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddWebhookTagRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocumentGenerateDataSource` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : DocumentGenerateDataSource.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
-        && !jsonObj.get("value").isJsonPrimitive()) {
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("value").toString()));
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
     }
-    // ensure the optional json data is an array if present
-    if (jsonObj.get("values") != null && !jsonObj.get("values").isJsonNull()
-        && !jsonObj.get("values").isJsonArray()) {
+    if (!jsonObj.get("documentId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `values` to be an array in the JSON string but got `%s`",
-          jsonObj.get("values").toString()));
-    }
-    if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull())
-        && !jsonObj.get("key").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("key").toString()));
+          "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("documentId").toString()));
     }
   }
 
@@ -249,22 +214,22 @@ public class AddWebhookTagRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddWebhookTagRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddWebhookTagRequest' and its subtypes
+      if (!DocumentGenerateDataSource.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocumentGenerateDataSource' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddWebhookTagRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddWebhookTagRequest.class));
+      final TypeAdapter<DocumentGenerateDataSource> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocumentGenerateDataSource.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddWebhookTagRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocumentGenerateDataSource>() {
         @Override
-        public void write(JsonWriter out, AddWebhookTagRequest value) throws IOException {
+        public void write(JsonWriter out, DocumentGenerateDataSource value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddWebhookTagRequest read(JsonReader in) throws IOException {
+        public DocumentGenerateDataSource read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -275,18 +240,18 @@ public class AddWebhookTagRequest {
   }
 
   /**
-   * Create an instance of AddWebhookTagRequest given an JSON string
+   * Create an instance of DocumentGenerateDataSource given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddWebhookTagRequest
-   * @throws IOException if the JSON string is invalid with respect to AddWebhookTagRequest
+   * @return An instance of DocumentGenerateDataSource
+   * @throws IOException if the JSON string is invalid with respect to DocumentGenerateDataSource
    */
-  public static AddWebhookTagRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddWebhookTagRequest.class);
+  public static DocumentGenerateDataSource fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocumentGenerateDataSource.class);
   }
 
   /**
-   * Convert an instance of AddWebhookTagRequest to an JSON string
+   * Convert an instance of DocumentGenerateDataSource to an JSON string
    *
    * @return JSON string
    */

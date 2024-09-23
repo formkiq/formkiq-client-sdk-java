@@ -484,6 +484,7 @@ Class | Method | HTTP request | Description
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
  - [DocumentFulltextTag](docs/DocumentFulltextTag.md)
+ - [DocumentGenerateDataSource](docs/DocumentGenerateDataSource.md)
  - [DocumentGenerateOutputType](docs/DocumentGenerateOutputType.md)
  - [DocumentId](docs/DocumentId.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)

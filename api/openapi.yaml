@@ -15362,14 +15362,34 @@ components:
       type: object
     AddDocumentGenerateRequest:
       example:
-        templateDocumentId: templateDocumentId
+        datasources:
+        - name: name
+          documentId: documentId
+        - name: name
+          documentId: documentId
         outputType: DOCX
       properties:
-        templateDocumentId:
-          description: Document Identifier of the template to use
-          type: string
+        datasources:
+          description: List of data sources
+          items:
+            $ref: '#/components/schemas/DocumentGenerateDataSource'
+          type: array
         outputType:
           $ref: '#/components/schemas/DocumentGenerateOutputType'
+      type: object
+    DocumentGenerateDataSource:
+      example:
+        name: name
+        documentId: documentId
+      properties:
+        name:
+          description: The data source name
+          type: string
+        documentId:
+          description: Document Identifier of the data source document
+          type: string
+      required:
+      - documentId
       type: object
     DocumentGenerateOutputType:
       description: Document Generate Output Type

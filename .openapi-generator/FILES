@@ -135,6 +135,7 @@ docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
 docs/DocumentFulltextTag.md
+docs/DocumentGenerateDataSource.md
 docs/DocumentGenerateOutputType.md
 docs/DocumentGenerationApi.md
 docs/DocumentId.md
@@ -567,6 +568,7 @@ src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
 src/main/java/com/formkiq/client/model/DocumentFulltextTag.java
+src/main/java/com/formkiq/client/model/DocumentGenerateDataSource.java
 src/main/java/com/formkiq/client/model/DocumentGenerateOutputType.java
 src/main/java/com/formkiq/client/model/DocumentId.java
 src/main/java/com/formkiq/client/model/DocumentMetadata.java
@@ -945,6 +947,7 @@ src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextTagTest.java
+src/test/java/com/formkiq/client/model/DocumentGenerateDataSourceTest.java
 src/test/java/com/formkiq/client/model/DocumentGenerateOutputTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentMetadataTest.java

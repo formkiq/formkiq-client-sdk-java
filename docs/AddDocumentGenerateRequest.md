@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**templateDocumentId** | **String** | Document Identifier of the template to use |  [optional] |
+|**datasources** | [**List&lt;DocumentGenerateDataSource&gt;**](DocumentGenerateDataSource.md) | List of data sources |  [optional] |
 |**outputType** | **DocumentGenerateOutputType** |  |  [optional] |
 
 

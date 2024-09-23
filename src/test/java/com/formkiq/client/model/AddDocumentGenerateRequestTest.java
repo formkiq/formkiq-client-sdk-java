@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -26,7 +27,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -45,11 +48,11 @@ public class AddDocumentGenerateRequestTest {
   }
 
   /**
-   * Test the property 'templateDocumentId'
+   * Test the property 'datasources'
    */
   @Test
-  public void templateDocumentIdTest() {
-    // TODO: test templateDocumentId
+  public void datasourcesTest() {
+    // TODO: test datasources
   }
 
   /**
