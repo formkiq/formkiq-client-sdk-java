@@ -1628,7 +1628,11 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: "Update a document's details, i.e., metadata"
+      description: |-
+        Update a document's details, i.e., metadata
+
+        NOTE:
+        - provided attributes will overwrite existing matching attribute keys in the document. Attributes not included in the request body will remain unchanged.
       operationId: UpdateDocument
       parameters:
       - description: Site Identifier
@@ -1896,8 +1900,11 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Set multiple attributes to a document; this endpoint also accepts
-        a different body parameter for setting a single attribute
+      description: |-
+        Set multiple attributes to a document; this endpoint also accepts a different body parameter for setting a single attribute
+
+        Note:
+        - attributes in the request will overwrite existing attributes.
       operationId: SetDocumentAttributes
       parameters:
       - description: Site Identifier
@@ -9671,8 +9678,12 @@ paths:
       - application/json
   /documents/{documentId}/generate:
     post:
-      description: Generates a document based from a template file; ONLY available
-        with FormKiQ Enterprise
+      description: |-
+        Generates a new document using a specified template file and data sources. This operation allows users to merge data from multiple documents into a template to create a new document in the desired output format (e.g., DOCX).
+
+        By Default data source must include a `data` object, which contains key-value pairs that will be merged into the template. The value can be any valid JSON object. { "data":{}}. The data path can be adjusted via the "dataRoot" field.
+
+        ; ONLY available with FormKiQ Enterprise
       operationId: AddDocumentGenerate
       parameters:
       - description: Site Identifier
@@ -11628,7 +11639,6 @@ components:
         stringValues:
         - stringValues
         - stringValues
-        insertedDate: insertedDate
         valueType: BOOLEAN
         booleanValue: true
       properties:
@@ -11647,9 +11657,6 @@ components:
           type: boolean
         valueType:
           $ref: '#/components/schemas/AttributeValueType'
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
     DocumentSearchMeta:
       example:
         path: path
@@ -13422,7 +13429,6 @@ components:
               stringValues:
               - stringValues
               - stringValues
-              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
@@ -13476,7 +13482,6 @@ components:
               stringValues:
               - stringValues
               - stringValues
-              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
@@ -13820,7 +13825,6 @@ components:
               stringValues:
               - stringValues
               - stringValues
-              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
@@ -13874,7 +13878,6 @@ components:
               stringValues:
               - stringValues
               - stringValues
-              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
@@ -13943,7 +13946,6 @@ components:
             stringValues:
             - stringValues
             - stringValues
-            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -15365,8 +15367,10 @@ components:
         datasources:
         - name: name
           documentId: documentId
+          dataRoot: data
         - name: name
           documentId: documentId
+          dataRoot: data
         outputType: DOCX
       properties:
         datasources:
@@ -15381,12 +15385,17 @@ components:
       example:
         name: name
         documentId: documentId
+        dataRoot: data
       properties:
         name:
           description: The data source name
           type: string
         documentId:
           description: Document Identifier of the data source document
+          type: string
+        dataRoot:
+          default: data
+          description: The default JSON object path for the data object
           type: string
       required:
       - documentId
@@ -16815,6 +16824,7 @@ components:
             - READ
             - WRITE
             - DELETE
+            - GOVERN
             type: string
           type: array
       type: object
@@ -17389,6 +17399,7 @@ components:
             - READ
             - WRITE
             - DELETE
+            - GOVERN
             type: string
           type: array
       type: object
@@ -18850,6 +18861,7 @@ components:
       - DELETE
       - READ
       - WRITE
+      - GOVERN
       type: string
     AddClassificationRequest:
       example:

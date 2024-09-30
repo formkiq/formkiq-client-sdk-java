@@ -19,6 +19,7 @@
 | READ | &quot;READ&quot; |
 | WRITE | &quot;WRITE&quot; |
 | DELETE | &quot;DELETE&quot; |
+| GOVERN | &quot;GOVERN&quot; |
 
 
 

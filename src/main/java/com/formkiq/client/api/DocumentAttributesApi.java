@@ -1662,7 +1662,8 @@ public class DocumentAttributesApi {
 
   /**
    * Set document&#39;s attributes Set multiple attributes to a document; this endpoint also accepts
-   * a different body parameter for setting a single attribute
+   * a different body parameter for setting a single attribute Note: - attributes in the request
+   * will overwrite existing attributes.
    * 
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
@@ -1697,7 +1698,8 @@ public class DocumentAttributesApi {
 
   /**
    * Set document&#39;s attributes Set multiple attributes to a document; this endpoint also accepts
-   * a different body parameter for setting a single attribute
+   * a different body parameter for setting a single attribute Note: - attributes in the request
+   * will overwrite existing attributes.
    * 
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
@@ -1733,7 +1735,8 @@ public class DocumentAttributesApi {
 
   /**
    * Set document&#39;s attributes (asynchronously) Set multiple attributes to a document; this
-   * endpoint also accepts a different body parameter for setting a single attribute
+   * endpoint also accepts a different body parameter for setting a single attribute Note: -
+   * attributes in the request will overwrite existing attributes.
    * 
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)

@@ -59,4 +59,12 @@ public class DocumentGenerateDataSourceTest {
     // TODO: test documentId
   }
 
+  /**
+   * Test the property 'dataRoot'
+   */
+  @Test
+  public void dataRootTest() {
+    // TODO: test dataRoot
+  }
+
 }

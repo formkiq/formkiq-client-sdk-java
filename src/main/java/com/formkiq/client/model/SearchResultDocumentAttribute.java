@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
+    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
     comments = "Generator version: 7.8.0")
 public class SearchResultDocumentAttribute {
   public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
@@ -77,10 +77,6 @@ public class SearchResultDocumentAttribute {
   public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
   @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
   private AttributeValueType valueType;
-
-  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
-  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
-  private String insertedDate;
 
   public SearchResultDocumentAttribute() {}
 
@@ -180,26 +176,6 @@ public class SearchResultDocumentAttribute {
   }
 
 
-  public SearchResultDocumentAttribute insertedDate(String insertedDate) {
-    this.insertedDate = insertedDate;
-    return this;
-  }
-
-  /**
-   * Inserted Timestamp
-   * 
-   * @return insertedDate
-   */
-  @javax.annotation.Nullable
-  public String getInsertedDate() {
-    return insertedDate;
-  }
-
-  public void setInsertedDate(String insertedDate) {
-    this.insertedDate = insertedDate;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -213,13 +189,12 @@ public class SearchResultDocumentAttribute {
     return Objects.equals(this.stringValues, searchResultDocumentAttribute.stringValues)
         && Objects.equals(this.numberValues, searchResultDocumentAttribute.numberValues)
         && Objects.equals(this.booleanValue, searchResultDocumentAttribute.booleanValue)
-        && Objects.equals(this.valueType, searchResultDocumentAttribute.valueType)
-        && Objects.equals(this.insertedDate, searchResultDocumentAttribute.insertedDate);
+        && Objects.equals(this.valueType, searchResultDocumentAttribute.valueType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stringValues, numberValues, booleanValue, valueType, insertedDate);
+    return Objects.hash(stringValues, numberValues, booleanValue, valueType);
   }
 
   @Override
@@ -230,7 +205,6 @@ public class SearchResultDocumentAttribute {
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
-    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -256,7 +230,6 @@ public class SearchResultDocumentAttribute {
     openapiFields.add("numberValues");
     openapiFields.add("booleanValue");
     openapiFields.add("valueType");
-    openapiFields.add("insertedDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -307,12 +280,6 @@ public class SearchResultDocumentAttribute {
     // validate the optional field `valueType`
     if (jsonObj.get("valueType") != null && !jsonObj.get("valueType").isJsonNull()) {
       AttributeValueType.validateJsonElement(jsonObj.get("valueType"));
-    }
-    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
-        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("insertedDate").toString()));
     }
   }
 

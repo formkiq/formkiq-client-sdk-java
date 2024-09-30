@@ -1025,7 +1025,7 @@ No authorization required
 
 Update document
 
-Update a document&#39;s details, i.e., metadata
+Update a document&#39;s details, i.e., metadata  NOTE: - provided attributes will overwrite existing matching attribute keys in the document. Attributes not included in the request body will remain unchanged.
 
 ### Example
 ```java

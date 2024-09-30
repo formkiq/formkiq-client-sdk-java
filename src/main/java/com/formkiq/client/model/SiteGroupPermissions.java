@@ -41,7 +41,9 @@ public enum SiteGroupPermissions {
 
   READ("READ"),
 
-  WRITE("WRITE");
+  WRITE("WRITE"),
+
+  GOVERN("GOVERN");
 
   private String value;
 

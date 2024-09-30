@@ -3162,7 +3162,9 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document Update a document&#39;s details, i.e., metadata
+   * Update document Update a document&#39;s details, i.e., metadata NOTE: - provided attributes
+   * will overwrite existing matching attribute keys in the document. Attributes not included in the
+   * request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
@@ -3202,7 +3204,9 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document Update a document&#39;s details, i.e., metadata
+   * Update document Update a document&#39;s details, i.e., metadata NOTE: - provided attributes
+   * will overwrite existing matching attribute keys in the document. Attributes not included in the
+   * request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
@@ -3243,7 +3247,9 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document (asynchronously) Update a document&#39;s details, i.e., metadata
+   * Update document (asynchronously) Update a document&#39;s details, i.e., metadata NOTE: -
+   * provided attributes will overwrite existing matching attribute keys in the document. Attributes
+   * not included in the request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)

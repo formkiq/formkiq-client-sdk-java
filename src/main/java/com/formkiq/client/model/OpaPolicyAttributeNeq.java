@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
  * Attribute not equal to criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
+    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
     comments = "Generator version: 7.8.0")
 public class OpaPolicyAttributeNeq {
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";

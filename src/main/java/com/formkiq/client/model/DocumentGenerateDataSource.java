@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentGenerateDataSource
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-20T20:52:06.379355-05:00[America/Winnipeg]",
+    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
     comments = "Generator version: 7.8.0")
 public class DocumentGenerateDataSource {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -65,6 +65,10 @@ public class DocumentGenerateDataSource {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   private String documentId;
+
+  public static final String SERIALIZED_NAME_DATA_ROOT = "dataRoot";
+  @SerializedName(SERIALIZED_NAME_DATA_ROOT)
+  private String dataRoot = "data";
 
   public DocumentGenerateDataSource() {}
 
@@ -108,6 +112,26 @@ public class DocumentGenerateDataSource {
   }
 
 
+  public DocumentGenerateDataSource dataRoot(String dataRoot) {
+    this.dataRoot = dataRoot;
+    return this;
+  }
+
+  /**
+   * The default JSON object path for the data object
+   * 
+   * @return dataRoot
+   */
+  @javax.annotation.Nullable
+  public String getDataRoot() {
+    return dataRoot;
+  }
+
+  public void setDataRoot(String dataRoot) {
+    this.dataRoot = dataRoot;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -119,12 +143,13 @@ public class DocumentGenerateDataSource {
     }
     DocumentGenerateDataSource documentGenerateDataSource = (DocumentGenerateDataSource) o;
     return Objects.equals(this.name, documentGenerateDataSource.name)
-        && Objects.equals(this.documentId, documentGenerateDataSource.documentId);
+        && Objects.equals(this.documentId, documentGenerateDataSource.documentId)
+        && Objects.equals(this.dataRoot, documentGenerateDataSource.dataRoot);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, documentId);
+    return Objects.hash(name, documentId, dataRoot);
   }
 
   @Override
@@ -133,6 +158,7 @@ public class DocumentGenerateDataSource {
     sb.append("class DocumentGenerateDataSource {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    dataRoot: ").append(toIndentedString(dataRoot)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,6 +182,7 @@ public class DocumentGenerateDataSource {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("documentId");
+    openapiFields.add("dataRoot");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -207,6 +234,12 @@ public class DocumentGenerateDataSource {
       throw new IllegalArgumentException(String.format(
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("dataRoot") != null && !jsonObj.get("dataRoot").isJsonNull())
+        && !jsonObj.get("dataRoot").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `dataRoot` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dataRoot").toString()));
     }
   }
 

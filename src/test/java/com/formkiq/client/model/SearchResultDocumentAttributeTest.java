@@ -79,12 +79,4 @@ public class SearchResultDocumentAttributeTest {
     // TODO: test valueType
   }
 
-  /**
-   * Test the property 'insertedDate'
-   */
-  @Test
-  public void insertedDateTest() {
-    // TODO: test insertedDate
-  }
-
 }

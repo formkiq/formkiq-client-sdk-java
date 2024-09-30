@@ -42,7 +42,12 @@ public class DocumentGenerationApiTest {
   /**
    * Add Document Generate
    *
-   * Generates a document based from a template file; ONLY available with FormKiQ Enterprise
+   * Generates a new document using a specified template file and data sources. This operation
+   * allows users to merge data from multiple documents into a template to create a new document in
+   * the desired output format (e.g., DOCX). By Default data source must include a &#x60;data&#x60;
+   * object, which contains key-value pairs that will be merged into the template. The value can be
+   * any valid JSON object. { \&quot;data\&quot;:{}}. The data path can be adjusted via the
+   * \&quot;dataRoot\&quot; field. ; ONLY available with FormKiQ Enterprise
    *
    * @throws ApiException if the Api call fails
    */
