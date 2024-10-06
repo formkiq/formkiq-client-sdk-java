@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,35 +45,11 @@ public class DocumentVersionTest {
   }
 
   /**
-   * Test the property 'path'
-   */
-  @Test
-  public void pathTest() {
-    // TODO: test path
-  }
-
-  /**
-   * Test the property 'deepLinkPath'
-   */
-  @Test
-  public void deepLinkPathTest() {
-    // TODO: test deepLinkPath
-  }
-
-  /**
    * Test the property 'insertedDate'
    */
   @Test
   public void insertedDateTest() {
     // TODO: test insertedDate
-  }
-
-  /**
-   * Test the property 'lastModifiedDate'
-   */
-  @Test
-  public void lastModifiedDateTest() {
-    // TODO: test lastModifiedDate
   }
 
   /**
@@ -84,11 +61,11 @@ public class DocumentVersionTest {
   }
 
   /**
-   * Test the property 'documentId'
+   * Test the property 'checksumType'
    */
   @Test
-  public void documentIdTest() {
-    // TODO: test documentId
+  public void checksumTypeTest() {
+    // TODO: test checksumType
   }
 
   /**
@@ -113,14 +90,6 @@ public class DocumentVersionTest {
   @Test
   public void contentLengthTest() {
     // TODO: test contentLength
-  }
-
-  /**
-   * Test the property 'version'
-   */
-  @Test
-  public void versionTest() {
-    // TODO: test version
   }
 
   /**

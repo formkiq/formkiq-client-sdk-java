@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.DocumentMetadata;
 import com.formkiq.client.model.DocumentSearchMatchAttribute;
 import com.formkiq.client.model.DocumentSearchMatchTag;
@@ -63,7 +64,7 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
+    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
     comments = "Generator version: 7.8.0")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -97,6 +98,10 @@ public class SearchResultDocument {
   public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
   @SerializedName(SERIALIZED_NAME_CHECKSUM)
   private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -305,6 +310,26 @@ public class SearchResultDocument {
 
   public void setChecksum(String checksum) {
     this.checksum = checksum;
+  }
+
+
+  public SearchResultDocument checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
   }
 
 
@@ -599,6 +624,7 @@ public class SearchResultDocument {
         && Objects.equals(this.folder, searchResultDocument.folder)
         && Objects.equals(this.indexKey, searchResultDocument.indexKey)
         && Objects.equals(this.checksum, searchResultDocument.checksum)
+        && Objects.equals(this.checksumType, searchResultDocument.checksumType)
         && Objects.equals(this.documentId, searchResultDocument.documentId)
         && Objects.equals(this.contentType, searchResultDocument.contentType)
         && Objects.equals(this.userId, searchResultDocument.userId)
@@ -616,7 +642,7 @@ public class SearchResultDocument {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, folder,
-        indexKey, checksum, documentId, contentType, userId, contentLength, versionId,
+        indexKey, checksum, checksumType, documentId, contentType, userId, contentLength, versionId,
         belongsToDocumentId, matchedAttribute, matchedTag, matchedTags, tags, attributes, metadata);
   }
 
@@ -632,6 +658,7 @@ public class SearchResultDocument {
     sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
     sb.append("    indexKey: ").append(toIndentedString(indexKey)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
@@ -674,6 +701,7 @@ public class SearchResultDocument {
     openapiFields.add("folder");
     openapiFields.add("indexKey");
     openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("documentId");
     openapiFields.add("contentType");
     openapiFields.add("userId");
@@ -758,6 +786,10 @@ public class SearchResultDocument {
       throw new IllegalArgumentException(String.format(
           "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
         && !jsonObj.get("documentId").isJsonPrimitive()) {

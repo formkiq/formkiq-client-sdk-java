@@ -35,7 +35,15 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(UserActivityType.Adapter.class)
 public enum UserActivityType {
 
-  VIEW("VIEW");
+  VIEW("VIEW"),
+
+  CREATE("CREATE"),
+
+  UPDATE("UPDATE"),
+
+  DELETE("DELETE"),
+
+  SOFT_DELETE("SOFT_DELETE");
 
   private String value;
 

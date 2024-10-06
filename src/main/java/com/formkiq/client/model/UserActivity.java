@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.Document;
 import com.formkiq.client.model.UserActivityType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -56,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
+    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
     comments = "Generator version: 7.8.0")
 public class UserActivity {
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
@@ -82,6 +83,10 @@ public class UserActivity {
   public static final String SERIALIZED_NAME_TIME_TO_LIVE = "timeToLive";
   @SerializedName(SERIALIZED_NAME_TIME_TO_LIVE)
   private String timeToLive;
+
+  public static final String SERIALIZED_NAME_DOCUMENT = "document";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT)
+  private Document document;
 
   public UserActivity() {}
 
@@ -205,6 +210,26 @@ public class UserActivity {
   }
 
 
+  public UserActivity document(Document document) {
+    this.document = document;
+    return this;
+  }
+
+  /**
+   * Get document
+   * 
+   * @return document
+   */
+  @javax.annotation.Nullable
+  public Document getDocument() {
+    return document;
+  }
+
+  public void setDocument(Document document) {
+    this.document = document;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -220,12 +245,13 @@ public class UserActivity {
         && Objects.equals(this.insertedDate, userActivity.insertedDate)
         && Objects.equals(this.userId, userActivity.userId)
         && Objects.equals(this.versionKey, userActivity.versionKey)
-        && Objects.equals(this.timeToLive, userActivity.timeToLive);
+        && Objects.equals(this.timeToLive, userActivity.timeToLive)
+        && Objects.equals(this.document, userActivity.document);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityId, type, insertedDate, userId, versionKey, timeToLive);
+    return Objects.hash(activityId, type, insertedDate, userId, versionKey, timeToLive, document);
   }
 
   @Override
@@ -238,6 +264,7 @@ public class UserActivity {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
     sb.append("    timeToLive: ").append(toIndentedString(timeToLive)).append("\n");
+    sb.append("    document: ").append(toIndentedString(document)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,6 +292,7 @@ public class UserActivity {
     openapiFields.add("userId");
     openapiFields.add("versionKey");
     openapiFields.add("timeToLive");
+    openapiFields.add("document");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -329,6 +357,10 @@ public class UserActivity {
       throw new IllegalArgumentException(String.format(
           "Expected the field `timeToLive` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("timeToLive").toString()));
+    }
+    // validate the optional field `document`
+    if (jsonObj.get("document") != null && !jsonObj.get("document").isJsonNull()) {
+      Document.validateJsonElement(jsonObj.get("document"));
     }
   }
 

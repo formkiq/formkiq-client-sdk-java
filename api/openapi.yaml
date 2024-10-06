@@ -1526,7 +1526,16 @@ paths:
       - application/json
   /documents/{documentId}:
     delete:
-      description: Delete a document
+      description: |-
+        Delete a document's details, i.e., metadata, contents, etc
+
+        SoftDelete:
+
+        The SoftDelete parameter allows for the temporary removal of a document's metadata, attributes, etc from being retrieved from all API requests.
+
+        The document can be permanently deleted by calling the DELETE /documents/{documentId} with softDelete=false or restored using the PUT /documents/{documentId}/restore.
+
+        Only the GET /documents?deleted=true will return all the soft deleted documents.
       operationId: DeleteDocument
       parameters:
       - description: Site Identifier
@@ -10504,29 +10513,21 @@ components:
       example:
         next: next
         documents:
-        - path: path
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
-          lastModifiedDate: lastModifiedDate
+        - insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
-          documentId: documentId
+          checksumType: SHA1
           contentLength: 0
           contentType: contentType
           userId: userId
-          version: version
           versionKey: versionKey
-        - path: path
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
-          lastModifiedDate: lastModifiedDate
+        - insertedDate: insertedDate
           s3version: s3version
           checksum: checksum
-          documentId: documentId
+          checksumType: SHA1
           contentLength: 0
           contentType: contentType
           userId: userId
-          version: version
           versionKey: versionKey
       properties:
         next:
@@ -12808,37 +12809,23 @@ components:
       type: object
     DocumentVersion:
       example:
-        path: path
-        deepLinkPath: deepLinkPath
         insertedDate: insertedDate
-        lastModifiedDate: lastModifiedDate
         s3version: s3version
         checksum: checksum
-        documentId: documentId
+        checksumType: SHA1
         contentLength: 0
         contentType: contentType
         userId: userId
-        version: version
         versionKey: versionKey
       properties:
-        path:
-          description: Path or Name of document
-          type: string
-        deepLinkPath:
-          description: Path or Name of deep link
-          type: string
         insertedDate:
           description: Inserted Timestamp
-          type: string
-        lastModifiedDate:
-          description: Last Modified Timestamp
           type: string
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
-        documentId:
-          description: Document Identifier
-          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         contentType:
           description: Document Content-Type
           type: string
@@ -12848,9 +12835,6 @@ components:
         contentLength:
           description: Document size
           type: integer
-        version:
-          description: Document version
-          type: string
         versionKey:
           description: Document Version Identifier
           type: string
@@ -13323,12 +13307,66 @@ components:
         - activityId: activityId
           timeToLive: timeToLive
           insertedDate: insertedDate
+          document:
+            metadata:
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            deepLinkPath: deepLinkPath
+            lastModifiedDate: lastModifiedDate
+            belongsToDocumentId: belongsToDocumentId
+            userId: userId
+            version: version
+            versionKey: versionKey
+            path: path
+            insertedDate: insertedDate
+            s3version: s3version
+            checksum: checksum
+            checksumType: SHA1
+            siteId: siteId
+            documentId: documentId
+            contentLength: 0
+            contentType: contentType
           type: VIEW
           userId: userId
           versionKey: versionKey
         - activityId: activityId
           timeToLive: timeToLive
           insertedDate: insertedDate
+          document:
+            metadata:
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            - values:
+              - values
+              - values
+              value: value
+              key: key
+            deepLinkPath: deepLinkPath
+            lastModifiedDate: lastModifiedDate
+            belongsToDocumentId: belongsToDocumentId
+            userId: userId
+            version: version
+            versionKey: versionKey
+            path: path
+            insertedDate: insertedDate
+            s3version: s3version
+            checksum: checksum
+            checksumType: SHA1
+            siteId: siteId
+            documentId: documentId
+            contentLength: 0
+            contentType: contentType
           type: VIEW
           userId: userId
           versionKey: versionKey
@@ -13346,12 +13384,43 @@ components:
       description: The type of the activity
       enum:
       - VIEW
+      - CREATE
+      - UPDATE
+      - DELETE
+      - SOFT_DELETE
       type: string
     UserActivity:
       example:
         activityId: activityId
         timeToLive: timeToLive
         insertedDate: insertedDate
+        document:
+          metadata:
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          - values:
+            - values
+            - values
+            value: value
+            key: key
+          deepLinkPath: deepLinkPath
+          lastModifiedDate: lastModifiedDate
+          belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          version: version
+          versionKey: versionKey
+          path: path
+          insertedDate: insertedDate
+          s3version: s3version
+          checksum: checksum
+          checksumType: SHA1
+          siteId: siteId
+          documentId: documentId
+          contentLength: 0
+          contentType: contentType
         type: VIEW
         userId: userId
         versionKey: versionKey
@@ -13373,6 +13442,8 @@ components:
         timeToLive:
           description: User activity time to live
           type: string
+        document:
+          $ref: '#/components/schemas/Document'
       type: object
     GetFoldersResponse:
       example:
@@ -13417,6 +13488,7 @@ components:
           folder: true
           insertedDate: insertedDate
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
@@ -13470,6 +13542,7 @@ components:
           folder: true
           insertedDate: insertedDate
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
@@ -13813,6 +13886,7 @@ components:
           folder: true
           insertedDate: insertedDate
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
@@ -13866,6 +13940,7 @@ components:
           folder: true
           insertedDate: insertedDate
           checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
@@ -13934,6 +14009,7 @@ components:
         folder: true
         insertedDate: insertedDate
         checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         indexKey: indexKey
         documentId: documentId
@@ -13974,6 +14050,8 @@ components:
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         documentId:
           description: Document Identifier
           type: string

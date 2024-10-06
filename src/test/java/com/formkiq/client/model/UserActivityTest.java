@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.Document;
 import com.formkiq.client.model.UserActivityType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -90,6 +91,14 @@ public class UserActivityTest {
   @Test
   public void timeToLiveTest() {
     // TODO: test timeToLive
+  }
+
+  /**
+   * Test the property 'document'
+   */
+  @Test
+  public void documentTest() {
+    // TODO: test document
   }
 
 }

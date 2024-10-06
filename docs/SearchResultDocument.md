@@ -15,6 +15,7 @@
 |**folder** | **Boolean** | Is Result a Document Folder |  [optional] |
 |**indexKey** | **String** | populated if search result are from an index |  [optional] |
 |**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |
 |**contentType** | **String** | Document Content-Type |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |

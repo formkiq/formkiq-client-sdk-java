@@ -825,7 +825,12 @@ public class DocumentsApi {
   }
 
   /**
-   * Delete document Delete a document
+   * Delete document Delete a document&#39;s details, i.e., metadata, contents, etc SoftDelete: The
+   * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
+   * etc from being retrieved from all API requests. The document can be permanently deleted by
+   * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
+   * /documents/{documentId}/restore. Only the GET /documents?deleted&#x3D;true will return all the
+   * soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -858,7 +863,12 @@ public class DocumentsApi {
   }
 
   /**
-   * Delete document Delete a document
+   * Delete document Delete a document&#39;s details, i.e., metadata, contents, etc SoftDelete: The
+   * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
+   * etc from being retrieved from all API requests. The document can be permanently deleted by
+   * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
+   * /documents/{documentId}/restore. Only the GET /documents?deleted&#x3D;true will return all the
+   * soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -892,7 +902,12 @@ public class DocumentsApi {
   }
 
   /**
-   * Delete document (asynchronously) Delete a document
+   * Delete document (asynchronously) Delete a document&#39;s details, i.e., metadata, contents, etc
+   * SoftDelete: The SoftDelete parameter allows for the temporary removal of a document&#39;s
+   * metadata, attributes, etc from being retrieved from all API requests. The document can be
+   * permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or
+   * restored using the PUT /documents/{documentId}/restore. Only the GET
+   * /documents?deleted&#x3D;true will return all the soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)

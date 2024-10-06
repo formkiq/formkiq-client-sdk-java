@@ -13,6 +13,7 @@
 |**userId** | **String** | User who added document |  [optional] |
 |**versionKey** | **String** | Document Version Identifier |  [optional] |
 |**timeToLive** | **String** | User activity time to live |  [optional] |
+|**document** | [**Document**](Document.md) |  |  [optional] |
 
 
 

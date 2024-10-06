@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,32 +56,20 @@ import com.formkiq.client.invoker.JSON;
  * DocumentVersion
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-09-30T12:37:05.696833-05:00[America/Chicago]",
+    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
     comments = "Generator version: 7.8.0")
 public class DocumentVersion {
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
-  private String path;
-
-  public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
-  @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
-  private String deepLinkPath;
-
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
   private String insertedDate;
-
-  public static final String SERIALIZED_NAME_LAST_MODIFIED_DATE = "lastModifiedDate";
-  @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
-  private String lastModifiedDate;
 
   public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
   @SerializedName(SERIALIZED_NAME_CHECKSUM)
   private String checksum;
 
-  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
-  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
-  private String documentId;
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -94,10 +83,6 @@ public class DocumentVersion {
   @SerializedName(SERIALIZED_NAME_CONTENT_LENGTH)
   private Integer contentLength;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private String version;
-
   public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
   @SerializedName(SERIALIZED_NAME_VERSION_KEY)
   private String versionKey;
@@ -107,46 +92,6 @@ public class DocumentVersion {
   private String s3version;
 
   public DocumentVersion() {}
-
-  public DocumentVersion path(String path) {
-    this.path = path;
-    return this;
-  }
-
-  /**
-   * Path or Name of document
-   * 
-   * @return path
-   */
-  @javax.annotation.Nullable
-  public String getPath() {
-    return path;
-  }
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
-  public DocumentVersion deepLinkPath(String deepLinkPath) {
-    this.deepLinkPath = deepLinkPath;
-    return this;
-  }
-
-  /**
-   * Path or Name of deep link
-   * 
-   * @return deepLinkPath
-   */
-  @javax.annotation.Nullable
-  public String getDeepLinkPath() {
-    return deepLinkPath;
-  }
-
-  public void setDeepLinkPath(String deepLinkPath) {
-    this.deepLinkPath = deepLinkPath;
-  }
-
 
   public DocumentVersion insertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
@@ -165,26 +110,6 @@ public class DocumentVersion {
 
   public void setInsertedDate(String insertedDate) {
     this.insertedDate = insertedDate;
-  }
-
-
-  public DocumentVersion lastModifiedDate(String lastModifiedDate) {
-    this.lastModifiedDate = lastModifiedDate;
-    return this;
-  }
-
-  /**
-   * Last Modified Timestamp
-   * 
-   * @return lastModifiedDate
-   */
-  @javax.annotation.Nullable
-  public String getLastModifiedDate() {
-    return lastModifiedDate;
-  }
-
-  public void setLastModifiedDate(String lastModifiedDate) {
-    this.lastModifiedDate = lastModifiedDate;
   }
 
 
@@ -208,23 +133,23 @@ public class DocumentVersion {
   }
 
 
-  public DocumentVersion documentId(String documentId) {
-    this.documentId = documentId;
+  public DocumentVersion checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
     return this;
   }
 
   /**
-   * Document Identifier
+   * Get checksumType
    * 
-   * @return documentId
+   * @return checksumType
    */
   @javax.annotation.Nullable
-  public String getDocumentId() {
-    return documentId;
+  public ChecksumType getChecksumType() {
+    return checksumType;
   }
 
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
   }
 
 
@@ -288,26 +213,6 @@ public class DocumentVersion {
   }
 
 
-  public DocumentVersion version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Document version
-   * 
-   * @return version
-   */
-  @javax.annotation.Nullable
-  public String getVersion() {
-    return version;
-  }
-
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
   public DocumentVersion versionKey(String versionKey) {
     this.versionKey = versionKey;
     return this;
@@ -358,40 +263,32 @@ public class DocumentVersion {
       return false;
     }
     DocumentVersion documentVersion = (DocumentVersion) o;
-    return Objects.equals(this.path, documentVersion.path)
-        && Objects.equals(this.deepLinkPath, documentVersion.deepLinkPath)
-        && Objects.equals(this.insertedDate, documentVersion.insertedDate)
-        && Objects.equals(this.lastModifiedDate, documentVersion.lastModifiedDate)
+    return Objects.equals(this.insertedDate, documentVersion.insertedDate)
         && Objects.equals(this.checksum, documentVersion.checksum)
-        && Objects.equals(this.documentId, documentVersion.documentId)
+        && Objects.equals(this.checksumType, documentVersion.checksumType)
         && Objects.equals(this.contentType, documentVersion.contentType)
         && Objects.equals(this.userId, documentVersion.userId)
         && Objects.equals(this.contentLength, documentVersion.contentLength)
-        && Objects.equals(this.version, documentVersion.version)
         && Objects.equals(this.versionKey, documentVersion.versionKey)
         && Objects.equals(this.s3version, documentVersion.s3version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, deepLinkPath, insertedDate, lastModifiedDate, checksum, documentId,
-        contentType, userId, contentLength, version, versionKey, s3version);
+    return Objects.hash(insertedDate, checksum, checksumType, contentType, userId, contentLength,
+        versionKey, s3version);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentVersion {\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
-    sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
-    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
     sb.append("    s3version: ").append(toIndentedString(s3version)).append("\n");
     sb.append("}");
@@ -415,16 +312,12 @@ public class DocumentVersion {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("path");
-    openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
-    openapiFields.add("lastModifiedDate");
     openapiFields.add("checksum");
-    openapiFields.add("documentId");
+    openapiFields.add("checksumType");
     openapiFields.add("contentType");
     openapiFields.add("userId");
     openapiFields.add("contentLength");
-    openapiFields.add("version");
     openapiFields.add("versionKey");
     openapiFields.add("s3version");
 
@@ -458,29 +351,11 @@ public class DocumentVersion {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
-        && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("path").toString()));
-    }
-    if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
-        && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("deepLinkPath").toString()));
-    }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
-    }
-    if ((jsonObj.get("lastModifiedDate") != null && !jsonObj.get("lastModifiedDate").isJsonNull())
-        && !jsonObj.get("lastModifiedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("lastModifiedDate").toString()));
     }
     if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
         && !jsonObj.get("checksum").isJsonPrimitive()) {
@@ -488,11 +363,9 @@ public class DocumentVersion {
           "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("checksum").toString()));
     }
-    if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
-        && !jsonObj.get("documentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("documentId").toString()));
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {
@@ -505,12 +378,6 @@ public class DocumentVersion {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
-    }
-    if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull())
-        && !jsonObj.get("version").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `version` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("version").toString()));
     }
     if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
         && !jsonObj.get("versionKey").isJsonPrimitive()) {
