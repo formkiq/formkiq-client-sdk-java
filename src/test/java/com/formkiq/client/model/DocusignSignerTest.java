@@ -59,4 +59,12 @@ public class DocusignSignerTest {
     // TODO: test email
   }
 
+  /**
+   * Test the property 'clientUserId'
+   */
+  @Test
+  public void clientUserIdTest() {
+    // TODO: test clientUserId
+  }
+
 }

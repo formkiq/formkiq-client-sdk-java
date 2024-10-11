@@ -52,19 +52,19 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocusignEmbed
+ * DocusignInPerson
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
-public class DocusignEmbed {
+public class DocusignInPerson {
   public static final String SERIALIZED_NAME_RETURN_URL = "returnUrl";
   @SerializedName(SERIALIZED_NAME_RETURN_URL)
   private String returnUrl;
 
-  public DocusignEmbed() {}
+  public DocusignInPerson() {}
 
-  public DocusignEmbed returnUrl(String returnUrl) {
+  public DocusignInPerson returnUrl(String returnUrl) {
     this.returnUrl = returnUrl;
     return this;
   }
@@ -93,8 +93,8 @@ public class DocusignEmbed {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocusignEmbed docusignEmbed = (DocusignEmbed) o;
-    return Objects.equals(this.returnUrl, docusignEmbed.returnUrl);
+    DocusignInPerson docusignInPerson = (DocusignInPerson) o;
+    return Objects.equals(this.returnUrl, docusignInPerson.returnUrl);
   }
 
   @Override
@@ -105,7 +105,7 @@ public class DocusignEmbed {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocusignEmbed {\n");
+    sb.append("class DocusignInPerson {\n");
     sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -138,24 +138,24 @@ public class DocusignEmbed {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocusignEmbed
+   * @throws IOException if the JSON Element is invalid with respect to DocusignInPerson
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocusignEmbed.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
-                                                            // is null
+      if (!DocusignInPerson.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                               // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocusignEmbed is not found in the empty JSON string",
-            DocusignEmbed.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocusignInPerson is not found in the empty JSON string",
+            DocusignInPerson.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocusignEmbed.openapiFields.contains(entry.getKey())) {
+      if (!DocusignInPerson.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocusignEmbed` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocusignInPerson` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -172,22 +172,22 @@ public class DocusignEmbed {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocusignEmbed.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocusignEmbed' and its subtypes
+      if (!DocusignInPerson.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocusignInPerson' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocusignEmbed> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocusignEmbed.class));
+      final TypeAdapter<DocusignInPerson> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocusignInPerson.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocusignEmbed>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocusignInPerson>() {
         @Override
-        public void write(JsonWriter out, DocusignEmbed value) throws IOException {
+        public void write(JsonWriter out, DocusignInPerson value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocusignEmbed read(JsonReader in) throws IOException {
+        public DocusignInPerson read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -198,18 +198,18 @@ public class DocusignEmbed {
   }
 
   /**
-   * Create an instance of DocusignEmbed given an JSON string
+   * Create an instance of DocusignInPerson given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocusignEmbed
-   * @throws IOException if the JSON string is invalid with respect to DocusignEmbed
+   * @return An instance of DocusignInPerson
+   * @throws IOException if the JSON string is invalid with respect to DocusignInPerson
    */
-  public static DocusignEmbed fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocusignEmbed.class);
+  public static DocusignInPerson fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocusignInPerson.class);
   }
 
   /**
-   * Convert an instance of DocusignEmbed to an JSON string
+   * Convert an instance of DocusignInPerson to an JSON string
    *
    * @return JSON string
    */

@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
  * AddFolderResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddFolderResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";

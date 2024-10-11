@@ -19308,9 +19308,9 @@ components:
       description: Docusign Signing Method
       enum:
       - EMAIL
-      - EMBED
+      - INPERSON
       type: string
-    DocusignEmbed:
+    DocusignInPerson:
       example:
         returnUrl: returnUrl
       properties:
@@ -19321,12 +19321,14 @@ components:
     AddDocusignRequest:
       example:
         signers:
-        - name: name
+        - clientUserId: clientUserId
+          name: name
           email: email
-        - name: name
+        - clientUserId: clientUserId
+          name: name
           email: email
         environment: PRODUCTION
-        embed:
+        inperson:
           returnUrl: returnUrl
         signingMethod: EMAIL
         emailSubject: emailSubject
@@ -19343,8 +19345,8 @@ components:
           items:
             $ref: '#/components/schemas/DocusignSigner'
           type: array
-        embed:
-          $ref: '#/components/schemas/DocusignEmbed'
+        inperson:
+          $ref: '#/components/schemas/DocusignInPerson'
       required:
       - environment
       - signers
@@ -19352,6 +19354,7 @@ components:
       type: object
     DocusignSigner:
       example:
+        clientUserId: clientUserId
         name: name
         email: email
       properties:
@@ -19360,6 +19363,9 @@ components:
           type: string
         email:
           description: Email of Signer
+          type: string
+        clientUserId:
+          description: Specifies unique identifier for signer (required if using InPerson)
           type: string
       required:
       - name

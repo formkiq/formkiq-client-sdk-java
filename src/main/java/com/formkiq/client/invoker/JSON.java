@@ -370,7 +370,7 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocusignConfig.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.DocusignEmbed.CustomTypeAdapterFactory());
+        new com.formkiq.client.model.DocusignInPerson.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocusignSigner.CustomTypeAdapterFactory());
     gsonBuilder

@@ -30,17 +30,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocusignEmbed
+ * Model tests for DocusignInPerson
  */
-public class DocusignEmbedTest {
-  private final DocusignEmbed model = new DocusignEmbed();
+public class DocusignInPersonTest {
+  private final DocusignInPerson model = new DocusignInPerson();
 
   /**
-   * Model tests for DocusignEmbed
+   * Model tests for DocusignInPerson
    */
   @Test
-  public void testDocusignEmbed() {
-    // TODO: test DocusignEmbed
+  public void testDocusignInPerson() {
+    // TODO: test DocusignInPerson
   }
 
   /**

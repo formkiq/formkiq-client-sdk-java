@@ -20,8 +20,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocusignEmbed;
 import com.formkiq.client.model.DocusignEnvironment;
+import com.formkiq.client.model.DocusignInPerson;
 import com.formkiq.client.model.DocusignSigner;
 import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
@@ -80,9 +80,9 @@ public class AddDocusignRequest {
   @SerializedName(SERIALIZED_NAME_SIGNERS)
   private List<DocusignSigner> signers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_EMBED = "embed";
-  @SerializedName(SERIALIZED_NAME_EMBED)
-  private DocusignEmbed embed;
+  public static final String SERIALIZED_NAME_INPERSON = "inperson";
+  @SerializedName(SERIALIZED_NAME_INPERSON)
+  private DocusignInPerson inperson;
 
   public AddDocusignRequest() {}
 
@@ -174,23 +174,23 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest embed(DocusignEmbed embed) {
-    this.embed = embed;
+  public AddDocusignRequest inperson(DocusignInPerson inperson) {
+    this.inperson = inperson;
     return this;
   }
 
   /**
-   * Get embed
+   * Get inperson
    * 
-   * @return embed
+   * @return inperson
    */
   @javax.annotation.Nullable
-  public DocusignEmbed getEmbed() {
-    return embed;
+  public DocusignInPerson getInperson() {
+    return inperson;
   }
 
-  public void setEmbed(DocusignEmbed embed) {
-    this.embed = embed;
+  public void setInperson(DocusignInPerson inperson) {
+    this.inperson = inperson;
   }
 
 
@@ -208,12 +208,12 @@ public class AddDocusignRequest {
         && Objects.equals(this.environment, addDocusignRequest.environment)
         && Objects.equals(this.signingMethod, addDocusignRequest.signingMethod)
         && Objects.equals(this.signers, addDocusignRequest.signers)
-        && Objects.equals(this.embed, addDocusignRequest.embed);
+        && Objects.equals(this.inperson, addDocusignRequest.inperson);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailSubject, environment, signingMethod, signers, embed);
+    return Objects.hash(emailSubject, environment, signingMethod, signers, inperson);
   }
 
   @Override
@@ -224,7 +224,7 @@ public class AddDocusignRequest {
     sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("    signingMethod: ").append(toIndentedString(signingMethod)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
-    sb.append("    embed: ").append(toIndentedString(embed)).append("\n");
+    sb.append("    inperson: ").append(toIndentedString(inperson)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -250,7 +250,7 @@ public class AddDocusignRequest {
     openapiFields.add("environment");
     openapiFields.add("signingMethod");
     openapiFields.add("signers");
-    openapiFields.add("embed");
+    openapiFields.add("inperson");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -316,9 +316,9 @@ public class AddDocusignRequest {
     for (int i = 0; i < jsonArraysigners.size(); i++) {
       DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
     } ;
-    // validate the optional field `embed`
-    if (jsonObj.get("embed") != null && !jsonObj.get("embed").isJsonNull()) {
-      DocusignEmbed.validateJsonElement(jsonObj.get("embed"));
+    // validate the optional field `inperson`
+    if (jsonObj.get("inperson") != null && !jsonObj.get("inperson").isJsonNull()) {
+      DocusignInPerson.validateJsonElement(jsonObj.get("inperson"));
     }
   }
 

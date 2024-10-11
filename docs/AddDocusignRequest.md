@@ -11,7 +11,7 @@
 |**environment** | **DocusignEnvironment** |  |  |
 |**signingMethod** | **DocusignSigningMethod** |  |  |
 |**signers** | [**List&lt;DocusignSigner&gt;**](DocusignSigner.md) | List of DocuSign Signers |  |
-|**embed** | [**DocusignEmbed**](DocusignEmbed.md) |  |  [optional] |
+|**inperson** | [**DocusignInPerson**](DocusignInPerson.md) |  |  [optional] |
 
 
 

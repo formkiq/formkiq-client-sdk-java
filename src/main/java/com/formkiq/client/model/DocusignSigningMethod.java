@@ -37,7 +37,7 @@ public enum DocusignSigningMethod {
 
   EMAIL("EMAIL"),
 
-  EMBED("EMBED");
+  INPERSON("INPERSON");
 
   private String value;
 

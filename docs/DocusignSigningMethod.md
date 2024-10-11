@@ -7,7 +7,7 @@
 
 * `EMAIL` (value: `"EMAIL"`)
 
-* `EMBED` (value: `"EMBED"`)
+* `INPERSON` (value: `"INPERSON"`)
 
 
 

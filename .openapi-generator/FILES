@@ -168,8 +168,8 @@ docs/DocumentsApi.md
 docs/DocumentsCompressRequest.md
 docs/DocumentsCompressResponse.md
 docs/DocusignConfig.md
-docs/DocusignEmbed.md
 docs/DocusignEnvironment.md
+docs/DocusignInPerson.md
 docs/DocusignSigner.md
 docs/DocusignSigningMethod.md
 docs/ESignatureApi.md
@@ -592,8 +592,8 @@ src/main/java/com/formkiq/client/model/DocumentWorkflowStatus.java
 src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
 src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/DocusignConfig.java
-src/main/java/com/formkiq/client/model/DocusignEmbed.java
 src/main/java/com/formkiq/client/model/DocusignEnvironment.java
+src/main/java/com/formkiq/client/model/DocusignInPerson.java
 src/main/java/com/formkiq/client/model/DocusignSigner.java
 src/main/java/com/formkiq/client/model/DocusignSigningMethod.java
 src/main/java/com/formkiq/client/model/Error.java
@@ -971,8 +971,8 @@ src/test/java/com/formkiq/client/model/DocumentWorkflowTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/DocusignConfigTest.java
-src/test/java/com/formkiq/client/model/DocusignEmbedTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvironmentTest.java
+src/test/java/com/formkiq/client/model/DocusignInPersonTest.java
 src/test/java/com/formkiq/client/model/DocusignSignerTest.java
 src/test/java/com/formkiq/client/model/DocusignSigningMethodTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java

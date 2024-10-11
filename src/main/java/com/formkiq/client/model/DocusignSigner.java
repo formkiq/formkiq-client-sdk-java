@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignSigner {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -65,6 +65,10 @@ public class DocusignSigner {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
   private String email;
+
+  public static final String SERIALIZED_NAME_CLIENT_USER_ID = "clientUserId";
+  @SerializedName(SERIALIZED_NAME_CLIENT_USER_ID)
+  private String clientUserId;
 
   public DocusignSigner() {}
 
@@ -108,6 +112,26 @@ public class DocusignSigner {
   }
 
 
+  public DocusignSigner clientUserId(String clientUserId) {
+    this.clientUserId = clientUserId;
+    return this;
+  }
+
+  /**
+   * Specifies unique identifier for signer (required if using InPerson)
+   * 
+   * @return clientUserId
+   */
+  @javax.annotation.Nullable
+  public String getClientUserId() {
+    return clientUserId;
+  }
+
+  public void setClientUserId(String clientUserId) {
+    this.clientUserId = clientUserId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -119,12 +143,13 @@ public class DocusignSigner {
     }
     DocusignSigner docusignSigner = (DocusignSigner) o;
     return Objects.equals(this.name, docusignSigner.name)
-        && Objects.equals(this.email, docusignSigner.email);
+        && Objects.equals(this.email, docusignSigner.email)
+        && Objects.equals(this.clientUserId, docusignSigner.clientUserId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email);
+    return Objects.hash(name, email, clientUserId);
   }
 
   @Override
@@ -133,6 +158,7 @@ public class DocusignSigner {
     sb.append("class DocusignSigner {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    clientUserId: ").append(toIndentedString(clientUserId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,6 +182,7 @@ public class DocusignSigner {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("email");
+    openapiFields.add("clientUserId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -207,6 +234,12 @@ public class DocusignSigner {
       throw new IllegalArgumentException(String.format(
           "Expected the field `email` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("email").toString()));
+    }
+    if ((jsonObj.get("clientUserId") != null && !jsonObj.get("clientUserId").isJsonNull())
+        && !jsonObj.get("clientUserId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("clientUserId").toString()));
     }
   }
 
