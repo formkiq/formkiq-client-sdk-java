@@ -45,14 +45,14 @@ public class TagIndexApiTest {
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void indexSearchTest() throws ApiException {
+  public void indexSearch_0Test() throws ApiException {
     IndexSearchRequest indexSearchRequest = null;
     String siteId = null;
     String limit = null;
     String next = null;
     String previous = null;
     IndexSearchResponse response =
-        api.indexSearch(indexSearchRequest, siteId, limit, next, previous);
+        api.indexSearch_0(indexSearchRequest, siteId, limit, next, previous);
     // TODO: test validations
   }
 

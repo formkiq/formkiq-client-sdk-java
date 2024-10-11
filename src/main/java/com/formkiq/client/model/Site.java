@@ -21,6 +21,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.SiteGroupPermissions;
+import com.formkiq.client.model.SiteStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -68,6 +69,10 @@ public class Site {
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
   private String title;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private SiteStatus status;
 
   /**
    * SiteId permission level
@@ -176,6 +181,26 @@ public class Site {
   }
 
 
+  public Site status(SiteStatus status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * 
+   * @return status
+   */
+  @javax.annotation.Nullable
+  public SiteStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(SiteStatus status) {
+    this.status = status;
+  }
+
+
   public Site permission(PermissionEnum permission) {
     this.permission = permission;
     return this;
@@ -255,6 +280,7 @@ public class Site {
     }
     Site site = (Site) o;
     return Objects.equals(this.siteId, site.siteId) && Objects.equals(this.title, site.title)
+        && Objects.equals(this.status, site.status)
         && Objects.equals(this.permission, site.permission)
         && Objects.equals(this.permissions, site.permissions)
         && Objects.equals(this.uploadEmail, site.uploadEmail);
@@ -262,7 +288,7 @@ public class Site {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, title, permission, permissions, uploadEmail);
+    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail);
   }
 
   @Override
@@ -271,6 +297,7 @@ public class Site {
     sb.append("class Site {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
@@ -297,6 +324,7 @@ public class Site {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("title");
+    openapiFields.add("status");
     openapiFields.add("permission");
     openapiFields.add("permissions");
     openapiFields.add("uploadEmail");
@@ -341,6 +369,10 @@ public class Site {
       throw new IllegalArgumentException(String.format(
           "Expected the field `title` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("title").toString()));
+    }
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      SiteStatus.validateJsonElement(jsonObj.get("status"));
     }
     if ((jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull())
         && !jsonObj.get("permission").isJsonPrimitive()) {

@@ -24,15 +24,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocusignRecipientType
+ * Model tests for DocusignEnvironment
  */
-public class DocusignRecipientTypeTest {
+public class DocusignEnvironmentTest {
   /**
-   * Model tests for DocusignRecipientType
+   * Model tests for DocusignEnvironment
    */
   @Test
-  public void testDocusignRecipientType() {
-    // TODO: test DocusignRecipientType
+  public void testDocusignEnvironment() {
+    // TODO: test DocusignEnvironment
   }
 
 }

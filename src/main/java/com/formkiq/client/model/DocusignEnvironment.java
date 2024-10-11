@@ -30,18 +30,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Docusign Request status
+ * Docusign Environment
  */
-@JsonAdapter(DocusignRequestStatus.Adapter.class)
-public enum DocusignRequestStatus {
+@JsonAdapter(DocusignEnvironment.Adapter.class)
+public enum DocusignEnvironment {
 
-  CREATED("CREATED"),
+  PRODUCTION("PRODUCTION"),
 
-  SENT("SENT");
+  DEVELOPMENT("DEVELOPMENT");
 
   private String value;
 
-  DocusignRequestStatus(String value) {
+  DocusignEnvironment(String value) {
     this.value = value;
   }
 
@@ -54,8 +54,8 @@ public enum DocusignRequestStatus {
     return String.valueOf(value);
   }
 
-  public static DocusignRequestStatus fromValue(String value) {
-    for (DocusignRequestStatus b : DocusignRequestStatus.values()) {
+  public static DocusignEnvironment fromValue(String value) {
+    for (DocusignEnvironment b : DocusignEnvironment.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -63,23 +63,23 @@ public enum DocusignRequestStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<DocusignRequestStatus> {
+  public static class Adapter extends TypeAdapter<DocusignEnvironment> {
     @Override
-    public void write(final JsonWriter jsonWriter, final DocusignRequestStatus enumeration)
+    public void write(final JsonWriter jsonWriter, final DocusignEnvironment enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public DocusignRequestStatus read(final JsonReader jsonReader) throws IOException {
+    public DocusignEnvironment read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return DocusignRequestStatus.fromValue(value);
+      return DocusignEnvironment.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    DocusignRequestStatus.fromValue(value);
+    DocusignEnvironment.fromValue(value);
   }
 }
 

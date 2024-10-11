@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.SiteGroupPermissions;
+import com.formkiq.client.model.SiteStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,6 +61,14 @@ public class SiteTest {
   @Test
   public void titleTest() {
     // TODO: test title
+  }
+
+  /**
+   * Test the property 'status'
+   */
+  @Test
+  public void statusTest() {
+    // TODO: test status
   }
 
   /**

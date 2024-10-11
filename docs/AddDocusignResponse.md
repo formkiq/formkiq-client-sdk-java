@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**redirectUrl** | **String** | Redirect Url to complete DocuSign workflow |  [optional] |
+|**viewUrl** | **String** | The view URL to be navigated to complete DocuSign signing |  [optional] |
 |**message** | **String** | Result message |  [optional] |
 
 

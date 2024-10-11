@@ -55,8 +55,8 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
 public class DocusignSigner {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -78,7 +78,7 @@ public class DocusignSigner {
    * 
    * @return name
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
@@ -159,6 +159,7 @@ public class DocusignSigner {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
   }
 
   /**
@@ -186,9 +187,17 @@ public class DocusignSigner {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : DocusignSigner.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
-        && !jsonObj.get("name").isJsonPrimitive()) {
+    if (!jsonObj.get("name").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));

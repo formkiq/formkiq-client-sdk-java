@@ -55,12 +55,12 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
 public class AddDocusignResponse {
-  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
-  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
-  private String redirectUrl;
+  public static final String SERIALIZED_NAME_VIEW_URL = "viewUrl";
+  @SerializedName(SERIALIZED_NAME_VIEW_URL)
+  private String viewUrl;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -68,23 +68,23 @@ public class AddDocusignResponse {
 
   public AddDocusignResponse() {}
 
-  public AddDocusignResponse redirectUrl(String redirectUrl) {
-    this.redirectUrl = redirectUrl;
+  public AddDocusignResponse viewUrl(String viewUrl) {
+    this.viewUrl = viewUrl;
     return this;
   }
 
   /**
-   * Redirect Url to complete DocuSign workflow
+   * The view URL to be navigated to complete DocuSign signing
    * 
-   * @return redirectUrl
+   * @return viewUrl
    */
   @javax.annotation.Nullable
-  public String getRedirectUrl() {
-    return redirectUrl;
+  public String getViewUrl() {
+    return viewUrl;
   }
 
-  public void setRedirectUrl(String redirectUrl) {
-    this.redirectUrl = redirectUrl;
+  public void setViewUrl(String viewUrl) {
+    this.viewUrl = viewUrl;
   }
 
 
@@ -118,20 +118,20 @@ public class AddDocusignResponse {
       return false;
     }
     AddDocusignResponse addDocusignResponse = (AddDocusignResponse) o;
-    return Objects.equals(this.redirectUrl, addDocusignResponse.redirectUrl)
+    return Objects.equals(this.viewUrl, addDocusignResponse.viewUrl)
         && Objects.equals(this.message, addDocusignResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(redirectUrl, message);
+    return Objects.hash(viewUrl, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocusignResponse {\n");
-    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
+    sb.append("    viewUrl: ").append(toIndentedString(viewUrl)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -154,7 +154,7 @@ public class AddDocusignResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("redirect_url");
+    openapiFields.add("viewUrl");
     openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
@@ -187,11 +187,11 @@ public class AddDocusignResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("redirect_url") != null && !jsonObj.get("redirect_url").isJsonNull())
-        && !jsonObj.get("redirect_url").isJsonPrimitive()) {
+    if ((jsonObj.get("viewUrl") != null && !jsonObj.get("viewUrl").isJsonNull())
+        && !jsonObj.get("viewUrl").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `redirect_url` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("redirect_url").toString()));
+          "Expected the field `viewUrl` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("viewUrl").toString()));
     }
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {

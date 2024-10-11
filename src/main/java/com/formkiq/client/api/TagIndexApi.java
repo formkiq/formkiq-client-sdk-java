@@ -81,7 +81,7 @@ public class TagIndexApi {
   }
 
   /**
-   * Build call for indexSearch
+   * Build call for indexSearch_0
    * 
    * @param indexSearchRequest (required)
    * @param siteId Site Identifier (optional)
@@ -113,7 +113,7 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call indexSearchCall(IndexSearchRequest indexSearchRequest, String siteId,
+  public okhttp3.Call indexSearch_0Call(IndexSearchRequest indexSearchRequest, String siteId,
       String limit, String next, String previous, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -175,16 +175,16 @@ public class TagIndexApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call indexSearchValidateBeforeCall(IndexSearchRequest indexSearchRequest,
+  private okhttp3.Call indexSearch_0ValidateBeforeCall(IndexSearchRequest indexSearchRequest,
       String siteId, String limit, String next, String previous, final ApiCallback _callback)
       throws ApiException {
     // verify the required parameter 'indexSearchRequest' is set
     if (indexSearchRequest == null) {
       throw new ApiException(
-          "Missing the required parameter 'indexSearchRequest' when calling indexSearch(Async)");
+          "Missing the required parameter 'indexSearchRequest' when calling indexSearch_0(Async)");
     }
 
-    return indexSearchCall(indexSearchRequest, siteId, limit, next, previous, _callback);
+    return indexSearch_0Call(indexSearchRequest, siteId, limit, next, previous, _callback);
 
   }
 
@@ -222,10 +222,10 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public IndexSearchResponse indexSearch(IndexSearchRequest indexSearchRequest, String siteId,
+  public IndexSearchResponse indexSearch_0(IndexSearchRequest indexSearchRequest, String siteId,
       String limit, String next, String previous) throws ApiException {
     ApiResponse<IndexSearchResponse> localVarResp =
-        indexSearchWithHttpInfo(indexSearchRequest, siteId, limit, next, previous);
+        indexSearch_0WithHttpInfo(indexSearchRequest, siteId, limit, next, previous);
     return localVarResp.getData();
   }
 
@@ -263,11 +263,11 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<IndexSearchResponse> indexSearchWithHttpInfo(
+  public ApiResponse<IndexSearchResponse> indexSearch_0WithHttpInfo(
       IndexSearchRequest indexSearchRequest, String siteId, String limit, String next,
       String previous) throws ApiException {
     okhttp3.Call localVarCall =
-        indexSearchValidateBeforeCall(indexSearchRequest, siteId, limit, next, previous, null);
+        indexSearch_0ValidateBeforeCall(indexSearchRequest, siteId, limit, next, previous, null);
     Type localVarReturnType = new TypeToken<IndexSearchResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -306,12 +306,12 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call indexSearchAsync(IndexSearchRequest indexSearchRequest, String siteId,
+  public okhttp3.Call indexSearch_0Async(IndexSearchRequest indexSearchRequest, String siteId,
       String limit, String next, String previous, final ApiCallback<IndexSearchResponse> _callback)
       throws ApiException {
 
-    okhttp3.Call localVarCall =
-        indexSearchValidateBeforeCall(indexSearchRequest, siteId, limit, next, previous, _callback);
+    okhttp3.Call localVarCall = indexSearch_0ValidateBeforeCall(indexSearchRequest, siteId, limit,
+        next, previous, _callback);
     Type localVarReturnType = new TypeToken<IndexSearchResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

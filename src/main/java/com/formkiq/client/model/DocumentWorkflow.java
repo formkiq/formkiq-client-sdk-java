@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentWorkflow
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
 public class DocumentWorkflow {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
@@ -78,6 +78,10 @@ public class DocumentWorkflow {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private DocumentWorkflowStatus status;
+
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  private String insertedDate;
 
   public DocumentWorkflow() {}
 
@@ -181,6 +185,26 @@ public class DocumentWorkflow {
   }
 
 
+  public DocumentWorkflow insertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   */
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+  public void setInsertedDate(String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -195,12 +219,13 @@ public class DocumentWorkflow {
         && Objects.equals(this.name, documentWorkflow.name)
         && Objects.equals(this.description, documentWorkflow.description)
         && Objects.equals(this.currentStepId, documentWorkflow.currentStepId)
-        && Objects.equals(this.status, documentWorkflow.status);
+        && Objects.equals(this.status, documentWorkflow.status)
+        && Objects.equals(this.insertedDate, documentWorkflow.insertedDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowId, name, description, currentStepId, status);
+    return Objects.hash(workflowId, name, description, currentStepId, status, insertedDate);
   }
 
   @Override
@@ -212,6 +237,7 @@ public class DocumentWorkflow {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    currentStepId: ").append(toIndentedString(currentStepId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -238,6 +264,7 @@ public class DocumentWorkflow {
     openapiFields.add("description");
     openapiFields.add("currentStepId");
     openapiFields.add("status");
+    openapiFields.add("insertedDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -296,6 +323,12 @@ public class DocumentWorkflow {
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       DocumentWorkflowStatus.validateJsonElement(jsonObj.get("status"));
+    }
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
     }
   }
 

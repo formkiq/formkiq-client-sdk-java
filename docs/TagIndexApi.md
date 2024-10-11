@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**indexSearch**](TagIndexApi.md#indexSearch) | **POST** /indices/search |  |
+| [**indexSearch_0**](TagIndexApi.md#indexSearch_0) | **POST** /indices/search |  |
 
 
-<a id="indexSearch"></a>
-# **indexSearch**
-> IndexSearchResponse indexSearch(indexSearchRequest, siteId, limit, next, previous)
+<a id="indexSearch_0"></a>
+# **indexSearch_0**
+> IndexSearchResponse indexSearch_0(indexSearchRequest, siteId, limit, next, previous)
 
 
 
@@ -39,10 +39,10 @@ public class Example {
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
     try {
-      IndexSearchResponse result = apiInstance.indexSearch(indexSearchRequest, siteId, limit, next, previous);
+      IndexSearchResponse result = apiInstance.indexSearch_0(indexSearchRequest, siteId, limit, next, previous);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling TagIndexApi#indexSearch");
+      System.err.println("Exception when calling TagIndexApi#indexSearch_0");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

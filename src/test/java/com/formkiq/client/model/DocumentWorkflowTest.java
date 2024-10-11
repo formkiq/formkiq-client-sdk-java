@@ -84,4 +84,12 @@ public class DocumentWorkflowTest {
     // TODO: test status
   }
 
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
 }

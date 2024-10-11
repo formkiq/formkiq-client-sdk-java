@@ -19,44 +19,20 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocusignCarbonCopy
+ * Model tests for DocusignSigningMethod
  */
-public class DocusignCarbonCopyTest {
-  private final DocusignCarbonCopy model = new DocusignCarbonCopy();
-
+public class DocusignSigningMethodTest {
   /**
-   * Model tests for DocusignCarbonCopy
+   * Model tests for DocusignSigningMethod
    */
   @Test
-  public void testDocusignCarbonCopy() {
-    // TODO: test DocusignCarbonCopy
-  }
-
-  /**
-   * Test the property 'name'
-   */
-  @Test
-  public void nameTest() {
-    // TODO: test name
-  }
-
-  /**
-   * Test the property 'email'
-   */
-  @Test
-  public void emailTest() {
-    // TODO: test email
+  public void testDocusignSigningMethod() {
+    // TODO: test DocusignSigningMethod
   }
 
 }

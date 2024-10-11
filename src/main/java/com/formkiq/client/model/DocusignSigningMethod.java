@@ -30,16 +30,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Type of Recipient
+ * Docusign Signing Method
  */
-@JsonAdapter(DocusignRecipientType.Adapter.class)
-public enum DocusignRecipientType {
+@JsonAdapter(DocusignSigningMethod.Adapter.class)
+public enum DocusignSigningMethod {
 
-  SIGNHERE("SIGNHERE");
+  EMAIL("EMAIL"),
+
+  EMBED("EMBED");
 
   private String value;
 
-  DocusignRecipientType(String value) {
+  DocusignSigningMethod(String value) {
     this.value = value;
   }
 
@@ -52,8 +54,8 @@ public enum DocusignRecipientType {
     return String.valueOf(value);
   }
 
-  public static DocusignRecipientType fromValue(String value) {
-    for (DocusignRecipientType b : DocusignRecipientType.values()) {
+  public static DocusignSigningMethod fromValue(String value) {
+    for (DocusignSigningMethod b : DocusignSigningMethod.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -61,23 +63,23 @@ public enum DocusignRecipientType {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<DocusignRecipientType> {
+  public static class Adapter extends TypeAdapter<DocusignSigningMethod> {
     @Override
-    public void write(final JsonWriter jsonWriter, final DocusignRecipientType enumeration)
+    public void write(final JsonWriter jsonWriter, final DocusignSigningMethod enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public DocusignRecipientType read(final JsonReader jsonReader) throws IOException {
+    public DocusignSigningMethod read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return DocusignRecipientType.fromValue(value);
+      return DocusignSigningMethod.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    DocusignRecipientType.fromValue(value);
+    DocusignSigningMethod.fromValue(value);
   }
 }
 

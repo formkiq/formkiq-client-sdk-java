@@ -43,7 +43,9 @@ public enum UserActivityType {
 
   DELETE("DELETE"),
 
-  SOFT_DELETE("SOFT_DELETE");
+  SOFT_DELETE("SOFT_DELETE"),
+
+  RESTORE("RESTORE");
 
   private String value;
 

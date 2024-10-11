@@ -20,10 +20,10 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocusignCarbonCopy;
-import com.formkiq.client.model.DocusignRecipientTab;
-import com.formkiq.client.model.DocusignRequestStatus;
+import com.formkiq.client.model.DocusignEmbed;
+import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignSigner;
+import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,32 +61,28 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
 public class AddDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
   private String emailSubject;
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private DocusignRequestStatus status;
+  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
+  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
+  private DocusignEnvironment environment;
 
-  public static final String SERIALIZED_NAME_DEVELOPMENT_MODE = "developmentMode";
-  @SerializedName(SERIALIZED_NAME_DEVELOPMENT_MODE)
-  private Boolean developmentMode;
+  public static final String SERIALIZED_NAME_SIGNING_METHOD = "signingMethod";
+  @SerializedName(SERIALIZED_NAME_SIGNING_METHOD)
+  private DocusignSigningMethod signingMethod;
 
   public static final String SERIALIZED_NAME_SIGNERS = "signers";
   @SerializedName(SERIALIZED_NAME_SIGNERS)
   private List<DocusignSigner> signers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CARBON_COPIES = "carbonCopies";
-  @SerializedName(SERIALIZED_NAME_CARBON_COPIES)
-  private List<DocusignCarbonCopy> carbonCopies = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_RECIPIENT_TABS = "recipientTabs";
-  @SerializedName(SERIALIZED_NAME_RECIPIENT_TABS)
-  private List<DocusignRecipientTab> recipientTabs = new ArrayList<>();
+  public static final String SERIALIZED_NAME_EMBED = "embed";
+  @SerializedName(SERIALIZED_NAME_EMBED)
+  private DocusignEmbed embed;
 
   public AddDocusignRequest() {}
 
@@ -96,7 +92,7 @@ public class AddDocusignRequest {
   }
 
   /**
-   * Email Subject
+   * The subject line of the email message that is sent to all recipients
    * 
    * @return emailSubject
    */
@@ -110,43 +106,43 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest status(DocusignRequestStatus status) {
-    this.status = status;
+  public AddDocusignRequest environment(DocusignEnvironment environment) {
+    this.environment = environment;
     return this;
   }
 
   /**
-   * Get status
+   * Get environment
    * 
-   * @return status
+   * @return environment
    */
-  @javax.annotation.Nullable
-  public DocusignRequestStatus getStatus() {
-    return status;
+  @javax.annotation.Nonnull
+  public DocusignEnvironment getEnvironment() {
+    return environment;
   }
 
-  public void setStatus(DocusignRequestStatus status) {
-    this.status = status;
+  public void setEnvironment(DocusignEnvironment environment) {
+    this.environment = environment;
   }
 
 
-  public AddDocusignRequest developmentMode(Boolean developmentMode) {
-    this.developmentMode = developmentMode;
+  public AddDocusignRequest signingMethod(DocusignSigningMethod signingMethod) {
+    this.signingMethod = signingMethod;
     return this;
   }
 
   /**
-   * Whether to enable developer mode
+   * Get signingMethod
    * 
-   * @return developmentMode
+   * @return signingMethod
    */
-  @javax.annotation.Nullable
-  public Boolean getDevelopmentMode() {
-    return developmentMode;
+  @javax.annotation.Nonnull
+  public DocusignSigningMethod getSigningMethod() {
+    return signingMethod;
   }
 
-  public void setDevelopmentMode(Boolean developmentMode) {
-    this.developmentMode = developmentMode;
+  public void setSigningMethod(DocusignSigningMethod signingMethod) {
+    this.signingMethod = signingMethod;
   }
 
 
@@ -168,7 +164,7 @@ public class AddDocusignRequest {
    * 
    * @return signers
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public List<DocusignSigner> getSigners() {
     return signers;
   }
@@ -178,59 +174,23 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest carbonCopies(List<DocusignCarbonCopy> carbonCopies) {
-    this.carbonCopies = carbonCopies;
-    return this;
-  }
-
-  public AddDocusignRequest addCarbonCopiesItem(DocusignCarbonCopy carbonCopiesItem) {
-    if (this.carbonCopies == null) {
-      this.carbonCopies = new ArrayList<>();
-    }
-    this.carbonCopies.add(carbonCopiesItem);
+  public AddDocusignRequest embed(DocusignEmbed embed) {
+    this.embed = embed;
     return this;
   }
 
   /**
-   * List of DocuSign Carbon Copies
+   * Get embed
    * 
-   * @return carbonCopies
+   * @return embed
    */
   @javax.annotation.Nullable
-  public List<DocusignCarbonCopy> getCarbonCopies() {
-    return carbonCopies;
+  public DocusignEmbed getEmbed() {
+    return embed;
   }
 
-  public void setCarbonCopies(List<DocusignCarbonCopy> carbonCopies) {
-    this.carbonCopies = carbonCopies;
-  }
-
-
-  public AddDocusignRequest recipientTabs(List<DocusignRecipientTab> recipientTabs) {
-    this.recipientTabs = recipientTabs;
-    return this;
-  }
-
-  public AddDocusignRequest addRecipientTabsItem(DocusignRecipientTab recipientTabsItem) {
-    if (this.recipientTabs == null) {
-      this.recipientTabs = new ArrayList<>();
-    }
-    this.recipientTabs.add(recipientTabsItem);
-    return this;
-  }
-
-  /**
-   * List of DocuSign Recipient Tabs
-   * 
-   * @return recipientTabs
-   */
-  @javax.annotation.Nullable
-  public List<DocusignRecipientTab> getRecipientTabs() {
-    return recipientTabs;
-  }
-
-  public void setRecipientTabs(List<DocusignRecipientTab> recipientTabs) {
-    this.recipientTabs = recipientTabs;
+  public void setEmbed(DocusignEmbed embed) {
+    this.embed = embed;
   }
 
 
@@ -245,17 +205,15 @@ public class AddDocusignRequest {
     }
     AddDocusignRequest addDocusignRequest = (AddDocusignRequest) o;
     return Objects.equals(this.emailSubject, addDocusignRequest.emailSubject)
-        && Objects.equals(this.status, addDocusignRequest.status)
-        && Objects.equals(this.developmentMode, addDocusignRequest.developmentMode)
+        && Objects.equals(this.environment, addDocusignRequest.environment)
+        && Objects.equals(this.signingMethod, addDocusignRequest.signingMethod)
         && Objects.equals(this.signers, addDocusignRequest.signers)
-        && Objects.equals(this.carbonCopies, addDocusignRequest.carbonCopies)
-        && Objects.equals(this.recipientTabs, addDocusignRequest.recipientTabs);
+        && Objects.equals(this.embed, addDocusignRequest.embed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailSubject, status, developmentMode, signers, carbonCopies,
-        recipientTabs);
+    return Objects.hash(emailSubject, environment, signingMethod, signers, embed);
   }
 
   @Override
@@ -263,11 +221,10 @@ public class AddDocusignRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocusignRequest {\n");
     sb.append("    emailSubject: ").append(toIndentedString(emailSubject)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    developmentMode: ").append(toIndentedString(developmentMode)).append("\n");
+    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
+    sb.append("    signingMethod: ").append(toIndentedString(signingMethod)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
-    sb.append("    carbonCopies: ").append(toIndentedString(carbonCopies)).append("\n");
-    sb.append("    recipientTabs: ").append(toIndentedString(recipientTabs)).append("\n");
+    sb.append("    embed: ").append(toIndentedString(embed)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -290,14 +247,16 @@ public class AddDocusignRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("emailSubject");
-    openapiFields.add("status");
-    openapiFields.add("developmentMode");
+    openapiFields.add("environment");
+    openapiFields.add("signingMethod");
     openapiFields.add("signers");
-    openapiFields.add("carbonCopies");
-    openapiFields.add("recipientTabs");
+    openapiFields.add("embed");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("environment");
+    openapiRequiredFields.add("signingMethod");
+    openapiRequiredFields.add("signers");
   }
 
   /**
@@ -325,6 +284,15 @@ public class AddDocusignRequest {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : AddDocusignRequest.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(
+            String.format("The required field `%s` is not found in the JSON string: %s",
+                requiredField, jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("emailSubject") != null && !jsonObj.get("emailSubject").isJsonNull())
         && !jsonObj.get("emailSubject").isJsonPrimitive()) {
@@ -332,57 +300,25 @@ public class AddDocusignRequest {
           "Expected the field `emailSubject` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("emailSubject").toString()));
     }
-    // validate the optional field `status`
-    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
-      DocusignRequestStatus.validateJsonElement(jsonObj.get("status"));
+    // validate the required field `environment`
+    DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
+    // validate the required field `signingMethod`
+    DocusignSigningMethod.validateJsonElement(jsonObj.get("signingMethod"));
+    // ensure the json data is an array
+    if (!jsonObj.get("signers").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `signers` to be an array in the JSON string but got `%s`",
+          jsonObj.get("signers").toString()));
     }
-    if (jsonObj.get("signers") != null && !jsonObj.get("signers").isJsonNull()) {
-      JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");
-      if (jsonArraysigners != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("signers").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `signers` to be an array in the JSON string but got `%s`",
-              jsonObj.get("signers").toString()));
-        }
 
-        // validate the optional field `signers` (array)
-        for (int i = 0; i < jsonArraysigners.size(); i++) {
-          DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
-        } ;
-      }
-    }
-    if (jsonObj.get("carbonCopies") != null && !jsonObj.get("carbonCopies").isJsonNull()) {
-      JsonArray jsonArraycarbonCopies = jsonObj.getAsJsonArray("carbonCopies");
-      if (jsonArraycarbonCopies != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("carbonCopies").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `carbonCopies` to be an array in the JSON string but got `%s`",
-              jsonObj.get("carbonCopies").toString()));
-        }
-
-        // validate the optional field `carbonCopies` (array)
-        for (int i = 0; i < jsonArraycarbonCopies.size(); i++) {
-          DocusignCarbonCopy.validateJsonElement(jsonArraycarbonCopies.get(i));
-        } ;
-      }
-    }
-    if (jsonObj.get("recipientTabs") != null && !jsonObj.get("recipientTabs").isJsonNull()) {
-      JsonArray jsonArrayrecipientTabs = jsonObj.getAsJsonArray("recipientTabs");
-      if (jsonArrayrecipientTabs != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("recipientTabs").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `recipientTabs` to be an array in the JSON string but got `%s`",
-              jsonObj.get("recipientTabs").toString()));
-        }
-
-        // validate the optional field `recipientTabs` (array)
-        for (int i = 0; i < jsonArrayrecipientTabs.size(); i++) {
-          DocusignRecipientTab.validateJsonElement(jsonArrayrecipientTabs.get(i));
-        } ;
-      }
+    JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");
+    // validate the required field `signers` (array)
+    for (int i = 0; i < jsonArraysigners.size(); i++) {
+      DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
+    } ;
+    // validate the optional field `embed`
+    if (jsonObj.get("embed") != null && !jsonObj.get("embed").isJsonNull()) {
+      DocusignEmbed.validateJsonElement(jsonObj.get("embed"));
     }
   }
 

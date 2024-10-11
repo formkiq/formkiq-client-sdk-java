@@ -151,6 +151,16 @@ paths:
     get:
       description: Returns the list of sites that the user has access to
       operationId: GetSites
+      parameters:
+      - description: Fetch sites with status (only valid when using SitePermissions
+          'defined'
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          $ref: '#/components/schemas/SiteStatus'
+        style: form
       responses:
         "200":
           content:
@@ -293,6 +303,49 @@ paths:
       x-accepts:
       - application/json
   /sites/{siteId}/groups/{groupName}:
+    delete:
+      description: Deletes Site Group and permissions
+      operationId: DeleteSiteGroup
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Group Name
+        explode: false
+        in: path
+        name: groupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Deletes Site Group and permissions
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
     get:
       description: Returns details of a group and permissions belonging to site
       operationId: GetSiteGroup
@@ -416,7 +469,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
-      summary: Deletst site(s) OpenSearch index
+      summary: Deletes site(s) OpenSearch index
       tags:
       - System Management
       x-amazon-apigateway-integration:
@@ -13388,6 +13441,7 @@ components:
       - UPDATE
       - DELETE
       - SOFT_DELETE
+      - RESTORE
       type: string
     UserActivity:
       example:
@@ -18085,6 +18139,7 @@ components:
           siteId: siteId
           permission: READ_WRITE
           title: title
+          status: ACTIVE
         - uploadEmail: uploadEmail
           permissions:
           - ADMIN
@@ -18092,6 +18147,7 @@ components:
           siteId: siteId
           permission: READ_WRITE
           title: title
+          status: ACTIVE
         username: username
       properties:
         username:
@@ -18112,6 +18168,7 @@ components:
         siteId: siteId
         permission: READ_WRITE
         title: title
+        status: ACTIVE
       properties:
         siteId:
           description: Site Identifier
@@ -18119,6 +18176,8 @@ components:
         title:
           description: Site Title
           type: string
+        status:
+          $ref: '#/components/schemas/SiteStatus'
         permission:
           description: SiteId permission level
           enum:
@@ -18513,11 +18572,13 @@ components:
         next: next
         workflows:
         - currentStepId: currentStepId
+          insertedDate: insertedDate
           name: name
           description: description
           workflowId: workflowId
           status: COMPLETE
         - currentStepId: currentStepId
+          insertedDate: insertedDate
           name: name
           description: description
           workflowId: workflowId
@@ -18535,6 +18596,7 @@ components:
       example:
         workflow:
           currentStepId: currentStepId
+          insertedDate: insertedDate
           name: name
           description: description
           workflowId: workflowId
@@ -18553,6 +18615,7 @@ components:
     DocumentWorkflow:
       example:
         currentStepId: currentStepId
+        insertedDate: insertedDate
         name: name
         description: description
         workflowId: workflowId
@@ -18572,6 +18635,9 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/DocumentWorkflowStatus'
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
       type: object
     AddDocumentWorkflowResponse:
       example:
@@ -19232,12 +19298,26 @@ components:
         message:
           type: string
       type: object
-    DocusignRequestStatus:
-      description: Docusign Request status
+    DocusignEnvironment:
+      description: Docusign Environment
       enum:
-      - CREATED
-      - SENT
+      - PRODUCTION
+      - DEVELOPMENT
       type: string
+    DocusignSigningMethod:
+      description: Docusign Signing Method
+      enum:
+      - EMAIL
+      - EMBED
+      type: string
+    DocusignEmbed:
+      example:
+        returnUrl: returnUrl
+      properties:
+        returnUrl:
+          description: Identifies the return point after sending the envelope
+          type: string
+      type: object
     AddDocusignRequest:
       example:
         signers:
@@ -19245,47 +19325,30 @@ components:
           email: email
         - name: name
           email: email
-        carbonCopies:
-        - name: name
-          email: email
-        - name: name
-          email: email
-        recipientTabs:
-        - positionY: positionY
-          pageNumber: pageNumber
-          type: SIGNHERE
-          positionX: positionX
-        - positionY: positionY
-          pageNumber: pageNumber
-          type: SIGNHERE
-          positionX: positionX
-        developmentMode: true
+        environment: PRODUCTION
+        embed:
+          returnUrl: returnUrl
+        signingMethod: EMAIL
         emailSubject: emailSubject
-        status: CREATED
       properties:
         emailSubject:
-          description: Email Subject
+          description: The subject line of the email message that is sent to all recipients
           type: string
-        status:
-          $ref: '#/components/schemas/DocusignRequestStatus'
-        developmentMode:
-          description: Whether to enable developer mode
-          type: boolean
+        environment:
+          $ref: '#/components/schemas/DocusignEnvironment'
+        signingMethod:
+          $ref: '#/components/schemas/DocusignSigningMethod'
         signers:
           description: List of DocuSign Signers
           items:
             $ref: '#/components/schemas/DocusignSigner'
           type: array
-        carbonCopies:
-          description: List of DocuSign Carbon Copies
-          items:
-            $ref: '#/components/schemas/DocusignCarbonCopy'
-          type: array
-        recipientTabs:
-          description: List of DocuSign Recipient Tabs
-          items:
-            $ref: '#/components/schemas/DocusignRecipientTab'
-          type: array
+        embed:
+          $ref: '#/components/schemas/DocusignEmbed'
+      required:
+      - environment
+      - signers
+      - signingMethod
       type: object
     DocusignSigner:
       example:
@@ -19298,50 +19361,16 @@ components:
         email:
           description: Email of Signer
           type: string
-      type: object
-    DocusignCarbonCopy:
-      example:
-        name: name
-        email: email
-      properties:
-        name:
-          description: Name of Signer
-          type: string
-        email:
-          description: Email of Signer
-          type: string
-      type: object
-    DocusignRecipientType:
-      description: Type of Recipient
-      enum:
-      - SIGNHERE
-      type: string
-    DocusignRecipientTab:
-      example:
-        positionY: positionY
-        pageNumber: pageNumber
-        type: SIGNHERE
-        positionX: positionX
-      properties:
-        type:
-          $ref: '#/components/schemas/DocusignRecipientType'
-        pageNumber:
-          description: Document Page Number
-          type: string
-        positionX:
-          description: Element X Position
-          type: string
-        positionY:
-          description: Element Y Position
-          type: string
+      required:
+      - name
       type: object
     AddDocusignResponse:
       example:
+        viewUrl: viewUrl
         message: message
-        redirect_url: redirect_url
       properties:
-        redirect_url:
-          description: Redirect Url to complete DocuSign workflow
+        viewUrl:
+          description: The view URL to be navigated to complete DocuSign signing
           type: string
         message:
           description: Result message

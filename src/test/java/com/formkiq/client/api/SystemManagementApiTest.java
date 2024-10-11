@@ -37,6 +37,7 @@ import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.UpdateResponse;
@@ -103,7 +104,7 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Deletst site(s) OpenSearch index
+   * Deletes site(s) OpenSearch index
    *
    * Deletes the OpenSearch index
    *
@@ -113,6 +114,21 @@ public class SystemManagementApiTest {
   public void deleteOpensearchIndexTest() throws ApiException {
     String siteId = null;
     DeleteResponse response = api.deleteOpensearchIndex(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Deletes Site Group and permissions
+   *
+   * Deletes Site Group and permissions
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteSiteGroupTest() throws ApiException {
+    String siteId = null;
+    String groupName = null;
+    DeleteResponse response = api.deleteSiteGroup(siteId, groupName);
     // TODO: test validations
   }
 
@@ -196,7 +212,8 @@ public class SystemManagementApiTest {
    */
   @Test
   public void getSitesTest() throws ApiException {
-    GetSitesResponse response = api.getSites();
+    SiteStatus status = null;
+    GetSitesResponse response = api.getSites(status);
     // TODO: test validations
   }
 

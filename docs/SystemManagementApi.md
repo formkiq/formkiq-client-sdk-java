@@ -7,7 +7,8 @@ All URIs are relative to *http://localhost*
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
 | [**addSite**](SystemManagementApi.md#addSite) | **POST** /sites | Add Site |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key |
-| [**deleteOpensearchIndex**](SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index |
+| [**deleteOpensearchIndex**](SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index |
+| [**deleteSiteGroup**](SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys |
 | [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration |
 | [**getOpensearchIndex**](SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
@@ -225,7 +226,7 @@ No authorization required
 # **deleteOpensearchIndex**
 > DeleteResponse deleteOpensearchIndex(siteId)
 
-Deletst site(s) OpenSearch index
+Deletes site(s) OpenSearch index
 
 Deletes the OpenSearch index
 
@@ -267,6 +268,73 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteSiteGroup"></a>
+# **deleteSiteGroup**
+> DeleteResponse deleteSiteGroup(siteId, groupName)
+
+Deletes Site Group and permissions
+
+Deletes Site Group and permissions
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String groupName = "groupName_example"; // String | Group Name
+    try {
+      DeleteResponse result = apiInstance.deleteSiteGroup(siteId, groupName);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#deleteSiteGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **groupName** | **String**| Group Name | |
 
 ### Return type
 
@@ -615,7 +683,7 @@ No authorization required
 
 <a id="getSites"></a>
 # **getSites**
-> GetSitesResponse getSites()
+> GetSitesResponse getSites(status)
 
 Get site(s) access
 
@@ -639,8 +707,9 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    SiteStatus status = SiteStatus.fromValue("ACTIVE"); // SiteStatus | Fetch sites with status (only valid when using SitePermissions 'defined'
     try {
-      GetSitesResponse result = apiInstance.getSites();
+      GetSitesResponse result = apiInstance.getSites(status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getSites");
@@ -654,7 +723,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **status** | [**SiteStatus**](.md)| Fetch sites with status (only valid when using SitePermissions &#39;defined&#39; | [optional] [enum: ACTIVE, INACTIVE] |
 
 ### Return type
 

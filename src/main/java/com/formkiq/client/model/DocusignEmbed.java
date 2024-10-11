@@ -52,59 +52,35 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocusignCarbonCopy
+ * DocusignEmbed
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-05T22:24:29.372002-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.8.0")
-public class DocusignCarbonCopy {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+    date = "2024-10-10T10:01:40.041013-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.9.0")
+public class DocusignEmbed {
+  public static final String SERIALIZED_NAME_RETURN_URL = "returnUrl";
+  @SerializedName(SERIALIZED_NAME_RETURN_URL)
+  private String returnUrl;
 
-  public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
-  private String email;
+  public DocusignEmbed() {}
 
-  public DocusignCarbonCopy() {}
-
-  public DocusignCarbonCopy name(String name) {
-    this.name = name;
+  public DocusignEmbed returnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
     return this;
   }
 
   /**
-   * Name of Signer
+   * Identifies the return point after sending the envelope
    * 
-   * @return name
+   * @return returnUrl
    */
   @javax.annotation.Nullable
-  public String getName() {
-    return name;
+  public String getReturnUrl() {
+    return returnUrl;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public DocusignCarbonCopy email(String email) {
-    this.email = email;
-    return this;
-  }
-
-  /**
-   * Email of Signer
-   * 
-   * @return email
-   */
-  @javax.annotation.Nullable
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  public void setReturnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
   }
 
 
@@ -117,22 +93,20 @@ public class DocusignCarbonCopy {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocusignCarbonCopy docusignCarbonCopy = (DocusignCarbonCopy) o;
-    return Objects.equals(this.name, docusignCarbonCopy.name)
-        && Objects.equals(this.email, docusignCarbonCopy.email);
+    DocusignEmbed docusignEmbed = (DocusignEmbed) o;
+    return Objects.equals(this.returnUrl, docusignEmbed.returnUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email);
+    return Objects.hash(returnUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocusignCarbonCopy {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("class DocusignEmbed {\n");
+    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -154,8 +128,7 @@ public class DocusignCarbonCopy {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("email");
+    openapiFields.add("returnUrl");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -165,39 +138,33 @@ public class DocusignCarbonCopy {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DocusignCarbonCopy
+   * @throws IOException if the JSON Element is invalid with respect to DocusignEmbed
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocusignCarbonCopy.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                 // element is null
+      if (!DocusignEmbed.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
+                                                            // is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in DocusignCarbonCopy is not found in the empty JSON string",
-            DocusignCarbonCopy.openapiRequiredFields.toString()));
+            "The required field(s) %s in DocusignEmbed is not found in the empty JSON string",
+            DocusignEmbed.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocusignCarbonCopy.openapiFields.contains(entry.getKey())) {
+      if (!DocusignEmbed.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `DocusignCarbonCopy` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `DocusignEmbed` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
-        && !jsonObj.get("name").isJsonPrimitive()) {
+    if ((jsonObj.get("returnUrl") != null && !jsonObj.get("returnUrl").isJsonNull())
+        && !jsonObj.get("returnUrl").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
-          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("name").toString()));
-    }
-    if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
-        && !jsonObj.get("email").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `email` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("email").toString()));
+          "Expected the field `returnUrl` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("returnUrl").toString()));
     }
   }
 
@@ -205,22 +172,22 @@ public class DocusignCarbonCopy {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocusignCarbonCopy.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocusignCarbonCopy' and its subtypes
+      if (!DocusignEmbed.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'DocusignEmbed' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocusignCarbonCopy> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocusignCarbonCopy.class));
+      final TypeAdapter<DocusignEmbed> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(DocusignEmbed.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocusignCarbonCopy>() {
+      return (TypeAdapter<T>) new TypeAdapter<DocusignEmbed>() {
         @Override
-        public void write(JsonWriter out, DocusignCarbonCopy value) throws IOException {
+        public void write(JsonWriter out, DocusignEmbed value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocusignCarbonCopy read(JsonReader in) throws IOException {
+        public DocusignEmbed read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -231,18 +198,18 @@ public class DocusignCarbonCopy {
   }
 
   /**
-   * Create an instance of DocusignCarbonCopy given an JSON string
+   * Create an instance of DocusignEmbed given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocusignCarbonCopy
-   * @throws IOException if the JSON string is invalid with respect to DocusignCarbonCopy
+   * @return An instance of DocusignEmbed
+   * @throws IOException if the JSON string is invalid with respect to DocusignEmbed
    */
-  public static DocusignCarbonCopy fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocusignCarbonCopy.class);
+  public static DocusignEmbed fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DocusignEmbed.class);
   }
 
   /**
-   * Convert an instance of DocusignCarbonCopy to an JSON string
+   * Convert an instance of DocusignEmbed to an JSON string
    *
    * @return JSON string
    */

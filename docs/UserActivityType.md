@@ -15,5 +15,7 @@
 
 * `SOFT_DELETE` (value: `"SOFT_DELETE"`)
 
+* `RESTORE` (value: `"RESTORE"`)
+
 
 

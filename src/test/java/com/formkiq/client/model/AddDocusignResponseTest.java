@@ -44,11 +44,11 @@ public class AddDocusignResponseTest {
   }
 
   /**
-   * Test the property 'redirectUrl'
+   * Test the property 'viewUrl'
    */
   @Test
-  public void redirectUrlTest() {
-    // TODO: test redirectUrl
+  public void viewUrlTest() {
+    // TODO: test viewUrl
   }
 
   /**

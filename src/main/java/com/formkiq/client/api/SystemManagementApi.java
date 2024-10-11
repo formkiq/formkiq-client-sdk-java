@@ -50,6 +50,7 @@ import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.UpdateResponse;
@@ -752,7 +753,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletst site(s) OpenSearch index Deletes the OpenSearch index
+   * Deletes site(s) OpenSearch index Deletes the OpenSearch index
    * 
    * @param siteId Site Identifier (required)
    * @return DeleteResponse
@@ -781,7 +782,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletst site(s) OpenSearch index Deletes the OpenSearch index
+   * Deletes site(s) OpenSearch index Deletes the OpenSearch index
    * 
    * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;DeleteResponse&gt;
@@ -812,7 +813,7 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletst site(s) OpenSearch index (asynchronously) Deletes the OpenSearch index
+   * Deletes site(s) OpenSearch index (asynchronously) Deletes the OpenSearch index
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -839,6 +840,193 @@ public class SystemManagementApi {
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteOpensearchIndexValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteSiteGroup
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteSiteGroupCall(String siteId, String groupName,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/groups/{groupName}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "groupName" + "}", localVarApiClient.escapeString(groupName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteSiteGroupValidateBeforeCall(String siteId, String groupName,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteSiteGroup(Async)");
+    }
+
+    // verify the required parameter 'groupName' is set
+    if (groupName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'groupName' when calling deleteSiteGroup(Async)");
+    }
+
+    return deleteSiteGroupCall(siteId, groupName, _callback);
+
+  }
+
+  /**
+   * Deletes Site Group and permissions Deletes Site Group and permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deleteSiteGroup(String siteId, String groupName) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteSiteGroupWithHttpInfo(siteId, groupName);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Deletes Site Group and permissions Deletes Site Group and permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deleteSiteGroupWithHttpInfo(String siteId, String groupName)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteSiteGroupValidateBeforeCall(siteId, groupName, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Deletes Site Group and permissions (asynchronously) Deletes Site Group and permissions
+   * 
+   * @param siteId Site Identifier (required)
+   * @param groupName Group Name (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table summary="Response Details" border="1">
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteSiteGroupAsync(String siteId, String groupName,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteSiteGroupValidateBeforeCall(siteId, groupName, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1743,6 +1931,8 @@ public class SystemManagementApi {
   /**
    * Build call for getSites
    * 
+   * @param status Fetch sites with status (only valid when using SitePermissions &#39;defined&#39;
+   *        (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1763,7 +1953,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getSitesCall(final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getSitesCall(SiteStatus status, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1788,6 +1979,10 @@ public class SystemManagementApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    if (status != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1808,14 +2003,17 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getSitesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-    return getSitesCall(_callback);
+  private okhttp3.Call getSitesValidateBeforeCall(SiteStatus status, final ApiCallback _callback)
+      throws ApiException {
+    return getSitesCall(status, _callback);
 
   }
 
   /**
    * Get site(s) access Returns the list of sites that the user has access to
    * 
+   * @param status Fetch sites with status (only valid when using SitePermissions &#39;defined&#39;
+   *        (optional)
    * @return GetSitesResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1836,14 +2034,16 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetSitesResponse getSites() throws ApiException {
-    ApiResponse<GetSitesResponse> localVarResp = getSitesWithHttpInfo();
+  public GetSitesResponse getSites(SiteStatus status) throws ApiException {
+    ApiResponse<GetSitesResponse> localVarResp = getSitesWithHttpInfo(status);
     return localVarResp.getData();
   }
 
   /**
    * Get site(s) access Returns the list of sites that the user has access to
    * 
+   * @param status Fetch sites with status (only valid when using SitePermissions &#39;defined&#39;
+   *        (optional)
    * @return ApiResponse&lt;GetSitesResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1864,8 +2064,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetSitesResponse> getSitesWithHttpInfo() throws ApiException {
-    okhttp3.Call localVarCall = getSitesValidateBeforeCall(null);
+  public ApiResponse<GetSitesResponse> getSitesWithHttpInfo(SiteStatus status) throws ApiException {
+    okhttp3.Call localVarCall = getSitesValidateBeforeCall(status, null);
     Type localVarReturnType = new TypeToken<GetSitesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1873,6 +2073,8 @@ public class SystemManagementApi {
   /**
    * Get site(s) access (asynchronously) Returns the list of sites that the user has access to
    * 
+   * @param status Fetch sites with status (only valid when using SitePermissions &#39;defined&#39;
+   *        (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1893,10 +2095,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getSitesAsync(final ApiCallback<GetSitesResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getSitesAsync(SiteStatus status,
+      final ApiCallback<GetSitesResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getSitesValidateBeforeCall(_callback);
+    okhttp3.Call localVarCall = getSitesValidateBeforeCall(status, _callback);
     Type localVarReturnType = new TypeToken<GetSitesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

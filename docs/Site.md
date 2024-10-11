@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**title** | **String** | Site Title |  [optional] |
+|**status** | **SiteStatus** |  |  [optional] |
 |**permission** | [**PermissionEnum**](#PermissionEnum) | SiteId permission level |  [optional] |
 |**permissions** | **List&lt;SiteGroupPermissions&gt;** |  |  [optional] |
 |**uploadEmail** | **String** | SiteId document upload email address |  [optional] |

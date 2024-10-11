@@ -19,10 +19,10 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocusignCarbonCopy;
-import com.formkiq.client.model.DocusignRecipientTab;
-import com.formkiq.client.model.DocusignRequestStatus;
+import com.formkiq.client.model.DocusignEmbed;
+import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignSigner;
+import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,19 +58,19 @@ public class AddDocusignRequestTest {
   }
 
   /**
-   * Test the property 'status'
+   * Test the property 'environment'
    */
   @Test
-  public void statusTest() {
-    // TODO: test status
+  public void environmentTest() {
+    // TODO: test environment
   }
 
   /**
-   * Test the property 'developmentMode'
+   * Test the property 'signingMethod'
    */
   @Test
-  public void developmentModeTest() {
-    // TODO: test developmentMode
+  public void signingMethodTest() {
+    // TODO: test signingMethod
   }
 
   /**
@@ -82,19 +82,11 @@ public class AddDocusignRequestTest {
   }
 
   /**
-   * Test the property 'carbonCopies'
+   * Test the property 'embed'
    */
   @Test
-  public void carbonCopiesTest() {
-    // TODO: test carbonCopies
-  }
-
-  /**
-   * Test the property 'recipientTabs'
-   */
-  @Test
-  public void recipientTabsTest() {
-    // TODO: test recipientTabs
+  public void embedTest() {
+    // TODO: test embed
   }
 
 }
