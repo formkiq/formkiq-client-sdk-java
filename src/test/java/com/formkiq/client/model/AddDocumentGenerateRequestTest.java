@@ -63,4 +63,12 @@ public class AddDocumentGenerateRequestTest {
     // TODO: test outputType
   }
 
+  /**
+   * Test the property 'saveAsDocumentId'
+   */
+  @Test
+  public void saveAsDocumentIdTest() {
+    // TODO: test saveAsDocumentId
+  }
+
 }

@@ -67,4 +67,12 @@ public class DocusignConfigTest {
     // TODO: test rsaPrivateKey
   }
 
+  /**
+   * Test the property 'hmacSignature'
+   */
+  @Test
+  public void hmacSignatureTest() {
+    // TODO: test hmacSignature
+  }
+
 }

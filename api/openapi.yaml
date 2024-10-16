@@ -1690,11 +1690,11 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: |-
-        Update a document's details, i.e., metadata
-
-        NOTE:
-        - provided attributes will overwrite existing matching attribute keys in the document. Attributes not included in the request body will remain unchanged.
+      description: "Update a document's details, i.e., metadata\n\nIf no content is\
+        \ specified, the endpoint will return a S3 Presigned that will allow for the\
+        \ uploading of Large document data. \n\nNOTE:\n- provided attributes will\
+        \ overwrite existing matching attribute keys in the document. Attributes not\
+        \ included in the request body will remain unchanged."
       operationId: UpdateDocument
       parameters:
       - description: Site Identifier
@@ -1799,7 +1799,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Version Key
+      - description: Version Key (version key required URL encoding)
         explode: true
         in: query
         name: versionKey
@@ -2817,7 +2817,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Version Key
+      - description: Version Key (version key required URL encoding)
         explode: true
         in: query
         name: versionKey
@@ -4281,7 +4281,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Version Key
+      - description: Version Key (version key required URL encoding)
         explode: false
         in: path
         name: versionKey
@@ -4407,6 +4407,14 @@ paths:
         explode: true
         in: query
         name: indexKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Path query parameter (must be URL Encoded)
+        explode: true
+        in: query
+        name: path
         required: false
         schema:
           type: string
@@ -9912,7 +9920,7 @@ components:
         type: string
       style: simple
     versionKeyPath:
-      description: Version Key
+      description: Version Key (version key required URL encoding)
       explode: false
       in: path
       name: versionKey
@@ -9930,7 +9938,7 @@ components:
         type: string
       style: form
     versionKeyParam:
-      description: Version Key
+      description: Version Key (version key required URL encoding)
       explode: true
       in: query
       name: versionKey
@@ -10315,6 +10323,15 @@ components:
       explode: true
       in: query
       name: indexKey
+      required: false
+      schema:
+        type: string
+      style: form
+    pathQueryParam:
+      description: Path query parameter (must be URL Encoded)
+      explode: true
+      in: query
+      name: path
       required: false
       schema:
         type: string
@@ -12160,7 +12177,8 @@ components:
             notificationHtml: notificationHtml
       properties:
         documentId:
-          description: "optional Document Identifier, if skipped one will be assigned"
+          description: "optional Document Identifier (Version 4 UUID), if skipped\
+            \ one will be assigned"
           type: string
         path:
           description: Path or Name of document
@@ -15504,6 +15522,7 @@ components:
           documentId: documentId
           dataRoot: data
         outputType: DOCX
+        saveAsDocumentId: saveAsDocumentId
       properties:
         datasources:
           description: List of data sources
@@ -15512,6 +15531,9 @@ components:
           type: array
         outputType:
           $ref: '#/components/schemas/DocumentGenerateOutputType'
+        saveAsDocumentId:
+          description: Save the generated document with a specific documentId
+          type: string
       type: object
     DocumentGenerateDataSource:
       example:
@@ -16904,6 +16926,7 @@ components:
         docusign:
           rsaPrivateKey: rsaPrivateKey
           userId: userId
+          hmacSignature: hmacSignature
           integrationKey: integrationKey
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
@@ -17543,6 +17566,7 @@ components:
         docusign:
           rsaPrivateKey: rsaPrivateKey
           userId: userId
+          hmacSignature: hmacSignature
           integrationKey: integrationKey
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
@@ -17587,6 +17611,7 @@ components:
       example:
         rsaPrivateKey: rsaPrivateKey
         userId: userId
+        hmacSignature: hmacSignature
         integrationKey: integrationKey
       properties:
         userId:
@@ -17597,6 +17622,12 @@ components:
           type: string
         rsaPrivateKey:
           description: Docusign Rsa Private Key
+          type: string
+        hmacSignature:
+          description: "Enabled security with Docusign Connect using HMAC keys. When\
+            \ enabled these keys are known only by Docusign and your app, and will\
+            \ be used to sign all Connect messages sent from your Docusign account\
+            \ to your application."
           type: string
       type: object
     GetUsersInGroupResponse:
@@ -19310,28 +19341,112 @@ components:
       - EMAIL
       - INPERSON
       type: string
-    DocusignInPerson:
+    DocusignRecipientView:
       example:
+        recipientId: recipientId
         returnUrl: returnUrl
+        frameAncestors:
+        - frameAncestors
+        - frameAncestors
+        messageOrigins:
+        - messageOrigins
+        - messageOrigins
       properties:
         returnUrl:
           description: Identifies the return point after sending the envelope
           type: string
+        recipientId:
+          description: "A reference used to map recipients to other objects, such\
+            \ as specific document tabs."
+          type: string
+        frameAncestors:
+          description: An array of ancestors that can embed the frame. Include the
+            domain where the envelope will be embedded and the same URL as messageOrigins.
+          items:
+            type: string
+          type: array
+        messageOrigins:
+          description: The originating domain for the signature request message
+          items:
+            type: string
+          type: array
       type: object
     AddDocusignRequest:
       example:
         signers:
         - clientUserId: clientUserId
+          suppressEmails: suppressEmails
           name: name
+          tabs:
+            signHereTabs:
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+          recipientId: recipientId
+          routingOrder: routingOrder
           email: email
         - clientUserId: clientUserId
+          suppressEmails: suppressEmails
           name: name
+          tabs:
+            signHereTabs:
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+          recipientId: recipientId
+          routingOrder: routingOrder
           email: email
         environment: PRODUCTION
-        inperson:
-          returnUrl: returnUrl
+        inpersonSigners:
+        - clientUserId: clientUserId
+          signerEmail: signerEmail
+          hostName: hostName
+          suppressEmails: suppressEmails
+          tabs:
+            signHereTabs:
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+          hostEmail: hostEmail
+          recipientId: recipientId
+          routingOrder: routingOrder
+          signerName: signerName
+        - clientUserId: clientUserId
+          signerEmail: signerEmail
+          hostName: hostName
+          suppressEmails: suppressEmails
+          tabs:
+            signHereTabs:
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+            - xPosition: xPosition
+              pageNumber: pageNumber
+              yPosition: yPosition
+          hostEmail: hostEmail
+          recipientId: recipientId
+          routingOrder: routingOrder
+          signerName: signerName
         signingMethod: EMAIL
         emailSubject: emailSubject
+        recipientView:
+          recipientId: recipientId
+          returnUrl: returnUrl
+          frameAncestors:
+          - frameAncestors
+          - frameAncestors
+          messageOrigins:
+          - messageOrigins
+          - messageOrigins
       properties:
         emailSubject:
           description: The subject line of the email message that is sent to all recipients
@@ -19345,8 +19460,13 @@ components:
           items:
             $ref: '#/components/schemas/DocusignSigner'
           type: array
-        inperson:
-          $ref: '#/components/schemas/DocusignInPerson'
+        inpersonSigners:
+          description: List of DocuSign Inperson Signers
+          items:
+            $ref: '#/components/schemas/DocusignInpersonSigner'
+          type: array
+        recipientView:
+          $ref: '#/components/schemas/DocusignRecipientView'
       required:
       - environment
       - signers
@@ -19355,7 +19475,18 @@ components:
     DocusignSigner:
       example:
         clientUserId: clientUserId
+        suppressEmails: suppressEmails
         name: name
+        tabs:
+          signHereTabs:
+          - xPosition: xPosition
+            pageNumber: pageNumber
+            yPosition: yPosition
+          - xPosition: xPosition
+            pageNumber: pageNumber
+            yPosition: yPosition
+        recipientId: recipientId
+        routingOrder: routingOrder
         email: email
       properties:
         name:
@@ -19365,10 +19496,110 @@ components:
           description: Email of Signer
           type: string
         clientUserId:
-          description: Specifies unique identifier for signer (required if using InPerson)
+          description: Specifies unique identifier for signer
           type: string
+        recipientId:
+          description: "A reference used to map recipients to other objects, such\
+            \ as specific document tabs."
+          type: string
+        routingOrder:
+          description: Specifies the routing order of the recipient in the envelope.
+          type: string
+        suppressEmails:
+          description: "When true, email notifications are suppressed for the recipient,\
+            \ and they must access envelopes and documents from their Docusign inbox."
+          type: string
+        tabs:
+          $ref: '#/components/schemas/DocusignSigningTabs'
       required:
       - name
+      type: object
+    DocusignSigningTabs:
+      example:
+        signHereTabs:
+        - xPosition: xPosition
+          pageNumber: pageNumber
+          yPosition: yPosition
+        - xPosition: xPosition
+          pageNumber: pageNumber
+          yPosition: yPosition
+      properties:
+        signHereTabs:
+          description: A list of Sign Here tabs
+          items:
+            $ref: '#/components/schemas/DocusignSignHereTabs'
+          type: array
+      type: object
+    DocusignSignHereTabs:
+      example:
+        xPosition: xPosition
+        pageNumber: pageNumber
+        yPosition: yPosition
+      properties:
+        xPosition:
+          description: This property indicates the horizontal offset of the object
+            on the page
+          type: string
+        yPosition:
+          description: This property indicates the vertical offset of the object on
+            the page
+          type: string
+        pageNumber:
+          description: Specifies the page number on which the tab is located
+          type: string
+      type: object
+    DocusignInpersonSigner:
+      example:
+        clientUserId: clientUserId
+        signerEmail: signerEmail
+        hostName: hostName
+        suppressEmails: suppressEmails
+        tabs:
+          signHereTabs:
+          - xPosition: xPosition
+            pageNumber: pageNumber
+            yPosition: yPosition
+          - xPosition: xPosition
+            pageNumber: pageNumber
+            yPosition: yPosition
+        hostEmail: hostEmail
+        recipientId: recipientId
+        routingOrder: routingOrder
+        signerName: signerName
+      properties:
+        hostEmail:
+          description: The email of the signing host
+          type: string
+        hostName:
+          description: The name of the signing host
+          type: string
+        clientUserId:
+          description: Specifies unique identifier for signer
+          type: string
+        signerName:
+          description: The full legal name of a signer
+          type: string
+        signerEmail:
+          description: The in-person signer's email address
+          type: string
+        recipientId:
+          description: "A reference used to map recipients to other objects, such\
+            \ as specific document tabs."
+          type: string
+        routingOrder:
+          description: Specifies the routing order of the recipient in the envelope.
+          type: string
+        suppressEmails:
+          description: "When true, email notifications are suppressed for the recipient,\
+            \ and they must access envelopes and documents from their Docusign inbox."
+          type: string
+        tabs:
+          $ref: '#/components/schemas/DocusignSigningTabs'
+      required:
+      - clientUserId
+      - hostEmail
+      - hostName
+      - signerName
       type: object
     AddDocusignResponse:
       example:

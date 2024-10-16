@@ -86,7 +86,7 @@ public class DocumentVersionsApi {
    * Build call for deleteDocumentVersion
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (required)
+   * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
@@ -188,7 +188,7 @@ public class DocumentVersionsApi {
    * FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (required)
+   * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return DeleteResponse
@@ -223,7 +223,7 @@ public class DocumentVersionsApi {
    * FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (required)
+   * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
@@ -259,7 +259,7 @@ public class DocumentVersionsApi {
    * available with FormKiQ Pro and Enterprise
    * 
    * @param documentId Document Identifier (required)
-   * @param versionKey Version Key (required)
+   * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes

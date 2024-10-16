@@ -83,10 +83,12 @@ public class DocumentFoldersApiTest {
   public void getFolderDocumentsTest() throws ApiException {
     String siteId = null;
     String indexKey = null;
+    String path = null;
     String limit = null;
     String shareKey = null;
     String next = null;
-    GetFoldersResponse response = api.getFolderDocuments(siteId, indexKey, limit, shareKey, next);
+    GetFoldersResponse response =
+        api.getFolderDocuments(siteId, indexKey, path, limit, shareKey, next);
     // TODO: test validations
   }
 

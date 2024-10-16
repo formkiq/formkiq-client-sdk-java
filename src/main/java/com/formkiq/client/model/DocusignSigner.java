@@ -20,6 +20,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocusignSigningTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
+    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignSigner {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -69,6 +70,22 @@ public class DocusignSigner {
   public static final String SERIALIZED_NAME_CLIENT_USER_ID = "clientUserId";
   @SerializedName(SERIALIZED_NAME_CLIENT_USER_ID)
   private String clientUserId;
+
+  public static final String SERIALIZED_NAME_RECIPIENT_ID = "recipientId";
+  @SerializedName(SERIALIZED_NAME_RECIPIENT_ID)
+  private String recipientId;
+
+  public static final String SERIALIZED_NAME_ROUTING_ORDER = "routingOrder";
+  @SerializedName(SERIALIZED_NAME_ROUTING_ORDER)
+  private String routingOrder;
+
+  public static final String SERIALIZED_NAME_SUPPRESS_EMAILS = "suppressEmails";
+  @SerializedName(SERIALIZED_NAME_SUPPRESS_EMAILS)
+  private String suppressEmails;
+
+  public static final String SERIALIZED_NAME_TABS = "tabs";
+  @SerializedName(SERIALIZED_NAME_TABS)
+  private DocusignSigningTabs tabs;
 
   public DocusignSigner() {}
 
@@ -118,7 +135,7 @@ public class DocusignSigner {
   }
 
   /**
-   * Specifies unique identifier for signer (required if using InPerson)
+   * Specifies unique identifier for signer
    * 
    * @return clientUserId
    */
@@ -129,6 +146,87 @@ public class DocusignSigner {
 
   public void setClientUserId(String clientUserId) {
     this.clientUserId = clientUserId;
+  }
+
+
+  public DocusignSigner recipientId(String recipientId) {
+    this.recipientId = recipientId;
+    return this;
+  }
+
+  /**
+   * A reference used to map recipients to other objects, such as specific document tabs.
+   * 
+   * @return recipientId
+   */
+  @javax.annotation.Nullable
+  public String getRecipientId() {
+    return recipientId;
+  }
+
+  public void setRecipientId(String recipientId) {
+    this.recipientId = recipientId;
+  }
+
+
+  public DocusignSigner routingOrder(String routingOrder) {
+    this.routingOrder = routingOrder;
+    return this;
+  }
+
+  /**
+   * Specifies the routing order of the recipient in the envelope.
+   * 
+   * @return routingOrder
+   */
+  @javax.annotation.Nullable
+  public String getRoutingOrder() {
+    return routingOrder;
+  }
+
+  public void setRoutingOrder(String routingOrder) {
+    this.routingOrder = routingOrder;
+  }
+
+
+  public DocusignSigner suppressEmails(String suppressEmails) {
+    this.suppressEmails = suppressEmails;
+    return this;
+  }
+
+  /**
+   * When true, email notifications are suppressed for the recipient, and they must access envelopes
+   * and documents from their Docusign inbox.
+   * 
+   * @return suppressEmails
+   */
+  @javax.annotation.Nullable
+  public String getSuppressEmails() {
+    return suppressEmails;
+  }
+
+  public void setSuppressEmails(String suppressEmails) {
+    this.suppressEmails = suppressEmails;
+  }
+
+
+  public DocusignSigner tabs(DocusignSigningTabs tabs) {
+    this.tabs = tabs;
+    return this;
+  }
+
+  /**
+   * Get tabs
+   * 
+   * @return tabs
+   */
+  @javax.annotation.Nullable
+  public DocusignSigningTabs getTabs() {
+    return tabs;
+  }
+
+  public void setTabs(DocusignSigningTabs tabs) {
+    this.tabs = tabs;
   }
 
 
@@ -144,12 +242,16 @@ public class DocusignSigner {
     DocusignSigner docusignSigner = (DocusignSigner) o;
     return Objects.equals(this.name, docusignSigner.name)
         && Objects.equals(this.email, docusignSigner.email)
-        && Objects.equals(this.clientUserId, docusignSigner.clientUserId);
+        && Objects.equals(this.clientUserId, docusignSigner.clientUserId)
+        && Objects.equals(this.recipientId, docusignSigner.recipientId)
+        && Objects.equals(this.routingOrder, docusignSigner.routingOrder)
+        && Objects.equals(this.suppressEmails, docusignSigner.suppressEmails)
+        && Objects.equals(this.tabs, docusignSigner.tabs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, clientUserId);
+    return Objects.hash(name, email, clientUserId, recipientId, routingOrder, suppressEmails, tabs);
   }
 
   @Override
@@ -159,6 +261,10 @@ public class DocusignSigner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    clientUserId: ").append(toIndentedString(clientUserId)).append("\n");
+    sb.append("    recipientId: ").append(toIndentedString(recipientId)).append("\n");
+    sb.append("    routingOrder: ").append(toIndentedString(routingOrder)).append("\n");
+    sb.append("    suppressEmails: ").append(toIndentedString(suppressEmails)).append("\n");
+    sb.append("    tabs: ").append(toIndentedString(tabs)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,6 +289,10 @@ public class DocusignSigner {
     openapiFields.add("name");
     openapiFields.add("email");
     openapiFields.add("clientUserId");
+    openapiFields.add("recipientId");
+    openapiFields.add("routingOrder");
+    openapiFields.add("suppressEmails");
+    openapiFields.add("tabs");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -240,6 +350,28 @@ public class DocusignSigner {
       throw new IllegalArgumentException(String.format(
           "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("clientUserId").toString()));
+    }
+    if ((jsonObj.get("recipientId") != null && !jsonObj.get("recipientId").isJsonNull())
+        && !jsonObj.get("recipientId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `recipientId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("recipientId").toString()));
+    }
+    if ((jsonObj.get("routingOrder") != null && !jsonObj.get("routingOrder").isJsonNull())
+        && !jsonObj.get("routingOrder").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `routingOrder` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("routingOrder").toString()));
+    }
+    if ((jsonObj.get("suppressEmails") != null && !jsonObj.get("suppressEmails").isJsonNull())
+        && !jsonObj.get("suppressEmails").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `suppressEmails` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("suppressEmails").toString()));
+    }
+    // validate the optional field `tabs`
+    if (jsonObj.get("tabs") != null && !jsonObj.get("tabs").isJsonNull()) {
+      DocusignSigningTabs.validateJsonElement(jsonObj.get("tabs"));
     }
   }
 

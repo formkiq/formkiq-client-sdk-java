@@ -20,7 +20,8 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocusignEnvironment;
-import com.formkiq.client.model.DocusignInPerson;
+import com.formkiq.client.model.DocusignInpersonSigner;
+import com.formkiq.client.model.DocusignRecipientView;
 import com.formkiq.client.model.DocusignSigner;
 import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
@@ -82,11 +83,19 @@ public class AddDocusignRequestTest {
   }
 
   /**
-   * Test the property 'inperson'
+   * Test the property 'inpersonSigners'
    */
   @Test
-  public void inpersonTest() {
-    // TODO: test inperson
+  public void inpersonSignersTest() {
+    // TODO: test inpersonSigners
+  }
+
+  /**
+   * Test the property 'recipientView'
+   */
+  @Test
+  public void recipientViewTest() {
+    // TODO: test recipientView
   }
 
 }

@@ -1339,7 +1339,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -1440,7 +1440,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentContentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1477,7 +1477,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentContentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1516,7 +1516,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -2236,7 +2236,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
@@ -2348,7 +2348,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
@@ -2385,7 +2385,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
@@ -2424,7 +2424,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @param versionKey Version Key (optional)
+   * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
@@ -3177,9 +3177,10 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document Update a document&#39;s details, i.e., metadata NOTE: - provided attributes
-   * will overwrite existing matching attribute keys in the document. Attributes not included in the
-   * request body will remain unchanged.
+   * Update document Update a document&#39;s details, i.e., metadata If no content is specified, the
+   * endpoint will return a S3 Presigned that will allow for the uploading of Large document data.
+   * NOTE: - provided attributes will overwrite existing matching attribute keys in the document.
+   * Attributes not included in the request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
@@ -3219,9 +3220,10 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document Update a document&#39;s details, i.e., metadata NOTE: - provided attributes
-   * will overwrite existing matching attribute keys in the document. Attributes not included in the
-   * request body will remain unchanged.
+   * Update document Update a document&#39;s details, i.e., metadata If no content is specified, the
+   * endpoint will return a S3 Presigned that will allow for the uploading of Large document data.
+   * NOTE: - provided attributes will overwrite existing matching attribute keys in the document.
+   * Attributes not included in the request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
@@ -3262,9 +3264,10 @@ public class DocumentsApi {
   }
 
   /**
-   * Update document (asynchronously) Update a document&#39;s details, i.e., metadata NOTE: -
-   * provided attributes will overwrite existing matching attribute keys in the document. Attributes
-   * not included in the request body will remain unchanged.
+   * Update document (asynchronously) Update a document&#39;s details, i.e., metadata If no content
+   * is specified, the endpoint will return a S3 Presigned that will allow for the uploading of
+   * Large document data. NOTE: - provided attributes will overwrite existing matching attribute
+   * keys in the document. Attributes not included in the request body will remain unchanged.
    * 
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)

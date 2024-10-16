@@ -36,7 +36,7 @@ public class Example {
     
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
-    String versionKey = "versionKey_example"; // String | Version Key
+    String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
@@ -58,7 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
-| **versionKey** | **String**| Version Key | |
+| **versionKey** | **String**| Version Key (version key required URL encoding) | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 

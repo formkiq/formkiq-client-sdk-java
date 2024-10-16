@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
+    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_DATASOURCES = "datasources";
@@ -69,6 +69,10 @@ public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_OUTPUT_TYPE = "outputType";
   @SerializedName(SERIALIZED_NAME_OUTPUT_TYPE)
   private DocumentGenerateOutputType outputType;
+
+  public static final String SERIALIZED_NAME_SAVE_AS_DOCUMENT_ID = "saveAsDocumentId";
+  @SerializedName(SERIALIZED_NAME_SAVE_AS_DOCUMENT_ID)
+  private String saveAsDocumentId;
 
   public AddDocumentGenerateRequest() {}
 
@@ -120,6 +124,26 @@ public class AddDocumentGenerateRequest {
   }
 
 
+  public AddDocumentGenerateRequest saveAsDocumentId(String saveAsDocumentId) {
+    this.saveAsDocumentId = saveAsDocumentId;
+    return this;
+  }
+
+  /**
+   * Save the generated document with a specific documentId
+   * 
+   * @return saveAsDocumentId
+   */
+  @javax.annotation.Nullable
+  public String getSaveAsDocumentId() {
+    return saveAsDocumentId;
+  }
+
+  public void setSaveAsDocumentId(String saveAsDocumentId) {
+    this.saveAsDocumentId = saveAsDocumentId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -131,12 +155,13 @@ public class AddDocumentGenerateRequest {
     }
     AddDocumentGenerateRequest addDocumentGenerateRequest = (AddDocumentGenerateRequest) o;
     return Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
-        && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType);
+        && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType)
+        && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datasources, outputType);
+    return Objects.hash(datasources, outputType, saveAsDocumentId);
   }
 
   @Override
@@ -145,6 +170,7 @@ public class AddDocumentGenerateRequest {
     sb.append("class AddDocumentGenerateRequest {\n");
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
+    sb.append("    saveAsDocumentId: ").append(toIndentedString(saveAsDocumentId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -168,6 +194,7 @@ public class AddDocumentGenerateRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("datasources");
     openapiFields.add("outputType");
+    openapiFields.add("saveAsDocumentId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -218,6 +245,12 @@ public class AddDocumentGenerateRequest {
     // validate the optional field `outputType`
     if (jsonObj.get("outputType") != null && !jsonObj.get("outputType").isJsonNull()) {
       DocumentGenerateOutputType.validateJsonElement(jsonObj.get("outputType"));
+    }
+    if ((jsonObj.get("saveAsDocumentId") != null && !jsonObj.get("saveAsDocumentId").isJsonNull())
+        && !jsonObj.get("saveAsDocumentId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `saveAsDocumentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("saveAsDocumentId").toString()));
     }
   }
 

@@ -55,7 +55,7 @@ import com.formkiq.client.invoker.JSON;
  * DocusignConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
+    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignConfig {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
@@ -69,6 +69,10 @@ public class DocusignConfig {
   public static final String SERIALIZED_NAME_RSA_PRIVATE_KEY = "rsaPrivateKey";
   @SerializedName(SERIALIZED_NAME_RSA_PRIVATE_KEY)
   private String rsaPrivateKey;
+
+  public static final String SERIALIZED_NAME_HMAC_SIGNATURE = "hmacSignature";
+  @SerializedName(SERIALIZED_NAME_HMAC_SIGNATURE)
+  private String hmacSignature;
 
   public DocusignConfig() {}
 
@@ -132,6 +136,28 @@ public class DocusignConfig {
   }
 
 
+  public DocusignConfig hmacSignature(String hmacSignature) {
+    this.hmacSignature = hmacSignature;
+    return this;
+  }
+
+  /**
+   * Enabled security with Docusign Connect using HMAC keys. When enabled these keys are known only
+   * by Docusign and your app, and will be used to sign all Connect messages sent from your Docusign
+   * account to your application.
+   * 
+   * @return hmacSignature
+   */
+  @javax.annotation.Nullable
+  public String getHmacSignature() {
+    return hmacSignature;
+  }
+
+  public void setHmacSignature(String hmacSignature) {
+    this.hmacSignature = hmacSignature;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -144,12 +170,13 @@ public class DocusignConfig {
     DocusignConfig docusignConfig = (DocusignConfig) o;
     return Objects.equals(this.userId, docusignConfig.userId)
         && Objects.equals(this.integrationKey, docusignConfig.integrationKey)
-        && Objects.equals(this.rsaPrivateKey, docusignConfig.rsaPrivateKey);
+        && Objects.equals(this.rsaPrivateKey, docusignConfig.rsaPrivateKey)
+        && Objects.equals(this.hmacSignature, docusignConfig.hmacSignature);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, integrationKey, rsaPrivateKey);
+    return Objects.hash(userId, integrationKey, rsaPrivateKey, hmacSignature);
   }
 
   @Override
@@ -159,6 +186,7 @@ public class DocusignConfig {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    integrationKey: ").append(toIndentedString(integrationKey)).append("\n");
     sb.append("    rsaPrivateKey: ").append(toIndentedString(rsaPrivateKey)).append("\n");
+    sb.append("    hmacSignature: ").append(toIndentedString(hmacSignature)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,6 +211,7 @@ public class DocusignConfig {
     openapiFields.add("userId");
     openapiFields.add("integrationKey");
     openapiFields.add("rsaPrivateKey");
+    openapiFields.add("hmacSignature");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -231,6 +260,12 @@ public class DocusignConfig {
       throw new IllegalArgumentException(String.format(
           "Expected the field `rsaPrivateKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("rsaPrivateKey").toString()));
+    }
+    if ((jsonObj.get("hmacSignature") != null && !jsonObj.get("hmacSignature").isJsonNull())
+        && !jsonObj.get("hmacSignature").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `hmacSignature` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("hmacSignature").toString()));
     }
   }
 

@@ -319,9 +319,10 @@ public class DocumentsApiTest {
   /**
    * Update document
    *
-   * Update a document&#39;s details, i.e., metadata NOTE: - provided attributes will overwrite
-   * existing matching attribute keys in the document. Attributes not included in the request body
-   * will remain unchanged.
+   * Update a document&#39;s details, i.e., metadata If no content is specified, the endpoint will
+   * return a S3 Presigned that will allow for the uploading of Large document data. NOTE: -
+   * provided attributes will overwrite existing matching attribute keys in the document. Attributes
+   * not included in the request body will remain unchanged.
    *
    * @throws ApiException if the Api call fails
    */

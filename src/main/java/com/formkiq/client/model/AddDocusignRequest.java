@@ -21,7 +21,8 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.DocusignEnvironment;
-import com.formkiq.client.model.DocusignInPerson;
+import com.formkiq.client.model.DocusignInpersonSigner;
+import com.formkiq.client.model.DocusignRecipientView;
 import com.formkiq.client.model.DocusignSigner;
 import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
@@ -61,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-10T21:27:48.499768-05:00[America/Winnipeg]",
+    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddDocusignRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
@@ -80,9 +81,13 @@ public class AddDocusignRequest {
   @SerializedName(SERIALIZED_NAME_SIGNERS)
   private List<DocusignSigner> signers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INPERSON = "inperson";
-  @SerializedName(SERIALIZED_NAME_INPERSON)
-  private DocusignInPerson inperson;
+  public static final String SERIALIZED_NAME_INPERSON_SIGNERS = "inpersonSigners";
+  @SerializedName(SERIALIZED_NAME_INPERSON_SIGNERS)
+  private List<DocusignInpersonSigner> inpersonSigners = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_RECIPIENT_VIEW = "recipientView";
+  @SerializedName(SERIALIZED_NAME_RECIPIENT_VIEW)
+  private DocusignRecipientView recipientView;
 
   public AddDocusignRequest() {}
 
@@ -174,23 +179,51 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest inperson(DocusignInPerson inperson) {
-    this.inperson = inperson;
+  public AddDocusignRequest inpersonSigners(List<DocusignInpersonSigner> inpersonSigners) {
+    this.inpersonSigners = inpersonSigners;
+    return this;
+  }
+
+  public AddDocusignRequest addInpersonSignersItem(DocusignInpersonSigner inpersonSignersItem) {
+    if (this.inpersonSigners == null) {
+      this.inpersonSigners = new ArrayList<>();
+    }
+    this.inpersonSigners.add(inpersonSignersItem);
     return this;
   }
 
   /**
-   * Get inperson
+   * List of DocuSign Inperson Signers
    * 
-   * @return inperson
+   * @return inpersonSigners
    */
   @javax.annotation.Nullable
-  public DocusignInPerson getInperson() {
-    return inperson;
+  public List<DocusignInpersonSigner> getInpersonSigners() {
+    return inpersonSigners;
   }
 
-  public void setInperson(DocusignInPerson inperson) {
-    this.inperson = inperson;
+  public void setInpersonSigners(List<DocusignInpersonSigner> inpersonSigners) {
+    this.inpersonSigners = inpersonSigners;
+  }
+
+
+  public AddDocusignRequest recipientView(DocusignRecipientView recipientView) {
+    this.recipientView = recipientView;
+    return this;
+  }
+
+  /**
+   * Get recipientView
+   * 
+   * @return recipientView
+   */
+  @javax.annotation.Nullable
+  public DocusignRecipientView getRecipientView() {
+    return recipientView;
+  }
+
+  public void setRecipientView(DocusignRecipientView recipientView) {
+    this.recipientView = recipientView;
   }
 
 
@@ -208,12 +241,14 @@ public class AddDocusignRequest {
         && Objects.equals(this.environment, addDocusignRequest.environment)
         && Objects.equals(this.signingMethod, addDocusignRequest.signingMethod)
         && Objects.equals(this.signers, addDocusignRequest.signers)
-        && Objects.equals(this.inperson, addDocusignRequest.inperson);
+        && Objects.equals(this.inpersonSigners, addDocusignRequest.inpersonSigners)
+        && Objects.equals(this.recipientView, addDocusignRequest.recipientView);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailSubject, environment, signingMethod, signers, inperson);
+    return Objects.hash(emailSubject, environment, signingMethod, signers, inpersonSigners,
+        recipientView);
   }
 
   @Override
@@ -224,7 +259,8 @@ public class AddDocusignRequest {
     sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("    signingMethod: ").append(toIndentedString(signingMethod)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
-    sb.append("    inperson: ").append(toIndentedString(inperson)).append("\n");
+    sb.append("    inpersonSigners: ").append(toIndentedString(inpersonSigners)).append("\n");
+    sb.append("    recipientView: ").append(toIndentedString(recipientView)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -250,7 +286,8 @@ public class AddDocusignRequest {
     openapiFields.add("environment");
     openapiFields.add("signingMethod");
     openapiFields.add("signers");
-    openapiFields.add("inperson");
+    openapiFields.add("inpersonSigners");
+    openapiFields.add("recipientView");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -316,9 +353,25 @@ public class AddDocusignRequest {
     for (int i = 0; i < jsonArraysigners.size(); i++) {
       DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
     } ;
-    // validate the optional field `inperson`
-    if (jsonObj.get("inperson") != null && !jsonObj.get("inperson").isJsonNull()) {
-      DocusignInPerson.validateJsonElement(jsonObj.get("inperson"));
+    if (jsonObj.get("inpersonSigners") != null && !jsonObj.get("inpersonSigners").isJsonNull()) {
+      JsonArray jsonArrayinpersonSigners = jsonObj.getAsJsonArray("inpersonSigners");
+      if (jsonArrayinpersonSigners != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("inpersonSigners").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `inpersonSigners` to be an array in the JSON string but got `%s`",
+              jsonObj.get("inpersonSigners").toString()));
+        }
+
+        // validate the optional field `inpersonSigners` (array)
+        for (int i = 0; i < jsonArrayinpersonSigners.size(); i++) {
+          DocusignInpersonSigner.validateJsonElement(jsonArrayinpersonSigners.get(i));
+        } ;
+      }
+    }
+    // validate the optional field `recipientView`
+    if (jsonObj.get("recipientView") != null && !jsonObj.get("recipientView").isJsonNull()) {
+      DocusignRecipientView.validateJsonElement(jsonObj.get("recipientView"));
     }
   }
 

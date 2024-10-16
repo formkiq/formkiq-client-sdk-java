@@ -11,7 +11,8 @@
 |**environment** | **DocusignEnvironment** |  |  |
 |**signingMethod** | **DocusignSigningMethod** |  |  |
 |**signers** | [**List&lt;DocusignSigner&gt;**](DocusignSigner.md) | List of DocuSign Signers |  |
-|**inperson** | [**DocusignInPerson**](DocusignInPerson.md) |  |  [optional] |
+|**inpersonSigners** | [**List&lt;DocusignInpersonSigner&gt;**](DocusignInpersonSigner.md) | List of DocuSign Inperson Signers |  [optional] |
+|**recipientView** | [**DocusignRecipientView**](DocusignRecipientView.md) |  |  [optional] |
 
 
 

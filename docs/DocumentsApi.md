@@ -464,7 +464,7 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
-    String versionKey = "versionKey_example"; // String | Version Key
+    String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
       GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, versionKey, shareKey);
@@ -486,7 +486,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
-| **versionKey** | **String**| Version Key | [optional] |
+| **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
@@ -760,7 +760,7 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
-    String versionKey = "versionKey_example"; // String | Version Key
+    String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     Boolean inline = false; // Boolean | Set the Content-Disposition to inline
@@ -784,7 +784,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
-| **versionKey** | **String**| Version Key | [optional] |
+| **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **inline** | **Boolean**| Set the Content-Disposition to inline | [optional] [default to false] |
@@ -1025,7 +1025,7 @@ No authorization required
 
 Update document
 
-Update a document&#39;s details, i.e., metadata  NOTE: - provided attributes will overwrite existing matching attribute keys in the document. Attributes not included in the request body will remain unchanged.
+Update a document&#39;s details, i.e., metadata  If no content is specified, the endpoint will return a S3 Presigned that will allow for the uploading of Large document data.   NOTE: - provided attributes will overwrite existing matching attribute keys in the document. Attributes not included in the request body will remain unchanged.
 
 ### Example
 ```java

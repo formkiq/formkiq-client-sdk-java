@@ -19,6 +19,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocusignSigningTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -65,6 +66,38 @@ public class DocusignSignerTest {
   @Test
   public void clientUserIdTest() {
     // TODO: test clientUserId
+  }
+
+  /**
+   * Test the property 'recipientId'
+   */
+  @Test
+  public void recipientIdTest() {
+    // TODO: test recipientId
+  }
+
+  /**
+   * Test the property 'routingOrder'
+   */
+  @Test
+  public void routingOrderTest() {
+    // TODO: test routingOrder
+  }
+
+  /**
+   * Test the property 'suppressEmails'
+   */
+  @Test
+  public void suppressEmailsTest() {
+    // TODO: test suppressEmails
+  }
+
+  /**
+   * Test the property 'tabs'
+   */
+  @Test
+  public void tabsTest() {
+    // TODO: test tabs
   }
 
 }

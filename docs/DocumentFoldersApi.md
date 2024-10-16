@@ -149,7 +149,7 @@ No authorization required
 
 <a id="getFolderDocuments"></a>
 # **getFolderDocuments**
-> GetFoldersResponse getFolderDocuments(siteId, indexKey, limit, shareKey, next)
+> GetFoldersResponse getFolderDocuments(siteId, indexKey, path, limit, shareKey, next)
 
 Get document folders
 
@@ -175,11 +175,12 @@ public class Example {
     DocumentFoldersApi apiInstance = new DocumentFoldersApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String indexKey = "indexKey_example"; // String | Index Key Identifier
+    String path = "path_example"; // String | Path query parameter (must be URL Encoded)
     String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     try {
-      GetFoldersResponse result = apiInstance.getFolderDocuments(siteId, indexKey, limit, shareKey, next);
+      GetFoldersResponse result = apiInstance.getFolderDocuments(siteId, indexKey, path, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentFoldersApi#getFolderDocuments");
@@ -198,6 +199,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
 | **indexKey** | **String**| Index Key Identifier | [optional] |
+| **path** | **String**| Path query parameter (must be URL Encoded) | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |

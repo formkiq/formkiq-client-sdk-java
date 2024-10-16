@@ -476,6 +476,7 @@ public class DocumentFoldersApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param indexKey Index Key Identifier (optional)
+   * @param path Path query parameter (must be URL Encoded) (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -499,8 +500,8 @@ public class DocumentFoldersApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getFolderDocumentsCall(String siteId, String indexKey, String limit,
-      String shareKey, String next, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getFolderDocumentsCall(String siteId, String indexKey, String path,
+      String limit, String shareKey, String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -531,6 +532,10 @@ public class DocumentFoldersApi {
 
     if (indexKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("indexKey", indexKey));
+    }
+
+    if (path != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("path", path));
     }
 
     if (limit != null) {
@@ -566,8 +571,9 @@ public class DocumentFoldersApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getFolderDocumentsValidateBeforeCall(String siteId, String indexKey,
-      String limit, String shareKey, String next, final ApiCallback _callback) throws ApiException {
-    return getFolderDocumentsCall(siteId, indexKey, limit, shareKey, next, _callback);
+      String path, String limit, String shareKey, String next, final ApiCallback _callback)
+      throws ApiException {
+    return getFolderDocumentsCall(siteId, indexKey, path, limit, shareKey, next, _callback);
 
   }
 
@@ -576,6 +582,7 @@ public class DocumentFoldersApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param indexKey Index Key Identifier (optional)
+   * @param path Path query parameter (must be URL Encoded) (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -599,10 +606,10 @@ public class DocumentFoldersApi {
    *                        </tr>
    *                        </table>
    */
-  public GetFoldersResponse getFolderDocuments(String siteId, String indexKey, String limit,
-      String shareKey, String next) throws ApiException {
+  public GetFoldersResponse getFolderDocuments(String siteId, String indexKey, String path,
+      String limit, String shareKey, String next) throws ApiException {
     ApiResponse<GetFoldersResponse> localVarResp =
-        getFolderDocumentsWithHttpInfo(siteId, indexKey, limit, shareKey, next);
+        getFolderDocumentsWithHttpInfo(siteId, indexKey, path, limit, shareKey, next);
     return localVarResp.getData();
   }
 
@@ -611,6 +618,7 @@ public class DocumentFoldersApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param indexKey Index Key Identifier (optional)
+   * @param path Path query parameter (must be URL Encoded) (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -635,9 +643,10 @@ public class DocumentFoldersApi {
    *                        </table>
    */
   public ApiResponse<GetFoldersResponse> getFolderDocumentsWithHttpInfo(String siteId,
-      String indexKey, String limit, String shareKey, String next) throws ApiException {
+      String indexKey, String path, String limit, String shareKey, String next)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        getFolderDocumentsValidateBeforeCall(siteId, indexKey, limit, shareKey, next, null);
+        getFolderDocumentsValidateBeforeCall(siteId, indexKey, path, limit, shareKey, next, null);
     Type localVarReturnType = new TypeToken<GetFoldersResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -647,6 +656,7 @@ public class DocumentFoldersApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param indexKey Index Key Identifier (optional)
+   * @param path Path query parameter (must be URL Encoded) (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -670,12 +680,12 @@ public class DocumentFoldersApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getFolderDocumentsAsync(String siteId, String indexKey, String limit,
-      String shareKey, String next, final ApiCallback<GetFoldersResponse> _callback)
+  public okhttp3.Call getFolderDocumentsAsync(String siteId, String indexKey, String path,
+      String limit, String shareKey, String next, final ApiCallback<GetFoldersResponse> _callback)
       throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getFolderDocumentsValidateBeforeCall(siteId, indexKey, limit, shareKey, next, _callback);
+    okhttp3.Call localVarCall = getFolderDocumentsValidateBeforeCall(siteId, indexKey, path, limit,
+        shareKey, next, _callback);
     Type localVarReturnType = new TypeToken<GetFoldersResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
