@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -56,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * DocusignInpersonSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignInpersonSigner {
   public static final String SERIALIZED_NAME_HOST_EMAIL = "hostEmail";
@@ -66,10 +67,6 @@ public class DocusignInpersonSigner {
   public static final String SERIALIZED_NAME_HOST_NAME = "hostName";
   @SerializedName(SERIALIZED_NAME_HOST_NAME)
   private String hostName;
-
-  public static final String SERIALIZED_NAME_CLIENT_USER_ID = "clientUserId";
-  @SerializedName(SERIALIZED_NAME_CLIENT_USER_ID)
-  private String clientUserId;
 
   public static final String SERIALIZED_NAME_SIGNER_NAME = "signerName";
   @SerializedName(SERIALIZED_NAME_SIGNER_NAME)
@@ -134,26 +131,6 @@ public class DocusignInpersonSigner {
 
   public void setHostName(String hostName) {
     this.hostName = hostName;
-  }
-
-
-  public DocusignInpersonSigner clientUserId(String clientUserId) {
-    this.clientUserId = clientUserId;
-    return this;
-  }
-
-  /**
-   * Specifies unique identifier for signer
-   * 
-   * @return clientUserId
-   */
-  @javax.annotation.Nonnull
-  public String getClientUserId() {
-    return clientUserId;
-  }
-
-  public void setClientUserId(String clientUserId) {
-    this.clientUserId = clientUserId;
   }
 
 
@@ -290,7 +267,6 @@ public class DocusignInpersonSigner {
     DocusignInpersonSigner docusignInpersonSigner = (DocusignInpersonSigner) o;
     return Objects.equals(this.hostEmail, docusignInpersonSigner.hostEmail)
         && Objects.equals(this.hostName, docusignInpersonSigner.hostName)
-        && Objects.equals(this.clientUserId, docusignInpersonSigner.clientUserId)
         && Objects.equals(this.signerName, docusignInpersonSigner.signerName)
         && Objects.equals(this.signerEmail, docusignInpersonSigner.signerEmail)
         && Objects.equals(this.recipientId, docusignInpersonSigner.recipientId)
@@ -301,8 +277,8 @@ public class DocusignInpersonSigner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostEmail, hostName, clientUserId, signerName, signerEmail, recipientId,
-        routingOrder, suppressEmails, tabs);
+    return Objects.hash(hostEmail, hostName, signerName, signerEmail, recipientId, routingOrder,
+        suppressEmails, tabs);
   }
 
   @Override
@@ -311,7 +287,6 @@ public class DocusignInpersonSigner {
     sb.append("class DocusignInpersonSigner {\n");
     sb.append("    hostEmail: ").append(toIndentedString(hostEmail)).append("\n");
     sb.append("    hostName: ").append(toIndentedString(hostName)).append("\n");
-    sb.append("    clientUserId: ").append(toIndentedString(clientUserId)).append("\n");
     sb.append("    signerName: ").append(toIndentedString(signerName)).append("\n");
     sb.append("    signerEmail: ").append(toIndentedString(signerEmail)).append("\n");
     sb.append("    recipientId: ").append(toIndentedString(recipientId)).append("\n");
@@ -341,7 +316,6 @@ public class DocusignInpersonSigner {
     openapiFields = new HashSet<String>();
     openapiFields.add("hostEmail");
     openapiFields.add("hostName");
-    openapiFields.add("clientUserId");
     openapiFields.add("signerName");
     openapiFields.add("signerEmail");
     openapiFields.add("recipientId");
@@ -353,7 +327,6 @@ public class DocusignInpersonSigner {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("hostEmail");
     openapiRequiredFields.add("hostName");
-    openapiRequiredFields.add("clientUserId");
     openapiRequiredFields.add("signerName");
   }
 
@@ -401,11 +374,6 @@ public class DocusignInpersonSigner {
       throw new IllegalArgumentException(String.format(
           "Expected the field `hostName` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("hostName").toString()));
-    }
-    if (!jsonObj.get("clientUserId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("clientUserId").toString()));
     }
     if (!jsonObj.get("signerName").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

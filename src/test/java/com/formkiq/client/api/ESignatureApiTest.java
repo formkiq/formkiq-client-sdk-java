@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -20,8 +21,11 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.model.AddDocusignRequest;
-import com.formkiq.client.model.AddDocusignResponse;
+import com.formkiq.client.model.AddDocusignEnvelopesRequest;
+import com.formkiq.client.model.AddDocusignEnvelopesResponse;
+import com.formkiq.client.model.AddDocusignRecipientViewRequest;
+import com.formkiq.client.model.AddDocusignRecipientViewResponse;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -40,19 +44,37 @@ public class ESignatureApiTest {
   private final ESignatureApi api = new ESignatureApi();
 
   /**
-   * Create E-signature request
+   * Create Docusign Envelope request
    *
-   * Create a DocuSign E-Signature request; ONLY available with FormKiQ Enterprise
+   * DocuSign create Docusign Envelope request; ONLY available with FormKiQ Enterprise
    *
    * @throws ApiException if the Api call fails
    */
   @Test
-  public void addEsignatureDocusignTest() throws ApiException {
+  public void addDocusignEnvelopesTest() throws ApiException {
     String documentId = null;
-    AddDocusignRequest addDocusignRequest = null;
+    AddDocusignEnvelopesRequest addDocusignEnvelopesRequest = null;
     String siteId = null;
-    AddDocusignResponse response =
-        api.addEsignatureDocusign(documentId, addDocusignRequest, siteId);
+    AddDocusignEnvelopesResponse response =
+        api.addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Create Docusign Recipient View request
+   *
+   * DocuSign create Docusign Recipient View request; ONLY available with FormKiQ Enterprise
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocusignRecipientViewTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    AddDocusignRecipientViewRequest addDocusignRecipientViewRequest = null;
+    String siteId = null;
+    AddDocusignRecipientViewResponse response = api.addDocusignRecipientView(documentId, envelopeId,
+        addDocusignRecipientViewRequest, siteId);
     // TODO: test validations
   }
 
@@ -65,7 +87,7 @@ public class ESignatureApiTest {
    */
   @Test
   public void addEsignatureDocusignEventsTest() throws ApiException {
-    AddDocusignResponse response = api.addEsignatureDocusignEvents();
+    AddResponse response = api.addEsignatureDocusignEvents();
     // TODO: test validations
   }
 

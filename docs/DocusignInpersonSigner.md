@@ -9,7 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**hostEmail** | **String** | The email of the signing host |  |
 |**hostName** | **String** | The name of the signing host |  |
-|**clientUserId** | **String** | Specifies unique identifier for signer |  |
 |**signerName** | **String** | The full legal name of a signer |  |
 |**signerEmail** | **String** | The in-person signer&#39;s email address |  [optional] |
 |**recipientId** | **String** | A reference used to map recipients to other objects, such as specific document tabs. |  [optional] |

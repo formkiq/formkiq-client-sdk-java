@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getDocumentUserActivities**](UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities |
+| [**getDocumentUserActivities**](UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document |
 | [**getUserActivities**](UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities |
 
 
@@ -12,9 +12,9 @@ All URIs are relative to *http://localhost*
 # **getDocumentUserActivities**
 > GetUserActivitesResponse getDocumentUserActivities(documentId, siteId, next, limit)
 
-Get user activities
+Get user activities for a document
 
-Retrieve a user&#39;s activities
+Retrieve a user&#39;s activities for a document
 
 ### Example
 ```java

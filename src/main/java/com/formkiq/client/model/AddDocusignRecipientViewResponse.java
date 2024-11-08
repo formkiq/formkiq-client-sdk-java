@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -52,23 +53,19 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocusignResponse
+ * AddDocusignRecipientViewResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
-public class AddDocusignResponse {
+public class AddDocusignRecipientViewResponse {
   public static final String SERIALIZED_NAME_VIEW_URL = "viewUrl";
   @SerializedName(SERIALIZED_NAME_VIEW_URL)
   private String viewUrl;
 
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private String message;
+  public AddDocusignRecipientViewResponse() {}
 
-  public AddDocusignResponse() {}
-
-  public AddDocusignResponse viewUrl(String viewUrl) {
+  public AddDocusignRecipientViewResponse viewUrl(String viewUrl) {
     this.viewUrl = viewUrl;
     return this;
   }
@@ -88,26 +85,6 @@ public class AddDocusignResponse {
   }
 
 
-  public AddDocusignResponse message(String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Result message
-   * 
-   * @return message
-   */
-  @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -117,22 +94,21 @@ public class AddDocusignResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocusignResponse addDocusignResponse = (AddDocusignResponse) o;
-    return Objects.equals(this.viewUrl, addDocusignResponse.viewUrl)
-        && Objects.equals(this.message, addDocusignResponse.message);
+    AddDocusignRecipientViewResponse addDocusignRecipientViewResponse =
+        (AddDocusignRecipientViewResponse) o;
+    return Objects.equals(this.viewUrl, addDocusignRecipientViewResponse.viewUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(viewUrl, message);
+    return Objects.hash(viewUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocusignResponse {\n");
+    sb.append("class AddDocusignRecipientViewResponse {\n");
     sb.append("    viewUrl: ").append(toIndentedString(viewUrl)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -155,7 +131,6 @@ public class AddDocusignResponse {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("viewUrl");
-    openapiFields.add("message");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -165,24 +140,26 @@ public class AddDocusignResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocusignResponse
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         AddDocusignRecipientViewResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocusignResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                  // element is null
+      if (!AddDocusignRecipientViewResponse.openapiRequiredFields.isEmpty()) { // has required
+                                                                               // fields but JSON
+                                                                               // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocusignResponse is not found in the empty JSON string",
-            AddDocusignResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocusignRecipientViewResponse is not found in the empty JSON string",
+            AddDocusignRecipientViewResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocusignResponse.openapiFields.contains(entry.getKey())) {
+      if (!AddDocusignRecipientViewResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocusignResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocusignRecipientViewResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -193,34 +170,30 @@ public class AddDocusignResponse {
           "Expected the field `viewUrl` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("viewUrl").toString()));
     }
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
-    }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocusignResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocusignResponse' and its subtypes
+      if (!AddDocusignRecipientViewResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocusignRecipientViewResponse' and its
+                     // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocusignResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocusignResponse.class));
+      final TypeAdapter<AddDocusignRecipientViewResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocusignRecipientViewResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocusignResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocusignRecipientViewResponse>() {
         @Override
-        public void write(JsonWriter out, AddDocusignResponse value) throws IOException {
+        public void write(JsonWriter out, AddDocusignRecipientViewResponse value)
+            throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocusignResponse read(JsonReader in) throws IOException {
+        public AddDocusignRecipientViewResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -231,18 +204,19 @@ public class AddDocusignResponse {
   }
 
   /**
-   * Create an instance of AddDocusignResponse given an JSON string
+   * Create an instance of AddDocusignRecipientViewResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocusignResponse
-   * @throws IOException if the JSON string is invalid with respect to AddDocusignResponse
+   * @return An instance of AddDocusignRecipientViewResponse
+   * @throws IOException if the JSON string is invalid with respect to
+   *         AddDocusignRecipientViewResponse
    */
-  public static AddDocusignResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocusignResponse.class);
+  public static AddDocusignRecipientViewResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocusignRecipientViewResponse.class);
   }
 
   /**
-   * Convert an instance of AddDocusignResponse to an JSON string
+   * Convert an instance of AddDocusignRecipientViewResponse to an JSON string
    *
    * @return JSON string
    */

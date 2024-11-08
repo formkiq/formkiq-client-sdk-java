@@ -7,5 +7,7 @@
 
 * `DOCX` (value: `"DOCX"`)
 
+* `PDF` (value: `"PDF"`)
+
 
 

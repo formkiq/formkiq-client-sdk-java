@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -30,17 +31,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocusignResponse
+ * Model tests for AddDocusignRecipientViewResponse
  */
-public class AddDocusignResponseTest {
-  private final AddDocusignResponse model = new AddDocusignResponse();
+public class AddDocusignRecipientViewResponseTest {
+  private final AddDocusignRecipientViewResponse model = new AddDocusignRecipientViewResponse();
 
   /**
-   * Model tests for AddDocusignResponse
+   * Model tests for AddDocusignRecipientViewResponse
    */
   @Test
-  public void testAddDocusignResponse() {
-    // TODO: test AddDocusignResponse
+  public void testAddDocusignRecipientViewResponse() {
+    // TODO: test AddDocusignRecipientViewResponse
   }
 
   /**
@@ -49,14 +50,6 @@ public class AddDocusignResponseTest {
   @Test
   public void viewUrlTest() {
     // TODO: test viewUrl
-  }
-
-  /**
-   * Test the property 'message'
-   */
-  @Test
-  public void messageTest() {
-    // TODO: test message
   }
 
 }

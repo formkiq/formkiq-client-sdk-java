@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -22,9 +23,8 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignInpersonSigner;
-import com.formkiq.client.model.DocusignRecipientView;
+import com.formkiq.client.model.DocusignNotification;
 import com.formkiq.client.model.DocusignSigner;
-import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,12 +59,12 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocusignRequest
+ * AddDocusignEnvelopesRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
-public class AddDocusignRequest {
+public class AddDocusignEnvelopesRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
   private String emailSubject;
@@ -72,10 +72,6 @@ public class AddDocusignRequest {
   public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
   @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
   private DocusignEnvironment environment;
-
-  public static final String SERIALIZED_NAME_SIGNING_METHOD = "signingMethod";
-  @SerializedName(SERIALIZED_NAME_SIGNING_METHOD)
-  private DocusignSigningMethod signingMethod;
 
   public static final String SERIALIZED_NAME_SIGNERS = "signers";
   @SerializedName(SERIALIZED_NAME_SIGNERS)
@@ -85,13 +81,13 @@ public class AddDocusignRequest {
   @SerializedName(SERIALIZED_NAME_INPERSON_SIGNERS)
   private List<DocusignInpersonSigner> inpersonSigners = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RECIPIENT_VIEW = "recipientView";
-  @SerializedName(SERIALIZED_NAME_RECIPIENT_VIEW)
-  private DocusignRecipientView recipientView;
+  public static final String SERIALIZED_NAME_NOTIFICATION = "notification";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION)
+  private DocusignNotification notification;
 
-  public AddDocusignRequest() {}
+  public AddDocusignEnvelopesRequest() {}
 
-  public AddDocusignRequest emailSubject(String emailSubject) {
+  public AddDocusignEnvelopesRequest emailSubject(String emailSubject) {
     this.emailSubject = emailSubject;
     return this;
   }
@@ -111,7 +107,7 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest environment(DocusignEnvironment environment) {
+  public AddDocusignEnvelopesRequest environment(DocusignEnvironment environment) {
     this.environment = environment;
     return this;
   }
@@ -131,32 +127,12 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest signingMethod(DocusignSigningMethod signingMethod) {
-    this.signingMethod = signingMethod;
-    return this;
-  }
-
-  /**
-   * Get signingMethod
-   * 
-   * @return signingMethod
-   */
-  @javax.annotation.Nonnull
-  public DocusignSigningMethod getSigningMethod() {
-    return signingMethod;
-  }
-
-  public void setSigningMethod(DocusignSigningMethod signingMethod) {
-    this.signingMethod = signingMethod;
-  }
-
-
-  public AddDocusignRequest signers(List<DocusignSigner> signers) {
+  public AddDocusignEnvelopesRequest signers(List<DocusignSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public AddDocusignRequest addSignersItem(DocusignSigner signersItem) {
+  public AddDocusignEnvelopesRequest addSignersItem(DocusignSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -169,7 +145,7 @@ public class AddDocusignRequest {
    * 
    * @return signers
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public List<DocusignSigner> getSigners() {
     return signers;
   }
@@ -179,12 +155,13 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest inpersonSigners(List<DocusignInpersonSigner> inpersonSigners) {
+  public AddDocusignEnvelopesRequest inpersonSigners(List<DocusignInpersonSigner> inpersonSigners) {
     this.inpersonSigners = inpersonSigners;
     return this;
   }
 
-  public AddDocusignRequest addInpersonSignersItem(DocusignInpersonSigner inpersonSignersItem) {
+  public AddDocusignEnvelopesRequest addInpersonSignersItem(
+      DocusignInpersonSigner inpersonSignersItem) {
     if (this.inpersonSigners == null) {
       this.inpersonSigners = new ArrayList<>();
     }
@@ -207,23 +184,23 @@ public class AddDocusignRequest {
   }
 
 
-  public AddDocusignRequest recipientView(DocusignRecipientView recipientView) {
-    this.recipientView = recipientView;
+  public AddDocusignEnvelopesRequest notification(DocusignNotification notification) {
+    this.notification = notification;
     return this;
   }
 
   /**
-   * Get recipientView
+   * Get notification
    * 
-   * @return recipientView
+   * @return notification
    */
   @javax.annotation.Nullable
-  public DocusignRecipientView getRecipientView() {
-    return recipientView;
+  public DocusignNotification getNotification() {
+    return notification;
   }
 
-  public void setRecipientView(DocusignRecipientView recipientView) {
-    this.recipientView = recipientView;
+  public void setNotification(DocusignNotification notification) {
+    this.notification = notification;
   }
 
 
@@ -236,31 +213,28 @@ public class AddDocusignRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocusignRequest addDocusignRequest = (AddDocusignRequest) o;
-    return Objects.equals(this.emailSubject, addDocusignRequest.emailSubject)
-        && Objects.equals(this.environment, addDocusignRequest.environment)
-        && Objects.equals(this.signingMethod, addDocusignRequest.signingMethod)
-        && Objects.equals(this.signers, addDocusignRequest.signers)
-        && Objects.equals(this.inpersonSigners, addDocusignRequest.inpersonSigners)
-        && Objects.equals(this.recipientView, addDocusignRequest.recipientView);
+    AddDocusignEnvelopesRequest addDocusignEnvelopesRequest = (AddDocusignEnvelopesRequest) o;
+    return Objects.equals(this.emailSubject, addDocusignEnvelopesRequest.emailSubject)
+        && Objects.equals(this.environment, addDocusignEnvelopesRequest.environment)
+        && Objects.equals(this.signers, addDocusignEnvelopesRequest.signers)
+        && Objects.equals(this.inpersonSigners, addDocusignEnvelopesRequest.inpersonSigners)
+        && Objects.equals(this.notification, addDocusignEnvelopesRequest.notification);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailSubject, environment, signingMethod, signers, inpersonSigners,
-        recipientView);
+    return Objects.hash(emailSubject, environment, signers, inpersonSigners, notification);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocusignRequest {\n");
+    sb.append("class AddDocusignEnvelopesRequest {\n");
     sb.append("    emailSubject: ").append(toIndentedString(emailSubject)).append("\n");
     sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
-    sb.append("    signingMethod: ").append(toIndentedString(signingMethod)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    inpersonSigners: ").append(toIndentedString(inpersonSigners)).append("\n");
-    sb.append("    recipientView: ").append(toIndentedString(recipientView)).append("\n");
+    sb.append("    notification: ").append(toIndentedString(notification)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -284,46 +258,43 @@ public class AddDocusignRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("emailSubject");
     openapiFields.add("environment");
-    openapiFields.add("signingMethod");
     openapiFields.add("signers");
     openapiFields.add("inpersonSigners");
-    openapiFields.add("recipientView");
+    openapiFields.add("notification");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("environment");
-    openapiRequiredFields.add("signingMethod");
-    openapiRequiredFields.add("signers");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocusignRequest
+   * @throws IOException if the JSON Element is invalid with respect to AddDocusignEnvelopesRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocusignRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                 // element is null
+      if (!AddDocusignEnvelopesRequest.openapiRequiredFields.isEmpty()) { // has required fields but
+                                                                          // JSON element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddDocusignRequest is not found in the empty JSON string",
-            AddDocusignRequest.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddDocusignEnvelopesRequest is not found in the empty JSON string",
+            AddDocusignEnvelopesRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocusignRequest.openapiFields.contains(entry.getKey())) {
+      if (!AddDocusignEnvelopesRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddDocusignRequest` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddDocusignEnvelopesRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddDocusignRequest.openapiRequiredFields) {
+    for (String requiredField : AddDocusignEnvelopesRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(
             String.format("The required field `%s` is not found in the JSON string: %s",
@@ -339,20 +310,22 @@ public class AddDocusignRequest {
     }
     // validate the required field `environment`
     DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
-    // validate the required field `signingMethod`
-    DocusignSigningMethod.validateJsonElement(jsonObj.get("signingMethod"));
-    // ensure the json data is an array
-    if (!jsonObj.get("signers").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `signers` to be an array in the JSON string but got `%s`",
-          jsonObj.get("signers").toString()));
-    }
+    if (jsonObj.get("signers") != null && !jsonObj.get("signers").isJsonNull()) {
+      JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");
+      if (jsonArraysigners != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("signers").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `signers` to be an array in the JSON string but got `%s`",
+              jsonObj.get("signers").toString()));
+        }
 
-    JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");
-    // validate the required field `signers` (array)
-    for (int i = 0; i < jsonArraysigners.size(); i++) {
-      DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
-    } ;
+        // validate the optional field `signers` (array)
+        for (int i = 0; i < jsonArraysigners.size(); i++) {
+          DocusignSigner.validateJsonElement(jsonArraysigners.get(i));
+        } ;
+      }
+    }
     if (jsonObj.get("inpersonSigners") != null && !jsonObj.get("inpersonSigners").isJsonNull()) {
       JsonArray jsonArrayinpersonSigners = jsonObj.getAsJsonArray("inpersonSigners");
       if (jsonArrayinpersonSigners != null) {
@@ -369,9 +342,9 @@ public class AddDocusignRequest {
         } ;
       }
     }
-    // validate the optional field `recipientView`
-    if (jsonObj.get("recipientView") != null && !jsonObj.get("recipientView").isJsonNull()) {
-      DocusignRecipientView.validateJsonElement(jsonObj.get("recipientView"));
+    // validate the optional field `notification`
+    if (jsonObj.get("notification") != null && !jsonObj.get("notification").isJsonNull()) {
+      DocusignNotification.validateJsonElement(jsonObj.get("notification"));
     }
   }
 
@@ -379,22 +352,22 @@ public class AddDocusignRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocusignRequest.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocusignRequest' and its subtypes
+      if (!AddDocusignEnvelopesRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddDocusignEnvelopesRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocusignRequest> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocusignRequest.class));
+      final TypeAdapter<AddDocusignEnvelopesRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddDocusignEnvelopesRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocusignRequest>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddDocusignEnvelopesRequest>() {
         @Override
-        public void write(JsonWriter out, AddDocusignRequest value) throws IOException {
+        public void write(JsonWriter out, AddDocusignEnvelopesRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocusignRequest read(JsonReader in) throws IOException {
+        public AddDocusignEnvelopesRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -405,18 +378,18 @@ public class AddDocusignRequest {
   }
 
   /**
-   * Create an instance of AddDocusignRequest given an JSON string
+   * Create an instance of AddDocusignEnvelopesRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocusignRequest
-   * @throws IOException if the JSON string is invalid with respect to AddDocusignRequest
+   * @return An instance of AddDocusignEnvelopesRequest
+   * @throws IOException if the JSON string is invalid with respect to AddDocusignEnvelopesRequest
    */
-  public static AddDocusignRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocusignRequest.class);
+  public static AddDocusignEnvelopesRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddDocusignEnvelopesRequest.class);
   }
 
   /**
-   * Convert an instance of AddDocusignRequest to an JSON string
+   * Convert an instance of AddDocusignEnvelopesRequest to an JSON string
    *
    * @return JSON string
    */

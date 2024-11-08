@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.Document;
+import com.formkiq.client.model.UserActivityChanges;
 import com.formkiq.client.model.UserActivityType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -29,6 +31,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,13 +61,9 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class UserActivity {
-  public static final String SERIALIZED_NAME_ACTIVITY_ID = "activityId";
-  @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
-  private String activityId;
-
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private UserActivityType type;
@@ -76,39 +76,15 @@ public class UserActivity {
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
 
-  public static final String SERIALIZED_NAME_VERSION_KEY = "versionKey";
-  @SerializedName(SERIALIZED_NAME_VERSION_KEY)
-  private String versionKey;
-
-  public static final String SERIALIZED_NAME_TIME_TO_LIVE = "timeToLive";
-  @SerializedName(SERIALIZED_NAME_TIME_TO_LIVE)
-  private String timeToLive;
-
   public static final String SERIALIZED_NAME_DOCUMENT = "document";
   @SerializedName(SERIALIZED_NAME_DOCUMENT)
   private Document document;
 
+  public static final String SERIALIZED_NAME_CHANGES = "changes";
+  @SerializedName(SERIALIZED_NAME_CHANGES)
+  private Map<String, UserActivityChanges> changes = new HashMap<>();
+
   public UserActivity() {}
-
-  public UserActivity activityId(String activityId) {
-    this.activityId = activityId;
-    return this;
-  }
-
-  /**
-   * Activity identifier
-   * 
-   * @return activityId
-   */
-  @javax.annotation.Nullable
-  public String getActivityId() {
-    return activityId;
-  }
-
-  public void setActivityId(String activityId) {
-    this.activityId = activityId;
-  }
-
 
   public UserActivity type(UserActivityType type) {
     this.type = type;
@@ -170,46 +146,6 @@ public class UserActivity {
   }
 
 
-  public UserActivity versionKey(String versionKey) {
-    this.versionKey = versionKey;
-    return this;
-  }
-
-  /**
-   * Document Version Identifier
-   * 
-   * @return versionKey
-   */
-  @javax.annotation.Nullable
-  public String getVersionKey() {
-    return versionKey;
-  }
-
-  public void setVersionKey(String versionKey) {
-    this.versionKey = versionKey;
-  }
-
-
-  public UserActivity timeToLive(String timeToLive) {
-    this.timeToLive = timeToLive;
-    return this;
-  }
-
-  /**
-   * User activity time to live
-   * 
-   * @return timeToLive
-   */
-  @javax.annotation.Nullable
-  public String getTimeToLive() {
-    return timeToLive;
-  }
-
-  public void setTimeToLive(String timeToLive) {
-    this.timeToLive = timeToLive;
-  }
-
-
   public UserActivity document(Document document) {
     this.document = document;
     return this;
@@ -230,6 +166,34 @@ public class UserActivity {
   }
 
 
+  public UserActivity changes(Map<String, UserActivityChanges> changes) {
+    this.changes = changes;
+    return this;
+  }
+
+  public UserActivity putChangesItem(String key, UserActivityChanges changesItem) {
+    if (this.changes == null) {
+      this.changes = new HashMap<>();
+    }
+    this.changes.put(key, changesItem);
+    return this;
+  }
+
+  /**
+   * Get changes
+   * 
+   * @return changes
+   */
+  @javax.annotation.Nullable
+  public Map<String, UserActivityChanges> getChanges() {
+    return changes;
+  }
+
+  public void setChanges(Map<String, UserActivityChanges> changes) {
+    this.changes = changes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -240,31 +204,27 @@ public class UserActivity {
       return false;
     }
     UserActivity userActivity = (UserActivity) o;
-    return Objects.equals(this.activityId, userActivity.activityId)
-        && Objects.equals(this.type, userActivity.type)
+    return Objects.equals(this.type, userActivity.type)
         && Objects.equals(this.insertedDate, userActivity.insertedDate)
         && Objects.equals(this.userId, userActivity.userId)
-        && Objects.equals(this.versionKey, userActivity.versionKey)
-        && Objects.equals(this.timeToLive, userActivity.timeToLive)
-        && Objects.equals(this.document, userActivity.document);
+        && Objects.equals(this.document, userActivity.document)
+        && Objects.equals(this.changes, userActivity.changes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityId, type, insertedDate, userId, versionKey, timeToLive, document);
+    return Objects.hash(type, insertedDate, userId, document, changes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserActivity {\n");
-    sb.append("    activityId: ").append(toIndentedString(activityId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    versionKey: ").append(toIndentedString(versionKey)).append("\n");
-    sb.append("    timeToLive: ").append(toIndentedString(timeToLive)).append("\n");
     sb.append("    document: ").append(toIndentedString(document)).append("\n");
+    sb.append("    changes: ").append(toIndentedString(changes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -286,13 +246,11 @@ public class UserActivity {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("activityId");
     openapiFields.add("type");
     openapiFields.add("insertedDate");
     openapiFields.add("userId");
-    openapiFields.add("versionKey");
-    openapiFields.add("timeToLive");
     openapiFields.add("document");
+    openapiFields.add("changes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -324,12 +282,6 @@ public class UserActivity {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("activityId") != null && !jsonObj.get("activityId").isJsonNull())
-        && !jsonObj.get("activityId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `activityId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("activityId").toString()));
-    }
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
       UserActivityType.validateJsonElement(jsonObj.get("type"));
@@ -345,18 +297,6 @@ public class UserActivity {
       throw new IllegalArgumentException(String.format(
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
-    }
-    if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
-        && !jsonObj.get("versionKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `versionKey` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("versionKey").toString()));
-    }
-    if ((jsonObj.get("timeToLive") != null && !jsonObj.get("timeToLive").isJsonNull())
-        && !jsonObj.get("timeToLive").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `timeToLive` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("timeToLive").toString()));
     }
     // validate the optional field `document`
     if (jsonObj.get("document") != null && !jsonObj.get("document").isJsonNull()) {

@@ -27,7 +27,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: FormKiQ API
+  title: FormKiQ API JWT
   version: 1.16.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
@@ -1778,9 +1778,12 @@ paths:
       - application/json
   /documents/{documentId}/content:
     get:
-      description: "Get a document's contents. Certain content types, text/*, application/json,\
-        \ and application/x-www-form-urlencoded. return the  \"content\" field, while\
-        \ all other content types return a 'contentUrl' for retrieving the content."
+      description: |
+        Retrieves the content of the document with the specified `documentId`.
+        - If the content is plain text and under 6 MB, the content will be returned directly.
+        - If the content is plain text but exceeds 6 MB, an error will be returned.
+        - For documents not in plain text format, pre-signed S3 URLs will be returned to download the content from S3.
+        It is recommended to use the `/documents/{documentId}/url` endpoint to retrieve pre-signed S3 URLs for downloading the content.
       operationId: GetDocumentContent
       parameters:
       - description: Site Identifier
@@ -3786,8 +3789,8 @@ paths:
         | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
         | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint |
         | NOTIFICATION    | notificationType | Type of Notification | email |
-        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | <email>@yourdomain.com |
-        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | <email>@yourdomain.com |
+        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | email@yourdomain.com |
+        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | email@yourdomain.com |
         | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
         | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
         | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
@@ -6183,7 +6186,7 @@ paths:
       - application/json
   /documents/{documentId}/userActivities:
     get:
-      description: Retrieve a user's activities
+      description: Retrieve a user's activities for a document
       operationId: GetDocumentUserActivities
       parameters:
       - description: Site Identifier
@@ -6235,7 +6238,7 @@ paths:
               $ref: '#/components/headers/AccessControlAllowHeaders'
       security:
       - ApiAuthorization: []
-      summary: Get user activities
+      summary: Get user activities for a document
       tags:
       - User Activities
       x-amazon-apigateway-integration:
@@ -7031,11 +7034,11 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /esignature/docusign/{documentId}:
+  /esignature/docusign/{documentId}/envelopes:
     post:
-      description: Create a DocuSign E-Signature request; ONLY available with FormKiQ
-        Enterprise
-      operationId: AddEsignatureDocusign
+      description: DocuSign create Docusign Envelope request; ONLY available with
+        FormKiQ Enterprise
+      operationId: AddDocusignEnvelopes
       parameters:
       - description: Site Identifier
         explode: true
@@ -7057,14 +7060,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddDocusignRequest'
+              $ref: '#/components/schemas/AddDocusignEnvelopesRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddDocusignResponse'
+                $ref: '#/components/schemas/AddDocusignEnvelopesResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -7081,7 +7084,73 @@ paths:
           description: 400 OK
       security:
       - ApiAuthorization: []
-      summary: Create E-signature request
+      summary: Create Docusign Envelope request
+      tags:
+      - E-Signature
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient:
+    post:
+      description: DocuSign create Docusign Recipient View request; ONLY available
+        with FormKiQ Enterprise
+      operationId: AddDocusignRecipientView
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Docusign Envelope Id
+        explode: false
+        in: path
+        name: envelopeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocusignRecipientViewRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddDocusignRecipientViewResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Create Docusign Recipient View request
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -7098,7 +7167,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddDocusignResponse'
+                $ref: '#/components/schemas/AddResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -9865,6 +9934,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /reindex/documents/{documentId}:
+    post:
+      description: |-
+        The API allows for the reindexing of a document's metadata determined by the target.
+
+        ATTRIBUTE target will regenerate the composite keys for a document based on the Classification / SiteSchema
+      operationId: AddReindexDocument
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddReindexDocumentRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Reindex metadata on a document
+      tags:
+      - Reindex
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -10187,6 +10316,15 @@ components:
       explode: false
       in: path
       name: documentId
+      required: true
+      schema:
+        type: string
+      style: simple
+    docusignEnvelopeIdParam:
+      description: Docusign Envelope Id
+      explode: false
+      in: path
+      name: envelopeId
       required: true
       schema:
         type: string
@@ -13375,9 +13513,7 @@ components:
       example:
         next: next
         userActivities:
-        - activityId: activityId
-          timeToLive: timeToLive
-          insertedDate: insertedDate
+        - insertedDate: insertedDate
           document:
             metadata:
             - values:
@@ -13405,12 +13541,13 @@ components:
             documentId: documentId
             contentLength: 0
             contentType: contentType
+          changes:
+            key:
+              newValue: newValue
+              oldValue: oldValue
           type: VIEW
           userId: userId
-          versionKey: versionKey
-        - activityId: activityId
-          timeToLive: timeToLive
-          insertedDate: insertedDate
+        - insertedDate: insertedDate
           document:
             metadata:
             - values:
@@ -13438,9 +13575,12 @@ components:
             documentId: documentId
             contentLength: 0
             contentType: contentType
+          changes:
+            key:
+              newValue: newValue
+              oldValue: oldValue
           type: VIEW
           userId: userId
-          versionKey: versionKey
       properties:
         next:
           description: Next page of results token
@@ -13460,11 +13600,10 @@ components:
       - DELETE
       - SOFT_DELETE
       - RESTORE
+      - NEW_VERSION
       type: string
     UserActivity:
       example:
-        activityId: activityId
-        timeToLive: timeToLive
         insertedDate: insertedDate
         document:
           metadata:
@@ -13493,13 +13632,13 @@ components:
           documentId: documentId
           contentLength: 0
           contentType: contentType
+        changes:
+          key:
+            newValue: newValue
+            oldValue: oldValue
         type: VIEW
         userId: userId
-        versionKey: versionKey
       properties:
-        activityId:
-          description: Activity identifier
-          type: string
         type:
           $ref: '#/components/schemas/UserActivityType'
         insertedDate:
@@ -13508,14 +13647,24 @@ components:
         userId:
           description: User who added document
           type: string
-        versionKey:
-          description: Document Version Identifier
-          type: string
-        timeToLive:
-          description: User activity time to live
-          type: string
         document:
           $ref: '#/components/schemas/Document'
+        changes:
+          additionalProperties:
+            $ref: '#/components/schemas/UserActivityChanges'
+          type: object
+      type: object
+    UserActivityChanges:
+      example:
+        newValue: newValue
+        oldValue: oldValue
+      properties:
+        oldValue:
+          description: Previous key value
+          type: string
+        newValue:
+          description: New key value
+          type: string
       type: object
     GetFoldersResponse:
       example:
@@ -15512,8 +15661,21 @@ components:
           description: Exported document identifier
           type: string
       type: object
+    ReindexTarget:
+      description: Reindex object target
+      enum:
+      - ATTRIBUTES
+      type: string
+    AddReindexDocumentRequest:
+      example:
+        target: ATTRIBUTES
+      properties:
+        target:
+          $ref: '#/components/schemas/ReindexTarget'
+      type: object
     AddDocumentGenerateRequest:
       example:
+        path: path
         datasources:
         - name: name
           documentId: documentId
@@ -15533,6 +15695,9 @@ components:
           $ref: '#/components/schemas/DocumentGenerateOutputType'
         saveAsDocumentId:
           description: Save the generated document with a specific documentId
+          type: string
+        path:
+          description: The path of the generated document
           type: string
       type: object
     DocumentGenerateDataSource:
@@ -15558,6 +15723,7 @@ components:
       description: Document Generate Output Type
       enum:
       - DOCX
+      - PDF
       type: string
     AddDocumentGenerateResponse:
       example:
@@ -19335,22 +19501,19 @@ components:
       - PRODUCTION
       - DEVELOPMENT
       type: string
-    DocusignSigningMethod:
-      description: Docusign Signing Method
-      enum:
-      - EMAIL
-      - INPERSON
-      type: string
     DocusignRecipientView:
       example:
+        clientUserId: clientUserId
         recipientId: recipientId
         returnUrl: returnUrl
+        userName: userName
         frameAncestors:
         - frameAncestors
         - frameAncestors
         messageOrigins:
         - messageOrigins
         - messageOrigins
+        email: email
       properties:
         returnUrl:
           description: Identifies the return point after sending the envelope
@@ -19358,6 +19521,16 @@ components:
         recipientId:
           description: "A reference used to map recipients to other objects, such\
             \ as specific document tabs."
+          type: string
+        userName:
+          description: The username of the recipient. You can use either email and
+            userName.
+          type: string
+        clientUserId:
+          description: Specifies unique identifier for signer
+          type: string
+        email:
+          description: Specifies the email of the recipient
           type: string
         frameAncestors:
           description: An array of ancestors that can embed the frame. Include the
@@ -19371,7 +19544,7 @@ components:
             type: string
           type: array
       type: object
-    AddDocusignRequest:
+    AddDocusignEnvelopesRequest:
       example:
         signers:
         - clientUserId: clientUserId
@@ -19380,11 +19553,21 @@ components:
           tabs:
             signHereTabs:
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
           recipientId: recipientId
           routingOrder: routingOrder
           email: email
@@ -19394,67 +19577,93 @@ components:
           tabs:
             signHereTabs:
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
           recipientId: recipientId
           routingOrder: routingOrder
           email: email
+        notification:
+          expirations:
+            expireWarn: expireWarn
+            expireAfter: expireAfter
+            expireEnabled: expireEnabled
+          reminders:
+            reminderEnabled: reminderEnabled
+            reminderFrequency: reminderFrequency
+            reminderDelay: reminderDelay
+          useAccountDefaults: useAccountDefaults
         environment: PRODUCTION
         inpersonSigners:
-        - clientUserId: clientUserId
-          signerEmail: signerEmail
+        - signerEmail: signerEmail
           hostName: hostName
           suppressEmails: suppressEmails
           tabs:
             signHereTabs:
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
           hostEmail: hostEmail
           recipientId: recipientId
           routingOrder: routingOrder
           signerName: signerName
-        - clientUserId: clientUserId
-          signerEmail: signerEmail
+        - signerEmail: signerEmail
           hostName: hostName
           suppressEmails: suppressEmails
           tabs:
             signHereTabs:
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
             - xPosition: xPosition
+              anchorXOffset: anchorXOffset
               pageNumber: pageNumber
               yPosition: yPosition
+              anchorString: anchorString
+              anchorYOffset: anchorYOffset
+              anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+              anchorUnits: anchorUnits
           hostEmail: hostEmail
           recipientId: recipientId
           routingOrder: routingOrder
           signerName: signerName
-        signingMethod: EMAIL
         emailSubject: emailSubject
-        recipientView:
-          recipientId: recipientId
-          returnUrl: returnUrl
-          frameAncestors:
-          - frameAncestors
-          - frameAncestors
-          messageOrigins:
-          - messageOrigins
-          - messageOrigins
       properties:
         emailSubject:
           description: The subject line of the email message that is sent to all recipients
           type: string
         environment:
           $ref: '#/components/schemas/DocusignEnvironment'
-        signingMethod:
-          $ref: '#/components/schemas/DocusignSigningMethod'
         signers:
           description: List of DocuSign Signers
           items:
@@ -19465,13 +19674,68 @@ components:
           items:
             $ref: '#/components/schemas/DocusignInpersonSigner'
           type: array
-        recipientView:
-          $ref: '#/components/schemas/DocusignRecipientView'
+        notification:
+          $ref: '#/components/schemas/DocusignNotification'
       required:
       - environment
-      - signers
-      - signingMethod
       type: object
+    DocusignNotification:
+      example:
+        expirations:
+          expireWarn: expireWarn
+          expireAfter: expireAfter
+          expireEnabled: expireEnabled
+        reminders:
+          reminderEnabled: reminderEnabled
+          reminderFrequency: reminderFrequency
+          reminderDelay: reminderDelay
+        useAccountDefaults: useAccountDefaults
+      properties:
+        useAccountDefaults:
+          description: "When true, the account default notification settings are used\
+            \ for the envelope, overriding the reminders and expirations settings.\
+            \ When false, the reminders and expirations settings specified in this\
+            \ request are used. The default value is false."
+          type: string
+        expirations:
+          $ref: '#/components/schemas/DocusignNotificationExpirations'
+        reminders:
+          $ref: '#/components/schemas/DocusignNotificationReminders'
+    DocusignNotificationExpirations:
+      example:
+        expireWarn: expireWarn
+        expireAfter: expireAfter
+        expireEnabled: expireEnabled
+      properties:
+        expireAfter:
+          description: "An integer that sets the number of days the envelope is active.\
+            \ For this value to be used, expireEnabled must be explicitly set to true."
+          type: string
+        expireEnabled:
+          description: "When true, the envelope expires in the number of days set\
+            \ by expireAfter."
+          type: string
+        expireWarn:
+          description: An integer that specifying the number of days before the envelope
+            expires that an expiration warning email is sent to the recipient.
+          type: string
+    DocusignNotificationReminders:
+      example:
+        reminderEnabled: reminderEnabled
+        reminderFrequency: reminderFrequency
+        reminderDelay: reminderDelay
+      properties:
+        reminderDelay:
+          description: An integer specifying the number of days after the recipient
+            receives the envelope that reminder emails are sent to the recipient.
+          type: string
+        reminderEnabled:
+          description: "When true, reminders are enabled. The default value is false."
+          type: string
+        reminderFrequency:
+          description: An integer specifying the interval in days between reminder
+            emails.
+          type: string
     DocusignSigner:
       example:
         clientUserId: clientUserId
@@ -19480,11 +19744,21 @@ components:
         tabs:
           signHereTabs:
           - xPosition: xPosition
+            anchorXOffset: anchorXOffset
             pageNumber: pageNumber
             yPosition: yPosition
+            anchorString: anchorString
+            anchorYOffset: anchorYOffset
+            anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+            anchorUnits: anchorUnits
           - xPosition: xPosition
+            anchorXOffset: anchorXOffset
             pageNumber: pageNumber
             yPosition: yPosition
+            anchorString: anchorString
+            anchorYOffset: anchorYOffset
+            anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+            anchorUnits: anchorUnits
         recipientId: recipientId
         routingOrder: routingOrder
         email: email
@@ -19518,11 +19792,21 @@ components:
       example:
         signHereTabs:
         - xPosition: xPosition
+          anchorXOffset: anchorXOffset
           pageNumber: pageNumber
           yPosition: yPosition
+          anchorString: anchorString
+          anchorYOffset: anchorYOffset
+          anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+          anchorUnits: anchorUnits
         - xPosition: xPosition
+          anchorXOffset: anchorXOffset
           pageNumber: pageNumber
           yPosition: yPosition
+          anchorString: anchorString
+          anchorYOffset: anchorYOffset
+          anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+          anchorUnits: anchorUnits
       properties:
         signHereTabs:
           description: A list of Sign Here tabs
@@ -19533,9 +19817,33 @@ components:
     DocusignSignHereTabs:
       example:
         xPosition: xPosition
+        anchorXOffset: anchorXOffset
         pageNumber: pageNumber
         yPosition: yPosition
+        anchorString: anchorString
+        anchorYOffset: anchorYOffset
+        anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+        anchorUnits: anchorUnits
       properties:
+        anchorString:
+          description: Specifies the string to find in the document and use as the
+            basis for tab placement.
+          type: string
+        anchorXOffset:
+          description: Specifies the X axis location of the tab in anchorUnits relative
+            to the anchorString.
+          type: string
+        anchorYOffset:
+          description: Specifies the Y axis location of the tab in anchorUnits relative
+            to the anchorString.
+          type: string
+        anchorIgnoreIfNotPresent:
+          description: "When true, this tab is ignored if the anchorString is not\
+            \ found in the document."
+          type: string
+        anchorUnits:
+          description: Specifies units of the anchorXOffset and anchorYOffset
+          type: string
         xPosition:
           description: This property indicates the horizontal offset of the object
             on the page
@@ -19550,18 +19858,27 @@ components:
       type: object
     DocusignInpersonSigner:
       example:
-        clientUserId: clientUserId
         signerEmail: signerEmail
         hostName: hostName
         suppressEmails: suppressEmails
         tabs:
           signHereTabs:
           - xPosition: xPosition
+            anchorXOffset: anchorXOffset
             pageNumber: pageNumber
             yPosition: yPosition
+            anchorString: anchorString
+            anchorYOffset: anchorYOffset
+            anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+            anchorUnits: anchorUnits
           - xPosition: xPosition
+            anchorXOffset: anchorXOffset
             pageNumber: pageNumber
             yPosition: yPosition
+            anchorString: anchorString
+            anchorYOffset: anchorYOffset
+            anchorIgnoreIfNotPresent: anchorIgnoreIfNotPresent
+            anchorUnits: anchorUnits
         hostEmail: hostEmail
         recipientId: recipientId
         routingOrder: routingOrder
@@ -19572,9 +19889,6 @@ components:
           type: string
         hostName:
           description: The name of the signing host
-          type: string
-        clientUserId:
-          description: Specifies unique identifier for signer
           type: string
         signerName:
           description: The full legal name of a signer
@@ -19596,21 +19910,48 @@ components:
         tabs:
           $ref: '#/components/schemas/DocusignSigningTabs'
       required:
-      - clientUserId
       - hostEmail
       - hostName
       - signerName
       type: object
-    AddDocusignResponse:
+    AddDocusignEnvelopesResponse:
+      example:
+        envelopeId: envelopeId
+      properties:
+        envelopeId:
+          description: Docusign Envelope Identifier
+          type: string
+      type: object
+    AddDocusignRecipientViewRequest:
+      example:
+        environment: PRODUCTION
+        recipientView:
+          clientUserId: clientUserId
+          recipientId: recipientId
+          returnUrl: returnUrl
+          userName: userName
+          frameAncestors:
+          - frameAncestors
+          - frameAncestors
+          messageOrigins:
+          - messageOrigins
+          - messageOrigins
+          email: email
+      properties:
+        environment:
+          $ref: '#/components/schemas/DocusignEnvironment'
+        recipientView:
+          $ref: '#/components/schemas/DocusignRecipientView'
+      required:
+      - environment
+      - recipientView
+      type: object
+    AddDocusignRecipientViewResponse:
       example:
         viewUrl: viewUrl
-        message: message
       properties:
         viewUrl:
           description: The view URL to be navigated to complete DocuSign signing
-          type: string
-        message:
-          description: Result message
           type: string
       type: object
     UpdateMatchingDocumentTagsRequest_match:

@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_DATASOURCES = "datasources";
@@ -73,6 +74,10 @@ public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_SAVE_AS_DOCUMENT_ID = "saveAsDocumentId";
   @SerializedName(SERIALIZED_NAME_SAVE_AS_DOCUMENT_ID)
   private String saveAsDocumentId;
+
+  public static final String SERIALIZED_NAME_PATH = "path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
 
   public AddDocumentGenerateRequest() {}
 
@@ -144,6 +149,26 @@ public class AddDocumentGenerateRequest {
   }
 
 
+  public AddDocumentGenerateRequest path(String path) {
+    this.path = path;
+    return this;
+  }
+
+  /**
+   * The path of the generated document
+   * 
+   * @return path
+   */
+  @javax.annotation.Nullable
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -156,12 +181,13 @@ public class AddDocumentGenerateRequest {
     AddDocumentGenerateRequest addDocumentGenerateRequest = (AddDocumentGenerateRequest) o;
     return Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
         && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType)
-        && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId);
+        && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId)
+        && Objects.equals(this.path, addDocumentGenerateRequest.path);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datasources, outputType, saveAsDocumentId);
+    return Objects.hash(datasources, outputType, saveAsDocumentId, path);
   }
 
   @Override
@@ -171,6 +197,7 @@ public class AddDocumentGenerateRequest {
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("    saveAsDocumentId: ").append(toIndentedString(saveAsDocumentId)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -195,6 +222,7 @@ public class AddDocumentGenerateRequest {
     openapiFields.add("datasources");
     openapiFields.add("outputType");
     openapiFields.add("saveAsDocumentId");
+    openapiFields.add("path");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -251,6 +279,12 @@ public class AddDocumentGenerateRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `saveAsDocumentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("saveAsDocumentId").toString()));
+    }
+    if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
+        && !jsonObj.get("path").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("path").toString()));
     }
   }
 

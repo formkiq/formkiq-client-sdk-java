@@ -17,5 +17,7 @@
 
 * `RESTORE` (value: `"RESTORE"`)
 
+* `NEW_VERSION` (value: `"NEW_VERSION"`)
+
 
 

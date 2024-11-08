@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -163,9 +164,12 @@ public class DocumentsApiTest {
   /**
    * Get document&#39;s contents
    *
-   * Get a document&#39;s contents. Certain content types, text/_*, application/json, and
-   * application/x-www-form-urlencoded. return the \&quot;content\&quot; field, while all other
-   * content types return a &#39;contentUrl&#39; for retrieving the content.
+   * Retrieves the content of the document with the specified &#x60;documentId&#x60;. - If the
+   * content is plain text and under 6 MB, the content will be returned directly. - If the content
+   * is plain text but exceeds 6 MB, an error will be returned. - For documents not in plain text
+   * format, pre-signed S3 URLs will be returned to download the content from S3. It is recommended
+   * to use the &#x60;/documents/{documentId}/url&#x60; endpoint to retrieve pre-signed S3 URLs for
+   * downloading the content.
    *
    * @throws ApiException if the Api call fails
    */

@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -57,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * DocusignRecipientView
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignRecipientView {
   public static final String SERIALIZED_NAME_RETURN_URL = "returnUrl";
@@ -67,6 +68,18 @@ public class DocusignRecipientView {
   public static final String SERIALIZED_NAME_RECIPIENT_ID = "recipientId";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_ID)
   private String recipientId;
+
+  public static final String SERIALIZED_NAME_USER_NAME = "userName";
+  @SerializedName(SERIALIZED_NAME_USER_NAME)
+  private String userName;
+
+  public static final String SERIALIZED_NAME_CLIENT_USER_ID = "clientUserId";
+  @SerializedName(SERIALIZED_NAME_CLIENT_USER_ID)
+  private String clientUserId;
+
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  private String email;
 
   public static final String SERIALIZED_NAME_FRAME_ANCESTORS = "frameAncestors";
   @SerializedName(SERIALIZED_NAME_FRAME_ANCESTORS)
@@ -115,6 +128,66 @@ public class DocusignRecipientView {
 
   public void setRecipientId(String recipientId) {
     this.recipientId = recipientId;
+  }
+
+
+  public DocusignRecipientView userName(String userName) {
+    this.userName = userName;
+    return this;
+  }
+
+  /**
+   * The username of the recipient. You can use either email and userName.
+   * 
+   * @return userName
+   */
+  @javax.annotation.Nullable
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+
+  public DocusignRecipientView clientUserId(String clientUserId) {
+    this.clientUserId = clientUserId;
+    return this;
+  }
+
+  /**
+   * Specifies unique identifier for signer
+   * 
+   * @return clientUserId
+   */
+  @javax.annotation.Nullable
+  public String getClientUserId() {
+    return clientUserId;
+  }
+
+  public void setClientUserId(String clientUserId) {
+    this.clientUserId = clientUserId;
+  }
+
+
+  public DocusignRecipientView email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * Specifies the email of the recipient
+   * 
+   * @return email
+   */
+  @javax.annotation.Nullable
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
@@ -187,13 +260,17 @@ public class DocusignRecipientView {
     DocusignRecipientView docusignRecipientView = (DocusignRecipientView) o;
     return Objects.equals(this.returnUrl, docusignRecipientView.returnUrl)
         && Objects.equals(this.recipientId, docusignRecipientView.recipientId)
+        && Objects.equals(this.userName, docusignRecipientView.userName)
+        && Objects.equals(this.clientUserId, docusignRecipientView.clientUserId)
+        && Objects.equals(this.email, docusignRecipientView.email)
         && Objects.equals(this.frameAncestors, docusignRecipientView.frameAncestors)
         && Objects.equals(this.messageOrigins, docusignRecipientView.messageOrigins);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(returnUrl, recipientId, frameAncestors, messageOrigins);
+    return Objects.hash(returnUrl, recipientId, userName, clientUserId, email, frameAncestors,
+        messageOrigins);
   }
 
   @Override
@@ -202,6 +279,9 @@ public class DocusignRecipientView {
     sb.append("class DocusignRecipientView {\n");
     sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    recipientId: ").append(toIndentedString(recipientId)).append("\n");
+    sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
+    sb.append("    clientUserId: ").append(toIndentedString(clientUserId)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    frameAncestors: ").append(toIndentedString(frameAncestors)).append("\n");
     sb.append("    messageOrigins: ").append(toIndentedString(messageOrigins)).append("\n");
     sb.append("}");
@@ -227,6 +307,9 @@ public class DocusignRecipientView {
     openapiFields = new HashSet<String>();
     openapiFields.add("returnUrl");
     openapiFields.add("recipientId");
+    openapiFields.add("userName");
+    openapiFields.add("clientUserId");
+    openapiFields.add("email");
     openapiFields.add("frameAncestors");
     openapiFields.add("messageOrigins");
 
@@ -271,6 +354,24 @@ public class DocusignRecipientView {
       throw new IllegalArgumentException(String.format(
           "Expected the field `recipientId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("recipientId").toString()));
+    }
+    if ((jsonObj.get("userName") != null && !jsonObj.get("userName").isJsonNull())
+        && !jsonObj.get("userName").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `userName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("userName").toString()));
+    }
+    if ((jsonObj.get("clientUserId") != null && !jsonObj.get("clientUserId").isJsonNull())
+        && !jsonObj.get("clientUserId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("clientUserId").toString()));
+    }
+    if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
+        && !jsonObj.get("email").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `email` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("email").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("frameAncestors") != null && !jsonObj.get("frameAncestors").isJsonNull()

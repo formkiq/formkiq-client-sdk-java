@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -30,18 +31,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Docusign Signing Method
+ * Reindex object target
  */
-@JsonAdapter(DocusignSigningMethod.Adapter.class)
-public enum DocusignSigningMethod {
+@JsonAdapter(ReindexTarget.Adapter.class)
+public enum ReindexTarget {
 
-  EMAIL("EMAIL"),
-
-  INPERSON("INPERSON");
+  ATTRIBUTES("ATTRIBUTES");
 
   private String value;
 
-  DocusignSigningMethod(String value) {
+  ReindexTarget(String value) {
     this.value = value;
   }
 
@@ -54,8 +53,8 @@ public enum DocusignSigningMethod {
     return String.valueOf(value);
   }
 
-  public static DocusignSigningMethod fromValue(String value) {
-    for (DocusignSigningMethod b : DocusignSigningMethod.values()) {
+  public static ReindexTarget fromValue(String value) {
+    for (ReindexTarget b : ReindexTarget.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -63,23 +62,23 @@ public enum DocusignSigningMethod {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<DocusignSigningMethod> {
+  public static class Adapter extends TypeAdapter<ReindexTarget> {
     @Override
-    public void write(final JsonWriter jsonWriter, final DocusignSigningMethod enumeration)
+    public void write(final JsonWriter jsonWriter, final ReindexTarget enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public DocusignSigningMethod read(final JsonReader jsonReader) throws IOException {
+    public ReindexTarget read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return DocusignSigningMethod.fromValue(value);
+      return ReindexTarget.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    DocusignSigningMethod.fromValue(value);
+    ReindexTarget.fromValue(value);
   }
 }
 

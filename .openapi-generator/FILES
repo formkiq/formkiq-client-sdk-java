@@ -46,8 +46,10 @@ docs/AddDocumentWorkflowDecisionsRequest.md
 docs/AddDocumentWorkflowDecisionsResponse.md
 docs/AddDocumentWorkflowRequest.md
 docs/AddDocumentWorkflowResponse.md
-docs/AddDocusignRequest.md
-docs/AddDocusignResponse.md
+docs/AddDocusignEnvelopesRequest.md
+docs/AddDocusignEnvelopesResponse.md
+docs/AddDocusignRecipientViewRequest.md
+docs/AddDocusignRecipientViewResponse.md
 docs/AddFolderRequest.md
 docs/AddFolderResponse.md
 docs/AddFolderShareRequest.md
@@ -64,6 +66,7 @@ docs/AddNigoRequest.md
 docs/AddNigoResponse.md
 docs/AddQueueRequest.md
 docs/AddQueueResponse.md
+docs/AddReindexDocumentRequest.md
 docs/AddResponse.md
 docs/AddRule.md
 docs/AddRuleRequest.md
@@ -170,10 +173,12 @@ docs/DocumentsCompressResponse.md
 docs/DocusignConfig.md
 docs/DocusignEnvironment.md
 docs/DocusignInpersonSigner.md
+docs/DocusignNotification.md
+docs/DocusignNotificationExpirations.md
+docs/DocusignNotificationReminders.md
 docs/DocusignRecipientView.md
 docs/DocusignSignHereTabs.md
 docs/DocusignSigner.md
-docs/DocusignSigningMethod.md
 docs/DocusignSigningTabs.md
 docs/ESignatureApi.md
 docs/Error.md
@@ -293,6 +298,8 @@ docs/PdfDocumentField.md
 docs/PublicApi.md
 docs/QueryFulltextResponse.md
 docs/Queue.md
+docs/ReindexApi.md
+docs/ReindexTarget.md
 docs/Rule.md
 docs/RuleCondition.md
 docs/RuleConditionAttribute.md
@@ -370,6 +377,7 @@ docs/UpdateWorkflowResponse.md
 docs/User.md
 docs/UserActivitiesApi.md
 docs/UserActivity.md
+docs/UserActivityChanges.md
 docs/UserActivityType.md
 docs/UserAttributes.md
 docs/UserManagementApi.md
@@ -419,6 +427,7 @@ src/main/java/com/formkiq/client/api/GoogleIntegrationApi.java
 src/main/java/com/formkiq/client/api/MappingsApi.java
 src/main/java/com/formkiq/client/api/OnlyofficeApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
+src/main/java/com/formkiq/client/api/ReindexApi.java
 src/main/java/com/formkiq/client/api/RulesetsApi.java
 src/main/java/com/formkiq/client/api/SchemasApi.java
 src/main/java/com/formkiq/client/api/SystemManagementApi.java
@@ -489,8 +498,10 @@ src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowResponse.java
-src/main/java/com/formkiq/client/model/AddDocusignRequest.java
-src/main/java/com/formkiq/client/model/AddDocusignResponse.java
+src/main/java/com/formkiq/client/model/AddDocusignEnvelopesRequest.java
+src/main/java/com/formkiq/client/model/AddDocusignEnvelopesResponse.java
+src/main/java/com/formkiq/client/model/AddDocusignRecipientViewRequest.java
+src/main/java/com/formkiq/client/model/AddDocusignRecipientViewResponse.java
 src/main/java/com/formkiq/client/model/AddFolderRequest.java
 src/main/java/com/formkiq/client/model/AddFolderResponse.java
 src/main/java/com/formkiq/client/model/AddFolderShareRequest.java
@@ -507,6 +518,7 @@ src/main/java/com/formkiq/client/model/AddNigoRequest.java
 src/main/java/com/formkiq/client/model/AddNigoResponse.java
 src/main/java/com/formkiq/client/model/AddQueueRequest.java
 src/main/java/com/formkiq/client/model/AddQueueResponse.java
+src/main/java/com/formkiq/client/model/AddReindexDocumentRequest.java
 src/main/java/com/formkiq/client/model/AddResponse.java
 src/main/java/com/formkiq/client/model/AddRule.java
 src/main/java/com/formkiq/client/model/AddRuleRequest.java
@@ -597,10 +609,12 @@ src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/DocusignConfig.java
 src/main/java/com/formkiq/client/model/DocusignEnvironment.java
 src/main/java/com/formkiq/client/model/DocusignInpersonSigner.java
+src/main/java/com/formkiq/client/model/DocusignNotification.java
+src/main/java/com/formkiq/client/model/DocusignNotificationExpirations.java
+src/main/java/com/formkiq/client/model/DocusignNotificationReminders.java
 src/main/java/com/formkiq/client/model/DocusignRecipientView.java
 src/main/java/com/formkiq/client/model/DocusignSignHereTabs.java
 src/main/java/com/formkiq/client/model/DocusignSigner.java
-src/main/java/com/formkiq/client/model/DocusignSigningMethod.java
 src/main/java/com/formkiq/client/model/DocusignSigningTabs.java
 src/main/java/com/formkiq/client/model/Error.java
 src/main/java/com/formkiq/client/model/ErrorsResponse.java
@@ -714,6 +728,7 @@ src/main/java/com/formkiq/client/model/PdfDocument.java
 src/main/java/com/formkiq/client/model/PdfDocumentField.java
 src/main/java/com/formkiq/client/model/QueryFulltextResponse.java
 src/main/java/com/formkiq/client/model/Queue.java
+src/main/java/com/formkiq/client/model/ReindexTarget.java
 src/main/java/com/formkiq/client/model/Rule.java
 src/main/java/com/formkiq/client/model/RuleCondition.java
 src/main/java/com/formkiq/client/model/RuleConditionAttribute.java
@@ -786,6 +801,7 @@ src/main/java/com/formkiq/client/model/UpdateWorkflowRequest.java
 src/main/java/com/formkiq/client/model/UpdateWorkflowResponse.java
 src/main/java/com/formkiq/client/model/User.java
 src/main/java/com/formkiq/client/model/UserActivity.java
+src/main/java/com/formkiq/client/model/UserActivityChanges.java
 src/main/java/com/formkiq/client/model/UserActivityType.java
 src/main/java/com/formkiq/client/model/UserAttributes.java
 src/main/java/com/formkiq/client/model/UserShare.java
@@ -824,6 +840,7 @@ src/test/java/com/formkiq/client/api/GoogleIntegrationApiTest.java
 src/test/java/com/formkiq/client/api/MappingsApiTest.java
 src/test/java/com/formkiq/client/api/OnlyofficeApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
+src/test/java/com/formkiq/client/api/ReindexApiTest.java
 src/test/java/com/formkiq/client/api/RulesetsApiTest.java
 src/test/java/com/formkiq/client/api/SchemasApiTest.java
 src/test/java/com/formkiq/client/api/SystemManagementApiTest.java
@@ -871,8 +888,10 @@ src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequestTest.j
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowResponseTest.java
-src/test/java/com/formkiq/client/model/AddDocusignRequestTest.java
-src/test/java/com/formkiq/client/model/AddDocusignResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocusignEnvelopesRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocusignEnvelopesResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocusignRecipientViewRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocusignRecipientViewResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderRequestTest.java
 src/test/java/com/formkiq/client/model/AddFolderResponseTest.java
 src/test/java/com/formkiq/client/model/AddFolderShareRequestTest.java
@@ -889,6 +908,7 @@ src/test/java/com/formkiq/client/model/AddNigoResponseTest.java
 src/test/java/com/formkiq/client/model/AddNigoTest.java
 src/test/java/com/formkiq/client/model/AddQueueRequestTest.java
 src/test/java/com/formkiq/client/model/AddQueueResponseTest.java
+src/test/java/com/formkiq/client/model/AddReindexDocumentRequestTest.java
 src/test/java/com/formkiq/client/model/AddResponseTest.java
 src/test/java/com/formkiq/client/model/AddRuleRequestTest.java
 src/test/java/com/formkiq/client/model/AddRuleResponseTest.java
@@ -979,10 +999,12 @@ src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/DocusignConfigTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvironmentTest.java
 src/test/java/com/formkiq/client/model/DocusignInpersonSignerTest.java
+src/test/java/com/formkiq/client/model/DocusignNotificationExpirationsTest.java
+src/test/java/com/formkiq/client/model/DocusignNotificationRemindersTest.java
+src/test/java/com/formkiq/client/model/DocusignNotificationTest.java
 src/test/java/com/formkiq/client/model/DocusignRecipientViewTest.java
 src/test/java/com/formkiq/client/model/DocusignSignHereTabsTest.java
 src/test/java/com/formkiq/client/model/DocusignSignerTest.java
-src/test/java/com/formkiq/client/model/DocusignSigningMethodTest.java
 src/test/java/com/formkiq/client/model/DocusignSigningTabsTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
 src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
@@ -1096,6 +1118,7 @@ src/test/java/com/formkiq/client/model/PdfDocumentFieldTest.java
 src/test/java/com/formkiq/client/model/PdfDocumentTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/QueueTest.java
+src/test/java/com/formkiq/client/model/ReindexTargetTest.java
 src/test/java/com/formkiq/client/model/RuleConditionAttributeTest.java
 src/test/java/com/formkiq/client/model/RuleConditionCriterionTest.java
 src/test/java/com/formkiq/client/model/RuleConditionMustTest.java
@@ -1166,6 +1189,7 @@ src/test/java/com/formkiq/client/model/UpdateTaskResponseTest.java
 src/test/java/com/formkiq/client/model/UpdateTaskTest.java
 src/test/java/com/formkiq/client/model/UpdateWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateWorkflowResponseTest.java
+src/test/java/com/formkiq/client/model/UserActivityChangesTest.java
 src/test/java/com/formkiq/client/model/UserActivityTest.java
 src/test/java/com/formkiq/client/model/UserActivityTypeTest.java
 src/test/java/com/formkiq/client/model/UserAttributesTest.java

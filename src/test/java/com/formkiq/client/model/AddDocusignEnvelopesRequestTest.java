@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -21,9 +22,8 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignInpersonSigner;
-import com.formkiq.client.model.DocusignRecipientView;
+import com.formkiq.client.model.DocusignNotification;
 import com.formkiq.client.model.DocusignSigner;
-import com.formkiq.client.model.DocusignSigningMethod;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -37,17 +37,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocusignRequest
+ * Model tests for AddDocusignEnvelopesRequest
  */
-public class AddDocusignRequestTest {
-  private final AddDocusignRequest model = new AddDocusignRequest();
+public class AddDocusignEnvelopesRequestTest {
+  private final AddDocusignEnvelopesRequest model = new AddDocusignEnvelopesRequest();
 
   /**
-   * Model tests for AddDocusignRequest
+   * Model tests for AddDocusignEnvelopesRequest
    */
   @Test
-  public void testAddDocusignRequest() {
-    // TODO: test AddDocusignRequest
+  public void testAddDocusignEnvelopesRequest() {
+    // TODO: test AddDocusignEnvelopesRequest
   }
 
   /**
@@ -67,14 +67,6 @@ public class AddDocusignRequestTest {
   }
 
   /**
-   * Test the property 'signingMethod'
-   */
-  @Test
-  public void signingMethodTest() {
-    // TODO: test signingMethod
-  }
-
-  /**
    * Test the property 'signers'
    */
   @Test
@@ -91,11 +83,11 @@ public class AddDocusignRequestTest {
   }
 
   /**
-   * Test the property 'recipientView'
+   * Test the property 'notification'
    */
   @Test
-  public void recipientViewTest() {
-    // TODO: test recipientView
+  public void notificationTest() {
+    // TODO: test notification
   }
 
 }

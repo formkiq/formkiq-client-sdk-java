@@ -286,7 +286,8 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getPublishedDocumentContent**](docs/DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents
 *DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
-*ESignatureApi* | [**addEsignatureDocusign**](docs/ESignatureApi.md#addEsignatureDocusign) | **POST** /esignature/docusign/{documentId} | Create E-signature request
+*ESignatureApi* | [**addDocusignEnvelopes**](docs/ESignatureApi.md#addDocusignEnvelopes) | **POST** /esignature/docusign/{documentId}/envelopes | Create Docusign Envelope request
+*ESignatureApi* | [**addDocusignRecipientView**](docs/ESignatureApi.md#addDocusignRecipientView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient | Create Docusign Recipient View request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
@@ -301,6 +302,7 @@ Class | Method | HTTP request | Description
 *OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
 *PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | Public add document
 *PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | Public add webhook
+*ReindexApi* | [**addReindexDocument**](docs/ReindexApi.md#addReindexDocument) | **POST** /reindex/documents/{documentId} | Reindex metadata on a document
 *RulesetsApi* | [**addRule**](docs/RulesetsApi.md#addRule) | **POST** /rulesets/{rulesetId}/rules | Add New Rule
 *RulesetsApi* | [**addRuleset**](docs/RulesetsApi.md#addRuleset) | **POST** /rulesets | Add New Ruleset
 *RulesetsApi* | [**deleteRule**](docs/RulesetsApi.md#deleteRule) | **DELETE** /rulesets/{rulesetId}/rules/{ruleId} | Delete Rule
@@ -323,7 +325,8 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**addSite**](docs/SystemManagementApi.md#addSite) | **POST** /sites | Add Site
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
-*SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletst site(s) OpenSearch index
+*SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index
+*SystemManagementApi* | [**deleteSiteGroup**](docs/SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration
 *SystemManagementApi* | [**getOpensearchIndex**](docs/SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
@@ -335,8 +338,8 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
-*TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
-*UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities
+*TagIndexApi* | [**indexSearch_0**](docs/TagIndexApi.md#indexSearch_0) | **POST** /indices/search | 
+*UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group
 *UserManagementApi* | [**addUser**](docs/UserManagementApi.md#addUser) | **POST** /users | Add User
@@ -403,8 +406,10 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowDecisionsResponse](docs/AddDocumentWorkflowDecisionsResponse.md)
  - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
- - [AddDocusignRequest](docs/AddDocusignRequest.md)
- - [AddDocusignResponse](docs/AddDocusignResponse.md)
+ - [AddDocusignEnvelopesRequest](docs/AddDocusignEnvelopesRequest.md)
+ - [AddDocusignEnvelopesResponse](docs/AddDocusignEnvelopesResponse.md)
+ - [AddDocusignRecipientViewRequest](docs/AddDocusignRecipientViewRequest.md)
+ - [AddDocusignRecipientViewResponse](docs/AddDocusignRecipientViewResponse.md)
  - [AddFolderRequest](docs/AddFolderRequest.md)
  - [AddFolderResponse](docs/AddFolderResponse.md)
  - [AddFolderShareRequest](docs/AddFolderShareRequest.md)
@@ -421,6 +426,7 @@ Class | Method | HTTP request | Description
  - [AddNigoResponse](docs/AddNigoResponse.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
+ - [AddReindexDocumentRequest](docs/AddReindexDocumentRequest.md)
  - [AddResponse](docs/AddResponse.md)
  - [AddRule](docs/AddRule.md)
  - [AddRuleRequest](docs/AddRuleRequest.md)
@@ -508,12 +514,16 @@ Class | Method | HTTP request | Description
  - [DocumentWorkflowStatus](docs/DocumentWorkflowStatus.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
- - [DocusignCarbonCopy](docs/DocusignCarbonCopy.md)
  - [DocusignConfig](docs/DocusignConfig.md)
- - [DocusignRecipientTab](docs/DocusignRecipientTab.md)
- - [DocusignRecipientType](docs/DocusignRecipientType.md)
- - [DocusignRequestStatus](docs/DocusignRequestStatus.md)
+ - [DocusignEnvironment](docs/DocusignEnvironment.md)
+ - [DocusignInpersonSigner](docs/DocusignInpersonSigner.md)
+ - [DocusignNotification](docs/DocusignNotification.md)
+ - [DocusignNotificationExpirations](docs/DocusignNotificationExpirations.md)
+ - [DocusignNotificationReminders](docs/DocusignNotificationReminders.md)
+ - [DocusignRecipientView](docs/DocusignRecipientView.md)
+ - [DocusignSignHereTabs](docs/DocusignSignHereTabs.md)
  - [DocusignSigner](docs/DocusignSigner.md)
+ - [DocusignSigningTabs](docs/DocusignSigningTabs.md)
  - [Error](docs/Error.md)
  - [ErrorsResponse](docs/ErrorsResponse.md)
  - [FulltextAttribute](docs/FulltextAttribute.md)
@@ -626,6 +636,7 @@ Class | Method | HTTP request | Description
  - [PdfDocumentField](docs/PdfDocumentField.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
+ - [ReindexTarget](docs/ReindexTarget.md)
  - [Rule](docs/Rule.md)
  - [RuleCondition](docs/RuleCondition.md)
  - [RuleConditionAttribute](docs/RuleConditionAttribute.md)
@@ -698,6 +709,7 @@ Class | Method | HTTP request | Description
  - [UpdateWorkflowResponse](docs/UpdateWorkflowResponse.md)
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
+ - [UserActivityChanges](docs/UserActivityChanges.md)
  - [UserActivityType](docs/UserActivityType.md)
  - [UserAttributes](docs/UserAttributes.md)
  - [UserShare](docs/UserShare.md)

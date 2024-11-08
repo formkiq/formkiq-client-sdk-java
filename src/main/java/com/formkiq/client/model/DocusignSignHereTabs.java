@@ -1,10 +1,11 @@
 /*
- * FormKiQ API Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You can
- * find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction FormKiQ
- * is an API-first (head-less), battle-tested document management API. The FormKiQ API provides all
- * the API endpoints to build your Perfect Document Management Platform. FormKiQ API was built on
- * top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the API spec file
- * with any application that supports the OpenAPI specification. Open API OAuth Specification -
+ * FormKiQ API JWT Formkiq API: Document Management Platform API using OAuth(JWT) Authentication You
+ * can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com). ## Introduction
+ * FormKiQ is an API-first (head-less), battle-tested document management API. The FormKiQ API
+ * provides all the API endpoints to build your Perfect Document Management Platform. FormKiQ API
+ * was built on top of [OpenAPI specification](https://www.openapis.org), so it is easy to use the
+ * API spec file with any application that supports the OpenAPI specification. Open API OAuth
+ * Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-jwt.yaml Open
  * API IAM Specification -
  * https://raw.githubusercontent.com/formkiq/formkiq-core/master/docs/openapi/openapi-iam.yaml ##
@@ -55,9 +56,30 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSignHereTabs
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-10-15T23:10:22.074601-05:00[America/Winnipeg]",
+    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocusignSignHereTabs {
+  public static final String SERIALIZED_NAME_ANCHOR_STRING = "anchorString";
+  @SerializedName(SERIALIZED_NAME_ANCHOR_STRING)
+  private String anchorString;
+
+  public static final String SERIALIZED_NAME_ANCHOR_X_OFFSET = "anchorXOffset";
+  @SerializedName(SERIALIZED_NAME_ANCHOR_X_OFFSET)
+  private String anchorXOffset;
+
+  public static final String SERIALIZED_NAME_ANCHOR_Y_OFFSET = "anchorYOffset";
+  @SerializedName(SERIALIZED_NAME_ANCHOR_Y_OFFSET)
+  private String anchorYOffset;
+
+  public static final String SERIALIZED_NAME_ANCHOR_IGNORE_IF_NOT_PRESENT =
+      "anchorIgnoreIfNotPresent";
+  @SerializedName(SERIALIZED_NAME_ANCHOR_IGNORE_IF_NOT_PRESENT)
+  private String anchorIgnoreIfNotPresent;
+
+  public static final String SERIALIZED_NAME_ANCHOR_UNITS = "anchorUnits";
+  @SerializedName(SERIALIZED_NAME_ANCHOR_UNITS)
+  private String anchorUnits;
+
   public static final String SERIALIZED_NAME_X_POSITION = "xPosition";
   @SerializedName(SERIALIZED_NAME_X_POSITION)
   private String xPosition;
@@ -71,6 +93,106 @@ public class DocusignSignHereTabs {
   private String pageNumber;
 
   public DocusignSignHereTabs() {}
+
+  public DocusignSignHereTabs anchorString(String anchorString) {
+    this.anchorString = anchorString;
+    return this;
+  }
+
+  /**
+   * Specifies the string to find in the document and use as the basis for tab placement.
+   * 
+   * @return anchorString
+   */
+  @javax.annotation.Nullable
+  public String getAnchorString() {
+    return anchorString;
+  }
+
+  public void setAnchorString(String anchorString) {
+    this.anchorString = anchorString;
+  }
+
+
+  public DocusignSignHereTabs anchorXOffset(String anchorXOffset) {
+    this.anchorXOffset = anchorXOffset;
+    return this;
+  }
+
+  /**
+   * Specifies the X axis location of the tab in anchorUnits relative to the anchorString.
+   * 
+   * @return anchorXOffset
+   */
+  @javax.annotation.Nullable
+  public String getAnchorXOffset() {
+    return anchorXOffset;
+  }
+
+  public void setAnchorXOffset(String anchorXOffset) {
+    this.anchorXOffset = anchorXOffset;
+  }
+
+
+  public DocusignSignHereTabs anchorYOffset(String anchorYOffset) {
+    this.anchorYOffset = anchorYOffset;
+    return this;
+  }
+
+  /**
+   * Specifies the Y axis location of the tab in anchorUnits relative to the anchorString.
+   * 
+   * @return anchorYOffset
+   */
+  @javax.annotation.Nullable
+  public String getAnchorYOffset() {
+    return anchorYOffset;
+  }
+
+  public void setAnchorYOffset(String anchorYOffset) {
+    this.anchorYOffset = anchorYOffset;
+  }
+
+
+  public DocusignSignHereTabs anchorIgnoreIfNotPresent(String anchorIgnoreIfNotPresent) {
+    this.anchorIgnoreIfNotPresent = anchorIgnoreIfNotPresent;
+    return this;
+  }
+
+  /**
+   * When true, this tab is ignored if the anchorString is not found in the document.
+   * 
+   * @return anchorIgnoreIfNotPresent
+   */
+  @javax.annotation.Nullable
+  public String getAnchorIgnoreIfNotPresent() {
+    return anchorIgnoreIfNotPresent;
+  }
+
+  public void setAnchorIgnoreIfNotPresent(String anchorIgnoreIfNotPresent) {
+    this.anchorIgnoreIfNotPresent = anchorIgnoreIfNotPresent;
+  }
+
+
+  public DocusignSignHereTabs anchorUnits(String anchorUnits) {
+    this.anchorUnits = anchorUnits;
+    return this;
+  }
+
+  /**
+   * Specifies units of the anchorXOffset and anchorYOffset
+   * 
+   * @return anchorUnits
+   */
+  @javax.annotation.Nullable
+  public String getAnchorUnits() {
+    return anchorUnits;
+  }
+
+  public void setAnchorUnits(String anchorUnits) {
+    this.anchorUnits = anchorUnits;
+  }
+
 
   public DocusignSignHereTabs xPosition(String xPosition) {
     this.xPosition = xPosition;
@@ -142,20 +264,33 @@ public class DocusignSignHereTabs {
       return false;
     }
     DocusignSignHereTabs docusignSignHereTabs = (DocusignSignHereTabs) o;
-    return Objects.equals(this.xPosition, docusignSignHereTabs.xPosition)
+    return Objects.equals(this.anchorString, docusignSignHereTabs.anchorString)
+        && Objects.equals(this.anchorXOffset, docusignSignHereTabs.anchorXOffset)
+        && Objects.equals(this.anchorYOffset, docusignSignHereTabs.anchorYOffset)
+        && Objects.equals(this.anchorIgnoreIfNotPresent,
+            docusignSignHereTabs.anchorIgnoreIfNotPresent)
+        && Objects.equals(this.anchorUnits, docusignSignHereTabs.anchorUnits)
+        && Objects.equals(this.xPosition, docusignSignHereTabs.xPosition)
         && Objects.equals(this.yPosition, docusignSignHereTabs.yPosition)
         && Objects.equals(this.pageNumber, docusignSignHereTabs.pageNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(xPosition, yPosition, pageNumber);
+    return Objects.hash(anchorString, anchorXOffset, anchorYOffset, anchorIgnoreIfNotPresent,
+        anchorUnits, xPosition, yPosition, pageNumber);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocusignSignHereTabs {\n");
+    sb.append("    anchorString: ").append(toIndentedString(anchorString)).append("\n");
+    sb.append("    anchorXOffset: ").append(toIndentedString(anchorXOffset)).append("\n");
+    sb.append("    anchorYOffset: ").append(toIndentedString(anchorYOffset)).append("\n");
+    sb.append("    anchorIgnoreIfNotPresent: ").append(toIndentedString(anchorIgnoreIfNotPresent))
+        .append("\n");
+    sb.append("    anchorUnits: ").append(toIndentedString(anchorUnits)).append("\n");
     sb.append("    xPosition: ").append(toIndentedString(xPosition)).append("\n");
     sb.append("    yPosition: ").append(toIndentedString(yPosition)).append("\n");
     sb.append("    pageNumber: ").append(toIndentedString(pageNumber)).append("\n");
@@ -180,6 +315,11 @@ public class DocusignSignHereTabs {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("anchorString");
+    openapiFields.add("anchorXOffset");
+    openapiFields.add("anchorYOffset");
+    openapiFields.add("anchorIgnoreIfNotPresent");
+    openapiFields.add("anchorUnits");
     openapiFields.add("xPosition");
     openapiFields.add("yPosition");
     openapiFields.add("pageNumber");
@@ -214,6 +354,37 @@ public class DocusignSignHereTabs {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("anchorString") != null && !jsonObj.get("anchorString").isJsonNull())
+        && !jsonObj.get("anchorString").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `anchorString` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("anchorString").toString()));
+    }
+    if ((jsonObj.get("anchorXOffset") != null && !jsonObj.get("anchorXOffset").isJsonNull())
+        && !jsonObj.get("anchorXOffset").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `anchorXOffset` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("anchorXOffset").toString()));
+    }
+    if ((jsonObj.get("anchorYOffset") != null && !jsonObj.get("anchorYOffset").isJsonNull())
+        && !jsonObj.get("anchorYOffset").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `anchorYOffset` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("anchorYOffset").toString()));
+    }
+    if ((jsonObj.get("anchorIgnoreIfNotPresent") != null
+        && !jsonObj.get("anchorIgnoreIfNotPresent").isJsonNull())
+        && !jsonObj.get("anchorIgnoreIfNotPresent").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `anchorIgnoreIfNotPresent` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("anchorIgnoreIfNotPresent").toString()));
+    }
+    if ((jsonObj.get("anchorUnits") != null && !jsonObj.get("anchorUnits").isJsonNull())
+        && !jsonObj.get("anchorUnits").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `anchorUnits` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("anchorUnits").toString()));
+    }
     if ((jsonObj.get("xPosition") != null && !jsonObj.get("xPosition").isJsonNull())
         && !jsonObj.get("xPosition").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(

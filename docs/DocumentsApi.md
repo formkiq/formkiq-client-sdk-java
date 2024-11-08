@@ -442,7 +442,7 @@ No authorization required
 
 Get document&#39;s contents
 
-Get a document&#39;s contents. Certain content types, text/_*, application/json, and application/x-www-form-urlencoded. return the  \&quot;content\&quot; field, while all other content types return a &#39;contentUrl&#39; for retrieving the content.
+Retrieves the content of the document with the specified &#x60;documentId&#x60;. - If the content is plain text and under 6 MB, the content will be returned directly. - If the content is plain text but exceeds 6 MB, an error will be returned. - For documents not in plain text format, pre-signed S3 URLs will be returned to download the content from S3. It is recommended to use the &#x60;/documents/{documentId}/url&#x60; endpoint to retrieve pre-signed S3 URLs for downloading the content. 
 
 ### Example
 ```java
