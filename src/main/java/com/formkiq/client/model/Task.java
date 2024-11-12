@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Task
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
+    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class Task {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
@@ -78,6 +78,10 @@ public class Task {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_PLANNED_START_DATE = "plannedStartDate";
+  @SerializedName(SERIALIZED_NAME_PLANNED_START_DATE)
+  private String plannedStartDate;
+
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
   private String startDate;
@@ -85,6 +89,10 @@ public class Task {
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
   private String endDate;
+
+  public static final String SERIALIZED_NAME_DUE_DATE = "dueDate";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE)
+  private String dueDate;
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -180,6 +188,26 @@ public class Task {
   }
 
 
+  public Task plannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+    return this;
+  }
+
+  /**
+   * Planned Start Date of Task
+   * 
+   * @return plannedStartDate
+   */
+  @javax.annotation.Nullable
+  public String getPlannedStartDate() {
+    return plannedStartDate;
+  }
+
+  public void setPlannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+  }
+
+
   public Task startDate(String startDate) {
     this.startDate = startDate;
     return this;
@@ -217,6 +245,26 @@ public class Task {
 
   public void setEndDate(String endDate) {
     this.endDate = endDate;
+  }
+
+
+  public Task dueDate(String dueDate) {
+    this.dueDate = dueDate;
+    return this;
+  }
+
+  /**
+   * Due Date of Task
+   * 
+   * @return dueDate
+   */
+  @javax.annotation.Nullable
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
 
@@ -302,15 +350,17 @@ public class Task {
         && Objects.equals(this.insertedDate, task.insertedDate)
         && Objects.equals(this.name, task.name)
         && Objects.equals(this.description, task.description)
+        && Objects.equals(this.plannedStartDate, task.plannedStartDate)
         && Objects.equals(this.startDate, task.startDate)
-        && Objects.equals(this.endDate, task.endDate) && Objects.equals(this.userId, task.userId)
-        && Objects.equals(this.status, task.status) && Objects.equals(this.metadata, task.metadata);
+        && Objects.equals(this.endDate, task.endDate) && Objects.equals(this.dueDate, task.dueDate)
+        && Objects.equals(this.userId, task.userId) && Objects.equals(this.status, task.status)
+        && Objects.equals(this.metadata, task.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(taskId, insertedDate, name, description, startDate, endDate, userId, status,
-        metadata);
+    return Objects.hash(taskId, insertedDate, name, description, plannedStartDate, startDate,
+        endDate, dueDate, userId, status, metadata);
   }
 
   @Override
@@ -321,8 +371,10 @@ public class Task {
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    plannedStartDate: ").append(toIndentedString(plannedStartDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -351,8 +403,10 @@ public class Task {
     openapiFields.add("insertedDate");
     openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("plannedStartDate");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("dueDate");
     openapiFields.add("userId");
     openapiFields.add("status");
     openapiFields.add("metadata");
@@ -410,6 +464,12 @@ public class Task {
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
     }
+    if ((jsonObj.get("plannedStartDate") != null && !jsonObj.get("plannedStartDate").isJsonNull())
+        && !jsonObj.get("plannedStartDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `plannedStartDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("plannedStartDate").toString()));
+    }
     if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
         && !jsonObj.get("startDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -421,6 +481,12 @@ public class Task {
       throw new IllegalArgumentException(String.format(
           "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("dueDate") != null && !jsonObj.get("dueDate").isJsonNull())
+        && !jsonObj.get("dueDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `dueDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dueDate").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {

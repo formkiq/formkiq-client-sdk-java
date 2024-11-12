@@ -80,6 +80,14 @@ public class TaskTest {
   }
 
   /**
+   * Test the property 'plannedStartDate'
+   */
+  @Test
+  public void plannedStartDateTest() {
+    // TODO: test plannedStartDate
+  }
+
+  /**
    * Test the property 'startDate'
    */
   @Test
@@ -93,6 +101,14 @@ public class TaskTest {
   @Test
   public void endDateTest() {
     // TODO: test endDate
+  }
+
+  /**
+   * Test the property 'dueDate'
+   */
+  @Test
+  public void dueDateTest() {
+    // TODO: test dueDate
   }
 
   /**

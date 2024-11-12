@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateTask
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
+    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class UpdateTask {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -72,6 +72,10 @@ public class UpdateTask {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_PLANNED_START_DATE = "plannedStartDate";
+  @SerializedName(SERIALIZED_NAME_PLANNED_START_DATE)
+  private String plannedStartDate;
+
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
   private String startDate;
@@ -79,6 +83,10 @@ public class UpdateTask {
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
   private String endDate;
+
+  public static final String SERIALIZED_NAME_DUE_DATE = "dueDate";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE)
+  private String dueDate;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -134,6 +142,26 @@ public class UpdateTask {
   }
 
 
+  public UpdateTask plannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+    return this;
+  }
+
+  /**
+   * Planned Start Date
+   * 
+   * @return plannedStartDate
+   */
+  @javax.annotation.Nullable
+  public String getPlannedStartDate() {
+    return plannedStartDate;
+  }
+
+  public void setPlannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+  }
+
+
   public UpdateTask startDate(String startDate) {
     this.startDate = startDate;
     return this;
@@ -171,6 +199,26 @@ public class UpdateTask {
 
   public void setEndDate(String endDate) {
     this.endDate = endDate;
+  }
+
+
+  public UpdateTask dueDate(String dueDate) {
+    this.dueDate = dueDate;
+    return this;
+  }
+
+  /**
+   * Due Date
+   * 
+   * @return dueDate
+   */
+  @javax.annotation.Nullable
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
 
@@ -262,8 +310,10 @@ public class UpdateTask {
     UpdateTask updateTask = (UpdateTask) o;
     return Objects.equals(this.name, updateTask.name)
         && Objects.equals(this.description, updateTask.description)
+        && Objects.equals(this.plannedStartDate, updateTask.plannedStartDate)
         && Objects.equals(this.startDate, updateTask.startDate)
         && Objects.equals(this.endDate, updateTask.endDate)
+        && Objects.equals(this.dueDate, updateTask.dueDate)
         && Objects.equals(this.status, updateTask.status)
         && Objects.equals(this.metadata, updateTask.metadata)
         && Objects.equals(this.documentIds, updateTask.documentIds);
@@ -271,7 +321,8 @@ public class UpdateTask {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, startDate, endDate, status, metadata, documentIds);
+    return Objects.hash(name, description, plannedStartDate, startDate, endDate, dueDate, status,
+        metadata, documentIds);
   }
 
   @Override
@@ -280,8 +331,10 @@ public class UpdateTask {
     sb.append("class UpdateTask {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    plannedStartDate: ").append(toIndentedString(plannedStartDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
@@ -308,8 +361,10 @@ public class UpdateTask {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("description");
+    openapiFields.add("plannedStartDate");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("dueDate");
     openapiFields.add("status");
     openapiFields.add("metadata");
     openapiFields.add("documentIds");
@@ -356,6 +411,12 @@ public class UpdateTask {
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
     }
+    if ((jsonObj.get("plannedStartDate") != null && !jsonObj.get("plannedStartDate").isJsonNull())
+        && !jsonObj.get("plannedStartDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `plannedStartDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("plannedStartDate").toString()));
+    }
     if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
         && !jsonObj.get("startDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -367,6 +428,12 @@ public class UpdateTask {
       throw new IllegalArgumentException(String.format(
           "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("dueDate") != null && !jsonObj.get("dueDate").isJsonNull())
+        && !jsonObj.get("dueDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `dueDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dueDate").toString()));
     }
     // validate the optional field `status`
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {

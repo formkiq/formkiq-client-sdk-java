@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * ModelCase
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
+    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class ModelCase {
   public static final String SERIALIZED_NAME_CASE_ID = "caseId";
@@ -74,6 +74,10 @@ public class ModelCase {
   @SerializedName(SERIALIZED_NAME_DOCUMENT_NUMBER)
   private String documentNumber;
 
+  public static final String SERIALIZED_NAME_PLANNED_START_DATE = "plannedStartDate";
+  @SerializedName(SERIALIZED_NAME_PLANNED_START_DATE)
+  private String plannedStartDate;
+
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
   private String startDate;
@@ -81,6 +85,10 @@ public class ModelCase {
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
   private String endDate;
+
+  public static final String SERIALIZED_NAME_DUE_DATE = "dueDate";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE)
+  private String dueDate;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -168,6 +176,26 @@ public class ModelCase {
   }
 
 
+  public ModelCase plannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+    return this;
+  }
+
+  /**
+   * Planned Start Date
+   * 
+   * @return plannedStartDate
+   */
+  @javax.annotation.Nullable
+  public String getPlannedStartDate() {
+    return plannedStartDate;
+  }
+
+  public void setPlannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+  }
+
+
   public ModelCase startDate(String startDate) {
     this.startDate = startDate;
     return this;
@@ -205,6 +233,26 @@ public class ModelCase {
 
   public void setEndDate(String endDate) {
     this.endDate = endDate;
+  }
+
+
+  public ModelCase dueDate(String dueDate) {
+    this.dueDate = dueDate;
+    return this;
+  }
+
+  /**
+   * Due Date
+   * 
+   * @return dueDate
+   */
+  @javax.annotation.Nullable
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
 
@@ -349,8 +397,10 @@ public class ModelCase {
     return Objects.equals(this.caseId, _case.caseId)
         && Objects.equals(this.caseNumber, _case.caseNumber)
         && Objects.equals(this.documentNumber, _case.documentNumber)
+        && Objects.equals(this.plannedStartDate, _case.plannedStartDate)
         && Objects.equals(this.startDate, _case.startDate)
         && Objects.equals(this.endDate, _case.endDate)
+        && Objects.equals(this.dueDate, _case.dueDate)
         && Objects.equals(this.insertedDate, _case.insertedDate)
         && Objects.equals(this.name, _case.name)
         && Objects.equals(this.description, _case.description)
@@ -360,8 +410,8 @@ public class ModelCase {
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, caseNumber, documentNumber, startDate, endDate, insertedDate, name,
-        description, metadata, status, userId);
+    return Objects.hash(caseId, caseNumber, documentNumber, plannedStartDate, startDate, endDate,
+        dueDate, insertedDate, name, description, metadata, status, userId);
   }
 
   @Override
@@ -371,8 +421,10 @@ public class ModelCase {
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    caseNumber: ").append(toIndentedString(caseNumber)).append("\n");
     sb.append("    documentNumber: ").append(toIndentedString(documentNumber)).append("\n");
+    sb.append("    plannedStartDate: ").append(toIndentedString(plannedStartDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -403,8 +455,10 @@ public class ModelCase {
     openapiFields.add("caseId");
     openapiFields.add("caseNumber");
     openapiFields.add("documentNumber");
+    openapiFields.add("plannedStartDate");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("dueDate");
     openapiFields.add("insertedDate");
     openapiFields.add("name");
     openapiFields.add("description");
@@ -460,6 +514,12 @@ public class ModelCase {
           "Expected the field `documentNumber` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentNumber").toString()));
     }
+    if ((jsonObj.get("plannedStartDate") != null && !jsonObj.get("plannedStartDate").isJsonNull())
+        && !jsonObj.get("plannedStartDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `plannedStartDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("plannedStartDate").toString()));
+    }
     if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
         && !jsonObj.get("startDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -471,6 +531,12 @@ public class ModelCase {
       throw new IllegalArgumentException(String.format(
           "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("dueDate") != null && !jsonObj.get("dueDate").isJsonNull())
+        && !jsonObj.get("dueDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `dueDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dueDate").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

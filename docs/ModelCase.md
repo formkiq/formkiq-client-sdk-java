@@ -10,8 +10,10 @@
 |**caseId** | **String** | Case Identifier |  [optional] |
 |**caseNumber** | **String** | Case Number |  [optional] |
 |**documentNumber** | **String** | Document Number |  [optional] |
+|**plannedStartDate** | **String** | Planned Start Date |  [optional] |
 |**startDate** | **String** | Start Date |  [optional] |
 |**endDate** | **String** | End Date |  [optional] |
+|**dueDate** | **String** | Due Date |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**name** | **String** | Case Name |  [optional] |
 |**description** | **String** | Case Description |  [optional] |

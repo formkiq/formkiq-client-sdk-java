@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddNigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-07T14:33:54.015542-06:00[America/Winnipeg]",
+    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddNigo {
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -76,6 +76,10 @@ public class AddNigo {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private NigoStatus status;
 
+  public static final String SERIALIZED_NAME_PLANNED_START_DATE = "plannedStartDate";
+  @SerializedName(SERIALIZED_NAME_PLANNED_START_DATE)
+  private String plannedStartDate;
+
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
   private String startDate;
@@ -83,6 +87,10 @@ public class AddNigo {
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
   private String endDate;
+
+  public static final String SERIALIZED_NAME_DUE_DATE = "dueDate";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE)
+  private String dueDate;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -154,6 +162,26 @@ public class AddNigo {
   }
 
 
+  public AddNigo plannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+    return this;
+  }
+
+  /**
+   * Planned Start Date
+   * 
+   * @return plannedStartDate
+   */
+  @javax.annotation.Nullable
+  public String getPlannedStartDate() {
+    return plannedStartDate;
+  }
+
+  public void setPlannedStartDate(String plannedStartDate) {
+    this.plannedStartDate = plannedStartDate;
+  }
+
+
   public AddNigo startDate(String startDate) {
     this.startDate = startDate;
     return this;
@@ -191,6 +219,26 @@ public class AddNigo {
 
   public void setEndDate(String endDate) {
     this.endDate = endDate;
+  }
+
+
+  public AddNigo dueDate(String dueDate) {
+    this.dueDate = dueDate;
+    return this;
+  }
+
+  /**
+   * Due Date
+   * 
+   * @return dueDate
+   */
+  @javax.annotation.Nullable
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
 
@@ -263,15 +311,18 @@ public class AddNigo {
     return Objects.equals(this.name, addNigo.name)
         && Objects.equals(this.description, addNigo.description)
         && Objects.equals(this.status, addNigo.status)
+        && Objects.equals(this.plannedStartDate, addNigo.plannedStartDate)
         && Objects.equals(this.startDate, addNigo.startDate)
         && Objects.equals(this.endDate, addNigo.endDate)
+        && Objects.equals(this.dueDate, addNigo.dueDate)
         && Objects.equals(this.metadata, addNigo.metadata)
         && Objects.equals(this.documentIds, addNigo.documentIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, status, startDate, endDate, metadata, documentIds);
+    return Objects.hash(name, description, status, plannedStartDate, startDate, endDate, dueDate,
+        metadata, documentIds);
   }
 
   @Override
@@ -281,8 +332,10 @@ public class AddNigo {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    plannedStartDate: ").append(toIndentedString(plannedStartDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
     sb.append("}");
@@ -309,8 +362,10 @@ public class AddNigo {
     openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("status");
+    openapiFields.add("plannedStartDate");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("dueDate");
     openapiFields.add("metadata");
     openapiFields.add("documentIds");
 
@@ -369,6 +424,12 @@ public class AddNigo {
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       NigoStatus.validateJsonElement(jsonObj.get("status"));
     }
+    if ((jsonObj.get("plannedStartDate") != null && !jsonObj.get("plannedStartDate").isJsonNull())
+        && !jsonObj.get("plannedStartDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `plannedStartDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("plannedStartDate").toString()));
+    }
     if ((jsonObj.get("startDate") != null && !jsonObj.get("startDate").isJsonNull())
         && !jsonObj.get("startDate").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -380,6 +441,12 @@ public class AddNigo {
       throw new IllegalArgumentException(String.format(
           "Expected the field `endDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("endDate").toString()));
+    }
+    if ((jsonObj.get("dueDate") != null && !jsonObj.get("dueDate").isJsonNull())
+        && !jsonObj.get("dueDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `dueDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dueDate").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()

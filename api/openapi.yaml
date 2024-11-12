@@ -14377,7 +14377,9 @@ components:
         case:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           documentNumberFormat:
           - padding: 0
             staticValue: staticValue
@@ -14409,7 +14411,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         documentNumberFormat:
         - padding: 0
           staticValue: staticValue
@@ -14437,11 +14441,17 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/CaseStatus'
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         description:
           description: Case Description
@@ -14495,7 +14505,9 @@ components:
         case:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           startDate: startDate
@@ -14511,7 +14523,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         startDate: startDate
@@ -14532,11 +14546,17 @@ components:
           additionalProperties:
             type: object
           type: object
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         documentIds:
           items:
@@ -14602,7 +14622,9 @@ components:
         task:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           startDate: startDate
@@ -14618,7 +14640,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         startDate: startDate
@@ -14633,11 +14657,17 @@ components:
         description:
           description: Description of Task
           type: string
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
@@ -14655,7 +14685,9 @@ components:
         task:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           startDate: startDate
@@ -14673,7 +14705,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         startDate: startDate
@@ -14690,11 +14724,17 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/TaskStatus'
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         metadata:
           additionalProperties:
@@ -14720,7 +14760,9 @@ components:
         nigo:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           startDate: startDate
@@ -14736,7 +14778,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         startDate: startDate
@@ -14751,11 +14795,17 @@ components:
         description:
           description: Description of Nigo
           type: string
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
@@ -14773,7 +14823,9 @@ components:
         nigo:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           startDate: startDate
@@ -14791,7 +14843,9 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         startDate: startDate
@@ -14808,11 +14862,17 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/NigoStatus'
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         metadata:
           additionalProperties:
@@ -14829,8 +14889,10 @@ components:
       example:
         metadata:
           key: "{}"
+        plannedStartDate: plannedStartDate
         insertedDate: insertedDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         userId: userId
@@ -14850,11 +14912,17 @@ components:
         description:
           description: Description of Task
           type: string
+        plannedStartDate:
+          description: Planned Start Date of Task
+          type: string
         startDate:
           description: Start Date of Task
           type: string
         endDate:
           description: End Date of Task
+          type: string
+        dueDate:
+          description: Due Date of Task
           type: string
         userId:
           description: User who added Task
@@ -14871,8 +14939,10 @@ components:
         metadata:
           key: "{}"
         nigoId: nigoId
+        plannedStartDate: plannedStartDate
         insertedDate: insertedDate
         endDate: endDate
+        dueDate: dueDate
         name: name
         description: description
         userId: userId
@@ -14891,11 +14961,17 @@ components:
         description:
           description: Description of Nigo
           type: string
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         userId:
           description: User who added Nigo
@@ -14914,25 +14990,29 @@ components:
         - metadata:
             key: "{}"
           endDate: endDate
-          insertedDate: insertedDate
-          caseNumber: caseNumber
           documentNumber: documentNumber
-          caseId: caseId
-          name: name
+          dueDate: dueDate
           description: description
           userId: userId
+          plannedStartDate: plannedStartDate
+          insertedDate: insertedDate
+          caseNumber: caseNumber
+          caseId: caseId
+          name: name
           startDate: startDate
           status: NEW
         - metadata:
             key: "{}"
           endDate: endDate
-          insertedDate: insertedDate
-          caseNumber: caseNumber
           documentNumber: documentNumber
-          caseId: caseId
-          name: name
+          dueDate: dueDate
           description: description
           userId: userId
+          plannedStartDate: plannedStartDate
+          insertedDate: insertedDate
+          caseNumber: caseNumber
+          caseId: caseId
+          name: name
           startDate: startDate
           status: NEW
       properties:
@@ -14952,8 +15032,10 @@ components:
         - metadata:
             key: "{}"
           nigoId: nigoId
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -14962,8 +15044,10 @@ components:
         - metadata:
             key: "{}"
           nigoId: nigoId
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -14985,8 +15069,10 @@ components:
           metadata:
             key: "{}"
           nigoId: nigoId
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -15001,8 +15087,10 @@ components:
         task:
           metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -15019,8 +15107,10 @@ components:
         tasks:
         - metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -15029,8 +15119,10 @@ components:
           status: NEW
         - metadata:
             key: "{}"
+          plannedStartDate: plannedStartDate
           insertedDate: insertedDate
           endDate: endDate
+          dueDate: dueDate
           name: name
           description: description
           userId: userId
@@ -15119,13 +15211,15 @@ components:
           metadata:
             key: "{}"
           endDate: endDate
-          insertedDate: insertedDate
-          caseNumber: caseNumber
           documentNumber: documentNumber
-          caseId: caseId
-          name: name
+          dueDate: dueDate
           description: description
           userId: userId
+          plannedStartDate: plannedStartDate
+          insertedDate: insertedDate
+          caseNumber: caseNumber
+          caseId: caseId
+          name: name
           startDate: startDate
           status: NEW
       properties:
@@ -15137,13 +15231,15 @@ components:
         metadata:
           key: "{}"
         endDate: endDate
-        insertedDate: insertedDate
-        caseNumber: caseNumber
         documentNumber: documentNumber
-        caseId: caseId
-        name: name
+        dueDate: dueDate
         description: description
         userId: userId
+        plannedStartDate: plannedStartDate
+        insertedDate: insertedDate
+        caseNumber: caseNumber
+        caseId: caseId
+        name: name
         startDate: startDate
         status: NEW
       properties:
@@ -15156,11 +15252,17 @@ components:
         documentNumber:
           description: Document Number
           type: string
+        plannedStartDate:
+          description: Planned Start Date
+          type: string
         startDate:
           description: Start Date
           type: string
         endDate:
           description: End Date
+          type: string
+        dueDate:
+          description: Due Date
           type: string
         insertedDate:
           description: Inserted Timestamp
