@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * DocumentsCompressRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
+    date = "2024-11-12T21:03:32.853177-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class DocumentsCompressRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";

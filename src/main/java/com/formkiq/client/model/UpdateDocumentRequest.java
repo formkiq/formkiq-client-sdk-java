@@ -26,6 +26,7 @@ import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -63,7 +64,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
+    date = "2024-11-12T21:03:32.853177-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class UpdateDocumentRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
@@ -85,6 +86,14 @@ public class UpdateDocumentRequest {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private String content;
+
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -205,6 +214,46 @@ public class UpdateDocumentRequest {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+
+  public UpdateDocumentRequest checksum(String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * Document checksum, changes when document file changes
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(String checksum) {
+    this.checksum = checksum;
+  }
+
+
+  public UpdateDocumentRequest checksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(ChecksumType checksumType) {
+    this.checksumType = checksumType;
   }
 
 
@@ -363,6 +412,8 @@ public class UpdateDocumentRequest {
         && Objects.equals(this.contentType, updateDocumentRequest.contentType)
         && Objects.equals(this.isBase64, updateDocumentRequest.isBase64)
         && Objects.equals(this.content, updateDocumentRequest.content)
+        && Objects.equals(this.checksum, updateDocumentRequest.checksum)
+        && Objects.equals(this.checksumType, updateDocumentRequest.checksumType)
         && Objects.equals(this.tags, updateDocumentRequest.tags)
         && Objects.equals(this.metadata, updateDocumentRequest.metadata)
         && Objects.equals(this.attributes, updateDocumentRequest.attributes)
@@ -372,8 +423,8 @@ public class UpdateDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, deepLinkPath, contentType, isBase64, content, tags, metadata,
-        attributes, actions, documents);
+    return Objects.hash(path, deepLinkPath, contentType, isBase64, content, checksum, checksumType,
+        tags, metadata, attributes, actions, documents);
   }
 
   @Override
@@ -385,6 +436,8 @@ public class UpdateDocumentRequest {
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    isBase64: ").append(toIndentedString(isBase64)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
@@ -416,6 +469,8 @@ public class UpdateDocumentRequest {
     openapiFields.add("contentType");
     openapiFields.add("isBase64");
     openapiFields.add("content");
+    openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("tags");
     openapiFields.add("metadata");
     openapiFields.add("attributes");
@@ -475,6 +530,16 @@ public class UpdateDocumentRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `content` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("content").toString()));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
       JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");

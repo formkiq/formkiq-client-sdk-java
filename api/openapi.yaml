@@ -11328,11 +11328,17 @@ components:
       type: object
     AddDocumentResponse:
       example:
+        headers:
+          key: "{}"
         uploadUrl: uploadUrl
         documents:
-        - uploadUrl: uploadUrl
+        - headers:
+            key: "{}"
+          uploadUrl: uploadUrl
           documentId: documentId
-        - uploadUrl: uploadUrl
+        - headers:
+            key: "{}"
+          uploadUrl: uploadUrl
           documentId: documentId
         siteId: siteId
         documentId: documentId
@@ -11346,6 +11352,10 @@ components:
         uploadUrl:
           description: Url to upload document to
           type: string
+        headers:
+          additionalProperties:
+            type: object
+          type: object
         documents:
           description: List of child documents
           items:
@@ -11354,6 +11364,8 @@ components:
       type: object
     AddChildDocumentResponse:
       example:
+        headers:
+          key: "{}"
         uploadUrl: uploadUrl
         documentId: documentId
       properties:
@@ -11363,6 +11375,10 @@ components:
         uploadUrl:
           description: Url to upload document to
           type: string
+        headers:
+          additionalProperties:
+            type: object
+          type: object
       type: object
     GetDocumentUrlResponse:
       example:
@@ -12440,6 +12456,8 @@ components:
             - values
             value: value
             key: key
+        checksum: checksum
+        checksumType: SHA1
         attributes:
         - numberValues:
           - 6.027456183070403
@@ -12532,6 +12550,11 @@ components:
         content:
           description: Document content
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:

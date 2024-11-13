@@ -28,6 +28,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddChildDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-11T22:01:15.097051-06:00[America/Winnipeg]",
+    date = "2024-11-12T21:03:32.853177-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddChildDocumentResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
@@ -66,6 +68,10 @@ public class AddChildDocumentResponse {
   public static final String SERIALIZED_NAME_UPLOAD_URL = "uploadUrl";
   @SerializedName(SERIALIZED_NAME_UPLOAD_URL)
   private String uploadUrl;
+
+  public static final String SERIALIZED_NAME_HEADERS = "headers";
+  @SerializedName(SERIALIZED_NAME_HEADERS)
+  private Map<String, Object> headers = new HashMap<>();
 
   public AddChildDocumentResponse() {}
 
@@ -109,6 +115,34 @@ public class AddChildDocumentResponse {
   }
 
 
+  public AddChildDocumentResponse headers(Map<String, Object> headers) {
+    this.headers = headers;
+    return this;
+  }
+
+  public AddChildDocumentResponse putHeadersItem(String key, Object headersItem) {
+    if (this.headers == null) {
+      this.headers = new HashMap<>();
+    }
+    this.headers.put(key, headersItem);
+    return this;
+  }
+
+  /**
+   * Get headers
+   * 
+   * @return headers
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(Map<String, Object> headers) {
+    this.headers = headers;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -120,12 +154,13 @@ public class AddChildDocumentResponse {
     }
     AddChildDocumentResponse addChildDocumentResponse = (AddChildDocumentResponse) o;
     return Objects.equals(this.documentId, addChildDocumentResponse.documentId)
-        && Objects.equals(this.uploadUrl, addChildDocumentResponse.uploadUrl);
+        && Objects.equals(this.uploadUrl, addChildDocumentResponse.uploadUrl)
+        && Objects.equals(this.headers, addChildDocumentResponse.headers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, uploadUrl);
+    return Objects.hash(documentId, uploadUrl, headers);
   }
 
   @Override
@@ -134,6 +169,7 @@ public class AddChildDocumentResponse {
     sb.append("class AddChildDocumentResponse {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    uploadUrl: ").append(toIndentedString(uploadUrl)).append("\n");
+    sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,6 +193,7 @@ public class AddChildDocumentResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("documentId");
     openapiFields.add("uploadUrl");
+    openapiFields.add("headers");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

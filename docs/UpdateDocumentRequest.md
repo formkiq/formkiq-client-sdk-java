@@ -12,6 +12,8 @@
 |**contentType** | **String** | Document media type |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**content** | **String** | Document content |  [optional] |
+|**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
 |**attributes** | [**List&lt;AddDocumentAttribute&gt;**](AddDocumentAttribute.md) | List of document attributes |  [optional] |

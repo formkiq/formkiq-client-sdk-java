@@ -29,7 +29,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +71,14 @@ public class AddDocumentResponseTest {
   @Test
   public void uploadUrlTest() {
     // TODO: test uploadUrl
+  }
+
+  /**
+   * Test the property 'headers'
+   */
+  @Test
+  public void headersTest() {
+    // TODO: test headers
   }
 
   /**

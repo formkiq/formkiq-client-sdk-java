@@ -25,6 +25,7 @@ import com.formkiq.client.model.AddChildDocument;
 import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -89,6 +90,22 @@ public class UpdateDocumentRequestTest {
   @Test
   public void contentTest() {
     // TODO: test content
+  }
+
+  /**
+   * Test the property 'checksum'
+   */
+  @Test
+  public void checksumTest() {
+    // TODO: test checksum
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
   }
 
   /**
