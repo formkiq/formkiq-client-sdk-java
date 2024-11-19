@@ -15810,7 +15810,12 @@ components:
           dataRoot: data
         outputType: DOCX
         saveAsDocumentId: saveAsDocumentId
+        locale:
+          country: country
+          language: language
       properties:
+        locale:
+          $ref: '#/components/schemas/Locale'
         datasources:
           description: List of data sources
           items:
@@ -15843,6 +15848,19 @@ components:
           type: string
       required:
       - documentId
+      type: object
+    Locale:
+      example:
+        country: country
+        language: language
+      properties:
+        language:
+          description: "ISO 639-1 language code (eg: en (English), fr (French), de\
+            \ (German))"
+          type: string
+        country:
+          description: "ISO 3166-1 country code (eg: US, CA, DE, FR)"
+          type: string
       type: object
     DocumentGenerateOutputType:
       description: Document Generate Output Type

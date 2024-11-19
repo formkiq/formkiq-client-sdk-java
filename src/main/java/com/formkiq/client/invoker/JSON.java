@@ -546,6 +546,8 @@ public class JSON {
         new com.formkiq.client.model.IndexSearchRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.IndexSearchResponse.CustomTypeAdapterFactory());
+    gsonBuilder
+        .registerTypeAdapterFactory(new com.formkiq.client.model.Locale.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.Mapping.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

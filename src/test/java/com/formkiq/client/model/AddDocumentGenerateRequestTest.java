@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateOutputType;
+import com.formkiq.client.model.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -46,6 +47,14 @@ public class AddDocumentGenerateRequestTest {
   @Test
   public void testAddDocumentGenerateRequest() {
     // TODO: test AddDocumentGenerateRequest
+  }
+
+  /**
+   * Test the property 'locale'
+   */
+  @Test
+  public void localeTest() {
+    // TODO: test locale
   }
 
   /**

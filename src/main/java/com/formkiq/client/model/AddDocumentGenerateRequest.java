@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateOutputType;
+import com.formkiq.client.model.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,9 +61,13 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-12T21:03:32.853177-06:00[America/Winnipeg]",
+    date = "2024-11-13T21:59:20.801618-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class AddDocumentGenerateRequest {
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private Locale locale;
+
   public static final String SERIALIZED_NAME_DATASOURCES = "datasources";
   @SerializedName(SERIALIZED_NAME_DATASOURCES)
   private List<DocumentGenerateDataSource> datasources = new ArrayList<>();
@@ -80,6 +85,26 @@ public class AddDocumentGenerateRequest {
   private String path;
 
   public AddDocumentGenerateRequest() {}
+
+  public AddDocumentGenerateRequest locale(Locale locale) {
+    this.locale = locale;
+    return this;
+  }
+
+  /**
+   * Get locale
+   * 
+   * @return locale
+   */
+  @javax.annotation.Nullable
+  public Locale getLocale() {
+    return locale;
+  }
+
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+  }
+
 
   public AddDocumentGenerateRequest datasources(List<DocumentGenerateDataSource> datasources) {
     this.datasources = datasources;
@@ -179,7 +204,8 @@ public class AddDocumentGenerateRequest {
       return false;
     }
     AddDocumentGenerateRequest addDocumentGenerateRequest = (AddDocumentGenerateRequest) o;
-    return Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
+    return Objects.equals(this.locale, addDocumentGenerateRequest.locale)
+        && Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
         && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType)
         && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId)
         && Objects.equals(this.path, addDocumentGenerateRequest.path);
@@ -187,13 +213,14 @@ public class AddDocumentGenerateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(datasources, outputType, saveAsDocumentId, path);
+    return Objects.hash(locale, datasources, outputType, saveAsDocumentId, path);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentGenerateRequest {\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("    saveAsDocumentId: ").append(toIndentedString(saveAsDocumentId)).append("\n");
@@ -219,6 +246,7 @@ public class AddDocumentGenerateRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("locale");
     openapiFields.add("datasources");
     openapiFields.add("outputType");
     openapiFields.add("saveAsDocumentId");
@@ -254,6 +282,10 @@ public class AddDocumentGenerateRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // validate the optional field `locale`
+    if (jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) {
+      Locale.validateJsonElement(jsonObj.get("locale"));
+    }
     if (jsonObj.get("datasources") != null && !jsonObj.get("datasources").isJsonNull()) {
       JsonArray jsonArraydatasources = jsonObj.getAsJsonArray("datasources");
       if (jsonArraydatasources != null) {

@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * GetAttributeAllowedValuesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-11-12T21:03:32.853177-06:00[America/Winnipeg]",
+    date = "2024-11-13T21:59:20.801618-06:00[America/Winnipeg]",
     comments = "Generator version: 7.9.0")
 public class GetAttributeAllowedValuesResponse {
   public static final String SERIALIZED_NAME_ALLOWED_VALUES = "allowedValues";

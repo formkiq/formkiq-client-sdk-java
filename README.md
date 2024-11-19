@@ -5,8 +5,8 @@ This is the official supported Java library for the FormKiQ API.
 
 FormKiQ HTTP API
 - API version: 1.16.0
-  - Build date: 2024-08-04T16:10:39.847247-05:00[America/Winnipeg]
-  - Generator version: 7.7.0
+  - Build date: 2024-11-13T21:59:20.801618-06:00[America/Winnipeg]
+  - Generator version: 7.9.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -602,6 +602,7 @@ Class | Method | HTTP request | Description
  - [IndexSearch](docs/IndexSearch.md)
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
+ - [Locale](docs/Locale.md)
  - [Mapping](docs/Mapping.md)
  - [MappingAttribute](docs/MappingAttribute.md)
  - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)

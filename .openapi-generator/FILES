@@ -261,6 +261,7 @@ docs/IndexFolderMoveResponse.md
 docs/IndexSearch.md
 docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
+docs/Locale.md
 docs/Mapping.md
 docs/MappingAttribute.md
 docs/MappingAttributeLabelMatchingType.md
@@ -694,6 +695,7 @@ src/main/java/com/formkiq/client/model/IndexFolderMoveResponse.java
 src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
+src/main/java/com/formkiq/client/model/Locale.java
 src/main/java/com/formkiq/client/model/Mapping.java
 src/main/java/com/formkiq/client/model/MappingAttribute.java
 src/main/java/com/formkiq/client/model/MappingAttributeLabelMatchingType.java
@@ -1084,6 +1086,7 @@ src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
+src/test/java/com/formkiq/client/model/LocaleTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeLabelMatchingTypeTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeMetadataFieldTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeSourceTypeTest.java
