@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.16.0</version>
+  <version>1.16.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.16.0"
+     implementation "com.formkiq:client:1.16.1"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.16.0.jar`
+* `target/client-1.16.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -338,7 +338,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
-*TagIndexApi* | [**indexSearch_0**](docs/TagIndexApi.md#indexSearch_0) | **POST** /indices/search | 
+*TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group

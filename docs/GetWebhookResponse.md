@@ -14,6 +14,7 @@
 |**webhookId** | **String** | Webhook Identifier |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
 |**enabled** | **String** | Is webhook enabled |  [optional] |
+|**ttl** | **String** | Webhook time to live (expiry in seconds) |  [optional] |
 
 
 
