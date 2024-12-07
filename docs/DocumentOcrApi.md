@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 
 Perform document ocr
 
-Document optical character recognition (OCR) request; extract text and data from a document;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
+Document optical character recognition (OCR) request; extract text and data from a document;   Tesseract available for all editions, but Textract engine and tables and forms options available as an Add-On Module
 
 ### Example
 ```java
@@ -85,7 +85,7 @@ No authorization required
 
 Delete document ocr
 
-Delete a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
+Delete a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options available as an Add-On Module
 
 ### Example
 ```java
@@ -152,7 +152,7 @@ No authorization required
 
 Get document ocr content
 
-Get a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
+Get a document&#39;s optical character recognition (OCR) result, if exists;   Tesseract available for all editions, but Textract engine and tables and forms options available as an Add-On Module
 
 ### Example
 ```java
@@ -227,7 +227,7 @@ No authorization required
 
 Set document ocr result
 
-Set a document&#39;s optical character recognition (OCR) result for a document;   Tesseract available for all editions, but Textract engine and tables and forms options ONLY available with FormKiQ Pro and Enterprise
+Set a document&#39;s optical character recognition (OCR) result for a document;   Tesseract available for all editions, but Textract engine and tables and forms options available as an Add-On Module
 
 ### Example
 ```java

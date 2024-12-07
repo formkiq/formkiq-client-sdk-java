@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 
 
-Perform a delete on the Folder Index
+Perform a delete on the Folder Index.  When deleting a file from the \&quot;folder\&quot; index, you can set the indexKey to a URLEncoded path variable.
 
 ### Example
 ```java
