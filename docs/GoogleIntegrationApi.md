@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 
 Add Google Document Export
 
-Exports a Google Document; ONLY available with FormKiQ Enterprise
+Exports a Google Document; available as an Add-On Module
 
 ### Example
 ```java

@@ -11,5 +11,7 @@
 
 * `METADATA` (value: `"METADATA"`)
 
+* `MANUAL` (value: `"MANUAL"`)
+
 
 

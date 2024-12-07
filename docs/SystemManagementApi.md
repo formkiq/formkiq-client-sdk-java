@@ -356,7 +356,7 @@ No authorization required
 
 <a id="getApiKeys"></a>
 # **getApiKeys**
-> GetApiKeysResponse getApiKeys(siteId)
+> GetApiKeysResponse getApiKeys(siteId, next, limit)
 
 Get API Keys
 
@@ -381,8 +381,10 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
+    String next = "next_example"; // String | Next page of results token
+    String limit = "10"; // String | Limit Results
     try {
-      GetApiKeysResponse result = apiInstance.getApiKeys(siteId);
+      GetApiKeysResponse result = apiInstance.getApiKeys(siteId, next, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getApiKeys");
@@ -400,6 +402,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
+| **next** | **String**| Next page of results token | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
 
 ### Return type
 

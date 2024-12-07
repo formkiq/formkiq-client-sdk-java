@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Create Docusign Envelope request
 
-DocuSign create Docusign Envelope request; ONLY available with FormKiQ Enterprise
+DocuSign create Docusign Envelope request; available as an Add-On Module
 
 ### Example
 ```java
@@ -85,7 +85,7 @@ No authorization required
 
 Create Docusign Recipient View request
 
-DocuSign create Docusign Recipient View request; ONLY available with FormKiQ Enterprise
+DocuSign create Docusign Recipient View request; available as an Add-On Module
 
 ### Example
 ```java
@@ -157,7 +157,7 @@ No authorization required
 
 Add E-signature event
 
-DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
+DocuSign callback URL handler; available as an Add-On Module
 
 ### Example
 ```java

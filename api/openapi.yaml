@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.16.0
+  version: 1.16.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -1075,6 +1075,23 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3598,7 +3615,7 @@ paths:
   /searchFulltext:
     post:
       description: "Document full-text search (and more robust multi-tag search queries,\
-        \ powered by OpenSearch); ONLY available with FormKiQ Enterprise"
+        \ powered by OpenSearch); available as an Add-On Module"
       operationId: SearchFulltext
       parameters:
       - description: Site Identifier
@@ -3657,7 +3674,7 @@ paths:
   /queryFulltext:
     post:
       description: |-
-        Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise
+        Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); available as an Add-On Module
 
         Example Request Body: { "query": { "match_all": {} }}
       operationId: QueryFulltext
@@ -3906,7 +3923,7 @@ paths:
     delete:
       description: "Delete a document's optical character recognition (OCR) result,\
         \ if exists; \n\nTesseract available for all editions, but Textract engine\
-        \ and tables and forms options ONLY available with FormKiQ Pro and Enterprise"
+        \ and tables and forms options available as an Add-On Module"
       operationId: DeleteDocumentOcr
       parameters:
       - description: Site Identifier
@@ -3951,7 +3968,7 @@ paths:
     get:
       description: "Get a document's optical character recognition (OCR) result, if\
         \ exists; \n\nTesseract available for all editions, but Textract engine and\
-        \ tables and forms options ONLY available with FormKiQ Pro and Enterprise"
+        \ tables and forms options available as an Add-On Module"
       operationId: GetDocumentOcr
       parameters:
       - description: Site Identifier
@@ -3980,6 +3997,7 @@ paths:
           - TEXT
           - KEY_VALUE
           - CONTENT_URL
+          - TABLES
           type: string
         style: form
       - description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
@@ -4033,8 +4051,8 @@ paths:
     post:
       description: "Document optical character recognition (OCR) request; extract\
         \ text and data from a document; \n\nTesseract available for all editions,\
-        \ but Textract engine and tables and forms options ONLY available with FormKiQ\
-        \ Pro and Enterprise"
+        \ but Textract engine and tables and forms options available as an Add-On\
+        \ Module"
       operationId: AddDocumentOcr
       parameters:
       - description: Site Identifier
@@ -4086,7 +4104,7 @@ paths:
     put:
       description: "Set a document's optical character recognition (OCR) result for\
         \ a document; \n\nTesseract available for all editions, but Textract engine\
-        \ and tables and forms options ONLY available with FormKiQ Pro and Enterprise"
+        \ and tables and forms options available as an Add-On Module"
       operationId: SetDocumentOcr
       parameters:
       - description: Site Identifier
@@ -4137,8 +4155,8 @@ paths:
       - application/json
   /documents/{documentId}/versions:
     get:
-      description: Get a listing of document content and metadata versions; ONLY available
-        with FormKiQ Pro and Enterprise
+      description: Get a listing of document content and metadata versions; available
+        as an Add-On Module
       operationId: GetDocumentVersions
       parameters:
       - description: Site Identifier
@@ -4206,8 +4224,8 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Set document to a previous document version; ONLY available with
-        FormKiQ Pro and Enterprise
+      description: Set document to a previous document version; available as an Add-On
+        Module
       operationId: SetDocumentVersion
       parameters:
       - description: Site Identifier
@@ -4264,8 +4282,8 @@ paths:
       - application/json
   /documents/{documentId}/versions/{versionKey}:
     delete:
-      description: Delete a specific previous document version; ONLY available with
-        FormKiQ Pro and Enterprise
+      description: Delete a specific previous document version; available as an Add-On
+        Module
       operationId: DeleteDocumentVersion
       parameters:
       - description: Site Identifier
@@ -4325,8 +4343,8 @@ paths:
       - application/json
   /documents/{documentId}/attributes/{attributeKey}/versions:
     get:
-      description: Get a listing of a document's attribute versions; ONLY available
-        with FormKiQ Pro and Enterprise
+      description: Get a listing of a document's attribute versions; available as
+        an Add-On Module
       operationId: GetDocumentAttributeVersions
       parameters:
       - description: Site Identifier
@@ -4574,8 +4592,8 @@ paths:
       - application/json
   /shares:
     get:
-      description: Get a listing of user folder/document shares; ONLY available with
-        FormKiQ Enterprise
+      description: Get a listing of user folder/document shares; available as an Add-On
+        Module
       operationId: GetUserShares
       parameters:
       - description: Group Identifier
@@ -4628,7 +4646,7 @@ paths:
       - application/json
   /shares/folders/{indexKey}:
     post:
-      description: Creates a new folder share; ONLY available with FormKiQ Enterprise
+      description: Creates a new folder share; available as an Add-On Module
       operationId: AddFolderShare
       parameters:
       - description: Site Identifier
@@ -4685,7 +4703,7 @@ paths:
       - application/json
   /shares/{shareKey}:
     delete:
-      description: Delete a specific document share; ONLY available with FormKiQ Enterprise
+      description: Delete a specific document share; available as an Add-On Module
       operationId: DeleteShare
       parameters:
       - description: Share Identifier
@@ -4721,7 +4739,7 @@ paths:
       - application/json
   /workflows:
     get:
-      description: Get a listing of workflows; ONLY available with FormKiQ Enterprise
+      description: Get a listing of workflows; available as an Add-On Module
       operationId: GetWorkflows
       parameters:
       - description: Site Identifier
@@ -4784,7 +4802,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a new Workflow; ONLY available with FormKiQ Pro and Enterprise
+      description: Creates a new Workflow; available as an Add-On Module
       operationId: AddWorkflow
       parameters:
       - description: Site Identifier
@@ -4840,7 +4858,7 @@ paths:
       - application/json
   /workflows/{workflowId}:
     delete:
-      description: Delete a Workflow; ONLY available with FormKiQ Pro and Enterprise
+      description: Delete a Workflow; available as an Add-On Module
       operationId: DeleteWorkflow
       parameters:
       - description: Site Identifier
@@ -4883,7 +4901,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Get a workflow; ONLY available with FormKiQ Enterprise
+      description: Get a workflow; available as an Add-On Module
       operationId: GetWorkflow
       parameters:
       - description: Site Identifier
@@ -4926,8 +4944,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Update a Workflow details; ONLY available with FormKiQ Pro and
-        Enterprise
+      description: Update a Workflow details; available as an Add-On Module
       operationId: UpdateWorkflow
       parameters:
       - description: Site Identifier
@@ -4990,7 +5007,7 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Set a Workflow details; ONLY available with FormKiQ Pro and Enterprise
+      description: Set a Workflow details; available as an Add-On Module
       operationId: SetWorkflow
       parameters:
       - description: Site Identifier
@@ -5054,8 +5071,7 @@ paths:
       - application/json
   /workflows/{workflowId}/documents:
     get:
-      description: List documents in Workflow; ONLY available with FormKiQ Pro and
-        Enterprise
+      description: List documents in Workflow; available as an Add-On Module
       operationId: GetWorkflowDocuments
       parameters:
       - description: Site Identifier
@@ -5116,7 +5132,7 @@ paths:
       - application/json
   /queues:
     get:
-      description: Get a listing of queues; ONLY available with FormKiQ Enterprise
+      description: Get a listing of queues; available as an Add-On Module
       operationId: GetQueues
       parameters:
       - description: Site Identifier
@@ -5168,7 +5184,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a new Queue; ONLY available with FormKiQ Pro and Enterprise
+      description: Creates a new Queue; available as an Add-On Module
       operationId: AddQueue
       parameters:
       - description: Site Identifier
@@ -5224,7 +5240,7 @@ paths:
       - application/json
   /queues/{queueId}:
     delete:
-      description: Delete a Queue; ONLY available with FormKiQ Pro and Enterprise
+      description: Delete a Queue; available as an Add-On Module
       operationId: DeleteQueue
       parameters:
       - description: Site Identifier
@@ -5267,7 +5283,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Get a queue; ONLY available with FormKiQ Enterprise
+      description: Get a queue; available as an Add-On Module
       operationId: GetQueue
       parameters:
       - description: Site Identifier
@@ -5311,8 +5327,7 @@ paths:
       - application/json
   /queues/{queueId}/documents:
     get:
-      description: List documents in Workflow Queue; ONLY available with FormKiQ Pro
-        and Enterprise
+      description: List documents in Workflow Queue; available as an Add-On Module
       operationId: GetWorkflowQueueDocuments
       parameters:
       - description: Site Identifier
@@ -5373,8 +5388,7 @@ paths:
       - application/json
   /documents/{documentId}/workflows:
     get:
-      description: Gets a document workflows; ONLY available with FormKiQ Pro and
-        Enterprise
+      description: Gets a document workflows; available as an Add-On Module
       operationId: GetDocumentWorkflows
       parameters:
       - description: Site Identifier
@@ -5430,8 +5444,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a document workflow; ONLY available with FormKiQ Pro and
-        Enterprise
+      description: Creates a document workflow; available as an Add-On Module
       operationId: AddDocumentWorkflow
       parameters:
       - description: Site Identifier
@@ -5495,7 +5508,7 @@ paths:
       - application/json
   /documents/{documentId}/workflows/{workflowId}:
     get:
-      description: Gets a document workflow; ONLY available with FormKiQ Pro and Enterprise
+      description: Gets a document workflow; available as an Add-On Module
       operationId: GetDocumentWorkflow
       parameters:
       - description: Site Identifier
@@ -5560,8 +5573,8 @@ paths:
       - application/json
   /documents/{documentId}/workflow/{workflowId}/decisions:
     post:
-      description: Approve/Reject document in approval queue; ONLY available with
-        FormKiQ Pro and Enterprise
+      description: Approve/Reject document in approval queue; available as an Add-On
+        Module
       operationId: AddDocumentWorkflowDecisions
       parameters:
       - description: Site Identifier
@@ -5633,8 +5646,8 @@ paths:
       - application/json
   /documents/{documentId}/antivirus:
     put:
-      description: Perform an Anti-Malware / Antivirus scan on a document; ONLY available
-        with FormKiQ Pro and Enterprise
+      description: Perform an Anti-Malware / Antivirus scan on a document; available
+        as an Add-On Module
       operationId: SetAntivirus
       parameters:
       - description: Site Identifier
@@ -5693,8 +5706,8 @@ paths:
       - application/json
   /documents/{documentId}/fulltext:
     delete:
-      description: Remove full text search for a document from OpenSearch; ONLY available
-        with FormKiQ Enterprise
+      description: Remove full text search for a document from OpenSearch; available
+        as an Add-On Module
       operationId: DeleteDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -5788,7 +5801,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Update a document in OpenSearch; ONLY available with FormKiQ Enterprise
+      description: Update a document in OpenSearch; available as an Add-On Module
       operationId: UpdateDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -5838,7 +5851,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
+      description: Adde a document to OpenSearch; available as an Add-On Module
       operationId: AddDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -5888,8 +5901,8 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Set all text/tags found within a document to OpenSearch; ONLY available
-        with FormKiQ Enterprise
+      description: Set all text/tags found within a document to OpenSearch; available
+        as an Add-On Module
       operationId: SetDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -5940,8 +5953,7 @@ paths:
       - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}:
     delete:
-      description: Remove document tags from OpenSearch; ONLY available with FormKiQ
-        Enterprise
+      description: Remove document tags from OpenSearch; available as an Add-On Module
       operationId: DeleteDocumentFulltextTag
       parameters:
       - description: Site Identifier
@@ -5998,8 +6010,8 @@ paths:
       - application/json
   /documents/{documentId}/fulltext/tags/{tagKey}/{tagValue}:
     delete:
-      description: Remove document tag/value from OpenSearch; ONLY available with
-        FormKiQ Enterprise
+      description: Remove document tag/value from OpenSearch; available as an Add-On
+        Module
       operationId: DeleteDocumentFulltextTagAndValue
       parameters:
       - description: Site Identifier
@@ -6409,6 +6421,23 @@ paths:
         schema:
           type: string
         style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6500,7 +6529,10 @@ paths:
         style: form
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -6589,7 +6621,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -6709,8 +6744,8 @@ paths:
       - application/json
   /onlyoffice/{documentId}/edit:
     post:
-      description: Provide ONLYOFFICE integration for editing documents; ONLY available
-        with FormKiQ Enterprise
+      description: Provide ONLYOFFICE integration for editing documents; available
+        as an Add-On Module
       operationId: OnlyOfficeDocumentEdit
       parameters:
       - description: Site Identifier
@@ -6762,7 +6797,7 @@ paths:
   /onlyoffice/new:
     post:
       description: Provide ONLYOFFICE integration for the creation of new documents;
-        ONLY available with FormKiQ Enterprise
+        available as an Add-On Module
       operationId: OnlyOfficeDocumentNew
       parameters:
       - description: Site Identifier
@@ -6805,8 +6840,8 @@ paths:
       - application/json
   /onlyoffice/{documentId}/save:
     post:
-      description: Save an updated document for ONLYOFFICE integration. ONLY available
-        with FormKiQ Enterprise
+      description: Save an updated document for ONLYOFFICE integration. available
+        as an Add-On Module
       operationId: OnlyOfficeDocumentSave
       parameters:
       - description: Site Identifier
@@ -6904,7 +6939,10 @@ paths:
       - application/json
   /indices/{indexType}/{indexKey}:
     delete:
-      description: Perform a delete on the Folder Index
+      description: |-
+        Perform a delete on the Folder Index.
+
+        When deleting a file from the "folder" index, you can set the indexKey to a URLEncoded path variable.
       operationId: DeleteIndex
       parameters:
       - description: Site Identifier
@@ -7036,8 +7074,8 @@ paths:
       - application/json
   /esignature/docusign/{documentId}/envelopes:
     post:
-      description: DocuSign create Docusign Envelope request; ONLY available with
-        FormKiQ Enterprise
+      description: DocuSign create Docusign Envelope request; available as an Add-On
+        Module
       operationId: AddDocusignEnvelopes
       parameters:
       - description: Site Identifier
@@ -7094,8 +7132,8 @@ paths:
       - application/json
   /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient:
     post:
-      description: DocuSign create Docusign Recipient View request; ONLY available
-        with FormKiQ Enterprise
+      description: DocuSign create Docusign Recipient View request; available as an
+        Add-On Module
       operationId: AddDocusignRecipientView
       parameters:
       - description: Site Identifier
@@ -7160,7 +7198,7 @@ paths:
       - application/json
   /esignature/docusign/events:
     post:
-      description: DocuSign callback URL handler; ONLY available with FormKiQ Enterprise
+      description: DocuSign callback URL handler; available as an Add-On Module
       operationId: AddEsignatureDocusignEvents
       responses:
         "200":
@@ -7723,7 +7761,7 @@ paths:
       - application/json
   /cases:
     get:
-      description: Returns a list of the Cases; ONLY available with FormKiQ Enterprise
+      description: Returns a list of the Cases; available as an Add-On Module
       operationId: GetCases
       parameters:
       - description: Site Identifier
@@ -7775,7 +7813,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adds new case; ONLY available with FormKiQ Enterprise
+      description: Adds new case; available as an Add-On Module
       operationId: AddCase
       parameters:
       - description: Site Identifier
@@ -7861,7 +7899,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Returns a Case; ONLY available with FormKiQ Enterprise
+      description: Returns a Case; available as an Add-On Module
       operationId: GetCase
       parameters:
       - description: Site Identifier
@@ -7904,7 +7942,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Updates existing case; ONLY available with FormKiQ Enterprise
+      description: Updates existing case; available as an Add-On Module
       operationId: UpdateCase
       parameters:
       - description: Site Identifier
@@ -7955,7 +7993,7 @@ paths:
       - application/json
   /cases/{caseId}/documents:
     get:
-      description: Returns documents in a Case; ONLY available with FormKiQ Enterprise
+      description: Returns documents in a Case; available as an Add-On Module
       operationId: GetCaseDocuments
       parameters:
       - description: Site Identifier
@@ -8119,7 +8157,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Returns a Task in Case; ONLY available with FormKiQ Enterprise
+      description: Returns a Task in Case; available as an Add-On Module
       operationId: GetCaseTask
       parameters:
       - description: Site Identifier
@@ -8170,7 +8208,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Updates existing task; ONLY available with FormKiQ Enterprise
+      description: Updates existing task; available as an Add-On Module
       operationId: UpdateTask
       parameters:
       - description: Site Identifier
@@ -8229,8 +8267,7 @@ paths:
       - application/json
   /cases/{caseId}/tasks/{taskId}/documents:
     get:
-      description: Returns a list documents in a Case; ONLY available with FormKiQ
-        Enterprise
+      description: Returns a list documents in a Case; available as an Add-On Module
       operationId: GetTaskDocuments
       parameters:
       - description: Site Identifier
@@ -8410,7 +8447,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Returns a Nigo in Case; ONLY available with FormKiQ Enterprise
+      description: Returns a Nigo in Case; available as an Add-On Module
       operationId: GetCaseNigo
       parameters:
       - description: Site Identifier
@@ -8461,7 +8498,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Updates existing nigo; ONLY available with FormKiQ Enterprise
+      description: Updates existing nigo; available as an Add-On Module
       operationId: UpdateNigo
       parameters:
       - description: Site Identifier
@@ -8520,8 +8557,7 @@ paths:
       - application/json
   /cases/{caseId}/nigos/{nigoId}/documents:
     get:
-      description: Returns a list documents in a Case; ONLY available with FormKiQ
-        Enterprise
+      description: Returns a list documents in a Case; available as an Add-On Module
       operationId: GetNigoDocuments
       parameters:
       - description: Site Identifier
@@ -8650,7 +8686,7 @@ paths:
       - application/json
   /cases/{caseId}/tasks:
     get:
-      description: Returns a Case; ONLY available with FormKiQ Enterprise
+      description: Returns a Case; available as an Add-On Module
       operationId: GetCaseTasks
       parameters:
       - description: Site Identifier
@@ -8710,7 +8746,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adds new task; ONLY available with FormKiQ Enterprise
+      description: Adds new task; available as an Add-On Module
       operationId: AddTask
       parameters:
       - description: Site Identifier
@@ -8761,7 +8797,7 @@ paths:
       - application/json
   /cases/{caseId}/nigos:
     get:
-      description: Returns a Nigos of Case; ONLY available with FormKiQ Enterprise
+      description: Returns a Nigos of Case; available as an Add-On Module
       operationId: GetCaseNigos
       parameters:
       - description: Site Identifier
@@ -8821,7 +8857,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adds new nigo; ONLY available with FormKiQ Enterprise
+      description: Adds new nigo; available as an Add-On Module
       operationId: AddNigo
       parameters:
       - description: Site Identifier
@@ -8872,7 +8908,7 @@ paths:
       - application/json
   /mappings:
     get:
-      description: Returns a list of mappings; ONLY available with FormKiQ Enterprise
+      description: Returns a list of mappings; available as an Add-On Module
       operationId: GetMappings
       parameters:
       - description: Site Identifier
@@ -8924,7 +8960,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a new mapping; ONLY available with FormKiQ Enterprise
+      description: Creates a new mapping; available as an Add-On Module
       operationId: AddMapping
       parameters:
       - description: Site Identifier
@@ -8973,7 +9009,7 @@ paths:
       - application/json
   /mappings/{mappingId}:
     delete:
-      description: Delete Mapping; ONLY available with FormKiQ Enterprise
+      description: Delete Mapping; available as an Add-On Module
       operationId: DeleteMapping
       parameters:
       - description: Site Identifier
@@ -9016,7 +9052,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Get a mapping; ONLY available with FormKiQ Enterprise
+      description: Get a mapping; available as an Add-On Module
       operationId: GetMapping
       parameters:
       - description: Site Identifier
@@ -9059,7 +9095,7 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Sets an mapping; ONLY available with FormKiQ Enterprise
+      description: Sets an mapping; available as an Add-On Module
       operationId: SetMapping
       parameters:
       - description: Site Identifier
@@ -9116,7 +9152,7 @@ paths:
       - application/json
   /rulesets:
     get:
-      description: Returns a list of rule sets; ONLY available with FormKiQ Enterprise
+      description: Returns a list of rule sets; available as an Add-On Module
       operationId: GetRulesets
       parameters:
       - description: Site Identifier
@@ -9168,7 +9204,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a new ruleset; ONLY available with FormKiQ Enterprise
+      description: Creates a new ruleset; available as an Add-On Module
       operationId: AddRuleset
       parameters:
       - description: Site Identifier
@@ -9217,7 +9253,7 @@ paths:
       - application/json
   /rulesets/{rulesetId}:
     delete:
-      description: Delete Ruleset; ONLY available with FormKiQ Enterprise
+      description: Delete Ruleset; available as an Add-On Module
       operationId: DeleteRuleset
       parameters:
       - description: Site Identifier
@@ -9260,7 +9296,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Get a rule sets; ONLY available with FormKiQ Enterprise
+      description: Get a rule sets; available as an Add-On Module
       operationId: GetRuleset
       parameters:
       - description: Site Identifier
@@ -9303,7 +9339,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Updates an existing ruleset; ONLY available with FormKiQ Enterprise
+      description: Updates an existing ruleset; available as an Add-On Module
       operationId: UpdateRuleset
       parameters:
       - description: Site Identifier
@@ -9360,8 +9396,7 @@ paths:
       - application/json
   /rulesets/{rulesetId}/rules:
     get:
-      description: Returns a list of rules in a ruleset; ONLY available with FormKiQ
-        Enterprise
+      description: Returns a list of rules in a ruleset; available as an Add-On Module
       operationId: GetRules
       parameters:
       - description: Site Identifier
@@ -9421,7 +9456,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Creates a new rule; ONLY available with FormKiQ Enterprise
+      description: Creates a new rule; available as an Add-On Module
       operationId: AddRule
       parameters:
       - description: Site Identifier
@@ -9478,7 +9513,7 @@ paths:
       - application/json
   /rulesets/{rulesetId}/rules/{ruleId}:
     delete:
-      description: Delete Rule; ONLY available with FormKiQ Enterprise
+      description: Delete Rule; available as an Add-On Module
       operationId: DeleteRule
       parameters:
       - description: Site Identifier
@@ -9529,7 +9564,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Returns a rule in a ruleset; ONLY available with FormKiQ Enterprise
+      description: Returns a rule in a ruleset; available as an Add-On Module
       operationId: GetRule
       parameters:
       - description: Site Identifier
@@ -9580,7 +9615,7 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Update Rule; ONLY available with FormKiQ Enterprise
+      description: Update Rule; available as an Add-On Module
       operationId: UpdateRule
       parameters:
       - description: Site Identifier
@@ -9822,7 +9857,7 @@ paths:
 
         By Default data source must include a `data` object, which contains key-value pairs that will be merged into the template. The value can be any valid JSON object. { "data":{}}. The data path can be adjusted via the "dataRoot" field.
 
-        ; ONLY available with FormKiQ Enterprise
+        ; available as an Add-On Module
       operationId: AddDocumentGenerate
       parameters:
       - description: Site Identifier
@@ -9879,7 +9914,7 @@ paths:
       - application/json
   /integrations/google/drive/documents/{documentId}/export:
     post:
-      description: Exports a Google Document; ONLY available with FormKiQ Enterprise
+      description: Exports a Google Document; available as an Add-On Module
       operationId: AddGoogleDocumentExport
       parameters:
       - description: Site Identifier
@@ -10242,6 +10277,7 @@ components:
         - TEXT
         - KEY_VALUE
         - CONTENT_URL
+        - TABLES
         type: string
       style: form
     limitParam:
@@ -10524,6 +10560,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/DeleteResponse'
+      description: 200 OK
+      headers:
+        Access-Control-Allow-Origin:
+          $ref: '#/components/headers/AccessControlAllowOrigin'
+        Access-Control-Allow-Methods:
+          $ref: '#/components/headers/AccessControlAllowMethods'
+        Access-Control-Allow-Headers:
+          $ref: '#/components/headers/AccessControlAllowHeaders'
+    "200CorsUpdateResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateResponse'
       description: 200 OK
       headers:
         Access-Control-Allow-Origin:
@@ -12042,7 +12091,7 @@ components:
           description: Name of webhook
           type: string
         ttl:
-          description: Webhook time to live (expiry)
+          description: Webhook time to live (expiry in seconds)
           type: string
         enabled:
           description: Is webhook enabled
@@ -13240,13 +13289,17 @@ components:
     DocumentFulltextResponse:
       example:
         documents:
-        - path: path
-          metadata:
+        - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          tags:
+            key: "{}"
+          path: path
+          insertedDate: insertedDate
           createdBy: createdBy
+          checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13260,15 +13313,18 @@ components:
               - stringValues
               valueType: BOOLEAN
               booleanValue: true
-          tags:
-            key: "{}"
-        - path: path
-          metadata:
+          contentType: contentType
+        - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          tags:
+            key: "{}"
+          path: path
+          insertedDate: insertedDate
           createdBy: createdBy
+          checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13282,8 +13338,7 @@ components:
               - stringValues
               valueType: BOOLEAN
               booleanValue: true
-          tags:
-            key: "{}"
+          contentType: contentType
       properties:
         documents:
           description: List of search result documents
@@ -13293,13 +13348,17 @@ components:
       type: object
     FulltextSearchItem:
       example:
-        path: path
         metadata:
           key: "{}"
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        tags:
+          key: "{}"
+        path: path
+        insertedDate: insertedDate
         createdBy: createdBy
+        checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -13313,14 +13372,16 @@ components:
             - stringValues
             valueType: BOOLEAN
             booleanValue: true
-        tags:
-          key: "{}"
+        contentType: contentType
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        contentType:
+          description: Document Content-Type
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13331,6 +13392,11 @@ components:
         lastModifiedDate:
           description: Last Modified Timestamp
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         documentId:
           description: Document Identifier
           type: string
@@ -13404,6 +13470,8 @@ components:
         path: path
         insertedDate: insertedDate
         createdBy: createdBy
+        checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -13449,6 +13517,11 @@ components:
         contentLength:
           description: Document size
           type: integer
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           additionalProperties:
             type: object
@@ -15354,11 +15427,13 @@ components:
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
           workflowId: workflowId
@@ -15379,11 +15454,13 @@ components:
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
           workflowId: workflowId
@@ -15403,11 +15480,13 @@ components:
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
         workflowId: workflowId
@@ -15436,11 +15515,13 @@ components:
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
         workflowId: workflowId
@@ -15536,11 +15617,13 @@ components:
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
           workflowId: workflowId
@@ -15553,11 +15636,13 @@ components:
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
           workflowId: workflowId
@@ -15583,11 +15668,13 @@ components:
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
             - criterion: TEXT
               fieldName: fieldName
               attribute: TEXT
+              attributeKey: attributeKey
               value: value
               operation: EQ
           workflowId: workflowId
@@ -15672,11 +15759,13 @@ components:
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
           - criterion: TEXT
             fieldName: fieldName
             attribute: TEXT
+            attributeKey: attributeKey
             value: value
             operation: EQ
         workflowId: workflowId
@@ -15705,11 +15794,13 @@ components:
         - criterion: TEXT
           fieldName: fieldName
           attribute: TEXT
+          attributeKey: attributeKey
           value: value
           operation: EQ
         - criterion: TEXT
           fieldName: fieldName
           attribute: TEXT
+          attributeKey: attributeKey
           value: value
           operation: EQ
       properties:
@@ -15726,6 +15817,7 @@ components:
       - CONTENT_TYPE
       - BARCODE
       - FIELD
+      - ATTRIBUTE
       type: string
     RuleConditionAttribute:
       description: "Rule condition attribute (deprecated, use Criterion)"
@@ -15734,6 +15826,7 @@ components:
       - CONTENT_TYPE
       - BARCODE
       - FIELD
+      - ATTRIBUTE
       type: string
     RuleConditionOperation:
       description: Rule condition attribute
@@ -15746,6 +15839,7 @@ components:
         criterion: TEXT
         fieldName: fieldName
         attribute: TEXT
+        attributeKey: attributeKey
         value: value
         operation: EQ
       properties:
@@ -15753,6 +15847,9 @@ components:
           $ref: '#/components/schemas/RuleConditionAttribute'
         criterion:
           $ref: '#/components/schemas/RuleConditionCriterion'
+        attributeKey:
+          description: Rule attribute key (only required for ATTRIBUTE criterion)
+          type: string
         fieldName:
           description: Rule field name (only required for FIELD criterion)
           type: string
@@ -15801,6 +15898,11 @@ components:
     AddDocumentGenerateRequest:
       example:
         path: path
+        insertDocuments:
+        - documentId: documentId
+          position: APPEND
+        - documentId: documentId
+          position: APPEND
         datasources:
         - name: name
           documentId: documentId
@@ -15816,6 +15918,11 @@ components:
       properties:
         locale:
           $ref: '#/components/schemas/Locale'
+        insertDocuments:
+          description: List of documents to insert
+          items:
+            $ref: '#/components/schemas/DocumentGenerateInsertDocument'
+          type: array
         datasources:
           description: List of data sources
           items:
@@ -15829,6 +15936,25 @@ components:
         path:
           description: The path of the generated document
           type: string
+      type: object
+    DocumentGenerateInsertDocumentPosition:
+      description: Position of document
+      enum:
+      - APPEND
+      type: string
+    DocumentGenerateInsertDocument:
+      example:
+        documentId: documentId
+        position: APPEND
+      properties:
+        position:
+          $ref: '#/components/schemas/DocumentGenerateInsertDocumentPosition'
+        documentId:
+          description: Document Identifier of the data source document
+          type: string
+      required:
+      - documentId
+      - position
       type: object
     DocumentGenerateDataSource:
       example:
@@ -16256,6 +16382,7 @@ components:
       - CONTENT
       - CONTENT_KEY_VALUE
       - METADATA
+      - MANUAL
       type: string
     GetAttributeAllowedValuesResponse:
       example:
@@ -16438,12 +16565,14 @@ components:
       type: object
     GetWebhooksResponse:
       example:
+        next: next
         webhooks:
         - webhookId: webhookId
           insertedDate: insertedDate
           name: name
           siteId: siteId
           userId: userId
+          ttl: ttl
           url: url
           enabled: enabled
         - webhookId: webhookId
@@ -16451,9 +16580,13 @@ components:
           name: name
           siteId: siteId
           userId: userId
+          ttl: ttl
           url: url
           enabled: enabled
       properties:
+        next:
+          description: Next page of results token
+          type: string
         webhooks:
           description: List of webhooks
           items:
@@ -16467,6 +16600,7 @@ components:
         name: name
         siteId: siteId
         userId: userId
+        ttl: ttl
         url: url
         enabled: enabled
       properties:
@@ -16490,6 +16624,9 @@ components:
           type: string
         enabled:
           description: Is webhook enabled
+          type: string
+        ttl:
+          description: Webhook time to live (expiry in seconds)
           type: string
       type: object
     GetWebhookTagsResponse:
@@ -16677,6 +16814,36 @@ components:
           description: Action metadata
           type: object
       type: object
+    OcrTable:
+      example:
+        headers:
+        - headers
+        - headers
+        data:
+        - - value: value
+          - value: value
+        - - value: value
+          - value: value
+      properties:
+        headers:
+          items:
+            type: string
+          type: array
+        data:
+          items:
+            items:
+              $ref: '#/components/schemas/OcrTableData'
+            type: array
+          type: array
+      type: object
+    OcrTableData:
+      example:
+        value: value
+      properties:
+        value:
+          description: Table Value
+          type: string
+      type: object
     OcrKeyValues:
       example:
         values:
@@ -16694,6 +16861,23 @@ components:
       type: object
     GetDocumentOcrResponse:
       example:
+        tables:
+        - headers:
+          - headers
+          - headers
+          data:
+          - - value: value
+            - value: value
+          - - value: value
+            - value: value
+        - headers:
+          - headers
+          - headers
+          data:
+          - - value: value
+            - value: value
+          - - value: value
+            - value: value
         contentUrls:
         - contentUrls
         - contentUrls
@@ -16724,6 +16908,10 @@ components:
           description: List of ocr key / values
           items:
             $ref: '#/components/schemas/OcrKeyValues'
+          type: array
+        tables:
+          items:
+            $ref: '#/components/schemas/OcrTable'
           type: array
         data:
           description: OCR text result
@@ -16816,6 +17004,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16847,6 +17047,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16857,6 +17062,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     AddDocumentFulltextRequest:
       example:
@@ -16876,6 +17085,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16907,6 +17128,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16917,6 +17143,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     UpdateDocumentFulltextRequest:
       example:
@@ -16936,6 +17166,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16967,6 +17209,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16977,6 +17224,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     SetAntivirusRequest:
       type: object
@@ -17242,6 +17493,9 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
       properties:
         chatGptApiKey:
           description: ChatGPT Api Key
@@ -17258,6 +17512,8 @@ components:
         notificationEmail:
           description: Email address to use for notifications
           type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
         google:
           $ref: '#/components/schemas/GoogleConfig'
         docusign:
@@ -17808,6 +18064,7 @@ components:
       type: object
     GetApiKeysResponse:
       example:
+        next: next
         apiKeys:
         - apiKey: apiKey
           insertedDate: insertedDate
@@ -17826,6 +18083,9 @@ components:
           siteId: siteId
           userId: userId
       properties:
+        next:
+          description: Next page of results token
+          type: string
         apiKeys:
           description: List of ApiKeys
           items:
@@ -17882,6 +18142,9 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
       properties:
         chatGptApiKey:
           description: ChatGPT API Key
@@ -17899,10 +18162,59 @@ components:
           description: Email address to use for notifications (Must be verified identity
             created in AWS SES)
           type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
         google:
           $ref: '#/components/schemas/GoogleConfig'
         docusign:
           $ref: '#/components/schemas/DocusignConfig'
+      type: object
+    SiteConfig:
+      example:
+        maxContentLengthBytes: maxContentLengthBytes
+        maxDocuments: maxDocuments
+        maxWebhooks: maxWebhooks
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
+      properties:
+        maxContentLengthBytes:
+          description: Set Maximum Document Content Length in Bytes
+          type: string
+        maxDocuments:
+          description: Set Maximum number of Documents allowed
+          type: string
+        maxWebhooks:
+          description: Set Maximum number of Webhooks allowed
+          type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
+      type: object
+    SiteUsage:
+      example:
+        documentCount: 1.4658129805029452
+        ocrTransactionCount: 5.962133916683182
+      properties:
+        documentCount:
+          description: The number of documents in the site (only tracked when using
+            MaxDocuments)
+          type: number
+        ocrTransactionCount:
+          description: The number of ocr tx requests in the site (only tracked when
+            using OCR MaxTransactions)
+          type: number
+      type: object
+    OcrConfig:
+      example:
+        maxPagesPerTransaction: 0.8008281904610115
+        maxTransactions: 6.027456183070403
+      properties:
+        maxPagesPerTransaction:
+          description: Max number of OCR pages (-1 for unlimited)
+          type: number
+        maxTransactions:
+          description: Max number of OCR actions that can be created (-1 for unlimited)
+          type: number
       type: object
     GoogleConfig:
       example:
@@ -18476,17 +18788,37 @@ components:
           permissions:
           - ADMIN
           - ADMIN
+          usage:
+            documentCount: 1.4658129805029452
+            ocrTransactionCount: 5.962133916683182
           siteId: siteId
           permission: READ_WRITE
           title: title
+          config:
+            maxContentLengthBytes: maxContentLengthBytes
+            maxDocuments: maxDocuments
+            maxWebhooks: maxWebhooks
+            ocr:
+              maxPagesPerTransaction: 0.8008281904610115
+              maxTransactions: 6.027456183070403
           status: ACTIVE
         - uploadEmail: uploadEmail
           permissions:
           - ADMIN
           - ADMIN
+          usage:
+            documentCount: 1.4658129805029452
+            ocrTransactionCount: 5.962133916683182
           siteId: siteId
           permission: READ_WRITE
           title: title
+          config:
+            maxContentLengthBytes: maxContentLengthBytes
+            maxDocuments: maxDocuments
+            maxWebhooks: maxWebhooks
+            ocr:
+              maxPagesPerTransaction: 0.8008281904610115
+              maxTransactions: 6.027456183070403
           status: ACTIVE
         username: username
       properties:
@@ -18505,9 +18837,19 @@ components:
         permissions:
         - ADMIN
         - ADMIN
+        usage:
+          documentCount: 1.4658129805029452
+          ocrTransactionCount: 5.962133916683182
         siteId: siteId
         permission: READ_WRITE
         title: title
+        config:
+          maxContentLengthBytes: maxContentLengthBytes
+          maxDocuments: maxDocuments
+          maxWebhooks: maxWebhooks
+          ocr:
+            maxPagesPerTransaction: 0.8008281904610115
+            maxTransactions: 6.027456183070403
         status: ACTIVE
       properties:
         siteId:
@@ -18531,6 +18873,10 @@ components:
         uploadEmail:
           description: SiteId document upload email address
           type: string
+        config:
+          $ref: '#/components/schemas/SiteConfig'
+        usage:
+          $ref: '#/components/schemas/SiteUsage'
       type: object
     AddClassificationResponse:
       example:
