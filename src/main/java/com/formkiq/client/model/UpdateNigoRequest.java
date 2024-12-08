@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateNigoRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-07T13:36:43.803050-06:00[America/Winnipeg]",
+    date = "2024-12-07T22:03:44.313358-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class UpdateNigoRequest {
   public static final String SERIALIZED_NAME_NIGO = "nigo";

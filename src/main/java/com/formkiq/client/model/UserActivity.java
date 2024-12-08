@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * UserActivity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-07T13:36:43.803050-06:00[America/Winnipeg]",
+    date = "2024-12-07T22:03:44.313358-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class UserActivity {
   public static final String SERIALIZED_NAME_TYPE = "type";

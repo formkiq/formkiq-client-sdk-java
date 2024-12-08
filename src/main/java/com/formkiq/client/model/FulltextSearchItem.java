@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-07T13:36:43.803050-06:00[America/Winnipeg]",
+    date = "2024-12-07T22:03:44.313358-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -71,6 +71,11 @@ public class FulltextSearchItem {
   @SerializedName(SERIALIZED_NAME_PATH)
   @javax.annotation.Nullable
   private String path;
+
+  public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
+  @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
+  @javax.annotation.Nullable
+  private String contentType;
 
   public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
@@ -156,6 +161,26 @@ public class FulltextSearchItem {
 
   public void setPath(@javax.annotation.Nullable String path) {
     this.path = path;
+  }
+
+
+  public FulltextSearchItem contentType(@javax.annotation.Nullable String contentType) {
+    this.contentType = contentType;
+    return this;
+  }
+
+  /**
+   * Document Content-Type
+   * 
+   * @return contentType
+   */
+  @javax.annotation.Nullable
+  public String getContentType() {
+    return contentType;
+  }
+
+  public void setContentType(@javax.annotation.Nullable String contentType) {
+    this.contentType = contentType;
   }
 
 
@@ -376,6 +401,7 @@ public class FulltextSearchItem {
     FulltextSearchItem fulltextSearchItem = (FulltextSearchItem) o;
     return Objects.equals(this.siteId, fulltextSearchItem.siteId)
         && Objects.equals(this.path, fulltextSearchItem.path)
+        && Objects.equals(this.contentType, fulltextSearchItem.contentType)
         && Objects.equals(this.deepLinkPath, fulltextSearchItem.deepLinkPath)
         && Objects.equals(this.insertedDate, fulltextSearchItem.insertedDate)
         && Objects.equals(this.lastModifiedDate, fulltextSearchItem.lastModifiedDate)
@@ -389,8 +415,8 @@ public class FulltextSearchItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, documentId,
-        contentLength, createdBy, tags, metadata, attributes);
+    return Objects.hash(siteId, path, contentType, deepLinkPath, insertedDate, lastModifiedDate,
+        documentId, contentLength, createdBy, tags, metadata, attributes);
   }
 
   @Override
@@ -399,6 +425,7 @@ public class FulltextSearchItem {
     sb.append("class FulltextSearchItem {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
@@ -431,6 +458,7 @@ public class FulltextSearchItem {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("path");
+    openapiFields.add("contentType");
     openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
@@ -482,6 +510,12 @@ public class FulltextSearchItem {
       throw new IllegalArgumentException(String.format(
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
+        && !jsonObj.get("contentType").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("contentType").toString()));
     }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {

@@ -13254,6 +13254,7 @@ components:
               - stringValues
               valueType: BOOLEAN
               booleanValue: true
+          contentType: contentType
           tags:
             key: "{}"
         - path: path
@@ -13276,6 +13277,7 @@ components:
               - stringValues
               valueType: BOOLEAN
               booleanValue: true
+          contentType: contentType
           tags:
             key: "{}"
       properties:
@@ -13307,6 +13309,7 @@ components:
             - stringValues
             valueType: BOOLEAN
             booleanValue: true
+        contentType: contentType
         tags:
           key: "{}"
       properties:
@@ -13315,6 +13318,9 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        contentType:
+          description: Document Content-Type
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -16817,6 +16823,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16848,6 +16866,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16858,6 +16881,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     AddDocumentFulltextRequest:
       example:
@@ -16877,6 +16904,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16908,6 +16947,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16918,6 +16962,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     UpdateDocumentFulltextRequest:
       example:
@@ -16937,6 +16985,18 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        checksum: checksum
+        checksumType: SHA1
+        attributes:
+          key:
+            numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
         contentType: contentType
         content: content
         tags:
@@ -16968,6 +17028,11 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         tags:
           description: List of document tags
           items:
@@ -16978,6 +17043,10 @@ components:
           items:
             $ref: '#/components/schemas/AddDocumentMetadata'
           type: array
+        attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/FulltextAttribute'
+          type: object
       type: object
     SetAntivirusRequest:
       type: object

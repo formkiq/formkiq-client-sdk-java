@@ -64,6 +64,14 @@ public class FulltextSearchItemTest {
   }
 
   /**
+   * Test the property 'contentType'
+   */
+  @Test
+  public void contentTypeTest() {
+    // TODO: test contentType
+  }
+
+  /**
    * Test the property 'deepLinkPath'
    */
   @Test
