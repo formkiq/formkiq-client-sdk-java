@@ -13234,13 +13234,17 @@ components:
     DocumentFulltextResponse:
       example:
         documents:
-        - path: path
-          metadata:
+        - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          tags:
+            key: "{}"
+          path: path
+          insertedDate: insertedDate
           createdBy: createdBy
+          checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13255,15 +13259,17 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
-          tags:
-            key: "{}"
-        - path: path
-          metadata:
+        - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
+          tags:
+            key: "{}"
+          path: path
+          insertedDate: insertedDate
           createdBy: createdBy
+          checksum: checksum
+          checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
@@ -13278,8 +13284,6 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
-          tags:
-            key: "{}"
       properties:
         documents:
           description: List of search result documents
@@ -13289,13 +13293,17 @@ components:
       type: object
     FulltextSearchItem:
       example:
-        path: path
         metadata:
           key: "{}"
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
+        tags:
+          key: "{}"
+        path: path
+        insertedDate: insertedDate
         createdBy: createdBy
+        checksum: checksum
+        checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
@@ -13310,8 +13318,6 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
-        tags:
-          key: "{}"
       properties:
         siteId:
           description: Site Identifier
@@ -13331,6 +13337,11 @@ components:
         lastModifiedDate:
           description: Last Modified Timestamp
           type: string
+        checksum:
+          description: "Document checksum, changes when document file changes"
+          type: string
+        checksumType:
+          $ref: '#/components/schemas/ChecksumType'
         documentId:
           description: Document Identifier
           type: string

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetCaseNigosResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-07T22:03:44.313358-06:00[America/Winnipeg]",
+    date = "2024-12-07T22:09:05.063415-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class GetCaseNigosResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";

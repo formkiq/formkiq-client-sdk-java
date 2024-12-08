@@ -13,6 +13,8 @@
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**lastModifiedDate** | **String** | Last Modified Timestamp |  [optional] |
+|**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |
 |**contentLength** | **Integer** | Document size |  [optional] |
 |**createdBy** | **String** | User who added document |  [optional] |
