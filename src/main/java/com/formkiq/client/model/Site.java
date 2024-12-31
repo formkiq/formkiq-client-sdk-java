@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.SiteConfig;
 import com.formkiq.client.model.SiteGroupPermissions;
 import com.formkiq.client.model.SiteStatus;
 import com.google.gson.TypeAdapter;
@@ -60,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-14T16:58:47.555022-06:00[America/Winnipeg]",
+    date = "2024-12-28T23:23:03.489140-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -145,6 +146,11 @@ public class Site {
   @SerializedName(SERIALIZED_NAME_UPLOAD_EMAIL)
   @javax.annotation.Nullable
   private String uploadEmail;
+
+  public static final String SERIALIZED_NAME_CONFIG = "config";
+  @SerializedName(SERIALIZED_NAME_CONFIG)
+  @javax.annotation.Nullable
+  private SiteConfig config;
 
   public Site() {}
 
@@ -276,6 +282,26 @@ public class Site {
   }
 
 
+  public Site config(@javax.annotation.Nullable SiteConfig config) {
+    this.config = config;
+    return this;
+  }
+
+  /**
+   * Get config
+   * 
+   * @return config
+   */
+  @javax.annotation.Nullable
+  public SiteConfig getConfig() {
+    return config;
+  }
+
+  public void setConfig(@javax.annotation.Nullable SiteConfig config) {
+    this.config = config;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -290,12 +316,13 @@ public class Site {
         && Objects.equals(this.status, site.status)
         && Objects.equals(this.permission, site.permission)
         && Objects.equals(this.permissions, site.permissions)
-        && Objects.equals(this.uploadEmail, site.uploadEmail);
+        && Objects.equals(this.uploadEmail, site.uploadEmail)
+        && Objects.equals(this.config, site.config);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail);
+    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail, config);
   }
 
   @Override
@@ -308,6 +335,7 @@ public class Site {
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
+    sb.append("    config: ").append(toIndentedString(config)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -335,6 +363,7 @@ public class Site {
     openapiFields.add("permission");
     openapiFields.add("permissions");
     openapiFields.add("uploadEmail");
+    openapiFields.add("config");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -403,6 +432,10 @@ public class Site {
       throw new IllegalArgumentException(String.format(
           "Expected the field `uploadEmail` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("uploadEmail").toString()));
+    }
+    // validate the optional field `config`
+    if (jsonObj.get("config") != null && !jsonObj.get("config").isJsonNull()) {
+      SiteConfig.validateJsonElement(jsonObj.get("config"));
     }
   }
 

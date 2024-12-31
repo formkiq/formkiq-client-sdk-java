@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-14T16:58:47.555022-06:00[America/Winnipeg]",
+    date = "2024-12-28T23:23:03.489140-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";

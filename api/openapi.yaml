@@ -17386,6 +17386,9 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
       properties:
         chatGptApiKey:
           description: ChatGPT Api Key
@@ -17402,6 +17405,8 @@ components:
         notificationEmail:
           description: Email address to use for notifications
           type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
         google:
           $ref: '#/components/schemas/GoogleConfig'
         docusign:
@@ -18030,6 +18035,9 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
       properties:
         chatGptApiKey:
           description: ChatGPT API Key
@@ -18047,10 +18055,45 @@ components:
           description: Email address to use for notifications (Must be verified identity
             created in AWS SES)
           type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
         google:
           $ref: '#/components/schemas/GoogleConfig'
         docusign:
           $ref: '#/components/schemas/DocusignConfig'
+      type: object
+    SiteConfig:
+      example:
+        maxContentLengthBytes: maxContentLengthBytes
+        maxDocuments: maxDocuments
+        maxWebhooks: maxWebhooks
+        ocr:
+          maxPagesPerTransaction: 0.8008281904610115
+          maxTransactions: 6.027456183070403
+      properties:
+        maxContentLengthBytes:
+          description: Set Maximum Document Content Length in Bytes
+          type: string
+        maxDocuments:
+          description: Set Maximum number of Documents allowed
+          type: string
+        maxWebhooks:
+          description: Set Maximum number of Webhooks allowed
+          type: string
+        ocr:
+          $ref: '#/components/schemas/OcrConfig'
+      type: object
+    OcrConfig:
+      example:
+        maxPagesPerTransaction: 0.8008281904610115
+        maxTransactions: 6.027456183070403
+      properties:
+        maxPagesPerTransaction:
+          description: Max number of OCR pages (-1 for unlimited)
+          type: number
+        maxTransactions:
+          description: Max number of OCR actions that can be created (-1 for unlimited)
+          type: number
       type: object
     GoogleConfig:
       example:
@@ -18627,6 +18670,13 @@ components:
           siteId: siteId
           permission: READ_WRITE
           title: title
+          config:
+            maxContentLengthBytes: maxContentLengthBytes
+            maxDocuments: maxDocuments
+            maxWebhooks: maxWebhooks
+            ocr:
+              maxPagesPerTransaction: 0.8008281904610115
+              maxTransactions: 6.027456183070403
           status: ACTIVE
         - uploadEmail: uploadEmail
           permissions:
@@ -18635,6 +18685,13 @@ components:
           siteId: siteId
           permission: READ_WRITE
           title: title
+          config:
+            maxContentLengthBytes: maxContentLengthBytes
+            maxDocuments: maxDocuments
+            maxWebhooks: maxWebhooks
+            ocr:
+              maxPagesPerTransaction: 0.8008281904610115
+              maxTransactions: 6.027456183070403
           status: ACTIVE
         username: username
       properties:
@@ -18656,6 +18713,13 @@ components:
         siteId: siteId
         permission: READ_WRITE
         title: title
+        config:
+          maxContentLengthBytes: maxContentLengthBytes
+          maxDocuments: maxDocuments
+          maxWebhooks: maxWebhooks
+          ocr:
+            maxPagesPerTransaction: 0.8008281904610115
+            maxTransactions: 6.027456183070403
         status: ACTIVE
       properties:
         siteId:
@@ -18679,6 +18743,8 @@ components:
         uploadEmail:
           description: SiteId document upload email address
           type: string
+        config:
+          $ref: '#/components/schemas/SiteConfig'
       type: object
     AddClassificationResponse:
       example:

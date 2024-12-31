@@ -272,6 +272,7 @@ docs/MatchDocumentTag.md
 docs/ModelCase.md
 docs/Nigo.md
 docs/NigoStatus.md
+docs/OcrConfig.md
 docs/OcrEngine.md
 docs/OcrKeyValues.md
 docs/OcrOutputType.md
@@ -337,6 +338,7 @@ docs/SetSitesSchemaRequest.md
 docs/SetWorkflowRequest.md
 docs/SetWorkflowResponse.md
 docs/Site.md
+docs/SiteConfig.md
 docs/SiteGroup.md
 docs/SiteGroupPermissions.md
 docs/SiteStatus.md
@@ -705,6 +707,7 @@ src/main/java/com/formkiq/client/model/MatchDocumentTag.java
 src/main/java/com/formkiq/client/model/ModelCase.java
 src/main/java/com/formkiq/client/model/Nigo.java
 src/main/java/com/formkiq/client/model/NigoStatus.java
+src/main/java/com/formkiq/client/model/OcrConfig.java
 src/main/java/com/formkiq/client/model/OcrEngine.java
 src/main/java/com/formkiq/client/model/OcrKeyValues.java
 src/main/java/com/formkiq/client/model/OcrOutputType.java
@@ -765,6 +768,7 @@ src/main/java/com/formkiq/client/model/SetSitesSchemaRequest.java
 src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/SetWorkflowResponse.java
 src/main/java/com/formkiq/client/model/Site.java
+src/main/java/com/formkiq/client/model/SiteConfig.java
 src/main/java/com/formkiq/client/model/SiteGroup.java
 src/main/java/com/formkiq/client/model/SiteGroupPermissions.java
 src/main/java/com/formkiq/client/model/SiteStatus.java
@@ -1096,6 +1100,7 @@ src/test/java/com/formkiq/client/model/MatchDocumentTagTest.java
 src/test/java/com/formkiq/client/model/ModelCaseTest.java
 src/test/java/com/formkiq/client/model/NigoStatusTest.java
 src/test/java/com/formkiq/client/model/NigoTest.java
+src/test/java/com/formkiq/client/model/OcrConfigTest.java
 src/test/java/com/formkiq/client/model/OcrEngineTest.java
 src/test/java/com/formkiq/client/model/OcrKeyValuesTest.java
 src/test/java/com/formkiq/client/model/OcrOutputTypeTest.java
@@ -1155,6 +1160,7 @@ src/test/java/com/formkiq/client/model/SetResponseTest.java
 src/test/java/com/formkiq/client/model/SetSitesSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowResponseTest.java
+src/test/java/com/formkiq/client/model/SiteConfigTest.java
 src/test/java/com/formkiq/client/model/SiteGroupPermissionsTest.java
 src/test/java/com/formkiq/client/model/SiteGroupTest.java
 src/test/java/com/formkiq/client/model/SiteStatusTest.java
