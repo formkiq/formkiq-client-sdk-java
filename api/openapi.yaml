@@ -16760,6 +16760,50 @@ components:
           description: Action metadata
           type: object
       type: object
+    OcrTables:
+      example:
+        headers:
+        - headers
+        - headers
+        values:
+          data:
+          - value: value
+            key: key
+          - value: value
+            key: key
+      properties:
+        headers:
+          items:
+            type: string
+          type: array
+        values:
+          $ref: '#/components/schemas/OcrTableValues'
+      type: object
+    OcrTableValues:
+      example:
+        data:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OcrTableValueData'
+          type: array
+      type: object
+    OcrTableValueData:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Table Key Value
+          type: string
+        value:
+          description: Table Value
+          type: string
+      type: object
     OcrKeyValues:
       example:
         values:
@@ -16777,6 +16821,16 @@ components:
       type: object
     GetDocumentOcrResponse:
       example:
+        tables:
+          headers:
+          - headers
+          - headers
+          values:
+            data:
+            - value: value
+              key: key
+            - value: value
+              key: key
         contentUrls:
         - contentUrls
         - contentUrls
@@ -16808,6 +16862,8 @@ components:
           items:
             $ref: '#/components/schemas/OcrKeyValues'
           type: array
+        tables:
+          $ref: '#/components/schemas/OcrTables'
         data:
           description: OCR text result
           type: string

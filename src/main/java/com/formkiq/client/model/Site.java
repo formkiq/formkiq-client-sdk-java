@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:10:34.440419-06:00[America/Winnipeg]",
+    date = "2024-12-30T22:21:46.110947-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
