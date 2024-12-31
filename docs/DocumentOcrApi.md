@@ -198,7 +198,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
-| **outputType** | **String**| Output Format Type | [optional] [enum: TEXT, KEY_VALUE, CONTENT_URL] |
+| **outputType** | **String**| Output Format Type | [optional] [enum: TEXT, KEY_VALUE, CONTENT_URL, TABLES] |
 | **contentUrl** | **String**| Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39; (deprecated) | [optional] |
 | **text** | **String**| Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting parameter to &#39;true&#39; converts JSON to Text (deprecated) | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |

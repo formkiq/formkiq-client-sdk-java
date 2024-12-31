@@ -3997,6 +3997,7 @@ paths:
           - TEXT
           - KEY_VALUE
           - CONTENT_URL
+          - TABLES
           type: string
         style: form
       - description: "Whether to return a \"contentUrl\", set value to 'true' (deprecated)"
@@ -10276,6 +10277,7 @@ components:
         - TEXT
         - KEY_VALUE
         - CONTENT_URL
+        - TABLES
         type: string
       style: form
     limitParam:

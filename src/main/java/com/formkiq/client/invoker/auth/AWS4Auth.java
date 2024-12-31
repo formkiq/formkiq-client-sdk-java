@@ -46,7 +46,7 @@ import software.amazon.awssdk.regions.Region;
 import okio.Buffer;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-28T23:23:03.489140-06:00[America/Winnipeg]",
+    date = "2024-12-30T22:10:34.440419-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class AWS4Auth implements Authentication {
 
