@@ -16760,7 +16760,7 @@ components:
           description: Action metadata
           type: object
       type: object
-    OcrTables:
+    OcrTable:
       example:
         headers:
         - headers
@@ -16822,7 +16822,16 @@ components:
     GetDocumentOcrResponse:
       example:
         tables:
-          headers:
+        - headers:
+          - headers
+          - headers
+          values:
+            data:
+            - value: value
+              key: key
+            - value: value
+              key: key
+        - headers:
           - headers
           - headers
           values:
@@ -16863,7 +16872,9 @@ components:
             $ref: '#/components/schemas/OcrKeyValues'
           type: array
         tables:
-          $ref: '#/components/schemas/OcrTables'
+          items:
+            $ref: '#/components/schemas/OcrTable'
+          type: array
         data:
           description: OCR text result
           type: string

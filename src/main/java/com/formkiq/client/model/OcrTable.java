@@ -56,12 +56,12 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * OcrTables
+ * OcrTable
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:21:46.110947-06:00[America/Winnipeg]",
+    date = "2024-12-30T22:53:55.624748-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
-public class OcrTables {
+public class OcrTable {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   @javax.annotation.Nullable
@@ -72,14 +72,14 @@ public class OcrTables {
   @javax.annotation.Nullable
   private OcrTableValues values;
 
-  public OcrTables() {}
+  public OcrTable() {}
 
-  public OcrTables headers(@javax.annotation.Nullable List<String> headers) {
+  public OcrTable headers(@javax.annotation.Nullable List<String> headers) {
     this.headers = headers;
     return this;
   }
 
-  public OcrTables addHeadersItem(String headersItem) {
+  public OcrTable addHeadersItem(String headersItem) {
     if (this.headers == null) {
       this.headers = new ArrayList<>();
     }
@@ -102,7 +102,7 @@ public class OcrTables {
   }
 
 
-  public OcrTables values(@javax.annotation.Nullable OcrTableValues values) {
+  public OcrTable values(@javax.annotation.Nullable OcrTableValues values) {
     this.values = values;
     return this;
   }
@@ -131,9 +131,9 @@ public class OcrTables {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OcrTables ocrTables = (OcrTables) o;
-    return Objects.equals(this.headers, ocrTables.headers)
-        && Objects.equals(this.values, ocrTables.values);
+    OcrTable ocrTable = (OcrTable) o;
+    return Objects.equals(this.headers, ocrTable.headers)
+        && Objects.equals(this.values, ocrTable.values);
   }
 
   @Override
@@ -144,7 +144,7 @@ public class OcrTables {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OcrTables {\n");
+    sb.append("class OcrTable {\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
@@ -179,24 +179,24 @@ public class OcrTables {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to OcrTables
+   * @throws IOException if the JSON Element is invalid with respect to OcrTable
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!OcrTables.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
-                                                        // null
+      if (!OcrTable.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
+                                                       // null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in OcrTables is not found in the empty JSON string",
-            OcrTables.openapiRequiredFields.toString()));
+            "The required field(s) %s in OcrTable is not found in the empty JSON string",
+            OcrTable.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!OcrTables.openapiFields.contains(entry.getKey())) {
+      if (!OcrTable.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `OcrTables` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `OcrTable` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
@@ -218,22 +218,22 @@ public class OcrTables {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!OcrTables.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'OcrTables' and its subtypes
+      if (!OcrTable.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'OcrTable' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<OcrTables> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(OcrTables.class));
+      final TypeAdapter<OcrTable> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(OcrTable.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<OcrTables>() {
+      return (TypeAdapter<T>) new TypeAdapter<OcrTable>() {
         @Override
-        public void write(JsonWriter out, OcrTables value) throws IOException {
+        public void write(JsonWriter out, OcrTable value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public OcrTables read(JsonReader in) throws IOException {
+        public OcrTable read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -244,18 +244,18 @@ public class OcrTables {
   }
 
   /**
-   * Create an instance of OcrTables given an JSON string
+   * Create an instance of OcrTable given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of OcrTables
-   * @throws IOException if the JSON string is invalid with respect to OcrTables
+   * @return An instance of OcrTable
+   * @throws IOException if the JSON string is invalid with respect to OcrTable
    */
-  public static OcrTables fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, OcrTables.class);
+  public static OcrTable fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OcrTable.class);
   }
 
   /**
-   * Convert an instance of OcrTables to an JSON string
+   * Convert an instance of OcrTable to an JSON string
    *
    * @return JSON string
    */

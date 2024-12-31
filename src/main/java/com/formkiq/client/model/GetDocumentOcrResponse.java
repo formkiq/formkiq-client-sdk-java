@@ -22,7 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.OcrKeyValues;
-import com.formkiq.client.model.OcrTables;
+import com.formkiq.client.model.OcrTable;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:21:46.110947-06:00[America/Winnipeg]",
+    date = "2024-12-30T22:53:55.624748-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
@@ -76,7 +76,7 @@ public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_TABLES = "tables";
   @SerializedName(SERIALIZED_NAME_TABLES)
   @javax.annotation.Nullable
-  private OcrTables tables;
+  private List<OcrTable> tables = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -176,8 +176,16 @@ public class GetDocumentOcrResponse {
   }
 
 
-  public GetDocumentOcrResponse tables(@javax.annotation.Nullable OcrTables tables) {
+  public GetDocumentOcrResponse tables(@javax.annotation.Nullable List<OcrTable> tables) {
     this.tables = tables;
+    return this;
+  }
+
+  public GetDocumentOcrResponse addTablesItem(OcrTable tablesItem) {
+    if (this.tables == null) {
+      this.tables = new ArrayList<>();
+    }
+    this.tables.add(tablesItem);
     return this;
   }
 
@@ -187,11 +195,11 @@ public class GetDocumentOcrResponse {
    * @return tables
    */
   @javax.annotation.Nullable
-  public OcrTables getTables() {
+  public List<OcrTable> getTables() {
     return tables;
   }
 
-  public void setTables(@javax.annotation.Nullable OcrTables tables) {
+  public void setTables(@javax.annotation.Nullable List<OcrTable> tables) {
     this.tables = tables;
   }
 
@@ -486,9 +494,21 @@ public class GetDocumentOcrResponse {
         } ;
       }
     }
-    // validate the optional field `tables`
     if (jsonObj.get("tables") != null && !jsonObj.get("tables").isJsonNull()) {
-      OcrTables.validateJsonElement(jsonObj.get("tables"));
+      JsonArray jsonArraytables = jsonObj.getAsJsonArray("tables");
+      if (jsonArraytables != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tables").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `tables` to be an array in the JSON string but got `%s`",
+              jsonObj.get("tables").toString()));
+        }
+
+        // validate the optional field `tables` (array)
+        for (int i = 0; i < jsonArraytables.size(); i++) {
+          OcrTable.validateJsonElement(jsonArraytables.get(i));
+        } ;
+      }
     }
     if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull())
         && !jsonObj.get("data").isJsonPrimitive()) {

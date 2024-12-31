@@ -34,17 +34,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for OcrTables
+ * Model tests for OcrTable
  */
-public class OcrTablesTest {
-  private final OcrTables model = new OcrTables();
+public class OcrTableTest {
+  private final OcrTable model = new OcrTable();
 
   /**
-   * Model tests for OcrTables
+   * Model tests for OcrTable
    */
   @Test
-  public void testOcrTables() {
-    // TODO: test OcrTables
+  public void testOcrTable() {
+    // TODO: test OcrTable
   }
 
   /**
