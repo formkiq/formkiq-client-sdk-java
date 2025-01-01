@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * OcrTable
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-31T18:20:44.990846-06:00[America/Winnipeg]",
+    date = "2025-01-01T16:02:04.299944-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class OcrTable {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
@@ -70,7 +70,7 @@ public class OcrTable {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   @javax.annotation.Nullable
-  private List<OcrTableData> data = new ArrayList<>();
+  private List<List<OcrTableData>> data = new ArrayList<>();
 
   public OcrTable() {}
 
@@ -102,12 +102,12 @@ public class OcrTable {
   }
 
 
-  public OcrTable data(@javax.annotation.Nullable List<OcrTableData> data) {
+  public OcrTable data(@javax.annotation.Nullable List<List<OcrTableData>> data) {
     this.data = data;
     return this;
   }
 
-  public OcrTable addDataItem(OcrTableData dataItem) {
+  public OcrTable addDataItem(List<OcrTableData> dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -121,11 +121,11 @@ public class OcrTable {
    * @return data
    */
   @javax.annotation.Nullable
-  public List<OcrTableData> getData() {
+  public List<List<OcrTableData>> getData() {
     return data;
   }
 
-  public void setData(@javax.annotation.Nullable List<OcrTableData> data) {
+  public void setData(@javax.annotation.Nullable List<List<OcrTableData>> data) {
     this.data = data;
   }
 
@@ -216,21 +216,12 @@ public class OcrTable {
           "Expected the field `headers` to be an array in the JSON string but got `%s`",
           jsonObj.get("headers").toString()));
     }
-    if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `data` to be an array in the JSON string but got `%s`",
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()
+        && !jsonObj.get("data").isJsonArray()) {
+      throw new IllegalArgumentException(
+          String.format("Expected the field `data` to be an array in the JSON string but got `%s`",
               jsonObj.get("data").toString()));
-        }
-
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          OcrTableData.validateJsonElement(jsonArraydata.get(i));
-        } ;
-      }
     }
   }
 

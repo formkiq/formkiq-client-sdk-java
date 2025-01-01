@@ -16766,8 +16766,10 @@ components:
         - headers
         - headers
         data:
-        - value: value
-        - value: value
+        - - value: value
+          - value: value
+        - - value: value
+          - value: value
       properties:
         headers:
           items:
@@ -16775,7 +16777,9 @@ components:
           type: array
         data:
           items:
-            $ref: '#/components/schemas/OcrTableData'
+            items:
+              $ref: '#/components/schemas/OcrTableData'
+            type: array
           type: array
       type: object
     OcrTableData:
@@ -16808,14 +16812,18 @@ components:
           - headers
           - headers
           data:
-          - value: value
-          - value: value
+          - - value: value
+            - value: value
+          - - value: value
+            - value: value
         - headers:
           - headers
           - headers
           data:
-          - value: value
-          - value: value
+          - - value: value
+            - value: value
+          - - value: value
+            - value: value
         contentUrls:
         - contentUrls
         - contentUrls
