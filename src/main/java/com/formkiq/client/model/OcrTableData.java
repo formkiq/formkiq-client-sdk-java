@@ -21,16 +21,13 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.OcrTableValueData;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,44 +53,36 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * OcrTableValues
+ * OcrTableData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:53:55.624748-06:00[America/Winnipeg]",
+    date = "2024-12-31T18:20:44.990846-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
-public class OcrTableValues {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
+public class OcrTableData {
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
   @javax.annotation.Nullable
-  private List<OcrTableValueData> data = new ArrayList<>();
+  private String value;
 
-  public OcrTableValues() {}
+  public OcrTableData() {}
 
-  public OcrTableValues data(@javax.annotation.Nullable List<OcrTableValueData> data) {
-    this.data = data;
-    return this;
-  }
-
-  public OcrTableValues addDataItem(OcrTableValueData dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<>();
-    }
-    this.data.add(dataItem);
+  public OcrTableData value(@javax.annotation.Nullable String value) {
+    this.value = value;
     return this;
   }
 
   /**
-   * Get data
+   * Table Value
    * 
-   * @return data
+   * @return value
    */
   @javax.annotation.Nullable
-  public List<OcrTableValueData> getData() {
-    return data;
+  public String getValue() {
+    return value;
   }
 
-  public void setData(@javax.annotation.Nullable List<OcrTableValueData> data) {
-    this.data = data;
+  public void setValue(@javax.annotation.Nullable String value) {
+    this.value = value;
   }
 
 
@@ -106,20 +95,20 @@ public class OcrTableValues {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OcrTableValues ocrTableValues = (OcrTableValues) o;
-    return Objects.equals(this.data, ocrTableValues.data);
+    OcrTableData ocrTableData = (OcrTableData) o;
+    return Objects.equals(this.value, ocrTableData.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OcrTableValues {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class OcrTableData {\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -141,7 +130,7 @@ public class OcrTableValues {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("data");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -151,43 +140,33 @@ public class OcrTableValues {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to OcrTableValues
+   * @throws IOException if the JSON Element is invalid with respect to OcrTableData
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!OcrTableValues.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
-                                                             // is null
+      if (!OcrTableData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
+                                                           // is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in OcrTableValues is not found in the empty JSON string",
-            OcrTableValues.openapiRequiredFields.toString()));
+            "The required field(s) %s in OcrTableData is not found in the empty JSON string",
+            OcrTableData.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!OcrTableValues.openapiFields.contains(entry.getKey())) {
+      if (!OcrTableData.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `OcrTableValues` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `OcrTableData` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `data` to be an array in the JSON string but got `%s`",
-              jsonObj.get("data").toString()));
-        }
-
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          OcrTableValueData.validateJsonElement(jsonArraydata.get(i));
-        } ;
-      }
+    if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
+        && !jsonObj.get("value").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("value").toString()));
     }
   }
 
@@ -195,22 +174,22 @@ public class OcrTableValues {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!OcrTableValues.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'OcrTableValues' and its subtypes
+      if (!OcrTableData.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'OcrTableData' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<OcrTableValues> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(OcrTableValues.class));
+      final TypeAdapter<OcrTableData> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(OcrTableData.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<OcrTableValues>() {
+      return (TypeAdapter<T>) new TypeAdapter<OcrTableData>() {
         @Override
-        public void write(JsonWriter out, OcrTableValues value) throws IOException {
+        public void write(JsonWriter out, OcrTableData value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public OcrTableValues read(JsonReader in) throws IOException {
+        public OcrTableData read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -221,18 +200,18 @@ public class OcrTableValues {
   }
 
   /**
-   * Create an instance of OcrTableValues given an JSON string
+   * Create an instance of OcrTableData given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of OcrTableValues
-   * @throws IOException if the JSON string is invalid with respect to OcrTableValues
+   * @return An instance of OcrTableData
+   * @throws IOException if the JSON string is invalid with respect to OcrTableData
    */
-  public static OcrTableValues fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, OcrTableValues.class);
+  public static OcrTableData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OcrTableData.class);
   }
 
   /**
-   * Convert an instance of OcrTableValues to an JSON string
+   * Convert an instance of OcrTableData to an JSON string
    *
    * @return JSON string
    */

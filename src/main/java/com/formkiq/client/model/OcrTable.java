@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.OcrTableValues;
+import com.formkiq.client.model.OcrTableData;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * OcrTable
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:53:55.624748-06:00[America/Winnipeg]",
+    date = "2024-12-31T18:20:44.990846-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class OcrTable {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
@@ -67,10 +67,10 @@ public class OcrTable {
   @javax.annotation.Nullable
   private List<String> headers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VALUES = "values";
-  @SerializedName(SERIALIZED_NAME_VALUES)
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
   @javax.annotation.Nullable
-  private OcrTableValues values;
+  private List<OcrTableData> data = new ArrayList<>();
 
   public OcrTable() {}
 
@@ -102,23 +102,31 @@ public class OcrTable {
   }
 
 
-  public OcrTable values(@javax.annotation.Nullable OcrTableValues values) {
-    this.values = values;
+  public OcrTable data(@javax.annotation.Nullable List<OcrTableData> data) {
+    this.data = data;
+    return this;
+  }
+
+  public OcrTable addDataItem(OcrTableData dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
+    this.data.add(dataItem);
     return this;
   }
 
   /**
-   * Get values
+   * Get data
    * 
-   * @return values
+   * @return data
    */
   @javax.annotation.Nullable
-  public OcrTableValues getValues() {
-    return values;
+  public List<OcrTableData> getData() {
+    return data;
   }
 
-  public void setValues(@javax.annotation.Nullable OcrTableValues values) {
-    this.values = values;
+  public void setData(@javax.annotation.Nullable List<OcrTableData> data) {
+    this.data = data;
   }
 
 
@@ -133,12 +141,12 @@ public class OcrTable {
     }
     OcrTable ocrTable = (OcrTable) o;
     return Objects.equals(this.headers, ocrTable.headers)
-        && Objects.equals(this.values, ocrTable.values);
+        && Objects.equals(this.data, ocrTable.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headers, values);
+    return Objects.hash(headers, data);
   }
 
   @Override
@@ -146,7 +154,7 @@ public class OcrTable {
     StringBuilder sb = new StringBuilder();
     sb.append("class OcrTable {\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
-    sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -169,7 +177,7 @@ public class OcrTable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("headers");
-    openapiFields.add("values");
+    openapiFields.add("data");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -208,9 +216,21 @@ public class OcrTable {
           "Expected the field `headers` to be an array in the JSON string but got `%s`",
           jsonObj.get("headers").toString()));
     }
-    // validate the optional field `values`
-    if (jsonObj.get("values") != null && !jsonObj.get("values").isJsonNull()) {
-      OcrTableValues.validateJsonElement(jsonObj.get("values"));
+    if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
+      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+      if (jsonArraydata != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("data").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `data` to be an array in the JSON string but got `%s`",
+              jsonObj.get("data").toString()));
+        }
+
+        // validate the optional field `data` (array)
+        for (int i = 0; i < jsonArraydata.size(); i++) {
+          OcrTableData.validateJsonElement(jsonArraydata.get(i));
+        } ;
+      }
     }
   }
 

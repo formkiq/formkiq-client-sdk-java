@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**headers** | **List&lt;String&gt;** |  |  [optional] |
-|**values** | [**OcrTableValues**](OcrTableValues.md) |  |  [optional] |
+|**data** | [**List&lt;OcrTableData&gt;**](OcrTableData.md) |  |  [optional] |
 
 
 

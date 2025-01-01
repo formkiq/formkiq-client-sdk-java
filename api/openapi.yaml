@@ -16765,41 +16765,23 @@ components:
         headers:
         - headers
         - headers
-        values:
-          data:
-          - value: value
-            key: key
-          - value: value
-            key: key
+        data:
+        - value: value
+        - value: value
       properties:
         headers:
           items:
             type: string
           type: array
-        values:
-          $ref: '#/components/schemas/OcrTableValues'
-      type: object
-    OcrTableValues:
-      example:
-        data:
-        - value: value
-          key: key
-        - value: value
-          key: key
-      properties:
         data:
           items:
-            $ref: '#/components/schemas/OcrTableValueData'
+            $ref: '#/components/schemas/OcrTableData'
           type: array
       type: object
-    OcrTableValueData:
+    OcrTableData:
       example:
         value: value
-        key: key
       properties:
-        key:
-          description: Table Key Value
-          type: string
         value:
           description: Table Value
           type: string
@@ -16825,21 +16807,15 @@ components:
         - headers:
           - headers
           - headers
-          values:
-            data:
-            - value: value
-              key: key
-            - value: value
-              key: key
+          data:
+          - value: value
+          - value: value
         - headers:
           - headers
           - headers
-          values:
-            data:
-            - value: value
-              key: key
-            - value: value
-              key: key
+          data:
+          - value: value
+          - value: value
         contentUrls:
         - contentUrls
         - contentUrls

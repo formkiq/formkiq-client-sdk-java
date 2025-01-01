@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AttributeSchemaCompositeKey
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2024-12-30T22:53:55.624748-06:00[America/Winnipeg]",
+    date = "2024-12-31T18:20:44.990846-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class AttributeSchemaCompositeKey {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEYS = "attributeKeys";

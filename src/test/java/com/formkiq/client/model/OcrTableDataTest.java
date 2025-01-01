@@ -31,25 +31,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for OcrTableValueData
+ * Model tests for OcrTableData
  */
-public class OcrTableValueDataTest {
-  private final OcrTableValueData model = new OcrTableValueData();
+public class OcrTableDataTest {
+  private final OcrTableData model = new OcrTableData();
 
   /**
-   * Model tests for OcrTableValueData
+   * Model tests for OcrTableData
    */
   @Test
-  public void testOcrTableValueData() {
-    // TODO: test OcrTableValueData
-  }
-
-  /**
-   * Test the property 'key'
-   */
-  @Test
-  public void keyTest() {
-    // TODO: test key
+  public void testOcrTableData() {
+    // TODO: test OcrTableData
   }
 
   /**

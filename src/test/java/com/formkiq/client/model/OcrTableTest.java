@@ -20,7 +20,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.OcrTableValues;
+import com.formkiq.client.model.OcrTableData;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,11 +56,11 @@ public class OcrTableTest {
   }
 
   /**
-   * Test the property 'values'
+   * Test the property 'data'
    */
   @Test
-  public void valuesTest() {
-    // TODO: test values
+  public void dataTest() {
+    // TODO: test data
   }
 
 }

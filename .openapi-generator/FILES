@@ -277,8 +277,7 @@ docs/OcrEngine.md
 docs/OcrKeyValues.md
 docs/OcrOutputType.md
 docs/OcrTable.md
-docs/OcrTableValueData.md
-docs/OcrTableValues.md
+docs/OcrTableData.md
 docs/OnlyOfficeConfig.md
 docs/OnlyOfficeConfigDocument.md
 docs/OnlyOfficeDocumentNewRequest.md
@@ -715,8 +714,7 @@ src/main/java/com/formkiq/client/model/OcrEngine.java
 src/main/java/com/formkiq/client/model/OcrKeyValues.java
 src/main/java/com/formkiq/client/model/OcrOutputType.java
 src/main/java/com/formkiq/client/model/OcrTable.java
-src/main/java/com/formkiq/client/model/OcrTableValueData.java
-src/main/java/com/formkiq/client/model/OcrTableValues.java
+src/main/java/com/formkiq/client/model/OcrTableData.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfig.java
 src/main/java/com/formkiq/client/model/OnlyOfficeConfigDocument.java
 src/main/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequest.java
@@ -1110,9 +1108,8 @@ src/test/java/com/formkiq/client/model/OcrConfigTest.java
 src/test/java/com/formkiq/client/model/OcrEngineTest.java
 src/test/java/com/formkiq/client/model/OcrKeyValuesTest.java
 src/test/java/com/formkiq/client/model/OcrOutputTypeTest.java
+src/test/java/com/formkiq/client/model/OcrTableDataTest.java
 src/test/java/com/formkiq/client/model/OcrTableTest.java
-src/test/java/com/formkiq/client/model/OcrTableValueDataTest.java
-src/test/java/com/formkiq/client/model/OcrTableValuesTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigDocumentTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeConfigTest.java
 src/test/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequestTest.java
