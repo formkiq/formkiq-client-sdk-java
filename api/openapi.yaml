@@ -18136,6 +18136,20 @@ components:
         ocr:
           $ref: '#/components/schemas/OcrConfig'
       type: object
+    SiteUsage:
+      example:
+        documentCount: 1.4658129805029452
+        ocrTransactionCount: 5.962133916683182
+      properties:
+        documentCount:
+          description: The number of documents in the site (only tracked when using
+            MaxDocuments)
+          type: number
+        ocrTransactionCount:
+          description: The number of ocr tx requests in the site (only tracked when
+            using OCR MaxTransactions)
+          type: number
+      type: object
     OcrConfig:
       example:
         maxPagesPerTransaction: 0.8008281904610115
@@ -18720,6 +18734,9 @@ components:
           permissions:
           - ADMIN
           - ADMIN
+          usage:
+            documentCount: 1.4658129805029452
+            ocrTransactionCount: 5.962133916683182
           siteId: siteId
           permission: READ_WRITE
           title: title
@@ -18735,6 +18752,9 @@ components:
           permissions:
           - ADMIN
           - ADMIN
+          usage:
+            documentCount: 1.4658129805029452
+            ocrTransactionCount: 5.962133916683182
           siteId: siteId
           permission: READ_WRITE
           title: title
@@ -18763,6 +18783,9 @@ components:
         permissions:
         - ADMIN
         - ADMIN
+        usage:
+          documentCount: 1.4658129805029452
+          ocrTransactionCount: 5.962133916683182
         siteId: siteId
         permission: READ_WRITE
         title: title
@@ -18798,6 +18821,8 @@ components:
           type: string
         config:
           $ref: '#/components/schemas/SiteConfig'
+        usage:
+          $ref: '#/components/schemas/SiteUsage'
       type: object
     AddClassificationResponse:
       example:

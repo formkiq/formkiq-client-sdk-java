@@ -24,6 +24,7 @@ import java.util.Objects;
 import com.formkiq.client.model.SiteConfig;
 import com.formkiq.client.model.SiteGroupPermissions;
 import com.formkiq.client.model.SiteStatus;
+import com.formkiq.client.model.SiteUsage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-01T16:02:04.299944-06:00[America/Winnipeg]",
+    date = "2025-01-01T21:50:34.910687-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -151,6 +152,11 @@ public class Site {
   @SerializedName(SERIALIZED_NAME_CONFIG)
   @javax.annotation.Nullable
   private SiteConfig config;
+
+  public static final String SERIALIZED_NAME_USAGE = "usage";
+  @SerializedName(SERIALIZED_NAME_USAGE)
+  @javax.annotation.Nullable
+  private SiteUsage usage;
 
   public Site() {}
 
@@ -302,6 +308,26 @@ public class Site {
   }
 
 
+  public Site usage(@javax.annotation.Nullable SiteUsage usage) {
+    this.usage = usage;
+    return this;
+  }
+
+  /**
+   * Get usage
+   * 
+   * @return usage
+   */
+  @javax.annotation.Nullable
+  public SiteUsage getUsage() {
+    return usage;
+  }
+
+  public void setUsage(@javax.annotation.Nullable SiteUsage usage) {
+    this.usage = usage;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -317,12 +343,12 @@ public class Site {
         && Objects.equals(this.permission, site.permission)
         && Objects.equals(this.permissions, site.permissions)
         && Objects.equals(this.uploadEmail, site.uploadEmail)
-        && Objects.equals(this.config, site.config);
+        && Objects.equals(this.config, site.config) && Objects.equals(this.usage, site.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail, config);
+    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail, config, usage);
   }
 
   @Override
@@ -336,6 +362,7 @@ public class Site {
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -364,6 +391,7 @@ public class Site {
     openapiFields.add("permissions");
     openapiFields.add("uploadEmail");
     openapiFields.add("config");
+    openapiFields.add("usage");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -436,6 +464,10 @@ public class Site {
     // validate the optional field `config`
     if (jsonObj.get("config") != null && !jsonObj.get("config").isJsonNull()) {
       SiteConfig.validateJsonElement(jsonObj.get("config"));
+    }
+    // validate the optional field `usage`
+    if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
+      SiteUsage.validateJsonElement(jsonObj.get("usage"));
     }
   }
 

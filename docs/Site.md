@@ -14,6 +14,7 @@
 |**permissions** | **List&lt;SiteGroupPermissions&gt;** |  |  [optional] |
 |**uploadEmail** | **String** | SiteId document upload email address |  [optional] |
 |**config** | [**SiteConfig**](SiteConfig.md) |  |  [optional] |
+|**usage** | [**SiteUsage**](SiteUsage.md) |  |  [optional] |
 
 
 

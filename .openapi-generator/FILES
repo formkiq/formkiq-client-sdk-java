@@ -344,6 +344,7 @@ docs/SiteConfig.md
 docs/SiteGroup.md
 docs/SiteGroupPermissions.md
 docs/SiteStatus.md
+docs/SiteUsage.md
 docs/StringFormat.md
 docs/StringGeneratorType.md
 docs/SystemManagementApi.md
@@ -776,6 +777,7 @@ src/main/java/com/formkiq/client/model/SiteConfig.java
 src/main/java/com/formkiq/client/model/SiteGroup.java
 src/main/java/com/formkiq/client/model/SiteGroupPermissions.java
 src/main/java/com/formkiq/client/model/SiteStatus.java
+src/main/java/com/formkiq/client/model/SiteUsage.java
 src/main/java/com/formkiq/client/model/StringFormat.java
 src/main/java/com/formkiq/client/model/StringGeneratorType.java
 src/main/java/com/formkiq/client/model/Task.java
@@ -1171,6 +1173,7 @@ src/test/java/com/formkiq/client/model/SiteGroupPermissionsTest.java
 src/test/java/com/formkiq/client/model/SiteGroupTest.java
 src/test/java/com/formkiq/client/model/SiteStatusTest.java
 src/test/java/com/formkiq/client/model/SiteTest.java
+src/test/java/com/formkiq/client/model/SiteUsageTest.java
 src/test/java/com/formkiq/client/model/StringFormatTest.java
 src/test/java/com/formkiq/client/model/StringGeneratorTypeTest.java
 src/test/java/com/formkiq/client/model/TaskStatusTest.java

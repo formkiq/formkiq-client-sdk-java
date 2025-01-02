@@ -679,6 +679,7 @@ Class | Method | HTTP request | Description
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
  - [SiteStatus](docs/SiteStatus.md)
+ - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
  - [Task](docs/Task.md)
