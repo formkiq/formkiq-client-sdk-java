@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Add folder share
 
-Creates a new folder share; ONLY available with FormKiQ Enterprise
+Creates a new folder share; available as an Add-On Module
 
 ### Example
 ```java
@@ -85,7 +85,7 @@ No authorization required
 
 Delete folder share
 
-Delete a specific document share; ONLY available with FormKiQ Enterprise
+Delete a specific document share; available as an Add-On Module
 
 ### Example
 ```java
@@ -150,7 +150,7 @@ No authorization required
 
 Get user shared folders
 
-Get a listing of user folder/document shares; ONLY available with FormKiQ Enterprise
+Get a listing of user folder/document shares; available as an Add-On Module
 
 ### Example
 ```java

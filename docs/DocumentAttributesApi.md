@@ -300,7 +300,7 @@ No authorization required
 
 Get document attribute&#39;s versions
 
-Get a listing of a document&#39;s attribute versions; ONLY available with FormKiQ Pro and Enterprise
+Get a listing of a document&#39;s attribute versions; available as an Add-On Module
 
 ### Example
 ```java

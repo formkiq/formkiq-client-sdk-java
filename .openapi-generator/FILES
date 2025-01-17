@@ -157,6 +157,7 @@ docs/DocumentSearchResponse.md
 docs/DocumentSearchTag.md
 docs/DocumentSearchTags.md
 docs/DocumentSharesApi.md
+docs/DocumentSync.md
 docs/DocumentSyncService.md
 docs/DocumentSyncStatus.md
 docs/DocumentSyncType.md
@@ -208,7 +209,6 @@ docs/GetDocumentContentResponse.md
 docs/GetDocumentFulltextResponse.md
 docs/GetDocumentOcrResponse.md
 docs/GetDocumentResponse.md
-docs/GetDocumentSync.md
 docs/GetDocumentSyncResponse.md
 docs/GetDocumentTagResponse.md
 docs/GetDocumentTagsResponse.md
@@ -598,6 +598,7 @@ src/main/java/com/formkiq/client/model/DocumentSearchRequest.java
 src/main/java/com/formkiq/client/model/DocumentSearchResponse.java
 src/main/java/com/formkiq/client/model/DocumentSearchTag.java
 src/main/java/com/formkiq/client/model/DocumentSearchTags.java
+src/main/java/com/formkiq/client/model/DocumentSync.java
 src/main/java/com/formkiq/client/model/DocumentSyncService.java
 src/main/java/com/formkiq/client/model/DocumentSyncStatus.java
 src/main/java/com/formkiq/client/model/DocumentSyncType.java
@@ -643,7 +644,6 @@ src/main/java/com/formkiq/client/model/GetDocumentContentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentResponse.java
-src/main/java/com/formkiq/client/model/GetDocumentSync.java
 src/main/java/com/formkiq/client/model/GetDocumentSyncResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentTagResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentTagsResponse.java
@@ -990,6 +990,7 @@ src/test/java/com/formkiq/client/model/DocumentSearchTagsTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchTest.java
 src/test/java/com/formkiq/client/model/DocumentSyncServiceTest.java
 src/test/java/com/formkiq/client/model/DocumentSyncStatusTest.java
+src/test/java/com/formkiq/client/model/DocumentSyncTest.java
 src/test/java/com/formkiq/client/model/DocumentSyncTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentTagTest.java
 src/test/java/com/formkiq/client/model/DocumentTest.java
@@ -1035,7 +1036,6 @@ src/test/java/com/formkiq/client/model/GetDocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentSyncResponseTest.java
-src/test/java/com/formkiq/client/model/GetDocumentSyncTest.java
 src/test/java/com/formkiq/client/model/GetDocumentTagResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentTagsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentUrlResponseTest.java

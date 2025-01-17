@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Delete document version
 
-Delete a specific previous document version; ONLY available with FormKiQ Pro and Enterprise
+Delete a specific previous document version; available as an Add-On Module
 
 ### Example
 ```java
@@ -86,7 +86,7 @@ No authorization required
 
 Get document&#39;s versions
 
-Get a listing of document content and metadata versions; ONLY available with FormKiQ Pro and Enterprise
+Get a listing of document content and metadata versions; available as an Add-On Module
 
 ### Example
 ```java
@@ -159,7 +159,7 @@ No authorization required
 
 Set version of document
 
-Set document to a previous document version; ONLY available with FormKiQ Pro and Enterprise
+Set document to a previous document version; available as an Add-On Module
 
 ### Example
 ```java
