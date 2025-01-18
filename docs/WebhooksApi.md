@@ -220,7 +220,7 @@ No authorization required
 
 <a id="deleteWebhook"></a>
 # **deleteWebhook**
-> deleteWebhook(webhookId, siteId)
+> DeleteResponse deleteWebhook(webhookId, siteId)
 
 Delete webhook
 
@@ -247,7 +247,8 @@ public class Example {
     String webhookId = "webhookId_example"; // String | Web Hook Param
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.deleteWebhook(webhookId, siteId);
+      DeleteResponse result = apiInstance.deleteWebhook(webhookId, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhooksApi#deleteWebhook");
       System.err.println("Status code: " + e.getCode());
@@ -268,7 +269,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -277,7 +278,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -420,7 +421,7 @@ No authorization required
 
 <a id="getWebhooks"></a>
 # **getWebhooks**
-> GetWebhooksResponse getWebhooks(siteId)
+> GetWebhooksResponse getWebhooks(siteId, next, limit)
 
 Get webhooks
 
@@ -445,8 +446,10 @@ public class Example {
     
     WebhooksApi apiInstance = new WebhooksApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
+    String next = "next_example"; // String | Next page of results token
+    String limit = "10"; // String | Limit Results
     try {
-      GetWebhooksResponse result = apiInstance.getWebhooks(siteId);
+      GetWebhooksResponse result = apiInstance.getWebhooks(siteId, next, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhooksApi#getWebhooks");
@@ -464,6 +467,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
+| **next** | **String**| Next page of results token | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
 
 ### Return type
 
@@ -485,7 +490,7 @@ No authorization required
 
 <a id="updateWebhook"></a>
 # **updateWebhook**
-> updateWebhook(webhookId, addWebhookRequest, siteId)
+> UpdateResponse updateWebhook(webhookId, addWebhookRequest, siteId)
 
 Update webhook
 
@@ -513,7 +518,8 @@ public class Example {
     AddWebhookRequest addWebhookRequest = new AddWebhookRequest(); // AddWebhookRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.updateWebhook(webhookId, addWebhookRequest, siteId);
+      UpdateResponse result = apiInstance.updateWebhook(webhookId, addWebhookRequest, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhooksApi#updateWebhook");
       System.err.println("Status code: " + e.getCode());
@@ -535,7 +541,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**UpdateResponse**](UpdateResponse.md)
 
 ### Authorization
 
@@ -544,7 +550,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

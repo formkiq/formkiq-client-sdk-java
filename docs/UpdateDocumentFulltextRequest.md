@@ -12,8 +12,11 @@
 |**contentUrls** | **List&lt;String&gt;** | URL(s) which contain document content |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
+|**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
+|**attributes** | [**Map&lt;String, FulltextAttribute&gt;**](FulltextAttribute.md) |  |  [optional] |
 
 
 

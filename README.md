@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.16.0</version>
+  <version>1.16.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.16.0"
+     implementation "com.formkiq:client:1.16.1"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.16.0.jar`
+* `target/client-1.16.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -338,7 +338,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
-*TagIndexApi* | [**indexSearch_0**](docs/TagIndexApi.md#indexSearch_0) | **POST** /indices/search | 
+*TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getUserActivities**](docs/UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities
 *UserManagementApi* | [**addGroup**](docs/UserManagementApi.md#addGroup) | **POST** /groups | Add a group
@@ -491,6 +491,8 @@ Class | Method | HTTP request | Description
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
  - [DocumentFulltextTag](docs/DocumentFulltextTag.md)
  - [DocumentGenerateDataSource](docs/DocumentGenerateDataSource.md)
+ - [DocumentGenerateInsertDocument](docs/DocumentGenerateInsertDocument.md)
+ - [DocumentGenerateInsertDocumentPosition](docs/DocumentGenerateInsertDocumentPosition.md)
  - [DocumentGenerateOutputType](docs/DocumentGenerateOutputType.md)
  - [DocumentId](docs/DocumentId.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)
@@ -612,9 +614,12 @@ Class | Method | HTTP request | Description
  - [ModelCase](docs/ModelCase.md)
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)
+ - [OcrConfig](docs/OcrConfig.md)
  - [OcrEngine](docs/OcrEngine.md)
  - [OcrKeyValues](docs/OcrKeyValues.md)
  - [OcrOutputType](docs/OcrOutputType.md)
+ - [OcrTable](docs/OcrTable.md)
+ - [OcrTableData](docs/OcrTableData.md)
  - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
  - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
  - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
@@ -672,9 +677,11 @@ Class | Method | HTTP request | Description
  - [SetWorkflowRequest](docs/SetWorkflowRequest.md)
  - [SetWorkflowResponse](docs/SetWorkflowResponse.md)
  - [Site](docs/Site.md)
+ - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
  - [SiteStatus](docs/SiteStatus.md)
+ - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
  - [Task](docs/Task.md)

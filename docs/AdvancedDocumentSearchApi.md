@@ -21,7 +21,7 @@ All URIs are relative to *http://localhost*
 
 Add document&#39;s full-text
 
-Adde a document to OpenSearch; ONLY available with FormKiQ Enterprise
+Adde a document to OpenSearch; available as an Add-On Module
 
 ### Example
 ```java
@@ -90,7 +90,7 @@ No authorization required
 
 Delete document full-text
 
-Remove full text search for a document from OpenSearch; ONLY available with FormKiQ Enterprise
+Remove full text search for a document from OpenSearch; available as an Add-On Module
 
 ### Example
 ```java
@@ -157,7 +157,7 @@ No authorization required
 
 Delete document full-text tag
 
-Remove document tags from OpenSearch; ONLY available with FormKiQ Enterprise
+Remove document tags from OpenSearch; available as an Add-On Module
 
 ### Example
 ```java
@@ -227,7 +227,7 @@ No authorization required
 
 Delete document full-text tag/value
 
-Remove document tag/value from OpenSearch; ONLY available with FormKiQ Enterprise
+Remove document tag/value from OpenSearch; available as an Add-On Module
 
 ### Example
 ```java
@@ -368,7 +368,7 @@ No authorization required
 
 Direct opensearch search API
 
-Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); ONLY available with FormKiQ Enterprise  Example Request Body: { \&quot;query\&quot;: { \&quot;match_all\&quot;: {} }}
+Endpoint for allowing custom, complex queries using the OpenSearch search API (https://opensearch.org/docs/latest/opensearch/rest-api/search/); available as an Add-On Module  Example Request Body: { \&quot;query\&quot;: { \&quot;match_all\&quot;: {} }}
 
 ### Example
 ```java
@@ -435,7 +435,7 @@ No authorization required
 
 Document full-text search
 
-Document full-text search (and more robust multi-tag search queries, powered by OpenSearch); ONLY available with FormKiQ Enterprise
+Document full-text search (and more robust multi-tag search queries, powered by OpenSearch); available as an Add-On Module
 
 ### Example
 ```java
@@ -505,7 +505,7 @@ No authorization required
 
 Set document&#39;s full-text
 
-Set all text/tags found within a document to OpenSearch; ONLY available with FormKiQ Enterprise
+Set all text/tags found within a document to OpenSearch; available as an Add-On Module
 
 ### Example
 ```java
@@ -574,7 +574,7 @@ No authorization required
 
 Update document&#39;s full-text
 
-Update a document in OpenSearch; ONLY available with FormKiQ Enterprise
+Update a document in OpenSearch; available as an Add-On Module
 
 ### Example
 ```java

@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 
 Antivirus document scan
 
-Perform an Anti-Malware / Antivirus scan on a document; ONLY available with FormKiQ Pro and Enterprise
+Perform an Anti-Malware / Antivirus scan on a document; available as an Add-On Module
 
 ### Example
 ```java

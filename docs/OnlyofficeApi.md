@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 Edit onlyoffice document
 
-Provide ONLYOFFICE integration for editing documents; ONLY available with FormKiQ Enterprise
+Provide ONLYOFFICE integration for editing documents; available as an Add-On Module
 
 ### Example
 ```java
@@ -84,7 +84,7 @@ No authorization required
 
 Create onlyoffice document
 
-Provide ONLYOFFICE integration for the creation of new documents; ONLY available with FormKiQ Enterprise
+Provide ONLYOFFICE integration for the creation of new documents; available as an Add-On Module
 
 ### Example
 ```java
@@ -151,7 +151,7 @@ No authorization required
 
 Save onlyoffice document
 
-Save an updated document for ONLYOFFICE integration. ONLY available with FormKiQ Enterprise
+Save an updated document for ONLYOFFICE integration. available as an Add-On Module
 
 ### Example
 ```java
