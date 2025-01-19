@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.DocumentGenerateDataSource;
+import com.formkiq.client.model.DocumentGenerateInsertDocument;
 import com.formkiq.client.model.DocumentGenerateOutputType;
 import com.formkiq.client.model.Locale;
 import com.google.gson.TypeAdapter;
@@ -61,13 +62,18 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
   @javax.annotation.Nullable
   private Locale locale;
+
+  public static final String SERIALIZED_NAME_INSERT_DOCUMENTS = "insertDocuments";
+  @SerializedName(SERIALIZED_NAME_INSERT_DOCUMENTS)
+  @javax.annotation.Nullable
+  private List<DocumentGenerateInsertDocument> insertDocuments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DATASOURCES = "datasources";
   @SerializedName(SERIALIZED_NAME_DATASOURCES)
@@ -108,6 +114,37 @@ public class AddDocumentGenerateRequest {
 
   public void setLocale(@javax.annotation.Nullable Locale locale) {
     this.locale = locale;
+  }
+
+
+  public AddDocumentGenerateRequest insertDocuments(
+      @javax.annotation.Nullable List<DocumentGenerateInsertDocument> insertDocuments) {
+    this.insertDocuments = insertDocuments;
+    return this;
+  }
+
+  public AddDocumentGenerateRequest addInsertDocumentsItem(
+      DocumentGenerateInsertDocument insertDocumentsItem) {
+    if (this.insertDocuments == null) {
+      this.insertDocuments = new ArrayList<>();
+    }
+    this.insertDocuments.add(insertDocumentsItem);
+    return this;
+  }
+
+  /**
+   * List of documents to insert
+   * 
+   * @return insertDocuments
+   */
+  @javax.annotation.Nullable
+  public List<DocumentGenerateInsertDocument> getInsertDocuments() {
+    return insertDocuments;
+  }
+
+  public void setInsertDocuments(
+      @javax.annotation.Nullable List<DocumentGenerateInsertDocument> insertDocuments) {
+    this.insertDocuments = insertDocuments;
   }
 
 
@@ -214,6 +251,7 @@ public class AddDocumentGenerateRequest {
     }
     AddDocumentGenerateRequest addDocumentGenerateRequest = (AddDocumentGenerateRequest) o;
     return Objects.equals(this.locale, addDocumentGenerateRequest.locale)
+        && Objects.equals(this.insertDocuments, addDocumentGenerateRequest.insertDocuments)
         && Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
         && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType)
         && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId)
@@ -222,7 +260,7 @@ public class AddDocumentGenerateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, datasources, outputType, saveAsDocumentId, path);
+    return Objects.hash(locale, insertDocuments, datasources, outputType, saveAsDocumentId, path);
   }
 
   @Override
@@ -230,6 +268,7 @@ public class AddDocumentGenerateRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentGenerateRequest {\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("    insertDocuments: ").append(toIndentedString(insertDocuments)).append("\n");
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("    saveAsDocumentId: ").append(toIndentedString(saveAsDocumentId)).append("\n");
@@ -256,6 +295,7 @@ public class AddDocumentGenerateRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("locale");
+    openapiFields.add("insertDocuments");
     openapiFields.add("datasources");
     openapiFields.add("outputType");
     openapiFields.add("saveAsDocumentId");
@@ -294,6 +334,22 @@ public class AddDocumentGenerateRequest {
     // validate the optional field `locale`
     if (jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) {
       Locale.validateJsonElement(jsonObj.get("locale"));
+    }
+    if (jsonObj.get("insertDocuments") != null && !jsonObj.get("insertDocuments").isJsonNull()) {
+      JsonArray jsonArrayinsertDocuments = jsonObj.getAsJsonArray("insertDocuments");
+      if (jsonArrayinsertDocuments != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("insertDocuments").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `insertDocuments` to be an array in the JSON string but got `%s`",
+              jsonObj.get("insertDocuments").toString()));
+        }
+
+        // validate the optional field `insertDocuments` (array)
+        for (int i = 0; i < jsonArrayinsertDocuments.size(); i++) {
+          DocumentGenerateInsertDocument.validateJsonElement(jsonArrayinsertDocuments.get(i));
+        } ;
+      }
     }
     if (jsonObj.get("datasources") != null && !jsonObj.get("datasources").isJsonNull()) {
       JsonArray jsonArraydatasources = jsonObj.getAsJsonArray("datasources");

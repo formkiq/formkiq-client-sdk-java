@@ -100,4 +100,12 @@ public class GetWebhookResponseTest {
     // TODO: test enabled
   }
 
+  /**
+   * Test the property 'ttl'
+   */
+  @Test
+  public void ttlTest() {
+    // TODO: test ttl
+  }
+
 }

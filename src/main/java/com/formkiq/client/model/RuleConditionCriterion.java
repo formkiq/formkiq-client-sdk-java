@@ -42,7 +42,9 @@ public enum RuleConditionCriterion {
 
   BARCODE("BARCODE"),
 
-  FIELD("FIELD");
+  FIELD("FIELD"),
+
+  ATTRIBUTE("ATTRIBUTE");
 
   private String value;
 

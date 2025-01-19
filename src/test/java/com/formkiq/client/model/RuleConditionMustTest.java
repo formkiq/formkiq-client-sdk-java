@@ -64,6 +64,14 @@ public class RuleConditionMustTest {
   }
 
   /**
+   * Test the property 'attributeKey'
+   */
+  @Test
+  public void attributeKeyTest() {
+    // TODO: test attributeKey
+  }
+
+  /**
    * Test the property 'fieldName'
    */
   @Test

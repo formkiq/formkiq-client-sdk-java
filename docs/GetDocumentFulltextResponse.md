@@ -17,6 +17,8 @@
 |**documentId** | **String** | Document Identifier |  [optional] |
 |**createdBy** | **String** | User who added document |  [optional] |
 |**contentLength** | **Integer** | Document size |  [optional] |
+|**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
+|**checksumType** | **ChecksumType** |  |  [optional] |
 |**tags** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**attributes** | [**Map&lt;String, FulltextAttribute&gt;**](FulltextAttribute.md) |  |  [optional] |

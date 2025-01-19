@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextSearchItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class FulltextSearchItem {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -71,6 +72,11 @@ public class FulltextSearchItem {
   @SerializedName(SERIALIZED_NAME_PATH)
   @javax.annotation.Nullable
   private String path;
+
+  public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
+  @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
+  @javax.annotation.Nullable
+  private String contentType;
 
   public static final String SERIALIZED_NAME_DEEP_LINK_PATH = "deepLinkPath";
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
@@ -86,6 +92,16 @@ public class FulltextSearchItem {
   @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
   @javax.annotation.Nullable
   private String lastModifiedDate;
+
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  @javax.annotation.Nullable
+  private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  @javax.annotation.Nullable
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -159,6 +175,26 @@ public class FulltextSearchItem {
   }
 
 
+  public FulltextSearchItem contentType(@javax.annotation.Nullable String contentType) {
+    this.contentType = contentType;
+    return this;
+  }
+
+  /**
+   * Document Content-Type
+   * 
+   * @return contentType
+   */
+  @javax.annotation.Nullable
+  public String getContentType() {
+    return contentType;
+  }
+
+  public void setContentType(@javax.annotation.Nullable String contentType) {
+    this.contentType = contentType;
+  }
+
+
   public FulltextSearchItem deepLinkPath(@javax.annotation.Nullable String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
     return this;
@@ -216,6 +252,46 @@ public class FulltextSearchItem {
 
   public void setLastModifiedDate(@javax.annotation.Nullable String lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
+  }
+
+
+  public FulltextSearchItem checksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * Document checksum, changes when document file changes
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+  }
+
+
+  public FulltextSearchItem checksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
   }
 
 
@@ -376,9 +452,12 @@ public class FulltextSearchItem {
     FulltextSearchItem fulltextSearchItem = (FulltextSearchItem) o;
     return Objects.equals(this.siteId, fulltextSearchItem.siteId)
         && Objects.equals(this.path, fulltextSearchItem.path)
+        && Objects.equals(this.contentType, fulltextSearchItem.contentType)
         && Objects.equals(this.deepLinkPath, fulltextSearchItem.deepLinkPath)
         && Objects.equals(this.insertedDate, fulltextSearchItem.insertedDate)
         && Objects.equals(this.lastModifiedDate, fulltextSearchItem.lastModifiedDate)
+        && Objects.equals(this.checksum, fulltextSearchItem.checksum)
+        && Objects.equals(this.checksumType, fulltextSearchItem.checksumType)
         && Objects.equals(this.documentId, fulltextSearchItem.documentId)
         && Objects.equals(this.contentLength, fulltextSearchItem.contentLength)
         && Objects.equals(this.createdBy, fulltextSearchItem.createdBy)
@@ -389,8 +468,8 @@ public class FulltextSearchItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, deepLinkPath, insertedDate, lastModifiedDate, documentId,
-        contentLength, createdBy, tags, metadata, attributes);
+    return Objects.hash(siteId, path, contentType, deepLinkPath, insertedDate, lastModifiedDate,
+        checksum, checksumType, documentId, contentLength, createdBy, tags, metadata, attributes);
   }
 
   @Override
@@ -399,9 +478,12 @@ public class FulltextSearchItem {
     sb.append("class FulltextSearchItem {\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
@@ -431,9 +513,12 @@ public class FulltextSearchItem {
     openapiFields = new HashSet<String>();
     openapiFields.add("siteId");
     openapiFields.add("path");
+    openapiFields.add("contentType");
     openapiFields.add("deepLinkPath");
     openapiFields.add("insertedDate");
     openapiFields.add("lastModifiedDate");
+    openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("documentId");
     openapiFields.add("contentLength");
     openapiFields.add("createdBy");
@@ -483,6 +568,12 @@ public class FulltextSearchItem {
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
+    if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
+        && !jsonObj.get("contentType").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("contentType").toString()));
+    }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(
@@ -500,6 +591,16 @@ public class FulltextSearchItem {
       throw new IllegalArgumentException(String.format(
           "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("lastModifiedDate").toString()));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
         && !jsonObj.get("documentId").isJsonPrimitive()) {

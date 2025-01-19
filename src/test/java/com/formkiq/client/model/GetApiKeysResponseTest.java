@@ -48,6 +48,14 @@ public class GetApiKeysResponseTest {
   }
 
   /**
+   * Test the property 'next'
+   */
+  @Test
+  public void nextTest() {
+    // TODO: test next
+  }
+
+  /**
    * Test the property 'apiKeys'
    */
   @Test

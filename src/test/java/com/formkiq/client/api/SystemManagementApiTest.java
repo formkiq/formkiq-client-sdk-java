@@ -143,7 +143,9 @@ public class SystemManagementApiTest {
   @Test
   public void getApiKeysTest() throws ApiException {
     String siteId = null;
-    GetApiKeysResponse response = api.getApiKeys(siteId);
+    String next = null;
+    String limit = null;
+    GetApiKeysResponse response = api.getApiKeys(siteId, next, limit);
     // TODO: test validations
   }
 

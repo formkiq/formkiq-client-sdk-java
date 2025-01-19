@@ -37,10 +37,12 @@ import java.io.IOException;
 import com.formkiq.client.model.AddWebhookRequest;
 import com.formkiq.client.model.AddWebhookResponse;
 import com.formkiq.client.model.AddWebhookTagRequest;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.DocumentId;
 import com.formkiq.client.model.GetWebhookResponse;
 import com.formkiq.client.model.GetWebhookTagsResponse;
 import com.formkiq.client.model.GetWebhooksResponse;
+import com.formkiq.client.model.UpdateResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -739,7 +741,7 @@ public class WebhooksApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -777,6 +779,7 @@ public class WebhooksApi {
    * 
    * @param webhookId Web Hook Param (required)
    * @param siteId Site Identifier (optional)
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -797,8 +800,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public void deleteWebhook(String webhookId, String siteId) throws ApiException {
-    deleteWebhookWithHttpInfo(webhookId, siteId);
+  public DeleteResponse deleteWebhook(String webhookId, String siteId) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteWebhookWithHttpInfo(webhookId, siteId);
+    return localVarResp.getData();
   }
 
   /**
@@ -807,7 +811,7 @@ public class WebhooksApi {
    * 
    * @param webhookId Web Hook Param (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -828,10 +832,11 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> deleteWebhookWithHttpInfo(String webhookId, String siteId)
+  public ApiResponse<DeleteResponse> deleteWebhookWithHttpInfo(String webhookId, String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteWebhookValidateBeforeCall(webhookId, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -862,10 +867,11 @@ public class WebhooksApi {
    *                        </table>
    */
   public okhttp3.Call deleteWebhookAsync(String webhookId, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteWebhookValidateBeforeCall(webhookId, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
@@ -1251,6 +1257,8 @@ public class WebhooksApi {
    * Build call for getWebhooks
    * 
    * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1272,8 +1280,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhooksCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getWebhooksCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1302,6 +1310,14 @@ public class WebhooksApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1322,9 +1338,9 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWebhooksValidateBeforeCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
-    return getWebhooksCall(siteId, _callback);
+  private okhttp3.Call getWebhooksValidateBeforeCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
+    return getWebhooksCall(siteId, next, limit, _callback);
 
   }
 
@@ -1333,6 +1349,8 @@ public class WebhooksApi {
    * service, allowing data to be sent, received, and processed via that webhook
    * 
    * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @return GetWebhooksResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1354,8 +1372,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWebhooksResponse getWebhooks(String siteId) throws ApiException {
-    ApiResponse<GetWebhooksResponse> localVarResp = getWebhooksWithHttpInfo(siteId);
+  public GetWebhooksResponse getWebhooks(String siteId, String next, String limit)
+      throws ApiException {
+    ApiResponse<GetWebhooksResponse> localVarResp = getWebhooksWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
   }
 
@@ -1364,6 +1383,8 @@ public class WebhooksApi {
    * service, allowing data to be sent, received, and processed via that webhook
    * 
    * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @return ApiResponse&lt;GetWebhooksResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1385,9 +1406,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, null);
+  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(String siteId, String next,
+      String limit) throws ApiException {
+    okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetWebhooksResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1397,6 +1418,8 @@ public class WebhooksApi {
    * to an external service, allowing data to be sent, received, and processed via that webhook
    * 
    * @param siteId Site Identifier (optional)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1418,10 +1441,10 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhooksAsync(String siteId,
+  public okhttp3.Call getWebhooksAsync(String siteId, String next, String limit,
       final ApiCallback<GetWebhooksResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, _callback);
+    okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, next, limit, _callback);
     Type localVarReturnType = new TypeToken<GetWebhooksResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1485,7 +1508,7 @@ public class WebhooksApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -1530,6 +1553,7 @@ public class WebhooksApi {
    * @param webhookId Web Hook Param (required)
    * @param addWebhookRequest (required)
    * @param siteId Site Identifier (optional)
+   * @return UpdateResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1550,9 +1574,11 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public void updateWebhook(String webhookId, AddWebhookRequest addWebhookRequest, String siteId)
-      throws ApiException {
-    updateWebhookWithHttpInfo(webhookId, addWebhookRequest, siteId);
+  public UpdateResponse updateWebhook(String webhookId, AddWebhookRequest addWebhookRequest,
+      String siteId) throws ApiException {
+    ApiResponse<UpdateResponse> localVarResp =
+        updateWebhookWithHttpInfo(webhookId, addWebhookRequest, siteId);
+    return localVarResp.getData();
   }
 
   /**
@@ -1561,7 +1587,7 @@ public class WebhooksApi {
    * @param webhookId Web Hook Param (required)
    * @param addWebhookRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1582,11 +1608,12 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> updateWebhookWithHttpInfo(String webhookId,
+  public ApiResponse<UpdateResponse> updateWebhookWithHttpInfo(String webhookId,
       AddWebhookRequest addWebhookRequest, String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateWebhookValidateBeforeCall(webhookId, addWebhookRequest, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -1617,11 +1644,12 @@ public class WebhooksApi {
    *                        </table>
    */
   public okhttp3.Call updateWebhookAsync(String webhookId, AddWebhookRequest addWebhookRequest,
-      String siteId, final ApiCallback<Void> _callback) throws ApiException {
+      String siteId, final ApiCallback<UpdateResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         updateWebhookValidateBeforeCall(webhookId, addWebhookRequest, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 }

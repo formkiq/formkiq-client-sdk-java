@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocumentGenerateDataSource;
+import com.formkiq.client.model.DocumentGenerateInsertDocument;
 import com.formkiq.client.model.DocumentGenerateOutputType;
 import com.formkiq.client.model.Locale;
 import com.google.gson.TypeAdapter;
@@ -55,6 +56,14 @@ public class AddDocumentGenerateRequestTest {
   @Test
   public void localeTest() {
     // TODO: test locale
+  }
+
+  /**
+   * Test the property 'insertDocuments'
+   */
+  @Test
+  public void insertDocumentsTest() {
+    // TODO: test insertDocuments
   }
 
   /**

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
@@ -111,6 +112,16 @@ public class GetDocumentFulltextResponse {
   @SerializedName(SERIALIZED_NAME_CONTENT_LENGTH)
   @javax.annotation.Nullable
   private Integer contentLength;
+
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  @javax.annotation.Nullable
+  private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  @javax.annotation.Nullable
+  private ChecksumType checksumType;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -331,6 +342,47 @@ public class GetDocumentFulltextResponse {
   }
 
 
+  public GetDocumentFulltextResponse checksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * Document checksum, changes when document file changes
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+  }
+
+
+  public GetDocumentFulltextResponse checksumType(
+      @javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+  }
+
+
   public GetDocumentFulltextResponse tags(@javax.annotation.Nullable Map<String, Object> tags) {
     this.tags = tags;
     return this;
@@ -438,6 +490,8 @@ public class GetDocumentFulltextResponse {
         && Objects.equals(this.documentId, getDocumentFulltextResponse.documentId)
         && Objects.equals(this.createdBy, getDocumentFulltextResponse.createdBy)
         && Objects.equals(this.contentLength, getDocumentFulltextResponse.contentLength)
+        && Objects.equals(this.checksum, getDocumentFulltextResponse.checksum)
+        && Objects.equals(this.checksumType, getDocumentFulltextResponse.checksumType)
         && Objects.equals(this.tags, getDocumentFulltextResponse.tags)
         && Objects.equals(this.metadata, getDocumentFulltextResponse.metadata)
         && Objects.equals(this.attributes, getDocumentFulltextResponse.attributes);
@@ -446,7 +500,8 @@ public class GetDocumentFulltextResponse {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, content, contentType, path, deepLinkPath, insertedDate,
-        lastModifiedDate, documentId, createdBy, contentLength, tags, metadata, attributes);
+        lastModifiedDate, documentId, createdBy, contentLength, checksum, checksumType, tags,
+        metadata, attributes);
   }
 
   @Override
@@ -463,6 +518,8 @@ public class GetDocumentFulltextResponse {
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
@@ -497,6 +554,8 @@ public class GetDocumentFulltextResponse {
     openapiFields.add("documentId");
     openapiFields.add("createdBy");
     openapiFields.add("contentLength");
+    openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("tags");
     openapiFields.add("metadata");
     openapiFields.add("attributes");
@@ -584,6 +643,16 @@ public class GetDocumentFulltextResponse {
       throw new IllegalArgumentException(String.format(
           "Expected the field `createdBy` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("createdBy").toString()));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
   }
 

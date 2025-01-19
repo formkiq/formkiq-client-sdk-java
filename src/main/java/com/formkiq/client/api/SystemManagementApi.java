@@ -1057,6 +1057,8 @@ public class SystemManagementApi {
    * Build call for getApiKeys
    * 
    * @param siteId Site Identifier (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1078,8 +1080,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getApiKeysCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getApiKeysCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1105,6 +1107,14 @@ public class SystemManagementApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1125,15 +1135,15 @@ public class SystemManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getApiKeysValidateBeforeCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call getApiKeysValidateBeforeCall(String siteId, String next, String limit,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling getApiKeys(Async)");
     }
 
-    return getApiKeysCall(siteId, _callback);
+    return getApiKeysCall(siteId, next, limit, _callback);
 
   }
 
@@ -1141,6 +1151,8 @@ public class SystemManagementApi {
    * Get API Keys Returns the list of ApiKeys
    * 
    * @param siteId Site Identifier (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @return GetApiKeysResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1162,8 +1174,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetApiKeysResponse getApiKeys(String siteId) throws ApiException {
-    ApiResponse<GetApiKeysResponse> localVarResp = getApiKeysWithHttpInfo(siteId);
+  public GetApiKeysResponse getApiKeys(String siteId, String next, String limit)
+      throws ApiException {
+    ApiResponse<GetApiKeysResponse> localVarResp = getApiKeysWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
   }
 
@@ -1171,6 +1184,8 @@ public class SystemManagementApi {
    * Get API Keys Returns the list of ApiKeys
    * 
    * @param siteId Site Identifier (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @return ApiResponse&lt;GetApiKeysResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1192,8 +1207,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetApiKeysResponse> getApiKeysWithHttpInfo(String siteId) throws ApiException {
-    okhttp3.Call localVarCall = getApiKeysValidateBeforeCall(siteId, null);
+  public ApiResponse<GetApiKeysResponse> getApiKeysWithHttpInfo(String siteId, String next,
+      String limit) throws ApiException {
+    okhttp3.Call localVarCall = getApiKeysValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetApiKeysResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1202,6 +1218,8 @@ public class SystemManagementApi {
    * Get API Keys (asynchronously) Returns the list of ApiKeys
    * 
    * @param siteId Site Identifier (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1223,10 +1241,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getApiKeysAsync(String siteId,
+  public okhttp3.Call getApiKeysAsync(String siteId, String next, String limit,
       final ApiCallback<GetApiKeysResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getApiKeysValidateBeforeCall(siteId, _callback);
+    okhttp3.Call localVarCall = getApiKeysValidateBeforeCall(siteId, next, limit, _callback);
     Type localVarReturnType = new TypeToken<GetApiKeysResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

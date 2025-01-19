@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * SetSitesSchemaRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class SetSitesSchemaRequest {
   public static final String SERIALIZED_NAME_NAME = "name";

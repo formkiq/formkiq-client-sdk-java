@@ -341,6 +341,8 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocumentGenerateDataSource.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.DocumentGenerateInsertDocument.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocumentId.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.DocumentMetadata.CustomTypeAdapterFactory());
@@ -559,7 +561,13 @@ public class JSON {
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Nigo.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OcrConfig.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.OcrKeyValues.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OcrTable.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.OcrTableData.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.OnlyOfficeConfig.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
@@ -661,7 +669,11 @@ public class JSON {
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Site.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SiteConfig.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.SiteGroup.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.SiteUsage.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.StringFormat.CustomTypeAdapterFactory());
     gsonBuilder

@@ -20,8 +20,10 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.SiteConfig;
 import com.formkiq.client.model.SiteGroupPermissions;
 import com.formkiq.client.model.SiteStatus;
+import com.formkiq.client.model.SiteUsage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -94,6 +96,22 @@ public class SiteTest {
   @Test
   public void uploadEmailTest() {
     // TODO: test uploadEmail
+  }
+
+  /**
+   * Test the property 'config'
+   */
+  @Test
+  public void configTest() {
+    // TODO: test config
+  }
+
+  /**
+   * Test the property 'usage'
+   */
+  @Test
+  public void usageTest() {
+    // TODO: test usage
   }
 
 }

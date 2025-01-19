@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
+import com.formkiq.client.model.OcrConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -84,6 +85,14 @@ public class GetConfigurationResponseTest {
   @Test
   public void notificationEmailTest() {
     // TODO: test notificationEmail
+  }
+
+  /**
+   * Test the property 'ocr'
+   */
+  @Test
+  public void ocrTest() {
+    // TODO: test ocr
   }
 
   /**

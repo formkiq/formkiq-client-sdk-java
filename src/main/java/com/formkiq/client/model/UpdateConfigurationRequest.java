@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
+import com.formkiq.client.model.OcrConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
@@ -85,6 +86,11 @@ public class UpdateConfigurationRequest {
   @SerializedName(SERIALIZED_NAME_NOTIFICATION_EMAIL)
   @javax.annotation.Nullable
   private String notificationEmail;
+
+  public static final String SERIALIZED_NAME_OCR = "ocr";
+  @SerializedName(SERIALIZED_NAME_OCR)
+  @javax.annotation.Nullable
+  private OcrConfig ocr;
 
   public static final String SERIALIZED_NAME_GOOGLE = "google";
   @SerializedName(SERIALIZED_NAME_GOOGLE)
@@ -200,6 +206,26 @@ public class UpdateConfigurationRequest {
   }
 
 
+  public UpdateConfigurationRequest ocr(@javax.annotation.Nullable OcrConfig ocr) {
+    this.ocr = ocr;
+    return this;
+  }
+
+  /**
+   * Get ocr
+   * 
+   * @return ocr
+   */
+  @javax.annotation.Nullable
+  public OcrConfig getOcr() {
+    return ocr;
+  }
+
+  public void setOcr(@javax.annotation.Nullable OcrConfig ocr) {
+    this.ocr = ocr;
+  }
+
+
   public UpdateConfigurationRequest google(@javax.annotation.Nullable GoogleConfig google) {
     this.google = google;
     return this;
@@ -256,6 +282,7 @@ public class UpdateConfigurationRequest {
         && Objects.equals(this.maxDocuments, updateConfigurationRequest.maxDocuments)
         && Objects.equals(this.maxWebhooks, updateConfigurationRequest.maxWebhooks)
         && Objects.equals(this.notificationEmail, updateConfigurationRequest.notificationEmail)
+        && Objects.equals(this.ocr, updateConfigurationRequest.ocr)
         && Objects.equals(this.google, updateConfigurationRequest.google)
         && Objects.equals(this.docusign, updateConfigurationRequest.docusign);
   }
@@ -263,7 +290,7 @@ public class UpdateConfigurationRequest {
   @Override
   public int hashCode() {
     return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
-        notificationEmail, google, docusign);
+        notificationEmail, ocr, google, docusign);
   }
 
   @Override
@@ -276,6 +303,7 @@ public class UpdateConfigurationRequest {
     sb.append("    maxDocuments: ").append(toIndentedString(maxDocuments)).append("\n");
     sb.append("    maxWebhooks: ").append(toIndentedString(maxWebhooks)).append("\n");
     sb.append("    notificationEmail: ").append(toIndentedString(notificationEmail)).append("\n");
+    sb.append("    ocr: ").append(toIndentedString(ocr)).append("\n");
     sb.append("    google: ").append(toIndentedString(google)).append("\n");
     sb.append("    docusign: ").append(toIndentedString(docusign)).append("\n");
     sb.append("}");
@@ -304,6 +332,7 @@ public class UpdateConfigurationRequest {
     openapiFields.add("maxDocuments");
     openapiFields.add("maxWebhooks");
     openapiFields.add("notificationEmail");
+    openapiFields.add("ocr");
     openapiFields.add("google");
     openapiFields.add("docusign");
 
@@ -367,6 +396,10 @@ public class UpdateConfigurationRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `notificationEmail` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationEmail").toString()));
+    }
+    // validate the optional field `ocr`
+    if (jsonObj.get("ocr") != null && !jsonObj.get("ocr").isJsonNull()) {
+      OcrConfig.validateJsonElement(jsonObj.get("ocr"));
     }
     // validate the optional field `google`
     if (jsonObj.get("google") != null && !jsonObj.get("google").isJsonNull()) {

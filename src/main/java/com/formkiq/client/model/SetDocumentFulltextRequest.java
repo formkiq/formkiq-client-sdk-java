@@ -23,6 +23,8 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
+import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,7 +33,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,7 +64,7 @@ import com.formkiq.client.invoker.JSON;
  * SetDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class SetDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
@@ -88,6 +92,16 @@ public class SetDocumentFulltextRequest {
   @javax.annotation.Nullable
   private String deepLinkPath;
 
+  public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM)
+  @javax.annotation.Nullable
+  private String checksum;
+
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  @javax.annotation.Nullable
+  private ChecksumType checksumType;
+
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   @javax.annotation.Nullable
@@ -97,6 +111,11 @@ public class SetDocumentFulltextRequest {
   @SerializedName(SERIALIZED_NAME_METADATA)
   @javax.annotation.Nullable
   private List<AddDocumentMetadata> metadata = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
+  private Map<String, FulltextAttribute> attributes = new HashMap<>();
 
   public SetDocumentFulltextRequest() {}
 
@@ -209,6 +228,47 @@ public class SetDocumentFulltextRequest {
   }
 
 
+  public SetDocumentFulltextRequest checksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+    return this;
+  }
+
+  /**
+   * Document checksum, changes when document file changes
+   * 
+   * @return checksum
+   */
+  @javax.annotation.Nullable
+  public String getChecksum() {
+    return checksum;
+  }
+
+  public void setChecksum(@javax.annotation.Nullable String checksum) {
+    this.checksum = checksum;
+  }
+
+
+  public SetDocumentFulltextRequest checksumType(
+      @javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+  }
+
+
   public SetDocumentFulltextRequest tags(@javax.annotation.Nullable List<AddDocumentTag> tags) {
     this.tags = tags;
     return this;
@@ -266,6 +326,36 @@ public class SetDocumentFulltextRequest {
   }
 
 
+  public SetDocumentFulltextRequest attributes(
+      @javax.annotation.Nullable Map<String, FulltextAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public SetDocumentFulltextRequest putAttributesItem(String key,
+      FulltextAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new HashMap<>();
+    }
+    this.attributes.put(key, attributesItem);
+    return this;
+  }
+
+  /**
+   * Get attributes
+   * 
+   * @return attributes
+   */
+  @javax.annotation.Nullable
+  public Map<String, FulltextAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(@javax.annotation.Nullable Map<String, FulltextAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -281,13 +371,17 @@ public class SetDocumentFulltextRequest {
         && Objects.equals(this.contentUrls, setDocumentFulltextRequest.contentUrls)
         && Objects.equals(this.path, setDocumentFulltextRequest.path)
         && Objects.equals(this.deepLinkPath, setDocumentFulltextRequest.deepLinkPath)
+        && Objects.equals(this.checksum, setDocumentFulltextRequest.checksum)
+        && Objects.equals(this.checksumType, setDocumentFulltextRequest.checksumType)
         && Objects.equals(this.tags, setDocumentFulltextRequest.tags)
-        && Objects.equals(this.metadata, setDocumentFulltextRequest.metadata);
+        && Objects.equals(this.metadata, setDocumentFulltextRequest.metadata)
+        && Objects.equals(this.attributes, setDocumentFulltextRequest.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, content, contentUrls, path, deepLinkPath, tags, metadata);
+    return Objects.hash(contentType, content, contentUrls, path, deepLinkPath, checksum,
+        checksumType, tags, metadata, attributes);
   }
 
   @Override
@@ -299,8 +393,11 @@ public class SetDocumentFulltextRequest {
     sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -327,8 +424,11 @@ public class SetDocumentFulltextRequest {
     openapiFields.add("contentUrls");
     openapiFields.add("path");
     openapiFields.add("deepLinkPath");
+    openapiFields.add("checksum");
+    openapiFields.add("checksumType");
     openapiFields.add("tags");
     openapiFields.add("metadata");
+    openapiFields.add("attributes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -390,6 +490,16 @@ public class SetDocumentFulltextRequest {
       throw new IllegalArgumentException(String.format(
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
+        && !jsonObj.get("checksum").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("checksum").toString()));
+    }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
     }
     if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
       JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");

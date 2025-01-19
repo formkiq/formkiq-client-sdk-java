@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.OcrKeyValues;
+import com.formkiq.client.model.OcrTable;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentOcrResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class GetDocumentOcrResponse {
   public static final String SERIALIZED_NAME_CONTENT_URLS = "contentUrls";
@@ -71,6 +72,11 @@ public class GetDocumentOcrResponse {
   @SerializedName(SERIALIZED_NAME_KEY_VALUES)
   @javax.annotation.Nullable
   private List<OcrKeyValues> keyValues = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_TABLES = "tables";
+  @SerializedName(SERIALIZED_NAME_TABLES)
+  @javax.annotation.Nullable
+  private List<OcrTable> tables = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -167,6 +173,34 @@ public class GetDocumentOcrResponse {
 
   public void setKeyValues(@javax.annotation.Nullable List<OcrKeyValues> keyValues) {
     this.keyValues = keyValues;
+  }
+
+
+  public GetDocumentOcrResponse tables(@javax.annotation.Nullable List<OcrTable> tables) {
+    this.tables = tables;
+    return this;
+  }
+
+  public GetDocumentOcrResponse addTablesItem(OcrTable tablesItem) {
+    if (this.tables == null) {
+      this.tables = new ArrayList<>();
+    }
+    this.tables.add(tablesItem);
+    return this;
+  }
+
+  /**
+   * Get tables
+   * 
+   * @return tables
+   */
+  @javax.annotation.Nullable
+  public List<OcrTable> getTables() {
+    return tables;
+  }
+
+  public void setTables(@javax.annotation.Nullable List<OcrTable> tables) {
+    this.tables = tables;
   }
 
 
@@ -342,6 +376,7 @@ public class GetDocumentOcrResponse {
     GetDocumentOcrResponse getDocumentOcrResponse = (GetDocumentOcrResponse) o;
     return Objects.equals(this.contentUrls, getDocumentOcrResponse.contentUrls)
         && Objects.equals(this.keyValues, getDocumentOcrResponse.keyValues)
+        && Objects.equals(this.tables, getDocumentOcrResponse.tables)
         && Objects.equals(this.data, getDocumentOcrResponse.data)
         && Objects.equals(this.ocrEngine, getDocumentOcrResponse.ocrEngine)
         && Objects.equals(this.ocrStatus, getDocumentOcrResponse.ocrStatus)
@@ -354,8 +389,8 @@ public class GetDocumentOcrResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentUrls, keyValues, data, ocrEngine, ocrStatus, contentType, isBase64,
-        userId, documentId, insertedDate);
+    return Objects.hash(contentUrls, keyValues, tables, data, ocrEngine, ocrStatus, contentType,
+        isBase64, userId, documentId, insertedDate);
   }
 
   @Override
@@ -364,6 +399,7 @@ public class GetDocumentOcrResponse {
     sb.append("class GetDocumentOcrResponse {\n");
     sb.append("    contentUrls: ").append(toIndentedString(contentUrls)).append("\n");
     sb.append("    keyValues: ").append(toIndentedString(keyValues)).append("\n");
+    sb.append("    tables: ").append(toIndentedString(tables)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrStatus: ").append(toIndentedString(ocrStatus)).append("\n");
@@ -395,6 +431,7 @@ public class GetDocumentOcrResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("contentUrls");
     openapiFields.add("keyValues");
+    openapiFields.add("tables");
     openapiFields.add("data");
     openapiFields.add("ocrEngine");
     openapiFields.add("ocrStatus");
@@ -454,6 +491,22 @@ public class GetDocumentOcrResponse {
         // validate the optional field `keyValues` (array)
         for (int i = 0; i < jsonArraykeyValues.size(); i++) {
           OcrKeyValues.validateJsonElement(jsonArraykeyValues.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("tables") != null && !jsonObj.get("tables").isJsonNull()) {
+      JsonArray jsonArraytables = jsonObj.getAsJsonArray("tables");
+      if (jsonArraytables != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("tables").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(
+              "Expected the field `tables` to be an array in the JSON string but got `%s`",
+              jsonObj.get("tables").toString()));
+        }
+
+        // validate the optional field `tables` (array)
+        for (int i = 0; i < jsonArraytables.size(); i++) {
+          OcrTable.validateJsonElement(jsonArraytables.get(i));
         } ;
       }
     }

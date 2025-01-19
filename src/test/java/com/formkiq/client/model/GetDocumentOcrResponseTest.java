@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.OcrKeyValues;
+import com.formkiq.client.model.OcrTable;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,6 +62,14 @@ public class GetDocumentOcrResponseTest {
   @Test
   public void keyValuesTest() {
     // TODO: test keyValues
+  }
+
+  /**
+   * Test the property 'tables'
+   */
+  @Test
+  public void tablesTest() {
+    // TODO: test tables
   }
 
   /**

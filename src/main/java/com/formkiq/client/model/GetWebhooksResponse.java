@@ -59,15 +59,40 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhooksResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-16T20:18:13.565967-06:00[America/Winnipeg]",
+    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
     comments = "Generator version: 7.10.0")
 public class GetWebhooksResponse {
+  public static final String SERIALIZED_NAME_NEXT = "next";
+  @SerializedName(SERIALIZED_NAME_NEXT)
+  @javax.annotation.Nullable
+  private String next;
+
   public static final String SERIALIZED_NAME_WEBHOOKS = "webhooks";
   @SerializedName(SERIALIZED_NAME_WEBHOOKS)
   @javax.annotation.Nullable
   private List<GetWebhookResponse> webhooks = new ArrayList<>();
 
   public GetWebhooksResponse() {}
+
+  public GetWebhooksResponse next(@javax.annotation.Nullable String next) {
+    this.next = next;
+    return this;
+  }
+
+  /**
+   * Next page of results token
+   * 
+   * @return next
+   */
+  @javax.annotation.Nullable
+  public String getNext() {
+    return next;
+  }
+
+  public void setNext(@javax.annotation.Nullable String next) {
+    this.next = next;
+  }
+
 
   public GetWebhooksResponse webhooks(
       @javax.annotation.Nullable List<GetWebhookResponse> webhooks) {
@@ -108,18 +133,20 @@ public class GetWebhooksResponse {
       return false;
     }
     GetWebhooksResponse getWebhooksResponse = (GetWebhooksResponse) o;
-    return Objects.equals(this.webhooks, getWebhooksResponse.webhooks);
+    return Objects.equals(this.next, getWebhooksResponse.next)
+        && Objects.equals(this.webhooks, getWebhooksResponse.webhooks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webhooks);
+    return Objects.hash(next, webhooks);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetWebhooksResponse {\n");
+    sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    webhooks: ").append(toIndentedString(webhooks)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -142,6 +169,7 @@ public class GetWebhooksResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("next");
     openapiFields.add("webhooks");
 
     // a set of required properties/fields (JSON key names)
@@ -174,6 +202,12 @@ public class GetWebhooksResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
+        && !jsonObj.get("next").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("next").toString()));
+    }
     if (jsonObj.get("webhooks") != null && !jsonObj.get("webhooks").isJsonNull()) {
       JsonArray jsonArraywebhooks = jsonObj.getAsJsonArray("webhooks");
       if (jsonArraywebhooks != null) {

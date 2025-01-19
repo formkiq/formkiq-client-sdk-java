@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -64,6 +65,14 @@ public class FulltextSearchItemTest {
   }
 
   /**
+   * Test the property 'contentType'
+   */
+  @Test
+  public void contentTypeTest() {
+    // TODO: test contentType
+  }
+
+  /**
    * Test the property 'deepLinkPath'
    */
   @Test
@@ -85,6 +94,22 @@ public class FulltextSearchItemTest {
   @Test
   public void lastModifiedDateTest() {
     // TODO: test lastModifiedDate
+  }
+
+  /**
+   * Test the property 'checksum'
+   */
+  @Test
+  public void checksumTest() {
+    // TODO: test checksum
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
   }
 
   /**

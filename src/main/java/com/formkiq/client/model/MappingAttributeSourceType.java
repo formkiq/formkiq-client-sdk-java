@@ -40,7 +40,9 @@ public enum MappingAttributeSourceType {
 
   CONTENT_KEY_VALUE("CONTENT_KEY_VALUE"),
 
-  METADATA("METADATA");
+  METADATA("METADATA"),
+
+  MANUAL("MANUAL");
 
   private String value;
 
