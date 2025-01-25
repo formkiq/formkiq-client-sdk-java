@@ -56,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddWebhookResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-18T18:18:25.065579-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.10.0")
+    date = "2025-01-25T10:58:48.282791-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.11.0")
 public class AddWebhookResponse {
   public static final String SERIALIZED_NAME_WEBHOOK_ID = "webhookId";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_ID)

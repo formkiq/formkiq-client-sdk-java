@@ -36,11 +36,17 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(DocumentSyncType.Adapter.class)
 public enum DocumentSyncType {
 
+  ATTRIBUTE("ATTRIBUTE"),
+
   METADATA("METADATA"),
 
   TAG("TAG"),
 
-  CONTENT("CONTENT");
+  CONTENT("CONTENT"),
+
+  SOFT_DELETE_METADATA("SOFT_DELETE_METADATA"),
+
+  DELETE_METADATA("DELETE_METADATA");
 
   private String value;
 
