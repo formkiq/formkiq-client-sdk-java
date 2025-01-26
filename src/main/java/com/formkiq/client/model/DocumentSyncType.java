@@ -36,11 +36,7 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(DocumentSyncType.Adapter.class)
 public enum DocumentSyncType {
 
-  ATTRIBUTE("ATTRIBUTE"),
-
   METADATA("METADATA"),
-
-  TAG("TAG"),
 
   CONTENT("CONTENT"),
 

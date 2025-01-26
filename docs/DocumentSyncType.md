@@ -5,11 +5,7 @@
 ## Enum
 
 
-* `ATTRIBUTE` (value: `"ATTRIBUTE"`)
-
 * `METADATA` (value: `"METADATA"`)
-
-* `TAG` (value: `"TAG"`)
 
 * `CONTENT` (value: `"CONTENT"`)
 

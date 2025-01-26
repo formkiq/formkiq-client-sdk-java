@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetUserSharesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-25T10:58:48.282791-06:00[America/Winnipeg]",
+    date = "2025-01-26T12:26:26.719072-06:00[America/Winnipeg]",
     comments = "Generator version: 7.11.0")
 public class GetUserSharesResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";

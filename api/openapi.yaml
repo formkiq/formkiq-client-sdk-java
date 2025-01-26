@@ -13542,14 +13542,14 @@ components:
         - insertedDate: insertedDate
           service: TYPESENSE
           syncDate: syncDate
-          type: ATTRIBUTE
+          type: METADATA
           message: message
           userId: userId
           status: COMPLETE
         - insertedDate: insertedDate
           service: TYPESENSE
           syncDate: syncDate
-          type: ATTRIBUTE
+          type: METADATA
           message: message
           userId: userId
           status: COMPLETE
@@ -13580,9 +13580,7 @@ components:
     DocumentSyncType:
       description: Type of Document Sync
       enum:
-      - ATTRIBUTE
       - METADATA
-      - TAG
       - CONTENT
       - SOFT_DELETE_METADATA
       - DELETE_METADATA
@@ -13592,7 +13590,7 @@ components:
         insertedDate: insertedDate
         service: TYPESENSE
         syncDate: syncDate
-        type: ATTRIBUTE
+        type: METADATA
         message: message
         userId: userId
         status: COMPLETE
