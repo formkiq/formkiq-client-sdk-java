@@ -2290,6 +2290,8 @@ public class DocumentsApi {
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+   *        permissions) (optional, default to false)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -2312,8 +2314,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentUrlCall(String documentId, String siteId, String versionKey,
-      Integer duration, String shareKey, Boolean inline, final ApiCallback _callback)
-      throws ApiException {
+      Integer duration, String shareKey, Boolean inline, Boolean bypassWatermark,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2359,6 +2361,11 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("inline", inline));
     }
 
+    if (bypassWatermark != null) {
+      localVarQueryParams
+          .addAll(localVarApiClient.parameterToPair("bypassWatermark", bypassWatermark));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -2380,7 +2387,7 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentUrlValidateBeforeCall(String documentId, String siteId,
-      String versionKey, Integer duration, String shareKey, Boolean inline,
+      String versionKey, Integer duration, String shareKey, Boolean inline, Boolean bypassWatermark,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -2389,7 +2396,7 @@ public class DocumentsApi {
     }
 
     return getDocumentUrlCall(documentId, siteId, versionKey, duration, shareKey, inline,
-        _callback);
+        bypassWatermark, _callback);
 
   }
 
@@ -2403,6 +2410,8 @@ public class DocumentsApi {
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+   *        permissions) (optional, default to false)
    * @return GetDocumentUrlResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2425,9 +2434,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentUrlResponse getDocumentUrl(String documentId, String siteId, String versionKey,
-      Integer duration, String shareKey, Boolean inline) throws ApiException {
-    ApiResponse<GetDocumentUrlResponse> localVarResp =
-        getDocumentUrlWithHttpInfo(documentId, siteId, versionKey, duration, shareKey, inline);
+      Integer duration, String shareKey, Boolean inline, Boolean bypassWatermark)
+      throws ApiException {
+    ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentUrlWithHttpInfo(documentId,
+        siteId, versionKey, duration, shareKey, inline, bypassWatermark);
     return localVarResp.getData();
   }
 
@@ -2441,6 +2451,8 @@ public class DocumentsApi {
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+   *        permissions) (optional, default to false)
    * @return ApiResponse&lt;GetDocumentUrlResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2463,10 +2475,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentUrlResponse> getDocumentUrlWithHttpInfo(String documentId,
-      String siteId, String versionKey, Integer duration, String shareKey, Boolean inline)
-      throws ApiException {
+      String siteId, String versionKey, Integer duration, String shareKey, Boolean inline,
+      Boolean bypassWatermark) throws ApiException {
     okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, versionKey,
-        duration, shareKey, inline, null);
+        duration, shareKey, inline, bypassWatermark, null);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2481,6 +2493,8 @@ public class DocumentsApi {
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+   *        permissions) (optional, default to false)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2503,11 +2517,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentUrlAsync(String documentId, String siteId, String versionKey,
-      Integer duration, String shareKey, Boolean inline,
+      Integer duration, String shareKey, Boolean inline, Boolean bypassWatermark,
       final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, versionKey,
-        duration, shareKey, inline, _callback);
+        duration, shareKey, inline, bypassWatermark, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

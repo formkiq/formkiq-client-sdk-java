@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.AttributeDataType;
 import com.formkiq.client.model.AttributeType;
+import com.formkiq.client.model.Watermark;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -68,6 +69,14 @@ public class AddAttributeTest {
   @Test
   public void typeTest() {
     // TODO: test type
+  }
+
+  /**
+   * Test the property 'watermark'
+   */
+  @Test
+  public void watermarkTest() {
+    // TODO: test watermark
   }
 
 }

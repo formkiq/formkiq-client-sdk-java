@@ -261,8 +261,9 @@ public class DocumentsApiTest {
     Integer duration = null;
     String shareKey = null;
     Boolean inline = null;
-    GetDocumentUrlResponse response =
-        api.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline);
+    Boolean bypassWatermark = null;
+    GetDocumentUrlResponse response = api.getDocumentUrl(documentId, siteId, versionKey, duration,
+        shareKey, inline, bypassWatermark);
     // TODO: test validations
   }
 

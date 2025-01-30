@@ -50,7 +50,9 @@ public enum AttributeValueType {
 
   COMPOSITE_STRING("COMPOSITE_STRING"),
 
-  RELATIONSHIPS("RELATIONSHIPS");
+  RELATIONSHIPS("RELATIONSHIPS"),
+
+  WATERMARK("WATERMARK");
 
   private String value;
 

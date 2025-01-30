@@ -734,7 +734,7 @@ No authorization required
 
 <a id="getDocumentUrl"></a>
 # **getDocumentUrl**
-> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline)
+> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark)
 
 Get document content url
 
@@ -764,8 +764,9 @@ public class Example {
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     Boolean inline = false; // Boolean | Set the Content-Disposition to inline
+    Boolean bypassWatermark = false; // Boolean | Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions)
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUrl");
@@ -788,6 +789,7 @@ public class Example {
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **inline** | **Boolean**| Set the Content-Disposition to inline | [optional] [default to false] |
+| **bypassWatermark** | **Boolean**| Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions) | [optional] [default to false] |
 
 ### Return type
 

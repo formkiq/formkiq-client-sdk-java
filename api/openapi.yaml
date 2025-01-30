@@ -2870,6 +2870,16 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+          permissions)
+        explode: true
+        in: query
+        name: bypassWatermark
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -13430,6 +13440,7 @@ components:
       - CLASSIFICATION
       - COMPOSITE_STRING
       - RELATIONSHIPS
+      - WATERMARK
       type: string
     FulltextAttribute:
       example:
@@ -16408,6 +16419,8 @@ components:
     GetAttributeResponse:
       example:
         attribute:
+          watermark:
+            text: text
           dataType: STRING
           type: STANDARD
           key: key
@@ -16419,10 +16432,14 @@ components:
       example:
         next: next
         attributes:
-        - dataType: STRING
+        - watermark:
+            text: text
+          dataType: STRING
           type: STANDARD
           key: key
-        - dataType: STRING
+        - watermark:
+            text: text
+          dataType: STRING
           type: STANDARD
           key: key
       properties:
@@ -16437,6 +16454,8 @@ components:
       type: object
     Attribute:
       example:
+        watermark:
+          text: text
         dataType: STRING
         type: STANDARD
         key: key
@@ -16448,6 +16467,16 @@ components:
           type: string
         dataType:
           $ref: '#/components/schemas/AttributeDataType'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
+      type: object
+    Watermark:
+      example:
+        text: text
+      properties:
+        text:
+          description: Watermark text
+          type: string
       type: object
     AttributeType:
       default: STANDARD
@@ -16465,10 +16494,13 @@ components:
       - BOOLEAN
       - KEY_ONLY
       - PUBLICATION
+      - WATERMARK
       type: string
     AddAttributeRequest:
       example:
         attribute:
+          watermark:
+            text: text
           dataType: STRING
           type: STANDARD
           key: key
@@ -16480,6 +16512,8 @@ components:
       type: object
     AddAttribute:
       example:
+        watermark:
+          text: text
         dataType: STRING
         type: STANDARD
         key: key
@@ -16491,6 +16525,8 @@ components:
           $ref: '#/components/schemas/AttributeDataType'
         type:
           $ref: '#/components/schemas/AttributeType'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
       required:
       - key
       type: object

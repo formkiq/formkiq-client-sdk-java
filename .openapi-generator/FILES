@@ -394,6 +394,7 @@ docs/UserSharePermission.md
 docs/UserSharePermissionType.md
 docs/ValidationError.md
 docs/ValidationErrorsResponse.md
+docs/Watermark.md
 docs/WebhookTag.md
 docs/WebhooksApi.md
 docs/WorkflowDocument.md
@@ -825,6 +826,7 @@ src/main/java/com/formkiq/client/model/UserSharePermission.java
 src/main/java/com/formkiq/client/model/UserSharePermissionType.java
 src/main/java/com/formkiq/client/model/ValidationError.java
 src/main/java/com/formkiq/client/model/ValidationErrorsResponse.java
+src/main/java/com/formkiq/client/model/Watermark.java
 src/main/java/com/formkiq/client/model/WebhookTag.java
 src/main/java/com/formkiq/client/model/WorkflowDocument.java
 src/main/java/com/formkiq/client/model/WorkflowQueue.java
@@ -1223,6 +1225,7 @@ src/test/java/com/formkiq/client/model/UserShareTest.java
 src/test/java/com/formkiq/client/model/UserTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorTest.java
 src/test/java/com/formkiq/client/model/ValidationErrorsResponseTest.java
+src/test/java/com/formkiq/client/model/WatermarkTest.java
 src/test/java/com/formkiq/client/model/WebhookTagTest.java
 src/test/java/com/formkiq/client/model/WorkflowDocumentTest.java
 src/test/java/com/formkiq/client/model/WorkflowQueueTest.java

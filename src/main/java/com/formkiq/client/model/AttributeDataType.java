@@ -44,7 +44,9 @@ public enum AttributeDataType {
 
   KEY_ONLY("KEY_ONLY"),
 
-  PUBLICATION("PUBLICATION");
+  PUBLICATION("PUBLICATION"),
+
+  WATERMARK("WATERMARK");
 
   private String value;
 
