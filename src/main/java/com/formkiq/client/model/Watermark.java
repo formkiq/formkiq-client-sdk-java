@@ -56,13 +56,18 @@ import com.formkiq.client.invoker.JSON;
  * Watermark
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-29T22:24:01.974909-06:00[America/Winnipeg]",
+    date = "2025-02-02T21:52:16.069898-06:00[America/Winnipeg]",
     comments = "Generator version: 7.11.0")
 public class Watermark {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
   @javax.annotation.Nullable
   private String text;
+
+  public static final String SERIALIZED_NAME_IMAGE_DOCUMENT_ID = "imageDocumentId";
+  @SerializedName(SERIALIZED_NAME_IMAGE_DOCUMENT_ID)
+  @javax.annotation.Nullable
+  private String imageDocumentId;
 
   public Watermark() {}
 
@@ -86,6 +91,26 @@ public class Watermark {
   }
 
 
+  public Watermark imageDocumentId(@javax.annotation.Nullable String imageDocumentId) {
+    this.imageDocumentId = imageDocumentId;
+    return this;
+  }
+
+  /**
+   * Watermark Image Document Id
+   * 
+   * @return imageDocumentId
+   */
+  @javax.annotation.Nullable
+  public String getImageDocumentId() {
+    return imageDocumentId;
+  }
+
+  public void setImageDocumentId(@javax.annotation.Nullable String imageDocumentId) {
+    this.imageDocumentId = imageDocumentId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -96,12 +121,13 @@ public class Watermark {
       return false;
     }
     Watermark watermark = (Watermark) o;
-    return Objects.equals(this.text, watermark.text);
+    return Objects.equals(this.text, watermark.text)
+        && Objects.equals(this.imageDocumentId, watermark.imageDocumentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text);
+    return Objects.hash(text, imageDocumentId);
   }
 
   @Override
@@ -109,6 +135,7 @@ public class Watermark {
     StringBuilder sb = new StringBuilder();
     sb.append("class Watermark {\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    imageDocumentId: ").append(toIndentedString(imageDocumentId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -131,6 +158,7 @@ public class Watermark {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("text");
+    openapiFields.add("imageDocumentId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -167,6 +195,12 @@ public class Watermark {
       throw new IllegalArgumentException(String.format(
           "Expected the field `text` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("text").toString()));
+    }
+    if ((jsonObj.get("imageDocumentId") != null && !jsonObj.get("imageDocumentId").isJsonNull())
+        && !jsonObj.get("imageDocumentId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `imageDocumentId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("imageDocumentId").toString()));
     }
   }
 

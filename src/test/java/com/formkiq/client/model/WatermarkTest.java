@@ -52,4 +52,12 @@ public class WatermarkTest {
     // TODO: test text
   }
 
+  /**
+   * Test the property 'imageDocumentId'
+   */
+  @Test
+  public void imageDocumentIdTest() {
+    // TODO: test imageDocumentId
+  }
+
 }

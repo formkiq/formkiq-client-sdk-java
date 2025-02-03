@@ -16420,6 +16420,7 @@ components:
       example:
         attribute:
           watermark:
+            imageDocumentId: imageDocumentId
             text: text
           dataType: STRING
           type: STANDARD
@@ -16433,11 +16434,13 @@ components:
         next: next
         attributes:
         - watermark:
+            imageDocumentId: imageDocumentId
             text: text
           dataType: STRING
           type: STANDARD
           key: key
         - watermark:
+            imageDocumentId: imageDocumentId
             text: text
           dataType: STRING
           type: STANDARD
@@ -16455,6 +16458,7 @@ components:
     Attribute:
       example:
         watermark:
+          imageDocumentId: imageDocumentId
           text: text
         dataType: STRING
         type: STANDARD
@@ -16472,10 +16476,14 @@ components:
       type: object
     Watermark:
       example:
+        imageDocumentId: imageDocumentId
         text: text
       properties:
         text:
           description: Watermark text
+          type: string
+        imageDocumentId:
+          description: Watermark Image Document Id
           type: string
       type: object
     AttributeType:
@@ -16500,6 +16508,7 @@ components:
       example:
         attribute:
           watermark:
+            imageDocumentId: imageDocumentId
             text: text
           dataType: STRING
           type: STANDARD
@@ -16513,6 +16522,7 @@ components:
     AddAttribute:
       example:
         watermark:
+          imageDocumentId: imageDocumentId
           text: text
         dataType: STRING
         type: STANDARD

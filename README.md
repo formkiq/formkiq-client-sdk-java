@@ -725,6 +725,7 @@ Class | Method | HTTP request | Description
  - [UserSharePermissionType](docs/UserSharePermissionType.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
+ - [Watermark](docs/Watermark.md)
  - [WebhookTag](docs/WebhookTag.md)
  - [WorkflowDocument](docs/WorkflowDocument.md)
  - [WorkflowQueue](docs/WorkflowQueue.md)
