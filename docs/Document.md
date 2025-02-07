@@ -9,6 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
+|**width** | **String** | Document Content Width property |  [optional] |
+|**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**lastModifiedDate** | **String** | Last Modified Timestamp |  [optional] |

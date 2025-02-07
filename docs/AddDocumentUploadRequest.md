@@ -10,6 +10,8 @@
 |**documentId** | **String** | optional Document Identifier, if skipped one will be assigned |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**contentType** | **String** | Document media type |  [optional] |
+|**width** | **String** | Document Content Width property |  [optional] |
+|**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**checksum** | **String** | The checksum value to validate the file against |  [optional] |

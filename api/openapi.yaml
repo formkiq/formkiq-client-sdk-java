@@ -100,9 +100,6 @@ tags:
 - description: Webhooks API
   name: webhooks
   x-displayName: Webhooks
-- description: Onlyoffice API
-  name: onlyoffice
-  x-displayName: Onlyoffice
 - description: E-Signature API
   name: e-signature
   x-displayName: E-Signature
@@ -6752,145 +6749,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /onlyoffice/{documentId}/edit:
-    post:
-      description: Provide ONLYOFFICE integration for editing documents; available
-        as an Add-On Module
-      operationId: OnlyOfficeDocumentEdit
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OnlyOfficeDocumentEditRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Edit onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /onlyoffice/new:
-    post:
-      description: Provide ONLYOFFICE integration for the creation of new documents;
-        available as an Add-On Module
-      operationId: OnlyOfficeDocumentNew
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OnlyOfficeDocumentNewRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Create onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /onlyoffice/{documentId}/save:
-    post:
-      description: Save an updated document for ONLYOFFICE integration. available
-        as an Add-On Module
-      operationId: OnlyOfficeDocumentSave
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentSaveResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      summary: Save onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-accepts:
-      - application/json
   /indices/{indexType}/move:
     post:
       description: Perform an Folder Index Move
@@ -11473,45 +11331,57 @@ components:
         deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
         documents:
-        - path: path
-          versionId: versionId
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
+        - deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          path: path
+          versionId: versionId
+          insertedDate: insertedDate
+          width: width
           checksum: checksum
           documentId: documentId
           contentLength: 6
           contentType: contentType
-          userId: userId
-        - path: path
-          versionId: versionId
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
+          height: height
+        - deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          path: path
+          versionId: versionId
+          insertedDate: insertedDate
+          width: width
           checksum: checksum
           documentId: documentId
           contentLength: 6
           contentType: contentType
-          userId: userId
+          height: height
         belongsToDocumentId: belongsToDocumentId
         userId: userId
         path: path
         versionId: versionId
         insertedDate: insertedDate
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -11560,20 +11430,28 @@ components:
       type: object
     ChildDocument:
       example:
-        path: path
-        versionId: versionId
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
+        userId: userId
+        path: path
+        versionId: versionId
+        insertedDate: insertedDate
+        width: width
         checksum: checksum
         documentId: documentId
         contentLength: 6
         contentType: contentType
-        userId: userId
+        height: height
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12118,6 +11996,7 @@ components:
       example:
         path: path
         deepLinkPath: deepLinkPath
+        width: width
         checksumType: SHA1
         checksum: checksum
         documentId: documentId
@@ -12184,6 +12063,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
+        height: height
         tags:
         - values:
           - values
@@ -12204,6 +12084,12 @@ components:
           type: string
         contentType:
           description: Document media type
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12263,11 +12149,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12292,11 +12180,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12324,6 +12214,7 @@ components:
         path: path
         checksumType: SHA1
         checksum: checksum
+        width: width
         documentId: documentId
         attributes:
         - numberValues:
@@ -12388,6 +12279,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
+        height: height
       properties:
         documentId:
           description: "optional Document Identifier (Version 4 UUID), if skipped\
@@ -12400,6 +12292,12 @@ components:
           $ref: '#/components/schemas/ChecksumType'
         checksum:
           description: The checksum value to validate the file against
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12443,7 +12341,6 @@ components:
       type: object
     UpdateDocumentRequest:
       example:
-        path: path
         metadata:
         - values:
           - values
@@ -12470,11 +12367,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12499,11 +12398,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12515,6 +12416,21 @@ components:
             - values
             value: value
             key: key
+        isBase64: true
+        content: content
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        path: path
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -12539,7 +12455,6 @@ components:
           numberValue: 0.8008281904610115
           key: key
         contentType: contentType
-        isBase64: true
         actions:
         - queueId: queueId
           type: ANTIVIRUS
@@ -12581,21 +12496,16 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
-        content: content
-        tags:
-        - values:
-          - values
-          - values
-          value: value
-          key: key
-        - values:
-          - values
-          - values
-          value: value
-          key: key
+        height: height
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13048,11 +12958,13 @@ components:
           value: value
           key: key
         deepLinkPath: deepLinkPath
+        width: width
         checksumType: null
         checksum: checksum
         contentType: contentType
         isBase64: true
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -13067,6 +12979,12 @@ components:
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13308,6 +13226,7 @@ components:
           path: path
           insertedDate: insertedDate
           createdBy: createdBy
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13324,6 +13243,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
@@ -13333,6 +13253,7 @@ components:
           path: path
           insertedDate: insertedDate
           createdBy: createdBy
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13349,6 +13270,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         documents:
           description: List of search result documents
@@ -13367,6 +13289,7 @@ components:
         path: path
         insertedDate: insertedDate
         createdBy: createdBy
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -13383,6 +13306,7 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
@@ -13392,6 +13316,12 @@ components:
           type: string
         contentType:
           description: Document Content-Type
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13481,6 +13411,7 @@ components:
         path: path
         insertedDate: insertedDate
         createdBy: createdBy
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -13497,6 +13428,7 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
@@ -13509,6 +13441,12 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13651,12 +13589,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
           changes:
             key:
               newValue: newValue
@@ -13685,12 +13625,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
           changes:
             key:
               newValue: newValue
@@ -13742,12 +13684,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         changes:
           key:
             newValue: newValue
@@ -13824,6 +13768,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13841,6 +13786,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - matchedAttribute:
             stringValue: stringValue
             booleanValue: true
@@ -13878,6 +13824,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13895,6 +13842,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -13941,12 +13889,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
         - workflow:
             insertedDate: insertedDate
             name: name
@@ -13976,12 +13926,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
       properties:
         next:
           description: Next page of results token
@@ -14016,12 +13968,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -14042,12 +13996,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -14089,12 +14045,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         workflow:
           $ref: '#/components/schemas/WorkflowSummary'
@@ -14123,18 +14081,26 @@ components:
         path: path
         insertedDate: insertedDate
         s3version: s3version
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -14222,6 +14188,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -14239,6 +14206,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - matchedAttribute:
             stringValue: stringValue
             booleanValue: true
@@ -14276,6 +14244,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -14293,6 +14262,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -14345,6 +14315,7 @@ components:
         versionId: versionId
         folder: true
         insertedDate: insertedDate
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -14362,12 +14333,19 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -15279,12 +15257,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -15305,12 +15285,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -16573,12 +16555,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -16599,12 +16583,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -17059,6 +17045,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17073,6 +17060,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17098,6 +17086,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -17140,6 +17134,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17154,6 +17149,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17179,6 +17175,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -17221,6 +17223,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17235,6 +17238,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17260,6 +17264,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -19945,100 +19955,6 @@ components:
             type: string
           type: array
       type: object
-    OnlyOfficeDocumentNewRequest:
-      description: ONLYOFFICE New Document Request
-      example:
-        extension: DOCX
-      properties:
-        extension:
-          enum:
-          - DOCX
-          - XLSX
-          - PPTX
-          type: string
-    OnlyOfficeDocumentEditRequest:
-      description: ONLYOFFICE Edit Document Request
-    OnlyOfficeDocumentResponse:
-      example:
-        config:
-          onlyOfficeUrl: onlyOfficeUrl
-          editorConfig:
-            callbackUrl: callbackUrl
-          documentType: documentType
-          document:
-            title: title
-            url: url
-            key: key
-            fileType: fileType
-          token: token
-      properties:
-        config:
-          $ref: '#/components/schemas/OnlyOfficeConfig'
-      type: object
-    OnlyOfficeConfig:
-      example:
-        onlyOfficeUrl: onlyOfficeUrl
-        editorConfig:
-          callbackUrl: callbackUrl
-        documentType: documentType
-        document:
-          title: title
-          url: url
-          key: key
-          fileType: fileType
-        token: token
-      properties:
-        onlyOfficeUrl:
-          description: URL of the ONLYOFFICE application
-          type: string
-        token:
-          description: ONLYOFFICE security token
-          type: string
-        documentType:
-          description: Type of document (https://api.onlyoffice.com/editors/config/)
-          type: string
-        editorConfig:
-          $ref: '#/components/schemas/OnlyOfficeEditorConfig'
-        document:
-          $ref: '#/components/schemas/OnlyOfficeConfigDocument'
-      type: object
-    OnlyOfficeEditorConfig:
-      example:
-        callbackUrl: callbackUrl
-      properties:
-        callbackUrl:
-          type: string
-      type: object
-    OnlyOfficeConfigDocument:
-      example:
-        title: title
-        url: url
-        key: key
-        fileType: fileType
-      properties:
-        url:
-          description: Defines the absolute URL where the source viewed or edited
-            document is stored
-          type: string
-        title:
-          description: Defines the desired file name for the viewed or edited document
-          type: string
-        key:
-          description: Defines the unique document identifier used by the service
-            to recognize the document
-          type: string
-        fileType:
-          description: Defines the type of the file for the source viewed or edited
-            document
-          type: string
-      type: object
-    OnlyOfficeDocumentSaveResponse:
-      example:
-        message: message
-      properties:
-        message:
-          type: string
-      type: object
     DocusignEnvironment:
       description: Docusign Environment
       enum:
@@ -20615,20 +20531,6 @@ components:
     ocrObjectsLambdaApi200:
       uri:
         Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${OcrApiRequestsArn}/invocations"
-      responses:
-        default:
-          statusCode: "200"
-          responseParameters:
-            method.response.header.Access-Control-Allow-Methods: '''*'''
-            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
-            method.response.header.Access-Control-Allow-Origin: '''*'''
-      passthroughBehavior: when_no_templates
-      httpMethod: POST
-      type: aws_proxy
-      payloadFormatVersion: "1.0"
-    onlyOfficeLambdaApi200:
-      uri:
-        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"

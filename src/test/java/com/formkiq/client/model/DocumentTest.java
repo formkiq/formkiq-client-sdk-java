@@ -65,6 +65,22 @@ public class DocumentTest {
   }
 
   /**
+   * Test the property 'width'
+   */
+  @Test
+  public void widthTest() {
+    // TODO: test width
+  }
+
+  /**
+   * Test the property 'height'
+   */
+  @Test
+  public void heightTest() {
+    // TODO: test height
+  }
+
+  /**
    * Test the property 'deepLinkPath'
    */
   @Test

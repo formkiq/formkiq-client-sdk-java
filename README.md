@@ -297,9 +297,6 @@ Class | Method | HTTP request | Description
 *MappingsApi* | [**getMapping**](docs/MappingsApi.md#getMapping) | **GET** /mappings/{mappingId} | Get Mapping
 *MappingsApi* | [**getMappings**](docs/MappingsApi.md#getMappings) | **GET** /mappings | Get Mappings
 *MappingsApi* | [**setMapping**](docs/MappingsApi.md#setMapping) | **PUT** /mappings/{mappingId} | Set Mapping
-*OnlyofficeApi* | [**onlyOfficeDocumentEdit**](docs/OnlyofficeApi.md#onlyOfficeDocumentEdit) | **POST** /onlyoffice/{documentId}/edit | Edit onlyoffice document
-*OnlyofficeApi* | [**onlyOfficeDocumentNew**](docs/OnlyofficeApi.md#onlyOfficeDocumentNew) | **POST** /onlyoffice/new | Create onlyoffice document
-*OnlyofficeApi* | [**onlyOfficeDocumentSave**](docs/OnlyofficeApi.md#onlyOfficeDocumentSave) | **POST** /onlyoffice/{documentId}/save | Save onlyoffice document
 *PublicApi* | [**publicAddDocument**](docs/PublicApi.md#publicAddDocument) | **POST** /public/documents | Public add document
 *PublicApi* | [**publicAddWebhook**](docs/PublicApi.md#publicAddWebhook) | **POST** /public/webhooks/{webhooks+} | Public add webhook
 *ReindexApi* | [**addReindexDocument**](docs/ReindexApi.md#addReindexDocument) | **POST** /reindex/documents/{documentId} | Reindex metadata on a document
@@ -620,12 +617,6 @@ Class | Method | HTTP request | Description
  - [OcrOutputType](docs/OcrOutputType.md)
  - [OcrTable](docs/OcrTable.md)
  - [OcrTableData](docs/OcrTableData.md)
- - [OnlyOfficeConfig](docs/OnlyOfficeConfig.md)
- - [OnlyOfficeConfigDocument](docs/OnlyOfficeConfigDocument.md)
- - [OnlyOfficeDocumentNewRequest](docs/OnlyOfficeDocumentNewRequest.md)
- - [OnlyOfficeDocumentResponse](docs/OnlyOfficeDocumentResponse.md)
- - [OnlyOfficeDocumentSaveResponse](docs/OnlyOfficeDocumentSaveResponse.md)
- - [OnlyOfficeEditorConfig](docs/OnlyOfficeEditorConfig.md)
  - [OpaPolicy](docs/OpaPolicy.md)
  - [OpaPolicyAttribute](docs/OpaPolicyAttribute.md)
  - [OpaPolicyAttributeEq](docs/OpaPolicyAttributeEq.md)

@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-02-02T21:52:16.069898-06:00[America/Winnipeg]",
+    date = "2025-02-07T10:22:35.382171-06:00[America/Winnipeg]",
     comments = "Generator version: 7.11.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";

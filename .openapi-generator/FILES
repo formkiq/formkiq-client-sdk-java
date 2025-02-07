@@ -280,13 +280,6 @@ docs/OcrKeyValues.md
 docs/OcrOutputType.md
 docs/OcrTable.md
 docs/OcrTableData.md
-docs/OnlyOfficeConfig.md
-docs/OnlyOfficeConfigDocument.md
-docs/OnlyOfficeDocumentNewRequest.md
-docs/OnlyOfficeDocumentResponse.md
-docs/OnlyOfficeDocumentSaveResponse.md
-docs/OnlyOfficeEditorConfig.md
-docs/OnlyofficeApi.md
 docs/OpaPolicy.md
 docs/OpaPolicyAttribute.md
 docs/OpaPolicyAttributeEq.md
@@ -434,7 +427,6 @@ src/main/java/com/formkiq/client/api/ESignatureApi.java
 src/main/java/com/formkiq/client/api/ExamineObjectsApi.java
 src/main/java/com/formkiq/client/api/GoogleIntegrationApi.java
 src/main/java/com/formkiq/client/api/MappingsApi.java
-src/main/java/com/formkiq/client/api/OnlyofficeApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
 src/main/java/com/formkiq/client/api/ReindexApi.java
 src/main/java/com/formkiq/client/api/RulesetsApi.java
@@ -721,12 +713,6 @@ src/main/java/com/formkiq/client/model/OcrKeyValues.java
 src/main/java/com/formkiq/client/model/OcrOutputType.java
 src/main/java/com/formkiq/client/model/OcrTable.java
 src/main/java/com/formkiq/client/model/OcrTableData.java
-src/main/java/com/formkiq/client/model/OnlyOfficeConfig.java
-src/main/java/com/formkiq/client/model/OnlyOfficeConfigDocument.java
-src/main/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequest.java
-src/main/java/com/formkiq/client/model/OnlyOfficeDocumentResponse.java
-src/main/java/com/formkiq/client/model/OnlyOfficeDocumentSaveResponse.java
-src/main/java/com/formkiq/client/model/OnlyOfficeEditorConfig.java
 src/main/java/com/formkiq/client/model/OpaPolicy.java
 src/main/java/com/formkiq/client/model/OpaPolicyAttribute.java
 src/main/java/com/formkiq/client/model/OpaPolicyAttributeEq.java
@@ -856,7 +842,6 @@ src/test/java/com/formkiq/client/api/ESignatureApiTest.java
 src/test/java/com/formkiq/client/api/ExamineObjectsApiTest.java
 src/test/java/com/formkiq/client/api/GoogleIntegrationApiTest.java
 src/test/java/com/formkiq/client/api/MappingsApiTest.java
-src/test/java/com/formkiq/client/api/OnlyofficeApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
 src/test/java/com/formkiq/client/api/ReindexApiTest.java
 src/test/java/com/formkiq/client/api/RulesetsApiTest.java
@@ -1120,12 +1105,6 @@ src/test/java/com/formkiq/client/model/OcrKeyValuesTest.java
 src/test/java/com/formkiq/client/model/OcrOutputTypeTest.java
 src/test/java/com/formkiq/client/model/OcrTableDataTest.java
 src/test/java/com/formkiq/client/model/OcrTableTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeConfigDocumentTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeConfigTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeDocumentNewRequestTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeDocumentResponseTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeDocumentSaveResponseTest.java
-src/test/java/com/formkiq/client/model/OnlyOfficeEditorConfigTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeEqTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeGtTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyAttributeGteTest.java
