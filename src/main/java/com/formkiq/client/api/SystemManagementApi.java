@@ -36,18 +36,23 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
+import com.formkiq.client.model.AddLocaleResourceItemRequest;
+import com.formkiq.client.model.AddLocaleResourceItemResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
+import com.formkiq.client.model.GetLocaleResourceItemResponse;
+import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
 import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
+import com.formkiq.client.model.SetLocaleResourceItemRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetResponse;
@@ -288,6 +293,215 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = addApiKeyValidateBeforeCall(siteId, addApiKeyRequest, _callback);
     Type localVarReturnType = new TypeToken<AddApiKeyResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addLocaleResourceItem
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param addLocaleResourceItemRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addLocaleResourceItemCall(String siteId, String locale,
+      AddLocaleResourceItemRequest addLocaleResourceItemRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addLocaleResourceItemRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/locales/{locale}/resourceItems"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "locale" + "}", localVarApiClient.escapeString(locale.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addLocaleResourceItemValidateBeforeCall(String siteId, String locale,
+      AddLocaleResourceItemRequest addLocaleResourceItemRequest, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling addLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'locale' is set
+    if (locale == null) {
+      throw new ApiException(
+          "Missing the required parameter 'locale' when calling addLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'addLocaleResourceItemRequest' is set
+    if (addLocaleResourceItemRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addLocaleResourceItemRequest' when calling addLocaleResourceItem(Async)");
+    }
+
+    return addLocaleResourceItemCall(siteId, locale, addLocaleResourceItemRequest, _callback);
+
+  }
+
+  /**
+   * Add Locale Resource Item Add a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param addLocaleResourceItemRequest (required)
+   * @return AddLocaleResourceItemResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddLocaleResourceItemResponse addLocaleResourceItem(String siteId, String locale,
+      AddLocaleResourceItemRequest addLocaleResourceItemRequest) throws ApiException {
+    ApiResponse<AddLocaleResourceItemResponse> localVarResp =
+        addLocaleResourceItemWithHttpInfo(siteId, locale, addLocaleResourceItemRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add Locale Resource Item Add a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param addLocaleResourceItemRequest (required)
+   * @return ApiResponse&lt;AddLocaleResourceItemResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddLocaleResourceItemResponse> addLocaleResourceItemWithHttpInfo(String siteId,
+      String locale, AddLocaleResourceItemRequest addLocaleResourceItemRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        addLocaleResourceItemValidateBeforeCall(siteId, locale, addLocaleResourceItemRequest, null);
+    Type localVarReturnType = new TypeToken<AddLocaleResourceItemResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add Locale Resource Item (asynchronously) Add a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param addLocaleResourceItemRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addLocaleResourceItemAsync(String siteId, String locale,
+      AddLocaleResourceItemRequest addLocaleResourceItemRequest,
+      final ApiCallback<AddLocaleResourceItemResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = addLocaleResourceItemValidateBeforeCall(siteId, locale,
+        addLocaleResourceItemRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddLocaleResourceItemResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -678,6 +892,212 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = deleteApiKeyValidateBeforeCall(siteId, apiKey, _callback);
     Type localVarReturnType = new TypeToken<DeleteApiKeyResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteLocaleResourceItem
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteLocaleResourceItemCall(String siteId, String locale, String itemKey,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/locales/{locale}/resourceItems/{itemKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "locale" + "}", localVarApiClient.escapeString(locale.toString()))
+        .replace("{" + "itemKey" + "}", localVarApiClient.escapeString(itemKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteLocaleResourceItemValidateBeforeCall(String siteId, String locale,
+      String itemKey, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'locale' is set
+    if (locale == null) {
+      throw new ApiException(
+          "Missing the required parameter 'locale' when calling deleteLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'itemKey' is set
+    if (itemKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'itemKey' when calling deleteLocaleResourceItem(Async)");
+    }
+
+    return deleteLocaleResourceItemCall(siteId, locale, itemKey, _callback);
+
+  }
+
+  /**
+   * Delete Local Resource Item Delete Local Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deleteLocaleResourceItem(String siteId, String locale, String itemKey)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteLocaleResourceItemWithHttpInfo(siteId, locale, itemKey);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Delete Local Resource Item Delete Local Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deleteLocaleResourceItemWithHttpInfo(String siteId,
+      String locale, String itemKey) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Delete Local Resource Item (asynchronously) Delete Local Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteLocaleResourceItemAsync(String siteId, String locale, String itemKey,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1426,6 +1846,424 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = getConfigurationValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetConfigurationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getLocaleResourceItem
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getLocaleResourceItemCall(String siteId, String locale, String itemKey,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/locales/{locale}/resourceItems/{itemKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "locale" + "}", localVarApiClient.escapeString(locale.toString()))
+        .replace("{" + "itemKey" + "}", localVarApiClient.escapeString(itemKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getLocaleResourceItemValidateBeforeCall(String siteId, String locale,
+      String itemKey, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'locale' is set
+    if (locale == null) {
+      throw new ApiException(
+          "Missing the required parameter 'locale' when calling getLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'itemKey' is set
+    if (itemKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'itemKey' when calling getLocaleResourceItem(Async)");
+    }
+
+    return getLocaleResourceItemCall(siteId, locale, itemKey, _callback);
+
+  }
+
+  /**
+   * Get Resource Item by Locale Returns the resource item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @return GetLocaleResourceItemResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetLocaleResourceItemResponse getLocaleResourceItem(String siteId, String locale,
+      String itemKey) throws ApiException {
+    ApiResponse<GetLocaleResourceItemResponse> localVarResp =
+        getLocaleResourceItemWithHttpInfo(siteId, locale, itemKey);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Resource Item by Locale Returns the resource item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @return ApiResponse&lt;GetLocaleResourceItemResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetLocaleResourceItemResponse> getLocaleResourceItemWithHttpInfo(String siteId,
+      String locale, String itemKey) throws ApiException {
+    okhttp3.Call localVarCall =
+        getLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey, null);
+    Type localVarReturnType = new TypeToken<GetLocaleResourceItemResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Resource Item by Locale (asynchronously) Returns the resource item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getLocaleResourceItemAsync(String siteId, String locale, String itemKey,
+      final ApiCallback<GetLocaleResourceItemResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey, _callback);
+    Type localVarReturnType = new TypeToken<GetLocaleResourceItemResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getLocaleResourceItems
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getLocaleResourceItemsCall(String siteId, String locale, String next,
+      String limit, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/locales/{locale}/resourceItems"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "locale" + "}", localVarApiClient.escapeString(locale.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getLocaleResourceItemsValidateBeforeCall(String siteId, String locale,
+      String next, String limit, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getLocaleResourceItems(Async)");
+    }
+
+    // verify the required parameter 'locale' is set
+    if (locale == null) {
+      throw new ApiException(
+          "Missing the required parameter 'locale' when calling getLocaleResourceItems(Async)");
+    }
+
+    return getLocaleResourceItemsCall(siteId, locale, next, limit, _callback);
+
+  }
+
+  /**
+   * Get Resource Items by Locale Returns the list resource items
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return GetLocaleResourceItemsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetLocaleResourceItemsResponse getLocaleResourceItems(String siteId, String locale,
+      String next, String limit) throws ApiException {
+    ApiResponse<GetLocaleResourceItemsResponse> localVarResp =
+        getLocaleResourceItemsWithHttpInfo(siteId, locale, next, limit);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Resource Items by Locale Returns the list resource items
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @return ApiResponse&lt;GetLocaleResourceItemsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetLocaleResourceItemsResponse> getLocaleResourceItemsWithHttpInfo(
+      String siteId, String locale, String next, String limit) throws ApiException {
+    okhttp3.Call localVarCall =
+        getLocaleResourceItemsValidateBeforeCall(siteId, locale, next, limit, null);
+    Type localVarReturnType = new TypeToken<GetLocaleResourceItemsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Resource Items by Locale (asynchronously) Returns the list resource items
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param next Next page of results token (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getLocaleResourceItemsAsync(String siteId, String locale, String next,
+      String limit, final ApiCallback<GetLocaleResourceItemsResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getLocaleResourceItemsValidateBeforeCall(siteId, locale, next, limit, _callback);
+    Type localVarReturnType = new TypeToken<GetLocaleResourceItemsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -2330,6 +3168,227 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = getVersionValidateBeforeCall(_callback);
     Type localVarReturnType = new TypeToken<GetVersionResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setLocaleResourceItem
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param setLocaleResourceItemRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setLocaleResourceItemCall(String siteId, String locale, String itemKey,
+      SetLocaleResourceItemRequest setLocaleResourceItemRequest, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setLocaleResourceItemRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/locales/{locale}/resourceItems/{itemKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
+        .replace("{" + "locale" + "}", localVarApiClient.escapeString(locale.toString()))
+        .replace("{" + "itemKey" + "}", localVarApiClient.escapeString(itemKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setLocaleResourceItemValidateBeforeCall(String siteId, String locale,
+      String itemKey, SetLocaleResourceItemRequest setLocaleResourceItemRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'locale' is set
+    if (locale == null) {
+      throw new ApiException(
+          "Missing the required parameter 'locale' when calling setLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'itemKey' is set
+    if (itemKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'itemKey' when calling setLocaleResourceItem(Async)");
+    }
+
+    // verify the required parameter 'setLocaleResourceItemRequest' is set
+    if (setLocaleResourceItemRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setLocaleResourceItemRequest' when calling setLocaleResourceItem(Async)");
+    }
+
+    return setLocaleResourceItemCall(siteId, locale, itemKey, setLocaleResourceItemRequest,
+        _callback);
+
+  }
+
+  /**
+   * Set Locale Resource Item Set a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param setLocaleResourceItemRequest (required)
+   * @return SetResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetResponse setLocaleResourceItem(String siteId, String locale, String itemKey,
+      SetLocaleResourceItemRequest setLocaleResourceItemRequest) throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setLocaleResourceItemWithHttpInfo(siteId, locale, itemKey, setLocaleResourceItemRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set Locale Resource Item Set a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param setLocaleResourceItemRequest (required)
+   * @return ApiResponse&lt;SetResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetResponse> setLocaleResourceItemWithHttpInfo(String siteId, String locale,
+      String itemKey, SetLocaleResourceItemRequest setLocaleResourceItemRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall = setLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey,
+        setLocaleResourceItemRequest, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set Locale Resource Item (asynchronously) Set a new Locale Resource Item
+   * 
+   * @param siteId Site Identifier (required)
+   * @param locale Site Locale (follows ISO 3166) (required)
+   * @param itemKey Item Key (MUST be URL‑encoded) (required)
+   * @param setLocaleResourceItemRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setLocaleResourceItemAsync(String siteId, String locale, String itemKey,
+      SetLocaleResourceItemRequest setLocaleResourceItemRequest,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = setLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey,
+        setLocaleResourceItemRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

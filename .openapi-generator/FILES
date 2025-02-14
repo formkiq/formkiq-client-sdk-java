@@ -58,6 +58,8 @@ docs/AddGoogleDocumentExportRequest.md
 docs/AddGoogleDocumentExportResponse.md
 docs/AddGroup.md
 docs/AddGroupRequest.md
+docs/AddLocaleResourceItemRequest.md
+docs/AddLocaleResourceItemResponse.md
 docs/AddMapping.md
 docs/AddMappingRequest.md
 docs/AddMappingResponse.md
@@ -224,6 +226,8 @@ docs/GetExaminePdfUrlResponse.md
 docs/GetFoldersResponse.md
 docs/GetGroupResponse.md
 docs/GetGroupsResponse.md
+docs/GetLocaleResourceItemResponse.md
+docs/GetLocaleResourceItemsResponse.md
 docs/GetMappingResponse.md
 docs/GetMappingsResponse.md
 docs/GetOpaAccessPoliciesResponse.md
@@ -264,6 +268,10 @@ docs/IndexSearch.md
 docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
 docs/Locale.md
+docs/LocaleResourceClassificationItem.md
+docs/LocaleResourceInterfaceItem.md
+docs/LocaleResourceSchemaItem.md
+docs/LocaleResourceType.md
 docs/Mapping.md
 docs/MappingAttribute.md
 docs/MappingAttributeLabelMatchingType.md
@@ -299,6 +307,7 @@ docs/QueryFulltextResponse.md
 docs/Queue.md
 docs/ReindexApi.md
 docs/ReindexTarget.md
+docs/ResourceItem.md
 docs/Rule.md
 docs/RuleCondition.md
 docs/RuleConditionAttribute.md
@@ -326,6 +335,7 @@ docs/SetDocumentTagKeyRequest.md
 docs/SetDocumentVersionRequest.md
 docs/SetDocumentVersionResponse.md
 docs/SetGroupPermissionsRequest.md
+docs/SetLocaleResourceItemRequest.md
 docs/SetMappingRequest.md
 docs/SetOpaAccessPolicyItemsRequest.md
 docs/SetOpenSearchIndexRequest.md
@@ -511,6 +521,8 @@ src/main/java/com/formkiq/client/model/AddGoogleDocumentExportRequest.java
 src/main/java/com/formkiq/client/model/AddGoogleDocumentExportResponse.java
 src/main/java/com/formkiq/client/model/AddGroup.java
 src/main/java/com/formkiq/client/model/AddGroupRequest.java
+src/main/java/com/formkiq/client/model/AddLocaleResourceItemRequest.java
+src/main/java/com/formkiq/client/model/AddLocaleResourceItemResponse.java
 src/main/java/com/formkiq/client/model/AddMapping.java
 src/main/java/com/formkiq/client/model/AddMappingRequest.java
 src/main/java/com/formkiq/client/model/AddMappingResponse.java
@@ -659,6 +671,8 @@ src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
 src/main/java/com/formkiq/client/model/GetFoldersResponse.java
 src/main/java/com/formkiq/client/model/GetGroupResponse.java
 src/main/java/com/formkiq/client/model/GetGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetLocaleResourceItemResponse.java
+src/main/java/com/formkiq/client/model/GetLocaleResourceItemsResponse.java
 src/main/java/com/formkiq/client/model/GetMappingResponse.java
 src/main/java/com/formkiq/client/model/GetMappingsResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPoliciesResponse.java
@@ -698,6 +712,10 @@ src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
 src/main/java/com/formkiq/client/model/Locale.java
+src/main/java/com/formkiq/client/model/LocaleResourceClassificationItem.java
+src/main/java/com/formkiq/client/model/LocaleResourceInterfaceItem.java
+src/main/java/com/formkiq/client/model/LocaleResourceSchemaItem.java
+src/main/java/com/formkiq/client/model/LocaleResourceType.java
 src/main/java/com/formkiq/client/model/Mapping.java
 src/main/java/com/formkiq/client/model/MappingAttribute.java
 src/main/java/com/formkiq/client/model/MappingAttributeLabelMatchingType.java
@@ -730,6 +748,7 @@ src/main/java/com/formkiq/client/model/PdfDocumentField.java
 src/main/java/com/formkiq/client/model/QueryFulltextResponse.java
 src/main/java/com/formkiq/client/model/Queue.java
 src/main/java/com/formkiq/client/model/ReindexTarget.java
+src/main/java/com/formkiq/client/model/ResourceItem.java
 src/main/java/com/formkiq/client/model/Rule.java
 src/main/java/com/formkiq/client/model/RuleCondition.java
 src/main/java/com/formkiq/client/model/RuleConditionAttribute.java
@@ -755,6 +774,7 @@ src/main/java/com/formkiq/client/model/SetDocumentTagKeyRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionRequest.java
 src/main/java/com/formkiq/client/model/SetDocumentVersionResponse.java
 src/main/java/com/formkiq/client/model/SetGroupPermissionsRequest.java
+src/main/java/com/formkiq/client/model/SetLocaleResourceItemRequest.java
 src/main/java/com/formkiq/client/model/SetMappingRequest.java
 src/main/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexRequest.java
@@ -903,6 +923,8 @@ src/test/java/com/formkiq/client/model/AddGoogleDocumentExportRequestTest.java
 src/test/java/com/formkiq/client/model/AddGoogleDocumentExportResponseTest.java
 src/test/java/com/formkiq/client/model/AddGroupRequestTest.java
 src/test/java/com/formkiq/client/model/AddGroupTest.java
+src/test/java/com/formkiq/client/model/AddLocaleResourceItemRequestTest.java
+src/test/java/com/formkiq/client/model/AddLocaleResourceItemResponseTest.java
 src/test/java/com/formkiq/client/model/AddMappingRequestTest.java
 src/test/java/com/formkiq/client/model/AddMappingResponseTest.java
 src/test/java/com/formkiq/client/model/AddMappingTest.java
@@ -1051,6 +1073,8 @@ src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
 src/test/java/com/formkiq/client/model/GetFoldersResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupResponseTest.java
 src/test/java/com/formkiq/client/model/GetGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetLocaleResourceItemResponseTest.java
+src/test/java/com/formkiq/client/model/GetLocaleResourceItemsResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPoliciesResponseTest.java
@@ -1089,6 +1113,10 @@ src/test/java/com/formkiq/client/model/IndexFolderMoveResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
+src/test/java/com/formkiq/client/model/LocaleResourceClassificationItemTest.java
+src/test/java/com/formkiq/client/model/LocaleResourceInterfaceItemTest.java
+src/test/java/com/formkiq/client/model/LocaleResourceSchemaItemTest.java
+src/test/java/com/formkiq/client/model/LocaleResourceTypeTest.java
 src/test/java/com/formkiq/client/model/LocaleTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeLabelMatchingTypeTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeMetadataFieldTest.java
@@ -1122,6 +1150,7 @@ src/test/java/com/formkiq/client/model/PdfDocumentTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/QueueTest.java
 src/test/java/com/formkiq/client/model/ReindexTargetTest.java
+src/test/java/com/formkiq/client/model/ResourceItemTest.java
 src/test/java/com/formkiq/client/model/RuleConditionAttributeTest.java
 src/test/java/com/formkiq/client/model/RuleConditionCriterionTest.java
 src/test/java/com/formkiq/client/model/RuleConditionMustTest.java
@@ -1147,6 +1176,7 @@ src/test/java/com/formkiq/client/model/SetDocumentTagKeyRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionRequestTest.java
 src/test/java/com/formkiq/client/model/SetDocumentVersionResponseTest.java
 src/test/java/com/formkiq/client/model/SetGroupPermissionsRequestTest.java
+src/test/java/com/formkiq/client/model/SetLocaleResourceItemRequestTest.java
 src/test/java/com/formkiq/client/model/SetMappingRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexRequestTest.java

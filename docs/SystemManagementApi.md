@@ -5,17 +5,22 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
+| [**addLocaleResourceItem**](SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item |
 | [**addSite**](SystemManagementApi.md#addSite) | **POST** /sites | Add Site |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key |
+| [**deleteLocaleResourceItem**](SystemManagementApi.md#deleteLocaleResourceItem) | **DELETE** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Delete Local Resource Item |
 | [**deleteOpensearchIndex**](SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index |
 | [**deleteSiteGroup**](SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys |
 | [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration |
+| [**getLocaleResourceItem**](SystemManagementApi.md#getLocaleResourceItem) | **GET** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Get Resource Item by Locale |
+| [**getLocaleResourceItems**](SystemManagementApi.md#getLocaleResourceItems) | **GET** /sites/{siteId}/locales/{locale}/resourceItems | Get Resource Items by Locale |
 | [**getOpensearchIndex**](SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
 | [**getSiteGroup**](SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site |
 | [**getSiteGroups**](SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
+| [**setLocaleResourceItem**](SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item |
 | [**setOpensearchIndex**](SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings |
 | [**setSiteGroupPermissions**](SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions |
 | [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration |
@@ -74,6 +79,75 @@ public class Example {
 ### Return type
 
 [**AddApiKeyResponse**](AddApiKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="addLocaleResourceItem"></a>
+# **addLocaleResourceItem**
+> AddLocaleResourceItemResponse addLocaleResourceItem(siteId, locale, addLocaleResourceItemRequest)
+
+Add Locale Resource Item
+
+Add a new Locale Resource Item
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (follows ISO 3166)
+    AddLocaleResourceItemRequest addLocaleResourceItemRequest = new AddLocaleResourceItemRequest(); // AddLocaleResourceItemRequest | 
+    try {
+      AddLocaleResourceItemResponse result = apiInstance.addLocaleResourceItem(siteId, locale, addLocaleResourceItemRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#addLocaleResourceItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (follows ISO 3166) | |
+| **addLocaleResourceItemRequest** | [**AddLocaleResourceItemRequest**](AddLocaleResourceItemRequest.md)|  | |
+
+### Return type
+
+[**AddLocaleResourceItemResponse**](AddLocaleResourceItemResponse.md)
 
 ### Authorization
 
@@ -207,6 +281,75 @@ public class Example {
 ### Return type
 
 [**DeleteApiKeyResponse**](DeleteApiKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteLocaleResourceItem"></a>
+# **deleteLocaleResourceItem**
+> DeleteResponse deleteLocaleResourceItem(siteId, locale, itemKey)
+
+Delete Local Resource Item
+
+Delete Local Resource Item
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (follows ISO 3166)
+    String itemKey = "itemKey_example"; // String | Item Key (MUST be URL‑encoded)
+    try {
+      DeleteResponse result = apiInstance.deleteLocaleResourceItem(siteId, locale, itemKey);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#deleteLocaleResourceItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (follows ISO 3166) | |
+| **itemKey** | **String**| Item Key (MUST be URL‑encoded) | |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -473,6 +616,146 @@ public class Example {
 ### Return type
 
 [**GetConfigurationResponse**](GetConfigurationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getLocaleResourceItem"></a>
+# **getLocaleResourceItem**
+> GetLocaleResourceItemResponse getLocaleResourceItem(siteId, locale, itemKey)
+
+Get Resource Item by Locale
+
+Returns the resource item
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (follows ISO 3166)
+    String itemKey = "itemKey_example"; // String | Item Key (MUST be URL‑encoded)
+    try {
+      GetLocaleResourceItemResponse result = apiInstance.getLocaleResourceItem(siteId, locale, itemKey);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getLocaleResourceItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (follows ISO 3166) | |
+| **itemKey** | **String**| Item Key (MUST be URL‑encoded) | |
+
+### Return type
+
+[**GetLocaleResourceItemResponse**](GetLocaleResourceItemResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getLocaleResourceItems"></a>
+# **getLocaleResourceItems**
+> GetLocaleResourceItemsResponse getLocaleResourceItems(siteId, locale, next, limit)
+
+Get Resource Items by Locale
+
+Returns the list resource items
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (follows ISO 3166)
+    String next = "next_example"; // String | Next page of results token
+    String limit = "10"; // String | Limit Results
+    try {
+      GetLocaleResourceItemsResponse result = apiInstance.getLocaleResourceItems(siteId, locale, next, limit);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getLocaleResourceItems");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (follows ISO 3166) | |
+| **next** | **String**| Next page of results token | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+
+### Return type
+
+[**GetLocaleResourceItemsResponse**](GetLocaleResourceItemsResponse.md)
 
 ### Authorization
 
@@ -804,6 +1087,77 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setLocaleResourceItem"></a>
+# **setLocaleResourceItem**
+> SetResponse setLocaleResourceItem(siteId, locale, itemKey, setLocaleResourceItemRequest)
+
+Set Locale Resource Item
+
+Set a new Locale Resource Item
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (follows ISO 3166)
+    String itemKey = "itemKey_example"; // String | Item Key (MUST be URL‑encoded)
+    SetLocaleResourceItemRequest setLocaleResourceItemRequest = new SetLocaleResourceItemRequest(); // SetLocaleResourceItemRequest | 
+    try {
+      SetResponse result = apiInstance.setLocaleResourceItem(siteId, locale, itemKey, setLocaleResourceItemRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#setLocaleResourceItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (follows ISO 3166) | |
+| **itemKey** | **String**| Item Key (MUST be URL‑encoded) | |
+| **setLocaleResourceItemRequest** | [**SetLocaleResourceItemRequest**](SetLocaleResourceItemRequest.md)|  | |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

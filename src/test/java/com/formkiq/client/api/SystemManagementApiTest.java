@@ -23,18 +23,23 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
+import com.formkiq.client.model.AddLocaleResourceItemRequest;
+import com.formkiq.client.model.AddLocaleResourceItemResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
+import com.formkiq.client.model.GetLocaleResourceItemResponse;
+import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
 import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
+import com.formkiq.client.model.SetLocaleResourceItemRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetResponse;
@@ -76,6 +81,23 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Add Locale Resource Item
+   *
+   * Add a new Locale Resource Item
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addLocaleResourceItemTest() throws ApiException {
+    String siteId = null;
+    String locale = null;
+    AddLocaleResourceItemRequest addLocaleResourceItemRequest = null;
+    AddLocaleResourceItemResponse response =
+        api.addLocaleResourceItem(siteId, locale, addLocaleResourceItemRequest);
+    // TODO: test validations
+  }
+
+  /**
    * Add Site
    *
    * Add Site
@@ -101,6 +123,22 @@ public class SystemManagementApiTest {
     String siteId = null;
     String apiKey = null;
     DeleteApiKeyResponse response = api.deleteApiKey(siteId, apiKey);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete Local Resource Item
+   *
+   * Delete Local Resource Item
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteLocaleResourceItemTest() throws ApiException {
+    String siteId = null;
+    String locale = null;
+    String itemKey = null;
+    DeleteResponse response = api.deleteLocaleResourceItem(siteId, locale, itemKey);
     // TODO: test validations
   }
 
@@ -160,6 +198,40 @@ public class SystemManagementApiTest {
   public void getConfigurationTest() throws ApiException {
     String siteId = null;
     GetConfigurationResponse response = api.getConfiguration(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Resource Item by Locale
+   *
+   * Returns the resource item
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getLocaleResourceItemTest() throws ApiException {
+    String siteId = null;
+    String locale = null;
+    String itemKey = null;
+    GetLocaleResourceItemResponse response = api.getLocaleResourceItem(siteId, locale, itemKey);
+    // TODO: test validations
+  }
+
+  /**
+   * Get Resource Items by Locale
+   *
+   * Returns the list resource items
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getLocaleResourceItemsTest() throws ApiException {
+    String siteId = null;
+    String locale = null;
+    String next = null;
+    String limit = null;
+    GetLocaleResourceItemsResponse response =
+        api.getLocaleResourceItems(siteId, locale, next, limit);
     // TODO: test validations
   }
 
@@ -230,6 +302,24 @@ public class SystemManagementApiTest {
   @Test
   public void getVersionTest() throws ApiException {
     GetVersionResponse response = api.getVersion();
+    // TODO: test validations
+  }
+
+  /**
+   * Set Locale Resource Item
+   *
+   * Set a new Locale Resource Item
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setLocaleResourceItemTest() throws ApiException {
+    String siteId = null;
+    String locale = null;
+    String itemKey = null;
+    SetLocaleResourceItemRequest setLocaleResourceItemRequest = null;
+    SetResponse response =
+        api.setLocaleResourceItem(siteId, locale, itemKey, setLocaleResourceItemRequest);
     // TODO: test validations
   }
 

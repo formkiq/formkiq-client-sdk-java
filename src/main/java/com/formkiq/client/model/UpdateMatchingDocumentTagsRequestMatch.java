@@ -57,7 +57,7 @@ import com.formkiq.client.invoker.JSON;
  * UpdateMatchingDocumentTagsRequestMatch
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-02-07T10:22:35.382171-06:00[America/Winnipeg]",
+    date = "2025-02-14T16:27:14.850371-06:00[America/Winnipeg]",
     comments = "Generator version: 7.11.0")
 public class UpdateMatchingDocumentTagsRequestMatch {
   public static final String SERIALIZED_NAME_TAG = "tag";

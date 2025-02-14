@@ -320,17 +320,22 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
+*SystemManagementApi* | [**addLocaleResourceItem**](docs/SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item
 *SystemManagementApi* | [**addSite**](docs/SystemManagementApi.md#addSite) | **POST** /sites | Add Site
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
+*SystemManagementApi* | [**deleteLocaleResourceItem**](docs/SystemManagementApi.md#deleteLocaleResourceItem) | **DELETE** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Delete Local Resource Item
 *SystemManagementApi* | [**deleteOpensearchIndex**](docs/SystemManagementApi.md#deleteOpensearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index
 *SystemManagementApi* | [**deleteSiteGroup**](docs/SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration
+*SystemManagementApi* | [**getLocaleResourceItem**](docs/SystemManagementApi.md#getLocaleResourceItem) | **GET** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Get Resource Item by Locale
+*SystemManagementApi* | [**getLocaleResourceItems**](docs/SystemManagementApi.md#getLocaleResourceItems) | **GET** /sites/{siteId}/locales/{locale}/resourceItems | Get Resource Items by Locale
 *SystemManagementApi* | [**getOpensearchIndex**](docs/SystemManagementApi.md#getOpensearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
+*SystemManagementApi* | [**setLocaleResourceItem**](docs/SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item
 *SystemManagementApi* | [**setOpensearchIndex**](docs/SystemManagementApi.md#setOpensearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
@@ -415,6 +420,8 @@ Class | Method | HTTP request | Description
  - [AddGoogleDocumentExportResponse](docs/AddGoogleDocumentExportResponse.md)
  - [AddGroup](docs/AddGroup.md)
  - [AddGroupRequest](docs/AddGroupRequest.md)
+ - [AddLocaleResourceItemRequest](docs/AddLocaleResourceItemRequest.md)
+ - [AddLocaleResourceItemResponse](docs/AddLocaleResourceItemResponse.md)
  - [AddMapping](docs/AddMapping.md)
  - [AddMappingRequest](docs/AddMappingRequest.md)
  - [AddMappingResponse](docs/AddMappingResponse.md)
@@ -563,6 +570,8 @@ Class | Method | HTTP request | Description
  - [GetFoldersResponse](docs/GetFoldersResponse.md)
  - [GetGroupResponse](docs/GetGroupResponse.md)
  - [GetGroupsResponse](docs/GetGroupsResponse.md)
+ - [GetLocaleResourceItemResponse](docs/GetLocaleResourceItemResponse.md)
+ - [GetLocaleResourceItemsResponse](docs/GetLocaleResourceItemsResponse.md)
  - [GetMappingResponse](docs/GetMappingResponse.md)
  - [GetMappingsResponse](docs/GetMappingsResponse.md)
  - [GetOpaAccessPoliciesResponse](docs/GetOpaAccessPoliciesResponse.md)
@@ -602,6 +611,10 @@ Class | Method | HTTP request | Description
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
  - [Locale](docs/Locale.md)
+ - [LocaleResourceClassificationItem](docs/LocaleResourceClassificationItem.md)
+ - [LocaleResourceInterfaceItem](docs/LocaleResourceInterfaceItem.md)
+ - [LocaleResourceSchemaItem](docs/LocaleResourceSchemaItem.md)
+ - [LocaleResourceType](docs/LocaleResourceType.md)
  - [Mapping](docs/Mapping.md)
  - [MappingAttribute](docs/MappingAttribute.md)
  - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)
@@ -634,6 +647,7 @@ Class | Method | HTTP request | Description
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
  - [ReindexTarget](docs/ReindexTarget.md)
+ - [ResourceItem](docs/ResourceItem.md)
  - [Rule](docs/Rule.md)
  - [RuleCondition](docs/RuleCondition.md)
  - [RuleConditionAttribute](docs/RuleConditionAttribute.md)
@@ -659,6 +673,7 @@ Class | Method | HTTP request | Description
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
  - [SetGroupPermissionsRequest](docs/SetGroupPermissionsRequest.md)
+ - [SetLocaleResourceItemRequest](docs/SetLocaleResourceItemRequest.md)
  - [SetMappingRequest](docs/SetMappingRequest.md)
  - [SetOpaAccessPolicyItemsRequest](docs/SetOpaAccessPolicyItemsRequest.md)
  - [SetOpenSearchIndexRequest](docs/SetOpenSearchIndexRequest.md)

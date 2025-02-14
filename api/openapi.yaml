@@ -1386,6 +1386,278 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /sites/{siteId}/locales/{locale}/resourceItems:
+    get:
+      description: Returns the list resource items
+      operationId: GetLocaleResourceItems
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (follows ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLocaleResourceItemsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Resource Items by Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add a new Locale Resource Item
+      operationId: AddLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (follows ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddLocaleResourceItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddLocaleResourceItemResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add Locale Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/locales/{locale}/resourceItems/{itemKey}:
+    delete:
+      description: Delete Local Resource Item
+      operationId: DeleteLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (follows ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Local Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns the resource item
+      operationId: GetLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (follows ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLocaleResourceItemResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Resource Item by Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Set a new Locale Resource Item
+      operationId: SetLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (follows ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLocaleResourceItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Set Locale Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /documents:
     get:
       description: "Returns a list of the most recent documents added, ordered by\
@@ -10050,6 +10322,24 @@ components:
       schema:
         type: string
       style: simple
+    localeParam:
+      description: Site Locale (follows ISO 3166)
+      explode: false
+      in: path
+      name: locale
+      required: true
+      schema:
+        type: string
+      style: simple
+    itemKeyParam:
+      description: Item Key (MUST be URL‑encoded)
+      explode: false
+      in: path
+      name: itemKey
+      required: true
+      schema:
+        type: string
+      style: simple
     idParam:
       description: Identifier
       explode: false
@@ -17591,6 +17881,112 @@ components:
         message:
           description: Result message
           type: string
+      type: object
+    ResourceItem:
+      oneOf:
+      - $ref: '#/components/schemas/LocaleResourceInterfaceItem'
+      - $ref: '#/components/schemas/LocaleResourceSchemaItem'
+      - $ref: '#/components/schemas/LocaleResourceClassificationItem'
+    LocaleResourceType:
+      description: Type of Locale Resource
+      enum:
+      - INTERFACE
+      - SCHEMA
+      - CLASSIFICATION
+      type: string
+    SetLocaleResourceItemRequest:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/ResourceItem'
+      type: object
+    AddLocaleResourceItemRequest:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/ResourceItem'
+      type: object
+    LocaleResourceInterfaceItem:
+      example:
+        itemType: INTERFACE
+        interfaceKey: interfaceKey
+        localizedValue: localizedValue
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        localizedValue:
+          description: Localized Value
+          type: string
+        interfaceKey:
+          description: Interface Key
+          type: string
+      type: object
+    LocaleResourceSchemaItem:
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        attributeKey:
+          description: Attribute Key
+          type: string
+        allowedValue:
+          description: Resource value
+          type: string
+      type: object
+    LocaleResourceClassificationItem:
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        classificationId:
+          description: Classification Id
+          type: string
+        attributeKey:
+          description: Attribute Key
+          type: string
+        allowedValue:
+          description: Resource value
+          type: string
+      type: object
+    AddLocaleResourceItemResponse:
+      example:
+        itemKey: itemKey
+      properties:
+        itemKey:
+          description: Item Key of resource
+          type: string
+      type: object
+    GetLocaleResourceItemsResponse:
+      example:
+        resourceItems:
+        - itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+        - itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItems:
+          description: List of permissions
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+          type: array
+      type: object
+    GetLocaleResourceItemResponse:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/ResourceItem'
       type: object
     AddApiKeyRequest:
       example:
