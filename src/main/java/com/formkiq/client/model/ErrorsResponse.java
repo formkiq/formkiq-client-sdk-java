@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * ErrorsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-01-10T23:07:47.624119-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.10.0")
+    date = "2025-03-12T17:15:14.870440-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.12.0")
 public class ErrorsResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
