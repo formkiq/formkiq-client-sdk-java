@@ -9,5 +9,7 @@
 
 * `FAILED` (value: `"FAILED"`)
 
+* `PENDING` (value: `"PENDING"`)
+
 
 

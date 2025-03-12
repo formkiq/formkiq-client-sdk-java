@@ -22,8 +22,8 @@
 
 | Name | Value |
 |---- | -----|
-| WRITE | &quot;READ_WRITE&quot; |
-| ONLY | &quot;READ_ONLY&quot; |
+| READ_WRITE | &quot;READ_WRITE&quot; |
+| READ_ONLY | &quot;READ_ONLY&quot; |
 
 
 

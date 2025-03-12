@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.16.1
+  version: 1.17.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -100,9 +100,6 @@ tags:
 - description: Webhooks API
   name: webhooks
   x-displayName: Webhooks
-- description: Onlyoffice API
-  name: onlyoffice
-  x-displayName: Onlyoffice
 - description: E-Signature API
   name: e-signature
   x-displayName: E-Signature
@@ -566,6 +563,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -658,6 +663,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -846,6 +859,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -955,6 +976,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1389,6 +1418,417 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /sites/{siteId}/locales:
+    get:
+      description: Returns a list of locale(s) in a specified site
+      operationId: GetLocales
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLocalesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Locales
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Adds a new locale to the specified site
+      operationId: AddLocale
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddLocaleRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/locales/{locale}:
+    delete:
+      description: Delete Locale
+      operationId: DeleteLocale
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /sites/{siteId}/locales/{locale}/resourceItems:
+    get:
+      description: Returns the list resource items
+      operationId: GetLocaleResourceItems
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLocaleResourceItemsResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Resource Items by Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Adds a new localized resource item for a given locale
+      operationId: AddLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddLocaleResourceItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddLocaleResourceItemResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add Locale Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/locales/{locale}/resourceItems/{itemKey}:
+    delete:
+      description: Delete Local Resource Item
+      operationId: DeleteLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Delete Local Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns the resource item
+      operationId: GetLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLocaleResourceItemResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Resource Item by Locale
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    put:
+      description: Set a new Locale Resource Item
+      operationId: SetLocaleResourceItem
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Site Locale (ISO 639 / ISO 3166)
+        explode: false
+        in: path
+        name: locale
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Item Key (MUST be URL‑encoded)
+        explode: false
+        in: path
+        name: itemKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLocaleResourceItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Set Locale Resource Item
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /documents:
     get:
       description: "Returns a list of the most recent documents added, ordered by\
@@ -1492,7 +1932,9 @@ paths:
       - application/json
     post:
       description: |-
-        Creates a new document; body may include document content if less than 5 MB
+        Creates a new document; body may include document content if less than 5 MB.
+
+        Returns a unique **documentId** used in subsequent operations.
 
         See POST /documents/{documentId}/tags for adding tags to document schema
 
@@ -1793,14 +2235,65 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /documents/{documentId}/purge:
+    delete:
+      description: "Remove all objects from the S3 bucket, including previous versions\
+        \ and current version, and should remove all metadata as well, so that no\
+        \ trace of the document exists outside of the audit logs and any backups.\
+        \ Can only be called be ADMIN or GOVERN."
+      operationId: PurgeDocument
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Purge document
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
   /documents/{documentId}/content:
     get:
-      description: |
-        Retrieves the content of the document with the specified `documentId`.
-        - If the content is plain text and under 6 MB, the content will be returned directly.
-        - If the content is plain text but exceeds 6 MB, an error will be returned.
-        - For documents not in plain text format, pre-signed S3 URLs will be returned to download the content from S3.
-        It is recommended to use the `/documents/{documentId}/url` endpoint to retrieve pre-signed S3 URLs for downloading the content.
+      description: "Retrieves the content of the document with the specified `documentId`.\n\
+        - If the content is plain text and under 6 MB, the content will be returned\
+        \ directly.\n- If the content is plain text but exceeds 6 MB, an error will\
+        \ be returned.\n- For documents not in plain text format, pre-signed S3 URLs\
+        \ will be returned to download the content from S3.\nIt is recommended to\
+        \ use the `/documents/{documentId}/url` endpoint to retrieve pre-signed S3\
+        \ URLs for downloading the content.\n\nIf the document has a Content-Type\
+        \ of text/, application/json, application/x-www-form-urlencoded the content\
+        \ field will be returned. \nAll other Content-Type, the contentUrl field will\
+        \ be returned, which is a S3 Presigned url.\n"
       operationId: GetDocumentContent
       parameters:
       - description: Site Identifier
@@ -2870,6 +3363,16 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: Allow the by pass of watermark (only allowed by GOVERN / ADMIN
+          permissions)
+        explode: true
+        in: query
+        name: bypassWatermark
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -2986,7 +3489,8 @@ paths:
       description: "Returns a URL that can be used to upload document content and\
         \ create a new document, while allowing metadata to also be sent; this endpoint\
         \ (whether GET or POST) is required in order to add content that is larger\
-        \ than 5 MB"
+        \ than 5 MB. The POST endpoint allow the adding of document metadata at the\
+        \ same time as the document is created."
       operationId: AddDocumentUpload
       parameters:
       - description: Site Identifier
@@ -6742,145 +7246,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /onlyoffice/{documentId}/edit:
-    post:
-      description: Provide ONLYOFFICE integration for editing documents; available
-        as an Add-On Module
-      operationId: OnlyOfficeDocumentEdit
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OnlyOfficeDocumentEditRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Edit onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /onlyoffice/new:
-    post:
-      description: Provide ONLYOFFICE integration for the creation of new documents;
-        available as an Add-On Module
-      operationId: OnlyOfficeDocumentNew
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OnlyOfficeDocumentNewRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      security:
-      - ApiAuthorization: []
-      summary: Create onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /onlyoffice/{documentId}/save:
-    post:
-      description: Save an updated document for ONLYOFFICE integration. available
-        as an Add-On Module
-      operationId: OnlyOfficeDocumentSave
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OnlyOfficeDocumentSaveResponse'
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: '#/components/headers/AccessControlAllowOrigin'
-            Access-Control-Allow-Methods:
-              $ref: '#/components/headers/AccessControlAllowMethods'
-            Access-Control-Allow-Headers:
-              $ref: '#/components/headers/AccessControlAllowHeaders'
-      summary: Save onlyoffice document
-      tags:
-      - Onlyoffice
-      x-amazon-apigateway-integration:
-        $ref: '#/components/x-amazon-apigateway-integrations/onlyOfficeLambdaApi200'
-      x-accepts:
-      - application/json
   /indices/{indexType}/move:
     post:
       description: Perform an Folder Index Move
@@ -10182,6 +10547,33 @@ components:
       schema:
         type: string
       style: simple
+    localeParam:
+      description: Site Locale (ISO 639 / ISO 3166)
+      explode: false
+      in: path
+      name: locale
+      required: true
+      schema:
+        type: string
+      style: simple
+    localeQueryParam:
+      description: Site Locale (ISO 639 / ISO 3166)
+      explode: true
+      in: query
+      name: locale
+      required: false
+      schema:
+        type: string
+      style: form
+    itemKeyParam:
+      description: Item Key (MUST be URL‑encoded)
+      explode: false
+      in: path
+      name: itemKey
+      required: true
+      schema:
+        type: string
+      style: simple
     idParam:
       description: Identifier
       explode: false
@@ -11463,45 +11855,57 @@ components:
         deepLinkPath: deepLinkPath
         lastModifiedDate: lastModifiedDate
         documents:
-        - path: path
-          versionId: versionId
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
+        - deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          path: path
+          versionId: versionId
+          insertedDate: insertedDate
+          width: width
           checksum: checksum
           documentId: documentId
           contentLength: 6
           contentType: contentType
-          userId: userId
-        - path: path
-          versionId: versionId
-          deepLinkPath: deepLinkPath
-          insertedDate: insertedDate
+          height: height
+        - deepLinkPath: deepLinkPath
           lastModifiedDate: lastModifiedDate
           belongsToDocumentId: belongsToDocumentId
+          userId: userId
+          path: path
+          versionId: versionId
+          insertedDate: insertedDate
+          width: width
           checksum: checksum
           documentId: documentId
           contentLength: 6
           contentType: contentType
-          userId: userId
+          height: height
         belongsToDocumentId: belongsToDocumentId
         userId: userId
         path: path
         versionId: versionId
         insertedDate: insertedDate
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -11550,20 +11954,28 @@ components:
       type: object
     ChildDocument:
       example:
-        path: path
-        versionId: versionId
         deepLinkPath: deepLinkPath
-        insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         belongsToDocumentId: belongsToDocumentId
+        userId: userId
+        path: path
+        versionId: versionId
+        insertedDate: insertedDate
+        width: width
         checksum: checksum
         documentId: documentId
         contentLength: 6
         contentType: contentType
-        userId: userId
+        height: height
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12108,6 +12520,7 @@ components:
       example:
         path: path
         deepLinkPath: deepLinkPath
+        width: width
         checksumType: SHA1
         checksum: checksum
         documentId: documentId
@@ -12174,6 +12587,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
+        height: height
         tags:
         - values:
           - values
@@ -12194,6 +12608,12 @@ components:
           type: string
         contentType:
           description: Document media type
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12253,11 +12673,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12282,11 +12704,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12314,6 +12738,7 @@ components:
         path: path
         checksumType: SHA1
         checksum: checksum
+        width: width
         documentId: documentId
         attributes:
         - numberValues:
@@ -12378,6 +12803,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
+        height: height
       properties:
         documentId:
           description: "optional Document Identifier (Version 4 UUID), if skipped\
@@ -12390,6 +12816,12 @@ components:
           $ref: '#/components/schemas/ChecksumType'
         checksum:
           description: The checksum value to validate the file against
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -12433,7 +12865,6 @@ components:
       type: object
     UpdateDocumentRequest:
       example:
-        path: path
         metadata:
         - values:
           - values
@@ -12460,11 +12891,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12489,11 +12922,13 @@ components:
             value: value
             key: key
           deepLinkPath: deepLinkPath
+          width: width
           checksumType: null
           checksum: checksum
           contentType: contentType
           isBase64: true
           content: content
+          height: height
           tags:
           - values:
             - values
@@ -12505,6 +12940,21 @@ components:
             - values
             value: value
             key: key
+        isBase64: true
+        content: content
+        tags:
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        - values:
+          - values
+          - values
+          value: value
+          key: key
+        path: path
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -12529,7 +12979,6 @@ components:
           numberValue: 0.8008281904610115
           key: key
         contentType: contentType
-        isBase64: true
         actions:
         - queueId: queueId
           type: ANTIVIRUS
@@ -12571,21 +13020,16 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             notificationHtml: notificationHtml
-        content: content
-        tags:
-        - values:
-          - values
-          - values
-          value: value
-          key: key
-        - values:
-          - values
-          - values
-          value: value
-          key: key
+        height: height
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13038,11 +13482,13 @@ components:
           value: value
           key: key
         deepLinkPath: deepLinkPath
+        width: width
         checksumType: null
         checksum: checksum
         contentType: contentType
         isBase64: true
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -13057,6 +13503,12 @@ components:
       properties:
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13298,6 +13750,7 @@ components:
           path: path
           insertedDate: insertedDate
           createdBy: createdBy
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13314,6 +13767,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - metadata:
             key: "{}"
           deepLinkPath: deepLinkPath
@@ -13323,6 +13777,7 @@ components:
           path: path
           insertedDate: insertedDate
           createdBy: createdBy
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13339,6 +13794,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         documents:
           description: List of search result documents
@@ -13357,6 +13813,7 @@ components:
         path: path
         insertedDate: insertedDate
         createdBy: createdBy
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -13373,6 +13830,7 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
@@ -13382,6 +13840,12 @@ components:
           type: string
         contentType:
           description: Document Content-Type
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13430,6 +13894,7 @@ components:
       - CLASSIFICATION
       - COMPOSITE_STRING
       - RELATIONSHIPS
+      - WATERMARK
       type: string
     FulltextAttribute:
       example:
@@ -13470,6 +13935,7 @@ components:
         path: path
         insertedDate: insertedDate
         createdBy: createdBy
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -13486,6 +13952,7 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
@@ -13498,6 +13965,12 @@ components:
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -13539,13 +14012,15 @@ components:
       example:
         next: next
         syncs:
-        - service: TYPESENSE
+        - insertedDate: insertedDate
+          service: TYPESENSE
           syncDate: syncDate
           type: METADATA
           message: message
           userId: userId
           status: COMPLETE
-        - service: TYPESENSE
+        - insertedDate: insertedDate
+          service: TYPESENSE
           syncDate: syncDate
           type: METADATA
           message: message
@@ -13558,7 +14033,7 @@ components:
         syncs:
           description: List of document syncs
           items:
-            $ref: '#/components/schemas/GetDocumentSync'
+            $ref: '#/components/schemas/DocumentSync'
           type: array
       type: object
     DocumentSyncService:
@@ -13566,22 +14041,26 @@ components:
       enum:
       - TYPESENSE
       - OPENSEARCH
+      - EVENTBRIDGE
       type: string
     DocumentSyncStatus:
       description: Status of Document Sync
       enum:
       - COMPLETE
       - FAILED
+      - PENDING
       type: string
     DocumentSyncType:
       description: Type of Document Sync
       enum:
       - METADATA
-      - TAG
       - CONTENT
+      - SOFT_DELETE
+      - DELETE
       type: string
-    GetDocumentSync:
+    DocumentSync:
       example:
+        insertedDate: insertedDate
         service: TYPESENSE
         syncDate: syncDate
         type: METADATA
@@ -13595,6 +14074,9 @@ components:
           $ref: '#/components/schemas/DocumentSyncStatus'
         type:
           $ref: '#/components/schemas/DocumentSyncType'
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
         syncDate:
           description: Timestamp of synchronization
           type: string
@@ -13631,12 +14113,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
           changes:
             key:
               newValue: newValue
@@ -13665,12 +14149,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
           changes:
             key:
               newValue: newValue
@@ -13722,12 +14208,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         changes:
           key:
             newValue: newValue
@@ -13804,6 +14292,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13821,6 +14310,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - matchedAttribute:
             stringValue: stringValue
             booleanValue: true
@@ -13858,6 +14348,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -13875,6 +14366,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -13921,12 +14413,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
         - workflow:
             insertedDate: insertedDate
             name: name
@@ -13956,12 +14450,14 @@ components:
             path: path
             insertedDate: insertedDate
             s3version: s3version
+            width: width
             checksum: checksum
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
             contentLength: 0
             contentType: contentType
+            height: height
       properties:
         next:
           description: Next page of results token
@@ -13996,12 +14492,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -14022,12 +14520,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -14069,12 +14569,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         workflow:
           $ref: '#/components/schemas/WorkflowSummary'
@@ -14103,18 +14605,26 @@ components:
         path: path
         insertedDate: insertedDate
         s3version: s3version
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
         contentLength: 0
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -14202,6 +14712,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -14219,6 +14730,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
         - matchedAttribute:
             stringValue: stringValue
             booleanValue: true
@@ -14256,6 +14768,7 @@ components:
           versionId: versionId
           folder: true
           insertedDate: insertedDate
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
@@ -14273,6 +14786,7 @@ components:
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -14325,6 +14839,7 @@ components:
         versionId: versionId
         folder: true
         insertedDate: insertedDate
+        width: width
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
@@ -14342,12 +14857,19 @@ components:
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
+        height: height
       properties:
         siteId:
           description: Site Identifier
           type: string
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -15259,12 +15781,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -15285,12 +15809,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -15913,8 +16439,7 @@ components:
         outputType: DOCX
         saveAsDocumentId: saveAsDocumentId
         locale:
-          country: country
-          language: language
+          locale: locale
       properties:
         locale:
           $ref: '#/components/schemas/Locale'
@@ -15974,19 +16499,6 @@ components:
           type: string
       required:
       - documentId
-      type: object
-    Locale:
-      example:
-        country: country
-        language: language
-      properties:
-        language:
-          description: "ISO 639-1 language code (eg: en (English), fr (French), de\
-            \ (German))"
-          type: string
-        country:
-          description: "ISO 3166-1 country code (eg: US, CA, DE, FR)"
-          type: string
       type: object
     DocumentGenerateOutputType:
       description: Document Generate Output Type
@@ -16389,16 +16901,32 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        localizedAllowedValues:
+          key: localizedAllowedValues
       properties:
         allowedValues:
           description: Attribute's allowed values
           items:
             type: string
           type: array
+        localizedAllowedValues:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     GetAttributeResponse:
       example:
         attribute:
+          watermark:
+            imageDocumentId: imageDocumentId
+            rotation: 0.8008281904610115
+            scale: FIT_BEST
+            text: text
+            position:
+              yOffset: 1.4658129805029452
+              xOffset: 6.027456183070403
+              yAnchor: TOP
+              xAnchor: LEFT
           dataType: STRING
           type: STANDARD
           key: key
@@ -16410,10 +16938,30 @@ components:
       example:
         next: next
         attributes:
-        - dataType: STRING
+        - watermark:
+            imageDocumentId: imageDocumentId
+            rotation: 0.8008281904610115
+            scale: FIT_BEST
+            text: text
+            position:
+              yOffset: 1.4658129805029452
+              xOffset: 6.027456183070403
+              yAnchor: TOP
+              xAnchor: LEFT
+          dataType: STRING
           type: STANDARD
           key: key
-        - dataType: STRING
+        - watermark:
+            imageDocumentId: imageDocumentId
+            rotation: 0.8008281904610115
+            scale: FIT_BEST
+            text: text
+            position:
+              yOffset: 1.4658129805029452
+              xOffset: 6.027456183070403
+              yAnchor: TOP
+              xAnchor: LEFT
+          dataType: STRING
           type: STANDARD
           key: key
       properties:
@@ -16428,6 +16976,16 @@ components:
       type: object
     Attribute:
       example:
+        watermark:
+          imageDocumentId: imageDocumentId
+          rotation: 0.8008281904610115
+          scale: FIT_BEST
+          text: text
+          position:
+            yOffset: 1.4658129805029452
+            xOffset: 6.027456183070403
+            yAnchor: TOP
+            xAnchor: LEFT
         dataType: STRING
         type: STANDARD
         key: key
@@ -16439,7 +16997,73 @@ components:
           type: string
         dataType:
           $ref: '#/components/schemas/AttributeDataType'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
       type: object
+    Watermark:
+      example:
+        imageDocumentId: imageDocumentId
+        rotation: 0.8008281904610115
+        scale: FIT_BEST
+        text: text
+        position:
+          yOffset: 1.4658129805029452
+          xOffset: 6.027456183070403
+          yAnchor: TOP
+          xAnchor: LEFT
+      properties:
+        text:
+          description: Watermark text
+          type: string
+        rotation:
+          description: Watermark Rotation
+          type: number
+        imageDocumentId:
+          description: Watermark Image Document Id
+          type: string
+        scale:
+          $ref: '#/components/schemas/WatermarkScale'
+        position:
+          $ref: '#/components/schemas/WatermarkPosition'
+      type: object
+    WatermarkPosition:
+      example:
+        yOffset: 1.4658129805029452
+        xOffset: 6.027456183070403
+        yAnchor: TOP
+        xAnchor: LEFT
+      properties:
+        xAnchor:
+          $ref: '#/components/schemas/WatermarkPositionXAnchor'
+        yAnchor:
+          $ref: '#/components/schemas/WatermarkPositionYAnchor'
+        xOffset:
+          description: X offset
+          type: number
+        yOffset:
+          description: Y offset
+          type: number
+      type: object
+    WatermarkScale:
+      description: Watermark Scale
+      enum:
+      - FIT_BEST
+      - ORIGINAL
+      type: string
+    WatermarkPositionXAnchor:
+      description: Watermark X Position Anchor
+      enum:
+      - LEFT
+      - RIGHT
+      - CENTER
+      type: string
+    WatermarkPositionYAnchor:
+      description: Watermark Y Position Anchor
+      enum:
+      - TOP
+      - BOTTOM
+      - CENTER
+      type: string
     AttributeType:
       default: STANDARD
       description: Type of Attribute
@@ -16456,10 +17080,21 @@ components:
       - BOOLEAN
       - KEY_ONLY
       - PUBLICATION
+      - WATERMARK
       type: string
     AddAttributeRequest:
       example:
         attribute:
+          watermark:
+            imageDocumentId: imageDocumentId
+            rotation: 0.8008281904610115
+            scale: FIT_BEST
+            text: text
+            position:
+              yOffset: 1.4658129805029452
+              xOffset: 6.027456183070403
+              yAnchor: TOP
+              xAnchor: LEFT
           dataType: STRING
           type: STANDARD
           key: key
@@ -16471,6 +17106,16 @@ components:
       type: object
     AddAttribute:
       example:
+        watermark:
+          imageDocumentId: imageDocumentId
+          rotation: 0.8008281904610115
+          scale: FIT_BEST
+          text: text
+          position:
+            yOffset: 1.4658129805029452
+            xOffset: 6.027456183070403
+            yAnchor: TOP
+            xAnchor: LEFT
         dataType: STRING
         type: STANDARD
         key: key
@@ -16482,6 +17127,8 @@ components:
           $ref: '#/components/schemas/AttributeDataType'
         type:
           $ref: '#/components/schemas/AttributeType'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
       required:
       - key
       type: object
@@ -16518,12 +17165,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
         - metadata:
           - values:
             - values
@@ -16544,12 +17193,14 @@ components:
           path: path
           insertedDate: insertedDate
           s3version: s3version
+          width: width
           checksum: checksum
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
           contentLength: 0
           contentType: contentType
+          height: height
       properties:
         next:
           description: Next page of results token
@@ -17004,6 +17655,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17018,6 +17670,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17043,6 +17696,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -17085,6 +17744,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17099,6 +17759,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17124,6 +17785,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -17166,6 +17833,7 @@ components:
         - contentUrls
         - contentUrls
         deepLinkPath: deepLinkPath
+        width: width
         checksum: checksum
         checksumType: SHA1
         attributes:
@@ -17180,6 +17848,7 @@ components:
             booleanValue: true
         contentType: contentType
         content: content
+        height: height
         tags:
         - values:
           - values
@@ -17205,6 +17874,12 @@ components:
           type: array
         path:
           description: Path or Name of document
+          type: string
+        width:
+          description: Document Content Width property
+          type: string
+        height:
+          description: Document Content Height property
           type: string
         deepLinkPath:
           description: Path or Name of deep link
@@ -17526,6 +18201,211 @@ components:
         message:
           description: Result message
           type: string
+      type: object
+    AddResourceItem:
+      oneOf:
+      - $ref: '#/components/schemas/AddLocaleResourceInterfaceItem'
+      - $ref: '#/components/schemas/AddLocaleResourceSchemaItem'
+      - $ref: '#/components/schemas/AddLocaleResourceClassificationItem'
+    ResourceItem:
+      example:
+        itemType: INTERFACE
+        interfaceKey: interfaceKey
+        attributeKey: attributeKey
+        allowedValue: allowedValue
+        localizedValue: localizedValue
+        classificationId: classificationId
+        itemKey: itemKey
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        localizedValue:
+          description: Localized Value
+          type: string
+        interfaceKey:
+          description: Interface Key
+          type: string
+        itemKey:
+          description: Item Key
+          type: string
+        attributeKey:
+          description: Attribute Key
+          type: string
+        allowedValue:
+          description: Resource value
+          type: string
+        classificationId:
+          description: Classification Id
+          type: string
+    LocaleResourceType:
+      description: Type of Locale Resource
+      enum:
+      - INTERFACE
+      - SCHEMA
+      - CLASSIFICATION
+      type: string
+    SetLocaleResourceItemRequest:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/AddResourceItem'
+      type: object
+    AddLocaleResourceItemRequest:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          localizedValue: localizedValue
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/AddResourceItem'
+      type: object
+    AddLocaleResourceInterfaceItem:
+      example:
+        itemType: INTERFACE
+        interfaceKey: interfaceKey
+        localizedValue: localizedValue
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        localizedValue:
+          description: Localized Value
+          type: string
+        interfaceKey:
+          description: Interface Key
+          type: string
+      required:
+      - interfaceKey
+      - itemType
+      - localizedValue
+      type: object
+    AddLocaleResourceSchemaItem:
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        attributeKey:
+          description: Attribute Key
+          type: string
+        allowedValue:
+          description: Resource value
+          type: string
+        localizedValue:
+          description: Localized Value
+          type: string
+      required:
+      - allowedValue
+      - attributeKey
+      - itemType
+      - localizedValue
+      type: object
+    AddLocaleResourceClassificationItem:
+      properties:
+        itemType:
+          $ref: '#/components/schemas/LocaleResourceType'
+        classificationId:
+          description: Classification Id
+          type: string
+        attributeKey:
+          description: Attribute Key
+          type: string
+        allowedValue:
+          description: Resource value
+          type: string
+        localizedValue:
+          description: Localized Value
+          type: string
+      required:
+      - allowedValue
+      - attributeKey
+      - classificationId
+      - itemType
+      - localizedValue
+      type: object
+    AddLocaleResourceItemResponse:
+      example:
+        itemKey: itemKey
+      properties:
+        itemKey:
+          description: Item Key of resource
+          type: string
+      type: object
+    Locale:
+      example:
+        locale: locale
+      properties:
+        locale:
+          description: Name of Locale
+          type: string
+      type: object
+    AddLocaleRequest:
+      example:
+        locale: locale
+      properties:
+        locale:
+          description: Name of Locale
+          type: string
+      type: object
+    GetLocalesResponse:
+      example:
+        next: next
+        locales:
+        - locale: locale
+        - locale: locale
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        locales:
+          description: List of Locale
+          items:
+            $ref: '#/components/schemas/Locale'
+          type: array
+      type: object
+    GetLocaleResourceItemsResponse:
+      example:
+        next: next
+        resourceItems:
+        - itemType: INTERFACE
+          interfaceKey: interfaceKey
+          attributeKey: attributeKey
+          allowedValue: allowedValue
+          localizedValue: localizedValue
+          classificationId: classificationId
+          itemKey: itemKey
+        - itemType: INTERFACE
+          interfaceKey: interfaceKey
+          attributeKey: attributeKey
+          allowedValue: allowedValue
+          localizedValue: localizedValue
+          classificationId: classificationId
+          itemKey: itemKey
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        resourceItems:
+          description: List of permissions
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+          type: array
+      type: object
+    GetLocaleResourceItemResponse:
+      example:
+        resourceItem:
+          itemType: INTERFACE
+          interfaceKey: interfaceKey
+          attributeKey: attributeKey
+          allowedValue: allowedValue
+          localizedValue: localizedValue
+          classificationId: classificationId
+          itemKey: itemKey
+      properties:
+        resourceItem:
+          $ref: '#/components/schemas/ResourceItem'
       type: object
     AddApiKeyRequest:
       example:
@@ -19378,28 +20258,44 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            maxNumberOfValues: 6.027456183070403
+            minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            maxNumberOfValues: 6.027456183070403
+            minNumberOfValues: 0.8008281904610115
       properties:
         name:
           description: Name of schema
@@ -19425,28 +20321,44 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              localizedAllowedValues:
+                key: localizedAllowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              localizedAllowedValues:
+                key: localizedAllowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              localizedAllowedValues:
+                key: localizedAllowedValues
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               attributeKey: attributeKey
+              maxNumberOfValues: 6.027456183070403
+              minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              localizedAllowedValues:
+                key: localizedAllowedValues
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               attributeKey: attributeKey
+              maxNumberOfValues: 6.027456183070403
+              minNumberOfValues: 0.8008281904610115
           userId: userId
       properties:
         classification:
@@ -19510,28 +20422,44 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            maxNumberOfValues: 6.027456183070403
+            minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            localizedAllowedValues:
+              key: localizedAllowedValues
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            maxNumberOfValues: 6.027456183070403
+            minNumberOfValues: 0.8008281904610115
         userId: userId
       properties:
         name:
@@ -19561,11 +20489,15 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
@@ -19574,7 +20506,9 @@ components:
             defaultValues:
             - defaultValues
             - defaultValues
+            maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
@@ -19582,13 +20516,15 @@ components:
             defaultValues:
             - defaultValues
             - defaultValues
+            maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            minNumberOfValues: 0.8008281904610115
       properties:
         name:
           description: Name of Classification
           type: string
         attributes:
-          $ref: '#/components/schemas/SchemaAttributes'
+          $ref: '#/components/schemas/SetSchemaAttributes'
       type: object
     SetClassificationRequest:
       example:
@@ -19607,11 +20543,15 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
@@ -19620,7 +20560,9 @@ components:
               defaultValues:
               - defaultValues
               - defaultValues
+              maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
@@ -19628,7 +20570,9 @@ components:
               defaultValues:
               - defaultValues
               - defaultValues
+              maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              minNumberOfValues: 0.8008281904610115
       properties:
         classification:
           $ref: '#/components/schemas/AddClassification'
@@ -19710,11 +20654,15 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
@@ -19723,7 +20671,9 @@ components:
               defaultValues:
               - defaultValues
               - defaultValues
+              maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
@@ -19731,7 +20681,9 @@ components:
               defaultValues:
               - defaultValues
               - defaultValues
+              maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              minNumberOfValues: 0.8008281904610115
       properties:
         classification:
           $ref: '#/components/schemas/AddClassification'
@@ -19752,11 +20704,15 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
@@ -19765,7 +20721,9 @@ components:
             defaultValues:
             - defaultValues
             - defaultValues
+            maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
@@ -19773,13 +20731,79 @@ components:
             defaultValues:
             - defaultValues
             - defaultValues
+            maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            minNumberOfValues: 0.8008281904610115
       properties:
         name:
           description: Name of schema
           type: string
         attributes:
-          $ref: '#/components/schemas/SchemaAttributes'
+          $ref: '#/components/schemas/SetSchemaAttributes'
+      type: object
+    SetSchemaAttributes:
+      example:
+        compositeKeys:
+        - attributeKeys:
+          - attributeKeys
+          - attributeKeys
+        - attributeKeys:
+          - attributeKeys
+          - attributeKeys
+        allowAdditionalAttributes: true
+        optional:
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          maxNumberOfValues: 5.962133916683182
+          attributeKey: attributeKey
+          minNumberOfValues: 1.4658129805029452
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          maxNumberOfValues: 5.962133916683182
+          attributeKey: attributeKey
+          minNumberOfValues: 1.4658129805029452
+        required:
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          maxNumberOfValues: 6.027456183070403
+          attributeKey: attributeKey
+          minNumberOfValues: 0.8008281904610115
+        - allowedValues:
+          - allowedValues
+          - allowedValues
+          defaultValue: defaultValue
+          defaultValues:
+          - defaultValues
+          - defaultValues
+          maxNumberOfValues: 6.027456183070403
+          attributeKey: attributeKey
+          minNumberOfValues: 0.8008281904610115
+      properties:
+        compositeKeys:
+          description: List of Composite Keys
+          items:
+            $ref: '#/components/schemas/AttributeSchemaCompositeKey'
+          type: array
+        required:
+          description: List of Required Attributes
+          items:
+            $ref: '#/components/schemas/AddAttributeSchemaRequired'
+          type: array
+        optional:
+          description: List of Optional Attribute
+          items:
+            $ref: '#/components/schemas/AddAttributeSchemaOptional'
+          type: array
+        allowAdditionalAttributes:
+          default: true
+          type: boolean
       type: object
     SchemaAttributes:
       example:
@@ -19795,28 +20819,44 @@ components:
         - allowedValues:
           - allowedValues
           - allowedValues
+          localizedAllowedValues:
+            key: localizedAllowedValues
+          maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          minNumberOfValues: 1.4658129805029452
         - allowedValues:
           - allowedValues
           - allowedValues
+          localizedAllowedValues:
+            key: localizedAllowedValues
+          maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          minNumberOfValues: 1.4658129805029452
         required:
         - allowedValues:
           - allowedValues
           - allowedValues
+          localizedAllowedValues:
+            key: localizedAllowedValues
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          maxNumberOfValues: 6.027456183070403
+          minNumberOfValues: 0.8008281904610115
         - allowedValues:
           - allowedValues
           - allowedValues
+          localizedAllowedValues:
+            key: localizedAllowedValues
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          maxNumberOfValues: 6.027456183070403
+          minNumberOfValues: 0.8008281904610115
       properties:
         compositeKeys:
           description: List of Composite Keys
@@ -19848,7 +20888,7 @@ components:
             type: string
           type: array
       type: object
-    AttributeSchemaRequired:
+    AddAttributeSchemaRequired:
       example:
         allowedValues:
         - allowedValues
@@ -19857,8 +20897,16 @@ components:
         defaultValues:
         - defaultValues
         - defaultValues
+        maxNumberOfValues: 6.027456183070403
         attributeKey: attributeKey
+        minNumberOfValues: 0.8008281904610115
       properties:
+        minNumberOfValues:
+          description: The minimum number of attribute values
+          type: number
+        maxNumberOfValues:
+          description: The maximum number of attribute values
+          type: number
         attributeKey:
           type: string
         defaultValue:
@@ -19875,13 +20923,62 @@ components:
             type: string
           type: array
       type: object
-    AttributeSchemaOptional:
+    AttributeSchemaRequired:
       example:
         allowedValues:
         - allowedValues
         - allowedValues
+        localizedAllowedValues:
+          key: localizedAllowedValues
+        defaultValue: defaultValue
+        defaultValues:
+        - defaultValues
+        - defaultValues
         attributeKey: attributeKey
+        maxNumberOfValues: 6.027456183070403
+        minNumberOfValues: 0.8008281904610115
       properties:
+        attributeKey:
+          type: string
+        minNumberOfValues:
+          description: The minimum number of attribute values
+          type: number
+        maxNumberOfValues:
+          description: The maximum number of attribute values
+          type: number
+        defaultValue:
+          description: Default value
+          type: string
+        defaultValues:
+          description: Default values
+          items:
+            type: string
+          type: array
+        allowedValues:
+          description: Only valid string values
+          items:
+            type: string
+          type: array
+        localizedAllowedValues:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    AddAttributeSchemaOptional:
+      example:
+        allowedValues:
+        - allowedValues
+        - allowedValues
+        maxNumberOfValues: 5.962133916683182
+        attributeKey: attributeKey
+        minNumberOfValues: 1.4658129805029452
+      properties:
+        minNumberOfValues:
+          description: The minimum number of attribute values
+          type: number
+        maxNumberOfValues:
+          description: The maximum number of attribute values
+          type: number
         attributeKey:
           type: string
         allowedValues:
@@ -19890,99 +20987,34 @@ components:
             type: string
           type: array
       type: object
-    OnlyOfficeDocumentNewRequest:
-      description: ONLYOFFICE New Document Request
+    AttributeSchemaOptional:
       example:
-        extension: DOCX
+        allowedValues:
+        - allowedValues
+        - allowedValues
+        localizedAllowedValues:
+          key: localizedAllowedValues
+        maxNumberOfValues: 5.962133916683182
+        attributeKey: attributeKey
+        minNumberOfValues: 1.4658129805029452
       properties:
-        extension:
-          enum:
-          - DOCX
-          - XLSX
-          - PPTX
+        minNumberOfValues:
+          description: The minimum number of attribute values
+          type: number
+        maxNumberOfValues:
+          description: The maximum number of attribute values
+          type: number
+        attributeKey:
           type: string
-    OnlyOfficeDocumentEditRequest:
-      description: ONLYOFFICE Edit Document Request
-    OnlyOfficeDocumentResponse:
-      example:
-        config:
-          onlyOfficeUrl: onlyOfficeUrl
-          editorConfig:
-            callbackUrl: callbackUrl
-          documentType: documentType
-          document:
-            title: title
-            url: url
-            key: key
-            fileType: fileType
-          token: token
-      properties:
-        config:
-          $ref: '#/components/schemas/OnlyOfficeConfig'
-      type: object
-    OnlyOfficeConfig:
-      example:
-        onlyOfficeUrl: onlyOfficeUrl
-        editorConfig:
-          callbackUrl: callbackUrl
-        documentType: documentType
-        document:
-          title: title
-          url: url
-          key: key
-          fileType: fileType
-        token: token
-      properties:
-        onlyOfficeUrl:
-          description: URL of the ONLYOFFICE application
-          type: string
-        token:
-          description: ONLYOFFICE security token
-          type: string
-        documentType:
-          description: Type of document (https://api.onlyoffice.com/editors/config/)
-          type: string
-        editorConfig:
-          $ref: '#/components/schemas/OnlyOfficeEditorConfig'
-        document:
-          $ref: '#/components/schemas/OnlyOfficeConfigDocument'
-      type: object
-    OnlyOfficeEditorConfig:
-      example:
-        callbackUrl: callbackUrl
-      properties:
-        callbackUrl:
-          type: string
-      type: object
-    OnlyOfficeConfigDocument:
-      example:
-        title: title
-        url: url
-        key: key
-        fileType: fileType
-      properties:
-        url:
-          description: Defines the absolute URL where the source viewed or edited
-            document is stored
-          type: string
-        title:
-          description: Defines the desired file name for the viewed or edited document
-          type: string
-        key:
-          description: Defines the unique document identifier used by the service
-            to recognize the document
-          type: string
-        fileType:
-          description: Defines the type of the file for the source viewed or edited
-            document
-          type: string
-      type: object
-    OnlyOfficeDocumentSaveResponse:
-      example:
-        message: message
-      properties:
-        message:
-          type: string
+        allowedValues:
+          description: Only valid string values
+          items:
+            type: string
+          type: array
+        localizedAllowedValues:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     DocusignEnvironment:
       description: Docusign Environment
@@ -20489,7 +21521,7 @@ components:
   x-amazon-apigateway-integrations:
     lambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20503,7 +21535,7 @@ components:
       payloadFormatVersion: "1.0"
     ocrLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20517,7 +21549,7 @@ components:
       payloadFormatVersion: "1.0"
     antivirusLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20531,7 +21563,7 @@ components:
       payloadFormatVersion: "1.0"
     searchLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20545,7 +21577,7 @@ components:
       payloadFormatVersion: "1.0"
     fulltextLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20559,21 +21591,7 @@ components:
       payloadFormatVersion: "1.0"
     ocrObjectsLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${OcrApiRequestsArn}/invocations"
-      responses:
-        default:
-          statusCode: "200"
-          responseParameters:
-            method.response.header.Access-Control-Allow-Methods: '''*'''
-            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
-            method.response.header.Access-Control-Allow-Origin: '''*'''
-      passthroughBehavior: when_no_templates
-      httpMethod: POST
-      type: aws_proxy
-      payloadFormatVersion: "1.0"
-    onlyOfficeLambdaApi200:
-      uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${OcrApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20587,7 +21605,7 @@ components:
       payloadFormatVersion: "1.0"
     esignatureLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20601,7 +21619,7 @@ components:
       payloadFormatVersion: "1.0"
     caseManagementLambdaApi200:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "200"
@@ -20615,7 +21633,7 @@ components:
       payloadFormatVersion: "1.0"
     googleLambdaApi201:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "201"
@@ -20629,7 +21647,7 @@ components:
       payloadFormatVersion: "1.0"
     documentGenerationLambdaApi201:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "201"
@@ -20643,7 +21661,7 @@ components:
       payloadFormatVersion: "1.0"
     lambdaApi201:
       uri:
-        Fn::Sub: "arn:${Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:
         default:
           statusCode: "201"
