@@ -17,6 +17,7 @@ All URIs are relative to *http://localhost*
 | [**getDocumentUrl**](DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url |
 | [**getDocuments**](DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing |
 | [**getPublishedDocumentContent**](DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents |
+| [**purgeDocument**](DocumentsApi.md#purgeDocument) | **DELETE** /documents/{documentId}/purge | Purge document |
 | [**setDocumentRestore**](DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document |
 | [**updateDocument**](DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document |
 
@@ -27,7 +28,7 @@ All URIs are relative to *http://localhost*
 
 Add new document
 
-Creates a new document; body may include document content if less than 5 MB  See POST /documents/{documentId}/tags for adding tags to document schema  See POST /documents/{documentId}/actions for adding actions to document schema
+Creates a new document; body may include document content if less than 5 MB.  Returns a unique **documentId** used in subsequent operations.  See POST /documents/{documentId}/tags for adding tags to document schema  See POST /documents/{documentId}/actions for adding actions to document schema
 
 ### Example
 ```java
@@ -97,7 +98,7 @@ No authorization required
 
 Add large document
 
-Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB
+Returns a URL that can be used to upload document content and create a new document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is required in order to add content that is larger than 5 MB. The POST endpoint allow the adding of document metadata at the same time as the document is created.
 
 ### Example
 ```java
@@ -442,7 +443,7 @@ No authorization required
 
 Get document&#39;s contents
 
-Retrieves the content of the document with the specified &#x60;documentId&#x60;. - If the content is plain text and under 6 MB, the content will be returned directly. - If the content is plain text but exceeds 6 MB, an error will be returned. - For documents not in plain text format, pre-signed S3 URLs will be returned to download the content from S3. It is recommended to use the &#x60;/documents/{documentId}/url&#x60; endpoint to retrieve pre-signed S3 URLs for downloading the content. 
+Retrieves the content of the document with the specified &#x60;documentId&#x60;. - If the content is plain text and under 6 MB, the content will be returned directly. - If the content is plain text but exceeds 6 MB, an error will be returned. - For documents not in plain text format, pre-signed S3 URLs will be returned to download the content from S3. It is recommended to use the &#x60;/documents/{documentId}/url&#x60; endpoint to retrieve pre-signed S3 URLs for downloading the content.  If the document has a Content-Type of text/, application/json, application/x-www-form-urlencoded the content field will be returned.  All other Content-Type, the contentUrl field will be returned, which is a S3 Presigned url. 
 
 ### Example
 ```java
@@ -734,7 +735,7 @@ No authorization required
 
 <a id="getDocumentUrl"></a>
 # **getDocumentUrl**
-> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline)
+> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark)
 
 Get document content url
 
@@ -764,8 +765,9 @@ public class Example {
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     Boolean inline = false; // Boolean | Set the Content-Disposition to inline
+    Boolean bypassWatermark = false; // Boolean | Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions)
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUrl");
@@ -788,6 +790,7 @@ public class Example {
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **inline** | **Boolean**| Set the Content-Disposition to inline | [optional] [default to false] |
+| **bypassWatermark** | **Boolean**| Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions) | [optional] [default to false] |
 
 ### Return type
 
@@ -951,6 +954,73 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **307** | Temporary Redirect |  * Location -  <br>  |
+
+<a id="purgeDocument"></a>
+# **purgeDocument**
+> DeleteResponse purgeDocument(documentId, siteId)
+
+Purge document
+
+Remove all objects from the S3 bucket, including previous versions and current version, and should remove all metadata as well, so that no trace of the document exists outside of the audit logs and any backups. Can only be called be ADMIN or GOVERN.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteResponse result = apiInstance.purgeDocument(documentId, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#purgeDocument");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="setDocumentRestore"></a>
 # **setDocumentRestore**

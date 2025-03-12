@@ -7,9 +7,11 @@
 
 * `METADATA` (value: `"METADATA"`)
 
-* `TAG` (value: `"TAG"`)
-
 * `CONTENT` (value: `"CONTENT"`)
+
+* `SOFT_DELETE` (value: `"SOFT_DELETE"`)
+
+* `DELETE` (value: `"DELETE"`)
 
 
 

@@ -8,6 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**path** | **String** | Path or Name of document |  [optional] |
+|**width** | **String** | Document Content Width property |  [optional] |
+|**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**contentType** | **String** | Document media type |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |

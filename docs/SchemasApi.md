@@ -152,7 +152,7 @@ No authorization required
 
 <a id="getClassification"></a>
 # **getClassification**
-> GetClassificationResponse getClassification(siteId, classificationId)
+> GetClassificationResponse getClassification(siteId, classificationId, locale)
 
 Get Classification
 
@@ -178,8 +178,9 @@ public class Example {
     SchemasApi apiInstance = new SchemasApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String classificationId = "classificationId_example"; // String | Classification Identifier
+    String locale = "locale_example"; // String | Site Locale (ISO 639 / ISO 3166)
     try {
-      GetClassificationResponse result = apiInstance.getClassification(siteId, classificationId);
+      GetClassificationResponse result = apiInstance.getClassification(siteId, classificationId, locale);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemasApi#getClassification");
@@ -198,6 +199,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
 | **classificationId** | **String**| Classification Identifier | |
+| **locale** | **String**| Site Locale (ISO 639 / ISO 3166) | [optional] |
 
 ### Return type
 
@@ -219,7 +221,7 @@ No authorization required
 
 <a id="getClassificationAttributeAllowedValues"></a>
 # **getClassificationAttributeAllowedValues**
-> GetAttributeAllowedValuesResponse getClassificationAttributeAllowedValues(siteId, classificationId, key)
+> GetAttributeAllowedValuesResponse getClassificationAttributeAllowedValues(siteId, classificationId, key, locale)
 
 Get Classification&#39;s Attribute Allowed Values
 
@@ -246,8 +248,9 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     String classificationId = "classificationId_example"; // String | Classification Identifier
     String key = "key_example"; // String | Key Identifier
+    String locale = "locale_example"; // String | Site Locale (ISO 639 / ISO 3166)
     try {
-      GetAttributeAllowedValuesResponse result = apiInstance.getClassificationAttributeAllowedValues(siteId, classificationId, key);
+      GetAttributeAllowedValuesResponse result = apiInstance.getClassificationAttributeAllowedValues(siteId, classificationId, key, locale);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemasApi#getClassificationAttributeAllowedValues");
@@ -267,6 +270,7 @@ public class Example {
 | **siteId** | **String**| Site Identifier | |
 | **classificationId** | **String**| Classification Identifier | |
 | **key** | **String**| Key Identifier | |
+| **locale** | **String**| Site Locale (ISO 639 / ISO 3166) | [optional] |
 
 ### Return type
 
@@ -357,7 +361,7 @@ No authorization required
 
 <a id="getSitesSchema"></a>
 # **getSitesSchema**
-> GetSitesSchemaResponse getSitesSchema(siteId)
+> GetSitesSchemaResponse getSitesSchema(siteId, locale)
 
 Get Sites Schema
 
@@ -382,8 +386,9 @@ public class Example {
     
     SchemasApi apiInstance = new SchemasApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
+    String locale = "locale_example"; // String | Site Locale (ISO 639 / ISO 3166)
     try {
-      GetSitesSchemaResponse result = apiInstance.getSitesSchema(siteId);
+      GetSitesSchemaResponse result = apiInstance.getSitesSchema(siteId, locale);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemasApi#getSitesSchema");
@@ -401,6 +406,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
+| **locale** | **String**| Site Locale (ISO 639 / ISO 3166) | [optional] |
 
 ### Return type
 
@@ -422,7 +428,7 @@ No authorization required
 
 <a id="getSitesSchemaAttributeAllowedValues"></a>
 # **getSitesSchemaAttributeAllowedValues**
-> GetAttributeAllowedValuesResponse getSitesSchemaAttributeAllowedValues(siteId, key)
+> GetAttributeAllowedValuesResponse getSitesSchemaAttributeAllowedValues(siteId, key, locale)
 
 Get Attribute Allowed Values
 
@@ -448,8 +454,9 @@ public class Example {
     SchemasApi apiInstance = new SchemasApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String key = "key_example"; // String | Key Identifier
+    String locale = "locale_example"; // String | Site Locale (ISO 639 / ISO 3166)
     try {
-      GetAttributeAllowedValuesResponse result = apiInstance.getSitesSchemaAttributeAllowedValues(siteId, key);
+      GetAttributeAllowedValuesResponse result = apiInstance.getSitesSchemaAttributeAllowedValues(siteId, key, locale);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemasApi#getSitesSchemaAttributeAllowedValues");
@@ -468,6 +475,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
 | **key** | **String**| Key Identifier | |
+| **locale** | **String**| Site Locale (ISO 639 / ISO 3166) | [optional] |
 
 ### Return type
 

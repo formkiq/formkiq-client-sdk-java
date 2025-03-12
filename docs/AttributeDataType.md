@@ -15,5 +15,7 @@
 
 * `PUBLICATION` (value: `"PUBLICATION"`)
 
+* `WATERMARK` (value: `"WATERMARK"`)
+
 
 
