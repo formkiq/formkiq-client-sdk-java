@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.17.0
+  version: 1.17.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -1641,6 +1641,31 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              interfaceResourceItem:
+                summary: Interface Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: INTERFACE
+                    interfaceKey: mainMenuTitle
+                    localizedValue: Main Menu
+              schemaResourceItem:
+                summary: Schema Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: SCHEMA
+                    attributeKey: documentCategory
+                    allowedValue: invoice
+                    localizedValue: Facture
+              classificationResourceItem:
+                summary: Classification Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: CLASSIFICATION
+                    attributeKey: usageRegistrariat
+                    allowedValue: ID
+                    localizedValue: Gestion identitaire
+                    classificationId: 219a7dd6-5fb2-4556-ad71-0ab4312fe577
             schema:
               $ref: '#/components/schemas/AddLocaleResourceItemRequest'
         required: true
@@ -6355,7 +6380,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adde a document to OpenSearch; available as an Add-On Module
+      description: Add a document to OpenSearch; available as an Add-On Module
       operationId: AddDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -6637,6 +6662,56 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add a document to a service
+      operationId: AddDocumentSync
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentSyncRequest'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add document sync to service
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts:
       - application/json
   /userActivities:
@@ -14008,6 +14083,15 @@ components:
             $ref: '#/components/schemas/FulltextAttribute'
           type: object
       type: object
+    AddDocumentSyncRequest:
+      example:
+        sync:
+          service: TYPESENSE
+          type: METADATA
+      properties:
+        sync:
+          $ref: '#/components/schemas/AddDocumentSync'
+      type: object
     GetDocumentSyncResponse:
       example:
         next: next
@@ -14058,6 +14142,16 @@ components:
       - SOFT_DELETE
       - DELETE
       type: string
+    AddDocumentSync:
+      example:
+        service: TYPESENSE
+        type: METADATA
+      properties:
+        service:
+          $ref: '#/components/schemas/DocumentSyncService'
+        type:
+          $ref: '#/components/schemas/DocumentSyncType'
+      type: object
     DocumentSync:
       example:
         insertedDate: insertedDate

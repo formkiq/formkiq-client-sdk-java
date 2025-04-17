@@ -21,7 +21,7 @@ All URIs are relative to *http://localhost*
 
 Add document&#39;s full-text
 
-Adde a document to OpenSearch; available as an Add-On Module
+Add a document to OpenSearch; available as an Add-On Module
 
 ### Example
 ```java

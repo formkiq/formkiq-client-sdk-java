@@ -63,7 +63,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.17.0</version>
+  <version>1.17.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -79,7 +79,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.17.0"
+     implementation "com.formkiq:client:1.17.1"
   }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.17.0.jar`
+* `target/client-1.17.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -272,6 +272,7 @@ Class | Method | HTTP request | Description
 *DocumentWorkflowsApi* | [**setWorkflow**](docs/DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Set workflow
 *DocumentWorkflowsApi* | [**updateWorkflow**](docs/DocumentWorkflowsApi.md#updateWorkflow) | **PATCH** /workflows/{workflowId} | Update workflow
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
+*DocumentsApi* | [**addDocumentSync**](docs/DocumentsApi.md#addDocumentSync) | **POST** /documents/{documentId}/syncs | Add document sync to service
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
@@ -407,6 +408,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
  - [AddDocumentRequest](docs/AddDocumentRequest.md)
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
+ - [AddDocumentSync](docs/AddDocumentSync.md)
+ - [AddDocumentSyncRequest](docs/AddDocumentSyncRequest.md)
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)
