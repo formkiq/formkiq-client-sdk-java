@@ -24,6 +24,10 @@
 |**tags** | **String** | DocumentTagging: Comma-deliminted list of keywords to generate tags for |  [optional] |
 |**mappingId** | **String** | Id of Mapping |  [optional] |
 |**eventBusName** | **String** | The name or ARN of the event bus to receive the event |  [optional] |
+|**width** | **String** | The width of the image to resize (or &#39;auto&#39;) |  [optional] |
+|**height** | **String** | The height of the image to resize (or &#39;auto&#39;) |  [optional] |
+|**path** | **String** | The path to use when creating resized document (optional) |  [optional] |
+|**outputType** | **String** | The output type of the image |  [optional] |
 
 
 

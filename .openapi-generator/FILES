@@ -8,6 +8,7 @@ build.sbt
 docs/AccessControlApi.md
 docs/AddAction.md
 docs/AddActionParameters.md
+docs/AddActionResizeOutputType.md
 docs/AddApiKeyRequest.md
 docs/AddApiKeyResponse.md
 docs/AddAttribute.md
@@ -481,6 +482,7 @@ src/main/java/com/formkiq/client/invoker/auth/RetryingOAuth.java
 src/main/java/com/formkiq/client/model/AbstractOpenApiSchema.java
 src/main/java/com/formkiq/client/model/AddAction.java
 src/main/java/com/formkiq/client/model/AddActionParameters.java
+src/main/java/com/formkiq/client/model/AddActionResizeOutputType.java
 src/main/java/com/formkiq/client/model/AddApiKeyRequest.java
 src/main/java/com/formkiq/client/model/AddApiKeyResponse.java
 src/main/java/com/formkiq/client/model/AddAttribute.java
@@ -892,6 +894,7 @@ src/test/java/com/formkiq/client/api/UserActivitiesApiTest.java
 src/test/java/com/formkiq/client/api/UserManagementApiTest.java
 src/test/java/com/formkiq/client/api/WebhooksApiTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
+src/test/java/com/formkiq/client/model/AddActionResizeOutputTypeTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyRequestTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyResponseTest.java

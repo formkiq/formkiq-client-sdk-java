@@ -374,6 +374,7 @@ Class | Method | HTTP request | Description
 
  - [AddAction](docs/AddAction.md)
  - [AddActionParameters](docs/AddActionParameters.md)
+ - [AddActionResizeOutputType](docs/AddActionResizeOutputType.md)
  - [AddApiKeyRequest](docs/AddApiKeyRequest.md)
  - [AddApiKeyResponse](docs/AddApiKeyResponse.md)
  - [AddAttribute](docs/AddAttribute.md)

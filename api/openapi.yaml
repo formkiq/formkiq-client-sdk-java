@@ -12560,17 +12560,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
@@ -12580,17 +12584,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         height: height
         tags:
         - values:
@@ -12776,17 +12784,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
@@ -12796,17 +12808,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         height: height
       properties:
         documentId:
@@ -12993,17 +13009,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
@@ -13013,17 +13033,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         height: height
       properties:
         path:
@@ -17931,17 +17955,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         - queueId: queueId
           type: ANTIVIRUS
           parameters:
@@ -17951,17 +17979,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
       properties:
         actions:
           description: List of Actions
@@ -17980,17 +18012,21 @@ components:
           ocrParseTypes: ocrParseTypes
           ocrOutputType: CSV
           addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+          outputType: outputType
           ocrNumberOfPages: ocrNumberOfPages
           notificationType: email
           notificationToCc: notificationToCc
           notificationToBcc: notificationToBcc
           url: url
           tags: tags
+          path: path
           notificationSubject: notificationSubject
           engine: chatgpt
           notificationText: notificationText
           eventBusName: eventBusName
+          width: width
           notificationHtml: notificationHtml
+          height: height
       properties:
         type:
           $ref: '#/components/schemas/DocumentActionType'
@@ -18021,17 +18057,21 @@ components:
         ocrParseTypes: ocrParseTypes
         ocrOutputType: CSV
         addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+        outputType: outputType
         ocrNumberOfPages: ocrNumberOfPages
         notificationType: email
         notificationToCc: notificationToCc
         notificationToBcc: notificationToBcc
         url: url
         tags: tags
+        path: path
         notificationSubject: notificationSubject
         engine: chatgpt
         notificationText: notificationText
         eventBusName: eventBusName
+        width: width
         notificationHtml: notificationHtml
+        height: height
       properties:
         ocrParseTypes:
           description: "OCR: Parse types - TEXT, FORMS, TABLES"
@@ -18091,7 +18131,28 @@ components:
         eventBusName:
           description: The name or ARN of the event bus to receive the event
           type: string
+        width:
+          description: The width of the image to resize (or 'auto')
+          type: string
+        height:
+          description: The height of the image to resize (or 'auto')
+          type: string
+        path:
+          description: The path to use when creating resized document (optional)
+          type: string
+        outputType:
+          description: The output type of the image
+          type: string
       type: object
+    AddActionResizeOutputType:
+      description: Resize Output Type
+      enum:
+      - BMP
+      - GIF
+      - JPEG
+      - PNG
+      - TIF
+      type: string
     AddDocumentOcrRequest:
       example:
         parseTypes:
@@ -19838,17 +19899,21 @@ components:
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
               url: url
               tags: tags
+              path: path
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              width: width
               notificationHtml: notificationHtml
+              height: height
           decisions:
           - nextStepId: nextStepId
             type: APPROVE
@@ -19870,17 +19935,21 @@ components:
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
               url: url
               tags: tags
+              path: path
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              width: width
               notificationHtml: notificationHtml
+              height: height
           decisions:
           - nextStepId: nextStepId
             type: APPROVE
@@ -19927,17 +19996,21 @@ components:
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
               url: url
               tags: tags
+              path: path
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              width: width
               notificationHtml: notificationHtml
+              height: height
           decisions:
           - nextStepId: nextStepId
             type: APPROVE
@@ -19959,17 +20032,21 @@ components:
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
               ocrNumberOfPages: ocrNumberOfPages
               notificationType: email
               notificationToCc: notificationToCc
               notificationToBcc: notificationToBcc
               url: url
               tags: tags
+              path: path
               notificationSubject: notificationSubject
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              width: width
               notificationHtml: notificationHtml
+              height: height
           decisions:
           - nextStepId: nextStepId
             type: APPROVE
@@ -20013,17 +20090,21 @@ components:
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
             ocrNumberOfPages: ocrNumberOfPages
             notificationType: email
             notificationToCc: notificationToCc
             notificationToBcc: notificationToBcc
             url: url
             tags: tags
+            path: path
             notificationSubject: notificationSubject
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            width: width
             notificationHtml: notificationHtml
+            height: height
         decisions:
         - nextStepId: nextStepId
           type: APPROVE

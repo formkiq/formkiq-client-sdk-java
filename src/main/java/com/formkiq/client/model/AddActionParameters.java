@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-30T21:14:16.966620-05:00[America/Winnipeg]",
+    date = "2025-04-30T21:28:00.433264-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
@@ -248,6 +248,26 @@ public class AddActionParameters {
   @SerializedName(SERIALIZED_NAME_EVENT_BUS_NAME)
   @javax.annotation.Nullable
   private String eventBusName;
+
+  public static final String SERIALIZED_NAME_WIDTH = "width";
+  @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nullable
+  private String width;
+
+  public static final String SERIALIZED_NAME_HEIGHT = "height";
+  @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nullable
+  private String height;
+
+  public static final String SERIALIZED_NAME_PATH = "path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  @javax.annotation.Nullable
+  private String path;
+
+  public static final String SERIALIZED_NAME_OUTPUT_TYPE = "outputType";
+  @SerializedName(SERIALIZED_NAME_OUTPUT_TYPE)
+  @javax.annotation.Nullable
+  private String outputType;
 
   public AddActionParameters() {}
 
@@ -597,6 +617,86 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters width(@javax.annotation.Nullable String width) {
+    this.width = width;
+    return this;
+  }
+
+  /**
+   * The width of the image to resize (or &#39;auto&#39;)
+   * 
+   * @return width
+   */
+  @javax.annotation.Nullable
+  public String getWidth() {
+    return width;
+  }
+
+  public void setWidth(@javax.annotation.Nullable String width) {
+    this.width = width;
+  }
+
+
+  public AddActionParameters height(@javax.annotation.Nullable String height) {
+    this.height = height;
+    return this;
+  }
+
+  /**
+   * The height of the image to resize (or &#39;auto&#39;)
+   * 
+   * @return height
+   */
+  @javax.annotation.Nullable
+  public String getHeight() {
+    return height;
+  }
+
+  public void setHeight(@javax.annotation.Nullable String height) {
+    this.height = height;
+  }
+
+
+  public AddActionParameters path(@javax.annotation.Nullable String path) {
+    this.path = path;
+    return this;
+  }
+
+  /**
+   * The path to use when creating resized document (optional)
+   * 
+   * @return path
+   */
+  @javax.annotation.Nullable
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(@javax.annotation.Nullable String path) {
+    this.path = path;
+  }
+
+
+  public AddActionParameters outputType(@javax.annotation.Nullable String outputType) {
+    this.outputType = outputType;
+    return this;
+  }
+
+  /**
+   * The output type of the image
+   * 
+   * @return outputType
+   */
+  @javax.annotation.Nullable
+  public String getOutputType() {
+    return outputType;
+  }
+
+  public void setOutputType(@javax.annotation.Nullable String outputType) {
+    this.outputType = outputType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -624,7 +724,11 @@ public class AddActionParameters {
         && Objects.equals(this.notificationHtml, addActionParameters.notificationHtml)
         && Objects.equals(this.tags, addActionParameters.tags)
         && Objects.equals(this.mappingId, addActionParameters.mappingId)
-        && Objects.equals(this.eventBusName, addActionParameters.eventBusName);
+        && Objects.equals(this.eventBusName, addActionParameters.eventBusName)
+        && Objects.equals(this.width, addActionParameters.width)
+        && Objects.equals(this.height, addActionParameters.height)
+        && Objects.equals(this.path, addActionParameters.path)
+        && Objects.equals(this.outputType, addActionParameters.outputType);
   }
 
   @Override
@@ -632,7 +736,7 @@ public class AddActionParameters {
     return Objects.hash(ocrParseTypes, ocrEngine, ocrOutputType, ocrNumberOfPages,
         addPdfDetectedCharactersAsText, url, characterMax, engine, notificationType,
         notificationToCc, notificationToBcc, notificationSubject, notificationText,
-        notificationHtml, tags, mappingId, eventBusName);
+        notificationHtml, tags, mappingId, eventBusName, width, height, path, outputType);
   }
 
   @Override
@@ -658,6 +762,10 @@ public class AddActionParameters {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    mappingId: ").append(toIndentedString(mappingId)).append("\n");
     sb.append("    eventBusName: ").append(toIndentedString(eventBusName)).append("\n");
+    sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -696,6 +804,10 @@ public class AddActionParameters {
     openapiFields.add("tags");
     openapiFields.add("mappingId");
     openapiFields.add("eventBusName");
+    openapiFields.add("width");
+    openapiFields.add("height");
+    openapiFields.add("path");
+    openapiFields.add("outputType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -834,6 +946,30 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(
           "Expected the field `eventBusName` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("eventBusName").toString()));
+    }
+    if ((jsonObj.get("width") != null && !jsonObj.get("width").isJsonNull())
+        && !jsonObj.get("width").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `width` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("width").toString()));
+    }
+    if ((jsonObj.get("height") != null && !jsonObj.get("height").isJsonNull())
+        && !jsonObj.get("height").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `height` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("height").toString()));
+    }
+    if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
+        && !jsonObj.get("path").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("path").toString()));
+    }
+    if ((jsonObj.get("outputType") != null && !jsonObj.get("outputType").isJsonNull())
+        && !jsonObj.get("outputType").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(
+          "Expected the field `outputType` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("outputType").toString()));
     }
   }
 

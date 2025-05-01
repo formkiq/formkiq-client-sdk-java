@@ -182,4 +182,36 @@ public class AddActionParametersTest {
     // TODO: test eventBusName
   }
 
+  /**
+   * Test the property 'width'
+   */
+  @Test
+  public void widthTest() {
+    // TODO: test width
+  }
+
+  /**
+   * Test the property 'height'
+   */
+  @Test
+  public void heightTest() {
+    // TODO: test height
+  }
+
+  /**
+   * Test the property 'path'
+   */
+  @Test
+  public void pathTest() {
+    // TODO: test path
+  }
+
+  /**
+   * Test the property 'outputType'
+   */
+  @Test
+  public void outputTypeTest() {
+    // TODO: test outputType
+  }
+
 }

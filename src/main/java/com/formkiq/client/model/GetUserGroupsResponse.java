@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetUserGroupsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-30T21:14:16.966620-05:00[America/Winnipeg]",
+    date = "2025-04-30T21:28:00.433264-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class GetUserGroupsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
