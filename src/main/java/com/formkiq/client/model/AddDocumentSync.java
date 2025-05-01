@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentSyncService;
+import com.formkiq.client.model.AddDocumentSyncService;
 import com.formkiq.client.model.DocumentSyncType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -58,13 +58,13 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentSync
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-16T19:25:34.083442-05:00[America/Winnipeg]",
+    date = "2025-04-18T14:32:56.445185-05:00[America/Winnipeg]",
     comments = "Generator version: 7.12.0")
 public class AddDocumentSync {
   public static final String SERIALIZED_NAME_SERVICE = "service";
   @SerializedName(SERIALIZED_NAME_SERVICE)
   @javax.annotation.Nullable
-  private DocumentSyncService service;
+  private AddDocumentSyncService service;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -73,7 +73,7 @@ public class AddDocumentSync {
 
   public AddDocumentSync() {}
 
-  public AddDocumentSync service(@javax.annotation.Nullable DocumentSyncService service) {
+  public AddDocumentSync service(@javax.annotation.Nullable AddDocumentSyncService service) {
     this.service = service;
     return this;
   }
@@ -84,11 +84,11 @@ public class AddDocumentSync {
    * @return service
    */
   @javax.annotation.Nullable
-  public DocumentSyncService getService() {
+  public AddDocumentSyncService getService() {
     return service;
   }
 
-  public void setService(@javax.annotation.Nullable DocumentSyncService service) {
+  public void setService(@javax.annotation.Nullable AddDocumentSyncService service) {
     this.service = service;
   }
 
@@ -194,7 +194,7 @@ public class AddDocumentSync {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     // validate the optional field `service`
     if (jsonObj.get("service") != null && !jsonObj.get("service").isJsonNull()) {
-      DocumentSyncService.validateJsonElement(jsonObj.get("service"));
+      AddDocumentSyncService.validateJsonElement(jsonObj.get("service"));
     }
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {

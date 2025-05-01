@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**service** | **DocumentSyncService** |  |  [optional] |
+|**service** | **AddDocumentSyncService** |  |  [optional] |
 |**type** | **DocumentSyncType** |  |  [optional] |
 
 

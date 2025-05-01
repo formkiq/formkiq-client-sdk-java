@@ -20,7 +20,7 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentSyncService;
+import com.formkiq.client.model.AddDocumentSyncService;
 import com.formkiq.client.model.DocumentSyncType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;

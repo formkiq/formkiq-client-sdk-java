@@ -410,6 +410,7 @@ Class | Method | HTTP request | Description
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
  - [AddDocumentSync](docs/AddDocumentSync.md)
  - [AddDocumentSyncRequest](docs/AddDocumentSyncRequest.md)
+ - [AddDocumentSyncService](docs/AddDocumentSyncService.md)
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)

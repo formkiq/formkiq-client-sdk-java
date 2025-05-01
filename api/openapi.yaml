@@ -14086,7 +14086,7 @@ components:
     AddDocumentSyncRequest:
       example:
         sync:
-          service: TYPESENSE
+          service: FULLTEXT
           type: METADATA
       properties:
         sync:
@@ -14120,6 +14120,12 @@ components:
             $ref: '#/components/schemas/DocumentSync'
           type: array
       type: object
+    AddDocumentSyncService:
+      description: Add Document Sync Service
+      enum:
+      - FULLTEXT
+      - EVENTBRIDGE
+      type: string
     DocumentSyncService:
       description: Service of Document Sync
       enum:
@@ -14144,11 +14150,11 @@ components:
       type: string
     AddDocumentSync:
       example:
-        service: TYPESENSE
+        service: FULLTEXT
         type: METADATA
       properties:
         service:
-          $ref: '#/components/schemas/DocumentSyncService'
+          $ref: '#/components/schemas/AddDocumentSyncService'
         type:
           $ref: '#/components/schemas/DocumentSyncType'
       type: object

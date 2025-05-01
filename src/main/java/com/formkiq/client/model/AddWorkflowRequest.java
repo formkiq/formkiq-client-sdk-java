@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * AddWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-16T19:25:34.083442-05:00[America/Winnipeg]",
+    date = "2025-04-18T14:32:56.445185-05:00[America/Winnipeg]",
     comments = "Generator version: 7.12.0")
 public class AddWorkflowRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
