@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.17.0
+  version: 1.18.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -4318,6 +4318,10 @@ paths:
         | QUEUE    | queueId    | Id of Queue | |
         | IDP    | mappingId    | Id of Mapping | |
         | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | |
+        | RESIZE    | width    | The width of the image to resize (or 'auto'). | |
+        | RESIZE    | height    | The height of the image to resize (or 'auto'). | |
+        | RESIZE    | outputType    | The output type of the image (optional). | |
+        | RESIZE    | path    | The path to use when creating resized document (optional). | |
       operationId: AddDocumentActions
       parameters:
       - description: Site Identifier
@@ -17408,6 +17412,7 @@ components:
       - PUBLISH
       - PDFEXPORT
       - EVENTBRIDGE
+      - RESIZE
       type: string
     DocumentAction:
       example:

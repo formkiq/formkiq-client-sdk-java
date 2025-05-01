@@ -27,5 +27,7 @@
 
 * `EVENTBRIDGE` (value: `"EVENTBRIDGE"`)
 
+* `RESIZE` (value: `"RESIZE"`)
+
 
 
