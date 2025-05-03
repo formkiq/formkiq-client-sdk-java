@@ -111,6 +111,10 @@ tags:
   x-displayName: Document Generation
 - description: Rulesets API
   name: ruleSets
+  x-displayName: Rulesets
+- description: Entities API
+  name: entities
+  x-displayName: Entities
 - name: Application
   x-amazon-apigateway-tag-value: FormKiQ
 - name: AppEnvironment
@@ -10398,6 +10402,123 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /entityTypes:
+    get:
+      description: Returns a list of entity types
+      operationId: GetEntityTypes
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEntityTypesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get EntityTypes
+      tags:
+      - Entities
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a Entity Type
+      operationId: AddEntityType
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEntityTypeRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddEntityTypeResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add New EntityType
+      tags:
+      - Entities
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -10529,6 +10650,15 @@ components:
       explode: true
       in: query
       name: siteId
+      required: false
+      schema:
+        type: string
+      style: form
+    namespaceParam:
+      description: Namespace Identifier
+      explode: true
+      in: query
+      name: namespace
       required: false
       schema:
         type: string
@@ -16412,6 +16542,77 @@ components:
           type: string
         operation:
           $ref: '#/components/schemas/RuleConditionOperation'
+      type: object
+    AddEntityTypeResponse:
+      example:
+        entityTypeId: entityTypeId
+      properties:
+        entityTypeId:
+          description: Entity Type Identifier
+          type: string
+      type: object
+    GetEntityTypesResponse:
+      example:
+        next: next
+        entityTypes:
+        - insertedDate: insertedDate
+          namespace: namespace
+          name: name
+          entityTypeId: entityTypeId
+        - insertedDate: insertedDate
+          namespace: namespace
+          name: name
+          entityTypeId: entityTypeId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        entityTypes:
+          description: List of Entity Types
+          items:
+            $ref: '#/components/schemas/EntityType'
+          type: array
+      type: object
+    EntityType:
+      example:
+        insertedDate: insertedDate
+        namespace: namespace
+        name: name
+        entityTypeId: entityTypeId
+      properties:
+        entityTypeId:
+          description: Entity Type identifier
+          type: string
+        namespace:
+          description: Entity Type namespace
+          type: string
+        name:
+          description: Entity Type Name
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+      type: object
+    AddEntityTypeRequest:
+      example:
+        entityType:
+          namespace: namespace
+          name: name
+      properties:
+        entityType:
+          $ref: '#/components/schemas/AddEntityType'
+      type: object
+    AddEntityType:
+      example:
+        namespace: namespace
+        name: name
+      properties:
+        namespace:
+          description: Entity Type namespace
+          type: string
+        name:
+          description: Entity Type Name
+          type: string
       type: object
     GoogleExportOutputType:
       description: Google Export Output Type
