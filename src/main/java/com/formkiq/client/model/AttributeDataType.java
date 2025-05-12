@@ -46,7 +46,9 @@ public enum AttributeDataType {
 
   PUBLICATION("PUBLICATION"),
 
-  WATERMARK("WATERMARK");
+  WATERMARK("WATERMARK"),
+
+  ENTITY("ENTITY");
 
   private String value;
 

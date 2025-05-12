@@ -29,6 +29,7 @@ docs/AddDocumentActionsResponse.md
 docs/AddDocumentActionsRetryResponse.md
 docs/AddDocumentAttribute.md
 docs/AddDocumentAttributeClassification.md
+docs/AddDocumentAttributeEntity.md
 docs/AddDocumentAttributeRelationship.md
 docs/AddDocumentAttributeStandard.md
 docs/AddDocumentAttributeValue.md
@@ -53,6 +54,10 @@ docs/AddDocusignEnvelopesRequest.md
 docs/AddDocusignEnvelopesResponse.md
 docs/AddDocusignRecipientViewRequest.md
 docs/AddDocusignRecipientViewResponse.md
+docs/AddEntity.md
+docs/AddEntityAttribute.md
+docs/AddEntityRequest.md
+docs/AddEntityResponse.md
 docs/AddEntityType.md
 docs/AddEntityTypeRequest.md
 docs/AddEntityTypeResponse.md
@@ -197,8 +202,11 @@ docs/DocusignSignHereTabs.md
 docs/DocusignSigner.md
 docs/DocusignSigningTabs.md
 docs/ESignatureApi.md
-docs/EntitiesApi.md
+docs/Entity.md
+docs/EntityApi.md
+docs/EntityAttribute.md
 docs/EntityType.md
+docs/EntityTypeNamespace.md
 docs/Error.md
 docs/ErrorsResponse.md
 docs/ExamineObjectsApi.md
@@ -234,6 +242,9 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentWorkflowResponse.md
 docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
+docs/GetEntitiesResponse.md
+docs/GetEntityResponse.md
+docs/GetEntityTypeResponse.md
 docs/GetEntityTypesResponse.md
 docs/GetExaminePdfResponse.md
 docs/GetExaminePdfUrlResponse.md
@@ -377,6 +388,7 @@ docs/UpdateConfigurationResponse.md
 docs/UpdateDocumentFulltextRequest.md
 docs/UpdateDocumentFulltextResponse.md
 docs/UpdateDocumentRequest.md
+docs/UpdateEntityRequest.md
 docs/UpdateMatchingDocumentTagsRequest.md
 docs/UpdateMatchingDocumentTagsRequestMatch.md
 docs/UpdateMatchingDocumentTagsRequestUpdate.md
@@ -451,7 +463,7 @@ src/main/java/com/formkiq/client/api/DocumentVersionsApi.java
 src/main/java/com/formkiq/client/api/DocumentWorkflowsApi.java
 src/main/java/com/formkiq/client/api/DocumentsApi.java
 src/main/java/com/formkiq/client/api/ESignatureApi.java
-src/main/java/com/formkiq/client/api/EntitiesApi.java
+src/main/java/com/formkiq/client/api/EntityApi.java
 src/main/java/com/formkiq/client/api/ExamineObjectsApi.java
 src/main/java/com/formkiq/client/api/GoogleIntegrationApi.java
 src/main/java/com/formkiq/client/api/MappingsApi.java
@@ -510,6 +522,7 @@ src/main/java/com/formkiq/client/model/AddDocumentActionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentActionsRetryResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentAttribute.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeClassification.java
+src/main/java/com/formkiq/client/model/AddDocumentAttributeEntity.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeRelationship.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeStandard.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeValue.java
@@ -534,6 +547,10 @@ src/main/java/com/formkiq/client/model/AddDocusignEnvelopesRequest.java
 src/main/java/com/formkiq/client/model/AddDocusignEnvelopesResponse.java
 src/main/java/com/formkiq/client/model/AddDocusignRecipientViewRequest.java
 src/main/java/com/formkiq/client/model/AddDocusignRecipientViewResponse.java
+src/main/java/com/formkiq/client/model/AddEntity.java
+src/main/java/com/formkiq/client/model/AddEntityAttribute.java
+src/main/java/com/formkiq/client/model/AddEntityRequest.java
+src/main/java/com/formkiq/client/model/AddEntityResponse.java
 src/main/java/com/formkiq/client/model/AddEntityType.java
 src/main/java/com/formkiq/client/model/AddEntityTypeRequest.java
 src/main/java/com/formkiq/client/model/AddEntityTypeResponse.java
@@ -661,7 +678,10 @@ src/main/java/com/formkiq/client/model/DocusignRecipientView.java
 src/main/java/com/formkiq/client/model/DocusignSignHereTabs.java
 src/main/java/com/formkiq/client/model/DocusignSigner.java
 src/main/java/com/formkiq/client/model/DocusignSigningTabs.java
+src/main/java/com/formkiq/client/model/Entity.java
+src/main/java/com/formkiq/client/model/EntityAttribute.java
 src/main/java/com/formkiq/client/model/EntityType.java
+src/main/java/com/formkiq/client/model/EntityTypeNamespace.java
 src/main/java/com/formkiq/client/model/Error.java
 src/main/java/com/formkiq/client/model/ErrorsResponse.java
 src/main/java/com/formkiq/client/model/FulltextAttribute.java
@@ -696,6 +716,9 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
+src/main/java/com/formkiq/client/model/GetEntitiesResponse.java
+src/main/java/com/formkiq/client/model/GetEntityResponse.java
+src/main/java/com/formkiq/client/model/GetEntityTypeResponse.java
 src/main/java/com/formkiq/client/model/GetEntityTypesResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfResponse.java
 src/main/java/com/formkiq/client/model/GetExaminePdfUrlResponse.java
@@ -831,6 +854,7 @@ src/main/java/com/formkiq/client/model/UpdateConfigurationResponse.java
 src/main/java/com/formkiq/client/model/UpdateDocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/UpdateDocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/UpdateDocumentRequest.java
+src/main/java/com/formkiq/client/model/UpdateEntityRequest.java
 src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequest.java
 src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatch.java
 src/main/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdate.java
@@ -893,7 +917,7 @@ src/test/java/com/formkiq/client/api/DocumentVersionsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentWorkflowsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentsApiTest.java
 src/test/java/com/formkiq/client/api/ESignatureApiTest.java
-src/test/java/com/formkiq/client/api/EntitiesApiTest.java
+src/test/java/com/formkiq/client/api/EntityApiTest.java
 src/test/java/com/formkiq/client/api/ExamineObjectsApiTest.java
 src/test/java/com/formkiq/client/api/GoogleIntegrationApiTest.java
 src/test/java/com/formkiq/client/api/MappingsApiTest.java
@@ -928,6 +952,7 @@ src/test/java/com/formkiq/client/model/AddDocumentActionsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentActionsRetryResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeClassificationTest.java
+src/test/java/com/formkiq/client/model/AddDocumentAttributeEntityTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeRelationshipTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeStandardTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeTest.java
@@ -953,6 +978,10 @@ src/test/java/com/formkiq/client/model/AddDocusignEnvelopesRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocusignEnvelopesResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocusignRecipientViewRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocusignRecipientViewResponseTest.java
+src/test/java/com/formkiq/client/model/AddEntityAttributeTest.java
+src/test/java/com/formkiq/client/model/AddEntityRequestTest.java
+src/test/java/com/formkiq/client/model/AddEntityResponseTest.java
+src/test/java/com/formkiq/client/model/AddEntityTest.java
 src/test/java/com/formkiq/client/model/AddEntityTypeRequestTest.java
 src/test/java/com/formkiq/client/model/AddEntityTypeResponseTest.java
 src/test/java/com/formkiq/client/model/AddEntityTypeTest.java
@@ -1080,6 +1109,9 @@ src/test/java/com/formkiq/client/model/DocusignRecipientViewTest.java
 src/test/java/com/formkiq/client/model/DocusignSignHereTabsTest.java
 src/test/java/com/formkiq/client/model/DocusignSignerTest.java
 src/test/java/com/formkiq/client/model/DocusignSigningTabsTest.java
+src/test/java/com/formkiq/client/model/EntityAttributeTest.java
+src/test/java/com/formkiq/client/model/EntityTest.java
+src/test/java/com/formkiq/client/model/EntityTypeNamespaceTest.java
 src/test/java/com/formkiq/client/model/EntityTypeTest.java
 src/test/java/com/formkiq/client/model/ErrorTest.java
 src/test/java/com/formkiq/client/model/ErrorsResponseTest.java
@@ -1115,6 +1147,9 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/GetEntitiesResponseTest.java
+src/test/java/com/formkiq/client/model/GetEntityResponseTest.java
+src/test/java/com/formkiq/client/model/GetEntityTypeResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntityTypesResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfResponseTest.java
 src/test/java/com/formkiq/client/model/GetExaminePdfUrlResponseTest.java
@@ -1250,6 +1285,7 @@ src/test/java/com/formkiq/client/model/UpdateConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/UpdateDocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateDocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/UpdateDocumentRequestTest.java
+src/test/java/com/formkiq/client/model/UpdateEntityRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestMatchTest.java
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateMatchingDocumentTagsRequestUpdateTest.java

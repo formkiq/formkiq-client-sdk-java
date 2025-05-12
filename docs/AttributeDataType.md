@@ -17,5 +17,7 @@
 
 * `WATERMARK` (value: `"WATERMARK"`)
 
+* `ENTITY` (value: `"ENTITY"`)
+
 
 

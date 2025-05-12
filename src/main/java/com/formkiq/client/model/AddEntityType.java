@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.EntityTypeNamespace;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,13 +57,13 @@ import com.formkiq.client.invoker.JSON;
  * AddEntityType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-02T21:05:43.846525-05:00[America/Winnipeg]",
+    date = "2025-05-11T13:56:14.544373-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class AddEntityType {
   public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
   @SerializedName(SERIALIZED_NAME_NAMESPACE)
   @javax.annotation.Nullable
-  private String namespace;
+  private EntityTypeNamespace namespace;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -71,22 +72,22 @@ public class AddEntityType {
 
   public AddEntityType() {}
 
-  public AddEntityType namespace(@javax.annotation.Nullable String namespace) {
+  public AddEntityType namespace(@javax.annotation.Nullable EntityTypeNamespace namespace) {
     this.namespace = namespace;
     return this;
   }
 
   /**
-   * Entity Type namespace
+   * Get namespace
    * 
    * @return namespace
    */
   @javax.annotation.Nullable
-  public String getNamespace() {
+  public EntityTypeNamespace getNamespace() {
     return namespace;
   }
 
-  public void setNamespace(@javax.annotation.Nullable String namespace) {
+  public void setNamespace(@javax.annotation.Nullable EntityTypeNamespace namespace) {
     this.namespace = namespace;
   }
 
@@ -190,11 +191,9 @@ public class AddEntityType {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("namespace") != null && !jsonObj.get("namespace").isJsonNull())
-        && !jsonObj.get("namespace").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `namespace` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("namespace").toString()));
+    // validate the optional field `namespace`
+    if (jsonObj.get("namespace") != null && !jsonObj.get("namespace").isJsonNull()) {
+      EntityTypeNamespace.validateJsonElement(jsonObj.get("namespace"));
     }
     if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
         && !jsonObj.get("name").isJsonPrimitive()) {

@@ -290,8 +290,15 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addDocusignEnvelopes**](docs/ESignatureApi.md#addDocusignEnvelopes) | **POST** /esignature/docusign/{documentId}/envelopes | Create Docusign Envelope request
 *ESignatureApi* | [**addDocusignRecipientView**](docs/ESignatureApi.md#addDocusignRecipientView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient | Create Docusign Recipient View request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
-*EntitiesApi* | [**addEntityType**](docs/EntitiesApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
-*EntitiesApi* | [**getEntityTypes**](docs/EntitiesApi.md#getEntityTypes) | **GET** /entityTypes | Get EntityTypes
+*EntityApi* | [**addEntity**](docs/EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity
+*EntityApi* | [**addEntityType**](docs/EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
+*EntityApi* | [**deleteEntity**](docs/EntityApi.md#deleteEntity) | **DELETE** /entities/{entityTypeId}/{entityId} | Deletes Entity
+*EntityApi* | [**deleteEntityType**](docs/EntityApi.md#deleteEntityType) | **DELETE** /entityTypes/{entityTypeId} | Deletes Entity Type
+*EntityApi* | [**getEntities**](docs/EntityApi.md#getEntities) | **GET** /entities/{entityTypeId} | Get Entities
+*EntityApi* | [**getEntity**](docs/EntityApi.md#getEntity) | **GET** /entities/{entityTypeId}/{entityId} | Get Entity
+*EntityApi* | [**getEntityType**](docs/EntityApi.md#getEntityType) | **GET** /entityTypes/{entityTypeId} | Get EntityType
+*EntityApi* | [**getEntityTypes**](docs/EntityApi.md#getEntityTypes) | **GET** /entityTypes | Get EntityTypes
+*EntityApi* | [**updateEntity**](docs/EntityApi.md#updateEntity) | **PATCH** /entities/{entityTypeId}/{entityId} | Update Entity
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
 *GoogleIntegrationApi* | [**addGoogleDocumentExport**](docs/GoogleIntegrationApi.md#addGoogleDocumentExport) | **POST** /integrations/google/drive/documents/{documentId}/export | Add Google Document Export
@@ -397,6 +404,7 @@ Class | Method | HTTP request | Description
  - [AddDocumentActionsRetryResponse](docs/AddDocumentActionsRetryResponse.md)
  - [AddDocumentAttribute](docs/AddDocumentAttribute.md)
  - [AddDocumentAttributeClassification](docs/AddDocumentAttributeClassification.md)
+ - [AddDocumentAttributeEntity](docs/AddDocumentAttributeEntity.md)
  - [AddDocumentAttributeRelationship](docs/AddDocumentAttributeRelationship.md)
  - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
  - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
@@ -421,6 +429,10 @@ Class | Method | HTTP request | Description
  - [AddDocusignEnvelopesResponse](docs/AddDocusignEnvelopesResponse.md)
  - [AddDocusignRecipientViewRequest](docs/AddDocusignRecipientViewRequest.md)
  - [AddDocusignRecipientViewResponse](docs/AddDocusignRecipientViewResponse.md)
+ - [AddEntity](docs/AddEntity.md)
+ - [AddEntityAttribute](docs/AddEntityAttribute.md)
+ - [AddEntityRequest](docs/AddEntityRequest.md)
+ - [AddEntityResponse](docs/AddEntityResponse.md)
  - [AddEntityType](docs/AddEntityType.md)
  - [AddEntityTypeRequest](docs/AddEntityTypeRequest.md)
  - [AddEntityTypeResponse](docs/AddEntityTypeResponse.md)
@@ -548,7 +560,10 @@ Class | Method | HTTP request | Description
  - [DocusignSignHereTabs](docs/DocusignSignHereTabs.md)
  - [DocusignSigner](docs/DocusignSigner.md)
  - [DocusignSigningTabs](docs/DocusignSigningTabs.md)
+ - [Entity](docs/Entity.md)
+ - [EntityAttribute](docs/EntityAttribute.md)
  - [EntityType](docs/EntityType.md)
+ - [EntityTypeNamespace](docs/EntityTypeNamespace.md)
  - [Error](docs/Error.md)
  - [ErrorsResponse](docs/ErrorsResponse.md)
  - [FulltextAttribute](docs/FulltextAttribute.md)
@@ -583,6 +598,9 @@ Class | Method | HTTP request | Description
  - [GetDocumentWorkflowResponse](docs/GetDocumentWorkflowResponse.md)
  - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
+ - [GetEntitiesResponse](docs/GetEntitiesResponse.md)
+ - [GetEntityResponse](docs/GetEntityResponse.md)
+ - [GetEntityTypeResponse](docs/GetEntityTypeResponse.md)
  - [GetEntityTypesResponse](docs/GetEntityTypesResponse.md)
  - [GetExaminePdfResponse](docs/GetExaminePdfResponse.md)
  - [GetExaminePdfUrlResponse](docs/GetExaminePdfUrlResponse.md)
@@ -718,6 +736,7 @@ Class | Method | HTTP request | Description
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
  - [UpdateDocumentFulltextResponse](docs/UpdateDocumentFulltextResponse.md)
  - [UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
+ - [UpdateEntityRequest](docs/UpdateEntityRequest.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)

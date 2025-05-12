@@ -17,6 +17,9 @@
 |**documentId** | **String** | Relationship To Document Identifier |  |
 |**relationship** | **DocumentRelationshipType** |  |  |
 |**inverseRelationship** | **DocumentRelationshipType** |  |  [optional] |
+|**entityTypeId** | **String** | EntityType Identifier or Entity Type Name |  |
+|**entityId** | **String** | Entity Identifier |  |
+|**namespace** | **EntityTypeNamespace** |  |  [optional] |
 
 
 

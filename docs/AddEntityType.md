@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**namespace** | **String** | Entity Type namespace |  [optional] |
+|**namespace** | **EntityTypeNamespace** |  |  [optional] |
 |**name** | **String** | Entity Type Name |  [optional] |
 
 

@@ -52,7 +52,9 @@ public enum AttributeValueType {
 
   RELATIONSHIPS("RELATIONSHIPS"),
 
-  WATERMARK("WATERMARK");
+  WATERMARK("WATERMARK"),
+
+  ENTITY("ENTITY");
 
   private String value;
 

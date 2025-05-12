@@ -112,9 +112,9 @@ tags:
 - description: Rulesets API
   name: ruleSets
   x-displayName: Rulesets
-- description: Entities API
-  name: entities
-  x-displayName: Entities
+- description: Entity API
+  name: entity
+  x-displayName: Entity
 - name: Application
   x-amazon-apigateway-tag-value: FormKiQ
 - name: AppEnvironment
@@ -10421,6 +10421,9 @@ paths:
         name: namespace
         required: false
         schema:
+          enum:
+          - PRESET
+          - CUSTOM
           type: string
         style: form
       - description: Next page of results token
@@ -10458,7 +10461,7 @@ paths:
       - ApiAuthorization: []
       summary: Get EntityTypes
       tags:
-      - Entities
+      - Entity
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-accepts:
@@ -10471,14 +10474,6 @@ paths:
         explode: true
         in: query
         name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Namespace Identifier
-        explode: true
-        in: query
-        name: namespace
         required: false
         schema:
           type: string
@@ -10513,9 +10508,435 @@ paths:
       - ApiAuthorization: []
       summary: Add New EntityType
       tags:
-      - Entities
+      - Entity
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /entityTypes/{entityTypeId}:
+    delete:
+      description: Deletes Entity Type
+      operationId: DeleteEntityType
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Deletes Entity Type
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a entity type
+      operationId: GetEntityType
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          enum:
+          - PRESET
+          - CUSTOM
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEntityTypeResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get EntityType
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+  /entities/{entityTypeId}:
+    get:
+      description: Returns a list of entities
+      operationId: GetEntities
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          enum:
+          - PRESET
+          - CUSTOM
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEntitiesResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Entities
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a Entity
+      operationId: AddEntity
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          enum:
+          - PRESET
+          - CUSTOM
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEntityRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddEntityResponse'
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add New Entity
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi201'
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /entities/{entityTypeId}/{entityId}:
+    delete:
+      description: Deletes Entity
+      operationId: DeleteEntity
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity Identifier
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Deletes Entity
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a entity
+      operationId: GetEntity
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity Identifier
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          enum:
+          - PRESET
+          - CUSTOM
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEntityResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Get Entity
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    patch:
+      description: Updates a Entity
+      operationId: UpdateEntity
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity Identifier
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Namespace Identifier
+        explode: true
+        in: query
+        name: namespace
+        required: false
+        schema:
+          enum:
+          - PRESET
+          - CUSTOM
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntityRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Update Entity
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -10627,6 +11048,24 @@ components:
       schema:
         type: string
       style: simple
+    entityIdParam:
+      description: Entity Identifier
+      explode: false
+      in: path
+      name: entityId
+      required: true
+      schema:
+        type: string
+      style: simple
+    entityTypeIdParam:
+      description: EntityType Identifier
+      explode: false
+      in: path
+      name: entityTypeId
+      required: true
+      schema:
+        type: string
+      style: simple
     shareKey:
       description: Share Identifier
       explode: false
@@ -10661,6 +11100,9 @@ components:
       name: namespace
       required: false
       schema:
+        enum:
+        - PRESET
+        - CUSTOM
         type: string
       style: form
     policyItemIdPathParam:
@@ -13528,6 +13970,7 @@ components:
       - $ref: '#/components/schemas/AddDocumentAttributeStandard'
       - $ref: '#/components/schemas/AddDocumentAttributeClassification'
       - $ref: '#/components/schemas/AddDocumentAttributeRelationship'
+      - $ref: '#/components/schemas/AddDocumentAttributeEntity'
     DocumentRelationshipType:
       description: Document Relationship Type
       enum:
@@ -13598,6 +14041,25 @@ components:
           description: Attribute with boolean value
           type: boolean
       required:
+      - key
+      type: object
+    AddDocumentAttributeEntity:
+      description: Document Entity Attribute
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        entityTypeId:
+          description: EntityType Identifier or Entity Type Name
+          type: string
+        entityId:
+          description: Entity Identifier
+          type: string
+        namespace:
+          $ref: '#/components/schemas/EntityTypeNamespace'
+      required:
+      - entityId
+      - entityTypeId
       - key
       type: object
     AddDocumentTag:
@@ -14053,6 +14515,7 @@ components:
       - COMPOSITE_STRING
       - RELATIONSHIPS
       - WATERMARK
+      - ENTITY
       type: string
     FulltextAttribute:
       example:
@@ -16543,6 +17006,14 @@ components:
         operation:
           $ref: '#/components/schemas/RuleConditionOperation'
       type: object
+    AddEntityResponse:
+      example:
+        entityId: entityId
+      properties:
+        entityId:
+          description: Entity Identifier
+          type: string
+      type: object
     AddEntityTypeResponse:
       example:
         entityTypeId: entityTypeId
@@ -16551,16 +17022,344 @@ components:
           description: Entity Type Identifier
           type: string
       type: object
+    GetEntitiesResponse:
+      example:
+        next: next
+        entities:
+        - insertedDate: insertedDate
+          name: name
+          entityId: entityId
+          entityTypeId: entityTypeId
+          attributes:
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+        - insertedDate: insertedDate
+          name: name
+          entityId: entityId
+          entityTypeId: entityTypeId
+          attributes:
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        entities:
+          description: List of Entities
+          items:
+            $ref: '#/components/schemas/Entity'
+          type: array
+      type: object
+    GetEntityResponse:
+      example:
+        entity:
+          insertedDate: insertedDate
+          name: name
+          entityId: entityId
+          entityTypeId: entityTypeId
+          attributes:
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: BOOLEAN
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+      properties:
+        entity:
+          $ref: '#/components/schemas/Entity'
+      type: object
+    GetEntityTypeResponse:
+      example:
+        entityType:
+          insertedDate: insertedDate
+          namespace: PRESET
+          name: name
+          entityTypeId: entityTypeId
+      properties:
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+      type: object
+    Entity:
+      example:
+        insertedDate: insertedDate
+        name: name
+        entityId: entityId
+        entityTypeId: entityTypeId
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          valueType: BOOLEAN
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          valueType: BOOLEAN
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        entityId:
+          description: Entity identifier
+          type: string
+        entityTypeId:
+          description: Entity Type identifier
+          type: string
+        name:
+          description: Entity Name
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        attributes:
+          description: List of Entity Attributes
+          items:
+            $ref: '#/components/schemas/EntityAttribute'
+          type: array
+      type: object
+    AddEntityRequest:
+      example:
+        entity:
+          name: name
+          attributes:
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+      properties:
+        entity:
+          $ref: '#/components/schemas/AddEntity'
+      type: object
+    UpdateEntityRequest:
+      example:
+        entity:
+          name: name
+          attributes:
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+          - numberValues:
+            - 6.027456183070403
+            - 6.027456183070403
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            numberValue: 0.8008281904610115
+            key: key
+      properties:
+        entity:
+          $ref: '#/components/schemas/AddEntity'
+      type: object
+    AddEntity:
+      example:
+        name: name
+        attributes:
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+        - numberValues:
+          - 6.027456183070403
+          - 6.027456183070403
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          numberValue: 0.8008281904610115
+          key: key
+      properties:
+        name:
+          description: Entity Name
+          type: string
+        attributes:
+          description: List of Entity Attributes
+          items:
+            $ref: '#/components/schemas/AddEntityAttribute'
+          type: array
+      type: object
+    AddEntityAttribute:
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValue:
+          description: Attribute with number value
+          type: number
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
+      type: object
+    EntityAttribute:
+      example:
+        numberValues:
+        - 6.027456183070403
+        - 6.027456183070403
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        valueType: BOOLEAN
+        booleanValue: true
+        numberValue: 0.8008281904610115
+        key: key
+      properties:
+        key:
+          description: Attribute key
+          type: string
+        stringValue:
+          description: Attribute with string value
+          type: string
+        stringValues:
+          description: Attribute with string values
+          items:
+            type: string
+          type: array
+        numberValue:
+          description: Attribute with number value
+          type: number
+        numberValues:
+          description: Attribute with number values
+          items:
+            type: number
+          type: array
+        booleanValue:
+          description: Attribute with boolean value
+          type: boolean
+        valueType:
+          $ref: '#/components/schemas/AttributeValueType'
+      type: object
     GetEntityTypesResponse:
       example:
         next: next
         entityTypes:
         - insertedDate: insertedDate
-          namespace: namespace
+          namespace: PRESET
           name: name
           entityTypeId: entityTypeId
         - insertedDate: insertedDate
-          namespace: namespace
+          namespace: PRESET
           name: name
           entityTypeId: entityTypeId
       properties:
@@ -16576,7 +17375,7 @@ components:
     EntityType:
       example:
         insertedDate: insertedDate
-        namespace: namespace
+        namespace: PRESET
         name: name
         entityTypeId: entityTypeId
       properties:
@@ -16584,8 +17383,7 @@ components:
           description: Entity Type identifier
           type: string
         namespace:
-          description: Entity Type namespace
-          type: string
+          $ref: '#/components/schemas/EntityTypeNamespace'
         name:
           description: Entity Type Name
           type: string
@@ -16596,7 +17394,7 @@ components:
     AddEntityTypeRequest:
       example:
         entityType:
-          namespace: namespace
+          namespace: PRESET
           name: name
       properties:
         entityType:
@@ -16604,16 +17402,21 @@ components:
       type: object
     AddEntityType:
       example:
-        namespace: namespace
+        namespace: PRESET
         name: name
       properties:
         namespace:
-          description: Entity Type namespace
-          type: string
+          $ref: '#/components/schemas/EntityTypeNamespace'
         name:
           description: Entity Type Name
           type: string
       type: object
+    EntityTypeNamespace:
+      description: Entity Type namespace
+      enum:
+      - PRESET
+      - CUSTOM
+      type: string
     GoogleExportOutputType:
       description: Google Export Output Type
       enum:
@@ -17310,6 +18113,7 @@ components:
       - KEY_ONLY
       - PUBLICATION
       - WATERMARK
+      - ENTITY
       type: string
     AddAttributeRequest:
       example:
