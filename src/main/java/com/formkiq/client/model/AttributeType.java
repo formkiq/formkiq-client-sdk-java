@@ -38,7 +38,9 @@ public enum AttributeType {
 
   STANDARD("STANDARD"),
 
-  OPA("OPA");
+  OPA("OPA"),
+
+  GOVERNANCE("GOVERNANCE");
 
   private String value;
 

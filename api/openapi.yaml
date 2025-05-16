@@ -18102,6 +18102,7 @@ components:
       enum:
       - STANDARD
       - OPA
+      - GOVERNANCE
       type: string
     AttributeDataType:
       default: STRING

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * AddAttributeSchemaOptional
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-11T13:56:14.544373-05:00[America/Winnipeg]",
+    date = "2025-05-14T22:41:37.555205-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class AddAttributeSchemaOptional {
   public static final String SERIALIZED_NAME_MIN_NUMBER_OF_VALUES = "minNumberOfValues";
