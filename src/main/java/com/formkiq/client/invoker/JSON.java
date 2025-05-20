@@ -120,8 +120,6 @@ public class JSON {
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddAttributeRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
-        new com.formkiq.client.model.AddAttributeResponse.CustomTypeAdapterFactory());
-    gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddAttributeSchemaOptional.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.AddAttributeSchemaRequired.CustomTypeAdapterFactory());
@@ -729,6 +727,10 @@ public class JSON {
         new com.formkiq.client.model.StringFormat.CustomTypeAdapterFactory());
     gsonBuilder
         .registerTypeAdapterFactory(new com.formkiq.client.model.Task.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateAttribute.CustomTypeAdapterFactory());
+    gsonBuilder.registerTypeAdapterFactory(
+        new com.formkiq.client.model.UpdateAttributeRequest.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(
         new com.formkiq.client.model.UpdateCase.CustomTypeAdapterFactory());
     gsonBuilder.registerTypeAdapterFactory(

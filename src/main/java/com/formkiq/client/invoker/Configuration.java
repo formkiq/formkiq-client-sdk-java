@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-14T22:41:37.555205-05:00[America/Winnipeg]",
+    date = "2025-05-19T21:04:16.516077-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class Configuration {
   public static final String VERSION = "1.18.0";

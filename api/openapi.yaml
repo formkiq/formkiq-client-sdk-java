@@ -3832,7 +3832,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddAttributeResponse'
+                $ref: '#/components/schemas/AddResponse'
           description: 201 CREATED
           headers:
             Access-Control-Allow-Origin:
@@ -3948,6 +3948,62 @@ paths:
       - Attributes
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    patch:
+      description: Updates existing attribute
+      operationId: UpdateAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Key Identifier
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAttributeRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorsResponse'
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Update existing attribute
+      tags:
+      - Attributes
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts:
       - application/json
   /attributes/{key}/allowedValues:
@@ -18116,6 +18172,45 @@ components:
       - WATERMARK
       - ENTITY
       type: string
+    UpdateAttributeRequest:
+      example:
+        attribute:
+          watermark:
+            imageDocumentId: imageDocumentId
+            rotation: 0.8008281904610115
+            scale: FIT_BEST
+            text: text
+            position:
+              yOffset: 1.4658129805029452
+              xOffset: 6.027456183070403
+              yAnchor: TOP
+              xAnchor: LEFT
+          type: STANDARD
+      properties:
+        attribute:
+          $ref: '#/components/schemas/UpdateAttribute'
+      required:
+      - attribute
+      type: object
+    UpdateAttribute:
+      example:
+        watermark:
+          imageDocumentId: imageDocumentId
+          rotation: 0.8008281904610115
+          scale: FIT_BEST
+          text: text
+          position:
+            yOffset: 1.4658129805029452
+            xOffset: 6.027456183070403
+            yAnchor: TOP
+            xAnchor: LEFT
+        type: STANDARD
+      properties:
+        type:
+          $ref: '#/components/schemas/AttributeType'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
+      type: object
     AddAttributeRequest:
       example:
         attribute:
@@ -18165,14 +18260,6 @@ components:
           $ref: '#/components/schemas/Watermark'
       required:
       - key
-      type: object
-    AddAttributeResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Response Message
-          type: string
       type: object
     GetDocumentsResponse:
       example:

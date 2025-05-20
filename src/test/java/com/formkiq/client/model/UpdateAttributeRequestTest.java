@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.UpdateAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,25 +32,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddAttributeResponse
+ * Model tests for UpdateAttributeRequest
  */
-public class AddAttributeResponseTest {
-  private final AddAttributeResponse model = new AddAttributeResponse();
+public class UpdateAttributeRequestTest {
+  private final UpdateAttributeRequest model = new UpdateAttributeRequest();
 
   /**
-   * Model tests for AddAttributeResponse
+   * Model tests for UpdateAttributeRequest
    */
   @Test
-  public void testAddAttributeResponse() {
-    // TODO: test AddAttributeResponse
+  public void testUpdateAttributeRequest() {
+    // TODO: test UpdateAttributeRequest
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'attribute'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void attributeTest() {
+    // TODO: test attribute
   }
 
 }

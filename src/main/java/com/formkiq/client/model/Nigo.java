@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * Nigo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-14T22:41:37.555205-05:00[America/Winnipeg]",
+    date = "2025-05-19T21:04:16.516077-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class Nigo {
   public static final String SERIALIZED_NAME_NIGO_ID = "nigoId";

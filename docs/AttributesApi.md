@@ -9,11 +9,12 @@ All URIs are relative to *http://localhost*
 | [**getAttribute**](AttributesApi.md#getAttribute) | **GET** /attributes/{key} | Get Attribute |
 | [**getAttributeAllowedValues**](AttributesApi.md#getAttributeAllowedValues) | **GET** /attributes/{key}/allowedValues | Get Attribute Allowed Values |
 | [**getAttributes**](AttributesApi.md#getAttributes) | **GET** /attributes | Get Attributes listing |
+| [**updateAttribute**](AttributesApi.md#updateAttribute) | **PATCH** /attributes/{key} | Update existing attribute |
 
 
 <a id="addAttribute"></a>
 # **addAttribute**
-> AddAttributeResponse addAttribute(addAttributeRequest, siteId)
+> AddResponse addAttribute(addAttributeRequest, siteId)
 
 Add new attribute
 
@@ -40,7 +41,7 @@ public class Example {
     AddAttributeRequest addAttributeRequest = new AddAttributeRequest(); // AddAttributeRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddAttributeResponse result = apiInstance.addAttribute(addAttributeRequest, siteId);
+      AddResponse result = apiInstance.addAttribute(addAttributeRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttributesApi#addAttribute");
@@ -62,7 +63,7 @@ public class Example {
 
 ### Return type
 
-[**AddAttributeResponse**](AddAttributeResponse.md)
+[**AddResponse**](AddResponse.md)
 
 ### Authorization
 
@@ -349,4 +350,74 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="updateAttribute"></a>
+# **updateAttribute**
+> UpdateResponse updateAttribute(key, updateAttributeRequest, siteId)
+
+Update existing attribute
+
+Updates existing attribute
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AttributesApi apiInstance = new AttributesApi(defaultClient);
+    String key = "key_example"; // String | Key Identifier
+    UpdateAttributeRequest updateAttributeRequest = new UpdateAttributeRequest(); // UpdateAttributeRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      UpdateResponse result = apiInstance.updateAttribute(key, updateAttributeRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AttributesApi#updateAttribute");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | **String**| Key Identifier | |
+| **updateAttributeRequest** | [**UpdateAttributeRequest**](UpdateAttributeRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**UpdateResponse**](UpdateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 

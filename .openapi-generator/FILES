@@ -13,7 +13,6 @@ docs/AddApiKeyRequest.md
 docs/AddApiKeyResponse.md
 docs/AddAttribute.md
 docs/AddAttributeRequest.md
-docs/AddAttributeResponse.md
 docs/AddAttributeSchemaOptional.md
 docs/AddAttributeSchemaRequired.md
 docs/AddCase.md
@@ -380,6 +379,8 @@ docs/SystemManagementApi.md
 docs/TagIndexApi.md
 docs/Task.md
 docs/TaskStatus.md
+docs/UpdateAttribute.md
+docs/UpdateAttributeRequest.md
 docs/UpdateCase.md
 docs/UpdateCaseRequest.md
 docs/UpdateCaseResponse.md
@@ -506,7 +507,6 @@ src/main/java/com/formkiq/client/model/AddApiKeyRequest.java
 src/main/java/com/formkiq/client/model/AddApiKeyResponse.java
 src/main/java/com/formkiq/client/model/AddAttribute.java
 src/main/java/com/formkiq/client/model/AddAttributeRequest.java
-src/main/java/com/formkiq/client/model/AddAttributeResponse.java
 src/main/java/com/formkiq/client/model/AddAttributeSchemaOptional.java
 src/main/java/com/formkiq/client/model/AddAttributeSchemaRequired.java
 src/main/java/com/formkiq/client/model/AddCase.java
@@ -846,6 +846,8 @@ src/main/java/com/formkiq/client/model/StringFormat.java
 src/main/java/com/formkiq/client/model/StringGeneratorType.java
 src/main/java/com/formkiq/client/model/Task.java
 src/main/java/com/formkiq/client/model/TaskStatus.java
+src/main/java/com/formkiq/client/model/UpdateAttribute.java
+src/main/java/com/formkiq/client/model/UpdateAttributeRequest.java
 src/main/java/com/formkiq/client/model/UpdateCase.java
 src/main/java/com/formkiq/client/model/UpdateCaseRequest.java
 src/main/java/com/formkiq/client/model/UpdateCaseResponse.java
@@ -936,7 +938,6 @@ src/test/java/com/formkiq/client/model/AddActionTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyRequestTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/AddAttributeRequestTest.java
-src/test/java/com/formkiq/client/model/AddAttributeResponseTest.java
 src/test/java/com/formkiq/client/model/AddAttributeSchemaOptionalTest.java
 src/test/java/com/formkiq/client/model/AddAttributeSchemaRequiredTest.java
 src/test/java/com/formkiq/client/model/AddAttributeTest.java
@@ -1277,6 +1278,8 @@ src/test/java/com/formkiq/client/model/StringFormatTest.java
 src/test/java/com/formkiq/client/model/StringGeneratorTypeTest.java
 src/test/java/com/formkiq/client/model/TaskStatusTest.java
 src/test/java/com/formkiq/client/model/TaskTest.java
+src/test/java/com/formkiq/client/model/UpdateAttributeRequestTest.java
+src/test/java/com/formkiq/client/model/UpdateAttributeTest.java
 src/test/java/com/formkiq/client/model/UpdateCaseRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateCaseResponseTest.java
 src/test/java/com/formkiq/client/model/UpdateCaseTest.java

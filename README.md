@@ -196,6 +196,7 @@ Class | Method | HTTP request | Description
 *AttributesApi* | [**getAttribute**](docs/AttributesApi.md#getAttribute) | **GET** /attributes/{key} | Get Attribute
 *AttributesApi* | [**getAttributeAllowedValues**](docs/AttributesApi.md#getAttributeAllowedValues) | **GET** /attributes/{key}/allowedValues | Get Attribute Allowed Values
 *AttributesApi* | [**getAttributes**](docs/AttributesApi.md#getAttributes) | **GET** /attributes | Get Attributes listing
+*AttributesApi* | [**updateAttribute**](docs/AttributesApi.md#updateAttribute) | **PATCH** /attributes/{key} | Update existing attribute
 *CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
 *CaseManagementApi* | [**addNigo**](docs/CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo
 *CaseManagementApi* | [**addTask**](docs/CaseManagementApi.md#addTask) | **POST** /cases/{caseId}/tasks | Add New Task
@@ -388,7 +389,6 @@ Class | Method | HTTP request | Description
  - [AddApiKeyResponse](docs/AddApiKeyResponse.md)
  - [AddAttribute](docs/AddAttribute.md)
  - [AddAttributeRequest](docs/AddAttributeRequest.md)
- - [AddAttributeResponse](docs/AddAttributeResponse.md)
  - [AddAttributeSchemaOptional](docs/AddAttributeSchemaOptional.md)
  - [AddAttributeSchemaRequired](docs/AddAttributeSchemaRequired.md)
  - [AddCase](docs/AddCase.md)
@@ -728,6 +728,8 @@ Class | Method | HTTP request | Description
  - [StringGeneratorType](docs/StringGeneratorType.md)
  - [Task](docs/Task.md)
  - [TaskStatus](docs/TaskStatus.md)
+ - [UpdateAttribute](docs/UpdateAttribute.md)
+ - [UpdateAttributeRequest](docs/UpdateAttributeRequest.md)
  - [UpdateCase](docs/UpdateCase.md)
  - [UpdateCaseRequest](docs/UpdateCaseRequest.md)
  - [UpdateCaseResponse](docs/UpdateCaseResponse.md)

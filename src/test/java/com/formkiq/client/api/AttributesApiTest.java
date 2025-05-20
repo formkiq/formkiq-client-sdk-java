@@ -22,11 +22,13 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddAttributeRequest;
-import com.formkiq.client.model.AddAttributeResponse;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetAttributeAllowedValuesResponse;
 import com.formkiq.client.model.GetAttributeResponse;
 import com.formkiq.client.model.GetAttributesResponse;
+import com.formkiq.client.model.UpdateAttributeRequest;
+import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -55,7 +57,7 @@ public class AttributesApiTest {
   public void addAttributeTest() throws ApiException {
     AddAttributeRequest addAttributeRequest = null;
     String siteId = null;
-    AddAttributeResponse response = api.addAttribute(addAttributeRequest, siteId);
+    AddResponse response = api.addAttribute(addAttributeRequest, siteId);
     // TODO: test validations
   }
 
@@ -117,6 +119,22 @@ public class AttributesApiTest {
     String next = null;
     String limit = null;
     GetAttributesResponse response = api.getAttributes(siteId, next, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Update existing attribute
+   *
+   * Updates existing attribute
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void updateAttributeTest() throws ApiException {
+    String key = null;
+    UpdateAttributeRequest updateAttributeRequest = null;
+    String siteId = null;
+    UpdateResponse response = api.updateAttribute(key, updateAttributeRequest, siteId);
     // TODO: test validations
   }
 

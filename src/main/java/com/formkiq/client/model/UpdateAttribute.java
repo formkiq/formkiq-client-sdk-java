@@ -21,6 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AttributeType;
+import com.formkiq.client.model.Watermark;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,36 +55,61 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddAttributeResponse
+ * UpdateAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-14T22:41:37.555205-05:00[America/Winnipeg]",
+    date = "2025-05-19T21:04:16.516077-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
-public class AddAttributeResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+public class UpdateAttribute {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nullable
-  private String message;
+  private AttributeType type = AttributeType.STANDARD;
 
-  public AddAttributeResponse() {}
+  public static final String SERIALIZED_NAME_WATERMARK = "watermark";
+  @SerializedName(SERIALIZED_NAME_WATERMARK)
+  @javax.annotation.Nullable
+  private Watermark watermark;
 
-  public AddAttributeResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public UpdateAttribute() {}
+
+  public UpdateAttribute type(@javax.annotation.Nullable AttributeType type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Response Message
+   * Get type
    * 
-   * @return message
+   * @return type
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public AttributeType getType() {
+    return type;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setType(@javax.annotation.Nullable AttributeType type) {
+    this.type = type;
+  }
+
+
+  public UpdateAttribute watermark(@javax.annotation.Nullable Watermark watermark) {
+    this.watermark = watermark;
+    return this;
+  }
+
+  /**
+   * Get watermark
+   * 
+   * @return watermark
+   */
+  @javax.annotation.Nullable
+  public Watermark getWatermark() {
+    return watermark;
+  }
+
+  public void setWatermark(@javax.annotation.Nullable Watermark watermark) {
+    this.watermark = watermark;
   }
 
 
@@ -95,20 +122,22 @@ public class AddAttributeResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddAttributeResponse addAttributeResponse = (AddAttributeResponse) o;
-    return Objects.equals(this.message, addAttributeResponse.message);
+    UpdateAttribute updateAttribute = (UpdateAttribute) o;
+    return Objects.equals(this.type, updateAttribute.type)
+        && Objects.equals(this.watermark, updateAttribute.watermark);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(type, watermark);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddAttributeResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class UpdateAttribute {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    watermark: ").append(toIndentedString(watermark)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,7 +159,8 @@ public class AddAttributeResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("message");
+    openapiFields.add("type");
+    openapiFields.add("watermark");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -140,33 +170,35 @@ public class AddAttributeResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddAttributeResponse
+   * @throws IOException if the JSON Element is invalid with respect to UpdateAttribute
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddAttributeResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                   // element is null
+      if (!UpdateAttribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                              // element is null
         throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in AddAttributeResponse is not found in the empty JSON string",
-            AddAttributeResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in UpdateAttribute is not found in the empty JSON string",
+            UpdateAttribute.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddAttributeResponse.openapiFields.contains(entry.getKey())) {
+      if (!UpdateAttribute.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `AddAttributeResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `UpdateAttribute` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      AttributeType.validateJsonElement(jsonObj.get("type"));
+    }
+    // validate the optional field `watermark`
+    if (jsonObj.get("watermark") != null && !jsonObj.get("watermark").isJsonNull()) {
+      Watermark.validateJsonElement(jsonObj.get("watermark"));
     }
   }
 
@@ -174,22 +206,22 @@ public class AddAttributeResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddAttributeResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddAttributeResponse' and its subtypes
+      if (!UpdateAttribute.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'UpdateAttribute' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddAttributeResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddAttributeResponse.class));
+      final TypeAdapter<UpdateAttribute> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(UpdateAttribute.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddAttributeResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<UpdateAttribute>() {
         @Override
-        public void write(JsonWriter out, AddAttributeResponse value) throws IOException {
+        public void write(JsonWriter out, UpdateAttribute value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddAttributeResponse read(JsonReader in) throws IOException {
+        public UpdateAttribute read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -200,18 +232,18 @@ public class AddAttributeResponse {
   }
 
   /**
-   * Create an instance of AddAttributeResponse given an JSON string
+   * Create an instance of UpdateAttribute given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddAttributeResponse
-   * @throws IOException if the JSON string is invalid with respect to AddAttributeResponse
+   * @return An instance of UpdateAttribute
+   * @throws IOException if the JSON string is invalid with respect to UpdateAttribute
    */
-  public static AddAttributeResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddAttributeResponse.class);
+  public static UpdateAttribute fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateAttribute.class);
   }
 
   /**
-   * Convert an instance of AddAttributeResponse to an JSON string
+   * Convert an instance of UpdateAttribute to an JSON string
    *
    * @return JSON string
    */
