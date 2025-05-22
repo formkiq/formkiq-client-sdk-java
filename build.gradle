@@ -1,7 +1,8 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     id 'java'
-    id 'maven-publish'
-    id 'signing'
+    id 'com.vanniktech.maven.publish' version '0.32.0'
     id 'com.diffplug.spotless' version '6.12.0'
     id 'com.github.ben-manes.versions' version '0.44.0'
 }
@@ -43,81 +44,41 @@ dependencies {
 }
 
 java {
-    withJavadocJar()
-    withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId = 'client'
-            from components.java
-            
-            pom {
-                name = 'FormKiQ Client'
-                description = 'The Official Client library for FormKiQ'
-                url = 'https://github.com/formkiq/formkiq-java-client'
-                licenses {
-                    license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'mfriesen'
-                        name = 'Mike Friesen'
-                        email = 'mike@formkiq.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/formkiq/formkiq-java-client.git'
-                    developerConnection = 'scm:git:ssh://github.com/formkiq/formkiq-java-client.git'
-                    url = 'https://github.com/formkiq/formkiq-java-client.git'
-                }
+mavenPublishing {
+
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+
+    pom {
+        name = "FormKiQ Client"
+        description = "The Official Client library for FormKiQ"
+        inceptionYear = "2020"
+        url = "https://github.com/formkiq/formkiq-java-client"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
-    }
-    repositories {
-        maven {
-          credentials {
-            username project.repoUser
-            password project.repoPassword
-            // username project.githubUser
-            // password project.githubToken
-          }
-          // maven central
-          //url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-          url "https://oss.sonatype.org/content/repositories/snapshots/"
-          
-          // github packages
-          //url "https://maven.pkg.github.com/formkiq/formkiq-client-sdk-java"
+        developers {
+            developer {
+                id = 'mfriesen'
+                name = 'Mike Friesen'
+            }
+        }
+        scm {
+            url = 'https://github.com/formkiq/formkiq-java-client.git'
+            connection = 'scm:git:git://github.com/formkiq/formkiq-java-client.git'
+            developerConnection = 'scm:git:ssh://github.com/formkiq/formkiq-java-client.git'
         }
     }
 }
 
-javadoc {
-    if(JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption('html5', true)
-    }
-    if(JavaVersion.current().isJava8Compatible()) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-    }
-}
-
-check {
-      dependsOn(tasks.publishToMavenLocal)
-}
-
-artifacts {
-    archives jar
-    
-    archives javadocJar
-    archives sourcesJar
-}
-
-signing {
-    sign publishing.publications.mavenJava
-}
-
-spotlessJavaCheck.dependsOn spotlessJavaApply
+compileJava.dependsOn(tasks.spotlessApply)
+check.dependsOn(tasks.publishToMavenLocal)
