@@ -113,9 +113,9 @@ public class DocumentGenerationApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentGenerateCall(String documentId,
-      AddDocumentGenerateRequest addDocumentGenerateRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addDocumentGenerateCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -165,9 +165,10 @@ public class DocumentGenerationApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentGenerateValidateBeforeCall(String documentId,
-      AddDocumentGenerateRequest addDocumentGenerateRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addDocumentGenerateValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -221,8 +222,10 @@ public class DocumentGenerationApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentGenerateResponse addDocumentGenerate(String documentId,
-      AddDocumentGenerateRequest addDocumentGenerateRequest, String siteId) throws ApiException {
+  public AddDocumentGenerateResponse addDocumentGenerate(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddDocumentGenerateResponse> localVarResp =
         addDocumentGenerateWithHttpInfo(documentId, addDocumentGenerateRequest, siteId);
     return localVarResp.getData();
@@ -265,8 +268,10 @@ public class DocumentGenerationApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentGenerateResponse> addDocumentGenerateWithHttpInfo(String documentId,
-      AddDocumentGenerateRequest addDocumentGenerateRequest, String siteId) throws ApiException {
+  public ApiResponse<AddDocumentGenerateResponse> addDocumentGenerateWithHttpInfo(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         addDocumentGenerateValidateBeforeCall(documentId, addDocumentGenerateRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddDocumentGenerateResponse>() {}.getType();
@@ -310,8 +315,9 @@ public class DocumentGenerationApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentGenerateAsync(String documentId,
-      AddDocumentGenerateRequest addDocumentGenerateRequest, String siteId,
+  public okhttp3.Call addDocumentGenerateAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<AddDocumentGenerateResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentGenerateValidateBeforeCall(documentId,

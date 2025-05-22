@@ -113,8 +113,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookCall(AddWebhookRequest addWebhookRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addWebhookCall(@javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -163,8 +163,9 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addWebhookValidateBeforeCall(AddWebhookRequest addWebhookRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addWebhookValidateBeforeCall(
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addWebhookRequest' is set
     if (addWebhookRequest == null) {
       throw new ApiException(
@@ -202,8 +203,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public AddWebhookResponse addWebhook(AddWebhookRequest addWebhookRequest, String siteId)
-      throws ApiException {
+  public AddWebhookResponse addWebhook(
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddWebhookResponse> localVarResp =
         addWebhookWithHttpInfo(addWebhookRequest, siteId);
     return localVarResp.getData();
@@ -236,8 +238,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddWebhookResponse> addWebhookWithHttpInfo(AddWebhookRequest addWebhookRequest,
-      String siteId) throws ApiException {
+  public ApiResponse<AddWebhookResponse> addWebhookWithHttpInfo(
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addWebhookValidateBeforeCall(addWebhookRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddWebhookResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -271,8 +274,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookAsync(AddWebhookRequest addWebhookRequest, String siteId,
-      final ApiCallback<AddWebhookResponse> _callback) throws ApiException {
+  public okhttp3.Call addWebhookAsync(@javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddWebhookResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = addWebhookValidateBeforeCall(addWebhookRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddWebhookResponse>() {}.getType();
@@ -307,7 +311,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookDocumentCall(String webhooksPlus, Object body, String siteId,
+  public okhttp3.Call addWebhookDocumentCall(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -358,8 +363,9 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addWebhookDocumentValidateBeforeCall(String webhooksPlus, Object body,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addWebhookDocumentValidateBeforeCall(
+      @javax.annotation.Nonnull String webhooksPlus, @javax.annotation.Nonnull Object body,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhooksPlus' is set
     if (webhooksPlus == null) {
       throw new ApiException(
@@ -404,7 +410,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public DocumentId addWebhookDocument(String webhooksPlus, Object body, String siteId)
+  public DocumentId addWebhookDocument(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DocumentId> localVarResp =
         addWebhookDocumentWithHttpInfo(webhooksPlus, body, siteId);
@@ -439,8 +446,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DocumentId> addWebhookDocumentWithHttpInfo(String webhooksPlus, Object body,
-      String siteId) throws ApiException {
+  public ApiResponse<DocumentId> addWebhookDocumentWithHttpInfo(
+      @javax.annotation.Nonnull String webhooksPlus, @javax.annotation.Nonnull Object body,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         addWebhookDocumentValidateBeforeCall(webhooksPlus, body, siteId, null);
     Type localVarReturnType = new TypeToken<DocumentId>() {}.getType();
@@ -475,7 +483,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookDocumentAsync(String webhooksPlus, Object body, String siteId,
+  public okhttp3.Call addWebhookDocumentAsync(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId,
       final ApiCallback<DocumentId> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -512,8 +521,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookTagCall(String webhookId, AddWebhookTagRequest addWebhookTagRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addWebhookTagCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookTagRequest addWebhookTagRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -563,9 +573,9 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addWebhookTagValidateBeforeCall(String webhookId,
-      AddWebhookTagRequest addWebhookTagRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call addWebhookTagValidateBeforeCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookTagRequest addWebhookTagRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
       throw new ApiException(
@@ -608,8 +618,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public void addWebhookTag(String webhookId, AddWebhookTagRequest addWebhookTagRequest,
-      String siteId) throws ApiException {
+  public void addWebhookTag(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookTagRequest addWebhookTagRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     addWebhookTagWithHttpInfo(webhookId, addWebhookTagRequest, siteId);
   }
 
@@ -640,8 +651,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> addWebhookTagWithHttpInfo(String webhookId,
-      AddWebhookTagRequest addWebhookTagRequest, String siteId) throws ApiException {
+  public ApiResponse<Void> addWebhookTagWithHttpInfo(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookTagRequest addWebhookTagRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         addWebhookTagValidateBeforeCall(webhookId, addWebhookTagRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
@@ -674,8 +686,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWebhookTagAsync(String webhookId,
-      AddWebhookTagRequest addWebhookTagRequest, String siteId, final ApiCallback<Void> _callback)
+  public okhttp3.Call addWebhookTagAsync(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookTagRequest addWebhookTagRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -710,8 +723,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteWebhookCall(String webhookId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteWebhookCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -761,8 +774,8 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteWebhookValidateBeforeCall(String webhookId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteWebhookValidateBeforeCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
       throw new ApiException(
@@ -800,7 +813,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteWebhook(String webhookId, String siteId) throws ApiException {
+  public DeleteResponse deleteWebhook(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteWebhookWithHttpInfo(webhookId, siteId);
     return localVarResp.getData();
   }
@@ -832,7 +846,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteWebhookWithHttpInfo(String webhookId, String siteId)
+  public ApiResponse<DeleteResponse> deleteWebhookWithHttpInfo(
+      @javax.annotation.Nonnull String webhookId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteWebhookValidateBeforeCall(webhookId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -866,8 +881,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteWebhookAsync(String webhookId, String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteWebhookAsync(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteWebhookValidateBeforeCall(webhookId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -901,8 +917,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhookCall(String webhookId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getWebhookCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -952,8 +968,8 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWebhookValidateBeforeCall(String webhookId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWebhookValidateBeforeCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
       throw new ApiException(
@@ -990,7 +1006,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWebhookResponse getWebhook(String webhookId, String siteId) throws ApiException {
+  public GetWebhookResponse getWebhook(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetWebhookResponse> localVarResp = getWebhookWithHttpInfo(webhookId, siteId);
     return localVarResp.getData();
   }
@@ -1021,7 +1038,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWebhookResponse> getWebhookWithHttpInfo(String webhookId, String siteId)
+  public ApiResponse<GetWebhookResponse> getWebhookWithHttpInfo(
+      @javax.annotation.Nonnull String webhookId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = getWebhookValidateBeforeCall(webhookId, siteId, null);
     Type localVarReturnType = new TypeToken<GetWebhookResponse>() {}.getType();
@@ -1054,8 +1072,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhookAsync(String webhookId, String siteId,
-      final ApiCallback<GetWebhookResponse> _callback) throws ApiException {
+  public okhttp3.Call getWebhookAsync(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetWebhookResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getWebhookValidateBeforeCall(webhookId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetWebhookResponse>() {}.getType();
@@ -1089,8 +1108,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhookTagsCall(String webhookId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getWebhookTagsCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1140,8 +1159,8 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWebhookTagsValidateBeforeCall(String webhookId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWebhookTagsValidateBeforeCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
       throw new ApiException(
@@ -1178,8 +1197,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWebhookTagsResponse getWebhookTags(String webhookId, String siteId)
-      throws ApiException {
+  public GetWebhookTagsResponse getWebhookTags(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetWebhookTagsResponse> localVarResp =
         getWebhookTagsWithHttpInfo(webhookId, siteId);
     return localVarResp.getData();
@@ -1211,8 +1230,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWebhookTagsResponse> getWebhookTagsWithHttpInfo(String webhookId,
-      String siteId) throws ApiException {
+  public ApiResponse<GetWebhookTagsResponse> getWebhookTagsWithHttpInfo(
+      @javax.annotation.Nonnull String webhookId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall = getWebhookTagsValidateBeforeCall(webhookId, siteId, null);
     Type localVarReturnType = new TypeToken<GetWebhookTagsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1244,8 +1264,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhookTagsAsync(String webhookId, String siteId,
-      final ApiCallback<GetWebhookTagsResponse> _callback) throws ApiException {
+  public okhttp3.Call getWebhookTagsAsync(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetWebhookTagsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getWebhookTagsValidateBeforeCall(webhookId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetWebhookTagsResponse>() {}.getType();
@@ -1280,7 +1301,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhooksCall(String siteId, String next, String limit,
+  public okhttp3.Call getWebhooksCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1338,7 +1360,8 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWebhooksValidateBeforeCall(String siteId, String next, String limit,
+  private okhttp3.Call getWebhooksValidateBeforeCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     return getWebhooksCall(siteId, next, limit, _callback);
 
@@ -1372,7 +1395,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWebhooksResponse getWebhooks(String siteId, String next, String limit)
+  public GetWebhooksResponse getWebhooks(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
       throws ApiException {
     ApiResponse<GetWebhooksResponse> localVarResp = getWebhooksWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
@@ -1406,8 +1430,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(String siteId, String next,
-      String limit) throws ApiException {
+  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetWebhooksResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1441,7 +1466,8 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWebhooksAsync(String siteId, String next, String limit,
+  public okhttp3.Call getWebhooksAsync(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback<GetWebhooksResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getWebhooksValidateBeforeCall(siteId, next, limit, _callback);
@@ -1477,8 +1503,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateWebhookCall(String webhookId, AddWebhookRequest addWebhookRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateWebhookCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1528,9 +1555,9 @@ public class WebhooksApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateWebhookValidateBeforeCall(String webhookId,
-      AddWebhookRequest addWebhookRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateWebhookValidateBeforeCall(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhookId' is set
     if (webhookId == null) {
       throw new ApiException(
@@ -1574,8 +1601,9 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateResponse updateWebhook(String webhookId, AddWebhookRequest addWebhookRequest,
-      String siteId) throws ApiException {
+  public UpdateResponse updateWebhook(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateResponse> localVarResp =
         updateWebhookWithHttpInfo(webhookId, addWebhookRequest, siteId);
     return localVarResp.getData();
@@ -1608,8 +1636,10 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateResponse> updateWebhookWithHttpInfo(String webhookId,
-      AddWebhookRequest addWebhookRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateResponse> updateWebhookWithHttpInfo(
+      @javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateWebhookValidateBeforeCall(webhookId, addWebhookRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
@@ -1643,8 +1673,10 @@ public class WebhooksApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateWebhookAsync(String webhookId, AddWebhookRequest addWebhookRequest,
-      String siteId, final ApiCallback<UpdateResponse> _callback) throws ApiException {
+  public okhttp3.Call updateWebhookAsync(@javax.annotation.Nonnull String webhookId,
+      @javax.annotation.Nonnull AddWebhookRequest addWebhookRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateWebhookValidateBeforeCall(webhookId, addWebhookRequest, siteId, _callback);

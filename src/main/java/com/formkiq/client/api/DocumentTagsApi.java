@@ -91,7 +91,6 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -113,9 +112,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentTagsCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addDocumentTagsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -145,10 +144,6 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    if (ws != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("ws", ws));
-    }
-
     final String[] localVarAccepts = {};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -169,9 +164,10 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentTagsValidateBeforeCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addDocumentTagsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -184,7 +180,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'addDocumentTagsRequest' when calling addDocumentTags(Async)");
     }
 
-    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, ws, _callback);
+    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, _callback);
 
   }
 
@@ -195,7 +191,6 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -216,9 +211,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void addDocumentTags(String documentId, AddDocumentTagsRequest addDocumentTagsRequest,
-      String siteId, String ws) throws ApiException {
-    addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId, ws);
+  public void addDocumentTags(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
+    addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
   }
 
   /**
@@ -228,7 +224,6 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -250,10 +245,11 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> addDocumentTagsWithHttpInfo(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws) throws ApiException {
+  public ApiResponse<Void> addDocumentTagsWithHttpInfo(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
-        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, ws, null);
+        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
   }
 
@@ -264,7 +260,6 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -286,12 +281,13 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentTagsAsync(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, String ws,
-      final ApiCallback<Void> _callback) throws ApiException {
+  public okhttp3.Call addDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
+      throws ApiException {
 
-    okhttp3.Call localVarCall = addDocumentTagsValidateBeforeCall(documentId,
-        addDocumentTagsRequest, siteId, ws, _callback);
+    okhttp3.Call localVarCall =
+        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
     localVarApiClient.executeAsync(localVarCall, _callback);
     return localVarCall;
   }
@@ -323,7 +319,8 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentTagCall(String documentId, String tagKey, String siteId,
+  public okhttp3.Call deleteDocumentTagCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -375,8 +372,9 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteDocumentTagValidateBeforeCall(String documentId, String tagKey,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteDocumentTagValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -420,7 +418,8 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteDocumentTag(String documentId, String tagKey, String siteId)
+  public DeleteResponse deleteDocumentTag(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
         deleteDocumentTagWithHttpInfo(documentId, tagKey, siteId);
@@ -454,8 +453,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteDocumentTagWithHttpInfo(String documentId, String tagKey,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteResponse> deleteDocumentTagWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         deleteDocumentTagValidateBeforeCall(documentId, tagKey, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -489,7 +489,8 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentTagAsync(String documentId, String tagKey, String siteId,
+  public okhttp3.Call deleteDocumentTagAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -528,9 +529,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentTagAndValueCall(String documentId, String tagKey,
-      String tagValue, String siteId, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteDocumentTagAndValueCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -586,9 +588,10 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteDocumentTagAndValueValidateBeforeCall(String documentId, String tagKey,
-      String tagValue, String siteId, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call deleteDocumentTagAndValueValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull String tagValue, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -641,8 +644,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteDocumentTagAndValue(String documentId, String tagKey, String tagValue,
-      String siteId, String shareKey) throws ApiException {
+  public DeleteResponse deleteDocumentTagAndValue(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
         deleteDocumentTagAndValueWithHttpInfo(documentId, tagKey, tagValue, siteId, shareKey);
     return localVarResp.getData();
@@ -678,8 +683,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteDocumentTagAndValueWithHttpInfo(String documentId,
-      String tagKey, String tagValue, String siteId, String shareKey) throws ApiException {
+  public ApiResponse<DeleteResponse> deleteDocumentTagAndValueWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull String tagValue, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     okhttp3.Call localVarCall = deleteDocumentTagAndValueValidateBeforeCall(documentId, tagKey,
         tagValue, siteId, shareKey, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -716,9 +723,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentTagAndValueAsync(String documentId, String tagKey,
-      String tagValue, String siteId, String shareKey, final ApiCallback<DeleteResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call deleteDocumentTagAndValueAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentTagAndValueValidateBeforeCall(documentId, tagKey,
         tagValue, siteId, shareKey, _callback);
@@ -755,8 +763,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentTagCall(String documentId, String tagKey, String siteId,
-      String shareKey, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentTagCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -811,8 +820,9 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentTagValidateBeforeCall(String documentId, String tagKey,
-      String siteId, String shareKey, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getDocumentTagValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -857,8 +867,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentTagResponse getDocumentTag(String documentId, String tagKey, String siteId,
-      String shareKey) throws ApiException {
+  public GetDocumentTagResponse getDocumentTag(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     ApiResponse<GetDocumentTagResponse> localVarResp =
         getDocumentTagWithHttpInfo(documentId, tagKey, siteId, shareKey);
     return localVarResp.getData();
@@ -892,8 +903,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentTagResponse> getDocumentTagWithHttpInfo(String documentId,
-      String tagKey, String siteId, String shareKey) throws ApiException {
+  public ApiResponse<GetDocumentTagResponse> getDocumentTagWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     okhttp3.Call localVarCall =
         getDocumentTagValidateBeforeCall(documentId, tagKey, siteId, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentTagResponse>() {}.getType();
@@ -928,8 +941,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentTagAsync(String documentId, String tagKey, String siteId,
-      String shareKey, final ApiCallback<GetDocumentTagResponse> _callback) throws ApiException {
+  public okhttp3.Call getDocumentTagAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey,
+      final ApiCallback<GetDocumentTagResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getDocumentTagValidateBeforeCall(documentId, tagKey, siteId, shareKey, _callback);
@@ -968,9 +983,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentTagsCall(String documentId, String siteId, String limit,
-      String shareKey, String next, String previous, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentTagsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1036,9 +1052,11 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentTagsValidateBeforeCall(String documentId, String siteId,
-      String limit, String shareKey, String next, String previous, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call getDocumentTagsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1079,8 +1097,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentTagsResponse getDocumentTags(String documentId, String siteId, String limit,
-      String shareKey, String next, String previous) throws ApiException {
+  public GetDocumentTagsResponse getDocumentTags(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous) throws ApiException {
     ApiResponse<GetDocumentTagsResponse> localVarResp =
         getDocumentTagsWithHttpInfo(documentId, siteId, limit, shareKey, next, previous);
     return localVarResp.getData();
@@ -1116,8 +1136,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentTagsResponse> getDocumentTagsWithHttpInfo(String documentId,
-      String siteId, String limit, String shareKey, String next, String previous)
+  public ApiResponse<GetDocumentTagsResponse> getDocumentTagsWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous)
       throws ApiException {
     okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, limit,
         shareKey, next, previous, null);
@@ -1155,8 +1177,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentTagsAsync(String documentId, String siteId, String limit,
-      String shareKey, String next, String previous,
+  public okhttp3.Call getDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous,
       final ApiCallback<GetDocumentTagsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, limit,
@@ -1194,9 +1218,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentTagCall(String documentId, String tagKey,
-      SetDocumentTagKeyRequest setDocumentTagKeyRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call setDocumentTagCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1247,9 +1272,10 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setDocumentTagValidateBeforeCall(String documentId, String tagKey,
-      SetDocumentTagKeyRequest setDocumentTagKeyRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call setDocumentTagValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1300,8 +1326,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void setDocumentTag(String documentId, String tagKey,
-      SetDocumentTagKeyRequest setDocumentTagKeyRequest, String siteId) throws ApiException {
+  public void setDocumentTag(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     setDocumentTagWithHttpInfo(documentId, tagKey, setDocumentTagKeyRequest, siteId);
   }
 
@@ -1334,8 +1362,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> setDocumentTagWithHttpInfo(String documentId, String tagKey,
-      SetDocumentTagKeyRequest setDocumentTagKeyRequest, String siteId) throws ApiException {
+  public ApiResponse<Void> setDocumentTagWithHttpInfo(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = setDocumentTagValidateBeforeCall(documentId, tagKey,
         setDocumentTagKeyRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
@@ -1370,9 +1400,11 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentTagAsync(String documentId, String tagKey,
-      SetDocumentTagKeyRequest setDocumentTagKeyRequest, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+  public okhttp3.Call setDocumentTagAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String tagKey,
+      @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = setDocumentTagValidateBeforeCall(documentId, tagKey,
         setDocumentTagKeyRequest, siteId, _callback);
@@ -1407,9 +1439,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentTagsCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call setDocumentTagsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1459,9 +1491,10 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setDocumentTagsValidateBeforeCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call setDocumentTagsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1505,8 +1538,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void setDocumentTags(String documentId, AddDocumentTagsRequest addDocumentTagsRequest,
-      String siteId) throws ApiException {
+  public void setDocumentTags(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     setDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
   }
 
@@ -1538,8 +1572,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> setDocumentTagsWithHttpInfo(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId) throws ApiException {
+  public ApiResponse<Void> setDocumentTagsWithHttpInfo(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         setDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
@@ -1573,9 +1608,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentTagsAsync(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+  public okhttp3.Call setDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         setDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
@@ -1610,9 +1646,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateDocumentTagsCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call updateDocumentTagsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1662,9 +1698,10 @@ public class DocumentTagsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateDocumentTagsValidateBeforeCall(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateDocumentTagsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1708,8 +1745,9 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void updateDocumentTags(String documentId, AddDocumentTagsRequest addDocumentTagsRequest,
-      String siteId) throws ApiException {
+  public void updateDocumentTags(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     updateDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
   }
 
@@ -1741,8 +1779,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> updateDocumentTagsWithHttpInfo(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId) throws ApiException {
+  public ApiResponse<Void> updateDocumentTagsWithHttpInfo(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
     return localVarApiClient.execute(localVarCall);
@@ -1776,9 +1816,10 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateDocumentTagsAsync(String documentId,
-      AddDocumentTagsRequest addDocumentTagsRequest, String siteId,
-      final ApiCallback<Void> _callback) throws ApiException {
+  public okhttp3.Call updateDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
@@ -1813,8 +1854,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call updateMatchingDocumentTagsCall(
-      UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1864,8 +1905,8 @@ public class DocumentTagsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call updateMatchingDocumentTagsValidateBeforeCall(
-      UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'updateMatchingDocumentTagsRequest' is set
     if (updateMatchingDocumentTagsRequest == null) {
       throw new ApiException(
@@ -1904,8 +1945,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public UpdateMatchingDocumentTagsResponse updateMatchingDocumentTags(
-      UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateMatchingDocumentTagsResponse> localVarResp =
         updateMatchingDocumentTagsWithHttpInfo(updateMatchingDocumentTagsRequest, siteId);
     return localVarResp.getData();
@@ -1939,8 +1980,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public ApiResponse<UpdateMatchingDocumentTagsResponse> updateMatchingDocumentTagsWithHttpInfo(
-      UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = updateMatchingDocumentTagsValidateBeforeCall(
         updateMatchingDocumentTagsRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateMatchingDocumentTagsResponse>() {}.getType();
@@ -1975,7 +2016,8 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call updateMatchingDocumentTagsAsync(
-      UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest, String siteId,
+      @javax.annotation.Nonnull UpdateMatchingDocumentTagsRequest updateMatchingDocumentTagsRequest,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<UpdateMatchingDocumentTagsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = updateMatchingDocumentTagsValidateBeforeCall(

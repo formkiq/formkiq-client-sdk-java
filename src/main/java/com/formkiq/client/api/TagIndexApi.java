@@ -115,8 +115,11 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call indexSearchCall(IndexSearchRequest indexSearchRequest, String siteId,
-      String limit, String next, String previous, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call indexSearchCall(
+      @javax.annotation.Nonnull IndexSearchRequest indexSearchRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -177,9 +180,11 @@ public class TagIndexApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call indexSearchValidateBeforeCall(IndexSearchRequest indexSearchRequest,
-      String siteId, String limit, String next, String previous, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call indexSearchValidateBeforeCall(
+      @javax.annotation.Nonnull IndexSearchRequest indexSearchRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'indexSearchRequest' is set
     if (indexSearchRequest == null) {
       throw new ApiException(
@@ -225,8 +230,11 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public IndexSearchResponse indexSearch(IndexSearchRequest indexSearchRequest, String siteId,
-      String limit, String next, String previous) throws ApiException {
+  public IndexSearchResponse indexSearch(
+      @javax.annotation.Nonnull IndexSearchRequest indexSearchRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous)
+      throws ApiException {
     ApiResponse<IndexSearchResponse> localVarResp =
         indexSearchWithHttpInfo(indexSearchRequest, siteId, limit, next, previous);
     return localVarResp.getData();
@@ -268,8 +276,10 @@ public class TagIndexApi {
    *                        </table>
    */
   public ApiResponse<IndexSearchResponse> indexSearchWithHttpInfo(
-      IndexSearchRequest indexSearchRequest, String siteId, String limit, String next,
-      String previous) throws ApiException {
+      @javax.annotation.Nonnull IndexSearchRequest indexSearchRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous)
+      throws ApiException {
     okhttp3.Call localVarCall =
         indexSearchValidateBeforeCall(indexSearchRequest, siteId, limit, next, previous, null);
     Type localVarReturnType = new TypeToken<IndexSearchResponse>() {}.getType();
@@ -311,9 +321,11 @@ public class TagIndexApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call indexSearchAsync(IndexSearchRequest indexSearchRequest, String siteId,
-      String limit, String next, String previous, final ApiCallback<IndexSearchResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call indexSearchAsync(
+      @javax.annotation.Nonnull IndexSearchRequest indexSearchRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      final ApiCallback<IndexSearchResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         indexSearchValidateBeforeCall(indexSearchRequest, siteId, limit, next, previous, _callback);

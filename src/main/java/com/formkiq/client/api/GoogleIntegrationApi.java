@@ -113,9 +113,9 @@ public class GoogleIntegrationApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addGoogleDocumentExportCall(String documentId,
-      AddGoogleDocumentExportRequest addGoogleDocumentExportRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addGoogleDocumentExportCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -165,9 +165,10 @@ public class GoogleIntegrationApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addGoogleDocumentExportValidateBeforeCall(String documentId,
-      AddGoogleDocumentExportRequest addGoogleDocumentExportRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addGoogleDocumentExportValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -217,9 +218,10 @@ public class GoogleIntegrationApi {
    *                        </tr>
    *                        </table>
    */
-  public AddGoogleDocumentExportResponse addGoogleDocumentExport(String documentId,
-      AddGoogleDocumentExportRequest addGoogleDocumentExportRequest, String siteId)
-      throws ApiException {
+  public AddGoogleDocumentExportResponse addGoogleDocumentExport(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddGoogleDocumentExportResponse> localVarResp =
         addGoogleDocumentExportWithHttpInfo(documentId, addGoogleDocumentExportRequest, siteId);
     return localVarResp.getData();
@@ -258,8 +260,9 @@ public class GoogleIntegrationApi {
    *                        </table>
    */
   public ApiResponse<AddGoogleDocumentExportResponse> addGoogleDocumentExportWithHttpInfo(
-      String documentId, AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      String siteId) throws ApiException {
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addGoogleDocumentExportValidateBeforeCall(documentId,
         addGoogleDocumentExportRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddGoogleDocumentExportResponse>() {}.getType();
@@ -299,8 +302,9 @@ public class GoogleIntegrationApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addGoogleDocumentExportAsync(String documentId,
-      AddGoogleDocumentExportRequest addGoogleDocumentExportRequest, String siteId,
+  public okhttp3.Call addGoogleDocumentExportAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<AddGoogleDocumentExportResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addGoogleDocumentExportValidateBeforeCall(documentId,

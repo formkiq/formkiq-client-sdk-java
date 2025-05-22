@@ -40,6 +40,8 @@ public enum DocumentSyncStatus {
 
   FAILED("FAILED"),
 
+  FAILED_RETRY("FAILED_RETRY"),
+
   PENDING("PENDING");
 
   private String value;

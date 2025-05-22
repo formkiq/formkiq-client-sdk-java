@@ -129,8 +129,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addCaseCall(AddCaseRequest addCaseRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addCaseCall(@javax.annotation.Nonnull AddCaseRequest addCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -179,8 +179,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addCaseValidateBeforeCall(AddCaseRequest addCaseRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addCaseValidateBeforeCall(
+      @javax.annotation.Nonnull AddCaseRequest addCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addCaseRequest' is set
     if (addCaseRequest == null) {
       throw new ApiException(
@@ -217,7 +218,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddCaseResponse addCase(AddCaseRequest addCaseRequest, String siteId) throws ApiException {
+  public AddCaseResponse addCase(@javax.annotation.Nonnull AddCaseRequest addCaseRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddCaseResponse> localVarResp = addCaseWithHttpInfo(addCaseRequest, siteId);
     return localVarResp.getData();
   }
@@ -248,8 +250,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddCaseResponse> addCaseWithHttpInfo(AddCaseRequest addCaseRequest,
-      String siteId) throws ApiException {
+  public ApiResponse<AddCaseResponse> addCaseWithHttpInfo(
+      @javax.annotation.Nonnull AddCaseRequest addCaseRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addCaseValidateBeforeCall(addCaseRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddCaseResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -281,8 +284,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addCaseAsync(AddCaseRequest addCaseRequest, String siteId,
-      final ApiCallback<AddCaseResponse> _callback) throws ApiException {
+  public okhttp3.Call addCaseAsync(@javax.annotation.Nonnull AddCaseRequest addCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddCaseResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = addCaseValidateBeforeCall(addCaseRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddCaseResponse>() {}.getType();
@@ -317,8 +321,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addNigoCall(String caseId, AddNigoRequest addNigoRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addNigoCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddNigoRequest addNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -368,8 +373,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addNigoValidateBeforeCall(String caseId, AddNigoRequest addNigoRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addNigoValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddNigoRequest addNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException("Missing the required parameter 'caseId' when calling addNigo(Async)");
@@ -412,8 +418,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddNigoResponse addNigo(String caseId, AddNigoRequest addNigoRequest, String siteId)
-      throws ApiException {
+  public AddNigoResponse addNigo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddNigoRequest addNigoRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddNigoResponse> localVarResp = addNigoWithHttpInfo(caseId, addNigoRequest, siteId);
     return localVarResp.getData();
   }
@@ -445,8 +452,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddNigoResponse> addNigoWithHttpInfo(String caseId,
-      AddNigoRequest addNigoRequest, String siteId) throws ApiException {
+  public ApiResponse<AddNigoResponse> addNigoWithHttpInfo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddNigoRequest addNigoRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addNigoValidateBeforeCall(caseId, addNigoRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddNigoResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -479,8 +487,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addNigoAsync(String caseId, AddNigoRequest addNigoRequest, String siteId,
-      final ApiCallback<AddNigoResponse> _callback) throws ApiException {
+  public okhttp3.Call addNigoAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddNigoRequest addNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddNigoResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         addNigoValidateBeforeCall(caseId, addNigoRequest, siteId, _callback);
@@ -516,8 +526,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addTaskCall(String caseId, AddTaskRequest addTaskRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addTaskCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddTaskRequest addTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -567,8 +578,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addTaskValidateBeforeCall(String caseId, AddTaskRequest addTaskRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addTaskValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddTaskRequest addTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException("Missing the required parameter 'caseId' when calling addTask(Async)");
@@ -611,8 +623,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddTaskResponse addTask(String caseId, AddTaskRequest addTaskRequest, String siteId)
-      throws ApiException {
+  public AddTaskResponse addTask(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddTaskRequest addTaskRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddTaskResponse> localVarResp = addTaskWithHttpInfo(caseId, addTaskRequest, siteId);
     return localVarResp.getData();
   }
@@ -644,8 +657,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddTaskResponse> addTaskWithHttpInfo(String caseId,
-      AddTaskRequest addTaskRequest, String siteId) throws ApiException {
+  public ApiResponse<AddTaskResponse> addTaskWithHttpInfo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddTaskRequest addTaskRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addTaskValidateBeforeCall(caseId, addTaskRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddTaskResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -678,8 +692,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addTaskAsync(String caseId, AddTaskRequest addTaskRequest, String siteId,
-      final ApiCallback<AddTaskResponse> _callback) throws ApiException {
+  public okhttp3.Call addTaskAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull AddTaskRequest addTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddTaskResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         addTaskValidateBeforeCall(caseId, addTaskRequest, siteId, _callback);
@@ -714,8 +730,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteCaseCall(String caseId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteCaseCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -765,8 +781,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteCaseValidateBeforeCall(String caseId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteCaseValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -803,7 +819,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseResponse deleteCase(String caseId, String siteId) throws ApiException {
+  public DeleteCaseResponse deleteCase(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteCaseResponse> localVarResp = deleteCaseWithHttpInfo(caseId, siteId);
     return localVarResp.getData();
   }
@@ -834,7 +851,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseResponse> deleteCaseWithHttpInfo(String caseId, String siteId)
+  public ApiResponse<DeleteCaseResponse> deleteCaseWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteCaseValidateBeforeCall(caseId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseResponse>() {}.getType();
@@ -867,8 +885,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteCaseAsync(String caseId, String siteId,
-      final ApiCallback<DeleteCaseResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteCaseAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteCaseResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteCaseValidateBeforeCall(caseId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteCaseResponse>() {}.getType();
@@ -903,7 +922,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteCaseDocumentCall(String caseId, String documentId, String siteId,
+  public okhttp3.Call deleteCaseDocumentCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -955,8 +975,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteCaseDocumentValidateBeforeCall(String caseId, String documentId,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteCaseDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -1000,8 +1021,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseDocumentResponse deleteCaseDocument(String caseId, String documentId,
-      String siteId) throws ApiException {
+  public DeleteCaseDocumentResponse deleteCaseDocument(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     ApiResponse<DeleteCaseDocumentResponse> localVarResp =
         deleteCaseDocumentWithHttpInfo(caseId, documentId, siteId);
     return localVarResp.getData();
@@ -1034,8 +1056,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseDocumentResponse> deleteCaseDocumentWithHttpInfo(String caseId,
-      String documentId, String siteId) throws ApiException {
+  public ApiResponse<DeleteCaseDocumentResponse> deleteCaseDocumentWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseDocumentResponse>() {}.getType();
@@ -1069,7 +1092,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteCaseDocumentAsync(String caseId, String documentId, String siteId,
+  public okhttp3.Call deleteCaseDocumentAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
       final ApiCallback<DeleteCaseDocumentResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -1106,7 +1130,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteNigoCall(String caseId, String nigoId, String siteId,
+  public okhttp3.Call deleteNigoCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1158,7 +1183,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteNigoValidateBeforeCall(String caseId, String nigoId, String siteId,
+  private okhttp3.Call deleteNigoValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
@@ -1203,7 +1229,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseNigoResponse deleteNigo(String caseId, String nigoId, String siteId)
+  public DeleteCaseNigoResponse deleteNigo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DeleteCaseNigoResponse> localVarResp =
         deleteNigoWithHttpInfo(caseId, nigoId, siteId);
@@ -1237,8 +1264,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseNigoResponse> deleteNigoWithHttpInfo(String caseId, String nigoId,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteCaseNigoResponse> deleteNigoWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = deleteNigoValidateBeforeCall(caseId, nigoId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseNigoResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1271,7 +1299,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteNigoAsync(String caseId, String nigoId, String siteId,
+  public okhttp3.Call deleteNigoAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback<DeleteCaseNigoResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteNigoValidateBeforeCall(caseId, nigoId, siteId, _callback);
@@ -1308,8 +1337,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteNigoDocumentCall(String caseId, String nigoId, String documentId,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteNigoDocumentCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1361,8 +1391,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteNigoDocumentValidateBeforeCall(String caseId, String nigoId,
-      String documentId, String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteNigoDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -1413,8 +1444,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseNigoDocumentResponse deleteNigoDocument(String caseId, String nigoId,
-      String documentId, String siteId) throws ApiException {
+  public DeleteCaseNigoDocumentResponse deleteNigoDocument(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteCaseNigoDocumentResponse> localVarResp =
         deleteNigoDocumentWithHttpInfo(caseId, nigoId, documentId, siteId);
     return localVarResp.getData();
@@ -1448,8 +1480,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseNigoDocumentResponse> deleteNigoDocumentWithHttpInfo(String caseId,
-      String nigoId, String documentId, String siteId) throws ApiException {
+  public ApiResponse<DeleteCaseNigoDocumentResponse> deleteNigoDocumentWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall =
         deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseNigoDocumentResponse>() {}.getType();
@@ -1484,9 +1518,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteNigoDocumentAsync(String caseId, String nigoId, String documentId,
-      String siteId, final ApiCallback<DeleteCaseNigoDocumentResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call deleteNigoDocumentAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      final ApiCallback<DeleteCaseNigoDocumentResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, _callback);
@@ -1522,7 +1557,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteTaskCall(String caseId, String taskId, String siteId,
+  public okhttp3.Call deleteTaskCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1574,7 +1610,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteTaskValidateBeforeCall(String caseId, String taskId, String siteId,
+  private okhttp3.Call deleteTaskValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
@@ -1619,7 +1656,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseTaskResponse deleteTask(String caseId, String taskId, String siteId)
+  public DeleteCaseTaskResponse deleteTask(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DeleteCaseTaskResponse> localVarResp =
         deleteTaskWithHttpInfo(caseId, taskId, siteId);
@@ -1653,8 +1691,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseTaskResponse> deleteTaskWithHttpInfo(String caseId, String taskId,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteCaseTaskResponse> deleteTaskWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = deleteTaskValidateBeforeCall(caseId, taskId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseTaskResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1687,7 +1726,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteTaskAsync(String caseId, String taskId, String siteId,
+  public okhttp3.Call deleteTaskAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback<DeleteCaseTaskResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteTaskValidateBeforeCall(caseId, taskId, siteId, _callback);
@@ -1724,8 +1764,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteTaskDocumentCall(String caseId, String taskId, String documentId,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteTaskDocumentCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1777,8 +1818,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteTaskDocumentValidateBeforeCall(String caseId, String taskId,
-      String documentId, String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteTaskDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -1829,8 +1871,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteCaseTaskDocumentResponse deleteTaskDocument(String caseId, String taskId,
-      String documentId, String siteId) throws ApiException {
+  public DeleteCaseTaskDocumentResponse deleteTaskDocument(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteCaseTaskDocumentResponse> localVarResp =
         deleteTaskDocumentWithHttpInfo(caseId, taskId, documentId, siteId);
     return localVarResp.getData();
@@ -1864,8 +1907,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteCaseTaskDocumentResponse> deleteTaskDocumentWithHttpInfo(String caseId,
-      String taskId, String documentId, String siteId) throws ApiException {
+  public ApiResponse<DeleteCaseTaskDocumentResponse> deleteTaskDocumentWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall =
         deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseTaskDocumentResponse>() {}.getType();
@@ -1900,9 +1945,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteTaskDocumentAsync(String caseId, String taskId, String documentId,
-      String siteId, final ApiCallback<DeleteCaseTaskDocumentResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call deleteTaskDocumentAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      final ApiCallback<DeleteCaseTaskDocumentResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, _callback);
@@ -1937,8 +1983,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseCall(String caseId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getCaseCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1988,8 +2034,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseValidateBeforeCall(String caseId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getCaseValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException("Missing the required parameter 'caseId' when calling getCase(Async)");
@@ -2025,7 +2071,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseResponse getCase(String caseId, String siteId) throws ApiException {
+  public GetCaseResponse getCase(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetCaseResponse> localVarResp = getCaseWithHttpInfo(caseId, siteId);
     return localVarResp.getData();
   }
@@ -2056,8 +2103,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseResponse> getCaseWithHttpInfo(String caseId, String siteId)
-      throws ApiException {
+  public ApiResponse<GetCaseResponse> getCaseWithHttpInfo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = getCaseValidateBeforeCall(caseId, siteId, null);
     Type localVarReturnType = new TypeToken<GetCaseResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2089,8 +2136,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseAsync(String caseId, String siteId,
-      final ApiCallback<GetCaseResponse> _callback) throws ApiException {
+  public okhttp3.Call getCaseAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetCaseResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getCaseValidateBeforeCall(caseId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetCaseResponse>() {}.getType();
@@ -2126,8 +2174,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseDocumentsCall(String caseId, String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getCaseDocumentsCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2185,8 +2234,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseDocumentsValidateBeforeCall(String caseId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getCaseDocumentsValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -2225,8 +2275,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseDocumentsResponse getCaseDocuments(String caseId, String siteId, String next,
-      String limit) throws ApiException {
+  public GetCaseDocumentsResponse getCaseDocuments(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     ApiResponse<GetCaseDocumentsResponse> localVarResp =
         getCaseDocumentsWithHttpInfo(caseId, siteId, next, limit);
     return localVarResp.getData();
@@ -2260,8 +2311,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseDocumentsResponse> getCaseDocumentsWithHttpInfo(String caseId,
-      String siteId, String next, String limit) throws ApiException {
+  public ApiResponse<GetCaseDocumentsResponse> getCaseDocumentsWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     okhttp3.Call localVarCall =
         getCaseDocumentsValidateBeforeCall(caseId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCaseDocumentsResponse>() {}.getType();
@@ -2297,7 +2350,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseDocumentsAsync(String caseId, String siteId, String next, String limit,
+  public okhttp3.Call getCaseDocumentsAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit,
       final ApiCallback<GetCaseDocumentsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -2334,7 +2389,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseNigoCall(String caseId, String nigoId, String siteId,
+  public okhttp3.Call getCaseNigoCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -2386,7 +2442,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseNigoValidateBeforeCall(String caseId, String nigoId, String siteId,
+  private okhttp3.Call getCaseNigoValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
@@ -2431,7 +2488,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseNigoResponse getCaseNigo(String caseId, String nigoId, String siteId)
+  public GetCaseNigoResponse getCaseNigo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<GetCaseNigoResponse> localVarResp = getCaseNigoWithHttpInfo(caseId, nigoId, siteId);
     return localVarResp.getData();
@@ -2464,8 +2522,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseNigoResponse> getCaseNigoWithHttpInfo(String caseId, String nigoId,
-      String siteId) throws ApiException {
+  public ApiResponse<GetCaseNigoResponse> getCaseNigoWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = getCaseNigoValidateBeforeCall(caseId, nigoId, siteId, null);
     Type localVarReturnType = new TypeToken<GetCaseNigoResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2498,7 +2557,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseNigoAsync(String caseId, String nigoId, String siteId,
+  public okhttp3.Call getCaseNigoAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
       final ApiCallback<GetCaseNigoResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getCaseNigoValidateBeforeCall(caseId, nigoId, siteId, _callback);
@@ -2535,8 +2595,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseNigosCall(String caseId, String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getCaseNigosCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2594,8 +2655,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseNigosValidateBeforeCall(String caseId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getCaseNigosValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -2634,8 +2696,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseNigosResponse getCaseNigos(String caseId, String siteId, String next, String limit)
-      throws ApiException {
+  public GetCaseNigosResponse getCaseNigos(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     ApiResponse<GetCaseNigosResponse> localVarResp =
         getCaseNigosWithHttpInfo(caseId, siteId, next, limit);
     return localVarResp.getData();
@@ -2669,8 +2732,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseNigosResponse> getCaseNigosWithHttpInfo(String caseId, String siteId,
-      String next, String limit) throws ApiException {
+  public ApiResponse<GetCaseNigosResponse> getCaseNigosWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     okhttp3.Call localVarCall = getCaseNigosValidateBeforeCall(caseId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCaseNigosResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2705,8 +2770,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseNigosAsync(String caseId, String siteId, String next, String limit,
-      final ApiCallback<GetCaseNigosResponse> _callback) throws ApiException {
+  public okhttp3.Call getCaseNigosAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback<GetCaseNigosResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         getCaseNigosValidateBeforeCall(caseId, siteId, next, limit, _callback);
@@ -2742,7 +2809,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseTaskCall(String caseId, String taskId, String siteId,
+  public okhttp3.Call getCaseTaskCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -2794,7 +2862,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseTaskValidateBeforeCall(String caseId, String taskId, String siteId,
+  private okhttp3.Call getCaseTaskValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
@@ -2839,7 +2908,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseTaskResponse getCaseTask(String caseId, String taskId, String siteId)
+  public GetCaseTaskResponse getCaseTask(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<GetCaseTaskResponse> localVarResp = getCaseTaskWithHttpInfo(caseId, taskId, siteId);
     return localVarResp.getData();
@@ -2872,8 +2942,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseTaskResponse> getCaseTaskWithHttpInfo(String caseId, String taskId,
-      String siteId) throws ApiException {
+  public ApiResponse<GetCaseTaskResponse> getCaseTaskWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = getCaseTaskValidateBeforeCall(caseId, taskId, siteId, null);
     Type localVarReturnType = new TypeToken<GetCaseTaskResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2906,7 +2977,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseTaskAsync(String caseId, String taskId, String siteId,
+  public okhttp3.Call getCaseTaskAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
       final ApiCallback<GetCaseTaskResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getCaseTaskValidateBeforeCall(caseId, taskId, siteId, _callback);
@@ -2943,8 +3015,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseTasksCall(String caseId, String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getCaseTasksCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3002,8 +3075,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCaseTasksValidateBeforeCall(String caseId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getCaseTasksValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -3042,8 +3116,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseTasksResponse getCaseTasks(String caseId, String siteId, String next, String limit)
-      throws ApiException {
+  public GetCaseTasksResponse getCaseTasks(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     ApiResponse<GetCaseTasksResponse> localVarResp =
         getCaseTasksWithHttpInfo(caseId, siteId, next, limit);
     return localVarResp.getData();
@@ -3077,8 +3152,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseTasksResponse> getCaseTasksWithHttpInfo(String caseId, String siteId,
-      String next, String limit) throws ApiException {
+  public ApiResponse<GetCaseTasksResponse> getCaseTasksWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     okhttp3.Call localVarCall = getCaseTasksValidateBeforeCall(caseId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCaseTasksResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3112,8 +3189,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCaseTasksAsync(String caseId, String siteId, String next, String limit,
-      final ApiCallback<GetCaseTasksResponse> _callback) throws ApiException {
+  public okhttp3.Call getCaseTasksAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback<GetCaseTasksResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         getCaseTasksValidateBeforeCall(caseId, siteId, next, limit, _callback);
@@ -3149,7 +3228,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCasesCall(String siteId, String next, String limit,
+  public okhttp3.Call getCasesCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -3207,7 +3287,8 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getCasesValidateBeforeCall(String siteId, String next, String limit,
+  private okhttp3.Call getCasesValidateBeforeCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     return getCasesCall(siteId, next, limit, _callback);
 
@@ -3240,7 +3321,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCasesResponse getCases(String siteId, String next, String limit) throws ApiException {
+  public GetCasesResponse getCases(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     ApiResponse<GetCasesResponse> localVarResp = getCasesWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
   }
@@ -3272,8 +3355,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCasesResponse> getCasesWithHttpInfo(String siteId, String next,
-      String limit) throws ApiException {
+  public ApiResponse<GetCasesResponse> getCasesWithHttpInfo(
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall = getCasesValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCasesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3306,7 +3390,8 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getCasesAsync(String siteId, String next, String limit,
+  public okhttp3.Call getCasesAsync(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback<GetCasesResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getCasesValidateBeforeCall(siteId, next, limit, _callback);
@@ -3344,8 +3429,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getNigoDocumentsCall(String caseId, String nigoId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getNigoDocumentsCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3404,8 +3491,10 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getNigoDocumentsValidateBeforeCall(String caseId, String nigoId,
-      String siteId, String next, String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getNigoDocumentsValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -3452,8 +3541,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseDocumentsResponse getNigoDocuments(String caseId, String nigoId, String siteId,
-      String next, String limit) throws ApiException {
+  public GetCaseDocumentsResponse getNigoDocuments(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     ApiResponse<GetCaseDocumentsResponse> localVarResp =
         getNigoDocumentsWithHttpInfo(caseId, nigoId, siteId, next, limit);
     return localVarResp.getData();
@@ -3489,8 +3580,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseDocumentsResponse> getNigoDocumentsWithHttpInfo(String caseId,
-      String nigoId, String siteId, String next, String limit) throws ApiException {
+  public ApiResponse<GetCaseDocumentsResponse> getNigoDocumentsWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall =
         getNigoDocumentsValidateBeforeCall(caseId, nigoId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCaseDocumentsResponse>() {}.getType();
@@ -3527,9 +3620,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getNigoDocumentsAsync(String caseId, String nigoId, String siteId,
-      String next, String limit, final ApiCallback<GetCaseDocumentsResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getNigoDocumentsAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback<GetCaseDocumentsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getNigoDocumentsValidateBeforeCall(caseId, nigoId, siteId, next, limit, _callback);
@@ -3567,8 +3661,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getTaskDocumentsCall(String caseId, String taskId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getTaskDocumentsCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3627,8 +3723,10 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getTaskDocumentsValidateBeforeCall(String caseId, String taskId,
-      String siteId, String next, String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getTaskDocumentsValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -3675,8 +3773,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetCaseDocumentsResponse getTaskDocuments(String caseId, String taskId, String siteId,
-      String next, String limit) throws ApiException {
+  public GetCaseDocumentsResponse getTaskDocuments(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     ApiResponse<GetCaseDocumentsResponse> localVarResp =
         getTaskDocumentsWithHttpInfo(caseId, taskId, siteId, next, limit);
     return localVarResp.getData();
@@ -3712,8 +3812,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetCaseDocumentsResponse> getTaskDocumentsWithHttpInfo(String caseId,
-      String taskId, String siteId, String next, String limit) throws ApiException {
+  public ApiResponse<GetCaseDocumentsResponse> getTaskDocumentsWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall =
         getTaskDocumentsValidateBeforeCall(caseId, taskId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetCaseDocumentsResponse>() {}.getType();
@@ -3750,9 +3852,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getTaskDocumentsAsync(String caseId, String taskId, String siteId,
-      String next, String limit, final ApiCallback<GetCaseDocumentsResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getTaskDocumentsAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      final ApiCallback<GetCaseDocumentsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getTaskDocumentsValidateBeforeCall(caseId, taskId, siteId, next, limit, _callback);
@@ -3788,8 +3891,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateCaseCall(String caseId, UpdateCaseRequest updateCaseRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateCaseCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull UpdateCaseRequest updateCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3839,9 +3943,9 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateCaseValidateBeforeCall(String caseId,
-      UpdateCaseRequest updateCaseRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateCaseValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull UpdateCaseRequest updateCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -3885,8 +3989,9 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateCaseResponse updateCase(String caseId, UpdateCaseRequest updateCaseRequest,
-      String siteId) throws ApiException {
+  public UpdateCaseResponse updateCase(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull UpdateCaseRequest updateCaseRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateCaseResponse> localVarResp =
         updateCaseWithHttpInfo(caseId, updateCaseRequest, siteId);
     return localVarResp.getData();
@@ -3919,8 +4024,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateCaseResponse> updateCaseWithHttpInfo(String caseId,
-      UpdateCaseRequest updateCaseRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateCaseResponse> updateCaseWithHttpInfo(
+      @javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull UpdateCaseRequest updateCaseRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateCaseValidateBeforeCall(caseId, updateCaseRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateCaseResponse>() {}.getType();
@@ -3954,8 +4061,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateCaseAsync(String caseId, UpdateCaseRequest updateCaseRequest,
-      String siteId, final ApiCallback<UpdateCaseResponse> _callback) throws ApiException {
+  public okhttp3.Call updateCaseAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull UpdateCaseRequest updateCaseRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateCaseResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateCaseValidateBeforeCall(caseId, updateCaseRequest, siteId, _callback);
@@ -3992,9 +4101,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateNigoCall(String caseId, String nigoId,
-      UpdateNigoRequest updateNigoRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call updateNigoCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull UpdateNigoRequest updateNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4045,9 +4155,10 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateNigoValidateBeforeCall(String caseId, String nigoId,
-      UpdateNigoRequest updateNigoRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateNigoValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull UpdateNigoRequest updateNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -4098,8 +4209,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateNigoResponse updateNigo(String caseId, String nigoId,
-      UpdateNigoRequest updateNigoRequest, String siteId) throws ApiException {
+  public UpdateNigoResponse updateNigo(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull UpdateNigoRequest updateNigoRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateNigoResponse> localVarResp =
         updateNigoWithHttpInfo(caseId, nigoId, updateNigoRequest, siteId);
     return localVarResp.getData();
@@ -4133,8 +4246,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateNigoResponse> updateNigoWithHttpInfo(String caseId, String nigoId,
-      UpdateNigoRequest updateNigoRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateNigoResponse> updateNigoWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull UpdateNigoRequest updateNigoRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateNigoValidateBeforeCall(caseId, nigoId, updateNigoRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateNigoResponse>() {}.getType();
@@ -4169,9 +4284,11 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateNigoAsync(String caseId, String nigoId,
-      UpdateNigoRequest updateNigoRequest, String siteId,
-      final ApiCallback<UpdateNigoResponse> _callback) throws ApiException {
+  public okhttp3.Call updateNigoAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String nigoId,
+      @javax.annotation.Nonnull UpdateNigoRequest updateNigoRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateNigoResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateNigoValidateBeforeCall(caseId, nigoId, updateNigoRequest, siteId, _callback);
@@ -4208,9 +4325,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateTaskCall(String caseId, String taskId,
-      UpdateTaskRequest updateTaskRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call updateTaskCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull UpdateTaskRequest updateTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4261,9 +4379,10 @@ public class CaseManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateTaskValidateBeforeCall(String caseId, String taskId,
-      UpdateTaskRequest updateTaskRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateTaskValidateBeforeCall(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull UpdateTaskRequest updateTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -4314,8 +4433,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateTaskResponse updateTask(String caseId, String taskId,
-      UpdateTaskRequest updateTaskRequest, String siteId) throws ApiException {
+  public UpdateTaskResponse updateTask(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull UpdateTaskRequest updateTaskRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateTaskResponse> localVarResp =
         updateTaskWithHttpInfo(caseId, taskId, updateTaskRequest, siteId);
     return localVarResp.getData();
@@ -4349,8 +4470,10 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateTaskResponse> updateTaskWithHttpInfo(String caseId, String taskId,
-      UpdateTaskRequest updateTaskRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateTaskResponse> updateTaskWithHttpInfo(
+      @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull UpdateTaskRequest updateTaskRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateTaskValidateBeforeCall(caseId, taskId, updateTaskRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateTaskResponse>() {}.getType();
@@ -4385,9 +4508,11 @@ public class CaseManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateTaskAsync(String caseId, String taskId,
-      UpdateTaskRequest updateTaskRequest, String siteId,
-      final ApiCallback<UpdateTaskResponse> _callback) throws ApiException {
+  public okhttp3.Call updateTaskAsync(@javax.annotation.Nonnull String caseId,
+      @javax.annotation.Nonnull String taskId,
+      @javax.annotation.Nonnull UpdateTaskRequest updateTaskRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateTaskResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateTaskValidateBeforeCall(caseId, taskId, updateTaskRequest, siteId, _callback);

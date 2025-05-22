@@ -136,9 +136,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentWorkflowCall(String documentId,
-      AddDocumentWorkflowRequest addDocumentWorkflowRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addDocumentWorkflowCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -188,9 +188,10 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentWorkflowValidateBeforeCall(String documentId,
-      AddDocumentWorkflowRequest addDocumentWorkflowRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addDocumentWorkflowValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -242,8 +243,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentWorkflowResponse addDocumentWorkflow(String documentId,
-      AddDocumentWorkflowRequest addDocumentWorkflowRequest, String siteId) throws ApiException {
+  public AddDocumentWorkflowResponse addDocumentWorkflow(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddDocumentWorkflowResponse> localVarResp =
         addDocumentWorkflowWithHttpInfo(documentId, addDocumentWorkflowRequest, siteId);
     return localVarResp.getData();
@@ -284,8 +287,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentWorkflowResponse> addDocumentWorkflowWithHttpInfo(String documentId,
-      AddDocumentWorkflowRequest addDocumentWorkflowRequest, String siteId) throws ApiException {
+  public ApiResponse<AddDocumentWorkflowResponse> addDocumentWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         addDocumentWorkflowValidateBeforeCall(documentId, addDocumentWorkflowRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowResponse>() {}.getType();
@@ -328,8 +333,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentWorkflowAsync(String documentId,
-      AddDocumentWorkflowRequest addDocumentWorkflowRequest, String siteId,
+  public okhttp3.Call addDocumentWorkflowAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<AddDocumentWorkflowResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentWorkflowValidateBeforeCall(documentId,
@@ -375,9 +381,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentWorkflowDecisionsCall(String documentId, String workflowId,
-      AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addDocumentWorkflowDecisionsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -428,9 +435,10 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentWorkflowDecisionsValidateBeforeCall(String documentId,
-      String workflowId, AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addDocumentWorkflowDecisionsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -491,9 +499,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(String documentId,
-      String workflowId, AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      String siteId) throws ApiException {
+  public AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddDocumentWorkflowDecisionsResponse> localVarResp =
         addDocumentWorkflowDecisionsWithHttpInfo(documentId, workflowId,
             addDocumentWorkflowDecisionsRequest, siteId);
@@ -538,9 +547,9 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<AddDocumentWorkflowDecisionsResponse> addDocumentWorkflowDecisionsWithHttpInfo(
-      String documentId, String workflowId,
-      AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest, String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addDocumentWorkflowDecisionsValidateBeforeCall(documentId,
         workflowId, addDocumentWorkflowDecisionsRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowDecisionsResponse>() {}.getType();
@@ -584,8 +593,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentWorkflowDecisionsAsync(String documentId, String workflowId,
-      AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest, String siteId,
+  public okhttp3.Call addDocumentWorkflowDecisionsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<AddDocumentWorkflowDecisionsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentWorkflowDecisionsValidateBeforeCall(documentId,
@@ -629,8 +640,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addQueueCall(AddQueueRequest addQueueRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addQueueCall(@javax.annotation.Nonnull AddQueueRequest addQueueRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -679,8 +690,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addQueueValidateBeforeCall(AddQueueRequest addQueueRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addQueueValidateBeforeCall(
+      @javax.annotation.Nonnull AddQueueRequest addQueueRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addQueueRequest' is set
     if (addQueueRequest == null) {
       throw new ApiException(
@@ -725,8 +737,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddQueueResponse addQueue(AddQueueRequest addQueueRequest, String siteId)
-      throws ApiException {
+  public AddQueueResponse addQueue(@javax.annotation.Nonnull AddQueueRequest addQueueRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddQueueResponse> localVarResp = addQueueWithHttpInfo(addQueueRequest, siteId);
     return localVarResp.getData();
   }
@@ -765,8 +777,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddQueueResponse> addQueueWithHttpInfo(AddQueueRequest addQueueRequest,
-      String siteId) throws ApiException {
+  public ApiResponse<AddQueueResponse> addQueueWithHttpInfo(
+      @javax.annotation.Nonnull AddQueueRequest addQueueRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addQueueValidateBeforeCall(addQueueRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddQueueResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -806,8 +819,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addQueueAsync(AddQueueRequest addQueueRequest, String siteId,
-      final ApiCallback<AddQueueResponse> _callback) throws ApiException {
+  public okhttp3.Call addQueueAsync(@javax.annotation.Nonnull AddQueueRequest addQueueRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddQueueResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = addQueueValidateBeforeCall(addQueueRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddQueueResponse>() {}.getType();
@@ -849,8 +863,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWorkflowCall(AddWorkflowRequest addWorkflowRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addWorkflowCall(
+      @javax.annotation.Nonnull AddWorkflowRequest addWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -899,8 +914,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addWorkflowValidateBeforeCall(AddWorkflowRequest addWorkflowRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addWorkflowValidateBeforeCall(
+      @javax.annotation.Nonnull AddWorkflowRequest addWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addWorkflowRequest' is set
     if (addWorkflowRequest == null) {
       throw new ApiException(
@@ -945,8 +961,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddWorkflowResponse addWorkflow(AddWorkflowRequest addWorkflowRequest, String siteId)
-      throws ApiException {
+  public AddWorkflowResponse addWorkflow(
+      @javax.annotation.Nonnull AddWorkflowRequest addWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddWorkflowResponse> localVarResp =
         addWorkflowWithHttpInfo(addWorkflowRequest, siteId);
     return localVarResp.getData();
@@ -987,7 +1004,8 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<AddWorkflowResponse> addWorkflowWithHttpInfo(
-      AddWorkflowRequest addWorkflowRequest, String siteId) throws ApiException {
+      @javax.annotation.Nonnull AddWorkflowRequest addWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addWorkflowValidateBeforeCall(addWorkflowRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddWorkflowResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1027,8 +1045,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addWorkflowAsync(AddWorkflowRequest addWorkflowRequest, String siteId,
-      final ApiCallback<AddWorkflowResponse> _callback) throws ApiException {
+  public okhttp3.Call addWorkflowAsync(
+      @javax.annotation.Nonnull AddWorkflowRequest addWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddWorkflowResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         addWorkflowValidateBeforeCall(addWorkflowRequest, siteId, _callback);
@@ -1063,8 +1083,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteQueueCall(String queueId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteQueueCall(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1114,8 +1134,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteQueueValidateBeforeCall(String queueId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteQueueValidateBeforeCall(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
       throw new ApiException(
@@ -1152,7 +1172,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteQueueResponse deleteQueue(String queueId, String siteId) throws ApiException {
+  public DeleteQueueResponse deleteQueue(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteQueueResponse> localVarResp = deleteQueueWithHttpInfo(queueId, siteId);
     return localVarResp.getData();
   }
@@ -1183,7 +1204,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteQueueResponse> deleteQueueWithHttpInfo(String queueId, String siteId)
+  public ApiResponse<DeleteQueueResponse> deleteQueueWithHttpInfo(
+      @javax.annotation.Nonnull String queueId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteQueueValidateBeforeCall(queueId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteQueueResponse>() {}.getType();
@@ -1216,8 +1238,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteQueueAsync(String queueId, String siteId,
-      final ApiCallback<DeleteQueueResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteQueueAsync(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteQueueResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteQueueValidateBeforeCall(queueId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteQueueResponse>() {}.getType();
@@ -1251,8 +1274,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteWorkflowCall(String workflowId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteWorkflowCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1302,8 +1325,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteWorkflowValidateBeforeCall(String workflowId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteWorkflowValidateBeforeCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'workflowId' is set
     if (workflowId == null) {
       throw new ApiException(
@@ -1340,8 +1363,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteWorkflowResponse deleteWorkflow(String workflowId, String siteId)
-      throws ApiException {
+  public DeleteWorkflowResponse deleteWorkflow(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteWorkflowResponse> localVarResp =
         deleteWorkflowWithHttpInfo(workflowId, siteId);
     return localVarResp.getData();
@@ -1373,8 +1396,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteWorkflowResponse> deleteWorkflowWithHttpInfo(String workflowId,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteWorkflowResponse> deleteWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1406,8 +1430,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteWorkflowAsync(String workflowId, String siteId,
-      final ApiCallback<DeleteWorkflowResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteWorkflowAsync(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteWorkflowResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
@@ -1450,7 +1475,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentWorkflowCall(String documentId, String workflowId, String siteId,
+  public okhttp3.Call getDocumentWorkflowCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1502,8 +1528,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentWorkflowValidateBeforeCall(String documentId, String workflowId,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getDocumentWorkflowValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1555,8 +1582,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentWorkflowResponse getDocumentWorkflow(String documentId, String workflowId,
-      String siteId) throws ApiException {
+  public GetDocumentWorkflowResponse getDocumentWorkflow(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetDocumentWorkflowResponse> localVarResp =
         getDocumentWorkflowWithHttpInfo(documentId, workflowId, siteId);
     return localVarResp.getData();
@@ -1597,8 +1625,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentWorkflowResponse> getDocumentWorkflowWithHttpInfo(String documentId,
-      String workflowId, String siteId) throws ApiException {
+  public ApiResponse<GetDocumentWorkflowResponse> getDocumentWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, null);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowResponse>() {}.getType();
@@ -1640,7 +1669,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentWorkflowAsync(String documentId, String workflowId, String siteId,
+  public okhttp3.Call getDocumentWorkflowAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
       final ApiCallback<GetDocumentWorkflowResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -1684,8 +1714,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentWorkflowsCall(String documentId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getDocumentWorkflowsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1735,7 +1765,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentWorkflowsValidateBeforeCall(String documentId, String siteId,
+  private okhttp3.Call getDocumentWorkflowsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -1781,7 +1812,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentWorkflowsResponse getDocumentWorkflows(String documentId, String siteId)
+  public GetDocumentWorkflowsResponse getDocumentWorkflows(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<GetDocumentWorkflowsResponse> localVarResp =
         getDocumentWorkflowsWithHttpInfo(documentId, siteId);
@@ -1823,7 +1855,8 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentWorkflowsResponse> getDocumentWorkflowsWithHttpInfo(
-      String documentId, String siteId) throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall = getDocumentWorkflowsValidateBeforeCall(documentId, siteId, null);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1864,7 +1897,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentWorkflowsAsync(String documentId, String siteId,
+  public okhttp3.Call getDocumentWorkflowsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
       final ApiCallback<GetDocumentWorkflowsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -1900,8 +1934,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getQueueCall(String queueId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getQueueCall(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1951,8 +1985,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getQueueValidateBeforeCall(String queueId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getQueueValidateBeforeCall(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
       throw new ApiException(
@@ -1989,7 +2023,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetQueueResponse getQueue(String queueId, String siteId) throws ApiException {
+  public GetQueueResponse getQueue(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetQueueResponse> localVarResp = getQueueWithHttpInfo(queueId, siteId);
     return localVarResp.getData();
   }
@@ -2020,7 +2055,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetQueueResponse> getQueueWithHttpInfo(String queueId, String siteId)
+  public ApiResponse<GetQueueResponse> getQueueWithHttpInfo(
+      @javax.annotation.Nonnull String queueId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = getQueueValidateBeforeCall(queueId, siteId, null);
     Type localVarReturnType = new TypeToken<GetQueueResponse>() {}.getType();
@@ -2053,8 +2089,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getQueueAsync(String queueId, String siteId,
-      final ApiCallback<GetQueueResponse> _callback) throws ApiException {
+  public okhttp3.Call getQueueAsync(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetQueueResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getQueueValidateBeforeCall(queueId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetQueueResponse>() {}.getType();
@@ -2089,7 +2126,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getQueuesCall(String siteId, String next, String limit,
+  public okhttp3.Call getQueuesCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -2147,7 +2185,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getQueuesValidateBeforeCall(String siteId, String next, String limit,
+  private okhttp3.Call getQueuesValidateBeforeCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     return getQueuesCall(siteId, next, limit, _callback);
 
@@ -2180,7 +2219,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetQueuesResponse getQueues(String siteId, String next, String limit) throws ApiException {
+  public GetQueuesResponse getQueues(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     ApiResponse<GetQueuesResponse> localVarResp = getQueuesWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
   }
@@ -2212,8 +2253,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetQueuesResponse> getQueuesWithHttpInfo(String siteId, String next,
-      String limit) throws ApiException {
+  public ApiResponse<GetQueuesResponse> getQueuesWithHttpInfo(
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall = getQueuesValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetQueuesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2246,7 +2288,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getQueuesAsync(String siteId, String next, String limit,
+  public okhttp3.Call getQueuesAsync(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback<GetQueuesResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getQueuesValidateBeforeCall(siteId, next, limit, _callback);
@@ -2281,8 +2324,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowCall(String workflowId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getWorkflowCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2332,8 +2375,8 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWorkflowValidateBeforeCall(String workflowId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWorkflowValidateBeforeCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'workflowId' is set
     if (workflowId == null) {
       throw new ApiException(
@@ -2370,7 +2413,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWorkflowResponse getWorkflow(String workflowId, String siteId) throws ApiException {
+  public GetWorkflowResponse getWorkflow(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetWorkflowResponse> localVarResp = getWorkflowWithHttpInfo(workflowId, siteId);
     return localVarResp.getData();
   }
@@ -2401,7 +2445,8 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWorkflowResponse> getWorkflowWithHttpInfo(String workflowId, String siteId)
+  public ApiResponse<GetWorkflowResponse> getWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = getWorkflowValidateBeforeCall(workflowId, siteId, null);
     Type localVarReturnType = new TypeToken<GetWorkflowResponse>() {}.getType();
@@ -2434,8 +2479,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowAsync(String workflowId, String siteId,
-      final ApiCallback<GetWorkflowResponse> _callback) throws ApiException {
+  public okhttp3.Call getWorkflowAsync(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetWorkflowResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getWorkflowValidateBeforeCall(workflowId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetWorkflowResponse>() {}.getType();
@@ -2471,8 +2517,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowDocumentsCall(String workflowId, String siteId, String limit,
-      String next, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getWorkflowDocumentsCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2530,8 +2577,10 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWorkflowDocumentsValidateBeforeCall(String workflowId, String siteId,
-      String limit, String next, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWorkflowDocumentsValidateBeforeCall(
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'workflowId' is set
     if (workflowId == null) {
       throw new ApiException(
@@ -2570,8 +2619,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWorkflowDocumentsResponse getWorkflowDocuments(String workflowId, String siteId,
-      String limit, String next) throws ApiException {
+  public GetWorkflowDocumentsResponse getWorkflowDocuments(
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
+      throws ApiException {
     ApiResponse<GetWorkflowDocumentsResponse> localVarResp =
         getWorkflowDocumentsWithHttpInfo(workflowId, siteId, limit, next);
     return localVarResp.getData();
@@ -2606,7 +2657,9 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<GetWorkflowDocumentsResponse> getWorkflowDocumentsWithHttpInfo(
-      String workflowId, String siteId, String limit, String next) throws ApiException {
+      @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
+      throws ApiException {
     okhttp3.Call localVarCall =
         getWorkflowDocumentsValidateBeforeCall(workflowId, siteId, limit, next, null);
     Type localVarReturnType = new TypeToken<GetWorkflowDocumentsResponse>() {}.getType();
@@ -2642,8 +2695,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowDocumentsAsync(String workflowId, String siteId, String limit,
-      String next, final ApiCallback<GetWorkflowDocumentsResponse> _callback) throws ApiException {
+  public okhttp3.Call getWorkflowDocumentsAsync(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next,
+      final ApiCallback<GetWorkflowDocumentsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getWorkflowDocumentsValidateBeforeCall(workflowId, siteId, limit, next, _callback);
@@ -2680,8 +2735,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowQueueDocumentsCall(String queueId, String siteId, String limit,
-      String next, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getWorkflowQueueDocumentsCall(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2739,8 +2795,10 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWorkflowQueueDocumentsValidateBeforeCall(String queueId, String siteId,
-      String limit, String next, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWorkflowQueueDocumentsValidateBeforeCall(
+      @javax.annotation.Nonnull String queueId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
       throw new ApiException(
@@ -2779,8 +2837,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWorkflowQueueDocumentsResponse getWorkflowQueueDocuments(String queueId, String siteId,
-      String limit, String next) throws ApiException {
+  public GetWorkflowQueueDocumentsResponse getWorkflowQueueDocuments(
+      @javax.annotation.Nonnull String queueId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
+      throws ApiException {
     ApiResponse<GetWorkflowQueueDocumentsResponse> localVarResp =
         getWorkflowQueueDocumentsWithHttpInfo(queueId, siteId, limit, next);
     return localVarResp.getData();
@@ -2815,7 +2875,9 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<GetWorkflowQueueDocumentsResponse> getWorkflowQueueDocumentsWithHttpInfo(
-      String queueId, String siteId, String limit, String next) throws ApiException {
+      @javax.annotation.Nonnull String queueId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
+      throws ApiException {
     okhttp3.Call localVarCall =
         getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, null);
     Type localVarReturnType = new TypeToken<GetWorkflowQueueDocumentsResponse>() {}.getType();
@@ -2851,9 +2913,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowQueueDocumentsAsync(String queueId, String siteId, String limit,
-      String next, final ApiCallback<GetWorkflowQueueDocumentsResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getWorkflowQueueDocumentsAsync(@javax.annotation.Nonnull String queueId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next,
+      final ApiCallback<GetWorkflowQueueDocumentsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
         getWorkflowQueueDocumentsValidateBeforeCall(queueId, siteId, limit, next, _callback);
@@ -2890,8 +2953,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowsCall(String siteId, String next, String limit, String status,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getWorkflowsCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String status, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2952,8 +3016,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getWorkflowsValidateBeforeCall(String siteId, String next, String limit,
-      String status, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getWorkflowsValidateBeforeCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String status, final ApiCallback _callback) throws ApiException {
     return getWorkflowsCall(siteId, next, limit, status, _callback);
 
   }
@@ -2986,8 +3051,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetWorkflowsResponse getWorkflows(String siteId, String next, String limit, String status)
-      throws ApiException {
+  public GetWorkflowsResponse getWorkflows(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String status) throws ApiException {
     ApiResponse<GetWorkflowsResponse> localVarResp =
         getWorkflowsWithHttpInfo(siteId, next, limit, status);
     return localVarResp.getData();
@@ -3021,8 +3087,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetWorkflowsResponse> getWorkflowsWithHttpInfo(String siteId, String next,
-      String limit, String status) throws ApiException {
+  public ApiResponse<GetWorkflowsResponse> getWorkflowsWithHttpInfo(
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String status)
+      throws ApiException {
     okhttp3.Call localVarCall = getWorkflowsValidateBeforeCall(siteId, next, limit, status, null);
     Type localVarReturnType = new TypeToken<GetWorkflowsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3056,8 +3124,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getWorkflowsAsync(String siteId, String next, String limit, String status,
-      final ApiCallback<GetWorkflowsResponse> _callback) throws ApiException {
+  public okhttp3.Call getWorkflowsAsync(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String status, final ApiCallback<GetWorkflowsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         getWorkflowsValidateBeforeCall(siteId, next, limit, status, _callback);
@@ -3101,8 +3171,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setWorkflowCall(String workflowId, SetWorkflowRequest setWorkflowRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call setWorkflowCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3152,9 +3223,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setWorkflowValidateBeforeCall(String workflowId,
-      SetWorkflowRequest setWorkflowRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call setWorkflowValidateBeforeCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'workflowId' is set
     if (workflowId == null) {
       throw new ApiException(
@@ -3206,8 +3277,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public SetWorkflowResponse setWorkflow(String workflowId, SetWorkflowRequest setWorkflowRequest,
-      String siteId) throws ApiException {
+  public SetWorkflowResponse setWorkflow(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<SetWorkflowResponse> localVarResp =
         setWorkflowWithHttpInfo(workflowId, setWorkflowRequest, siteId);
     return localVarResp.getData();
@@ -3248,8 +3320,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetWorkflowResponse> setWorkflowWithHttpInfo(String workflowId,
-      SetWorkflowRequest setWorkflowRequest, String siteId) throws ApiException {
+  public ApiResponse<SetWorkflowResponse> setWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, null);
     Type localVarReturnType = new TypeToken<SetWorkflowResponse>() {}.getType();
@@ -3291,8 +3365,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setWorkflowAsync(String workflowId, SetWorkflowRequest setWorkflowRequest,
-      String siteId, final ApiCallback<SetWorkflowResponse> _callback) throws ApiException {
+  public okhttp3.Call setWorkflowAsync(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<SetWorkflowResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, _callback);
@@ -3336,9 +3412,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateWorkflowCall(String workflowId,
-      UpdateWorkflowRequest updateWorkflowRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call updateWorkflowCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3388,9 +3464,9 @@ public class DocumentWorkflowsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateWorkflowValidateBeforeCall(String workflowId,
-      UpdateWorkflowRequest updateWorkflowRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateWorkflowValidateBeforeCall(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'workflowId' is set
     if (workflowId == null) {
       throw new ApiException(
@@ -3442,8 +3518,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateWorkflowResponse updateWorkflow(String workflowId,
-      UpdateWorkflowRequest updateWorkflowRequest, String siteId) throws ApiException {
+  public UpdateWorkflowResponse updateWorkflow(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateWorkflowResponse> localVarResp =
         updateWorkflowWithHttpInfo(workflowId, updateWorkflowRequest, siteId);
     return localVarResp.getData();
@@ -3484,8 +3561,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateWorkflowResponse> updateWorkflowWithHttpInfo(String workflowId,
-      UpdateWorkflowRequest updateWorkflowRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateWorkflowResponse> updateWorkflowWithHttpInfo(
+      @javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateWorkflowValidateBeforeCall(workflowId, updateWorkflowRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateWorkflowResponse>() {}.getType();
@@ -3527,9 +3606,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateWorkflowAsync(String workflowId,
-      UpdateWorkflowRequest updateWorkflowRequest, String siteId,
-      final ApiCallback<UpdateWorkflowResponse> _callback) throws ApiException {
+  public okhttp3.Call updateWorkflowAsync(@javax.annotation.Nonnull String workflowId,
+      @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateWorkflowResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateWorkflowValidateBeforeCall(workflowId, updateWorkflowRequest, siteId, _callback);

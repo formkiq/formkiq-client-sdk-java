@@ -110,8 +110,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaAccessPolicyItemsCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteOpaAccessPolicyItemsCall(@javax.annotation.Nonnull String siteId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -157,8 +157,8 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteOpaAccessPolicyItemsValidateBeforeCall(String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteOpaAccessPolicyItemsValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
@@ -194,7 +194,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteOpaAccessPolicyItems(String siteId) throws ApiException {
+  public DeleteResponse deleteOpaAccessPolicyItems(@javax.annotation.Nonnull String siteId)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteOpaAccessPolicyItemsWithHttpInfo(siteId);
     return localVarResp.getData();
   }
@@ -224,8 +225,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteOpaAccessPolicyItemsWithHttpInfo(String siteId)
-      throws ApiException {
+  public ApiResponse<DeleteResponse> deleteOpaAccessPolicyItemsWithHttpInfo(
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     okhttp3.Call localVarCall = deleteOpaAccessPolicyItemsValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -256,7 +257,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteOpaAccessPolicyItemsAsync(String siteId,
+  public okhttp3.Call deleteOpaAccessPolicyItemsAsync(@javax.annotation.Nonnull String siteId,
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteOpaAccessPolicyItemsValidateBeforeCall(siteId, _callback);
@@ -461,8 +462,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaAccessPolicyCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getOpaAccessPolicyCall(@javax.annotation.Nonnull String siteId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -508,7 +509,7 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getOpaAccessPolicyValidateBeforeCall(String siteId,
+  private okhttp3.Call getOpaAccessPolicyValidateBeforeCall(@javax.annotation.Nonnull String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
@@ -545,7 +546,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public GetOpaAccessPolicyResponse getOpaAccessPolicy(String siteId) throws ApiException {
+  public GetOpaAccessPolicyResponse getOpaAccessPolicy(@javax.annotation.Nonnull String siteId)
+      throws ApiException {
     ApiResponse<GetOpaAccessPolicyResponse> localVarResp = getOpaAccessPolicyWithHttpInfo(siteId);
     return localVarResp.getData();
   }
@@ -575,8 +577,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetOpaAccessPolicyResponse> getOpaAccessPolicyWithHttpInfo(String siteId)
-      throws ApiException {
+  public ApiResponse<GetOpaAccessPolicyResponse> getOpaAccessPolicyWithHttpInfo(
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     okhttp3.Call localVarCall = getOpaAccessPolicyValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetOpaAccessPolicyResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -608,7 +610,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaAccessPolicyAsync(String siteId,
+  public okhttp3.Call getOpaAccessPolicyAsync(@javax.annotation.Nonnull String siteId,
       final ApiCallback<GetOpaAccessPolicyResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getOpaAccessPolicyValidateBeforeCall(siteId, _callback);
@@ -642,8 +644,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaAccessPolicyItemsCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getOpaAccessPolicyItemsCall(@javax.annotation.Nonnull String siteId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -689,8 +691,8 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getOpaAccessPolicyItemsValidateBeforeCall(String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getOpaAccessPolicyItemsValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
@@ -727,8 +729,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public GetOpaAccessPolicyItemsResponse getOpaAccessPolicyItems(String siteId)
-      throws ApiException {
+  public GetOpaAccessPolicyItemsResponse getOpaAccessPolicyItems(
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     ApiResponse<GetOpaAccessPolicyItemsResponse> localVarResp =
         getOpaAccessPolicyItemsWithHttpInfo(siteId);
     return localVarResp.getData();
@@ -761,7 +763,7 @@ public class AccessControlApi {
    *                        </table>
    */
   public ApiResponse<GetOpaAccessPolicyItemsResponse> getOpaAccessPolicyItemsWithHttpInfo(
-      String siteId) throws ApiException {
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     okhttp3.Call localVarCall = getOpaAccessPolicyItemsValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetOpaAccessPolicyItemsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -793,7 +795,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpaAccessPolicyItemsAsync(String siteId,
+  public okhttp3.Call getOpaAccessPolicyItemsAsync(@javax.annotation.Nonnull String siteId,
       final ApiCallback<GetOpaAccessPolicyItemsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getOpaAccessPolicyItemsValidateBeforeCall(siteId, _callback);
@@ -833,9 +835,9 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setOpaAccessPolicyItemsCall(String siteId,
-      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call setOpaAccessPolicyItemsCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -881,9 +883,10 @@ public class AccessControlApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setOpaAccessPolicyItemsValidateBeforeCall(String siteId,
-      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call setOpaAccessPolicyItemsValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
@@ -932,8 +935,9 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public SetResponse setOpaAccessPolicyItems(String siteId,
-      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest) throws ApiException {
+  public SetResponse setOpaAccessPolicyItems(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest)
+      throws ApiException {
     ApiResponse<SetResponse> localVarResp =
         setOpaAccessPolicyItemsWithHttpInfo(siteId, setOpaAccessPolicyItemsRequest);
     return localVarResp.getData();
@@ -971,8 +975,10 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetResponse> setOpaAccessPolicyItemsWithHttpInfo(String siteId,
-      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest) throws ApiException {
+  public ApiResponse<SetResponse> setOpaAccessPolicyItemsWithHttpInfo(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest)
+      throws ApiException {
     okhttp3.Call localVarCall =
         setOpaAccessPolicyItemsValidateBeforeCall(siteId, setOpaAccessPolicyItemsRequest, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
@@ -1011,8 +1017,8 @@ public class AccessControlApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setOpaAccessPolicyItemsAsync(String siteId,
-      SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest,
+  public okhttp3.Call setOpaAccessPolicyItemsAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest,
       final ApiCallback<SetResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = setOpaAccessPolicyItemsValidateBeforeCall(siteId,

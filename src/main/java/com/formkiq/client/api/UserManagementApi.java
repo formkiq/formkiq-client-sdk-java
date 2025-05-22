@@ -114,8 +114,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addGroupCall(AddGroupRequest addGroupRequest, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call addGroupCall(@javax.annotation.Nonnull AddGroupRequest addGroupRequest,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -160,8 +160,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addGroupValidateBeforeCall(AddGroupRequest addGroupRequest,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addGroupValidateBeforeCall(
+      @javax.annotation.Nonnull AddGroupRequest addGroupRequest, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'addGroupRequest' is set
     if (addGroupRequest == null) {
       throw new ApiException(
@@ -197,7 +198,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddResponse addGroup(AddGroupRequest addGroupRequest) throws ApiException {
+  public AddResponse addGroup(@javax.annotation.Nonnull AddGroupRequest addGroupRequest)
+      throws ApiException {
     ApiResponse<AddResponse> localVarResp = addGroupWithHttpInfo(addGroupRequest);
     return localVarResp.getData();
   }
@@ -227,8 +229,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddResponse> addGroupWithHttpInfo(AddGroupRequest addGroupRequest)
-      throws ApiException {
+  public ApiResponse<AddResponse> addGroupWithHttpInfo(
+      @javax.annotation.Nonnull AddGroupRequest addGroupRequest) throws ApiException {
     okhttp3.Call localVarCall = addGroupValidateBeforeCall(addGroupRequest, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -259,7 +261,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addGroupAsync(AddGroupRequest addGroupRequest,
+  public okhttp3.Call addGroupAsync(@javax.annotation.Nonnull AddGroupRequest addGroupRequest,
       final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addGroupValidateBeforeCall(addGroupRequest, _callback);
@@ -293,8 +295,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addUserCall(AddUserRequest addUserRequest, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call addUserCall(@javax.annotation.Nonnull AddUserRequest addUserRequest,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -339,8 +341,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addUserValidateBeforeCall(AddUserRequest addUserRequest,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addUserValidateBeforeCall(
+      @javax.annotation.Nonnull AddUserRequest addUserRequest, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'addUserRequest' is set
     if (addUserRequest == null) {
       throw new ApiException(
@@ -376,7 +379,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddResponse addUser(AddUserRequest addUserRequest) throws ApiException {
+  public AddResponse addUser(@javax.annotation.Nonnull AddUserRequest addUserRequest)
+      throws ApiException {
     ApiResponse<AddResponse> localVarResp = addUserWithHttpInfo(addUserRequest);
     return localVarResp.getData();
   }
@@ -406,8 +410,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddResponse> addUserWithHttpInfo(AddUserRequest addUserRequest)
-      throws ApiException {
+  public ApiResponse<AddResponse> addUserWithHttpInfo(
+      @javax.annotation.Nonnull AddUserRequest addUserRequest) throws ApiException {
     okhttp3.Call localVarCall = addUserValidateBeforeCall(addUserRequest, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -438,7 +442,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addUserAsync(AddUserRequest addUserRequest,
+  public okhttp3.Call addUserAsync(@javax.annotation.Nonnull AddUserRequest addUserRequest,
       final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addUserValidateBeforeCall(addUserRequest, _callback);
@@ -473,8 +477,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addUserToGroupCall(String groupName, AddUserRequest addUserRequest,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addUserToGroupCall(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull AddUserRequest addUserRequest, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -520,8 +525,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addUserToGroupValidateBeforeCall(String groupName,
-      AddUserRequest addUserRequest, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addUserToGroupValidateBeforeCall(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull AddUserRequest addUserRequest, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'groupName' is set
     if (groupName == null) {
       throw new ApiException(
@@ -564,8 +570,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public AddResponse addUserToGroup(String groupName, AddUserRequest addUserRequest)
-      throws ApiException {
+  public AddResponse addUserToGroup(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull AddUserRequest addUserRequest) throws ApiException {
     ApiResponse<AddResponse> localVarResp = addUserToGroupWithHttpInfo(groupName, addUserRequest);
     return localVarResp.getData();
   }
@@ -596,8 +602,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddResponse> addUserToGroupWithHttpInfo(String groupName,
-      AddUserRequest addUserRequest) throws ApiException {
+  public ApiResponse<AddResponse> addUserToGroupWithHttpInfo(
+      @javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull AddUserRequest addUserRequest) throws ApiException {
     okhttp3.Call localVarCall = addUserToGroupValidateBeforeCall(groupName, addUserRequest, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -629,7 +636,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addUserToGroupAsync(String groupName, AddUserRequest addUserRequest,
+  public okhttp3.Call addUserToGroupAsync(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull AddUserRequest addUserRequest,
       final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -664,8 +672,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteGroupCall(String groupName, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteGroupCall(@javax.annotation.Nonnull String groupName,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -711,8 +719,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteGroupValidateBeforeCall(String groupName, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call deleteGroupValidateBeforeCall(@javax.annotation.Nonnull String groupName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'groupName' is set
     if (groupName == null) {
       throw new ApiException(
@@ -748,7 +756,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteGroup(String groupName) throws ApiException {
+  public DeleteResponse deleteGroup(@javax.annotation.Nonnull String groupName)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteGroupWithHttpInfo(groupName);
     return localVarResp.getData();
   }
@@ -778,7 +787,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteGroupWithHttpInfo(String groupName) throws ApiException {
+  public ApiResponse<DeleteResponse> deleteGroupWithHttpInfo(
+      @javax.annotation.Nonnull String groupName) throws ApiException {
     okhttp3.Call localVarCall = deleteGroupValidateBeforeCall(groupName, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -809,7 +819,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteGroupAsync(String groupName,
+  public okhttp3.Call deleteGroupAsync(@javax.annotation.Nonnull String groupName,
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteGroupValidateBeforeCall(groupName, _callback);
@@ -843,8 +853,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteUsernameCall(String username, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call deleteUsernameCall(@javax.annotation.Nonnull String username,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -890,7 +900,7 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteUsernameValidateBeforeCall(String username,
+  private okhttp3.Call deleteUsernameValidateBeforeCall(@javax.annotation.Nonnull String username,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
@@ -927,7 +937,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteUsername(String username) throws ApiException {
+  public DeleteResponse deleteUsername(@javax.annotation.Nonnull String username)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteUsernameWithHttpInfo(username);
     return localVarResp.getData();
   }
@@ -957,8 +968,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteUsernameWithHttpInfo(String username)
-      throws ApiException {
+  public ApiResponse<DeleteResponse> deleteUsernameWithHttpInfo(
+      @javax.annotation.Nonnull String username) throws ApiException {
     okhttp3.Call localVarCall = deleteUsernameValidateBeforeCall(username, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -989,7 +1000,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteUsernameAsync(String username,
+  public okhttp3.Call deleteUsernameAsync(@javax.annotation.Nonnull String username,
       final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteUsernameValidateBeforeCall(username, _callback);
@@ -1023,8 +1034,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getGroupCall(String groupName, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getGroupCall(@javax.annotation.Nonnull String groupName,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1070,8 +1081,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getGroupValidateBeforeCall(String groupName, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call getGroupValidateBeforeCall(@javax.annotation.Nonnull String groupName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'groupName' is set
     if (groupName == null) {
       throw new ApiException(
@@ -1107,7 +1118,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetGroupResponse getGroup(String groupName) throws ApiException {
+  public GetGroupResponse getGroup(@javax.annotation.Nonnull String groupName) throws ApiException {
     ApiResponse<GetGroupResponse> localVarResp = getGroupWithHttpInfo(groupName);
     return localVarResp.getData();
   }
@@ -1137,7 +1148,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetGroupResponse> getGroupWithHttpInfo(String groupName) throws ApiException {
+  public ApiResponse<GetGroupResponse> getGroupWithHttpInfo(
+      @javax.annotation.Nonnull String groupName) throws ApiException {
     okhttp3.Call localVarCall = getGroupValidateBeforeCall(groupName, null);
     Type localVarReturnType = new TypeToken<GetGroupResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1168,8 +1180,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getGroupAsync(String groupName, final ApiCallback<GetGroupResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getGroupAsync(@javax.annotation.Nonnull String groupName,
+      final ApiCallback<GetGroupResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getGroupValidateBeforeCall(groupName, _callback);
     Type localVarReturnType = new TypeToken<GetGroupResponse>() {}.getType();
@@ -1203,8 +1215,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getGroupsCall(String limit, String next, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getGroupsCall(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1257,8 +1269,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getGroupsValidateBeforeCall(String limit, String next,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getGroupsValidateBeforeCall(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     return getGroupsCall(limit, next, _callback);
 
   }
@@ -1289,7 +1301,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetGroupsResponse getGroups(String limit, String next) throws ApiException {
+  public GetGroupsResponse getGroups(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     ApiResponse<GetGroupsResponse> localVarResp = getGroupsWithHttpInfo(limit, next);
     return localVarResp.getData();
   }
@@ -1320,7 +1333,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetGroupsResponse> getGroupsWithHttpInfo(String limit, String next)
+  public ApiResponse<GetGroupsResponse> getGroupsWithHttpInfo(
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
       throws ApiException {
     okhttp3.Call localVarCall = getGroupsValidateBeforeCall(limit, next, null);
     Type localVarReturnType = new TypeToken<GetGroupsResponse>() {}.getType();
@@ -1353,8 +1367,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getGroupsAsync(String limit, String next,
-      final ApiCallback<GetGroupsResponse> _callback) throws ApiException {
+  public okhttp3.Call getGroupsAsync(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback<GetGroupsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getGroupsValidateBeforeCall(limit, next, _callback);
     Type localVarReturnType = new TypeToken<GetGroupsResponse>() {}.getType();
@@ -1389,7 +1404,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getListOfUserGroupsCall(String username, String limit, String next,
+  public okhttp3.Call getListOfUserGroupsCall(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1444,8 +1460,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getListOfUserGroupsValidateBeforeCall(String username, String limit,
-      String next, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getListOfUserGroupsValidateBeforeCall(
+      @javax.annotation.Nonnull String username, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(
@@ -1483,7 +1500,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUserGroupsResponse getListOfUserGroups(String username, String limit, String next)
+  public GetUserGroupsResponse getListOfUserGroups(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
       throws ApiException {
     ApiResponse<GetUserGroupsResponse> localVarResp =
         getListOfUserGroupsWithHttpInfo(username, limit, next);
@@ -1517,8 +1535,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetUserGroupsResponse> getListOfUserGroupsWithHttpInfo(String username,
-      String limit, String next) throws ApiException {
+  public ApiResponse<GetUserGroupsResponse> getListOfUserGroupsWithHttpInfo(
+      @javax.annotation.Nonnull String username, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     okhttp3.Call localVarCall = getListOfUserGroupsValidateBeforeCall(username, limit, next, null);
     Type localVarReturnType = new TypeToken<GetUserGroupsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1552,7 +1571,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getListOfUserGroupsAsync(String username, String limit, String next,
+  public okhttp3.Call getListOfUserGroupsAsync(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
       final ApiCallback<GetUserGroupsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -1587,8 +1607,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUserCall(String username, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getUserCall(@javax.annotation.Nonnull String username,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1634,8 +1654,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getUserValidateBeforeCall(String username, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call getUserValidateBeforeCall(@javax.annotation.Nonnull String username,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(
@@ -1671,7 +1691,7 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUserResponse getUser(String username) throws ApiException {
+  public GetUserResponse getUser(@javax.annotation.Nonnull String username) throws ApiException {
     ApiResponse<GetUserResponse> localVarResp = getUserWithHttpInfo(username);
     return localVarResp.getData();
   }
@@ -1701,7 +1721,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetUserResponse> getUserWithHttpInfo(String username) throws ApiException {
+  public ApiResponse<GetUserResponse> getUserWithHttpInfo(@javax.annotation.Nonnull String username)
+      throws ApiException {
     okhttp3.Call localVarCall = getUserValidateBeforeCall(username, null);
     Type localVarReturnType = new TypeToken<GetUserResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1732,8 +1753,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUserAsync(String username, final ApiCallback<GetUserResponse> _callback)
-      throws ApiException {
+  public okhttp3.Call getUserAsync(@javax.annotation.Nonnull String username,
+      final ApiCallback<GetUserResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getUserValidateBeforeCall(username, _callback);
     Type localVarReturnType = new TypeToken<GetUserResponse>() {}.getType();
@@ -1767,8 +1788,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUsersCall(String limit, String next, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getUsersCall(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1821,8 +1842,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getUsersValidateBeforeCall(String limit, String next,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getUsersValidateBeforeCall(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     return getUsersCall(limit, next, _callback);
 
   }
@@ -1853,7 +1874,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUsersResponse getUsers(String limit, String next) throws ApiException {
+  public GetUsersResponse getUsers(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     ApiResponse<GetUsersResponse> localVarResp = getUsersWithHttpInfo(limit, next);
     return localVarResp.getData();
   }
@@ -1884,8 +1906,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetUsersResponse> getUsersWithHttpInfo(String limit, String next)
-      throws ApiException {
+  public ApiResponse<GetUsersResponse> getUsersWithHttpInfo(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     okhttp3.Call localVarCall = getUsersValidateBeforeCall(limit, next, null);
     Type localVarReturnType = new TypeToken<GetUsersResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1917,8 +1939,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUsersAsync(String limit, String next,
-      final ApiCallback<GetUsersResponse> _callback) throws ApiException {
+  public okhttp3.Call getUsersAsync(@javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback<GetUsersResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getUsersValidateBeforeCall(limit, next, _callback);
     Type localVarReturnType = new TypeToken<GetUsersResponse>() {}.getType();
@@ -1953,7 +1976,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUsersInGroupCall(String groupName, String limit, String next,
+  public okhttp3.Call getUsersInGroupCall(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -2008,8 +2032,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getUsersInGroupValidateBeforeCall(String groupName, String limit,
-      String next, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getUsersInGroupValidateBeforeCall(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'groupName' is set
     if (groupName == null) {
       throw new ApiException(
@@ -2047,7 +2072,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetUsersInGroupResponse getUsersInGroup(String groupName, String limit, String next)
+  public GetUsersInGroupResponse getUsersInGroup(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
       throws ApiException {
     ApiResponse<GetUsersInGroupResponse> localVarResp =
         getUsersInGroupWithHttpInfo(groupName, limit, next);
@@ -2081,8 +2107,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetUsersInGroupResponse> getUsersInGroupWithHttpInfo(String groupName,
-      String limit, String next) throws ApiException {
+  public ApiResponse<GetUsersInGroupResponse> getUsersInGroupWithHttpInfo(
+      @javax.annotation.Nonnull String groupName, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     okhttp3.Call localVarCall = getUsersInGroupValidateBeforeCall(groupName, limit, next, null);
     Type localVarReturnType = new TypeToken<GetUsersInGroupResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2115,7 +2142,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getUsersInGroupAsync(String groupName, String limit, String next,
+  public okhttp3.Call getUsersInGroupAsync(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
       final ApiCallback<GetUsersInGroupResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -2151,8 +2179,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call removeUsernameFromGroupCall(String groupName, String username,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call removeUsernameFromGroupCall(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull String username, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2199,7 +2227,8 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call removeUsernameFromGroupValidateBeforeCall(String groupName, String username,
+  private okhttp3.Call removeUsernameFromGroupValidateBeforeCall(
+      @javax.annotation.Nonnull String groupName, @javax.annotation.Nonnull String username,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'groupName' is set
     if (groupName == null) {
@@ -2243,8 +2272,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse removeUsernameFromGroup(String groupName, String username)
-      throws ApiException {
+  public DeleteResponse removeUsernameFromGroup(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull String username) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
         removeUsernameFromGroupWithHttpInfo(groupName, username);
     return localVarResp.getData();
@@ -2276,8 +2305,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> removeUsernameFromGroupWithHttpInfo(String groupName,
-      String username) throws ApiException {
+  public ApiResponse<DeleteResponse> removeUsernameFromGroupWithHttpInfo(
+      @javax.annotation.Nonnull String groupName, @javax.annotation.Nonnull String username)
+      throws ApiException {
     okhttp3.Call localVarCall =
         removeUsernameFromGroupValidateBeforeCall(groupName, username, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -2310,8 +2340,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call removeUsernameFromGroupAsync(String groupName, String username,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+  public okhttp3.Call removeUsernameFromGroupAsync(@javax.annotation.Nonnull String groupName,
+      @javax.annotation.Nonnull String username, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         removeUsernameFromGroupValidateBeforeCall(groupName, username, _callback);
@@ -2346,8 +2377,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setUserOperationCall(String username, String userOperation,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call setUserOperationCall(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nonnull String userOperation, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2395,8 +2427,9 @@ public class UserManagementApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setUserOperationValidateBeforeCall(String username, String userOperation,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call setUserOperationValidateBeforeCall(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nonnull String userOperation, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'username' is set
     if (username == null) {
       throw new ApiException(
@@ -2439,7 +2472,8 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public SetResponse setUserOperation(String username, String userOperation) throws ApiException {
+  public SetResponse setUserOperation(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nonnull String userOperation) throws ApiException {
     ApiResponse<SetResponse> localVarResp = setUserOperationWithHttpInfo(username, userOperation);
     return localVarResp.getData();
   }
@@ -2470,8 +2504,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetResponse> setUserOperationWithHttpInfo(String username,
-      String userOperation) throws ApiException {
+  public ApiResponse<SetResponse> setUserOperationWithHttpInfo(
+      @javax.annotation.Nonnull String username, @javax.annotation.Nonnull String userOperation)
+      throws ApiException {
     okhttp3.Call localVarCall = setUserOperationValidateBeforeCall(username, userOperation, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2503,8 +2538,9 @@ public class UserManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setUserOperationAsync(String username, String userOperation,
-      final ApiCallback<SetResponse> _callback) throws ApiException {
+  public okhttp3.Call setUserOperationAsync(@javax.annotation.Nonnull String username,
+      @javax.annotation.Nonnull String userOperation, final ApiCallback<SetResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         setUserOperationValidateBeforeCall(username, userOperation, _callback);

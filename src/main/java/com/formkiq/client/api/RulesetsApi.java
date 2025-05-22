@@ -125,8 +125,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addRuleCall(String rulesetId, AddRuleRequest addRuleRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addRuleCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull AddRuleRequest addRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -176,8 +177,9 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addRuleValidateBeforeCall(String rulesetId, AddRuleRequest addRuleRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addRuleValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull AddRuleRequest addRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -226,8 +228,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddRuleResponse addRule(String rulesetId, AddRuleRequest addRuleRequest, String siteId)
-      throws ApiException {
+  public AddRuleResponse addRule(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull AddRuleRequest addRuleRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddRuleResponse> localVarResp =
         addRuleWithHttpInfo(rulesetId, addRuleRequest, siteId);
     return localVarResp.getData();
@@ -265,8 +268,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddRuleResponse> addRuleWithHttpInfo(String rulesetId,
-      AddRuleRequest addRuleRequest, String siteId) throws ApiException {
+  public ApiResponse<AddRuleResponse> addRuleWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull AddRuleRequest addRuleRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addRuleValidateBeforeCall(rulesetId, addRuleRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddRuleResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -304,8 +309,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addRuleAsync(String rulesetId, AddRuleRequest addRuleRequest, String siteId,
-      final ApiCallback<AddRuleResponse> _callback) throws ApiException {
+  public okhttp3.Call addRuleAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull AddRuleRequest addRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddRuleResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         addRuleValidateBeforeCall(rulesetId, addRuleRequest, siteId, _callback);
@@ -345,8 +352,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addRulesetCall(AddRulesetRequest addRulesetRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call addRulesetCall(@javax.annotation.Nonnull AddRulesetRequest addRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -395,8 +402,9 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addRulesetValidateBeforeCall(AddRulesetRequest addRulesetRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call addRulesetValidateBeforeCall(
+      @javax.annotation.Nonnull AddRulesetRequest addRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addRulesetRequest' is set
     if (addRulesetRequest == null) {
       throw new ApiException(
@@ -438,8 +446,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddRulesetResponse addRuleset(AddRulesetRequest addRulesetRequest, String siteId)
-      throws ApiException {
+  public AddRulesetResponse addRuleset(
+      @javax.annotation.Nonnull AddRulesetRequest addRulesetRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddRulesetResponse> localVarResp =
         addRulesetWithHttpInfo(addRulesetRequest, siteId);
     return localVarResp.getData();
@@ -476,8 +485,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddRulesetResponse> addRulesetWithHttpInfo(AddRulesetRequest addRulesetRequest,
-      String siteId) throws ApiException {
+  public ApiResponse<AddRulesetResponse> addRulesetWithHttpInfo(
+      @javax.annotation.Nonnull AddRulesetRequest addRulesetRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addRulesetValidateBeforeCall(addRulesetRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddRulesetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -514,8 +524,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addRulesetAsync(AddRulesetRequest addRulesetRequest, String siteId,
-      final ApiCallback<AddRulesetResponse> _callback) throws ApiException {
+  public okhttp3.Call addRulesetAsync(@javax.annotation.Nonnull AddRulesetRequest addRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddRulesetResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = addRulesetValidateBeforeCall(addRulesetRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddRulesetResponse>() {}.getType();
@@ -550,7 +561,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteRuleCall(String rulesetId, String ruleId, String siteId,
+  public okhttp3.Call deleteRuleCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -602,7 +614,8 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteRuleValidateBeforeCall(String rulesetId, String ruleId, String siteId,
+  private okhttp3.Call deleteRuleValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
@@ -647,7 +660,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteRuleResponse deleteRule(String rulesetId, String ruleId, String siteId)
+  public DeleteRuleResponse deleteRule(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DeleteRuleResponse> localVarResp =
         deleteRuleWithHttpInfo(rulesetId, ruleId, siteId);
@@ -681,8 +695,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteRuleResponse> deleteRuleWithHttpInfo(String rulesetId, String ruleId,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteRuleResponse> deleteRuleWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = deleteRuleValidateBeforeCall(rulesetId, ruleId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteRuleResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -715,7 +730,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteRuleAsync(String rulesetId, String ruleId, String siteId,
+  public okhttp3.Call deleteRuleAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback<DeleteRuleResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteRuleValidateBeforeCall(rulesetId, ruleId, siteId, _callback);
@@ -750,8 +766,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteRulesetCall(String rulesetId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteRulesetCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -801,8 +817,8 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteRulesetValidateBeforeCall(String rulesetId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call deleteRulesetValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -839,7 +855,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteRulesetResponse deleteRuleset(String rulesetId, String siteId) throws ApiException {
+  public DeleteRulesetResponse deleteRuleset(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteRulesetResponse> localVarResp = deleteRulesetWithHttpInfo(rulesetId, siteId);
     return localVarResp.getData();
   }
@@ -870,8 +887,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteRulesetResponse> deleteRulesetWithHttpInfo(String rulesetId,
-      String siteId) throws ApiException {
+  public ApiResponse<DeleteRulesetResponse> deleteRulesetWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nullable String siteId)
+      throws ApiException {
     okhttp3.Call localVarCall = deleteRulesetValidateBeforeCall(rulesetId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteRulesetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -903,8 +921,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteRulesetAsync(String rulesetId, String siteId,
-      final ApiCallback<DeleteRulesetResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteRulesetAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteRulesetResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteRulesetValidateBeforeCall(rulesetId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteRulesetResponse>() {}.getType();
@@ -939,7 +958,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRuleCall(String rulesetId, String ruleId, String siteId,
+  public okhttp3.Call getRuleCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -991,7 +1011,8 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getRuleValidateBeforeCall(String rulesetId, String ruleId, String siteId,
+  private okhttp3.Call getRuleValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
@@ -1035,7 +1056,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetRuleResponse getRule(String rulesetId, String ruleId, String siteId)
+  public GetRuleResponse getRule(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<GetRuleResponse> localVarResp = getRuleWithHttpInfo(rulesetId, ruleId, siteId);
     return localVarResp.getData();
@@ -1068,8 +1090,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetRuleResponse> getRuleWithHttpInfo(String rulesetId, String ruleId,
-      String siteId) throws ApiException {
+  public ApiResponse<GetRuleResponse> getRuleWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = getRuleValidateBeforeCall(rulesetId, ruleId, siteId, null);
     Type localVarReturnType = new TypeToken<GetRuleResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1102,7 +1125,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRuleAsync(String rulesetId, String ruleId, String siteId,
+  public okhttp3.Call getRuleAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId, @javax.annotation.Nullable String siteId,
       final ApiCallback<GetRuleResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getRuleValidateBeforeCall(rulesetId, ruleId, siteId, _callback);
@@ -1139,8 +1163,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesCall(String rulesetId, String siteId, String next, String limit,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getRulesCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1198,8 +1223,9 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getRulesValidateBeforeCall(String rulesetId, String siteId, String next,
-      String limit, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getRulesValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -1238,8 +1264,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetRulesResponse getRules(String rulesetId, String siteId, String next, String limit)
-      throws ApiException {
+  public GetRulesResponse getRules(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     ApiResponse<GetRulesResponse> localVarResp =
         getRulesWithHttpInfo(rulesetId, siteId, next, limit);
     return localVarResp.getData();
@@ -1273,8 +1300,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetRulesResponse> getRulesWithHttpInfo(String rulesetId, String siteId,
-      String next, String limit) throws ApiException {
+  public ApiResponse<GetRulesResponse> getRulesWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
+      throws ApiException {
     okhttp3.Call localVarCall = getRulesValidateBeforeCall(rulesetId, siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetRulesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1308,8 +1337,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesAsync(String rulesetId, String siteId, String next, String limit,
-      final ApiCallback<GetRulesResponse> _callback) throws ApiException {
+  public okhttp3.Call getRulesAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit, final ApiCallback<GetRulesResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         getRulesValidateBeforeCall(rulesetId, siteId, next, limit, _callback);
@@ -1344,8 +1375,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesetCall(String rulesetId, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getRulesetCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1395,8 +1426,8 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getRulesetValidateBeforeCall(String rulesetId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getRulesetValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -1433,7 +1464,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetRulesetResponse getRuleset(String rulesetId, String siteId) throws ApiException {
+  public GetRulesetResponse getRuleset(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetRulesetResponse> localVarResp = getRulesetWithHttpInfo(rulesetId, siteId);
     return localVarResp.getData();
   }
@@ -1464,7 +1496,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetRulesetResponse> getRulesetWithHttpInfo(String rulesetId, String siteId)
+  public ApiResponse<GetRulesetResponse> getRulesetWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = getRulesetValidateBeforeCall(rulesetId, siteId, null);
     Type localVarReturnType = new TypeToken<GetRulesetResponse>() {}.getType();
@@ -1497,8 +1530,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesetAsync(String rulesetId, String siteId,
-      final ApiCallback<GetRulesetResponse> _callback) throws ApiException {
+  public okhttp3.Call getRulesetAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetRulesetResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getRulesetValidateBeforeCall(rulesetId, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetRulesetResponse>() {}.getType();
@@ -1533,7 +1567,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesetsCall(String siteId, String next, String limit,
+  public okhttp3.Call getRulesetsCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1591,7 +1626,8 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getRulesetsValidateBeforeCall(String siteId, String next, String limit,
+  private okhttp3.Call getRulesetsValidateBeforeCall(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback _callback) throws ApiException {
     return getRulesetsCall(siteId, next, limit, _callback);
 
@@ -1624,7 +1660,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetRulesetsResponse getRulesets(String siteId, String next, String limit)
+  public GetRulesetsResponse getRulesets(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit)
       throws ApiException {
     ApiResponse<GetRulesetsResponse> localVarResp = getRulesetsWithHttpInfo(siteId, next, limit);
     return localVarResp.getData();
@@ -1657,8 +1694,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetRulesetsResponse> getRulesetsWithHttpInfo(String siteId, String next,
-      String limit) throws ApiException {
+  public ApiResponse<GetRulesetsResponse> getRulesetsWithHttpInfo(
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String limit) throws ApiException {
     okhttp3.Call localVarCall = getRulesetsValidateBeforeCall(siteId, next, limit, null);
     Type localVarReturnType = new TypeToken<GetRulesetsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1691,7 +1729,8 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getRulesetsAsync(String siteId, String next, String limit,
+  public okhttp3.Call getRulesetsAsync(@javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       final ApiCallback<GetRulesetsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getRulesetsValidateBeforeCall(siteId, next, limit, _callback);
@@ -1733,9 +1772,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateRuleCall(String rulesetId, String ruleId,
-      UpdateRuleRequest updateRuleRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call updateRuleCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nonnull UpdateRuleRequest updateRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1786,9 +1826,10 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateRuleValidateBeforeCall(String rulesetId, String ruleId,
-      UpdateRuleRequest updateRuleRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateRuleValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nonnull UpdateRuleRequest updateRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -1844,8 +1885,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateRuleResponse updateRule(String rulesetId, String ruleId,
-      UpdateRuleRequest updateRuleRequest, String siteId) throws ApiException {
+  public UpdateRuleResponse updateRule(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nonnull UpdateRuleRequest updateRuleRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateRuleResponse> localVarResp =
         updateRuleWithHttpInfo(rulesetId, ruleId, updateRuleRequest, siteId);
     return localVarResp.getData();
@@ -1884,8 +1927,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateRuleResponse> updateRuleWithHttpInfo(String rulesetId, String ruleId,
-      UpdateRuleRequest updateRuleRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateRuleResponse> updateRuleWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId, @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nonnull UpdateRuleRequest updateRuleRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateRuleValidateBeforeCall(rulesetId, ruleId, updateRuleRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateRuleResponse>() {}.getType();
@@ -1925,9 +1970,11 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateRuleAsync(String rulesetId, String ruleId,
-      UpdateRuleRequest updateRuleRequest, String siteId,
-      final ApiCallback<UpdateRuleResponse> _callback) throws ApiException {
+  public okhttp3.Call updateRuleAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull String ruleId,
+      @javax.annotation.Nonnull UpdateRuleRequest updateRuleRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateRuleResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateRuleValidateBeforeCall(rulesetId, ruleId, updateRuleRequest, siteId, _callback);
@@ -1968,8 +2015,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateRulesetCall(String rulesetId, UpdateRulesetRequest updateRulesetRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call updateRulesetCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull UpdateRulesetRequest updateRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2019,9 +2067,9 @@ public class RulesetsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call updateRulesetValidateBeforeCall(String rulesetId,
-      UpdateRulesetRequest updateRulesetRequest, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call updateRulesetValidateBeforeCall(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull UpdateRulesetRequest updateRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'rulesetId' is set
     if (rulesetId == null) {
       throw new ApiException(
@@ -2070,8 +2118,9 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateRulesetResponse updateRuleset(String rulesetId,
-      UpdateRulesetRequest updateRulesetRequest, String siteId) throws ApiException {
+  public UpdateRulesetResponse updateRuleset(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull UpdateRulesetRequest updateRulesetRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<UpdateRulesetResponse> localVarResp =
         updateRulesetWithHttpInfo(rulesetId, updateRulesetRequest, siteId);
     return localVarResp.getData();
@@ -2109,8 +2158,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateRulesetResponse> updateRulesetWithHttpInfo(String rulesetId,
-      UpdateRulesetRequest updateRulesetRequest, String siteId) throws ApiException {
+  public ApiResponse<UpdateRulesetResponse> updateRulesetWithHttpInfo(
+      @javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull UpdateRulesetRequest updateRulesetRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateRulesetValidateBeforeCall(rulesetId, updateRulesetRequest, siteId, null);
     Type localVarReturnType = new TypeToken<UpdateRulesetResponse>() {}.getType();
@@ -2149,9 +2200,10 @@ public class RulesetsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call updateRulesetAsync(String rulesetId,
-      UpdateRulesetRequest updateRulesetRequest, String siteId,
-      final ApiCallback<UpdateRulesetResponse> _callback) throws ApiException {
+  public okhttp3.Call updateRulesetAsync(@javax.annotation.Nonnull String rulesetId,
+      @javax.annotation.Nonnull UpdateRulesetRequest updateRulesetRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateRulesetResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         updateRulesetValidateBeforeCall(rulesetId, updateRulesetRequest, siteId, _callback);

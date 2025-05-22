@@ -106,8 +106,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfCall(String id, String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getExaminePdfCall(@javax.annotation.Nonnull String id,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -157,8 +157,8 @@ public class ExamineObjectsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getExaminePdfValidateBeforeCall(String id, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getExaminePdfValidateBeforeCall(@javax.annotation.Nonnull String id,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(
@@ -196,7 +196,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetExaminePdfResponse getExaminePdf(String id, String siteId) throws ApiException {
+  public GetExaminePdfResponse getExaminePdf(@javax.annotation.Nonnull String id,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<GetExaminePdfResponse> localVarResp = getExaminePdfWithHttpInfo(id, siteId);
     return localVarResp.getData();
   }
@@ -228,7 +229,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetExaminePdfResponse> getExaminePdfWithHttpInfo(String id, String siteId)
+  public ApiResponse<GetExaminePdfResponse> getExaminePdfWithHttpInfo(
+      @javax.annotation.Nonnull String id, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(id, siteId, null);
     Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
@@ -262,8 +264,9 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfAsync(String id, String siteId,
-      final ApiCallback<GetExaminePdfResponse> _callback) throws ApiException {
+  public okhttp3.Call getExaminePdfAsync(@javax.annotation.Nonnull String id,
+      @javax.annotation.Nullable String siteId, final ApiCallback<GetExaminePdfResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getExaminePdfValidateBeforeCall(id, siteId, _callback);
     Type localVarReturnType = new TypeToken<GetExaminePdfResponse>() {}.getType();
@@ -296,8 +299,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfUrlCall(String siteId, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getExaminePdfUrlCall(@javax.annotation.Nullable String siteId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -346,7 +349,7 @@ public class ExamineObjectsApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getExaminePdfUrlValidateBeforeCall(String siteId,
+  private okhttp3.Call getExaminePdfUrlValidateBeforeCall(@javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     return getExaminePdfUrlCall(siteId, _callback);
 
@@ -378,7 +381,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public GetExaminePdfUrlResponse getExaminePdfUrl(String siteId) throws ApiException {
+  public GetExaminePdfUrlResponse getExaminePdfUrl(@javax.annotation.Nullable String siteId)
+      throws ApiException {
     ApiResponse<GetExaminePdfUrlResponse> localVarResp = getExaminePdfUrlWithHttpInfo(siteId);
     return localVarResp.getData();
   }
@@ -409,8 +413,8 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetExaminePdfUrlResponse> getExaminePdfUrlWithHttpInfo(String siteId)
-      throws ApiException {
+  public ApiResponse<GetExaminePdfUrlResponse> getExaminePdfUrlWithHttpInfo(
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = getExaminePdfUrlValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetExaminePdfUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -442,7 +446,7 @@ public class ExamineObjectsApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getExaminePdfUrlAsync(String siteId,
+  public okhttp3.Call getExaminePdfUrlAsync(@javax.annotation.Nullable String siteId,
       final ApiCallback<GetExaminePdfUrlResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getExaminePdfUrlValidateBeforeCall(siteId, _callback);

@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * OcrConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-18T14:32:56.445185-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.12.0")
+    date = "2025-05-20T14:44:33.741519-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.13.0")
 public class OcrConfig {
   public static final String SERIALIZED_NAME_MAX_PAGES_PER_TRANSACTION = "maxPagesPerTransaction";
   @SerializedName(SERIALIZED_NAME_MAX_PAGES_PER_TRANSACTION)

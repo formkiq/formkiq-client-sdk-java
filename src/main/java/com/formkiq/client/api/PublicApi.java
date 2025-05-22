@@ -107,8 +107,9 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call publicAddDocumentCall(AddDocumentRequest addDocumentRequest, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call publicAddDocumentCall(
+      @javax.annotation.Nonnull AddDocumentRequest addDocumentRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -157,8 +158,9 @@ public class PublicApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call publicAddDocumentValidateBeforeCall(AddDocumentRequest addDocumentRequest,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call publicAddDocumentValidateBeforeCall(
+      @javax.annotation.Nonnull AddDocumentRequest addDocumentRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'addDocumentRequest' is set
     if (addDocumentRequest == null) {
       throw new ApiException(
@@ -197,8 +199,9 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentResponse publicAddDocument(AddDocumentRequest addDocumentRequest, String siteId)
-      throws ApiException {
+  public AddDocumentResponse publicAddDocument(
+      @javax.annotation.Nonnull AddDocumentRequest addDocumentRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddDocumentResponse> localVarResp =
         publicAddDocumentWithHttpInfo(addDocumentRequest, siteId);
     return localVarResp.getData();
@@ -233,7 +236,8 @@ public class PublicApi {
    *                        </table>
    */
   public ApiResponse<AddDocumentResponse> publicAddDocumentWithHttpInfo(
-      AddDocumentRequest addDocumentRequest, String siteId) throws ApiException {
+      @javax.annotation.Nonnull AddDocumentRequest addDocumentRequest,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         publicAddDocumentValidateBeforeCall(addDocumentRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
@@ -269,8 +273,10 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call publicAddDocumentAsync(AddDocumentRequest addDocumentRequest, String siteId,
-      final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
+  public okhttp3.Call publicAddDocumentAsync(
+      @javax.annotation.Nonnull AddDocumentRequest addDocumentRequest,
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddDocumentResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         publicAddDocumentValidateBeforeCall(addDocumentRequest, siteId, _callback);
@@ -306,7 +312,8 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call publicAddWebhookCall(String webhooksPlus, Object body, String siteId,
+  public okhttp3.Call publicAddWebhookCall(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -357,8 +364,9 @@ public class PublicApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call publicAddWebhookValidateBeforeCall(String webhooksPlus, Object body,
-      String siteId, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call publicAddWebhookValidateBeforeCall(
+      @javax.annotation.Nonnull String webhooksPlus, @javax.annotation.Nonnull Object body,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'webhooksPlus' is set
     if (webhooksPlus == null) {
       throw new ApiException(
@@ -403,7 +411,8 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public DocumentId publicAddWebhook(String webhooksPlus, Object body, String siteId)
+  public DocumentId publicAddWebhook(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId)
       throws ApiException {
     ApiResponse<DocumentId> localVarResp = publicAddWebhookWithHttpInfo(webhooksPlus, body, siteId);
     return localVarResp.getData();
@@ -437,8 +446,9 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DocumentId> publicAddWebhookWithHttpInfo(String webhooksPlus, Object body,
-      String siteId) throws ApiException {
+  public ApiResponse<DocumentId> publicAddWebhookWithHttpInfo(
+      @javax.annotation.Nonnull String webhooksPlus, @javax.annotation.Nonnull Object body,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         publicAddWebhookValidateBeforeCall(webhooksPlus, body, siteId, null);
     Type localVarReturnType = new TypeToken<DocumentId>() {}.getType();
@@ -474,7 +484,8 @@ public class PublicApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call publicAddWebhookAsync(String webhooksPlus, Object body, String siteId,
+  public okhttp3.Call publicAddWebhookAsync(@javax.annotation.Nonnull String webhooksPlus,
+      @javax.annotation.Nonnull Object body, @javax.annotation.Nullable String siteId,
       final ApiCallback<DocumentId> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =

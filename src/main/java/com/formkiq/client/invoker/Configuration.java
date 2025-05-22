@@ -20,13 +20,18 @@
 
 package com.formkiq.client.invoker;
 
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
+
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-04-18T14:32:56.445185-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.12.0")
+    date = "2025-05-20T14:44:33.741519-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.13.0")
 public class Configuration {
   public static final String VERSION = "1.17.1";
 
-  private static volatile ApiClient defaultApiClient = new ApiClient();
+  private static final AtomicReference<ApiClient> defaultApiClient = new AtomicReference<>();
+  private static volatile Supplier<ApiClient> apiClientFactory = ApiClient::new;
 
   /**
    * Get the default API client, which would be used when creating API instances without providing
@@ -35,7 +40,16 @@ public class Configuration {
    * @return Default API client
    */
   public static ApiClient getDefaultApiClient() {
-    return defaultApiClient;
+    ApiClient client = defaultApiClient.get();
+    if (client == null) {
+      client = defaultApiClient.updateAndGet(val -> {
+        if (val != null) { // changed by another thread
+          return val;
+        }
+        return apiClientFactory.get();
+      });
+    }
+    return client;
   }
 
   /**
@@ -45,6 +59,15 @@ public class Configuration {
    * @param apiClient API client
    */
   public static void setDefaultApiClient(ApiClient apiClient) {
-    defaultApiClient = apiClient;
+    defaultApiClient.set(apiClient);
   }
+
+  /**
+   * set the callback used to create new ApiClient objects
+   */
+  public static void setApiClientFactory(Supplier<ApiClient> factory) {
+    apiClientFactory = Objects.requireNonNull(factory);
+  }
+
+  private Configuration() {}
 }

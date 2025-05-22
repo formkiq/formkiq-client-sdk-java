@@ -110,9 +110,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentOcrCall(String documentId, String siteId,
-      AddDocumentOcrRequest addDocumentOcrRequest, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call addDocumentOcrCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -162,9 +163,10 @@ public class DocumentOcrApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call addDocumentOcrValidateBeforeCall(String documentId, String siteId,
-      AddDocumentOcrRequest addDocumentOcrRequest, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call addDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -204,8 +206,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentOcrResponse addDocumentOcr(String documentId, String siteId,
-      AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
+  public AddDocumentOcrResponse addDocumentOcr(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
     ApiResponse<AddDocumentOcrResponse> localVarResp =
         addDocumentOcrWithHttpInfo(documentId, siteId, addDocumentOcrRequest);
     return localVarResp.getData();
@@ -240,8 +243,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentOcrResponse> addDocumentOcrWithHttpInfo(String documentId,
-      String siteId, AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
+  public ApiResponse<AddDocumentOcrResponse> addDocumentOcrWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
     okhttp3.Call localVarCall =
         addDocumentOcrValidateBeforeCall(documentId, siteId, addDocumentOcrRequest, null);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
@@ -277,8 +281,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call addDocumentOcrAsync(String documentId, String siteId,
-      AddDocumentOcrRequest addDocumentOcrRequest,
+  public okhttp3.Call addDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
       final ApiCallback<AddDocumentOcrResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
@@ -314,8 +319,8 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentOcrCall(String documentId, String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call deleteDocumentOcrCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -365,7 +370,8 @@ public class DocumentOcrApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call deleteDocumentOcrValidateBeforeCall(String documentId, String siteId,
+  private okhttp3.Call deleteDocumentOcrValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -405,7 +411,8 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteDocumentOcr(String documentId, String siteId) throws ApiException {
+  public DeleteResponse deleteDocumentOcr(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteDocumentOcrWithHttpInfo(documentId, siteId);
     return localVarResp.getData();
   }
@@ -438,7 +445,8 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteResponse> deleteDocumentOcrWithHttpInfo(String documentId, String siteId)
+  public ApiResponse<DeleteResponse> deleteDocumentOcrWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -473,8 +481,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call deleteDocumentOcrAsync(String documentId, String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+  public okhttp3.Call deleteDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
@@ -514,9 +523,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentOcrCall(String documentId, String siteId, String outputType,
-      String contentUrl, String text, String shareKey, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call getDocumentOcrCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
+      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -582,9 +592,10 @@ public class DocumentOcrApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call getDocumentOcrValidateBeforeCall(String documentId, String siteId,
-      String outputType, String contentUrl, String text, String shareKey,
-      final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call getDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
+      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -630,8 +641,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public GetDocumentOcrResponse getDocumentOcr(String documentId, String siteId, String outputType,
-      String contentUrl, String text, String shareKey) throws ApiException {
+  public GetDocumentOcrResponse getDocumentOcr(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
+      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     ApiResponse<GetDocumentOcrResponse> localVarResp =
         getDocumentOcrWithHttpInfo(documentId, siteId, outputType, contentUrl, text, shareKey);
     return localVarResp.getData();
@@ -671,8 +684,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetDocumentOcrResponse> getDocumentOcrWithHttpInfo(String documentId,
-      String siteId, String outputType, String contentUrl, String text, String shareKey)
+  public ApiResponse<GetDocumentOcrResponse> getDocumentOcrWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
+      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey)
       throws ApiException {
     okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
         contentUrl, text, shareKey, null);
@@ -714,8 +729,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getDocumentOcrAsync(String documentId, String siteId, String outputType,
-      String contentUrl, String text, String shareKey,
+  public okhttp3.Call getDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
+      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
+      @javax.annotation.Nullable String shareKey,
       final ApiCallback<GetDocumentOcrResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
@@ -752,9 +769,10 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentOcrCall(String documentId, String siteId,
-      SetDocumentOcrRequest setDocumentOcrRequest, final ApiCallback _callback)
-      throws ApiException {
+  public okhttp3.Call setDocumentOcrCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -804,9 +822,10 @@ public class DocumentOcrApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setDocumentOcrValidateBeforeCall(String documentId, String siteId,
-      SetDocumentOcrRequest setDocumentOcrRequest, final ApiCallback _callback)
-      throws ApiException {
+  private okhttp3.Call setDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -846,8 +865,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentOcrResponse setDocumentOcr(String documentId, String siteId,
-      SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
+  public AddDocumentOcrResponse setDocumentOcr(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
     ApiResponse<AddDocumentOcrResponse> localVarResp =
         setDocumentOcrWithHttpInfo(documentId, siteId, setDocumentOcrRequest);
     return localVarResp.getData();
@@ -882,8 +902,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentOcrResponse> setDocumentOcrWithHttpInfo(String documentId,
-      String siteId, SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
+  public ApiResponse<AddDocumentOcrResponse> setDocumentOcrWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
     okhttp3.Call localVarCall =
         setDocumentOcrValidateBeforeCall(documentId, siteId, setDocumentOcrRequest, null);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
@@ -919,8 +940,9 @@ public class DocumentOcrApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setDocumentOcrAsync(String documentId, String siteId,
-      SetDocumentOcrRequest setDocumentOcrRequest,
+  public okhttp3.Call setDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
       final ApiCallback<AddDocumentOcrResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =

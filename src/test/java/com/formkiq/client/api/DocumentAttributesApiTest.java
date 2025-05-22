@@ -59,9 +59,8 @@ public class DocumentAttributesApiTest {
     String documentId = null;
     AddDocumentAttributesRequest addDocumentAttributesRequest = null;
     String siteId = null;
-    String ws = null;
     AddResponse response =
-        api.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, ws);
+        api.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId);
     // TODO: test validations
   }
 

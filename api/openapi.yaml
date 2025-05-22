@@ -1883,6 +1883,17 @@ paths:
           - FAILED_RETRY
           type: string
         style: form
+      - description: Fetch documents with an sync status
+        explode: true
+        in: query
+        name: syncStatus
+        required: false
+        schema:
+          enum:
+          - FULLTEXT_METADATA_FAILED
+          - FULLTEXT_CONTENT_FAILED
+          type: string
+        style: form
       - description: Fetch soft deleted documents
         explode: true
         in: query
@@ -2460,15 +2471,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Whether to enable WebSocket real-time communication with the
-          request
-        explode: true
-        in: query
-        name: ws
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -2938,15 +2940,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Whether to enable WebSocket real-time communication with the
-          request
-        explode: true
-        in: query
-        name: ws
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -10694,15 +10687,6 @@ components:
       schema:
         type: boolean
       style: form
-    wsParam:
-      description: Whether to enable WebSocket real-time communication with the request
-      explode: true
-      in: query
-      name: ws
-      required: false
-      schema:
-        type: string
-      style: form
     groupParam:
       description: Group Identifier
       explode: true
@@ -14138,6 +14122,7 @@ components:
       enum:
       - COMPLETE
       - FAILED
+      - FAILED_RETRY
       - PENDING
       type: string
     DocumentSyncType:

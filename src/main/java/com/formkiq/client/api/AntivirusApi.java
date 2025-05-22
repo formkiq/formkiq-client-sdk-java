@@ -107,8 +107,9 @@ public class AntivirusApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setAntivirusCall(String documentId, String siteId, String shareKey,
-      Object body, final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call setAntivirusCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable Object body, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -162,8 +163,9 @@ public class AntivirusApi {
   }
 
   @SuppressWarnings("rawtypes")
-  private okhttp3.Call setAntivirusValidateBeforeCall(String documentId, String siteId,
-      String shareKey, Object body, final ApiCallback _callback) throws ApiException {
+  private okhttp3.Call setAntivirusValidateBeforeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable Object body, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -203,8 +205,9 @@ public class AntivirusApi {
    *                        </tr>
    *                        </table>
    */
-  public SetAntivirusResponse setAntivirus(String documentId, String siteId, String shareKey,
-      Object body) throws ApiException {
+  public SetAntivirusResponse setAntivirus(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable Object body) throws ApiException {
     ApiResponse<SetAntivirusResponse> localVarResp =
         setAntivirusWithHttpInfo(documentId, siteId, shareKey, body);
     return localVarResp.getData();
@@ -239,8 +242,10 @@ public class AntivirusApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetAntivirusResponse> setAntivirusWithHttpInfo(String documentId,
-      String siteId, String shareKey, Object body) throws ApiException {
+  public ApiResponse<SetAntivirusResponse> setAntivirusWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Object body)
+      throws ApiException {
     okhttp3.Call localVarCall =
         setAntivirusValidateBeforeCall(documentId, siteId, shareKey, body, null);
     Type localVarReturnType = new TypeToken<SetAntivirusResponse>() {}.getType();
@@ -276,8 +281,10 @@ public class AntivirusApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call setAntivirusAsync(String documentId, String siteId, String shareKey,
-      Object body, final ApiCallback<SetAntivirusResponse> _callback) throws ApiException {
+  public okhttp3.Call setAntivirusAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable Object body, final ApiCallback<SetAntivirusResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         setAntivirusValidateBeforeCall(documentId, siteId, shareKey, body, _callback);

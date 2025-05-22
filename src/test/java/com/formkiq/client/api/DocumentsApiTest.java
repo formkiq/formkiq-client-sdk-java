@@ -300,14 +300,15 @@ public class DocumentsApiTest {
   public void getDocumentsTest() throws ApiException {
     String siteId = null;
     String actionStatus = null;
+    String syncStatus = null;
     Boolean deleted = null;
     String date = null;
     String tz = null;
     String next = null;
     String previous = null;
     String limit = null;
-    GetDocumentsResponse response =
-        api.getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit);
+    GetDocumentsResponse response = api.getDocuments(siteId, actionStatus, syncStatus, deleted,
+        date, tz, next, previous, limit);
     // TODO: test validations
   }
 
