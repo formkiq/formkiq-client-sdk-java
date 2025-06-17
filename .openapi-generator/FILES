@@ -41,6 +41,9 @@ docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
 docs/AddDocumentRequest.md
 docs/AddDocumentResponse.md
+docs/AddDocumentSync.md
+docs/AddDocumentSyncRequest.md
+docs/AddDocumentSyncService.md
 docs/AddDocumentTag.md
 docs/AddDocumentTagsRequest.md
 docs/AddDocumentUploadRequest.md
@@ -514,6 +517,9 @@ src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentSync.java
+src/main/java/com/formkiq/client/model/AddDocumentSyncRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentSyncService.java
 src/main/java/com/formkiq/client/model/AddDocumentTag.java
 src/main/java/com/formkiq/client/model/AddDocumentTagsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentUploadRequest.java
@@ -926,6 +932,9 @@ src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentSyncRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentSyncServiceTest.java
+src/test/java/com/formkiq/client/model/AddDocumentSyncTest.java
 src/test/java/com/formkiq/client/model/AddDocumentTagTest.java
 src/test/java/com/formkiq/client/model/AddDocumentTagsRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentUploadRequestTest.java

@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.17.0
+  version: 1.17.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: '#FFFFFF'
@@ -1641,6 +1641,31 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              interfaceResourceItem:
+                summary: Interface Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: INTERFACE
+                    interfaceKey: mainMenuTitle
+                    localizedValue: Main Menu
+              schemaResourceItem:
+                summary: Schema Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: SCHEMA
+                    attributeKey: documentCategory
+                    allowedValue: invoice
+                    localizedValue: Facture
+              classificationResourceItem:
+                summary: Classification Resource Item Example
+                value:
+                  resourceItem:
+                    itemType: CLASSIFICATION
+                    attributeKey: usageRegistrariat
+                    allowedValue: ID
+                    localizedValue: Gestion identitaire
+                    classificationId: 219a7dd6-5fb2-4556-ad71-0ab4312fe577
             schema:
               $ref: '#/components/schemas/AddLocaleResourceItemRequest'
         required: true
@@ -1856,6 +1881,17 @@ paths:
           - RUNNING
           - SKIPPED
           - FAILED_RETRY
+          type: string
+        style: form
+      - description: Fetch documents with an sync status
+        explode: true
+        in: query
+        name: syncStatus
+        required: false
+        schema:
+          enum:
+          - FULLTEXT_METADATA_FAILED
+          - FULLTEXT_CONTENT_FAILED
           type: string
         style: form
       - description: Fetch soft deleted documents
@@ -2435,15 +2471,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Whether to enable WebSocket real-time communication with the
-          request
-        explode: true
-        in: query
-        name: ws
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -2913,15 +2940,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Whether to enable WebSocket real-time communication with the
-          request
-        explode: true
-        in: query
-        name: ws
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -6355,7 +6373,7 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Adde a document to OpenSearch; available as an Add-On Module
+      description: Add a document to OpenSearch; available as an Add-On Module
       operationId: AddDocumentFulltext
       parameters:
       - description: Site Identifier
@@ -6637,6 +6655,56 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-accepts:
+      - application/json
+    post:
+      description: Add a document to a service
+      operationId: AddDocumentSync
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDocumentSyncRequest'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddResponse'
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/AccessControlAllowOrigin'
+            Access-Control-Allow-Methods:
+              $ref: '#/components/headers/AccessControlAllowMethods'
+            Access-Control-Allow-Headers:
+              $ref: '#/components/headers/AccessControlAllowHeaders'
+      security:
+      - ApiAuthorization: []
+      summary: Add document sync to service
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/lambdaApi200'
+      x-content-type: application/json
       x-accepts:
       - application/json
   /userActivities:
@@ -10619,15 +10687,6 @@ components:
       schema:
         type: boolean
       style: form
-    wsParam:
-      description: Whether to enable WebSocket real-time communication with the request
-      explode: true
-      in: query
-      name: ws
-      required: false
-      schema:
-        type: string
-      style: form
     groupParam:
       description: Group Identifier
       explode: true
@@ -14008,6 +14067,15 @@ components:
             $ref: '#/components/schemas/FulltextAttribute'
           type: object
       type: object
+    AddDocumentSyncRequest:
+      example:
+        sync:
+          service: FULLTEXT
+          type: METADATA
+      properties:
+        sync:
+          $ref: '#/components/schemas/AddDocumentSync'
+      type: object
     GetDocumentSyncResponse:
       example:
         next: next
@@ -14036,6 +14104,12 @@ components:
             $ref: '#/components/schemas/DocumentSync'
           type: array
       type: object
+    AddDocumentSyncService:
+      description: Add Document Sync Service
+      enum:
+      - FULLTEXT
+      - EVENTBRIDGE
+      type: string
     DocumentSyncService:
       description: Service of Document Sync
       enum:
@@ -14048,6 +14122,7 @@ components:
       enum:
       - COMPLETE
       - FAILED
+      - FAILED_RETRY
       - PENDING
       type: string
     DocumentSyncType:
@@ -14058,6 +14133,16 @@ components:
       - SOFT_DELETE
       - DELETE
       type: string
+    AddDocumentSync:
+      example:
+        service: FULLTEXT
+        type: METADATA
+      properties:
+        service:
+          $ref: '#/components/schemas/AddDocumentSyncService'
+        type:
+          $ref: '#/components/schemas/DocumentSyncType'
+      type: object
     DocumentSync:
       example:
         insertedDate: insertedDate
