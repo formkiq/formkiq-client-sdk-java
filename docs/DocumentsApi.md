@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addDocument**](DocumentsApi.md#addDocument) | **POST** /documents | Add new document |
+| [**addDocumentSync**](DocumentsApi.md#addDocumentSync) | **POST** /documents/{documentId}/syncs | Add document sync to service |
 | [**addDocumentUpload**](DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document |
 | [**compressDocuments**](DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file |
 | [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document |
@@ -91,6 +92,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 OK |  -  |
+
+<a id="addDocumentSync"></a>
+# **addDocumentSync**
+> AddResponse addDocumentSync(documentId, siteId, addDocumentSyncRequest)
+
+Add document sync to service
+
+Add a document to a service
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    AddDocumentSyncRequest addDocumentSyncRequest = new AddDocumentSyncRequest(); // AddDocumentSyncRequest | 
+    try {
+      AddResponse result = apiInstance.addDocumentSync(documentId, siteId, addDocumentSyncRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#addDocumentSync");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **addDocumentSyncRequest** | [**AddDocumentSyncRequest**](AddDocumentSyncRequest.md)|  | [optional] |
+
+### Return type
+
+[**AddResponse**](AddResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="addDocumentUpload"></a>
 # **addDocumentUpload**
@@ -812,7 +882,7 @@ No authorization required
 
 <a id="getDocuments"></a>
 # **getDocuments**
-> GetDocumentsResponse getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit)
+> GetDocumentsResponse getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, limit)
 
 Get Documents listing
 
@@ -838,6 +908,7 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String actionStatus = "FAILED"; // String | Fetch documents with an action status
+    String syncStatus = "FULLTEXT_METADATA_FAILED"; // String | Fetch documents with an sync status
     Boolean deleted = true; // Boolean | Fetch soft deleted documents
     String date = "date_example"; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
@@ -845,7 +916,7 @@ public class Example {
     String previous = "previous_example"; // String | Previous page of results token
     String limit = "10"; // String | Limit Results
     try {
-      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, deleted, date, tz, next, previous, limit);
+      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocuments");
@@ -864,6 +935,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
 | **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED, FAILED_RETRY] |
+| **syncStatus** | **String**| Fetch documents with an sync status | [optional] [enum: FULLTEXT_METADATA_FAILED, FULLTEXT_CONTENT_FAILED] |
 | **deleted** | **Boolean**| Fetch soft deleted documents | [optional] |
 | **date** | **String**| Fetch documents inserted on a certain date (yyyy-MM-dd) | [optional] |
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |

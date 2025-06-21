@@ -36,7 +36,9 @@ import java.io.IOException;
 
 import com.formkiq.client.model.AddDocumentRequest;
 import com.formkiq.client.model.AddDocumentResponse;
+import com.formkiq.client.model.AddDocumentSyncRequest;
 import com.formkiq.client.model.AddDocumentUploadRequest;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
@@ -326,6 +328,212 @@ public class DocumentsApi {
     okhttp3.Call localVarCall =
         addDocumentValidateBeforeCall(addDocumentRequest, siteId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addDocumentSync
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param addDocumentSyncRequest (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocumentSyncCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentSyncRequest addDocumentSyncRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addDocumentSyncRequest;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/syncs".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addDocumentSyncValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentSyncRequest addDocumentSyncRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling addDocumentSync(Async)");
+    }
+
+    return addDocumentSyncCall(documentId, siteId, addDocumentSyncRequest, _callback);
+
+  }
+
+  /**
+   * Add document sync to service Add a document to a service
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param addDocumentSyncRequest (optional)
+   * @return AddResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddResponse addDocumentSync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentSyncRequest addDocumentSyncRequest)
+      throws ApiException {
+    ApiResponse<AddResponse> localVarResp =
+        addDocumentSyncWithHttpInfo(documentId, siteId, addDocumentSyncRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Add document sync to service Add a document to a service
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param addDocumentSyncRequest (optional)
+   * @return ApiResponse&lt;AddResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddResponse> addDocumentSyncWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentSyncRequest addDocumentSyncRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        addDocumentSyncValidateBeforeCall(documentId, siteId, addDocumentSyncRequest, null);
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Add document sync to service (asynchronously) Add a document to a service
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param addDocumentSyncRequest (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocumentSyncAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable AddDocumentSyncRequest addDocumentSyncRequest,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        addDocumentSyncValidateBeforeCall(documentId, siteId, addDocumentSyncRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -2631,6 +2839,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param syncStatus Fetch documents with an sync status (optional)
    * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
@@ -2659,10 +2868,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentsCall(@javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable Boolean deleted,
-      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
+      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
+      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2693,6 +2903,10 @@ public class DocumentsApi {
 
     if (actionStatus != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("actionStatus", actionStatus));
+    }
+
+    if (syncStatus != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("syncStatus", syncStatus));
     }
 
     if (deleted != null) {
@@ -2740,12 +2954,13 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentsValidateBeforeCall(@javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable Boolean deleted,
-      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
-    return getDocumentsCall(siteId, actionStatus, deleted, date, tz, next, previous, limit,
-        _callback);
+      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
+      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
+      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
+    return getDocumentsCall(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous,
+        limit, _callback);
 
   }
 
@@ -2755,6 +2970,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param syncStatus Fetch documents with an sync status (optional)
    * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
@@ -2783,12 +2999,13 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentsResponse getDocuments(@javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable Boolean deleted,
-      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      @javax.annotation.Nullable String limit) throws ApiException {
-    ApiResponse<GetDocumentsResponse> localVarResp =
-        getDocumentsWithHttpInfo(siteId, actionStatus, deleted, date, tz, next, previous, limit);
+      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
+      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
+      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit)
+      throws ApiException {
+    ApiResponse<GetDocumentsResponse> localVarResp = getDocumentsWithHttpInfo(siteId, actionStatus,
+        syncStatus, deleted, date, tz, next, previous, limit);
     return localVarResp.getData();
   }
 
@@ -2798,6 +3015,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param syncStatus Fetch documents with an sync status (optional)
    * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
@@ -2827,12 +3045,12 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentsResponse> getDocumentsWithHttpInfo(
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String actionStatus,
-      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
-      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit)
-      throws ApiException {
-    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, deleted, date,
-        tz, next, previous, limit, null);
+      @javax.annotation.Nullable String syncStatus, @javax.annotation.Nullable Boolean deleted,
+      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String limit) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
+        deleted, date, tz, next, previous, limit, null);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2843,6 +3061,7 @@ public class DocumentsApi {
    * 
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
+   * @param syncStatus Fetch documents with an sync status (optional)
    * @param deleted Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
@@ -2871,14 +3090,14 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentsAsync(@javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable Boolean deleted,
-      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      @javax.annotation.Nullable String limit, final ApiCallback<GetDocumentsResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
+      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
+      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
+      final ApiCallback<GetDocumentsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, deleted, date,
-        tz, next, previous, limit, _callback);
+    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
+        deleted, date, tz, next, previous, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

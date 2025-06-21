@@ -185,7 +185,7 @@ public class AdvancedDocumentSearchApi {
   }
 
   /**
-   * Add document&#39;s full-text Adde a document to OpenSearch; available as an Add-On Module
+   * Add document&#39;s full-text Add a document to OpenSearch; available as an Add-On Module
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -221,7 +221,7 @@ public class AdvancedDocumentSearchApi {
   }
 
   /**
-   * Add document&#39;s full-text Adde a document to OpenSearch; available as an Add-On Module
+   * Add document&#39;s full-text Add a document to OpenSearch; available as an Add-On Module
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -258,7 +258,7 @@ public class AdvancedDocumentSearchApi {
   }
 
   /**
-   * Add document&#39;s full-text (asynchronously) Adde a document to OpenSearch; available as an
+   * Add document&#39;s full-text (asynchronously) Add a document to OpenSearch; available as an
    * Add-On Module
    * 
    * @param documentId Document Identifier (required)

@@ -4,9 +4,9 @@
 This is the official supported Java library for the FormKiQ API. 
 
 FormKiQ HTTP API
-- API version: 1.17.0
-  - Build date: 2025-03-12T17:17:25.165880-05:00[America/Winnipeg]
-  - Generator version: 7.12.0
+- API version: 1.18.0
+  - Build date: 2025-06-21T14:21:22.314584-05:00[America/Winnipeg]
+  - Generator version: 7.13.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -273,6 +273,7 @@ Class | Method | HTTP request | Description
 *DocumentWorkflowsApi* | [**setWorkflow**](docs/DocumentWorkflowsApi.md#setWorkflow) | **PUT** /workflows/{workflowId} | Set workflow
 *DocumentWorkflowsApi* | [**updateWorkflow**](docs/DocumentWorkflowsApi.md#updateWorkflow) | **PATCH** /workflows/{workflowId} | Update workflow
 *DocumentsApi* | [**addDocument**](docs/DocumentsApi.md#addDocument) | **POST** /documents | Add new document
+*DocumentsApi* | [**addDocumentSync**](docs/DocumentsApi.md#addDocumentSync) | **POST** /documents/{documentId}/syncs | Add document sync to service
 *DocumentsApi* | [**addDocumentUpload**](docs/DocumentsApi.md#addDocumentUpload) | **POST** /documents/upload | Add large document
 *DocumentsApi* | [**compressDocuments**](docs/DocumentsApi.md#compressDocuments) | **POST** /documents/compress | Compress multiple documents into a .zip file
 *DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents/{documentId} | Delete document
@@ -418,6 +419,9 @@ Class | Method | HTTP request | Description
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
  - [AddDocumentRequest](docs/AddDocumentRequest.md)
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
+ - [AddDocumentSync](docs/AddDocumentSync.md)
+ - [AddDocumentSyncRequest](docs/AddDocumentSyncRequest.md)
+ - [AddDocumentSyncService](docs/AddDocumentSyncService.md)
  - [AddDocumentTag](docs/AddDocumentTag.md)
  - [AddDocumentTagsRequest](docs/AddDocumentTagsRequest.md)
  - [AddDocumentUploadRequest](docs/AddDocumentUploadRequest.md)

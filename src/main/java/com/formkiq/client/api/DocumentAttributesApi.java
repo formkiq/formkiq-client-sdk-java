@@ -93,7 +93,6 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -117,8 +116,7 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call addDocumentAttributesCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String ws,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -148,10 +146,6 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    if (ws != null) {
-      localVarQueryParams.addAll(localVarApiClient.parameterToPair("ws", ws));
-    }
-
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -175,8 +169,7 @@ public class DocumentAttributesApi {
   private okhttp3.Call addDocumentAttributesValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String ws,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -189,8 +182,7 @@ public class DocumentAttributesApi {
           "Missing the required parameter 'addDocumentAttributesRequest' when calling addDocumentAttributes(Async)");
     }
 
-    return addDocumentAttributesCall(documentId, addDocumentAttributesRequest, siteId, ws,
-        _callback);
+    return addDocumentAttributesCall(documentId, addDocumentAttributesRequest, siteId, _callback);
 
   }
 
@@ -201,7 +193,6 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -225,10 +216,9 @@ public class DocumentAttributesApi {
    */
   public AddResponse addDocumentAttributes(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String ws)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId) throws ApiException {
     ApiResponse<AddResponse> localVarResp =
-        addDocumentAttributesWithHttpInfo(documentId, addDocumentAttributesRequest, siteId, ws);
+        addDocumentAttributesWithHttpInfo(documentId, addDocumentAttributesRequest, siteId);
     return localVarResp.getData();
   }
 
@@ -239,7 +229,6 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -264,10 +253,9 @@ public class DocumentAttributesApi {
   public ApiResponse<AddResponse> addDocumentAttributesWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String ws)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall = addDocumentAttributesValidateBeforeCall(documentId,
-        addDocumentAttributesRequest, siteId, ws, null);
+        addDocumentAttributesRequest, siteId, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -279,7 +267,6 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
-   * @param ws Whether to enable WebSocket real-time communication with the request (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -303,11 +290,11 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call addDocumentAttributesAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String ws,
-      final ApiCallback<AddResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentAttributesValidateBeforeCall(documentId,
-        addDocumentAttributesRequest, siteId, ws, _callback);
+        addDocumentAttributesRequest, siteId, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

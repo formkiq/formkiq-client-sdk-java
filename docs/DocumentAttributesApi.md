@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentAttributes"></a>
 # **addDocumentAttributes**
-> AddResponse addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, ws)
+> AddResponse addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId)
 
 Add attribute to document
 
@@ -43,9 +43,8 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentAttributesRequest addDocumentAttributesRequest = new AddDocumentAttributesRequest(); // AddDocumentAttributesRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
-    String ws = "ws_example"; // String | Whether to enable WebSocket real-time communication with the request
     try {
-      AddResponse result = apiInstance.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, ws);
+      AddResponse result = apiInstance.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#addDocumentAttributes");
@@ -65,7 +64,6 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentAttributesRequest** | [**AddDocumentAttributesRequest**](AddDocumentAttributesRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
-| **ws** | **String**| Whether to enable WebSocket real-time communication with the request | [optional] |
 
 ### Return type
 

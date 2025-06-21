@@ -9,6 +9,8 @@
 
 * `FAILED` (value: `"FAILED"`)
 
+* `FAILED_RETRY` (value: `"FAILED_RETRY"`)
+
 * `PENDING` (value: `"PENDING"`)
 
 

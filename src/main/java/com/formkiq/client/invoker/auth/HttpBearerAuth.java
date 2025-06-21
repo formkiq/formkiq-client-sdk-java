@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-19T21:04:16.516077-05:00[America/Winnipeg]",
+    date = "2025-06-21T14:21:22.314584-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class HttpBearerAuth implements Authentication {
   private final String scheme;

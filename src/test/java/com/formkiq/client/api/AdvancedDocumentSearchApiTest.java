@@ -52,7 +52,7 @@ public class AdvancedDocumentSearchApiTest {
   /**
    * Add document&#39;s full-text
    *
-   * Adde a document to OpenSearch; available as an Add-On Module
+   * Add a document to OpenSearch; available as an Add-On Module
    *
    * @throws ApiException if the Api call fails
    */

@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * FulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-05-19T21:04:16.516077-05:00[America/Winnipeg]",
+    date = "2025-06-21T14:21:22.314584-05:00[America/Winnipeg]",
     comments = "Generator version: 7.13.0")
 public class FulltextAttribute {
   public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
