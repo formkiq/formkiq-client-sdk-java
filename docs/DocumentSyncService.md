@@ -9,7 +9,5 @@
 
 * `OPENSEARCH` (value: `"OPENSEARCH"`)
 
-* `EVENTBRIDGE` (value: `"EVENTBRIDGE"`)
-
 
 

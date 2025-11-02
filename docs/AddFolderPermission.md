@@ -1,0 +1,14 @@
+
+
+# AddFolderPermission
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**roleName** | **String** | Name of Role |  [optional] |
+|**permissions** | **List&lt;FolderPermissionType&gt;** | List of permissions |  [optional] |
+
+
+

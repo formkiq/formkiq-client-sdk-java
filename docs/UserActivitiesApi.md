@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getDocumentUserActivities**](UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document |
+| [**getResourceActivities**](UserActivitiesApi.md#getResourceActivities) | **GET** /activities | Get resource activities |
 | [**getUserActivities**](UserActivitiesApi.md#getUserActivities) | **GET** /userActivities | Get user activities |
 
 
@@ -64,6 +65,91 @@ public class Example {
 ### Return type
 
 [**GetUserActivitesResponse**](GetUserActivitesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getResourceActivities"></a>
+# **getResourceActivities**
+> GetActivitesResponse getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, start, end, sort, next, limit, userId)
+
+Get resource activities
+
+Retrieve an resource activities
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.UserActivitiesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    UserActivitiesApi apiInstance = new UserActivitiesApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String documentId = "documentId_example"; // String | Document Identifier
+    String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
+    String namespace = "PRESET"; // String | Namespace Identifier
+    String entityId = "entityId_example"; // String | Entity Identifier
+    OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Start of date-time range (UTC)
+    OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | End of date-time range (UTC)
+    String sort = "ASC"; // String | Sort order (default DESC)
+    String next = "next_example"; // String | Next page of results token
+    String limit = "10"; // String | Limit Results
+    String userId = "userId_example"; // String | Fetch specific user activities
+    try {
+      GetActivitesResponse result = apiInstance.getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, start, end, sort, next, limit, userId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserActivitiesApi#getResourceActivities");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | [optional] |
+| **documentId** | **String**| Document Identifier | [optional] |
+| **entityTypeId** | **String**| EntityType Identifier | [optional] |
+| **namespace** | **String**| Namespace Identifier | [optional] [enum: PRESET, CUSTOM] |
+| **entityId** | **String**| Entity Identifier | [optional] |
+| **start** | **OffsetDateTime**| Start of date-time range (UTC) | [optional] |
+| **end** | **OffsetDateTime**| End of date-time range (UTC) | [optional] |
+| **sort** | **String**| Sort order (default DESC) | [optional] [enum: ASC, DESC] |
+| **next** | **String**| Next page of results token | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **userId** | **String**| Fetch specific user activities | [optional] |
+
+### Return type
+
+[**GetActivitesResponse**](GetActivitesResponse.md)
 
 ### Authorization
 

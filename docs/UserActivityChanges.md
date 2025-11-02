@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**oldValue** | **String** | Previous key value |  [optional] |
-|**newValue** | **String** | New key value |  [optional] |
+|**oldValue** | **Object** | Previous key value |  [optional] |
+|**newValue** | **Object** | New key value |  [optional] |
 
 
 

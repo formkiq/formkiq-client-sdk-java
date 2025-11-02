@@ -7,11 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ocrParseTypes** | **String** | OCR: Parse types - TEXT, FORMS, TABLES |  [optional] |
+|**ocrTextractQueries** | [**List&lt;TextractQuery&gt;**](TextractQuery.md) |  |  [optional] |
+|**ocrParseTypes** | **String** | OCR: Parse types - TEXT, FORMS, TABLES, QUERIES (must include ocrTextractQueries) |  [optional] |
 |**ocrEngine** | **OcrEngine** |  |  [optional] |
 |**ocrOutputType** | **OcrOutputType** |  |  [optional] |
 |**ocrNumberOfPages** | **String** | Number of pages to OCR (from start) (-1 all) |  [optional] |
 |**addPdfDetectedCharactersAsText** | **String** | OCR: For the rewriting of the PDF document, converting any image text to searchable text |  [optional] |
+|**llmPromptEntityName** | **String** | DATA_CLASSIFICATION: Set the LLM Prompt Entity Name |  [optional] |
 |**url** | **String** | Webhook: Callback URL |  [optional] |
 |**characterMax** | **String** | Fulltext: Maximum number of characters (-1 unlimited, Typesense defaults to 2048 characters) |  [optional] |
 |**engine** | [**EngineEnum**](#EngineEnum) | DocumentTagging: Engine to use for document tagging generation |  [optional] |
@@ -24,6 +26,10 @@
 |**tags** | **String** | DocumentTagging: Comma-deliminted list of keywords to generate tags for |  [optional] |
 |**mappingId** | **String** | Id of Mapping |  [optional] |
 |**eventBusName** | **String** | The name or ARN of the event bus to receive the event |  [optional] |
+|**width** | **String** | The width of the image to resize (or &#39;auto&#39;) |  [optional] |
+|**height** | **String** | The height of the image to resize (or &#39;auto&#39;) |  [optional] |
+|**path** | **String** | The path to use when creating resized document (optional) |  [optional] |
+|**outputType** | **String** | The output type of the image |  [optional] |
 
 
 

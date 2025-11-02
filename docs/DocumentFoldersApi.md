@@ -7,6 +7,8 @@ All URIs are relative to *http://localhost*
 | [**addFolder**](DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder |
 | [**deleteFolder**](DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder |
 | [**getFolderDocuments**](DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders |
+| [**getFolderPermissions**](DocumentFoldersApi.md#getFolderPermissions) | **GET** /folders/{indexKey}/permissions | Get folder permissions |
+| [**setFolderPermissions**](DocumentFoldersApi.md#setFolderPermissions) | **PUT** /folders/permissions | Sets Folder Permissions |
 
 
 <a id="addFolder"></a>
@@ -215,6 +217,140 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getFolderPermissions"></a>
+# **getFolderPermissions**
+> GetFolderPermissionsResponse getFolderPermissions(indexKey, siteId)
+
+Get folder permissions
+
+Get list of permissions for a folder
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentFoldersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentFoldersApi apiInstance = new DocumentFoldersApi(defaultClient);
+    String indexKey = "indexKey_example"; // String | Index Key Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetFolderPermissionsResponse result = apiInstance.getFolderPermissions(indexKey, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentFoldersApi#getFolderPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **indexKey** | **String**| Index Key Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GetFolderPermissionsResponse**](GetFolderPermissionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setFolderPermissions"></a>
+# **setFolderPermissions**
+> SetResponse setFolderPermissions(setFolderPermissionsRequest, siteId)
+
+Sets Folder Permissions
+
+Sets a folders permissions  NOTE: Can only be called be ADMIN or GOVERN.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentFoldersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentFoldersApi apiInstance = new DocumentFoldersApi(defaultClient);
+    SetFolderPermissionsRequest setFolderPermissionsRequest = new SetFolderPermissionsRequest(); // SetFolderPermissionsRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      SetResponse result = apiInstance.setFolderPermissions(setFolderPermissionsRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentFoldersApi#setFolderPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setFolderPermissionsRequest** | [**SetFolderPermissionsRequest**](SetFolderPermissionsRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

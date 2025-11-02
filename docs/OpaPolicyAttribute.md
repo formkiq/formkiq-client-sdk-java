@@ -14,6 +14,8 @@
 |**lt** | [**OpaPolicyAttributeLt**](OpaPolicyAttributeLt.md) |  |  [optional] |
 |**lte** | [**OpaPolicyAttributeLte**](OpaPolicyAttributeLte.md) |  |  [optional] |
 |**neq** | [**OpaPolicyAttributeNeq**](OpaPolicyAttributeNeq.md) |  |  [optional] |
+|**in** | [**OpaPolicyAttributeIn**](OpaPolicyAttributeIn.md) |  |  [optional] |
+|**notIn** | [**OpaPolicyAttributeNotIn**](OpaPolicyAttributeNotIn.md) |  |  [optional] |
 
 
 

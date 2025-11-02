@@ -17,7 +17,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentTags"></a>
 # **addDocumentTags**
-> addDocumentTags(documentId, addDocumentTagsRequest, siteId)
+> AddResponse addDocumentTags(documentId, addDocumentTagsRequest, siteId)
 
 Add tag to document
 
@@ -45,7 +45,8 @@ public class Example {
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      AddResponse result = apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#addDocumentTags");
       System.err.println("Status code: " + e.getCode());
@@ -67,7 +68,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**AddResponse**](AddResponse.md)
 
 ### Authorization
 
@@ -76,12 +77,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="deleteDocumentTag"></a>
 # **deleteDocumentTag**
