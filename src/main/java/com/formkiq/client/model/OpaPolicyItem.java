@@ -21,8 +21,9 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.OpaPolicyAttribute;
-import com.formkiq.client.model.OpaPolicyItemType;
+import com.formkiq.client.model.OpaPolicyInput;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,6 +54,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,14 +62,9 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class OpaPolicyItem {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  @javax.annotation.Nullable
-  private OpaPolicyItemType type;
-
   public static final String SERIALIZED_NAME_POLICY = "policy";
   @SerializedName(SERIALIZED_NAME_POLICY)
   @javax.annotation.Nullable
@@ -83,32 +80,22 @@ public class OpaPolicyItem {
   @javax.annotation.Nullable
   private List<String> anyRoles = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_EXCLUDED_ROLES = "excludedRoles";
+  @SerializedName(SERIALIZED_NAME_EXCLUDED_ROLES)
+  @javax.annotation.Nullable
+  private List<String> excludedRoles = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
   private List<OpaPolicyAttribute> attributes = new ArrayList<>();
 
-  public OpaPolicyItem() {}
-
-  public OpaPolicyItem type(@javax.annotation.Nullable OpaPolicyItemType type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Get type
-   * 
-   * @return type
-   */
+  public static final String SERIALIZED_NAME_INPUT = "input";
+  @SerializedName(SERIALIZED_NAME_INPUT)
   @javax.annotation.Nullable
-  public OpaPolicyItemType getType() {
-    return type;
-  }
+  private OpaPolicyInput input;
 
-  public void setType(@javax.annotation.Nullable OpaPolicyItemType type) {
-    this.type = type;
-  }
-
+  public OpaPolicyItem() {}
 
   public OpaPolicyItem policy(@javax.annotation.Nullable String policy) {
     this.policy = policy;
@@ -186,6 +173,34 @@ public class OpaPolicyItem {
   }
 
 
+  public OpaPolicyItem excludedRoles(@javax.annotation.Nullable List<String> excludedRoles) {
+    this.excludedRoles = excludedRoles;
+    return this;
+  }
+
+  public OpaPolicyItem addExcludedRolesItem(String excludedRolesItem) {
+    if (this.excludedRoles == null) {
+      this.excludedRoles = new ArrayList<>();
+    }
+    this.excludedRoles.add(excludedRolesItem);
+    return this;
+  }
+
+  /**
+   * User must NOT have these roles
+   * 
+   * @return excludedRoles
+   */
+  @javax.annotation.Nullable
+  public List<String> getExcludedRoles() {
+    return excludedRoles;
+  }
+
+  public void setExcludedRoles(@javax.annotation.Nullable List<String> excludedRoles) {
+    this.excludedRoles = excludedRoles;
+  }
+
+
   public OpaPolicyItem attributes(@javax.annotation.Nullable List<OpaPolicyAttribute> attributes) {
     this.attributes = attributes;
     return this;
@@ -214,6 +229,26 @@ public class OpaPolicyItem {
   }
 
 
+  public OpaPolicyItem input(@javax.annotation.Nullable OpaPolicyInput input) {
+    this.input = input;
+    return this;
+  }
+
+  /**
+   * Get input
+   * 
+   * @return input
+   */
+  @javax.annotation.Nullable
+  public OpaPolicyInput getInput() {
+    return input;
+  }
+
+  public void setInput(@javax.annotation.Nullable OpaPolicyInput input) {
+    this.input = input;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -224,27 +259,29 @@ public class OpaPolicyItem {
       return false;
     }
     OpaPolicyItem opaPolicyItem = (OpaPolicyItem) o;
-    return Objects.equals(this.type, opaPolicyItem.type)
-        && Objects.equals(this.policy, opaPolicyItem.policy)
+    return Objects.equals(this.policy, opaPolicyItem.policy)
         && Objects.equals(this.allRoles, opaPolicyItem.allRoles)
         && Objects.equals(this.anyRoles, opaPolicyItem.anyRoles)
-        && Objects.equals(this.attributes, opaPolicyItem.attributes);
+        && Objects.equals(this.excludedRoles, opaPolicyItem.excludedRoles)
+        && Objects.equals(this.attributes, opaPolicyItem.attributes)
+        && Objects.equals(this.input, opaPolicyItem.input);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, policy, allRoles, anyRoles, attributes);
+    return Objects.hash(policy, allRoles, anyRoles, excludedRoles, attributes, input);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OpaPolicyItem {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
     sb.append("    allRoles: ").append(toIndentedString(allRoles)).append("\n");
     sb.append("    anyRoles: ").append(toIndentedString(anyRoles)).append("\n");
+    sb.append("    excludedRoles: ").append(toIndentedString(excludedRoles)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    input: ").append(toIndentedString(input)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,8 +302,8 @@ public class OpaPolicyItem {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("type", "policy", "allRoles", "anyRoles", "attributes"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("policy", "allRoles", "anyRoles", "excludedRoles", "attributes", "input"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -282,7 +319,7 @@ public class OpaPolicyItem {
     if (jsonElement == null) {
       if (!OpaPolicyItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                             // is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in OpaPolicyItem is not found in the empty JSON string",
             OpaPolicyItem.openapiRequiredFields.toString()));
       }
@@ -292,42 +329,45 @@ public class OpaPolicyItem {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpaPolicyItem.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpaPolicyItem` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `type`
-    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-      OpaPolicyItemType.validateJsonElement(jsonObj.get("type"));
-    }
     if ((jsonObj.get("policy") != null && !jsonObj.get("policy").isJsonNull())
         && !jsonObj.get("policy").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `policy` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("policy").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("allRoles") != null && !jsonObj.get("allRoles").isJsonNull()
         && !jsonObj.get("allRoles").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `allRoles` to be an array in the JSON string but got `%s`",
           jsonObj.get("allRoles").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("anyRoles") != null && !jsonObj.get("anyRoles").isJsonNull()
         && !jsonObj.get("anyRoles").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `anyRoles` to be an array in the JSON string but got `%s`",
           jsonObj.get("anyRoles").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("excludedRoles") != null && !jsonObj.get("excludedRoles").isJsonNull()
+        && !jsonObj.get("excludedRoles").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `excludedRoles` to be an array in the JSON string but got `%s`",
+          jsonObj.get("excludedRoles").toString()));
     }
     if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
       JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
       if (jsonArrayattributes != null) {
         // ensure the json data is an array
         if (!jsonObj.get("attributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `attributes` to be an array in the JSON string but got `%s`",
               jsonObj.get("attributes").toString()));
         }
@@ -337,6 +377,10 @@ public class OpaPolicyItem {
           OpaPolicyAttribute.validateJsonElement(jsonArrayattributes.get(i));
         } ;
       }
+    }
+    // validate the optional field `input`
+    if (jsonObj.get("input") != null && !jsonObj.get("input").isJsonNull()) {
+      OpaPolicyInput.validateJsonElement(jsonObj.get("input"));
     }
   }
 

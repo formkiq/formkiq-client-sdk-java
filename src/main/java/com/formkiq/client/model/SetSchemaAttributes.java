@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.AddAttributeSchemaOptional;
 import com.formkiq.client.model.AddAttributeSchemaRequired;
 import com.formkiq.client.model.AttributeSchemaCompositeKey;
@@ -54,6 +55,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * SetSchemaAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class SetSchemaAttributes {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";
   @SerializedName(SERIALIZED_NAME_COMPOSITE_KEYS)
@@ -264,7 +266,7 @@ public class SetSchemaAttributes {
     if (jsonElement == null) {
       if (!SetSchemaAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                   // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in SetSchemaAttributes is not found in the empty JSON string",
             SetSchemaAttributes.openapiRequiredFields.toString()));
       }
@@ -274,7 +276,7 @@ public class SetSchemaAttributes {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!SetSchemaAttributes.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `SetSchemaAttributes` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -285,7 +287,7 @@ public class SetSchemaAttributes {
       if (jsonArraycompositeKeys != null) {
         // ensure the json data is an array
         if (!jsonObj.get("compositeKeys").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `compositeKeys` to be an array in the JSON string but got `%s`",
               jsonObj.get("compositeKeys").toString()));
         }
@@ -301,7 +303,7 @@ public class SetSchemaAttributes {
       if (jsonArrayrequired != null) {
         // ensure the json data is an array
         if (!jsonObj.get("required").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `required` to be an array in the JSON string but got `%s`",
               jsonObj.get("required").toString()));
         }
@@ -317,7 +319,7 @@ public class SetSchemaAttributes {
       if (jsonArrayoptional != null) {
         // ensure the json data is an array
         if (!jsonObj.get("optional").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `optional` to be an array in the JSON string but got `%s`",
               jsonObj.get("optional").toString()));
         }

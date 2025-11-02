@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.EntityTypeNamespace;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * EntityType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class EntityType {
   public static final String SERIALIZED_NAME_ENTITY_TYPE_ID = "entityTypeId";
   @SerializedName(SERIALIZED_NAME_ENTITY_TYPE_ID)
@@ -228,7 +230,7 @@ public class EntityType {
     if (jsonElement == null) {
       if (!EntityType.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                          // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in EntityType is not found in the empty JSON string",
             EntityType.openapiRequiredFields.toString()));
       }
@@ -238,7 +240,7 @@ public class EntityType {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!EntityType.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `EntityType` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -246,7 +248,7 @@ public class EntityType {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("entityTypeId") != null && !jsonObj.get("entityTypeId").isJsonNull())
         && !jsonObj.get("entityTypeId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `entityTypeId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("entityTypeId").toString()));
     }
@@ -256,13 +258,13 @@ public class EntityType {
     }
     if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
         && !jsonObj.get("name").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }

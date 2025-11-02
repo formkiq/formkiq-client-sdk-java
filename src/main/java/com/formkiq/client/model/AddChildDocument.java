@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
@@ -54,6 +55,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -438,7 +440,7 @@ public class AddChildDocument {
     if (jsonElement == null) {
       if (!AddChildDocument.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddChildDocument is not found in the empty JSON string",
             AddChildDocument.openapiRequiredFields.toString()));
       }
@@ -448,7 +450,7 @@ public class AddChildDocument {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddChildDocument.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddChildDocument` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -457,39 +459,39 @@ public class AddChildDocument {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : AddChildDocument.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
     if ((jsonObj.get("width") != null && !jsonObj.get("width").isJsonNull())
         && !jsonObj.get("width").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `width` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("width").toString()));
     }
     if ((jsonObj.get("height") != null && !jsonObj.get("height").isJsonNull())
         && !jsonObj.get("height").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `height` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("height").toString()));
     }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("contentType").toString()));
     }
@@ -499,12 +501,12 @@ public class AddChildDocument {
     }
     if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
         && !jsonObj.get("checksum").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("checksum").toString()));
     }
     if (!jsonObj.get("content").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `content` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("content").toString()));
     }
@@ -513,7 +515,7 @@ public class AddChildDocument {
       if (jsonArraytags != null) {
         // ensure the json data is an array
         if (!jsonObj.get("tags").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `tags` to be an array in the JSON string but got `%s`",
               jsonObj.get("tags").toString()));
         }
@@ -529,7 +531,7 @@ public class AddChildDocument {
       if (jsonArraymetadata != null) {
         // ensure the json data is an array
         if (!jsonObj.get("metadata").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `metadata` to be an array in the JSON string but got `%s`",
               jsonObj.get("metadata").toString()));
         }

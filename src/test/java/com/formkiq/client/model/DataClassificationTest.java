@@ -20,36 +20,71 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DataClassificationAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for Locale
+ * Model tests for DataClassification
  */
-public class LocaleTest {
-  private final Locale model = new Locale();
+public class DataClassificationTest {
+  private final DataClassification model = new DataClassification();
 
   /**
-   * Model tests for Locale
+   * Model tests for DataClassification
    */
   @Test
-  public void testLocale() {
-    // TODO: test Locale
+  public void testDataClassification() {
+    // TODO: test DataClassification
   }
 
   /**
-   * Test the property 'locale'
+   * Test the property 'llmPromptEntityName'
    */
   @Test
-  public void localeTest() {
-    // TODO: test locale
+  public void llmPromptEntityNameTest() {
+    // TODO: test llmPromptEntityName
+  }
+
+  /**
+   * Test the property 'insertedDate'
+   */
+  @Test
+  public void insertedDateTest() {
+    // TODO: test insertedDate
+  }
+
+  /**
+   * Test the property 'content'
+   */
+  @Test
+  public void contentTest() {
+    // TODO: test content
+  }
+
+  /**
+   * Test the property 'userId'
+   */
+  @Test
+  public void userIdTest() {
+    // TODO: test userId
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
 }

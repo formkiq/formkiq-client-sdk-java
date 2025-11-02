@@ -21,31 +21,15 @@
 package com.formkiq.client.invoker;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class Pair {
-  private String name = "";
-  private String value = "";
+  private final String name;
+  private final String value;
 
   public Pair(String name, String value) {
-    setName(name);
-    setValue(value);
-  }
-
-  private void setName(String name) {
-    if (!isValidString(name)) {
-      return;
-    }
-
-    this.name = name;
-  }
-
-  private void setValue(String value) {
-    if (!isValidString(value)) {
-      return;
-    }
-
-    this.value = value;
+    this.name = isValidString(name) ? name : "";
+    this.value = isValidString(value) ? value : "";
   }
 
   public String getName() {
@@ -56,11 +40,7 @@ public class Pair {
     return this.value;
   }
 
-  private boolean isValidString(String arg) {
-    if (arg == null) {
-      return false;
-    }
-
-    return true;
+  private static boolean isValidString(String arg) {
+    return arg != null;
   }
 }

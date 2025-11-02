@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.LocaleResourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * ResourceItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class ResourceItem {
   public static final String SERIALIZED_NAME_ITEM_TYPE = "itemType";
   @SerializedName(SERIALIZED_NAME_ITEM_TYPE)
@@ -310,7 +312,7 @@ public class ResourceItem {
     if (jsonElement == null) {
       if (!ResourceItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                            // is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in ResourceItem is not found in the empty JSON string",
             ResourceItem.openapiRequiredFields.toString()));
       }
@@ -320,7 +322,7 @@ public class ResourceItem {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!ResourceItem.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `ResourceItem` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -332,37 +334,37 @@ public class ResourceItem {
     }
     if ((jsonObj.get("localizedValue") != null && !jsonObj.get("localizedValue").isJsonNull())
         && !jsonObj.get("localizedValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `localizedValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("localizedValue").toString()));
     }
     if ((jsonObj.get("interfaceKey") != null && !jsonObj.get("interfaceKey").isJsonNull())
         && !jsonObj.get("interfaceKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `interfaceKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("interfaceKey").toString()));
     }
     if ((jsonObj.get("itemKey") != null && !jsonObj.get("itemKey").isJsonNull())
         && !jsonObj.get("itemKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `itemKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("itemKey").toString()));
     }
     if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
         && !jsonObj.get("attributeKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("attributeKey").toString()));
     }
     if ((jsonObj.get("allowedValue") != null && !jsonObj.get("allowedValue").isJsonNull())
         && !jsonObj.get("allowedValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `allowedValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("allowedValue").toString()));
     }
     if ((jsonObj.get("classificationId") != null && !jsonObj.get("classificationId").isJsonNull())
         && !jsonObj.get("classificationId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `classificationId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("classificationId").toString()));
     }

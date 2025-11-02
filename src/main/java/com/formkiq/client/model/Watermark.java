@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.WatermarkPosition;
 import com.formkiq.client.model.WatermarkScale;
 import com.google.gson.TypeAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,9 +61,14 @@ import com.formkiq.client.invoker.JSON;
  * Watermark
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class Watermark {
+  public static final String SERIALIZED_NAME_FONT_SIZE = "fontSize";
+  @SerializedName(SERIALIZED_NAME_FONT_SIZE)
+  @javax.annotation.Nullable
+  private BigDecimal fontSize;
+
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
   @javax.annotation.Nullable
@@ -88,6 +95,26 @@ public class Watermark {
   private WatermarkPosition position;
 
   public Watermark() {}
+
+  public Watermark fontSize(@javax.annotation.Nullable BigDecimal fontSize) {
+    this.fontSize = fontSize;
+    return this;
+  }
+
+  /**
+   * Watermark Font Size
+   * 
+   * @return fontSize
+   */
+  @javax.annotation.Nullable
+  public BigDecimal getFontSize() {
+    return fontSize;
+  }
+
+  public void setFontSize(@javax.annotation.Nullable BigDecimal fontSize) {
+    this.fontSize = fontSize;
+  }
+
 
   public Watermark text(@javax.annotation.Nullable String text) {
     this.text = text;
@@ -199,7 +226,8 @@ public class Watermark {
       return false;
     }
     Watermark watermark = (Watermark) o;
-    return Objects.equals(this.text, watermark.text)
+    return Objects.equals(this.fontSize, watermark.fontSize)
+        && Objects.equals(this.text, watermark.text)
         && Objects.equals(this.rotation, watermark.rotation)
         && Objects.equals(this.imageDocumentId, watermark.imageDocumentId)
         && Objects.equals(this.scale, watermark.scale)
@@ -208,13 +236,14 @@ public class Watermark {
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, rotation, imageDocumentId, scale, position);
+    return Objects.hash(fontSize, text, rotation, imageDocumentId, scale, position);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Watermark {\n");
+    sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    rotation: ").append(toIndentedString(rotation)).append("\n");
     sb.append("    imageDocumentId: ").append(toIndentedString(imageDocumentId)).append("\n");
@@ -241,7 +270,7 @@ public class Watermark {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(
-        Arrays.asList("text", "rotation", "imageDocumentId", "scale", "position"));
+        Arrays.asList("fontSize", "text", "rotation", "imageDocumentId", "scale", "position"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -257,7 +286,7 @@ public class Watermark {
     if (jsonElement == null) {
       if (!Watermark.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                         // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in Watermark is not found in the empty JSON string",
             Watermark.openapiRequiredFields.toString()));
       }
@@ -267,7 +296,7 @@ public class Watermark {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!Watermark.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `Watermark` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -275,13 +304,13 @@ public class Watermark {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("text") != null && !jsonObj.get("text").isJsonNull())
         && !jsonObj.get("text").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `text` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("text").toString()));
     }
     if ((jsonObj.get("imageDocumentId") != null && !jsonObj.get("imageDocumentId").isJsonNull())
         && !jsonObj.get("imageDocumentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `imageDocumentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("imageDocumentId").toString()));
     }

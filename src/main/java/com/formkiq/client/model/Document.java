@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.DocumentMetadata;
 import com.google.gson.TypeAdapter;
@@ -53,6 +54,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Document
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class Document {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -621,7 +623,7 @@ public class Document {
     if (jsonElement == null) {
       if (!Document.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                        // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in Document is not found in the empty JSON string",
             Document.openapiRequiredFields.toString()));
       }
@@ -631,7 +633,7 @@ public class Document {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!Document.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `Document` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -639,49 +641,49 @@ public class Document {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
         && !jsonObj.get("siteId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("siteId").toString()));
     }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
     if ((jsonObj.get("width") != null && !jsonObj.get("width").isJsonNull())
         && !jsonObj.get("width").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `width` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("width").toString()));
     }
     if ((jsonObj.get("height") != null && !jsonObj.get("height").isJsonNull())
         && !jsonObj.get("height").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `height` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("height").toString()));
     }
     if ((jsonObj.get("deepLinkPath") != null && !jsonObj.get("deepLinkPath").isJsonNull())
         && !jsonObj.get("deepLinkPath").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
     if ((jsonObj.get("lastModifiedDate") != null && !jsonObj.get("lastModifiedDate").isJsonNull())
         && !jsonObj.get("lastModifiedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("lastModifiedDate").toString()));
     }
     if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
         && !jsonObj.get("checksum").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `checksum` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("checksum").toString()));
     }
@@ -691,44 +693,44 @@ public class Document {
     }
     if ((jsonObj.get("documentId") != null && !jsonObj.get("documentId").isJsonNull())
         && !jsonObj.get("documentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("contentType").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }
     if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull())
         && !jsonObj.get("version").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `version` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("version").toString()));
     }
     if ((jsonObj.get("versionKey") != null && !jsonObj.get("versionKey").isJsonNull())
         && !jsonObj.get("versionKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `versionKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("versionKey").toString()));
     }
     if ((jsonObj.get("s3version") != null && !jsonObj.get("s3version").isJsonNull())
         && !jsonObj.get("s3version").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `s3version` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("s3version").toString()));
     }
     if ((jsonObj.get("belongsToDocumentId") != null
         && !jsonObj.get("belongsToDocumentId").isJsonNull())
         && !jsonObj.get("belongsToDocumentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `belongsToDocumentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("belongsToDocumentId").toString()));
     }
@@ -737,7 +739,7 @@ public class Document {
       if (jsonArraymetadata != null) {
         // ensure the json data is an array
         if (!jsonObj.get("metadata").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `metadata` to be an array in the JSON string but got `%s`",
               jsonObj.get("metadata").toString()));
         }

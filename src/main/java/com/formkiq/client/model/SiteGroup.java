@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.SiteGroupPermissions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * SiteGroup
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class SiteGroup {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
@@ -156,7 +158,7 @@ public class SiteGroup {
     if (jsonElement == null) {
       if (!SiteGroup.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                         // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in SiteGroup is not found in the empty JSON string",
             SiteGroup.openapiRequiredFields.toString()));
       }
@@ -166,7 +168,7 @@ public class SiteGroup {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!SiteGroup.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `SiteGroup` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -175,7 +177,7 @@ public class SiteGroup {
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()
         && !jsonObj.get("permissions").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `permissions` to be an array in the JSON string but got `%s`",
           jsonObj.get("permissions").toString()));
     }

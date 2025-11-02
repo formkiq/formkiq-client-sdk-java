@@ -39,7 +39,6 @@ import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.AddLocaleRequest;
 import com.formkiq.client.model.AddLocaleResourceItemRequest;
 import com.formkiq.client.model.AddLocaleResourceItemResponse;
-import com.formkiq.client.model.AddOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
@@ -50,6 +49,7 @@ import com.formkiq.client.model.GetLocaleResourceItemResponse;
 import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetLocalesResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
+import com.formkiq.client.model.GetOpenSearchIndiceResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
@@ -60,6 +60,7 @@ import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
+import com.formkiq.client.model.SetOpenSearchIndiceRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.UpdateConfigurationRequest;
@@ -719,7 +720,6 @@ public class SystemManagementApi {
    * Build call for addOpenSearchRestoreSnapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -743,7 +743,6 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call addOpenSearchRestoreSnapshotCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
@@ -762,13 +761,9 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath =
-        "/sites/{siteId}/opensearch/snapshot/{repositoryName}/{snapshotName}/restore"
-            .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-            .replace("{" + "repositoryName" + "}",
-                localVarApiClient.escapeString(repositoryName.toString()))
-            .replace("{" + "snapshotName" + "}",
-                localVarApiClient.escapeString(snapshotName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots/{snapshotName}/restore"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "snapshotName" + "}", localVarApiClient.escapeString(snapshotName.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -797,19 +792,12 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addOpenSearchRestoreSnapshotValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling addOpenSearchRestoreSnapshot(Async)");
-    }
-
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling addOpenSearchRestoreSnapshot(Async)");
     }
 
     // verify the required parameter 'snapshotName' is set
@@ -818,7 +806,7 @@ public class SystemManagementApi {
           "Missing the required parameter 'snapshotName' when calling addOpenSearchRestoreSnapshot(Async)");
     }
 
-    return addOpenSearchRestoreSnapshotCall(siteId, repositoryName, snapshotName, _callback);
+    return addOpenSearchRestoreSnapshotCall(siteId, snapshotName, _callback);
 
   }
 
@@ -826,7 +814,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Restore Snapshot Add an OpenSearch Restore Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -850,10 +837,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public AddResponse addOpenSearchRestoreSnapshot(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName) throws ApiException {
     ApiResponse<AddResponse> localVarResp =
-        addOpenSearchRestoreSnapshotWithHttpInfo(siteId, repositoryName, snapshotName);
+        addOpenSearchRestoreSnapshotWithHttpInfo(siteId, snapshotName);
     return localVarResp.getData();
   }
 
@@ -861,7 +847,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Restore Snapshot Add an OpenSearch Restore Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -885,10 +870,10 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<AddResponse> addOpenSearchRestoreSnapshotWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName) throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        addOpenSearchRestoreSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, null);
+        addOpenSearchRestoreSnapshotValidateBeforeCall(siteId, snapshotName, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -897,7 +882,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Restore Snapshot (asynchronously) Add an OpenSearch Restore Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -921,12 +905,11 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call addOpenSearchRestoreSnapshotAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback<AddResponse> _callback)
       throws ApiException {
 
-    okhttp3.Call localVarCall = addOpenSearchRestoreSnapshotValidateBeforeCall(siteId,
-        repositoryName, snapshotName, _callback);
+    okhttp3.Call localVarCall =
+        addOpenSearchRestoreSnapshotValidateBeforeCall(siteId, snapshotName, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -936,7 +919,6 @@ public class SystemManagementApi {
    * Build call for addOpenSearchSnapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -960,7 +942,6 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call addOpenSearchSnapshotCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
@@ -979,13 +960,9 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath =
-        "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName}"
-            .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-            .replace("{" + "repositoryName" + "}",
-                localVarApiClient.escapeString(repositoryName.toString()))
-            .replace("{" + "snapshotName" + "}",
-                localVarApiClient.escapeString(snapshotName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots/{snapshotName}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "snapshotName" + "}", localVarApiClient.escapeString(snapshotName.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1014,19 +991,12 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addOpenSearchSnapshotValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling addOpenSearchSnapshot(Async)");
-    }
-
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling addOpenSearchSnapshot(Async)");
     }
 
     // verify the required parameter 'snapshotName' is set
@@ -1035,7 +1005,7 @@ public class SystemManagementApi {
           "Missing the required parameter 'snapshotName' when calling addOpenSearchSnapshot(Async)");
     }
 
-    return addOpenSearchSnapshotCall(siteId, repositoryName, snapshotName, _callback);
+    return addOpenSearchSnapshotCall(siteId, snapshotName, _callback);
 
   }
 
@@ -1043,7 +1013,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Snapshot Add an OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1067,10 +1036,8 @@ public class SystemManagementApi {
    *                        </table>
    */
   public AddResponse addOpenSearchSnapshot(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName) throws ApiException {
-    ApiResponse<AddResponse> localVarResp =
-        addOpenSearchSnapshotWithHttpInfo(siteId, repositoryName, snapshotName);
+    ApiResponse<AddResponse> localVarResp = addOpenSearchSnapshotWithHttpInfo(siteId, snapshotName);
     return localVarResp.getData();
   }
 
@@ -1078,7 +1045,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Snapshot Add an OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1102,10 +1068,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<AddResponse> addOpenSearchSnapshotWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName) throws ApiException {
-    okhttp3.Call localVarCall =
-        addOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, null);
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
+    okhttp3.Call localVarCall = addOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1114,7 +1079,6 @@ public class SystemManagementApi {
    * Add an OpenSearch Snapshot (asynchronously) Add an OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -1138,214 +1102,12 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call addOpenSearchSnapshotAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback<AddResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
-        addOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, _callback);
+        addOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
-    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-    return localVarCall;
-  }
-
-  /**
-   * Build call for addOpenSearchSnapshotRepository
-   * 
-   * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
-   * @param _callback Callback for upload/download progress
-   * @return Call to execute
-   * @throws ApiException If fail to serialize the request body object
-   * @http.response.details
-   *                        <table border="1">
-   *                        <caption>Response Details</caption>
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call addOpenSearchSnapshotRepositoryCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName, final ApiCallback _callback)
-      throws ApiException {
-    String basePath = null;
-    // Operation Servers
-    String[] localBasePaths = new String[] {};
-
-    // Determine Base Path to Use
-    if (localCustomBaseUrl != null) {
-      basePath = localCustomBaseUrl;
-    } else if (localBasePaths.length > 0) {
-      basePath = localBasePaths[localHostIndex];
-    } else {
-      basePath = null;
-    }
-
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}"
-        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-        .replace("{" + "repositoryName" + "}",
-            localVarApiClient.escapeString(repositoryName.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {"application/json"};
-    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) {
-      localVarHeaderParams.put("Accept", localVarAccept);
-    }
-
-    final String[] localVarContentTypes = {};
-    final String localVarContentType =
-        localVarApiClient.selectHeaderContentType(localVarContentTypes);
-    if (localVarContentType != null) {
-      localVarHeaderParams.put("Content-Type", localVarContentType);
-    }
-
-    String[] localVarAuthNames = new String[] {"AWS4Auth"};
-    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
-        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
-        localVarFormParams, localVarAuthNames, _callback);
-  }
-
-  @SuppressWarnings("rawtypes")
-  private okhttp3.Call addOpenSearchSnapshotRepositoryValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'siteId' is set
-    if (siteId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'siteId' when calling addOpenSearchSnapshotRepository(Async)");
-    }
-
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling addOpenSearchSnapshotRepository(Async)");
-    }
-
-    return addOpenSearchSnapshotRepositoryCall(siteId, repositoryName, _callback);
-
-  }
-
-  /**
-   * Add OpenSearch Snapshot Repository Add an OpenSearch Snapshot Repository
-   * 
-   * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
-   * @return AddOpenSearchSnapshotRepositoryResponse
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table border="1">
-   *                        <caption>Response Details</caption>
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public AddOpenSearchSnapshotRepositoryResponse addOpenSearchSnapshotRepository(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
-    ApiResponse<AddOpenSearchSnapshotRepositoryResponse> localVarResp =
-        addOpenSearchSnapshotRepositoryWithHttpInfo(siteId, repositoryName);
-    return localVarResp.getData();
-  }
-
-  /**
-   * Add OpenSearch Snapshot Repository Add an OpenSearch Snapshot Repository
-   * 
-   * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
-   * @return ApiResponse&lt;AddOpenSearchSnapshotRepositoryResponse&gt;
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-   *         response body
-   * @http.response.details
-   *                        <table border="1">
-   *                        <caption>Response Details</caption>
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public ApiResponse<AddOpenSearchSnapshotRepositoryResponse> addOpenSearchSnapshotRepositoryWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        addOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, null);
-    Type localVarReturnType = new TypeToken<AddOpenSearchSnapshotRepositoryResponse>() {}.getType();
-    return localVarApiClient.execute(localVarCall, localVarReturnType);
-  }
-
-  /**
-   * Add OpenSearch Snapshot Repository (asynchronously) Add an OpenSearch Snapshot Repository
-   * 
-   * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
-   * @param _callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   * @http.response.details
-   *                        <table border="1">
-   *                        <caption>Response Details</caption>
-   *                        <tr>
-   *                        <td>Status Code</td>
-   *                        <td>Description</td>
-   *                        <td>Response Headers</td>
-   *                        </tr>
-   *                        <tr>
-   *                        <td>200</td>
-   *                        <td>200 OK</td>
-   *                        <td>* Access-Control-Allow-Origin - <br>
-   *                        * Access-Control-Allow-Methods - <br>
-   *                        * Access-Control-Allow-Headers - <br>
-   *                        </td>
-   *                        </tr>
-   *                        </table>
-   */
-  public okhttp3.Call addOpenSearchSnapshotRepositoryAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback<AddOpenSearchSnapshotRepositoryResponse> _callback) throws ApiException {
-
-    okhttp3.Call localVarCall =
-        addOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, _callback);
-    Type localVarReturnType = new TypeToken<AddOpenSearchSnapshotRepositoryResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -2332,10 +2094,390 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for deleteOpenSearchIndexByName
+   * 
+   * @param indexName IndexName to path (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpenSearchIndexByNameCall(@javax.annotation.Nonnull String indexName,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/global/opensearch/indices/{indexName}"
+        .replace("{" + "indexName" + "}", localVarApiClient.escapeString(indexName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteOpenSearchIndexByNameValidateBeforeCall(
+      @javax.annotation.Nonnull String indexName, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'indexName' is set
+    if (indexName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'indexName' when calling deleteOpenSearchIndexByName(Async)");
+    }
+
+    return deleteOpenSearchIndexByNameCall(indexName, _callback);
+
+  }
+
+  /**
+   * Deletes OpenSearch index by name Deletes the OpenSearch index by name
+   * 
+   * @param indexName IndexName to path (required)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deleteOpenSearchIndexByName(@javax.annotation.Nonnull String indexName)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteOpenSearchIndexByNameWithHttpInfo(indexName);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Deletes OpenSearch index by name Deletes the OpenSearch index by name
+   * 
+   * @param indexName IndexName to path (required)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deleteOpenSearchIndexByNameWithHttpInfo(
+      @javax.annotation.Nonnull String indexName) throws ApiException {
+    okhttp3.Call localVarCall = deleteOpenSearchIndexByNameValidateBeforeCall(indexName, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Deletes OpenSearch index by name (asynchronously) Deletes the OpenSearch index by name
+   * 
+   * @param indexName IndexName to path (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpenSearchIndexByNameAsync(@javax.annotation.Nonnull String indexName,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = deleteOpenSearchIndexByNameValidateBeforeCall(indexName, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for deleteOpenSearchRestoreSnapshot
+   * 
+   * @param siteId Site Identifier (required)
+   * @param snapshotName Snapshot Name (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpenSearchRestoreSnapshotCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots/{snapshotName}/restore"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "snapshotName" + "}", localVarApiClient.escapeString(snapshotName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call deleteOpenSearchRestoreSnapshotValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling deleteOpenSearchRestoreSnapshot(Async)");
+    }
+
+    // verify the required parameter 'snapshotName' is set
+    if (snapshotName == null) {
+      throw new ApiException(
+          "Missing the required parameter 'snapshotName' when calling deleteOpenSearchRestoreSnapshot(Async)");
+    }
+
+    return deleteOpenSearchRestoreSnapshotCall(siteId, snapshotName, _callback);
+
+  }
+
+  /**
+   * Deletes site(s) OpenSearch Restore Snapshot Deletes the OpenSearch Restore Snapshot
+   * 
+   * @param siteId Site Identifier (required)
+   * @param snapshotName Snapshot Name (required)
+   * @return DeleteResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public DeleteResponse deleteOpenSearchRestoreSnapshot(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String snapshotName) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteOpenSearchRestoreSnapshotWithHttpInfo(siteId, snapshotName);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Deletes site(s) OpenSearch Restore Snapshot Deletes the OpenSearch Restore Snapshot
+   * 
+   * @param siteId Site Identifier (required)
+   * @param snapshotName Snapshot Name (required)
+   * @return ApiResponse&lt;DeleteResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<DeleteResponse> deleteOpenSearchRestoreSnapshotWithHttpInfo(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteOpenSearchRestoreSnapshotValidateBeforeCall(siteId, snapshotName, null);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Deletes site(s) OpenSearch Restore Snapshot (asynchronously) Deletes the OpenSearch Restore
+   * Snapshot
+   * 
+   * @param siteId Site Identifier (required)
+   * @param snapshotName Snapshot Name (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call deleteOpenSearchRestoreSnapshotAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String snapshotName, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        deleteOpenSearchRestoreSnapshotValidateBeforeCall(siteId, snapshotName, _callback);
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for deleteOpenSearchSnapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -2359,7 +2501,6 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call deleteOpenSearchSnapshotCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
@@ -2378,13 +2519,9 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath =
-        "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName}"
-            .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-            .replace("{" + "repositoryName" + "}",
-                localVarApiClient.escapeString(repositoryName.toString()))
-            .replace("{" + "snapshotName" + "}",
-                localVarApiClient.escapeString(snapshotName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots/{snapshotName}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "snapshotName" + "}", localVarApiClient.escapeString(snapshotName.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2413,19 +2550,12 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteOpenSearchSnapshotValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling deleteOpenSearchSnapshot(Async)");
-    }
-
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling deleteOpenSearchSnapshot(Async)");
     }
 
     // verify the required parameter 'snapshotName' is set
@@ -2434,7 +2564,7 @@ public class SystemManagementApi {
           "Missing the required parameter 'snapshotName' when calling deleteOpenSearchSnapshot(Async)");
     }
 
-    return deleteOpenSearchSnapshotCall(siteId, repositoryName, snapshotName, _callback);
+    return deleteOpenSearchSnapshotCall(siteId, snapshotName, _callback);
 
   }
 
@@ -2442,7 +2572,6 @@ public class SystemManagementApi {
    * Deletes site(s) OpenSearch Snapshot Deletes the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2466,10 +2595,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public DeleteResponse deleteOpenSearchSnapshot(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteOpenSearchSnapshotWithHttpInfo(siteId, repositoryName, snapshotName);
+        deleteOpenSearchSnapshotWithHttpInfo(siteId, snapshotName);
     return localVarResp.getData();
   }
 
@@ -2477,7 +2605,6 @@ public class SystemManagementApi {
    * Deletes site(s) OpenSearch Snapshot Deletes the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2501,10 +2628,10 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<DeleteResponse> deleteOpenSearchSnapshotWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName) throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        deleteOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, null);
+        deleteOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2513,7 +2640,6 @@ public class SystemManagementApi {
    * Deletes site(s) OpenSearch Snapshot (asynchronously) Deletes the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -2537,12 +2663,11 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call deleteOpenSearchSnapshotAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback<DeleteResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
-        deleteOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, _callback);
+        deleteOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -2552,7 +2677,6 @@ public class SystemManagementApi {
    * Build call for deleteOpenSearchSnapshotRepository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -2575,8 +2699,7 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call deleteOpenSearchSnapshotRepositoryCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2593,10 +2716,8 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}"
-        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-        .replace("{" + "repositoryName" + "}",
-            localVarApiClient.escapeString(repositoryName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepository"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2625,21 +2746,14 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteOpenSearchSnapshotRepositoryValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling deleteOpenSearchSnapshotRepository(Async)");
     }
 
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling deleteOpenSearchSnapshotRepository(Async)");
-    }
-
-    return deleteOpenSearchSnapshotRepositoryCall(siteId, repositoryName, _callback);
+    return deleteOpenSearchSnapshotRepositoryCall(siteId, _callback);
 
   }
 
@@ -2647,7 +2761,6 @@ public class SystemManagementApi {
    * Deletes site(s) OpenSearch Snapshot Repository Deletes the OpenSearch Snapshot Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2669,10 +2782,10 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteResponse deleteOpenSearchSnapshotRepository(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName) throws ApiException {
+  public DeleteResponse deleteOpenSearchSnapshotRepository(@javax.annotation.Nonnull String siteId)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteOpenSearchSnapshotRepositoryWithHttpInfo(siteId, repositoryName);
+        deleteOpenSearchSnapshotRepositoryWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -2680,7 +2793,6 @@ public class SystemManagementApi {
    * Deletes site(s) OpenSearch Snapshot Repository Deletes the OpenSearch Snapshot Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2703,10 +2815,8 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<DeleteResponse> deleteOpenSearchSnapshotRepositoryWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        deleteOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, null);
+      @javax.annotation.Nonnull String siteId) throws ApiException {
+    okhttp3.Call localVarCall = deleteOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2716,7 +2826,6 @@ public class SystemManagementApi {
    * Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2739,11 +2848,11 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call deleteOpenSearchSnapshotRepositoryAsync(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nonnull String siteId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        deleteOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, _callback);
+        deleteOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -2939,6 +3048,174 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = deleteSiteGroupValidateBeforeCall(siteId, groupName, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getAllOpenSearchIndices
+   * 
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getAllOpenSearchIndicesCall(final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/global/opensearch/indices";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getAllOpenSearchIndicesValidateBeforeCall(final ApiCallback _callback)
+      throws ApiException {
+    return getAllOpenSearchIndicesCall(_callback);
+
+  }
+
+  /**
+   * Get all OpenSearch indices Returns all OpenSearch indices
+   * 
+   * @return GetOpenSearchIndiceResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetOpenSearchIndiceResponse getAllOpenSearchIndices() throws ApiException {
+    ApiResponse<GetOpenSearchIndiceResponse> localVarResp = getAllOpenSearchIndicesWithHttpInfo();
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get all OpenSearch indices Returns all OpenSearch indices
+   * 
+   * @return ApiResponse&lt;GetOpenSearchIndiceResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetOpenSearchIndiceResponse> getAllOpenSearchIndicesWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getAllOpenSearchIndicesValidateBeforeCall(null);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndiceResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get all OpenSearch indices (asynchronously) Returns all OpenSearch indices
+   * 
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getAllOpenSearchIndicesAsync(
+      final ApiCallback<GetOpenSearchIndiceResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getAllOpenSearchIndicesValidateBeforeCall(_callback);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndiceResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -4044,7 +4321,8 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings
+   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings (Deprecated use
+   * /sites/{siteId}/opensearch/indices)
    * 
    * @param siteId Site Identifier (required)
    * @return GetOpenSearchIndexResponse
@@ -4075,7 +4353,8 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings
+   * Get site(s) OpenSearch index settings Returns the OpenSearch index settings (Deprecated use
+   * /sites/{siteId}/opensearch/indices)
    * 
    * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetOpenSearchIndexResponse&gt;
@@ -4108,6 +4387,7 @@ public class SystemManagementApi {
 
   /**
    * Get site(s) OpenSearch index settings (asynchronously) Returns the OpenSearch index settings
+   * (Deprecated use /sites/{siteId}/opensearch/indices)
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -4141,10 +4421,191 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for getOpenSearchIndices
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpenSearchIndicesCall(@javax.annotation.Nonnull String siteId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/indices".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getOpenSearchIndicesValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getOpenSearchIndices(Async)");
+    }
+
+    return getOpenSearchIndicesCall(siteId, _callback);
+
+  }
+
+  /**
+   * Get site(s) OpenSearch indices Returns the OpenSearch indices
+   * 
+   * @param siteId Site Identifier (required)
+   * @return GetOpenSearchIndiceResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetOpenSearchIndiceResponse getOpenSearchIndices(@javax.annotation.Nonnull String siteId)
+      throws ApiException {
+    ApiResponse<GetOpenSearchIndiceResponse> localVarResp =
+        getOpenSearchIndicesWithHttpInfo(siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get site(s) OpenSearch indices Returns the OpenSearch indices
+   * 
+   * @param siteId Site Identifier (required)
+   * @return ApiResponse&lt;GetOpenSearchIndiceResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetOpenSearchIndiceResponse> getOpenSearchIndicesWithHttpInfo(
+      @javax.annotation.Nonnull String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getOpenSearchIndicesValidateBeforeCall(siteId, null);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndiceResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get site(s) OpenSearch indices (asynchronously) Returns the OpenSearch indices
+   * 
+   * @param siteId Site Identifier (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getOpenSearchIndicesAsync(@javax.annotation.Nonnull String siteId,
+      final ApiCallback<GetOpenSearchIndiceResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getOpenSearchIndicesValidateBeforeCall(siteId, _callback);
+    Type localVarReturnType = new TypeToken<GetOpenSearchIndiceResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getOpenSearchSnapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -4168,7 +4629,6 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
@@ -4187,13 +4647,9 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath =
-        "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName}"
-            .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-            .replace("{" + "repositoryName" + "}",
-                localVarApiClient.escapeString(repositoryName.toString()))
-            .replace("{" + "snapshotName" + "}",
-                localVarApiClient.escapeString(snapshotName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots/{snapshotName}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "snapshotName" + "}", localVarApiClient.escapeString(snapshotName.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4222,19 +4678,12 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getOpenSearchSnapshotValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName, final ApiCallback _callback)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling getOpenSearchSnapshot(Async)");
-    }
-
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling getOpenSearchSnapshot(Async)");
     }
 
     // verify the required parameter 'snapshotName' is set
@@ -4243,7 +4692,7 @@ public class SystemManagementApi {
           "Missing the required parameter 'snapshotName' when calling getOpenSearchSnapshot(Async)");
     }
 
-    return getOpenSearchSnapshotCall(siteId, repositoryName, snapshotName, _callback);
+    return getOpenSearchSnapshotCall(siteId, snapshotName, _callback);
 
   }
 
@@ -4251,7 +4700,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot Returns the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return GetOpenSearchSnapshotResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4275,10 +4723,10 @@ public class SystemManagementApi {
    *                        </table>
    */
   public GetOpenSearchSnapshotResponse getOpenSearchSnapshot(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName) throws ApiException {
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
     ApiResponse<GetOpenSearchSnapshotResponse> localVarResp =
-        getOpenSearchSnapshotWithHttpInfo(siteId, repositoryName, snapshotName);
+        getOpenSearchSnapshotWithHttpInfo(siteId, snapshotName);
     return localVarResp.getData();
   }
 
@@ -4286,7 +4734,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot Returns the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4310,10 +4757,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<GetOpenSearchSnapshotResponse> getOpenSearchSnapshotWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      @javax.annotation.Nonnull String snapshotName) throws ApiException {
-    okhttp3.Call localVarCall =
-        getOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, null);
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String snapshotName)
+      throws ApiException {
+    okhttp3.Call localVarCall = getOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, null);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4322,7 +4768,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot (asynchronously) Returns the OpenSearch Snapshot
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param snapshotName Snapshot Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -4346,12 +4791,11 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       @javax.annotation.Nonnull String snapshotName,
       final ApiCallback<GetOpenSearchSnapshotResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        getOpenSearchSnapshotValidateBeforeCall(siteId, repositoryName, snapshotName, _callback);
+        getOpenSearchSnapshotValidateBeforeCall(siteId, snapshotName, _callback);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -4360,7 +4804,6 @@ public class SystemManagementApi {
   /**
    * Build call for getOpenSearchSnapshotRepositories
    * 
-   * @param siteId Site Identifier (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -4382,8 +4825,8 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public okhttp3.Call getOpenSearchSnapshotRepositoriesCall(@javax.annotation.Nonnull String siteId,
-      final ApiCallback _callback) throws ApiException {
+  public okhttp3.Call getOpenSearchSnapshotRepositoriesCall(final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4400,8 +4843,7 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepositories"
-        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
+    String localVarPath = "/sites/global/opensearch/snapshotRepositories";
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4430,21 +4872,14 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getOpenSearchSnapshotRepositoriesValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
-    // verify the required parameter 'siteId' is set
-    if (siteId == null) {
-      throw new ApiException(
-          "Missing the required parameter 'siteId' when calling getOpenSearchSnapshotRepositories(Async)");
-    }
-
-    return getOpenSearchSnapshotRepositoriesCall(siteId, _callback);
+      final ApiCallback _callback) throws ApiException {
+    return getOpenSearchSnapshotRepositoriesCall(_callback);
 
   }
 
   /**
    * Get site(s) OpenSearch snapshot repositories Returns the OpenSearch Snapshot Repositories
    * 
-   * @param siteId Site Identifier (required)
    * @return GetOpenSearchSnapshotRepositoryResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4466,17 +4901,16 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepositories(
-      @javax.annotation.Nonnull String siteId) throws ApiException {
+  public GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepositories()
+      throws ApiException {
     ApiResponse<GetOpenSearchSnapshotRepositoryResponse> localVarResp =
-        getOpenSearchSnapshotRepositoriesWithHttpInfo(siteId);
+        getOpenSearchSnapshotRepositoriesWithHttpInfo();
     return localVarResp.getData();
   }
 
   /**
    * Get site(s) OpenSearch snapshot repositories Returns the OpenSearch Snapshot Repositories
    * 
-   * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotRepositoryResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4498,9 +4932,9 @@ public class SystemManagementApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<GetOpenSearchSnapshotRepositoryResponse> getOpenSearchSnapshotRepositoriesWithHttpInfo(
-      @javax.annotation.Nonnull String siteId) throws ApiException {
-    okhttp3.Call localVarCall = getOpenSearchSnapshotRepositoriesValidateBeforeCall(siteId, null);
+  public ApiResponse<GetOpenSearchSnapshotRepositoryResponse> getOpenSearchSnapshotRepositoriesWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getOpenSearchSnapshotRepositoriesValidateBeforeCall(null);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotRepositoryResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4509,7 +4943,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot repositories (asynchronously) Returns the OpenSearch Snapshot
    * Repositories
    * 
-   * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4532,11 +4965,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotRepositoriesAsync(
-      @javax.annotation.Nonnull String siteId,
       final ApiCallback<GetOpenSearchSnapshotRepositoryResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getOpenSearchSnapshotRepositoriesValidateBeforeCall(siteId, _callback);
+    okhttp3.Call localVarCall = getOpenSearchSnapshotRepositoriesValidateBeforeCall(_callback);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotRepositoryResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -4546,7 +4977,6 @@ public class SystemManagementApi {
    * Build call for getOpenSearchSnapshotRepository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -4569,8 +4999,7 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotRepositoryCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName, final ApiCallback _callback)
-      throws ApiException {
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4587,10 +5016,8 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}"
-        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-        .replace("{" + "repositoryName" + "}",
-            localVarApiClient.escapeString(repositoryName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshotRepository"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4619,21 +5046,14 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getOpenSearchSnapshotRepositoryValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling getOpenSearchSnapshotRepository(Async)");
     }
 
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling getOpenSearchSnapshotRepository(Async)");
-    }
-
-    return getOpenSearchSnapshotRepositoryCall(siteId, repositoryName, _callback);
+    return getOpenSearchSnapshotRepositoryCall(siteId, _callback);
 
   }
 
@@ -4641,7 +5061,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot repository Returns the OpenSearch Snapshot Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return GetOpenSearchSnapshotRepositoryResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4664,10 +5083,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepository(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     ApiResponse<GetOpenSearchSnapshotRepositoryResponse> localVarResp =
-        getOpenSearchSnapshotRepositoryWithHttpInfo(siteId, repositoryName);
+        getOpenSearchSnapshotRepositoryWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -4675,7 +5093,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshot repository Returns the OpenSearch Snapshot Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotRepositoryResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4698,10 +5115,8 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<GetOpenSearchSnapshotRepositoryResponse> getOpenSearchSnapshotRepositoryWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        getOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, null);
+      @javax.annotation.Nonnull String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotRepositoryResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4711,7 +5126,6 @@ public class SystemManagementApi {
    * Repository
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4734,11 +5148,10 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotRepositoryAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       final ApiCallback<GetOpenSearchSnapshotRepositoryResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        getOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, repositoryName, _callback);
+        getOpenSearchSnapshotRepositoryValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotRepositoryResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -4748,7 +5161,6 @@ public class SystemManagementApi {
    * Build call for getOpenSearchSnapshots
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -4771,8 +5183,7 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotsCall(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName, final ApiCallback _callback)
-      throws ApiException {
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4789,11 +5200,8 @@ public class SystemManagementApi {
     Object localVarPostBody = null;
 
     // create path and map variables
-    String localVarPath =
-        "/sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots"
-            .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()))
-            .replace("{" + "repositoryName" + "}",
-                localVarApiClient.escapeString(repositoryName.toString()));
+    String localVarPath = "/sites/{siteId}/opensearch/snapshots".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4822,21 +5230,14 @@ public class SystemManagementApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getOpenSearchSnapshotsValidateBeforeCall(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nonnull String siteId, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'siteId' is set
     if (siteId == null) {
       throw new ApiException(
           "Missing the required parameter 'siteId' when calling getOpenSearchSnapshots(Async)");
     }
 
-    // verify the required parameter 'repositoryName' is set
-    if (repositoryName == null) {
-      throw new ApiException(
-          "Missing the required parameter 'repositoryName' when calling getOpenSearchSnapshots(Async)");
-    }
-
-    return getOpenSearchSnapshotsCall(siteId, repositoryName, _callback);
+    return getOpenSearchSnapshotsCall(siteId, _callback);
 
   }
 
@@ -4844,7 +5245,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshots Returns the OpenSearch Snapshots
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return GetOpenSearchSnapshotResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4867,10 +5267,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public GetOpenSearchSnapshotResponse getOpenSearchSnapshots(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
+      @javax.annotation.Nonnull String siteId) throws ApiException {
     ApiResponse<GetOpenSearchSnapshotResponse> localVarResp =
-        getOpenSearchSnapshotsWithHttpInfo(siteId, repositoryName);
+        getOpenSearchSnapshotsWithHttpInfo(siteId);
     return localVarResp.getData();
   }
 
@@ -4878,7 +5277,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshots Returns the OpenSearch Snapshots
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4901,10 +5299,8 @@ public class SystemManagementApi {
    *                        </table>
    */
   public ApiResponse<GetOpenSearchSnapshotResponse> getOpenSearchSnapshotsWithHttpInfo(
-      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String repositoryName)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        getOpenSearchSnapshotsValidateBeforeCall(siteId, repositoryName, null);
+      @javax.annotation.Nonnull String siteId) throws ApiException {
+    okhttp3.Call localVarCall = getOpenSearchSnapshotsValidateBeforeCall(siteId, null);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4913,7 +5309,6 @@ public class SystemManagementApi {
    * Get site(s) OpenSearch snapshots (asynchronously) Returns the OpenSearch Snapshots
    * 
    * @param siteId Site Identifier (required)
-   * @param repositoryName Snapshot Repository Name (required)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4936,11 +5331,9 @@ public class SystemManagementApi {
    *                        </table>
    */
   public okhttp3.Call getOpenSearchSnapshotsAsync(@javax.annotation.Nonnull String siteId,
-      @javax.annotation.Nonnull String repositoryName,
       final ApiCallback<GetOpenSearchSnapshotResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getOpenSearchSnapshotsValidateBeforeCall(siteId, repositoryName, _callback);
+    okhttp3.Call localVarCall = getOpenSearchSnapshotsValidateBeforeCall(siteId, _callback);
     Type localVarReturnType = new TypeToken<GetOpenSearchSnapshotResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -6101,6 +6494,208 @@ public class SystemManagementApi {
     okhttp3.Call localVarCall =
         setOpenSearchIndexValidateBeforeCall(siteId, setOpenSearchIndexRequest, _callback);
     Type localVarReturnType = new TypeToken<SetOpenSearchIndexResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setOpenSearchIndices
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndiceRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setOpenSearchIndicesCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpenSearchIndiceRequest setOpenSearchIndiceRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setOpenSearchIndiceRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opensearch/indices".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setOpenSearchIndicesValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpenSearchIndiceRequest setOpenSearchIndiceRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setOpenSearchIndices(Async)");
+    }
+
+    // verify the required parameter 'setOpenSearchIndiceRequest' is set
+    if (setOpenSearchIndiceRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setOpenSearchIndiceRequest' when calling setOpenSearchIndices(Async)");
+    }
+
+    return setOpenSearchIndicesCall(siteId, setOpenSearchIndiceRequest, _callback);
+
+  }
+
+  /**
+   * Set site(s) OpenSearch index to use for a SiteId Sets the OpenSearch index to use for a SiteId
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndiceRequest (required)
+   * @return SetResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public SetResponse setOpenSearchIndices(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpenSearchIndiceRequest setOpenSearchIndiceRequest)
+      throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setOpenSearchIndicesWithHttpInfo(siteId, setOpenSearchIndiceRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set site(s) OpenSearch index to use for a SiteId Sets the OpenSearch index to use for a SiteId
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndiceRequest (required)
+   * @return ApiResponse&lt;SetResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<SetResponse> setOpenSearchIndicesWithHttpInfo(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpenSearchIndiceRequest setOpenSearchIndiceRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        setOpenSearchIndicesValidateBeforeCall(siteId, setOpenSearchIndiceRequest, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set site(s) OpenSearch index to use for a SiteId (asynchronously) Sets the OpenSearch index to
+   * use for a SiteId
+   * 
+   * @param siteId Site Identifier (required)
+   * @param setOpenSearchIndiceRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setOpenSearchIndicesAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull SetOpenSearchIndiceRequest setOpenSearchIndiceRequest,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        setOpenSearchIndicesValidateBeforeCall(siteId, setOpenSearchIndiceRequest, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

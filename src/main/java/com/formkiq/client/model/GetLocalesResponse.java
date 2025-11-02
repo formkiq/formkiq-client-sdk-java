@@ -21,7 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.Locale;
+import java.util.Locale;
+import com.formkiq.client.model.LocaleInfo;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * GetLocalesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class GetLocalesResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -70,7 +72,7 @@ public class GetLocalesResponse {
   public static final String SERIALIZED_NAME_LOCALES = "locales";
   @SerializedName(SERIALIZED_NAME_LOCALES)
   @javax.annotation.Nullable
-  private List<Locale> locales = new ArrayList<>();
+  private List<LocaleInfo> locales = new ArrayList<>();
 
   public GetLocalesResponse() {}
 
@@ -94,12 +96,12 @@ public class GetLocalesResponse {
   }
 
 
-  public GetLocalesResponse locales(@javax.annotation.Nullable List<Locale> locales) {
+  public GetLocalesResponse locales(@javax.annotation.Nullable List<LocaleInfo> locales) {
     this.locales = locales;
     return this;
   }
 
-  public GetLocalesResponse addLocalesItem(Locale localesItem) {
+  public GetLocalesResponse addLocalesItem(LocaleInfo localesItem) {
     if (this.locales == null) {
       this.locales = new ArrayList<>();
     }
@@ -113,11 +115,11 @@ public class GetLocalesResponse {
    * @return locales
    */
   @javax.annotation.Nullable
-  public List<Locale> getLocales() {
+  public List<LocaleInfo> getLocales() {
     return locales;
   }
 
-  public void setLocales(@javax.annotation.Nullable List<Locale> locales) {
+  public void setLocales(@javax.annotation.Nullable List<LocaleInfo> locales) {
     this.locales = locales;
   }
 
@@ -183,7 +185,7 @@ public class GetLocalesResponse {
     if (jsonElement == null) {
       if (!GetLocalesResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                  // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in GetLocalesResponse is not found in the empty JSON string",
             GetLocalesResponse.openapiRequiredFields.toString()));
       }
@@ -193,7 +195,7 @@ public class GetLocalesResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetLocalesResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetLocalesResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -201,7 +203,7 @@ public class GetLocalesResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
         && !jsonObj.get("next").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
@@ -210,14 +212,14 @@ public class GetLocalesResponse {
       if (jsonArraylocales != null) {
         // ensure the json data is an array
         if (!jsonObj.get("locales").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `locales` to be an array in the JSON string but got `%s`",
               jsonObj.get("locales").toString()));
         }
 
         // validate the optional field `locales` (array)
         for (int i = 0; i < jsonArraylocales.size(); i++) {
-          Locale.validateJsonElement(jsonArraylocales.get(i));
+          LocaleInfo.validateJsonElement(jsonArraylocales.get(i));
         } ;
       }
     }

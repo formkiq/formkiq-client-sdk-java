@@ -23,6 +23,7 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.GetActivitesResponse;
 import com.formkiq.client.model.GetUserActivitesResponse;
+import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -71,11 +72,14 @@ public class UserActivitiesApiTest {
     String entityTypeId = null;
     String namespace = null;
     String entityId = null;
+    OffsetDateTime start = null;
+    OffsetDateTime end = null;
+    String sort = null;
     String next = null;
     String limit = null;
     String userId = null;
     GetActivitesResponse response = api.getResourceActivities(siteId, documentId, entityTypeId,
-        namespace, entityId, next, limit, userId);
+        namespace, entityId, start, end, sort, next, limit, userId);
     // TODO: test validations
   }
 

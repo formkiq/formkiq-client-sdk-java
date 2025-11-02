@@ -48,14 +48,16 @@ public class DocumentActionsApiTest {
    * Add one or more actions to a document; this appends actions and does not replace previous
    * actions Each action type supports a different set of parameters as shown in the table below:
    * ### Action Parameters | ActionType | Parameter | Description | Example | | -------- | ------- |
-   * ------- | ------- | | OCR | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
-   * | OCR | ocrEngine | Ocr Engine to use | tesseract or textract | | OCR | ocrOutputType | Convert
-   * OCR result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages | Number
-   * of pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents
-   * convert images to text | true or false | | FULLTEXT | characterMax | Maximum number of
-   * characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to
-   * use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of keywords |
-   * author,title,description | | WEBHOOK | url | Webhook URL |
+   * ------- | ------- | | OCR | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES,
+   * QUERIES (requires &#39;ocrTextractQueries&#39;) | | OCR | ocrTextractQueries | Required for
+   * \&quot;QUERIES\&quot;, questions to ask Textract | | OCR | ocrEngine | Ocr Engine to use |
+   * tesseract or textract | | OCR | ocrOutputType | Convert OCR result to an Output format
+   * (textract table only) | true | | OCR | ocrNumberOfPages | Number of pages to OCR (from start) |
+   * -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or
+   * false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | FULLTEXT |
+   * characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
+   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
+   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
    * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |

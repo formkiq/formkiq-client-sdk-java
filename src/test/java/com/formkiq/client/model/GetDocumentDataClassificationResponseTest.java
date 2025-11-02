@@ -20,20 +20,48 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DataClassification;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for OpaPolicyItemType
+ * Model tests for GetDocumentDataClassificationResponse
  */
-public class OpaPolicyItemTypeTest {
+public class GetDocumentDataClassificationResponseTest {
+  private final GetDocumentDataClassificationResponse model =
+      new GetDocumentDataClassificationResponse();
+
   /**
-   * Model tests for OpaPolicyItemType
+   * Model tests for GetDocumentDataClassificationResponse
    */
   @Test
-  public void testOpaPolicyItemType() {
-    // TODO: test OpaPolicyItemType
+  public void testGetDocumentDataClassificationResponse() {
+    // TODO: test GetDocumentDataClassificationResponse
+  }
+
+  /**
+   * Test the property 'next'
+   */
+  @Test
+  public void nextTest() {
+    // TODO: test next
+  }
+
+  /**
+   * Test the property 'dataClassifications'
+   */
+  @Test
+  public void dataClassificationsTest() {
+    // TODO: test dataClassifications
   }
 
 }

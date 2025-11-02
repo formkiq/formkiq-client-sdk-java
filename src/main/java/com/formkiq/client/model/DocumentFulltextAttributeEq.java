@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextAttributeEq
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class DocumentFulltextAttributeEq {
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -202,7 +204,7 @@ public class DocumentFulltextAttributeEq {
     if (jsonElement == null) {
       if (!DocumentFulltextAttributeEq.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                           // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in DocumentFulltextAttributeEq is not found in the empty JSON string",
             DocumentFulltextAttributeEq.openapiRequiredFields.toString()));
       }
@@ -212,7 +214,7 @@ public class DocumentFulltextAttributeEq {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentFulltextAttributeEq.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentFulltextAttributeEq` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -220,7 +222,7 @@ public class DocumentFulltextAttributeEq {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("stringValue") != null && !jsonObj.get("stringValue").isJsonNull())
         && !jsonObj.get("stringValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `stringValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("stringValue").toString()));
     }

@@ -22,6 +22,7 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentTagsRequest;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
@@ -57,7 +58,7 @@ public class DocumentTagsApiTest {
     String documentId = null;
     AddDocumentTagsRequest addDocumentTagsRequest = null;
     String siteId = null;
-    api.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+    AddResponse response = api.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
     // TODO: test validations
   }
 

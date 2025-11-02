@@ -28,6 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +63,22 @@ public class DocumentActionTest {
   @Test
   public void typeTest() {
     // TODO: test type
+  }
+
+  /**
+   * Test the property 'retryCount'
+   */
+  @Test
+  public void retryCountTest() {
+    // TODO: test retryCount
+  }
+
+  /**
+   * Test the property 'maxRetries'
+   */
+  @Test
+  public void maxRetriesTest() {
+    // TODO: test maxRetries
   }
 
   /**

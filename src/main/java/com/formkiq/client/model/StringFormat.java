@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.StringGeneratorType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * StringFormat
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class StringFormat {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -200,7 +202,7 @@ public class StringFormat {
     if (jsonElement == null) {
       if (!StringFormat.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                            // is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in StringFormat is not found in the empty JSON string",
             StringFormat.openapiRequiredFields.toString()));
       }
@@ -210,7 +212,7 @@ public class StringFormat {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!StringFormat.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `StringFormat` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -222,7 +224,7 @@ public class StringFormat {
     }
     if ((jsonObj.get("staticValue") != null && !jsonObj.get("staticValue").isJsonNull())
         && !jsonObj.get("staticValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `staticValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("staticValue").toString()));
     }

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,6 +50,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -56,22 +58,22 @@ import com.formkiq.client.invoker.JSON;
  * OpenSearchS3Repository
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class OpenSearchS3Repository {
   public static final String SERIALIZED_NAME_REPOSITORY = "repository";
   @SerializedName(SERIALIZED_NAME_REPOSITORY)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String repository;
 
   public static final String SERIALIZED_NAME_BUCKET = "bucket";
   @SerializedName(SERIALIZED_NAME_BUCKET)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String bucket;
 
   public OpenSearchS3Repository() {}
 
-  public OpenSearchS3Repository repository(@javax.annotation.Nonnull String repository) {
+  public OpenSearchS3Repository repository(@javax.annotation.Nullable String repository) {
     this.repository = repository;
     return this;
   }
@@ -81,17 +83,17 @@ public class OpenSearchS3Repository {
    * 
    * @return repository
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getRepository() {
     return repository;
   }
 
-  public void setRepository(@javax.annotation.Nonnull String repository) {
+  public void setRepository(@javax.annotation.Nullable String repository) {
     this.repository = repository;
   }
 
 
-  public OpenSearchS3Repository bucket(@javax.annotation.Nonnull String bucket) {
+  public OpenSearchS3Repository bucket(@javax.annotation.Nullable String bucket) {
     this.bucket = bucket;
     return this;
   }
@@ -101,12 +103,12 @@ public class OpenSearchS3Repository {
    * 
    * @return bucket
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getBucket() {
     return bucket;
   }
 
-  public void setBucket(@javax.annotation.Nonnull String bucket) {
+  public void setBucket(@javax.annotation.Nullable String bucket) {
     this.bucket = bucket;
   }
 
@@ -159,7 +161,7 @@ public class OpenSearchS3Repository {
     openapiFields = new HashSet<String>(Arrays.asList("repository", "bucket"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("repository", "bucket"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -172,7 +174,7 @@ public class OpenSearchS3Repository {
     if (jsonElement == null) {
       if (!OpenSearchS3Repository.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                      // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in OpenSearchS3Repository is not found in the empty JSON string",
             OpenSearchS3Repository.openapiRequiredFields.toString()));
       }
@@ -182,28 +184,21 @@ public class OpenSearchS3Repository {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpenSearchS3Repository.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpenSearchS3Repository` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : OpenSearchS3Repository.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("repository").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+    if ((jsonObj.get("repository") != null && !jsonObj.get("repository").isJsonNull())
+        && !jsonObj.get("repository").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `repository` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("repository").toString()));
     }
-    if (!jsonObj.get("bucket").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+    if ((jsonObj.get("bucket") != null && !jsonObj.get("bucket").isJsonNull())
+        && !jsonObj.get("bucket").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `bucket` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("bucket").toString()));
     }

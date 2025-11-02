@@ -35,6 +35,7 @@ import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
 import com.formkiq.client.model.SetDocumentRestoreResponse;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateDocumentRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
@@ -145,6 +146,21 @@ public class DocumentsApiTest {
     String siteId = null;
     Boolean softDelete = null;
     DeleteResponse response = api.deleteDocument(documentId, siteId, softDelete);
+    // TODO: test validations
+  }
+
+  /**
+   * Delete document legal hold checkout
+   *
+   * Removes a legal hold checkout for the document; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteDocumentCheckoutLegalHoldTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    DeleteResponse response = api.deleteDocumentCheckoutLegalHold(documentId, siteId);
     // TODO: test validations
   }
 
@@ -343,6 +359,38 @@ public class DocumentsApiTest {
     String documentId = null;
     String siteId = null;
     DeleteResponse response = api.purgeDocument(documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Perform document checkout
+   *
+   * Creates a checkout for the document. Fails with **409 Conflict** if the document is already
+   * checkedout by another user; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setDocumentCheckoutTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    SetResponse response = api.setDocumentCheckout(documentId, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Perform document legal hold checkout
+   *
+   * Creates a legal hold checkout for the document. Fails with **409 Conflict** if the document is
+   * already checkedout by another user; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setDocumentCheckoutLegalHoldTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    SetResponse response = api.setDocumentCheckoutLegalHold(documentId, siteId);
     // TODO: test validations
   }
 

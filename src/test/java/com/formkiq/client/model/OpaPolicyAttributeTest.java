@@ -23,9 +23,11 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.OpaPolicyAttributeEq;
 import com.formkiq.client.model.OpaPolicyAttributeGt;
 import com.formkiq.client.model.OpaPolicyAttributeGte;
+import com.formkiq.client.model.OpaPolicyAttributeIn;
 import com.formkiq.client.model.OpaPolicyAttributeLt;
 import com.formkiq.client.model.OpaPolicyAttributeLte;
 import com.formkiq.client.model.OpaPolicyAttributeNeq;
+import com.formkiq.client.model.OpaPolicyAttributeNotIn;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -104,6 +106,22 @@ public class OpaPolicyAttributeTest {
   @Test
   public void neqTest() {
     // TODO: test neq
+  }
+
+  /**
+   * Test the property 'in'
+   */
+  @Test
+  public void inTest() {
+    // TODO: test in
+  }
+
+  /**
+   * Test the property 'notIn'
+   */
+  @Test
+  public void notInTest() {
+    // TODO: test notIn
   }
 
 }

@@ -56,6 +56,14 @@ public class GetSitesResponseTest {
   }
 
   /**
+   * Test the property 'roles'
+   */
+  @Test
+  public void rolesTest() {
+    // TODO: test roles
+  }
+
+  /**
    * Test the property 'sites'
    */
   @Test

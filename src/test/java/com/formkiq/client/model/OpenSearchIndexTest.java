@@ -20,13 +20,16 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.OpenSearchAlias;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +61,38 @@ public class OpenSearchIndexTest {
   @Test
   public void numberOfShardsTest() {
     // TODO: test numberOfShards
+  }
+
+  /**
+   * Test the property 'documentCount'
+   */
+  @Test
+  public void documentCountTest() {
+    // TODO: test documentCount
+  }
+
+  /**
+   * Test the property 'storeSize'
+   */
+  @Test
+  public void storeSizeTest() {
+    // TODO: test storeSize
+  }
+
+  /**
+   * Test the property 'name'
+   */
+  @Test
+  public void nameTest() {
+    // TODO: test name
+  }
+
+  /**
+   * Test the property 'aliases'
+   */
+  @Test
+  public void aliasesTest() {
+    // TODO: test aliases
   }
 
 }

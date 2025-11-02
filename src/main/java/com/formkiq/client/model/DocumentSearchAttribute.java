@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.DocumentSearchRange;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentSearchAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class DocumentSearchAttribute {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -264,7 +266,7 @@ public class DocumentSearchAttribute {
     if (jsonElement == null) {
       if (!DocumentSearchAttribute.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                       // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in DocumentSearchAttribute is not found in the empty JSON string",
             DocumentSearchAttribute.openapiRequiredFields.toString()));
       }
@@ -274,7 +276,7 @@ public class DocumentSearchAttribute {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentSearchAttribute.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentSearchAttribute` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -283,28 +285,28 @@ public class DocumentSearchAttribute {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : DocumentSearchAttribute.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull())
         && !jsonObj.get("eq").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `eq` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("eq").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("eqOr") != null && !jsonObj.get("eqOr").isJsonNull()
         && !jsonObj.get("eqOr").isJsonArray()) {
-      throw new IllegalArgumentException(
-          String.format("Expected the field `eqOr` to be an array in the JSON string but got `%s`",
-              jsonObj.get("eqOr").toString()));
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `eqOr` to be an array in the JSON string but got `%s`",
+          jsonObj.get("eqOr").toString()));
     }
     if ((jsonObj.get("beginsWith") != null && !jsonObj.get("beginsWith").isJsonNull())
         && !jsonObj.get("beginsWith").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `beginsWith` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("beginsWith").toString()));
     }
@@ -313,7 +315,7 @@ public class DocumentSearchAttribute {
       DocumentSearchRange.validateJsonElement(jsonObj.get("range"));
     }
     if (!jsonObj.get("key").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("key").toString()));
     }

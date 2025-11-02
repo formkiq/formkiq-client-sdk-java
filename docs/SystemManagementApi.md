@@ -7,33 +7,37 @@ All URIs are relative to *http://localhost*
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
 | [**addLocale**](SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale |
 | [**addLocaleResourceItem**](SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item |
-| [**addOpenSearchRestoreSnapshot**](SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshot/{repositoryName}/{snapshotName}/restore | Add an OpenSearch Restore Snapshot |
-| [**addOpenSearchSnapshot**](SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName} | Add an OpenSearch Snapshot |
-| [**addOpenSearchSnapshotRepository**](SystemManagementApi.md#addOpenSearchSnapshotRepository) | **POST** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName} | Add OpenSearch Snapshot Repository |
+| [**addOpenSearchRestoreSnapshot**](SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Add an OpenSearch Restore Snapshot |
+| [**addOpenSearchSnapshot**](SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Add an OpenSearch Snapshot |
 | [**addSite**](SystemManagementApi.md#addSite) | **POST** /sites | Add Site |
 | [**deleteApiKey**](SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key |
 | [**deleteLocale**](SystemManagementApi.md#deleteLocale) | **DELETE** /sites/{siteId}/locales/{locale} | Delete Locale |
 | [**deleteLocaleResourceItem**](SystemManagementApi.md#deleteLocaleResourceItem) | **DELETE** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Delete Local Resource Item |
 | [**deleteOpenSearchIndex**](SystemManagementApi.md#deleteOpenSearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index |
-| [**deleteOpenSearchSnapshot**](SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName} | Deletes site(s) OpenSearch Snapshot |
-| [**deleteOpenSearchSnapshotRepository**](SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName} | Deletes site(s) OpenSearch Snapshot Repository |
+| [**deleteOpenSearchIndexByName**](SystemManagementApi.md#deleteOpenSearchIndexByName) | **DELETE** /sites/global/opensearch/indices/{indexName} | Deletes OpenSearch index by name |
+| [**deleteOpenSearchRestoreSnapshot**](SystemManagementApi.md#deleteOpenSearchRestoreSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Deletes site(s) OpenSearch Restore Snapshot |
+| [**deleteOpenSearchSnapshot**](SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Deletes site(s) OpenSearch Snapshot |
+| [**deleteOpenSearchSnapshotRepository**](SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepository | Deletes site(s) OpenSearch Snapshot Repository |
 | [**deleteSiteGroup**](SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions |
+| [**getAllOpenSearchIndices**](SystemManagementApi.md#getAllOpenSearchIndices) | **GET** /sites/global/opensearch/indices | Get all OpenSearch indices |
 | [**getApiKeys**](SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys |
 | [**getConfiguration**](SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration |
 | [**getLocaleResourceItem**](SystemManagementApi.md#getLocaleResourceItem) | **GET** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Get Resource Item by Locale |
 | [**getLocaleResourceItems**](SystemManagementApi.md#getLocaleResourceItems) | **GET** /sites/{siteId}/locales/{locale}/resourceItems | Get Resource Items by Locale |
 | [**getLocales**](SystemManagementApi.md#getLocales) | **GET** /sites/{siteId}/locales | Get Locales |
 | [**getOpenSearchIndex**](SystemManagementApi.md#getOpenSearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
-| [**getOpenSearchSnapshot**](SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName} | Get site(s) OpenSearch snapshot |
-| [**getOpenSearchSnapshotRepositories**](SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/{siteId}/opensearch/snapshotRepositories | Get site(s) OpenSearch snapshot repositories |
-| [**getOpenSearchSnapshotRepository**](SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName} | Get site(s) OpenSearch snapshot repository |
-| [**getOpenSearchSnapshots**](SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots | Get site(s) OpenSearch snapshots |
+| [**getOpenSearchIndices**](SystemManagementApi.md#getOpenSearchIndices) | **GET** /sites/{siteId}/opensearch/indices | Get site(s) OpenSearch indices |
+| [**getOpenSearchSnapshot**](SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site(s) OpenSearch snapshot |
+| [**getOpenSearchSnapshotRepositories**](SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | Get site(s) OpenSearch snapshot repositories |
+| [**getOpenSearchSnapshotRepository**](SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site(s) OpenSearch snapshot repository |
+| [**getOpenSearchSnapshots**](SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | Get site(s) OpenSearch snapshots |
 | [**getSiteGroup**](SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site |
 | [**getSiteGroups**](SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site |
 | [**getSites**](SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
 | [**setLocaleResourceItem**](SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item |
 | [**setOpenSearchIndex**](SystemManagementApi.md#setOpenSearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings |
+| [**setOpenSearchIndices**](SystemManagementApi.md#setOpenSearchIndices) | **PUT** /sites/{siteId}/opensearch/indices | Set site(s) OpenSearch index to use for a SiteId |
 | [**setSiteGroupPermissions**](SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions |
 | [**updateConfiguration**](SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration |
 | [**updateSite**](SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site |
@@ -244,7 +248,7 @@ No authorization required
 
 <a id="addOpenSearchRestoreSnapshot"></a>
 # **addOpenSearchRestoreSnapshot**
-> AddResponse addOpenSearchRestoreSnapshot(siteId, repositoryName, snapshotName)
+> AddResponse addOpenSearchRestoreSnapshot(siteId, snapshotName)
 
 Add an OpenSearch Restore Snapshot
 
@@ -269,10 +273,9 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     String snapshotName = "snapshotName_example"; // String | Snapshot Name
     try {
-      AddResponse result = apiInstance.addOpenSearchRestoreSnapshot(siteId, repositoryName, snapshotName);
+      AddResponse result = apiInstance.addOpenSearchRestoreSnapshot(siteId, snapshotName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#addOpenSearchRestoreSnapshot");
@@ -290,7 +293,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 | **snapshotName** | **String**| Snapshot Name | |
 
 ### Return type
@@ -313,7 +315,7 @@ No authorization required
 
 <a id="addOpenSearchSnapshot"></a>
 # **addOpenSearchSnapshot**
-> AddResponse addOpenSearchSnapshot(siteId, repositoryName, snapshotName)
+> AddResponse addOpenSearchSnapshot(siteId, snapshotName)
 
 Add an OpenSearch Snapshot
 
@@ -338,10 +340,9 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     String snapshotName = "snapshotName_example"; // String | Snapshot Name
     try {
-      AddResponse result = apiInstance.addOpenSearchSnapshot(siteId, repositoryName, snapshotName);
+      AddResponse result = apiInstance.addOpenSearchSnapshot(siteId, snapshotName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#addOpenSearchSnapshot");
@@ -359,79 +360,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 | **snapshotName** | **String**| Snapshot Name | |
 
 ### Return type
 
 [**AddResponse**](AddResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-
-<a id="addOpenSearchSnapshotRepository"></a>
-# **addOpenSearchSnapshotRepository**
-> AddOpenSearchSnapshotRepositoryResponse addOpenSearchSnapshotRepository(siteId, repositoryName)
-
-Add OpenSearch Snapshot Repository
-
-Add an OpenSearch Snapshot Repository
-
-### Example
-```java
-// Import classes:
-import com.formkiq.client.invoker.ApiClient;
-import com.formkiq.client.invoker.ApiException;
-import com.formkiq.client.invoker.Configuration;
-import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.SystemManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-    // Configure AWS Signature V4 authorization
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
-    
-    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
-    try {
-      AddOpenSearchSnapshotRepositoryResponse result = apiInstance.addOpenSearchSnapshotRepository(siteId, repositoryName);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SystemManagementApi#addOpenSearchSnapshotRepository");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
-
-### Return type
-
-[**AddOpenSearchSnapshotRepositoryResponse**](AddOpenSearchSnapshotRepositoryResponse.md)
 
 ### Authorization
 
@@ -781,9 +714,141 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="deleteOpenSearchIndexByName"></a>
+# **deleteOpenSearchIndexByName**
+> DeleteResponse deleteOpenSearchIndexByName(indexName)
+
+Deletes OpenSearch index by name
+
+Deletes the OpenSearch index by name
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String indexName = "indexName_example"; // String | IndexName to path
+    try {
+      DeleteResponse result = apiInstance.deleteOpenSearchIndexByName(indexName);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#deleteOpenSearchIndexByName");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **indexName** | **String**| IndexName to path | |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteOpenSearchRestoreSnapshot"></a>
+# **deleteOpenSearchRestoreSnapshot**
+> DeleteResponse deleteOpenSearchRestoreSnapshot(siteId, snapshotName)
+
+Deletes site(s) OpenSearch Restore Snapshot
+
+Deletes the OpenSearch Restore Snapshot
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String snapshotName = "snapshotName_example"; // String | Snapshot Name
+    try {
+      DeleteResponse result = apiInstance.deleteOpenSearchRestoreSnapshot(siteId, snapshotName);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#deleteOpenSearchRestoreSnapshot");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **snapshotName** | **String**| Snapshot Name | |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="deleteOpenSearchSnapshot"></a>
 # **deleteOpenSearchSnapshot**
-> DeleteResponse deleteOpenSearchSnapshot(siteId, repositoryName, snapshotName)
+> DeleteResponse deleteOpenSearchSnapshot(siteId, snapshotName)
 
 Deletes site(s) OpenSearch Snapshot
 
@@ -808,10 +873,9 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     String snapshotName = "snapshotName_example"; // String | Snapshot Name
     try {
-      DeleteResponse result = apiInstance.deleteOpenSearchSnapshot(siteId, repositoryName, snapshotName);
+      DeleteResponse result = apiInstance.deleteOpenSearchSnapshot(siteId, snapshotName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#deleteOpenSearchSnapshot");
@@ -829,7 +893,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 | **snapshotName** | **String**| Snapshot Name | |
 
 ### Return type
@@ -852,7 +915,7 @@ No authorization required
 
 <a id="deleteOpenSearchSnapshotRepository"></a>
 # **deleteOpenSearchSnapshotRepository**
-> DeleteResponse deleteOpenSearchSnapshotRepository(siteId, repositoryName)
+> DeleteResponse deleteOpenSearchSnapshotRepository(siteId)
 
 Deletes site(s) OpenSearch Snapshot Repository
 
@@ -877,9 +940,8 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     try {
-      DeleteResponse result = apiInstance.deleteOpenSearchSnapshotRepository(siteId, repositoryName);
+      DeleteResponse result = apiInstance.deleteOpenSearchSnapshotRepository(siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#deleteOpenSearchSnapshotRepository");
@@ -897,7 +959,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 
 ### Return type
 
@@ -969,6 +1030,67 @@ public class Example {
 ### Return type
 
 [**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="getAllOpenSearchIndices"></a>
+# **getAllOpenSearchIndices**
+> GetOpenSearchIndiceResponse getAllOpenSearchIndices()
+
+Get all OpenSearch indices
+
+Returns all OpenSearch indices
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    try {
+      GetOpenSearchIndiceResponse result = apiInstance.getAllOpenSearchIndices();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getAllOpenSearchIndices");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetOpenSearchIndiceResponse**](GetOpenSearchIndiceResponse.md)
 
 ### Authorization
 
@@ -1333,7 +1455,7 @@ No authorization required
 
 Get site(s) OpenSearch index settings
 
-Returns the OpenSearch index settings
+Returns the OpenSearch index settings   (Deprecated use /sites/{siteId}/opensearch/indices)
 
 ### Example
 ```java
@@ -1392,9 +1514,74 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getOpenSearchIndices"></a>
+# **getOpenSearchIndices**
+> GetOpenSearchIndiceResponse getOpenSearchIndices(siteId)
+
+Get site(s) OpenSearch indices
+
+Returns the OpenSearch indices
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GetOpenSearchIndiceResponse result = apiInstance.getOpenSearchIndices(siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getOpenSearchIndices");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+
+### Return type
+
+[**GetOpenSearchIndiceResponse**](GetOpenSearchIndiceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getOpenSearchSnapshot"></a>
 # **getOpenSearchSnapshot**
-> GetOpenSearchSnapshotResponse getOpenSearchSnapshot(siteId, repositoryName, snapshotName)
+> GetOpenSearchSnapshotResponse getOpenSearchSnapshot(siteId, snapshotName)
 
 Get site(s) OpenSearch snapshot
 
@@ -1419,10 +1606,9 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     String snapshotName = "snapshotName_example"; // String | Snapshot Name
     try {
-      GetOpenSearchSnapshotResponse result = apiInstance.getOpenSearchSnapshot(siteId, repositoryName, snapshotName);
+      GetOpenSearchSnapshotResponse result = apiInstance.getOpenSearchSnapshot(siteId, snapshotName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getOpenSearchSnapshot");
@@ -1440,7 +1626,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 | **snapshotName** | **String**| Snapshot Name | |
 
 ### Return type
@@ -1463,7 +1648,7 @@ No authorization required
 
 <a id="getOpenSearchSnapshotRepositories"></a>
 # **getOpenSearchSnapshotRepositories**
-> GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepositories(siteId)
+> GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepositories()
 
 Get site(s) OpenSearch snapshot repositories
 
@@ -1487,9 +1672,8 @@ public class Example {
     defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
-    String siteId = "siteId_example"; // String | Site Identifier
     try {
-      GetOpenSearchSnapshotRepositoryResponse result = apiInstance.getOpenSearchSnapshotRepositories(siteId);
+      GetOpenSearchSnapshotRepositoryResponse result = apiInstance.getOpenSearchSnapshotRepositories();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getOpenSearchSnapshotRepositories");
@@ -1503,10 +1687,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **siteId** | **String**| Site Identifier | |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -1528,7 +1709,7 @@ No authorization required
 
 <a id="getOpenSearchSnapshotRepository"></a>
 # **getOpenSearchSnapshotRepository**
-> GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepository(siteId, repositoryName)
+> GetOpenSearchSnapshotRepositoryResponse getOpenSearchSnapshotRepository(siteId)
 
 Get site(s) OpenSearch snapshot repository
 
@@ -1553,9 +1734,8 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     try {
-      GetOpenSearchSnapshotRepositoryResponse result = apiInstance.getOpenSearchSnapshotRepository(siteId, repositoryName);
+      GetOpenSearchSnapshotRepositoryResponse result = apiInstance.getOpenSearchSnapshotRepository(siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getOpenSearchSnapshotRepository");
@@ -1573,7 +1753,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 
 ### Return type
 
@@ -1595,7 +1774,7 @@ No authorization required
 
 <a id="getOpenSearchSnapshots"></a>
 # **getOpenSearchSnapshots**
-> GetOpenSearchSnapshotResponse getOpenSearchSnapshots(siteId, repositoryName)
+> GetOpenSearchSnapshotResponse getOpenSearchSnapshots(siteId)
 
 Get site(s) OpenSearch snapshots
 
@@ -1620,9 +1799,8 @@ public class Example {
     
     SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
-    String repositoryName = "repositoryName_example"; // String | Snapshot Repository Name
     try {
-      GetOpenSearchSnapshotResponse result = apiInstance.getOpenSearchSnapshots(siteId, repositoryName);
+      GetOpenSearchSnapshotResponse result = apiInstance.getOpenSearchSnapshots(siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemManagementApi#getOpenSearchSnapshots");
@@ -1640,7 +1818,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | |
-| **repositoryName** | **String**| Snapshot Repository Name | |
 
 ### Return type
 
@@ -2041,6 +2218,73 @@ public class Example {
 ### Return type
 
 [**SetOpenSearchIndexResponse**](SetOpenSearchIndexResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setOpenSearchIndices"></a>
+# **setOpenSearchIndices**
+> SetResponse setOpenSearchIndices(siteId, setOpenSearchIndiceRequest)
+
+Set site(s) OpenSearch index to use for a SiteId
+
+Sets the OpenSearch index to use for a SiteId
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    SetOpenSearchIndiceRequest setOpenSearchIndiceRequest = new SetOpenSearchIndiceRequest(); // SetOpenSearchIndiceRequest | 
+    try {
+      SetResponse result = apiInstance.setOpenSearchIndices(siteId, setOpenSearchIndiceRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#setOpenSearchIndices");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **setOpenSearchIndiceRequest** | [**SetOpenSearchIndiceRequest**](SetOpenSearchIndiceRequest.md)|  | |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
 
 ### Authorization
 

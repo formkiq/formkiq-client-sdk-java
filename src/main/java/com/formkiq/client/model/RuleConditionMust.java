@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.RuleConditionAttribute;
 import com.formkiq.client.model.RuleConditionCriterion;
 import com.formkiq.client.model.RuleConditionOperation;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * RuleConditionMust
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class RuleConditionMust {
   public static final String SERIALIZED_NAME_ATTRIBUTE = "attribute";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE)
@@ -284,7 +286,7 @@ public class RuleConditionMust {
     if (jsonElement == null) {
       if (!RuleConditionMust.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                 // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in RuleConditionMust is not found in the empty JSON string",
             RuleConditionMust.openapiRequiredFields.toString()));
       }
@@ -294,7 +296,7 @@ public class RuleConditionMust {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!RuleConditionMust.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `RuleConditionMust` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -310,19 +312,19 @@ public class RuleConditionMust {
     }
     if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
         && !jsonObj.get("attributeKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("attributeKey").toString()));
     }
     if ((jsonObj.get("fieldName") != null && !jsonObj.get("fieldName").isJsonNull())
         && !jsonObj.get("fieldName").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("fieldName").toString()));
     }
     if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull())
         && !jsonObj.get("value").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `value` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("value").toString()));
     }

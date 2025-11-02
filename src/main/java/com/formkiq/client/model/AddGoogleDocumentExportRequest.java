@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.GoogleExportOutputType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * AddGoogleDocumentExportRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddGoogleDocumentExportRequest {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -177,7 +179,7 @@ public class AddGoogleDocumentExportRequest {
       if (!AddGoogleDocumentExportRequest.openapiRequiredFields.isEmpty()) { // has required fields
                                                                              // but JSON element is
                                                                              // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddGoogleDocumentExportRequest is not found in the empty JSON string",
             AddGoogleDocumentExportRequest.openapiRequiredFields.toString()));
       }
@@ -187,7 +189,7 @@ public class AddGoogleDocumentExportRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddGoogleDocumentExportRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddGoogleDocumentExportRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -195,7 +197,7 @@ public class AddGoogleDocumentExportRequest {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }

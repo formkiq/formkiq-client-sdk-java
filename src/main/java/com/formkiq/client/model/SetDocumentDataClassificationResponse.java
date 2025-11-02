@@ -21,7 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentAttribute;
+import java.util.Locale;
+import com.formkiq.client.model.DataClassificationAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,55 +53,57 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
 /**
- * GetDocumentAttributeVersionsResponse
+ * SetDocumentDataClassificationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
-public class GetDocumentAttributeVersionsResponse {
-  public static final String SERIALIZED_NAME_NEXT = "next";
-  @SerializedName(SERIALIZED_NAME_NEXT)
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
+public class SetDocumentDataClassificationResponse {
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
   @javax.annotation.Nullable
-  private String next;
+  private String content;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
-  private List<DocumentAttribute> attributes = new ArrayList<>();
+  private List<DataClassificationAttribute> attributes = new ArrayList<>();
 
-  public GetDocumentAttributeVersionsResponse() {}
+  public SetDocumentDataClassificationResponse() {}
 
-  public GetDocumentAttributeVersionsResponse next(@javax.annotation.Nullable String next) {
-    this.next = next;
+  public SetDocumentDataClassificationResponse content(@javax.annotation.Nullable String content) {
+    this.content = content;
     return this;
   }
 
   /**
-   * Next page of results token
+   * Result content
    * 
-   * @return next
+   * @return content
    */
   @javax.annotation.Nullable
-  public String getNext() {
-    return next;
+  public String getContent() {
+    return content;
   }
 
-  public void setNext(@javax.annotation.Nullable String next) {
-    this.next = next;
+  public void setContent(@javax.annotation.Nullable String content) {
+    this.content = content;
   }
 
 
-  public GetDocumentAttributeVersionsResponse attributes(
-      @javax.annotation.Nullable List<DocumentAttribute> attributes) {
+  public SetDocumentDataClassificationResponse attributes(
+      @javax.annotation.Nullable List<DataClassificationAttribute> attributes) {
     this.attributes = attributes;
     return this;
   }
 
-  public GetDocumentAttributeVersionsResponse addAttributesItem(DocumentAttribute attributesItem) {
+  public SetDocumentDataClassificationResponse addAttributesItem(
+      DataClassificationAttribute attributesItem) {
     if (this.attributes == null) {
       this.attributes = new ArrayList<>();
     }
@@ -109,16 +112,17 @@ public class GetDocumentAttributeVersionsResponse {
   }
 
   /**
-   * List of document attribute versions
+   * Attributes extracted from result content
    * 
    * @return attributes
    */
   @javax.annotation.Nullable
-  public List<DocumentAttribute> getAttributes() {
+  public List<DataClassificationAttribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@javax.annotation.Nullable List<DocumentAttribute> attributes) {
+  public void setAttributes(
+      @javax.annotation.Nullable List<DataClassificationAttribute> attributes) {
     this.attributes = attributes;
   }
 
@@ -132,22 +136,22 @@ public class GetDocumentAttributeVersionsResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetDocumentAttributeVersionsResponse getDocumentAttributeVersionsResponse =
-        (GetDocumentAttributeVersionsResponse) o;
-    return Objects.equals(this.next, getDocumentAttributeVersionsResponse.next)
-        && Objects.equals(this.attributes, getDocumentAttributeVersionsResponse.attributes);
+    SetDocumentDataClassificationResponse setDocumentDataClassificationResponse =
+        (SetDocumentDataClassificationResponse) o;
+    return Objects.equals(this.content, setDocumentDataClassificationResponse.content)
+        && Objects.equals(this.attributes, setDocumentDataClassificationResponse.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(next, attributes);
+    return Objects.hash(content, attributes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetDocumentAttributeVersionsResponse {\n");
-    sb.append("    next: ").append(toIndentedString(next)).append("\n");
+    sb.append("class SetDocumentDataClassificationResponse {\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -169,7 +173,7 @@ public class GetDocumentAttributeVersionsResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("next", "attributes"));
+    openapiFields = new HashSet<String>(Arrays.asList("content", "attributes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -180,49 +184,49 @@ public class GetDocumentAttributeVersionsResponse {
    *
    * @param jsonElement JSON Element
    * @throws IOException if the JSON Element is invalid with respect to
-   *         GetDocumentAttributeVersionsResponse
+   *         SetDocumentDataClassificationResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!GetDocumentAttributeVersionsResponse.openapiRequiredFields.isEmpty()) { // has required
-                                                                                   // fields but
-                                                                                   // JSON element
-                                                                                   // is null
-        throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in GetDocumentAttributeVersionsResponse is not found in the empty JSON string",
-            GetDocumentAttributeVersionsResponse.openapiRequiredFields.toString()));
+      if (!SetDocumentDataClassificationResponse.openapiRequiredFields.isEmpty()) { // has required
+                                                                                    // fields but
+                                                                                    // JSON element
+                                                                                    // is null
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field(s) %s in SetDocumentDataClassificationResponse is not found in the empty JSON string",
+            SetDocumentDataClassificationResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!GetDocumentAttributeVersionsResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `GetDocumentAttributeVersionsResponse` properties. JSON: %s",
+      if (!SetDocumentDataClassificationResponse.openapiFields.contains(entry.getKey())) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The field `%s` in the JSON string is not defined in the `SetDocumentDataClassificationResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
-        && !jsonObj.get("next").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("next").toString()));
+    if ((jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull())
+        && !jsonObj.get("content").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `content` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("content").toString()));
     }
     if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
       JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
       if (jsonArrayattributes != null) {
         // ensure the json data is an array
         if (!jsonObj.get("attributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `attributes` to be an array in the JSON string but got `%s`",
               jsonObj.get("attributes").toString()));
         }
 
         // validate the optional field `attributes` (array)
         for (int i = 0; i < jsonArrayattributes.size(); i++) {
-          DocumentAttribute.validateJsonElement(jsonArrayattributes.get(i));
+          DataClassificationAttribute.validateJsonElement(jsonArrayattributes.get(i));
         } ;
       }
     }
@@ -232,24 +236,24 @@ public class GetDocumentAttributeVersionsResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!GetDocumentAttributeVersionsResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'GetDocumentAttributeVersionsResponse' and its
+      if (!SetDocumentDataClassificationResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'SetDocumentDataClassificationResponse' and its
                      // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<GetDocumentAttributeVersionsResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(GetDocumentAttributeVersionsResponse.class));
+      final TypeAdapter<SetDocumentDataClassificationResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(SetDocumentDataClassificationResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<GetDocumentAttributeVersionsResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<SetDocumentDataClassificationResponse>() {
         @Override
-        public void write(JsonWriter out, GetDocumentAttributeVersionsResponse value)
+        public void write(JsonWriter out, SetDocumentDataClassificationResponse value)
             throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public GetDocumentAttributeVersionsResponse read(JsonReader in) throws IOException {
+        public SetDocumentDataClassificationResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -260,20 +264,20 @@ public class GetDocumentAttributeVersionsResponse {
   }
 
   /**
-   * Create an instance of GetDocumentAttributeVersionsResponse given an JSON string
+   * Create an instance of SetDocumentDataClassificationResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of GetDocumentAttributeVersionsResponse
+   * @return An instance of SetDocumentDataClassificationResponse
    * @throws IOException if the JSON string is invalid with respect to
-   *         GetDocumentAttributeVersionsResponse
+   *         SetDocumentDataClassificationResponse
    */
-  public static GetDocumentAttributeVersionsResponse fromJson(String jsonString)
+  public static SetDocumentDataClassificationResponse fromJson(String jsonString)
       throws IOException {
-    return JSON.getGson().fromJson(jsonString, GetDocumentAttributeVersionsResponse.class);
+    return JSON.getGson().fromJson(jsonString, SetDocumentDataClassificationResponse.class);
   }
 
   /**
-   * Convert an instance of GetDocumentAttributeVersionsResponse to an JSON string
+   * Convert an instance of SetDocumentDataClassificationResponse to an JSON string
    *
    * @return JSON string
    */

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.Site;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,13 +61,18 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class GetSitesResponse {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
   @javax.annotation.Nullable
   private String username;
+
+  public static final String SERIALIZED_NAME_ROLES = "roles";
+  @SerializedName(SERIALIZED_NAME_ROLES)
+  @javax.annotation.Nullable
+  private List<String> roles = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SITES = "sites";
   @SerializedName(SERIALIZED_NAME_SITES)
@@ -91,6 +98,34 @@ public class GetSitesResponse {
 
   public void setUsername(@javax.annotation.Nullable String username) {
     this.username = username;
+  }
+
+
+  public GetSitesResponse roles(@javax.annotation.Nullable List<String> roles) {
+    this.roles = roles;
+    return this;
+  }
+
+  public GetSitesResponse addRolesItem(String rolesItem) {
+    if (this.roles == null) {
+      this.roles = new ArrayList<>();
+    }
+    this.roles.add(rolesItem);
+    return this;
+  }
+
+  /**
+   * Get roles
+   * 
+   * @return roles
+   */
+  @javax.annotation.Nullable
+  public List<String> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(@javax.annotation.Nullable List<String> roles) {
+    this.roles = roles;
   }
 
 
@@ -133,12 +168,13 @@ public class GetSitesResponse {
     }
     GetSitesResponse getSitesResponse = (GetSitesResponse) o;
     return Objects.equals(this.username, getSitesResponse.username)
+        && Objects.equals(this.roles, getSitesResponse.roles)
         && Objects.equals(this.sites, getSitesResponse.sites);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, sites);
+    return Objects.hash(username, roles, sites);
   }
 
   @Override
@@ -146,6 +182,7 @@ public class GetSitesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetSitesResponse {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    sites: ").append(toIndentedString(sites)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -167,7 +204,7 @@ public class GetSitesResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("username", "sites"));
+    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "sites"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -183,7 +220,7 @@ public class GetSitesResponse {
     if (jsonElement == null) {
       if (!GetSitesResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in GetSitesResponse is not found in the empty JSON string",
             GetSitesResponse.openapiRequiredFields.toString()));
       }
@@ -193,7 +230,7 @@ public class GetSitesResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetSitesResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetSitesResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -201,16 +238,23 @@ public class GetSitesResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull())
         && !jsonObj.get("username").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `username` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("username").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("roles") != null && !jsonObj.get("roles").isJsonNull()
+        && !jsonObj.get("roles").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `roles` to be an array in the JSON string but got `%s`",
+          jsonObj.get("roles").toString()));
     }
     if (jsonObj.get("sites") != null && !jsonObj.get("sites").isJsonNull()) {
       JsonArray jsonArraysites = jsonObj.getAsJsonArray("sites");
       if (jsonArraysites != null) {
         // ensure the json data is an array
         if (!jsonObj.get("sites").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `sites` to be an array in the JSON string but got `%s`",
               jsonObj.get("sites").toString()));
         }

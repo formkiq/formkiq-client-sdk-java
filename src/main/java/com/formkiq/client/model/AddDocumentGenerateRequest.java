@@ -21,10 +21,11 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateInsertDocument;
 import com.formkiq.client.model.DocumentGenerateOutputType;
-import com.formkiq.client.model.Locale;
+import com.formkiq.client.model.LocaleInfo;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,6 +56,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -62,13 +64,13 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
   @javax.annotation.Nullable
-  private Locale locale;
+  private LocaleInfo locale;
 
   public static final String SERIALIZED_NAME_INSERT_DOCUMENTS = "insertDocuments";
   @SerializedName(SERIALIZED_NAME_INSERT_DOCUMENTS)
@@ -97,7 +99,7 @@ public class AddDocumentGenerateRequest {
 
   public AddDocumentGenerateRequest() {}
 
-  public AddDocumentGenerateRequest locale(@javax.annotation.Nullable Locale locale) {
+  public AddDocumentGenerateRequest locale(@javax.annotation.Nullable LocaleInfo locale) {
     this.locale = locale;
     return this;
   }
@@ -108,11 +110,11 @@ public class AddDocumentGenerateRequest {
    * @return locale
    */
   @javax.annotation.Nullable
-  public Locale getLocale() {
+  public LocaleInfo getLocale() {
     return locale;
   }
 
-  public void setLocale(@javax.annotation.Nullable Locale locale) {
+  public void setLocale(@javax.annotation.Nullable LocaleInfo locale) {
     this.locale = locale;
   }
 
@@ -310,7 +312,7 @@ public class AddDocumentGenerateRequest {
     if (jsonElement == null) {
       if (!AddDocumentGenerateRequest.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddDocumentGenerateRequest is not found in the empty JSON string",
             AddDocumentGenerateRequest.openapiRequiredFields.toString()));
       }
@@ -320,7 +322,7 @@ public class AddDocumentGenerateRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddDocumentGenerateRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddDocumentGenerateRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -328,14 +330,14 @@ public class AddDocumentGenerateRequest {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     // validate the optional field `locale`
     if (jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) {
-      Locale.validateJsonElement(jsonObj.get("locale"));
+      LocaleInfo.validateJsonElement(jsonObj.get("locale"));
     }
     if (jsonObj.get("insertDocuments") != null && !jsonObj.get("insertDocuments").isJsonNull()) {
       JsonArray jsonArrayinsertDocuments = jsonObj.getAsJsonArray("insertDocuments");
       if (jsonArrayinsertDocuments != null) {
         // ensure the json data is an array
         if (!jsonObj.get("insertDocuments").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `insertDocuments` to be an array in the JSON string but got `%s`",
               jsonObj.get("insertDocuments").toString()));
         }
@@ -351,7 +353,7 @@ public class AddDocumentGenerateRequest {
       if (jsonArraydatasources != null) {
         // ensure the json data is an array
         if (!jsonObj.get("datasources").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `datasources` to be an array in the JSON string but got `%s`",
               jsonObj.get("datasources").toString()));
         }
@@ -368,13 +370,13 @@ public class AddDocumentGenerateRequest {
     }
     if ((jsonObj.get("saveAsDocumentId") != null && !jsonObj.get("saveAsDocumentId").isJsonNull())
         && !jsonObj.get("saveAsDocumentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `saveAsDocumentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("saveAsDocumentId").toString()));
     }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }

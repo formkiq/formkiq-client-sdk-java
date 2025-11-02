@@ -122,6 +122,14 @@ public class ActivityTest {
   }
 
   /**
+   * Test the property 'attributeKey'
+   */
+  @Test
+  public void attributeKeyTest() {
+    // TODO: test attributeKey
+  }
+
+  /**
    * Test the property 'entityTypeId'
    */
   @Test

@@ -364,7 +364,7 @@ No authorization required
 
 <a id="queryFulltext"></a>
 # **queryFulltext**
-> QueryFulltextResponse queryFulltext(body, siteId)
+> QueryFulltextResponse queryFulltext(body, siteId, indexName)
 
 Direct opensearch search API
 
@@ -390,8 +390,9 @@ public class Example {
     AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
     Object body = null; // Object | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String indexName = "indexName_example"; // String | IndexName to query
     try {
-      QueryFulltextResponse result = apiInstance.queryFulltext(body, siteId);
+      QueryFulltextResponse result = apiInstance.queryFulltext(body, siteId, indexName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdvancedDocumentSearchApi#queryFulltext");
@@ -410,6 +411,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **body** | **Object**|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **indexName** | **String**| IndexName to query | [optional] |
 
 ### Return type
 
@@ -431,7 +433,7 @@ No authorization required
 
 <a id="searchFulltext"></a>
 # **searchFulltext**
-> DocumentFulltextResponse searchFulltext(documentFulltextRequest, siteId, limit)
+> DocumentFulltextResponse searchFulltext(documentFulltextRequest, siteId, indexName, limit)
 
 Document full-text search
 
@@ -457,9 +459,10 @@ public class Example {
     AdvancedDocumentSearchApi apiInstance = new AdvancedDocumentSearchApi(defaultClient);
     DocumentFulltextRequest documentFulltextRequest = new DocumentFulltextRequest(); // DocumentFulltextRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String indexName = "indexName_example"; // String | IndexName to query
     String limit = "10"; // String | Limit Results
     try {
-      DocumentFulltextResponse result = apiInstance.searchFulltext(documentFulltextRequest, siteId, limit);
+      DocumentFulltextResponse result = apiInstance.searchFulltext(documentFulltextRequest, siteId, indexName, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdvancedDocumentSearchApi#searchFulltext");
@@ -478,6 +481,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentFulltextRequest** | [**DocumentFulltextRequest**](DocumentFulltextRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **indexName** | **String**| IndexName to query | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 
 ### Return type

@@ -88,9 +88,9 @@ tags:
 - description: User Activities API
   name: userActivities
   x-displayName: User Activities
-- description: Antivirus API
-  name: antivirus
-  x-displayName: Antivirus
+- description: MalwareScan API
+  name: malwareScan
+  x-displayName: MalwareScan
 - description: Examine Objects API
   name: examineObjects
   x-displayName: ExamineObjects
@@ -326,7 +326,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes Site Group and permissions
@@ -445,7 +456,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes site(s) OpenSearch index
@@ -456,7 +478,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Returns the OpenSearch index settings
+      description: "Returns the OpenSearch index settings \n\n(Deprecated use /sites/{siteId}/opensearch/indices)"
       operationId: GetOpenSearchIndex
       parameters:
       - description: Site Identifier
@@ -532,10 +554,73 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /sites/{siteId}/opensearch/snapshotRepositories:
+  /sites/global/opensearch/indices:
     get:
-      description: Returns the OpenSearch Snapshot Repositories
-      operationId: GetOpenSearchSnapshotRepositories
+      description: Returns all OpenSearch indices
+      operationId: GetAllOpenSearchIndices
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetOpenSearchIndiceResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get all OpenSearch indices
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
+      x-accepts:
+      - application/json
+  /sites/global/opensearch/indices/{indexName}:
+    delete:
+      description: Deletes the OpenSearch index by name
+      operationId: DeleteOpenSearchIndexByName
+      parameters:
+      - description: IndexName to path
+        explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Deletes OpenSearch index by name
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
+      x-accepts:
+      - application/json
+  /sites/{siteId}/opensearch/indices:
+    get:
+      description: Returns the OpenSearch indices
+      operationId: GetOpenSearchIndices
       parameters:
       - description: Site Identifier
         explode: false
@@ -545,6 +630,75 @@ paths:
         schema:
           type: string
         style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetOpenSearchIndiceResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get site(s) OpenSearch indices
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
+      x-accepts:
+      - application/json
+    put:
+      description: Sets the OpenSearch index to use for a SiteId
+      operationId: SetOpenSearchIndices
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetOpenSearchIndiceRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Set site(s) OpenSearch index to use for a SiteId
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/global/opensearch/snapshotRepositories:
+    get:
+      description: Returns the OpenSearch Snapshot Repositories
+      operationId: GetOpenSearchSnapshotRepositories
       responses:
         "200":
           content:
@@ -568,7 +722,7 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
       - application/json
-  /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}:
+  /sites/{siteId}/opensearch/snapshotRepository:
     delete:
       description: Deletes the OpenSearch Snapshot Repository
       operationId: DeleteOpenSearchSnapshotRepository
@@ -581,17 +735,20 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
-        required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes site(s) OpenSearch Snapshot Repository
@@ -609,14 +766,6 @@ paths:
         explode: false
         in: path
         name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
         required: true
         schema:
           type: string
@@ -644,50 +793,7 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
       - application/json
-    post:
-      description: Add an OpenSearch Snapshot Repository
-      operationId: AddOpenSearchSnapshotRepository
-      parameters:
-      - description: Site Identifier
-        explode: false
-        in: path
-        name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddOpenSearchSnapshotRepositoryResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Add OpenSearch Snapshot Repository
-      tags:
-      - System Management
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
-      x-accepts:
-      - application/json
-  /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots:
+  /sites/{siteId}/opensearch/snapshots:
     get:
       description: Returns the OpenSearch Snapshots
       operationId: GetOpenSearchSnapshots
@@ -696,14 +802,6 @@ paths:
         explode: false
         in: path
         name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
         required: true
         schema:
           type: string
@@ -731,7 +829,7 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
       - application/json
-  /sites/{siteId}/opensearch/snapshotRepositories/{repositoryName}/snapshots/{snapshotName}:
+  /sites/{siteId}/opensearch/snapshots/{snapshotName}:
     delete:
       description: Deletes the OpenSearch Snapshot
       operationId: DeleteOpenSearchSnapshot
@@ -740,14 +838,6 @@ paths:
         explode: false
         in: path
         name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
         required: true
         schema:
           type: string
@@ -762,7 +852,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes site(s) OpenSearch Snapshot
@@ -780,14 +881,6 @@ paths:
         explode: false
         in: path
         name: siteId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
         required: true
         schema:
           type: string
@@ -835,14 +928,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Snapshot Repository Name
-        explode: false
-        in: path
-        name: repositoryName
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Snapshot Name
         explode: false
         in: path
@@ -874,10 +959,10 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
       - application/json
-  /sites/{siteId}/opensearch/snapshot/{repositoryName}/{snapshotName}/restore:
-    post:
-      description: Add an OpenSearch Restore Snapshot
-      operationId: AddOpenSearchRestoreSnapshot
+  /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore:
+    delete:
+      description: Deletes the OpenSearch Restore Snapshot
+      operationId: DeleteOpenSearchRestoreSnapshot
       parameters:
       - description: Site Identifier
         explode: false
@@ -887,10 +972,45 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Snapshot Repository Name
+      - description: Snapshot Name
         explode: false
         in: path
-        name: repositoryName
+        name: snapshotName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Deletes site(s) OpenSearch Restore Snapshot
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: Add an OpenSearch Restore Snapshot
+      operationId: AddOpenSearchRestoreSnapshot
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
         required: true
         schema:
           type: string
@@ -2488,7 +2608,18 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document
@@ -2662,7 +2793,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Purge document
@@ -2833,7 +2975,18 @@ paths:
         required: true
       responses:
         "201":
-          $ref: "#/components/responses/201CorsAddResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Add attribute to document
@@ -2876,7 +3029,18 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200CorsSetResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Set document's attributes
@@ -2918,7 +3082,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document attribute
@@ -3015,7 +3190,18 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200CorsSetResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Set document's attributes value
@@ -3066,7 +3252,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document's attribute value
@@ -3199,7 +3396,15 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Update document tags
@@ -3253,7 +3458,18 @@ paths:
         required: true
       responses:
         "201":
-          $ref: "#/components/responses/200Cors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddResponse"
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Add tag to document
@@ -3310,7 +3526,15 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Set document's tags
@@ -3352,7 +3576,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document tag
@@ -3458,7 +3693,15 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Update document tag value(s)
@@ -3517,7 +3760,18 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document's tag value
@@ -4139,7 +4393,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
         "400":
           content:
             application/json:
@@ -4438,6 +4703,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: IndexName to query
+        explode: true
+        in: query
+        name: indexName
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -4495,6 +4768,14 @@ paths:
         explode: true
         in: query
         name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: IndexName to query
+        explode: true
+        in: query
+        name: indexName
         required: false
         schema:
           type: string
@@ -4608,11 +4889,13 @@ paths:
 
         | ActionType | Parameter | Description | Example |
         | -------- | ------- | ------- | ------- |
-        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES |
+        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES, QUERIES (requires 'ocrTextractQueries') |
+        | OCR  | ocrTextractQueries | Required for "QUERIES", questions to ask Textract |
         | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
         | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true |
         | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
+        | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
         | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
         | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
@@ -4760,7 +5043,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document ocr
@@ -5125,7 +5419,18 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document version
@@ -5135,11 +5440,11 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
-  /documents/{documentId}/attributes/{attributeKey}/versions:
-    get:
-      description: Get a listing of a document's attribute versions; available as
-        an Add-On Module
-      operationId: GetDocumentAttributeVersions
+  /documents/{documentId}/checkout:
+    put:
+      description: |
+        Creates a checkout for the document. Fails with **409 Conflict** if the document is already checkedout by another user; available as an Add-On Module
+      operationId: SetDocumentCheckout
       parameters:
       - description: Site Identifier
         explode: true
@@ -5157,37 +5462,12 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Attribute Key
-        explode: false
-        in: path
-        name: attributeKey
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Limit Results
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: "10"
-          type: string
-        style: form
-      - description: Next page of results token
-        explode: true
-        in: query
-        name: next
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetDocumentAttributeVersionsResponse"
+                $ref: "#/components/schemas/SetResponse"
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -5198,9 +5478,98 @@ paths:
               $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
-      summary: Get document attribute's versions
+      summary: Perform document checkout
       tags:
-      - Document Attributes
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+  /documents/{documentId}/legalHold:
+    delete:
+      description: |
+        Removes a legal hold checkout for the document; available as an Add-On Module
+      operationId: DeleteDocumentCheckoutLegalHold
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Delete document legal hold checkout
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Creates a legal hold checkout for the document. Fails with **409 Conflict** if the document is already checkedout by another user; available as an Add-On Module
+      operationId: SetDocumentCheckoutLegalHold
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Perform document legal hold checkout
+      tags:
+      - Documents
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6530,8 +6899,9 @@ paths:
       - application/json
   /documents/{documentId}/antivirus:
     put:
-      description: Perform an Anti-Malware / Antivirus scan on a document; available
-        as an Add-On Module
+      description: "Perform an Anti-Malware / Antivirus scan on a document; available\
+        \ as an Add-On Module\n**Deprecated**. This endpoint is no longer recommended.\
+        \  \nPlease use the **`/documents/{document}/malwareScan`** endpoint instead.\n"
       operationId: SetAntivirus
       parameters:
       - description: Site Identifier
@@ -6569,7 +6939,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SetAntivirusResponse"
+                $ref: "#/components/schemas/SetResponse"
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -6582,7 +6952,132 @@ paths:
       - ApiAuthorization: []
       summary: Antivirus document scan
       tags:
-      - Antivirus
+      - MalwareScan
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/malwareScan:
+    get:
+      description: Gets a Malware Scan results; available as an Add-On Module
+      operationId: GetMalwareScanResults
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMalwareScanResponse"
+          description: 200 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get Malware Scan results
+      tags:
+      - MalwareScan
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Perform an Anti-Malware / Antivirus scan on a document; available as an Add-On Module
+      operationId: SetMalwareScan
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetMalwareScanRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: MalwareScan document scan
+      tags:
+      - MalwareScan
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
       x-content-type: application/json
@@ -6874,7 +7369,15 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document full-text tag
@@ -6932,7 +7435,15 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete document full-text tag/value
@@ -7050,6 +7561,119 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/dataClassification:
+    get:
+      description: Retrieve an document's data classification; available as an Add-On
+        Module
+      operationId: GetDocumentDataClassification
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentDataClassificationResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document's data classification
+      tags:
+      - Document Data Classification
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
+      x-accepts:
+      - application/json
+    put:
+      description: Generate Data Classfication attributes within a document; available
+        as an Add-On Module
+      operationId: SetDocumentDataClassification
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetDocumentDataClassificationRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetDocumentDataClassificationResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Set document's data classification
+      tags:
+      - Document Data Classification
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -7221,6 +7845,35 @@ paths:
         name: entityId
         required: false
         schema:
+          type: string
+        style: form
+      - description: Start of date-time range (UTC)
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: End of date-time range (UTC)
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Sort order (default DESC)
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
           type: string
         style: form
       - description: Next page of results token
@@ -7543,7 +8196,18 @@ paths:
         style: form
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete webhook
@@ -7624,7 +8288,18 @@ paths:
         required: true
       responses:
         "200":
-          $ref: "#/components/responses/200CorsUpdateResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Update webhook
@@ -7715,7 +8390,15 @@ paths:
         required: true
       responses:
         "201":
-          $ref: "#/components/responses/200Cors"
+          content: {}
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Add webhook tag
@@ -10633,7 +11316,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Delete published document's contents
@@ -10998,7 +11692,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes Entity Type
@@ -11232,7 +11937,18 @@ paths:
         style: simple
       responses:
         "200":
-          $ref: "#/components/responses/200CorsDeleteResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
       security:
       - ApiAuthorization: []
       summary: Deletes Entity
@@ -11550,6 +12266,24 @@ components:
       schema:
         type: string
       style: form
+    indexNamePath:
+      description: IndexName to path
+      explode: false
+      in: path
+      name: indexName
+      required: true
+      schema:
+        type: string
+      style: simple
+    indexNameQuery:
+      description: IndexName to query
+      explode: true
+      in: query
+      name: indexName
+      required: false
+      schema:
+        type: string
+      style: form
     namespaceParam:
       description: Namespace Identifier
       explode: true
@@ -11731,6 +12465,38 @@ components:
       name: next
       required: false
       schema:
+        type: string
+      style: form
+    startParam:
+      description: Start of date-time range (UTC)
+      explode: true
+      in: query
+      name: start
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    endParam:
+      description: End of date-time range (UTC)
+      explode: true
+      in: query
+      name: end
+      required: false
+      schema:
+        format: date-time
+        type: string
+      style: form
+    sortParam:
+      description: Sort order (default DESC)
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        enum:
+        - ASC
+        - DESC
         type: string
       style: form
     apiKeyParam:
@@ -12169,46 +12935,6 @@ components:
           description: Is the content Base64-encoded?
           type: boolean
       type: object
-    GetDocumentAttributeVersionsResponse:
-      example:
-        next: next
-        attributes:
-        - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
-          stringValue: stringValue
-          stringValues:
-          - stringValues
-          - stringValues
-          insertedDate: insertedDate
-          valueType: BOOLEAN
-          booleanValue: true
-          numberValue: 0.8008281904610115
-          userId: userId
-          key: key
-        - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
-          stringValue: stringValue
-          stringValues:
-          - stringValues
-          - stringValues
-          insertedDate: insertedDate
-          valueType: BOOLEAN
-          booleanValue: true
-          numberValue: 0.8008281904610115
-          userId: userId
-          key: key
-      properties:
-        next:
-          description: Next page of results token
-          type: string
-        attributes:
-          description: List of document attribute versions
-          items:
-            $ref: "#/components/schemas/DocumentAttribute"
-          type: array
-      type: object
     GetDocumentVersionsResponse:
       example:
         next: next
@@ -12418,15 +13144,17 @@ components:
             queueId: queueId
             metadata:
               key: metadata
-            insertedDate: insertedDate
+            retryCount: 0.8008281904610115
             type: ANTIVIRUS
             message: message
             userId: userId
+            completedDate: completedDate
+            maxRetries: 6.027456183070403
+            insertedDate: insertedDate
             parameters:
-              key: parameters
+              key: "{}"
             workflowId: workflowId
             startDate: startDate
-            completedDate: completedDate
             status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
@@ -12444,15 +13172,17 @@ components:
             queueId: queueId
             metadata:
               key: metadata
-            insertedDate: insertedDate
+            retryCount: 0.8008281904610115
             type: ANTIVIRUS
             message: message
             userId: userId
+            completedDate: completedDate
+            maxRetries: 6.027456183070403
+            insertedDate: insertedDate
             parameters:
-              key: parameters
+              key: "{}"
             workflowId: workflowId
             startDate: startDate
-            completedDate: completedDate
             status: COMPLETE
             workflowStepId: workflowStepId
           decisions:
@@ -12491,15 +13221,17 @@ components:
           queueId: queueId
           metadata:
             key: metadata
-          insertedDate: insertedDate
+          retryCount: 0.8008281904610115
           type: ANTIVIRUS
           message: message
           userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
           parameters:
-            key: parameters
+            key: "{}"
           workflowId: workflowId
           startDate: startDate
-          completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
         decisions:
@@ -13680,6 +14412,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -13696,6 +14439,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         - queueId: queueId
@@ -13704,6 +14448,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -13720,6 +14475,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         height: height
@@ -13904,6 +14660,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -13920,6 +14687,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         - queueId: queueId
@@ -13928,6 +14696,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -13944,6 +14723,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         height: height
@@ -14129,6 +14909,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -14145,6 +14936,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         - queueId: queueId
@@ -14153,6 +14945,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -14169,6 +14972,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         height: height
@@ -15221,14 +16025,12 @@ components:
       description: Add Document Sync Service
       enum:
       - FULLTEXT
-      - EVENTBRIDGE
       type: string
     DocumentSyncService:
       description: Service of Document Sync
       enum:
       - TYPESENSE
       - OPENSEARCH
-      - EVENTBRIDGE
       type: string
     DocumentSyncStatus:
       description: Status of Document Sync
@@ -15285,39 +16087,143 @@ components:
           description: Document sync message
           type: string
       type: object
+    SetDocumentDataClassificationRequest:
+      example:
+        llmPromptEntityName: llmPromptEntityName
+      properties:
+        llmPromptEntityName:
+          description: Name of the LLM Prompt Entity
+          type: string
+      required:
+      - llmPromptEntityName
+      type: object
+    SetDocumentDataClassificationResponse:
+      example:
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        content: content
+      properties:
+        content:
+          description: Result content
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/DataClassificationAttribute"
+          type: array
+      type: object
+    DataClassification:
+      example:
+        insertedDate: insertedDate
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        llmPromptEntityName: llmPromptEntityName
+        userId: userId
+        content: content
+      properties:
+        llmPromptEntityName:
+          description: Name of the LLM Prompt Entity
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        content:
+          description: Result content
+          type: string
+        userId:
+          description: UserId that created Result
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/DataClassificationAttribute"
+          type: array
+      type: object
+    DataClassificationAttribute:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Data Classification Attribute Key
+          type: string
+        value:
+          description: Data Classification Attribute Value
+          type: string
+      type: object
+    GetDocumentDataClassificationResponse:
+      example:
+        next: next
+        dataClassifications:
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        dataClassifications:
+          description: List of Data Classifications
+          items:
+            $ref: "#/components/schemas/DataClassification"
+          type: array
+      type: object
     GetActivitesResponse:
       example:
         next: next
         activities:
         - resource: resource
-          insertedDate: insertedDate
           changes:
             key:
               newValue: "{}"
               oldValue: "{}"
           sourceIpAddress: sourceIpAddress
-          documentId: ""
-          entityTypeId: entityTypeId
           entityId: entityId
           source: source
+          attributeKey: ""
           type: type
           message: message
           userId: userId
+          insertedDate: insertedDate
+          documentId: ""
+          entityTypeId: entityTypeId
           status: COMPLETE
         - resource: resource
-          insertedDate: insertedDate
           changes:
             key:
               newValue: "{}"
               oldValue: "{}"
           sourceIpAddress: sourceIpAddress
-          documentId: ""
-          entityTypeId: entityTypeId
           entityId: entityId
           source: source
+          attributeKey: ""
           type: type
           message: message
           userId: userId
+          insertedDate: insertedDate
+          documentId: ""
+          entityTypeId: entityTypeId
           status: COMPLETE
       properties:
         next:
@@ -15502,19 +16408,20 @@ components:
     Activity:
       example:
         resource: resource
-        insertedDate: insertedDate
         changes:
           key:
             newValue: "{}"
             oldValue: "{}"
         sourceIpAddress: sourceIpAddress
-        documentId: ""
-        entityTypeId: entityTypeId
         entityId: entityId
         source: source
+        attributeKey: ""
         type: type
         message: message
         userId: userId
+        insertedDate: insertedDate
+        documentId: ""
+        entityTypeId: entityTypeId
         status: COMPLETE
       properties:
         resource:
@@ -15542,6 +16449,8 @@ components:
           type: string
         documentId:
           description: Document Identifier
+        attributeKey:
+          description: Document Attribute Key
         entityTypeId:
           description: Entity Type Identifier
           type: string
@@ -18156,7 +19065,7 @@ components:
           locale: locale
       properties:
         locale:
-          $ref: "#/components/schemas/Locale"
+          $ref: "#/components/schemas/LocaleInfo"
         insertDocuments:
           description: List of documents to insert
           items:
@@ -18609,6 +19518,8 @@ components:
       - CONTENT_KEY_VALUE
       - METADATA
       - MANUAL
+      - DATA_CLASSIFICATION
+      - MALWARE_SCAN
       type: string
     GetAttributeAllowedValuesResponse:
       example:
@@ -18633,12 +19544,13 @@ components:
         attribute:
           watermark:
             imageDocumentId: imageDocumentId
-            rotation: 0.8008281904610115
+            rotation: 6.027456183070403
             scale: FIT_BEST
+            fontSize: 0.8008281904610115
             text: text
             position:
-              yOffset: 1.4658129805029452
-              xOffset: 6.027456183070403
+              yOffset: 5.962133916683182
+              xOffset: 1.4658129805029452
               yAnchor: TOP
               xAnchor: LEFT
           dataType: STRING
@@ -18654,12 +19566,13 @@ components:
         attributes:
         - watermark:
             imageDocumentId: imageDocumentId
-            rotation: 0.8008281904610115
+            rotation: 6.027456183070403
             scale: FIT_BEST
+            fontSize: 0.8008281904610115
             text: text
             position:
-              yOffset: 1.4658129805029452
-              xOffset: 6.027456183070403
+              yOffset: 5.962133916683182
+              xOffset: 1.4658129805029452
               yAnchor: TOP
               xAnchor: LEFT
           dataType: STRING
@@ -18667,12 +19580,13 @@ components:
           key: key
         - watermark:
             imageDocumentId: imageDocumentId
-            rotation: 0.8008281904610115
+            rotation: 6.027456183070403
             scale: FIT_BEST
+            fontSize: 0.8008281904610115
             text: text
             position:
-              yOffset: 1.4658129805029452
-              xOffset: 6.027456183070403
+              yOffset: 5.962133916683182
+              xOffset: 1.4658129805029452
               yAnchor: TOP
               xAnchor: LEFT
           dataType: STRING
@@ -18692,12 +19606,13 @@ components:
       example:
         watermark:
           imageDocumentId: imageDocumentId
-          rotation: 0.8008281904610115
+          rotation: 6.027456183070403
           scale: FIT_BEST
+          fontSize: 0.8008281904610115
           text: text
           position:
-            yOffset: 1.4658129805029452
-            xOffset: 6.027456183070403
+            yOffset: 5.962133916683182
+            xOffset: 1.4658129805029452
             yAnchor: TOP
             xAnchor: LEFT
         dataType: STRING
@@ -18717,15 +19632,19 @@ components:
     Watermark:
       example:
         imageDocumentId: imageDocumentId
-        rotation: 0.8008281904610115
+        rotation: 6.027456183070403
         scale: FIT_BEST
+        fontSize: 0.8008281904610115
         text: text
         position:
-          yOffset: 1.4658129805029452
-          xOffset: 6.027456183070403
+          yOffset: 5.962133916683182
+          xOffset: 1.4658129805029452
           yAnchor: TOP
           xAnchor: LEFT
       properties:
+        fontSize:
+          description: Watermark Font Size
+          type: number
         text:
           description: Watermark text
           type: string
@@ -18742,8 +19661,8 @@ components:
       type: object
     WatermarkPosition:
       example:
-        yOffset: 1.4658129805029452
-        xOffset: 6.027456183070403
+        yOffset: 5.962133916683182
+        xOffset: 1.4658129805029452
         yAnchor: TOP
         xAnchor: LEFT
       properties:
@@ -18803,12 +19722,13 @@ components:
         attribute:
           watermark:
             imageDocumentId: imageDocumentId
-            rotation: 0.8008281904610115
+            rotation: 6.027456183070403
             scale: FIT_BEST
+            fontSize: 0.8008281904610115
             text: text
             position:
-              yOffset: 1.4658129805029452
-              xOffset: 6.027456183070403
+              yOffset: 5.962133916683182
+              xOffset: 1.4658129805029452
               yAnchor: TOP
               xAnchor: LEFT
           type: STANDARD
@@ -18822,12 +19742,13 @@ components:
       example:
         watermark:
           imageDocumentId: imageDocumentId
-          rotation: 0.8008281904610115
+          rotation: 6.027456183070403
           scale: FIT_BEST
+          fontSize: 0.8008281904610115
           text: text
           position:
-            yOffset: 1.4658129805029452
-            xOffset: 6.027456183070403
+            yOffset: 5.962133916683182
+            xOffset: 1.4658129805029452
             yAnchor: TOP
             xAnchor: LEFT
         type: STANDARD
@@ -18842,12 +19763,13 @@ components:
         attribute:
           watermark:
             imageDocumentId: imageDocumentId
-            rotation: 0.8008281904610115
+            rotation: 6.027456183070403
             scale: FIT_BEST
+            fontSize: 0.8008281904610115
             text: text
             position:
-              yOffset: 1.4658129805029452
-              xOffset: 6.027456183070403
+              yOffset: 5.962133916683182
+              xOffset: 1.4658129805029452
               yAnchor: TOP
               xAnchor: LEFT
           dataType: STRING
@@ -18863,12 +19785,13 @@ components:
       example:
         watermark:
           imageDocumentId: imageDocumentId
-          rotation: 0.8008281904610115
+          rotation: 6.027456183070403
           scale: FIT_BEST
+          fontSize: 0.8008281904610115
           text: text
           position:
-            yOffset: 1.4658129805029452
-            xOffset: 6.027456183070403
+            yOffset: 5.962133916683182
+            xOffset: 1.4658129805029452
             yAnchor: TOP
             xAnchor: LEFT
         dataType: STRING
@@ -19095,29 +20018,33 @@ components:
         - queueId: queueId
           metadata:
             key: metadata
-          insertedDate: insertedDate
+          retryCount: 0.8008281904610115
           type: ANTIVIRUS
           message: message
           userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
           parameters:
-            key: parameters
+            key: "{}"
           workflowId: workflowId
           startDate: startDate
-          completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
         - queueId: queueId
           metadata:
             key: metadata
-          insertedDate: insertedDate
+          retryCount: 0.8008281904610115
           type: ANTIVIRUS
           message: message
           userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
           parameters:
-            key: parameters
+            key: "{}"
           workflowId: workflowId
           startDate: startDate
-          completedDate: completedDate
           status: COMPLETE
           workflowStepId: workflowStepId
       properties:
@@ -19140,6 +20067,8 @@ components:
       - RUNNING
       - SKIPPED
       - FAILED_RETRY
+      - MAX_RETRIES_REACHED
+      - WAITING_FOR_RETRY
       type: string
     DocumentActionType:
       description: Type of the Document Action
@@ -19156,21 +20085,25 @@ components:
       - PDFEXPORT
       - EVENTBRIDGE
       - RESIZE
+      - DATA_CLASSIFICATION
+      - MALWARE_SCAN
       type: string
     DocumentAction:
       example:
         queueId: queueId
         metadata:
           key: metadata
-        insertedDate: insertedDate
+        retryCount: 0.8008281904610115
         type: ANTIVIRUS
         message: message
         userId: userId
+        completedDate: completedDate
+        maxRetries: 6.027456183070403
+        insertedDate: insertedDate
         parameters:
-          key: parameters
+          key: "{}"
         workflowId: workflowId
         startDate: startDate
-        completedDate: completedDate
         status: COMPLETE
         workflowStepId: workflowStepId
       properties:
@@ -19178,6 +20111,12 @@ components:
           $ref: "#/components/schemas/DocumentActionStatus"
         type:
           $ref: "#/components/schemas/DocumentActionType"
+        retryCount:
+          description: The number of times this action has already been attempted
+          type: number
+        maxRetries:
+          description: The maximum number of retry attempts allowed for this action
+          type: number
         queueId:
           description: Queue Id
           type: string
@@ -19204,7 +20143,7 @@ components:
           type: string
         parameters:
           additionalProperties:
-            type: string
+            type: object
           description: Action parameters
           type: object
         metadata:
@@ -19654,14 +20593,66 @@ components:
       type: object
     SetAntivirusRequest:
       type: object
-    SetAntivirusResponse:
+    SetMalwareScanRequest:
+      type: object
+    GetMalwareScanResponse:
       example:
-        message: message
+        next: next
+        malwareScanResults:
+        - scannedDate: scannedDate
+          s3version: s3version
+          scanStatus: MALICIOUS
+          scanEngine: CLAM_AV
+          scanMessage: scanMessage
+        - scannedDate: scannedDate
+          s3version: s3version
+          scanStatus: MALICIOUS
+          scanEngine: CLAM_AV
+          scanMessage: scanMessage
       properties:
-        message:
-          description: Antivirus processing message
+        next:
+          description: Next page of results token
+          type: string
+        malwareScanResults:
+          description: List of Malware Scan Results
+          items:
+            $ref: "#/components/schemas/MalwareScanResult"
+          type: array
+      type: object
+    MalwareScanResult:
+      example:
+        scannedDate: scannedDate
+        s3version: s3version
+        scanStatus: MALICIOUS
+        scanEngine: CLAM_AV
+        scanMessage: scanMessage
+      properties:
+        scanStatus:
+          $ref: "#/components/schemas/MalwareScanStatus"
+        scanEngine:
+          $ref: "#/components/schemas/MalwareEngine"
+        s3version:
+          description: Document storage version
+          type: string
+        scanMessage:
+          description: Document Malware scan message
+          type: string
+        scannedDate:
+          description: Scanned Timestamp
           type: string
       type: object
+    MalwareEngine:
+      description: Type of Malware Engine used
+      enum:
+      - CLAM_AV
+      type: string
+    MalwareScanStatus:
+      description: Document Malware scan result
+      enum:
+      - MALICIOUS
+      - ERROR
+      - CLEAN
+      type: string
     AddDocumentActionsRequest:
       example:
         actions:
@@ -19671,6 +20662,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -19687,6 +20689,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         - queueId: queueId
@@ -19695,6 +20698,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -19711,6 +20725,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
       properties:
@@ -19728,6 +20743,17 @@ components:
           mappingId: mappingId
           characterMax: characterMax
           ocrEngine: TESSERACT
+          ocrTextractQueries:
+          - pages:
+            - pages
+            - pages
+            alias: alias
+            text: text
+          - pages:
+            - pages
+            - pages
+            alias: alias
+            text: text
           ocrParseTypes: ocrParseTypes
           ocrOutputType: CSV
           addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -19744,6 +20770,7 @@ components:
           notificationText: notificationText
           eventBusName: eventBusName
           width: width
+          llmPromptEntityName: llmPromptEntityName
           notificationHtml: notificationHtml
           height: height
       properties:
@@ -19768,11 +20795,43 @@ components:
       enum:
       - CSV
       type: string
+    TextractQuery:
+      description: A question to ask Textract
+      example:
+        pages:
+        - pages
+        - pages
+        alias: alias
+        text: text
+      properties:
+        text:
+          description: Natural-language question
+          type: string
+        alias:
+          description: Label to identify this query in the result
+          type: string
+        pages:
+          description: Page selection
+          items:
+            type: string
+          type: array
+      type: object
     AddActionParameters:
       example:
         mappingId: mappingId
         characterMax: characterMax
         ocrEngine: TESSERACT
+        ocrTextractQueries:
+        - pages:
+          - pages
+          - pages
+          alias: alias
+          text: text
+        - pages:
+          - pages
+          - pages
+          alias: alias
+          text: text
         ocrParseTypes: ocrParseTypes
         ocrOutputType: CSV
         addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -19789,11 +20848,17 @@ components:
         notificationText: notificationText
         eventBusName: eventBusName
         width: width
+        llmPromptEntityName: llmPromptEntityName
         notificationHtml: notificationHtml
         height: height
       properties:
+        ocrTextractQueries:
+          items:
+            $ref: "#/components/schemas/TextractQuery"
+          type: array
         ocrParseTypes:
-          description: "OCR: Parse types - TEXT, FORMS, TABLES"
+          description: "OCR: Parse types - TEXT, FORMS, TABLES, QUERIES (must include\
+            \ ocrTextractQueries)"
           type: string
         ocrEngine:
           $ref: "#/components/schemas/OcrEngine"
@@ -19805,6 +20870,9 @@ components:
         addPdfDetectedCharactersAsText:
           description: "OCR: For the rewriting of the PDF document, converting any\
             \ image text to searchable text"
+          type: string
+        llmPromptEntityName:
+          description: "DATA_CLASSIFICATION: Set the LLM Prompt Entity Name"
           type: string
         url:
           description: "Webhook: Callback URL"
@@ -19869,9 +20937,14 @@ components:
         - TEXT
         - FORMS
         - TABLES
+        - QUERIES
       properties:
+        textractQueries:
+          items:
+            $ref: "#/components/schemas/TextractQuery"
+          type: array
         parseTypes:
-          description: "OCR Parse types - TEXT, FORMS, TABLES"
+          description: "OCR Parse types - TEXT, FORMS, TABLES, QUERIES"
           items:
             type: string
           type: array
@@ -20109,7 +21182,7 @@ components:
           description: Item Key of resource
           type: string
       type: object
-    Locale:
+    LocaleInfo:
       example:
         locale: locale
       properties:
@@ -20138,7 +21211,7 @@ components:
         locales:
           description: List of Locale
           items:
-            $ref: "#/components/schemas/Locale"
+            $ref: "#/components/schemas/LocaleInfo"
           type: array
       type: object
     GetLocaleResourceItemsResponse:
@@ -20292,10 +21365,18 @@ components:
       type: object
     OpaPolicyAttribute:
       example:
+        in:
+          stringValues:
+          - stringValues
+          - stringValues
         lt:
           numberValue: 5.962133916683182
         gte:
           numberValue: 1.4658129805029452
+        notIn:
+          stringValues:
+          - stringValues
+          - stringValues
         neq:
           stringValue: stringValue
         eq:
@@ -20325,6 +21406,10 @@ components:
           $ref: "#/components/schemas/OpaPolicyAttributeLte"
         neq:
           $ref: "#/components/schemas/OpaPolicyAttributeNeq"
+        in:
+          $ref: "#/components/schemas/OpaPolicyAttributeIn"
+        notIn:
+          $ref: "#/components/schemas/OpaPolicyAttributeNotIn"
       type: object
     OpaPolicyAttributeEq:
       description: Attribute EQ criteria
@@ -20392,6 +21477,32 @@ components:
           description: The value to compare the Attribute Key value to
           type: string
       type: object
+    OpaPolicyAttributeIn:
+      description: Attribute In to criteria
+      example:
+        stringValues:
+        - stringValues
+        - stringValues
+      properties:
+        stringValues:
+          description: The value to compare the Attribute Key value to
+          items:
+            type: string
+          type: array
+      type: object
+    OpaPolicyAttributeNotIn:
+      description: Attribute Not In to criteria
+      example:
+        stringValues:
+        - stringValues
+        - stringValues
+      properties:
+        stringValues:
+          description: The value to compare the Attribute Key value to
+          items:
+            type: string
+          type: array
+      type: object
     OpaPolicyAttributeInput:
       example:
         matchUsername: true
@@ -20400,24 +21511,45 @@ components:
           description: Match Input Username
           type: boolean
       type: object
-    OpaPolicyItemType:
-      description: Type of Opa Policy Item
-      enum:
-      - ALLOW
-      type: string
     OpaPolicyItem:
       example:
         anyRoles:
         - anyRoles
         - anyRoles
+        input:
+          resource:
+            in:
+            - in
+            - in
+            notIn:
+            - notIn
+            - notIn
+          httpMethod:
+            in:
+            - in
+            - in
+            notIn:
+            - notIn
+            - notIn
+        excludedRoles:
+        - excludedRoles
+        - excludedRoles
         allRoles:
         - allRoles
         - allRoles
         attributes:
-        - lt:
+        - in:
+            stringValues:
+            - stringValues
+            - stringValues
+          lt:
             numberValue: 5.962133916683182
           gte:
             numberValue: 1.4658129805029452
+          notIn:
+            stringValues:
+            - stringValues
+            - stringValues
           neq:
             stringValue: stringValue
           eq:
@@ -20431,10 +21563,18 @@ components:
           gt:
             numberValue: 6.027456183070403
           key: key
-        - lt:
+        - in:
+            stringValues:
+            - stringValues
+            - stringValues
+          lt:
             numberValue: 5.962133916683182
           gte:
             numberValue: 1.4658129805029452
+          notIn:
+            stringValues:
+            - stringValues
+            - stringValues
           neq:
             stringValue: stringValue
           eq:
@@ -20448,11 +21588,8 @@ components:
           gt:
             numberValue: 6.027456183070403
           key: key
-        type: ALLOW
         policy: policy
       properties:
-        type:
-          $ref: "#/components/schemas/OpaPolicyItemType"
         policy:
           description: OPA Policy in REGO format
           type: string
@@ -20466,9 +21603,78 @@ components:
           items:
             type: string
           type: array
+        excludedRoles:
+          description: User must NOT have these roles
+          items:
+            type: string
+          type: array
         attributes:
           items:
             $ref: "#/components/schemas/OpaPolicyAttribute"
+          type: array
+        input:
+          $ref: "#/components/schemas/OpaPolicyInput"
+      type: object
+    OpaPolicyInput:
+      example:
+        resource:
+          in:
+          - in
+          - in
+          notIn:
+          - notIn
+          - notIn
+        httpMethod:
+          in:
+          - in
+          - in
+          notIn:
+          - notIn
+          - notIn
+      properties:
+        httpMethod:
+          $ref: "#/components/schemas/OpaPolicyInputMethod"
+        resource:
+          $ref: "#/components/schemas/OpaPolicyInputResource"
+      type: object
+    OpaPolicyInputMethod:
+      example:
+        in:
+        - in
+        - in
+        notIn:
+        - notIn
+        - notIn
+      properties:
+        in:
+          description: List of HTTP Methods
+          items:
+            type: string
+          type: array
+        notIn:
+          description: List of HTTP Methods
+          items:
+            type: string
+          type: array
+      type: object
+    OpaPolicyInputResource:
+      example:
+        in:
+        - in
+        - in
+        notIn:
+        - notIn
+        - notIn
+      properties:
+        in:
+          description: List of Resources
+          items:
+            type: string
+          type: array
+        notIn:
+          description: List of Resources
+          items:
+            type: string
           type: array
       type: object
     SetOpaAccessPolicyItemsRequest:
@@ -20477,14 +21683,40 @@ components:
         - anyRoles:
           - anyRoles
           - anyRoles
+          input:
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
           allRoles:
           - allRoles
           - allRoles
           attributes:
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20498,10 +21730,18 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20515,19 +21755,44 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          type: ALLOW
           policy: policy
         - anyRoles:
           - anyRoles
           - anyRoles
+          input:
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
           allRoles:
           - allRoles
           - allRoles
           attributes:
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20541,10 +21806,18 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20558,7 +21831,6 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          type: ALLOW
           policy: policy
       properties:
         policyItems:
@@ -20566,6 +21838,8 @@ components:
           items:
             $ref: "#/components/schemas/OpaPolicyItem"
           type: array
+      required:
+      - policyItems
       type: object
     GetOpaAccessPolicyResponse:
       example:
@@ -20581,14 +21855,40 @@ components:
         - anyRoles:
           - anyRoles
           - anyRoles
+          input:
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
           allRoles:
           - allRoles
           - allRoles
           attributes:
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20602,10 +21902,18 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20619,19 +21927,44 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          type: ALLOW
           policy: policy
         - anyRoles:
           - anyRoles
           - anyRoles
+          input:
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
           allRoles:
           - allRoles
           - allRoles
           attributes:
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20645,10 +21978,18 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          - lt:
+          - in:
+              stringValues:
+              - stringValues
+              - stringValues
+            lt:
               numberValue: 5.962133916683182
             gte:
               numberValue: 1.4658129805029452
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
             neq:
               stringValue: stringValue
             eq:
@@ -20662,7 +22003,6 @@ components:
             gt:
               numberValue: 6.027456183070403
             key: key
-          type: ALLOW
           policy: policy
       properties:
         policyItems:
@@ -21545,16 +22885,13 @@ components:
         bucket:
           description: Name of the S3 bucket
           type: string
-      required:
-      - bucket
-      - repository
       type: object
-    AddOpenSearchSnapshotRepositoryResponse:
+    SetOpenSearchIndiceRequest:
       example:
-        message: message
+        indexName: indexName
       properties:
-        message:
-          description: Result message
+        indexName:
+          description: The name of the index to set for SiteId
           type: string
       type: object
     SetOpenSearchIndexRequest:
@@ -21564,7 +22901,7 @@ components:
           numberOfShards: numberOfShards
       properties:
         indexSettings:
-          $ref: "#/components/schemas/OpenSearchIndex"
+          $ref: "#/components/schemas/OpenSearchIndexSetting"
       type: object
     SetOpenSearchIndexResponse:
       example:
@@ -21638,6 +22975,63 @@ components:
             $ref: "#/components/schemas/SiteGroupPermissions"
           type: array
       type: object
+    GetOpenSearchIndiceResponse:
+      example:
+        indices:
+        - documentCount: documentCount
+          aliases:
+          - name: name
+          - name: name
+          numberOfReplicas: numberOfReplicas
+          numberOfShards: numberOfShards
+          name: name
+          storeSize: storeSize
+        - documentCount: documentCount
+          aliases:
+          - name: name
+          - name: name
+          numberOfReplicas: numberOfReplicas
+          numberOfShards: numberOfShards
+          name: name
+          storeSize: storeSize
+      properties:
+        indices:
+          description: OpenSearch Indices
+          items:
+            $ref: "#/components/schemas/OpenSearchIndex"
+          type: array
+      type: object
+    OpenSearchIndex:
+      example:
+        documentCount: documentCount
+        aliases:
+        - name: name
+        - name: name
+        numberOfReplicas: numberOfReplicas
+        numberOfShards: numberOfShards
+        name: name
+        storeSize: storeSize
+      properties:
+        numberOfReplicas:
+          description: The number of replicas per shard
+          type: string
+        numberOfShards:
+          description: The number of shards in index
+          type: string
+        documentCount:
+          description: The number of documents in index
+          type: string
+        storeSize:
+          description: The store size of the index
+          type: string
+        name:
+          description: Name of Index
+          type: string
+        aliases:
+          items:
+            $ref: "#/components/schemas/OpenSearchAlias"
+          type: array
+      type: object
     GetOpenSearchIndexResponse:
       example:
         indexSettings:
@@ -21645,9 +23039,9 @@ components:
           numberOfShards: numberOfShards
       properties:
         indexSettings:
-          $ref: "#/components/schemas/OpenSearchIndex"
+          $ref: "#/components/schemas/OpenSearchIndexSetting"
       type: object
-    OpenSearchIndex:
+    OpenSearchIndexSetting:
       example:
         numberOfReplicas: numberOfReplicas
         numberOfShards: numberOfShards
@@ -21659,8 +23053,19 @@ components:
           description: The number of shards in index
           type: string
       type: object
+    OpenSearchAlias:
+      example:
+        name: name
+      properties:
+        name:
+          description: Name of Alias
+          type: string
+      type: object
     GetSitesResponse:
       example:
+        roles:
+        - roles
+        - roles
         sites:
         - uploadEmail: uploadEmail
           permissions:
@@ -21703,6 +23108,10 @@ components:
         username:
           description: Username of request caller
           type: string
+        roles:
+          items:
+            type: string
+          type: array
         sites:
           description: List of sites
           items:
@@ -21828,6 +23237,17 @@ components:
               mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -21844,6 +23264,7 @@ components:
               notificationText: notificationText
               eventBusName: eventBusName
               width: width
+              llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
               height: height
           decisions:
@@ -21864,6 +23285,17 @@ components:
               mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -21880,6 +23312,7 @@ components:
               notificationText: notificationText
               eventBusName: eventBusName
               width: width
+              llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
               height: height
           decisions:
@@ -21925,6 +23358,17 @@ components:
               mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -21941,6 +23385,7 @@ components:
               notificationText: notificationText
               eventBusName: eventBusName
               width: width
+              llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
               height: height
           decisions:
@@ -21961,6 +23406,17 @@ components:
               mappingId: mappingId
               characterMax: characterMax
               ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
               ocrParseTypes: ocrParseTypes
               ocrOutputType: CSV
               addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -21977,6 +23433,7 @@ components:
               notificationText: notificationText
               eventBusName: eventBusName
               width: width
+              llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
               height: height
           decisions:
@@ -22019,6 +23476,17 @@ components:
             mappingId: mappingId
             characterMax: characterMax
             ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
             ocrParseTypes: ocrParseTypes
             ocrOutputType: CSV
             addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
@@ -22035,6 +23503,7 @@ components:
             notificationText: notificationText
             eventBusName: eventBusName
             width: width
+            llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
         decisions:
@@ -23669,6 +25138,20 @@ components:
       responses:
         default:
           statusCode: "201"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Methods: '''*'''
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
+            method.response.header.Access-Control-Allow-Origin: '''*'''
+      passthroughBehavior: when_no_templates
+      httpMethod: POST
+      type: aws_proxy
+      payloadFormatVersion: "1.0"
+    dataClassificationLambdaApi200:
+      uri:
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+      responses:
+        default:
+          statusCode: "200"
           responseParameters:
             method.response.header.Access-Control-Allow-Methods: '''*'''
             method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"

@@ -145,7 +145,8 @@ public class AdvancedDocumentSearchApiTest {
   public void queryFulltextTest() throws ApiException {
     Object body = null;
     String siteId = null;
-    QueryFulltextResponse response = api.queryFulltext(body, siteId);
+    String indexName = null;
+    QueryFulltextResponse response = api.queryFulltext(body, siteId, indexName);
     // TODO: test validations
   }
 
@@ -161,8 +162,10 @@ public class AdvancedDocumentSearchApiTest {
   public void searchFulltextTest() throws ApiException {
     DocumentFulltextRequest documentFulltextRequest = null;
     String siteId = null;
+    String indexName = null;
     String limit = null;
-    DocumentFulltextResponse response = api.searchFulltext(documentFulltextRequest, siteId, limit);
+    DocumentFulltextResponse response =
+        api.searchFulltext(documentFulltextRequest, siteId, indexName, limit);
     // TODO: test validations
   }
 

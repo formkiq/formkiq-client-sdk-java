@@ -23,7 +23,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.DocumentGenerateDataSource;
 import com.formkiq.client.model.DocumentGenerateInsertDocument;
 import com.formkiq.client.model.DocumentGenerateOutputType;
-import com.formkiq.client.model.Locale;
+import com.formkiq.client.model.LocaleInfo;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

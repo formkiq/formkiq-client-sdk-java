@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
 import com.formkiq.client.model.OcrConfig;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
@@ -343,7 +345,7 @@ public class UpdateConfigurationRequest {
     if (jsonElement == null) {
       if (!UpdateConfigurationRequest.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in UpdateConfigurationRequest is not found in the empty JSON string",
             UpdateConfigurationRequest.openapiRequiredFields.toString()));
       }
@@ -353,7 +355,7 @@ public class UpdateConfigurationRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!UpdateConfigurationRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `UpdateConfigurationRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -361,32 +363,32 @@ public class UpdateConfigurationRequest {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("chatGptApiKey") != null && !jsonObj.get("chatGptApiKey").isJsonNull())
         && !jsonObj.get("chatGptApiKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `chatGptApiKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("chatGptApiKey").toString()));
     }
     if ((jsonObj.get("maxContentLengthBytes") != null
         && !jsonObj.get("maxContentLengthBytes").isJsonNull())
         && !jsonObj.get("maxContentLengthBytes").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `maxContentLengthBytes` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("maxContentLengthBytes").toString()));
     }
     if ((jsonObj.get("maxDocuments") != null && !jsonObj.get("maxDocuments").isJsonNull())
         && !jsonObj.get("maxDocuments").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `maxDocuments` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("maxDocuments").toString()));
     }
     if ((jsonObj.get("maxWebhooks") != null && !jsonObj.get("maxWebhooks").isJsonNull())
         && !jsonObj.get("maxWebhooks").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `maxWebhooks` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("maxWebhooks").toString()));
     }
     if ((jsonObj.get("notificationEmail") != null && !jsonObj.get("notificationEmail").isJsonNull())
         && !jsonObj.get("notificationEmail").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationEmail` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationEmail").toString()));
     }

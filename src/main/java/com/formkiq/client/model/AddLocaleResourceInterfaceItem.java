@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.LocaleResourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * AddLocaleResourceInterfaceItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddLocaleResourceInterfaceItem {
   public static final String SERIALIZED_NAME_ITEM_TYPE = "itemType";
   @SerializedName(SERIALIZED_NAME_ITEM_TYPE)
@@ -208,7 +210,7 @@ public class AddLocaleResourceInterfaceItem {
       if (!AddLocaleResourceInterfaceItem.openapiRequiredFields.isEmpty()) { // has required fields
                                                                              // but JSON element is
                                                                              // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddLocaleResourceInterfaceItem is not found in the empty JSON string",
             AddLocaleResourceInterfaceItem.openapiRequiredFields.toString()));
       }
@@ -218,7 +220,7 @@ public class AddLocaleResourceInterfaceItem {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddLocaleResourceInterfaceItem.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddLocaleResourceInterfaceItem` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -227,21 +229,21 @@ public class AddLocaleResourceInterfaceItem {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : AddLocaleResourceInterfaceItem.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     // validate the required field `itemType`
     LocaleResourceType.validateJsonElement(jsonObj.get("itemType"));
     if (!jsonObj.get("localizedValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `localizedValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("localizedValue").toString()));
     }
     if (!jsonObj.get("interfaceKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `interfaceKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("interfaceKey").toString()));
     }

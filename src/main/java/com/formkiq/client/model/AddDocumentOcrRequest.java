@@ -21,8 +21,10 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
+import com.formkiq.client.model.TextractQuery;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,6 +55,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,9 +63,14 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddDocumentOcrRequest {
+  public static final String SERIALIZED_NAME_TEXTRACT_QUERIES = "textractQueries";
+  @SerializedName(SERIALIZED_NAME_TEXTRACT_QUERIES)
+  @javax.annotation.Nullable
+  private List<TextractQuery> textractQueries = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_PARSE_TYPES = "parseTypes";
   @SerializedName(SERIALIZED_NAME_PARSE_TYPES)
   @javax.annotation.Nullable
@@ -91,6 +99,35 @@ public class AddDocumentOcrRequest {
 
   public AddDocumentOcrRequest() {}
 
+  public AddDocumentOcrRequest textractQueries(
+      @javax.annotation.Nullable List<TextractQuery> textractQueries) {
+    this.textractQueries = textractQueries;
+    return this;
+  }
+
+  public AddDocumentOcrRequest addTextractQueriesItem(TextractQuery textractQueriesItem) {
+    if (this.textractQueries == null) {
+      this.textractQueries = new ArrayList<>();
+    }
+    this.textractQueries.add(textractQueriesItem);
+    return this;
+  }
+
+  /**
+   * Get textractQueries
+   * 
+   * @return textractQueries
+   */
+  @javax.annotation.Nullable
+  public List<TextractQuery> getTextractQueries() {
+    return textractQueries;
+  }
+
+  public void setTextractQueries(@javax.annotation.Nullable List<TextractQuery> textractQueries) {
+    this.textractQueries = textractQueries;
+  }
+
+
   public AddDocumentOcrRequest parseTypes(@javax.annotation.Nullable List<String> parseTypes) {
     this.parseTypes = parseTypes;
     return this;
@@ -105,7 +142,7 @@ public class AddDocumentOcrRequest {
   }
 
   /**
-   * OCR Parse types - TEXT, FORMS, TABLES
+   * OCR Parse types - TEXT, FORMS, TABLES, QUERIES
    * 
    * @return parseTypes
    */
@@ -213,7 +250,8 @@ public class AddDocumentOcrRequest {
       return false;
     }
     AddDocumentOcrRequest addDocumentOcrRequest = (AddDocumentOcrRequest) o;
-    return Objects.equals(this.parseTypes, addDocumentOcrRequest.parseTypes)
+    return Objects.equals(this.textractQueries, addDocumentOcrRequest.textractQueries)
+        && Objects.equals(this.parseTypes, addDocumentOcrRequest.parseTypes)
         && Objects.equals(this.addPdfDetectedCharactersAsText,
             addDocumentOcrRequest.addPdfDetectedCharactersAsText)
         && Objects.equals(this.ocrEngine, addDocumentOcrRequest.ocrEngine)
@@ -223,14 +261,15 @@ public class AddDocumentOcrRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(parseTypes, addPdfDetectedCharactersAsText, ocrEngine, ocrNumberOfPages,
-        ocrOutputType);
+    return Objects.hash(textractQueries, parseTypes, addPdfDetectedCharactersAsText, ocrEngine,
+        ocrNumberOfPages, ocrOutputType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentOcrRequest {\n");
+    sb.append("    textractQueries: ").append(toIndentedString(textractQueries)).append("\n");
     sb.append("    parseTypes: ").append(toIndentedString(parseTypes)).append("\n");
     sb.append("    addPdfDetectedCharactersAsText: ")
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
@@ -257,7 +296,7 @@ public class AddDocumentOcrRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("parseTypes",
+    openapiFields = new HashSet<String>(Arrays.asList("textractQueries", "parseTypes",
         "addPdfDetectedCharactersAsText", "ocrEngine", "ocrNumberOfPages", "ocrOutputType"));
 
     // a set of required properties/fields (JSON key names)
@@ -274,7 +313,7 @@ public class AddDocumentOcrRequest {
     if (jsonElement == null) {
       if (!AddDocumentOcrRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                     // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddDocumentOcrRequest is not found in the empty JSON string",
             AddDocumentOcrRequest.openapiRequiredFields.toString()));
       }
@@ -284,16 +323,32 @@ public class AddDocumentOcrRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddDocumentOcrRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddDocumentOcrRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if (jsonObj.get("textractQueries") != null && !jsonObj.get("textractQueries").isJsonNull()) {
+      JsonArray jsonArraytextractQueries = jsonObj.getAsJsonArray("textractQueries");
+      if (jsonArraytextractQueries != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("textractQueries").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
+              "Expected the field `textractQueries` to be an array in the JSON string but got `%s`",
+              jsonObj.get("textractQueries").toString()));
+        }
+
+        // validate the optional field `textractQueries` (array)
+        for (int i = 0; i < jsonArraytextractQueries.size(); i++) {
+          TextractQuery.validateJsonElement(jsonArraytextractQueries.get(i));
+        } ;
+      }
+    }
     // ensure the optional json data is an array if present
     if (jsonObj.get("parseTypes") != null && !jsonObj.get("parseTypes").isJsonNull()
         && !jsonObj.get("parseTypes").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `parseTypes` to be an array in the JSON string but got `%s`",
           jsonObj.get("parseTypes").toString()));
     }
@@ -303,7 +358,7 @@ public class AddDocumentOcrRequest {
     }
     if ((jsonObj.get("ocrNumberOfPages") != null && !jsonObj.get("ocrNumberOfPages").isJsonNull())
         && !jsonObj.get("ocrNumberOfPages").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `ocrNumberOfPages` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrNumberOfPages").toString()));
     }

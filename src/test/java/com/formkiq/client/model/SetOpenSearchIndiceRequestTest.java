@@ -20,48 +20,36 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for GetDocumentAttributeVersionsResponse
+ * Model tests for SetOpenSearchIndiceRequest
  */
-public class GetDocumentAttributeVersionsResponseTest {
-  private final GetDocumentAttributeVersionsResponse model =
-      new GetDocumentAttributeVersionsResponse();
+public class SetOpenSearchIndiceRequestTest {
+  private final SetOpenSearchIndiceRequest model = new SetOpenSearchIndiceRequest();
 
   /**
-   * Model tests for GetDocumentAttributeVersionsResponse
+   * Model tests for SetOpenSearchIndiceRequest
    */
   @Test
-  public void testGetDocumentAttributeVersionsResponse() {
-    // TODO: test GetDocumentAttributeVersionsResponse
+  public void testSetOpenSearchIndiceRequest() {
+    // TODO: test SetOpenSearchIndiceRequest
   }
 
   /**
-   * Test the property 'next'
+   * Test the property 'indexName'
    */
   @Test
-  public void nextTest() {
-    // TODO: test next
-  }
-
-  /**
-   * Test the property 'attributes'
-   */
-  @Test
-  public void attributesTest() {
-    // TODO: test attributes
+  public void indexNameTest() {
+    // TODO: test indexName
   }
 
 }

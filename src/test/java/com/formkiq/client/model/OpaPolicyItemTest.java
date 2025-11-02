@@ -21,7 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.OpaPolicyAttribute;
-import com.formkiq.client.model.OpaPolicyItemType;
+import com.formkiq.client.model.OpaPolicyInput;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,14 +49,6 @@ public class OpaPolicyItemTest {
   }
 
   /**
-   * Test the property 'type'
-   */
-  @Test
-  public void typeTest() {
-    // TODO: test type
-  }
-
-  /**
    * Test the property 'policy'
    */
   @Test
@@ -81,11 +73,27 @@ public class OpaPolicyItemTest {
   }
 
   /**
+   * Test the property 'excludedRoles'
+   */
+  @Test
+  public void excludedRolesTest() {
+    // TODO: test excludedRoles
+  }
+
+  /**
    * Test the property 'attributes'
    */
   @Test
   public void attributesTest() {
     // TODO: test attributes
+  }
+
+  /**
+   * Test the property 'input'
+   */
+  @Test
+  public void inputTest() {
+    // TODO: test input
   }
 
 }

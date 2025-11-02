@@ -21,15 +21,19 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
+import com.formkiq.client.model.TextractQuery;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,6 +55,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,9 +63,14 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddActionParameters {
+  public static final String SERIALIZED_NAME_OCR_TEXTRACT_QUERIES = "ocrTextractQueries";
+  @SerializedName(SERIALIZED_NAME_OCR_TEXTRACT_QUERIES)
+  @javax.annotation.Nullable
+  private List<TextractQuery> ocrTextractQueries = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_OCR_PARSE_TYPES = "ocrParseTypes";
   @SerializedName(SERIALIZED_NAME_OCR_PARSE_TYPES)
   @javax.annotation.Nullable
@@ -86,6 +96,11 @@ public class AddActionParameters {
   @SerializedName(SERIALIZED_NAME_ADD_PDF_DETECTED_CHARACTERS_AS_TEXT)
   @javax.annotation.Nullable
   private String addPdfDetectedCharactersAsText;
+
+  public static final String SERIALIZED_NAME_LLM_PROMPT_ENTITY_NAME = "llmPromptEntityName";
+  @SerializedName(SERIALIZED_NAME_LLM_PROMPT_ENTITY_NAME)
+  @javax.annotation.Nullable
+  private String llmPromptEntityName;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -271,13 +286,43 @@ public class AddActionParameters {
 
   public AddActionParameters() {}
 
+  public AddActionParameters ocrTextractQueries(
+      @javax.annotation.Nullable List<TextractQuery> ocrTextractQueries) {
+    this.ocrTextractQueries = ocrTextractQueries;
+    return this;
+  }
+
+  public AddActionParameters addOcrTextractQueriesItem(TextractQuery ocrTextractQueriesItem) {
+    if (this.ocrTextractQueries == null) {
+      this.ocrTextractQueries = new ArrayList<>();
+    }
+    this.ocrTextractQueries.add(ocrTextractQueriesItem);
+    return this;
+  }
+
+  /**
+   * Get ocrTextractQueries
+   * 
+   * @return ocrTextractQueries
+   */
+  @javax.annotation.Nullable
+  public List<TextractQuery> getOcrTextractQueries() {
+    return ocrTextractQueries;
+  }
+
+  public void setOcrTextractQueries(
+      @javax.annotation.Nullable List<TextractQuery> ocrTextractQueries) {
+    this.ocrTextractQueries = ocrTextractQueries;
+  }
+
+
   public AddActionParameters ocrParseTypes(@javax.annotation.Nullable String ocrParseTypes) {
     this.ocrParseTypes = ocrParseTypes;
     return this;
   }
 
   /**
-   * OCR: Parse types - TEXT, FORMS, TABLES
+   * OCR: Parse types - TEXT, FORMS, TABLES, QUERIES (must include ocrTextractQueries)
    * 
    * @return ocrParseTypes
    */
@@ -370,6 +415,27 @@ public class AddActionParameters {
   public void setAddPdfDetectedCharactersAsText(
       @javax.annotation.Nullable String addPdfDetectedCharactersAsText) {
     this.addPdfDetectedCharactersAsText = addPdfDetectedCharactersAsText;
+  }
+
+
+  public AddActionParameters llmPromptEntityName(
+      @javax.annotation.Nullable String llmPromptEntityName) {
+    this.llmPromptEntityName = llmPromptEntityName;
+    return this;
+  }
+
+  /**
+   * DATA_CLASSIFICATION: Set the LLM Prompt Entity Name
+   * 
+   * @return llmPromptEntityName
+   */
+  @javax.annotation.Nullable
+  public String getLlmPromptEntityName() {
+    return llmPromptEntityName;
+  }
+
+  public void setLlmPromptEntityName(@javax.annotation.Nullable String llmPromptEntityName) {
+    this.llmPromptEntityName = llmPromptEntityName;
   }
 
 
@@ -707,12 +773,14 @@ public class AddActionParameters {
       return false;
     }
     AddActionParameters addActionParameters = (AddActionParameters) o;
-    return Objects.equals(this.ocrParseTypes, addActionParameters.ocrParseTypes)
+    return Objects.equals(this.ocrTextractQueries, addActionParameters.ocrTextractQueries)
+        && Objects.equals(this.ocrParseTypes, addActionParameters.ocrParseTypes)
         && Objects.equals(this.ocrEngine, addActionParameters.ocrEngine)
         && Objects.equals(this.ocrOutputType, addActionParameters.ocrOutputType)
         && Objects.equals(this.ocrNumberOfPages, addActionParameters.ocrNumberOfPages)
         && Objects.equals(this.addPdfDetectedCharactersAsText,
             addActionParameters.addPdfDetectedCharactersAsText)
+        && Objects.equals(this.llmPromptEntityName, addActionParameters.llmPromptEntityName)
         && Objects.equals(this.url, addActionParameters.url)
         && Objects.equals(this.characterMax, addActionParameters.characterMax)
         && Objects.equals(this.engine, addActionParameters.engine)
@@ -733,22 +801,26 @@ public class AddActionParameters {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ocrParseTypes, ocrEngine, ocrOutputType, ocrNumberOfPages,
-        addPdfDetectedCharactersAsText, url, characterMax, engine, notificationType,
-        notificationToCc, notificationToBcc, notificationSubject, notificationText,
-        notificationHtml, tags, mappingId, eventBusName, width, height, path, outputType);
+    return Objects.hash(ocrTextractQueries, ocrParseTypes, ocrEngine, ocrOutputType,
+        ocrNumberOfPages, addPdfDetectedCharactersAsText, llmPromptEntityName, url, characterMax,
+        engine, notificationType, notificationToCc, notificationToBcc, notificationSubject,
+        notificationText, notificationHtml, tags, mappingId, eventBusName, width, height, path,
+        outputType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddActionParameters {\n");
+    sb.append("    ocrTextractQueries: ").append(toIndentedString(ocrTextractQueries)).append("\n");
     sb.append("    ocrParseTypes: ").append(toIndentedString(ocrParseTypes)).append("\n");
     sb.append("    ocrEngine: ").append(toIndentedString(ocrEngine)).append("\n");
     sb.append("    ocrOutputType: ").append(toIndentedString(ocrOutputType)).append("\n");
     sb.append("    ocrNumberOfPages: ").append(toIndentedString(ocrNumberOfPages)).append("\n");
     sb.append("    addPdfDetectedCharactersAsText: ")
         .append(toIndentedString(addPdfDetectedCharactersAsText)).append("\n");
+    sb.append("    llmPromptEntityName: ").append(toIndentedString(llmPromptEntityName))
+        .append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    characterMax: ").append(toIndentedString(characterMax)).append("\n");
     sb.append("    engine: ").append(toIndentedString(engine)).append("\n");
@@ -786,11 +858,12 @@ public class AddActionParameters {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("ocrParseTypes", "ocrEngine", "ocrOutputType",
-        "ocrNumberOfPages", "addPdfDetectedCharactersAsText", "url", "characterMax", "engine",
-        "notificationType", "notificationToCc", "notificationToBcc", "notificationSubject",
-        "notificationText", "notificationHtml", "tags", "mappingId", "eventBusName", "width",
-        "height", "path", "outputType"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("ocrTextractQueries", "ocrParseTypes", "ocrEngine", "ocrOutputType",
+            "ocrNumberOfPages", "addPdfDetectedCharactersAsText", "llmPromptEntityName", "url",
+            "characterMax", "engine", "notificationType", "notificationToCc", "notificationToBcc",
+            "notificationSubject", "notificationText", "notificationHtml", "tags", "mappingId",
+            "eventBusName", "width", "height", "path", "outputType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -806,7 +879,7 @@ public class AddActionParameters {
     if (jsonElement == null) {
       if (!AddActionParameters.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                   // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddActionParameters is not found in the empty JSON string",
             AddActionParameters.openapiRequiredFields.toString()));
       }
@@ -816,15 +889,32 @@ public class AddActionParameters {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddActionParameters.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddActionParameters` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if (jsonObj.get("ocrTextractQueries") != null
+        && !jsonObj.get("ocrTextractQueries").isJsonNull()) {
+      JsonArray jsonArrayocrTextractQueries = jsonObj.getAsJsonArray("ocrTextractQueries");
+      if (jsonArrayocrTextractQueries != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("ocrTextractQueries").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
+              "Expected the field `ocrTextractQueries` to be an array in the JSON string but got `%s`",
+              jsonObj.get("ocrTextractQueries").toString()));
+        }
+
+        // validate the optional field `ocrTextractQueries` (array)
+        for (int i = 0; i < jsonArrayocrTextractQueries.size(); i++) {
+          TextractQuery.validateJsonElement(jsonArrayocrTextractQueries.get(i));
+        } ;
+      }
+    }
     if ((jsonObj.get("ocrParseTypes") != null && !jsonObj.get("ocrParseTypes").isJsonNull())
         && !jsonObj.get("ocrParseTypes").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `ocrParseTypes` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrParseTypes").toString()));
     }
@@ -838,32 +928,39 @@ public class AddActionParameters {
     }
     if ((jsonObj.get("ocrNumberOfPages") != null && !jsonObj.get("ocrNumberOfPages").isJsonNull())
         && !jsonObj.get("ocrNumberOfPages").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `ocrNumberOfPages` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("ocrNumberOfPages").toString()));
     }
     if ((jsonObj.get("addPdfDetectedCharactersAsText") != null
         && !jsonObj.get("addPdfDetectedCharactersAsText").isJsonNull())
         && !jsonObj.get("addPdfDetectedCharactersAsText").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `addPdfDetectedCharactersAsText` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("addPdfDetectedCharactersAsText").toString()));
     }
+    if ((jsonObj.get("llmPromptEntityName") != null
+        && !jsonObj.get("llmPromptEntityName").isJsonNull())
+        && !jsonObj.get("llmPromptEntityName").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `llmPromptEntityName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("llmPromptEntityName").toString()));
+    }
     if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull())
         && !jsonObj.get("url").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `url` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("url").toString()));
     }
     if ((jsonObj.get("characterMax") != null && !jsonObj.get("characterMax").isJsonNull())
         && !jsonObj.get("characterMax").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `characterMax` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("characterMax").toString()));
     }
     if ((jsonObj.get("engine") != null && !jsonObj.get("engine").isJsonNull())
         && !jsonObj.get("engine").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `engine` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("engine").toString()));
     }
@@ -873,7 +970,7 @@ public class AddActionParameters {
     }
     if ((jsonObj.get("notificationType") != null && !jsonObj.get("notificationType").isJsonNull())
         && !jsonObj.get("notificationType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationType").toString()));
     }
@@ -883,74 +980,74 @@ public class AddActionParameters {
     }
     if ((jsonObj.get("notificationToCc") != null && !jsonObj.get("notificationToCc").isJsonNull())
         && !jsonObj.get("notificationToCc").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationToCc` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationToCc").toString()));
     }
     if ((jsonObj.get("notificationToBcc") != null && !jsonObj.get("notificationToBcc").isJsonNull())
         && !jsonObj.get("notificationToBcc").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationToBcc` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationToBcc").toString()));
     }
     if ((jsonObj.get("notificationSubject") != null
         && !jsonObj.get("notificationSubject").isJsonNull())
         && !jsonObj.get("notificationSubject").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationSubject` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationSubject").toString()));
     }
     if ((jsonObj.get("notificationText") != null && !jsonObj.get("notificationText").isJsonNull())
         && !jsonObj.get("notificationText").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationText` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationText").toString()));
     }
     if ((jsonObj.get("notificationHtml") != null && !jsonObj.get("notificationHtml").isJsonNull())
         && !jsonObj.get("notificationHtml").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `notificationHtml` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationHtml").toString()));
     }
     if ((jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull())
         && !jsonObj.get("tags").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `tags` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("tags").toString()));
     }
     if ((jsonObj.get("mappingId") != null && !jsonObj.get("mappingId").isJsonNull())
         && !jsonObj.get("mappingId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `mappingId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("mappingId").toString()));
     }
     if ((jsonObj.get("eventBusName") != null && !jsonObj.get("eventBusName").isJsonNull())
         && !jsonObj.get("eventBusName").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `eventBusName` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("eventBusName").toString()));
     }
     if ((jsonObj.get("width") != null && !jsonObj.get("width").isJsonNull())
         && !jsonObj.get("width").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `width` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("width").toString()));
     }
     if ((jsonObj.get("height") != null && !jsonObj.get("height").isJsonNull())
         && !jsonObj.get("height").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `height` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("height").toString()));
     }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
     if ((jsonObj.get("outputType") != null && !jsonObj.get("outputType").isJsonNull())
         && !jsonObj.get("outputType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `outputType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("outputType").toString()));
     }

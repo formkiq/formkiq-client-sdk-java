@@ -21,13 +21,16 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,40 +52,49 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
 /**
- * SetAntivirusResponse
+ * Attribute In to criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
-public class SetAntivirusResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
+public class OpaPolicyAttributeIn {
+  public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
+  @SerializedName(SERIALIZED_NAME_STRING_VALUES)
   @javax.annotation.Nullable
-  private String message;
+  private List<String> stringValues = new ArrayList<>();
 
-  public SetAntivirusResponse() {}
+  public OpaPolicyAttributeIn() {}
 
-  public SetAntivirusResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public OpaPolicyAttributeIn stringValues(@javax.annotation.Nullable List<String> stringValues) {
+    this.stringValues = stringValues;
+    return this;
+  }
+
+  public OpaPolicyAttributeIn addStringValuesItem(String stringValuesItem) {
+    if (this.stringValues == null) {
+      this.stringValues = new ArrayList<>();
+    }
+    this.stringValues.add(stringValuesItem);
     return this;
   }
 
   /**
-   * Antivirus processing message
+   * The value to compare the Attribute Key value to
    * 
-   * @return message
+   * @return stringValues
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public List<String> getStringValues() {
+    return stringValues;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setStringValues(@javax.annotation.Nullable List<String> stringValues) {
+    this.stringValues = stringValues;
   }
 
 
@@ -95,20 +107,20 @@ public class SetAntivirusResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SetAntivirusResponse setAntivirusResponse = (SetAntivirusResponse) o;
-    return Objects.equals(this.message, setAntivirusResponse.message);
+    OpaPolicyAttributeIn opaPolicyAttributeIn = (OpaPolicyAttributeIn) o;
+    return Objects.equals(this.stringValues, opaPolicyAttributeIn.stringValues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(stringValues);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SetAntivirusResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class OpaPolicyAttributeIn {\n");
+    sb.append("    stringValues: ").append(toIndentedString(stringValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +141,7 @@ public class SetAntivirusResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("message"));
+    openapiFields = new HashSet<String>(Arrays.asList("stringValues"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -139,33 +151,34 @@ public class SetAntivirusResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SetAntivirusResponse
+   * @throws IOException if the JSON Element is invalid with respect to OpaPolicyAttributeIn
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!SetAntivirusResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+      if (!OpaPolicyAttributeIn.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                    // element is null
-        throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in SetAntivirusResponse is not found in the empty JSON string",
-            SetAntivirusResponse.openapiRequiredFields.toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field(s) %s in OpaPolicyAttributeIn is not found in the empty JSON string",
+            OpaPolicyAttributeIn.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!SetAntivirusResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `SetAntivirusResponse` properties. JSON: %s",
+      if (!OpaPolicyAttributeIn.openapiFields.contains(entry.getKey())) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The field `%s` in the JSON string is not defined in the `OpaPolicyAttributeIn` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("stringValues") != null && !jsonObj.get("stringValues").isJsonNull()
+        && !jsonObj.get("stringValues").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `stringValues` to be an array in the JSON string but got `%s`",
+          jsonObj.get("stringValues").toString()));
     }
   }
 
@@ -173,22 +186,22 @@ public class SetAntivirusResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!SetAntivirusResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'SetAntivirusResponse' and its subtypes
+      if (!OpaPolicyAttributeIn.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'OpaPolicyAttributeIn' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<SetAntivirusResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(SetAntivirusResponse.class));
+      final TypeAdapter<OpaPolicyAttributeIn> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(OpaPolicyAttributeIn.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<SetAntivirusResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<OpaPolicyAttributeIn>() {
         @Override
-        public void write(JsonWriter out, SetAntivirusResponse value) throws IOException {
+        public void write(JsonWriter out, OpaPolicyAttributeIn value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public SetAntivirusResponse read(JsonReader in) throws IOException {
+        public OpaPolicyAttributeIn read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -199,18 +212,18 @@ public class SetAntivirusResponse {
   }
 
   /**
-   * Create an instance of SetAntivirusResponse given an JSON string
+   * Create an instance of OpaPolicyAttributeIn given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SetAntivirusResponse
-   * @throws IOException if the JSON string is invalid with respect to SetAntivirusResponse
+   * @return An instance of OpaPolicyAttributeIn
+   * @throws IOException if the JSON string is invalid with respect to OpaPolicyAttributeIn
    */
-  public static SetAntivirusResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SetAntivirusResponse.class);
+  public static OpaPolicyAttributeIn fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OpaPolicyAttributeIn.class);
   }
 
   /**
-   * Convert an instance of SetAntivirusResponse to an JSON string
+   * Convert an instance of OpaPolicyAttributeIn to an JSON string
    *
    * @return JSON string
    */

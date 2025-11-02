@@ -21,13 +21,17 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
+import com.formkiq.client.model.OpenSearchAlias;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -56,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * OpenSearchIndex
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class OpenSearchIndex {
   public static final String SERIALIZED_NAME_NUMBER_OF_REPLICAS = "numberOfReplicas";
   @SerializedName(SERIALIZED_NAME_NUMBER_OF_REPLICAS)
@@ -68,6 +73,26 @@ public class OpenSearchIndex {
   @SerializedName(SERIALIZED_NAME_NUMBER_OF_SHARDS)
   @javax.annotation.Nullable
   private String numberOfShards;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_COUNT = "documentCount";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_COUNT)
+  @javax.annotation.Nullable
+  private String documentCount;
+
+  public static final String SERIALIZED_NAME_STORE_SIZE = "storeSize";
+  @SerializedName(SERIALIZED_NAME_STORE_SIZE)
+  @javax.annotation.Nullable
+  private String storeSize;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_ALIASES = "aliases";
+  @SerializedName(SERIALIZED_NAME_ALIASES)
+  @javax.annotation.Nullable
+  private List<OpenSearchAlias> aliases = new ArrayList<>();
 
   public OpenSearchIndex() {}
 
@@ -111,6 +136,94 @@ public class OpenSearchIndex {
   }
 
 
+  public OpenSearchIndex documentCount(@javax.annotation.Nullable String documentCount) {
+    this.documentCount = documentCount;
+    return this;
+  }
+
+  /**
+   * The number of documents in index
+   * 
+   * @return documentCount
+   */
+  @javax.annotation.Nullable
+  public String getDocumentCount() {
+    return documentCount;
+  }
+
+  public void setDocumentCount(@javax.annotation.Nullable String documentCount) {
+    this.documentCount = documentCount;
+  }
+
+
+  public OpenSearchIndex storeSize(@javax.annotation.Nullable String storeSize) {
+    this.storeSize = storeSize;
+    return this;
+  }
+
+  /**
+   * The store size of the index
+   * 
+   * @return storeSize
+   */
+  @javax.annotation.Nullable
+  public String getStoreSize() {
+    return storeSize;
+  }
+
+  public void setStoreSize(@javax.annotation.Nullable String storeSize) {
+    this.storeSize = storeSize;
+  }
+
+
+  public OpenSearchIndex name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of Index
+   * 
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public OpenSearchIndex aliases(@javax.annotation.Nullable List<OpenSearchAlias> aliases) {
+    this.aliases = aliases;
+    return this;
+  }
+
+  public OpenSearchIndex addAliasesItem(OpenSearchAlias aliasesItem) {
+    if (this.aliases == null) {
+      this.aliases = new ArrayList<>();
+    }
+    this.aliases.add(aliasesItem);
+    return this;
+  }
+
+  /**
+   * Get aliases
+   * 
+   * @return aliases
+   */
+  @javax.annotation.Nullable
+  public List<OpenSearchAlias> getAliases() {
+    return aliases;
+  }
+
+  public void setAliases(@javax.annotation.Nullable List<OpenSearchAlias> aliases) {
+    this.aliases = aliases;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -122,12 +235,16 @@ public class OpenSearchIndex {
     }
     OpenSearchIndex openSearchIndex = (OpenSearchIndex) o;
     return Objects.equals(this.numberOfReplicas, openSearchIndex.numberOfReplicas)
-        && Objects.equals(this.numberOfShards, openSearchIndex.numberOfShards);
+        && Objects.equals(this.numberOfShards, openSearchIndex.numberOfShards)
+        && Objects.equals(this.documentCount, openSearchIndex.documentCount)
+        && Objects.equals(this.storeSize, openSearchIndex.storeSize)
+        && Objects.equals(this.name, openSearchIndex.name)
+        && Objects.equals(this.aliases, openSearchIndex.aliases);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numberOfReplicas, numberOfShards);
+    return Objects.hash(numberOfReplicas, numberOfShards, documentCount, storeSize, name, aliases);
   }
 
   @Override
@@ -136,6 +253,10 @@ public class OpenSearchIndex {
     sb.append("class OpenSearchIndex {\n");
     sb.append("    numberOfReplicas: ").append(toIndentedString(numberOfReplicas)).append("\n");
     sb.append("    numberOfShards: ").append(toIndentedString(numberOfShards)).append("\n");
+    sb.append("    documentCount: ").append(toIndentedString(documentCount)).append("\n");
+    sb.append("    storeSize: ").append(toIndentedString(storeSize)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,7 +277,8 @@ public class OpenSearchIndex {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("numberOfReplicas", "numberOfShards"));
+    openapiFields = new HashSet<String>(Arrays.asList("numberOfReplicas", "numberOfShards",
+        "documentCount", "storeSize", "name", "aliases"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -172,7 +294,7 @@ public class OpenSearchIndex {
     if (jsonElement == null) {
       if (!OpenSearchIndex.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                               // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in OpenSearchIndex is not found in the empty JSON string",
             OpenSearchIndex.openapiRequiredFields.toString()));
       }
@@ -182,7 +304,7 @@ public class OpenSearchIndex {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpenSearchIndex.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpenSearchIndex` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -190,15 +312,49 @@ public class OpenSearchIndex {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("numberOfReplicas") != null && !jsonObj.get("numberOfReplicas").isJsonNull())
         && !jsonObj.get("numberOfReplicas").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `numberOfReplicas` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("numberOfReplicas").toString()));
     }
     if ((jsonObj.get("numberOfShards") != null && !jsonObj.get("numberOfShards").isJsonNull())
         && !jsonObj.get("numberOfShards").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `numberOfShards` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("numberOfShards").toString()));
+    }
+    if ((jsonObj.get("documentCount") != null && !jsonObj.get("documentCount").isJsonNull())
+        && !jsonObj.get("documentCount").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `documentCount` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("documentCount").toString()));
+    }
+    if ((jsonObj.get("storeSize") != null && !jsonObj.get("storeSize").isJsonNull())
+        && !jsonObj.get("storeSize").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `storeSize` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("storeSize").toString()));
+    }
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
+    }
+    if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull()) {
+      JsonArray jsonArrayaliases = jsonObj.getAsJsonArray("aliases");
+      if (jsonArrayaliases != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("aliases").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
+              "Expected the field `aliases` to be an array in the JSON string but got `%s`",
+              jsonObj.get("aliases").toString()));
+        }
+
+        // validate the optional field `aliases` (array)
+        for (int i = 0; i < jsonArrayaliases.size(); i++) {
+          OpenSearchAlias.validateJsonElement(jsonArrayaliases.get(i));
+        } ;
+      }
     }
   }
 

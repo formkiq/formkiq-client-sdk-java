@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.Error;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * ErrorsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class ErrorsResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -156,7 +158,7 @@ public class ErrorsResponse {
     if (jsonElement == null) {
       if (!ErrorsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                              // is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in ErrorsResponse is not found in the empty JSON string",
             ErrorsResponse.openapiRequiredFields.toString()));
       }
@@ -166,7 +168,7 @@ public class ErrorsResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!ErrorsResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `ErrorsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -177,7 +179,7 @@ public class ErrorsResponse {
       if (jsonArrayerrors != null) {
         // ensure the json data is an array
         if (!jsonObj.get("errors").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `errors` to be an array in the JSON string but got `%s`",
               jsonObj.get("errors").toString()));
         }

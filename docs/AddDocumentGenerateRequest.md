@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**locale** | [**Locale**](Locale.md) |  |  [optional] |
+|**locale** | [**LocaleInfo**](LocaleInfo.md) |  |  [optional] |
 |**insertDocuments** | [**List&lt;DocumentGenerateInsertDocument&gt;**](DocumentGenerateInsertDocument.md) | List of documents to insert |  [optional] |
 |**datasources** | [**List&lt;DocumentGenerateDataSource&gt;**](DocumentGenerateDataSource.md) | List of data sources |  [optional] |
 |**outputType** | **DocumentGenerateOutputType** |  |  [optional] |

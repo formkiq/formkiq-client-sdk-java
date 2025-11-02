@@ -31,25 +31,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SetAntivirusResponse
+ * Model tests for OpenSearchAlias
  */
-public class SetAntivirusResponseTest {
-  private final SetAntivirusResponse model = new SetAntivirusResponse();
+public class OpenSearchAliasTest {
+  private final OpenSearchAlias model = new OpenSearchAlias();
 
   /**
-   * Model tests for SetAntivirusResponse
+   * Model tests for OpenSearchAlias
    */
   @Test
-  public void testSetAntivirusResponse() {
-    // TODO: test SetAntivirusResponse
+  public void testOpenSearchAlias() {
+    // TODO: test OpenSearchAlias
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'name'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void nameTest() {
+    // TODO: test name
   }
 
 }

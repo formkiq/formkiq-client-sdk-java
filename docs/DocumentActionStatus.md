@@ -19,5 +19,9 @@
 
 * `FAILED_RETRY` (value: `"FAILED_RETRY"`)
 
+* `MAX_RETRIES_REACHED` (value: `"MAX_RETRIES_REACHED"`)
+
+* `WAITING_FOR_RETRY` (value: `"WAITING_FOR_RETRY"`)
+
 
 

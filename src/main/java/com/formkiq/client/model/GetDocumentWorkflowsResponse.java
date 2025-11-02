@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.DocumentWorkflow;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentWorkflowsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class GetDocumentWorkflowsResponse {
   public static final String SERIALIZED_NAME_WORKFLOWS = "workflows";
   @SerializedName(SERIALIZED_NAME_WORKFLOWS)
@@ -185,7 +187,7 @@ public class GetDocumentWorkflowsResponse {
       if (!GetDocumentWorkflowsResponse.openapiRequiredFields.isEmpty()) { // has required fields
                                                                            // but JSON element is
                                                                            // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in GetDocumentWorkflowsResponse is not found in the empty JSON string",
             GetDocumentWorkflowsResponse.openapiRequiredFields.toString()));
       }
@@ -195,7 +197,7 @@ public class GetDocumentWorkflowsResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetDocumentWorkflowsResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetDocumentWorkflowsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -206,7 +208,7 @@ public class GetDocumentWorkflowsResponse {
       if (jsonArrayworkflows != null) {
         // ensure the json data is an array
         if (!jsonObj.get("workflows").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `workflows` to be an array in the JSON string but got `%s`",
               jsonObj.get("workflows").toString()));
         }
@@ -219,7 +221,7 @@ public class GetDocumentWorkflowsResponse {
     }
     if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
         && !jsonObj.get("next").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }

@@ -36,6 +36,7 @@ import java.io.IOException;
 
 import com.formkiq.client.model.GetActivitesResponse;
 import com.formkiq.client.model.GetUserActivitesResponse;
+import java.time.OffsetDateTime;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -306,6 +307,9 @@ public class UserActivitiesApi {
    * @param entityTypeId EntityType Identifier (optional)
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param userId Fetch specific user activities (optional)
@@ -333,6 +337,8 @@ public class UserActivitiesApi {
   public okhttp3.Call getResourceActivitiesCall(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId, final ApiCallback _callback) throws ApiException {
     String basePath = null;
@@ -379,6 +385,18 @@ public class UserActivitiesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("entityId", entityId));
     }
 
+    if (start != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("start", start));
+    }
+
+    if (end != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("end", end));
+    }
+
+    if (sort != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+    }
+
     if (next != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
     }
@@ -414,11 +432,12 @@ public class UserActivitiesApi {
   private okhttp3.Call getResourceActivitiesValidateBeforeCall(
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String documentId,
       @javax.annotation.Nullable String entityTypeId, @javax.annotation.Nullable String namespace,
-      @javax.annotation.Nullable String entityId, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String userId,
-      final ApiCallback _callback) throws ApiException {
-    return getResourceActivitiesCall(siteId, documentId, entityTypeId, namespace, entityId, next,
-        limit, userId, _callback);
+      @javax.annotation.Nullable String entityId, @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String userId, final ApiCallback _callback) throws ApiException {
+    return getResourceActivitiesCall(siteId, documentId, entityTypeId, namespace, entityId, start,
+        end, sort, next, limit, userId, _callback);
 
   }
 
@@ -430,6 +449,9 @@ public class UserActivitiesApi {
    * @param entityTypeId EntityType Identifier (optional)
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param userId Fetch specific user activities (optional)
@@ -457,10 +479,12 @@ public class UserActivitiesApi {
   public GetActivitesResponse getResourceActivities(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId) throws ApiException {
     ApiResponse<GetActivitesResponse> localVarResp = getResourceActivitiesWithHttpInfo(siteId,
-        documentId, entityTypeId, namespace, entityId, next, limit, userId);
+        documentId, entityTypeId, namespace, entityId, start, end, sort, next, limit, userId);
     return localVarResp.getData();
   }
 
@@ -472,6 +496,9 @@ public class UserActivitiesApi {
    * @param entityTypeId EntityType Identifier (optional)
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param userId Fetch specific user activities (optional)
@@ -499,11 +526,12 @@ public class UserActivitiesApi {
   public ApiResponse<GetActivitesResponse> getResourceActivitiesWithHttpInfo(
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String documentId,
       @javax.annotation.Nullable String entityTypeId, @javax.annotation.Nullable String namespace,
-      @javax.annotation.Nullable String entityId, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String userId)
-      throws ApiException {
+      @javax.annotation.Nullable String entityId, @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String userId) throws ApiException {
     okhttp3.Call localVarCall = getResourceActivitiesValidateBeforeCall(siteId, documentId,
-        entityTypeId, namespace, entityId, next, limit, userId, null);
+        entityTypeId, namespace, entityId, start, end, sort, next, limit, userId, null);
     Type localVarReturnType = new TypeToken<GetActivitesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -516,6 +544,9 @@ public class UserActivitiesApi {
    * @param entityTypeId EntityType Identifier (optional)
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param userId Fetch specific user activities (optional)
@@ -543,12 +574,14 @@ public class UserActivitiesApi {
   public okhttp3.Call getResourceActivitiesAsync(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId, final ApiCallback<GetActivitesResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall = getResourceActivitiesValidateBeforeCall(siteId, documentId,
-        entityTypeId, namespace, entityId, next, limit, userId, _callback);
+        entityTypeId, namespace, entityId, start, end, sort, next, limit, userId, _callback);
     Type localVarReturnType = new TypeToken<GetActivitesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

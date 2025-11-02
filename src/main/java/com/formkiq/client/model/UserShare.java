@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.UserSharePermission;
 import com.formkiq.client.model.UserSharePermissionType;
 import com.google.gson.TypeAdapter;
@@ -53,6 +54,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * UserShare
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class UserShare {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -399,7 +401,7 @@ public class UserShare {
     if (jsonElement == null) {
       if (!UserShare.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                         // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in UserShare is not found in the empty JSON string",
             UserShare.openapiRequiredFields.toString()));
       }
@@ -409,7 +411,7 @@ public class UserShare {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!UserShare.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `UserShare` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -417,19 +419,19 @@ public class UserShare {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("group") != null && !jsonObj.get("group").isJsonNull())
         && !jsonObj.get("group").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `group` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("group").toString()));
     }
     if ((jsonObj.get("shareKey") != null && !jsonObj.get("shareKey").isJsonNull())
         && !jsonObj.get("shareKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `shareKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("shareKey").toString()));
     }
     if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
         && !jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
     }
@@ -440,25 +442,25 @@ public class UserShare {
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()
         && !jsonObj.get("permissions").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `permissions` to be an array in the JSON string but got `%s`",
           jsonObj.get("permissions").toString()));
     }
     if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
         && !jsonObj.get("siteId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `siteId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("siteId").toString()));
     }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }

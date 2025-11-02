@@ -48,6 +48,14 @@ public class WatermarkTest {
   }
 
   /**
+   * Test the property 'fontSize'
+   */
+  @Test
+  public void fontSizeTest() {
+    // TODO: test fontSize
+  }
+
+  /**
    * Test the property 'text'
    */
   @Test

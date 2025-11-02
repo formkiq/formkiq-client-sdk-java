@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,40 +50,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
 /**
- * Locale
+ * OpenSearchAlias
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
-public class Locale {
-  public static final String SERIALIZED_NAME_LOCALE = "locale";
-  @SerializedName(SERIALIZED_NAME_LOCALE)
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
+public class OpenSearchAlias {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
-  private String locale;
+  private String name;
 
-  public Locale() {}
+  public OpenSearchAlias() {}
 
-  public Locale locale(@javax.annotation.Nullable String locale) {
-    this.locale = locale;
+  public OpenSearchAlias name(@javax.annotation.Nullable String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Name of Locale
+   * Name of Alias
    * 
-   * @return locale
+   * @return name
    */
   @javax.annotation.Nullable
-  public String getLocale() {
-    return locale;
+  public String getName() {
+    return name;
   }
 
-  public void setLocale(@javax.annotation.Nullable String locale) {
-    this.locale = locale;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
   }
 
 
@@ -95,20 +97,20 @@ public class Locale {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Locale locale = (Locale) o;
-    return Objects.equals(this.locale, locale.locale);
+    OpenSearchAlias openSearchAlias = (OpenSearchAlias) o;
+    return Objects.equals(this.name, openSearchAlias.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Locale {\n");
-    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("class OpenSearchAlias {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +131,7 @@ public class Locale {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("locale"));
+    openapiFields = new HashSet<String>(Arrays.asList("name"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -139,32 +141,33 @@ public class Locale {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Locale
+   * @throws IOException if the JSON Element is invalid with respect to OpenSearchAlias
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!Locale.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-        throw new IllegalArgumentException(String.format(
-            "The required field(s) %s in Locale is not found in the empty JSON string",
-            Locale.openapiRequiredFields.toString()));
+      if (!OpenSearchAlias.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                              // element is null
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field(s) %s in OpenSearchAlias is not found in the empty JSON string",
+            OpenSearchAlias.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!Locale.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
-            "The field `%s` in the JSON string is not defined in the `Locale` properties. JSON: %s",
+      if (!OpenSearchAlias.openapiFields.contains(entry.getKey())) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The field `%s` in the JSON string is not defined in the `OpenSearchAlias` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull())
-        && !jsonObj.get("locale").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
-          "Expected the field `locale` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("locale").toString()));
+    if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+        && !jsonObj.get("name").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("name").toString()));
     }
   }
 
@@ -172,22 +175,22 @@ public class Locale {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!Locale.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'Locale' and its subtypes
+      if (!OpenSearchAlias.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'OpenSearchAlias' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<Locale> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(Locale.class));
+      final TypeAdapter<OpenSearchAlias> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(OpenSearchAlias.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<Locale>() {
+      return (TypeAdapter<T>) new TypeAdapter<OpenSearchAlias>() {
         @Override
-        public void write(JsonWriter out, Locale value) throws IOException {
+        public void write(JsonWriter out, OpenSearchAlias value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public Locale read(JsonReader in) throws IOException {
+        public OpenSearchAlias read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -198,18 +201,18 @@ public class Locale {
   }
 
   /**
-   * Create an instance of Locale given an JSON string
+   * Create an instance of OpenSearchAlias given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of Locale
-   * @throws IOException if the JSON string is invalid with respect to Locale
+   * @return An instance of OpenSearchAlias
+   * @throws IOException if the JSON string is invalid with respect to OpenSearchAlias
    */
-  public static Locale fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Locale.class);
+  public static OpenSearchAlias fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OpenSearchAlias.class);
   }
 
   /**
-   * Convert an instance of Locale to an JSON string
+   * Convert an instance of OpenSearchAlias to an JSON string
    *
    * @return JSON string
    */

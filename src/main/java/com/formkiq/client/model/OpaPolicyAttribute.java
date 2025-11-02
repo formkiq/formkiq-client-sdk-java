@@ -21,12 +21,15 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.OpaPolicyAttributeEq;
 import com.formkiq.client.model.OpaPolicyAttributeGt;
 import com.formkiq.client.model.OpaPolicyAttributeGte;
+import com.formkiq.client.model.OpaPolicyAttributeIn;
 import com.formkiq.client.model.OpaPolicyAttributeLt;
 import com.formkiq.client.model.OpaPolicyAttributeLte;
 import com.formkiq.client.model.OpaPolicyAttributeNeq;
+import com.formkiq.client.model.OpaPolicyAttributeNotIn;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,6 +58,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -62,8 +66,8 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class OpaPolicyAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -99,6 +103,16 @@ public class OpaPolicyAttribute {
   @SerializedName(SERIALIZED_NAME_NEQ)
   @javax.annotation.Nullable
   private OpaPolicyAttributeNeq neq;
+
+  public static final String SERIALIZED_NAME_IN = "in";
+  @SerializedName(SERIALIZED_NAME_IN)
+  @javax.annotation.Nullable
+  private OpaPolicyAttributeIn in;
+
+  public static final String SERIALIZED_NAME_NOT_IN = "notIn";
+  @SerializedName(SERIALIZED_NAME_NOT_IN)
+  @javax.annotation.Nullable
+  private OpaPolicyAttributeNotIn notIn;
 
   public OpaPolicyAttribute() {}
 
@@ -242,6 +256,46 @@ public class OpaPolicyAttribute {
   }
 
 
+  public OpaPolicyAttribute in(@javax.annotation.Nullable OpaPolicyAttributeIn in) {
+    this.in = in;
+    return this;
+  }
+
+  /**
+   * Get in
+   * 
+   * @return in
+   */
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeIn getIn() {
+    return in;
+  }
+
+  public void setIn(@javax.annotation.Nullable OpaPolicyAttributeIn in) {
+    this.in = in;
+  }
+
+
+  public OpaPolicyAttribute notIn(@javax.annotation.Nullable OpaPolicyAttributeNotIn notIn) {
+    this.notIn = notIn;
+    return this;
+  }
+
+  /**
+   * Get notIn
+   * 
+   * @return notIn
+   */
+  @javax.annotation.Nullable
+  public OpaPolicyAttributeNotIn getNotIn() {
+    return notIn;
+  }
+
+  public void setNotIn(@javax.annotation.Nullable OpaPolicyAttributeNotIn notIn) {
+    this.notIn = notIn;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -258,12 +312,14 @@ public class OpaPolicyAttribute {
         && Objects.equals(this.gte, opaPolicyAttribute.gte)
         && Objects.equals(this.lt, opaPolicyAttribute.lt)
         && Objects.equals(this.lte, opaPolicyAttribute.lte)
-        && Objects.equals(this.neq, opaPolicyAttribute.neq);
+        && Objects.equals(this.neq, opaPolicyAttribute.neq)
+        && Objects.equals(this.in, opaPolicyAttribute.in)
+        && Objects.equals(this.notIn, opaPolicyAttribute.notIn);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, eq, gt, gte, lt, lte, neq);
+    return Objects.hash(key, eq, gt, gte, lt, lte, neq, in, notIn);
   }
 
   @Override
@@ -277,6 +333,8 @@ public class OpaPolicyAttribute {
     sb.append("    lt: ").append(toIndentedString(lt)).append("\n");
     sb.append("    lte: ").append(toIndentedString(lte)).append("\n");
     sb.append("    neq: ").append(toIndentedString(neq)).append("\n");
+    sb.append("    in: ").append(toIndentedString(in)).append("\n");
+    sb.append("    notIn: ").append(toIndentedString(notIn)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -297,8 +355,8 @@ public class OpaPolicyAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("key", "eq", "gt", "gte", "lt", "lte", "neq"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("key", "eq", "gt", "gte", "lt", "lte", "neq", "in", "notIn"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -314,7 +372,7 @@ public class OpaPolicyAttribute {
     if (jsonElement == null) {
       if (!OpaPolicyAttribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                  // element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in OpaPolicyAttribute is not found in the empty JSON string",
             OpaPolicyAttribute.openapiRequiredFields.toString()));
       }
@@ -324,7 +382,7 @@ public class OpaPolicyAttribute {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpaPolicyAttribute.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpaPolicyAttribute` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -332,7 +390,7 @@ public class OpaPolicyAttribute {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull())
         && !jsonObj.get("key").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("key").toString()));
     }
@@ -359,6 +417,14 @@ public class OpaPolicyAttribute {
     // validate the optional field `neq`
     if (jsonObj.get("neq") != null && !jsonObj.get("neq").isJsonNull()) {
       OpaPolicyAttributeNeq.validateJsonElement(jsonObj.get("neq"));
+    }
+    // validate the optional field `in`
+    if (jsonObj.get("in") != null && !jsonObj.get("in").isJsonNull()) {
+      OpaPolicyAttributeIn.validateJsonElement(jsonObj.get("in"));
+    }
+    // validate the optional field `notIn`
+    if (jsonObj.get("notIn") != null && !jsonObj.get("notIn").isJsonNull()) {
+      OpaPolicyAttributeNotIn.validateJsonElement(jsonObj.get("notIn"));
     }
   }
 

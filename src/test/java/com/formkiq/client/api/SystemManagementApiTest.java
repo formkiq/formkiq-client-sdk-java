@@ -26,7 +26,6 @@ import com.formkiq.client.model.AddApiKeyResponse;
 import com.formkiq.client.model.AddLocaleRequest;
 import com.formkiq.client.model.AddLocaleResourceItemRequest;
 import com.formkiq.client.model.AddLocaleResourceItemResponse;
-import com.formkiq.client.model.AddOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.DeleteApiKeyResponse;
@@ -37,6 +36,7 @@ import com.formkiq.client.model.GetLocaleResourceItemResponse;
 import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetLocalesResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
+import com.formkiq.client.model.GetOpenSearchIndiceResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
@@ -47,6 +47,7 @@ import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
+import com.formkiq.client.model.SetOpenSearchIndiceRequest;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.UpdateConfigurationRequest;
@@ -127,9 +128,8 @@ public class SystemManagementApiTest {
   @Test
   public void addOpenSearchRestoreSnapshotTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
     String snapshotName = null;
-    AddResponse response = api.addOpenSearchRestoreSnapshot(siteId, repositoryName, snapshotName);
+    AddResponse response = api.addOpenSearchRestoreSnapshot(siteId, snapshotName);
     // TODO: test validations
   }
 
@@ -143,25 +143,8 @@ public class SystemManagementApiTest {
   @Test
   public void addOpenSearchSnapshotTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
     String snapshotName = null;
-    AddResponse response = api.addOpenSearchSnapshot(siteId, repositoryName, snapshotName);
-    // TODO: test validations
-  }
-
-  /**
-   * Add OpenSearch Snapshot Repository
-   *
-   * Add an OpenSearch Snapshot Repository
-   *
-   * @throws ApiException if the Api call fails
-   */
-  @Test
-  public void addOpenSearchSnapshotRepositoryTest() throws ApiException {
-    String siteId = null;
-    String repositoryName = null;
-    AddOpenSearchSnapshotRepositoryResponse response =
-        api.addOpenSearchSnapshotRepository(siteId, repositoryName);
+    AddResponse response = api.addOpenSearchSnapshot(siteId, snapshotName);
     // TODO: test validations
   }
 
@@ -240,6 +223,35 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Deletes OpenSearch index by name
+   *
+   * Deletes the OpenSearch index by name
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteOpenSearchIndexByNameTest() throws ApiException {
+    String indexName = null;
+    DeleteResponse response = api.deleteOpenSearchIndexByName(indexName);
+    // TODO: test validations
+  }
+
+  /**
+   * Deletes site(s) OpenSearch Restore Snapshot
+   *
+   * Deletes the OpenSearch Restore Snapshot
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteOpenSearchRestoreSnapshotTest() throws ApiException {
+    String siteId = null;
+    String snapshotName = null;
+    DeleteResponse response = api.deleteOpenSearchRestoreSnapshot(siteId, snapshotName);
+    // TODO: test validations
+  }
+
+  /**
    * Deletes site(s) OpenSearch Snapshot
    *
    * Deletes the OpenSearch Snapshot
@@ -249,9 +261,8 @@ public class SystemManagementApiTest {
   @Test
   public void deleteOpenSearchSnapshotTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
     String snapshotName = null;
-    DeleteResponse response = api.deleteOpenSearchSnapshot(siteId, repositoryName, snapshotName);
+    DeleteResponse response = api.deleteOpenSearchSnapshot(siteId, snapshotName);
     // TODO: test validations
   }
 
@@ -265,8 +276,7 @@ public class SystemManagementApiTest {
   @Test
   public void deleteOpenSearchSnapshotRepositoryTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
-    DeleteResponse response = api.deleteOpenSearchSnapshotRepository(siteId, repositoryName);
+    DeleteResponse response = api.deleteOpenSearchSnapshotRepository(siteId);
     // TODO: test validations
   }
 
@@ -282,6 +292,19 @@ public class SystemManagementApiTest {
     String siteId = null;
     String groupName = null;
     DeleteResponse response = api.deleteSiteGroup(siteId, groupName);
+    // TODO: test validations
+  }
+
+  /**
+   * Get all OpenSearch indices
+   *
+   * Returns all OpenSearch indices
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getAllOpenSearchIndicesTest() throws ApiException {
+    GetOpenSearchIndiceResponse response = api.getAllOpenSearchIndices();
     // TODO: test validations
   }
 
@@ -368,7 +391,7 @@ public class SystemManagementApiTest {
   /**
    * Get site(s) OpenSearch index settings
    *
-   * Returns the OpenSearch index settings
+   * Returns the OpenSearch index settings (Deprecated use /sites/{siteId}/opensearch/indices)
    *
    * @throws ApiException if the Api call fails
    */
@@ -376,6 +399,20 @@ public class SystemManagementApiTest {
   public void getOpenSearchIndexTest() throws ApiException {
     String siteId = null;
     GetOpenSearchIndexResponse response = api.getOpenSearchIndex(siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get site(s) OpenSearch indices
+   *
+   * Returns the OpenSearch indices
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getOpenSearchIndicesTest() throws ApiException {
+    String siteId = null;
+    GetOpenSearchIndiceResponse response = api.getOpenSearchIndices(siteId);
     // TODO: test validations
   }
 
@@ -389,10 +426,8 @@ public class SystemManagementApiTest {
   @Test
   public void getOpenSearchSnapshotTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
     String snapshotName = null;
-    GetOpenSearchSnapshotResponse response =
-        api.getOpenSearchSnapshot(siteId, repositoryName, snapshotName);
+    GetOpenSearchSnapshotResponse response = api.getOpenSearchSnapshot(siteId, snapshotName);
     // TODO: test validations
   }
 
@@ -405,9 +440,7 @@ public class SystemManagementApiTest {
    */
   @Test
   public void getOpenSearchSnapshotRepositoriesTest() throws ApiException {
-    String siteId = null;
-    GetOpenSearchSnapshotRepositoryResponse response =
-        api.getOpenSearchSnapshotRepositories(siteId);
+    GetOpenSearchSnapshotRepositoryResponse response = api.getOpenSearchSnapshotRepositories();
     // TODO: test validations
   }
 
@@ -421,9 +454,7 @@ public class SystemManagementApiTest {
   @Test
   public void getOpenSearchSnapshotRepositoryTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
-    GetOpenSearchSnapshotRepositoryResponse response =
-        api.getOpenSearchSnapshotRepository(siteId, repositoryName);
+    GetOpenSearchSnapshotRepositoryResponse response = api.getOpenSearchSnapshotRepository(siteId);
     // TODO: test validations
   }
 
@@ -437,8 +468,7 @@ public class SystemManagementApiTest {
   @Test
   public void getOpenSearchSnapshotsTest() throws ApiException {
     String siteId = null;
-    String repositoryName = null;
-    GetOpenSearchSnapshotResponse response = api.getOpenSearchSnapshots(siteId, repositoryName);
+    GetOpenSearchSnapshotResponse response = api.getOpenSearchSnapshots(siteId);
     // TODO: test validations
   }
 
@@ -528,6 +558,21 @@ public class SystemManagementApiTest {
     String siteId = null;
     SetOpenSearchIndexRequest setOpenSearchIndexRequest = null;
     SetOpenSearchIndexResponse response = api.setOpenSearchIndex(siteId, setOpenSearchIndexRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Set site(s) OpenSearch index to use for a SiteId
+   *
+   * Sets the OpenSearch index to use for a SiteId
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setOpenSearchIndicesTest() throws ApiException {
+    String siteId = null;
+    SetOpenSearchIndiceRequest setOpenSearchIndiceRequest = null;
+    SetResponse response = api.setOpenSearchIndices(siteId, setOpenSearchIndiceRequest);
     // TODO: test validations
   }
 

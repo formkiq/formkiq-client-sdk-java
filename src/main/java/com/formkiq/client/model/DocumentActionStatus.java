@@ -21,9 +21,11 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
@@ -48,7 +50,11 @@ public enum DocumentActionStatus {
 
   SKIPPED("SKIPPED"),
 
-  FAILED_RETRY("FAILED_RETRY");
+  FAILED_RETRY("FAILED_RETRY"),
+
+  MAX_RETRIES_REACHED("MAX_RETRIES_REACHED"),
+
+  WAITING_FOR_RETRY("WAITING_FOR_RETRY");
 
   private String value;
 

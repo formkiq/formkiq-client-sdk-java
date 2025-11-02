@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**indexSettings** | [**OpenSearchIndex**](OpenSearchIndex.md) |  |  [optional] |
+|**indexSettings** | [**OpenSearchIndexSetting**](OpenSearchIndexSetting.md) |  |  [optional] |
 
 
 

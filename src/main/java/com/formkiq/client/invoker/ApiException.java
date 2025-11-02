@@ -22,6 +22,7 @@ package com.formkiq.client.invoker;
 
 import java.util.Map;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -31,8 +32,8 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class ApiException extends Exception {
   private static final long serialVersionUID = 1L;
 
@@ -195,7 +196,7 @@ public class ApiException extends Exception {
    * @return The exception message
    */
   public String getMessage() {
-    return String.format(
+    return String.format(Locale.ROOT,
         "Message: %s%nHTTP response code: %s%nHTTP response body: %s%nHTTP response headers: %s",
         super.getMessage(), this.getCode(), this.getResponseBody(), this.getResponseHeaders());
   }

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.AddDocumentAttributeClassification;
 import com.formkiq.client.model.AddDocumentAttributeEntity;
 import com.formkiq.client.model.AddDocumentAttributeRelationship;
@@ -50,6 +51,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -74,8 +76,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddDocumentAttribute extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddDocumentAttribute.class.getName());
 
@@ -154,9 +156,9 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeStandard'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(
-                String.format("Deserialization for AddDocumentAttributeStandard failed with `%s`.",
-                    e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT,
+                "Deserialization for AddDocumentAttributeStandard failed with `%s`.",
+                e.getMessage()));
             log.log(Level.FINER, "Input data does not match schema 'AddDocumentAttributeStandard'",
                 e);
           }
@@ -169,7 +171,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeClassification'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(String.format(
+            errorMessages.add(String.format(Locale.ROOT,
                 "Deserialization for AddDocumentAttributeClassification failed with `%s`.",
                 e.getMessage()));
             log.log(Level.FINER,
@@ -184,7 +186,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeRelationship'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(String.format(
+            errorMessages.add(String.format(Locale.ROOT,
                 "Deserialization for AddDocumentAttributeRelationship failed with `%s`.",
                 e.getMessage()));
             log.log(Level.FINER,
@@ -199,9 +201,9 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddDocumentAttributeEntity'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(
-                String.format("Deserialization for AddDocumentAttributeEntity failed with `%s`.",
-                    e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT,
+                "Deserialization for AddDocumentAttributeEntity failed with `%s`.",
+                e.getMessage()));
             log.log(Level.FINER, "Input data does not match schema 'AddDocumentAttributeEntity'",
                 e);
           }
@@ -212,7 +214,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
             return ret;
           }
 
-          throw new IOException(String.format(
+          throw new IOException(String.format(Locale.ROOT,
               "Failed deserialization for AddDocumentAttribute: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
               match, errorMessages, jsonElement.toString()));
         }
@@ -351,7 +353,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
       AddDocumentAttributeStandard.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format(
+      errorMessages.add(String.format(Locale.ROOT,
           "Deserialization for AddDocumentAttributeStandard failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
@@ -360,9 +362,9 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
       AddDocumentAttributeClassification.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(
-          String.format("Deserialization for AddDocumentAttributeClassification failed with `%s`.",
-              e.getMessage()));
+      errorMessages.add(String.format(Locale.ROOT,
+          "Deserialization for AddDocumentAttributeClassification failed with `%s`.",
+          e.getMessage()));
       // continue to the next one
     }
     // validate the json string with AddDocumentAttributeRelationship
@@ -370,9 +372,9 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
       AddDocumentAttributeRelationship.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(
-          String.format("Deserialization for AddDocumentAttributeRelationship failed with `%s`.",
-              e.getMessage()));
+      errorMessages.add(String.format(Locale.ROOT,
+          "Deserialization for AddDocumentAttributeRelationship failed with `%s`.",
+          e.getMessage()));
       // continue to the next one
     }
     // validate the json string with AddDocumentAttributeEntity
@@ -380,12 +382,12 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
       AddDocumentAttributeEntity.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format(
+      errorMessages.add(String.format(Locale.ROOT,
           "Deserialization for AddDocumentAttributeEntity failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
     if (validCount != 1) {
-      throw new IOException(String.format(
+      throw new IOException(String.format(Locale.ROOT,
           "The JSON string is invalid for AddDocumentAttribute with oneOf schemas: AddDocumentAttributeClassification, AddDocumentAttributeEntity, AddDocumentAttributeRelationship, AddDocumentAttributeStandard. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
           validCount, errorMessages, jsonElement.toString()));
     }

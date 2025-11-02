@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
+import com.formkiq.client.model.TextractQuery;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -46,6 +47,14 @@ public class AddDocumentOcrRequestTest {
   @Test
   public void testAddDocumentOcrRequest() {
     // TODO: test AddDocumentOcrRequest
+  }
+
+  /**
+   * Test the property 'textractQueries'
+   */
+  @Test
+  public void textractQueriesTest() {
+    // TODO: test textractQueries
   }
 
   /**

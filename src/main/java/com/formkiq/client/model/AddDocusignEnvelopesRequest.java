@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignInpersonSigner;
 import com.formkiq.client.model.DocusignNotification;
@@ -55,6 +56,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -62,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignEnvelopesRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class AddDocusignEnvelopesRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
@@ -282,7 +284,7 @@ public class AddDocusignEnvelopesRequest {
     if (jsonElement == null) {
       if (!AddDocusignEnvelopesRequest.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                           // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in AddDocusignEnvelopesRequest is not found in the empty JSON string",
             AddDocusignEnvelopesRequest.openapiRequiredFields.toString()));
       }
@@ -292,7 +294,7 @@ public class AddDocusignEnvelopesRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddDocusignEnvelopesRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddDocusignEnvelopesRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -301,15 +303,15 @@ public class AddDocusignEnvelopesRequest {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : AddDocusignEnvelopesRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(
-            String.format("The required field `%s` is not found in the JSON string: %s",
-                requiredField, jsonElement.toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("emailSubject") != null && !jsonObj.get("emailSubject").isJsonNull())
         && !jsonObj.get("emailSubject").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `emailSubject` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("emailSubject").toString()));
     }
@@ -320,7 +322,7 @@ public class AddDocusignEnvelopesRequest {
       if (jsonArraysigners != null) {
         // ensure the json data is an array
         if (!jsonObj.get("signers").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `signers` to be an array in the JSON string but got `%s`",
               jsonObj.get("signers").toString()));
         }
@@ -336,7 +338,7 @@ public class AddDocusignEnvelopesRequest {
       if (jsonArrayinpersonSigners != null) {
         // ensure the json data is an array
         if (!jsonObj.get("inpersonSigners").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
+          throw new IllegalArgumentException(String.format(Locale.ROOT,
               "Expected the field `inpersonSigners` to be an array in the JSON string but got `%s`",
               jsonObj.get("inpersonSigners").toString()));
         }

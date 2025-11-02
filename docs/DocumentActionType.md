@@ -29,5 +29,9 @@
 
 * `RESIZE` (value: `"RESIZE"`)
 
+* `DATA_CLASSIFICATION` (value: `"DATA_CLASSIFICATION"`)
+
+* `MALWARE_SCAN` (value: `"MALWARE_SCAN"`)
+
 
 

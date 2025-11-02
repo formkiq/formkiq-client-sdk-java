@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.OpaPolicyItem;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,18 +61,18 @@ import com.formkiq.client.invoker.JSON;
  * SetOpaAccessPolicyItemsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class SetOpaAccessPolicyItemsRequest {
   public static final String SERIALIZED_NAME_POLICY_ITEMS = "policyItems";
   @SerializedName(SERIALIZED_NAME_POLICY_ITEMS)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<OpaPolicyItem> policyItems = new ArrayList<>();
 
   public SetOpaAccessPolicyItemsRequest() {}
 
   public SetOpaAccessPolicyItemsRequest policyItems(
-      @javax.annotation.Nullable List<OpaPolicyItem> policyItems) {
+      @javax.annotation.Nonnull List<OpaPolicyItem> policyItems) {
     this.policyItems = policyItems;
     return this;
   }
@@ -88,12 +90,12 @@ public class SetOpaAccessPolicyItemsRequest {
    * 
    * @return policyItems
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public List<OpaPolicyItem> getPolicyItems() {
     return policyItems;
   }
 
-  public void setPolicyItems(@javax.annotation.Nullable List<OpaPolicyItem> policyItems) {
+  public void setPolicyItems(@javax.annotation.Nonnull List<OpaPolicyItem> policyItems) {
     this.policyItems = policyItems;
   }
 
@@ -145,7 +147,7 @@ public class SetOpaAccessPolicyItemsRequest {
     openapiFields = new HashSet<String>(Arrays.asList("policyItems"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("policyItems"));
   }
 
   /**
@@ -160,7 +162,7 @@ public class SetOpaAccessPolicyItemsRequest {
       if (!SetOpaAccessPolicyItemsRequest.openapiRequiredFields.isEmpty()) { // has required fields
                                                                              // but JSON element is
                                                                              // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in SetOpaAccessPolicyItemsRequest is not found in the empty JSON string",
             SetOpaAccessPolicyItemsRequest.openapiRequiredFields.toString()));
       }
@@ -170,28 +172,33 @@ public class SetOpaAccessPolicyItemsRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!SetOpaAccessPolicyItemsRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `SetOpaAccessPolicyItemsRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
-    JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (jsonObj.get("policyItems") != null && !jsonObj.get("policyItems").isJsonNull()) {
-      JsonArray jsonArraypolicyItems = jsonObj.getAsJsonArray("policyItems");
-      if (jsonArraypolicyItems != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("policyItems").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(
-              "Expected the field `policyItems` to be an array in the JSON string but got `%s`",
-              jsonObj.get("policyItems").toString()));
-        }
 
-        // validate the optional field `policyItems` (array)
-        for (int i = 0; i < jsonArraypolicyItems.size(); i++) {
-          OpaPolicyItem.validateJsonElement(jsonArraypolicyItems.get(i));
-        } ;
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : SetOpaAccessPolicyItemsRequest.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
       }
     }
+    JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // ensure the json data is an array
+    if (!jsonObj.get("policyItems").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
+          "Expected the field `policyItems` to be an array in the JSON string but got `%s`",
+          jsonObj.get("policyItems").toString()));
+    }
+
+    JsonArray jsonArraypolicyItems = jsonObj.getAsJsonArray("policyItems");
+    // validate the required field `policyItems` (array)
+    for (int i = 0; i < jsonArraypolicyItems.size(); i++) {
+      OpaPolicyItem.validateJsonElement(jsonArraypolicyItems.get(i));
+    } ;
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

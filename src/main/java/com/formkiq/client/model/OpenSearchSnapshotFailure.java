@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,6 +50,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -56,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Details about a failure for a specific shard in a snapshot.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class OpenSearchSnapshotFailure {
   public static final String SERIALIZED_NAME_INDEX = "index";
   @SerializedName(SERIALIZED_NAME_INDEX)
@@ -281,7 +283,7 @@ public class OpenSearchSnapshotFailure {
     if (jsonElement == null) {
       if (!OpenSearchSnapshotFailure.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                         // JSON element is null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in OpenSearchSnapshotFailure is not found in the empty JSON string",
             OpenSearchSnapshotFailure.openapiRequiredFields.toString()));
       }
@@ -291,7 +293,7 @@ public class OpenSearchSnapshotFailure {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpenSearchSnapshotFailure.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpenSearchSnapshotFailure` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -299,31 +301,31 @@ public class OpenSearchSnapshotFailure {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("index") != null && !jsonObj.get("index").isJsonNull())
         && !jsonObj.get("index").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `index` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("index").toString()));
     }
     if ((jsonObj.get("index_uuid") != null && !jsonObj.get("index_uuid").isJsonNull())
         && !jsonObj.get("index_uuid").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `index_uuid` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("index_uuid").toString()));
     }
     if ((jsonObj.get("reason") != null && !jsonObj.get("reason").isJsonNull())
         && !jsonObj.get("reason").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `reason` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("reason").toString()));
     }
     if ((jsonObj.get("node_id") != null && !jsonObj.get("node_id").isJsonNull())
         && !jsonObj.get("node_id").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `node_id` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("node_id").toString()));
     }
     if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
         && !jsonObj.get("status").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `status` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("status").toString()));
     }

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.formkiq.client.model.ActivityStatus;
 import com.formkiq.client.model.UserActivityChanges;
 import com.google.gson.TypeAdapter;
@@ -54,6 +55,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * Activity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-08-01T10:06:13.310314-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.14.0")
+    date = "2025-11-02T10:43:50.522026-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.17.0")
 public class Activity {
   public static final String SERIALIZED_NAME_RESOURCE = "resource";
   @SerializedName(SERIALIZED_NAME_RESOURCE)
@@ -108,6 +110,11 @@ public class Activity {
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private Object documentId = null;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
+  @javax.annotation.Nullable
+  private Object attributeKey = null;
 
   public static final String SERIALIZED_NAME_ENTITY_TYPE_ID = "entityTypeId";
   @SerializedName(SERIALIZED_NAME_ENTITY_TYPE_ID)
@@ -306,6 +313,26 @@ public class Activity {
   }
 
 
+  public Activity attributeKey(@javax.annotation.Nullable Object attributeKey) {
+    this.attributeKey = attributeKey;
+    return this;
+  }
+
+  /**
+   * Document Attribute Key
+   * 
+   * @return attributeKey
+   */
+  @javax.annotation.Nullable
+  public Object getAttributeKey() {
+    return attributeKey;
+  }
+
+  public void setAttributeKey(@javax.annotation.Nullable Object attributeKey) {
+    this.attributeKey = attributeKey;
+  }
+
+
   public Activity entityTypeId(@javax.annotation.Nullable String entityTypeId) {
     this.entityTypeId = entityTypeId;
     return this;
@@ -392,6 +419,7 @@ public class Activity {
         && Objects.equals(this.insertedDate, activity.insertedDate)
         && Objects.equals(this.userId, activity.userId)
         && Objects.equals(this.documentId, activity.documentId)
+        && Objects.equals(this.attributeKey, activity.attributeKey)
         && Objects.equals(this.entityTypeId, activity.entityTypeId)
         && Objects.equals(this.entityId, activity.entityId)
         && Objects.equals(this.changes, activity.changes);
@@ -405,7 +433,7 @@ public class Activity {
   @Override
   public int hashCode() {
     return Objects.hash(resource, type, source, sourceIpAddress, message, status, insertedDate,
-        userId, documentId, entityTypeId, entityId, changes);
+        userId, documentId, attributeKey, entityTypeId, entityId, changes);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -428,6 +456,7 @@ public class Activity {
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
     sb.append("    entityTypeId: ").append(toIndentedString(entityTypeId)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    changes: ").append(toIndentedString(changes)).append("\n");
@@ -451,9 +480,9 @@ public class Activity {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("resource", "type", "source", "sourceIpAddress", "message", "status",
-            "insertedDate", "userId", "documentId", "entityTypeId", "entityId", "changes"));
+    openapiFields = new HashSet<String>(Arrays.asList("resource", "type", "source",
+        "sourceIpAddress", "message", "status", "insertedDate", "userId", "documentId",
+        "attributeKey", "entityTypeId", "entityId", "changes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -469,7 +498,7 @@ public class Activity {
     if (jsonElement == null) {
       if (!Activity.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is
                                                        // null
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The required field(s) %s in Activity is not found in the empty JSON string",
             Activity.openapiRequiredFields.toString()));
       }
@@ -479,7 +508,7 @@ public class Activity {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!Activity.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(
+        throw new IllegalArgumentException(String.format(Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `Activity` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -487,31 +516,31 @@ public class Activity {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("resource") != null && !jsonObj.get("resource").isJsonNull())
         && !jsonObj.get("resource").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `resource` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("resource").toString()));
     }
     if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
         && !jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("type").toString()));
     }
     if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull())
         && !jsonObj.get("source").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `source` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("source").toString()));
     }
     if ((jsonObj.get("sourceIpAddress") != null && !jsonObj.get("sourceIpAddress").isJsonNull())
         && !jsonObj.get("sourceIpAddress").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `sourceIpAddress` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("sourceIpAddress").toString()));
     }
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("message").toString()));
     }
@@ -521,25 +550,25 @@ public class Activity {
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }
     if ((jsonObj.get("entityTypeId") != null && !jsonObj.get("entityTypeId").isJsonNull())
         && !jsonObj.get("entityTypeId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `entityTypeId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("entityTypeId").toString()));
     }
     if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull())
         && !jsonObj.get("entityId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(
+      throw new IllegalArgumentException(String.format(Locale.ROOT,
           "Expected the field `entityId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("entityId").toString()));
     }

@@ -20,65 +20,46 @@
 
 package com.formkiq.client.model;
 
-import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Type of Opa Policy Item
+ * Model tests for OpaPolicyInputMethod
  */
-@JsonAdapter(OpaPolicyItemType.Adapter.class)
-public enum OpaPolicyItemType {
+public class OpaPolicyInputMethodTest {
+  private final OpaPolicyInputMethod model = new OpaPolicyInputMethod();
 
-  ALLOW("ALLOW");
-
-  private String value;
-
-  OpaPolicyItemType(String value) {
-    this.value = value;
+  /**
+   * Model tests for OpaPolicyInputMethod
+   */
+  @Test
+  public void testOpaPolicyInputMethod() {
+    // TODO: test OpaPolicyInputMethod
   }
 
-  public String getValue() {
-    return value;
+  /**
+   * Test the property 'in'
+   */
+  @Test
+  public void inTest() {
+    // TODO: test in
   }
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
+  /**
+   * Test the property 'notIn'
+   */
+  @Test
+  public void notInTest() {
+    // TODO: test notIn
   }
 
-  public static OpaPolicyItemType fromValue(String value) {
-    for (OpaPolicyItemType b : OpaPolicyItemType.values()) {
-      if (b.value.equals(value)) {
-        return b;
-      }
-    }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<OpaPolicyItemType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final OpaPolicyItemType enumeration)
-        throws IOException {
-      jsonWriter.value(enumeration.getValue());
-    }
-
-    @Override
-    public OpaPolicyItemType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return OpaPolicyItemType.fromValue(value);
-    }
-  }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    OpaPolicyItemType.fromValue(value);
-  }
 }
-
