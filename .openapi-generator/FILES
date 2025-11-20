@@ -10,6 +10,7 @@ docs/Activity.md
 docs/ActivityStatus.md
 docs/AddAction.md
 docs/AddActionParameters.md
+docs/AddApiKeyPermission.md
 docs/AddApiKeyRequest.md
 docs/AddApiKeyResponse.md
 docs/AddAttribute.md
@@ -538,6 +539,7 @@ src/main/java/com/formkiq/client/model/Activity.java
 src/main/java/com/formkiq/client/model/ActivityStatus.java
 src/main/java/com/formkiq/client/model/AddAction.java
 src/main/java/com/formkiq/client/model/AddActionParameters.java
+src/main/java/com/formkiq/client/model/AddApiKeyPermission.java
 src/main/java/com/formkiq/client/model/AddApiKeyRequest.java
 src/main/java/com/formkiq/client/model/AddApiKeyResponse.java
 src/main/java/com/formkiq/client/model/AddAttribute.java
@@ -1003,6 +1005,7 @@ src/test/java/com/formkiq/client/model/ActivityStatusTest.java
 src/test/java/com/formkiq/client/model/ActivityTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
+src/test/java/com/formkiq/client/model/AddApiKeyPermissionTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyRequestTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/AddAttributeRequestTest.java

@@ -8,18 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Name of API Key |  [optional] |
-|**permissions** | [**List&lt;PermissionsEnum&gt;**](#List&lt;PermissionsEnum&gt;) | List of permissions |  [optional] |
-
-
-
-## Enum: List&lt;PermissionsEnum&gt;
-
-| Name | Value |
-|---- | -----|
-| READ | &quot;READ&quot; |
-| WRITE | &quot;WRITE&quot; |
-| DELETE | &quot;DELETE&quot; |
-| GOVERN | &quot;GOVERN&quot; |
+|**groups** | **List&lt;String&gt;** | Optional list of groups to add as custom claims to API Key |  [optional] |
+|**permissions** | **List&lt;AddApiKeyPermission&gt;** |  |  [optional] |
 
 
 

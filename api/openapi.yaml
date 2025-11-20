@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.18.0
+  version: 1.18.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -21262,21 +21262,31 @@ components:
         - READ
         - READ
         name: name
+        groups:
+        - groups
+        - groups
       properties:
         name:
           description: Name of API Key
           type: string
-        permissions:
-          description: List of permissions
+        groups:
+          description: Optional list of groups to add as custom claims to API Key
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            - GOVERN
             type: string
           type: array
+        permissions:
+          items:
+            $ref: "#/components/schemas/AddApiKeyPermission"
+          type: array
       type: object
+    AddApiKeyPermission:
+      description: List of API permissions (defaults to READ / WRITE / DELETE)
+      enum:
+      - READ
+      - WRITE
+      - DELETE
+      - GOVERN
+      type: string
     AddApiKeyResponse:
       example:
         apiKey: apiKey
