@@ -10,7 +10,6 @@ docs/Activity.md
 docs/ActivityStatus.md
 docs/AddAction.md
 docs/AddActionParameters.md
-docs/AddApiKeyPermission.md
 docs/AddApiKeyRequest.md
 docs/AddApiKeyResponse.md
 docs/AddAttribute.md
@@ -115,6 +114,7 @@ docs/AddWorkflowStepDecision.md
 docs/AddWorkflowStepQueue.md
 docs/AdvancedDocumentSearchApi.md
 docs/ApiKey.md
+docs/ApiKeyPermission.md
 docs/Attribute.md
 docs/AttributeDataType.md
 docs/AttributeSchemaCompositeKey.md
@@ -155,6 +155,8 @@ docs/DocumentActionType.md
 docs/DocumentActionsApi.md
 docs/DocumentAttribute.md
 docs/DocumentAttributesApi.md
+docs/DocumentConfig.md
+docs/DocumentConfigContentTypes.md
 docs/DocumentDataClassificationApi.md
 docs/DocumentFoldersApi.md
 docs/DocumentFulltextAttribute.md
@@ -539,7 +541,6 @@ src/main/java/com/formkiq/client/model/Activity.java
 src/main/java/com/formkiq/client/model/ActivityStatus.java
 src/main/java/com/formkiq/client/model/AddAction.java
 src/main/java/com/formkiq/client/model/AddActionParameters.java
-src/main/java/com/formkiq/client/model/AddApiKeyPermission.java
 src/main/java/com/formkiq/client/model/AddApiKeyRequest.java
 src/main/java/com/formkiq/client/model/AddApiKeyResponse.java
 src/main/java/com/formkiq/client/model/AddAttribute.java
@@ -643,6 +644,7 @@ src/main/java/com/formkiq/client/model/AddWorkflowStep.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepDecision.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepQueue.java
 src/main/java/com/formkiq/client/model/ApiKey.java
+src/main/java/com/formkiq/client/model/ApiKeyPermission.java
 src/main/java/com/formkiq/client/model/Attribute.java
 src/main/java/com/formkiq/client/model/AttributeDataType.java
 src/main/java/com/formkiq/client/model/AttributeSchemaCompositeKey.java
@@ -678,6 +680,8 @@ src/main/java/com/formkiq/client/model/DocumentAction.java
 src/main/java/com/formkiq/client/model/DocumentActionStatus.java
 src/main/java/com/formkiq/client/model/DocumentActionType.java
 src/main/java/com/formkiq/client/model/DocumentAttribute.java
+src/main/java/com/formkiq/client/model/DocumentConfig.java
+src/main/java/com/formkiq/client/model/DocumentConfigContentTypes.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttributeEq.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
@@ -1005,7 +1009,6 @@ src/test/java/com/formkiq/client/model/ActivityStatusTest.java
 src/test/java/com/formkiq/client/model/ActivityTest.java
 src/test/java/com/formkiq/client/model/AddActionParametersTest.java
 src/test/java/com/formkiq/client/model/AddActionTest.java
-src/test/java/com/formkiq/client/model/AddApiKeyPermissionTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyRequestTest.java
 src/test/java/com/formkiq/client/model/AddApiKeyResponseTest.java
 src/test/java/com/formkiq/client/model/AddAttributeRequestTest.java
@@ -1108,6 +1111,7 @@ src/test/java/com/formkiq/client/model/AddWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepDecisionTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepQueueTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepTest.java
+src/test/java/com/formkiq/client/model/ApiKeyPermissionTest.java
 src/test/java/com/formkiq/client/model/ApiKeyTest.java
 src/test/java/com/formkiq/client/model/AttributeDataTypeTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaCompositeKeyTest.java
@@ -1143,6 +1147,8 @@ src/test/java/com/formkiq/client/model/DocumentActionStatusTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentAttributeTest.java
+src/test/java/com/formkiq/client/model/DocumentConfigContentTypesTest.java
+src/test/java/com/formkiq/client/model/DocumentConfigTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java

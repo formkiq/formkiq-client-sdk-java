@@ -21012,6 +21012,15 @@ components:
           userId: userId
           hmacSignature: hmacSignature
           integrationKey: integrationKey
+        document:
+          contentTypes:
+            allowlist:
+            - application/pdf
+            - image/png
+            - image/jpeg
+            denylist:
+            - application/x-msdownload
+            - application/x-sh
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -21036,6 +21045,8 @@ components:
         notificationEmail:
           description: Email address to use for notifications
           type: string
+        document:
+          $ref: "#/components/schemas/DocumentConfig"
         ocr:
           $ref: "#/components/schemas/OcrConfig"
         google:
@@ -21276,10 +21287,10 @@ components:
           type: array
         permissions:
           items:
-            $ref: "#/components/schemas/AddApiKeyPermission"
+            $ref: "#/components/schemas/ApiKeyPermission"
           type: array
       type: object
-    AddApiKeyPermission:
+    ApiKeyPermission:
       description: List of API permissions (defaults to READ / WRITE / DELETE)
       enum:
       - READ
@@ -22079,6 +22090,9 @@ components:
           - READ
           name: name
           siteId: siteId
+          groups:
+          - groups
+          - groups
           userId: userId
         - apiKey: apiKey
           insertedDate: insertedDate
@@ -22087,6 +22101,9 @@ components:
           - READ
           name: name
           siteId: siteId
+          groups:
+          - groups
+          - groups
           userId: userId
       properties:
         next:
@@ -22107,6 +22124,9 @@ components:
         - READ
         name: name
         siteId: siteId
+        groups:
+        - groups
+        - groups
         userId: userId
       properties:
         name:
@@ -22123,13 +22143,12 @@ components:
           description: Inserted Timestamp
           type: string
         permissions:
-          description: List of permissions
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            - GOVERN
+            $ref: "#/components/schemas/ApiKeyPermission"
+          type: array
+        groups:
+          description: List of groups to add as custom claims to API Key
+          items:
             type: string
           type: array
       type: object
@@ -22143,6 +22162,15 @@ components:
           userId: userId
           hmacSignature: hmacSignature
           integrationKey: integrationKey
+        document:
+          contentTypes:
+            allowlist:
+            - application/pdf
+            - image/png
+            - image/jpeg
+            denylist:
+            - application/x-msdownload
+            - application/x-sh
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -22168,6 +22196,8 @@ components:
           description: Email address to use for notifications (Must be verified identity
             created in AWS SES)
           type: string
+        document:
+          $ref: "#/components/schemas/DocumentConfig"
         ocr:
           $ref: "#/components/schemas/OcrConfig"
         google:
@@ -22209,6 +22239,48 @@ components:
           description: The number of ocr tx requests in the site (only tracked when
             using OCR MaxTransactions)
           type: number
+      type: object
+    DocumentConfig:
+      example:
+        contentTypes:
+          allowlist:
+          - application/pdf
+          - image/png
+          - image/jpeg
+          denylist:
+          - application/x-msdownload
+          - application/x-sh
+      properties:
+        contentTypes:
+          $ref: "#/components/schemas/DocumentConfigContentTypes"
+      type: object
+    DocumentConfigContentTypes:
+      example:
+        allowlist:
+        - application/pdf
+        - image/png
+        - image/jpeg
+        denylist:
+        - application/x-msdownload
+        - application/x-sh
+      properties:
+        allowlist:
+          example:
+          - application/pdf
+          - image/png
+          - image/jpeg
+          items:
+            description: Allowed MIME types
+            type: string
+          type: array
+        denylist:
+          example:
+          - application/x-msdownload
+          - application/x-sh
+          items:
+            description: Disallowed MIME types
+            type: string
+          type: array
       type: object
     OcrConfig:
       example:
