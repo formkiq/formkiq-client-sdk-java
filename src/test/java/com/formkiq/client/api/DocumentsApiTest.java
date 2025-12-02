@@ -322,9 +322,10 @@ public class DocumentsApiTest {
     String tz = null;
     String next = null;
     String previous = null;
+    String projection = null;
     String limit = null;
     GetDocumentsResponse response = api.getDocuments(siteId, actionStatus, syncStatus, deleted,
-        date, tz, next, previous, limit);
+        date, tz, next, previous, projection, limit);
     // TODO: test validations
   }
 

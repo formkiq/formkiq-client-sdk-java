@@ -2430,6 +2430,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: Specify a restricted document projection. Use 'DOCUMENT_ID_ONLY'
+          to return only the documentId attribute.
+        explode: true
+        in: query
+        name: projection
+        required: false
+        schema:
+          enum:
+          - DOCUMENT_ID_ONLY
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query

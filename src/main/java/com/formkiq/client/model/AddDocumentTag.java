@@ -60,7 +60,7 @@ import com.formkiq.client.invoker.JSON;
  * List of Document Tags (use either &#39;value&#39; or &#39;values&#39; not both)
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-11-22T20:24:16.101866-06:00[America/Winnipeg]",
+    date = "2025-12-01T21:03:18.078696-06:00[America/Winnipeg]",
     comments = "Generator version: 7.17.0")
 public class AddDocumentTag {
   public static final String SERIALIZED_NAME_KEY = "key";

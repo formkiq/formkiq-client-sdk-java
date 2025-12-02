@@ -952,7 +952,7 @@ No authorization required
 
 <a id="getDocuments"></a>
 # **getDocuments**
-> GetDocumentsResponse getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, limit)
+> GetDocumentsResponse getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, projection, limit)
 
 Get Documents listing
 
@@ -984,9 +984,10 @@ public class Example {
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
+    String projection = "DOCUMENT_ID_ONLY"; // String | Specify a restricted document projection. Use 'DOCUMENT_ID_ONLY' to return only the documentId attribute.
     String limit = "10"; // String | Limit Results
     try {
-      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, limit);
+      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, projection, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocuments");
@@ -1011,6 +1012,7 @@ public class Example {
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
 | **previous** | **String**| Previous page of results token | [optional] |
+| **projection** | **String**| Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to return only the documentId attribute. | [optional] [enum: DOCUMENT_ID_ONLY] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 
 ### Return type

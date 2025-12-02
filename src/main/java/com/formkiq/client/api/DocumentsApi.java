@@ -3045,6 +3045,8 @@ public class DocumentsApi {
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
+   * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
+   *        return only the documentId attribute. (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -3071,8 +3073,8 @@ public class DocumentsApi {
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
       @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
       @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3129,6 +3131,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("previous", previous));
     }
 
+    if (projection != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("projection", projection));
+    }
+
     if (limit != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
     }
@@ -3157,10 +3163,10 @@ public class DocumentsApi {
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
       @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
       @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
+      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
     return getDocumentsCall(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous,
-        limit, _callback);
+        projection, limit, _callback);
 
   }
 
@@ -3176,6 +3182,8 @@ public class DocumentsApi {
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
+   * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
+   *        return only the documentId attribute. (optional)
    * @param limit Limit Results (optional, default to 10)
    * @return GetDocumentsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3202,10 +3210,10 @@ public class DocumentsApi {
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
       @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
       @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit)
-      throws ApiException {
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
+      @javax.annotation.Nullable String limit) throws ApiException {
     ApiResponse<GetDocumentsResponse> localVarResp = getDocumentsWithHttpInfo(siteId, actionStatus,
-        syncStatus, deleted, date, tz, next, previous, limit);
+        syncStatus, deleted, date, tz, next, previous, projection, limit);
     return localVarResp.getData();
   }
 
@@ -3221,6 +3229,8 @@ public class DocumentsApi {
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
+   * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
+   *        return only the documentId attribute. (optional)
    * @param limit Limit Results (optional, default to 10)
    * @return ApiResponse&lt;GetDocumentsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3248,9 +3258,10 @@ public class DocumentsApi {
       @javax.annotation.Nullable String syncStatus, @javax.annotation.Nullable Boolean deleted,
       @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      @javax.annotation.Nullable String limit) throws ApiException {
+      @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit)
+      throws ApiException {
     okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
-        deleted, date, tz, next, previous, limit, null);
+        deleted, date, tz, next, previous, projection, limit, null);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -3267,6 +3278,8 @@ public class DocumentsApi {
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
+   * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
+   *        return only the documentId attribute. (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -3293,11 +3306,12 @@ public class DocumentsApi {
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
       @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
       @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String limit,
-      final ApiCallback<GetDocumentsResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
+      @javax.annotation.Nullable String limit, final ApiCallback<GetDocumentsResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
-        deleted, date, tz, next, previous, limit, _callback);
+        deleted, date, tz, next, previous, projection, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
