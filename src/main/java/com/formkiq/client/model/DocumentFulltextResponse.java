@@ -61,15 +61,42 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-01T21:03:18.078696-06:00[America/Winnipeg]",
+    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
     comments = "Generator version: 7.17.0")
 public class DocumentFulltextResponse {
+  public static final String SERIALIZED_NAME_TOTAL_COUNT = "totalCount";
+  @SerializedName(SERIALIZED_NAME_TOTAL_COUNT)
+  @javax.annotation.Nullable
+  private Integer totalCount;
+
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
   @javax.annotation.Nullable
   private List<FulltextSearchItem> documents = new ArrayList<>();
 
   public DocumentFulltextResponse() {}
+
+  public DocumentFulltextResponse totalCount(@javax.annotation.Nullable Integer totalCount) {
+    this.totalCount = totalCount;
+    return this;
+  }
+
+  /**
+   * Total number of documents that matched the search query. When the number of matches exceeds
+   * 10,000, this value will be reported as 10,000+ unless the search request explicitly enables
+   * exact total hit tracking.
+   * 
+   * @return totalCount
+   */
+  @javax.annotation.Nullable
+  public Integer getTotalCount() {
+    return totalCount;
+  }
+
+  public void setTotalCount(@javax.annotation.Nullable Integer totalCount) {
+    this.totalCount = totalCount;
+  }
+
 
   public DocumentFulltextResponse documents(
       @javax.annotation.Nullable List<FulltextSearchItem> documents) {
@@ -110,18 +137,20 @@ public class DocumentFulltextResponse {
       return false;
     }
     DocumentFulltextResponse documentFulltextResponse = (DocumentFulltextResponse) o;
-    return Objects.equals(this.documents, documentFulltextResponse.documents);
+    return Objects.equals(this.totalCount, documentFulltextResponse.totalCount)
+        && Objects.equals(this.documents, documentFulltextResponse.documents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documents);
+    return Objects.hash(totalCount, documents);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentFulltextResponse {\n");
+    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -143,7 +172,7 @@ public class DocumentFulltextResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documents"));
+    openapiFields = new HashSet<String>(Arrays.asList("totalCount", "documents"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);

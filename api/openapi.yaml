@@ -15741,12 +15741,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
@@ -15768,12 +15768,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
@@ -15781,7 +15781,12 @@ components:
               booleanValue: true
           contentType: contentType
           height: height
+        totalCount: 0
       properties:
+        totalCount:
+          description: |
+            Total number of documents that matched the search query. When the number of matches exceeds 10,000, this value will be reported as 10,000+ unless the search request explicitly enables exact total hit tracking.
+          type: integer
         documents:
           description: List of search result documents
           items:
@@ -15804,12 +15809,12 @@ components:
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
-        contentLength: 0
+        contentLength: 6
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -15886,8 +15891,8 @@ components:
     FulltextAttribute:
       example:
         numberValues:
-        - 6.027456183070403
-        - 6.027456183070403
+        - 1.4658129805029452
+        - 1.4658129805029452
         stringValues:
         - stringValues
         - stringValues
@@ -15931,8 +15936,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20359,8 +20364,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20448,8 +20453,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20537,8 +20542,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
