@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.18.0
+  version: 1.18.1
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -2428,6 +2428,17 @@ paths:
         name: previous
         required: false
         schema:
+          type: string
+        style: form
+      - description: Specify a restricted document projection. Use 'DOCUMENT_ID_ONLY'
+          to return only the documentId attribute.
+        explode: true
+        in: query
+        name: projection
+        required: false
+        schema:
+          enum:
+          - DOCUMENT_ID_ONLY
           type: string
         style: form
       - description: Limit Results
@@ -15730,12 +15741,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
@@ -15757,12 +15768,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
@@ -15770,7 +15781,12 @@ components:
               booleanValue: true
           contentType: contentType
           height: height
+        totalCount: 0
       properties:
+        totalCount:
+          description: |
+            Total number of documents that matched the search query. When the number of matches exceeds 10,000, this value will be reported as 10,000+ unless the search request explicitly enables exact total hit tracking.
+          type: integer
         documents:
           description: List of search result documents
           items:
@@ -15793,12 +15809,12 @@ components:
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
-        contentLength: 0
+        contentLength: 6
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -15875,8 +15891,8 @@ components:
     FulltextAttribute:
       example:
         numberValues:
-        - 6.027456183070403
-        - 6.027456183070403
+        - 1.4658129805029452
+        - 1.4658129805029452
         stringValues:
         - stringValues
         - stringValues
@@ -15920,8 +15936,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20348,8 +20364,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20437,8 +20453,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -20526,8 +20542,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
@@ -21012,6 +21028,15 @@ components:
           userId: userId
           hmacSignature: hmacSignature
           integrationKey: integrationKey
+        document:
+          contentTypes:
+            allowlist:
+            - application/pdf
+            - image/png
+            - image/jpeg
+            denylist:
+            - application/x-msdownload
+            - application/x-sh
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -21036,6 +21061,8 @@ components:
         notificationEmail:
           description: Email address to use for notifications
           type: string
+        document:
+          $ref: "#/components/schemas/DocumentConfig"
         ocr:
           $ref: "#/components/schemas/OcrConfig"
         google:
@@ -21262,21 +21289,31 @@ components:
         - READ
         - READ
         name: name
+        groups:
+        - groups
+        - groups
       properties:
         name:
           description: Name of API Key
           type: string
-        permissions:
-          description: List of permissions
+        groups:
+          description: Optional list of groups to add as custom claims to API Key
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            - GOVERN
             type: string
           type: array
+        permissions:
+          items:
+            $ref: "#/components/schemas/ApiKeyPermission"
+          type: array
       type: object
+    ApiKeyPermission:
+      description: List of API permissions (defaults to READ / WRITE / DELETE)
+      enum:
+      - READ
+      - WRITE
+      - DELETE
+      - GOVERN
+      type: string
     AddApiKeyResponse:
       example:
         apiKey: apiKey
@@ -22069,6 +22106,9 @@ components:
           - READ
           name: name
           siteId: siteId
+          groups:
+          - groups
+          - groups
           userId: userId
         - apiKey: apiKey
           insertedDate: insertedDate
@@ -22077,6 +22117,9 @@ components:
           - READ
           name: name
           siteId: siteId
+          groups:
+          - groups
+          - groups
           userId: userId
       properties:
         next:
@@ -22097,6 +22140,9 @@ components:
         - READ
         name: name
         siteId: siteId
+        groups:
+        - groups
+        - groups
         userId: userId
       properties:
         name:
@@ -22113,13 +22159,12 @@ components:
           description: Inserted Timestamp
           type: string
         permissions:
-          description: List of permissions
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            - GOVERN
+            $ref: "#/components/schemas/ApiKeyPermission"
+          type: array
+        groups:
+          description: List of groups to add as custom claims to API Key
+          items:
             type: string
           type: array
       type: object
@@ -22133,6 +22178,15 @@ components:
           userId: userId
           hmacSignature: hmacSignature
           integrationKey: integrationKey
+        document:
+          contentTypes:
+            allowlist:
+            - application/pdf
+            - image/png
+            - image/jpeg
+            denylist:
+            - application/x-msdownload
+            - application/x-sh
         google:
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
           workloadIdentityAudience: workloadIdentityAudience
@@ -22158,6 +22212,8 @@ components:
           description: Email address to use for notifications (Must be verified identity
             created in AWS SES)
           type: string
+        document:
+          $ref: "#/components/schemas/DocumentConfig"
         ocr:
           $ref: "#/components/schemas/OcrConfig"
         google:
@@ -22199,6 +22255,48 @@ components:
           description: The number of ocr tx requests in the site (only tracked when
             using OCR MaxTransactions)
           type: number
+      type: object
+    DocumentConfig:
+      example:
+        contentTypes:
+          allowlist:
+          - application/pdf
+          - image/png
+          - image/jpeg
+          denylist:
+          - application/x-msdownload
+          - application/x-sh
+      properties:
+        contentTypes:
+          $ref: "#/components/schemas/DocumentConfigContentTypes"
+      type: object
+    DocumentConfigContentTypes:
+      example:
+        allowlist:
+        - application/pdf
+        - image/png
+        - image/jpeg
+        denylist:
+        - application/x-msdownload
+        - application/x-sh
+      properties:
+        allowlist:
+          example:
+          - application/pdf
+          - image/png
+          - image/jpeg
+          items:
+            description: Allowed MIME types
+            type: string
+          type: array
+        denylist:
+          example:
+          - application/x-msdownload
+          - application/x-sh
+          items:
+            description: Disallowed MIME types
+            type: string
+          type: array
       type: object
     OcrConfig:
       example:

@@ -5,8 +5,8 @@ This is the official supported Java library for the FormKiQ API.
 
 FormKiQ HTTP API
 
-- API version: 1.18.0
-  - Build date: 2025-11-01T15:09:25.429667-05:00[America/Winnipeg]
+- API version: 1.18.1
+  - Build date: 2025-12-07T17:20:11.660615-06:00[America/Winnipeg]
   - Generator version: 7.17.0
 
 Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
@@ -64,7 +64,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.18.0</version>
+  <version>1.18.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -80,7 +80,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.18.0"
+     implementation "com.formkiq:client:1.18.1"
   }
 ```
 
@@ -94,7 +94,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.18.0.jar`
+* `target/client-1.18.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -513,6 +513,7 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
+ - [ApiKeyPermission](docs/ApiKeyPermission.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeDataType](docs/AttributeDataType.md)
  - [AttributeSchemaCompositeKey](docs/AttributeSchemaCompositeKey.md)
@@ -548,6 +549,8 @@ Class | Method | HTTP request | Description
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
+ - [DocumentConfig](docs/DocumentConfig.md)
+ - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
