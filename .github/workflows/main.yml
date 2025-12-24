@@ -34,6 +34,21 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ !((github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.ref_name == 'master' || github.ref_name == 'main' || startsWith(github.ref_name, 'v'))) }}
+      - name: Restore gradle.properties
+        env:
+          GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+        shell: bash
+        run: |
+          mkdir -p ~/.gradle/
+          echo "GRADLE_USER_HOME=${HOME}/.gradle" >> $GITHUB_ENV
+          echo "${GRADLE_PROPERTIES}" > ~/.gradle/gradle.properties
+      - name: Restore gpg key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        shell: bash
+        run: |
+          mkdir /home/runner/.gnupg
+          echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > /home/runner/.gnupg/secring.gpg
       - name: Build Project
         timeout-minutes: 35
         env:

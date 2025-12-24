@@ -41,7 +41,7 @@ jobs:
           mkdir /home/runner/.gnupg
           echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > /home/runner/.gnupg/secring.gpg
       - name: Execute Gradle publish
-        run: ./gradlew build --scan --no-daemon --console=plain
+        run: ./gradlew build publish --scan --no-daemon --console=plain
       - name: Upload test reports
         uses: actions/upload-artifact@v4
         if: always()
