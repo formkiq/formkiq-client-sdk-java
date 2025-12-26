@@ -64,7 +64,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.18.1</version>
+  <version>1.19.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -80,7 +80,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.18.1"
+     implementation "com.formkiq:client:1.19.0"
   }
 ```
 
@@ -94,7 +94,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.18.1.jar`
+* `target/client-1.19.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -566,6 +566,8 @@ Class | Method | HTTP request | Description
  - [DocumentRelationshipType](docs/DocumentRelationshipType.md)
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSearchAttribute](docs/DocumentSearchAttribute.md)
+ - [DocumentSearchFilename](docs/DocumentSearchFilename.md)
+ - [DocumentSearchFolder](docs/DocumentSearchFolder.md)
  - [DocumentSearchMatchAttribute](docs/DocumentSearchMatchAttribute.md)
  - [DocumentSearchMatchTag](docs/DocumentSearchMatchTag.md)
  - [DocumentSearchMeta](docs/DocumentSearchMeta.md)

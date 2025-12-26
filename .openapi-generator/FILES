@@ -177,6 +177,8 @@ docs/DocumentRelationshipType.md
 docs/DocumentSearch.md
 docs/DocumentSearchApi.md
 docs/DocumentSearchAttribute.md
+docs/DocumentSearchFilename.md
+docs/DocumentSearchFolder.md
 docs/DocumentSearchMatchAttribute.md
 docs/DocumentSearchMatchTag.md
 docs/DocumentSearchMeta.md
@@ -697,6 +699,8 @@ src/main/java/com/formkiq/client/model/DocumentMetadata.java
 src/main/java/com/formkiq/client/model/DocumentRelationshipType.java
 src/main/java/com/formkiq/client/model/DocumentSearch.java
 src/main/java/com/formkiq/client/model/DocumentSearchAttribute.java
+src/main/java/com/formkiq/client/model/DocumentSearchFilename.java
+src/main/java/com/formkiq/client/model/DocumentSearchFolder.java
 src/main/java/com/formkiq/client/model/DocumentSearchMatchAttribute.java
 src/main/java/com/formkiq/client/model/DocumentSearchMatchTag.java
 src/main/java/com/formkiq/client/model/DocumentSearchMeta.java
@@ -1163,6 +1167,8 @@ src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/DocumentRelationshipTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchAttributeTest.java
+src/test/java/com/formkiq/client/model/DocumentSearchFilenameTest.java
+src/test/java/com/formkiq/client/model/DocumentSearchFolderTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMatchAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMatchTagTest.java
 src/test/java/com/formkiq/client/model/DocumentSearchMetaTest.java
