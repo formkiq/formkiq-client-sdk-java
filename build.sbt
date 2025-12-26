@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.formkiq",
     name := "client",
-    version := "1.18.1",
+    version := "1.19.0",
     scalaVersion := "2.11.12",
     scalacOptions ++= Seq("-feature"),
     compile / javacOptions ++= Seq("-Xlint:deprecation"),

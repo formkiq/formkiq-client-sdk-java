@@ -5,7 +5,7 @@ info:
     name: FormKiQ
     url: https://formkiq.com
   description: |-
-    Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
+    FormKiQ API: Document Management Platform API using OAuth(JWT) Authentication
 
     You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com).
 
@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.18.1
+  version: 1.19.0
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -14090,6 +14090,10 @@ components:
     DocumentSearch:
       description: Document tag search criteria
       example:
+        filename:
+          beginsWith: beginsWith
+        folder:
+          beginsWith: beginsWith
         meta:
           path: path
           indexFilterBeginsWith: indexFilterBeginsWith
@@ -14164,6 +14168,10 @@ components:
           type: string
         meta:
           $ref: "#/components/schemas/DocumentSearchMeta"
+        filename:
+          $ref: "#/components/schemas/DocumentSearchFilename"
+        folder:
+          $ref: "#/components/schemas/DocumentSearchFolder"
         attribute:
           $ref: "#/components/schemas/DocumentSearchAttribute"
         attributes:
@@ -14659,6 +14667,10 @@ components:
       description: Document search tag criteria
       example:
         query:
+          filename:
+            beginsWith: beginsWith
+          folder:
+            beginsWith: beginsWith
           meta:
             path: path
             indexFilterBeginsWith: indexFilterBeginsWith
@@ -14785,6 +14797,22 @@ components:
           type: boolean
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
+    DocumentSearchFilename:
+      example:
+        beginsWith: beginsWith
+      properties:
+        beginsWith:
+          description: Searches for a filename
+          type: string
+      type: object
+    DocumentSearchFolder:
+      example:
+        beginsWith: beginsWith
+      properties:
+        beginsWith:
+          description: Searches for a folder
+          type: string
+      type: object
     DocumentSearchMeta:
       example:
         path: path
@@ -16349,12 +16377,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 6
+          contentLength: 0
           attributes:
             key:
               numberValues:
-              - 1.4658129805029452
-              - 1.4658129805029452
+              - 6.027456183070403
+              - 6.027456183070403
               stringValues:
               - stringValues
               - stringValues
@@ -16376,12 +16404,12 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 6
+          contentLength: 0
           attributes:
             key:
               numberValues:
-              - 1.4658129805029452
-              - 1.4658129805029452
+              - 6.027456183070403
+              - 6.027456183070403
               stringValues:
               - stringValues
               - stringValues
@@ -16389,12 +16417,7 @@ components:
               booleanValue: true
           contentType: contentType
           height: height
-        totalCount: 0
       properties:
-        totalCount:
-          description: |
-            Total number of documents that matched the search query. When the number of matches exceeds 10,000, this value will be reported as 10,000+ unless the search request explicitly enables exact total hit tracking.
-          type: integer
         documents:
           description: List of search result documents
           items:
@@ -16417,12 +16440,12 @@ components:
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
-        contentLength: 6
+        contentLength: 0
         attributes:
           key:
             numberValues:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 6.027456183070403
+            - 6.027456183070403
             stringValues:
             - stringValues
             - stringValues
@@ -16499,8 +16522,8 @@ components:
     FulltextAttribute:
       example:
         numberValues:
-        - 1.4658129805029452
-        - 1.4658129805029452
+        - 6.027456183070403
+        - 6.027456183070403
         stringValues:
         - stringValues
         - stringValues
@@ -16544,8 +16567,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 6.027456183070403
+            - 6.027456183070403
             stringValues:
             - stringValues
             - stringValues
@@ -21135,8 +21158,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 6.027456183070403
+            - 6.027456183070403
             stringValues:
             - stringValues
             - stringValues
@@ -21224,8 +21247,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 6.027456183070403
+            - 6.027456183070403
             stringValues:
             - stringValues
             - stringValues
@@ -21313,8 +21336,8 @@ components:
         attributes:
           key:
             numberValues:
-            - 1.4658129805029452
-            - 1.4658129805029452
+            - 6.027456183070403
+            - 6.027456183070403
             stringValues:
             - stringValues
             - stringValues
@@ -22937,8 +22960,14 @@ components:
           description: Inserted Timestamp
           type: string
         permissions:
+          description: List of permissions
           items:
-            $ref: "#/components/schemas/ApiKeyPermission"
+            enum:
+            - READ
+            - WRITE
+            - DELETE
+            - GOVERN
+            type: string
           type: array
         groups:
           description: List of groups to add as custom claims to API Key
@@ -26022,13 +26051,13 @@ components:
       flows: {}
       type: oauth2
       x-amazon-apigateway-authorizer:
-        type: jwt
+        identitySource: $request.header.Authorization
         jwtConfiguration:
-          issuer:
-            Fn::Sub: "https://cognito-idp.${AWS::Region}.amazonaws.com/${CognitoUserPool}"
           audience:
           - Fn::Sub: "${CognitoUserPoolClient}"
-        identitySource: $request.header.Authorization
+          issuer:
+            Fn::Sub: "https://cognito-idp.${AWS::Region}.amazonaws.com/${CognitoUserPool}"
+        type: jwt
   x-amazon-apigateway-integrations:
     lambdaApi200:
       uri:
