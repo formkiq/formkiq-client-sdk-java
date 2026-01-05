@@ -8,8 +8,16 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**alias** | **String** | Certificate alias. |  |
-|**sourceType** | **DocumentCertificationSourceType** |  |  [optional] |
-|**awsSecretsManager** | [**DocumentCertificationAwsSecretsManager**](DocumentCertificationAwsSecretsManager.md) |  |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+|**parameterStore** | [**DocumentCertificationParameterStore**](DocumentCertificationParameterStore.md) |  |  [optional] |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| AWS_SSM_PARAMETER_STORE | &quot;AWS_SSM_PARAMETER_STORE&quot; |
 
 
 

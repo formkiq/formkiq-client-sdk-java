@@ -58,7 +58,7 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentTagResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-26T10:53:07.705322-06:00[America/Winnipeg]",
+    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
     comments = "Generator version: 7.18.0")
 public class GetDocumentTagResponse {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
