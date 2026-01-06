@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.DocumentSearchAttribute;
 import com.formkiq.client.model.DocumentSearchMeta;
 import com.formkiq.client.model.DocumentSearchTag;
@@ -56,7 +55,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -64,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Document tag search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class DocumentSearch {
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
@@ -341,7 +339,7 @@ public class DocumentSearch {
     if (jsonElement == null) {
       if (!DocumentSearch.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                              // is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocumentSearch is not found in the empty JSON string",
             DocumentSearch.openapiRequiredFields.toString()));
       }
@@ -351,7 +349,7 @@ public class DocumentSearch {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentSearch.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentSearch` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -359,7 +357,7 @@ public class DocumentSearch {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("text") != null && !jsonObj.get("text").isJsonNull())
         && !jsonObj.get("text").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `text` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("text").toString()));
     }
@@ -376,7 +374,7 @@ public class DocumentSearch {
       if (jsonArrayattributes != null) {
         // ensure the json data is an array
         if (!jsonObj.get("attributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `attributes` to be an array in the JSON string but got `%s`",
               jsonObj.get("attributes").toString()));
         }
@@ -396,7 +394,7 @@ public class DocumentSearch {
       if (jsonArraytags != null) {
         // ensure the json data is an array
         if (!jsonObj.get("tags").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `tags` to be an array in the JSON string but got `%s`",
               jsonObj.get("tags").toString()));
         }
@@ -410,7 +408,7 @@ public class DocumentSearch {
     // ensure the optional json data is an array if present
     if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()
         && !jsonObj.get("documentIds").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentIds` to be an array in the JSON string but got `%s`",
           jsonObj.get("documentIds").toString()));
     }

@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddFolderShareResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class AddFolderShareResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -174,7 +172,7 @@ public class AddFolderShareResponse {
     if (jsonElement == null) {
       if (!AddFolderShareResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                      // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in AddFolderShareResponse is not found in the empty JSON string",
             AddFolderShareResponse.openapiRequiredFields.toString()));
       }
@@ -184,7 +182,7 @@ public class AddFolderShareResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddFolderShareResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddFolderShareResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -192,13 +190,13 @@ public class AddFolderShareResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("message").toString()));
     }
     if ((jsonObj.get("shareKey") != null && !jsonObj.get("shareKey").isJsonNull())
         && !jsonObj.get("shareKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `shareKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("shareKey").toString()));
     }

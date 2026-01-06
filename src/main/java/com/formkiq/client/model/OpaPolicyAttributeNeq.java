@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * Attribute not equal to criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class OpaPolicyAttributeNeq {
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -147,7 +145,7 @@ public class OpaPolicyAttributeNeq {
     if (jsonElement == null) {
       if (!OpaPolicyAttributeNeq.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                     // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in OpaPolicyAttributeNeq is not found in the empty JSON string",
             OpaPolicyAttributeNeq.openapiRequiredFields.toString()));
       }
@@ -157,7 +155,7 @@ public class OpaPolicyAttributeNeq {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpaPolicyAttributeNeq.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpaPolicyAttributeNeq` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -165,7 +163,7 @@ public class OpaPolicyAttributeNeq {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("stringValue") != null && !jsonObj.get("stringValue").isJsonNull())
         && !jsonObj.get("stringValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `stringValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("stringValue").toString()));
     }

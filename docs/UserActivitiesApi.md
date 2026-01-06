@@ -82,7 +82,7 @@ No authorization required
 
 <a id="getResourceActivities"></a>
 # **getResourceActivities**
-> GetActivitesResponse getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, start, end, sort, next, limit, userId)
+> GetActivitesResponse getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, rulesetId, workflowId, attributeKey, start, end, sort, next, limit, userId)
 
 Get resource activities
 
@@ -111,6 +111,9 @@ public class Example {
     String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
     String namespace = "PRESET"; // String | Namespace Identifier
     String entityId = "entityId_example"; // String | Entity Identifier
+    String rulesetId = "rulesetId_example"; // String | RulesetId Identifier
+    String workflowId = "workflowId_example"; // String | Workflow Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
     OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Start of date-time range (UTC)
     OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | End of date-time range (UTC)
     String sort = "ASC"; // String | Sort order (default DESC)
@@ -118,7 +121,7 @@ public class Example {
     String limit = "10"; // String | Limit Results
     String userId = "userId_example"; // String | Fetch specific user activities
     try {
-      GetActivitesResponse result = apiInstance.getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, start, end, sort, next, limit, userId);
+      GetActivitesResponse result = apiInstance.getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, rulesetId, workflowId, attributeKey, start, end, sort, next, limit, userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserActivitiesApi#getResourceActivities");
@@ -140,6 +143,9 @@ public class Example {
 | **entityTypeId** | **String**| EntityType Identifier | [optional] |
 | **namespace** | **String**| Namespace Identifier | [optional] [enum: PRESET, CUSTOM] |
 | **entityId** | **String**| Entity Identifier | [optional] |
+| **rulesetId** | **String**| RulesetId Identifier | [optional] |
+| **workflowId** | **String**| Workflow Identifier | [optional] |
+| **attributeKey** | **String**| Attribute Key | [optional] |
 | **start** | **OffsetDateTime**| Start of date-time range (UTC) | [optional] |
 | **end** | **OffsetDateTime**| End of date-time range (UTC) | [optional] |
 | **sort** | **String**| Sort order (default DESC) | [optional] [enum: ASC, DESC] |

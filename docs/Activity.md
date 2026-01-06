@@ -19,6 +19,8 @@
 |**attributeKey** | **Object** | Document Attribute Key |  [optional] |
 |**entityTypeId** | **String** | Entity Type Identifier |  [optional] |
 |**entityId** | **String** | Entity Identifier |  [optional] |
+|**rulesetId** | **String** | Ruleset Identifier |  [optional] |
+|**workflowId** | **String** | Workflow Identifier |  [optional] |
 |**changes** | [**Map&lt;String, UserActivityChanges&gt;**](UserActivityChanges.md) |  |  [optional] |
 
 

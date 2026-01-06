@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.GetWebhookResponse;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -53,7 +52,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhooksResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class GetWebhooksResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -186,7 +184,7 @@ public class GetWebhooksResponse {
     if (jsonElement == null) {
       if (!GetWebhooksResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                   // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetWebhooksResponse is not found in the empty JSON string",
             GetWebhooksResponse.openapiRequiredFields.toString()));
       }
@@ -196,7 +194,7 @@ public class GetWebhooksResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetWebhooksResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetWebhooksResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -204,7 +202,7 @@ public class GetWebhooksResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
         && !jsonObj.get("next").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
@@ -213,7 +211,7 @@ public class GetWebhooksResponse {
       if (jsonArraywebhooks != null) {
         // ensure the json data is an array
         if (!jsonObj.get("webhooks").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `webhooks` to be an array in the JSON string but got `%s`",
               jsonObj.get("webhooks").toString()));
         }

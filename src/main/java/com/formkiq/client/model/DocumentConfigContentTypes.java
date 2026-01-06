@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +51,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentConfigContentTypes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class DocumentConfigContentTypes {
   public static final String SERIALIZED_NAME_ALLOWLIST = "allowlist";
   @SerializedName(SERIALIZED_NAME_ALLOWLIST)
@@ -192,7 +190,7 @@ public class DocumentConfigContentTypes {
     if (jsonElement == null) {
       if (!DocumentConfigContentTypes.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocumentConfigContentTypes is not found in the empty JSON string",
             DocumentConfigContentTypes.openapiRequiredFields.toString()));
       }
@@ -202,7 +200,7 @@ public class DocumentConfigContentTypes {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentConfigContentTypes.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentConfigContentTypes` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -211,14 +209,14 @@ public class DocumentConfigContentTypes {
     // ensure the optional json data is an array if present
     if (jsonObj.get("allowlist") != null && !jsonObj.get("allowlist").isJsonNull()
         && !jsonObj.get("allowlist").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `allowlist` to be an array in the JSON string but got `%s`",
           jsonObj.get("allowlist").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("denylist") != null && !jsonObj.get("denylist").isJsonNull()
         && !jsonObj.get("denylist").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `denylist` to be an array in the JSON string but got `%s`",
           jsonObj.get("denylist").toString()));
     }

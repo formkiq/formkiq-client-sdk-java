@@ -72,14 +72,18 @@ public class UserActivitiesApiTest {
     String entityTypeId = null;
     String namespace = null;
     String entityId = null;
+    String rulesetId = null;
+    String workflowId = null;
+    String attributeKey = null;
     OffsetDateTime start = null;
     OffsetDateTime end = null;
     String sort = null;
     String next = null;
     String limit = null;
     String userId = null;
-    GetActivitesResponse response = api.getResourceActivities(siteId, documentId, entityTypeId,
-        namespace, entityId, start, end, sort, next, limit, userId);
+    GetActivitesResponse response =
+        api.getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, rulesetId,
+            workflowId, attributeKey, start, end, sort, next, limit, userId);
     // TODO: test validations
   }
 

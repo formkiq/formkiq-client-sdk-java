@@ -7858,6 +7858,30 @@ paths:
         schema:
           type: string
         style: form
+      - description: RulesetId Identifier
+        explode: true
+        in: query
+        name: rulesetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: true
+        in: query
+        name: workflowId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Attribute Key
+        explode: true
+        in: query
+        name: attributeKey
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Start of date-time range (UTC)
         explode: true
         in: query
@@ -12232,6 +12256,33 @@ components:
       schema:
         type: string
       style: form
+    rulesetIdQuery:
+      description: RulesetId Identifier
+      explode: true
+      in: query
+      name: rulesetId
+      required: false
+      schema:
+        type: string
+      style: form
+    workflowIdQuery:
+      description: Workflow Identifier
+      explode: true
+      in: query
+      name: workflowId
+      required: false
+      schema:
+        type: string
+      style: form
+    attributeKeyQuery:
+      description: Attribute Key
+      explode: true
+      in: query
+      name: attributeKey
+      required: false
+      schema:
+        type: string
+      style: form
     entityTypeIdParam:
       description: EntityType Identifier
       explode: false
@@ -16209,7 +16260,8 @@ components:
       example:
         next: next
         activities:
-        - resource: resource
+        - rulesetId: rulesetId
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16224,8 +16276,10 @@ components:
           insertedDate: insertedDate
           documentId: ""
           entityTypeId: entityTypeId
+          workflowId: workflowId
           status: COMPLETE
-        - resource: resource
+        - rulesetId: rulesetId
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16240,6 +16294,7 @@ components:
           insertedDate: insertedDate
           documentId: ""
           entityTypeId: entityTypeId
+          workflowId: workflowId
           status: COMPLETE
       properties:
         next:
@@ -16423,6 +16478,7 @@ components:
       type: string
     Activity:
       example:
+        rulesetId: rulesetId
         resource: resource
         changes:
           key:
@@ -16438,6 +16494,7 @@ components:
         insertedDate: insertedDate
         documentId: ""
         entityTypeId: entityTypeId
+        workflowId: workflowId
         status: COMPLETE
       properties:
         resource:
@@ -16472,6 +16529,12 @@ components:
           type: string
         entityId:
           description: Entity Identifier
+          type: string
+        rulesetId:
+          description: Ruleset Identifier
+          type: string
+        workflowId:
+          description: Workflow Identifier
           type: string
         changes:
           additionalProperties:

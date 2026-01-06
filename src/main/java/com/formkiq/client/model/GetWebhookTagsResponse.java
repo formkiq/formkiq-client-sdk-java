@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.WebhookTag;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -53,7 +52,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetWebhookTagsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class GetWebhookTagsResponse {
   public static final String SERIALIZED_NAME_NEXT = "next";
   @SerializedName(SERIALIZED_NAME_NEXT)
@@ -212,7 +210,7 @@ public class GetWebhookTagsResponse {
     if (jsonElement == null) {
       if (!GetWebhookTagsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                      // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetWebhookTagsResponse is not found in the empty JSON string",
             GetWebhookTagsResponse.openapiRequiredFields.toString()));
       }
@@ -222,7 +220,7 @@ public class GetWebhookTagsResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetWebhookTagsResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetWebhookTagsResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -230,13 +228,13 @@ public class GetWebhookTagsResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("next") != null && !jsonObj.get("next").isJsonNull())
         && !jsonObj.get("next").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `next` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("next").toString()));
     }
     if ((jsonObj.get("previous") != null && !jsonObj.get("previous").isJsonNull())
         && !jsonObj.get("previous").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `previous` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("previous").toString()));
     }
@@ -245,7 +243,7 @@ public class GetWebhookTagsResponse {
       if (jsonArraytags != null) {
         // ensure the json data is an array
         if (!jsonObj.get("tags").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `tags` to be an array in the JSON string but got `%s`",
               jsonObj.get("tags").toString()));
         }

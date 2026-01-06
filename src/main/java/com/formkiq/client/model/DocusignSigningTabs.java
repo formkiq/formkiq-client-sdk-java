@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.DocusignSignHereTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -53,7 +52,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigningTabs
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.18.0")
 public class DocusignSigningTabs {
   public static final String SERIALIZED_NAME_SIGN_HERE_TABS = "signHereTabs";
   @SerializedName(SERIALIZED_NAME_SIGN_HERE_TABS)
@@ -159,7 +157,7 @@ public class DocusignSigningTabs {
     if (jsonElement == null) {
       if (!DocusignSigningTabs.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                   // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocusignSigningTabs is not found in the empty JSON string",
             DocusignSigningTabs.openapiRequiredFields.toString()));
       }
@@ -169,7 +167,7 @@ public class DocusignSigningTabs {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocusignSigningTabs.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocusignSigningTabs` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -180,7 +178,7 @@ public class DocusignSigningTabs {
       if (jsonArraysignHereTabs != null) {
         // ensure the json data is an array
         if (!jsonObj.get("signHereTabs").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `signHereTabs` to be an array in the JSON string but got `%s`",
               jsonObj.get("signHereTabs").toString()));
         }
