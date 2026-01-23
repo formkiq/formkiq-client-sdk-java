@@ -64,6 +64,14 @@ public class GetSitesResponseTest {
   }
 
   /**
+   * Test the property 'samlGroups'
+   */
+  @Test
+  public void samlGroupsTest() {
+    // TODO: test samlGroups
+  }
+
+  /**
    * Test the property 'sites'
    */
   @Test

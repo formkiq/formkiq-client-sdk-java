@@ -21,7 +21,9 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocumentMetadataExtractionResponse;
 import com.formkiq.client.model.GetDocumentDataClassificationResponse;
+import com.formkiq.client.model.GetDocumentMetadataExtractionResponse;
 import com.formkiq.client.model.SetDocumentDataClassificationRequest;
 import com.formkiq.client.model.SetDocumentDataClassificationResponse;
 import org.junit.jupiter.api.Disabled;
@@ -33,12 +35,48 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for DocumentDataClassificationApi
+ * API tests for IntelligentDocumentProcessingApi
  */
 @Disabled
-public class DocumentDataClassificationApiTest {
+public class IntelligentDocumentProcessingApiTest {
 
-  private final DocumentDataClassificationApi api = new DocumentDataClassificationApi();
+  private final IntelligentDocumentProcessingApi api = new IntelligentDocumentProcessingApi();
+
+  /**
+   * Add document&#39;s metadata extraction result
+   *
+   * Create a document Metadatq Extraction Result attributes within a document; available as an
+   * Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentMetadataExtractionResultTest() throws ApiException {
+    String documentId = null;
+    String llmPromptEntityName = null;
+    String siteId = null;
+    AddDocumentMetadataExtractionResponse response =
+        api.addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId);
+    // TODO: test validations
+  }
+
+  /**
+   * Get all document&#39;s metadata extraction results
+   *
+   * Retrieve all document&#39;s metadata extraction; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getAllDocumentMetadataExtractionResultsTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetDocumentMetadataExtractionResponse response =
+        api.getAllDocumentMetadataExtractionResults(documentId, siteId, limit, next);
+    // TODO: test validations
+  }
 
   /**
    * Get document&#39;s data classification
@@ -55,6 +93,25 @@ public class DocumentDataClassificationApiTest {
     String next = null;
     GetDocumentDataClassificationResponse response =
         api.getDocumentDataClassification(documentId, siteId, limit, next);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document&#39;s metadata extraction results
+   *
+   * Retrieve an document&#39;s metadata extraction; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentMetadataExtractionResultsTest() throws ApiException {
+    String documentId = null;
+    String llmPromptEntityName = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetDocumentMetadataExtractionResponse response = api
+        .getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, limit, next);
     // TODO: test validations
   }
 

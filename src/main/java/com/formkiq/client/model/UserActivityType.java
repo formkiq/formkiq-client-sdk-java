@@ -48,7 +48,9 @@ public enum UserActivityType {
 
   RESTORE("RESTORE"),
 
-  NEW_VERSION("NEW_VERSION");
+  NEW_VERSION("NEW_VERSION"),
+
+  UPDATE_VERSION("UPDATE_VERSION");
 
   private String value;
 

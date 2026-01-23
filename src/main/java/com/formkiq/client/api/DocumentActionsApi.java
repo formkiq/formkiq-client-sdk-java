@@ -193,21 +193,21 @@ public class DocumentActionsApi {
    * result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages | Number of
    * pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert
    * images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt
-   * Entity Name | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
-   * destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
-   * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
-   * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
-   * notificationType | Type of Notification | email | | NOTIFICATION | notificationToCc |
-   * Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationToBcc |
-   * Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationSubject |
-   * Notification Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text
-   * | Email Text | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | |
-   * QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE |
-   * eventBusName | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE |
-   * width | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE | height | The
-   * height of the image to resize (or &#39;auto&#39;). | | | RESIZE | outputType | The output type
-   * of the image (optional). | | | RESIZE | path | The path to use when creating resized document
-   * (optional). | |
+   * Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | FULLTEXT
+   * | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
+   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
+   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
+   * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationSubject | Notification Subject | Email
+   * Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text | |
+   * NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE | queueId |
+   * Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName | The name
+   * or ARN of the Amazon EventBridge to receive the event. | | | RESIZE | width | The width of the
+   * image to resize (or &#39;auto&#39;). | | | RESIZE | height | The height of the image to resize
+   * (or &#39;auto&#39;). | | | RESIZE | outputType | The output type of the image (optional). | | |
+   * RESIZE | path | The path to use when creating resized document (optional). | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -258,21 +258,21 @@ public class DocumentActionsApi {
    * result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages | Number of
    * pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert
    * images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt
-   * Entity Name | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
-   * destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
-   * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
-   * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
-   * notificationType | Type of Notification | email | | NOTIFICATION | notificationToCc |
-   * Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationToBcc |
-   * Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationSubject |
-   * Notification Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text
-   * | Email Text | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | |
-   * QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE |
-   * eventBusName | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE |
-   * width | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE | height | The
-   * height of the image to resize (or &#39;auto&#39;). | | | RESIZE | outputType | The output type
-   * of the image (optional). | | | RESIZE | path | The path to use when creating resized document
-   * (optional). | |
+   * Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | FULLTEXT
+   * | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
+   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
+   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
+   * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationSubject | Notification Subject | Email
+   * Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text | |
+   * NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE | queueId |
+   * Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName | The name
+   * or ARN of the Amazon EventBridge to receive the event. | | | RESIZE | width | The width of the
+   * image to resize (or &#39;auto&#39;). | | | RESIZE | height | The height of the image to resize
+   * (or &#39;auto&#39;). | | | RESIZE | outputType | The output type of the image (optional). | | |
+   * RESIZE | path | The path to use when creating resized document (optional). | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -324,21 +324,21 @@ public class DocumentActionsApi {
    * OCR result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages | Number
    * of pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents
    * convert images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM
-   * Prompt Entity Name | | FULLTEXT | characterMax | Maximum number of characters to add to
-   * Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
-   * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
-   * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
-   * notificationType | Type of Notification | email | | NOTIFICATION | notificationToCc |
-   * Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationToBcc |
-   * Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationSubject |
-   * Notification Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text
-   * | Email Text | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | |
-   * QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE |
-   * eventBusName | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE |
-   * width | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE | height | The
-   * height of the image to resize (or &#39;auto&#39;). | | | RESIZE | outputType | The output type
-   * of the image (optional). | | | RESIZE | path | The path to use when creating resized document
-   * (optional). | |
+   * Prompt Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | |
+   * FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
+   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
+   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
+   * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
+   * email@yourdomain.com | | NOTIFICATION | notificationSubject | Notification Subject | Email
+   * Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text | |
+   * NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE | queueId |
+   * Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName | The name
+   * or ARN of the Amazon EventBridge to receive the event. | | | RESIZE | width | The width of the
+   * image to resize (or &#39;auto&#39;). | | | RESIZE | height | The height of the image to resize
+   * (or &#39;auto&#39;). | | | RESIZE | outputType | The output type of the image (optional). | | |
+   * RESIZE | path | The path to use when creating resized document (optional). | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)

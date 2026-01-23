@@ -308,8 +308,14 @@ public class UserActivitiesApi {
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
    * @param rulesetId RulesetId Identifier (optional)
+   * @param ruleId RuleId Identifier (optional)
    * @param workflowId Workflow Identifier (optional)
    * @param attributeKey Attribute Key (optional)
+   * @param schema Schema Type (optional)
+   * @param classificationId Classification Id (optional)
+   * @param mappingId Mapping Id (optional)
+   * @param apiKey Api Key (optional)
+   * @param controlPolicy Control Policy (optional)
    * @param start Start of date-time range (UTC) (optional)
    * @param end End of date-time range (UTC) (optional)
    * @param sort Sort order (default DESC) (optional)
@@ -340,8 +346,11 @@ public class UserActivitiesApi {
   public okhttp3.Call getResourceActivitiesCall(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
-      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String workflowId,
-      @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String ruleId,
+      @javax.annotation.Nullable String workflowId, @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String schema, @javax.annotation.Nullable String classificationId,
+      @javax.annotation.Nullable String mappingId, @javax.annotation.Nullable String apiKey,
+      @javax.annotation.Nullable String controlPolicy,
       @javax.annotation.Nullable OffsetDateTime start,
       @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
@@ -394,12 +403,37 @@ public class UserActivitiesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("rulesetId", rulesetId));
     }
 
+    if (ruleId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("ruleId", ruleId));
+    }
+
     if (workflowId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("workflowId", workflowId));
     }
 
     if (attributeKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("attributeKey", attributeKey));
+    }
+
+    if (schema != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("schema", schema));
+    }
+
+    if (classificationId != null) {
+      localVarQueryParams
+          .addAll(localVarApiClient.parameterToPair("classificationId", classificationId));
+    }
+
+    if (mappingId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("mappingId", mappingId));
+    }
+
+    if (apiKey != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("apiKey", apiKey));
+    }
+
+    if (controlPolicy != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("controlPolicy", controlPolicy));
     }
 
     if (start != null) {
@@ -450,13 +484,18 @@ public class UserActivitiesApi {
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String documentId,
       @javax.annotation.Nullable String entityTypeId, @javax.annotation.Nullable String namespace,
       @javax.annotation.Nullable String entityId, @javax.annotation.Nullable String rulesetId,
-      @javax.annotation.Nullable String workflowId, @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String ruleId, @javax.annotation.Nullable String workflowId,
+      @javax.annotation.Nullable String attributeKey, @javax.annotation.Nullable String schema,
+      @javax.annotation.Nullable String classificationId,
+      @javax.annotation.Nullable String mappingId, @javax.annotation.Nullable String apiKey,
+      @javax.annotation.Nullable String controlPolicy,
       @javax.annotation.Nullable OffsetDateTime start,
       @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId, final ApiCallback _callback) throws ApiException {
     return getResourceActivitiesCall(siteId, documentId, entityTypeId, namespace, entityId,
-        rulesetId, workflowId, attributeKey, start, end, sort, next, limit, userId, _callback);
+        rulesetId, ruleId, workflowId, attributeKey, schema, classificationId, mappingId, apiKey,
+        controlPolicy, start, end, sort, next, limit, userId, _callback);
 
   }
 
@@ -469,8 +508,14 @@ public class UserActivitiesApi {
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
    * @param rulesetId RulesetId Identifier (optional)
+   * @param ruleId RuleId Identifier (optional)
    * @param workflowId Workflow Identifier (optional)
    * @param attributeKey Attribute Key (optional)
+   * @param schema Schema Type (optional)
+   * @param classificationId Classification Id (optional)
+   * @param mappingId Mapping Id (optional)
+   * @param apiKey Api Key (optional)
+   * @param controlPolicy Control Policy (optional)
    * @param start Start of date-time range (UTC) (optional)
    * @param end End of date-time range (UTC) (optional)
    * @param sort Sort order (default DESC) (optional)
@@ -501,15 +546,19 @@ public class UserActivitiesApi {
   public GetActivitesResponse getResourceActivities(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
-      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String workflowId,
-      @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String ruleId,
+      @javax.annotation.Nullable String workflowId, @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String schema, @javax.annotation.Nullable String classificationId,
+      @javax.annotation.Nullable String mappingId, @javax.annotation.Nullable String apiKey,
+      @javax.annotation.Nullable String controlPolicy,
       @javax.annotation.Nullable OffsetDateTime start,
       @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId) throws ApiException {
     ApiResponse<GetActivitesResponse> localVarResp =
         getResourceActivitiesWithHttpInfo(siteId, documentId, entityTypeId, namespace, entityId,
-            rulesetId, workflowId, attributeKey, start, end, sort, next, limit, userId);
+            rulesetId, ruleId, workflowId, attributeKey, schema, classificationId, mappingId,
+            apiKey, controlPolicy, start, end, sort, next, limit, userId);
     return localVarResp.getData();
   }
 
@@ -522,8 +571,14 @@ public class UserActivitiesApi {
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
    * @param rulesetId RulesetId Identifier (optional)
+   * @param ruleId RuleId Identifier (optional)
    * @param workflowId Workflow Identifier (optional)
    * @param attributeKey Attribute Key (optional)
+   * @param schema Schema Type (optional)
+   * @param classificationId Classification Id (optional)
+   * @param mappingId Mapping Id (optional)
+   * @param apiKey Api Key (optional)
+   * @param controlPolicy Control Policy (optional)
    * @param start Start of date-time range (UTC) (optional)
    * @param end End of date-time range (UTC) (optional)
    * @param sort Sort order (default DESC) (optional)
@@ -555,14 +610,19 @@ public class UserActivitiesApi {
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String documentId,
       @javax.annotation.Nullable String entityTypeId, @javax.annotation.Nullable String namespace,
       @javax.annotation.Nullable String entityId, @javax.annotation.Nullable String rulesetId,
-      @javax.annotation.Nullable String workflowId, @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String ruleId, @javax.annotation.Nullable String workflowId,
+      @javax.annotation.Nullable String attributeKey, @javax.annotation.Nullable String schema,
+      @javax.annotation.Nullable String classificationId,
+      @javax.annotation.Nullable String mappingId, @javax.annotation.Nullable String apiKey,
+      @javax.annotation.Nullable String controlPolicy,
       @javax.annotation.Nullable OffsetDateTime start,
       @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId) throws ApiException {
-    okhttp3.Call localVarCall = getResourceActivitiesValidateBeforeCall(siteId, documentId,
-        entityTypeId, namespace, entityId, rulesetId, workflowId, attributeKey, start, end, sort,
-        next, limit, userId, null);
+    okhttp3.Call localVarCall =
+        getResourceActivitiesValidateBeforeCall(siteId, documentId, entityTypeId, namespace,
+            entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId,
+            mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId, null);
     Type localVarReturnType = new TypeToken<GetActivitesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -576,8 +636,14 @@ public class UserActivitiesApi {
    * @param namespace Namespace Identifier (optional)
    * @param entityId Entity Identifier (optional)
    * @param rulesetId RulesetId Identifier (optional)
+   * @param ruleId RuleId Identifier (optional)
    * @param workflowId Workflow Identifier (optional)
    * @param attributeKey Attribute Key (optional)
+   * @param schema Schema Type (optional)
+   * @param classificationId Classification Id (optional)
+   * @param mappingId Mapping Id (optional)
+   * @param apiKey Api Key (optional)
+   * @param controlPolicy Control Policy (optional)
    * @param start Start of date-time range (UTC) (optional)
    * @param end End of date-time range (UTC) (optional)
    * @param sort Sort order (default DESC) (optional)
@@ -608,17 +674,21 @@ public class UserActivitiesApi {
   public okhttp3.Call getResourceActivitiesAsync(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String documentId, @javax.annotation.Nullable String entityTypeId,
       @javax.annotation.Nullable String namespace, @javax.annotation.Nullable String entityId,
-      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String workflowId,
-      @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String rulesetId, @javax.annotation.Nullable String ruleId,
+      @javax.annotation.Nullable String workflowId, @javax.annotation.Nullable String attributeKey,
+      @javax.annotation.Nullable String schema, @javax.annotation.Nullable String classificationId,
+      @javax.annotation.Nullable String mappingId, @javax.annotation.Nullable String apiKey,
+      @javax.annotation.Nullable String controlPolicy,
       @javax.annotation.Nullable OffsetDateTime start,
       @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String limit,
       @javax.annotation.Nullable String userId, final ApiCallback<GetActivitesResponse> _callback)
       throws ApiException {
 
-    okhttp3.Call localVarCall = getResourceActivitiesValidateBeforeCall(siteId, documentId,
-        entityTypeId, namespace, entityId, rulesetId, workflowId, attributeKey, start, end, sort,
-        next, limit, userId, _callback);
+    okhttp3.Call localVarCall =
+        getResourceActivitiesValidateBeforeCall(siteId, documentId, entityTypeId, namespace,
+            entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId,
+            mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId, _callback);
     Type localVarReturnType = new TypeToken<GetActivitesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-01-31T21:25:23.566910-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.19.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_TEXTRACT_QUERIES = "ocrTextractQueries";
   @SerializedName(SERIALIZED_NAME_OCR_TEXTRACT_QUERIES)
@@ -423,7 +423,7 @@ public class AddActionParameters {
   }
 
   /**
-   * DATA_CLASSIFICATION: Set the LLM Prompt Entity Name
+   * DATA_CLASSIFICATION / METADATA_EXTRACTION: Set the LLM Prompt Entity Name
    * 
    * @return llmPromptEntityName
    */

@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**addEntity**](EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity |
 | [**addEntityType**](EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType |
 | [**deleteEntity**](EntityApi.md#deleteEntity) | **DELETE** /entities/{entityTypeId}/{entityId} | Deletes Entity |
+| [**deleteEntityAttribute**](EntityApi.md#deleteEntityAttribute) | **DELETE** /entities/{entityTypeId}/{entityId}/attributes/{attributeKey} | Deletes Entity Attribute |
 | [**deleteEntityType**](EntityApi.md#deleteEntityType) | **DELETE** /entityTypes/{entityTypeId} | Deletes Entity Type |
 | [**getEntities**](EntityApi.md#getEntities) | **GET** /entities/{entityTypeId} | Get Entities |
 | [**getEntity**](EntityApi.md#getEntity) | **GET** /entities/{entityTypeId}/{entityId} | Get Entity |
@@ -204,6 +205,77 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **entityTypeId** | **String**| EntityType Identifier | |
 | **entityId** | **String**| Entity Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**DeleteResponse**](DeleteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="deleteEntityAttribute"></a>
+# **deleteEntityAttribute**
+> DeleteResponse deleteEntityAttribute(entityTypeId, entityId, attributeKey, siteId)
+
+Deletes Entity Attribute
+
+Deletes Entity Attribute
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.EntityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    EntityApi apiInstance = new EntityApi(defaultClient);
+    String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
+    String entityId = "entityId_example"; // String | Entity Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      DeleteResponse result = apiInstance.deleteEntityAttribute(entityTypeId, entityId, attributeKey, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EntityApi#deleteEntityAttribute");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityTypeId** | **String**| EntityType Identifier | |
+| **entityId** | **String**| Entity Identifier | |
+| **attributeKey** | **String**| Attribute Key | |
 | **siteId** | **String**| Site Identifier | [optional] |
 
 ### Return type

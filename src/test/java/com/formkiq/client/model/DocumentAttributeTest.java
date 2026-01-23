@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.AttributeValueType;
+import com.formkiq.client.model.Entity;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -118,6 +119,14 @@ public class DocumentAttributeTest {
   @Test
   public void valueTypeTest() {
     // TODO: test valueType
+  }
+
+  /**
+   * Test the property 'entity'
+   */
+  @Test
+  public void entityTest() {
+    // TODO: test entity
   }
 
 }

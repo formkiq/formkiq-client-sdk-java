@@ -19,5 +19,7 @@
 
 * `NEW_VERSION` (value: `"NEW_VERSION"`)
 
+* `UPDATE_VERSION` (value: `"UPDATE_VERSION"`)
+
 
 

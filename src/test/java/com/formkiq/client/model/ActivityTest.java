@@ -146,6 +146,70 @@ public class ActivityTest {
   }
 
   /**
+   * Test the property 'apiKey'
+   */
+  @Test
+  public void apiKeyTest() {
+    // TODO: test apiKey
+  }
+
+  /**
+   * Test the property 'rulesetId'
+   */
+  @Test
+  public void rulesetIdTest() {
+    // TODO: test rulesetId
+  }
+
+  /**
+   * Test the property 'schema'
+   */
+  @Test
+  public void schemaTest() {
+    // TODO: test schema
+  }
+
+  /**
+   * Test the property 'mappingId'
+   */
+  @Test
+  public void mappingIdTest() {
+    // TODO: test mappingId
+  }
+
+  /**
+   * Test the property 'classificationId'
+   */
+  @Test
+  public void classificationIdTest() {
+    // TODO: test classificationId
+  }
+
+  /**
+   * Test the property 'ruleId'
+   */
+  @Test
+  public void ruleIdTest() {
+    // TODO: test ruleId
+  }
+
+  /**
+   * Test the property 'workflowId'
+   */
+  @Test
+  public void workflowIdTest() {
+    // TODO: test workflowId
+  }
+
+  /**
+   * Test the property 'controlPolicy'
+   */
+  @Test
+  public void controlPolicyTest() {
+    // TODO: test controlPolicy
+  }
+
+  /**
    * Test the property 'changes'
    */
   @Test

@@ -231,13 +231,12 @@ Class | Method | HTTP request | Description
 *DocumentAttributesApi* | [**getDocumentAttributes**](docs/DocumentAttributesApi.md#getDocumentAttributes) | **GET** /documents/{documentId}/attributes | Get document&#39;s attributes
 *DocumentAttributesApi* | [**setDocumentAttributeValue**](docs/DocumentAttributesApi.md#setDocumentAttributeValue) | **PUT** /documents/{documentId}/attributes/{attributeKey} | Set document&#39;s attributes value
 *DocumentAttributesApi* | [**setDocumentAttributes**](docs/DocumentAttributesApi.md#setDocumentAttributes) | **PUT** /documents/{documentId}/attributes | Set document&#39;s attributes
-*DocumentDataClassificationApi* | [**getDocumentDataClassification**](docs/DocumentDataClassificationApi.md#getDocumentDataClassification) | **GET** /documents/{documentId}/dataClassification | Get document&#39;s data classification
-*DocumentDataClassificationApi* | [**setDocumentDataClassification**](docs/DocumentDataClassificationApi.md#setDocumentDataClassification) | **PUT** /documents/{documentId}/dataClassification | Set document&#39;s data classification
 *DocumentFoldersApi* | [**addFolder**](docs/DocumentFoldersApi.md#addFolder) | **POST** /folders | Add document folder
 *DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
 *DocumentFoldersApi* | [**getFolderDocuments**](docs/DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders
 *DocumentFoldersApi* | [**getFolderPermissions**](docs/DocumentFoldersApi.md#getFolderPermissions) | **GET** /folders/{indexKey}/permissions | Get folder permissions
 *DocumentFoldersApi* | [**setFolderPermissions**](docs/DocumentFoldersApi.md#setFolderPermissions) | **PUT** /folders/permissions | Sets Folder Permissions
+*DocumentGenerationApi* | [**addDocumentCertification**](docs/DocumentGenerationApi.md#addDocumentCertification) | **POST** /documents/{documentId}/certifications | Add Document Certification
 *DocumentGenerationApi* | [**addDocumentGenerate**](docs/DocumentGenerationApi.md#addDocumentGenerate) | **POST** /documents/{documentId}/generate | Add Document Generate
 *DocumentOcrApi* | [**addDocumentOcr**](docs/DocumentOcrApi.md#addDocumentOcr) | **POST** /documents/{documentId}/ocr | Perform document ocr
 *DocumentOcrApi* | [**deleteDocumentOcr**](docs/DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | Delete document ocr
@@ -301,6 +300,7 @@ Class | Method | HTTP request | Description
 *EntityApi* | [**addEntity**](docs/EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity
 *EntityApi* | [**addEntityType**](docs/EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
 *EntityApi* | [**deleteEntity**](docs/EntityApi.md#deleteEntity) | **DELETE** /entities/{entityTypeId}/{entityId} | Deletes Entity
+*EntityApi* | [**deleteEntityAttribute**](docs/EntityApi.md#deleteEntityAttribute) | **DELETE** /entities/{entityTypeId}/{entityId}/attributes/{attributeKey} | Deletes Entity Attribute
 *EntityApi* | [**deleteEntityType**](docs/EntityApi.md#deleteEntityType) | **DELETE** /entityTypes/{entityTypeId} | Deletes Entity Type
 *EntityApi* | [**getEntities**](docs/EntityApi.md#getEntities) | **GET** /entities/{entityTypeId} | Get Entities
 *EntityApi* | [**getEntity**](docs/EntityApi.md#getEntity) | **GET** /entities/{entityTypeId}/{entityId} | Get Entity
@@ -310,6 +310,11 @@ Class | Method | HTTP request | Description
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
 *GoogleIntegrationApi* | [**addGoogleDocumentExport**](docs/GoogleIntegrationApi.md#addGoogleDocumentExport) | **POST** /integrations/google/drive/documents/{documentId}/export | Add Google Document Export
+*IntelligentDocumentProcessingApi* | [**addDocumentMetadataExtractionResult**](docs/IntelligentDocumentProcessingApi.md#addDocumentMetadataExtractionResult) | **POST** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Add document&#39;s metadata extraction result
+*IntelligentDocumentProcessingApi* | [**getAllDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getAllDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults | Get all document&#39;s metadata extraction results
+*IntelligentDocumentProcessingApi* | [**getDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#getDocumentDataClassification) | **GET** /documents/{documentId}/dataClassification | Get document&#39;s data classification
+*IntelligentDocumentProcessingApi* | [**getDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Get document&#39;s metadata extraction results
+*IntelligentDocumentProcessingApi* | [**setDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#setDocumentDataClassification) | **PUT** /documents/{documentId}/dataClassification | Set document&#39;s data classification
 *MalwareScanApi* | [**getMalwareScanResults**](docs/MalwareScanApi.md#getMalwareScanResults) | **GET** /documents/{documentId}/malwareScan | Get Malware Scan results
 *MalwareScanApi* | [**setAntivirus**](docs/MalwareScanApi.md#setAntivirus) | **PUT** /documents/{documentId}/antivirus | Antivirus document scan
 *MalwareScanApi* | [**setMalwareScan**](docs/MalwareScanApi.md#setMalwareScan) | **PUT** /documents/{documentId}/malwareScan | MalwareScan document scan
@@ -434,11 +439,14 @@ Class | Method | HTTP request | Description
  - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
  - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
  - [AddDocumentAttributesRequest](docs/AddDocumentAttributesRequest.md)
+ - [AddDocumentCertificationRequest](docs/AddDocumentCertificationRequest.md)
+ - [AddDocumentCertificationResponse](docs/AddDocumentCertificationResponse.md)
  - [AddDocumentFulltextRequest](docs/AddDocumentFulltextRequest.md)
  - [AddDocumentFulltextResponse](docs/AddDocumentFulltextResponse.md)
  - [AddDocumentGenerateRequest](docs/AddDocumentGenerateRequest.md)
  - [AddDocumentGenerateResponse](docs/AddDocumentGenerateResponse.md)
  - [AddDocumentMetadata](docs/AddDocumentMetadata.md)
+ - [AddDocumentMetadataExtractionResponse](docs/AddDocumentMetadataExtractionResponse.md)
  - [AddDocumentOcrRequest](docs/AddDocumentOcrRequest.md)
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
  - [AddDocumentRequest](docs/AddDocumentRequest.md)
@@ -549,6 +557,10 @@ Class | Method | HTTP request | Description
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
+ - [DocumentCertification](docs/DocumentCertification.md)
+ - [DocumentCertificationAwsSecretsManager](docs/DocumentCertificationAwsSecretsManager.md)
+ - [DocumentCertificationSourceType](docs/DocumentCertificationSourceType.md)
+ - [DocumentCertificationTarget](docs/DocumentCertificationTarget.md)
  - [DocumentConfig](docs/DocumentConfig.md)
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
@@ -625,6 +637,7 @@ Class | Method | HTTP request | Description
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
  - [GetDocumentDataClassificationResponse](docs/GetDocumentDataClassificationResponse.md)
  - [GetDocumentFulltextResponse](docs/GetDocumentFulltextResponse.md)
+ - [GetDocumentMetadataExtractionResponse](docs/GetDocumentMetadataExtractionResponse.md)
  - [GetDocumentOcrResponse](docs/GetDocumentOcrResponse.md)
  - [GetDocumentResponse](docs/GetDocumentResponse.md)
  - [GetDocumentSyncResponse](docs/GetDocumentSyncResponse.md)
@@ -701,6 +714,8 @@ Class | Method | HTTP request | Description
  - [MappingAttributeMetadataField](docs/MappingAttributeMetadataField.md)
  - [MappingAttributeSourceType](docs/MappingAttributeSourceType.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
+ - [MetadataExtraction](docs/MetadataExtraction.md)
+ - [MetadataExtractionAttribute](docs/MetadataExtractionAttribute.md)
  - [ModelCase](docs/ModelCase.md)
  - [Nigo](docs/Nigo.md)
  - [NigoStatus](docs/NigoStatus.md)

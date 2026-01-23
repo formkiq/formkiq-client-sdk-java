@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-01-31T21:25:23.566910-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.19.0")
 public class GetSitesResponse {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -71,6 +71,11 @@ public class GetSitesResponse {
   @SerializedName(SERIALIZED_NAME_ROLES)
   @javax.annotation.Nullable
   private List<String> roles = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SAML_GROUPS = "samlGroups";
+  @SerializedName(SERIALIZED_NAME_SAML_GROUPS)
+  @javax.annotation.Nullable
+  private List<String> samlGroups = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SITES = "sites";
   @SerializedName(SERIALIZED_NAME_SITES)
@@ -127,6 +132,34 @@ public class GetSitesResponse {
   }
 
 
+  public GetSitesResponse samlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+    return this;
+  }
+
+  public GetSitesResponse addSamlGroupsItem(String samlGroupsItem) {
+    if (this.samlGroups == null) {
+      this.samlGroups = new ArrayList<>();
+    }
+    this.samlGroups.add(samlGroupsItem);
+    return this;
+  }
+
+  /**
+   * List of User Saml Groups
+   * 
+   * @return samlGroups
+   */
+  @javax.annotation.Nullable
+  public List<String> getSamlGroups() {
+    return samlGroups;
+  }
+
+  public void setSamlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+  }
+
+
   public GetSitesResponse sites(@javax.annotation.Nullable List<Site> sites) {
     this.sites = sites;
     return this;
@@ -167,12 +200,13 @@ public class GetSitesResponse {
     GetSitesResponse getSitesResponse = (GetSitesResponse) o;
     return Objects.equals(this.username, getSitesResponse.username)
         && Objects.equals(this.roles, getSitesResponse.roles)
+        && Objects.equals(this.samlGroups, getSitesResponse.samlGroups)
         && Objects.equals(this.sites, getSitesResponse.sites);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, roles, sites);
+    return Objects.hash(username, roles, samlGroups, sites);
   }
 
   @Override
@@ -181,6 +215,7 @@ public class GetSitesResponse {
     sb.append("class GetSitesResponse {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    samlGroups: ").append(toIndentedString(samlGroups)).append("\n");
     sb.append("    sites: ").append(toIndentedString(sites)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -202,7 +237,7 @@ public class GetSitesResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "sites"));
+    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "samlGroups", "sites"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -246,6 +281,13 @@ public class GetSitesResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `roles` to be an array in the JSON string but got `%s`",
           jsonObj.get("roles").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("samlGroups") != null && !jsonObj.get("samlGroups").isJsonNull()
+        && !jsonObj.get("samlGroups").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `samlGroups` to be an array in the JSON string but got `%s`",
+          jsonObj.get("samlGroups").toString()));
     }
     if (jsonObj.get("sites") != null && !jsonObj.get("sites").isJsonNull()) {
       JsonArray jsonArraysites = jsonObj.getAsJsonArray("sites");

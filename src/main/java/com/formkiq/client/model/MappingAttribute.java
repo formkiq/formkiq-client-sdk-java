@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * MappingAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-05T21:07:21.491513-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-01-31T21:25:23.566910-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.19.0")
 public class MappingAttribute {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -73,6 +73,11 @@ public class MappingAttribute {
   @SerializedName(SERIALIZED_NAME_SOURCE_TYPE)
   @javax.annotation.Nullable
   private MappingAttributeSourceType sourceType;
+
+  public static final String SERIALIZED_NAME_LLM_PROMPT_ENTITY_NAME = "llmPromptEntityName";
+  @SerializedName(SERIALIZED_NAME_LLM_PROMPT_ENTITY_NAME)
+  @javax.annotation.Nullable
+  private String llmPromptEntityName;
 
   public static final String SERIALIZED_NAME_DEFAULT_VALUE = "defaultValue";
   @SerializedName(SERIALIZED_NAME_DEFAULT_VALUE)
@@ -144,6 +149,27 @@ public class MappingAttribute {
 
   public void setSourceType(@javax.annotation.Nullable MappingAttributeSourceType sourceType) {
     this.sourceType = sourceType;
+  }
+
+
+  public MappingAttribute llmPromptEntityName(
+      @javax.annotation.Nullable String llmPromptEntityName) {
+    this.llmPromptEntityName = llmPromptEntityName;
+    return this;
+  }
+
+  /**
+   * LLM Prompt Entity Name (used for METADATA_EXTRACTION)
+   * 
+   * @return llmPromptEntityName
+   */
+  @javax.annotation.Nullable
+  public String getLlmPromptEntityName() {
+    return llmPromptEntityName;
+  }
+
+  public void setLlmPromptEntityName(@javax.annotation.Nullable String llmPromptEntityName) {
+    this.llmPromptEntityName = llmPromptEntityName;
   }
 
 
@@ -299,6 +325,7 @@ public class MappingAttribute {
     MappingAttribute mappingAttribute = (MappingAttribute) o;
     return Objects.equals(this.attributeKey, mappingAttribute.attributeKey)
         && Objects.equals(this.sourceType, mappingAttribute.sourceType)
+        && Objects.equals(this.llmPromptEntityName, mappingAttribute.llmPromptEntityName)
         && Objects.equals(this.defaultValue, mappingAttribute.defaultValue)
         && Objects.equals(this.defaultValues, mappingAttribute.defaultValues)
         && Objects.equals(this.labelTexts, mappingAttribute.labelTexts)
@@ -309,8 +336,8 @@ public class MappingAttribute {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributeKey, sourceType, defaultValue, defaultValues, labelTexts,
-        labelMatchingType, metadataField, validationRegex);
+    return Objects.hash(attributeKey, sourceType, llmPromptEntityName, defaultValue, defaultValues,
+        labelTexts, labelMatchingType, metadataField, validationRegex);
   }
 
   @Override
@@ -319,6 +346,8 @@ public class MappingAttribute {
     sb.append("class MappingAttribute {\n");
     sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
     sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
+    sb.append("    llmPromptEntityName: ").append(toIndentedString(llmPromptEntityName))
+        .append("\n");
     sb.append("    defaultValue: ").append(toIndentedString(defaultValue)).append("\n");
     sb.append("    defaultValues: ").append(toIndentedString(defaultValues)).append("\n");
     sb.append("    labelTexts: ").append(toIndentedString(labelTexts)).append("\n");
@@ -345,8 +374,9 @@ public class MappingAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("attributeKey", "sourceType", "defaultValue",
-        "defaultValues", "labelTexts", "labelMatchingType", "metadataField", "validationRegex"));
+    openapiFields = new HashSet<String>(Arrays.asList("attributeKey", "sourceType",
+        "llmPromptEntityName", "defaultValue", "defaultValues", "labelTexts", "labelMatchingType",
+        "metadataField", "validationRegex"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -387,6 +417,13 @@ public class MappingAttribute {
     // validate the optional field `sourceType`
     if (jsonObj.get("sourceType") != null && !jsonObj.get("sourceType").isJsonNull()) {
       MappingAttributeSourceType.validateJsonElement(jsonObj.get("sourceType"));
+    }
+    if ((jsonObj.get("llmPromptEntityName") != null
+        && !jsonObj.get("llmPromptEntityName").isJsonNull())
+        && !jsonObj.get("llmPromptEntityName").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `llmPromptEntityName` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("llmPromptEntityName").toString()));
     }
     if ((jsonObj.get("defaultValue") != null && !jsonObj.get("defaultValue").isJsonNull())
         && !jsonObj.get("defaultValue").isJsonPrimitive()) {
