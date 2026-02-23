@@ -38,6 +38,8 @@ public enum UserActivityType {
 
   VIEW("VIEW"),
 
+  DOWNLOAD("DOWNLOAD"),
+
   CREATE("CREATE"),
 
   UPDATE("UPDATE"),

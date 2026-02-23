@@ -7,6 +7,8 @@
 
 * `VIEW` (value: `"VIEW"`)
 
+* `DOWNLOAD` (value: `"DOWNLOAD"`)
+
 * `CREATE` (value: `"CREATE"`)
 
 * `UPDATE` (value: `"UPDATE"`)

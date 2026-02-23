@@ -56,7 +56,7 @@ import com.formkiq.client.invoker.JSON;
  * SetDocumentDataClassificationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-31T21:25:23.566910-06:00[America/Winnipeg]",
+    date = "2026-02-07T14:56:37.727048-06:00[America/Winnipeg]",
     comments = "Generator version: 7.19.0")
 public class SetDocumentDataClassificationRequest {
   public static final String SERIALIZED_NAME_LLM_PROMPT_ENTITY_NAME = "llmPromptEntityName";

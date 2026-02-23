@@ -69,7 +69,7 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-31T21:25:23.566910-06:00[America/Winnipeg]",
+    date = "2026-02-07T14:56:37.727048-06:00[America/Winnipeg]",
     comments = "Generator version: 7.19.0")
 public class AddResourceItem extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddResourceItem.class.getName());
