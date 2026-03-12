@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.WorkflowStepDecisionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,36 +54,61 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocumentActionsResponse
+ * WorkflowStepDecisions
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
-public class AddDocumentActionsResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
+public class WorkflowStepDecisions {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nullable
-  private String message;
+  private WorkflowStepDecisionType type;
 
-  public AddDocumentActionsResponse() {}
+  public static final String SERIALIZED_NAME_NEXT_STEP_ID = "nextStepId";
+  @SerializedName(SERIALIZED_NAME_NEXT_STEP_ID)
+  @javax.annotation.Nullable
+  private String nextStepId;
 
-  public AddDocumentActionsResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public WorkflowStepDecisions() {}
+
+  public WorkflowStepDecisions type(@javax.annotation.Nullable WorkflowStepDecisionType type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Document Action message
+   * Get type
    * 
-   * @return message
+   * @return type
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public WorkflowStepDecisionType getType() {
+    return type;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setType(@javax.annotation.Nullable WorkflowStepDecisionType type) {
+    this.type = type;
+  }
+
+
+  public WorkflowStepDecisions nextStepId(@javax.annotation.Nullable String nextStepId) {
+    this.nextStepId = nextStepId;
+    return this;
+  }
+
+  /**
+   * Workflow Step to move to
+   * 
+   * @return nextStepId
+   */
+  @javax.annotation.Nullable
+  public String getNextStepId() {
+    return nextStepId;
+  }
+
+  public void setNextStepId(@javax.annotation.Nullable String nextStepId) {
+    this.nextStepId = nextStepId;
   }
 
 
@@ -95,20 +121,22 @@ public class AddDocumentActionsResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentActionsResponse addDocumentActionsResponse = (AddDocumentActionsResponse) o;
-    return Objects.equals(this.message, addDocumentActionsResponse.message);
+    WorkflowStepDecisions workflowStepDecisions = (WorkflowStepDecisions) o;
+    return Objects.equals(this.type, workflowStepDecisions.type)
+        && Objects.equals(this.nextStepId, workflowStepDecisions.nextStepId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(type, nextStepId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentActionsResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class WorkflowStepDecisions {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    nextStepId: ").append(toIndentedString(nextStepId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +157,7 @@ public class AddDocumentActionsResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("message"));
+    openapiFields = new HashSet<String>(Arrays.asList("type", "nextStepId"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -139,33 +167,37 @@ public class AddDocumentActionsResponse {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AddDocumentActionsResponse
+   * @throws IOException if the JSON Element is invalid with respect to WorkflowStepDecisions
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentActionsResponse.openapiRequiredFields.isEmpty()) { // has required fields but
-                                                                         // JSON element is null
+      if (!WorkflowStepDecisions.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                    // element is null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in AddDocumentActionsResponse is not found in the empty JSON string",
-            AddDocumentActionsResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in WorkflowStepDecisions is not found in the empty JSON string",
+            WorkflowStepDecisions.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentActionsResponse.openapiFields.contains(entry.getKey())) {
+      if (!WorkflowStepDecisions.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `AddDocumentActionsResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `WorkflowStepDecisions` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
+    // validate the optional field `type`
+    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+      WorkflowStepDecisionType.validateJsonElement(jsonObj.get("type"));
+    }
+    if ((jsonObj.get("nextStepId") != null && !jsonObj.get("nextStepId").isJsonNull())
+        && !jsonObj.get("nextStepId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+          "Expected the field `nextStepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("nextStepId").toString()));
     }
   }
 
@@ -173,22 +205,22 @@ public class AddDocumentActionsResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentActionsResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentActionsResponse' and its subtypes
+      if (!WorkflowStepDecisions.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'WorkflowStepDecisions' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentActionsResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentActionsResponse.class));
+      final TypeAdapter<WorkflowStepDecisions> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(WorkflowStepDecisions.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentActionsResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<WorkflowStepDecisions>() {
         @Override
-        public void write(JsonWriter out, AddDocumentActionsResponse value) throws IOException {
+        public void write(JsonWriter out, WorkflowStepDecisions value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentActionsResponse read(JsonReader in) throws IOException {
+        public WorkflowStepDecisions read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -199,18 +231,18 @@ public class AddDocumentActionsResponse {
   }
 
   /**
-   * Create an instance of AddDocumentActionsResponse given an JSON string
+   * Create an instance of WorkflowStepDecisions given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentActionsResponse
-   * @throws IOException if the JSON string is invalid with respect to AddDocumentActionsResponse
+   * @return An instance of WorkflowStepDecisions
+   * @throws IOException if the JSON string is invalid with respect to WorkflowStepDecisions
    */
-  public static AddDocumentActionsResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentActionsResponse.class);
+  public static WorkflowStepDecisions fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WorkflowStepDecisions.class);
   }
 
   /**
-   * Convert an instance of AddDocumentActionsResponse to an JSON string
+   * Convert an instance of WorkflowStepDecisions to an JSON string
    *
    * @return JSON string
    */

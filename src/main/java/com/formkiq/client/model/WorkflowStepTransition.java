@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.WorkflowStepTransitionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,36 +54,61 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * UpdateWorkflowResponse
+ * WorkflowStepTransition
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
-public class UpdateWorkflowResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
+public class WorkflowStepTransition {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nonnull
+  private WorkflowStepTransitionType type;
+
+  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
+  @SerializedName(SERIALIZED_NAME_STEP_ID)
   @javax.annotation.Nullable
-  private String message;
+  private String stepId;
 
-  public UpdateWorkflowResponse() {}
+  public WorkflowStepTransition() {}
 
-  public UpdateWorkflowResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public WorkflowStepTransition type(@javax.annotation.Nonnull WorkflowStepTransitionType type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Result message
+   * Get type
    * 
-   * @return message
+   * @return type
    */
-  @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  @javax.annotation.Nonnull
+  public WorkflowStepTransitionType getType() {
+    return type;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setType(@javax.annotation.Nonnull WorkflowStepTransitionType type) {
+    this.type = type;
+  }
+
+
+  public WorkflowStepTransition stepId(@javax.annotation.Nullable String stepId) {
+    this.stepId = stepId;
+    return this;
+  }
+
+  /**
+   * Target workflow step
+   * 
+   * @return stepId
+   */
+  @javax.annotation.Nullable
+  public String getStepId() {
+    return stepId;
+  }
+
+  public void setStepId(@javax.annotation.Nullable String stepId) {
+    this.stepId = stepId;
   }
 
 
@@ -95,20 +121,22 @@ public class UpdateWorkflowResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateWorkflowResponse updateWorkflowResponse = (UpdateWorkflowResponse) o;
-    return Objects.equals(this.message, updateWorkflowResponse.message);
+    WorkflowStepTransition workflowStepTransition = (WorkflowStepTransition) o;
+    return Objects.equals(this.type, workflowStepTransition.type)
+        && Objects.equals(this.stepId, workflowStepTransition.stepId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(type, stepId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateWorkflowResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class WorkflowStepTransition {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,43 +157,54 @@ public class UpdateWorkflowResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("message"));
+    openapiFields = new HashSet<String>(Arrays.asList("type", "stepId"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("type"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateWorkflowResponse
+   * @throws IOException if the JSON Element is invalid with respect to WorkflowStepTransition
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!UpdateWorkflowResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+      if (!WorkflowStepTransition.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                      // element is null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in UpdateWorkflowResponse is not found in the empty JSON string",
-            UpdateWorkflowResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in WorkflowStepTransition is not found in the empty JSON string",
+            WorkflowStepTransition.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!UpdateWorkflowResponse.openapiFields.contains(entry.getKey())) {
+      if (!WorkflowStepTransition.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `UpdateWorkflowResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `WorkflowStepTransition` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : WorkflowStepTransition.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
+    // validate the required field `type`
+    WorkflowStepTransitionType.validateJsonElement(jsonObj.get("type"));
+    if ((jsonObj.get("stepId") != null && !jsonObj.get("stepId").isJsonNull())
+        && !jsonObj.get("stepId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("stepId").toString()));
     }
   }
 
@@ -173,22 +212,22 @@ public class UpdateWorkflowResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!UpdateWorkflowResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'UpdateWorkflowResponse' and its subtypes
+      if (!WorkflowStepTransition.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'WorkflowStepTransition' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<UpdateWorkflowResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(UpdateWorkflowResponse.class));
+      final TypeAdapter<WorkflowStepTransition> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(WorkflowStepTransition.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<UpdateWorkflowResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<WorkflowStepTransition>() {
         @Override
-        public void write(JsonWriter out, UpdateWorkflowResponse value) throws IOException {
+        public void write(JsonWriter out, WorkflowStepTransition value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public UpdateWorkflowResponse read(JsonReader in) throws IOException {
+        public WorkflowStepTransition read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -199,18 +238,18 @@ public class UpdateWorkflowResponse {
   }
 
   /**
-   * Create an instance of UpdateWorkflowResponse given an JSON string
+   * Create an instance of WorkflowStepTransition given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of UpdateWorkflowResponse
-   * @throws IOException if the JSON string is invalid with respect to UpdateWorkflowResponse
+   * @return An instance of WorkflowStepTransition
+   * @throws IOException if the JSON string is invalid with respect to WorkflowStepTransition
    */
-  public static UpdateWorkflowResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, UpdateWorkflowResponse.class);
+  public static WorkflowStepTransition fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WorkflowStepTransition.class);
   }
 
   /**
-   * Convert an instance of UpdateWorkflowResponse to an JSON string
+   * Convert an instance of WorkflowStepTransition to an JSON string
    *
    * @return JSON string
    */

@@ -23,6 +23,8 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.DocumentAction;
 import com.formkiq.client.model.WorkflowQueue;
 import com.formkiq.client.model.WorkflowStepDecision;
+import com.formkiq.client.model.WorkflowStepDecisions;
+import com.formkiq.client.model.WorkflowStepMapping;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -71,6 +73,22 @@ public class WorkflowStepTest {
   @Test
   public void queueTest() {
     // TODO: test queue
+  }
+
+  /**
+   * Test the property 'mappings'
+   */
+  @Test
+  public void mappingsTest() {
+    // TODO: test mappings
+  }
+
+  /**
+   * Test the property 'decision'
+   */
+  @Test
+  public void decisionTest() {
+    // TODO: test decision
   }
 
   /**

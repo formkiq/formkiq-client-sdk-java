@@ -20,36 +20,56 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.WorkflowStepConditionCriterion;
+import com.formkiq.client.model.WorkflowStepTransition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SetWorkflowResponse
+ * Model tests for WorkflowStepCondition
  */
-public class SetWorkflowResponseTest {
-  private final SetWorkflowResponse model = new SetWorkflowResponse();
+public class WorkflowStepConditionTest {
+  private final WorkflowStepCondition model = new WorkflowStepCondition();
 
   /**
-   * Model tests for SetWorkflowResponse
+   * Model tests for WorkflowStepCondition
    */
   @Test
-  public void testSetWorkflowResponse() {
-    // TODO: test SetWorkflowResponse
+  public void testWorkflowStepCondition() {
+    // TODO: test WorkflowStepCondition
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'all'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void allTest() {
+    // TODO: test all
+  }
+
+  /**
+   * Test the property 'any'
+   */
+  @Test
+  public void anyTest() {
+    // TODO: test any
+  }
+
+  /**
+   * Test the property 'transition'
+   */
+  @Test
+  public void transitionTest() {
+    // TODO: test transition
   }
 
 }

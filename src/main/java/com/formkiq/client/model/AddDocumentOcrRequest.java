@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentOcrRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddDocumentOcrRequest {
   public static final String SERIALIZED_NAME_TEXTRACT_QUERIES = "textractQueries";
   @SerializedName(SERIALIZED_NAME_TEXTRACT_QUERIES)

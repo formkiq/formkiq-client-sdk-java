@@ -24,6 +24,8 @@ import java.util.Objects;
 import com.formkiq.client.model.DocumentAction;
 import com.formkiq.client.model.WorkflowQueue;
 import com.formkiq.client.model.WorkflowStepDecision;
+import com.formkiq.client.model.WorkflowStepDecisions;
+import com.formkiq.client.model.WorkflowStepMapping;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class WorkflowStep {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
@@ -79,10 +81,20 @@ public class WorkflowStep {
   @javax.annotation.Nullable
   private WorkflowQueue queue;
 
+  public static final String SERIALIZED_NAME_MAPPINGS = "mappings";
+  @SerializedName(SERIALIZED_NAME_MAPPINGS)
+  @javax.annotation.Nullable
+  private List<WorkflowStepMapping> mappings = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_DECISION = "decision";
+  @SerializedName(SERIALIZED_NAME_DECISION)
+  @javax.annotation.Nullable
+  private WorkflowStepDecision decision;
+
   public static final String SERIALIZED_NAME_DECISIONS = "decisions";
   @SerializedName(SERIALIZED_NAME_DECISIONS)
   @javax.annotation.Nullable
-  private List<WorkflowStepDecision> decisions = new ArrayList<>();
+  private List<WorkflowStepDecisions> decisions = new ArrayList<>();
 
   public WorkflowStep() {}
 
@@ -146,12 +158,60 @@ public class WorkflowStep {
   }
 
 
-  public WorkflowStep decisions(@javax.annotation.Nullable List<WorkflowStepDecision> decisions) {
+  public WorkflowStep mappings(@javax.annotation.Nullable List<WorkflowStepMapping> mappings) {
+    this.mappings = mappings;
+    return this;
+  }
+
+  public WorkflowStep addMappingsItem(WorkflowStepMapping mappingsItem) {
+    if (this.mappings == null) {
+      this.mappings = new ArrayList<>();
+    }
+    this.mappings.add(mappingsItem);
+    return this;
+  }
+
+  /**
+   * Get mappings
+   * 
+   * @return mappings
+   */
+  @javax.annotation.Nullable
+  public List<WorkflowStepMapping> getMappings() {
+    return mappings;
+  }
+
+  public void setMappings(@javax.annotation.Nullable List<WorkflowStepMapping> mappings) {
+    this.mappings = mappings;
+  }
+
+
+  public WorkflowStep decision(@javax.annotation.Nullable WorkflowStepDecision decision) {
+    this.decision = decision;
+    return this;
+  }
+
+  /**
+   * Get decision
+   * 
+   * @return decision
+   */
+  @javax.annotation.Nullable
+  public WorkflowStepDecision getDecision() {
+    return decision;
+  }
+
+  public void setDecision(@javax.annotation.Nullable WorkflowStepDecision decision) {
+    this.decision = decision;
+  }
+
+
+  public WorkflowStep decisions(@javax.annotation.Nullable List<WorkflowStepDecisions> decisions) {
     this.decisions = decisions;
     return this;
   }
 
-  public WorkflowStep addDecisionsItem(WorkflowStepDecision decisionsItem) {
+  public WorkflowStep addDecisionsItem(WorkflowStepDecisions decisionsItem) {
     if (this.decisions == null) {
       this.decisions = new ArrayList<>();
     }
@@ -165,11 +225,11 @@ public class WorkflowStep {
    * @return decisions
    */
   @javax.annotation.Nullable
-  public List<WorkflowStepDecision> getDecisions() {
+  public List<WorkflowStepDecisions> getDecisions() {
     return decisions;
   }
 
-  public void setDecisions(@javax.annotation.Nullable List<WorkflowStepDecision> decisions) {
+  public void setDecisions(@javax.annotation.Nullable List<WorkflowStepDecisions> decisions) {
     this.decisions = decisions;
   }
 
@@ -187,12 +247,14 @@ public class WorkflowStep {
     return Objects.equals(this.stepId, workflowStep.stepId)
         && Objects.equals(this.action, workflowStep.action)
         && Objects.equals(this.queue, workflowStep.queue)
+        && Objects.equals(this.mappings, workflowStep.mappings)
+        && Objects.equals(this.decision, workflowStep.decision)
         && Objects.equals(this.decisions, workflowStep.decisions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stepId, action, queue, decisions);
+    return Objects.hash(stepId, action, queue, mappings, decision, decisions);
   }
 
   @Override
@@ -202,6 +264,8 @@ public class WorkflowStep {
     sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
+    sb.append("    mappings: ").append(toIndentedString(mappings)).append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    decisions: ").append(toIndentedString(decisions)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -223,7 +287,8 @@ public class WorkflowStep {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("stepId", "action", "queue", "decisions"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("stepId", "action", "queue", "mappings", "decision", "decisions"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -269,6 +334,26 @@ public class WorkflowStep {
     if (jsonObj.get("queue") != null && !jsonObj.get("queue").isJsonNull()) {
       WorkflowQueue.validateJsonElement(jsonObj.get("queue"));
     }
+    if (jsonObj.get("mappings") != null && !jsonObj.get("mappings").isJsonNull()) {
+      JsonArray jsonArraymappings = jsonObj.getAsJsonArray("mappings");
+      if (jsonArraymappings != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("mappings").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `mappings` to be an array in the JSON string but got `%s`",
+              jsonObj.get("mappings").toString()));
+        }
+
+        // validate the optional field `mappings` (array)
+        for (int i = 0; i < jsonArraymappings.size(); i++) {
+          WorkflowStepMapping.validateJsonElement(jsonArraymappings.get(i));
+        } ;
+      }
+    }
+    // validate the optional field `decision`
+    if (jsonObj.get("decision") != null && !jsonObj.get("decision").isJsonNull()) {
+      WorkflowStepDecision.validateJsonElement(jsonObj.get("decision"));
+    }
     if (jsonObj.get("decisions") != null && !jsonObj.get("decisions").isJsonNull()) {
       JsonArray jsonArraydecisions = jsonObj.getAsJsonArray("decisions");
       if (jsonArraydecisions != null) {
@@ -281,7 +366,7 @@ public class WorkflowStep {
 
         // validate the optional field `decisions` (array)
         for (int i = 0; i < jsonArraydecisions.size(); i++) {
-          WorkflowStepDecision.validateJsonElement(jsonArraydecisions.get(i));
+          WorkflowStepDecisions.validateJsonElement(jsonArraydecisions.get(i));
         } ;
       }
     }

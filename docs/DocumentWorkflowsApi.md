@@ -369,7 +369,7 @@ No authorization required
 
 <a id="deleteWorkflow"></a>
 # **deleteWorkflow**
-> DeleteWorkflowResponse deleteWorkflow(workflowId, siteId)
+> DeleteResponse deleteWorkflow(workflowId, siteId)
 
 Delete workflow
 
@@ -396,7 +396,7 @@ public class Example {
     String workflowId = "workflowId_example"; // String | Workflow Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DeleteWorkflowResponse result = apiInstance.deleteWorkflow(workflowId, siteId);
+      DeleteResponse result = apiInstance.deleteWorkflow(workflowId, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#deleteWorkflow");
@@ -418,7 +418,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteWorkflowResponse**](DeleteWorkflowResponse.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -990,7 +990,7 @@ No authorization required
 
 <a id="setWorkflow"></a>
 # **setWorkflow**
-> SetWorkflowResponse setWorkflow(workflowId, setWorkflowRequest, siteId)
+> SetResponse setWorkflow(workflowId, setWorkflowRequest, siteId)
 
 Set workflow
 
@@ -1018,7 +1018,7 @@ public class Example {
     SetWorkflowRequest setWorkflowRequest = new SetWorkflowRequest(); // SetWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      SetWorkflowResponse result = apiInstance.setWorkflow(workflowId, setWorkflowRequest, siteId);
+      SetResponse result = apiInstance.setWorkflow(workflowId, setWorkflowRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#setWorkflow");
@@ -1041,7 +1041,7 @@ public class Example {
 
 ### Return type
 
-[**SetWorkflowResponse**](SetWorkflowResponse.md)
+[**SetResponse**](SetResponse.md)
 
 ### Authorization
 
@@ -1055,12 +1055,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | 20) OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="updateWorkflow"></a>
 # **updateWorkflow**
-> UpdateWorkflowResponse updateWorkflow(workflowId, updateWorkflowRequest, siteId)
+> UpdateResponse updateWorkflow(workflowId, updateWorkflowRequest, siteId)
 
 Update workflow
 
@@ -1088,7 +1088,7 @@ public class Example {
     UpdateWorkflowRequest updateWorkflowRequest = new UpdateWorkflowRequest(); // UpdateWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      UpdateWorkflowResponse result = apiInstance.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
+      UpdateResponse result = apiInstance.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#updateWorkflow");
@@ -1111,7 +1111,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateWorkflowResponse**](UpdateWorkflowResponse.md)
+[**UpdateResponse**](UpdateResponse.md)
 
 ### Authorization
 
@@ -1125,6 +1125,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | 20) OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 

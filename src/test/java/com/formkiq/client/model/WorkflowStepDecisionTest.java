@@ -20,14 +20,17 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.WorkflowStepDecisionType;
+import com.formkiq.client.model.WorkflowStepCondition;
+import com.formkiq.client.model.WorkflowStepTransition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -46,19 +49,19 @@ public class WorkflowStepDecisionTest {
   }
 
   /**
-   * Test the property 'type'
+   * Test the property 'conditions'
    */
   @Test
-  public void typeTest() {
-    // TODO: test type
+  public void conditionsTest() {
+    // TODO: test conditions
   }
 
   /**
-   * Test the property 'nextStepId'
+   * Test the property 'defaultTransition'
    */
   @Test
-  public void nextStepIdTest() {
-    // TODO: test nextStepId
+  public void defaultTransitionTest() {
+    // TODO: test defaultTransition
   }
 
 }

@@ -21,14 +21,17 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.WorkflowStepDecisionType;
+import com.formkiq.client.model.WorkflowStepCondition;
+import com.formkiq.client.model.WorkflowStepTransition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,58 +60,69 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStepDecision
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class WorkflowStepDecision {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  @javax.annotation.Nullable
-  private WorkflowStepDecisionType type;
+  public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
+  @SerializedName(SERIALIZED_NAME_CONDITIONS)
+  @javax.annotation.Nonnull
+  private List<WorkflowStepCondition> conditions = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NEXT_STEP_ID = "nextStepId";
-  @SerializedName(SERIALIZED_NAME_NEXT_STEP_ID)
+  public static final String SERIALIZED_NAME_DEFAULT_TRANSITION = "defaultTransition";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_TRANSITION)
   @javax.annotation.Nullable
-  private String nextStepId;
+  private WorkflowStepTransition defaultTransition;
 
   public WorkflowStepDecision() {}
 
-  public WorkflowStepDecision type(@javax.annotation.Nullable WorkflowStepDecisionType type) {
-    this.type = type;
+  public WorkflowStepDecision conditions(
+      @javax.annotation.Nonnull List<WorkflowStepCondition> conditions) {
+    this.conditions = conditions;
+    return this;
+  }
+
+  public WorkflowStepDecision addConditionsItem(WorkflowStepCondition conditionsItem) {
+    if (this.conditions == null) {
+      this.conditions = new ArrayList<>();
+    }
+    this.conditions.add(conditionsItem);
     return this;
   }
 
   /**
-   * Get type
+   * Workflow Step Conditions
    * 
-   * @return type
+   * @return conditions
    */
-  @javax.annotation.Nullable
-  public WorkflowStepDecisionType getType() {
-    return type;
+  @javax.annotation.Nonnull
+  public List<WorkflowStepCondition> getConditions() {
+    return conditions;
   }
 
-  public void setType(@javax.annotation.Nullable WorkflowStepDecisionType type) {
-    this.type = type;
+  public void setConditions(@javax.annotation.Nonnull List<WorkflowStepCondition> conditions) {
+    this.conditions = conditions;
   }
 
 
-  public WorkflowStepDecision nextStepId(@javax.annotation.Nullable String nextStepId) {
-    this.nextStepId = nextStepId;
+  public WorkflowStepDecision defaultTransition(
+      @javax.annotation.Nullable WorkflowStepTransition defaultTransition) {
+    this.defaultTransition = defaultTransition;
     return this;
   }
 
   /**
-   * Workflow Step to move to
+   * Get defaultTransition
    * 
-   * @return nextStepId
+   * @return defaultTransition
    */
   @javax.annotation.Nullable
-  public String getNextStepId() {
-    return nextStepId;
+  public WorkflowStepTransition getDefaultTransition() {
+    return defaultTransition;
   }
 
-  public void setNextStepId(@javax.annotation.Nullable String nextStepId) {
-    this.nextStepId = nextStepId;
+  public void setDefaultTransition(
+      @javax.annotation.Nullable WorkflowStepTransition defaultTransition) {
+    this.defaultTransition = defaultTransition;
   }
 
 
@@ -122,21 +136,21 @@ public class WorkflowStepDecision {
       return false;
     }
     WorkflowStepDecision workflowStepDecision = (WorkflowStepDecision) o;
-    return Objects.equals(this.type, workflowStepDecision.type)
-        && Objects.equals(this.nextStepId, workflowStepDecision.nextStepId);
+    return Objects.equals(this.conditions, workflowStepDecision.conditions)
+        && Objects.equals(this.defaultTransition, workflowStepDecision.defaultTransition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, nextStepId);
+    return Objects.hash(conditions, defaultTransition);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowStepDecision {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    nextStepId: ").append(toIndentedString(nextStepId)).append("\n");
+    sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
+    sb.append("    defaultTransition: ").append(toIndentedString(defaultTransition)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,10 +171,10 @@ public class WorkflowStepDecision {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("type", "nextStepId"));
+    openapiFields = new HashSet<String>(Arrays.asList("conditions", "defaultTransition"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("conditions"));
   }
 
   /**
@@ -188,16 +202,32 @@ public class WorkflowStepDecision {
             entry.getKey(), jsonElement.toString()));
       }
     }
-    JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the optional field `type`
-    if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-      WorkflowStepDecisionType.validateJsonElement(jsonObj.get("type"));
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : WorkflowStepDecision.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
+      }
     }
-    if ((jsonObj.get("nextStepId") != null && !jsonObj.get("nextStepId").isJsonNull())
-        && !jsonObj.get("nextStepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `nextStepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("nextStepId").toString()));
+    JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if (jsonObj.get("conditions") != null) {
+      if (!jsonObj.get("conditions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "Expected the field `conditions` to be an array in the JSON string but got `%s`",
+            jsonObj.get("conditions").toString()));
+      }
+      JsonArray jsonArrayconditions = jsonObj.getAsJsonArray("conditions");
+      // validate the required field `conditions` (array)
+      for (int i = 0; i < jsonArrayconditions.size(); i++) {
+        WorkflowStepCondition.validateJsonElement(jsonArrayconditions.get(i));
+      }
+    }
+    // validate the optional field `defaultTransition`
+    if (jsonObj.get("defaultTransition") != null
+        && !jsonObj.get("defaultTransition").isJsonNull()) {
+      WorkflowStepTransition.validateJsonElement(jsonObj.get("defaultTransition"));
     }
   }
 

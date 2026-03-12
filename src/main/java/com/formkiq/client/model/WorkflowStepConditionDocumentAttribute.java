@@ -53,36 +53,38 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * SetWorkflowResponse
+ * Uses a document attribute as the source value for a workflow condition criterion. The attribute
+ * is selected using &#x60;attributeKey&#x60;.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
-public class SetWorkflowResponse {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nullable
-  private String message;
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
+public class WorkflowStepConditionDocumentAttribute {
+  public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
+  @javax.annotation.Nonnull
+  private String attributeKey;
 
-  public SetWorkflowResponse() {}
+  public WorkflowStepConditionDocumentAttribute() {}
 
-  public SetWorkflowResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public WorkflowStepConditionDocumentAttribute attributeKey(
+      @javax.annotation.Nonnull String attributeKey) {
+    this.attributeKey = attributeKey;
     return this;
   }
 
   /**
-   * Result message
+   * Document attribute key
    * 
-   * @return message
+   * @return attributeKey
    */
-  @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  @javax.annotation.Nonnull
+  public String getAttributeKey() {
+    return attributeKey;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setAttributeKey(@javax.annotation.Nonnull String attributeKey) {
+    this.attributeKey = attributeKey;
   }
 
 
@@ -95,20 +97,21 @@ public class SetWorkflowResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SetWorkflowResponse setWorkflowResponse = (SetWorkflowResponse) o;
-    return Objects.equals(this.message, setWorkflowResponse.message);
+    WorkflowStepConditionDocumentAttribute workflowStepConditionDocumentAttribute =
+        (WorkflowStepConditionDocumentAttribute) o;
+    return Objects.equals(this.attributeKey, workflowStepConditionDocumentAttribute.attributeKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(attributeKey);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SetWorkflowResponse {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class WorkflowStepConditionDocumentAttribute {\n");
+    sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,43 +132,54 @@ public class SetWorkflowResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("message"));
+    openapiFields = new HashSet<String>(Arrays.asList("attributeKey"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("attributeKey"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SetWorkflowResponse
+   * @throws IOException if the JSON Element is invalid with respect to
+   *         WorkflowStepConditionDocumentAttribute
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!SetWorkflowResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                                  // element is null
+      if (!WorkflowStepConditionDocumentAttribute.openapiRequiredFields.isEmpty()) { // has required
+                                                                                     // fields but
+                                                                                     // JSON element
+                                                                                     // is null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in SetWorkflowResponse is not found in the empty JSON string",
-            SetWorkflowResponse.openapiRequiredFields.toString()));
+            "The required field(s) %s in WorkflowStepConditionDocumentAttribute is not found in the empty JSON string",
+            WorkflowStepConditionDocumentAttribute.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!SetWorkflowResponse.openapiFields.contains(entry.getKey())) {
+      if (!WorkflowStepConditionDocumentAttribute.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `SetWorkflowResponse` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `WorkflowStepConditionDocumentAttribute` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : WorkflowStepConditionDocumentAttribute.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
+    if (!jsonObj.get("attributeKey").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+          "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("attributeKey").toString()));
     }
   }
 
@@ -173,22 +187,24 @@ public class SetWorkflowResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!SetWorkflowResponse.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'SetWorkflowResponse' and its subtypes
+      if (!WorkflowStepConditionDocumentAttribute.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'WorkflowStepConditionDocumentAttribute' and its
+                     // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<SetWorkflowResponse> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(SetWorkflowResponse.class));
+      final TypeAdapter<WorkflowStepConditionDocumentAttribute> thisAdapter = gson
+          .getDelegateAdapter(this, TypeToken.get(WorkflowStepConditionDocumentAttribute.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<SetWorkflowResponse>() {
+      return (TypeAdapter<T>) new TypeAdapter<WorkflowStepConditionDocumentAttribute>() {
         @Override
-        public void write(JsonWriter out, SetWorkflowResponse value) throws IOException {
+        public void write(JsonWriter out, WorkflowStepConditionDocumentAttribute value)
+            throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public SetWorkflowResponse read(JsonReader in) throws IOException {
+        public WorkflowStepConditionDocumentAttribute read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -199,18 +215,20 @@ public class SetWorkflowResponse {
   }
 
   /**
-   * Create an instance of SetWorkflowResponse given an JSON string
+   * Create an instance of WorkflowStepConditionDocumentAttribute given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SetWorkflowResponse
-   * @throws IOException if the JSON string is invalid with respect to SetWorkflowResponse
+   * @return An instance of WorkflowStepConditionDocumentAttribute
+   * @throws IOException if the JSON string is invalid with respect to
+   *         WorkflowStepConditionDocumentAttribute
    */
-  public static SetWorkflowResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SetWorkflowResponse.class);
+  public static WorkflowStepConditionDocumentAttribute fromJson(String jsonString)
+      throws IOException {
+    return JSON.getGson().fromJson(jsonString, WorkflowStepConditionDocumentAttribute.class);
   }
 
   /**
-   * Convert an instance of SetWorkflowResponse to an JSON string
+   * Convert an instance of WorkflowStepConditionDocumentAttribute to an JSON string
    *
    * @return JSON string
    */

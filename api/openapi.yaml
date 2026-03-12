@@ -4794,214 +4794,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /documents/{documentId}/actions:
-    get:
-      description: Get document actions and their status
-      operationId: GetDocumentActions
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Limit Results
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: "10"
-          type: string
-        style: form
-      - description: Share Identifier
-        explode: true
-        in: query
-        name: shareKey
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Next page of results token
-        explode: true
-        in: query
-        name: next
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetDocumentActionsResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Get document actions
-      tags:
-      - Document Actions
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
-    post:
-      description: |-
-        Add one or more actions to a document; this appends actions and does not replace previous actions
-
-        Each action type supports a different set of parameters as shown in the table below:
-
-        ### Action Parameters
-
-        | ActionType | Parameter | Description | Example |
-        | -------- | ------- | ------- | ------- |
-        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES, QUERIES (requires 'ocrTextractQueries') |
-        | OCR  | ocrTextractQueries | Required for "QUERIES", questions to ask Textract |
-        | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
-        | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true |
-        | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
-        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
-        | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name |
-        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
-        | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
-        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
-        | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint |
-        | NOTIFICATION    | notificationType | Type of Notification | email |
-        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | email@yourdomain.com |
-        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | email@yourdomain.com |
-        | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
-        | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
-        | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
-        | QUEUE    | queueId    | Id of Queue | |
-        | IDP    | mappingId    | Id of Mapping | |
-        | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | |
-        | RESIZE    | width    | The width of the image to resize (or 'auto'). | |
-        | RESIZE    | height    | The height of the image to resize (or 'auto'). | |
-        | RESIZE    | outputType    | The output type of the image (optional). | |
-        | RESIZE    | path    | The path to use when creating resized document (optional). | |
-      operationId: AddDocumentActions
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AddDocumentActionsRequest"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddDocumentActionsResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ValidationErrorsResponse"
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      summary: Add document action
-      tags:
-      - Document Actions
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /documents/{documentId}/actions/retry:
-    post:
-      description: Retries all failed document action(s). Failed action status changes
-        to "FAILED_RETRY" and a new "PENDING" action is created.
-      operationId: AddDocumentRetryAction
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Document Identifier
-        explode: false
-        in: path
-        name: documentId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddDocumentActionsRetryResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ValidationErrorsResponse"
-          description: 400 OK
-      security:
-      - ApiAuthorization: []
-      summary: Retries failed document action(s)
-      tags:
-      - Document Actions
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
   /documents/{documentId}/ocr:
     delete:
       description: "Delete a document's optical character recognition (OCR) result,\
@@ -5972,338 +5764,6 @@ paths:
       - Document Shares
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
-  /workflows:
-    get:
-      description: Get a listing of workflows; available as an Add-On Module
-      operationId: GetWorkflows
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Next page of results token
-        explode: true
-        in: query
-        name: next
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Limit Results
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: "10"
-          type: string
-        style: form
-      - description: Filters Status
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          enum:
-          - ACTIVE
-          - INACTIVE
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetWorkflowsResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Get workflows
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
-    post:
-      description: Creates a new Workflow; available as an Add-On Module
-      operationId: AddWorkflow
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AddWorkflowRequest"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddWorkflowResponse"
-          description: 201 CREATED
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorsResponse"
-          description: 400 BAD REQUEST
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Add workflow
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /workflows/{workflowId}:
-    delete:
-      description: Delete a Workflow; available as an Add-On Module
-      operationId: DeleteWorkflow
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeleteWorkflowResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Delete workflow
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
-    get:
-      description: Get a workflow; available as an Add-On Module
-      operationId: GetWorkflow
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetWorkflowResponse"
-          description: 200 OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Get workflow
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-accepts:
-      - application/json
-    patch:
-      description: Update a Workflow details; available as an Add-On Module
-      operationId: UpdateWorkflow
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateWorkflowRequest"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UpdateWorkflowResponse"
-          description: 20) OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorsResponse"
-          description: 400 BAD REQUEST
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Update workflow
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-    put:
-      description: Set a Workflow details; available as an Add-On Module
-      operationId: SetWorkflow
-      parameters:
-      - description: Site Identifier
-        explode: true
-        in: query
-        name: siteId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Workflow Identifier
-        explode: false
-        in: path
-        name: workflowId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SetWorkflowRequest"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SetWorkflowResponse"
-          description: 20) OK
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorsResponse"
-          description: 400 BAD REQUEST
-          headers:
-            Access-Control-Allow-Origin:
-              $ref: "#/components/headers/AccessControlAllowOrigin"
-            Access-Control-Allow-Methods:
-              $ref: "#/components/headers/AccessControlAllowMethods"
-            Access-Control-Allow-Headers:
-              $ref: "#/components/headers/AccessControlAllowHeaders"
-      security:
-      - ApiAuthorization: []
-      summary: Set workflow
-      tags:
-      - Document Workflows
-      x-amazon-apigateway-integration:
-        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
-      x-content-type: application/json
       x-accepts:
       - application/json
   /workflows/{workflowId}/documents:
@@ -12079,6 +11539,214 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /documents/{documentId}/actions:
+    get:
+      description: Get document actions and their status
+      operationId: GetDocumentActions
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Share Identifier
+        explode: true
+        in: query
+        name: shareKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentActionsResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document actions
+      tags:
+      - Document Actions
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Add one or more actions to a document; this appends actions and does not replace previous actions
+
+        Each action type supports a different set of parameters as shown in the table below:
+
+        ### Action Parameters
+
+        | ActionType | Parameter | Description | Example |
+        | -------- | ------- | ------- | ------- |
+        | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES, QUERIES (requires 'ocrTextractQueries') |
+        | OCR  | ocrTextractQueries | Required for "QUERIES", questions to ask Textract |
+        | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract |
+        | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true |
+        | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
+        | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
+        | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name |
+        | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
+        | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
+        | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
+        | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint |
+        | NOTIFICATION    | notificationType | Type of Notification | email |
+        | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | email@yourdomain.com |
+        | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | email@yourdomain.com |
+        | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject |
+        | NOTIFICATION    | notificationText    | Notification as Text | Email Text |
+        | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text |
+        | QUEUE    | queueId    | Id of Queue | |
+        | IDP    | mappingId    | Id of Mapping | |
+        | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | |
+        | RESIZE    | width    | The width of the image to resize (or 'auto'). | |
+        | RESIZE    | height    | The height of the image to resize (or 'auto'). | |
+        | RESIZE    | outputType    | The output type of the image (optional). | |
+        | RESIZE    | path    | The path to use when creating resized document (optional). | |
+      operationId: AddDocumentActions
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddDocumentActionsRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add document action
+      tags:
+      - Document Actions
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/actions/retry:
+    post:
+      description: Retries all failed document action(s). Failed action status changes
+        to "FAILED_RETRY" and a new "PENDING" action is created.
+      operationId: AddDocumentRetryAction
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Retries failed document action(s)
+      tags:
+      - Document Actions
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
   /documents/{documentId}/certifications:
     post:
       description: |-
@@ -12164,6 +11832,338 @@ paths:
       - System Management
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+  /workflows:
+    get:
+      description: Get a listing of workflows; available as an Add-On Module
+      operationId: GetWorkflows
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Filters Status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetWorkflowsResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get workflows
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a new Workflow; available as an Add-On Module
+      operationId: AddWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddWorkflowRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddWorkflowResponse"
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Add workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workflows/{workflowId}:
+    delete:
+      description: Delete a Workflow; available as an Add-On Module
+      operationId: DeleteWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Delete workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    get:
+      description: Get a workflow; available as an Add-On Module
+      operationId: GetWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetWorkflowResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    patch:
+      description: Update a Workflow details; available as an Add-On Module
+      operationId: UpdateWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkflowRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Update workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      description: Set a Workflow details; available as an Add-On Module
+      operationId: SetWorkflow
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetWorkflowRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: 400 BAD REQUEST
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Set workflow
+      tags:
+      - Document Workflows
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
       x-accepts:
       - application/json
 components:
@@ -13162,34 +13162,6 @@ components:
           description: Queue identifier
           type: string
       type: object
-    GetWorkflowsResponse:
-      example:
-        next: next
-        workflows:
-        - insertedDate: insertedDate
-          name: name
-          inUse: true
-          description: description
-          userId: userId
-          workflowId: workflowId
-          status: ACTIVE
-        - insertedDate: insertedDate
-          name: name
-          inUse: true
-          description: description
-          userId: userId
-          workflowId: workflowId
-          status: ACTIVE
-      properties:
-        next:
-          description: Next page of results token
-          type: string
-        workflows:
-          description: List of workflows
-          items:
-            $ref: "#/components/schemas/WorkflowSummary"
-          type: array
-      type: object
     GetQueueResponse:
       example:
         name: name
@@ -13197,183 +13169,6 @@ components:
         name:
           description: Queue name
           type: string
-      type: object
-    WorkflowStatus:
-      description: Status of the Workflow
-      enum:
-      - ACTIVE
-      - INACTIVE
-      type: string
-    GetWorkflowResponse:
-      example:
-        name: name
-        inUse: true
-        description: description
-        steps:
-        - stepId: stepId
-          action:
-            queueId: queueId
-            metadata:
-              key: metadata
-            retryCount: 0.8008281904610115
-            type: ANTIVIRUS
-            message: message
-            userId: userId
-            completedDate: completedDate
-            maxRetries: 6.027456183070403
-            insertedDate: insertedDate
-            parameters:
-              key: "{}"
-            workflowId: workflowId
-            startDate: startDate
-            status: COMPLETE
-            workflowStepId: workflowStepId
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        - stepId: stepId
-          action:
-            queueId: queueId
-            metadata:
-              key: metadata
-            retryCount: 0.8008281904610115
-            type: ANTIVIRUS
-            message: message
-            userId: userId
-            completedDate: completedDate
-            maxRetries: 6.027456183070403
-            insertedDate: insertedDate
-            parameters:
-              key: "{}"
-            workflowId: workflowId
-            startDate: startDate
-            status: COMPLETE
-            workflowStepId: workflowStepId
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        status: ACTIVE
-      properties:
-        name:
-          description: Workflow name
-          type: string
-        description:
-          description: Workflow description
-          type: string
-        inUse:
-          description: Whether the Workflow is in use
-          type: boolean
-        status:
-          $ref: "#/components/schemas/WorkflowStatus"
-        steps:
-          description: Workflow steps
-          items:
-            $ref: "#/components/schemas/WorkflowStep"
-          type: array
-      type: object
-    WorkflowStep:
-      example:
-        stepId: stepId
-        action:
-          queueId: queueId
-          metadata:
-            key: metadata
-          retryCount: 0.8008281904610115
-          type: ANTIVIRUS
-          message: message
-          userId: userId
-          completedDate: completedDate
-          maxRetries: 6.027456183070403
-          insertedDate: insertedDate
-          parameters:
-            key: "{}"
-          workflowId: workflowId
-          startDate: startDate
-          status: COMPLETE
-          workflowStepId: workflowStepId
-        decisions:
-        - nextStepId: nextStepId
-          type: APPROVE
-        - nextStepId: nextStepId
-          type: APPROVE
-        queue:
-          queueId: queueId
-          approvalGroups:
-          - approvalGroups
-          - approvalGroups
-      properties:
-        stepId:
-          description: Workflow Step Identifier
-          type: string
-        action:
-          $ref: "#/components/schemas/DocumentAction"
-        queue:
-          $ref: "#/components/schemas/WorkflowQueue"
-        decisions:
-          description: Workflow Decisions
-          items:
-            $ref: "#/components/schemas/WorkflowStepDecision"
-          type: array
-      type: object
-    WorkflowQueue:
-      example:
-        queueId: queueId
-        approvalGroups:
-        - approvalGroups
-        - approvalGroups
-      properties:
-        queueId:
-          description: Queue Id
-          type: string
-        approvalGroups:
-          items:
-            type: string
-          type: array
-      type: object
-    WorkflowSummary:
-      example:
-        insertedDate: insertedDate
-        name: name
-        inUse: true
-        description: description
-        userId: userId
-        workflowId: workflowId
-        status: ACTIVE
-      properties:
-        name:
-          description: Name of Workflow
-          type: string
-        workflowId:
-          description: Workflow identifier
-          type: string
-        description:
-          description: Description of Workflow
-          type: string
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        userId:
-          description: User who created workflow
-          type: string
-        inUse:
-          description: Whether the Workflow is in use
-          type: boolean
-        status:
-          $ref: "#/components/schemas/WorkflowStatus"
       type: object
     GetUserSharesResponse:
       example:
@@ -20110,147 +19905,6 @@ components:
       - key
       - value
       type: object
-    GetDocumentActionsResponse:
-      example:
-        next: next
-        actions:
-        - queueId: queueId
-          metadata:
-            key: metadata
-          retryCount: 0.8008281904610115
-          type: ANTIVIRUS
-          message: message
-          userId: userId
-          completedDate: completedDate
-          maxRetries: 6.027456183070403
-          insertedDate: insertedDate
-          parameters:
-            key: "{}"
-          workflowId: workflowId
-          startDate: startDate
-          status: COMPLETE
-          workflowStepId: workflowStepId
-        - queueId: queueId
-          metadata:
-            key: metadata
-          retryCount: 0.8008281904610115
-          type: ANTIVIRUS
-          message: message
-          userId: userId
-          completedDate: completedDate
-          maxRetries: 6.027456183070403
-          insertedDate: insertedDate
-          parameters:
-            key: "{}"
-          workflowId: workflowId
-          startDate: startDate
-          status: COMPLETE
-          workflowStepId: workflowStepId
-      properties:
-        next:
-          description: Next page of results token
-          type: string
-        actions:
-          description: List of document actions
-          items:
-            $ref: "#/components/schemas/DocumentAction"
-          type: array
-      type: object
-    DocumentActionStatus:
-      description: Status of the Document Action
-      enum:
-      - COMPLETE
-      - FAILED
-      - IN_QUEUE
-      - PENDING
-      - RUNNING
-      - SKIPPED
-      - FAILED_RETRY
-      - MAX_RETRIES_REACHED
-      - WAITING_FOR_RETRY
-      type: string
-    DocumentActionType:
-      description: Type of the Document Action
-      enum:
-      - ANTIVIRUS
-      - DOCUMENTTAGGING
-      - FULLTEXT
-      - NOTIFICATION
-      - OCR
-      - QUEUE
-      - WEBHOOK
-      - IDP
-      - PUBLISH
-      - PDFEXPORT
-      - EVENTBRIDGE
-      - RESIZE
-      - DATA_CLASSIFICATION
-      - MALWARE_SCAN
-      type: string
-    DocumentAction:
-      example:
-        queueId: queueId
-        metadata:
-          key: metadata
-        retryCount: 0.8008281904610115
-        type: ANTIVIRUS
-        message: message
-        userId: userId
-        completedDate: completedDate
-        maxRetries: 6.027456183070403
-        insertedDate: insertedDate
-        parameters:
-          key: "{}"
-        workflowId: workflowId
-        startDate: startDate
-        status: COMPLETE
-        workflowStepId: workflowStepId
-      properties:
-        status:
-          $ref: "#/components/schemas/DocumentActionStatus"
-        type:
-          $ref: "#/components/schemas/DocumentActionType"
-        retryCount:
-          description: The number of times this action has already been attempted
-          type: number
-        maxRetries:
-          description: The maximum number of retry attempts allowed for this action
-          type: number
-        queueId:
-          description: Queue Id
-          type: string
-        workflowId:
-          description: Workflow Id
-          type: string
-        workflowStepId:
-          description: Workflow Step Id
-          type: string
-        message:
-          description: Action message information
-          type: string
-        userId:
-          description: User who requested the Action
-          type: string
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        startDate:
-          description: Started Timestamp
-          type: string
-        completedDate:
-          description: Completed Timestamp
-          type: string
-        parameters:
-          additionalProperties:
-            type: object
-          description: Action parameters
-          type: object
-        metadata:
-          additionalProperties:
-            type: string
-          description: Action metadata
-          type: object
-      type: object
     OcrTable:
       example:
         headers:
@@ -20373,22 +20027,6 @@ components:
           type: string
         insertedDate:
           description: Inserted Timestamp
-          type: string
-      type: object
-    AddDocumentActionsResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Document Action message
-          type: string
-      type: object
-    AddDocumentActionsRetryResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Document Action message
           type: string
       type: object
     AddDocumentOcrResponse:
@@ -20752,137 +20390,6 @@ components:
       - ERROR
       - CLEAN
       type: string
-    AddDocumentActionsRequest:
-      example:
-        actions:
-        - queueId: queueId
-          type: ANTIVIRUS
-          parameters:
-            mappingId: mappingId
-            characterMax: characterMax
-            ocrEngine: TESSERACT
-            ocrTextractQueries:
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            ocrParseTypes: ocrParseTypes
-            ocrOutputType: CSV
-            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-            outputType: outputType
-            ocrNumberOfPages: ocrNumberOfPages
-            notificationType: email
-            notificationToCc: notificationToCc
-            notificationToBcc: notificationToBcc
-            url: url
-            tags: tags
-            path: path
-            notificationSubject: notificationSubject
-            engine: chatgpt
-            notificationText: notificationText
-            eventBusName: eventBusName
-            width: width
-            llmPromptEntityName: llmPromptEntityName
-            notificationHtml: notificationHtml
-            height: height
-        - queueId: queueId
-          type: ANTIVIRUS
-          parameters:
-            mappingId: mappingId
-            characterMax: characterMax
-            ocrEngine: TESSERACT
-            ocrTextractQueries:
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            ocrParseTypes: ocrParseTypes
-            ocrOutputType: CSV
-            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-            outputType: outputType
-            ocrNumberOfPages: ocrNumberOfPages
-            notificationType: email
-            notificationToCc: notificationToCc
-            notificationToBcc: notificationToBcc
-            url: url
-            tags: tags
-            path: path
-            notificationSubject: notificationSubject
-            engine: chatgpt
-            notificationText: notificationText
-            eventBusName: eventBusName
-            width: width
-            llmPromptEntityName: llmPromptEntityName
-            notificationHtml: notificationHtml
-            height: height
-      properties:
-        actions:
-          description: List of Actions
-          items:
-            $ref: "#/components/schemas/AddAction"
-          type: array
-      type: object
-    AddAction:
-      example:
-        queueId: queueId
-        type: ANTIVIRUS
-        parameters:
-          mappingId: mappingId
-          characterMax: characterMax
-          ocrEngine: TESSERACT
-          ocrTextractQueries:
-          - pages:
-            - pages
-            - pages
-            alias: alias
-            text: text
-          - pages:
-            - pages
-            - pages
-            alias: alias
-            text: text
-          ocrParseTypes: ocrParseTypes
-          ocrOutputType: CSV
-          addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-          outputType: outputType
-          ocrNumberOfPages: ocrNumberOfPages
-          notificationType: email
-          notificationToCc: notificationToCc
-          notificationToBcc: notificationToBcc
-          url: url
-          tags: tags
-          path: path
-          notificationSubject: notificationSubject
-          engine: chatgpt
-          notificationText: notificationText
-          eventBusName: eventBusName
-          width: width
-          llmPromptEntityName: llmPromptEntityName
-          notificationHtml: notificationHtml
-          height: height
-      properties:
-        type:
-          $ref: "#/components/schemas/DocumentActionType"
-        parameters:
-          $ref: "#/components/schemas/AddActionParameters"
-        queueId:
-          description: Id of Queue
-          type: string
-      required:
-      - type
-      type: object
     OcrEngine:
       description: Type of OCR Engine to use
       enum:
@@ -20914,121 +20421,6 @@ components:
           items:
             type: string
           type: array
-      type: object
-    AddActionParameters:
-      example:
-        mappingId: mappingId
-        characterMax: characterMax
-        ocrEngine: TESSERACT
-        ocrTextractQueries:
-        - pages:
-          - pages
-          - pages
-          alias: alias
-          text: text
-        - pages:
-          - pages
-          - pages
-          alias: alias
-          text: text
-        ocrParseTypes: ocrParseTypes
-        ocrOutputType: CSV
-        addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-        outputType: outputType
-        ocrNumberOfPages: ocrNumberOfPages
-        notificationType: email
-        notificationToCc: notificationToCc
-        notificationToBcc: notificationToBcc
-        url: url
-        tags: tags
-        path: path
-        notificationSubject: notificationSubject
-        engine: chatgpt
-        notificationText: notificationText
-        eventBusName: eventBusName
-        width: width
-        llmPromptEntityName: llmPromptEntityName
-        notificationHtml: notificationHtml
-        height: height
-      properties:
-        ocrTextractQueries:
-          items:
-            $ref: "#/components/schemas/TextractQuery"
-          type: array
-        ocrParseTypes:
-          description: "OCR: Parse types - TEXT, FORMS, TABLES, QUERIES (must include\
-            \ ocrTextractQueries)"
-          type: string
-        ocrEngine:
-          $ref: "#/components/schemas/OcrEngine"
-        ocrOutputType:
-          $ref: "#/components/schemas/OcrOutputType"
-        ocrNumberOfPages:
-          description: Number of pages to OCR (from start) (-1 all)
-          type: string
-        addPdfDetectedCharactersAsText:
-          description: "OCR: For the rewriting of the PDF document, converting any\
-            \ image text to searchable text"
-          type: string
-        llmPromptEntityName:
-          description: "DATA_CLASSIFICATION: Set the LLM Prompt Entity Name"
-          type: string
-        url:
-          description: "Webhook: Callback URL"
-          type: string
-        characterMax:
-          description: "Fulltext: Maximum number of characters (-1 unlimited, Typesense\
-            \ defaults to 2048 characters)"
-          type: string
-        engine:
-          description: "DocumentTagging: Engine to use for document tagging generation"
-          enum:
-          - chatgpt
-          type: string
-        notificationType:
-          description: Notification Type
-          enum:
-          - email
-          type: string
-        notificationToCc:
-          description: Who to carbon copy on the notification to (comma-delimited
-            list)
-          type: string
-        notificationToBcc:
-          description: Who to blind carbon copy on the notification to (comma-delimited
-            list)
-          type: string
-        notificationSubject:
-          description: Subject of the notification
-          type: string
-        notificationText:
-          description: Text of the notification
-          type: string
-        notificationHtml:
-          description: Html of the notification
-          type: string
-        tags:
-          description: "DocumentTagging: Comma-deliminted list of keywords to generate\
-            \ tags for"
-          type: string
-        mappingId:
-          description: Id of Mapping
-          type: string
-        eventBusName:
-          description: The name or ARN of the event bus to receive the event
-          type: string
-        width:
-          description: The width of the image to resize (or 'auto')
-          type: string
-        height:
-          description: The height of the image to resize (or 'auto')
-          type: string
-        path:
-          description: The path to use when creating resized document (optional)
-          type: string
-        outputType:
-          description: The output type of the image
-          type: string
       type: object
     AddDocumentOcrRequest:
       example:
@@ -21382,14 +20774,6 @@ components:
           type: string
       type: object
     DeleteQueueResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Result message
-          type: string
-      type: object
-    DeleteWorkflowResponse:
       example:
         message: message
       properties:
@@ -23372,405 +22756,12 @@ components:
       required:
       - name
       type: object
-    UpdateWorkflowRequest:
-      example:
-        name: name
-        description: description
-        status: ACTIVE
-      properties:
-        name:
-          description: Workflow name
-          type: string
-        description:
-          description: Workflow description
-          type: string
-        status:
-          $ref: "#/components/schemas/WorkflowStatus"
-      type: object
-    SetWorkflowRequest:
-      example:
-        name: name
-        description: description
-        steps:
-        - stepId: stepId
-          action:
-            queueId: queueId
-            type: ANTIVIRUS
-            parameters:
-              mappingId: mappingId
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrTextractQueries:
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              ocrParseTypes: ocrParseTypes
-              ocrOutputType: CSV
-              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-              outputType: outputType
-              ocrNumberOfPages: ocrNumberOfPages
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              path: path
-              notificationSubject: notificationSubject
-              engine: chatgpt
-              notificationText: notificationText
-              eventBusName: eventBusName
-              width: width
-              llmPromptEntityName: llmPromptEntityName
-              notificationHtml: notificationHtml
-              height: height
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        - stepId: stepId
-          action:
-            queueId: queueId
-            type: ANTIVIRUS
-            parameters:
-              mappingId: mappingId
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrTextractQueries:
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              ocrParseTypes: ocrParseTypes
-              ocrOutputType: CSV
-              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-              outputType: outputType
-              ocrNumberOfPages: ocrNumberOfPages
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              path: path
-              notificationSubject: notificationSubject
-              engine: chatgpt
-              notificationText: notificationText
-              eventBusName: eventBusName
-              width: width
-              llmPromptEntityName: llmPromptEntityName
-              notificationHtml: notificationHtml
-              height: height
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        status: ACTIVE
-      properties:
-        name:
-          description: Workflow name
-          type: string
-        description:
-          description: Workflow description
-          type: string
-        status:
-          $ref: "#/components/schemas/WorkflowStatus"
-        steps:
-          description: Workflow Steps
-          items:
-            $ref: "#/components/schemas/AddWorkflowStep"
-          type: array
-      required:
-      - name
-      - status
-      - steps
-      type: object
-    AddWorkflowRequest:
-      example:
-        name: name
-        description: description
-        steps:
-        - stepId: stepId
-          action:
-            queueId: queueId
-            type: ANTIVIRUS
-            parameters:
-              mappingId: mappingId
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrTextractQueries:
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              ocrParseTypes: ocrParseTypes
-              ocrOutputType: CSV
-              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-              outputType: outputType
-              ocrNumberOfPages: ocrNumberOfPages
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              path: path
-              notificationSubject: notificationSubject
-              engine: chatgpt
-              notificationText: notificationText
-              eventBusName: eventBusName
-              width: width
-              llmPromptEntityName: llmPromptEntityName
-              notificationHtml: notificationHtml
-              height: height
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        - stepId: stepId
-          action:
-            queueId: queueId
-            type: ANTIVIRUS
-            parameters:
-              mappingId: mappingId
-              characterMax: characterMax
-              ocrEngine: TESSERACT
-              ocrTextractQueries:
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              - pages:
-                - pages
-                - pages
-                alias: alias
-                text: text
-              ocrParseTypes: ocrParseTypes
-              ocrOutputType: CSV
-              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-              outputType: outputType
-              ocrNumberOfPages: ocrNumberOfPages
-              notificationType: email
-              notificationToCc: notificationToCc
-              notificationToBcc: notificationToBcc
-              url: url
-              tags: tags
-              path: path
-              notificationSubject: notificationSubject
-              engine: chatgpt
-              notificationText: notificationText
-              eventBusName: eventBusName
-              width: width
-              llmPromptEntityName: llmPromptEntityName
-              notificationHtml: notificationHtml
-              height: height
-          decisions:
-          - nextStepId: nextStepId
-            type: APPROVE
-          - nextStepId: nextStepId
-            type: APPROVE
-          queue:
-            queueId: queueId
-            approvalGroups:
-            - approvalGroups
-            - approvalGroups
-        status: ACTIVE
-      properties:
-        name:
-          description: Workflow name
-          type: string
-        description:
-          description: Workflow description
-          type: string
-        status:
-          $ref: "#/components/schemas/WorkflowStatus"
-        steps:
-          description: Workflow Steps
-          items:
-            $ref: "#/components/schemas/AddWorkflowStep"
-          type: array
-      required:
-      - name
-      - status
-      - steps
-      type: object
-    AddWorkflowStep:
-      example:
-        stepId: stepId
-        action:
-          queueId: queueId
-          type: ANTIVIRUS
-          parameters:
-            mappingId: mappingId
-            characterMax: characterMax
-            ocrEngine: TESSERACT
-            ocrTextractQueries:
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            - pages:
-              - pages
-              - pages
-              alias: alias
-              text: text
-            ocrParseTypes: ocrParseTypes
-            ocrOutputType: CSV
-            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
-            outputType: outputType
-            ocrNumberOfPages: ocrNumberOfPages
-            notificationType: email
-            notificationToCc: notificationToCc
-            notificationToBcc: notificationToBcc
-            url: url
-            tags: tags
-            path: path
-            notificationSubject: notificationSubject
-            engine: chatgpt
-            notificationText: notificationText
-            eventBusName: eventBusName
-            width: width
-            llmPromptEntityName: llmPromptEntityName
-            notificationHtml: notificationHtml
-            height: height
-        decisions:
-        - nextStepId: nextStepId
-          type: APPROVE
-        - nextStepId: nextStepId
-          type: APPROVE
-        queue:
-          queueId: queueId
-          approvalGroups:
-          - approvalGroups
-          - approvalGroups
-      properties:
-        stepId:
-          description: Workflow Step Identifier
-          type: string
-        action:
-          $ref: "#/components/schemas/AddAction"
-        queue:
-          $ref: "#/components/schemas/AddWorkflowStepQueue"
-        decisions:
-          description: Workflow Decisions
-          items:
-            $ref: "#/components/schemas/AddWorkflowStepDecision"
-          type: array
-      type: object
-    WorkflowStepDecisionType:
-      description: Type of Workflow Step Decision
-      enum:
-      - APPROVE
-      - REJECT
-      type: string
-    AddWorkflowStepDecision:
-      example:
-        nextStepId: nextStepId
-        type: APPROVE
-      properties:
-        type:
-          $ref: "#/components/schemas/WorkflowStepDecisionType"
-        nextStepId:
-          description: Workflow Step to move to
-          type: string
-      required:
-      - nextStepId
-      - type
-      type: object
-    WorkflowStepDecision:
-      example:
-        nextStepId: nextStepId
-        type: APPROVE
-      properties:
-        type:
-          $ref: "#/components/schemas/WorkflowStepDecisionType"
-        nextStepId:
-          description: Workflow Step to move to
-          type: string
-      type: object
-    AddWorkflowStepQueue:
-      example:
-        queueId: queueId
-        approvalGroups:
-        - approvalGroups
-        - approvalGroups
-      properties:
-        queueId:
-          description: Queue Identifier
-          type: string
-        approvalGroups:
-          items:
-            type: string
-          type: array
-      required:
-      - queueId
-      type: object
     AddQueueResponse:
       example:
         queueId: queueId
       properties:
         queueId:
           description: Queue Identifier
-          type: string
-      type: object
-    UpdateWorkflowResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Result message
-          type: string
-      type: object
-    SetWorkflowResponse:
-      example:
-        message: message
-      properties:
-        message:
-          description: Result message
-          type: string
-      type: object
-    AddWorkflowResponse:
-      example:
-        workflowId: workflowId
-      properties:
-        workflowId:
-          description: Workflow Identifier
           type: string
       type: object
     AddDocumentWorkflowRequest:
@@ -23867,23 +22858,19 @@ components:
       example:
         comments: comments
         decision: APPROVE
-        stepId: stepId
       properties:
-        stepId:
-          description: Workflow Step Identifier
-          type: string
         comments:
           description: Workflow decision comments
           type: string
         decision:
-          enum:
-          - APPROVE
-          - REJECT
-          type: string
-      required:
-      - decision
-      - queueId
+          $ref: "#/components/schemas/WorkflowDecision"
       type: object
+    WorkflowDecision:
+      description: Workflow Decisions
+      enum:
+      - APPROVE
+      - REJECT
+      type: string
     AddDocumentWorkflowDecisionsResponse:
       example:
         message: message
@@ -25125,6 +24112,393 @@ components:
           description: The view URL to be navigated to complete DocuSign signing
           type: string
       type: object
+    GetDocumentActionsResponse:
+      example:
+        next: next
+        actions:
+        - queueId: queueId
+          metadata:
+            key: metadata
+          retryCount: 0.8008281904610115
+          type: ANTIVIRUS
+          message: message
+          userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
+          parameters:
+            key: "{}"
+          workflowId: workflowId
+          startDate: startDate
+          status: COMPLETE
+          workflowStepId: workflowStepId
+        - queueId: queueId
+          metadata:
+            key: metadata
+          retryCount: 0.8008281904610115
+          type: ANTIVIRUS
+          message: message
+          userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
+          parameters:
+            key: "{}"
+          workflowId: workflowId
+          startDate: startDate
+          status: COMPLETE
+          workflowStepId: workflowStepId
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        actions:
+          description: List of document actions
+          items:
+            $ref: "#/components/schemas/DocumentAction"
+          type: array
+      type: object
+    DocumentActionStatus:
+      description: Status of the Document Action
+      enum:
+      - COMPLETE
+      - FAILED
+      - IN_QUEUE
+      - PENDING
+      - RUNNING
+      - SKIPPED
+      - FAILED_RETRY
+      - MAX_RETRIES_REACHED
+      - WAITING_FOR_RETRY
+      type: string
+    DocumentActionType:
+      description: Type of the Document Action
+      enum:
+      - ANTIVIRUS
+      - DOCUMENTTAGGING
+      - FULLTEXT
+      - NOTIFICATION
+      - OCR
+      - QUEUE
+      - WEBHOOK
+      - IDP
+      - PUBLISH
+      - PDFEXPORT
+      - EVENTBRIDGE
+      - RESIZE
+      - DATA_CLASSIFICATION
+      - MALWARE_SCAN
+      type: string
+    DocumentAction:
+      example:
+        queueId: queueId
+        metadata:
+          key: metadata
+        retryCount: 0.8008281904610115
+        type: ANTIVIRUS
+        message: message
+        userId: userId
+        completedDate: completedDate
+        maxRetries: 6.027456183070403
+        insertedDate: insertedDate
+        parameters:
+          key: "{}"
+        workflowId: workflowId
+        startDate: startDate
+        status: COMPLETE
+        workflowStepId: workflowStepId
+      properties:
+        status:
+          $ref: "#/components/schemas/DocumentActionStatus"
+        type:
+          $ref: "#/components/schemas/DocumentActionType"
+        retryCount:
+          description: The number of times this action has already been attempted
+          type: number
+        maxRetries:
+          description: The maximum number of retry attempts allowed for this action
+          type: number
+        queueId:
+          description: Queue Id
+          type: string
+        workflowId:
+          description: Workflow Id
+          type: string
+        workflowStepId:
+          description: Workflow Step Id
+          type: string
+        message:
+          description: Action message information
+          type: string
+        userId:
+          description: User who requested the Action
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        startDate:
+          description: Started Timestamp
+          type: string
+        completedDate:
+          description: Completed Timestamp
+          type: string
+        parameters:
+          additionalProperties:
+            type: object
+          description: Action parameters
+          type: object
+        metadata:
+          additionalProperties:
+            type: string
+          description: Action metadata
+          type: object
+      type: object
+    AddDocumentActionsRequest:
+      example:
+        actions:
+        - queueId: queueId
+          type: ANTIVIRUS
+          parameters:
+            mappingId: mappingId
+            characterMax: characterMax
+            ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
+            ocrNumberOfPages: ocrNumberOfPages
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            tags: tags
+            path: path
+            notificationSubject: notificationSubject
+            engine: chatgpt
+            notificationText: notificationText
+            eventBusName: eventBusName
+            width: width
+            llmPromptEntityName: llmPromptEntityName
+            notificationHtml: notificationHtml
+            height: height
+        - queueId: queueId
+          type: ANTIVIRUS
+          parameters:
+            mappingId: mappingId
+            characterMax: characterMax
+            ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
+            ocrNumberOfPages: ocrNumberOfPages
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            tags: tags
+            path: path
+            notificationSubject: notificationSubject
+            engine: chatgpt
+            notificationText: notificationText
+            eventBusName: eventBusName
+            width: width
+            llmPromptEntityName: llmPromptEntityName
+            notificationHtml: notificationHtml
+            height: height
+      properties:
+        actions:
+          description: List of Actions
+          items:
+            $ref: "#/components/schemas/AddAction"
+          type: array
+      type: object
+    AddAction:
+      example:
+        queueId: queueId
+        type: ANTIVIRUS
+        parameters:
+          mappingId: mappingId
+          characterMax: characterMax
+          ocrEngine: TESSERACT
+          ocrTextractQueries:
+          - pages:
+            - pages
+            - pages
+            alias: alias
+            text: text
+          - pages:
+            - pages
+            - pages
+            alias: alias
+            text: text
+          ocrParseTypes: ocrParseTypes
+          ocrOutputType: CSV
+          addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+          outputType: outputType
+          ocrNumberOfPages: ocrNumberOfPages
+          notificationType: email
+          notificationToCc: notificationToCc
+          notificationToBcc: notificationToBcc
+          url: url
+          tags: tags
+          path: path
+          notificationSubject: notificationSubject
+          engine: chatgpt
+          notificationText: notificationText
+          eventBusName: eventBusName
+          width: width
+          llmPromptEntityName: llmPromptEntityName
+          notificationHtml: notificationHtml
+          height: height
+      properties:
+        type:
+          $ref: "#/components/schemas/DocumentActionType"
+        parameters:
+          $ref: "#/components/schemas/AddActionParameters"
+        queueId:
+          description: Id of Queue
+          type: string
+      required:
+      - type
+      type: object
+    AddActionParameters:
+      example:
+        mappingId: mappingId
+        characterMax: characterMax
+        ocrEngine: TESSERACT
+        ocrTextractQueries:
+        - pages:
+          - pages
+          - pages
+          alias: alias
+          text: text
+        - pages:
+          - pages
+          - pages
+          alias: alias
+          text: text
+        ocrParseTypes: ocrParseTypes
+        ocrOutputType: CSV
+        addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+        outputType: outputType
+        ocrNumberOfPages: ocrNumberOfPages
+        notificationType: email
+        notificationToCc: notificationToCc
+        notificationToBcc: notificationToBcc
+        url: url
+        tags: tags
+        path: path
+        notificationSubject: notificationSubject
+        engine: chatgpt
+        notificationText: notificationText
+        eventBusName: eventBusName
+        width: width
+        llmPromptEntityName: llmPromptEntityName
+        notificationHtml: notificationHtml
+        height: height
+      properties:
+        ocrTextractQueries:
+          items:
+            $ref: "#/components/schemas/TextractQuery"
+          type: array
+        ocrParseTypes:
+          description: "OCR: Parse types - TEXT, FORMS, TABLES, QUERIES (must include\
+            \ ocrTextractQueries)"
+          type: string
+        ocrEngine:
+          $ref: "#/components/schemas/OcrEngine"
+        ocrOutputType:
+          $ref: "#/components/schemas/OcrOutputType"
+        ocrNumberOfPages:
+          description: Number of pages to OCR (from start) (-1 all)
+          type: string
+        addPdfDetectedCharactersAsText:
+          description: "OCR: For the rewriting of the PDF document, converting any\
+            \ image text to searchable text"
+          type: string
+        llmPromptEntityName:
+          description: "DATA_CLASSIFICATION: Set the LLM Prompt Entity Name"
+          type: string
+        url:
+          description: "Webhook: Callback URL"
+          type: string
+        characterMax:
+          description: "Fulltext: Maximum number of characters (-1 unlimited, Typesense\
+            \ defaults to 2048 characters)"
+          type: string
+        engine:
+          description: "DocumentTagging: Engine to use for document tagging generation"
+          enum:
+          - chatgpt
+          type: string
+        notificationType:
+          description: Notification Type
+          enum:
+          - email
+          type: string
+        notificationToCc:
+          description: Who to carbon copy on the notification to (comma-delimited
+            list)
+          type: string
+        notificationToBcc:
+          description: Who to blind carbon copy on the notification to (comma-delimited
+            list)
+          type: string
+        notificationSubject:
+          description: Subject of the notification
+          type: string
+        notificationText:
+          description: Text of the notification
+          type: string
+        notificationHtml:
+          description: Html of the notification
+          type: string
+        tags:
+          description: "DocumentTagging: Comma-deliminted list of keywords to generate\
+            \ tags for"
+          type: string
+        mappingId:
+          description: Id of Mapping
+          type: string
+        eventBusName:
+          description: The name or ARN of the event bus to receive the event
+          type: string
+        width:
+          description: The width of the image to resize (or 'auto')
+          type: string
+        height:
+          description: The height of the image to resize (or 'auto')
+          type: string
+        path:
+          description: The path to use when creating resized document (optional)
+          type: string
+        outputType:
+          description: The output type of the image
+          type: string
+      type: object
     AddDocumentCertificationRequest:
       example:
         certificates:
@@ -25238,6 +24612,1658 @@ components:
           items:
             type: string
           type: array
+      type: object
+    GetWorkflowsResponse:
+      example:
+        next: next
+        workflows:
+        - insertedDate: insertedDate
+          name: name
+          inUse: true
+          description: description
+          userId: userId
+          workflowId: workflowId
+          status: ACTIVE
+        - insertedDate: insertedDate
+          name: name
+          inUse: true
+          description: description
+          userId: userId
+          workflowId: workflowId
+          status: ACTIVE
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        workflows:
+          description: List of workflows
+          items:
+            $ref: "#/components/schemas/WorkflowSummary"
+          type: array
+      type: object
+    WorkflowSummary:
+      example:
+        insertedDate: insertedDate
+        name: name
+        inUse: true
+        description: description
+        userId: userId
+        workflowId: workflowId
+        status: ACTIVE
+      properties:
+        name:
+          description: Name of Workflow
+          type: string
+        workflowId:
+          description: Workflow identifier
+          type: string
+        description:
+          description: Description of Workflow
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        userId:
+          description: User who created workflow
+          type: string
+        inUse:
+          description: Whether the Workflow is in use
+          type: boolean
+        status:
+          $ref: "#/components/schemas/WorkflowStatus"
+      type: object
+    WorkflowStatus:
+      description: Status of the Workflow
+      enum:
+      - ACTIVE
+      - INACTIVE
+      type: string
+    AddWorkflowRequest:
+      example:
+        name: name
+        description: description
+        steps:
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            type: ANTIVIRUS
+            parameters:
+              mappingId: mappingId
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
+              ocrNumberOfPages: ocrNumberOfPages
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              path: path
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              eventBusName: eventBusName
+              width: width
+              llmPromptEntityName: llmPromptEntityName
+              notificationHtml: notificationHtml
+              height: height
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            type: ANTIVIRUS
+            parameters:
+              mappingId: mappingId
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
+              ocrNumberOfPages: ocrNumberOfPages
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              path: path
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              eventBusName: eventBusName
+              width: width
+              llmPromptEntityName: llmPromptEntityName
+              notificationHtml: notificationHtml
+              height: height
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        status: ACTIVE
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        status:
+          $ref: "#/components/schemas/WorkflowStatus"
+        steps:
+          description: Workflow Steps
+          items:
+            $ref: "#/components/schemas/AddWorkflowStep"
+          type: array
+      required:
+      - name
+      - status
+      - steps
+      type: object
+    AddWorkflowStep:
+      example:
+        mappings:
+        - mappingId: mappingId
+        - mappingId: mappingId
+        decision:
+          defaultTransition:
+            stepId: stepId
+            type: STEP
+          conditions:
+          - all:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            any:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            transition:
+              stepId: stepId
+              type: STEP
+          - all:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            any:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            transition:
+              stepId: stepId
+              type: STEP
+        stepId: stepId
+        action:
+          queueId: queueId
+          type: ANTIVIRUS
+          parameters:
+            mappingId: mappingId
+            characterMax: characterMax
+            ocrEngine: TESSERACT
+            ocrTextractQueries:
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            - pages:
+              - pages
+              - pages
+              alias: alias
+              text: text
+            ocrParseTypes: ocrParseTypes
+            ocrOutputType: CSV
+            addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+            outputType: outputType
+            ocrNumberOfPages: ocrNumberOfPages
+            notificationType: email
+            notificationToCc: notificationToCc
+            notificationToBcc: notificationToBcc
+            url: url
+            tags: tags
+            path: path
+            notificationSubject: notificationSubject
+            engine: chatgpt
+            notificationText: notificationText
+            eventBusName: eventBusName
+            width: width
+            llmPromptEntityName: llmPromptEntityName
+            notificationHtml: notificationHtml
+            height: height
+        decisions:
+        - nextStepId: nextStepId
+          type: APPROVE
+        - nextStepId: nextStepId
+          type: APPROVE
+        queue:
+          queueId: queueId
+          approvalGroups:
+          - approvalGroups
+          - approvalGroups
+      properties:
+        stepId:
+          description: Workflow Step Identifier
+          type: string
+        action:
+          $ref: "#/components/schemas/AddAction"
+        queue:
+          $ref: "#/components/schemas/AddWorkflowStepQueue"
+        mappings:
+          items:
+            $ref: "#/components/schemas/WorkflowStepMapping"
+          type: array
+        decision:
+          $ref: "#/components/schemas/WorkflowStepDecision"
+        decisions:
+          deprecated: true
+          description: Deprecated; use 'decision' instead
+          items:
+            $ref: "#/components/schemas/AddWorkflowStepDecision"
+          type: array
+      type: object
+    WorkflowStepMapping:
+      example:
+        mappingId: mappingId
+      properties:
+        mappingId:
+          description: Mapping Identifier
+          type: string
+      required:
+      - mappingId
+      type: object
+    AddWorkflowStepQueue:
+      example:
+        queueId: queueId
+        approvalGroups:
+        - approvalGroups
+        - approvalGroups
+      properties:
+        queueId:
+          description: Queue Identifier
+          type: string
+        approvalGroups:
+          items:
+            type: string
+          type: array
+      required:
+      - queueId
+      type: object
+    WorkflowStepDecision:
+      example:
+        defaultTransition:
+          stepId: stepId
+          type: STEP
+        conditions:
+        - all:
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          any:
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          transition:
+            stepId: stepId
+            type: STEP
+        - all:
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          any:
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          - stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            booleanValue: true
+            source:
+              attributeKey: attributeKey
+            numberValue: 0.8008281904610115
+            operator: EQ
+          transition:
+            stepId: stepId
+            type: STEP
+      properties:
+        conditions:
+          description: Workflow Step Conditions
+          items:
+            $ref: "#/components/schemas/WorkflowStepCondition"
+          type: array
+        defaultTransition:
+          $ref: "#/components/schemas/WorkflowStepTransition"
+      required:
+      - conditions
+      type: object
+    WorkflowStepCondition:
+      example:
+        all:
+        - stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          source:
+            attributeKey: attributeKey
+          numberValue: 0.8008281904610115
+          operator: EQ
+        - stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          source:
+            attributeKey: attributeKey
+          numberValue: 0.8008281904610115
+          operator: EQ
+        any:
+        - stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          source:
+            attributeKey: attributeKey
+          numberValue: 0.8008281904610115
+          operator: EQ
+        - stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          booleanValue: true
+          source:
+            attributeKey: attributeKey
+          numberValue: 0.8008281904610115
+          operator: EQ
+        transition:
+          stepId: stepId
+          type: STEP
+      properties:
+        all:
+          description: Workflow Step Condition Criteria
+          items:
+            $ref: "#/components/schemas/WorkflowStepConditionCriterion"
+          type: array
+        any:
+          description: Workflow Step Condition Criteria
+          items:
+            $ref: "#/components/schemas/WorkflowStepConditionCriterion"
+          type: array
+        transition:
+          $ref: "#/components/schemas/WorkflowStepTransition"
+      required:
+      - transition
+      type: object
+    AddWorkflowStepDecision:
+      example:
+        nextStepId: nextStepId
+        type: APPROVE
+      properties:
+        type:
+          $ref: "#/components/schemas/WorkflowStepDecisionType"
+        nextStepId:
+          description: Workflow Step to move to
+          type: string
+      required:
+      - nextStepId
+      - type
+      type: object
+    WorkflowStepConditionOperator:
+      description: |
+        Comparison operator used to evaluate a workflow condition criterion.
+
+        Values:
+
+        - `EQ` - Equals
+        - `NEQ` - Not equals
+        - `CONTAINS` - Contains substring or matching value
+        - `NOT_CONTAINS` - Does not contain substring or matching value
+        - `STARTS_WITH` - Starts with value
+        - `ENDS_WITH` - Ends with value
+        - `GT` - Greater than
+        - `GTE` - Greater than or equal
+        - `LT` - Less than
+        - `LTE` - Less than or equal
+        - `EXISTS` - Field exists
+        - `NOT_EXISTS` - Field does not exist
+        - `IN` - Matches one of the provided values
+        - `NOT_IN` - Does not match any of the provided values
+      enum:
+      - EQ
+      - NEQ
+      - CONTAINS
+      - NOT_CONTAINS
+      - STARTS_WITH
+      - ENDS_WITH
+      - GT
+      - GTE
+      - LT
+      - LTE
+      - EXISTS
+      - NOT_EXISTS
+      - IN
+      - NOT_IN
+      type: string
+    WorkflowStepConditionCriterion:
+      description: |
+        A single criterion used to evaluate whether a workflow condition matches.
+
+        A criterion compares a document-derived source value against one or more
+        provided values using the specified operator.
+
+        Supported sources include:
+        - document attributes
+        - document content type
+        - document path
+
+        Typical examples:
+        - attribute `status` equals `approved`
+        - attribute `amount` greater than `1000`
+        - content type equals `application/pdf`
+        - path contains `/invoices/`
+
+        Use the appropriate typed value field for the comparison:
+        - `stringValue` for string comparisons
+        - `numberValue` for numeric comparisons
+        - `booleanValue` for boolean comparisons
+        - `stringValues` for multi-value comparisons such as `IN` and `NOT_IN`
+      example:
+        stringValue: stringValue
+        stringValues:
+        - stringValues
+        - stringValues
+        booleanValue: true
+        source:
+          attributeKey: attributeKey
+        numberValue: 0.8008281904610115
+        operator: EQ
+      properties:
+        source:
+          $ref: "#/components/schemas/WorkflowStepConditionSource"
+        operator:
+          $ref: "#/components/schemas/WorkflowStepConditionOperator"
+        stringValue:
+          description: String comparison value
+          type: string
+        numberValue:
+          description: Numeric comparison value
+          type: number
+        booleanValue:
+          description: Boolean comparison value
+          type: boolean
+        stringValues:
+          description: String values used for IN or NOT_IN comparisons
+          items:
+            type: string
+          type: array
+      required:
+      - operator
+      - source
+      type: object
+    WorkflowStepConditionSource:
+      description: |
+        Defines the document-derived source value to evaluate for a workflow
+        condition criterion.
+
+        The source identifies where the value comes from before applying the
+        operator. Supported sources include:
+        - a document attribute identified by `attributeKey`
+        - the document content type
+        - the document path
+      oneOf:
+      - $ref: "#/components/schemas/WorkflowStepConditionDocumentAttribute"
+      - $ref: "#/components/schemas/WorkflowStepConditionDocumentStandardMetadata"
+    WorkflowStepConditionDocumentAttribute:
+      description: |
+        Uses a document attribute as the source value for a workflow condition
+        criterion.
+
+        The attribute is selected using `attributeKey`.
+      example:
+        attributeKey: attributeKey
+      properties:
+        attributeKey:
+          description: Document attribute key
+          type: string
+      required:
+      - attributeKey
+      type: object
+    WorkflowStepConditionDocumentStandardMetadata:
+      description: |
+        Identifies the built-in document metadata field to evaluate for a workflow
+        condition criterion.
+
+        Values:
+
+        - `PATH` - Evaluate the document path
+        - `CONTENT_TYPE` - Evaluate the document content type
+      enum:
+      - PATH
+      - CONTENT_TYPE
+      type: string
+    WorkflowStepTransition:
+      example:
+        stepId: stepId
+        type: STEP
+      properties:
+        type:
+          $ref: "#/components/schemas/WorkflowStepTransitionType"
+        stepId:
+          description: Target workflow step
+          type: string
+      required:
+      - type
+      type: object
+    WorkflowStepTransitionType:
+      description: |
+        Defines the outcome of a workflow step transition.
+
+        A transition determines what happens after a workflow step finishes
+        evaluating its conditions, decisions, or actions.
+
+        Depending on the transition type, the workflow may:
+
+        - Move to another workflow step
+        - Complete successfully
+        - Be rejected
+        - Be cancelled
+        - Remain on the current step
+
+        Some transition types require additional properties. For example,
+        when the type is `STEP`, a target step identifier must be provided
+        in the transition object.
+      enum:
+      - STEP
+      - RETRY
+      - COMPLETE
+      type: string
+    WorkflowStepDecisionType:
+      description: Type of Workflow Step Decision
+      enum:
+      - APPROVE
+      - REJECT
+      type: string
+    AddWorkflowResponse:
+      example:
+        workflowId: workflowId
+      properties:
+        workflowId:
+          description: Workflow Identifier
+          type: string
+      type: object
+    GetWorkflowResponse:
+      example:
+        name: name
+        inUse: true
+        description: description
+        steps:
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            metadata:
+              key: metadata
+            retryCount: 0.8008281904610115
+            type: ANTIVIRUS
+            message: message
+            userId: userId
+            completedDate: completedDate
+            maxRetries: 6.027456183070403
+            insertedDate: insertedDate
+            parameters:
+              key: "{}"
+            workflowId: workflowId
+            startDate: startDate
+            status: COMPLETE
+            workflowStepId: workflowStepId
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            metadata:
+              key: metadata
+            retryCount: 0.8008281904610115
+            type: ANTIVIRUS
+            message: message
+            userId: userId
+            completedDate: completedDate
+            maxRetries: 6.027456183070403
+            insertedDate: insertedDate
+            parameters:
+              key: "{}"
+            workflowId: workflowId
+            startDate: startDate
+            status: COMPLETE
+            workflowStepId: workflowStepId
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        status: ACTIVE
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        inUse:
+          description: Whether the Workflow is in use
+          type: boolean
+        status:
+          $ref: "#/components/schemas/WorkflowStatus"
+        steps:
+          description: Workflow steps
+          items:
+            $ref: "#/components/schemas/WorkflowStep"
+          type: array
+      type: object
+    WorkflowStep:
+      example:
+        mappings:
+        - mappingId: mappingId
+        - mappingId: mappingId
+        decision:
+          defaultTransition:
+            stepId: stepId
+            type: STEP
+          conditions:
+          - all:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            any:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            transition:
+              stepId: stepId
+              type: STEP
+          - all:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            any:
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            - stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              booleanValue: true
+              source:
+                attributeKey: attributeKey
+              numberValue: 0.8008281904610115
+              operator: EQ
+            transition:
+              stepId: stepId
+              type: STEP
+        stepId: stepId
+        action:
+          queueId: queueId
+          metadata:
+            key: metadata
+          retryCount: 0.8008281904610115
+          type: ANTIVIRUS
+          message: message
+          userId: userId
+          completedDate: completedDate
+          maxRetries: 6.027456183070403
+          insertedDate: insertedDate
+          parameters:
+            key: "{}"
+          workflowId: workflowId
+          startDate: startDate
+          status: COMPLETE
+          workflowStepId: workflowStepId
+        decisions:
+        - nextStepId: nextStepId
+          type: APPROVE
+        - nextStepId: nextStepId
+          type: APPROVE
+        queue:
+          queueId: queueId
+          approvalGroups:
+          - approvalGroups
+          - approvalGroups
+      properties:
+        stepId:
+          description: Workflow Step Identifier
+          type: string
+        action:
+          $ref: "#/components/schemas/DocumentAction"
+        queue:
+          $ref: "#/components/schemas/WorkflowQueue"
+        mappings:
+          items:
+            $ref: "#/components/schemas/WorkflowStepMapping"
+          type: array
+        decision:
+          $ref: "#/components/schemas/WorkflowStepDecision"
+        decisions:
+          description: Workflow Decisions
+          items:
+            $ref: "#/components/schemas/WorkflowStepDecisions"
+          type: array
+      type: object
+    WorkflowQueue:
+      example:
+        queueId: queueId
+        approvalGroups:
+        - approvalGroups
+        - approvalGroups
+      properties:
+        queueId:
+          description: Queue Id
+          type: string
+        approvalGroups:
+          items:
+            type: string
+          type: array
+      type: object
+    WorkflowStepDecisions:
+      example:
+        nextStepId: nextStepId
+        type: APPROVE
+      properties:
+        type:
+          $ref: "#/components/schemas/WorkflowStepDecisionType"
+        nextStepId:
+          description: Workflow Step to move to
+          type: string
+      type: object
+    SetWorkflowRequest:
+      example:
+        name: name
+        description: description
+        steps:
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            type: ANTIVIRUS
+            parameters:
+              mappingId: mappingId
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
+              ocrNumberOfPages: ocrNumberOfPages
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              path: path
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              eventBusName: eventBusName
+              width: width
+              llmPromptEntityName: llmPromptEntityName
+              notificationHtml: notificationHtml
+              height: height
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        - mappings:
+          - mappingId: mappingId
+          - mappingId: mappingId
+          decision:
+            defaultTransition:
+              stepId: stepId
+              type: STEP
+            conditions:
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+            - all:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              any:
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              - stringValue: stringValue
+                stringValues:
+                - stringValues
+                - stringValues
+                booleanValue: true
+                source:
+                  attributeKey: attributeKey
+                numberValue: 0.8008281904610115
+                operator: EQ
+              transition:
+                stepId: stepId
+                type: STEP
+          stepId: stepId
+          action:
+            queueId: queueId
+            type: ANTIVIRUS
+            parameters:
+              mappingId: mappingId
+              characterMax: characterMax
+              ocrEngine: TESSERACT
+              ocrTextractQueries:
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              - pages:
+                - pages
+                - pages
+                alias: alias
+                text: text
+              ocrParseTypes: ocrParseTypes
+              ocrOutputType: CSV
+              addPdfDetectedCharactersAsText: addPdfDetectedCharactersAsText
+              outputType: outputType
+              ocrNumberOfPages: ocrNumberOfPages
+              notificationType: email
+              notificationToCc: notificationToCc
+              notificationToBcc: notificationToBcc
+              url: url
+              tags: tags
+              path: path
+              notificationSubject: notificationSubject
+              engine: chatgpt
+              notificationText: notificationText
+              eventBusName: eventBusName
+              width: width
+              llmPromptEntityName: llmPromptEntityName
+              notificationHtml: notificationHtml
+              height: height
+          decisions:
+          - nextStepId: nextStepId
+            type: APPROVE
+          - nextStepId: nextStepId
+            type: APPROVE
+          queue:
+            queueId: queueId
+            approvalGroups:
+            - approvalGroups
+            - approvalGroups
+        status: ACTIVE
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        status:
+          $ref: "#/components/schemas/WorkflowStatus"
+        steps:
+          description: Workflow Steps
+          items:
+            $ref: "#/components/schemas/AddWorkflowStep"
+          type: array
+      required:
+      - name
+      - status
+      - steps
+      type: object
+    UpdateWorkflowRequest:
+      example:
+        name: name
+        description: description
+        status: ACTIVE
+      properties:
+        name:
+          description: Workflow name
+          type: string
+        description:
+          description: Workflow description
+          type: string
+        status:
+          $ref: "#/components/schemas/WorkflowStatus"
       type: object
     UpdateMatchingDocumentTagsRequest_match:
       example:

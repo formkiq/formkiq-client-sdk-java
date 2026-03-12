@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * SetWorkflowRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class SetWorkflowRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -276,18 +276,18 @@ public class SetWorkflowRequest {
     }
     // validate the required field `status`
     WorkflowStatus.validateJsonElement(jsonObj.get("status"));
-    // ensure the json data is an array
-    if (!jsonObj.get("steps").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `steps` to be an array in the JSON string but got `%s`",
-          jsonObj.get("steps").toString()));
+    if (jsonObj.get("steps") != null) {
+      if (!jsonObj.get("steps").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "Expected the field `steps` to be an array in the JSON string but got `%s`",
+            jsonObj.get("steps").toString()));
+      }
+      JsonArray jsonArraysteps = jsonObj.getAsJsonArray("steps");
+      // validate the required field `steps` (array)
+      for (int i = 0; i < jsonArraysteps.size(); i++) {
+        AddWorkflowStep.validateJsonElement(jsonArraysteps.get(i));
+      }
     }
-
-    JsonArray jsonArraysteps = jsonObj.getAsJsonArray("steps");
-    // validate the required field `steps` (array)
-    for (int i = 0; i < jsonArraysteps.size(); i++) {
-      AddWorkflowStep.validateJsonElement(jsonArraysteps.get(i));
-    } ;
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

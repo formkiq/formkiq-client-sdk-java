@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **WorkflowStepDecisionType** |  |  [optional] |
-|**nextStepId** | **String** | Workflow Step to move to |  [optional] |
+|**conditions** | [**List&lt;WorkflowStepCondition&gt;**](WorkflowStepCondition.md) | Workflow Step Conditions |  |
+|**defaultTransition** | [**WorkflowStepTransition**](WorkflowStepTransition.md) |  |  [optional] |
 
 
 

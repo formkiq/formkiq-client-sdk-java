@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentCertificationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddDocumentCertificationRequest {
   public static final String SERIALIZED_NAME_TARGET = "target";
   @SerializedName(SERIALIZED_NAME_TARGET)
@@ -217,18 +217,18 @@ public class AddDocumentCertificationRequest {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     // validate the required field `target`
     DocumentCertificationTarget.validateJsonElement(jsonObj.get("target"));
-    // ensure the json data is an array
-    if (!jsonObj.get("certificates").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `certificates` to be an array in the JSON string but got `%s`",
-          jsonObj.get("certificates").toString()));
+    if (jsonObj.get("certificates") != null) {
+      if (!jsonObj.get("certificates").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "Expected the field `certificates` to be an array in the JSON string but got `%s`",
+            jsonObj.get("certificates").toString()));
+      }
+      JsonArray jsonArraycertificates = jsonObj.getAsJsonArray("certificates");
+      // validate the required field `certificates` (array)
+      for (int i = 0; i < jsonArraycertificates.size(); i++) {
+        DocumentCertification.validateJsonElement(jsonArraycertificates.get(i));
+      }
     }
-
-    JsonArray jsonArraycertificates = jsonObj.getAsJsonArray("certificates");
-    // validate the required field `certificates` (array)
-    for (int i = 0; i < jsonArraycertificates.size(); i++) {
-      DocumentCertification.validateJsonElement(jsonArraycertificates.get(i));
-    } ;
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

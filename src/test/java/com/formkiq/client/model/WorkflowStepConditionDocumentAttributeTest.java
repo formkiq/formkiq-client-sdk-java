@@ -31,25 +31,26 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for UpdateWorkflowResponse
+ * Model tests for WorkflowStepConditionDocumentAttribute
  */
-public class UpdateWorkflowResponseTest {
-  private final UpdateWorkflowResponse model = new UpdateWorkflowResponse();
+public class WorkflowStepConditionDocumentAttributeTest {
+  private final WorkflowStepConditionDocumentAttribute model =
+      new WorkflowStepConditionDocumentAttribute();
 
   /**
-   * Model tests for UpdateWorkflowResponse
+   * Model tests for WorkflowStepConditionDocumentAttribute
    */
   @Test
-  public void testUpdateWorkflowResponse() {
-    // TODO: test UpdateWorkflowResponse
+  public void testWorkflowStepConditionDocumentAttribute() {
+    // TODO: test WorkflowStepConditionDocumentAttribute
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'attributeKey'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void attributeKeyTest() {
+    // TODO: test attributeKey
   }
 
 }

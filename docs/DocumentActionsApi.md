@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentActions"></a>
 # **addDocumentActions**
-> AddDocumentActionsResponse addDocumentActions(documentId, siteId, addDocumentActionsRequest)
+> AddResponse addDocumentActions(documentId, siteId, addDocumentActionsRequest)
 
 Add document action
 
@@ -39,7 +39,7 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     AddDocumentActionsRequest addDocumentActionsRequest = new AddDocumentActionsRequest(); // AddDocumentActionsRequest | 
     try {
-      AddDocumentActionsResponse result = apiInstance.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+      AddResponse result = apiInstance.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentActions");
@@ -62,7 +62,7 @@ public class Example {
 
 ### Return type
 
-[**AddDocumentActionsResponse**](AddDocumentActionsResponse.md)
+[**AddResponse**](AddResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ No authorization required
 
 <a id="addDocumentRetryAction"></a>
 # **addDocumentRetryAction**
-> AddDocumentActionsRetryResponse addDocumentRetryAction(documentId, siteId)
+> AddResponse addDocumentRetryAction(documentId, siteId)
 
 Retries failed document action(s)
 
@@ -108,7 +108,7 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddDocumentActionsRetryResponse result = apiInstance.addDocumentRetryAction(documentId, siteId);
+      AddResponse result = apiInstance.addDocumentRetryAction(documentId, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentRetryAction");
@@ -130,7 +130,7 @@ public class Example {
 
 ### Return type
 
-[**AddDocumentActionsRetryResponse**](AddDocumentActionsRetryResponse.md)
+[**AddResponse**](AddResponse.md)
 
 ### Authorization
 

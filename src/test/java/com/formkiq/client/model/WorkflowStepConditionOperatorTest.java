@@ -20,36 +20,20 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DeleteWorkflowResponse
+ * Model tests for WorkflowStepConditionOperator
  */
-public class DeleteWorkflowResponseTest {
-  private final DeleteWorkflowResponse model = new DeleteWorkflowResponse();
-
+public class WorkflowStepConditionOperatorTest {
   /**
-   * Model tests for DeleteWorkflowResponse
+   * Model tests for WorkflowStepConditionOperator
    */
   @Test
-  public void testDeleteWorkflowResponse() {
-    // TODO: test DeleteWorkflowResponse
-  }
-
-  /**
-   * Test the property 'message'
-   */
-  @Test
-  public void messageTest() {
-    // TODO: test message
+  public void testWorkflowStepConditionOperator() {
+    // TODO: test WorkflowStepConditionOperator
   }
 
 }

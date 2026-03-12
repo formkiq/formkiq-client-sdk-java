@@ -30,7 +30,7 @@ import com.formkiq.client.model.AddQueueResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
 import com.formkiq.client.model.DeleteQueueResponse;
-import com.formkiq.client.model.DeleteWorkflowResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetDocumentWorkflowResponse;
 import com.formkiq.client.model.GetDocumentWorkflowsResponse;
@@ -40,10 +40,10 @@ import com.formkiq.client.model.GetWorkflowDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowQueueDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SetWorkflowRequest;
-import com.formkiq.client.model.SetWorkflowResponse;
+import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.UpdateWorkflowRequest;
-import com.formkiq.client.model.UpdateWorkflowResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -151,7 +151,7 @@ public class DocumentWorkflowsApiTest {
   public void deleteWorkflowTest() throws ApiException {
     String workflowId = null;
     String siteId = null;
-    DeleteWorkflowResponse response = api.deleteWorkflow(workflowId, siteId);
+    DeleteResponse response = api.deleteWorkflow(workflowId, siteId);
     // TODO: test validations
   }
 
@@ -297,7 +297,7 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     SetWorkflowRequest setWorkflowRequest = null;
     String siteId = null;
-    SetWorkflowResponse response = api.setWorkflow(workflowId, setWorkflowRequest, siteId);
+    SetResponse response = api.setWorkflow(workflowId, setWorkflowRequest, siteId);
     // TODO: test validations
   }
 
@@ -313,7 +313,7 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     UpdateWorkflowRequest updateWorkflowRequest = null;
     String siteId = null;
-    UpdateWorkflowResponse response = api.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
+    UpdateResponse response = api.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
     // TODO: test validations
   }
 

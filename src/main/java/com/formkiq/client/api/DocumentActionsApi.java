@@ -35,8 +35,7 @@ import java.io.IOException;
 
 
 import com.formkiq.client.model.AddDocumentActionsRequest;
-import com.formkiq.client.model.AddDocumentActionsResponse;
-import com.formkiq.client.model.AddDocumentActionsRetryResponse;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.GetDocumentActionsResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
@@ -213,7 +212,7 @@ public class DocumentActionsApi {
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param addDocumentActionsRequest (optional)
-   * @return AddDocumentActionsResponse
+   * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -239,11 +238,11 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentActionsResponse addDocumentActions(@javax.annotation.Nonnull String documentId,
+  public AddResponse addDocumentActions(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest)
       throws ApiException {
-    ApiResponse<AddDocumentActionsResponse> localVarResp =
+    ApiResponse<AddResponse> localVarResp =
         addDocumentActionsWithHttpInfo(documentId, siteId, addDocumentActionsRequest);
     return localVarResp.getData();
   }
@@ -279,7 +278,7 @@ public class DocumentActionsApi {
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param addDocumentActionsRequest (optional)
-   * @return ApiResponse&lt;AddDocumentActionsResponse&gt;
+   * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -305,13 +304,13 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentActionsResponse> addDocumentActionsWithHttpInfo(
+  public ApiResponse<AddResponse> addDocumentActionsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest)
       throws ApiException {
     okhttp3.Call localVarCall =
         addDocumentActionsValidateBeforeCall(documentId, siteId, addDocumentActionsRequest, null);
-    Type localVarReturnType = new TypeToken<AddDocumentActionsResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -376,11 +375,11 @@ public class DocumentActionsApi {
   public okhttp3.Call addDocumentActionsAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest,
-      final ApiCallback<AddDocumentActionsResponse> _callback) throws ApiException {
+      final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentActionsValidateBeforeCall(documentId, siteId,
         addDocumentActionsRequest, _callback);
-    Type localVarReturnType = new TypeToken<AddDocumentActionsResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -486,7 +485,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return AddDocumentActionsRetryResponse
+   * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -512,11 +511,9 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public AddDocumentActionsRetryResponse addDocumentRetryAction(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    ApiResponse<AddDocumentActionsRetryResponse> localVarResp =
-        addDocumentRetryActionWithHttpInfo(documentId, siteId);
+  public AddResponse addDocumentRetryAction(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId) throws ApiException {
+    ApiResponse<AddResponse> localVarResp = addDocumentRetryActionWithHttpInfo(documentId, siteId);
     return localVarResp.getData();
   }
 
@@ -526,7 +523,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;AddDocumentActionsRetryResponse&gt;
+   * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -552,11 +549,11 @@ public class DocumentActionsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<AddDocumentActionsRetryResponse> addDocumentRetryActionWithHttpInfo(
+  public ApiResponse<AddResponse> addDocumentRetryActionWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = addDocumentRetryActionValidateBeforeCall(documentId, siteId, null);
-    Type localVarReturnType = new TypeToken<AddDocumentActionsRetryResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -594,12 +591,12 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentRetryActionAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
-      final ApiCallback<AddDocumentActionsRetryResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
         addDocumentRetryActionValidateBeforeCall(documentId, siteId, _callback);
-    Type localVarReturnType = new TypeToken<AddDocumentActionsRetryResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

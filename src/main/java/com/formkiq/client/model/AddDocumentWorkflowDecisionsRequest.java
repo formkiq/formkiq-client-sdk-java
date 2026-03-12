@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.WorkflowDecision;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,98 +57,20 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentWorkflowDecisionsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-01-04T20:11:02.414761-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.18.0")
+    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddDocumentWorkflowDecisionsRequest {
-  public static final String SERIALIZED_NAME_STEP_ID = "stepId";
-  @SerializedName(SERIALIZED_NAME_STEP_ID)
-  @javax.annotation.Nullable
-  private String stepId;
-
   public static final String SERIALIZED_NAME_COMMENTS = "comments";
   @SerializedName(SERIALIZED_NAME_COMMENTS)
   @javax.annotation.Nullable
   private String comments;
 
-  /**
-   * Gets or Sets decision
-   */
-  @JsonAdapter(DecisionEnum.Adapter.class)
-  public enum DecisionEnum {
-    APPROVE("APPROVE"),
-
-    REJECT("REJECT");
-
-    private String value;
-
-    DecisionEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static DecisionEnum fromValue(String value) {
-      for (DecisionEnum b : DecisionEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<DecisionEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final DecisionEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public DecisionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return DecisionEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      DecisionEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_DECISION = "decision";
   @SerializedName(SERIALIZED_NAME_DECISION)
-  @javax.annotation.Nonnull
-  private DecisionEnum decision;
+  @javax.annotation.Nullable
+  private WorkflowDecision decision;
 
   public AddDocumentWorkflowDecisionsRequest() {}
-
-  public AddDocumentWorkflowDecisionsRequest stepId(@javax.annotation.Nullable String stepId) {
-    this.stepId = stepId;
-    return this;
-  }
-
-  /**
-   * Workflow Step Identifier
-   * 
-   * @return stepId
-   */
-  @javax.annotation.Nullable
-  public String getStepId() {
-    return stepId;
-  }
-
-  public void setStepId(@javax.annotation.Nullable String stepId) {
-    this.stepId = stepId;
-  }
-
 
   public AddDocumentWorkflowDecisionsRequest comments(@javax.annotation.Nullable String comments) {
     this.comments = comments;
@@ -170,7 +93,7 @@ public class AddDocumentWorkflowDecisionsRequest {
 
 
   public AddDocumentWorkflowDecisionsRequest decision(
-      @javax.annotation.Nonnull DecisionEnum decision) {
+      @javax.annotation.Nullable WorkflowDecision decision) {
     this.decision = decision;
     return this;
   }
@@ -180,12 +103,12 @@ public class AddDocumentWorkflowDecisionsRequest {
    * 
    * @return decision
    */
-  @javax.annotation.Nonnull
-  public DecisionEnum getDecision() {
+  @javax.annotation.Nullable
+  public WorkflowDecision getDecision() {
     return decision;
   }
 
-  public void setDecision(@javax.annotation.Nonnull DecisionEnum decision) {
+  public void setDecision(@javax.annotation.Nullable WorkflowDecision decision) {
     this.decision = decision;
   }
 
@@ -201,21 +124,19 @@ public class AddDocumentWorkflowDecisionsRequest {
     }
     AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest =
         (AddDocumentWorkflowDecisionsRequest) o;
-    return Objects.equals(this.stepId, addDocumentWorkflowDecisionsRequest.stepId)
-        && Objects.equals(this.comments, addDocumentWorkflowDecisionsRequest.comments)
+    return Objects.equals(this.comments, addDocumentWorkflowDecisionsRequest.comments)
         && Objects.equals(this.decision, addDocumentWorkflowDecisionsRequest.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stepId, comments, decision);
+    return Objects.hash(comments, decision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentWorkflowDecisionsRequest {\n");
-    sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
@@ -238,10 +159,10 @@ public class AddDocumentWorkflowDecisionsRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("stepId", "comments", "decision"));
+    openapiFields = new HashSet<String>(Arrays.asList("comments", "decision"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("decision"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -271,35 +192,17 @@ public class AddDocumentWorkflowDecisionsRequest {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : AddDocumentWorkflowDecisionsRequest.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field `%s` is not found in the JSON string: %s", requiredField,
-            jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("stepId") != null && !jsonObj.get("stepId").isJsonNull())
-        && !jsonObj.get("stepId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("stepId").toString()));
-    }
     if ((jsonObj.get("comments") != null && !jsonObj.get("comments").isJsonNull())
         && !jsonObj.get("comments").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `comments` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("comments").toString()));
     }
-    if (!jsonObj.get("decision").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `decision` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("decision").toString()));
+    // validate the optional field `decision`
+    if (jsonObj.get("decision") != null && !jsonObj.get("decision").isJsonNull()) {
+      WorkflowDecision.validateJsonElement(jsonObj.get("decision"));
     }
-    // validate the required field `decision`
-    DecisionEnum.validateJsonElement(jsonObj.get("decision"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

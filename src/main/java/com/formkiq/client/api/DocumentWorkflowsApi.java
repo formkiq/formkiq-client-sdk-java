@@ -43,7 +43,7 @@ import com.formkiq.client.model.AddQueueResponse;
 import com.formkiq.client.model.AddWorkflowRequest;
 import com.formkiq.client.model.AddWorkflowResponse;
 import com.formkiq.client.model.DeleteQueueResponse;
-import com.formkiq.client.model.DeleteWorkflowResponse;
+import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetDocumentWorkflowResponse;
 import com.formkiq.client.model.GetDocumentWorkflowsResponse;
@@ -53,10 +53,10 @@ import com.formkiq.client.model.GetWorkflowDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowQueueDocumentsResponse;
 import com.formkiq.client.model.GetWorkflowResponse;
 import com.formkiq.client.model.GetWorkflowsResponse;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.SetWorkflowRequest;
-import com.formkiq.client.model.SetWorkflowResponse;
+import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.UpdateWorkflowRequest;
-import com.formkiq.client.model.UpdateWorkflowResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1342,7 +1342,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return DeleteWorkflowResponse
+   * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1363,10 +1363,9 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public DeleteWorkflowResponse deleteWorkflow(@javax.annotation.Nonnull String workflowId,
+  public DeleteResponse deleteWorkflow(@javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<DeleteWorkflowResponse> localVarResp =
-        deleteWorkflowWithHttpInfo(workflowId, siteId);
+    ApiResponse<DeleteResponse> localVarResp = deleteWorkflowWithHttpInfo(workflowId, siteId);
     return localVarResp.getData();
   }
 
@@ -1375,7 +1374,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;DeleteWorkflowResponse&gt;
+   * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1396,11 +1395,11 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<DeleteWorkflowResponse> deleteWorkflowWithHttpInfo(
+  public ApiResponse<DeleteResponse> deleteWorkflowWithHttpInfo(
       @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId)
       throws ApiException {
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, null);
-    Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -1431,11 +1430,11 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public okhttp3.Call deleteWorkflowAsync(@javax.annotation.Nonnull String workflowId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteWorkflowResponse> _callback)
+      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall = deleteWorkflowValidateBeforeCall(workflowId, siteId, _callback);
-    Type localVarReturnType = new TypeToken<DeleteWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -3155,7 +3154,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3248,7 +3247,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param setWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return SetWorkflowResponse
+   * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -3261,7 +3260,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3277,10 +3276,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public SetWorkflowResponse setWorkflow(@javax.annotation.Nonnull String workflowId,
+  public SetResponse setWorkflow(@javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
       @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<SetWorkflowResponse> localVarResp =
+    ApiResponse<SetResponse> localVarResp =
         setWorkflowWithHttpInfo(workflowId, setWorkflowRequest, siteId);
     return localVarResp.getData();
   }
@@ -3291,7 +3290,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param setWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;SetWorkflowResponse&gt;
+   * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -3304,7 +3303,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3320,13 +3319,13 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<SetWorkflowResponse> setWorkflowWithHttpInfo(
+  public ApiResponse<SetResponse> setWorkflowWithHttpInfo(
       @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
       @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<SetWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -3349,7 +3348,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3367,12 +3366,12 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call setWorkflowAsync(@javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull SetWorkflowRequest setWorkflowRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetWorkflowResponse> _callback)
+      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
         setWorkflowValidateBeforeCall(workflowId, setWorkflowRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<SetWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -3396,7 +3395,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3489,7 +3488,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param updateWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return UpdateWorkflowResponse
+   * @return UpdateResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -3502,7 +3501,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3518,10 +3517,10 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public UpdateWorkflowResponse updateWorkflow(@javax.annotation.Nonnull String workflowId,
+  public UpdateResponse updateWorkflow(@javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
       @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<UpdateWorkflowResponse> localVarResp =
+    ApiResponse<UpdateResponse> localVarResp =
         updateWorkflowWithHttpInfo(workflowId, updateWorkflowRequest, siteId);
     return localVarResp.getData();
   }
@@ -3532,7 +3531,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param updateWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;UpdateWorkflowResponse&gt;
+   * @return ApiResponse&lt;UpdateResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -3545,7 +3544,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3561,13 +3560,13 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<UpdateWorkflowResponse> updateWorkflowWithHttpInfo(
+  public ApiResponse<UpdateResponse> updateWorkflowWithHttpInfo(
       @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
       @javax.annotation.Nullable String siteId) throws ApiException {
     okhttp3.Call localVarCall =
         updateWorkflowValidateBeforeCall(workflowId, updateWorkflowRequest, siteId, null);
-    Type localVarReturnType = new TypeToken<UpdateWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
@@ -3590,7 +3589,7 @@ public class DocumentWorkflowsApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>20) OK</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -3608,12 +3607,12 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call updateWorkflowAsync(@javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull UpdateWorkflowRequest updateWorkflowRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateWorkflowResponse> _callback)
+      @javax.annotation.Nullable String siteId, final ApiCallback<UpdateResponse> _callback)
       throws ApiException {
 
     okhttp3.Call localVarCall =
         updateWorkflowValidateBeforeCall(workflowId, updateWorkflowRequest, siteId, _callback);
-    Type localVarReturnType = new TypeToken<UpdateWorkflowResponse>() {}.getType();
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.WorkflowDecision;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,14 +44,6 @@ public class AddDocumentWorkflowDecisionsRequestTest {
   @Test
   public void testAddDocumentWorkflowDecisionsRequest() {
     // TODO: test AddDocumentWorkflowDecisionsRequest
-  }
-
-  /**
-   * Test the property 'stepId'
-   */
-  @Test
-  public void stepIdTest() {
-    // TODO: test stepId
   }
 
   /**

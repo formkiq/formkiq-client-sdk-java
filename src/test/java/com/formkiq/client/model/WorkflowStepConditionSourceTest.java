@@ -20,6 +20,8 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.WorkflowStepConditionDocumentAttribute;
+import com.formkiq.client.model.WorkflowStepConditionDocumentStandardMetadata;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,25 +33,25 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocumentActionsRetryResponse
+ * Model tests for WorkflowStepConditionSource
  */
-public class AddDocumentActionsRetryResponseTest {
-  private final AddDocumentActionsRetryResponse model = new AddDocumentActionsRetryResponse();
+public class WorkflowStepConditionSourceTest {
+  private final WorkflowStepConditionSource model = new WorkflowStepConditionSource();
 
   /**
-   * Model tests for AddDocumentActionsRetryResponse
+   * Model tests for WorkflowStepConditionSource
    */
   @Test
-  public void testAddDocumentActionsRetryResponse() {
-    // TODO: test AddDocumentActionsRetryResponse
+  public void testWorkflowStepConditionSource() {
+    // TODO: test WorkflowStepConditionSource
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'attributeKey'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void attributeKeyTest() {
+    // TODO: test attributeKey
   }
 
 }

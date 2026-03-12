@@ -22,8 +22,7 @@ package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentActionsRequest;
-import com.formkiq.client.model.AddDocumentActionsResponse;
-import com.formkiq.client.model.AddDocumentActionsRetryResponse;
+import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.GetDocumentActionsResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
@@ -79,8 +78,7 @@ public class DocumentActionsApiTest {
     String documentId = null;
     String siteId = null;
     AddDocumentActionsRequest addDocumentActionsRequest = null;
-    AddDocumentActionsResponse response =
-        api.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+    AddResponse response = api.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
     // TODO: test validations
   }
 
@@ -96,7 +94,7 @@ public class DocumentActionsApiTest {
   public void addDocumentRetryActionTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    AddDocumentActionsRetryResponse response = api.addDocumentRetryAction(documentId, siteId);
+    AddResponse response = api.addDocumentRetryAction(documentId, siteId);
     // TODO: test validations
   }
 
