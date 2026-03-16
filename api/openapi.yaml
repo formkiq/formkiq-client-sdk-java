@@ -24846,43 +24846,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
-            entityTypeId: entityTypeId
-            entityId: entityId
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
-            entityTypeId: entityTypeId
-            entityId: entityId
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
-            entityTypeId: entityTypeId
-            entityId: entityId
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
-            entityTypeId: entityTypeId
-            entityId: entityId
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -24908,43 +24908,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
-              entityTypeId: entityTypeId
-              entityId: entityId
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
-              entityTypeId: entityTypeId
-              entityId: entityId
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
-              entityTypeId: entityTypeId
-              entityId: entityId
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
-              entityTypeId: entityTypeId
-              entityId: entityId
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -25027,43 +25027,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
-              entityTypeId: entityTypeId
-              entityId: entityId
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
-              entityTypeId: entityTypeId
-              entityId: entityId
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
-              entityTypeId: entityTypeId
-              entityId: entityId
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
-              entityTypeId: entityTypeId
-              entityId: entityId
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -25085,43 +25085,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
-            entityTypeId: entityTypeId
-            entityId: entityId
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
-            entityTypeId: entityTypeId
-            entityId: entityId
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
-            entityTypeId: entityTypeId
-            entityId: entityId
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
-            entityTypeId: entityTypeId
-            entityId: entityId
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -25144,43 +25144,43 @@ components:
         - allowedValues:
           - allowedValues
           - allowedValues
-          entityTypeId: entityTypeId
-          entityId: entityId
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         - allowedValues:
           - allowedValues
           - allowedValues
-          entityTypeId: entityTypeId
-          entityId: entityId
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         required:
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
-          entityTypeId: entityTypeId
-          entityId: entityId
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
-          entityTypeId: entityTypeId
-          entityId: entityId
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
       properties:
         compositeKeys:
@@ -25290,19 +25290,19 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        defaultEntityId: defaultEntityId
         defaultValue: defaultValue
         defaultValues:
         - defaultValues
         - defaultValues
-        entityTypeId: entityTypeId
-        entityId: entityId
         maxNumberOfValues: 6.027456183070403
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 0.8008281904610115
       properties:
-        entityTypeId:
+        defaultEntityTypeId:
           type: string
-        entityId:
+        defaultEntityId:
           type: string
         minNumberOfValues:
           description: The minimum number of attribute values
@@ -25372,15 +25372,15 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
-        entityTypeId: entityTypeId
-        entityId: entityId
+        defaultEntityId: defaultEntityId
         maxNumberOfValues: 5.962133916683182
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 1.4658129805029452
       properties:
-        entityTypeId:
+        defaultEntityTypeId:
           type: string
-        entityId:
+        defaultEntityId:
           type: string
         minNumberOfValues:
           description: The minimum number of attribute values

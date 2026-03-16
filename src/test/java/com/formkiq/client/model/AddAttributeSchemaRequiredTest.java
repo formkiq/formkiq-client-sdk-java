@@ -48,19 +48,19 @@ public class AddAttributeSchemaRequiredTest {
   }
 
   /**
-   * Test the property 'entityTypeId'
+   * Test the property 'defaultEntityTypeId'
    */
   @Test
-  public void entityTypeIdTest() {
-    // TODO: test entityTypeId
+  public void defaultEntityTypeIdTest() {
+    // TODO: test defaultEntityTypeId
   }
 
   /**
-   * Test the property 'entityId'
+   * Test the property 'defaultEntityId'
    */
   @Test
-  public void entityIdTest() {
-    // TODO: test entityId
+  public void defaultEntityIdTest() {
+    // TODO: test defaultEntityId
   }
 
   /**
