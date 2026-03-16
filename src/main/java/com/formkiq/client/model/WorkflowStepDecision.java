@@ -60,12 +60,12 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStepDecision
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-12T11:27:12.623977-05:00[America/Winnipeg]",
+    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
     comments = "Generator version: 7.20.0")
 public class WorkflowStepDecision {
   public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
   @SerializedName(SERIALIZED_NAME_CONDITIONS)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<WorkflowStepCondition> conditions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEFAULT_TRANSITION = "defaultTransition";
@@ -76,7 +76,7 @@ public class WorkflowStepDecision {
   public WorkflowStepDecision() {}
 
   public WorkflowStepDecision conditions(
-      @javax.annotation.Nonnull List<WorkflowStepCondition> conditions) {
+      @javax.annotation.Nullable List<WorkflowStepCondition> conditions) {
     this.conditions = conditions;
     return this;
   }
@@ -94,12 +94,12 @@ public class WorkflowStepDecision {
    * 
    * @return conditions
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public List<WorkflowStepCondition> getConditions() {
     return conditions;
   }
 
-  public void setConditions(@javax.annotation.Nonnull List<WorkflowStepCondition> conditions) {
+  public void setConditions(@javax.annotation.Nullable List<WorkflowStepCondition> conditions) {
     this.conditions = conditions;
   }
 
@@ -174,7 +174,7 @@ public class WorkflowStepDecision {
     openapiFields = new HashSet<String>(Arrays.asList("conditions", "defaultTransition"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("conditions"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -202,26 +202,21 @@ public class WorkflowStepDecision {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : WorkflowStepDecision.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field `%s` is not found in the JSON string: %s", requiredField,
-            jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (jsonObj.get("conditions") != null) {
-      if (!jsonObj.get("conditions").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "Expected the field `conditions` to be an array in the JSON string but got `%s`",
-            jsonObj.get("conditions").toString()));
-      }
+    if (jsonObj.get("conditions") != null && !jsonObj.get("conditions").isJsonNull()) {
       JsonArray jsonArrayconditions = jsonObj.getAsJsonArray("conditions");
-      // validate the required field `conditions` (array)
-      for (int i = 0; i < jsonArrayconditions.size(); i++) {
-        WorkflowStepCondition.validateJsonElement(jsonArrayconditions.get(i));
+      if (jsonArrayconditions != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("conditions").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `conditions` to be an array in the JSON string but got `%s`",
+              jsonObj.get("conditions").toString()));
+        }
+
+        // validate the optional field `conditions` (array)
+        for (int i = 0; i < jsonArrayconditions.size(); i++) {
+          WorkflowStepCondition.validateJsonElement(jsonArrayconditions.get(i));
+        } ;
       }
     }
     // validate the optional field `defaultTransition`

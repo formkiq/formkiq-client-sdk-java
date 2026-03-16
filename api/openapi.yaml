@@ -25263,8 +25263,6 @@ components:
           type: array
         defaultTransition:
           $ref: "#/components/schemas/WorkflowStepTransition"
-      required:
-      - conditions
       type: object
     WorkflowStepCondition:
       example:
