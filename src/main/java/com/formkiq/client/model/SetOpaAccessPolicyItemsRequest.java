@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * SetOpaAccessPolicyItemsRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-02-07T14:56:37.727048-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.19.0")
+    date = "2026-03-16T13:06:14.737128-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class SetOpaAccessPolicyItemsRequest {
   public static final String SERIALIZED_NAME_POLICY_ITEMS = "policyItems";
   @SerializedName(SERIALIZED_NAME_POLICY_ITEMS)
@@ -185,18 +185,18 @@ public class SetOpaAccessPolicyItemsRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // ensure the json data is an array
-    if (!jsonObj.get("policyItems").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `policyItems` to be an array in the JSON string but got `%s`",
-          jsonObj.get("policyItems").toString()));
+    if (jsonObj.get("policyItems") != null) {
+      if (!jsonObj.get("policyItems").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "Expected the field `policyItems` to be an array in the JSON string but got `%s`",
+            jsonObj.get("policyItems").toString()));
+      }
+      JsonArray jsonArraypolicyItems = jsonObj.getAsJsonArray("policyItems");
+      // validate the required field `policyItems` (array)
+      for (int i = 0; i < jsonArraypolicyItems.size(); i++) {
+        OpaPolicyItem.validateJsonElement(jsonArraypolicyItems.get(i));
+      }
     }
-
-    JsonArray jsonArraypolicyItems = jsonObj.getAsJsonArray("policyItems");
-    // validate the required field `policyItems` (array)
-    for (int i = 0; i < jsonArraypolicyItems.size(); i++) {
-      OpaPolicyItem.validateJsonElement(jsonArraypolicyItems.get(i));
-    } ;
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

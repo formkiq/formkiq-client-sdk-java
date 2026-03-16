@@ -48,6 +48,22 @@ public class AddAttributeSchemaOptionalTest {
   }
 
   /**
+   * Test the property 'entityTypeId'
+   */
+  @Test
+  public void entityTypeIdTest() {
+    // TODO: test entityTypeId
+  }
+
+  /**
+   * Test the property 'entityId'
+   */
+  @Test
+  public void entityIdTest() {
+    // TODO: test entityId
+  }
+
+  /**
    * Test the property 'minNumberOfValues'
    */
   @Test

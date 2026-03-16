@@ -59,9 +59,19 @@ import com.formkiq.client.invoker.JSON;
  * AddAttributeSchemaOptional
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-02-07T14:56:37.727048-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.19.0")
+    date = "2026-03-16T13:06:14.737128-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddAttributeSchemaOptional {
+  public static final String SERIALIZED_NAME_ENTITY_TYPE_ID = "entityTypeId";
+  @SerializedName(SERIALIZED_NAME_ENTITY_TYPE_ID)
+  @javax.annotation.Nullable
+  private String entityTypeId;
+
+  public static final String SERIALIZED_NAME_ENTITY_ID = "entityId";
+  @SerializedName(SERIALIZED_NAME_ENTITY_ID)
+  @javax.annotation.Nullable
+  private String entityId;
+
   public static final String SERIALIZED_NAME_MIN_NUMBER_OF_VALUES = "minNumberOfValues";
   @SerializedName(SERIALIZED_NAME_MIN_NUMBER_OF_VALUES)
   @javax.annotation.Nullable
@@ -83,6 +93,46 @@ public class AddAttributeSchemaOptional {
   private List<String> allowedValues = new ArrayList<>();
 
   public AddAttributeSchemaOptional() {}
+
+  public AddAttributeSchemaOptional entityTypeId(@javax.annotation.Nullable String entityTypeId) {
+    this.entityTypeId = entityTypeId;
+    return this;
+  }
+
+  /**
+   * Get entityTypeId
+   * 
+   * @return entityTypeId
+   */
+  @javax.annotation.Nullable
+  public String getEntityTypeId() {
+    return entityTypeId;
+  }
+
+  public void setEntityTypeId(@javax.annotation.Nullable String entityTypeId) {
+    this.entityTypeId = entityTypeId;
+  }
+
+
+  public AddAttributeSchemaOptional entityId(@javax.annotation.Nullable String entityId) {
+    this.entityId = entityId;
+    return this;
+  }
+
+  /**
+   * Get entityId
+   * 
+   * @return entityId
+   */
+  @javax.annotation.Nullable
+  public String getEntityId() {
+    return entityId;
+  }
+
+  public void setEntityId(@javax.annotation.Nullable String entityId) {
+    this.entityId = entityId;
+  }
+
 
   public AddAttributeSchemaOptional minNumberOfValues(
       @javax.annotation.Nullable BigDecimal minNumberOfValues) {
@@ -185,7 +235,9 @@ public class AddAttributeSchemaOptional {
       return false;
     }
     AddAttributeSchemaOptional addAttributeSchemaOptional = (AddAttributeSchemaOptional) o;
-    return Objects.equals(this.minNumberOfValues, addAttributeSchemaOptional.minNumberOfValues)
+    return Objects.equals(this.entityTypeId, addAttributeSchemaOptional.entityTypeId)
+        && Objects.equals(this.entityId, addAttributeSchemaOptional.entityId)
+        && Objects.equals(this.minNumberOfValues, addAttributeSchemaOptional.minNumberOfValues)
         && Objects.equals(this.maxNumberOfValues, addAttributeSchemaOptional.maxNumberOfValues)
         && Objects.equals(this.attributeKey, addAttributeSchemaOptional.attributeKey)
         && Objects.equals(this.allowedValues, addAttributeSchemaOptional.allowedValues);
@@ -193,13 +245,16 @@ public class AddAttributeSchemaOptional {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minNumberOfValues, maxNumberOfValues, attributeKey, allowedValues);
+    return Objects.hash(entityTypeId, entityId, minNumberOfValues, maxNumberOfValues, attributeKey,
+        allowedValues);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddAttributeSchemaOptional {\n");
+    sb.append("    entityTypeId: ").append(toIndentedString(entityTypeId)).append("\n");
+    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    minNumberOfValues: ").append(toIndentedString(minNumberOfValues)).append("\n");
     sb.append("    maxNumberOfValues: ").append(toIndentedString(maxNumberOfValues)).append("\n");
     sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
@@ -224,8 +279,8 @@ public class AddAttributeSchemaOptional {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("minNumberOfValues", "maxNumberOfValues", "attributeKey", "allowedValues"));
+    openapiFields = new HashSet<String>(Arrays.asList("entityTypeId", "entityId",
+        "minNumberOfValues", "maxNumberOfValues", "attributeKey", "allowedValues"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -257,6 +312,18 @@ public class AddAttributeSchemaOptional {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("entityTypeId") != null && !jsonObj.get("entityTypeId").isJsonNull())
+        && !jsonObj.get("entityTypeId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `entityTypeId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("entityTypeId").toString()));
+    }
+    if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull())
+        && !jsonObj.get("entityId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `entityId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("entityId").toString()));
+    }
     if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
         && !jsonObj.get("attributeKey").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,

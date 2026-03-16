@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * Document full text search criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-02-07T14:56:37.727048-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.19.0")
+    date = "2026-03-16T13:06:14.737128-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class DocumentFulltextSearch {
   public static final String SERIALIZED_NAME_PAGE = "page";
   @SerializedName(SERIALIZED_NAME_PAGE)

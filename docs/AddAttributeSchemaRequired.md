@@ -7,6 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**entityTypeId** | **String** |  |  [optional] |
+|**entityId** | **String** |  |  [optional] |
 |**minNumberOfValues** | **BigDecimal** | The minimum number of attribute values |  [optional] |
 |**maxNumberOfValues** | **BigDecimal** | The maximum number of attribute values |  [optional] |
 |**attributeKey** | **String** |  |  [optional] |
