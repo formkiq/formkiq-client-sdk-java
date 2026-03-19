@@ -42,6 +42,8 @@ public enum DocumentActionType {
 
   FULLTEXT("FULLTEXT"),
 
+  CHECKSUM("CHECKSUM"),
+
   NOTIFICATION("NOTIFICATION"),
 
   OCR("OCR"),

@@ -11,6 +11,8 @@
 
 * `FULLTEXT` (value: `"FULLTEXT"`)
 
+* `CHECKSUM` (value: `"CHECKSUM"`)
+
 * `NOTIFICATION` (value: `"NOTIFICATION"`)
 
 * `OCR` (value: `"OCR"`)

@@ -59,7 +59,7 @@ import com.formkiq.client.invoker.JSON;
  * GetOpenSearchSnapshotRepositoryResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-16T14:13:21.118265-05:00[America/Winnipeg]",
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
     comments = "Generator version: 7.20.0")
 public class GetOpenSearchSnapshotRepositoryResponse {
   public static final String SERIALIZED_NAME_S3_REPOSITORIES = "s3Repositories";
