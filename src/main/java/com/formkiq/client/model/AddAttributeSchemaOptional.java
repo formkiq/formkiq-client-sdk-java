@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +52,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,9 +59,19 @@ import com.formkiq.client.invoker.JSON;
  * AddAttributeSchemaOptional
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddAttributeSchemaOptional {
+  public static final String SERIALIZED_NAME_DEFAULT_ENTITY_TYPE_ID = "defaultEntityTypeId";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_ENTITY_TYPE_ID)
+  @javax.annotation.Nullable
+  private String defaultEntityTypeId;
+
+  public static final String SERIALIZED_NAME_DEFAULT_ENTITY_ID = "defaultEntityId";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_ENTITY_ID)
+  @javax.annotation.Nullable
+  private String defaultEntityId;
+
   public static final String SERIALIZED_NAME_MIN_NUMBER_OF_VALUES = "minNumberOfValues";
   @SerializedName(SERIALIZED_NAME_MIN_NUMBER_OF_VALUES)
   @javax.annotation.Nullable
@@ -85,6 +93,48 @@ public class AddAttributeSchemaOptional {
   private List<String> allowedValues = new ArrayList<>();
 
   public AddAttributeSchemaOptional() {}
+
+  public AddAttributeSchemaOptional defaultEntityTypeId(
+      @javax.annotation.Nullable String defaultEntityTypeId) {
+    this.defaultEntityTypeId = defaultEntityTypeId;
+    return this;
+  }
+
+  /**
+   * Get defaultEntityTypeId
+   * 
+   * @return defaultEntityTypeId
+   */
+  @javax.annotation.Nullable
+  public String getDefaultEntityTypeId() {
+    return defaultEntityTypeId;
+  }
+
+  public void setDefaultEntityTypeId(@javax.annotation.Nullable String defaultEntityTypeId) {
+    this.defaultEntityTypeId = defaultEntityTypeId;
+  }
+
+
+  public AddAttributeSchemaOptional defaultEntityId(
+      @javax.annotation.Nullable String defaultEntityId) {
+    this.defaultEntityId = defaultEntityId;
+    return this;
+  }
+
+  /**
+   * Get defaultEntityId
+   * 
+   * @return defaultEntityId
+   */
+  @javax.annotation.Nullable
+  public String getDefaultEntityId() {
+    return defaultEntityId;
+  }
+
+  public void setDefaultEntityId(@javax.annotation.Nullable String defaultEntityId) {
+    this.defaultEntityId = defaultEntityId;
+  }
+
 
   public AddAttributeSchemaOptional minNumberOfValues(
       @javax.annotation.Nullable BigDecimal minNumberOfValues) {
@@ -187,7 +237,9 @@ public class AddAttributeSchemaOptional {
       return false;
     }
     AddAttributeSchemaOptional addAttributeSchemaOptional = (AddAttributeSchemaOptional) o;
-    return Objects.equals(this.minNumberOfValues, addAttributeSchemaOptional.minNumberOfValues)
+    return Objects.equals(this.defaultEntityTypeId, addAttributeSchemaOptional.defaultEntityTypeId)
+        && Objects.equals(this.defaultEntityId, addAttributeSchemaOptional.defaultEntityId)
+        && Objects.equals(this.minNumberOfValues, addAttributeSchemaOptional.minNumberOfValues)
         && Objects.equals(this.maxNumberOfValues, addAttributeSchemaOptional.maxNumberOfValues)
         && Objects.equals(this.attributeKey, addAttributeSchemaOptional.attributeKey)
         && Objects.equals(this.allowedValues, addAttributeSchemaOptional.allowedValues);
@@ -195,13 +247,17 @@ public class AddAttributeSchemaOptional {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minNumberOfValues, maxNumberOfValues, attributeKey, allowedValues);
+    return Objects.hash(defaultEntityTypeId, defaultEntityId, minNumberOfValues, maxNumberOfValues,
+        attributeKey, allowedValues);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddAttributeSchemaOptional {\n");
+    sb.append("    defaultEntityTypeId: ").append(toIndentedString(defaultEntityTypeId))
+        .append("\n");
+    sb.append("    defaultEntityId: ").append(toIndentedString(defaultEntityId)).append("\n");
     sb.append("    minNumberOfValues: ").append(toIndentedString(minNumberOfValues)).append("\n");
     sb.append("    maxNumberOfValues: ").append(toIndentedString(maxNumberOfValues)).append("\n");
     sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
@@ -226,8 +282,8 @@ public class AddAttributeSchemaOptional {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("minNumberOfValues", "maxNumberOfValues", "attributeKey", "allowedValues"));
+    openapiFields = new HashSet<String>(Arrays.asList("defaultEntityTypeId", "defaultEntityId",
+        "minNumberOfValues", "maxNumberOfValues", "attributeKey", "allowedValues"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -243,7 +299,7 @@ public class AddAttributeSchemaOptional {
     if (jsonElement == null) {
       if (!AddAttributeSchemaOptional.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in AddAttributeSchemaOptional is not found in the empty JSON string",
             AddAttributeSchemaOptional.openapiRequiredFields.toString()));
       }
@@ -253,22 +309,35 @@ public class AddAttributeSchemaOptional {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddAttributeSchemaOptional.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddAttributeSchemaOptional` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("defaultEntityTypeId") != null
+        && !jsonObj.get("defaultEntityTypeId").isJsonNull())
+        && !jsonObj.get("defaultEntityTypeId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `defaultEntityTypeId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("defaultEntityTypeId").toString()));
+    }
+    if ((jsonObj.get("defaultEntityId") != null && !jsonObj.get("defaultEntityId").isJsonNull())
+        && !jsonObj.get("defaultEntityId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `defaultEntityId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("defaultEntityId").toString()));
+    }
     if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
         && !jsonObj.get("attributeKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("attributeKey").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("allowedValues") != null && !jsonObj.get("allowedValues").isJsonNull()
         && !jsonObj.get("allowedValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `allowedValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("allowedValues").toString()));
     }

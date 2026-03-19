@@ -28,8 +28,8 @@ import java.util.Map;
 import java.util.List;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

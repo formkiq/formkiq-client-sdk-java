@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +51,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyInputMethod
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class OpaPolicyInputMethod {
   public static final String SERIALIZED_NAME_IN = "in";
   @SerializedName(SERIALIZED_NAME_IN)
@@ -192,7 +190,7 @@ public class OpaPolicyInputMethod {
     if (jsonElement == null) {
       if (!OpaPolicyInputMethod.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                    // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in OpaPolicyInputMethod is not found in the empty JSON string",
             OpaPolicyInputMethod.openapiRequiredFields.toString()));
       }
@@ -202,7 +200,7 @@ public class OpaPolicyInputMethod {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpaPolicyInputMethod.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpaPolicyInputMethod` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -211,14 +209,14 @@ public class OpaPolicyInputMethod {
     // ensure the optional json data is an array if present
     if (jsonObj.get("in") != null && !jsonObj.get("in").isJsonNull()
         && !jsonObj.get("in").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `in` to be an array in the JSON string but got `%s`",
           jsonObj.get("in").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("notIn") != null && !jsonObj.get("notIn").isJsonNull()
         && !jsonObj.get("notIn").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `notIn` to be an array in the JSON string but got `%s`",
           jsonObj.get("notIn").toString()));
     }

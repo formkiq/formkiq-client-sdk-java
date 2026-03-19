@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -55,7 +54,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -63,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * AttributeSchemaRequired
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AttributeSchemaRequired {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -349,7 +347,7 @@ public class AttributeSchemaRequired {
     if (jsonElement == null) {
       if (!AttributeSchemaRequired.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                       // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in AttributeSchemaRequired is not found in the empty JSON string",
             AttributeSchemaRequired.openapiRequiredFields.toString()));
       }
@@ -359,7 +357,7 @@ public class AttributeSchemaRequired {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AttributeSchemaRequired.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AttributeSchemaRequired` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -367,27 +365,27 @@ public class AttributeSchemaRequired {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
         && !jsonObj.get("attributeKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("attributeKey").toString()));
     }
     if ((jsonObj.get("defaultValue") != null && !jsonObj.get("defaultValue").isJsonNull())
         && !jsonObj.get("defaultValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `defaultValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("defaultValue").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("defaultValues") != null && !jsonObj.get("defaultValues").isJsonNull()
         && !jsonObj.get("defaultValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `defaultValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("defaultValues").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("allowedValues") != null && !jsonObj.get("allowedValues").isJsonNull()
         && !jsonObj.get("allowedValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `allowedValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("allowedValues").toString()));
     }

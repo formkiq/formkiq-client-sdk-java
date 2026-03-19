@@ -2479,6 +2479,12 @@ paths:
 
         Returns a unique **documentId** used in subsequent operations.
 
+        **Content Type Detection**
+        If the document **Content-Type** is not specified during upload, the service will determine it
+        asynchronously after the upload completes.
+
+        This may result in a **temporary delay** before the content type and related metadata are available.
+
         See POST /documents/{documentId}/tags for adding tags to document schema
 
         See POST /documents/{documentId}/actions for adding actions to document schema
@@ -4014,11 +4020,17 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: "Returns a URL that can be used to upload document content and\
-        \ create a new document, while allowing metadata to also be sent; this endpoint\
-        \ (whether GET or POST) is required in order to add content that is larger\
-        \ than 5 MB. The POST endpoint allow the adding of document metadata at the\
-        \ same time as the document is created."
+      description: |-
+        Returns a URL that can be used to upload document content and create a new document.
+        This endpoint is required for uploading content larger than 5 MB and allows document metadata
+        to be provided at creation time.
+
+        **Content Type Detection**
+        If the document **Content-Type** is not specified during upload, the service will determine it
+        asynchronously after the upload completes.
+        This may result in a **temporary delay** before the content type and related metadata are available.
+
+        To avoid this delay, provide the **Content-Type** when uploading the document.
       operationId: AddDocumentUpload
       parameters:
       - description: Site Identifier
@@ -4907,6 +4919,8 @@ paths:
         | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
         | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name |
+        | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name |
+        | CHECKSUM    | checksumType    | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256 |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
         | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
         | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
@@ -7632,7 +7646,7 @@ paths:
       - ApiAuthorization: []
       summary: Get document's data classification
       tags:
-      - Document Data Classification
+      - Intelligent Document Processing
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -7682,10 +7696,194 @@ paths:
       - ApiAuthorization: []
       summary: Set document's data classification
       tags:
-      - Document Data Classification
+      - Intelligent Document Processing
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/metadataExtractionResults:
+    get:
+      description: Retrieve all document's metadata extraction; available as an Add-On
+        Module
+      operationId: GetAllDocumentMetadataExtractionResults
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get all document's metadata extraction results
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
+      x-accepts:
+      - application/json
+  /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName}:
+    get:
+      description: Retrieve an document's metadata extraction; available as an Add-On
+        Module
+      operationId: GetDocumentMetadataExtractionResults
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: LlmPrompt Entity Name
+        explode: false
+        in: path
+        name: llmPromptEntityName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document's metadata extraction results
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: Create a document Metadatq Extraction Result attributes within
+        a document; available as an Add-On Module
+      operationId: AddDocumentMetadataExtractionResult
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: LlmPrompt Entity Name
+        explode: false
+        in: path
+        name: llmPromptEntityName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Add document's metadata extraction result
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
       - application/json
   /userActivities:
@@ -7856,6 +8054,82 @@ paths:
         name: entityId
         required: false
         schema:
+          type: string
+        style: form
+      - description: RulesetId Identifier
+        explode: true
+        in: query
+        name: rulesetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: RuleId Identifier
+        explode: true
+        in: query
+        name: ruleId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: true
+        in: query
+        name: workflowId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Attribute Key
+        explode: true
+        in: query
+        name: attributeKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Schema Type
+        explode: true
+        in: query
+        name: schema
+        required: false
+        schema:
+          enum:
+          - document
+          type: string
+        style: form
+      - description: Classification Id
+        explode: true
+        in: query
+        name: classificationId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Mapping Id
+        explode: true
+        in: query
+        name: mappingId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Api Key
+        explode: true
+        in: query
+        name: apiKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Control Policy
+        explode: true
+        in: query
+        name: controlPolicy
+        required: false
+        schema:
+          enum:
+          - opa
           type: string
         style: form
       - description: Start of date-time range (UTC)
@@ -11451,6 +11725,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /documents/{documentId}/certifications:
+    post:
+      description: |-
+        Applies one or more certifications (digital signatures) to a document using one or more certificates.
+        Target determines whether a presigned download is returned, a new version is created, or a new document is created.
+        ; available as an Add-On Module
+      operationId: AddDocumentCertification
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddDocumentCertificationRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddDocumentCertificationResponse"
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: 400 BAD REQUEST
+      security:
+      - ApiAuthorization: []
+      summary: Add Document Certification
+      tags:
+      - Document Generation
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/documentSignatureLambdaApi"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /integrations/google/drive/documents/{documentId}/export:
     post:
       description: Exports a Google Document; available as an Add-On Module
@@ -12106,6 +12440,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /entities/{entityTypeId}/{entityId}/attributes/{attributeKey}:
+    delete:
+      description: Deletes Entity Attribute
+      operationId: DeleteEntityAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity Identifier
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Deletes Entity Attribute
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
 components:
   headers:
     AccessControlAllowOrigin:
@@ -12228,6 +12622,91 @@ components:
       explode: true
       in: query
       name: entityId
+      required: false
+      schema:
+        type: string
+      style: form
+    rulesetIdQuery:
+      description: RulesetId Identifier
+      explode: true
+      in: query
+      name: rulesetId
+      required: false
+      schema:
+        type: string
+      style: form
+    ruleIdQuery:
+      description: RuleId Identifier
+      explode: true
+      in: query
+      name: ruleId
+      required: false
+      schema:
+        type: string
+      style: form
+    workflowIdQuery:
+      description: Workflow Identifier
+      explode: true
+      in: query
+      name: workflowId
+      required: false
+      schema:
+        type: string
+      style: form
+    attributeKeyQuery:
+      description: Attribute Key
+      explode: true
+      in: query
+      name: attributeKey
+      required: false
+      schema:
+        type: string
+      style: form
+    schemaQuery:
+      description: Schema Type
+      explode: true
+      in: query
+      name: schema
+      required: false
+      schema:
+        enum:
+        - document
+        type: string
+      style: form
+    controlPolicyQuery:
+      description: Control Policy
+      explode: true
+      in: query
+      name: controlPolicy
+      required: false
+      schema:
+        enum:
+        - opa
+        type: string
+      style: form
+    classificationIdQuery:
+      description: Classification Id
+      explode: true
+      in: query
+      name: classificationId
+      required: false
+      schema:
+        type: string
+      style: form
+    mappingIdQuery:
+      description: Mapping Id
+      explode: true
+      in: query
+      name: mappingId
+      required: false
+      schema:
+        type: string
+      style: form
+    apiKeyQuery:
+      description: Api Key
+      explode: true
+      in: query
+      name: apiKey
       required: false
       schema:
         type: string
@@ -12563,6 +13042,15 @@ components:
       explode: false
       in: path
       name: documentId
+      required: true
+      schema:
+        type: string
+      style: simple
+    llmPromptEntityNameParam:
+      description: LlmPrompt Entity Name
+      explode: false
+      in: path
+      name: llmPromptEntityName
       required: true
       schema:
         type: string
@@ -13418,6 +13906,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
       properties:
         attribute:
           $ref: "#/components/schemas/DocumentAttribute"
@@ -13439,6 +13955,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
         - numberValues:
           - 6.027456183070403
           - 6.027456183070403
@@ -13452,6 +13996,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
       properties:
         next:
           description: Next page of results token
@@ -14449,6 +15021,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14485,6 +15058,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14697,6 +15271,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14733,6 +15308,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14946,6 +15522,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14982,6 +15559,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -15576,6 +16154,34 @@ components:
         numberValue: 0.8008281904610115
         userId: userId
         key: key
+        entity:
+          insertedDate: insertedDate
+          name: name
+          entityId: entityId
+          entityTypeId: entityTypeId
+          attributes:
+          - numberValues:
+            - 5.962133916683182
+            - 5.962133916683182
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: null
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - numberValues:
+            - 5.962133916683182
+            - 5.962133916683182
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: null
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
       properties:
         key:
           description: Attribute key
@@ -15607,6 +16213,8 @@ components:
           type: string
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
+        entity:
+          $ref: "#/components/schemas/Entity"
       type: object
     DocumentTag:
       example:
@@ -16113,6 +16721,24 @@ components:
       required:
       - llmPromptEntityName
       type: object
+    AddDocumentMetadataExtractionResponse:
+      example:
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        content: content
+      properties:
+        content:
+          description: Result content
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/DataClassificationAttribute"
+          type: array
+      type: object
     SetDocumentDataClassificationResponse:
       example:
         attributes:
@@ -16205,11 +16831,90 @@ components:
             $ref: "#/components/schemas/DataClassification"
           type: array
       type: object
+    MetadataExtractionAttribute:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Data Classification Attribute Key
+          type: string
+        value:
+          description: Data Classification Attribute Value
+          type: string
+      type: object
+    MetadataExtraction:
+      example:
+        insertedDate: insertedDate
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        llmPromptEntityName: llmPromptEntityName
+        userId: userId
+        content: content
+      properties:
+        llmPromptEntityName:
+          description: Name of the LLM Prompt Entity
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        content:
+          description: Result content
+          type: string
+        userId:
+          description: UserId that created Result
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/MetadataExtractionAttribute"
+          type: array
+      type: object
+    GetDocumentMetadataExtractionResponse:
+      example:
+        next: next
+        metadataExtractions:
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        metadataExtractions:
+          description: List of Metadata Extractions
+          items:
+            $ref: "#/components/schemas/MetadataExtraction"
+          type: array
+      type: object
     GetActivitesResponse:
       example:
         next: next
         activities:
-        - resource: resource
+        - rulesetId: rulesetId
+          schema: schema
+          mappingId: mappingId
+          controlPolicy: controlPolicy
+          apiKey: apiKey
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16221,11 +16926,19 @@ components:
           type: type
           message: message
           userId: userId
+          classificationId: classificationId
           insertedDate: insertedDate
           documentId: ""
           entityTypeId: entityTypeId
+          ruleId: ruleId
+          workflowId: workflowId
           status: COMPLETE
-        - resource: resource
+        - rulesetId: rulesetId
+          schema: schema
+          mappingId: mappingId
+          controlPolicy: controlPolicy
+          apiKey: apiKey
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16237,9 +16950,12 @@ components:
           type: type
           message: message
           userId: userId
+          classificationId: classificationId
           insertedDate: insertedDate
           documentId: ""
           entityTypeId: entityTypeId
+          ruleId: ruleId
+          workflowId: workflowId
           status: COMPLETE
       properties:
         next:
@@ -16341,12 +17057,14 @@ components:
       description: The type of the activity
       enum:
       - VIEW
+      - DOWNLOAD
       - CREATE
       - UPDATE
       - DELETE
       - SOFT_DELETE
       - RESTORE
       - NEW_VERSION
+      - UPDATE_VERSION
       type: string
     UserActivity:
       example:
@@ -16423,6 +17141,11 @@ components:
       type: string
     Activity:
       example:
+        rulesetId: rulesetId
+        schema: schema
+        mappingId: mappingId
+        controlPolicy: controlPolicy
+        apiKey: apiKey
         resource: resource
         changes:
           key:
@@ -16435,9 +17158,12 @@ components:
         type: type
         message: message
         userId: userId
+        classificationId: classificationId
         insertedDate: insertedDate
         documentId: ""
         entityTypeId: entityTypeId
+        ruleId: ruleId
+        workflowId: workflowId
         status: COMPLETE
       properties:
         resource:
@@ -16472,6 +17198,30 @@ components:
           type: string
         entityId:
           description: Entity Identifier
+          type: string
+        apiKey:
+          description: API Key
+          type: string
+        rulesetId:
+          description: Ruleset Identifier
+          type: string
+        schema:
+          description: Schema Identifier
+          type: string
+        mappingId:
+          description: Mapping Identifier
+          type: string
+        classificationId:
+          description: Classification Identifier
+          type: string
+        ruleId:
+          description: Ruleset Rule Identifier
+          type: string
+        workflowId:
+          description: Workflow Identifier
+          type: string
+        controlPolicy:
+          description: Control Policy Type
           type: string
         changes:
           additionalProperties:
@@ -18639,26 +19389,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
         - insertedDate: insertedDate
           name: name
@@ -18666,26 +19416,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
       properties:
         next:
@@ -18706,26 +19456,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
       properties:
         entity:
@@ -18750,26 +19500,26 @@ components:
         entityTypeId: entityTypeId
         attributes:
         - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
+          - 5.962133916683182
+          - 5.962133916683182
           stringValue: stringValue
           stringValues:
           - stringValues
           - stringValues
-          valueType: BOOLEAN
+          valueType: null
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
+          - 5.962133916683182
+          - 5.962133916683182
           stringValue: stringValue
           stringValues:
           - stringValues
           - stringValues
-          valueType: BOOLEAN
+          valueType: null
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
       properties:
         entityId:
@@ -18921,15 +19671,15 @@ components:
     EntityAttribute:
       example:
         numberValues:
-        - 6.027456183070403
-        - 6.027456183070403
+        - 5.962133916683182
+        - 5.962133916683182
         stringValue: stringValue
         stringValues:
         - stringValues
         - stringValues
-        valueType: BOOLEAN
+        valueType: null
         booleanValue: true
-        numberValue: 0.8008281904610115
+        numberValue: 1.4658129805029452
         key: key
       properties:
         key:
@@ -19224,6 +19974,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19236,6 +19987,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19258,6 +20010,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19270,6 +20023,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19291,6 +20045,7 @@ components:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          llmPromptEntityName: llmPromptEntityName
           metadataField: USERNAME
           validationRegex: validationRegex
           labelTexts:
@@ -19303,6 +20058,7 @@ components:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          llmPromptEntityName: llmPromptEntityName
           metadataField: USERNAME
           validationRegex: validationRegex
           labelTexts:
@@ -19336,6 +20092,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19348,6 +20105,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19364,6 +20122,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19376,6 +20135,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19404,6 +20164,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19416,6 +20177,7 @@ components:
             - defaultValues
             - defaultValues
             attributeKey: attributeKey
+            llmPromptEntityName: llmPromptEntityName
             metadataField: USERNAME
             validationRegex: validationRegex
             labelTexts:
@@ -19438,6 +20200,7 @@ components:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          llmPromptEntityName: llmPromptEntityName
           metadataField: USERNAME
           validationRegex: validationRegex
           labelTexts:
@@ -19450,6 +20213,7 @@ components:
           - defaultValues
           - defaultValues
           attributeKey: attributeKey
+          llmPromptEntityName: llmPromptEntityName
           metadataField: USERNAME
           validationRegex: validationRegex
           labelTexts:
@@ -19480,6 +20244,7 @@ components:
         - defaultValues
         - defaultValues
         attributeKey: attributeKey
+        llmPromptEntityName: llmPromptEntityName
         metadataField: USERNAME
         validationRegex: validationRegex
         labelTexts:
@@ -19491,6 +20256,9 @@ components:
           type: string
         sourceType:
           $ref: "#/components/schemas/MappingAttributeSourceType"
+        llmPromptEntityName:
+          description: LLM Prompt Entity Name (used for METADATA_EXTRACTION)
+          type: string
         defaultValue:
           description: Default value
           type: string
@@ -19535,6 +20303,7 @@ components:
       - METADATA
       - MANUAL
       - DATA_CLASSIFICATION
+      - METADATA_EXTRACTION_RESULT
       - MALWARE_SCAN
       type: string
     GetAttributeAllowedValuesResponse:
@@ -20092,6 +20861,7 @@ components:
       - ANTIVIRUS
       - DOCUMENTTAGGING
       - FULLTEXT
+      - CHECKSUM
       - NOTIFICATION
       - OCR
       - QUEUE
@@ -20102,6 +20872,7 @@ components:
       - EVENTBRIDGE
       - RESIZE
       - DATA_CLASSIFICATION
+      - METADATA_EXTRACTION
       - MALWARE_SCAN
       type: string
     DocumentAction:
@@ -20704,6 +21475,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -20740,6 +21512,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -20785,6 +21558,7 @@ components:
           engine: chatgpt
           notificationText: notificationText
           eventBusName: eventBusName
+          checksumType: null
           width: width
           llmPromptEntityName: llmPromptEntityName
           notificationHtml: notificationHtml
@@ -20863,6 +21637,7 @@ components:
         engine: chatgpt
         notificationText: notificationText
         eventBusName: eventBusName
+        checksumType: null
         width: width
         llmPromptEntityName: llmPromptEntityName
         notificationHtml: notificationHtml
@@ -20888,7 +21663,8 @@ components:
             \ image text to searchable text"
           type: string
         llmPromptEntityName:
-          description: "DATA_CLASSIFICATION: Set the LLM Prompt Entity Name"
+          description: "DATA_CLASSIFICATION / METADATA_EXTRACTION: Set the LLM Prompt\
+            \ Entity Name"
           type: string
         url:
           description: "Webhook: Callback URL"
@@ -20934,6 +21710,8 @@ components:
         eventBusName:
           description: The name or ARN of the event bus to receive the event
           type: string
+        checksumType:
+          $ref: "#/components/schemas/ChecksumType"
         width:
           description: The width of the image to resize (or 'auto')
           type: string
@@ -23201,12 +23979,20 @@ components:
               maxPagesPerTransaction: 0.8008281904610115
               maxTransactions: 6.027456183070403
           status: ACTIVE
+        samlGroups:
+        - samlGroups
+        - samlGroups
         username: username
       properties:
         username:
           description: Username of request caller
           type: string
         roles:
+          items:
+            type: string
+          type: array
+        samlGroups:
+          description: List of User Saml Groups
           items:
             type: string
           type: array
@@ -23361,6 +24147,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -23409,6 +24196,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -23482,6 +24270,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -23530,6 +24319,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -23600,6 +24390,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -24074,35 +24865,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -24128,35 +24927,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -24239,35 +25046,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -24289,35 +25104,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -24340,35 +25163,43 @@ components:
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         required:
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
       properties:
         compositeKeys:
@@ -24478,14 +25309,20 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        defaultEntityId: defaultEntityId
         defaultValue: defaultValue
         defaultValues:
         - defaultValues
         - defaultValues
         maxNumberOfValues: 6.027456183070403
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 0.8008281904610115
       properties:
+        defaultEntityTypeId:
+          type: string
+        defaultEntityId:
+          type: string
         minNumberOfValues:
           description: The minimum number of attribute values
           type: number
@@ -24554,10 +25391,16 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        defaultEntityId: defaultEntityId
         maxNumberOfValues: 5.962133916683182
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 1.4658129805029452
       properties:
+        defaultEntityTypeId:
+          type: string
+        defaultEntityId:
+          type: string
         minNumberOfValues:
           description: The minimum number of attribute values
           type: number
@@ -25060,6 +25903,89 @@ components:
           description: The view URL to be navigated to complete DocuSign signing
           type: string
       type: object
+    AddDocumentCertificationRequest:
+      example:
+        certificates:
+        - awsSecretsManager:
+            certificateArn: certificateArn
+            passwordArn: passwordArn
+          sourceType: AWS_SECRETS_MANAGER
+          alias: alias
+        - awsSecretsManager:
+            certificateArn: certificateArn
+            passwordArn: passwordArn
+          sourceType: AWS_SECRETS_MANAGER
+          alias: alias
+        target: DOWNLOAD
+      properties:
+        target:
+          $ref: "#/components/schemas/DocumentCertificationTarget"
+        certificates:
+          description: One or more certificates used to certify/sign the document
+            (in order).
+          items:
+            $ref: "#/components/schemas/DocumentCertification"
+          minItems: 1
+          type: array
+      required:
+      - certificates
+      - target
+      type: object
+    DocumentCertificationTarget:
+      description: Target for Document Certification
+      enum:
+      - DOWNLOAD
+      type: string
+    DocumentCertificationSourceType:
+      description: Document Certification Source Type
+      enum:
+      - AWS_SECRETS_MANAGER
+      type: string
+    DocumentCertification:
+      example:
+        awsSecretsManager:
+          certificateArn: certificateArn
+          passwordArn: passwordArn
+        sourceType: AWS_SECRETS_MANAGER
+        alias: alias
+      properties:
+        alias:
+          description: Certificate alias.
+          type: string
+        sourceType:
+          $ref: "#/components/schemas/DocumentCertificationSourceType"
+        awsSecretsManager:
+          $ref: "#/components/schemas/DocumentCertificationAwsSecretsManager"
+      required:
+      - alias
+      - type
+      type: object
+    DocumentCertificationAwsSecretsManager:
+      example:
+        certificateArn: certificateArn
+        passwordArn: passwordArn
+      properties:
+        certificateArn:
+          description: AWS Secrets Manager - Certificate ARN
+          type: string
+        passwordArn:
+          description: AWS Secrets Manager - Certificate password ARN
+          type: string
+      required:
+      - certificateArn
+      type: object
+    AddDocumentCertificationResponse:
+      example:
+        documentId: documentId
+        url: url
+      properties:
+        documentId:
+          description: Document identifier (NEW_VERSION / NEW_DOCUMENT).
+          type: string
+        url:
+          description: Presigned download URL (DOWNLOAD).
+          type: string
+      type: object
     UpdateMatchingDocumentTagsRequest_match:
       example:
         tag:
@@ -25231,6 +26157,20 @@ components:
       type: aws_proxy
       payloadFormatVersion: "1.0"
     documentGenerationLambdaApi201:
+      uri:
+        Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
+      responses:
+        default:
+          statusCode: "201"
+          responseParameters:
+            method.response.header.Access-Control-Allow-Methods: '''*'''
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'"
+            method.response.header.Access-Control-Allow-Origin: '''*'''
+      passthroughBehavior: when_no_templates
+      httpMethod: POST
+      type: aws_proxy
+      payloadFormatVersion: "1.0"
+    documentSignatureLambdaApi:
       uri:
         Fn::Sub: "arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentsApiRequestsArn}/invocations"
       responses:

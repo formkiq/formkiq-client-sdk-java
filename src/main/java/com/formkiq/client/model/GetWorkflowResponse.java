@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.WorkflowStatus;
 import com.formkiq.client.model.WorkflowStep;
 import com.google.gson.TypeAdapter;
@@ -54,7 +53,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -62,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * GetWorkflowResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class GetWorkflowResponse {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -268,7 +266,7 @@ public class GetWorkflowResponse {
     if (jsonElement == null) {
       if (!GetWorkflowResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                   // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetWorkflowResponse is not found in the empty JSON string",
             GetWorkflowResponse.openapiRequiredFields.toString()));
       }
@@ -278,7 +276,7 @@ public class GetWorkflowResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetWorkflowResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetWorkflowResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -286,13 +284,13 @@ public class GetWorkflowResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
         && !jsonObj.get("name").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
     if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
         && !jsonObj.get("description").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("description").toString()));
     }
@@ -305,7 +303,7 @@ public class GetWorkflowResponse {
       if (jsonArraysteps != null) {
         // ensure the json data is an array
         if (!jsonObj.get("steps").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `steps` to be an array in the JSON string but got `%s`",
               jsonObj.get("steps").toString()));
         }

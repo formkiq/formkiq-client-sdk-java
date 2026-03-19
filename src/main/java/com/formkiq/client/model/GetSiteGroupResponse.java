@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.SiteGroup;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -51,7 +50,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSiteGroupResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class GetSiteGroupResponse {
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
@@ -148,7 +146,7 @@ public class GetSiteGroupResponse {
     if (jsonElement == null) {
       if (!GetSiteGroupResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                    // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetSiteGroupResponse is not found in the empty JSON string",
             GetSiteGroupResponse.openapiRequiredFields.toString()));
       }
@@ -158,7 +156,7 @@ public class GetSiteGroupResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetSiteGroupResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetSiteGroupResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }

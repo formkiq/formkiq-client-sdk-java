@@ -72,6 +72,15 @@ public class UserActivitiesApiTest {
     String entityTypeId = null;
     String namespace = null;
     String entityId = null;
+    String rulesetId = null;
+    String ruleId = null;
+    String workflowId = null;
+    String attributeKey = null;
+    String schema = null;
+    String classificationId = null;
+    String mappingId = null;
+    String apiKey = null;
+    String controlPolicy = null;
     OffsetDateTime start = null;
     OffsetDateTime end = null;
     String sort = null;
@@ -79,7 +88,8 @@ public class UserActivitiesApiTest {
     String limit = null;
     String userId = null;
     GetActivitesResponse response = api.getResourceActivities(siteId, documentId, entityTypeId,
-        namespace, entityId, start, end, sort, next, limit, userId);
+        namespace, entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId,
+        mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId);
     // TODO: test validations
   }
 

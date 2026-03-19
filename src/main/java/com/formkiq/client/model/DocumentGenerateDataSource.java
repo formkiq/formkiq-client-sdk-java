@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentGenerateDataSource
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class DocumentGenerateDataSource {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -201,7 +199,7 @@ public class DocumentGenerateDataSource {
     if (jsonElement == null) {
       if (!DocumentGenerateDataSource.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocumentGenerateDataSource is not found in the empty JSON string",
             DocumentGenerateDataSource.openapiRequiredFields.toString()));
       }
@@ -211,7 +209,7 @@ public class DocumentGenerateDataSource {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentGenerateDataSource.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentGenerateDataSource` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -220,7 +218,7 @@ public class DocumentGenerateDataSource {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : DocumentGenerateDataSource.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
             jsonElement.toString()));
       }
@@ -228,18 +226,18 @@ public class DocumentGenerateDataSource {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
         && !jsonObj.get("name").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
     if (!jsonObj.get("documentId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
     }
     if ((jsonObj.get("dataRoot") != null && !jsonObj.get("dataRoot").isJsonNull())
         && !jsonObj.get("dataRoot").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `dataRoot` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("dataRoot").toString()));
     }

@@ -11,6 +11,8 @@
 
 * `FULLTEXT` (value: `"FULLTEXT"`)
 
+* `CHECKSUM` (value: `"CHECKSUM"`)
+
 * `NOTIFICATION` (value: `"NOTIFICATION"`)
 
 * `OCR` (value: `"OCR"`)
@@ -30,6 +32,8 @@
 * `RESIZE` (value: `"RESIZE"`)
 
 * `DATA_CLASSIFICATION` (value: `"DATA_CLASSIFICATION"`)
+
+* `METADATA_EXTRACTION` (value: `"METADATA_EXTRACTION"`)
 
 * `MALWARE_SCAN` (value: `"MALWARE_SCAN"`)
 

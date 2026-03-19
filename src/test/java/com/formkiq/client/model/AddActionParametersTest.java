@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
 import com.formkiq.client.model.TextractQuery;
@@ -199,6 +200,14 @@ public class AddActionParametersTest {
   @Test
   public void eventBusNameTest() {
     // TODO: test eventBusName
+  }
+
+  /**
+   * Test the property 'checksumType'
+   */
+  @Test
+  public void checksumTypeTest() {
+    // TODO: test checksumType
   }
 
   /**

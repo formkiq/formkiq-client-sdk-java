@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.AddTask;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -51,7 +50,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * AddTaskRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddTaskRequest {
   public static final String SERIALIZED_NAME_TASK = "task";
   @SerializedName(SERIALIZED_NAME_TASK)
@@ -148,7 +146,7 @@ public class AddTaskRequest {
     if (jsonElement == null) {
       if (!AddTaskRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                              // is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in AddTaskRequest is not found in the empty JSON string",
             AddTaskRequest.openapiRequiredFields.toString()));
       }
@@ -158,7 +156,7 @@ public class AddTaskRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddTaskRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddTaskRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -167,7 +165,7 @@ public class AddTaskRequest {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : AddTaskRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
             jsonElement.toString()));
       }

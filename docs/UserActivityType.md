@@ -7,6 +7,8 @@
 
 * `VIEW` (value: `"VIEW"`)
 
+* `DOWNLOAD` (value: `"DOWNLOAD"`)
+
 * `CREATE` (value: `"CREATE"`)
 
 * `UPDATE` (value: `"UPDATE"`)
@@ -18,6 +20,8 @@
 * `RESTORE` (value: `"RESTORE"`)
 
 * `NEW_VERSION` (value: `"NEW_VERSION"`)
+
+* `UPDATE_VERSION` (value: `"UPDATE_VERSION"`)
 
 
 

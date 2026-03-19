@@ -21,11 +21,9 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
@@ -40,6 +38,8 @@ public enum UserActivityType {
 
   VIEW("VIEW"),
 
+  DOWNLOAD("DOWNLOAD"),
+
   CREATE("CREATE"),
 
   UPDATE("UPDATE"),
@@ -50,7 +50,9 @@ public enum UserActivityType {
 
   RESTORE("RESTORE"),
 
-  NEW_VERSION("NEW_VERSION");
+  NEW_VERSION("NEW_VERSION"),
+
+  UPDATE_VERSION("UPDATE_VERSION");
 
   private String value;
 

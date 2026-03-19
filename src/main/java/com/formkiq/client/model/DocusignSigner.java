@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.DocusignSigningTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -51,7 +50,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -59,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class DocusignSigner {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -312,7 +310,7 @@ public class DocusignSigner {
     if (jsonElement == null) {
       if (!DocusignSigner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element
                                                              // is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocusignSigner is not found in the empty JSON string",
             DocusignSigner.openapiRequiredFields.toString()));
       }
@@ -322,7 +320,7 @@ public class DocusignSigner {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocusignSigner.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocusignSigner` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -331,44 +329,44 @@ public class DocusignSigner {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : DocusignSigner.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
             jsonElement.toString()));
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if (!jsonObj.get("name").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `name` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("name").toString()));
     }
     if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
         && !jsonObj.get("email").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `email` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("email").toString()));
     }
     if ((jsonObj.get("clientUserId") != null && !jsonObj.get("clientUserId").isJsonNull())
         && !jsonObj.get("clientUserId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("clientUserId").toString()));
     }
     if ((jsonObj.get("recipientId") != null && !jsonObj.get("recipientId").isJsonNull())
         && !jsonObj.get("recipientId").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `recipientId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("recipientId").toString()));
     }
     if ((jsonObj.get("routingOrder") != null && !jsonObj.get("routingOrder").isJsonNull())
         && !jsonObj.get("routingOrder").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `routingOrder` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("routingOrder").toString()));
     }
     if ((jsonObj.get("suppressEmails") != null && !jsonObj.get("suppressEmails").isJsonNull())
         && !jsonObj.get("suppressEmails").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `suppressEmails` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("suppressEmails").toString()));
     }

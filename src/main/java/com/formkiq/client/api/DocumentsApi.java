@@ -199,9 +199,12 @@ public class DocumentsApi {
 
   /**
    * Add new document Creates a new document; body may include document content if less than 5 MB.
-   * Returns a unique **documentId** used in subsequent operations. See POST
-   * /documents/{documentId}/tags for adding tags to document schema See POST
-   * /documents/{documentId}/actions for adding actions to document schema
+   * Returns a unique **documentId** used in subsequent operations. **Content Type Detection** If
+   * the document **Content-Type** is not specified during upload, the service will determine it
+   * asynchronously after the upload completes. This may result in a **temporary delay** before the
+   * content type and related metadata are available. See POST /documents/{documentId}/tags for
+   * adding tags to document schema See POST /documents/{documentId}/actions for adding actions to
+   * document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -243,9 +246,12 @@ public class DocumentsApi {
 
   /**
    * Add new document Creates a new document; body may include document content if less than 5 MB.
-   * Returns a unique **documentId** used in subsequent operations. See POST
-   * /documents/{documentId}/tags for adding tags to document schema See POST
-   * /documents/{documentId}/actions for adding actions to document schema
+   * Returns a unique **documentId** used in subsequent operations. **Content Type Detection** If
+   * the document **Content-Type** is not specified during upload, the service will determine it
+   * asynchronously after the upload completes. This may result in a **temporary delay** before the
+   * content type and related metadata are available. See POST /documents/{documentId}/tags for
+   * adding tags to document schema See POST /documents/{documentId}/actions for adding actions to
+   * document schema
    * 
    * @param addDocumentRequest (required)
    * @param siteId Site Identifier (optional)
@@ -288,7 +294,10 @@ public class DocumentsApi {
 
   /**
    * Add new document (asynchronously) Creates a new document; body may include document content if
-   * less than 5 MB. Returns a unique **documentId** used in subsequent operations. See POST
+   * less than 5 MB. Returns a unique **documentId** used in subsequent operations. **Content Type
+   * Detection** If the document **Content-Type** is not specified during upload, the service will
+   * determine it asynchronously after the upload completes. This may result in a **temporary
+   * delay** before the content type and related metadata are available. See POST
    * /documents/{documentId}/tags for adding tags to document schema See POST
    * /documents/{documentId}/actions for adding actions to document schema
    * 
@@ -651,9 +660,12 @@ public class DocumentsApi {
 
   /**
    * Add large document Returns a URL that can be used to upload document content and create a new
-   * document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is
-   * required in order to add content that is larger than 5 MB. The POST endpoint allow the adding
-   * of document metadata at the same time as the document is created.
+   * document. This endpoint is required for uploading content larger than 5 MB and allows document
+   * metadata to be provided at creation time. **Content Type Detection** If the document
+   * **Content-Type** is not specified during upload, the service will determine it asynchronously
+   * after the upload completes. This may result in a **temporary delay** before the content type
+   * and related metadata are available. To avoid this delay, provide the **Content-Type** when
+   * uploading the document.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)
@@ -693,9 +705,12 @@ public class DocumentsApi {
 
   /**
    * Add large document Returns a URL that can be used to upload document content and create a new
-   * document, while allowing metadata to also be sent; this endpoint (whether GET or POST) is
-   * required in order to add content that is larger than 5 MB. The POST endpoint allow the adding
-   * of document metadata at the same time as the document is created.
+   * document. This endpoint is required for uploading content larger than 5 MB and allows document
+   * metadata to be provided at creation time. **Content Type Detection** If the document
+   * **Content-Type** is not specified during upload, the service will determine it asynchronously
+   * after the upload completes. This may result in a **temporary delay** before the content type
+   * and related metadata are available. To avoid this delay, provide the **Content-Type** when
+   * uploading the document.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)
@@ -736,9 +751,12 @@ public class DocumentsApi {
 
   /**
    * Add large document (asynchronously) Returns a URL that can be used to upload document content
-   * and create a new document, while allowing metadata to also be sent; this endpoint (whether GET
-   * or POST) is required in order to add content that is larger than 5 MB. The POST endpoint allow
-   * the adding of document metadata at the same time as the document is created.
+   * and create a new document. This endpoint is required for uploading content larger than 5 MB and
+   * allows document metadata to be provided at creation time. **Content Type Detection** If the
+   * document **Content-Type** is not specified during upload, the service will determine it
+   * asynchronously after the upload completes. This may result in a **temporary delay** before the
+   * content type and related metadata are available. To avoid this delay, provide the
+   * **Content-Type** when uploading the document.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)

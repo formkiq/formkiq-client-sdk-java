@@ -34,11 +34,14 @@ docs/AddDocumentAttributeRelationship.md
 docs/AddDocumentAttributeStandard.md
 docs/AddDocumentAttributeValue.md
 docs/AddDocumentAttributesRequest.md
+docs/AddDocumentCertificationRequest.md
+docs/AddDocumentCertificationResponse.md
 docs/AddDocumentFulltextRequest.md
 docs/AddDocumentFulltextResponse.md
 docs/AddDocumentGenerateRequest.md
 docs/AddDocumentGenerateResponse.md
 docs/AddDocumentMetadata.md
+docs/AddDocumentMetadataExtractionResponse.md
 docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
 docs/AddDocumentRequest.md
@@ -155,9 +158,12 @@ docs/DocumentActionType.md
 docs/DocumentActionsApi.md
 docs/DocumentAttribute.md
 docs/DocumentAttributesApi.md
+docs/DocumentCertification.md
+docs/DocumentCertificationAwsSecretsManager.md
+docs/DocumentCertificationSourceType.md
+docs/DocumentCertificationTarget.md
 docs/DocumentConfig.md
 docs/DocumentConfigContentTypes.md
-docs/DocumentDataClassificationApi.md
 docs/DocumentFoldersApi.md
 docs/DocumentFulltextAttribute.md
 docs/DocumentFulltextAttributeEq.md
@@ -244,6 +250,7 @@ docs/GetDocumentAttributesResponse.md
 docs/GetDocumentContentResponse.md
 docs/GetDocumentDataClassificationResponse.md
 docs/GetDocumentFulltextResponse.md
+docs/GetDocumentMetadataExtractionResponse.md
 docs/GetDocumentOcrResponse.md
 docs/GetDocumentResponse.md
 docs/GetDocumentSyncResponse.md
@@ -310,6 +317,7 @@ docs/IndexFolderMoveResponse.md
 docs/IndexSearch.md
 docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
+docs/IntelligentDocumentProcessingApi.md
 docs/LocaleInfo.md
 docs/LocaleResourceType.md
 docs/MalwareEngine.md
@@ -323,6 +331,8 @@ docs/MappingAttributeMetadataField.md
 docs/MappingAttributeSourceType.md
 docs/MappingsApi.md
 docs/MatchDocumentTag.md
+docs/MetadataExtraction.md
+docs/MetadataExtractionAttribute.md
 docs/ModelCase.md
 docs/Nigo.md
 docs/NigoStatus.md
@@ -489,7 +499,6 @@ src/main/java/com/formkiq/client/api/CaseManagementApi.java
 src/main/java/com/formkiq/client/api/CustomIndexApi.java
 src/main/java/com/formkiq/client/api/DocumentActionsApi.java
 src/main/java/com/formkiq/client/api/DocumentAttributesApi.java
-src/main/java/com/formkiq/client/api/DocumentDataClassificationApi.java
 src/main/java/com/formkiq/client/api/DocumentFoldersApi.java
 src/main/java/com/formkiq/client/api/DocumentGenerationApi.java
 src/main/java/com/formkiq/client/api/DocumentOcrApi.java
@@ -503,6 +512,7 @@ src/main/java/com/formkiq/client/api/ESignatureApi.java
 src/main/java/com/formkiq/client/api/EntityApi.java
 src/main/java/com/formkiq/client/api/ExamineObjectsApi.java
 src/main/java/com/formkiq/client/api/GoogleIntegrationApi.java
+src/main/java/com/formkiq/client/api/IntelligentDocumentProcessingApi.java
 src/main/java/com/formkiq/client/api/MalwareScanApi.java
 src/main/java/com/formkiq/client/api/MappingsApi.java
 src/main/java/com/formkiq/client/api/PublicApi.java
@@ -565,11 +575,14 @@ src/main/java/com/formkiq/client/model/AddDocumentAttributeRelationship.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeStandard.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributeValue.java
 src/main/java/com/formkiq/client/model/AddDocumentAttributesRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentCertificationRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentCertificationResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentGenerateRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentGenerateResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentMetadata.java
+src/main/java/com/formkiq/client/model/AddDocumentMetadataExtractionResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentRequest.java
@@ -680,6 +693,10 @@ src/main/java/com/formkiq/client/model/DocumentAction.java
 src/main/java/com/formkiq/client/model/DocumentActionStatus.java
 src/main/java/com/formkiq/client/model/DocumentActionType.java
 src/main/java/com/formkiq/client/model/DocumentAttribute.java
+src/main/java/com/formkiq/client/model/DocumentCertification.java
+src/main/java/com/formkiq/client/model/DocumentCertificationAwsSecretsManager.java
+src/main/java/com/formkiq/client/model/DocumentCertificationSourceType.java
+src/main/java/com/formkiq/client/model/DocumentCertificationTarget.java
 src/main/java/com/formkiq/client/model/DocumentConfig.java
 src/main/java/com/formkiq/client/model/DocumentConfigContentTypes.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
@@ -756,6 +773,7 @@ src/main/java/com/formkiq/client/model/GetDocumentAttributesResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentContentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentDataClassificationResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentFulltextResponse.java
+src/main/java/com/formkiq/client/model/GetDocumentMetadataExtractionResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentSyncResponse.java
@@ -832,6 +850,8 @@ src/main/java/com/formkiq/client/model/MappingAttributeLabelMatchingType.java
 src/main/java/com/formkiq/client/model/MappingAttributeMetadataField.java
 src/main/java/com/formkiq/client/model/MappingAttributeSourceType.java
 src/main/java/com/formkiq/client/model/MatchDocumentTag.java
+src/main/java/com/formkiq/client/model/MetadataExtraction.java
+src/main/java/com/formkiq/client/model/MetadataExtractionAttribute.java
 src/main/java/com/formkiq/client/model/ModelCase.java
 src/main/java/com/formkiq/client/model/Nigo.java
 src/main/java/com/formkiq/client/model/NigoStatus.java
@@ -980,7 +1000,6 @@ src/test/java/com/formkiq/client/api/CaseManagementApiTest.java
 src/test/java/com/formkiq/client/api/CustomIndexApiTest.java
 src/test/java/com/formkiq/client/api/DocumentActionsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentAttributesApiTest.java
-src/test/java/com/formkiq/client/api/DocumentDataClassificationApiTest.java
 src/test/java/com/formkiq/client/api/DocumentFoldersApiTest.java
 src/test/java/com/formkiq/client/api/DocumentGenerationApiTest.java
 src/test/java/com/formkiq/client/api/DocumentOcrApiTest.java
@@ -994,6 +1013,7 @@ src/test/java/com/formkiq/client/api/ESignatureApiTest.java
 src/test/java/com/formkiq/client/api/EntityApiTest.java
 src/test/java/com/formkiq/client/api/ExamineObjectsApiTest.java
 src/test/java/com/formkiq/client/api/GoogleIntegrationApiTest.java
+src/test/java/com/formkiq/client/api/IntelligentDocumentProcessingApiTest.java
 src/test/java/com/formkiq/client/api/MalwareScanApiTest.java
 src/test/java/com/formkiq/client/api/MappingsApiTest.java
 src/test/java/com/formkiq/client/api/PublicApiTest.java
@@ -1033,10 +1053,13 @@ src/test/java/com/formkiq/client/model/AddDocumentAttributeStandardTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributeValueTest.java
 src/test/java/com/formkiq/client/model/AddDocumentAttributesRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentCertificationRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentCertificationResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentGenerateRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentGenerateResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentMetadataExtractionResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentMetadataTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
@@ -1147,6 +1170,10 @@ src/test/java/com/formkiq/client/model/DocumentActionStatusTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTest.java
 src/test/java/com/formkiq/client/model/DocumentActionTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentAttributeTest.java
+src/test/java/com/formkiq/client/model/DocumentCertificationAwsSecretsManagerTest.java
+src/test/java/com/formkiq/client/model/DocumentCertificationSourceTypeTest.java
+src/test/java/com/formkiq/client/model/DocumentCertificationTargetTest.java
+src/test/java/com/formkiq/client/model/DocumentCertificationTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigContentTypesTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
@@ -1224,6 +1251,7 @@ src/test/java/com/formkiq/client/model/GetDocumentAttributesResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentContentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentDataClassificationResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentFulltextResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocumentMetadataExtractionResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentSyncResponseTest.java
@@ -1300,6 +1328,8 @@ src/test/java/com/formkiq/client/model/MappingAttributeSourceTypeTest.java
 src/test/java/com/formkiq/client/model/MappingAttributeTest.java
 src/test/java/com/formkiq/client/model/MappingTest.java
 src/test/java/com/formkiq/client/model/MatchDocumentTagTest.java
+src/test/java/com/formkiq/client/model/MetadataExtractionAttributeTest.java
+src/test/java/com/formkiq/client/model/MetadataExtractionTest.java
 src/test/java/com/formkiq/client/model/ModelCaseTest.java
 src/test/java/com/formkiq/client/model/NigoStatusTest.java
 src/test/java/com/formkiq/client/model/NigoTest.java

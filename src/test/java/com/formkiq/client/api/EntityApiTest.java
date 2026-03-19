@@ -98,6 +98,24 @@ public class EntityApiTest {
   }
 
   /**
+   * Deletes Entity Attribute
+   *
+   * Deletes Entity Attribute
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void deleteEntityAttributeTest() throws ApiException {
+    String entityTypeId = null;
+    String entityId = null;
+    String attributeKey = null;
+    String siteId = null;
+    DeleteResponse response =
+        api.deleteEntityAttribute(entityTypeId, entityId, attributeKey, siteId);
+    // TODO: test validations
+  }
+
+  /**
    * Deletes Entity Type
    *
    * Deletes Entity Type

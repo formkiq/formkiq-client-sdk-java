@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.DocumentFulltextSearch;
 import com.formkiq.client.model.SearchResponseFields;
 import com.google.gson.TypeAdapter;
@@ -52,7 +51,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Document full text search
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class DocumentFulltextRequest {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
@@ -177,7 +175,7 @@ public class DocumentFulltextRequest {
     if (jsonElement == null) {
       if (!DocumentFulltextRequest.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                       // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocumentFulltextRequest is not found in the empty JSON string",
             DocumentFulltextRequest.openapiRequiredFields.toString()));
       }
@@ -187,7 +185,7 @@ public class DocumentFulltextRequest {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocumentFulltextRequest.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocumentFulltextRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -196,7 +194,7 @@ public class DocumentFulltextRequest {
     // check to make sure all required properties/fields are present in the JSON string
     for (String requiredField : DocumentFulltextRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
             jsonElement.toString()));
       }

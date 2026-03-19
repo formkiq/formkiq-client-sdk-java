@@ -54,7 +54,9 @@ public class DocumentActionsApiTest {
    * tesseract or textract | | OCR | ocrOutputType | Convert OCR result to an Output format
    * (textract table only) | true | | OCR | ocrNumberOfPages | Number of pages to OCR (from start) |
    * -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or
-   * false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | FULLTEXT |
+   * false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | |
+   * METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM | checksumType
+   * | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256 | | FULLTEXT |
    * characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
    * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
    * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |

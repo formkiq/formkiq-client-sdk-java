@@ -21,6 +21,8 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocumentCertificationRequest;
+import com.formkiq.client.model.AddDocumentCertificationResponse;
 import com.formkiq.client.model.AddDocumentGenerateRequest;
 import com.formkiq.client.model.AddDocumentGenerateResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -39,6 +41,25 @@ import java.util.Map;
 public class DocumentGenerationApiTest {
 
   private final DocumentGenerationApi api = new DocumentGenerationApi();
+
+  /**
+   * Add Document Certification
+   *
+   * Applies one or more certifications (digital signatures) to a document using one or more
+   * certificates. Target determines whether a presigned download is returned, a new version is
+   * created, or a new document is created. ; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentCertificationTest() throws ApiException {
+    String documentId = null;
+    AddDocumentCertificationRequest addDocumentCertificationRequest = null;
+    String siteId = null;
+    AddDocumentCertificationResponse response =
+        api.addDocumentCertification(documentId, addDocumentCertificationRequest, siteId);
+    // TODO: test validations
+  }
 
   /**
    * Add Document Generate

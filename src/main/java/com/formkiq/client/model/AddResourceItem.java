@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.AddLocaleResourceClassificationItem;
 import com.formkiq.client.model.AddLocaleResourceInterfaceItem;
 import com.formkiq.client.model.AddLocaleResourceSchemaItem;
@@ -46,7 +45,6 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Locale;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -71,8 +69,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddResourceItem extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddResourceItem.class.getName());
 
@@ -142,7 +140,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddLocaleResourceInterfaceItem'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(String.format(Locale.ROOT,
+            errorMessages.add(String.format(java.util.Locale.ROOT,
                 "Deserialization for AddLocaleResourceInterfaceItem failed with `%s`.",
                 e.getMessage()));
             log.log(Level.FINER,
@@ -157,7 +155,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddLocaleResourceSchemaItem'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(String.format(Locale.ROOT,
+            errorMessages.add(String.format(java.util.Locale.ROOT,
                 "Deserialization for AddLocaleResourceSchemaItem failed with `%s`.",
                 e.getMessage()));
             log.log(Level.FINER, "Input data does not match schema 'AddLocaleResourceSchemaItem'",
@@ -172,7 +170,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
             log.log(Level.FINER, "Input data matches schema 'AddLocaleResourceClassificationItem'");
           } catch (Exception e) {
             // deserialization failed, continue
-            errorMessages.add(String.format(Locale.ROOT,
+            errorMessages.add(String.format(java.util.Locale.ROOT,
                 "Deserialization for AddLocaleResourceClassificationItem failed with `%s`.",
                 e.getMessage()));
             log.log(Level.FINER,
@@ -185,7 +183,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
             return ret;
           }
 
-          throw new IOException(String.format(Locale.ROOT,
+          throw new IOException(String.format(java.util.Locale.ROOT,
               "Failed deserialization for AddResourceItem: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
               match, errorMessages, jsonElement.toString()));
         }
@@ -307,7 +305,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
       AddLocaleResourceInterfaceItem.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format(Locale.ROOT,
+      errorMessages.add(String.format(java.util.Locale.ROOT,
           "Deserialization for AddLocaleResourceInterfaceItem failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
@@ -316,7 +314,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
       AddLocaleResourceSchemaItem.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format(Locale.ROOT,
+      errorMessages.add(String.format(java.util.Locale.ROOT,
           "Deserialization for AddLocaleResourceSchemaItem failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
@@ -325,13 +323,13 @@ public class AddResourceItem extends AbstractOpenApiSchema {
       AddLocaleResourceClassificationItem.validateJsonElement(jsonElement);
       validCount++;
     } catch (Exception e) {
-      errorMessages.add(String.format(Locale.ROOT,
+      errorMessages.add(String.format(java.util.Locale.ROOT,
           "Deserialization for AddLocaleResourceClassificationItem failed with `%s`.",
           e.getMessage()));
       // continue to the next one
     }
     if (validCount != 1) {
-      throw new IOException(String.format(Locale.ROOT,
+      throw new IOException(String.format(java.util.Locale.ROOT,
           "The JSON string is invalid for AddResourceItem with oneOf schemas: AddLocaleResourceClassificationItem, AddLocaleResourceInterfaceItem, AddLocaleResourceSchemaItem. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
           validCount, errorMessages, jsonElement.toString()));
     }

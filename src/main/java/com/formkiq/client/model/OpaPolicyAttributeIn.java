@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +51,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -60,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * Attribute In to criteria
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class OpaPolicyAttributeIn {
   public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
   @SerializedName(SERIALIZED_NAME_STRING_VALUES)
@@ -157,7 +155,7 @@ public class OpaPolicyAttributeIn {
     if (jsonElement == null) {
       if (!OpaPolicyAttributeIn.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                    // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in OpaPolicyAttributeIn is not found in the empty JSON string",
             OpaPolicyAttributeIn.openapiRequiredFields.toString()));
       }
@@ -167,7 +165,7 @@ public class OpaPolicyAttributeIn {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!OpaPolicyAttributeIn.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `OpaPolicyAttributeIn` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -176,7 +174,7 @@ public class OpaPolicyAttributeIn {
     // ensure the optional json data is an array if present
     if (jsonObj.get("stringValues") != null && !jsonObj.get("stringValues").isJsonNull()
         && !jsonObj.get("stringValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `stringValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("stringValues").toString()));
     }

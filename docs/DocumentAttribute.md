@@ -16,6 +16,7 @@
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**userId** | **String** | User who added attribute |  [optional] |
 |**valueType** | **AttributeValueType** |  |  [optional] |
+|**entity** | [**Entity**](Entity.md) |  |  [optional] |
 
 
 

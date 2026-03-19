@@ -19,6 +19,14 @@
 |**attributeKey** | **Object** | Document Attribute Key |  [optional] |
 |**entityTypeId** | **String** | Entity Type Identifier |  [optional] |
 |**entityId** | **String** | Entity Identifier |  [optional] |
+|**apiKey** | **String** | API Key |  [optional] |
+|**rulesetId** | **String** | Ruleset Identifier |  [optional] |
+|**schema** | **String** | Schema Identifier |  [optional] |
+|**mappingId** | **String** | Mapping Identifier |  [optional] |
+|**classificationId** | **String** | Classification Identifier |  [optional] |
+|**ruleId** | **String** | Ruleset Rule Identifier |  [optional] |
+|**workflowId** | **String** | Workflow Identifier |  [optional] |
+|**controlPolicy** | **String** | Control Policy Type |  [optional] |
 |**changes** | [**Map&lt;String, UserActivityChanges&gt;**](UserActivityChanges.md) |  |  [optional] |
 
 

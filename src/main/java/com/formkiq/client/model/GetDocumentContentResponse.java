@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentContentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class GetDocumentContentResponse {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
@@ -229,7 +227,7 @@ public class GetDocumentContentResponse {
     if (jsonElement == null) {
       if (!GetDocumentContentResponse.openapiRequiredFields.isEmpty()) { // has required fields but
                                                                          // JSON element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetDocumentContentResponse is not found in the empty JSON string",
             GetDocumentContentResponse.openapiRequiredFields.toString()));
       }
@@ -239,7 +237,7 @@ public class GetDocumentContentResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetDocumentContentResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetDocumentContentResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -247,19 +245,19 @@ public class GetDocumentContentResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull())
         && !jsonObj.get("content").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `content` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("content").toString()));
     }
     if ((jsonObj.get("contentUrl") != null && !jsonObj.get("contentUrl").isJsonNull())
         && !jsonObj.get("contentUrl").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `contentUrl` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("contentUrl").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `contentType` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("contentType").toString()));
     }

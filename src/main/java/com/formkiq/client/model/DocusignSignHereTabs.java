@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSignHereTabs
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class DocusignSignHereTabs {
   public static final String SERIALIZED_NAME_ANCHOR_STRING = "anchorString";
   @SerializedName(SERIALIZED_NAME_ANCHOR_STRING)
@@ -344,7 +342,7 @@ public class DocusignSignHereTabs {
     if (jsonElement == null) {
       if (!DocusignSignHereTabs.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                    // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in DocusignSignHereTabs is not found in the empty JSON string",
             DocusignSignHereTabs.openapiRequiredFields.toString()));
       }
@@ -354,7 +352,7 @@ public class DocusignSignHereTabs {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!DocusignSignHereTabs.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `DocusignSignHereTabs` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -362,50 +360,50 @@ public class DocusignSignHereTabs {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("anchorString") != null && !jsonObj.get("anchorString").isJsonNull())
         && !jsonObj.get("anchorString").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `anchorString` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("anchorString").toString()));
     }
     if ((jsonObj.get("anchorXOffset") != null && !jsonObj.get("anchorXOffset").isJsonNull())
         && !jsonObj.get("anchorXOffset").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `anchorXOffset` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("anchorXOffset").toString()));
     }
     if ((jsonObj.get("anchorYOffset") != null && !jsonObj.get("anchorYOffset").isJsonNull())
         && !jsonObj.get("anchorYOffset").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `anchorYOffset` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("anchorYOffset").toString()));
     }
     if ((jsonObj.get("anchorIgnoreIfNotPresent") != null
         && !jsonObj.get("anchorIgnoreIfNotPresent").isJsonNull())
         && !jsonObj.get("anchorIgnoreIfNotPresent").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `anchorIgnoreIfNotPresent` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("anchorIgnoreIfNotPresent").toString()));
     }
     if ((jsonObj.get("anchorUnits") != null && !jsonObj.get("anchorUnits").isJsonNull())
         && !jsonObj.get("anchorUnits").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `anchorUnits` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("anchorUnits").toString()));
     }
     if ((jsonObj.get("xPosition") != null && !jsonObj.get("xPosition").isJsonNull())
         && !jsonObj.get("xPosition").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `xPosition` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("xPosition").toString()));
     }
     if ((jsonObj.get("yPosition") != null && !jsonObj.get("yPosition").isJsonNull())
         && !jsonObj.get("yPosition").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `yPosition` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("yPosition").toString()));
     }
     if ((jsonObj.get("pageNumber") != null && !jsonObj.get("pageNumber").isJsonNull())
         && !jsonObj.get("pageNumber").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `pageNumber` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("pageNumber").toString()));
     }

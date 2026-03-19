@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -58,8 +56,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentActionsRetryResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class AddDocumentActionsRetryResponse {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -150,7 +148,7 @@ public class AddDocumentActionsRetryResponse {
       if (!AddDocumentActionsRetryResponse.openapiRequiredFields.isEmpty()) { // has required fields
                                                                               // but JSON element is
                                                                               // null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in AddDocumentActionsRetryResponse is not found in the empty JSON string",
             AddDocumentActionsRetryResponse.openapiRequiredFields.toString()));
       }
@@ -160,7 +158,7 @@ public class AddDocumentActionsRetryResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!AddDocumentActionsRetryResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `AddDocumentActionsRetryResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -168,7 +166,7 @@ public class AddDocumentActionsRetryResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
         && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("message").toString()));
     }

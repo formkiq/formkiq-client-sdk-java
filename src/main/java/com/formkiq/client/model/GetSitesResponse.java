@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.formkiq.client.model.Site;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -53,7 +52,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import com.formkiq.client.invoker.JSON;
 
@@ -61,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2025-12-07T17:20:11.660615-06:00[America/Winnipeg]",
-    comments = "Generator version: 7.17.0")
+    date = "2026-03-16T21:45:19.549360-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.20.0")
 public class GetSitesResponse {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -73,6 +71,11 @@ public class GetSitesResponse {
   @SerializedName(SERIALIZED_NAME_ROLES)
   @javax.annotation.Nullable
   private List<String> roles = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SAML_GROUPS = "samlGroups";
+  @SerializedName(SERIALIZED_NAME_SAML_GROUPS)
+  @javax.annotation.Nullable
+  private List<String> samlGroups = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SITES = "sites";
   @SerializedName(SERIALIZED_NAME_SITES)
@@ -129,6 +132,34 @@ public class GetSitesResponse {
   }
 
 
+  public GetSitesResponse samlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+    return this;
+  }
+
+  public GetSitesResponse addSamlGroupsItem(String samlGroupsItem) {
+    if (this.samlGroups == null) {
+      this.samlGroups = new ArrayList<>();
+    }
+    this.samlGroups.add(samlGroupsItem);
+    return this;
+  }
+
+  /**
+   * List of User Saml Groups
+   * 
+   * @return samlGroups
+   */
+  @javax.annotation.Nullable
+  public List<String> getSamlGroups() {
+    return samlGroups;
+  }
+
+  public void setSamlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+  }
+
+
   public GetSitesResponse sites(@javax.annotation.Nullable List<Site> sites) {
     this.sites = sites;
     return this;
@@ -169,12 +200,13 @@ public class GetSitesResponse {
     GetSitesResponse getSitesResponse = (GetSitesResponse) o;
     return Objects.equals(this.username, getSitesResponse.username)
         && Objects.equals(this.roles, getSitesResponse.roles)
+        && Objects.equals(this.samlGroups, getSitesResponse.samlGroups)
         && Objects.equals(this.sites, getSitesResponse.sites);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, roles, sites);
+    return Objects.hash(username, roles, samlGroups, sites);
   }
 
   @Override
@@ -183,6 +215,7 @@ public class GetSitesResponse {
     sb.append("class GetSitesResponse {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    samlGroups: ").append(toIndentedString(samlGroups)).append("\n");
     sb.append("    sites: ").append(toIndentedString(sites)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -204,7 +237,7 @@ public class GetSitesResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "sites"));
+    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "samlGroups", "sites"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -220,7 +253,7 @@ public class GetSitesResponse {
     if (jsonElement == null) {
       if (!GetSitesResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON
                                                                // element is null
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field(s) %s in GetSitesResponse is not found in the empty JSON string",
             GetSitesResponse.openapiRequiredFields.toString()));
       }
@@ -230,7 +263,7 @@ public class GetSitesResponse {
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
       if (!GetSitesResponse.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT,
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The field `%s` in the JSON string is not defined in the `GetSitesResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
@@ -238,23 +271,30 @@ public class GetSitesResponse {
     JsonObject jsonObj = jsonElement.getAsJsonObject();
     if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull())
         && !jsonObj.get("username").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `username` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("username").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("roles") != null && !jsonObj.get("roles").isJsonNull()
         && !jsonObj.get("roles").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(Locale.ROOT,
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `roles` to be an array in the JSON string but got `%s`",
           jsonObj.get("roles").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("samlGroups") != null && !jsonObj.get("samlGroups").isJsonNull()
+        && !jsonObj.get("samlGroups").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `samlGroups` to be an array in the JSON string but got `%s`",
+          jsonObj.get("samlGroups").toString()));
     }
     if (jsonObj.get("sites") != null && !jsonObj.get("sites").isJsonNull()) {
       JsonArray jsonArraysites = jsonObj.getAsJsonArray("sites");
       if (jsonArraysites != null) {
         // ensure the json data is an array
         if (!jsonObj.get("sites").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT,
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
               "Expected the field `sites` to be an array in the JSON string but got `%s`",
               jsonObj.get("sites").toString()));
         }
