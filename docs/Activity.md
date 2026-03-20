@@ -16,6 +16,7 @@
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
 |**documentId** | **Object** | Document Identifier |  [optional] |
+|**artifactId** | **Object** | Document Artifact Identifier |  [optional] |
 |**attributeKey** | **Object** | Document Attribute Key |  [optional] |
 |**entityTypeId** | **String** | Entity Type Identifier |  [optional] |
 |**entityId** | **String** | Entity Identifier |  [optional] |
@@ -26,6 +27,9 @@
 |**classificationId** | **String** | Classification Identifier |  [optional] |
 |**ruleId** | **String** | Ruleset Rule Identifier |  [optional] |
 |**workflowId** | **String** | Workflow Identifier |  [optional] |
+|**queueId** | **String** | Queue Identifier |  [optional] |
+|**webhookId** | **String** | Webhook Identifier |  [optional] |
+|**locale** | **String** | Locale Identifier |  [optional] |
 |**controlPolicy** | **String** | Control Policy Type |  [optional] |
 |**changes** | [**Map&lt;String, UserActivityChanges&gt;**](UserActivityChanges.md) |  |  [optional] |
 

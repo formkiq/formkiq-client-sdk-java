@@ -107,6 +107,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -138,7 +139,8 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call addDocumentWorkflowCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -168,6 +170,10 @@ public class DocumentWorkflowsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -191,7 +197,8 @@ public class DocumentWorkflowsApi {
   private okhttp3.Call addDocumentWorkflowValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -204,7 +211,8 @@ public class DocumentWorkflowsApi {
           "Missing the required parameter 'addDocumentWorkflowRequest' when calling addDocumentWorkflow(Async)");
     }
 
-    return addDocumentWorkflowCall(documentId, addDocumentWorkflowRequest, siteId, _callback);
+    return addDocumentWorkflowCall(documentId, addDocumentWorkflowRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -214,6 +222,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocumentWorkflowResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -246,9 +255,10 @@ public class DocumentWorkflowsApi {
   public AddDocumentWorkflowResponse addDocumentWorkflow(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddDocumentWorkflowResponse> localVarResp =
-        addDocumentWorkflowWithHttpInfo(documentId, addDocumentWorkflowRequest, siteId);
+        addDocumentWorkflowWithHttpInfo(documentId, addDocumentWorkflowRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -258,6 +268,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocumentWorkflowResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -290,9 +301,10 @@ public class DocumentWorkflowsApi {
   public ApiResponse<AddDocumentWorkflowResponse> addDocumentWorkflowWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        addDocumentWorkflowValidateBeforeCall(documentId, addDocumentWorkflowRequest, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = addDocumentWorkflowValidateBeforeCall(documentId,
+        addDocumentWorkflowRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -304,6 +316,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentWorkflowRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -335,11 +348,11 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call addDocumentWorkflowAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentWorkflowRequest addDocumentWorkflowRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocumentWorkflowResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentWorkflowValidateBeforeCall(documentId,
-        addDocumentWorkflowRequest, siteId, _callback);
+        addDocumentWorkflowRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -352,6 +365,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param addDocumentWorkflowDecisionsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -384,7 +398,8 @@ public class DocumentWorkflowsApi {
   public okhttp3.Call addDocumentWorkflowDecisionsCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -415,6 +430,10 @@ public class DocumentWorkflowsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -438,7 +457,8 @@ public class DocumentWorkflowsApi {
   private okhttp3.Call addDocumentWorkflowDecisionsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -458,7 +478,7 @@ public class DocumentWorkflowsApi {
     }
 
     return addDocumentWorkflowDecisionsCall(documentId, workflowId,
-        addDocumentWorkflowDecisionsRequest, siteId, _callback);
+        addDocumentWorkflowDecisionsRequest, siteId, artifactId, _callback);
 
   }
 
@@ -470,6 +490,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param addDocumentWorkflowDecisionsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocumentWorkflowDecisionsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -502,10 +523,11 @@ public class DocumentWorkflowsApi {
   public AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddDocumentWorkflowDecisionsResponse> localVarResp =
         addDocumentWorkflowDecisionsWithHttpInfo(documentId, workflowId,
-            addDocumentWorkflowDecisionsRequest, siteId);
+            addDocumentWorkflowDecisionsRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -517,6 +539,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param addDocumentWorkflowDecisionsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocumentWorkflowDecisionsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -549,9 +572,10 @@ public class DocumentWorkflowsApi {
   public ApiResponse<AddDocumentWorkflowDecisionsResponse> addDocumentWorkflowDecisionsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addDocumentWorkflowDecisionsValidateBeforeCall(documentId,
-        workflowId, addDocumentWorkflowDecisionsRequest, siteId, null);
+        workflowId, addDocumentWorkflowDecisionsRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowDecisionsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -564,6 +588,7 @@ public class DocumentWorkflowsApi {
    * @param workflowId Workflow Identifier (required)
    * @param addDocumentWorkflowDecisionsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -596,11 +621,11 @@ public class DocumentWorkflowsApi {
   public okhttp3.Call addDocumentWorkflowDecisionsAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String workflowId,
       @javax.annotation.Nonnull AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocumentWorkflowDecisionsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentWorkflowDecisionsValidateBeforeCall(documentId,
-        workflowId, addDocumentWorkflowDecisionsRequest, siteId, _callback);
+        workflowId, addDocumentWorkflowDecisionsRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentWorkflowDecisionsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1445,6 +1470,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1476,7 +1502,8 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call getDocumentWorkflowCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1507,6 +1534,10 @@ public class DocumentWorkflowsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1529,7 +1560,8 @@ public class DocumentWorkflowsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentWorkflowValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1542,7 +1574,7 @@ public class DocumentWorkflowsApi {
           "Missing the required parameter 'workflowId' when calling getDocumentWorkflow(Async)");
     }
 
-    return getDocumentWorkflowCall(documentId, workflowId, siteId, _callback);
+    return getDocumentWorkflowCall(documentId, workflowId, siteId, artifactId, _callback);
 
   }
 
@@ -1552,6 +1584,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return GetDocumentWorkflowResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1583,9 +1616,10 @@ public class DocumentWorkflowsApi {
    */
   public GetDocumentWorkflowResponse getDocumentWorkflow(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<GetDocumentWorkflowResponse> localVarResp =
-        getDocumentWorkflowWithHttpInfo(documentId, workflowId, siteId);
+        getDocumentWorkflowWithHttpInfo(documentId, workflowId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1595,6 +1629,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;GetDocumentWorkflowResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1626,9 +1661,10 @@ public class DocumentWorkflowsApi {
    */
   public ApiResponse<GetDocumentWorkflowResponse> getDocumentWorkflowWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String workflowId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, null);
+        getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1639,6 +1675,7 @@ public class DocumentWorkflowsApi {
    * @param documentId Document Identifier (required)
    * @param workflowId Workflow Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1670,10 +1707,11 @@ public class DocumentWorkflowsApi {
    */
   public okhttp3.Call getDocumentWorkflowAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String workflowId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       final ApiCallback<GetDocumentWorkflowResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentWorkflowValidateBeforeCall(documentId, workflowId, siteId, _callback);
+    okhttp3.Call localVarCall = getDocumentWorkflowValidateBeforeCall(documentId, workflowId,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1684,6 +1722,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1714,7 +1753,8 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentWorkflowsCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1744,6 +1784,10 @@ public class DocumentWorkflowsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1766,14 +1810,15 @@ public class DocumentWorkflowsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentWorkflowsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentWorkflows(Async)");
     }
 
-    return getDocumentWorkflowsCall(documentId, siteId, _callback);
+    return getDocumentWorkflowsCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -1782,6 +1827,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return GetDocumentWorkflowsResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1812,10 +1858,10 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public GetDocumentWorkflowsResponse getDocumentWorkflows(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     ApiResponse<GetDocumentWorkflowsResponse> localVarResp =
-        getDocumentWorkflowsWithHttpInfo(documentId, siteId);
+        getDocumentWorkflowsWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1824,6 +1870,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;GetDocumentWorkflowsResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1854,9 +1901,10 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public ApiResponse<GetDocumentWorkflowsResponse> getDocumentWorkflowsWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = getDocumentWorkflowsValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        getDocumentWorkflowsValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1867,6 +1915,7 @@ public class DocumentWorkflowsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1897,11 +1946,11 @@ public class DocumentWorkflowsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentWorkflowsAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<GetDocumentWorkflowsResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        getDocumentWorkflowsValidateBeforeCall(documentId, siteId, _callback);
+        getDocumentWorkflowsValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentWorkflowsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

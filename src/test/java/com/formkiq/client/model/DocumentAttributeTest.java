@@ -129,4 +129,12 @@ public class DocumentAttributeTest {
     // TODO: test entity
   }
 
+  /**
+   * Test the property 'entities'
+   */
+  @Test
+  public void entitiesTest() {
+    // TODO: test entities
+  }
+
 }

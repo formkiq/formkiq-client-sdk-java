@@ -88,6 +88,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentOcrRequest (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -111,7 +112,7 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentOcrCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
@@ -143,6 +144,10 @@ public class DocumentOcrApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -164,7 +169,7 @@ public class DocumentOcrApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
@@ -173,7 +178,7 @@ public class DocumentOcrApi {
           "Missing the required parameter 'documentId' when calling addDocumentOcr(Async)");
     }
 
-    return addDocumentOcrCall(documentId, siteId, addDocumentOcrRequest, _callback);
+    return addDocumentOcrCall(documentId, siteId, artifactId, addDocumentOcrRequest, _callback);
 
   }
 
@@ -184,6 +189,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentOcrRequest (optional)
    * @return AddDocumentOcrResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -207,10 +213,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public AddDocumentOcrResponse addDocumentOcr(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
     ApiResponse<AddDocumentOcrResponse> localVarResp =
-        addDocumentOcrWithHttpInfo(documentId, siteId, addDocumentOcrRequest);
+        addDocumentOcrWithHttpInfo(documentId, siteId, artifactId, addDocumentOcrRequest);
     return localVarResp.getData();
   }
 
@@ -221,6 +227,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentOcrRequest (optional)
    * @return ApiResponse&lt;AddDocumentOcrResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -245,9 +252,10 @@ public class DocumentOcrApi {
    */
   public ApiResponse<AddDocumentOcrResponse> addDocumentOcrWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest) throws ApiException {
-    okhttp3.Call localVarCall =
-        addDocumentOcrValidateBeforeCall(documentId, siteId, addDocumentOcrRequest, null);
+    okhttp3.Call localVarCall = addDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        addDocumentOcrRequest, null);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -259,6 +267,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentOcrRequest (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -282,12 +291,12 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentOcrRequest addDocumentOcrRequest,
       final ApiCallback<AddDocumentOcrResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        addDocumentOcrValidateBeforeCall(documentId, siteId, addDocumentOcrRequest, _callback);
+    okhttp3.Call localVarCall = addDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        addDocumentOcrRequest, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -298,6 +307,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -320,7 +330,8 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentOcrCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -350,6 +361,10 @@ public class DocumentOcrApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -372,14 +387,15 @@ public class DocumentOcrApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentOcrValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling deleteDocumentOcr(Async)");
     }
 
-    return deleteDocumentOcrCall(documentId, siteId, _callback);
+    return deleteDocumentOcrCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -390,6 +406,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -412,8 +429,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public DeleteResponse deleteDocumentOcr(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<DeleteResponse> localVarResp = deleteDocumentOcrWithHttpInfo(documentId, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        deleteDocumentOcrWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -424,6 +443,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -446,9 +466,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public ApiResponse<DeleteResponse> deleteDocumentOcrWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        deleteDocumentOcrValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -460,6 +481,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -482,10 +504,11 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = deleteDocumentOcrValidateBeforeCall(documentId, siteId, _callback);
+    okhttp3.Call localVarCall =
+        deleteDocumentOcrValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -496,6 +519,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
    *        (deprecated) (optional)
@@ -524,9 +548,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentOcrCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
-      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
+      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -554,6 +579,10 @@ public class DocumentOcrApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (outputType != null) {
@@ -593,17 +622,18 @@ public class DocumentOcrApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
-      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
+      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentOcr(Async)");
     }
 
-    return getDocumentOcrCall(documentId, siteId, outputType, contentUrl, text, shareKey,
-        _callback);
+    return getDocumentOcrCall(documentId, siteId, artifactId, outputType, contentUrl, text,
+        shareKey, _callback);
 
   }
 
@@ -614,6 +644,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
    *        (deprecated) (optional)
@@ -642,11 +673,12 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public GetDocumentOcrResponse getDocumentOcr(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
-      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
-    ApiResponse<GetDocumentOcrResponse> localVarResp =
-        getDocumentOcrWithHttpInfo(documentId, siteId, outputType, contentUrl, text, shareKey);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
+      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
+    ApiResponse<GetDocumentOcrResponse> localVarResp = getDocumentOcrWithHttpInfo(documentId,
+        siteId, artifactId, outputType, contentUrl, text, shareKey);
     return localVarResp.getData();
   }
 
@@ -657,6 +689,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
    *        (deprecated) (optional)
@@ -686,11 +719,11 @@ public class DocumentOcrApi {
    */
   public ApiResponse<GetDocumentOcrResponse> getDocumentOcrWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
-      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
-    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
-        contentUrl, text, shareKey, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String outputType,
+      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        outputType, contentUrl, text, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentOcrResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -702,6 +735,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param outputType Output Format Type (optional)
    * @param contentUrl Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39;
    *        (deprecated) (optional)
@@ -730,13 +764,13 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String outputType,
-      @javax.annotation.Nullable String contentUrl, @javax.annotation.Nullable String text,
-      @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String outputType, @javax.annotation.Nullable String contentUrl,
+      @javax.annotation.Nullable String text, @javax.annotation.Nullable String shareKey,
       final ApiCallback<GetDocumentOcrResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, outputType,
-        contentUrl, text, shareKey, _callback);
+    okhttp3.Call localVarCall = getDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        outputType, contentUrl, text, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentOcrResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -747,6 +781,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param setDocumentOcrRequest (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -770,7 +805,7 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentOcrCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
@@ -802,6 +837,10 @@ public class DocumentOcrApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -823,7 +862,7 @@ public class DocumentOcrApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setDocumentOcrValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
@@ -832,7 +871,7 @@ public class DocumentOcrApi {
           "Missing the required parameter 'documentId' when calling setDocumentOcr(Async)");
     }
 
-    return setDocumentOcrCall(documentId, siteId, setDocumentOcrRequest, _callback);
+    return setDocumentOcrCall(documentId, siteId, artifactId, setDocumentOcrRequest, _callback);
 
   }
 
@@ -843,6 +882,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param setDocumentOcrRequest (optional)
    * @return AddDocumentOcrResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -866,10 +906,10 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public AddDocumentOcrResponse setDocumentOcr(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
     ApiResponse<AddDocumentOcrResponse> localVarResp =
-        setDocumentOcrWithHttpInfo(documentId, siteId, setDocumentOcrRequest);
+        setDocumentOcrWithHttpInfo(documentId, siteId, artifactId, setDocumentOcrRequest);
     return localVarResp.getData();
   }
 
@@ -880,6 +920,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param setDocumentOcrRequest (optional)
    * @return ApiResponse&lt;AddDocumentOcrResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -904,9 +945,10 @@ public class DocumentOcrApi {
    */
   public ApiResponse<AddDocumentOcrResponse> setDocumentOcrWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest) throws ApiException {
-    okhttp3.Call localVarCall =
-        setDocumentOcrValidateBeforeCall(documentId, siteId, setDocumentOcrRequest, null);
+    okhttp3.Call localVarCall = setDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        setDocumentOcrRequest, null);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -918,6 +960,7 @@ public class DocumentOcrApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param setDocumentOcrRequest (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -941,12 +984,12 @@ public class DocumentOcrApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentOcrAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable SetDocumentOcrRequest setDocumentOcrRequest,
       final ApiCallback<AddDocumentOcrResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        setDocumentOcrValidateBeforeCall(documentId, siteId, setDocumentOcrRequest, _callback);
+    okhttp3.Call localVarCall = setDocumentOcrValidateBeforeCall(documentId, siteId, artifactId,
+        setDocumentOcrRequest, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentOcrResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

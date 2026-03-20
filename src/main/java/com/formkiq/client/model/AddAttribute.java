@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * AddAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-17T23:09:33.874078-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -71,6 +71,11 @@ public class AddAttribute {
   @SerializedName(SERIALIZED_NAME_DATA_TYPE)
   @javax.annotation.Nullable
   private AttributeDataType dataType = AttributeDataType.STRING;
+
+  public static final String SERIALIZED_NAME_VALIDATION_REGEX = "validationRegex";
+  @SerializedName(SERIALIZED_NAME_VALIDATION_REGEX)
+  @javax.annotation.Nullable
+  private String validationRegex;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -121,6 +126,26 @@ public class AddAttribute {
 
   public void setDataType(@javax.annotation.Nullable AttributeDataType dataType) {
     this.dataType = dataType;
+  }
+
+
+  public AddAttribute validationRegex(@javax.annotation.Nullable String validationRegex) {
+    this.validationRegex = validationRegex;
+    return this;
+  }
+
+  /**
+   * Attribute Value Regex Validation
+   * 
+   * @return validationRegex
+   */
+  @javax.annotation.Nullable
+  public String getValidationRegex() {
+    return validationRegex;
+  }
+
+  public void setValidationRegex(@javax.annotation.Nullable String validationRegex) {
+    this.validationRegex = validationRegex;
   }
 
 
@@ -176,13 +201,14 @@ public class AddAttribute {
     AddAttribute addAttribute = (AddAttribute) o;
     return Objects.equals(this.key, addAttribute.key)
         && Objects.equals(this.dataType, addAttribute.dataType)
+        && Objects.equals(this.validationRegex, addAttribute.validationRegex)
         && Objects.equals(this.type, addAttribute.type)
         && Objects.equals(this.watermark, addAttribute.watermark);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, dataType, type, watermark);
+    return Objects.hash(key, dataType, validationRegex, type, watermark);
   }
 
   @Override
@@ -191,6 +217,7 @@ public class AddAttribute {
     sb.append("class AddAttribute {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
+    sb.append("    validationRegex: ").append(toIndentedString(validationRegex)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    watermark: ").append(toIndentedString(watermark)).append("\n");
     sb.append("}");
@@ -201,10 +228,7 @@ public class AddAttribute {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -213,7 +237,8 @@ public class AddAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("key", "dataType", "type", "watermark"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("key", "dataType", "validationRegex", "type", "watermark"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("key"));
@@ -262,6 +287,12 @@ public class AddAttribute {
     // validate the optional field `dataType`
     if (jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) {
       AttributeDataType.validateJsonElement(jsonObj.get("dataType"));
+    }
+    if ((jsonObj.get("validationRegex") != null && !jsonObj.get("validationRegex").isJsonNull())
+        && !jsonObj.get("validationRegex").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `validationRegex` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("validationRegex").toString()));
     }
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {

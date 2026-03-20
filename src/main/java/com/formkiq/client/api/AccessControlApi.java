@@ -822,7 +822,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -922,7 +922,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -962,7 +962,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
@@ -1004,7 +1004,7 @@ public class AccessControlApi {
    *                        </tr>
    *                        <tr>
    *                        <td>200</td>
-   *                        <td>200 CREATED</td>
+   *                        <td>200 OK</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>

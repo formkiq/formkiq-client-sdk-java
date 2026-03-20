@@ -10,6 +10,7 @@
 |**type** | **AttributeType** |  |  [optional] |
 |**key** | **String** | Attribute Key |  [optional] |
 |**dataType** | **AttributeDataType** |  |  [optional] |
+|**validationRegex** | **String** | Attribute Value Regex Validation |  [optional] |
 |**watermark** | [**Watermark**](Watermark.md) |  |  [optional] |
 
 

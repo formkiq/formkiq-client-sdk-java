@@ -19,6 +19,7 @@
 |**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |
+|**artifactId** | **String** | Document Artifact Identifier |  [optional] |
 |**contentType** | **String** | Document Content-Type |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
 |**contentLength** | **Integer** | Document size |  [optional] |

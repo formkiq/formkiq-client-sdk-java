@@ -901,6 +901,7 @@ public class CaseManagementApi {
    * @param caseId Case Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -924,7 +925,8 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteCaseDocumentCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -955,6 +957,10 @@ public class CaseManagementApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -977,7 +983,8 @@ public class CaseManagementApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteCaseDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -990,7 +997,7 @@ public class CaseManagementApi {
           "Missing the required parameter 'documentId' when calling deleteCaseDocument(Async)");
     }
 
-    return deleteCaseDocumentCall(caseId, documentId, siteId, _callback);
+    return deleteCaseDocumentCall(caseId, documentId, siteId, artifactId, _callback);
 
   }
 
@@ -1000,6 +1007,7 @@ public class CaseManagementApi {
    * @param caseId Case Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteCaseDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1022,10 +1030,10 @@ public class CaseManagementApi {
    *                        </table>
    */
   public DeleteCaseDocumentResponse deleteCaseDocument(@javax.annotation.Nonnull String caseId,
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     ApiResponse<DeleteCaseDocumentResponse> localVarResp =
-        deleteCaseDocumentWithHttpInfo(caseId, documentId, siteId);
+        deleteCaseDocumentWithHttpInfo(caseId, documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1035,6 +1043,7 @@ public class CaseManagementApi {
    * @param caseId Case Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteCaseDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1058,9 +1067,10 @@ public class CaseManagementApi {
    */
   public ApiResponse<DeleteCaseDocumentResponse> deleteCaseDocumentWithHttpInfo(
       @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, null);
+        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1071,6 +1081,7 @@ public class CaseManagementApi {
    * @param caseId Case Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1094,10 +1105,11 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteCaseDocumentAsync(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       final ApiCallback<DeleteCaseDocumentResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, _callback);
+        deleteCaseDocumentValidateBeforeCall(caseId, documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteCaseDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1316,6 +1328,7 @@ public class CaseManagementApi {
    * @param nigoId Nigo Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1339,7 +1352,8 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteNigoDocumentCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1371,6 +1385,10 @@ public class CaseManagementApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1393,7 +1411,8 @@ public class CaseManagementApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteNigoDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -1412,7 +1431,7 @@ public class CaseManagementApi {
           "Missing the required parameter 'documentId' when calling deleteNigoDocument(Async)");
     }
 
-    return deleteNigoDocumentCall(caseId, nigoId, documentId, siteId, _callback);
+    return deleteNigoDocumentCall(caseId, nigoId, documentId, siteId, artifactId, _callback);
 
   }
 
@@ -1423,6 +1442,7 @@ public class CaseManagementApi {
    * @param nigoId Nigo Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteCaseNigoDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1446,9 +1466,10 @@ public class CaseManagementApi {
    */
   public DeleteCaseNigoDocumentResponse deleteNigoDocument(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<DeleteCaseNigoDocumentResponse> localVarResp =
-        deleteNigoDocumentWithHttpInfo(caseId, nigoId, documentId, siteId);
+        deleteNigoDocumentWithHttpInfo(caseId, nigoId, documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1459,6 +1480,7 @@ public class CaseManagementApi {
    * @param nigoId Nigo Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteCaseNigoDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1482,10 +1504,10 @@ public class CaseManagementApi {
    */
   public ApiResponse<DeleteCaseNigoDocumentResponse> deleteNigoDocumentWithHttpInfo(
       @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String nigoId,
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     okhttp3.Call localVarCall =
-        deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, null);
+        deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseNigoDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1497,6 +1519,7 @@ public class CaseManagementApi {
    * @param nigoId Nigo Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1520,11 +1543,11 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteNigoDocumentAsync(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String nigoId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<DeleteCaseNigoDocumentResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId, siteId, _callback);
+    okhttp3.Call localVarCall = deleteNigoDocumentValidateBeforeCall(caseId, nigoId, documentId,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteCaseNigoDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1743,6 +1766,7 @@ public class CaseManagementApi {
    * @param taskId Task Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1766,7 +1790,8 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteTaskDocumentCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1798,6 +1823,10 @@ public class CaseManagementApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1820,7 +1849,8 @@ public class CaseManagementApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteTaskDocumentValidateBeforeCall(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'caseId' is set
     if (caseId == null) {
       throw new ApiException(
@@ -1839,7 +1869,7 @@ public class CaseManagementApi {
           "Missing the required parameter 'documentId' when calling deleteTaskDocument(Async)");
     }
 
-    return deleteTaskDocumentCall(caseId, taskId, documentId, siteId, _callback);
+    return deleteTaskDocumentCall(caseId, taskId, documentId, siteId, artifactId, _callback);
 
   }
 
@@ -1850,6 +1880,7 @@ public class CaseManagementApi {
    * @param taskId Task Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteCaseTaskDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1873,9 +1904,10 @@ public class CaseManagementApi {
    */
   public DeleteCaseTaskDocumentResponse deleteTaskDocument(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<DeleteCaseTaskDocumentResponse> localVarResp =
-        deleteTaskDocumentWithHttpInfo(caseId, taskId, documentId, siteId);
+        deleteTaskDocumentWithHttpInfo(caseId, taskId, documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1886,6 +1918,7 @@ public class CaseManagementApi {
    * @param taskId Task Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteCaseTaskDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1909,10 +1942,10 @@ public class CaseManagementApi {
    */
   public ApiResponse<DeleteCaseTaskDocumentResponse> deleteTaskDocumentWithHttpInfo(
       @javax.annotation.Nonnull String caseId, @javax.annotation.Nonnull String taskId,
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     okhttp3.Call localVarCall =
-        deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, null);
+        deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteCaseTaskDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1924,6 +1957,7 @@ public class CaseManagementApi {
    * @param taskId Task Identifier (required)
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1947,11 +1981,11 @@ public class CaseManagementApi {
    */
   public okhttp3.Call deleteTaskDocumentAsync(@javax.annotation.Nonnull String caseId,
       @javax.annotation.Nonnull String taskId, @javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<DeleteCaseTaskDocumentResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId, siteId, _callback);
+    okhttp3.Call localVarCall = deleteTaskDocumentValidateBeforeCall(caseId, taskId, documentId,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteCaseTaskDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.MappingAttribute;
+import com.formkiq.client.model.MappingClassification;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * AddMapping
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-17T23:09:33.874078-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddMapping {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -76,6 +77,11 @@ public class AddMapping {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
   private List<MappingAttribute> attributes = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_CLASSIFICATIONS = "classifications";
+  @SerializedName(SERIALIZED_NAME_CLASSIFICATIONS)
+  @javax.annotation.Nullable
+  private List<MappingClassification> classifications = new ArrayList<>();
 
   public AddMapping() {}
 
@@ -147,6 +153,36 @@ public class AddMapping {
   }
 
 
+  public AddMapping classifications(
+      @javax.annotation.Nullable List<MappingClassification> classifications) {
+    this.classifications = classifications;
+    return this;
+  }
+
+  public AddMapping addClassificationsItem(MappingClassification classificationsItem) {
+    if (this.classifications == null) {
+      this.classifications = new ArrayList<>();
+    }
+    this.classifications.add(classificationsItem);
+    return this;
+  }
+
+  /**
+   * List of classifications
+   * 
+   * @return classifications
+   */
+  @javax.annotation.Nullable
+  public List<MappingClassification> getClassifications() {
+    return classifications;
+  }
+
+  public void setClassifications(
+      @javax.annotation.Nullable List<MappingClassification> classifications) {
+    this.classifications = classifications;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -159,12 +195,13 @@ public class AddMapping {
     AddMapping addMapping = (AddMapping) o;
     return Objects.equals(this.name, addMapping.name)
         && Objects.equals(this.description, addMapping.description)
-        && Objects.equals(this.attributes, addMapping.attributes);
+        && Objects.equals(this.attributes, addMapping.attributes)
+        && Objects.equals(this.classifications, addMapping.classifications);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, attributes);
+    return Objects.hash(name, description, attributes, classifications);
   }
 
   @Override
@@ -174,6 +211,7 @@ public class AddMapping {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    classifications: ").append(toIndentedString(classifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,10 +220,7 @@ public class AddMapping {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -194,7 +229,8 @@ public class AddMapping {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("name", "description", "attributes"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("name", "description", "attributes", "classifications"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -251,6 +287,22 @@ public class AddMapping {
         // validate the optional field `attributes` (array)
         for (int i = 0; i < jsonArrayattributes.size(); i++) {
           MappingAttribute.validateJsonElement(jsonArrayattributes.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("classifications") != null && !jsonObj.get("classifications").isJsonNull()) {
+      JsonArray jsonArrayclassifications = jsonObj.getAsJsonArray("classifications");
+      if (jsonArrayclassifications != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("classifications").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `classifications` to be an array in the JSON string but got `%s`",
+              jsonObj.get("classifications").toString()));
+        }
+
+        // validate the optional field `classifications` (array)
+        for (int i = 0; i < jsonArrayclassifications.size(); i++) {
+          MappingClassification.validateJsonElement(jsonArrayclassifications.get(i));
         } ;
       }
     }

@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addGoogleDocumentExport"></a>
 # **addGoogleDocumentExport**
-> AddGoogleDocumentExportResponse addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId)
+> AddGoogleDocumentExportResponse addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId, artifactId)
 
 Add Google Document Export
 
@@ -36,8 +36,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddGoogleDocumentExportRequest addGoogleDocumentExportRequest = new AddGoogleDocumentExportRequest(); // AddGoogleDocumentExportRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddGoogleDocumentExportResponse result = apiInstance.addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId);
+      AddGoogleDocumentExportResponse result = apiInstance.addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GoogleIntegrationApi#addGoogleDocumentExport");
@@ -57,6 +58,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addGoogleDocumentExportRequest** | [**AddGoogleDocumentExportRequest**](AddGoogleDocumentExportRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

@@ -58,13 +58,18 @@ import com.formkiq.client.invoker.JSON;
  * UpdateAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-17T23:09:33.874078-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class UpdateAttribute {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nullable
   private AttributeType type = AttributeType.STANDARD;
+
+  public static final String SERIALIZED_NAME_VALIDATION_REGEX = "validationRegex";
+  @SerializedName(SERIALIZED_NAME_VALIDATION_REGEX)
+  @javax.annotation.Nullable
+  private String validationRegex;
 
   public static final String SERIALIZED_NAME_WATERMARK = "watermark";
   @SerializedName(SERIALIZED_NAME_WATERMARK)
@@ -90,6 +95,26 @@ public class UpdateAttribute {
 
   public void setType(@javax.annotation.Nullable AttributeType type) {
     this.type = type;
+  }
+
+
+  public UpdateAttribute validationRegex(@javax.annotation.Nullable String validationRegex) {
+    this.validationRegex = validationRegex;
+    return this;
+  }
+
+  /**
+   * Attribute Value Regex Validation
+   * 
+   * @return validationRegex
+   */
+  @javax.annotation.Nullable
+  public String getValidationRegex() {
+    return validationRegex;
+  }
+
+  public void setValidationRegex(@javax.annotation.Nullable String validationRegex) {
+    this.validationRegex = validationRegex;
   }
 
 
@@ -124,12 +149,13 @@ public class UpdateAttribute {
     }
     UpdateAttribute updateAttribute = (UpdateAttribute) o;
     return Objects.equals(this.type, updateAttribute.type)
+        && Objects.equals(this.validationRegex, updateAttribute.validationRegex)
         && Objects.equals(this.watermark, updateAttribute.watermark);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, watermark);
+    return Objects.hash(type, validationRegex, watermark);
   }
 
   @Override
@@ -137,6 +163,7 @@ public class UpdateAttribute {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAttribute {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    validationRegex: ").append(toIndentedString(validationRegex)).append("\n");
     sb.append("    watermark: ").append(toIndentedString(watermark)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -146,10 +173,7 @@ public class UpdateAttribute {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -158,7 +182,7 @@ public class UpdateAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("type", "watermark"));
+    openapiFields = new HashSet<String>(Arrays.asList("type", "validationRegex", "watermark"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -193,6 +217,12 @@ public class UpdateAttribute {
     // validate the optional field `type`
     if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
       AttributeType.validateJsonElement(jsonObj.get("type"));
+    }
+    if ((jsonObj.get("validationRegex") != null && !jsonObj.get("validationRegex").isJsonNull())
+        && !jsonObj.get("validationRegex").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `validationRegex` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("validationRegex").toString()));
     }
     // validate the optional field `watermark`
     if (jsonObj.get("watermark") != null && !jsonObj.get("watermark").isJsonNull()) {

@@ -54,7 +54,9 @@ public class ReindexApiTest {
     String documentId = null;
     AddReindexDocumentRequest addReindexDocumentRequest = null;
     String siteId = null;
-    AddResponse response = api.addReindexDocument(documentId, addReindexDocumentRequest, siteId);
+    String artifactId = null;
+    AddResponse response =
+        api.addReindexDocument(documentId, addReindexDocumentRequest, siteId, artifactId);
     // TODO: test validations
   }
 

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.MappingAttributeSourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,63 +54,63 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentCertificationParameterStore
+ * Mapping Attribute from document data classification results
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
-public class DocumentCertificationParameterStore {
-  public static final String SERIALIZED_NAME_PKCS12_BUNDLE_PARAM = "pkcs12BundleParam";
-  @SerializedName(SERIALIZED_NAME_PKCS12_BUNDLE_PARAM)
+    date = "2026-05-17T23:09:33.874078-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
+public class MappingAttributeDataClassification {
+  public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
   @javax.annotation.Nonnull
-  private String pkcs12BundleParam;
+  private String attributeKey;
 
-  public static final String SERIALIZED_NAME_PKCS12_PASSWORD_PARAM = "pkcs12PasswordParam";
-  @SerializedName(SERIALIZED_NAME_PKCS12_PASSWORD_PARAM)
+  public static final String SERIALIZED_NAME_SOURCE_TYPE = "sourceType";
+  @SerializedName(SERIALIZED_NAME_SOURCE_TYPE)
   @javax.annotation.Nonnull
-  private String pkcs12PasswordParam;
+  private MappingAttributeSourceType sourceType;
 
-  public DocumentCertificationParameterStore() {}
+  public MappingAttributeDataClassification() {}
 
-  public DocumentCertificationParameterStore pkcs12BundleParam(
-      @javax.annotation.Nonnull String pkcs12BundleParam) {
-    this.pkcs12BundleParam = pkcs12BundleParam;
+  public MappingAttributeDataClassification attributeKey(
+      @javax.annotation.Nonnull String attributeKey) {
+    this.attributeKey = attributeKey;
     return this;
   }
 
   /**
-   * SSM Parameter Store Key containing the PKCS#12/PFX bundle.
+   * Attribute Key
    * 
-   * @return pkcs12BundleParam
+   * @return attributeKey
    */
   @javax.annotation.Nonnull
-  public String getPkcs12BundleParam() {
-    return pkcs12BundleParam;
+  public String getAttributeKey() {
+    return attributeKey;
   }
 
-  public void setPkcs12BundleParam(@javax.annotation.Nonnull String pkcs12BundleParam) {
-    this.pkcs12BundleParam = pkcs12BundleParam;
+  public void setAttributeKey(@javax.annotation.Nonnull String attributeKey) {
+    this.attributeKey = attributeKey;
   }
 
 
-  public DocumentCertificationParameterStore pkcs12PasswordParam(
-      @javax.annotation.Nonnull String pkcs12PasswordParam) {
-    this.pkcs12PasswordParam = pkcs12PasswordParam;
+  public MappingAttributeDataClassification sourceType(
+      @javax.annotation.Nonnull MappingAttributeSourceType sourceType) {
+    this.sourceType = sourceType;
     return this;
   }
 
   /**
-   * SSM Parameter Store Key containing the PKCS#12/PFX password.
+   * Get sourceType
    * 
-   * @return pkcs12PasswordParam
+   * @return sourceType
    */
   @javax.annotation.Nonnull
-  public String getPkcs12PasswordParam() {
-    return pkcs12PasswordParam;
+  public MappingAttributeSourceType getSourceType() {
+    return sourceType;
   }
 
-  public void setPkcs12PasswordParam(@javax.annotation.Nonnull String pkcs12PasswordParam) {
-    this.pkcs12PasswordParam = pkcs12PasswordParam;
+  public void setSourceType(@javax.annotation.Nonnull MappingAttributeSourceType sourceType) {
+    this.sourceType = sourceType;
   }
 
 
@@ -122,26 +123,23 @@ public class DocumentCertificationParameterStore {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentCertificationParameterStore documentCertificationParameterStore =
-        (DocumentCertificationParameterStore) o;
-    return Objects.equals(this.pkcs12BundleParam,
-        documentCertificationParameterStore.pkcs12BundleParam)
-        && Objects.equals(this.pkcs12PasswordParam,
-            documentCertificationParameterStore.pkcs12PasswordParam);
+    MappingAttributeDataClassification mappingAttributeDataClassification =
+        (MappingAttributeDataClassification) o;
+    return Objects.equals(this.attributeKey, mappingAttributeDataClassification.attributeKey)
+        && Objects.equals(this.sourceType, mappingAttributeDataClassification.sourceType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pkcs12BundleParam, pkcs12PasswordParam);
+    return Objects.hash(attributeKey, sourceType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentCertificationParameterStore {\n");
-    sb.append("    pkcs12BundleParam: ").append(toIndentedString(pkcs12BundleParam)).append("\n");
-    sb.append("    pkcs12PasswordParam: ").append(toIndentedString(pkcs12PasswordParam))
-        .append("\n");
+    sb.append("class MappingAttributeDataClassification {\n");
+    sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
+    sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -150,10 +148,7 @@ public class DocumentCertificationParameterStore {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -162,11 +157,10 @@ public class DocumentCertificationParameterStore {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("pkcs12BundleParam", "pkcs12PasswordParam"));
+    openapiFields = new HashSet<String>(Arrays.asList("attributeKey", "sourceType"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields =
-        new HashSet<String>(Arrays.asList("pkcs12BundleParam", "pkcs12PasswordParam"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("attributeKey", "sourceType"));
   }
 
   /**
@@ -174,31 +168,31 @@ public class DocumentCertificationParameterStore {
    *
    * @param jsonElement JSON Element
    * @throws IOException if the JSON Element is invalid with respect to
-   *         DocumentCertificationParameterStore
+   *         MappingAttributeDataClassification
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentCertificationParameterStore.openapiRequiredFields.isEmpty()) { // has required
-                                                                                  // fields but JSON
-                                                                                  // element is null
+      if (!MappingAttributeDataClassification.openapiRequiredFields.isEmpty()) { // has required
+                                                                                 // fields but JSON
+                                                                                 // element is null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in DocumentCertificationParameterStore is not found in the empty JSON string",
-            DocumentCertificationParameterStore.openapiRequiredFields.toString()));
+            "The required field(s) %s in MappingAttributeDataClassification is not found in the empty JSON string",
+            MappingAttributeDataClassification.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentCertificationParameterStore.openapiFields.contains(entry.getKey())) {
+      if (!MappingAttributeDataClassification.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `DocumentCertificationParameterStore` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `MappingAttributeDataClassification` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentCertificationParameterStore.openapiRequiredFields) {
+    for (String requiredField : MappingAttributeDataClassification.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
@@ -206,40 +200,37 @@ public class DocumentCertificationParameterStore {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("pkcs12BundleParam").isJsonPrimitive()) {
+    if (!jsonObj.get("attributeKey").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `pkcs12BundleParam` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("pkcs12BundleParam").toString()));
+          "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("attributeKey").toString()));
     }
-    if (!jsonObj.get("pkcs12PasswordParam").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `pkcs12PasswordParam` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("pkcs12PasswordParam").toString()));
-    }
+    // validate the required field `sourceType`
+    MappingAttributeSourceType.validateJsonElement(jsonObj.get("sourceType"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentCertificationParameterStore.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentCertificationParameterStore' and its
+      if (!MappingAttributeDataClassification.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'MappingAttributeDataClassification' and its
                      // subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentCertificationParameterStore> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentCertificationParameterStore.class));
+      final TypeAdapter<MappingAttributeDataClassification> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeDataClassification.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentCertificationParameterStore>() {
+      return (TypeAdapter<T>) new TypeAdapter<MappingAttributeDataClassification>() {
         @Override
-        public void write(JsonWriter out, DocumentCertificationParameterStore value)
+        public void write(JsonWriter out, MappingAttributeDataClassification value)
             throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentCertificationParameterStore read(JsonReader in) throws IOException {
+        public MappingAttributeDataClassification read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -250,19 +241,19 @@ public class DocumentCertificationParameterStore {
   }
 
   /**
-   * Create an instance of DocumentCertificationParameterStore given an JSON string
+   * Create an instance of MappingAttributeDataClassification given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentCertificationParameterStore
+   * @return An instance of MappingAttributeDataClassification
    * @throws IOException if the JSON string is invalid with respect to
-   *         DocumentCertificationParameterStore
+   *         MappingAttributeDataClassification
    */
-  public static DocumentCertificationParameterStore fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentCertificationParameterStore.class);
+  public static MappingAttributeDataClassification fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, MappingAttributeDataClassification.class);
   }
 
   /**
-   * Convert an instance of DocumentCertificationParameterStore to an JSON string
+   * Convert an instance of MappingAttributeDataClassification to an JSON string
    *
    * @return JSON string
    */

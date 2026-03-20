@@ -87,6 +87,7 @@ public class ReindexApi {
    * @param documentId Document Identifier (required)
    * @param addReindexDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -115,7 +116,8 @@ public class ReindexApi {
    */
   public okhttp3.Call addReindexDocumentCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddReindexDocumentRequest addReindexDocumentRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -145,6 +147,10 @@ public class ReindexApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -168,7 +174,8 @@ public class ReindexApi {
   private okhttp3.Call addReindexDocumentValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddReindexDocumentRequest addReindexDocumentRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -181,7 +188,8 @@ public class ReindexApi {
           "Missing the required parameter 'addReindexDocumentRequest' when calling addReindexDocument(Async)");
     }
 
-    return addReindexDocumentCall(documentId, addReindexDocumentRequest, siteId, _callback);
+    return addReindexDocumentCall(documentId, addReindexDocumentRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -193,6 +201,7 @@ public class ReindexApi {
    * @param documentId Document Identifier (required)
    * @param addReindexDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -221,9 +230,10 @@ public class ReindexApi {
    */
   public AddResponse addReindexDocument(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddReindexDocumentRequest addReindexDocumentRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddResponse> localVarResp =
-        addReindexDocumentWithHttpInfo(documentId, addReindexDocumentRequest, siteId);
+        addReindexDocumentWithHttpInfo(documentId, addReindexDocumentRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -235,6 +245,7 @@ public class ReindexApi {
    * @param documentId Document Identifier (required)
    * @param addReindexDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -264,9 +275,10 @@ public class ReindexApi {
   public ApiResponse<AddResponse> addReindexDocumentWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddReindexDocumentRequest addReindexDocumentRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        addReindexDocumentValidateBeforeCall(documentId, addReindexDocumentRequest, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = addReindexDocumentValidateBeforeCall(documentId,
+        addReindexDocumentRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -279,6 +291,7 @@ public class ReindexApi {
    * @param documentId Document Identifier (required)
    * @param addReindexDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -307,11 +320,11 @@ public class ReindexApi {
    */
   public okhttp3.Call addReindexDocumentAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddReindexDocumentRequest addReindexDocumentRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addReindexDocumentValidateBeforeCall(documentId,
-        addReindexDocumentRequest, siteId, _callback);
+        addReindexDocumentRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

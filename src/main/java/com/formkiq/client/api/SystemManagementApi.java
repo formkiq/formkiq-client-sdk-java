@@ -55,6 +55,8 @@ import com.formkiq.client.model.GetOpenSearchSnapshotResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
 import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
+import com.formkiq.client.model.GetSystemConfigurationResponse;
+import com.formkiq.client.model.GetSystemInferenceModelsResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
@@ -67,6 +69,7 @@ import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.UpdateSiteRequest;
+import com.formkiq.client.model.UpdateSystemConfigurationRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -811,7 +814,11 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Restore Snapshot Add an OpenSearch Restore Snapshot
+   * Restore site OpenSearch snapshot Restores the specified snapshot into a separate OpenSearch
+   * index for the site. The restored index is created from the site&#39;s current index name with
+   * the snapshot name and \&quot;_restored\&quot; suffix. For provisioned OpenSearch domains, the
+   * snapshot is read from the site&#39;s S3 snapshot repository. For OpenSearch Serverless, the
+   * snapshot is read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -844,7 +851,11 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Restore Snapshot Add an OpenSearch Restore Snapshot
+   * Restore site OpenSearch snapshot Restores the specified snapshot into a separate OpenSearch
+   * index for the site. The restored index is created from the site&#39;s current index name with
+   * the snapshot name and \&quot;_restored\&quot; suffix. For provisioned OpenSearch domains, the
+   * snapshot is read from the site&#39;s S3 snapshot repository. For OpenSearch Serverless, the
+   * snapshot is read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -879,7 +890,11 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Restore Snapshot (asynchronously) Add an OpenSearch Restore Snapshot
+   * Restore site OpenSearch snapshot (asynchronously) Restores the specified snapshot into a
+   * separate OpenSearch index for the site. The restored index is created from the site&#39;s
+   * current index name with the snapshot name and \&quot;_restored\&quot; suffix. For provisioned
+   * OpenSearch domains, the snapshot is read from the site&#39;s S3 snapshot repository. For
+   * OpenSearch Serverless, the snapshot is read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -1010,7 +1025,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Snapshot Add an OpenSearch Snapshot
+   * Create site OpenSearch snapshot Creates a manual snapshot of the specified site&#39;s
+   * OpenSearch index. If the site&#39;s S3 snapshot repository does not already exist, it is
+   * registered before the snapshot is created. The supplied snapshot name is stored with the site
+   * prefix. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -1042,7 +1060,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Snapshot Add an OpenSearch Snapshot
+   * Create site OpenSearch snapshot Creates a manual snapshot of the specified site&#39;s
+   * OpenSearch index. If the site&#39;s S3 snapshot repository does not already exist, it is
+   * registered before the snapshot is created. The supplied snapshot name is stored with the site
+   * prefix. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -1076,7 +1097,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Add an OpenSearch Snapshot (asynchronously) Add an OpenSearch Snapshot
+   * Create site OpenSearch snapshot (asynchronously) Creates a manual snapshot of the specified
+   * site&#39;s OpenSearch index. If the site&#39;s S3 snapshot repository does not already exist,
+   * it is registered before the snapshot is created. The supplied snapshot name is stored with the
+   * site prefix. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2369,7 +2393,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Restore Snapshot Deletes the OpenSearch Restore Snapshot
+   * Delete restored OpenSearch snapshot index Deletes the restored OpenSearch index created from
+   * the specified snapshot. This deletes only the restored index named with the snapshot name and
+   * \&quot;_restored\&quot; suffix. It does not delete the original site index or the snapshot.
+   * This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2402,7 +2429,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Restore Snapshot Deletes the OpenSearch Restore Snapshot
+   * Delete restored OpenSearch snapshot index Deletes the restored OpenSearch index created from
+   * the specified snapshot. This deletes only the restored index named with the snapshot name and
+   * \&quot;_restored\&quot; suffix. It does not delete the original site index or the snapshot.
+   * This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2437,8 +2467,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Restore Snapshot (asynchronously) Deletes the OpenSearch Restore
-   * Snapshot
+   * Delete restored OpenSearch snapshot index (asynchronously) Deletes the restored OpenSearch
+   * index created from the specified snapshot. This deletes only the restored index named with the
+   * snapshot name and \&quot;_restored\&quot; suffix. It does not delete the original site index or
+   * the snapshot. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2569,7 +2601,9 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Deletes the OpenSearch Snapshot
+   * Delete site OpenSearch snapshot Deletes a manual snapshot from the specified site&#39;s S3
+   * snapshot repository. The supplied snapshot name is resolved to the site&#39;s stored snapshot
+   * name before deletion. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2602,7 +2636,9 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Deletes the OpenSearch Snapshot
+   * Delete site OpenSearch snapshot Deletes a manual snapshot from the specified site&#39;s S3
+   * snapshot repository. The supplied snapshot name is resolved to the site&#39;s stored snapshot
+   * name before deletion. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2637,7 +2673,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot (asynchronously) Deletes the OpenSearch Snapshot
+   * Delete site OpenSearch snapshot (asynchronously) Deletes a manual snapshot from the specified
+   * site&#39;s S3 snapshot repository. The supplied snapshot name is resolved to the site&#39;s
+   * stored snapshot name before deletion. This operation is not supported for OpenSearch
+   * Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -2758,7 +2797,9 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Repository Deletes the OpenSearch Snapshot Repository
+   * Delete site OpenSearch snapshot repository Deletes the S3 snapshot repository configured for
+   * the specified site&#39;s OpenSearch index. This removes the OpenSearch repository registration,
+   * not the site&#39;s index. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @return DeleteResponse
@@ -2790,7 +2831,9 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Repository Deletes the OpenSearch Snapshot Repository
+   * Delete site OpenSearch snapshot repository Deletes the S3 snapshot repository configured for
+   * the specified site&#39;s OpenSearch index. This removes the OpenSearch repository registration,
+   * not the site&#39;s index. This operation is not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;DeleteResponse&gt;
@@ -2822,8 +2865,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Repository (asynchronously) Deletes the OpenSearch Snapshot
-   * Repository
+   * Delete site OpenSearch snapshot repository (asynchronously) Deletes the S3 snapshot repository
+   * configured for the specified site&#39;s OpenSearch index. This removes the OpenSearch
+   * repository registration, not the site&#39;s index. This operation is not supported for
+   * OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -4697,7 +4742,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot Returns the OpenSearch Snapshot
+   * Get site OpenSearch snapshot Returns details for a snapshot of the specified site&#39;s
+   * OpenSearch index. For provisioned OpenSearch domains, the supplied snapshot name is resolved to
+   * the site&#39;s stored snapshot name before lookup. For OpenSearch Serverless, the response is
+   * read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -4731,7 +4779,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot Returns the OpenSearch Snapshot
+   * Get site OpenSearch snapshot Returns details for a snapshot of the specified site&#39;s
+   * OpenSearch index. For provisioned OpenSearch domains, the supplied snapshot name is resolved to
+   * the site&#39;s stored snapshot name before lookup. For OpenSearch Serverless, the response is
+   * read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -4765,7 +4816,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot (asynchronously) Returns the OpenSearch Snapshot
+   * Get site OpenSearch snapshot (asynchronously) Returns details for a snapshot of the specified
+   * site&#39;s OpenSearch index. For provisioned OpenSearch domains, the supplied snapshot name is
+   * resolved to the site&#39;s stored snapshot name before lookup. For OpenSearch Serverless, the
+   * response is read from the automated snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param snapshotName Snapshot Name (required)
@@ -4878,7 +4932,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repositories Returns the OpenSearch Snapshot Repositories
+   * List OpenSearch snapshot repositories Returns all configured OpenSearch S3 snapshot
+   * repositories for the deployment. This endpoint is available to administrators when the fulltext
+   * OpenSearch module is installed and snapshot support is enabled. Snapshot repositories are not
+   * supported for OpenSearch Serverless.
    * 
    * @return GetOpenSearchSnapshotRepositoryResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4909,7 +4966,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repositories Returns the OpenSearch Snapshot Repositories
+   * List OpenSearch snapshot repositories Returns all configured OpenSearch S3 snapshot
+   * repositories for the deployment. This endpoint is available to administrators when the fulltext
+   * OpenSearch module is installed and snapshot support is enabled. Snapshot repositories are not
+   * supported for OpenSearch Serverless.
    * 
    * @return ApiResponse&lt;GetOpenSearchSnapshotRepositoryResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4940,8 +5000,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repositories (asynchronously) Returns the OpenSearch Snapshot
-   * Repositories
+   * List OpenSearch snapshot repositories (asynchronously) Returns all configured OpenSearch S3
+   * snapshot repositories for the deployment. This endpoint is available to administrators when the
+   * fulltext OpenSearch module is installed and snapshot support is enabled. Snapshot repositories
+   * are not supported for OpenSearch Serverless.
    * 
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -5058,7 +5120,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repository Returns the OpenSearch Snapshot Repository
+   * Get site OpenSearch snapshot repository Returns the S3 snapshot repository configured for the
+   * specified site. The repository stores manual snapshots for the site&#39;s OpenSearch index. It
+   * is named from the site and application environment and is created automatically when a snapshot
+   * is requested. Snapshot repositories are not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @return GetOpenSearchSnapshotRepositoryResponse
@@ -5090,7 +5155,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repository Returns the OpenSearch Snapshot Repository
+   * Get site OpenSearch snapshot repository Returns the S3 snapshot repository configured for the
+   * specified site. The repository stores manual snapshots for the site&#39;s OpenSearch index. It
+   * is named from the site and application environment and is created automatically when a snapshot
+   * is requested. Snapshot repositories are not supported for OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotRepositoryResponse&gt;
@@ -5122,8 +5190,11 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repository (asynchronously) Returns the OpenSearch Snapshot
-   * Repository
+   * Get site OpenSearch snapshot repository (asynchronously) Returns the S3 snapshot repository
+   * configured for the specified site. The repository stores manual snapshots for the site&#39;s
+   * OpenSearch index. It is named from the site and application environment and is created
+   * automatically when a snapshot is requested. Snapshot repositories are not supported for
+   * OpenSearch Serverless.
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -5242,7 +5313,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshots Returns the OpenSearch Snapshots
+   * List site OpenSearch snapshots Returns snapshots for the specified site&#39;s OpenSearch index.
+   * For provisioned OpenSearch domains, the response is read from the site&#39;s S3 snapshot
+   * repository. For OpenSearch Serverless, the response is read from the automated snapshot
+   * repository.
    * 
    * @param siteId Site Identifier (required)
    * @return GetOpenSearchSnapshotResponse
@@ -5274,7 +5348,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshots Returns the OpenSearch Snapshots
+   * List site OpenSearch snapshots Returns snapshots for the specified site&#39;s OpenSearch index.
+   * For provisioned OpenSearch domains, the response is read from the site&#39;s S3 snapshot
+   * repository. For OpenSearch Serverless, the response is read from the automated snapshot
+   * repository.
    * 
    * @param siteId Site Identifier (required)
    * @return ApiResponse&lt;GetOpenSearchSnapshotResponse&gt;
@@ -5306,7 +5383,10 @@ public class SystemManagementApi {
   }
 
   /**
-   * Get site(s) OpenSearch snapshots (asynchronously) Returns the OpenSearch Snapshots
+   * List site OpenSearch snapshots (asynchronously) Returns snapshots for the specified site&#39;s
+   * OpenSearch index. For provisioned OpenSearch domains, the response is read from the site&#39;s
+   * S3 snapshot repository. For OpenSearch Serverless, the response is read from the automated
+   * snapshot repository.
    * 
    * @param siteId Site Identifier (required)
    * @param _callback The callback to be executed when the API call finishes
@@ -5898,6 +5978,344 @@ public class SystemManagementApi {
 
     okhttp3.Call localVarCall = getSitesValidateBeforeCall(status, _callback);
     Type localVarReturnType = new TypeToken<GetSitesResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSystemConfiguration
+   * 
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSystemConfigurationCall(final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/system/configuration";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSystemConfigurationValidateBeforeCall(final ApiCallback _callback)
+      throws ApiException {
+    return getSystemConfigurationCall(_callback);
+
+  }
+
+  /**
+   * Get system configuration Returns the system configuration
+   * 
+   * @return GetSystemConfigurationResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetSystemConfigurationResponse getSystemConfiguration() throws ApiException {
+    ApiResponse<GetSystemConfigurationResponse> localVarResp = getSystemConfigurationWithHttpInfo();
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get system configuration Returns the system configuration
+   * 
+   * @return ApiResponse&lt;GetSystemConfigurationResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetSystemConfigurationResponse> getSystemConfigurationWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getSystemConfigurationValidateBeforeCall(null);
+    Type localVarReturnType = new TypeToken<GetSystemConfigurationResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get system configuration (asynchronously) Returns the system configuration
+   * 
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSystemConfigurationAsync(
+      final ApiCallback<GetSystemConfigurationResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getSystemConfigurationValidateBeforeCall(_callback);
+    Type localVarReturnType = new TypeToken<GetSystemConfigurationResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getSystemInferenceModels
+   * 
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSystemInferenceModelsCall(final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/system/inferenceModels";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getSystemInferenceModelsValidateBeforeCall(final ApiCallback _callback)
+      throws ApiException {
+    return getSystemInferenceModelsCall(_callback);
+
+  }
+
+  /**
+   * Get system inference models Returns the system inference models
+   * 
+   * @return GetSystemInferenceModelsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetSystemInferenceModelsResponse getSystemInferenceModels() throws ApiException {
+    ApiResponse<GetSystemInferenceModelsResponse> localVarResp =
+        getSystemInferenceModelsWithHttpInfo();
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get system inference models Returns the system inference models
+   * 
+   * @return ApiResponse&lt;GetSystemInferenceModelsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetSystemInferenceModelsResponse> getSystemInferenceModelsWithHttpInfo()
+      throws ApiException {
+    okhttp3.Call localVarCall = getSystemInferenceModelsValidateBeforeCall(null);
+    Type localVarReturnType = new TypeToken<GetSystemInferenceModelsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get system inference models (asynchronously) Returns the system inference models
+   * 
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getSystemInferenceModelsAsync(
+      final ApiCallback<GetSystemInferenceModelsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getSystemInferenceModelsValidateBeforeCall(_callback);
+    Type localVarReturnType = new TypeToken<GetSystemInferenceModelsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -7325,6 +7743,214 @@ public class SystemManagementApi {
       final ApiCallback<UpdateResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = updateSiteValidateBeforeCall(siteId, updateSiteRequest, _callback);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for updateSystemConfiguration
+   * 
+   * @param updateSystemConfigurationRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call updateSystemConfigurationCall(
+      @javax.annotation.Nonnull UpdateSystemConfigurationRequest updateSystemConfigurationRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = updateSystemConfigurationRequest;
+
+    // create path and map variables
+    String localVarPath = "/system/configuration";
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call updateSystemConfigurationValidateBeforeCall(
+      @javax.annotation.Nonnull UpdateSystemConfigurationRequest updateSystemConfigurationRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'updateSystemConfigurationRequest' is set
+    if (updateSystemConfigurationRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'updateSystemConfigurationRequest' when calling updateSystemConfiguration(Async)");
+    }
+
+    return updateSystemConfigurationCall(updateSystemConfigurationRequest, _callback);
+
+  }
+
+  /**
+   * Update system configuration Update the system configuration
+   * 
+   * @param updateSystemConfigurationRequest (required)
+   * @return UpdateResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public UpdateResponse updateSystemConfiguration(
+      @javax.annotation.Nonnull UpdateSystemConfigurationRequest updateSystemConfigurationRequest)
+      throws ApiException {
+    ApiResponse<UpdateResponse> localVarResp =
+        updateSystemConfigurationWithHttpInfo(updateSystemConfigurationRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Update system configuration Update the system configuration
+   * 
+   * @param updateSystemConfigurationRequest (required)
+   * @return ApiResponse&lt;UpdateResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<UpdateResponse> updateSystemConfigurationWithHttpInfo(
+      @javax.annotation.Nonnull UpdateSystemConfigurationRequest updateSystemConfigurationRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        updateSystemConfigurationValidateBeforeCall(updateSystemConfigurationRequest, null);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Update system configuration (asynchronously) Update the system configuration
+   * 
+   * @param updateSystemConfigurationRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call updateSystemConfigurationAsync(
+      @javax.annotation.Nonnull UpdateSystemConfigurationRequest updateSystemConfigurationRequest,
+      final ApiCallback<UpdateResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        updateSystemConfigurationValidateBeforeCall(updateSystemConfigurationRequest, _callback);
     Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

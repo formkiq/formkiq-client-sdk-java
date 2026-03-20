@@ -47,6 +47,7 @@ import com.formkiq.client.model.GetDocumentResponse;
 import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
+import java.time.OffsetDateTime;
 import com.formkiq.client.model.SetDocumentRestoreResponse;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateDocumentRequest;
@@ -664,8 +665,7 @@ public class DocumentsApi {
    * metadata to be provided at creation time. **Content Type Detection** If the document
    * **Content-Type** is not specified during upload, the service will determine it asynchronously
    * after the upload completes. This may result in a **temporary delay** before the content type
-   * and related metadata are available. To avoid this delay, provide the **Content-Type** when
-   * uploading the document.
+   * and related metadata are available.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)
@@ -709,8 +709,7 @@ public class DocumentsApi {
    * metadata to be provided at creation time. **Content Type Detection** If the document
    * **Content-Type** is not specified during upload, the service will determine it asynchronously
    * after the upload completes. This may result in a **temporary delay** before the content type
-   * and related metadata are available. To avoid this delay, provide the **Content-Type** when
-   * uploading the document.
+   * and related metadata are available.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)
@@ -755,8 +754,7 @@ public class DocumentsApi {
    * allows document metadata to be provided at creation time. **Content Type Detection** If the
    * document **Content-Type** is not specified during upload, the service will determine it
    * asynchronously after the upload completes. This may result in a **temporary delay** before the
-   * content type and related metadata are available. To avoid this delay, provide the
-   * **Content-Type** when uploading the document.
+   * content type and related metadata are available.
    * 
    * @param addDocumentUploadRequest (required)
    * @param siteId Site Identifier (optional)
@@ -1008,6 +1006,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -1031,8 +1030,9 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean softDelete,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable Boolean softDelete, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1062,6 +1062,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (softDelete != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("softDelete", softDelete));
     }
@@ -1087,15 +1091,16 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean softDelete,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable Boolean softDelete, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling deleteDocument(Async)");
     }
 
-    return deleteDocumentCall(documentId, siteId, softDelete, _callback);
+    return deleteDocumentCall(documentId, siteId, artifactId, softDelete, _callback);
 
   }
 
@@ -1104,11 +1109,12 @@ public class DocumentsApi {
    * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
    * etc from being retrieved from all API requests. The document can be permanently deleted by
    * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?deleted&#x3D;true will return all the
-   * soft deleted documents.
+   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
+   * the soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1132,10 +1138,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public DeleteResponse deleteDocument(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean softDelete)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable Boolean softDelete) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentWithHttpInfo(documentId, siteId, softDelete);
+        deleteDocumentWithHttpInfo(documentId, siteId, artifactId, softDelete);
     return localVarResp.getData();
   }
 
@@ -1144,11 +1150,12 @@ public class DocumentsApi {
    * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
    * etc from being retrieved from all API requests. The document can be permanently deleted by
    * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?deleted&#x3D;true will return all the
-   * soft deleted documents.
+   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
+   * the soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1173,9 +1180,10 @@ public class DocumentsApi {
    */
   public ApiResponse<DeleteResponse> deleteDocumentWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable Boolean softDelete) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable Boolean softDelete)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, null);
+        deleteDocumentValidateBeforeCall(documentId, siteId, artifactId, softDelete, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1186,10 +1194,11 @@ public class DocumentsApi {
    * metadata, attributes, etc from being retrieved from all API requests. The document can be
    * permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or
    * restored using the PUT /documents/{documentId}/restore. Only the GET
-   * /documents?deleted&#x3D;true will return all the soft deleted documents.
+   * /documents?softDeleted&#x3D;true will return all the soft deleted documents.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param softDelete Whether to soft delete document (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -1213,11 +1222,12 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call deleteDocumentAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean softDelete,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable Boolean softDelete, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        deleteDocumentValidateBeforeCall(documentId, siteId, softDelete, _callback);
+        deleteDocumentValidateBeforeCall(documentId, siteId, artifactId, softDelete, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1228,6 +1238,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1251,7 +1262,8 @@ public class DocumentsApi {
    */
   public okhttp3.Call deleteDocumentCheckoutLegalHoldCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1281,6 +1293,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1303,14 +1319,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentCheckoutLegalHoldValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling deleteDocumentCheckoutLegalHold(Async)");
     }
 
-    return deleteDocumentCheckoutLegalHoldCall(documentId, siteId, _callback);
+    return deleteDocumentCheckoutLegalHoldCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -1320,6 +1337,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1342,9 +1360,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public DeleteResponse deleteDocumentCheckoutLegalHold(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentCheckoutLegalHoldWithHttpInfo(documentId, siteId);
+        deleteDocumentCheckoutLegalHoldWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1354,6 +1373,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1376,10 +1396,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<DeleteResponse> deleteDocumentCheckoutLegalHoldWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     okhttp3.Call localVarCall =
-        deleteDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, null);
+        deleteDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1390,6 +1410,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1413,10 +1434,11 @@ public class DocumentsApi {
    */
   public okhttp3.Call deleteDocumentCheckoutLegalHoldAsync(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, _callback);
+    okhttp3.Call localVarCall = deleteDocumentCheckoutLegalHoldValidateBeforeCall(documentId,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1632,6 +1654,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -1655,8 +1678,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1686,6 +1709,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -1711,15 +1738,15 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocument(Async)");
     }
 
-    return getDocumentCall(documentId, siteId, shareKey, _callback);
+    return getDocumentCall(documentId, siteId, artifactId, shareKey, _callback);
 
   }
 
@@ -1728,6 +1755,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1751,10 +1779,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentResponse getDocument(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     ApiResponse<GetDocumentResponse> localVarResp =
-        getDocumentWithHttpInfo(documentId, siteId, shareKey);
+        getDocumentWithHttpInfo(documentId, siteId, artifactId, shareKey);
     return localVarResp.getData();
   }
 
@@ -1763,6 +1791,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1787,8 +1816,10 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentResponse> getDocumentWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
-    okhttp3.Call localVarCall = getDocumentValidateBeforeCall(documentId, siteId, shareKey, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        getDocumentValidateBeforeCall(documentId, siteId, artifactId, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1798,6 +1829,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -1821,12 +1853,232 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback<GetDocumentResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback<GetDocumentResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        getDocumentValidateBeforeCall(documentId, siteId, shareKey, _callback);
+        getDocumentValidateBeforeCall(documentId, siteId, artifactId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getDocumentArtifacts
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentArtifactsCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/artifacts".replace("{" + "documentId" + "}",
+        localVarApiClient.escapeString(documentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getDocumentArtifactsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getDocumentArtifacts(Async)");
+    }
+
+    return getDocumentArtifactsCall(documentId, siteId, limit, next, _callback);
+
+  }
+
+  /**
+   * Get document artifacts Returns the list of artifact documents associated with the specified
+   * document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return GetDocumentsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetDocumentsResponse getDocumentArtifacts(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
+    ApiResponse<GetDocumentsResponse> localVarResp =
+        getDocumentArtifactsWithHttpInfo(documentId, siteId, limit, next);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get document artifacts Returns the list of artifact documents associated with the specified
+   * document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return ApiResponse&lt;GetDocumentsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetDocumentsResponse> getDocumentArtifactsWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        getDocumentArtifactsValidateBeforeCall(documentId, siteId, limit, next, null);
+    Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get document artifacts (asynchronously) Returns the list of artifact documents associated with
+   * the specified document
+   * 
+   * @param documentId Document Identifier (required)
+   * @param siteId Site Identifier (optional)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocumentArtifactsAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback<GetDocumentsResponse> _callback)
+      throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getDocumentArtifactsValidateBeforeCall(documentId, siteId, limit, next, _callback);
+    Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -1836,6 +2088,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
@@ -1861,8 +2114,9 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentContentCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1890,6 +2144,10 @@ public class DocumentsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (versionKey != null) {
@@ -1922,15 +2180,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentContentValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String versionKey,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentContent(Async)");
     }
 
-    return getDocumentContentCall(documentId, siteId, versionKey, shareKey, _callback);
+    return getDocumentContentCall(documentId, siteId, artifactId, versionKey, shareKey, _callback);
 
   }
 
@@ -1947,6 +2205,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentContentResponse
@@ -1972,10 +2231,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentContentResponse getDocumentContent(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     ApiResponse<GetDocumentContentResponse> localVarResp =
-        getDocumentContentWithHttpInfo(documentId, siteId, versionKey, shareKey);
+        getDocumentContentWithHttpInfo(documentId, siteId, artifactId, versionKey, shareKey);
     return localVarResp.getData();
   }
 
@@ -1992,6 +2252,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentContentResponse&gt;
@@ -2018,10 +2279,10 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentContentResponse> getDocumentContentWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentContentValidateBeforeCall(documentId, siteId, versionKey, shareKey, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String versionKey,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentContentValidateBeforeCall(documentId, siteId, artifactId,
+        versionKey, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentContentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2039,6 +2300,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
@@ -2064,12 +2326,12 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentContentAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable String shareKey,
       final ApiCallback<GetDocumentContentResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentContentValidateBeforeCall(documentId, siteId, versionKey, shareKey, _callback);
+    okhttp3.Call localVarCall = getDocumentContentValidateBeforeCall(documentId, siteId, artifactId,
+        versionKey, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentContentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -2080,6 +2342,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param checksumType Checksum Type (optional)
    * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
@@ -2107,10 +2370,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentIdUploadCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String checksumType,
-      @javax.annotation.Nullable String checksum, @javax.annotation.Nullable Integer contentLength,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String checksumType, @javax.annotation.Nullable String checksum,
+      @javax.annotation.Nullable Integer contentLength, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -2138,6 +2401,10 @@ public class DocumentsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (checksumType != null) {
@@ -2182,17 +2449,18 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentIdUploadValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String checksumType, @javax.annotation.Nullable String checksum,
-      @javax.annotation.Nullable Integer contentLength, @javax.annotation.Nullable Integer duration,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String checksumType,
+      @javax.annotation.Nullable String checksum, @javax.annotation.Nullable Integer contentLength,
+      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentIdUpload(Async)");
     }
 
-    return getDocumentIdUploadCall(documentId, siteId, checksumType, checksum, contentLength,
-        duration, shareKey, _callback);
+    return getDocumentIdUploadCall(documentId, siteId, artifactId, checksumType, checksum,
+        contentLength, duration, shareKey, _callback);
 
   }
 
@@ -2203,6 +2471,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param checksumType Checksum Type (optional)
    * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
@@ -2230,12 +2499,12 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentUrlResponse getDocumentIdUpload(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String checksumType,
-      @javax.annotation.Nullable String checksum, @javax.annotation.Nullable Integer contentLength,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String checksumType, @javax.annotation.Nullable String checksum,
+      @javax.annotation.Nullable Integer contentLength, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentIdUploadWithHttpInfo(documentId,
-        siteId, checksumType, checksum, contentLength, duration, shareKey);
+        siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey);
     return localVarResp.getData();
   }
 
@@ -2246,6 +2515,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param checksumType Checksum Type (optional)
    * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
@@ -2274,11 +2544,12 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentUrlResponse> getDocumentIdUploadWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String checksumType, @javax.annotation.Nullable String checksum,
-      @javax.annotation.Nullable Integer contentLength, @javax.annotation.Nullable Integer duration,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String checksumType,
+      @javax.annotation.Nullable String checksum, @javax.annotation.Nullable Integer contentLength,
+      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     okhttp3.Call localVarCall = getDocumentIdUploadValidateBeforeCall(documentId, siteId,
-        checksumType, checksum, contentLength, duration, shareKey, null);
+        artifactId, checksumType, checksum, contentLength, duration, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -2290,6 +2561,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param checksumType Checksum Type (optional)
    * @param checksum Checksum value (optional)
    * @param contentLength Indicates the size of the entity-body (optional)
@@ -2317,13 +2589,14 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentIdUploadAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String checksumType,
-      @javax.annotation.Nullable String checksum, @javax.annotation.Nullable Integer contentLength,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String checksumType, @javax.annotation.Nullable String checksum,
+      @javax.annotation.Nullable Integer contentLength, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey,
       final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = getDocumentIdUploadValidateBeforeCall(documentId, siteId,
-        checksumType, checksum, contentLength, duration, shareKey, _callback);
+        artifactId, checksumType, checksum, contentLength, duration, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -2801,12 +3074,15 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
+   * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
+   *        Module (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -2829,9 +3105,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentUrlCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable Boolean inline, @javax.annotation.Nullable Boolean bypassWatermark,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Boolean inline,
+      @javax.annotation.Nullable Boolean bypassWatermark, @javax.annotation.Nullable String format,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -2862,6 +3139,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (versionKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("versionKey", versionKey));
     }
@@ -2881,6 +3162,10 @@ public class DocumentsApi {
     if (bypassWatermark != null) {
       localVarQueryParams
           .addAll(localVarApiClient.parameterToPair("bypassWatermark", bypassWatermark));
+    }
+
+    if (format != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
     }
 
     final String[] localVarAccepts = {"application/json"};
@@ -2904,9 +3189,10 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentUrlValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable Boolean inline, @javax.annotation.Nullable Boolean bypassWatermark,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Boolean inline,
+      @javax.annotation.Nullable Boolean bypassWatermark, @javax.annotation.Nullable String format,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -2914,8 +3200,8 @@ public class DocumentsApi {
           "Missing the required parameter 'documentId' when calling getDocumentUrl(Async)");
     }
 
-    return getDocumentUrlCall(documentId, siteId, versionKey, duration, shareKey, inline,
-        bypassWatermark, _callback);
+    return getDocumentUrlCall(documentId, siteId, artifactId, versionKey, duration, shareKey,
+        inline, bypassWatermark, format, _callback);
 
   }
 
@@ -2925,12 +3211,15 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
+   * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
+   *        Module (optional)
    * @return GetDocumentUrlResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2953,12 +3242,13 @@ public class DocumentsApi {
    *                        </table>
    */
   public GetDocumentUrlResponse getDocumentUrl(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable Boolean inline, @javax.annotation.Nullable Boolean bypassWatermark)
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Boolean inline,
+      @javax.annotation.Nullable Boolean bypassWatermark, @javax.annotation.Nullable String format)
       throws ApiException {
     ApiResponse<GetDocumentUrlResponse> localVarResp = getDocumentUrlWithHttpInfo(documentId,
-        siteId, versionKey, duration, shareKey, inline, bypassWatermark);
+        siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format);
     return localVarResp.getData();
   }
 
@@ -2968,12 +3258,15 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
+   * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
+   *        Module (optional)
    * @return ApiResponse&lt;GetDocumentUrlResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -2997,11 +3290,12 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentUrlResponse> getDocumentUrlWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable Integer duration,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Boolean inline,
-      @javax.annotation.Nullable Boolean bypassWatermark) throws ApiException {
-    okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, versionKey,
-        duration, shareKey, inline, bypassWatermark, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String versionKey,
+      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable Boolean inline, @javax.annotation.Nullable Boolean bypassWatermark,
+      @javax.annotation.Nullable String format) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, artifactId,
+        versionKey, duration, shareKey, inline, bypassWatermark, format, null);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -3012,12 +3306,15 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
    * @param inline Set the Content-Disposition to inline (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
+   * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
+   *        Module (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3040,13 +3337,14 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentUrlAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String versionKey,
-      @javax.annotation.Nullable Integer duration, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable Boolean inline, @javax.annotation.Nullable Boolean bypassWatermark,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String versionKey, @javax.annotation.Nullable Integer duration,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable Boolean inline,
+      @javax.annotation.Nullable Boolean bypassWatermark, @javax.annotation.Nullable String format,
       final ApiCallback<GetDocumentUrlResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, versionKey,
-        duration, shareKey, inline, bypassWatermark, _callback);
+    okhttp3.Call localVarCall = getDocumentUrlValidateBeforeCall(documentId, siteId, artifactId,
+        versionKey, duration, shareKey, inline, bypassWatermark, format, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentUrlResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -3058,9 +3356,13 @@ public class DocumentsApi {
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
    * @param syncStatus Fetch documents with an sync status (optional)
-   * @param deleted Fetch soft deleted documents (optional)
+   * @param softDeleted Fetch soft deleted documents (optional)
+   * @param deleted Deprecated: use softDeleted. Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
    * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
@@ -3089,10 +3391,13 @@ public class DocumentsApi {
    */
   public okhttp3.Call getDocumentsCall(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
-      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
-      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
-      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable Boolean softDeleted, @javax.annotation.Nullable Boolean deleted,
+      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3129,6 +3434,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("syncStatus", syncStatus));
     }
 
+    if (softDeleted != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("softDeleted", softDeleted));
+    }
+
     if (deleted != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("deleted", deleted));
     }
@@ -3139,6 +3448,18 @@ public class DocumentsApi {
 
     if (tz != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("tz", tz));
+    }
+
+    if (start != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("start", start));
+    }
+
+    if (end != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("end", end));
+    }
+
+    if (sort != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
     }
 
     if (next != null) {
@@ -3179,12 +3500,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentsValidateBeforeCall(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
-      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
-      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
-      @javax.annotation.Nullable String limit, final ApiCallback _callback) throws ApiException {
-    return getDocumentsCall(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous,
-        projection, limit, _callback);
+      @javax.annotation.Nullable Boolean softDeleted, @javax.annotation.Nullable Boolean deleted,
+      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit,
+      final ApiCallback _callback) throws ApiException {
+    return getDocumentsCall(siteId, actionStatus, syncStatus, softDeleted, deleted, date, tz, start,
+        end, sort, next, previous, projection, limit, _callback);
 
   }
 
@@ -3195,9 +3519,13 @@ public class DocumentsApi {
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
    * @param syncStatus Fetch documents with an sync status (optional)
-   * @param deleted Fetch soft deleted documents (optional)
+   * @param softDeleted Fetch soft deleted documents (optional)
+   * @param deleted Deprecated: use softDeleted. Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
    * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
@@ -3226,12 +3554,16 @@ public class DocumentsApi {
    */
   public GetDocumentsResponse getDocuments(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
-      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
-      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
-      @javax.annotation.Nullable String limit) throws ApiException {
-    ApiResponse<GetDocumentsResponse> localVarResp = getDocumentsWithHttpInfo(siteId, actionStatus,
-        syncStatus, deleted, date, tz, next, previous, projection, limit);
+      @javax.annotation.Nullable Boolean softDeleted, @javax.annotation.Nullable Boolean deleted,
+      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit)
+      throws ApiException {
+    ApiResponse<GetDocumentsResponse> localVarResp =
+        getDocumentsWithHttpInfo(siteId, actionStatus, syncStatus, softDeleted, deleted, date, tz,
+            start, end, sort, next, previous, projection, limit);
     return localVarResp.getData();
   }
 
@@ -3242,9 +3574,13 @@ public class DocumentsApi {
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
    * @param syncStatus Fetch documents with an sync status (optional)
-   * @param deleted Fetch soft deleted documents (optional)
+   * @param softDeleted Fetch soft deleted documents (optional)
+   * @param deleted Deprecated: use softDeleted. Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
    * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
@@ -3273,13 +3609,15 @@ public class DocumentsApi {
    */
   public ApiResponse<GetDocumentsResponse> getDocumentsWithHttpInfo(
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String actionStatus,
-      @javax.annotation.Nullable String syncStatus, @javax.annotation.Nullable Boolean deleted,
-      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable String syncStatus, @javax.annotation.Nullable Boolean softDeleted,
+      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
+      @javax.annotation.Nullable String tz, @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
       @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
       @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit)
       throws ApiException {
     okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
-        deleted, date, tz, next, previous, projection, limit, null);
+        softDeleted, deleted, date, tz, start, end, sort, next, previous, projection, limit, null);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -3291,9 +3629,13 @@ public class DocumentsApi {
    * @param siteId Site Identifier (optional)
    * @param actionStatus Fetch documents with an action status (optional)
    * @param syncStatus Fetch documents with an sync status (optional)
-   * @param deleted Fetch soft deleted documents (optional)
+   * @param softDeleted Fetch soft deleted documents (optional)
+   * @param deleted Deprecated: use softDeleted. Fetch soft deleted documents (optional)
    * @param date Fetch documents inserted on a certain date (yyyy-MM-dd) (optional)
    * @param tz UTC offset to apply to date parameter (IE: -0600) (optional)
+   * @param start Start of date-time range (UTC) (optional)
+   * @param end End of date-time range (UTC) (optional)
+   * @param sort Sort order (default DESC) (optional)
    * @param next Next page of results token (optional)
    * @param previous Previous page of results token (optional)
    * @param projection Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to
@@ -3322,14 +3664,17 @@ public class DocumentsApi {
    */
   public okhttp3.Call getDocumentsAsync(@javax.annotation.Nullable String siteId,
       @javax.annotation.Nullable String actionStatus, @javax.annotation.Nullable String syncStatus,
-      @javax.annotation.Nullable Boolean deleted, @javax.annotation.Nullable String date,
-      @javax.annotation.Nullable String tz, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, @javax.annotation.Nullable String projection,
-      @javax.annotation.Nullable String limit, final ApiCallback<GetDocumentsResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable Boolean softDeleted, @javax.annotation.Nullable Boolean deleted,
+      @javax.annotation.Nullable String date, @javax.annotation.Nullable String tz,
+      @javax.annotation.Nullable OffsetDateTime start,
+      @javax.annotation.Nullable OffsetDateTime end, @javax.annotation.Nullable String sort,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String projection, @javax.annotation.Nullable String limit,
+      final ApiCallback<GetDocumentsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus,
-        deleted, date, tz, next, previous, projection, limit, _callback);
+    okhttp3.Call localVarCall =
+        getDocumentsValidateBeforeCall(siteId, actionStatus, syncStatus, softDeleted, deleted, date,
+            tz, start, end, sort, next, previous, projection, limit, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -3531,6 +3876,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -3553,7 +3899,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call purgeDocumentCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3583,6 +3930,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -3604,14 +3955,15 @@ public class DocumentsApi {
 
   @SuppressWarnings("rawtypes")
   private okhttp3.Call purgeDocumentValidateBeforeCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling purgeDocument(Async)");
     }
 
-    return purgeDocumentCall(documentId, siteId, _callback);
+    return purgeDocumentCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -3622,6 +3974,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -3644,8 +3997,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public DeleteResponse purgeDocument(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<DeleteResponse> localVarResp = purgeDocumentWithHttpInfo(documentId, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp =
+        purgeDocumentWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -3656,6 +4011,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -3678,9 +4034,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<DeleteResponse> purgeDocumentWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = purgeDocumentValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        purgeDocumentValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -3693,6 +4050,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3715,10 +4073,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call purgeDocumentAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<DeleteResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = purgeDocumentValidateBeforeCall(documentId, siteId, _callback);
+    okhttp3.Call localVarCall =
+        purgeDocumentValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -3729,6 +4088,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -3751,7 +4111,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentCheckoutCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3781,6 +4142,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -3803,14 +4168,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setDocumentCheckoutValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling setDocumentCheckout(Async)");
     }
 
-    return setDocumentCheckoutCall(documentId, siteId, _callback);
+    return setDocumentCheckoutCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -3820,6 +4186,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -3842,8 +4209,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public SetResponse setDocumentCheckout(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<SetResponse> localVarResp = setDocumentCheckoutWithHttpInfo(documentId, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setDocumentCheckoutWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -3853,6 +4222,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -3875,9 +4245,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<SetResponse> setDocumentCheckoutWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = setDocumentCheckoutValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        setDocumentCheckoutValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -3889,6 +4260,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3911,11 +4283,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentCheckoutAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        setDocumentCheckoutValidateBeforeCall(documentId, siteId, _callback);
+        setDocumentCheckoutValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -3926,6 +4298,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -3948,7 +4321,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentCheckoutLegalHoldCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -3978,6 +4352,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -4000,14 +4378,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setDocumentCheckoutLegalHoldValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling setDocumentCheckoutLegalHold(Async)");
     }
 
-    return setDocumentCheckoutLegalHoldCall(documentId, siteId, _callback);
+    return setDocumentCheckoutLegalHoldCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -4018,6 +4397,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4040,9 +4420,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public SetResponse setDocumentCheckoutLegalHold(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<SetResponse> localVarResp =
-        setDocumentCheckoutLegalHoldWithHttpInfo(documentId, siteId);
+        setDocumentCheckoutLegalHoldWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -4053,6 +4434,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4075,10 +4457,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<SetResponse> setDocumentCheckoutLegalHoldWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     okhttp3.Call localVarCall =
-        setDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, null);
+        setDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4090,6 +4472,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4112,11 +4495,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentCheckoutLegalHoldAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        setDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, _callback);
+        setDocumentCheckoutLegalHoldValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -4127,6 +4510,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -4149,7 +4533,8 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentRestoreCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4179,6 +4564,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -4201,14 +4590,15 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setDocumentRestoreValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling setDocumentRestore(Async)");
     }
 
-    return setDocumentRestoreCall(documentId, siteId, _callback);
+    return setDocumentRestoreCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -4217,6 +4607,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetDocumentRestoreResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4239,9 +4630,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public SetDocumentRestoreResponse setDocumentRestore(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<SetDocumentRestoreResponse> localVarResp =
-        setDocumentRestoreWithHttpInfo(documentId, siteId);
+        setDocumentRestoreWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -4250,6 +4642,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetDocumentRestoreResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -4272,9 +4665,10 @@ public class DocumentsApi {
    *                        </table>
    */
   public ApiResponse<SetDocumentRestoreResponse> setDocumentRestoreWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = setDocumentRestoreValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        setDocumentRestoreValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetDocumentRestoreResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4284,6 +4678,7 @@ public class DocumentsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4306,10 +4701,11 @@ public class DocumentsApi {
    *                        </table>
    */
   public okhttp3.Call setDocumentRestoreAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<SetDocumentRestoreResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = setDocumentRestoreValidateBeforeCall(documentId, siteId, _callback);
+    okhttp3.Call localVarCall =
+        setDocumentRestoreValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetDocumentRestoreResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -4321,6 +4717,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -4350,8 +4747,8 @@ public class DocumentsApi {
    */
   public okhttp3.Call updateDocumentCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull UpdateDocumentRequest updateDocumentRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -4381,6 +4778,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -4407,8 +4808,8 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call updateDocumentValidateBeforeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull UpdateDocumentRequest updateDocumentRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -4421,7 +4822,8 @@ public class DocumentsApi {
           "Missing the required parameter 'updateDocumentRequest' when calling updateDocument(Async)");
     }
 
-    return updateDocumentCall(documentId, updateDocumentRequest, siteId, shareKey, _callback);
+    return updateDocumentCall(documentId, updateDocumentRequest, siteId, artifactId, shareKey,
+        _callback);
 
   }
 
@@ -4434,6 +4836,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return AddDocumentResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4463,10 +4866,10 @@ public class DocumentsApi {
    */
   public AddDocumentResponse updateDocument(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull UpdateDocumentRequest updateDocumentRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     ApiResponse<AddDocumentResponse> localVarResp =
-        updateDocumentWithHttpInfo(documentId, updateDocumentRequest, siteId, shareKey);
+        updateDocumentWithHttpInfo(documentId, updateDocumentRequest, siteId, artifactId, shareKey);
     return localVarResp.getData();
   }
 
@@ -4479,6 +4882,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;AddDocumentResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4509,10 +4913,10 @@ public class DocumentsApi {
   public ApiResponse<AddDocumentResponse> updateDocumentWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull UpdateDocumentRequest updateDocumentRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        updateDocumentValidateBeforeCall(documentId, updateDocumentRequest, siteId, shareKey, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
+    okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, updateDocumentRequest,
+        siteId, artifactId, shareKey, null);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -4526,6 +4930,7 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param updateDocumentRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -4555,11 +4960,12 @@ public class DocumentsApi {
    */
   public okhttp3.Call updateDocumentAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull UpdateDocumentRequest updateDocumentRequest,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback<AddDocumentResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback<AddDocumentResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = updateDocumentValidateBeforeCall(documentId, updateDocumentRequest,
-        siteId, shareKey, _callback);
+        siteId, artifactId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

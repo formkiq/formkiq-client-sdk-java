@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.MappingAttribute;
+import com.formkiq.client.model.MappingClassification;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -69,6 +70,14 @@ public class AddMappingTest {
   @Test
   public void attributesTest() {
     // TODO: test attributes
+  }
+
+  /**
+   * Test the property 'classifications'
+   */
+  @Test
+  public void classificationsTest() {
+    // TODO: test classifications
   }
 
 }

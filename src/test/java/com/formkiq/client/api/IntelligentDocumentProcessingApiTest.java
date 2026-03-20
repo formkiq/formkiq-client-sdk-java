@@ -21,7 +21,10 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocumentAiPromptRequest;
+import com.formkiq.client.model.AddDocumentAiResponse;
 import com.formkiq.client.model.AddDocumentMetadataExtractionResponse;
+import com.formkiq.client.model.GetDocumentAiPromptResultsResponse;
 import com.formkiq.client.model.GetDocumentDataClassificationResponse;
 import com.formkiq.client.model.GetDocumentMetadataExtractionResponse;
 import com.formkiq.client.model.SetDocumentDataClassificationRequest;
@@ -43,10 +46,30 @@ public class IntelligentDocumentProcessingApiTest {
   private final IntelligentDocumentProcessingApi api = new IntelligentDocumentProcessingApi();
 
   /**
+   * Add document AI result from LLM prompt
+   *
+   * Run an LLM prompt against a document; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocumentAiPromptTest() throws ApiException {
+    String documentId = null;
+    String llmPromptEntityName = null;
+    String siteId = null;
+    String artifactId = null;
+    AddDocumentAiPromptRequest addDocumentAiPromptRequest = null;
+    AddDocumentAiResponse response = api.addDocumentAiPrompt(documentId, llmPromptEntityName,
+        siteId, artifactId, addDocumentAiPromptRequest);
+    // TODO: test validations
+  }
+
+  /**
    * Add document&#39;s metadata extraction result
    *
    * Create a document Metadatq Extraction Result attributes within a document; available as an
-   * Add-On Module
+   * Add-On Module. **Deprecated**. This endpoint is no longer recommended. Please use
+   * **&#x60;/documents/{documentId}/ai/prompts/{llmPromptEntityName}&#x60;** instead.
    *
    * @throws ApiException if the Api call fails
    */
@@ -55,15 +78,18 @@ public class IntelligentDocumentProcessingApiTest {
     String documentId = null;
     String llmPromptEntityName = null;
     String siteId = null;
-    AddDocumentMetadataExtractionResponse response =
-        api.addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId);
+    String artifactId = null;
+    AddDocumentMetadataExtractionResponse response = api
+        .addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId, artifactId);
     // TODO: test validations
   }
 
   /**
    * Get all document&#39;s metadata extraction results
    *
-   * Retrieve all document&#39;s metadata extraction; available as an Add-On Module
+   * Retrieve all document&#39;s metadata extraction; available as an Add-On Module. **Deprecated**.
+   * This endpoint is no longer recommended. Please use
+   * **&#x60;/documents/{documentId}/ai/prompts/{llmPromptEntityName}&#x60;** instead.
    *
    * @throws ApiException if the Api call fails
    */
@@ -71,17 +97,40 @@ public class IntelligentDocumentProcessingApiTest {
   public void getAllDocumentMetadataExtractionResultsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
     GetDocumentMetadataExtractionResponse response =
-        api.getAllDocumentMetadataExtractionResults(documentId, siteId, limit, next);
+        api.getAllDocumentMetadataExtractionResults(documentId, siteId, artifactId, limit, next);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document AI results from LLM prompt
+   *
+   * Retrieve document AI results from an LLM prompt; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentAiPromptResultsTest() throws ApiException {
+    String documentId = null;
+    String llmPromptEntityName = null;
+    String siteId = null;
+    String artifactId = null;
+    String limit = null;
+    String next = null;
+    GetDocumentAiPromptResultsResponse response = api.getDocumentAiPromptResults(documentId,
+        llmPromptEntityName, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
   /**
    * Get document&#39;s data classification
    *
-   * Retrieve an document&#39;s data classification; available as an Add-On Module
+   * Retrieve an document&#39;s data classification; available as an Add-On Module. **Deprecated**.
+   * This endpoint is no longer recommended. Please use
+   * **&#x60;/documents/{documentId}/ai/prompts/{llmPromptEntityName}&#x60;** instead.
    *
    * @throws ApiException if the Api call fails
    */
@@ -89,17 +138,20 @@ public class IntelligentDocumentProcessingApiTest {
   public void getDocumentDataClassificationTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
     GetDocumentDataClassificationResponse response =
-        api.getDocumentDataClassification(documentId, siteId, limit, next);
+        api.getDocumentDataClassification(documentId, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
   /**
    * Get document&#39;s metadata extraction results
    *
-   * Retrieve an document&#39;s metadata extraction; available as an Add-On Module
+   * Retrieve an document&#39;s metadata extraction; available as an Add-On Module. **Deprecated**.
+   * This endpoint is no longer recommended. Please use
+   * **&#x60;/documents/{documentId}/ai/prompts/{llmPromptEntityName}&#x60;** instead.
    *
    * @throws ApiException if the Api call fails
    */
@@ -108,17 +160,20 @@ public class IntelligentDocumentProcessingApiTest {
     String documentId = null;
     String llmPromptEntityName = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
-    GetDocumentMetadataExtractionResponse response = api
-        .getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, limit, next);
+    GetDocumentMetadataExtractionResponse response = api.getDocumentMetadataExtractionResults(
+        documentId, llmPromptEntityName, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
   /**
    * Set document&#39;s data classification
    *
-   * Generate Data Classfication attributes within a document; available as an Add-On Module
+   * Generate Data Classfication attributes within a document; available as an Add-On Module.
+   * **Deprecated**. This endpoint is no longer recommended. Please use
+   * **&#x60;/documents/{documentId}/ai/prompts/{llmPromptEntityName}&#x60;** instead.
    *
    * @throws ApiException if the Api call fails
    */
@@ -126,9 +181,10 @@ public class IntelligentDocumentProcessingApiTest {
   public void setDocumentDataClassificationTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     SetDocumentDataClassificationRequest setDocumentDataClassificationRequest = null;
-    SetDocumentDataClassificationResponse response =
-        api.setDocumentDataClassification(documentId, siteId, setDocumentDataClassificationRequest);
+    SetDocumentDataClassificationResponse response = api.setDocumentDataClassification(documentId,
+        siteId, artifactId, setDocumentDataClassificationRequest);
     // TODO: test validations
   }
 

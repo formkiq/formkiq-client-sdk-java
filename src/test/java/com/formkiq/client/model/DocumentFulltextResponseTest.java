@@ -48,6 +48,14 @@ public class DocumentFulltextResponseTest {
   }
 
   /**
+   * Test the property 'totalCount'
+   */
+  @Test
+  public void totalCountTest() {
+    // TODO: test totalCount
+  }
+
+  /**
    * Test the property 'documents'
    */
   @Test

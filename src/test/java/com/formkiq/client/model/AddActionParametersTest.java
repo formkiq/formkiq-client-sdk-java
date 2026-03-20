@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DeleteType;
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
 import com.formkiq.client.model.TextractQuery;
@@ -104,6 +105,14 @@ public class AddActionParametersTest {
   @Test
   public void llmPromptEntityNameTest() {
     // TODO: test llmPromptEntityName
+  }
+
+  /**
+   * Test the property 'modelId'
+   */
+  @Test
+  public void modelIdTest() {
+    // TODO: test modelId
   }
 
   /**
@@ -232,6 +241,14 @@ public class AddActionParametersTest {
   @Test
   public void pathTest() {
     // TODO: test path
+  }
+
+  /**
+   * Test the property 'deleteType'
+   */
+  @Test
+  public void deleteTypeTest() {
+    // TODO: test deleteType
   }
 
   /**

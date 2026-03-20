@@ -282,6 +282,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteDocumentCheckoutLegalHold**](docs/DocumentsApi.md#deleteDocumentCheckoutLegalHold) | **DELETE** /documents/{documentId}/legalHold | Delete document legal hold checkout
 *DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
+*DocumentsApi* | [**getDocumentArtifacts**](docs/DocumentsApi.md#getDocumentArtifacts) | **GET** /documents/{documentId}/artifacts | Get document artifacts
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
 *DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs
@@ -310,8 +311,10 @@ Class | Method | HTTP request | Description
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
 *GoogleIntegrationApi* | [**addGoogleDocumentExport**](docs/GoogleIntegrationApi.md#addGoogleDocumentExport) | **POST** /integrations/google/drive/documents/{documentId}/export | Add Google Document Export
+*IntelligentDocumentProcessingApi* | [**addDocumentAiPrompt**](docs/IntelligentDocumentProcessingApi.md#addDocumentAiPrompt) | **POST** /documents/{documentId}/ai/prompts/{llmPromptEntityName} | Add document AI result from LLM prompt
 *IntelligentDocumentProcessingApi* | [**addDocumentMetadataExtractionResult**](docs/IntelligentDocumentProcessingApi.md#addDocumentMetadataExtractionResult) | **POST** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Add document&#39;s metadata extraction result
 *IntelligentDocumentProcessingApi* | [**getAllDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getAllDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults | Get all document&#39;s metadata extraction results
+*IntelligentDocumentProcessingApi* | [**getDocumentAiPromptResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentAiPromptResults) | **GET** /documents/{documentId}/ai/prompts/{llmPromptEntityName} | Get document AI results from LLM prompt
 *IntelligentDocumentProcessingApi* | [**getDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#getDocumentDataClassification) | **GET** /documents/{documentId}/dataClassification | Get document&#39;s data classification
 *IntelligentDocumentProcessingApi* | [**getDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Get document&#39;s metadata extraction results
 *IntelligentDocumentProcessingApi* | [**setDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#setDocumentDataClassification) | **PUT** /documents/{documentId}/dataClassification | Set document&#39;s data classification
@@ -345,20 +348,21 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**getSitesSchemaAttributeAllowedValues**](docs/SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
+*ShortlinksApi* | [**addShortlink**](docs/ShortlinksApi.md#addShortlink) | **POST** /shortlinks | Add shortlink
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**addLocale**](docs/SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale
 *SystemManagementApi* | [**addLocaleResourceItem**](docs/SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item
-*SystemManagementApi* | [**addOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Add an OpenSearch Restore Snapshot
-*SystemManagementApi* | [**addOpenSearchSnapshot**](docs/SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Add an OpenSearch Snapshot
+*SystemManagementApi* | [**addOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Restore site OpenSearch snapshot
+*SystemManagementApi* | [**addOpenSearchSnapshot**](docs/SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Create site OpenSearch snapshot
 *SystemManagementApi* | [**addSite**](docs/SystemManagementApi.md#addSite) | **POST** /sites | Add Site
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**deleteLocale**](docs/SystemManagementApi.md#deleteLocale) | **DELETE** /sites/{siteId}/locales/{locale} | Delete Locale
 *SystemManagementApi* | [**deleteLocaleResourceItem**](docs/SystemManagementApi.md#deleteLocaleResourceItem) | **DELETE** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Delete Local Resource Item
 *SystemManagementApi* | [**deleteOpenSearchIndex**](docs/SystemManagementApi.md#deleteOpenSearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index
 *SystemManagementApi* | [**deleteOpenSearchIndexByName**](docs/SystemManagementApi.md#deleteOpenSearchIndexByName) | **DELETE** /sites/global/opensearch/indices/{indexName} | Deletes OpenSearch index by name
-*SystemManagementApi* | [**deleteOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchRestoreSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Deletes site(s) OpenSearch Restore Snapshot
-*SystemManagementApi* | [**deleteOpenSearchSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Deletes site(s) OpenSearch Snapshot
-*SystemManagementApi* | [**deleteOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepository | Deletes site(s) OpenSearch Snapshot Repository
+*SystemManagementApi* | [**deleteOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchRestoreSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Delete restored OpenSearch snapshot index
+*SystemManagementApi* | [**deleteOpenSearchSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Delete site OpenSearch snapshot
+*SystemManagementApi* | [**deleteOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepository | Delete site OpenSearch snapshot repository
 *SystemManagementApi* | [**deleteSiteGroup**](docs/SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions
 *SystemManagementApi* | [**getAllOpenSearchIndices**](docs/SystemManagementApi.md#getAllOpenSearchIndices) | **GET** /sites/global/opensearch/indices | Get all OpenSearch indices
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
@@ -368,13 +372,15 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**getLocales**](docs/SystemManagementApi.md#getLocales) | **GET** /sites/{siteId}/locales | Get Locales
 *SystemManagementApi* | [**getOpenSearchIndex**](docs/SystemManagementApi.md#getOpenSearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
 *SystemManagementApi* | [**getOpenSearchIndices**](docs/SystemManagementApi.md#getOpenSearchIndices) | **GET** /sites/{siteId}/opensearch/indices | Get site(s) OpenSearch indices
-*SystemManagementApi* | [**getOpenSearchSnapshot**](docs/SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site(s) OpenSearch snapshot
-*SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | Get site(s) OpenSearch snapshot repositories
-*SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site(s) OpenSearch snapshot repository
-*SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | Get site(s) OpenSearch snapshots
+*SystemManagementApi* | [**getOpenSearchSnapshot**](docs/SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site OpenSearch snapshot
+*SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | List OpenSearch snapshot repositories
+*SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site OpenSearch snapshot repository
+*SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | List site OpenSearch snapshots
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
+*SystemManagementApi* | [**getSystemConfiguration**](docs/SystemManagementApi.md#getSystemConfiguration) | **GET** /system/configuration | Get system configuration
+*SystemManagementApi* | [**getSystemInferenceModels**](docs/SystemManagementApi.md#getSystemInferenceModels) | **GET** /system/inferenceModels | Get system inference models
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
 *SystemManagementApi* | [**setLocaleResourceItem**](docs/SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item
 *SystemManagementApi* | [**setOpenSearchIndex**](docs/SystemManagementApi.md#setOpenSearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
@@ -382,6 +388,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
+*SystemManagementApi* | [**updateSystemConfiguration**](docs/SystemManagementApi.md#updateSystemConfiguration) | **PATCH** /system/configuration | Update system configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getResourceActivities**](docs/UserActivitiesApi.md#getResourceActivities) | **GET** /activities | Get resource activities
@@ -430,9 +437,13 @@ Class | Method | HTTP request | Description
  - [AddClassificationRequest](docs/AddClassificationRequest.md)
  - [AddClassificationResponse](docs/AddClassificationResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
+ - [AddDocumentAiPromptRequest](docs/AddDocumentAiPromptRequest.md)
+ - [AddDocumentAiResponse](docs/AddDocumentAiResponse.md)
  - [AddDocumentAttribute](docs/AddDocumentAttribute.md)
  - [AddDocumentAttributeClassification](docs/AddDocumentAttributeClassification.md)
+ - [AddDocumentAttributeEntities](docs/AddDocumentAttributeEntities.md)
  - [AddDocumentAttributeEntity](docs/AddDocumentAttributeEntity.md)
+ - [AddDocumentAttributeEntityValue](docs/AddDocumentAttributeEntityValue.md)
  - [AddDocumentAttributeRelationship](docs/AddDocumentAttributeRelationship.md)
  - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
  - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
@@ -503,6 +514,8 @@ Class | Method | HTTP request | Description
  - [AddRulesetRequest](docs/AddRulesetRequest.md)
  - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
+ - [AddShortlinkRequest](docs/AddShortlinkRequest.md)
+ - [AddShortlinkResponse](docs/AddShortlinkResponse.md)
  - [AddSite](docs/AddSite.md)
  - [AddSiteRequest](docs/AddSiteRequest.md)
  - [AddTask](docs/AddTask.md)
@@ -549,16 +562,24 @@ Class | Method | HTTP request | Description
  - [DeleteRuleResponse](docs/DeleteRuleResponse.md)
  - [DeleteRulesetResponse](docs/DeleteRulesetResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
+ - [DeleteType](docs/DeleteType.md)
  - [Document](docs/Document.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
+ - [DocumentAiPromptResult](docs/DocumentAiPromptResult.md)
+ - [DocumentAiPromptResultAttribute](docs/DocumentAiPromptResultAttribute.md)
+ - [DocumentAiPromptResultType](docs/DocumentAiPromptResultType.md)
+ - [DocumentAiPromptValue](docs/DocumentAiPromptValue.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
  - [DocumentCertification](docs/DocumentCertification.md)
- - [DocumentCertificationParameterStore](docs/DocumentCertificationParameterStore.md)
+ - [DocumentCertificationAwsSecretsManager](docs/DocumentCertificationAwsSecretsManager.md)
  - [DocumentCertificationTarget](docs/DocumentCertificationTarget.md)
+ - [DocumentCertificationType](docs/DocumentCertificationType.md)
  - [DocumentConfig](docs/DocumentConfig.md)
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
+ - [DocumentConfigDispositionAction](docs/DocumentConfigDispositionAction.md)
+ - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
@@ -630,6 +651,7 @@ Class | Method | HTTP request | Description
  - [GetClassificationsResponse](docs/GetClassificationsResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
+ - [GetDocumentAiPromptResultsResponse](docs/GetDocumentAiPromptResultsResponse.md)
  - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
  - [GetDocumentAttributesResponse](docs/GetDocumentAttributesResponse.md)
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
@@ -679,6 +701,8 @@ Class | Method | HTTP request | Description
  - [GetSiteGroupsResponse](docs/GetSiteGroupsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetSitesSchemaResponse](docs/GetSitesSchemaResponse.md)
+ - [GetSystemConfigurationResponse](docs/GetSystemConfigurationResponse.md)
+ - [GetSystemInferenceModelsResponse](docs/GetSystemInferenceModelsResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
  - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
@@ -708,9 +732,22 @@ Class | Method | HTTP request | Description
  - [MalwareScanStatus](docs/MalwareScanStatus.md)
  - [Mapping](docs/Mapping.md)
  - [MappingAttribute](docs/MappingAttribute.md)
+ - [MappingAttributeContent](docs/MappingAttributeContent.md)
+ - [MappingAttributeDataClassification](docs/MappingAttributeDataClassification.md)
  - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)
+ - [MappingAttributeMalwareScan](docs/MappingAttributeMalwareScan.md)
+ - [MappingAttributeManual](docs/MappingAttributeManual.md)
+ - [MappingAttributeMetadata](docs/MappingAttributeMetadata.md)
+ - [MappingAttributeMetadataExtractionResult](docs/MappingAttributeMetadataExtractionResult.md)
  - [MappingAttributeMetadataField](docs/MappingAttributeMetadataField.md)
  - [MappingAttributeSourceType](docs/MappingAttributeSourceType.md)
+ - [MappingClassification](docs/MappingClassification.md)
+ - [MappingClassificationCondition](docs/MappingClassificationCondition.md)
+ - [MappingClassificationConditionContent](docs/MappingClassificationConditionContent.md)
+ - [MappingClassificationConditionDataClassification](docs/MappingClassificationConditionDataClassification.md)
+ - [MappingClassificationConditionMatchingType](docs/MappingClassificationConditionMatchingType.md)
+ - [MappingClassificationConditionMetadataExtractionResult](docs/MappingClassificationConditionMetadataExtractionResult.md)
+ - [MappingClassificationConditionSourceType](docs/MappingClassificationConditionSourceType.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [MetadataExtraction](docs/MetadataExtraction.md)
  - [MetadataExtractionAttribute](docs/MetadataExtractionAttribute.md)
@@ -792,10 +829,14 @@ Class | Method | HTTP request | Description
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
+ - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
+ - [SystemConfigurationWebUi](docs/SystemConfigurationWebUi.md)
+ - [SystemInferenceModel](docs/SystemInferenceModel.md)
+ - [SystemInferenceModelInvocation](docs/SystemInferenceModelInvocation.md)
  - [Task](docs/Task.md)
  - [TaskStatus](docs/TaskStatus.md)
  - [TextractQuery](docs/TextractQuery.md)
@@ -826,6 +867,7 @@ Class | Method | HTTP request | Description
  - [UpdateRulesetResponse](docs/UpdateRulesetResponse.md)
  - [UpdateSite](docs/UpdateSite.md)
  - [UpdateSiteRequest](docs/UpdateSiteRequest.md)
+ - [UpdateSystemConfigurationRequest](docs/UpdateSystemConfigurationRequest.md)
  - [UpdateTask](docs/UpdateTask.md)
  - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
  - [UpdateTaskResponse](docs/UpdateTaskResponse.md)

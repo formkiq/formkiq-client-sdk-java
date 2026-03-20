@@ -20,45 +20,87 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.SystemInferenceModelInvocation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentCertificationParameterStore
+ * Model tests for SystemInferenceModel
  */
-public class DocumentCertificationParameterStoreTest {
-  private final DocumentCertificationParameterStore model =
-      new DocumentCertificationParameterStore();
+public class SystemInferenceModelTest {
+  private final SystemInferenceModel model = new SystemInferenceModel();
 
   /**
-   * Model tests for DocumentCertificationParameterStore
+   * Model tests for SystemInferenceModel
    */
   @Test
-  public void testDocumentCertificationParameterStore() {
-    // TODO: test DocumentCertificationParameterStore
+  public void testSystemInferenceModel() {
+    // TODO: test SystemInferenceModel
   }
 
   /**
-   * Test the property 'pkcs12BundleParam'
+   * Test the property 'name'
    */
   @Test
-  public void pkcs12BundleParamTest() {
-    // TODO: test pkcs12BundleParam
+  public void nameTest() {
+    // TODO: test name
   }
 
   /**
-   * Test the property 'pkcs12PasswordParam'
+   * Test the property 'defaultModelId'
    */
   @Test
-  public void pkcs12PasswordParamTest() {
-    // TODO: test pkcs12PasswordParam
+  public void defaultModelIdTest() {
+    // TODO: test defaultModelId
+  }
+
+  /**
+   * Test the property 'agreementAvailability'
+   */
+  @Test
+  public void agreementAvailabilityTest() {
+    // TODO: test agreementAvailability
+  }
+
+  /**
+   * Test the property 'authorizationStatus'
+   */
+  @Test
+  public void authorizationStatusTest() {
+    // TODO: test authorizationStatus
+  }
+
+  /**
+   * Test the property 'entitlementAvailability'
+   */
+  @Test
+  public void entitlementAvailabilityTest() {
+    // TODO: test entitlementAvailability
+  }
+
+  /**
+   * Test the property 'regionAvailability'
+   */
+  @Test
+  public void regionAvailabilityTest() {
+    // TODO: test regionAvailability
+  }
+
+  /**
+   * Test the property 'modelInvocations'
+   */
+  @Test
+  public void modelInvocationsTest() {
+    // TODO: test modelInvocations
   }
 
 }

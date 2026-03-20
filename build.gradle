@@ -3,15 +3,12 @@ import com.vanniktech.maven.publish.SonatypeHost
 plugins {
     id 'java'
     id 'com.vanniktech.maven.publish' version '0.32.0'
-    id 'com.diffplug.spotless' version '6.12.0'
+    id 'com.diffplug.spotless' version '8.4.0'
     id 'com.github.ben-manes.versions' version '0.44.0'
 }
 
 group = 'com.formkiq'
 version = '1.19.0-SNAPSHOT'
-
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenLocal()
@@ -44,9 +41,16 @@ dependencies {
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 11
+}
+
+test {
+    useJUnitPlatform()
 }
 
 mavenPublishing {

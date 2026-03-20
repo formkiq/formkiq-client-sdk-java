@@ -122,6 +122,14 @@ public class ActivityTest {
   }
 
   /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
+  /**
    * Test the property 'attributeKey'
    */
   @Test
@@ -199,6 +207,30 @@ public class ActivityTest {
   @Test
   public void workflowIdTest() {
     // TODO: test workflowId
+  }
+
+  /**
+   * Test the property 'queueId'
+   */
+  @Test
+  public void queueIdTest() {
+    // TODO: test queueId
+  }
+
+  /**
+   * Test the property 'webhookId'
+   */
+  @Test
+  public void webhookIdTest() {
+    // TODO: test webhookId
+  }
+
+  /**
+   * Test the property 'locale'
+   */
+  @Test
+  public void localeTest() {
+    // TODO: test locale
   }
 
   /**

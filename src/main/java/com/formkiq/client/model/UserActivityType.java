@@ -52,7 +52,9 @@ public enum UserActivityType {
 
   NEW_VERSION("NEW_VERSION"),
 
-  UPDATE_VERSION("UPDATE_VERSION");
+  UPDATE_VERSION("UPDATE_VERSION"),
+
+  SSO_TOKEN_GRANT("SSO_TOKEN_GRANT");
 
   private String value;
 

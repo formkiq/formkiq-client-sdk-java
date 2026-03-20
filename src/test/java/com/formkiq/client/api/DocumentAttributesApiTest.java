@@ -58,8 +58,9 @@ public class DocumentAttributesApiTest {
     String documentId = null;
     AddDocumentAttributesRequest addDocumentAttributesRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddResponse response =
-        api.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId);
+        api.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -75,7 +76,9 @@ public class DocumentAttributesApiTest {
     String documentId = null;
     String attributeKey = null;
     String siteId = null;
-    DeleteResponse response = api.deleteDocumentAttribute(documentId, attributeKey, siteId);
+    String artifactId = null;
+    DeleteResponse response =
+        api.deleteDocumentAttribute(documentId, attributeKey, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -93,8 +96,9 @@ public class DocumentAttributesApiTest {
     String attributeKey = null;
     String attributeValue = null;
     String siteId = null;
-    DeleteResponse response =
-        api.deleteDocumentAttributeAndValue(documentId, attributeKey, attributeValue, siteId);
+    String artifactId = null;
+    DeleteResponse response = api.deleteDocumentAttributeAndValue(documentId, attributeKey,
+        attributeValue, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -110,8 +114,9 @@ public class DocumentAttributesApiTest {
     String documentId = null;
     String attributeKey = null;
     String siteId = null;
+    String artifactId = null;
     GetDocumentAttributeResponse response =
-        api.getDocumentAttribute(documentId, attributeKey, siteId);
+        api.getDocumentAttribute(documentId, attributeKey, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -126,10 +131,11 @@ public class DocumentAttributesApiTest {
   public void getDocumentAttributesTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
     GetDocumentAttributesResponse response =
-        api.getDocumentAttributes(documentId, siteId, limit, next);
+        api.getDocumentAttributes(documentId, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
@@ -146,8 +152,9 @@ public class DocumentAttributesApiTest {
     String attributeKey = null;
     SetDocumentAttributeRequest setDocumentAttributeRequest = null;
     String siteId = null;
+    String artifactId = null;
     SetResponse response = api.setDocumentAttributeValue(documentId, attributeKey,
-        setDocumentAttributeRequest, siteId);
+        setDocumentAttributeRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -165,8 +172,9 @@ public class DocumentAttributesApiTest {
     String documentId = null;
     SetDocumentAttributesRequest setDocumentAttributesRequest = null;
     String siteId = null;
+    String artifactId = null;
     SetResponse response =
-        api.setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId);
+        api.setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId, artifactId);
     // TODO: test validations
   }
 

@@ -20,6 +20,7 @@
 |**entityTypeId** | **String** | EntityType Identifier or Entity Type Name |  |
 |**entityId** | **String** | Entity Identifier |  |
 |**namespace** | **EntityTypeNamespace** |  |  [optional] |
+|**entities** | [**List&lt;AddDocumentAttributeEntityValue&gt;**](AddDocumentAttributeEntityValue.md) | Attribute with entity values |  |
 
 
 
