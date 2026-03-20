@@ -65,8 +65,8 @@ import com.formkiq.client.invoker.JSON;
  * SearchResultDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class SearchResultDocument {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -127,6 +127,11 @@ public class SearchResultDocument {
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String artifactId;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -425,6 +430,26 @@ public class SearchResultDocument {
   }
 
 
+  public SearchResultDocument artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Document Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+  }
+
+
   public SearchResultDocument contentType(@javax.annotation.Nullable String contentType) {
     this.contentType = contentType;
     return this;
@@ -707,6 +732,7 @@ public class SearchResultDocument {
         && Objects.equals(this.checksum, searchResultDocument.checksum)
         && Objects.equals(this.checksumType, searchResultDocument.checksumType)
         && Objects.equals(this.documentId, searchResultDocument.documentId)
+        && Objects.equals(this.artifactId, searchResultDocument.artifactId)
         && Objects.equals(this.contentType, searchResultDocument.contentType)
         && Objects.equals(this.userId, searchResultDocument.userId)
         && Objects.equals(this.contentLength, searchResultDocument.contentLength)
@@ -723,9 +749,9 @@ public class SearchResultDocument {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, width, height, deepLinkPath, insertedDate, lastModifiedDate,
-        folder, indexKey, checksum, checksumType, documentId, contentType, userId, contentLength,
-        versionId, belongsToDocumentId, matchedAttribute, matchedTag, matchedTags, tags, attributes,
-        metadata);
+        folder, indexKey, checksum, checksumType, documentId, artifactId, contentType, userId,
+        contentLength, versionId, belongsToDocumentId, matchedAttribute, matchedTag, matchedTags,
+        tags, attributes, metadata);
   }
 
   @Override
@@ -744,6 +770,7 @@ public class SearchResultDocument {
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
     sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
@@ -764,10 +791,7 @@ public class SearchResultDocument {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -776,11 +800,11 @@ public class SearchResultDocument {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("siteId", "path", "width", "height", "deepLinkPath", "insertedDate",
-            "lastModifiedDate", "folder", "indexKey", "checksum", "checksumType", "documentId",
-            "contentType", "userId", "contentLength", "versionId", "belongsToDocumentId",
-            "matchedAttribute", "matchedTag", "matchedTags", "tags", "attributes", "metadata"));
+    openapiFields = new HashSet<String>(Arrays.asList("siteId", "path", "width", "height",
+        "deepLinkPath", "insertedDate", "lastModifiedDate", "folder", "indexKey", "checksum",
+        "checksumType", "documentId", "artifactId", "contentType", "userId", "contentLength",
+        "versionId", "belongsToDocumentId", "matchedAttribute", "matchedTag", "matchedTags", "tags",
+        "attributes", "metadata"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -875,6 +899,12 @@ public class SearchResultDocument {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("artifactId") != null && !jsonObj.get("artifactId").isJsonNull())
+        && !jsonObj.get("artifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactId").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {

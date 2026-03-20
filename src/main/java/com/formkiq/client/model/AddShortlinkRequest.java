@@ -53,63 +53,61 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentCertificationParameterStore
+ * AddShortlinkRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
-public class DocumentCertificationParameterStore {
-  public static final String SERIALIZED_NAME_PKCS12_BUNDLE_PARAM = "pkcs12BundleParam";
-  @SerializedName(SERIALIZED_NAME_PKCS12_BUNDLE_PARAM)
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
+public class AddShortlinkRequest {
+  public static final String SERIALIZED_NAME_TARGET_URL = "targetUrl";
+  @SerializedName(SERIALIZED_NAME_TARGET_URL)
   @javax.annotation.Nonnull
-  private String pkcs12BundleParam;
+  private String targetUrl;
 
-  public static final String SERIALIZED_NAME_PKCS12_PASSWORD_PARAM = "pkcs12PasswordParam";
-  @SerializedName(SERIALIZED_NAME_PKCS12_PASSWORD_PARAM)
+  public static final String SERIALIZED_NAME_SLUG = "slug";
+  @SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nonnull
-  private String pkcs12PasswordParam;
+  private String slug;
 
-  public DocumentCertificationParameterStore() {}
+  public AddShortlinkRequest() {}
 
-  public DocumentCertificationParameterStore pkcs12BundleParam(
-      @javax.annotation.Nonnull String pkcs12BundleParam) {
-    this.pkcs12BundleParam = pkcs12BundleParam;
+  public AddShortlinkRequest targetUrl(@javax.annotation.Nonnull String targetUrl) {
+    this.targetUrl = targetUrl;
     return this;
   }
 
   /**
-   * SSM Parameter Store Key containing the PKCS#12/PFX bundle.
+   * Target URL for the shortlink
    * 
-   * @return pkcs12BundleParam
+   * @return targetUrl
    */
   @javax.annotation.Nonnull
-  public String getPkcs12BundleParam() {
-    return pkcs12BundleParam;
+  public String getTargetUrl() {
+    return targetUrl;
   }
 
-  public void setPkcs12BundleParam(@javax.annotation.Nonnull String pkcs12BundleParam) {
-    this.pkcs12BundleParam = pkcs12BundleParam;
+  public void setTargetUrl(@javax.annotation.Nonnull String targetUrl) {
+    this.targetUrl = targetUrl;
   }
 
 
-  public DocumentCertificationParameterStore pkcs12PasswordParam(
-      @javax.annotation.Nonnull String pkcs12PasswordParam) {
-    this.pkcs12PasswordParam = pkcs12PasswordParam;
+  public AddShortlinkRequest slug(@javax.annotation.Nonnull String slug) {
+    this.slug = slug;
     return this;
   }
 
   /**
-   * SSM Parameter Store Key containing the PKCS#12/PFX password.
+   * Shortlink slug
    * 
-   * @return pkcs12PasswordParam
+   * @return slug
    */
   @javax.annotation.Nonnull
-  public String getPkcs12PasswordParam() {
-    return pkcs12PasswordParam;
+  public String getSlug() {
+    return slug;
   }
 
-  public void setPkcs12PasswordParam(@javax.annotation.Nonnull String pkcs12PasswordParam) {
-    this.pkcs12PasswordParam = pkcs12PasswordParam;
+  public void setSlug(@javax.annotation.Nonnull String slug) {
+    this.slug = slug;
   }
 
 
@@ -122,26 +120,22 @@ public class DocumentCertificationParameterStore {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentCertificationParameterStore documentCertificationParameterStore =
-        (DocumentCertificationParameterStore) o;
-    return Objects.equals(this.pkcs12BundleParam,
-        documentCertificationParameterStore.pkcs12BundleParam)
-        && Objects.equals(this.pkcs12PasswordParam,
-            documentCertificationParameterStore.pkcs12PasswordParam);
+    AddShortlinkRequest addShortlinkRequest = (AddShortlinkRequest) o;
+    return Objects.equals(this.targetUrl, addShortlinkRequest.targetUrl)
+        && Objects.equals(this.slug, addShortlinkRequest.slug);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pkcs12BundleParam, pkcs12PasswordParam);
+    return Objects.hash(targetUrl, slug);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DocumentCertificationParameterStore {\n");
-    sb.append("    pkcs12BundleParam: ").append(toIndentedString(pkcs12BundleParam)).append("\n");
-    sb.append("    pkcs12PasswordParam: ").append(toIndentedString(pkcs12PasswordParam))
-        .append("\n");
+    sb.append("class AddShortlinkRequest {\n");
+    sb.append("    targetUrl: ").append(toIndentedString(targetUrl)).append("\n");
+    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -150,10 +144,7 @@ public class DocumentCertificationParameterStore {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -162,43 +153,40 @@ public class DocumentCertificationParameterStore {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("pkcs12BundleParam", "pkcs12PasswordParam"));
+    openapiFields = new HashSet<String>(Arrays.asList("targetUrl", "slug"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields =
-        new HashSet<String>(Arrays.asList("pkcs12BundleParam", "pkcs12PasswordParam"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("targetUrl", "slug"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to
-   *         DocumentCertificationParameterStore
+   * @throws IOException if the JSON Element is invalid with respect to AddShortlinkRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!DocumentCertificationParameterStore.openapiRequiredFields.isEmpty()) { // has required
-                                                                                  // fields but JSON
-                                                                                  // element is null
+      if (!AddShortlinkRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON
+                                                                  // element is null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in DocumentCertificationParameterStore is not found in the empty JSON string",
-            DocumentCertificationParameterStore.openapiRequiredFields.toString()));
+            "The required field(s) %s in AddShortlinkRequest is not found in the empty JSON string",
+            AddShortlinkRequest.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!DocumentCertificationParameterStore.openapiFields.contains(entry.getKey())) {
+      if (!AddShortlinkRequest.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `DocumentCertificationParameterStore` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `AddShortlinkRequest` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
 
     // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentCertificationParameterStore.openapiRequiredFields) {
+    for (String requiredField : AddShortlinkRequest.openapiRequiredFields) {
       if (jsonElement.getAsJsonObject().get(requiredField) == null) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
             "The required field `%s` is not found in the JSON string: %s", requiredField,
@@ -206,15 +194,15 @@ public class DocumentCertificationParameterStore {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if (!jsonObj.get("pkcs12BundleParam").isJsonPrimitive()) {
+    if (!jsonObj.get("targetUrl").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `pkcs12BundleParam` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("pkcs12BundleParam").toString()));
+          "Expected the field `targetUrl` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("targetUrl").toString()));
     }
-    if (!jsonObj.get("pkcs12PasswordParam").isJsonPrimitive()) {
+    if (!jsonObj.get("slug").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `pkcs12PasswordParam` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("pkcs12PasswordParam").toString()));
+          "Expected the field `slug` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("slug").toString()));
     }
   }
 
@@ -222,24 +210,22 @@ public class DocumentCertificationParameterStore {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!DocumentCertificationParameterStore.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'DocumentCertificationParameterStore' and its
-                     // subtypes
+      if (!AddShortlinkRequest.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'AddShortlinkRequest' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<DocumentCertificationParameterStore> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(DocumentCertificationParameterStore.class));
+      final TypeAdapter<AddShortlinkRequest> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(AddShortlinkRequest.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<DocumentCertificationParameterStore>() {
+      return (TypeAdapter<T>) new TypeAdapter<AddShortlinkRequest>() {
         @Override
-        public void write(JsonWriter out, DocumentCertificationParameterStore value)
-            throws IOException {
+        public void write(JsonWriter out, AddShortlinkRequest value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public DocumentCertificationParameterStore read(JsonReader in) throws IOException {
+        public AddShortlinkRequest read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -250,19 +236,18 @@ public class DocumentCertificationParameterStore {
   }
 
   /**
-   * Create an instance of DocumentCertificationParameterStore given an JSON string
+   * Create an instance of AddShortlinkRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DocumentCertificationParameterStore
-   * @throws IOException if the JSON string is invalid with respect to
-   *         DocumentCertificationParameterStore
+   * @return An instance of AddShortlinkRequest
+   * @throws IOException if the JSON string is invalid with respect to AddShortlinkRequest
    */
-  public static DocumentCertificationParameterStore fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DocumentCertificationParameterStore.class);
+  public static AddShortlinkRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AddShortlinkRequest.class);
   }
 
   /**
-   * Convert an instance of DocumentCertificationParameterStore to an JSON string
+   * Convert an instance of AddShortlinkRequest to an JSON string
    *
    * @return JSON string
    */

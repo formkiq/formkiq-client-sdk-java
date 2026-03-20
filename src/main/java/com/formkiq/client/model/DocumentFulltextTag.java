@@ -58,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextTag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class DocumentFulltextTag {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -181,10 +181,7 @@ public class DocumentFulltextTag {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

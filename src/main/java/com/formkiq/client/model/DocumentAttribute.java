@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.AttributeValueType;
+import com.formkiq.client.model.Entity;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class DocumentAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -107,6 +108,11 @@ public class DocumentAttribute {
   @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
   @javax.annotation.Nullable
   private AttributeValueType valueType;
+
+  public static final String SERIALIZED_NAME_ENTITY = "entity";
+  @SerializedName(SERIALIZED_NAME_ENTITY)
+  @javax.annotation.Nullable
+  private Entity entity;
 
   public DocumentAttribute() {}
 
@@ -306,6 +312,26 @@ public class DocumentAttribute {
   }
 
 
+  public DocumentAttribute entity(@javax.annotation.Nullable Entity entity) {
+    this.entity = entity;
+    return this;
+  }
+
+  /**
+   * Get entity
+   * 
+   * @return entity
+   */
+  @javax.annotation.Nullable
+  public Entity getEntity() {
+    return entity;
+  }
+
+  public void setEntity(@javax.annotation.Nullable Entity entity) {
+    this.entity = entity;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -324,13 +350,14 @@ public class DocumentAttribute {
         && Objects.equals(this.booleanValue, documentAttribute.booleanValue)
         && Objects.equals(this.insertedDate, documentAttribute.insertedDate)
         && Objects.equals(this.userId, documentAttribute.userId)
-        && Objects.equals(this.valueType, documentAttribute.valueType);
+        && Objects.equals(this.valueType, documentAttribute.valueType)
+        && Objects.equals(this.entity, documentAttribute.entity);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(key, stringValue, stringValues, numberValue, numberValues, booleanValue,
-        insertedDate, userId, valueType);
+        insertedDate, userId, valueType, entity);
   }
 
   @Override
@@ -346,6 +373,7 @@ public class DocumentAttribute {
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
+    sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -354,10 +382,7 @@ public class DocumentAttribute {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -366,8 +391,9 @@ public class DocumentAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("key", "stringValue", "stringValues",
-        "numberValue", "numberValues", "booleanValue", "insertedDate", "userId", "valueType"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("key", "stringValue", "stringValues", "numberValue",
+            "numberValues", "booleanValue", "insertedDate", "userId", "valueType", "entity"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -440,6 +466,10 @@ public class DocumentAttribute {
     // validate the optional field `valueType`
     if (jsonObj.get("valueType") != null && !jsonObj.get("valueType").isJsonNull()) {
       AttributeValueType.validateJsonElement(jsonObj.get("valueType"));
+    }
+    // validate the optional field `entity`
+    if (jsonObj.get("entity") != null && !jsonObj.get("entity").isJsonNull()) {
+      Entity.validateJsonElement(jsonObj.get("entity"));
     }
   }
 

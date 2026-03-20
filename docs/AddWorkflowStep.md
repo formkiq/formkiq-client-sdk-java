@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**stepId** | **String** | Workflow Step Identifier |  [optional] |
+|**description** | **String** | Workflow Step description |  [optional] |
 |**action** | [**AddAction**](AddAction.md) |  |  [optional] |
 |**queue** | [**AddWorkflowStepQueue**](AddWorkflowStepQueue.md) |  |  [optional] |
 |**mappings** | [**List&lt;WorkflowStepMapping&gt;**](WorkflowStepMapping.md) |  |  [optional] |

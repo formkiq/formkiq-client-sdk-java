@@ -51,10 +51,11 @@ public class UserActivitiesApiTest {
   public void getDocumentUserActivitiesTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String next = null;
     String limit = null;
     GetUserActivitesResponse response =
-        api.getDocumentUserActivities(documentId, siteId, next, limit);
+        api.getDocumentUserActivities(documentId, siteId, artifactId, next, limit);
     // TODO: test validations
   }
 
@@ -69,6 +70,7 @@ public class UserActivitiesApiTest {
   public void getResourceActivitiesTest() throws ApiException {
     String siteId = null;
     String documentId = null;
+    String artifactId = null;
     String entityTypeId = null;
     String namespace = null;
     String entityId = null;
@@ -87,9 +89,9 @@ public class UserActivitiesApiTest {
     String next = null;
     String limit = null;
     String userId = null;
-    GetActivitesResponse response = api.getResourceActivities(siteId, documentId, entityTypeId,
-        namespace, entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId,
-        mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId);
+    GetActivitesResponse response = api.getResourceActivities(siteId, documentId, artifactId,
+        entityTypeId, namespace, entityId, rulesetId, ruleId, workflowId, attributeKey, schema,
+        classificationId, mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId);
     // TODO: test validations
   }
 

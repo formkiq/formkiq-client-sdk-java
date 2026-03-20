@@ -87,6 +87,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentActionsRequest (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -115,7 +116,7 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentActionsCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest,
       final ApiCallback _callback) throws ApiException {
     String basePath = null;
@@ -147,6 +148,10 @@ public class DocumentActionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -169,6 +174,7 @@ public class DocumentActionsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addDocumentActionsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest,
       final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
@@ -177,7 +183,8 @@ public class DocumentActionsApi {
           "Missing the required parameter 'documentId' when calling addDocumentActions(Async)");
     }
 
-    return addDocumentActionsCall(documentId, siteId, addDocumentActionsRequest, _callback);
+    return addDocumentActionsCall(documentId, siteId, artifactId, addDocumentActionsRequest,
+        _callback);
 
   }
 
@@ -193,24 +200,26 @@ public class DocumentActionsApi {
    * pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert
    * images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt
    * Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM
-   * | checksumType | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256
-   * | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1
-   * | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
-   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
-   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
-   * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
-   * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
-   * email@yourdomain.com | | NOTIFICATION | notificationSubject | Notification Subject | Email
-   * Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text | |
-   * NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE | queueId |
-   * Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName | The name
-   * or ARN of the Amazon EventBridge to receive the event. | | | RESIZE | width | The width of the
-   * image to resize (or &#39;auto&#39;). | | | RESIZE | height | The height of the image to resize
-   * (or &#39;auto&#39;). | | | RESIZE | outputType | The output type of the image (optional). | | |
-   * RESIZE | path | The path to use when creating resized document (optional). | |
+   * | checksumType | Checksum algorithm to calculate and persist for the document | SHA1, SHA256,
+   * or SHA512 | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
+   * destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
+   * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
+   * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
+   * notificationType | Type of Notification | email | | NOTIFICATION | notificationToCc |
+   * Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationToBcc |
+   * Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationSubject |
+   * Notification Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text
+   * | Email Text | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | |
+   * QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE |
+   * eventBusName | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE |
+   * width | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE | height | The
+   * height of the image to resize (or &#39;auto&#39;). | | | RESIZE | outputType | The output type
+   * of the image (optional). | | | RESIZE | path | The path to use when creating resized document
+   * (optional). | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentActionsRequest (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -239,11 +248,11 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public AddResponse addDocumentActions(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest)
       throws ApiException {
     ApiResponse<AddResponse> localVarResp =
-        addDocumentActionsWithHttpInfo(documentId, siteId, addDocumentActionsRequest);
+        addDocumentActionsWithHttpInfo(documentId, siteId, artifactId, addDocumentActionsRequest);
     return localVarResp.getData();
   }
 
@@ -259,24 +268,26 @@ public class DocumentActionsApi {
    * pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert
    * images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt
    * Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM
-   * | checksumType | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256
-   * | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext destination | -1
-   * | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
-   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
-   * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
-   * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
-   * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
-   * email@yourdomain.com | | NOTIFICATION | notificationSubject | Notification Subject | Email
-   * Subject | | NOTIFICATION | notificationText | Notification as Text | Email Text | |
-   * NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | | QUEUE | queueId |
-   * Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE | eventBusName | The name
-   * or ARN of the Amazon EventBridge to receive the event. | | | RESIZE | width | The width of the
-   * image to resize (or &#39;auto&#39;). | | | RESIZE | height | The height of the image to resize
-   * (or &#39;auto&#39;). | | | RESIZE | outputType | The output type of the image (optional). | | |
-   * RESIZE | path | The path to use when creating resized document (optional). | |
+   * | checksumType | Checksum algorithm to calculate and persist for the document | SHA1, SHA256,
+   * or SHA512 | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
+   * destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
+   * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
+   * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
+   * notificationType | Type of Notification | email | | NOTIFICATION | notificationToCc |
+   * Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationToBcc |
+   * Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION | notificationSubject |
+   * Notification Subject | Email Subject | | NOTIFICATION | notificationText | Notification as Text
+   * | Email Text | | NOTIFICATION | notificationHtml | Notification as Html | Email HTML Text | |
+   * QUEUE | queueId | Id of Queue | | | IDP | mappingId | Id of Mapping | | | EVENTBRIDGE |
+   * eventBusName | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE |
+   * width | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE | height | The
+   * height of the image to resize (or &#39;auto&#39;). | | | RESIZE | outputType | The output type
+   * of the image (optional). | | | RESIZE | path | The path to use when creating resized document
+   * (optional). | |
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentActionsRequest (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -306,10 +317,11 @@ public class DocumentActionsApi {
    */
   public ApiResponse<AddResponse> addDocumentActionsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest)
       throws ApiException {
-    okhttp3.Call localVarCall =
-        addDocumentActionsValidateBeforeCall(documentId, siteId, addDocumentActionsRequest, null);
+    okhttp3.Call localVarCall = addDocumentActionsValidateBeforeCall(documentId, siteId, artifactId,
+        addDocumentActionsRequest, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -326,8 +338,8 @@ public class DocumentActionsApi {
    * of pages to OCR (from start) | -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents
    * convert images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM
    * Prompt Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | |
-   * CHECKSUM | checksumType | Checksum algorithm to calculate and persist for the document | SHA1
-   * or SHA256 | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
+   * CHECKSUM | checksumType | Checksum algorithm to calculate and persist for the document | SHA1,
+   * SHA256, or SHA512 | | FULLTEXT | characterMax | Maximum number of characters to add to Fulltext
    * destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | |
    * DOCUMENTTAGGING | tags | Comma-deliminted list of keywords | author,title,description | |
    * WEBHOOK | url | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION |
@@ -345,6 +357,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param addDocumentActionsRequest (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -373,11 +386,11 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentActionsAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       @javax.annotation.Nullable AddDocumentActionsRequest addDocumentActionsRequest,
       final ApiCallback<AddResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = addDocumentActionsValidateBeforeCall(documentId, siteId,
+    okhttp3.Call localVarCall = addDocumentActionsValidateBeforeCall(documentId, siteId, artifactId,
         addDocumentActionsRequest, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
@@ -389,6 +402,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -416,7 +430,8 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentRetryActionCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -446,6 +461,10 @@ public class DocumentActionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -468,14 +487,15 @@ public class DocumentActionsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call addDocumentRetryActionValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling addDocumentRetryAction(Async)");
     }
 
-    return addDocumentRetryActionCall(documentId, siteId, _callback);
+    return addDocumentRetryActionCall(documentId, siteId, artifactId, _callback);
 
   }
 
@@ -485,6 +505,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -512,8 +533,10 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public AddResponse addDocumentRetryAction(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<AddResponse> localVarResp = addDocumentRetryActionWithHttpInfo(documentId, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<AddResponse> localVarResp =
+        addDocumentRetryActionWithHttpInfo(documentId, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -523,6 +546,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -550,9 +574,10 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public ApiResponse<AddResponse> addDocumentRetryActionWithHttpInfo(
-      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId)
-      throws ApiException {
-    okhttp3.Call localVarCall = addDocumentRetryActionValidateBeforeCall(documentId, siteId, null);
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
+    okhttp3.Call localVarCall =
+        addDocumentRetryActionValidateBeforeCall(documentId, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -564,6 +589,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -591,11 +617,11 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call addDocumentRetryActionAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall =
-        addDocumentRetryActionValidateBeforeCall(documentId, siteId, _callback);
+        addDocumentRetryActionValidateBeforeCall(documentId, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -606,6 +632,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -631,9 +658,9 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentActionsCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -661,6 +688,10 @@ public class DocumentActionsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (limit != null) {
@@ -697,15 +728,16 @@ public class DocumentActionsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentActionsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentActions(Async)");
     }
 
-    return getDocumentActionsCall(documentId, siteId, limit, shareKey, next, _callback);
+    return getDocumentActionsCall(documentId, siteId, artifactId, limit, shareKey, next, _callback);
 
   }
 
@@ -714,6 +746,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -739,11 +772,11 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public GetDocumentActionsResponse getDocumentActions(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next) throws ApiException {
     ApiResponse<GetDocumentActionsResponse> localVarResp =
-        getDocumentActionsWithHttpInfo(documentId, siteId, limit, shareKey, next);
+        getDocumentActionsWithHttpInfo(documentId, siteId, artifactId, limit, shareKey, next);
     return localVarResp.getData();
   }
 
@@ -752,6 +785,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -778,10 +812,11 @@ public class DocumentActionsApi {
    */
   public ApiResponse<GetDocumentActionsResponse> getDocumentActionsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next) throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentActionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next)
+      throws ApiException {
+    okhttp3.Call localVarCall = getDocumentActionsValidateBeforeCall(documentId, siteId, artifactId,
+        limit, shareKey, next, null);
     Type localVarReturnType = new TypeToken<GetDocumentActionsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -791,6 +826,7 @@ public class DocumentActionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -816,12 +852,13 @@ public class DocumentActionsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentActionsAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next,
       final ApiCallback<GetDocumentActionsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentActionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, _callback);
+    okhttp3.Call localVarCall = getDocumentActionsValidateBeforeCall(documentId, siteId, artifactId,
+        limit, shareKey, next, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentActionsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

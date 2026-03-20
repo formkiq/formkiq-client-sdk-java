@@ -13,7 +13,7 @@
 |**ocrOutputType** | **OcrOutputType** |  |  [optional] |
 |**ocrNumberOfPages** | **String** | Number of pages to OCR (from start) (-1 all) |  [optional] |
 |**addPdfDetectedCharactersAsText** | **String** | OCR: For the rewriting of the PDF document, converting any image text to searchable text |  [optional] |
-|**llmPromptEntityName** | **String** | DATA_CLASSIFICATION / METADATA_EXTRACTION: Set the LLM Prompt Entity Name |  [optional] |
+|**llmPromptEntityName** | **String** | DATA_CLASSIFICATION: Set the LLM Prompt Entity Name |  [optional] |
 |**url** | **String** | Webhook: Callback URL |  [optional] |
 |**characterMax** | **String** | Fulltext: Maximum number of characters (-1 unlimited, Typesense defaults to 2048 characters) |  [optional] |
 |**engine** | [**EngineEnum**](#EngineEnum) | DocumentTagging: Engine to use for document tagging generation |  [optional] |
@@ -29,7 +29,8 @@
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**width** | **String** | The width of the image to resize (or &#39;auto&#39;) |  [optional] |
 |**height** | **String** | The height of the image to resize (or &#39;auto&#39;) |  [optional] |
-|**path** | **String** | The path to use when creating resized document (optional) |  [optional] |
+|**path** | **String** | MOVE: Destination folder path, must end with &#39;/&#39;; RESIZE: Path to use when creating resized document (optional) |  [optional] |
+|**deleteType** | **DeleteType** |  |  [optional] |
 |**outputType** | **String** | The output type of the image |  [optional] |
 
 

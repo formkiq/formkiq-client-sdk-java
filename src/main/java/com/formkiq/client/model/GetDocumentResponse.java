@@ -61,9 +61,14 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class GetDocumentResponse {
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String artifactId;
+
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
   @javax.annotation.Nullable
@@ -150,6 +155,26 @@ public class GetDocumentResponse {
   private List<DocumentMetadata> metadata = new ArrayList<>();
 
   public GetDocumentResponse() {}
+
+  public GetDocumentResponse artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+  }
+
 
   public GetDocumentResponse siteId(@javax.annotation.Nullable String siteId) {
     this.siteId = siteId;
@@ -518,7 +543,8 @@ public class GetDocumentResponse {
       return false;
     }
     GetDocumentResponse getDocumentResponse = (GetDocumentResponse) o;
-    return Objects.equals(this.siteId, getDocumentResponse.siteId)
+    return Objects.equals(this.artifactId, getDocumentResponse.artifactId)
+        && Objects.equals(this.siteId, getDocumentResponse.siteId)
         && Objects.equals(this.path, getDocumentResponse.path)
         && Objects.equals(this.width, getDocumentResponse.width)
         && Objects.equals(this.height, getDocumentResponse.height)
@@ -539,15 +565,16 @@ public class GetDocumentResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, path, width, height, deepLinkPath, insertedDate, lastModifiedDate,
-        checksum, checksumType, documentId, contentType, userId, contentLength, versionId,
-        documents, belongsToDocumentId, metadata);
+    return Objects.hash(artifactId, siteId, path, width, height, deepLinkPath, insertedDate,
+        lastModifiedDate, checksum, checksumType, documentId, contentType, userId, contentLength,
+        versionId, documents, belongsToDocumentId, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentResponse {\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
@@ -574,10 +601,7 @@ public class GetDocumentResponse {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -586,10 +610,10 @@ public class GetDocumentResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("siteId", "path", "width", "height", "deepLinkPath", "insertedDate",
-            "lastModifiedDate", "checksum", "checksumType", "documentId", "contentType", "userId",
-            "contentLength", "versionId", "documents", "belongsToDocumentId", "metadata"));
+    openapiFields = new HashSet<String>(Arrays.asList("artifactId", "siteId", "path", "width",
+        "height", "deepLinkPath", "insertedDate", "lastModifiedDate", "checksum", "checksumType",
+        "documentId", "contentType", "userId", "contentLength", "versionId", "documents",
+        "belongsToDocumentId", "metadata"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("documentId"));
@@ -630,6 +654,12 @@ public class GetDocumentResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("artifactId") != null && !jsonObj.get("artifactId").isJsonNull())
+        && !jsonObj.get("artifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactId").toString()));
+    }
     if ((jsonObj.get("siteId") != null && !jsonObj.get("siteId").isJsonNull())
         && !jsonObj.get("siteId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,

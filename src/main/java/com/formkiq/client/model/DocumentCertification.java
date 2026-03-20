@@ -21,7 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.DocumentCertificationParameterStore;
+import com.formkiq.client.model.DocumentCertificationAwsSecretsManager;
+import com.formkiq.client.model.DocumentCertificationType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,74 +58,23 @@ import com.formkiq.client.invoker.JSON;
  * DocumentCertification
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class DocumentCertification {
   public static final String SERIALIZED_NAME_ALIAS = "alias";
   @SerializedName(SERIALIZED_NAME_ALIAS)
   @javax.annotation.Nonnull
   private String alias;
 
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    AWS_SSM_PARAMETER_STORE("AWS_SSM_PARAMETER_STORE");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TypeEnum.fromValue(value);
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  @javax.annotation.Nonnull
-  private TypeEnum type;
-
-  public static final String SERIALIZED_NAME_PARAMETER_STORE = "parameterStore";
-  @SerializedName(SERIALIZED_NAME_PARAMETER_STORE)
+  public static final String SERIALIZED_NAME_SOURCE_TYPE = "sourceType";
+  @SerializedName(SERIALIZED_NAME_SOURCE_TYPE)
   @javax.annotation.Nullable
-  private DocumentCertificationParameterStore parameterStore;
+  private DocumentCertificationType sourceType;
+
+  public static final String SERIALIZED_NAME_AWS_SECRETS_MANAGER = "awsSecretsManager";
+  @SerializedName(SERIALIZED_NAME_AWS_SECRETS_MANAGER)
+  @javax.annotation.Nullable
+  private DocumentCertificationAwsSecretsManager awsSecretsManager;
 
   public DocumentCertification() {}
 
@@ -148,45 +98,46 @@ public class DocumentCertification {
   }
 
 
-  public DocumentCertification type(@javax.annotation.Nonnull TypeEnum type) {
-    this.type = type;
+  public DocumentCertification sourceType(
+      @javax.annotation.Nullable DocumentCertificationType sourceType) {
+    this.sourceType = sourceType;
     return this;
   }
 
   /**
-   * Get type
+   * Get sourceType
    * 
-   * @return type
-   */
-  @javax.annotation.Nonnull
-  public TypeEnum getType() {
-    return type;
-  }
-
-  public void setType(@javax.annotation.Nonnull TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public DocumentCertification parameterStore(
-      @javax.annotation.Nullable DocumentCertificationParameterStore parameterStore) {
-    this.parameterStore = parameterStore;
-    return this;
-  }
-
-  /**
-   * Get parameterStore
-   * 
-   * @return parameterStore
+   * @return sourceType
    */
   @javax.annotation.Nullable
-  public DocumentCertificationParameterStore getParameterStore() {
-    return parameterStore;
+  public DocumentCertificationType getSourceType() {
+    return sourceType;
   }
 
-  public void setParameterStore(
-      @javax.annotation.Nullable DocumentCertificationParameterStore parameterStore) {
-    this.parameterStore = parameterStore;
+  public void setSourceType(@javax.annotation.Nullable DocumentCertificationType sourceType) {
+    this.sourceType = sourceType;
+  }
+
+
+  public DocumentCertification awsSecretsManager(
+      @javax.annotation.Nullable DocumentCertificationAwsSecretsManager awsSecretsManager) {
+    this.awsSecretsManager = awsSecretsManager;
+    return this;
+  }
+
+  /**
+   * Get awsSecretsManager
+   * 
+   * @return awsSecretsManager
+   */
+  @javax.annotation.Nullable
+  public DocumentCertificationAwsSecretsManager getAwsSecretsManager() {
+    return awsSecretsManager;
+  }
+
+  public void setAwsSecretsManager(
+      @javax.annotation.Nullable DocumentCertificationAwsSecretsManager awsSecretsManager) {
+    this.awsSecretsManager = awsSecretsManager;
   }
 
 
@@ -201,13 +152,13 @@ public class DocumentCertification {
     }
     DocumentCertification documentCertification = (DocumentCertification) o;
     return Objects.equals(this.alias, documentCertification.alias)
-        && Objects.equals(this.type, documentCertification.type)
-        && Objects.equals(this.parameterStore, documentCertification.parameterStore);
+        && Objects.equals(this.sourceType, documentCertification.sourceType)
+        && Objects.equals(this.awsSecretsManager, documentCertification.awsSecretsManager);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(alias, type, parameterStore);
+    return Objects.hash(alias, sourceType, awsSecretsManager);
   }
 
   @Override
@@ -215,8 +166,8 @@ public class DocumentCertification {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentCertification {\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    parameterStore: ").append(toIndentedString(parameterStore)).append("\n");
+    sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
+    sb.append("    awsSecretsManager: ").append(toIndentedString(awsSecretsManager)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -225,10 +176,7 @@ public class DocumentCertification {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -237,10 +185,10 @@ public class DocumentCertification {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("alias", "type", "parameterStore"));
+    openapiFields = new HashSet<String>(Arrays.asList("alias", "sourceType", "awsSecretsManager"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("alias", "type"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("alias"));
   }
 
   /**
@@ -283,16 +231,14 @@ public class DocumentCertification {
           "Expected the field `alias` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("alias").toString()));
     }
-    if (!jsonObj.get("type").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `type` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("type").toString()));
+    // validate the optional field `sourceType`
+    if (jsonObj.get("sourceType") != null && !jsonObj.get("sourceType").isJsonNull()) {
+      DocumentCertificationType.validateJsonElement(jsonObj.get("sourceType"));
     }
-    // validate the required field `type`
-    TypeEnum.validateJsonElement(jsonObj.get("type"));
-    // validate the optional field `parameterStore`
-    if (jsonObj.get("parameterStore") != null && !jsonObj.get("parameterStore").isJsonNull()) {
-      DocumentCertificationParameterStore.validateJsonElement(jsonObj.get("parameterStore"));
+    // validate the optional field `awsSecretsManager`
+    if (jsonObj.get("awsSecretsManager") != null
+        && !jsonObj.get("awsSecretsManager").isJsonNull()) {
+      DocumentCertificationAwsSecretsManager.validateJsonElement(jsonObj.get("awsSecretsManager"));
     }
   }
 

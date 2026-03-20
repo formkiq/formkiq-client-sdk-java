@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentOcr"></a>
 # **addDocumentOcr**
-> AddDocumentOcrResponse addDocumentOcr(documentId, siteId, addDocumentOcrRequest)
+> AddDocumentOcrResponse addDocumentOcr(documentId, siteId, artifactId, addDocumentOcrRequest)
 
 Perform document ocr
 
@@ -38,9 +38,10 @@ public class Example {
     DocumentOcrApi apiInstance = new DocumentOcrApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     AddDocumentOcrRequest addDocumentOcrRequest = new AddDocumentOcrRequest(); // AddDocumentOcrRequest | 
     try {
-      AddDocumentOcrResponse result = apiInstance.addDocumentOcr(documentId, siteId, addDocumentOcrRequest);
+      AddDocumentOcrResponse result = apiInstance.addDocumentOcr(documentId, siteId, artifactId, addDocumentOcrRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#addDocumentOcr");
@@ -59,6 +60,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **addDocumentOcrRequest** | [**AddDocumentOcrRequest**](AddDocumentOcrRequest.md)|  | [optional] |
 
 ### Return type
@@ -81,7 +83,7 @@ No authorization required
 
 <a id="deleteDocumentOcr"></a>
 # **deleteDocumentOcr**
-> DeleteResponse deleteDocumentOcr(documentId, siteId)
+> DeleteResponse deleteDocumentOcr(documentId, siteId, artifactId)
 
 Delete document ocr
 
@@ -107,8 +109,9 @@ public class Example {
     DocumentOcrApi apiInstance = new DocumentOcrApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentOcr(documentId, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentOcr(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#deleteDocumentOcr");
@@ -127,6 +130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -148,7 +152,7 @@ No authorization required
 
 <a id="getDocumentOcr"></a>
 # **getDocumentOcr**
-> GetDocumentOcrResponse getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey)
+> GetDocumentOcrResponse getDocumentOcr(documentId, siteId, artifactId, outputType, contentUrl, text, shareKey)
 
 Get document ocr content
 
@@ -174,12 +178,13 @@ public class Example {
     DocumentOcrApi apiInstance = new DocumentOcrApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String outputType = "TEXT"; // String | Output Format Type
     String contentUrl = "contentUrl_example"; // String | Whether to return a \"contentUrl\", set value to 'true' (deprecated)
     String text = "text_example"; // String | Returns raw 'text' of OCR content. e.g. AWS Textract returns JSON, setting parameter to 'true' converts JSON to Text (deprecated)
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentOcrResponse result = apiInstance.getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey);
+      GetDocumentOcrResponse result = apiInstance.getDocumentOcr(documentId, siteId, artifactId, outputType, contentUrl, text, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#getDocumentOcr");
@@ -198,6 +203,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **outputType** | **String**| Output Format Type | [optional] [enum: TEXT, KEY_VALUE, CONTENT_URL, TABLES] |
 | **contentUrl** | **String**| Whether to return a \&quot;contentUrl\&quot;, set value to &#39;true&#39; (deprecated) | [optional] |
 | **text** | **String**| Returns raw &#39;text&#39; of OCR content. e.g. AWS Textract returns JSON, setting parameter to &#39;true&#39; converts JSON to Text (deprecated) | [optional] |
@@ -223,7 +229,7 @@ No authorization required
 
 <a id="setDocumentOcr"></a>
 # **setDocumentOcr**
-> AddDocumentOcrResponse setDocumentOcr(documentId, siteId, setDocumentOcrRequest)
+> AddDocumentOcrResponse setDocumentOcr(documentId, siteId, artifactId, setDocumentOcrRequest)
 
 Set document ocr result
 
@@ -249,9 +255,10 @@ public class Example {
     DocumentOcrApi apiInstance = new DocumentOcrApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     SetDocumentOcrRequest setDocumentOcrRequest = new SetDocumentOcrRequest(); // SetDocumentOcrRequest | 
     try {
-      AddDocumentOcrResponse result = apiInstance.setDocumentOcr(documentId, siteId, setDocumentOcrRequest);
+      AddDocumentOcrResponse result = apiInstance.setDocumentOcr(documentId, siteId, artifactId, setDocumentOcrRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentOcrApi#setDocumentOcr");
@@ -270,6 +277,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **setDocumentOcrRequest** | [**SetDocumentOcrRequest**](SetDocumentOcrRequest.md)|  | [optional] |
 
 ### Return type

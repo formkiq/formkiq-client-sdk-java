@@ -42,6 +42,8 @@ import com.formkiq.client.model.GetOpenSearchSnapshotResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
 import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
+import com.formkiq.client.model.GetSystemConfigurationResponse;
+import com.formkiq.client.model.GetSystemInferenceModelsResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
@@ -54,6 +56,7 @@ import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.UpdateSiteRequest;
+import com.formkiq.client.model.UpdateSystemConfigurationRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -516,6 +519,32 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Get system configuration
+   *
+   * Returns the system configuration
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSystemConfigurationTest() throws ApiException {
+    GetSystemConfigurationResponse response = api.getSystemConfiguration();
+    // TODO: test validations
+  }
+
+  /**
+   * Get system inference models
+   *
+   * Returns the system inference models
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSystemInferenceModelsTest() throws ApiException {
+    GetSystemInferenceModelsResponse response = api.getSystemInferenceModels();
+    // TODO: test validations
+  }
+
+  /**
    * Get FormKiQ version
    *
    * Return the version of FormKiQ
@@ -621,6 +650,20 @@ public class SystemManagementApiTest {
     String siteId = null;
     UpdateSiteRequest updateSiteRequest = null;
     UpdateResponse response = api.updateSite(siteId, updateSiteRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Update system configuration
+   *
+   * Update the system configuration
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void updateSystemConfigurationTest() throws ApiException {
+    UpdateSystemConfigurationRequest updateSystemConfigurationRequest = null;
+    UpdateResponse response = api.updateSystemConfiguration(updateSystemConfigurationRequest);
     // TODO: test validations
   }
 

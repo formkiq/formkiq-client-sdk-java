@@ -55,8 +55,9 @@ public class IntelligentDocumentProcessingApiTest {
     String documentId = null;
     String llmPromptEntityName = null;
     String siteId = null;
-    AddDocumentMetadataExtractionResponse response =
-        api.addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId);
+    String artifactId = null;
+    AddDocumentMetadataExtractionResponse response = api
+        .addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -71,10 +72,11 @@ public class IntelligentDocumentProcessingApiTest {
   public void getAllDocumentMetadataExtractionResultsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
     GetDocumentMetadataExtractionResponse response =
-        api.getAllDocumentMetadataExtractionResults(documentId, siteId, limit, next);
+        api.getAllDocumentMetadataExtractionResults(documentId, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
@@ -89,10 +91,11 @@ public class IntelligentDocumentProcessingApiTest {
   public void getDocumentDataClassificationTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
     GetDocumentDataClassificationResponse response =
-        api.getDocumentDataClassification(documentId, siteId, limit, next);
+        api.getDocumentDataClassification(documentId, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
@@ -108,10 +111,11 @@ public class IntelligentDocumentProcessingApiTest {
     String documentId = null;
     String llmPromptEntityName = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String next = null;
-    GetDocumentMetadataExtractionResponse response = api
-        .getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, limit, next);
+    GetDocumentMetadataExtractionResponse response = api.getDocumentMetadataExtractionResults(
+        documentId, llmPromptEntityName, siteId, artifactId, limit, next);
     // TODO: test validations
   }
 
@@ -126,9 +130,10 @@ public class IntelligentDocumentProcessingApiTest {
   public void setDocumentDataClassificationTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     SetDocumentDataClassificationRequest setDocumentDataClassificationRequest = null;
-    SetDocumentDataClassificationResponse response =
-        api.setDocumentDataClassification(documentId, siteId, setDocumentDataClassificationRequest);
+    SetDocumentDataClassificationResponse response = api.setDocumentDataClassification(documentId,
+        siteId, artifactId, setDocumentDataClassificationRequest);
     // TODO: test validations
   }
 

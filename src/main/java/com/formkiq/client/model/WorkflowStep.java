@@ -63,13 +63,18 @@ import com.formkiq.client.invoker.JSON;
  * WorkflowStep
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class WorkflowStep {
   public static final String SERIALIZED_NAME_STEP_ID = "stepId";
   @SerializedName(SERIALIZED_NAME_STEP_ID)
   @javax.annotation.Nullable
   private String stepId;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
+  private String description;
 
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
@@ -115,6 +120,26 @@ public class WorkflowStep {
 
   public void setStepId(@javax.annotation.Nullable String stepId) {
     this.stepId = stepId;
+  }
+
+
+  public WorkflowStep description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Workflow Step description
+   * 
+   * @return description
+   */
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
   }
 
 
@@ -245,6 +270,7 @@ public class WorkflowStep {
     }
     WorkflowStep workflowStep = (WorkflowStep) o;
     return Objects.equals(this.stepId, workflowStep.stepId)
+        && Objects.equals(this.description, workflowStep.description)
         && Objects.equals(this.action, workflowStep.action)
         && Objects.equals(this.queue, workflowStep.queue)
         && Objects.equals(this.mappings, workflowStep.mappings)
@@ -254,7 +280,7 @@ public class WorkflowStep {
 
   @Override
   public int hashCode() {
-    return Objects.hash(stepId, action, queue, mappings, decision, decisions);
+    return Objects.hash(stepId, description, action, queue, mappings, decision, decisions);
   }
 
   @Override
@@ -262,6 +288,7 @@ public class WorkflowStep {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowStep {\n");
     sb.append("    stepId: ").append(toIndentedString(stepId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    mappings: ").append(toIndentedString(mappings)).append("\n");
@@ -275,10 +302,7 @@ public class WorkflowStep {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -287,8 +311,8 @@ public class WorkflowStep {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("stepId", "action", "queue", "mappings", "decision", "decisions"));
+    openapiFields = new HashSet<String>(Arrays.asList("stepId", "description", "action", "queue",
+        "mappings", "decision", "decisions"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -325,6 +349,12 @@ public class WorkflowStep {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `stepId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("stepId").toString()));
+    }
+    if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull())
+        && !jsonObj.get("description").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `description` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("description").toString()));
     }
     // validate the optional field `action`
     if (jsonObj.get("action") != null && !jsonObj.get("action").isJsonNull()) {

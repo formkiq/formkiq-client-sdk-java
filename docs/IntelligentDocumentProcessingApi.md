@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentMetadataExtractionResult"></a>
 # **addDocumentMetadataExtractionResult**
-> AddDocumentMetadataExtractionResponse addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId)
+> AddDocumentMetadataExtractionResponse addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId, artifactId)
 
 Add document&#39;s metadata extraction result
 
@@ -40,8 +40,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String llmPromptEntityName = "llmPromptEntityName_example"; // String | LlmPrompt Entity Name
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocumentMetadataExtractionResponse result = apiInstance.addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId);
+      AddDocumentMetadataExtractionResponse result = apiInstance.addDocumentMetadataExtractionResult(documentId, llmPromptEntityName, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IntelligentDocumentProcessingApi#addDocumentMetadataExtractionResult");
@@ -61,6 +62,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **llmPromptEntityName** | **String**| LlmPrompt Entity Name | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -82,7 +84,7 @@ No authorization required
 
 <a id="getAllDocumentMetadataExtractionResults"></a>
 # **getAllDocumentMetadataExtractionResults**
-> GetDocumentMetadataExtractionResponse getAllDocumentMetadataExtractionResults(documentId, siteId, limit, next)
+> GetDocumentMetadataExtractionResponse getAllDocumentMetadataExtractionResults(documentId, siteId, artifactId, limit, next)
 
 Get all document&#39;s metadata extraction results
 
@@ -108,10 +110,11 @@ public class Example {
     IntelligentDocumentProcessingApi apiInstance = new IntelligentDocumentProcessingApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentMetadataExtractionResponse result = apiInstance.getAllDocumentMetadataExtractionResults(documentId, siteId, limit, next);
+      GetDocumentMetadataExtractionResponse result = apiInstance.getAllDocumentMetadataExtractionResults(documentId, siteId, artifactId, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IntelligentDocumentProcessingApi#getAllDocumentMetadataExtractionResults");
@@ -130,6 +133,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **next** | **String**| Next page of results token | [optional] |
 
@@ -153,7 +157,7 @@ No authorization required
 
 <a id="getDocumentDataClassification"></a>
 # **getDocumentDataClassification**
-> GetDocumentDataClassificationResponse getDocumentDataClassification(documentId, siteId, limit, next)
+> GetDocumentDataClassificationResponse getDocumentDataClassification(documentId, siteId, artifactId, limit, next)
 
 Get document&#39;s data classification
 
@@ -179,10 +183,11 @@ public class Example {
     IntelligentDocumentProcessingApi apiInstance = new IntelligentDocumentProcessingApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentDataClassificationResponse result = apiInstance.getDocumentDataClassification(documentId, siteId, limit, next);
+      GetDocumentDataClassificationResponse result = apiInstance.getDocumentDataClassification(documentId, siteId, artifactId, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IntelligentDocumentProcessingApi#getDocumentDataClassification");
@@ -201,6 +206,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **next** | **String**| Next page of results token | [optional] |
 
@@ -224,7 +230,7 @@ No authorization required
 
 <a id="getDocumentMetadataExtractionResults"></a>
 # **getDocumentMetadataExtractionResults**
-> GetDocumentMetadataExtractionResponse getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, limit, next)
+> GetDocumentMetadataExtractionResponse getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, artifactId, limit, next)
 
 Get document&#39;s metadata extraction results
 
@@ -251,10 +257,11 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String llmPromptEntityName = "llmPromptEntityName_example"; // String | LlmPrompt Entity Name
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentMetadataExtractionResponse result = apiInstance.getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, limit, next);
+      GetDocumentMetadataExtractionResponse result = apiInstance.getDocumentMetadataExtractionResults(documentId, llmPromptEntityName, siteId, artifactId, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IntelligentDocumentProcessingApi#getDocumentMetadataExtractionResults");
@@ -274,6 +281,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **llmPromptEntityName** | **String**| LlmPrompt Entity Name | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **next** | **String**| Next page of results token | [optional] |
 
@@ -297,7 +305,7 @@ No authorization required
 
 <a id="setDocumentDataClassification"></a>
 # **setDocumentDataClassification**
-> SetDocumentDataClassificationResponse setDocumentDataClassification(documentId, siteId, setDocumentDataClassificationRequest)
+> SetDocumentDataClassificationResponse setDocumentDataClassification(documentId, siteId, artifactId, setDocumentDataClassificationRequest)
 
 Set document&#39;s data classification
 
@@ -323,9 +331,10 @@ public class Example {
     IntelligentDocumentProcessingApi apiInstance = new IntelligentDocumentProcessingApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     SetDocumentDataClassificationRequest setDocumentDataClassificationRequest = new SetDocumentDataClassificationRequest(); // SetDocumentDataClassificationRequest | 
     try {
-      SetDocumentDataClassificationResponse result = apiInstance.setDocumentDataClassification(documentId, siteId, setDocumentDataClassificationRequest);
+      SetDocumentDataClassificationResponse result = apiInstance.setDocumentDataClassification(documentId, siteId, artifactId, setDocumentDataClassificationRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IntelligentDocumentProcessingApi#setDocumentDataClassification");
@@ -344,6 +353,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **setDocumentDataClassificationRequest** | [**SetDocumentDataClassificationRequest**](SetDocumentDataClassificationRequest.md)|  | [optional] |
 
 ### Return type

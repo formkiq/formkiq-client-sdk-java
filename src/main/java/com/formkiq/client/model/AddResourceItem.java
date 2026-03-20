@@ -69,8 +69,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddResourceItem extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddResourceItem.class.getName());
 
@@ -262,6 +262,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
    * @return The actual instance of `AddLocaleResourceInterfaceItem`
    * @throws ClassCastException if the instance is not `AddLocaleResourceInterfaceItem`
    */
+  @SuppressWarnings("unchecked")
   public AddLocaleResourceInterfaceItem getAddLocaleResourceInterfaceItem()
       throws ClassCastException {
     return (AddLocaleResourceInterfaceItem) super.getActualInstance();
@@ -274,6 +275,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
    * @return The actual instance of `AddLocaleResourceSchemaItem`
    * @throws ClassCastException if the instance is not `AddLocaleResourceSchemaItem`
    */
+  @SuppressWarnings("unchecked")
   public AddLocaleResourceSchemaItem getAddLocaleResourceSchemaItem() throws ClassCastException {
     return (AddLocaleResourceSchemaItem) super.getActualInstance();
   }
@@ -285,6 +287,7 @@ public class AddResourceItem extends AbstractOpenApiSchema {
    * @return The actual instance of `AddLocaleResourceClassificationItem`
    * @throws ClassCastException if the instance is not `AddLocaleResourceClassificationItem`
    */
+  @SuppressWarnings("unchecked")
   public AddLocaleResourceClassificationItem getAddLocaleResourceClassificationItem()
       throws ClassCastException {
     return (AddLocaleResourceClassificationItem) super.getActualInstance();

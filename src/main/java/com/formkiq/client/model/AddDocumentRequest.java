@@ -64,13 +64,18 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddDocumentRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
+  @SerializedName(SERIALIZED_NAME_ARTIFACTS)
+  @javax.annotation.Nullable
+  private Boolean artifacts;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -161,6 +166,26 @@ public class AddDocumentRequest {
 
   public void setDocumentId(@javax.annotation.Nullable String documentId) {
     this.documentId = documentId;
+  }
+
+
+  public AddDocumentRequest artifacts(@javax.annotation.Nullable Boolean artifacts) {
+    this.artifacts = artifacts;
+    return this;
+  }
+
+  /**
+   * Whether the document supports artifact documents
+   * 
+   * @return artifacts
+   */
+  @javax.annotation.Nullable
+  public Boolean getArtifacts() {
+    return artifacts;
+  }
+
+  public void setArtifacts(@javax.annotation.Nullable Boolean artifacts) {
+    this.artifacts = artifacts;
   }
 
 
@@ -497,6 +522,7 @@ public class AddDocumentRequest {
     }
     AddDocumentRequest addDocumentRequest = (AddDocumentRequest) o;
     return Objects.equals(this.documentId, addDocumentRequest.documentId)
+        && Objects.equals(this.artifacts, addDocumentRequest.artifacts)
         && Objects.equals(this.path, addDocumentRequest.path)
         && Objects.equals(this.checksumType, addDocumentRequest.checksumType)
         && Objects.equals(this.checksum, addDocumentRequest.checksum)
@@ -515,8 +541,9 @@ public class AddDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, path, checksumType, checksum, width, height, deepLinkPath,
-        contentType, isBase64, content, tags, metadata, actions, attributes, documents);
+    return Objects.hash(documentId, artifacts, path, checksumType, checksum, width, height,
+        deepLinkPath, contentType, isBase64, content, tags, metadata, actions, attributes,
+        documents);
   }
 
   @Override
@@ -524,6 +551,7 @@ public class AddDocumentRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentRequest {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifacts: ").append(toIndentedString(artifacts)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
@@ -546,10 +574,7 @@ public class AddDocumentRequest {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -558,9 +583,9 @@ public class AddDocumentRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documentId", "path", "checksumType",
-        "checksum", "width", "height", "deepLinkPath", "contentType", "isBase64", "content", "tags",
-        "metadata", "actions", "attributes", "documents"));
+    openapiFields = new HashSet<String>(Arrays.asList("documentId", "artifacts", "path",
+        "checksumType", "checksum", "width", "height", "deepLinkPath", "contentType", "isBase64",
+        "content", "tags", "metadata", "actions", "attributes", "documents"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("content"));

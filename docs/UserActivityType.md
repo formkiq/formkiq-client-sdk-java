@@ -23,5 +23,7 @@
 
 * `UPDATE_VERSION` (value: `"UPDATE_VERSION"`)
 
+* `SSO_TOKEN_GRANT` (value: `"SSO_TOKEN_GRANT"`)
+
 
 

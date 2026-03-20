@@ -11,11 +11,11 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentActions"></a>
 # **addDocumentActions**
-> AddResponse addDocumentActions(documentId, siteId, addDocumentActionsRequest)
+> AddResponse addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest)
 
 Add document action
 
-Add one or more actions to a document; this appends actions and does not replace previous actions  Each action type supports a different set of parameters as shown in the table below:  ### Action Parameters  | ActionType | Parameter | Description | Example | | -------- | ------- | ------- | ------- | | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES, QUERIES (requires &#39;ocrTextractQueries&#39;) | | OCR  | ocrTextractQueries | Required for \&quot;QUERIES\&quot;, questions to ask Textract | | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract | | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 | | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM    | checksumType    | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256 | | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description | | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION    | notificationType | Type of Notification | email | | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject | | NOTIFICATION    | notificationText    | Notification as Text | Email Text | | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text | | QUEUE    | queueId    | Id of Queue | | | IDP    | mappingId    | Id of Mapping | | | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE    | width    | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE    | height    | The height of the image to resize (or &#39;auto&#39;). | | | RESIZE    | outputType    | The output type of the image (optional). | | | RESIZE    | path    | The path to use when creating resized document (optional). | |
+Add one or more actions to a document; this appends actions and does not replace previous actions  Each action type supports a different set of parameters as shown in the table below:  ### Action Parameters  | ActionType | Parameter | Description | Example | | -------- | ------- | ------- | ------- | | OCR  | ocrParseTypes | Ocr Parsing strategy to use | TEXT, FORMS, TABLES, QUERIES (requires &#39;ocrTextractQueries&#39;) | | OCR  | ocrTextractQueries | Required for \&quot;QUERIES\&quot;, questions to ask Textract | | OCR | ocrEngine     | Ocr Engine to use | tesseract or textract | | OCR | ocrOutputType     | Convert OCR result to an Output format (textract table only) | true | | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 | | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM    | checksumType    | Checksum algorithm to calculate and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description | | WEBHOOK    | url    | Webhook URL | https://yourdomain.com/webhook-endpoint | | NOTIFICATION    | notificationType | Type of Notification | email | | NOTIFICATION    | notificationToCc    | Notification Carbon Copy | email@yourdomain.com | | NOTIFICATION    | notificationToBcc    | Notification Blind Carbon Copy | email@yourdomain.com | | NOTIFICATION    | notificationSubject    | Notification Subject | Email Subject | | NOTIFICATION    | notificationText    | Notification as Text | Email Text | | NOTIFICATION    | notificationHtml    | Notification as Html | Email HTML Text | | QUEUE    | queueId    | Id of Queue | | | IDP    | mappingId    | Id of Mapping | | | EVENTBRIDGE    | eventBusName    | The name or ARN of the Amazon EventBridge to receive the event. | | | RESIZE    | width    | The width of the image to resize (or &#39;auto&#39;). | | | RESIZE    | height    | The height of the image to resize (or &#39;auto&#39;). | | | RESIZE    | outputType    | The output type of the image (optional). | | | RESIZE    | path    | The path to use when creating resized document (optional). | |
 
 ### Example
 ```java
@@ -37,9 +37,10 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     AddDocumentActionsRequest addDocumentActionsRequest = new AddDocumentActionsRequest(); // AddDocumentActionsRequest | 
     try {
-      AddResponse result = apiInstance.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+      AddResponse result = apiInstance.addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentActions");
@@ -58,6 +59,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **addDocumentActionsRequest** | [**AddDocumentActionsRequest**](AddDocumentActionsRequest.md)|  | [optional] |
 
 ### Return type
@@ -81,7 +83,7 @@ No authorization required
 
 <a id="addDocumentRetryAction"></a>
 # **addDocumentRetryAction**
-> AddResponse addDocumentRetryAction(documentId, siteId)
+> AddResponse addDocumentRetryAction(documentId, siteId, artifactId)
 
 Retries failed document action(s)
 
@@ -107,8 +109,9 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddResponse result = apiInstance.addDocumentRetryAction(documentId, siteId);
+      AddResponse result = apiInstance.addDocumentRetryAction(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentRetryAction");
@@ -127,6 +130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -149,7 +153,7 @@ No authorization required
 
 <a id="getDocumentActions"></a>
 # **getDocumentActions**
-> GetDocumentActionsResponse getDocumentActions(documentId, siteId, limit, shareKey, next)
+> GetDocumentActionsResponse getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next)
 
 Get document actions
 
@@ -175,11 +179,12 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, limit, shareKey, next);
+      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#getDocumentActions");
@@ -198,6 +203,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |

@@ -136,7 +136,9 @@ public class CaseManagementApiTest {
     String caseId = null;
     String documentId = null;
     String siteId = null;
-    DeleteCaseDocumentResponse response = api.deleteCaseDocument(caseId, documentId, siteId);
+    String artifactId = null;
+    DeleteCaseDocumentResponse response =
+        api.deleteCaseDocument(caseId, documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -169,8 +171,9 @@ public class CaseManagementApiTest {
     String nigoId = null;
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     DeleteCaseNigoDocumentResponse response =
-        api.deleteNigoDocument(caseId, nigoId, documentId, siteId);
+        api.deleteNigoDocument(caseId, nigoId, documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -203,8 +206,9 @@ public class CaseManagementApiTest {
     String taskId = null;
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     DeleteCaseTaskDocumentResponse response =
-        api.deleteTaskDocument(caseId, taskId, documentId, siteId);
+        api.deleteTaskDocument(caseId, taskId, documentId, siteId, artifactId);
     // TODO: test validations
   }
 

@@ -90,6 +90,7 @@ public class ESignatureApi {
    * @param documentId Document Identifier (required)
    * @param addDocusignEnvelopesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -118,7 +119,8 @@ public class ESignatureApi {
    */
   public okhttp3.Call addDocusignEnvelopesCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocusignEnvelopesRequest addDocusignEnvelopesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -148,6 +150,10 @@ public class ESignatureApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -171,7 +177,8 @@ public class ESignatureApi {
   private okhttp3.Call addDocusignEnvelopesValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocusignEnvelopesRequest addDocusignEnvelopesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -184,7 +191,8 @@ public class ESignatureApi {
           "Missing the required parameter 'addDocusignEnvelopesRequest' when calling addDocusignEnvelopes(Async)");
     }
 
-    return addDocusignEnvelopesCall(documentId, addDocusignEnvelopesRequest, siteId, _callback);
+    return addDocusignEnvelopesCall(documentId, addDocusignEnvelopesRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -195,6 +203,7 @@ public class ESignatureApi {
    * @param documentId Document Identifier (required)
    * @param addDocusignEnvelopesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocusignEnvelopesResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -224,9 +233,10 @@ public class ESignatureApi {
   public AddDocusignEnvelopesResponse addDocusignEnvelopes(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocusignEnvelopesRequest addDocusignEnvelopesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<AddDocusignEnvelopesResponse> localVarResp =
-        addDocusignEnvelopesWithHttpInfo(documentId, addDocusignEnvelopesRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<AddDocusignEnvelopesResponse> localVarResp = addDocusignEnvelopesWithHttpInfo(
+        documentId, addDocusignEnvelopesRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -237,6 +247,7 @@ public class ESignatureApi {
    * @param documentId Document Identifier (required)
    * @param addDocusignEnvelopesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocusignEnvelopesResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -266,9 +277,10 @@ public class ESignatureApi {
   public ApiResponse<AddDocusignEnvelopesResponse> addDocusignEnvelopesWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocusignEnvelopesRequest addDocusignEnvelopesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addDocusignEnvelopesValidateBeforeCall(documentId,
-        addDocusignEnvelopesRequest, siteId, null);
+        addDocusignEnvelopesRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocusignEnvelopesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -280,6 +292,7 @@ public class ESignatureApi {
    * @param documentId Document Identifier (required)
    * @param addDocusignEnvelopesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -308,11 +321,11 @@ public class ESignatureApi {
    */
   public okhttp3.Call addDocusignEnvelopesAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocusignEnvelopesRequest addDocusignEnvelopesRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocusignEnvelopesResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocusignEnvelopesValidateBeforeCall(documentId,
-        addDocusignEnvelopesRequest, siteId, _callback);
+        addDocusignEnvelopesRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocusignEnvelopesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -325,6 +338,7 @@ public class ESignatureApi {
    * @param envelopeId Docusign Envelope Id (required)
    * @param addDocusignRecipientViewRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -354,7 +368,8 @@ public class ESignatureApi {
   public okhttp3.Call addDocusignRecipientViewCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String envelopeId,
       @javax.annotation.Nonnull AddDocusignRecipientViewRequest addDocusignRecipientViewRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -385,6 +400,10 @@ public class ESignatureApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -408,7 +427,8 @@ public class ESignatureApi {
   private okhttp3.Call addDocusignRecipientViewValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
       @javax.annotation.Nonnull AddDocusignRecipientViewRequest addDocusignRecipientViewRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -428,7 +448,7 @@ public class ESignatureApi {
     }
 
     return addDocusignRecipientViewCall(documentId, envelopeId, addDocusignRecipientViewRequest,
-        siteId, _callback);
+        siteId, artifactId, _callback);
 
   }
 
@@ -440,6 +460,7 @@ public class ESignatureApi {
    * @param envelopeId Docusign Envelope Id (required)
    * @param addDocusignRecipientViewRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocusignRecipientViewResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -469,10 +490,11 @@ public class ESignatureApi {
   public AddDocusignRecipientViewResponse addDocusignRecipientView(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
       @javax.annotation.Nonnull AddDocusignRecipientViewRequest addDocusignRecipientViewRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddDocusignRecipientViewResponse> localVarResp =
         addDocusignRecipientViewWithHttpInfo(documentId, envelopeId,
-            addDocusignRecipientViewRequest, siteId);
+            addDocusignRecipientViewRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -484,6 +506,7 @@ public class ESignatureApi {
    * @param envelopeId Docusign Envelope Id (required)
    * @param addDocusignRecipientViewRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocusignRecipientViewResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -513,9 +536,10 @@ public class ESignatureApi {
   public ApiResponse<AddDocusignRecipientViewResponse> addDocusignRecipientViewWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
       @javax.annotation.Nonnull AddDocusignRecipientViewRequest addDocusignRecipientViewRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addDocusignRecipientViewValidateBeforeCall(documentId, envelopeId,
-        addDocusignRecipientViewRequest, siteId, null);
+        addDocusignRecipientViewRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocusignRecipientViewResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -528,6 +552,7 @@ public class ESignatureApi {
    * @param envelopeId Docusign Envelope Id (required)
    * @param addDocusignRecipientViewRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -557,11 +582,11 @@ public class ESignatureApi {
   public okhttp3.Call addDocusignRecipientViewAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String envelopeId,
       @javax.annotation.Nonnull AddDocusignRecipientViewRequest addDocusignRecipientViewRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocusignRecipientViewResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocusignRecipientViewValidateBeforeCall(documentId, envelopeId,
-        addDocusignRecipientViewRequest, siteId, _callback);
+        addDocusignRecipientViewRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocusignRecipientViewResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

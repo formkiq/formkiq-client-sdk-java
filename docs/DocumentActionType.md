@@ -11,6 +11,10 @@
 
 * `FULLTEXT` (value: `"FULLTEXT"`)
 
+* `MOVE` (value: `"MOVE"`)
+
+* `DELETE` (value: `"DELETE"`)
+
 * `CHECKSUM` (value: `"CHECKSUM"`)
 
 * `NOTIFICATION` (value: `"NOTIFICATION"`)
@@ -32,8 +36,6 @@
 * `RESIZE` (value: `"RESIZE"`)
 
 * `DATA_CLASSIFICATION` (value: `"DATA_CLASSIFICATION"`)
-
-* `METADATA_EXTRACTION` (value: `"METADATA_EXTRACTION"`)
 
 * `MALWARE_SCAN` (value: `"MALWARE_SCAN"`)
 

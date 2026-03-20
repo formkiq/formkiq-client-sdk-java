@@ -30,7 +30,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSitesResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class GetSitesResponse {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
@@ -71,6 +73,16 @@ public class GetSitesResponse {
   @SerializedName(SERIALIZED_NAME_ROLES)
   @javax.annotation.Nullable
   private List<String> roles = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SAML_GROUPS = "samlGroups";
+  @SerializedName(SERIALIZED_NAME_SAML_GROUPS)
+  @javax.annotation.Nullable
+  private List<String> samlGroups = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_USER_CLAIMS = "userClaims";
+  @SerializedName(SERIALIZED_NAME_USER_CLAIMS)
+  @javax.annotation.Nullable
+  private Map<String, Object> userClaims = new HashMap<>();
 
   public static final String SERIALIZED_NAME_SITES = "sites";
   @SerializedName(SERIALIZED_NAME_SITES)
@@ -127,6 +139,62 @@ public class GetSitesResponse {
   }
 
 
+  public GetSitesResponse samlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+    return this;
+  }
+
+  public GetSitesResponse addSamlGroupsItem(String samlGroupsItem) {
+    if (this.samlGroups == null) {
+      this.samlGroups = new ArrayList<>();
+    }
+    this.samlGroups.add(samlGroupsItem);
+    return this;
+  }
+
+  /**
+   * List of User Saml Groups
+   * 
+   * @return samlGroups
+   */
+  @javax.annotation.Nullable
+  public List<String> getSamlGroups() {
+    return samlGroups;
+  }
+
+  public void setSamlGroups(@javax.annotation.Nullable List<String> samlGroups) {
+    this.samlGroups = samlGroups;
+  }
+
+
+  public GetSitesResponse userClaims(@javax.annotation.Nullable Map<String, Object> userClaims) {
+    this.userClaims = userClaims;
+    return this;
+  }
+
+  public GetSitesResponse putUserClaimsItem(String key, Object userClaimsItem) {
+    if (this.userClaims == null) {
+      this.userClaims = new HashMap<>();
+    }
+    this.userClaims.put(key, userClaimsItem);
+    return this;
+  }
+
+  /**
+   * Map of custom JWT claims
+   * 
+   * @return userClaims
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getUserClaims() {
+    return userClaims;
+  }
+
+  public void setUserClaims(@javax.annotation.Nullable Map<String, Object> userClaims) {
+    this.userClaims = userClaims;
+  }
+
+
   public GetSitesResponse sites(@javax.annotation.Nullable List<Site> sites) {
     this.sites = sites;
     return this;
@@ -167,12 +235,14 @@ public class GetSitesResponse {
     GetSitesResponse getSitesResponse = (GetSitesResponse) o;
     return Objects.equals(this.username, getSitesResponse.username)
         && Objects.equals(this.roles, getSitesResponse.roles)
+        && Objects.equals(this.samlGroups, getSitesResponse.samlGroups)
+        && Objects.equals(this.userClaims, getSitesResponse.userClaims)
         && Objects.equals(this.sites, getSitesResponse.sites);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, roles, sites);
+    return Objects.hash(username, roles, samlGroups, userClaims, sites);
   }
 
   @Override
@@ -181,6 +251,8 @@ public class GetSitesResponse {
     sb.append("class GetSitesResponse {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    samlGroups: ").append(toIndentedString(samlGroups)).append("\n");
+    sb.append("    userClaims: ").append(toIndentedString(userClaims)).append("\n");
     sb.append("    sites: ").append(toIndentedString(sites)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -190,10 +262,7 @@ public class GetSitesResponse {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -202,7 +271,8 @@ public class GetSitesResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("username", "roles", "sites"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("username", "roles", "samlGroups", "userClaims", "sites"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -246,6 +316,13 @@ public class GetSitesResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `roles` to be an array in the JSON string but got `%s`",
           jsonObj.get("roles").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("samlGroups") != null && !jsonObj.get("samlGroups").isJsonNull()
+        && !jsonObj.get("samlGroups").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `samlGroups` to be an array in the JSON string but got `%s`",
+          jsonObj.get("samlGroups").toString()));
     }
     if (jsonObj.get("sites") != null && !jsonObj.get("sites").isJsonNull()) {
       JsonArray jsonArraysites = jsonObj.getAsJsonArray("sites");

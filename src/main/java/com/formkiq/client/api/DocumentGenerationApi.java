@@ -89,6 +89,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentCertificationRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -117,7 +118,8 @@ public class DocumentGenerationApi {
    */
   public okhttp3.Call addDocumentCertificationCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentCertificationRequest addDocumentCertificationRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -147,6 +149,10 @@ public class DocumentGenerationApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -170,7 +176,8 @@ public class DocumentGenerationApi {
   private okhttp3.Call addDocumentCertificationValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentCertificationRequest addDocumentCertificationRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -184,7 +191,7 @@ public class DocumentGenerationApi {
     }
 
     return addDocumentCertificationCall(documentId, addDocumentCertificationRequest, siteId,
-        _callback);
+        artifactId, _callback);
 
   }
 
@@ -197,6 +204,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentCertificationRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocumentCertificationResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -226,9 +234,11 @@ public class DocumentGenerationApi {
   public AddDocumentCertificationResponse addDocumentCertification(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentCertificationRequest addDocumentCertificationRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddDocumentCertificationResponse> localVarResp =
-        addDocumentCertificationWithHttpInfo(documentId, addDocumentCertificationRequest, siteId);
+        addDocumentCertificationWithHttpInfo(documentId, addDocumentCertificationRequest, siteId,
+            artifactId);
     return localVarResp.getData();
   }
 
@@ -241,6 +251,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentCertificationRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocumentCertificationResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -270,9 +281,10 @@ public class DocumentGenerationApi {
   public ApiResponse<AddDocumentCertificationResponse> addDocumentCertificationWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentCertificationRequest addDocumentCertificationRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addDocumentCertificationValidateBeforeCall(documentId,
-        addDocumentCertificationRequest, siteId, null);
+        addDocumentCertificationRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocumentCertificationResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -286,6 +298,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentCertificationRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -314,11 +327,11 @@ public class DocumentGenerationApi {
    */
   public okhttp3.Call addDocumentCertificationAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentCertificationRequest addDocumentCertificationRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocumentCertificationResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentCertificationValidateBeforeCall(documentId,
-        addDocumentCertificationRequest, siteId, _callback);
+        addDocumentCertificationRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentCertificationResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -330,6 +343,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentGenerateRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -358,7 +372,8 @@ public class DocumentGenerationApi {
    */
   public okhttp3.Call addDocumentGenerateCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -388,6 +403,10 @@ public class DocumentGenerationApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -411,7 +430,8 @@ public class DocumentGenerationApi {
   private okhttp3.Call addDocumentGenerateValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -424,7 +444,8 @@ public class DocumentGenerationApi {
           "Missing the required parameter 'addDocumentGenerateRequest' when calling addDocumentGenerate(Async)");
     }
 
-    return addDocumentGenerateCall(documentId, addDocumentGenerateRequest, siteId, _callback);
+    return addDocumentGenerateCall(documentId, addDocumentGenerateRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -439,6 +460,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentGenerateRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddDocumentGenerateResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -468,9 +490,10 @@ public class DocumentGenerationApi {
   public AddDocumentGenerateResponse addDocumentGenerate(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddDocumentGenerateResponse> localVarResp =
-        addDocumentGenerateWithHttpInfo(documentId, addDocumentGenerateRequest, siteId);
+        addDocumentGenerateWithHttpInfo(documentId, addDocumentGenerateRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -485,6 +508,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentGenerateRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddDocumentGenerateResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -514,9 +538,10 @@ public class DocumentGenerationApi {
   public ApiResponse<AddDocumentGenerateResponse> addDocumentGenerateWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        addDocumentGenerateValidateBeforeCall(documentId, addDocumentGenerateRequest, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = addDocumentGenerateValidateBeforeCall(documentId,
+        addDocumentGenerateRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddDocumentGenerateResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -532,6 +557,7 @@ public class DocumentGenerationApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentGenerateRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -560,11 +586,11 @@ public class DocumentGenerationApi {
    */
   public okhttp3.Call addDocumentGenerateAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentGenerateRequest addDocumentGenerateRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddDocumentGenerateResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentGenerateValidateBeforeCall(documentId,
-        addDocumentGenerateRequest, siteId, _callback);
+        addDocumentGenerateRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocumentGenerateResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

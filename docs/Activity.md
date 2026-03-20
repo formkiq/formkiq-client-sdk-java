@@ -16,6 +16,7 @@
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
 |**documentId** | **Object** | Document Identifier |  [optional] |
+|**artifactId** | **Object** | Document Artifact Identifier |  [optional] |
 |**attributeKey** | **Object** | Document Attribute Key |  [optional] |
 |**entityTypeId** | **String** | Entity Type Identifier |  [optional] |
 |**entityId** | **String** | Entity Identifier |  [optional] |

@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**certificateArn** | **String** | AWS Secrets Manager - Certificate ARN |  |
-|**passwordArn** | **String** | AWS Secrets Manager - Certificate password ARN |  [optional] |
+|**certificateArn** | **String** | Aws Secrets Manager Certificate ARN |  |
+|**passwordArn** | **String** | Aws Secrets Manager Password ARN |  |
 
 
 

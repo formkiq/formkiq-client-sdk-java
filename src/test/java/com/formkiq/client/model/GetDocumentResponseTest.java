@@ -50,6 +50,14 @@ public class GetDocumentResponseTest {
   }
 
   /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
+  /**
    * Test the property 'siteId'
    */
   @Test

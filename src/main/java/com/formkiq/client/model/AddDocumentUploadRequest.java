@@ -62,13 +62,18 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentUploadRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddDocumentUploadRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
+  @SerializedName(SERIALIZED_NAME_ARTIFACTS)
+  @javax.annotation.Nullable
+  private Boolean artifacts;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -139,6 +144,26 @@ public class AddDocumentUploadRequest {
 
   public void setDocumentId(@javax.annotation.Nullable String documentId) {
     this.documentId = documentId;
+  }
+
+
+  public AddDocumentUploadRequest artifacts(@javax.annotation.Nullable Boolean artifacts) {
+    this.artifacts = artifacts;
+    return this;
+  }
+
+  /**
+   * Whether the document supports artifact documents
+   * 
+   * @return artifacts
+   */
+  @javax.annotation.Nullable
+  public Boolean getArtifacts() {
+    return artifacts;
+  }
+
+  public void setArtifacts(@javax.annotation.Nullable Boolean artifacts) {
+    this.artifacts = artifacts;
   }
 
 
@@ -379,6 +404,7 @@ public class AddDocumentUploadRequest {
     }
     AddDocumentUploadRequest addDocumentUploadRequest = (AddDocumentUploadRequest) o;
     return Objects.equals(this.documentId, addDocumentUploadRequest.documentId)
+        && Objects.equals(this.artifacts, addDocumentUploadRequest.artifacts)
         && Objects.equals(this.path, addDocumentUploadRequest.path)
         && Objects.equals(this.contentType, addDocumentUploadRequest.contentType)
         && Objects.equals(this.width, addDocumentUploadRequest.width)
@@ -393,8 +419,8 @@ public class AddDocumentUploadRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, path, contentType, width, height, deepLinkPath, checksumType,
-        checksum, attributes, tags, actions);
+    return Objects.hash(documentId, artifacts, path, contentType, width, height, deepLinkPath,
+        checksumType, checksum, attributes, tags, actions);
   }
 
   @Override
@@ -402,6 +428,7 @@ public class AddDocumentUploadRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentUploadRequest {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifacts: ").append(toIndentedString(artifacts)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
@@ -420,10 +447,7 @@ public class AddDocumentUploadRequest {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -432,8 +456,9 @@ public class AddDocumentUploadRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documentId", "path", "contentType", "width",
-        "height", "deepLinkPath", "checksumType", "checksum", "attributes", "tags", "actions"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("documentId", "artifacts", "path", "contentType", "width",
+            "height", "deepLinkPath", "checksumType", "checksum", "attributes", "tags", "actions"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);

@@ -9,5 +9,7 @@
 
 * `SHA256` (value: `"SHA256"`)
 
+* `SHA512` (value: `"SHA512"`)
+
 
 

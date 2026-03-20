@@ -52,4 +52,12 @@ public class OpaPolicyAttributeInputTest {
     // TODO: test matchUsername
   }
 
+  /**
+   * Test the property 'matchUserClaim'
+   */
+  @Test
+  public void matchUserClaimTest() {
+    // TODO: test matchUserClaim
+  }
+
 }

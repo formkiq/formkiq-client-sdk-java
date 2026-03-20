@@ -20,7 +20,8 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.DocumentCertificationParameterStore;
+import com.formkiq.client.model.DocumentCertificationAwsSecretsManager;
+import com.formkiq.client.model.DocumentCertificationType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,19 +55,19 @@ public class DocumentCertificationTest {
   }
 
   /**
-   * Test the property 'type'
+   * Test the property 'sourceType'
    */
   @Test
-  public void typeTest() {
-    // TODO: test type
+  public void sourceTypeTest() {
+    // TODO: test sourceType
   }
 
   /**
-   * Test the property 'parameterStore'
+   * Test the property 'awsSecretsManager'
    */
   @Test
-  public void parameterStoreTest() {
-    // TODO: test parameterStore
+  public void awsSecretsManagerTest() {
+    // TODO: test awsSecretsManager
   }
 
 }

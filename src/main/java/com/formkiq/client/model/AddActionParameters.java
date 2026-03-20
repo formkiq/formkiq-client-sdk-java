@@ -21,6 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DeleteType;
 import com.formkiq.client.model.OcrEngine;
 import com.formkiq.client.model.OcrOutputType;
 import com.formkiq.client.model.TextractQuery;
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * AddActionParameters
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddActionParameters {
   public static final String SERIALIZED_NAME_OCR_TEXTRACT_QUERIES = "ocrTextractQueries";
   @SerializedName(SERIALIZED_NAME_OCR_TEXTRACT_QUERIES)
@@ -262,6 +264,11 @@ public class AddActionParameters {
   @javax.annotation.Nullable
   private String eventBusName;
 
+  public static final String SERIALIZED_NAME_CHECKSUM_TYPE = "checksumType";
+  @SerializedName(SERIALIZED_NAME_CHECKSUM_TYPE)
+  @javax.annotation.Nullable
+  private ChecksumType checksumType;
+
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
   @javax.annotation.Nullable
@@ -276,6 +283,11 @@ public class AddActionParameters {
   @SerializedName(SERIALIZED_NAME_PATH)
   @javax.annotation.Nullable
   private String path;
+
+  public static final String SERIALIZED_NAME_DELETE_TYPE = "deleteType";
+  @SerializedName(SERIALIZED_NAME_DELETE_TYPE)
+  @javax.annotation.Nullable
+  private DeleteType deleteType;
 
   public static final String SERIALIZED_NAME_OUTPUT_TYPE = "outputType";
   @SerializedName(SERIALIZED_NAME_OUTPUT_TYPE)
@@ -681,6 +693,26 @@ public class AddActionParameters {
   }
 
 
+  public AddActionParameters checksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+    return this;
+  }
+
+  /**
+   * Get checksumType
+   * 
+   * @return checksumType
+   */
+  @javax.annotation.Nullable
+  public ChecksumType getChecksumType() {
+    return checksumType;
+  }
+
+  public void setChecksumType(@javax.annotation.Nullable ChecksumType checksumType) {
+    this.checksumType = checksumType;
+  }
+
+
   public AddActionParameters width(@javax.annotation.Nullable String width) {
     this.width = width;
     return this;
@@ -727,7 +759,8 @@ public class AddActionParameters {
   }
 
   /**
-   * The path to use when creating resized document (optional)
+   * MOVE: Destination folder path, must end with &#39;/&#39;; RESIZE: Path to use when creating
+   * resized document (optional)
    * 
    * @return path
    */
@@ -738,6 +771,26 @@ public class AddActionParameters {
 
   public void setPath(@javax.annotation.Nullable String path) {
     this.path = path;
+  }
+
+
+  public AddActionParameters deleteType(@javax.annotation.Nullable DeleteType deleteType) {
+    this.deleteType = deleteType;
+    return this;
+  }
+
+  /**
+   * Get deleteType
+   * 
+   * @return deleteType
+   */
+  @javax.annotation.Nullable
+  public DeleteType getDeleteType() {
+    return deleteType;
+  }
+
+  public void setDeleteType(@javax.annotation.Nullable DeleteType deleteType) {
+    this.deleteType = deleteType;
   }
 
 
@@ -791,9 +844,11 @@ public class AddActionParameters {
         && Objects.equals(this.tags, addActionParameters.tags)
         && Objects.equals(this.mappingId, addActionParameters.mappingId)
         && Objects.equals(this.eventBusName, addActionParameters.eventBusName)
+        && Objects.equals(this.checksumType, addActionParameters.checksumType)
         && Objects.equals(this.width, addActionParameters.width)
         && Objects.equals(this.height, addActionParameters.height)
         && Objects.equals(this.path, addActionParameters.path)
+        && Objects.equals(this.deleteType, addActionParameters.deleteType)
         && Objects.equals(this.outputType, addActionParameters.outputType);
   }
 
@@ -802,8 +857,8 @@ public class AddActionParameters {
     return Objects.hash(ocrTextractQueries, ocrParseTypes, ocrEngine, ocrOutputType,
         ocrNumberOfPages, addPdfDetectedCharactersAsText, llmPromptEntityName, url, characterMax,
         engine, notificationType, notificationToCc, notificationToBcc, notificationSubject,
-        notificationText, notificationHtml, tags, mappingId, eventBusName, width, height, path,
-        outputType);
+        notificationText, notificationHtml, tags, mappingId, eventBusName, checksumType, width,
+        height, path, deleteType, outputType);
   }
 
   @Override
@@ -832,9 +887,11 @@ public class AddActionParameters {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    mappingId: ").append(toIndentedString(mappingId)).append("\n");
     sb.append("    eventBusName: ").append(toIndentedString(eventBusName)).append("\n");
+    sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    deleteType: ").append(toIndentedString(deleteType)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -844,10 +901,7 @@ public class AddActionParameters {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -861,7 +915,7 @@ public class AddActionParameters {
             "ocrNumberOfPages", "addPdfDetectedCharactersAsText", "llmPromptEntityName", "url",
             "characterMax", "engine", "notificationType", "notificationToCc", "notificationToBcc",
             "notificationSubject", "notificationText", "notificationHtml", "tags", "mappingId",
-            "eventBusName", "width", "height", "path", "outputType"));
+            "eventBusName", "checksumType", "width", "height", "path", "deleteType", "outputType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -1025,6 +1079,10 @@ public class AddActionParameters {
           "Expected the field `eventBusName` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("eventBusName").toString()));
     }
+    // validate the optional field `checksumType`
+    if (jsonObj.get("checksumType") != null && !jsonObj.get("checksumType").isJsonNull()) {
+      ChecksumType.validateJsonElement(jsonObj.get("checksumType"));
+    }
     if ((jsonObj.get("width") != null && !jsonObj.get("width").isJsonNull())
         && !jsonObj.get("width").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -1042,6 +1100,10 @@ public class AddActionParameters {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
+    }
+    // validate the optional field `deleteType`
+    if (jsonObj.get("deleteType") != null && !jsonObj.get("deleteType").isJsonNull()) {
+      DeleteType.validateJsonElement(jsonObj.get("deleteType"));
     }
     if ((jsonObj.get("outputType") != null && !jsonObj.get("outputType").isJsonNull())
         && !jsonObj.get("outputType").isJsonPrimitive()) {

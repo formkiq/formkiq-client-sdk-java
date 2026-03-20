@@ -74,8 +74,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class AddDocumentAttribute extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(AddDocumentAttribute.class.getName());
 
@@ -297,6 +297,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
    * @return The actual instance of `AddDocumentAttributeStandard`
    * @throws ClassCastException if the instance is not `AddDocumentAttributeStandard`
    */
+  @SuppressWarnings("unchecked")
   public AddDocumentAttributeStandard getAddDocumentAttributeStandard() throws ClassCastException {
     return (AddDocumentAttributeStandard) super.getActualInstance();
   }
@@ -308,6 +309,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
    * @return The actual instance of `AddDocumentAttributeClassification`
    * @throws ClassCastException if the instance is not `AddDocumentAttributeClassification`
    */
+  @SuppressWarnings("unchecked")
   public AddDocumentAttributeClassification getAddDocumentAttributeClassification()
       throws ClassCastException {
     return (AddDocumentAttributeClassification) super.getActualInstance();
@@ -320,6 +322,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
    * @return The actual instance of `AddDocumentAttributeRelationship`
    * @throws ClassCastException if the instance is not `AddDocumentAttributeRelationship`
    */
+  @SuppressWarnings("unchecked")
   public AddDocumentAttributeRelationship getAddDocumentAttributeRelationship()
       throws ClassCastException {
     return (AddDocumentAttributeRelationship) super.getActualInstance();
@@ -332,6 +335,7 @@ public class AddDocumentAttribute extends AbstractOpenApiSchema {
    * @return The actual instance of `AddDocumentAttributeEntity`
    * @throws ClassCastException if the instance is not `AddDocumentAttributeEntity`
    */
+  @SuppressWarnings("unchecked")
   public AddDocumentAttributeEntity getAddDocumentAttributeEntity() throws ClassCastException {
     return (AddDocumentAttributeEntity) super.getActualInstance();
   }

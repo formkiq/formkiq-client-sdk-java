@@ -282,6 +282,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteDocumentCheckoutLegalHold**](docs/DocumentsApi.md#deleteDocumentCheckoutLegalHold) | **DELETE** /documents/{documentId}/legalHold | Delete document legal hold checkout
 *DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
+*DocumentsApi* | [**getDocumentArtifacts**](docs/DocumentsApi.md#getDocumentArtifacts) | **GET** /documents/{documentId}/artifacts | Get document artifacts
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
 *DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs
@@ -345,6 +346,7 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**getSitesSchemaAttributeAllowedValues**](docs/SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
+*ShortlinksApi* | [**addShortlink**](docs/ShortlinksApi.md#addShortlink) | **POST** /shortlinks | Add shortlink
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**addLocale**](docs/SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale
 *SystemManagementApi* | [**addLocaleResourceItem**](docs/SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item
@@ -375,6 +377,8 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
+*SystemManagementApi* | [**getSystemConfiguration**](docs/SystemManagementApi.md#getSystemConfiguration) | **GET** /system/configuration | Get system configuration
+*SystemManagementApi* | [**getSystemInferenceModels**](docs/SystemManagementApi.md#getSystemInferenceModels) | **GET** /system/inferenceModels | Get system inference models
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
 *SystemManagementApi* | [**setLocaleResourceItem**](docs/SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item
 *SystemManagementApi* | [**setOpenSearchIndex**](docs/SystemManagementApi.md#setOpenSearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
@@ -382,6 +386,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
+*SystemManagementApi* | [**updateSystemConfiguration**](docs/SystemManagementApi.md#updateSystemConfiguration) | **PATCH** /system/configuration | Update system configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getResourceActivities**](docs/UserActivitiesApi.md#getResourceActivities) | **GET** /activities | Get resource activities
@@ -503,6 +508,8 @@ Class | Method | HTTP request | Description
  - [AddRulesetRequest](docs/AddRulesetRequest.md)
  - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
+ - [AddShortlinkRequest](docs/AddShortlinkRequest.md)
+ - [AddShortlinkResponse](docs/AddShortlinkResponse.md)
  - [AddSite](docs/AddSite.md)
  - [AddSiteRequest](docs/AddSiteRequest.md)
  - [AddTask](docs/AddTask.md)
@@ -549,16 +556,20 @@ Class | Method | HTTP request | Description
  - [DeleteRuleResponse](docs/DeleteRuleResponse.md)
  - [DeleteRulesetResponse](docs/DeleteRulesetResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
+ - [DeleteType](docs/DeleteType.md)
  - [Document](docs/Document.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
  - [DocumentCertification](docs/DocumentCertification.md)
- - [DocumentCertificationParameterStore](docs/DocumentCertificationParameterStore.md)
+ - [DocumentCertificationAwsSecretsManager](docs/DocumentCertificationAwsSecretsManager.md)
  - [DocumentCertificationTarget](docs/DocumentCertificationTarget.md)
+ - [DocumentCertificationType](docs/DocumentCertificationType.md)
  - [DocumentConfig](docs/DocumentConfig.md)
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
+ - [DocumentConfigDispositionAction](docs/DocumentConfigDispositionAction.md)
+ - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
@@ -679,6 +690,8 @@ Class | Method | HTTP request | Description
  - [GetSiteGroupsResponse](docs/GetSiteGroupsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetSitesSchemaResponse](docs/GetSitesSchemaResponse.md)
+ - [GetSystemConfigurationResponse](docs/GetSystemConfigurationResponse.md)
+ - [GetSystemInferenceModelsResponse](docs/GetSystemInferenceModelsResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
  - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
@@ -792,10 +805,14 @@ Class | Method | HTTP request | Description
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
+ - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
+ - [SystemConfigurationWebUi](docs/SystemConfigurationWebUi.md)
+ - [SystemInferenceModel](docs/SystemInferenceModel.md)
+ - [SystemInferenceModelInvocation](docs/SystemInferenceModelInvocation.md)
  - [Task](docs/Task.md)
  - [TaskStatus](docs/TaskStatus.md)
  - [TextractQuery](docs/TextractQuery.md)
@@ -826,6 +843,7 @@ Class | Method | HTTP request | Description
  - [UpdateRulesetResponse](docs/UpdateRulesetResponse.md)
  - [UpdateSite](docs/UpdateSite.md)
  - [UpdateSiteRequest](docs/UpdateSiteRequest.md)
+ - [UpdateSystemConfigurationRequest](docs/UpdateSystemConfigurationRequest.md)
  - [UpdateTask](docs/UpdateTask.md)
  - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
  - [UpdateTaskResponse](docs/UpdateTaskResponse.md)

@@ -67,8 +67,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-05-05T20:07:54.830243-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.22.0")
 public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(WorkflowStepConditionSource.class.getName());
 
@@ -238,6 +238,7 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
    * @return The actual instance of `WorkflowStepConditionDocumentAttribute`
    * @throws ClassCastException if the instance is not `WorkflowStepConditionDocumentAttribute`
    */
+  @SuppressWarnings("unchecked")
   public WorkflowStepConditionDocumentAttribute getWorkflowStepConditionDocumentAttribute()
       throws ClassCastException {
     return (WorkflowStepConditionDocumentAttribute) super.getActualInstance();
@@ -252,6 +253,7 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
    * @throws ClassCastException if the instance is not
    *         `WorkflowStepConditionDocumentStandardMetadata`
    */
+  @SuppressWarnings("unchecked")
   public WorkflowStepConditionDocumentStandardMetadata getWorkflowStepConditionDocumentStandardMetadata()
       throws ClassCastException {
     return (WorkflowStepConditionDocumentStandardMetadata) super.getActualInstance();
