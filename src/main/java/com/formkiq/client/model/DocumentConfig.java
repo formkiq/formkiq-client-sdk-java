@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.DocumentConfigContentTypes;
+import com.formkiq.client.model.DocumentConfigRetentionAndDisposition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,13 +58,18 @@ import com.formkiq.client.invoker.JSON;
  * DocumentConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class DocumentConfig {
   public static final String SERIALIZED_NAME_CONTENT_TYPES = "contentTypes";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPES)
   @javax.annotation.Nullable
   private DocumentConfigContentTypes contentTypes;
+
+  public static final String SERIALIZED_NAME_RETENTION_AND_DISPOSITION = "retentionAndDisposition";
+  @SerializedName(SERIALIZED_NAME_RETENTION_AND_DISPOSITION)
+  @javax.annotation.Nullable
+  private DocumentConfigRetentionAndDisposition retentionAndDisposition;
 
   public DocumentConfig() {}
 
@@ -88,6 +94,28 @@ public class DocumentConfig {
   }
 
 
+  public DocumentConfig retentionAndDisposition(
+      @javax.annotation.Nullable DocumentConfigRetentionAndDisposition retentionAndDisposition) {
+    this.retentionAndDisposition = retentionAndDisposition;
+    return this;
+  }
+
+  /**
+   * Get retentionAndDisposition
+   * 
+   * @return retentionAndDisposition
+   */
+  @javax.annotation.Nullable
+  public DocumentConfigRetentionAndDisposition getRetentionAndDisposition() {
+    return retentionAndDisposition;
+  }
+
+  public void setRetentionAndDisposition(
+      @javax.annotation.Nullable DocumentConfigRetentionAndDisposition retentionAndDisposition) {
+    this.retentionAndDisposition = retentionAndDisposition;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -98,12 +126,13 @@ public class DocumentConfig {
       return false;
     }
     DocumentConfig documentConfig = (DocumentConfig) o;
-    return Objects.equals(this.contentTypes, documentConfig.contentTypes);
+    return Objects.equals(this.contentTypes, documentConfig.contentTypes)
+        && Objects.equals(this.retentionAndDisposition, documentConfig.retentionAndDisposition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentTypes);
+    return Objects.hash(contentTypes, retentionAndDisposition);
   }
 
   @Override
@@ -111,6 +140,8 @@ public class DocumentConfig {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentConfig {\n");
     sb.append("    contentTypes: ").append(toIndentedString(contentTypes)).append("\n");
+    sb.append("    retentionAndDisposition: ").append(toIndentedString(retentionAndDisposition))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -119,10 +150,7 @@ public class DocumentConfig {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -131,7 +159,7 @@ public class DocumentConfig {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("contentTypes"));
+    openapiFields = new HashSet<String>(Arrays.asList("contentTypes", "retentionAndDisposition"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -166,6 +194,12 @@ public class DocumentConfig {
     // validate the optional field `contentTypes`
     if (jsonObj.get("contentTypes") != null && !jsonObj.get("contentTypes").isJsonNull()) {
       DocumentConfigContentTypes.validateJsonElement(jsonObj.get("contentTypes"));
+    }
+    // validate the optional field `retentionAndDisposition`
+    if (jsonObj.get("retentionAndDisposition") != null
+        && !jsonObj.get("retentionAndDisposition").isJsonNull()) {
+      DocumentConfigRetentionAndDisposition
+          .validateJsonElement(jsonObj.get("retentionAndDisposition"));
     }
   }
 

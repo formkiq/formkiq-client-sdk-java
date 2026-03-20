@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentCertification"></a>
 # **addDocumentCertification**
-> AddDocumentCertificationResponse addDocumentCertification(documentId, addDocumentCertificationRequest, siteId)
+> AddDocumentCertificationResponse addDocumentCertification(documentId, addDocumentCertificationRequest, siteId, artifactId)
 
 Add Document Certification
 
@@ -37,8 +37,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentCertificationRequest addDocumentCertificationRequest = new AddDocumentCertificationRequest(); // AddDocumentCertificationRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocumentCertificationResponse result = apiInstance.addDocumentCertification(documentId, addDocumentCertificationRequest, siteId);
+      AddDocumentCertificationResponse result = apiInstance.addDocumentCertification(documentId, addDocumentCertificationRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentGenerationApi#addDocumentCertification");
@@ -58,6 +59,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentCertificationRequest** | [**AddDocumentCertificationRequest**](AddDocumentCertificationRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -80,7 +82,7 @@ No authorization required
 
 <a id="addDocumentGenerate"></a>
 # **addDocumentGenerate**
-> AddDocumentGenerateResponse addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId)
+> AddDocumentGenerateResponse addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId, artifactId)
 
 Add Document Generate
 
@@ -107,8 +109,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentGenerateRequest addDocumentGenerateRequest = new AddDocumentGenerateRequest(); // AddDocumentGenerateRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocumentGenerateResponse result = apiInstance.addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId);
+      AddDocumentGenerateResponse result = apiInstance.addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentGenerationApi#addDocumentGenerate");
@@ -128,6 +131,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentGenerateRequest** | [**AddDocumentGenerateRequest**](AddDocumentGenerateRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

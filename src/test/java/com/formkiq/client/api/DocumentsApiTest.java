@@ -34,6 +34,7 @@ import com.formkiq.client.model.GetDocumentResponse;
 import com.formkiq.client.model.GetDocumentSyncResponse;
 import com.formkiq.client.model.GetDocumentUrlResponse;
 import com.formkiq.client.model.GetDocumentsResponse;
+import java.time.OffsetDateTime;
 import com.formkiq.client.model.SetDocumentRestoreResponse;
 import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateDocumentRequest;
@@ -99,8 +100,7 @@ public class DocumentsApiTest {
    * provided at creation time. **Content Type Detection** If the document **Content-Type** is not
    * specified during upload, the service will determine it asynchronously after the upload
    * completes. This may result in a **temporary delay** before the content type and related
-   * metadata are available. To avoid this delay, provide the **Content-Type** when uploading the
-   * document.
+   * metadata are available.
    *
    * @throws ApiException if the Api call fails
    */
@@ -140,8 +140,8 @@ public class DocumentsApiTest {
    * parameter allows for the temporary removal of a document&#39;s metadata, attributes, etc from
    * being retrieved from all API requests. The document can be permanently deleted by calling the
    * DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?deleted&#x3D;true will return all the
-   * soft deleted documents.
+   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
+   * the soft deleted documents.
    *
    * @throws ApiException if the Api call fails
    */
@@ -149,8 +149,9 @@ public class DocumentsApiTest {
   public void deleteDocumentTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     Boolean softDelete = null;
-    DeleteResponse response = api.deleteDocument(documentId, siteId, softDelete);
+    DeleteResponse response = api.deleteDocument(documentId, siteId, artifactId, softDelete);
     // TODO: test validations
   }
 
@@ -165,7 +166,8 @@ public class DocumentsApiTest {
   public void deleteDocumentCheckoutLegalHoldTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    DeleteResponse response = api.deleteDocumentCheckoutLegalHold(documentId, siteId);
+    String artifactId = null;
+    DeleteResponse response = api.deleteDocumentCheckoutLegalHold(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -197,8 +199,26 @@ public class DocumentsApiTest {
   public void getDocumentTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String shareKey = null;
-    GetDocumentResponse response = api.getDocument(documentId, siteId, shareKey);
+    GetDocumentResponse response = api.getDocument(documentId, siteId, artifactId, shareKey);
+    // TODO: test validations
+  }
+
+  /**
+   * Get document artifacts
+   *
+   * Returns the list of artifact documents associated with the specified document
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocumentArtifactsTest() throws ApiException {
+    String documentId = null;
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetDocumentsResponse response = api.getDocumentArtifacts(documentId, siteId, limit, next);
     // TODO: test validations
   }
 
@@ -220,10 +240,11 @@ public class DocumentsApiTest {
   public void getDocumentContentTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String versionKey = null;
     String shareKey = null;
     GetDocumentContentResponse response =
-        api.getDocumentContent(documentId, siteId, versionKey, shareKey);
+        api.getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey);
     // TODO: test validations
   }
 
@@ -240,13 +261,14 @@ public class DocumentsApiTest {
   public void getDocumentIdUploadTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String checksumType = null;
     String checksum = null;
     Integer contentLength = null;
     Integer duration = null;
     String shareKey = null;
-    GetDocumentUrlResponse response = api.getDocumentIdUpload(documentId, siteId, checksumType,
-        checksum, contentLength, duration, shareKey);
+    GetDocumentUrlResponse response = api.getDocumentIdUpload(documentId, siteId, artifactId,
+        checksumType, checksum, contentLength, duration, shareKey);
     // TODO: test validations
   }
 
@@ -300,13 +322,15 @@ public class DocumentsApiTest {
   public void getDocumentUrlTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String versionKey = null;
     Integer duration = null;
     String shareKey = null;
     Boolean inline = null;
     Boolean bypassWatermark = null;
-    GetDocumentUrlResponse response = api.getDocumentUrl(documentId, siteId, versionKey, duration,
-        shareKey, inline, bypassWatermark);
+    String format = null;
+    GetDocumentUrlResponse response = api.getDocumentUrl(documentId, siteId, artifactId, versionKey,
+        duration, shareKey, inline, bypassWatermark, format);
     // TODO: test validations
   }
 
@@ -322,15 +346,19 @@ public class DocumentsApiTest {
     String siteId = null;
     String actionStatus = null;
     String syncStatus = null;
+    Boolean softDeleted = null;
     Boolean deleted = null;
     String date = null;
     String tz = null;
+    OffsetDateTime start = null;
+    OffsetDateTime end = null;
+    String sort = null;
     String next = null;
     String previous = null;
     String projection = null;
     String limit = null;
-    GetDocumentsResponse response = api.getDocuments(siteId, actionStatus, syncStatus, deleted,
-        date, tz, next, previous, projection, limit);
+    GetDocumentsResponse response = api.getDocuments(siteId, actionStatus, syncStatus, softDeleted,
+        deleted, date, tz, start, end, sort, next, previous, projection, limit);
     // TODO: test validations
   }
 
@@ -364,7 +392,8 @@ public class DocumentsApiTest {
   public void purgeDocumentTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    DeleteResponse response = api.purgeDocument(documentId, siteId);
+    String artifactId = null;
+    DeleteResponse response = api.purgeDocument(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -380,7 +409,8 @@ public class DocumentsApiTest {
   public void setDocumentCheckoutTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    SetResponse response = api.setDocumentCheckout(documentId, siteId);
+    String artifactId = null;
+    SetResponse response = api.setDocumentCheckout(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -396,7 +426,8 @@ public class DocumentsApiTest {
   public void setDocumentCheckoutLegalHoldTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    SetResponse response = api.setDocumentCheckoutLegalHold(documentId, siteId);
+    String artifactId = null;
+    SetResponse response = api.setDocumentCheckoutLegalHold(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -411,7 +442,8 @@ public class DocumentsApiTest {
   public void setDocumentRestoreTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    SetDocumentRestoreResponse response = api.setDocumentRestore(documentId, siteId);
+    String artifactId = null;
+    SetDocumentRestoreResponse response = api.setDocumentRestore(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -430,9 +462,10 @@ public class DocumentsApiTest {
     String documentId = null;
     UpdateDocumentRequest updateDocumentRequest = null;
     String siteId = null;
+    String artifactId = null;
     String shareKey = null;
     AddDocumentResponse response =
-        api.updateDocument(documentId, updateDocumentRequest, siteId, shareKey);
+        api.updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey);
     // TODO: test validations
   }
 

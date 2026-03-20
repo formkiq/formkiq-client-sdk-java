@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**documentId** | **String** | Document Identifier |  [optional] |
+|**artifactId** | **String** | Artifact Identifier |  [optional] |
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**uploadUrl** | **String** | Url to upload document to |  [optional] |
 |**headers** | **Map&lt;String, Object&gt;** |  |  [optional] |

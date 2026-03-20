@@ -77,8 +77,10 @@ public class DocumentActionsApiTest {
   public void addDocumentActionsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentActionsRequest addDocumentActionsRequest = null;
-    AddResponse response = api.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+    AddResponse response =
+        api.addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest);
     // TODO: test validations
   }
 
@@ -94,7 +96,8 @@ public class DocumentActionsApiTest {
   public void addDocumentRetryActionTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    AddResponse response = api.addDocumentRetryAction(documentId, siteId);
+    String artifactId = null;
+    AddResponse response = api.addDocumentRetryAction(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -109,11 +112,12 @@ public class DocumentActionsApiTest {
   public void getDocumentActionsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String shareKey = null;
     String next = null;
     GetDocumentActionsResponse response =
-        api.getDocumentActions(documentId, siteId, limit, shareKey, next);
+        api.getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next);
     // TODO: test validations
   }
 

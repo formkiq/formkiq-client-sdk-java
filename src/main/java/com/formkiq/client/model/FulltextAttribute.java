@@ -60,9 +60,14 @@ import com.formkiq.client.invoker.JSON;
  * FulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class FulltextAttribute {
+  public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
+  @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
+  @javax.annotation.Nullable
+  private String insertedDate;
+
   public static final String SERIALIZED_NAME_STRING_VALUES = "stringValues";
   @SerializedName(SERIALIZED_NAME_STRING_VALUES)
   @javax.annotation.Nullable
@@ -84,6 +89,26 @@ public class FulltextAttribute {
   private AttributeValueType valueType;
 
   public FulltextAttribute() {}
+
+  public FulltextAttribute insertedDate(@javax.annotation.Nullable String insertedDate) {
+    this.insertedDate = insertedDate;
+    return this;
+  }
+
+  /**
+   * Inserted Timestamp
+   * 
+   * @return insertedDate
+   */
+  @javax.annotation.Nullable
+  public String getInsertedDate() {
+    return insertedDate;
+  }
+
+  public void setInsertedDate(@javax.annotation.Nullable String insertedDate) {
+    this.insertedDate = insertedDate;
+  }
+
 
   public FulltextAttribute stringValues(@javax.annotation.Nullable List<String> stringValues) {
     this.stringValues = stringValues;
@@ -191,7 +216,8 @@ public class FulltextAttribute {
       return false;
     }
     FulltextAttribute fulltextAttribute = (FulltextAttribute) o;
-    return Objects.equals(this.stringValues, fulltextAttribute.stringValues)
+    return Objects.equals(this.insertedDate, fulltextAttribute.insertedDate)
+        && Objects.equals(this.stringValues, fulltextAttribute.stringValues)
         && Objects.equals(this.numberValues, fulltextAttribute.numberValues)
         && Objects.equals(this.booleanValue, fulltextAttribute.booleanValue)
         && Objects.equals(this.valueType, fulltextAttribute.valueType);
@@ -199,13 +225,14 @@ public class FulltextAttribute {
 
   @Override
   public int hashCode() {
-    return Objects.hash(stringValues, numberValues, booleanValue, valueType);
+    return Objects.hash(insertedDate, stringValues, numberValues, booleanValue, valueType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FulltextAttribute {\n");
+    sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    stringValues: ").append(toIndentedString(stringValues)).append("\n");
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
@@ -218,10 +245,7 @@ public class FulltextAttribute {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -231,7 +255,7 @@ public class FulltextAttribute {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(
-        Arrays.asList("stringValues", "numberValues", "booleanValue", "valueType"));
+        Arrays.asList("insertedDate", "stringValues", "numberValues", "booleanValue", "valueType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -263,6 +287,12 @@ public class FulltextAttribute {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
+        && !jsonObj.get("insertedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("insertedDate").toString()));
+    }
     // ensure the optional json data is an array if present
     if (jsonObj.get("stringValues") != null && !jsonObj.get("stringValues").isJsonNull()
         && !jsonObj.get("stringValues").isJsonArray()) {

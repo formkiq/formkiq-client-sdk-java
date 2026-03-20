@@ -72,8 +72,9 @@ public class DocumentWorkflowsApiTest {
     String documentId = null;
     AddDocumentWorkflowRequest addDocumentWorkflowRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentWorkflowResponse response =
-        api.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId);
+        api.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -90,8 +91,9 @@ public class DocumentWorkflowsApiTest {
     String workflowId = null;
     AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentWorkflowDecisionsResponse response = api.addDocumentWorkflowDecisions(documentId,
-        workflowId, addDocumentWorkflowDecisionsRequest, siteId);
+        workflowId, addDocumentWorkflowDecisionsRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -167,7 +169,9 @@ public class DocumentWorkflowsApiTest {
     String documentId = null;
     String workflowId = null;
     String siteId = null;
-    GetDocumentWorkflowResponse response = api.getDocumentWorkflow(documentId, workflowId, siteId);
+    String artifactId = null;
+    GetDocumentWorkflowResponse response =
+        api.getDocumentWorkflow(documentId, workflowId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -182,7 +186,9 @@ public class DocumentWorkflowsApiTest {
   public void getDocumentWorkflowsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    GetDocumentWorkflowsResponse response = api.getDocumentWorkflows(documentId, siteId);
+    String artifactId = null;
+    GetDocumentWorkflowsResponse response =
+        api.getDocumentWorkflows(documentId, siteId, artifactId);
     // TODO: test validations
   }
 

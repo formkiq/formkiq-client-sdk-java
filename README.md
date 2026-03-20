@@ -282,6 +282,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteDocumentCheckoutLegalHold**](docs/DocumentsApi.md#deleteDocumentCheckoutLegalHold) | **DELETE** /documents/{documentId}/legalHold | Delete document legal hold checkout
 *DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
+*DocumentsApi* | [**getDocumentArtifacts**](docs/DocumentsApi.md#getDocumentArtifacts) | **GET** /documents/{documentId}/artifacts | Get document artifacts
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
 *DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs
@@ -345,6 +346,7 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**getSitesSchemaAttributeAllowedValues**](docs/SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
+*ShortlinksApi* | [**addShortlink**](docs/ShortlinksApi.md#addShortlink) | **POST** /shortlinks | Add shortlink
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**addLocale**](docs/SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale
 *SystemManagementApi* | [**addLocaleResourceItem**](docs/SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item
@@ -503,6 +505,8 @@ Class | Method | HTTP request | Description
  - [AddRulesetRequest](docs/AddRulesetRequest.md)
  - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
+ - [AddShortlinkRequest](docs/AddShortlinkRequest.md)
+ - [AddShortlinkResponse](docs/AddShortlinkResponse.md)
  - [AddSite](docs/AddSite.md)
  - [AddSiteRequest](docs/AddSiteRequest.md)
  - [AddTask](docs/AddTask.md)
@@ -555,10 +559,13 @@ Class | Method | HTTP request | Description
  - [DocumentActionType](docs/DocumentActionType.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
  - [DocumentCertification](docs/DocumentCertification.md)
- - [DocumentCertificationParameterStore](docs/DocumentCertificationParameterStore.md)
+ - [DocumentCertificationAwsSecretsManager](docs/DocumentCertificationAwsSecretsManager.md)
  - [DocumentCertificationTarget](docs/DocumentCertificationTarget.md)
+ - [DocumentCertificationType](docs/DocumentCertificationType.md)
  - [DocumentConfig](docs/DocumentConfig.md)
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
+ - [DocumentConfigDispositionAction](docs/DocumentConfigDispositionAction.md)
+ - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
@@ -792,6 +799,7 @@ Class | Method | HTTP request | Description
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
+ - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)

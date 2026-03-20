@@ -89,6 +89,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -113,7 +114,8 @@ public class DocumentVersionsApi {
    */
   public okhttp3.Call deleteDocumentVersionCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String versionKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -144,6 +146,10 @@ public class DocumentVersionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -170,8 +176,8 @@ public class DocumentVersionsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentVersionValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String versionKey,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -184,7 +190,8 @@ public class DocumentVersionsApi {
           "Missing the required parameter 'versionKey' when calling deleteDocumentVersion(Async)");
     }
 
-    return deleteDocumentVersionCall(documentId, versionKey, siteId, shareKey, _callback);
+    return deleteDocumentVersionCall(documentId, versionKey, siteId, artifactId, shareKey,
+        _callback);
 
   }
 
@@ -195,6 +202,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -219,9 +227,10 @@ public class DocumentVersionsApi {
    */
   public DeleteResponse deleteDocumentVersion(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String versionKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentVersionWithHttpInfo(documentId, versionKey, siteId, shareKey);
+        deleteDocumentVersionWithHttpInfo(documentId, versionKey, siteId, artifactId, shareKey);
     return localVarResp.getData();
   }
 
@@ -232,6 +241,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -256,10 +266,10 @@ public class DocumentVersionsApi {
    */
   public ApiResponse<DeleteResponse> deleteDocumentVersionWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String versionKey,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        deleteDocumentVersionValidateBeforeCall(documentId, versionKey, siteId, shareKey, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
+    okhttp3.Call localVarCall = deleteDocumentVersionValidateBeforeCall(documentId, versionKey,
+        siteId, artifactId, shareKey, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -271,6 +281,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param versionKey Version Key (version key required URL encoding) (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -295,11 +306,11 @@ public class DocumentVersionsApi {
    */
   public okhttp3.Call deleteDocumentVersionAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String versionKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey, final ApiCallback<DeleteResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentVersionValidateBeforeCall(documentId, versionKey,
-        siteId, shareKey, _callback);
+        siteId, artifactId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -310,6 +321,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -335,9 +347,9 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentVersionsCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -365,6 +377,10 @@ public class DocumentVersionsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (limit != null) {
@@ -401,15 +417,17 @@ public class DocumentVersionsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentVersionsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentVersions(Async)");
     }
 
-    return getDocumentVersionsCall(documentId, siteId, limit, shareKey, next, _callback);
+    return getDocumentVersionsCall(documentId, siteId, artifactId, limit, shareKey, next,
+        _callback);
 
   }
 
@@ -419,6 +437,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -445,10 +464,11 @@ public class DocumentVersionsApi {
    */
   public GetDocumentVersionsResponse getDocumentVersions(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next)
+      throws ApiException {
     ApiResponse<GetDocumentVersionsResponse> localVarResp =
-        getDocumentVersionsWithHttpInfo(documentId, siteId, limit, shareKey, next);
+        getDocumentVersionsWithHttpInfo(documentId, siteId, artifactId, limit, shareKey, next);
     return localVarResp.getData();
   }
 
@@ -458,6 +478,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -484,10 +505,11 @@ public class DocumentVersionsApi {
    */
   public ApiResponse<GetDocumentVersionsResponse> getDocumentVersionsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next) throws ApiException {
-    okhttp3.Call localVarCall =
-        getDocumentVersionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next)
+      throws ApiException {
+    okhttp3.Call localVarCall = getDocumentVersionsValidateBeforeCall(documentId, siteId,
+        artifactId, limit, shareKey, next, null);
     Type localVarReturnType = new TypeToken<GetDocumentVersionsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -498,6 +520,7 @@ public class DocumentVersionsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -523,12 +546,13 @@ public class DocumentVersionsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentVersionsAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next,
       final ApiCallback<GetDocumentVersionsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentVersionsValidateBeforeCall(documentId, siteId, limit, shareKey, next, _callback);
+    okhttp3.Call localVarCall = getDocumentVersionsValidateBeforeCall(documentId, siteId,
+        artifactId, limit, shareKey, next, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentVersionsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -540,6 +564,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentVersionRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -568,7 +593,8 @@ public class DocumentVersionsApi {
    */
   public okhttp3.Call setDocumentVersionCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentVersionRequest setDocumentVersionRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -598,6 +624,10 @@ public class DocumentVersionsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -621,7 +651,8 @@ public class DocumentVersionsApi {
   private okhttp3.Call setDocumentVersionValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentVersionRequest setDocumentVersionRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -634,7 +665,8 @@ public class DocumentVersionsApi {
           "Missing the required parameter 'setDocumentVersionRequest' when calling setDocumentVersion(Async)");
     }
 
-    return setDocumentVersionCall(documentId, setDocumentVersionRequest, siteId, _callback);
+    return setDocumentVersionCall(documentId, setDocumentVersionRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -645,6 +677,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentVersionRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetDocumentVersionResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -673,9 +706,10 @@ public class DocumentVersionsApi {
    */
   public SetDocumentVersionResponse setDocumentVersion(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentVersionRequest setDocumentVersionRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<SetDocumentVersionResponse> localVarResp =
-        setDocumentVersionWithHttpInfo(documentId, setDocumentVersionRequest, siteId);
+        setDocumentVersionWithHttpInfo(documentId, setDocumentVersionRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -686,6 +720,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentVersionRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetDocumentVersionResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -715,9 +750,10 @@ public class DocumentVersionsApi {
   public ApiResponse<SetDocumentVersionResponse> setDocumentVersionWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentVersionRequest setDocumentVersionRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        setDocumentVersionValidateBeforeCall(documentId, setDocumentVersionRequest, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = setDocumentVersionValidateBeforeCall(documentId,
+        setDocumentVersionRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetDocumentVersionResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -729,6 +765,7 @@ public class DocumentVersionsApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentVersionRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -757,11 +794,11 @@ public class DocumentVersionsApi {
    */
   public okhttp3.Call setDocumentVersionAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentVersionRequest setDocumentVersionRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<SetDocumentVersionResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = setDocumentVersionValidateBeforeCall(documentId,
-        setDocumentVersionRequest, siteId, _callback);
+        setDocumentVersionRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetDocumentVersionResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

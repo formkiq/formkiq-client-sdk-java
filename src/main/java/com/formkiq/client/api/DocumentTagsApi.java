@@ -40,8 +40,10 @@ import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
 import com.formkiq.client.model.SetDocumentTagKeyRequest;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateMatchingDocumentTagsRequest;
 import com.formkiq.client.model.UpdateMatchingDocumentTagsResponse;
+import com.formkiq.client.model.UpdateResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -92,6 +94,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -115,7 +118,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call addDocumentTagsCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -145,6 +149,10 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -168,7 +176,8 @@ public class DocumentTagsApi {
   private okhttp3.Call addDocumentTagsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -181,7 +190,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'addDocumentTagsRequest' when calling addDocumentTags(Async)");
     }
 
-    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    return addDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, artifactId, _callback);
 
   }
 
@@ -192,6 +201,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -215,9 +225,10 @@ public class DocumentTagsApi {
    */
   public AddResponse addDocumentTags(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<AddResponse> localVarResp =
-        addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
+        addDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -228,6 +239,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -252,9 +264,10 @@ public class DocumentTagsApi {
   public ApiResponse<AddResponse> addDocumentTagsWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = addDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -266,6 +279,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -289,11 +303,11 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call addDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        addDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    okhttp3.Call localVarCall = addDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -305,6 +319,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -328,7 +343,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call deleteDocumentTagCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -359,6 +375,10 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -381,7 +401,8 @@ public class DocumentTagsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentTagValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -394,7 +415,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'tagKey' when calling deleteDocumentTag(Async)");
     }
 
-    return deleteDocumentTagCall(documentId, tagKey, siteId, _callback);
+    return deleteDocumentTagCall(documentId, tagKey, siteId, artifactId, _callback);
 
   }
 
@@ -404,6 +425,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -426,10 +448,10 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public DeleteResponse deleteDocumentTag(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentTagWithHttpInfo(documentId, tagKey, siteId);
+        deleteDocumentTagWithHttpInfo(documentId, tagKey, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -439,6 +461,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -462,9 +485,10 @@ public class DocumentTagsApi {
    */
   public ApiResponse<DeleteResponse> deleteDocumentTagWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        deleteDocumentTagValidateBeforeCall(documentId, tagKey, siteId, null);
+        deleteDocumentTagValidateBeforeCall(documentId, tagKey, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -475,6 +499,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -498,10 +523,11 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call deleteDocumentTagAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall =
-        deleteDocumentTagValidateBeforeCall(documentId, tagKey, siteId, _callback);
+        deleteDocumentTagValidateBeforeCall(documentId, tagKey, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -514,6 +540,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param tagValue Tag Key Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -538,8 +565,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call deleteDocumentTagAndValueCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -571,6 +598,10 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -598,7 +629,8 @@ public class DocumentTagsApi {
   private okhttp3.Call deleteDocumentTagAndValueValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull String tagValue, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -617,7 +649,8 @@ public class DocumentTagsApi {
           "Missing the required parameter 'tagValue' when calling deleteDocumentTagAndValue(Async)");
     }
 
-    return deleteDocumentTagAndValueCall(documentId, tagKey, tagValue, siteId, shareKey, _callback);
+    return deleteDocumentTagAndValueCall(documentId, tagKey, tagValue, siteId, artifactId, shareKey,
+        _callback);
 
   }
 
@@ -629,6 +662,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param tagValue Tag Key Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -653,10 +687,10 @@ public class DocumentTagsApi {
    */
   public DeleteResponse deleteDocumentTagAndValue(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
-    ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentTagAndValueWithHttpInfo(documentId, tagKey, tagValue, siteId, shareKey);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
+    ApiResponse<DeleteResponse> localVarResp = deleteDocumentTagAndValueWithHttpInfo(documentId,
+        tagKey, tagValue, siteId, artifactId, shareKey);
     return localVarResp.getData();
   }
 
@@ -668,6 +702,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param tagValue Tag Key Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -693,9 +728,10 @@ public class DocumentTagsApi {
   public ApiResponse<DeleteResponse> deleteDocumentTagAndValueWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull String tagValue, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     okhttp3.Call localVarCall = deleteDocumentTagAndValueValidateBeforeCall(documentId, tagKey,
-        tagValue, siteId, shareKey, null);
+        tagValue, siteId, artifactId, shareKey, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -708,6 +744,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param tagValue Tag Key Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -732,11 +769,12 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call deleteDocumentTagAndValueAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nonnull String tagValue,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentTagAndValueValidateBeforeCall(documentId, tagKey,
-        tagValue, siteId, shareKey, _callback);
+        tagValue, siteId, artifactId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -748,6 +786,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
@@ -772,7 +811,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call getDocumentTagCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -803,6 +843,10 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     if (shareKey != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("shareKey", shareKey));
     }
@@ -829,7 +873,8 @@ public class DocumentTagsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentTagValidateBeforeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -842,7 +887,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'tagKey' when calling getDocumentTag(Async)");
     }
 
-    return getDocumentTagCall(documentId, tagKey, siteId, shareKey, _callback);
+    return getDocumentTagCall(documentId, tagKey, siteId, artifactId, shareKey, _callback);
 
   }
 
@@ -852,6 +897,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return GetDocumentTagResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -876,9 +922,10 @@ public class DocumentTagsApi {
    */
   public GetDocumentTagResponse getDocumentTag(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey)
+      throws ApiException {
     ApiResponse<GetDocumentTagResponse> localVarResp =
-        getDocumentTagWithHttpInfo(documentId, tagKey, siteId, shareKey);
+        getDocumentTagWithHttpInfo(documentId, tagKey, siteId, artifactId, shareKey);
     return localVarResp.getData();
   }
 
@@ -888,6 +935,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @return ApiResponse&lt;GetDocumentTagResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -912,10 +960,10 @@ public class DocumentTagsApi {
    */
   public ApiResponse<GetDocumentTagResponse> getDocumentTagWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String shareKey)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String shareKey) throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentTagValidateBeforeCall(documentId, tagKey, siteId, shareKey, null);
+        getDocumentTagValidateBeforeCall(documentId, tagKey, siteId, artifactId, shareKey, null);
     Type localVarReturnType = new TypeToken<GetDocumentTagResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -926,6 +974,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param tagKey Tag Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param shareKey Share Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
@@ -950,11 +999,11 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call getDocumentTagAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String shareKey,
       final ApiCallback<GetDocumentTagResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentTagValidateBeforeCall(documentId, tagKey, siteId, shareKey, _callback);
+    okhttp3.Call localVarCall = getDocumentTagValidateBeforeCall(documentId, tagKey, siteId,
+        artifactId, shareKey, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentTagResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -965,6 +1014,7 @@ public class DocumentTagsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -991,9 +1041,10 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentTagsCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1021,6 +1072,10 @@ public class DocumentTagsApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (limit != null) {
@@ -1061,16 +1116,17 @@ public class DocumentTagsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentTagsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentTags(Async)");
     }
 
-    return getDocumentTagsCall(documentId, siteId, limit, shareKey, next, previous, _callback);
+    return getDocumentTagsCall(documentId, siteId, artifactId, limit, shareKey, next, previous,
+        _callback);
 
   }
 
@@ -1079,6 +1135,7 @@ public class DocumentTagsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -1105,11 +1162,12 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public GetDocumentTagsResponse getDocumentTags(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous) throws ApiException {
-    ApiResponse<GetDocumentTagsResponse> localVarResp =
-        getDocumentTagsWithHttpInfo(documentId, siteId, limit, shareKey, next, previous);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous)
+      throws ApiException {
+    ApiResponse<GetDocumentTagsResponse> localVarResp = getDocumentTagsWithHttpInfo(documentId,
+        siteId, artifactId, limit, shareKey, next, previous);
     return localVarResp.getData();
   }
 
@@ -1118,6 +1176,7 @@ public class DocumentTagsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -1145,11 +1204,11 @@ public class DocumentTagsApi {
    */
   public ApiResponse<GetDocumentTagsResponse> getDocumentTagsWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
-      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous)
-      throws ApiException {
-    okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, limit,
-        shareKey, next, previous, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String previous) throws ApiException {
+    okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, artifactId,
+        limit, shareKey, next, previous, null);
     Type localVarReturnType = new TypeToken<GetDocumentTagsResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1159,6 +1218,7 @@ public class DocumentTagsApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param shareKey Share Identifier (optional)
    * @param next Next page of results token (optional)
@@ -1185,13 +1245,13 @@ public class DocumentTagsApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String shareKey, @javax.annotation.Nullable String next,
-      @javax.annotation.Nullable String previous,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String shareKey,
+      @javax.annotation.Nullable String next, @javax.annotation.Nullable String previous,
       final ApiCallback<GetDocumentTagsResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, limit,
-        shareKey, next, previous, _callback);
+    okhttp3.Call localVarCall = getDocumentTagsValidateBeforeCall(documentId, siteId, artifactId,
+        limit, shareKey, next, previous, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentTagsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1204,6 +1264,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param setDocumentTagKeyRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1228,7 +1289,8 @@ public class DocumentTagsApi {
   public okhttp3.Call setDocumentTagCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1259,7 +1321,11 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -1282,7 +1348,8 @@ public class DocumentTagsApi {
   private okhttp3.Call setDocumentTagValidateBeforeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1301,7 +1368,8 @@ public class DocumentTagsApi {
           "Missing the required parameter 'setDocumentTagKeyRequest' when calling setDocumentTag(Async)");
     }
 
-    return setDocumentTagCall(documentId, tagKey, setDocumentTagKeyRequest, siteId, _callback);
+    return setDocumentTagCall(documentId, tagKey, setDocumentTagKeyRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -1313,6 +1381,8 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param setDocumentTagKeyRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return UpdateResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1333,11 +1403,14 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void setDocumentTag(@javax.annotation.Nonnull String documentId,
+  public UpdateResponse setDocumentTag(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    setDocumentTagWithHttpInfo(documentId, tagKey, setDocumentTagKeyRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<UpdateResponse> localVarResp = setDocumentTagWithHttpInfo(documentId, tagKey,
+        setDocumentTagKeyRequest, siteId, artifactId);
+    return localVarResp.getData();
   }
 
   /**
@@ -1348,7 +1421,8 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param setDocumentTagKeyRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return ApiResponse&lt;UpdateResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1369,13 +1443,15 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> setDocumentTagWithHttpInfo(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nonnull String tagKey,
+  public ApiResponse<UpdateResponse> setDocumentTagWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = setDocumentTagValidateBeforeCall(documentId, tagKey,
-        setDocumentTagKeyRequest, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+        setDocumentTagKeyRequest, siteId, artifactId, null);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -1386,6 +1462,7 @@ public class DocumentTagsApi {
    * @param tagKey Tag Key (required)
    * @param setDocumentTagKeyRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1410,12 +1487,13 @@ public class DocumentTagsApi {
   public okhttp3.Call setDocumentTagAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String tagKey,
       @javax.annotation.Nonnull SetDocumentTagKeyRequest setDocumentTagKeyRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<UpdateResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = setDocumentTagValidateBeforeCall(documentId, tagKey,
-        setDocumentTagKeyRequest, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+        setDocumentTagKeyRequest, siteId, artifactId, _callback);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
@@ -1425,6 +1503,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1448,7 +1527,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call setDocumentTagsCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1478,7 +1558,11 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -1501,7 +1585,8 @@ public class DocumentTagsApi {
   private okhttp3.Call setDocumentTagsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1514,7 +1599,7 @@ public class DocumentTagsApi {
           "Missing the required parameter 'addDocumentTagsRequest' when calling setDocumentTags(Async)");
     }
 
-    return setDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    return setDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, artifactId, _callback);
 
   }
 
@@ -1525,6 +1610,8 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1545,10 +1632,13 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void setDocumentTags(@javax.annotation.Nonnull String documentId,
+  public SetResponse setDocumentTags(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    setDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<SetResponse> localVarResp =
+        setDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId, artifactId);
+    return localVarResp.getData();
   }
 
   /**
@@ -1558,7 +1648,8 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1579,12 +1670,15 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> setDocumentTagsWithHttpInfo(@javax.annotation.Nonnull String documentId,
+  public ApiResponse<SetResponse> setDocumentTagsWithHttpInfo(
+      @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        setDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = setDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, null);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -1594,6 +1688,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1617,12 +1712,13 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call setDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        setDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    okhttp3.Call localVarCall = setDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, _callback);
+    Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 
@@ -1632,6 +1728,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1655,7 +1752,8 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call updateDocumentTagsCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1685,7 +1783,11 @@ public class DocumentTagsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
-    final String[] localVarAccepts = {};
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
       localVarHeaderParams.put("Accept", localVarAccept);
@@ -1708,7 +1810,8 @@ public class DocumentTagsApi {
   private okhttp3.Call updateDocumentTagsValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1721,7 +1824,8 @@ public class DocumentTagsApi {
           "Missing the required parameter 'addDocumentTagsRequest' when calling updateDocumentTags(Async)");
     }
 
-    return updateDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, _callback);
+    return updateDocumentTagsCall(documentId, addDocumentTagsRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -1732,6 +1836,8 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return UpdateResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1752,10 +1858,13 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public void updateDocumentTags(@javax.annotation.Nonnull String documentId,
+  public UpdateResponse updateDocumentTags(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    updateDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<UpdateResponse> localVarResp =
+        updateDocumentTagsWithHttpInfo(documentId, addDocumentTagsRequest, siteId, artifactId);
+    return localVarResp.getData();
   }
 
   /**
@@ -1765,7 +1874,8 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return ApiResponse&lt;UpdateResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
    * @http.response.details
@@ -1786,13 +1896,15 @@ public class DocumentTagsApi {
    *                        </tr>
    *                        </table>
    */
-  public ApiResponse<Void> updateDocumentTagsWithHttpInfo(
+  public ApiResponse<UpdateResponse> updateDocumentTagsWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        updateDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, null);
-    return localVarApiClient.execute(localVarCall);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = updateDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, null);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
@@ -1802,6 +1914,7 @@ public class DocumentTagsApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentTagsRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1825,12 +1938,13 @@ public class DocumentTagsApi {
    */
   public okhttp3.Call updateDocumentTagsAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentTagsRequest addDocumentTagsRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<Void> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<UpdateResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        updateDocumentTagsValidateBeforeCall(documentId, addDocumentTagsRequest, siteId, _callback);
-    localVarApiClient.executeAsync(localVarCall, _callback);
+    okhttp3.Call localVarCall = updateDocumentTagsValidateBeforeCall(documentId,
+        addDocumentTagsRequest, siteId, artifactId, _callback);
+    Type localVarReturnType = new TypeToken<UpdateResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
 

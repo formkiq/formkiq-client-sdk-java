@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.SiteConfig;
 import com.formkiq.client.model.SiteGroupPermissions;
+import com.formkiq.client.model.SitePermission;
 import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.SiteUsage;
 import com.google.gson.TypeAdapter;
@@ -80,6 +81,14 @@ public class SiteTest {
   @Test
   public void permissionTest() {
     // TODO: test permission
+  }
+
+  /**
+   * Test the property 'roles'
+   */
+  @Test
+  public void rolesTest() {
+    // TODO: test roles
   }
 
   /**

@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * Document
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class Document {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -112,6 +112,11 @@ public class Document {
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String artifactId;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -355,6 +360,26 @@ public class Document {
   }
 
 
+  public Document artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+  }
+
+
   public Document contentType(@javax.annotation.Nullable String contentType) {
     this.contentType = contentType;
     return this;
@@ -542,6 +567,7 @@ public class Document {
         && Objects.equals(this.checksum, document.checksum)
         && Objects.equals(this.checksumType, document.checksumType)
         && Objects.equals(this.documentId, document.documentId)
+        && Objects.equals(this.artifactId, document.artifactId)
         && Objects.equals(this.contentType, document.contentType)
         && Objects.equals(this.userId, document.userId)
         && Objects.equals(this.contentLength, document.contentLength)
@@ -555,8 +581,8 @@ public class Document {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, path, width, height, deepLinkPath, insertedDate, lastModifiedDate,
-        checksum, checksumType, documentId, contentType, userId, contentLength, version, versionKey,
-        s3version, belongsToDocumentId, metadata);
+        checksum, checksumType, documentId, artifactId, contentType, userId, contentLength, version,
+        versionKey, s3version, belongsToDocumentId, metadata);
   }
 
   @Override
@@ -573,6 +599,7 @@ public class Document {
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
     sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    contentLength: ").append(toIndentedString(contentLength)).append("\n");
@@ -590,10 +617,7 @@ public class Document {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -604,8 +628,8 @@ public class Document {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("siteId", "path", "width", "height",
         "deepLinkPath", "insertedDate", "lastModifiedDate", "checksum", "checksumType",
-        "documentId", "contentType", "userId", "contentLength", "version", "versionKey",
-        "s3version", "belongsToDocumentId", "metadata"));
+        "documentId", "artifactId", "contentType", "userId", "contentLength", "version",
+        "versionKey", "s3version", "belongsToDocumentId", "metadata"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -694,6 +718,12 @@ public class Document {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("artifactId") != null && !jsonObj.get("artifactId").isJsonNull())
+        && !jsonObj.get("artifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactId").toString()));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {

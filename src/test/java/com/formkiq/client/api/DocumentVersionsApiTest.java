@@ -54,8 +54,10 @@ public class DocumentVersionsApiTest {
     String documentId = null;
     String versionKey = null;
     String siteId = null;
+    String artifactId = null;
     String shareKey = null;
-    DeleteResponse response = api.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
+    DeleteResponse response =
+        api.deleteDocumentVersion(documentId, versionKey, siteId, artifactId, shareKey);
     // TODO: test validations
   }
 
@@ -70,11 +72,12 @@ public class DocumentVersionsApiTest {
   public void getDocumentVersionsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String shareKey = null;
     String next = null;
     GetDocumentVersionsResponse response =
-        api.getDocumentVersions(documentId, siteId, limit, shareKey, next);
+        api.getDocumentVersions(documentId, siteId, artifactId, limit, shareKey, next);
     // TODO: test validations
   }
 
@@ -90,8 +93,9 @@ public class DocumentVersionsApiTest {
     String documentId = null;
     SetDocumentVersionRequest setDocumentVersionRequest = null;
     String siteId = null;
+    String artifactId = null;
     SetDocumentVersionResponse response =
-        api.setDocumentVersion(documentId, setDocumentVersionRequest, siteId);
+        api.setDocumentVersion(documentId, setDocumentVersionRequest, siteId, artifactId);
     // TODO: test validations
   }
 

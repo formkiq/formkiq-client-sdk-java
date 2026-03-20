@@ -66,14 +66,6 @@ public class MappingAttributeTest {
   }
 
   /**
-   * Test the property 'llmPromptEntityName'
-   */
-  @Test
-  public void llmPromptEntityNameTest() {
-    // TODO: test llmPromptEntityName
-  }
-
-  /**
    * Test the property 'defaultValue'
    */
   @Test

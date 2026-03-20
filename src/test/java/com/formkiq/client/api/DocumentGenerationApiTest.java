@@ -56,8 +56,9 @@ public class DocumentGenerationApiTest {
     String documentId = null;
     AddDocumentCertificationRequest addDocumentCertificationRequest = null;
     String siteId = null;
-    AddDocumentCertificationResponse response =
-        api.addDocumentCertification(documentId, addDocumentCertificationRequest, siteId);
+    String artifactId = null;
+    AddDocumentCertificationResponse response = api.addDocumentCertification(documentId,
+        addDocumentCertificationRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -78,8 +79,9 @@ public class DocumentGenerationApiTest {
     String documentId = null;
     AddDocumentGenerateRequest addDocumentGenerateRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentGenerateResponse response =
-        api.addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId);
+        api.addDocumentGenerate(documentId, addDocumentGenerateRequest, siteId, artifactId);
     // TODO: test validations
   }
 

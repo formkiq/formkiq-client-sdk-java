@@ -20,45 +20,68 @@
 
 package com.formkiq.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentCertificationParameterStore
+ * Deprecated: use permissions
  */
-public class DocumentCertificationParameterStoreTest {
-  private final DocumentCertificationParameterStore model =
-      new DocumentCertificationParameterStore();
+@Deprecated
+@JsonAdapter(SitePermission.Adapter.class)
+public enum SitePermission {
 
-  /**
-   * Model tests for DocumentCertificationParameterStore
-   */
-  @Test
-  public void testDocumentCertificationParameterStore() {
-    // TODO: test DocumentCertificationParameterStore
+  READ_WRITE("READ_WRITE"),
+
+  READ_ONLY("READ_ONLY");
+
+  private String value;
+
+  SitePermission(String value) {
+    this.value = value;
   }
 
-  /**
-   * Test the property 'pkcs12BundleParam'
-   */
-  @Test
-  public void pkcs12BundleParamTest() {
-    // TODO: test pkcs12BundleParam
+  public String getValue() {
+    return value;
   }
 
-  /**
-   * Test the property 'pkcs12PasswordParam'
-   */
-  @Test
-  public void pkcs12PasswordParamTest() {
-    // TODO: test pkcs12PasswordParam
+  @Override
+  public String toString() {
+    return String.valueOf(value);
   }
 
+  public static SitePermission fromValue(String value) {
+    for (SitePermission b : SitePermission.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<SitePermission> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final SitePermission enumeration)
+        throws IOException {
+      jsonWriter.value(enumeration.getValue());
+    }
+
+    @Override
+    public SitePermission read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return SitePermission.fromValue(value);
+    }
+  }
+
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    SitePermission.fromValue(value);
+  }
 }
+

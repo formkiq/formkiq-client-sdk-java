@@ -61,6 +61,14 @@ public class DocumentGenerateDataSourceTest {
   }
 
   /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
+  /**
    * Test the property 'dataRoot'
    */
   @Test

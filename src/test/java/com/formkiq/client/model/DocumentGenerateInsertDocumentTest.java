@@ -61,4 +61,12 @@ public class DocumentGenerateInsertDocumentTest {
     // TODO: test documentId
   }
 
+  /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
 }

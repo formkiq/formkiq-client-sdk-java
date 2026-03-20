@@ -56,13 +56,18 @@ import com.formkiq.client.invoker.JSON;
  * OpaPolicyAttributeInput
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class OpaPolicyAttributeInput {
   public static final String SERIALIZED_NAME_MATCH_USERNAME = "matchUsername";
   @SerializedName(SERIALIZED_NAME_MATCH_USERNAME)
   @javax.annotation.Nullable
   private Boolean matchUsername;
+
+  public static final String SERIALIZED_NAME_MATCH_USER_CLAIM = "matchUserClaim";
+  @SerializedName(SERIALIZED_NAME_MATCH_USER_CLAIM)
+  @javax.annotation.Nullable
+  private String matchUserClaim;
 
   public OpaPolicyAttributeInput() {}
 
@@ -86,6 +91,26 @@ public class OpaPolicyAttributeInput {
   }
 
 
+  public OpaPolicyAttributeInput matchUserClaim(@javax.annotation.Nullable String matchUserClaim) {
+    this.matchUserClaim = matchUserClaim;
+    return this;
+  }
+
+  /**
+   * Matches user claim name to match against the Attribute Key value
+   * 
+   * @return matchUserClaim
+   */
+  @javax.annotation.Nullable
+  public String getMatchUserClaim() {
+    return matchUserClaim;
+  }
+
+  public void setMatchUserClaim(@javax.annotation.Nullable String matchUserClaim) {
+    this.matchUserClaim = matchUserClaim;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -96,12 +121,13 @@ public class OpaPolicyAttributeInput {
       return false;
     }
     OpaPolicyAttributeInput opaPolicyAttributeInput = (OpaPolicyAttributeInput) o;
-    return Objects.equals(this.matchUsername, opaPolicyAttributeInput.matchUsername);
+    return Objects.equals(this.matchUsername, opaPolicyAttributeInput.matchUsername)
+        && Objects.equals(this.matchUserClaim, opaPolicyAttributeInput.matchUserClaim);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(matchUsername);
+    return Objects.hash(matchUsername, matchUserClaim);
   }
 
   @Override
@@ -109,6 +135,7 @@ public class OpaPolicyAttributeInput {
     StringBuilder sb = new StringBuilder();
     sb.append("class OpaPolicyAttributeInput {\n");
     sb.append("    matchUsername: ").append(toIndentedString(matchUsername)).append("\n");
+    sb.append("    matchUserClaim: ").append(toIndentedString(matchUserClaim)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -117,10 +144,7 @@ public class OpaPolicyAttributeInput {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -129,7 +153,7 @@ public class OpaPolicyAttributeInput {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("matchUsername"));
+    openapiFields = new HashSet<String>(Arrays.asList("matchUsername", "matchUserClaim"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -161,6 +185,12 @@ public class OpaPolicyAttributeInput {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("matchUserClaim") != null && !jsonObj.get("matchUserClaim").isJsonNull())
+        && !jsonObj.get("matchUserClaim").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `matchUserClaim` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("matchUserClaim").toString()));
+    }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocumentConfigContentTypes;
+import com.formkiq.client.model.DocumentConfigRetentionAndDisposition;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,6 +52,14 @@ public class DocumentConfigTest {
   @Test
   public void contentTypesTest() {
     // TODO: test contentTypes
+  }
+
+  /**
+   * Test the property 'retentionAndDisposition'
+   */
+  @Test
+  public void retentionAndDispositionTest() {
+    // TODO: test retentionAndDisposition
   }
 
 }

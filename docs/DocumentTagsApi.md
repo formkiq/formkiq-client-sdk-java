@@ -17,7 +17,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentTags"></a>
 # **addDocumentTags**
-> AddResponse addDocumentTags(documentId, addDocumentTagsRequest, siteId)
+> AddResponse addDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId)
 
 Add tag to document
 
@@ -44,8 +44,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddResponse result = apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      AddResponse result = apiInstance.addDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#addDocumentTags");
@@ -65,6 +66,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentTagsRequest** | [**AddDocumentTagsRequest**](AddDocumentTagsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -86,7 +88,7 @@ No authorization required
 
 <a id="deleteDocumentTag"></a>
 # **deleteDocumentTag**
-> DeleteResponse deleteDocumentTag(documentId, tagKey, siteId)
+> DeleteResponse deleteDocumentTag(documentId, tagKey, siteId, artifactId)
 
 Delete document tag
 
@@ -113,8 +115,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentTag(documentId, tagKey, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentTag(documentId, tagKey, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#deleteDocumentTag");
@@ -134,6 +137,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **tagKey** | **String**| Tag Key | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -155,7 +159,7 @@ No authorization required
 
 <a id="deleteDocumentTagAndValue"></a>
 # **deleteDocumentTagAndValue**
-> DeleteResponse deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey)
+> DeleteResponse deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, artifactId, shareKey)
 
 Delete document&#39;s tag value
 
@@ -183,9 +187,10 @@ public class Example {
     String tagKey = "tagKey_example"; // String | Tag Key
     String tagValue = "tagValue_example"; // String | Tag Key Value
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
+      DeleteResponse result = apiInstance.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, artifactId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#deleteDocumentTagAndValue");
@@ -206,6 +211,7 @@ public class Example {
 | **tagKey** | **String**| Tag Key | |
 | **tagValue** | **String**| Tag Key Value | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
@@ -228,7 +234,7 @@ No authorization required
 
 <a id="getDocumentTag"></a>
 # **getDocumentTag**
-> GetDocumentTagResponse getDocumentTag(documentId, tagKey, siteId, shareKey)
+> GetDocumentTagResponse getDocumentTag(documentId, tagKey, siteId, artifactId, shareKey)
 
 Get document tag by key
 
@@ -255,9 +261,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String tagKey = "tagKey_example"; // String | Tag Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentTagResponse result = apiInstance.getDocumentTag(documentId, tagKey, siteId, shareKey);
+      GetDocumentTagResponse result = apiInstance.getDocumentTag(documentId, tagKey, siteId, artifactId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#getDocumentTag");
@@ -277,6 +284,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **tagKey** | **String**| Tag Key | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
@@ -299,7 +307,7 @@ No authorization required
 
 <a id="getDocumentTags"></a>
 # **getDocumentTags**
-> GetDocumentTagsResponse getDocumentTags(documentId, siteId, limit, shareKey, next, previous)
+> GetDocumentTagsResponse getDocumentTags(documentId, siteId, artifactId, limit, shareKey, next, previous)
 
 Get document&#39;s tags
 
@@ -325,12 +333,13 @@ public class Example {
     DocumentTagsApi apiInstance = new DocumentTagsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
     try {
-      GetDocumentTagsResponse result = apiInstance.getDocumentTags(documentId, siteId, limit, shareKey, next, previous);
+      GetDocumentTagsResponse result = apiInstance.getDocumentTags(documentId, siteId, artifactId, limit, shareKey, next, previous);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#getDocumentTags");
@@ -349,6 +358,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
@@ -374,7 +384,7 @@ No authorization required
 
 <a id="setDocumentTag"></a>
 # **setDocumentTag**
-> setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId)
+> UpdateResponse setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId, artifactId)
 
 Update document tag value(s)
 
@@ -402,8 +412,10 @@ public class Example {
     String tagKey = "tagKey_example"; // String | Tag Key
     SetDocumentTagKeyRequest setDocumentTagKeyRequest = new SetDocumentTagKeyRequest(); // SetDocumentTagKeyRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      apiInstance.setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId);
+      UpdateResponse result = apiInstance.setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId, artifactId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#setDocumentTag");
       System.err.println("Status code: " + e.getCode());
@@ -423,10 +435,11 @@ public class Example {
 | **tagKey** | **String**| Tag Key | |
 | **setDocumentTagKeyRequest** | [**SetDocumentTagKeyRequest**](SetDocumentTagKeyRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
-null (empty response body)
+[**UpdateResponse**](UpdateResponse.md)
 
 ### Authorization
 
@@ -435,7 +448,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -444,7 +457,7 @@ No authorization required
 
 <a id="setDocumentTags"></a>
 # **setDocumentTags**
-> setDocumentTags(documentId, addDocumentTagsRequest, siteId)
+> SetResponse setDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId)
 
 Set document&#39;s tags
 
@@ -471,8 +484,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      apiInstance.setDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      SetResponse result = apiInstance.setDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#setDocumentTags");
       System.err.println("Status code: " + e.getCode());
@@ -491,10 +506,11 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentTagsRequest** | [**AddDocumentTagsRequest**](AddDocumentTagsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
-null (empty response body)
+[**SetResponse**](SetResponse.md)
 
 ### Authorization
 
@@ -503,7 +519,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -512,7 +528,7 @@ No authorization required
 
 <a id="updateDocumentTags"></a>
 # **updateDocumentTags**
-> updateDocumentTags(documentId, addDocumentTagsRequest, siteId)
+> UpdateResponse updateDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId)
 
 Update document tags
 
@@ -539,8 +555,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentTagsRequest addDocumentTagsRequest = new AddDocumentTagsRequest(); // AddDocumentTagsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      apiInstance.updateDocumentTags(documentId, addDocumentTagsRequest, siteId);
+      UpdateResponse result = apiInstance.updateDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTagsApi#updateDocumentTags");
       System.err.println("Status code: " + e.getCode());
@@ -559,10 +577,11 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentTagsRequest** | [**AddDocumentTagsRequest**](AddDocumentTagsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
-null (empty response body)
+[**UpdateResponse**](UpdateResponse.md)
 
 ### Authorization
 
@@ -571,7 +590,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

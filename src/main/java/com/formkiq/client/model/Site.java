@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.SiteConfig;
 import com.formkiq.client.model.SiteGroupPermissions;
+import com.formkiq.client.model.SitePermission;
 import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.SiteUsage;
 import com.google.gson.TypeAdapter;
@@ -62,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -80,63 +81,16 @@ public class Site {
   @javax.annotation.Nullable
   private SiteStatus status;
 
-  /**
-   * SiteId permission level
-   */
-  @JsonAdapter(PermissionEnum.Adapter.class)
-  public enum PermissionEnum {
-    READ_WRITE("READ_WRITE"),
-
-    READ_ONLY("READ_ONLY");
-
-    private String value;
-
-    PermissionEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PermissionEnum fromValue(String value) {
-      for (PermissionEnum b : PermissionEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PermissionEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PermissionEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PermissionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return PermissionEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      PermissionEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PERMISSION = "permission";
+  @Deprecated
   @SerializedName(SERIALIZED_NAME_PERMISSION)
   @javax.annotation.Nullable
-  private PermissionEnum permission;
+  private SitePermission permission;
+
+  public static final String SERIALIZED_NAME_ROLES = "roles";
+  @SerializedName(SERIALIZED_NAME_ROLES)
+  @javax.annotation.Nullable
+  private List<String> roles = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
@@ -220,23 +174,55 @@ public class Site {
   }
 
 
-  public Site permission(@javax.annotation.Nullable PermissionEnum permission) {
+  @Deprecated
+  public Site permission(@javax.annotation.Nullable SitePermission permission) {
     this.permission = permission;
     return this;
   }
 
   /**
-   * SiteId permission level
+   * Get permission
    * 
    * @return permission
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
-  public PermissionEnum getPermission() {
+  public SitePermission getPermission() {
     return permission;
   }
 
-  public void setPermission(@javax.annotation.Nullable PermissionEnum permission) {
+  @Deprecated
+  public void setPermission(@javax.annotation.Nullable SitePermission permission) {
     this.permission = permission;
+  }
+
+
+  public Site roles(@javax.annotation.Nullable List<String> roles) {
+    this.roles = roles;
+    return this;
+  }
+
+  public Site addRolesItem(String rolesItem) {
+    if (this.roles == null) {
+      this.roles = new ArrayList<>();
+    }
+    this.roles.add(rolesItem);
+    return this;
+  }
+
+  /**
+   * List of roles used to get permissions
+   * 
+   * @return roles
+   */
+  @javax.annotation.Nullable
+  public List<String> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(@javax.annotation.Nullable List<String> roles) {
+    this.roles = roles;
   }
 
 
@@ -341,6 +327,7 @@ public class Site {
     return Objects.equals(this.siteId, site.siteId) && Objects.equals(this.title, site.title)
         && Objects.equals(this.status, site.status)
         && Objects.equals(this.permission, site.permission)
+        && Objects.equals(this.roles, site.roles)
         && Objects.equals(this.permissions, site.permissions)
         && Objects.equals(this.uploadEmail, site.uploadEmail)
         && Objects.equals(this.config, site.config) && Objects.equals(this.usage, site.usage);
@@ -348,7 +335,8 @@ public class Site {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siteId, title, status, permission, permissions, uploadEmail, config, usage);
+    return Objects.hash(siteId, title, status, permission, roles, permissions, uploadEmail, config,
+        usage);
   }
 
   @Override
@@ -359,6 +347,7 @@ public class Site {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    uploadEmail: ").append(toIndentedString(uploadEmail)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
@@ -371,10 +360,7 @@ public class Site {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -384,7 +370,7 @@ public class Site {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("siteId", "title", "status", "permission",
-        "permissions", "uploadEmail", "config", "usage"));
+        "roles", "permissions", "uploadEmail", "config", "usage"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -431,15 +417,16 @@ public class Site {
     if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
       SiteStatus.validateJsonElement(jsonObj.get("status"));
     }
-    if ((jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull())
-        && !jsonObj.get("permission").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `permission` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("permission").toString()));
-    }
     // validate the optional field `permission`
     if (jsonObj.get("permission") != null && !jsonObj.get("permission").isJsonNull()) {
-      PermissionEnum.validateJsonElement(jsonObj.get("permission"));
+      SitePermission.validateJsonElement(jsonObj.get("permission"));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("roles") != null && !jsonObj.get("roles").isJsonNull()
+        && !jsonObj.get("roles").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `roles` to be an array in the JSON string but got `%s`",
+          jsonObj.get("roles").toString()));
     }
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()

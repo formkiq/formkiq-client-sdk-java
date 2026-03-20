@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**documentId** | **String** | optional Document Identifier, if skipped one will be assigned |  [optional] |
+|**artifacts** | **Boolean** | Whether the document supports artifact documents |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**contentType** | **String** | Document media type |  [optional] |
 |**width** | **String** | Document Content Width property |  [optional] |

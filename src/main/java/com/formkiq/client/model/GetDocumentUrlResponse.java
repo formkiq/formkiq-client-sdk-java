@@ -58,13 +58,18 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentUrlResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-04-27T20:20:19.760113-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.21.0")
 public class GetDocumentUrlResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String artifactId;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -95,6 +100,26 @@ public class GetDocumentUrlResponse {
 
   public void setDocumentId(@javax.annotation.Nullable String documentId) {
     this.documentId = documentId;
+  }
+
+
+  public GetDocumentUrlResponse artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
   }
 
 
@@ -157,13 +182,14 @@ public class GetDocumentUrlResponse {
     }
     GetDocumentUrlResponse getDocumentUrlResponse = (GetDocumentUrlResponse) o;
     return Objects.equals(this.documentId, getDocumentUrlResponse.documentId)
+        && Objects.equals(this.artifactId, getDocumentUrlResponse.artifactId)
         && Objects.equals(this.url, getDocumentUrlResponse.url)
         && Objects.equals(this.headers, getDocumentUrlResponse.headers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId, url, headers);
+    return Objects.hash(documentId, artifactId, url, headers);
   }
 
   @Override
@@ -171,6 +197,7 @@ public class GetDocumentUrlResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDocumentUrlResponse {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("}");
@@ -181,10 +208,7 @@ public class GetDocumentUrlResponse {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -193,7 +217,8 @@ public class GetDocumentUrlResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documentId", "url", "headers"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("documentId", "artifactId", "url", "headers"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -230,6 +255,12 @@ public class GetDocumentUrlResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("artifactId") != null && !jsonObj.get("artifactId").isJsonNull())
+        && !jsonObj.get("artifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactId").toString()));
     }
     if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull())
         && !jsonObj.get("url").isJsonPrimitive()) {

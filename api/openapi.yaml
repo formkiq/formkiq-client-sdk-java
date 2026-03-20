@@ -2366,6 +2366,15 @@ paths:
       - description: Fetch soft deleted documents
         explode: true
         in: query
+        name: softDeleted
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - deprecated: true
+        description: "Deprecated: use softDeleted. Fetch soft deleted documents"
+        explode: true
+        in: query
         name: deleted
         required: false
         schema:
@@ -2385,6 +2394,35 @@ paths:
         name: tz
         required: false
         schema:
+          type: string
+        style: form
+      - description: Start of date-time range (UTC)
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: End of date-time range (UTC)
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Sort order (default DESC)
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
           type: string
         style: form
       - description: Next page of results token
@@ -2451,6 +2489,12 @@ paths:
         Creates a new document; body may include document content if less than 5 MB.
 
         Returns a unique **documentId** used in subsequent operations.
+
+        **Content Type Detection**
+        If the document **Content-Type** is not specified during upload, the service will determine it
+        asynchronously after the upload completes.
+
+        This may result in a **temporary delay** before the content type and related metadata are available.
 
         See POST /documents/{documentId}/tags for adding tags to document schema
 
@@ -2563,7 +2607,7 @@ paths:
 
         The document can be permanently deleted by calling the DELETE /documents/{documentId} with softDelete=false or restored using the PUT /documents/{documentId}/restore.
 
-        Only the GET /documents?deleted=true will return all the soft deleted documents.
+        Only the GET /documents?softDeleted=true will return all the soft deleted documents.
       operationId: DeleteDocument
       parameters:
       - description: Site Identifier
@@ -2582,6 +2626,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Whether to soft delete document
         explode: true
         in: query
@@ -2633,6 +2685,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Share Identifier
         explode: true
         in: query
@@ -2688,6 +2748,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Share Identifier
         explode: true
         in: query
@@ -2775,6 +2843,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2828,6 +2904,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Version Key (version key required URL encoding)
         explode: true
         in: query
@@ -2869,6 +2953,68 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
+  /documents/{documentId}/artifacts:
+    get:
+      description: Returns the list of artifact documents associated with the specified
+        document
+      operationId: GetDocumentArtifacts
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentsResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document artifacts
+      tags:
+      - Documents
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
   /documents/{documentId}/attributes:
     get:
       description: Get a listing of a document's attributes
@@ -2890,6 +3036,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -2951,6 +3105,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -3005,6 +3167,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -3056,6 +3226,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Attribute Key
         explode: false
         in: path
@@ -3107,6 +3285,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Attribute Key
         explode: false
         in: path
@@ -3158,6 +3344,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Attribute Key
         explode: false
         in: path
@@ -3218,6 +3412,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Attribute Key
         explode: false
         in: path
@@ -3278,6 +3480,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -3355,6 +3565,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -3380,7 +3598,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -3420,6 +3641,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -3485,6 +3714,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -3510,7 +3747,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SetResponse"
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -3550,6 +3790,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Tag Key
         explode: false
         in: path
@@ -3601,6 +3849,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Tag Key
         explode: false
         in: path
@@ -3661,6 +3917,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Tag Key
         explode: false
         in: path
@@ -3677,7 +3941,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
           description: 200 OK
           headers:
             Access-Control-Allow-Origin:
@@ -3718,6 +3985,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Tag Key
         explode: false
         in: path
@@ -3831,6 +4106,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Version Key (version key required URL encoding)
         explode: true
         in: query
@@ -3874,6 +4157,17 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: Return a shortlink URL when set to `short`; available as an Add-On
+          Module
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          enum:
+          - short
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3895,6 +4189,46 @@ paths:
       - Documents
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+  /shortlinks:
+    post:
+      description: Create a shortlink for a target URL
+      operationId: AddShortlink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddShortlinkRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddShortlinkResponse"
+          description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Add shortlink
+      tags:
+      - Shortlinks
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
+      x-content-type: application/json
       x-accepts:
       - application/json
   /documents/upload:
@@ -3987,11 +4321,15 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: "Returns a URL that can be used to upload document content and\
-        \ create a new document, while allowing metadata to also be sent; this endpoint\
-        \ (whether GET or POST) is required in order to add content that is larger\
-        \ than 5 MB. The POST endpoint allow the adding of document metadata at the\
-        \ same time as the document is created."
+      description: |-
+        Returns a URL that can be used to upload document content and create a new document.
+        This endpoint is required for uploading content larger than 5 MB and allows document metadata
+        to be provided at creation time.
+
+        **Content Type Detection**
+        If the document **Content-Type** is not specified during upload, the service will determine it
+        asynchronously after the upload completes.
+        This may result in a **temporary delay** before the content type and related metadata are available.
       operationId: AddDocumentUpload
       parameters:
       - description: Site Identifier
@@ -4097,6 +4435,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Checksum Type
         explode: true
         in: query
@@ -4184,6 +4530,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4817,6 +5171,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4862,6 +5224,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Output Format Type
         explode: true
         in: query
@@ -4946,6 +5316,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -4998,6 +5376,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -5050,6 +5436,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -5119,6 +5513,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -5177,6 +5579,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Version Key (version key required URL encoding)
         explode: false
         in: path
@@ -5238,6 +5648,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5283,6 +5701,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5327,6 +5753,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6104,6 +6538,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6160,6 +6602,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -6224,6 +6674,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Workflow Identifier
         explode: false
         in: path
@@ -6290,6 +6748,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Workflow Identifier
         explode: false
         in: path
@@ -6364,6 +6830,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Share Identifier
         explode: true
         in: query
@@ -6423,6 +6897,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Next page of results token
         explode: true
         in: query
@@ -6497,6 +6979,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -7030,6 +7520,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -7065,7 +7563,7 @@ paths:
       - ApiAuthorization: []
       summary: Get document's data classification
       tags:
-      - Document Data Classification
+      - Intelligent Document Processing
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -7091,6 +7589,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -7115,10 +7621,218 @@ paths:
       - ApiAuthorization: []
       summary: Set document's data classification
       tags:
-      - Document Data Classification
+      - Intelligent Document Processing
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/metadataExtractionResults:
+    get:
+      description: Retrieve all document's metadata extraction; available as an Add-On
+        Module
+      operationId: GetAllDocumentMetadataExtractionResults
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get all document's metadata extraction results
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
+      x-accepts:
+      - application/json
+  /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName}:
+    get:
+      description: Retrieve an document's metadata extraction; available as an Add-On
+        Module
+      operationId: GetDocumentMetadataExtractionResults
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: LlmPrompt Entity Name
+        explode: false
+        in: path
+        name: llmPromptEntityName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document's metadata extraction results
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: Create a document Metadatq Extraction Result attributes within
+        a document; available as an Add-On Module
+      operationId: AddDocumentMetadataExtractionResult
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: LlmPrompt Entity Name
+        explode: false
+        in: path
+        name: llmPromptEntityName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddDocumentMetadataExtractionResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Add document's metadata extraction result
+      tags:
+      - Intelligent Document Processing
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
       - application/json
   /userActivities:
@@ -7203,6 +7917,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Next page of results token
         explode: true
         in: query
@@ -7264,6 +7986,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: EntityType Identifier
         explode: true
         in: query
@@ -7289,6 +8019,82 @@ paths:
         name: entityId
         required: false
         schema:
+          type: string
+        style: form
+      - description: RulesetId Identifier
+        explode: true
+        in: query
+        name: rulesetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: RuleId Identifier
+        explode: true
+        in: query
+        name: ruleId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Workflow Identifier
+        explode: true
+        in: query
+        name: workflowId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Attribute Key
+        explode: true
+        in: query
+        name: attributeKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Schema Type
+        explode: true
+        in: query
+        name: schema
+        required: false
+        schema:
+          enum:
+          - document
+          type: string
+        style: form
+      - description: Classification Id
+        explode: true
+        in: query
+        name: classificationId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Mapping Id
+        explode: true
+        in: query
+        name: mappingId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Api Key
+        explode: true
+        in: query
+        name: apiKey
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Control Policy
+        explode: true
+        in: query
+        name: controlPolicy
+        required: false
+        schema:
+          enum:
+          - opa
           type: string
         style: form
       - description: Start of date-time range (UTC)
@@ -8066,6 +8872,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -8124,6 +8938,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Docusign Envelope Id
         explode: false
         in: path
@@ -9053,6 +9875,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -9343,6 +10173,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -9633,6 +10471,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -10848,6 +11694,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -10905,6 +11759,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -10965,6 +11827,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -11539,6 +12409,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /entities/{entityTypeId}/{entityId}/attributes/{attributeKey}:
+    delete:
+      description: Deletes Entity Attribute
+      operationId: DeleteEntityAttribute
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: EntityType Identifier
+        explode: false
+        in: path
+        name: entityTypeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity Identifier
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Deletes Entity Attribute
+      tags:
+      - Entity
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
   /documents/{documentId}/actions:
     get:
       description: Get document actions and their status
@@ -11560,6 +12490,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Limit Results
         explode: true
         in: query
@@ -11625,6 +12563,8 @@ paths:
         | OCR | ocrNumberOfPages  | Number of pages to OCR (from start) | -1 |
         | OCR    | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or false |
         | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name |
+        | METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name |
+        | CHECKSUM    | checksumType    | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256 |
         | FULLTEXT    | characterMax    | Maximum number of characters to add to Fulltext destination | -1 |
         | DOCUMENTTAGGING    | engine    | Tagging Engine to use | chatgpt |
         | DOCUMENTTAGGING    | tags    | Comma-deliminted list of keywords | author,title,description |
@@ -11660,6 +12600,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -11718,6 +12666,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -11771,6 +12727,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -12292,6 +13256,91 @@ components:
       schema:
         type: string
       style: form
+    rulesetIdQuery:
+      description: RulesetId Identifier
+      explode: true
+      in: query
+      name: rulesetId
+      required: false
+      schema:
+        type: string
+      style: form
+    ruleIdQuery:
+      description: RuleId Identifier
+      explode: true
+      in: query
+      name: ruleId
+      required: false
+      schema:
+        type: string
+      style: form
+    workflowIdQuery:
+      description: Workflow Identifier
+      explode: true
+      in: query
+      name: workflowId
+      required: false
+      schema:
+        type: string
+      style: form
+    attributeKeyQuery:
+      description: Attribute Key
+      explode: true
+      in: query
+      name: attributeKey
+      required: false
+      schema:
+        type: string
+      style: form
+    schemaQuery:
+      description: Schema Type
+      explode: true
+      in: query
+      name: schema
+      required: false
+      schema:
+        enum:
+        - document
+        type: string
+      style: form
+    controlPolicyQuery:
+      description: Control Policy
+      explode: true
+      in: query
+      name: controlPolicy
+      required: false
+      schema:
+        enum:
+        - opa
+        type: string
+      style: form
+    classificationIdQuery:
+      description: Classification Id
+      explode: true
+      in: query
+      name: classificationId
+      required: false
+      schema:
+        type: string
+      style: form
+    mappingIdQuery:
+      description: Mapping Id
+      explode: true
+      in: query
+      name: mappingId
+      required: false
+      schema:
+        type: string
+      style: form
+    apiKeyQuery:
+      description: Api Key
+      explode: true
+      in: query
+      name: apiKey
+      required: false
+      schema:
+        type: string
+      style: form
     entityTypeIdParam:
       description: EntityType Identifier
       explode: false
@@ -12467,10 +13516,20 @@ components:
         type: string
       style: simple
     documentSearchDeleted:
-      description: Fetch soft deleted documents
+      deprecated: true
+      description: "Deprecated: use softDeleted. Fetch soft deleted documents"
       explode: true
       in: query
       name: deleted
+      required: false
+      schema:
+        type: boolean
+      style: form
+    documentSearchSoftDeleted:
+      description: Fetch soft deleted documents
+      explode: true
+      in: query
+      name: softDeleted
       required: false
       schema:
         type: boolean
@@ -12623,6 +13682,24 @@ components:
       explode: false
       in: path
       name: documentId
+      required: true
+      schema:
+        type: string
+      style: simple
+    artifactIdParam:
+      description: Artifact Document Identifier
+      explode: true
+      in: query
+      name: artifactId
+      required: false
+      schema:
+        type: string
+      style: form
+    llmPromptEntityNameParam:
+      description: LlmPrompt Entity Name
+      explode: false
+      in: path
+      name: llmPromptEntityName
       required: true
       schema:
         type: string
@@ -13273,6 +14350,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
       properties:
         attribute:
           $ref: "#/components/schemas/DocumentAttribute"
@@ -13294,6 +14399,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
         - numberValues:
           - 6.027456183070403
           - 6.027456183070403
@@ -13307,6 +14440,34 @@ components:
           numberValue: 0.8008281904610115
           userId: userId
           key: key
+          entity:
+            insertedDate: insertedDate
+            name: name
+            entityId: entityId
+            entityTypeId: entityTypeId
+            attributes:
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
+            - numberValues:
+              - 5.962133916683182
+              - 5.962133916683182
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              valueType: null
+              booleanValue: true
+              numberValue: 1.4658129805029452
+              key: key
       properties:
         next:
           description: Next page of results token
@@ -13516,9 +14677,13 @@ components:
           documentId: documentId
         siteId: siteId
         documentId: documentId
+        artifactId: artifactId
       properties:
         documentId:
           description: Document Identifier
+          type: string
+        artifactId:
+          description: Artifact Identifier
           type: string
         siteId:
           description: Site Identifier
@@ -13559,10 +14724,14 @@ components:
         headers:
           key: "{}"
         documentId: documentId
+        artifactId: artifactId
         url: url
       properties:
         documentId:
           description: Document Identifier
+          type: string
+        artifactId:
+          description: Artifact Identifier
           type: string
         url:
           description: Document content url
@@ -13623,11 +14792,15 @@ components:
         checksum: checksum
         checksumType: SHA1
         siteId: siteId
+        artifactId: artifactId
         documentId: documentId
         contentLength: 0
         contentType: contentType
         height: height
       properties:
+        artifactId:
+          description: Artifact Identifier
+          type: string
         siteId:
           description: Site Identifier
           type: string
@@ -14332,6 +15505,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14368,10 +15542,12 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
+        artifacts: true
         height: height
         tags:
         - values:
@@ -14388,6 +15564,9 @@ components:
         documentId:
           description: "optional Document Identifier, if skipped one will be assigned"
           type: string
+        artifacts:
+          description: Whether the document supports artifact documents
+          type: boolean
         path:
           description: Path or Name of document
           type: string
@@ -14580,6 +15759,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14616,16 +15796,21 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
             height: height
+        artifacts: true
         height: height
       properties:
         documentId:
           description: "optional Document Identifier (Version 4 UUID), if skipped\
             \ one will be assigned"
           type: string
+        artifacts:
+          description: Whether the document supports artifact documents
+          type: boolean
         path:
           description: Path or Name of document
           type: string
@@ -14829,6 +16014,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -14865,6 +16051,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -15459,6 +16646,34 @@ components:
         numberValue: 0.8008281904610115
         userId: userId
         key: key
+        entity:
+          insertedDate: insertedDate
+          name: name
+          entityId: entityId
+          entityTypeId: entityTypeId
+          attributes:
+          - numberValues:
+            - 5.962133916683182
+            - 5.962133916683182
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: null
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
+          - numberValues:
+            - 5.962133916683182
+            - 5.962133916683182
+            stringValue: stringValue
+            stringValues:
+            - stringValues
+            - stringValues
+            valueType: null
+            booleanValue: true
+            numberValue: 1.4658129805029452
+            key: key
       properties:
         key:
           description: Attribute key
@@ -15490,6 +16705,8 @@ components:
           type: string
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
+        entity:
+          $ref: "#/components/schemas/Entity"
       type: object
     DocumentTag:
       example:
@@ -15624,15 +16841,16 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
+              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
@@ -15651,20 +16869,26 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
-          contentLength: 0
+          contentLength: 6
           attributes:
             key:
               numberValues:
-              - 6.027456183070403
-              - 6.027456183070403
+              - 1.4658129805029452
+              - 1.4658129805029452
               stringValues:
               - stringValues
               - stringValues
+              insertedDate: insertedDate
               valueType: BOOLEAN
               booleanValue: true
           contentType: contentType
           height: height
+        totalCount: 0
       properties:
+        totalCount:
+          description: |
+            Total number of documents that matched the search query. When the number of matches exceeds 10,000, this value will be reported as 10,000+ unless the search request explicitly enables exact total hit tracking.
+          type: integer
         documents:
           description: List of search result documents
           items:
@@ -15687,15 +16911,16 @@ components:
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
-        contentLength: 0
+        contentLength: 6
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
+            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -15769,14 +16994,18 @@ components:
     FulltextAttribute:
       example:
         numberValues:
-        - 6.027456183070403
-        - 6.027456183070403
+        - 1.4658129805029452
+        - 1.4658129805029452
         stringValues:
         - stringValues
         - stringValues
+        insertedDate: insertedDate
         valueType: BOOLEAN
         booleanValue: true
       properties:
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
         stringValues:
           description: Attribute with string values
           items:
@@ -15814,11 +17043,12 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
+            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -15991,6 +17221,24 @@ components:
       required:
       - llmPromptEntityName
       type: object
+    AddDocumentMetadataExtractionResponse:
+      example:
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        content: content
+      properties:
+        content:
+          description: Result content
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/DataClassificationAttribute"
+          type: array
+      type: object
     SetDocumentDataClassificationResponse:
       example:
         attributes:
@@ -16051,6 +17299,80 @@ components:
           description: Data Classification Attribute Value
           type: string
       type: object
+    MetadataExtractionAttribute:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          description: Data Classification Attribute Key
+          type: string
+        value:
+          description: Data Classification Attribute Value
+          type: string
+      type: object
+    MetadataExtraction:
+      example:
+        insertedDate: insertedDate
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        llmPromptEntityName: llmPromptEntityName
+        userId: userId
+        content: content
+      properties:
+        llmPromptEntityName:
+          description: Name of the LLM Prompt Entity
+          type: string
+        insertedDate:
+          description: Inserted Timestamp
+          type: string
+        content:
+          description: Result content
+          type: string
+        userId:
+          description: UserId that created Result
+          type: string
+        attributes:
+          description: Attributes extracted from result content
+          items:
+            $ref: "#/components/schemas/MetadataExtractionAttribute"
+          type: array
+      type: object
+    GetDocumentMetadataExtractionResponse:
+      example:
+        next: next
+        metadataExtractions:
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+        - insertedDate: insertedDate
+          attributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          llmPromptEntityName: llmPromptEntityName
+          userId: userId
+          content: content
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        metadataExtractions:
+          description: List of Metadata Extractions
+          items:
+            $ref: "#/components/schemas/MetadataExtraction"
+          type: array
+      type: object
     GetDocumentDataClassificationResponse:
       example:
         next: next
@@ -16087,7 +17409,12 @@ components:
       example:
         next: next
         activities:
-        - resource: resource
+        - rulesetId: rulesetId
+          schema: schema
+          mappingId: mappingId
+          controlPolicy: controlPolicy
+          apiKey: apiKey
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16099,11 +17426,20 @@ components:
           type: type
           message: message
           userId: userId
+          classificationId: classificationId
           insertedDate: insertedDate
           documentId: ""
+          artifactId: ""
           entityTypeId: entityTypeId
+          ruleId: ruleId
+          workflowId: workflowId
           status: COMPLETE
-        - resource: resource
+        - rulesetId: rulesetId
+          schema: schema
+          mappingId: mappingId
+          controlPolicy: controlPolicy
+          apiKey: apiKey
+          resource: resource
           changes:
             key:
               newValue: "{}"
@@ -16115,9 +17451,13 @@ components:
           type: type
           message: message
           userId: userId
+          classificationId: classificationId
           insertedDate: insertedDate
           documentId: ""
+          artifactId: ""
           entityTypeId: entityTypeId
+          ruleId: ruleId
+          workflowId: workflowId
           status: COMPLETE
       properties:
         next:
@@ -16160,6 +17500,7 @@ components:
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
+            artifactId: artifactId
             contentLength: 0
             contentType: contentType
             height: height
@@ -16196,6 +17537,7 @@ components:
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
+            artifactId: artifactId
             contentLength: 0
             contentType: contentType
             height: height
@@ -16219,12 +17561,14 @@ components:
       description: The type of the activity
       enum:
       - VIEW
+      - DOWNLOAD
       - CREATE
       - UPDATE
       - DELETE
       - SOFT_DELETE
       - RESTORE
       - NEW_VERSION
+      - UPDATE_VERSION
       type: string
     UserActivity:
       example:
@@ -16255,6 +17599,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -16301,6 +17646,11 @@ components:
       type: string
     Activity:
       example:
+        rulesetId: rulesetId
+        schema: schema
+        mappingId: mappingId
+        controlPolicy: controlPolicy
+        apiKey: apiKey
         resource: resource
         changes:
           key:
@@ -16313,9 +17663,13 @@ components:
         type: type
         message: message
         userId: userId
+        classificationId: classificationId
         insertedDate: insertedDate
         documentId: ""
+        artifactId: ""
         entityTypeId: entityTypeId
+        ruleId: ruleId
+        workflowId: workflowId
         status: COMPLETE
       properties:
         resource:
@@ -16343,6 +17697,8 @@ components:
           type: string
         documentId:
           description: Document Identifier
+        artifactId:
+          description: Document Artifact Identifier
         attributeKey:
           description: Document Attribute Key
         entityTypeId:
@@ -16350,6 +17706,30 @@ components:
           type: string
         entityId:
           description: Entity Identifier
+          type: string
+        apiKey:
+          description: API Key
+          type: string
+        rulesetId:
+          description: Ruleset Identifier
+          type: string
+        schema:
+          description: Schema Identifier
+          type: string
+        mappingId:
+          description: Mapping Identifier
+          type: string
+        classificationId:
+          description: Classification Identifier
+          type: string
+        ruleId:
+          description: Ruleset Rule Identifier
+          type: string
+        workflowId:
+          description: Workflow Identifier
+          type: string
+        controlPolicy:
+          description: Control Policy Type
           type: string
         changes:
           additionalProperties:
@@ -16404,6 +17784,7 @@ components:
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           attributes:
             key:
@@ -16460,6 +17841,7 @@ components:
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           attributes:
             key:
@@ -16524,6 +17906,7 @@ components:
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
+            artifactId: artifactId
             contentLength: 0
             contentType: contentType
             height: height
@@ -16561,6 +17944,7 @@ components:
             checksumType: SHA1
             siteId: siteId
             documentId: documentId
+            artifactId: artifactId
             contentLength: 0
             contentType: contentType
             height: height
@@ -16603,6 +17987,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -16631,6 +18016,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -16680,6 +18066,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -16716,6 +18103,7 @@ components:
         checksumType: SHA1
         siteId: siteId
         documentId: documentId
+        artifactId: artifactId
         contentLength: 0
         contentType: contentType
         height: height
@@ -16748,6 +18136,9 @@ components:
           $ref: "#/components/schemas/ChecksumType"
         documentId:
           description: Document Identifier
+          type: string
+        artifactId:
+          description: Artifact Identifier
           type: string
         contentType:
           description: Document Content-Type
@@ -16824,6 +18215,7 @@ components:
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           attributes:
             key:
@@ -16880,6 +18272,7 @@ components:
           siteId: siteId
           indexKey: indexKey
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           attributes:
             key:
@@ -16951,6 +18344,7 @@ components:
         siteId: siteId
         indexKey: indexKey
         documentId: documentId
+        artifactId: artifactId
         contentLength: 0
         attributes:
           key:
@@ -16999,6 +18393,9 @@ components:
           $ref: "#/components/schemas/ChecksumType"
         documentId:
           description: Document Identifier
+          type: string
+        artifactId:
+          description: Document Artifact Identifier
           type: string
         contentType:
           description: Document Content-Type
@@ -17892,6 +19289,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -17920,6 +19318,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -18517,26 +19916,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
         - insertedDate: insertedDate
           name: name
@@ -18544,26 +19943,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
       properties:
         next:
@@ -18584,26 +19983,26 @@ components:
           entityTypeId: entityTypeId
           attributes:
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
           - numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 5.962133916683182
+            - 5.962133916683182
             stringValue: stringValue
             stringValues:
             - stringValues
             - stringValues
-            valueType: BOOLEAN
+            valueType: null
             booleanValue: true
-            numberValue: 0.8008281904610115
+            numberValue: 1.4658129805029452
             key: key
       properties:
         entity:
@@ -18628,26 +20027,26 @@ components:
         entityTypeId: entityTypeId
         attributes:
         - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
+          - 5.962133916683182
+          - 5.962133916683182
           stringValue: stringValue
           stringValues:
           - stringValues
           - stringValues
-          valueType: BOOLEAN
+          valueType: null
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
         - numberValues:
-          - 6.027456183070403
-          - 6.027456183070403
+          - 5.962133916683182
+          - 5.962133916683182
           stringValue: stringValue
           stringValues:
           - stringValues
           - stringValues
-          valueType: BOOLEAN
+          valueType: null
           booleanValue: true
-          numberValue: 0.8008281904610115
+          numberValue: 1.4658129805029452
           key: key
       properties:
         entityId:
@@ -18799,15 +20198,15 @@ components:
     EntityAttribute:
       example:
         numberValues:
-        - 6.027456183070403
-        - 6.027456183070403
+        - 5.962133916683182
+        - 5.962133916683182
         stringValue: stringValue
         stringValues:
         - stringValues
         - stringValues
-        valueType: BOOLEAN
+        valueType: null
         booleanValue: true
-        numberValue: 0.8008281904610115
+        numberValue: 1.4658129805029452
         key: key
       properties:
         key:
@@ -18943,15 +20342,19 @@ components:
         path: path
         insertDocuments:
         - documentId: documentId
+          artifactId: artifactId
           position: APPEND
         - documentId: documentId
+          artifactId: artifactId
           position: APPEND
         datasources:
         - name: name
           documentId: documentId
+          artifactId: artifactId
           dataRoot: data
         - name: name
           documentId: documentId
+          artifactId: artifactId
           dataRoot: data
         outputType: DOCX
         saveAsDocumentId: saveAsDocumentId
@@ -18987,12 +20390,16 @@ components:
     DocumentGenerateInsertDocument:
       example:
         documentId: documentId
+        artifactId: artifactId
         position: APPEND
       properties:
         position:
           $ref: "#/components/schemas/DocumentGenerateInsertDocumentPosition"
         documentId:
           description: Document Identifier of the data source document
+          type: string
+        artifactId:
+          description: Document Artifact Identifier of the data source document
           type: string
       required:
       - documentId
@@ -19002,6 +20409,7 @@ components:
       example:
         name: name
         documentId: documentId
+        artifactId: artifactId
         dataRoot: data
       properties:
         name:
@@ -19009,6 +20417,9 @@ components:
           type: string
         documentId:
           description: Document Identifier of the data source document
+          type: string
+        artifactId:
+          description: Document Artifact Identifier of the data source document
           type: string
         dataRoot:
           default: data
@@ -19734,6 +21145,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -19762,6 +21174,7 @@ components:
           checksumType: SHA1
           siteId: siteId
           documentId: documentId
+          artifactId: artifactId
           contentLength: 0
           contentType: contentType
           height: height
@@ -20085,11 +21498,12 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
+            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -20174,11 +21588,12 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
+            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -20263,11 +21678,12 @@ components:
         attributes:
           key:
             numberValues:
-            - 6.027456183070403
-            - 6.027456183070403
+            - 1.4658129805029452
+            - 1.4658129805029452
             stringValues:
             - stringValues
             - stringValues
+            insertedDate: insertedDate
             valueType: BOOLEAN
             booleanValue: true
         contentType: contentType
@@ -20480,6 +21896,9 @@ components:
           hmacSignature: hmacSignature
           integrationKey: integrationKey
         document:
+          retentionAndDisposition:
+            dispositionAction: SOFT_DELETE
+            softDeleteRetentionInDays: 0
           contentTypes:
             allowlist:
             - application/pdf
@@ -20861,6 +22280,7 @@ components:
           stringValue: stringValue
         eq:
           input:
+            matchUserClaim: matchUserClaim
             matchUsername: true
           stringValue: stringValue
           booleanValue: true
@@ -20895,6 +22315,7 @@ components:
       description: Attribute EQ criteria
       example:
         input:
+          matchUserClaim: matchUserClaim
           matchUsername: true
         stringValue: stringValue
         booleanValue: true
@@ -20985,11 +22406,16 @@ components:
       type: object
     OpaPolicyAttributeInput:
       example:
+        matchUserClaim: matchUserClaim
         matchUsername: true
       properties:
         matchUsername:
           description: Match Input Username
           type: boolean
+        matchUserClaim:
+          description: Matches user claim name to match against the Attribute Key
+            value
+          type: string
       type: object
     OpaPolicyItem:
       example:
@@ -21034,6 +22460,7 @@ components:
             stringValue: stringValue
           eq:
             input:
+              matchUserClaim: matchUserClaim
               matchUsername: true
             stringValue: stringValue
             booleanValue: true
@@ -21059,6 +22486,7 @@ components:
             stringValue: stringValue
           eq:
             input:
+              matchUserClaim: matchUserClaim
               matchUsername: true
             stringValue: stringValue
             booleanValue: true
@@ -21201,6 +22629,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21226,6 +22655,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21277,6 +22707,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21302,6 +22733,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21373,6 +22805,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21398,6 +22831,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21449,6 +22883,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21474,6 +22909,7 @@ components:
               stringValue: stringValue
             eq:
               input:
+                matchUserClaim: matchUserClaim
                 matchUsername: true
               stringValue: stringValue
               booleanValue: true
@@ -21628,6 +23064,9 @@ components:
           hmacSignature: hmacSignature
           integrationKey: integrationKey
         document:
+          retentionAndDisposition:
+            dispositionAction: SOFT_DELETE
+            softDeleteRetentionInDays: 0
           contentTypes:
             allowlist:
             - application/pdf
@@ -21707,6 +23146,9 @@ components:
       type: object
     DocumentConfig:
       example:
+        retentionAndDisposition:
+          dispositionAction: SOFT_DELETE
+          softDeleteRetentionInDays: 0
         contentTypes:
           allowlist:
           - application/pdf
@@ -21718,6 +23160,8 @@ components:
       properties:
         contentTypes:
           $ref: "#/components/schemas/DocumentConfigContentTypes"
+        retentionAndDisposition:
+          $ref: "#/components/schemas/DocumentConfigRetentionAndDisposition"
       type: object
     DocumentConfigContentTypes:
       example:
@@ -21747,6 +23191,28 @@ components:
             type: string
           type: array
       type: object
+    DocumentConfigRetentionAndDisposition:
+      example:
+        dispositionAction: SOFT_DELETE
+        softDeleteRetentionInDays: 0
+      properties:
+        dispositionAction:
+          $ref: "#/components/schemas/DocumentConfigDispositionAction"
+        softDeleteRetentionInDays:
+          default: -1
+          description: Number of days to retain soft deleted documents before permanent
+            deletion. Use -1 to retain soft deleted documents until trash is cleared
+            manually.
+          format: int32
+          minimum: -1
+          type: integer
+      type: object
+    DocumentConfigDispositionAction:
+      default: SOFT_DELETE
+      enum:
+      - SOFT_DELETE
+      - DELETE
+      type: string
     OcrConfig:
       example:
         maxPagesPerTransaction: 0.8008281904610115
@@ -22618,6 +24084,9 @@ components:
           permissions:
           - ADMIN
           - ADMIN
+          roles:
+          - roles
+          - roles
           usage:
             documentCount: 1.4658129805029452
             ocrTransactionCount: 5.962133916683182
@@ -22636,6 +24105,9 @@ components:
           permissions:
           - ADMIN
           - ADMIN
+          roles:
+          - roles
+          - roles
           usage:
             documentCount: 1.4658129805029452
             ocrTransactionCount: 5.962133916683182
@@ -22650,6 +24122,11 @@ components:
               maxPagesPerTransaction: 0.8008281904610115
               maxTransactions: 6.027456183070403
           status: ACTIVE
+        userClaims:
+          key: "{}"
+        samlGroups:
+        - samlGroups
+        - samlGroups
         username: username
       properties:
         username:
@@ -22659,6 +24136,16 @@ components:
           items:
             type: string
           type: array
+        samlGroups:
+          description: List of User Saml Groups
+          items:
+            type: string
+          type: array
+        userClaims:
+          additionalProperties:
+            type: object
+          description: Map of custom JWT claims
+          type: object
         sites:
           description: List of sites
           items:
@@ -22671,6 +24158,9 @@ components:
         permissions:
         - ADMIN
         - ADMIN
+        roles:
+        - roles
+        - roles
         usage:
           documentCount: 1.4658129805029452
           ocrTransactionCount: 5.962133916683182
@@ -22695,11 +24185,12 @@ components:
         status:
           $ref: "#/components/schemas/SiteStatus"
         permission:
-          description: SiteId permission level
-          enum:
-          - READ_WRITE
-          - READ_ONLY
-          type: string
+          $ref: "#/components/schemas/SitePermission"
+        roles:
+          description: List of roles used to get permissions
+          items:
+            type: string
+          type: array
         permissions:
           items:
             $ref: "#/components/schemas/SiteGroupPermissions"
@@ -22712,6 +24203,13 @@ components:
         usage:
           $ref: "#/components/schemas/SiteUsage"
       type: object
+    SitePermission:
+      deprecated: true
+      description: "Deprecated: use permissions"
+      enum:
+      - READ_WRITE
+      - READ_ONLY
+      type: string
     AddClassificationResponse:
       example:
         classificationId: classificationId
@@ -22877,6 +24375,29 @@ components:
       properties:
         message:
           description: Result message
+          type: string
+      type: object
+    AddShortlinkRequest:
+      example:
+        targetUrl: targetUrl
+        slug: slug
+      properties:
+        targetUrl:
+          description: Target URL for the shortlink
+          type: string
+        slug:
+          description: Shortlink slug
+          type: string
+      required:
+      - slug
+      - targetUrl
+      type: object
+    AddShortlinkResponse:
+      example:
+        url: url
+      properties:
+        url:
+          description: Shortlink URL
           type: string
       type: object
     GetSitesSchemaResponse:
@@ -23126,35 +24647,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -23180,35 +24709,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -23291,35 +24828,43 @@ components:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               maxNumberOfValues: 5.962133916683182
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 1.4658129805029452
             required:
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
             - allowedValues:
               - allowedValues
               - allowedValues
+              defaultEntityId: defaultEntityId
               defaultValue: defaultValue
               defaultValues:
               - defaultValues
               - defaultValues
               maxNumberOfValues: 6.027456183070403
               attributeKey: attributeKey
+              defaultEntityTypeId: defaultEntityTypeId
               minNumberOfValues: 0.8008281904610115
       properties:
         classification:
@@ -23341,35 +24886,43 @@ components:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             maxNumberOfValues: 5.962133916683182
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 1.4658129805029452
           required:
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
           - allowedValues:
             - allowedValues
             - allowedValues
+            defaultEntityId: defaultEntityId
             defaultValue: defaultValue
             defaultValues:
             - defaultValues
             - defaultValues
             maxNumberOfValues: 6.027456183070403
             attributeKey: attributeKey
+            defaultEntityTypeId: defaultEntityTypeId
             minNumberOfValues: 0.8008281904610115
       properties:
         name:
@@ -23392,35 +24945,43 @@ components:
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           maxNumberOfValues: 5.962133916683182
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 1.4658129805029452
         required:
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
         - allowedValues:
           - allowedValues
           - allowedValues
+          defaultEntityId: defaultEntityId
           defaultValue: defaultValue
           defaultValues:
           - defaultValues
           - defaultValues
           maxNumberOfValues: 6.027456183070403
           attributeKey: attributeKey
+          defaultEntityTypeId: defaultEntityTypeId
           minNumberOfValues: 0.8008281904610115
       properties:
         compositeKeys:
@@ -23530,14 +25091,20 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        defaultEntityId: defaultEntityId
         defaultValue: defaultValue
         defaultValues:
         - defaultValues
         - defaultValues
         maxNumberOfValues: 6.027456183070403
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 0.8008281904610115
       properties:
+        defaultEntityTypeId:
+          type: string
+        defaultEntityId:
+          type: string
         minNumberOfValues:
           description: The minimum number of attribute values
           type: number
@@ -23606,10 +25173,16 @@ components:
         allowedValues:
         - allowedValues
         - allowedValues
+        defaultEntityId: defaultEntityId
         maxNumberOfValues: 5.962133916683182
         attributeKey: attributeKey
+        defaultEntityTypeId: defaultEntityTypeId
         minNumberOfValues: 1.4658129805029452
       properties:
+        defaultEntityTypeId:
+          type: string
+        defaultEntityId:
+          type: string
         minNumberOfValues:
           description: The minimum number of attribute values
           type: number
@@ -24177,6 +25750,7 @@ components:
       - ANTIVIRUS
       - DOCUMENTTAGGING
       - FULLTEXT
+      - CHECKSUM
       - NOTIFICATION
       - OCR
       - QUEUE
@@ -24288,6 +25862,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -24324,6 +25899,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -24369,6 +25945,7 @@ components:
           engine: chatgpt
           notificationText: notificationText
           eventBusName: eventBusName
+          checksumType: null
           width: width
           llmPromptEntityName: llmPromptEntityName
           notificationHtml: notificationHtml
@@ -24415,6 +25992,7 @@ components:
         engine: chatgpt
         notificationText: notificationText
         eventBusName: eventBusName
+        checksumType: null
         width: width
         llmPromptEntityName: llmPromptEntityName
         notificationHtml: notificationHtml
@@ -24486,6 +26064,8 @@ components:
         eventBusName:
           description: The name or ARN of the event bus to receive the event
           type: string
+        checksumType:
+          $ref: "#/components/schemas/ChecksumType"
         width:
           description: The width of the image to resize (or 'auto')
           type: string
@@ -24502,18 +26082,17 @@ components:
     AddDocumentCertificationRequest:
       example:
         certificates:
-        - alias: alias
-          type: AWS_SSM_PARAMETER_STORE
-          parameterStore:
-            pkcs12BundleParam: pkcs12BundleParam
-            pkcs12PasswordParam: pkcs12PasswordParam
-        - alias: alias
-          type: AWS_SSM_PARAMETER_STORE
-          parameterStore:
-            pkcs12BundleParam: pkcs12BundleParam
-            pkcs12PasswordParam: pkcs12PasswordParam
-        target:
-          type: DOWNLOAD
+        - awsSecretsManager:
+            certificateArn: certificateArn
+            passwordArn: passwordArn
+          sourceType: AWS_SECRETS_MANAGER
+          alias: alias
+        - awsSecretsManager:
+            certificateArn: certificateArn
+            passwordArn: passwordArn
+          sourceType: AWS_SECRETS_MANAGER
+          alias: alias
+        target: DOWNLOAD
       properties:
         target:
           $ref: "#/components/schemas/DocumentCertificationTarget"
@@ -24529,53 +26108,48 @@ components:
       - target
       type: object
     DocumentCertificationTarget:
-      example:
-        type: DOWNLOAD
-      properties:
-        type:
-          enum:
-          - DOWNLOAD
-          - NEW_VERSION
-          - NEW_DOCUMENT
-          type: string
-      required:
-      - type
-      type: object
+      description: Type of supported certificate targets
+      enum:
+      - DOWNLOAD
+      type: string
     DocumentCertification:
       example:
+        awsSecretsManager:
+          certificateArn: certificateArn
+          passwordArn: passwordArn
+        sourceType: AWS_SECRETS_MANAGER
         alias: alias
-        type: AWS_SSM_PARAMETER_STORE
-        parameterStore:
-          pkcs12BundleParam: pkcs12BundleParam
-          pkcs12PasswordParam: pkcs12PasswordParam
       properties:
         alias:
           description: Certificate alias.
           type: string
-        type:
-          enum:
-          - AWS_SSM_PARAMETER_STORE
-          type: string
-        parameterStore:
-          $ref: "#/components/schemas/DocumentCertificationParameterStore"
+        sourceType:
+          $ref: "#/components/schemas/DocumentCertificationType"
+        awsSecretsManager:
+          $ref: "#/components/schemas/DocumentCertificationAwsSecretsManager"
       required:
       - alias
       - type
       type: object
-    DocumentCertificationParameterStore:
+    DocumentCertificationType:
+      description: Type of supported certificate datastores
+      enum:
+      - AWS_SECRETS_MANAGER
+      type: string
+    DocumentCertificationAwsSecretsManager:
       example:
-        pkcs12BundleParam: pkcs12BundleParam
-        pkcs12PasswordParam: pkcs12PasswordParam
+        certificateArn: certificateArn
+        passwordArn: passwordArn
       properties:
-        pkcs12BundleParam:
-          description: SSM Parameter Store Key containing the PKCS#12/PFX bundle.
+        certificateArn:
+          description: Aws Secrets Manager Certificate ARN
           type: string
-        pkcs12PasswordParam:
-          description: SSM Parameter Store Key containing the PKCS#12/PFX password.
+        passwordArn:
+          description: Aws Secrets Manager Password ARN
           type: string
       required:
-      - pkcs12BundleParam
-      - pkcs12PasswordParam
+      - certificateArn
+      - passwordArn
       type: object
     AddDocumentCertificationResponse:
       example:
@@ -24807,6 +26381,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -24945,6 +26520,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -25105,6 +26681,7 @@ components:
             engine: chatgpt
             notificationText: notificationText
             eventBusName: eventBusName
+            checksumType: null
             width: width
             llmPromptEntityName: llmPromptEntityName
             notificationHtml: notificationHtml
@@ -26076,6 +27653,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml
@@ -26214,6 +27792,7 @@ components:
               engine: chatgpt
               notificationText: notificationText
               eventBusName: eventBusName
+              checksumType: null
               width: width
               llmPromptEntityName: llmPromptEntityName
               notificationHtml: notificationHtml

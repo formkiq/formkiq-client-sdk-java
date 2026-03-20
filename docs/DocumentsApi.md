@@ -12,6 +12,7 @@ All URIs are relative to *http://localhost*
 | [**deleteDocumentCheckoutLegalHold**](DocumentsApi.md#deleteDocumentCheckoutLegalHold) | **DELETE** /documents/{documentId}/legalHold | Delete document legal hold checkout |
 | [**deletePublishedDocumentContent**](DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents |
 | [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document |
+| [**getDocumentArtifacts**](DocumentsApi.md#getDocumentArtifacts) | **GET** /documents/{documentId}/artifacts | Get document artifacts |
 | [**getDocumentContent**](DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents |
 | [**getDocumentIdUpload**](DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document |
 | [**getDocumentSyncs**](DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs |
@@ -171,7 +172,7 @@ No authorization required
 
 Add large document
 
-Returns a URL that can be used to upload document content and create a new document. This endpoint is required for uploading content larger than 5 MB and allows document metadata to be provided at creation time.  **Content Type Detection** If the document **Content-Type** is not specified during upload, the service will determine it asynchronously after the upload completes. This may result in a **temporary delay** before the content type and related metadata are available.  To avoid this delay, provide the **Content-Type** when uploading the document.
+Returns a URL that can be used to upload document content and create a new document. This endpoint is required for uploading content larger than 5 MB and allows document metadata to be provided at creation time.  **Content Type Detection** If the document **Content-Type** is not specified during upload, the service will determine it asynchronously after the upload completes. This may result in a **temporary delay** before the content type and related metadata are available.
 
 ### Example
 ```java
@@ -307,11 +308,11 @@ No authorization required
 
 <a id="deleteDocument"></a>
 # **deleteDocument**
-> DeleteResponse deleteDocument(documentId, siteId, softDelete)
+> DeleteResponse deleteDocument(documentId, siteId, artifactId, softDelete)
 
 Delete document
 
-Delete a document&#39;s details, i.e., metadata, contents, etc  SoftDelete:  The SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes, etc from being retrieved from all API requests.  The document can be permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT /documents/{documentId}/restore.  Only the GET /documents?deleted&#x3D;true will return all the soft deleted documents.
+Delete a document&#39;s details, i.e., metadata, contents, etc  SoftDelete:  The SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes, etc from being retrieved from all API requests.  The document can be permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT /documents/{documentId}/restore.  Only the GET /documents?softDeleted&#x3D;true will return all the soft deleted documents.
 
 ### Example
 ```java
@@ -333,9 +334,10 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     Boolean softDelete = true; // Boolean | Whether to soft delete document
     try {
-      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, softDelete);
+      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, artifactId, softDelete);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocument");
@@ -354,6 +356,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **softDelete** | **Boolean**| Whether to soft delete document | [optional] |
 
 ### Return type
@@ -376,7 +379,7 @@ No authorization required
 
 <a id="deleteDocumentCheckoutLegalHold"></a>
 # **deleteDocumentCheckoutLegalHold**
-> DeleteResponse deleteDocumentCheckoutLegalHold(documentId, siteId)
+> DeleteResponse deleteDocumentCheckoutLegalHold(documentId, siteId, artifactId)
 
 Delete document legal hold checkout
 
@@ -402,8 +405,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentCheckoutLegalHold(documentId, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentCheckoutLegalHold(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocumentCheckoutLegalHold");
@@ -422,6 +426,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -510,7 +515,7 @@ No authorization required
 
 <a id="getDocument"></a>
 # **getDocument**
-> GetDocumentResponse getDocument(documentId, siteId, shareKey)
+> GetDocumentResponse getDocument(documentId, siteId, artifactId, shareKey)
 
 Get document
 
@@ -536,9 +541,10 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentResponse result = apiInstance.getDocument(documentId, siteId, shareKey);
+      GetDocumentResponse result = apiInstance.getDocument(documentId, siteId, artifactId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocument");
@@ -557,6 +563,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
@@ -577,9 +584,80 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getDocumentArtifacts"></a>
+# **getDocumentArtifacts**
+> GetDocumentsResponse getDocumentArtifacts(documentId, siteId, limit, next)
+
+Get document artifacts
+
+Returns the list of artifact documents associated with the specified document
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    String next = "next_example"; // String | Next page of results token
+    try {
+      GetDocumentsResponse result = apiInstance.getDocumentArtifacts(documentId, siteId, limit, next);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentsApi#getDocumentArtifacts");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **next** | **String**| Next page of results token | [optional] |
+
+### Return type
+
+[**GetDocumentsResponse**](GetDocumentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getDocumentContent"></a>
 # **getDocumentContent**
-> GetDocumentContentResponse getDocumentContent(documentId, siteId, versionKey, shareKey)
+> GetDocumentContentResponse getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey)
 
 Get document&#39;s contents
 
@@ -605,10 +683,11 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, versionKey, shareKey);
+      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentContent");
@@ -627,6 +706,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
@@ -650,7 +730,7 @@ No authorization required
 
 <a id="getDocumentIdUpload"></a>
 # **getDocumentIdUpload**
-> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, checksumType, checksum, contentLength, duration, shareKey)
+> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey)
 
 Get url to update large document
 
@@ -676,13 +756,14 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String checksumType = "SHA1"; // String | Checksum Type
     String checksum = "checksum_example"; // String | Checksum value
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, checksumType, checksum, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentIdUpload");
@@ -701,6 +782,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **checksumType** | **String**| Checksum Type | [optional] [enum: SHA1, SHA256] |
 | **checksum** | **String**| Checksum value | [optional] |
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
@@ -875,7 +957,7 @@ No authorization required
 
 <a id="getDocumentUrl"></a>
 # **getDocumentUrl**
-> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark)
+> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format)
 
 Get document content url
 
@@ -901,13 +983,15 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
     Boolean inline = false; // Boolean | Set the Content-Disposition to inline
     Boolean bypassWatermark = false; // Boolean | Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions)
+    String format = "short"; // String | Return a shortlink URL when set to `short`; available as an Add-On Module
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, versionKey, duration, shareKey, inline, bypassWatermark);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUrl");
@@ -926,11 +1010,13 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **inline** | **Boolean**| Set the Content-Disposition to inline | [optional] [default to false] |
 | **bypassWatermark** | **Boolean**| Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions) | [optional] [default to false] |
+| **format** | **String**| Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On Module | [optional] [enum: short] |
 
 ### Return type
 
@@ -952,7 +1038,7 @@ No authorization required
 
 <a id="getDocuments"></a>
 # **getDocuments**
-> GetDocumentsResponse getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, projection, limit)
+> GetDocumentsResponse getDocuments(siteId, actionStatus, syncStatus, softDeleted, deleted, date, tz, start, end, sort, next, previous, projection, limit)
 
 Get Documents listing
 
@@ -979,15 +1065,19 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     String actionStatus = "FAILED"; // String | Fetch documents with an action status
     String syncStatus = "FULLTEXT_METADATA_FAILED"; // String | Fetch documents with an sync status
-    Boolean deleted = true; // Boolean | Fetch soft deleted documents
+    Boolean softDeleted = true; // Boolean | Fetch soft deleted documents
+    Boolean deleted = true; // Boolean | Deprecated: use softDeleted. Fetch soft deleted documents
     String date = "date_example"; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
     String tz = "tz_example"; // String | UTC offset to apply to date parameter (IE: -0600)
+    OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Start of date-time range (UTC)
+    OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | End of date-time range (UTC)
+    String sort = "ASC"; // String | Sort order (default DESC)
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
     String projection = "DOCUMENT_ID_ONLY"; // String | Specify a restricted document projection. Use 'DOCUMENT_ID_ONLY' to return only the documentId attribute.
     String limit = "10"; // String | Limit Results
     try {
-      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, syncStatus, deleted, date, tz, next, previous, projection, limit);
+      GetDocumentsResponse result = apiInstance.getDocuments(siteId, actionStatus, syncStatus, softDeleted, deleted, date, tz, start, end, sort, next, previous, projection, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocuments");
@@ -1007,9 +1097,13 @@ public class Example {
 | **siteId** | **String**| Site Identifier | [optional] |
 | **actionStatus** | **String**| Fetch documents with an action status | [optional] [enum: FAILED, IN_QUEUE, PENDING, RUNNING, SKIPPED, FAILED_RETRY] |
 | **syncStatus** | **String**| Fetch documents with an sync status | [optional] [enum: FULLTEXT_METADATA_FAILED, FULLTEXT_CONTENT_FAILED] |
-| **deleted** | **Boolean**| Fetch soft deleted documents | [optional] |
+| **softDeleted** | **Boolean**| Fetch soft deleted documents | [optional] |
+| **deleted** | **Boolean**| Deprecated: use softDeleted. Fetch soft deleted documents | [optional] |
 | **date** | **String**| Fetch documents inserted on a certain date (yyyy-MM-dd) | [optional] |
 | **tz** | **String**| UTC offset to apply to date parameter (IE: -0600) | [optional] |
+| **start** | **OffsetDateTime**| Start of date-time range (UTC) | [optional] |
+| **end** | **OffsetDateTime**| End of date-time range (UTC) | [optional] |
+| **sort** | **String**| Sort order (default DESC) | [optional] [enum: ASC, DESC] |
 | **next** | **String**| Next page of results token | [optional] |
 | **previous** | **String**| Previous page of results token | [optional] |
 | **projection** | **String**| Specify a restricted document projection. Use &#39;DOCUMENT_ID_ONLY&#39; to return only the documentId attribute. | [optional] [enum: DOCUMENT_ID_ONLY] |
@@ -1101,7 +1195,7 @@ No authorization required
 
 <a id="purgeDocument"></a>
 # **purgeDocument**
-> DeleteResponse purgeDocument(documentId, siteId)
+> DeleteResponse purgeDocument(documentId, siteId, artifactId)
 
 Purge document
 
@@ -1127,8 +1221,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.purgeDocument(documentId, siteId);
+      DeleteResponse result = apiInstance.purgeDocument(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#purgeDocument");
@@ -1147,6 +1242,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -1168,7 +1264,7 @@ No authorization required
 
 <a id="setDocumentCheckout"></a>
 # **setDocumentCheckout**
-> SetResponse setDocumentCheckout(documentId, siteId)
+> SetResponse setDocumentCheckout(documentId, siteId, artifactId)
 
 Perform document checkout
 
@@ -1194,8 +1290,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetResponse result = apiInstance.setDocumentCheckout(documentId, siteId);
+      SetResponse result = apiInstance.setDocumentCheckout(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#setDocumentCheckout");
@@ -1214,6 +1311,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -1235,7 +1333,7 @@ No authorization required
 
 <a id="setDocumentCheckoutLegalHold"></a>
 # **setDocumentCheckoutLegalHold**
-> SetResponse setDocumentCheckoutLegalHold(documentId, siteId)
+> SetResponse setDocumentCheckoutLegalHold(documentId, siteId, artifactId)
 
 Perform document legal hold checkout
 
@@ -1261,8 +1359,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetResponse result = apiInstance.setDocumentCheckoutLegalHold(documentId, siteId);
+      SetResponse result = apiInstance.setDocumentCheckoutLegalHold(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#setDocumentCheckoutLegalHold");
@@ -1281,6 +1380,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -1302,7 +1402,7 @@ No authorization required
 
 <a id="setDocumentRestore"></a>
 # **setDocumentRestore**
-> SetDocumentRestoreResponse setDocumentRestore(documentId, siteId)
+> SetDocumentRestoreResponse setDocumentRestore(documentId, siteId, artifactId)
 
 Restore soft deleted document
 
@@ -1328,8 +1428,9 @@ public class Example {
     DocumentsApi apiInstance = new DocumentsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetDocumentRestoreResponse result = apiInstance.setDocumentRestore(documentId, siteId);
+      SetDocumentRestoreResponse result = apiInstance.setDocumentRestore(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#setDocumentRestore");
@@ -1348,6 +1449,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -1369,7 +1471,7 @@ No authorization required
 
 <a id="updateDocument"></a>
 # **updateDocument**
-> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, shareKey)
+> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey)
 
 Update document
 
@@ -1396,9 +1498,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     UpdateDocumentRequest updateDocumentRequest = new UpdateDocumentRequest(); // UpdateDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, shareKey);
+      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#updateDocument");
@@ -1418,6 +1521,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **updateDocumentRequest** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type

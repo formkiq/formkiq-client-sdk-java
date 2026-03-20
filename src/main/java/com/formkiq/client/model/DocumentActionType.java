@@ -64,8 +64,6 @@ public enum DocumentActionType {
 
   DATA_CLASSIFICATION("DATA_CLASSIFICATION"),
 
-  METADATA_EXTRACTION("METADATA_EXTRACTION"),
-
   MALWARE_SCAN("MALWARE_SCAN");
 
   private String value;

@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentActions"></a>
 # **addDocumentActions**
-> AddResponse addDocumentActions(documentId, siteId, addDocumentActionsRequest)
+> AddResponse addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest)
 
 Add document action
 
@@ -37,9 +37,10 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     AddDocumentActionsRequest addDocumentActionsRequest = new AddDocumentActionsRequest(); // AddDocumentActionsRequest | 
     try {
-      AddResponse result = apiInstance.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+      AddResponse result = apiInstance.addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentActions");
@@ -58,6 +59,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **addDocumentActionsRequest** | [**AddDocumentActionsRequest**](AddDocumentActionsRequest.md)|  | [optional] |
 
 ### Return type
@@ -81,7 +83,7 @@ No authorization required
 
 <a id="addDocumentRetryAction"></a>
 # **addDocumentRetryAction**
-> AddResponse addDocumentRetryAction(documentId, siteId)
+> AddResponse addDocumentRetryAction(documentId, siteId, artifactId)
 
 Retries failed document action(s)
 
@@ -107,8 +109,9 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddResponse result = apiInstance.addDocumentRetryAction(documentId, siteId);
+      AddResponse result = apiInstance.addDocumentRetryAction(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#addDocumentRetryAction");
@@ -127,6 +130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -149,7 +153,7 @@ No authorization required
 
 <a id="getDocumentActions"></a>
 # **getDocumentActions**
-> GetDocumentActionsResponse getDocumentActions(documentId, siteId, limit, shareKey, next)
+> GetDocumentActionsResponse getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next)
 
 Get document actions
 
@@ -175,11 +179,12 @@ public class Example {
     DocumentActionsApi apiInstance = new DocumentActionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, limit, shareKey, next);
+      GetDocumentActionsResponse result = apiInstance.getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentActionsApi#getDocumentActions");
@@ -198,6 +203,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
