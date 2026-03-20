@@ -55,8 +55,9 @@ public class ESignatureApiTest {
     String documentId = null;
     AddDocusignEnvelopesRequest addDocusignEnvelopesRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddDocusignEnvelopesResponse response =
-        api.addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId);
+        api.addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -73,8 +74,9 @@ public class ESignatureApiTest {
     String envelopeId = null;
     AddDocusignRecipientViewRequest addDocusignRecipientViewRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddDocusignRecipientViewResponse response = api.addDocusignRecipientView(documentId, envelopeId,
-        addDocusignRecipientViewRequest, siteId);
+        addDocusignRecipientViewRequest, siteId, artifactId);
     // TODO: test validations
   }
 

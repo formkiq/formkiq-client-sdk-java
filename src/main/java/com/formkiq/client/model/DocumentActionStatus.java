@@ -38,6 +38,8 @@ public enum DocumentActionStatus {
 
   COMPLETE("COMPLETE"),
 
+  ASYNC_COMPLETE("ASYNC_COMPLETE"),
+
   FAILED("FAILED"),
 
   IN_QUEUE("IN_QUEUE"),

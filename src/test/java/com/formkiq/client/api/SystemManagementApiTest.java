@@ -23,11 +23,15 @@ package com.formkiq.client.api;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddApiKeyRequest;
 import com.formkiq.client.model.AddApiKeyResponse;
+import com.formkiq.client.model.AddDelegationTokenRequest;
+import com.formkiq.client.model.AddDelegationTokenResponse;
 import com.formkiq.client.model.AddLocaleRequest;
 import com.formkiq.client.model.AddLocaleResourceItemRequest;
 import com.formkiq.client.model.AddLocaleResourceItemResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
+import com.formkiq.client.model.AddSystemInferenceModelAgreementRequest;
+import com.formkiq.client.model.CleanupOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
@@ -42,6 +46,8 @@ import com.formkiq.client.model.GetOpenSearchSnapshotResponse;
 import com.formkiq.client.model.GetSiteGroupResponse;
 import com.formkiq.client.model.GetSiteGroupsResponse;
 import com.formkiq.client.model.GetSitesResponse;
+import com.formkiq.client.model.GetSystemConfigurationResponse;
+import com.formkiq.client.model.GetSystemInferenceModelsResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
@@ -54,6 +60,7 @@ import com.formkiq.client.model.UpdateConfigurationRequest;
 import com.formkiq.client.model.UpdateConfigurationResponse;
 import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.UpdateSiteRequest;
+import com.formkiq.client.model.UpdateSystemConfigurationRequest;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -119,9 +126,13 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Add an OpenSearch Restore Snapshot
+   * Restore site OpenSearch snapshot
    *
-   * Add an OpenSearch Restore Snapshot
+   * Restores the specified snapshot into a separate OpenSearch index for the site. The restored
+   * index is created from the site&#39;s current index name with the snapshot name and
+   * \&quot;_restored\&quot; suffix. For provisioned OpenSearch domains, the snapshot is read from
+   * the site&#39;s S3 snapshot repository. For OpenSearch Serverless, the snapshot is read from the
+   * automated snapshot repository.
    *
    * @throws ApiException if the Api call fails
    */
@@ -134,9 +145,12 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Add an OpenSearch Snapshot
+   * Create site OpenSearch snapshot
    *
-   * Add an OpenSearch Snapshot
+   * Creates a manual snapshot of the specified site&#39;s OpenSearch index. If the site&#39;s S3
+   * snapshot repository does not already exist, it is registered before the snapshot is created.
+   * The supplied snapshot name is stored with the site prefix. This operation is not supported for
+   * OpenSearch Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -159,6 +173,40 @@ public class SystemManagementApiTest {
   public void addSiteTest() throws ApiException {
     AddSiteRequest addSiteRequest = null;
     AddResponse response = api.addSite(addSiteRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Agree to a system inference model
+   *
+   * Agree to the Bedrock model usage agreement for a system inference model
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addSystemInferenceModelAgreementTest() throws ApiException {
+    AddSystemInferenceModelAgreementRequest addSystemInferenceModelAgreementRequest = null;
+    AddResponse response =
+        api.addSystemInferenceModelAgreement(addSystemInferenceModelAgreementRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Cleanup OpenSearch snapshot repository
+   *
+   * Cleans up stale data in the specified OpenSearch snapshot repository. This endpoint clears data
+   * no longer referenced by any existing snapshot. This operation is not supported for OpenSearch
+   * Serverless.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void cleanupOpenSearchSnapshotRepositoryTest() throws ApiException {
+    String repositoryName = null;
+    String clusterManagerTimeout = null;
+    String timeout = null;
+    CleanupOpenSearchSnapshotRepositoryResponse response =
+        api.cleanupOpenSearchSnapshotRepository(repositoryName, clusterManagerTimeout, timeout);
     // TODO: test validations
   }
 
@@ -237,9 +285,12 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Deletes site(s) OpenSearch Restore Snapshot
+   * Delete restored OpenSearch snapshot index
    *
-   * Deletes the OpenSearch Restore Snapshot
+   * Deletes the restored OpenSearch index created from the specified snapshot. This deletes only
+   * the restored index named with the snapshot name and \&quot;_restored\&quot; suffix. It does not
+   * delete the original site index or the snapshot. This operation is not supported for OpenSearch
+   * Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -252,9 +303,11 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot
+   * Delete site OpenSearch snapshot
    *
-   * Deletes the OpenSearch Snapshot
+   * Deletes a manual snapshot from the specified site&#39;s S3 snapshot repository. The supplied
+   * snapshot name is resolved to the site&#39;s stored snapshot name before deletion. This
+   * operation is not supported for OpenSearch Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -267,9 +320,11 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Deletes site(s) OpenSearch Snapshot Repository
+   * Delete site OpenSearch snapshot repository
    *
-   * Deletes the OpenSearch Snapshot Repository
+   * Deletes the S3 snapshot repository configured for the specified site&#39;s OpenSearch index.
+   * This removes the OpenSearch repository registration, not the site&#39;s index. This operation
+   * is not supported for OpenSearch Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -292,6 +347,29 @@ public class SystemManagementApiTest {
     String siteId = null;
     String groupName = null;
     DeleteResponse response = api.deleteSiteGroup(siteId, groupName);
+    // TODO: test validations
+  }
+
+  /**
+   * Generate a delegation token
+   *
+   * Creates a KMS-signed delegation token for a site. This endpoint requires ADMIN permission for
+   * the requested siteId. The returned token is sent on later API requests in the
+   * x-formkiq-delegation-token header and reduces the caller&#39;s effective permissions to the
+   * requested subset for that site. It cannot grant ADMIN, add permissions the caller does not
+   * already have, or add access to other sites. When onBehalfOf is supplied, activity created while
+   * using the token is attributed to that username while the signed token still records the ADMIN
+   * principal that issued it. The reason is signed into the token for audit and support
+   * traceability.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void generateDelegationTokenTest() throws ApiException {
+    String siteId = null;
+    AddDelegationTokenRequest addDelegationTokenRequest = null;
+    AddDelegationTokenResponse response =
+        api.generateDelegationToken(siteId, addDelegationTokenRequest);
     // TODO: test validations
   }
 
@@ -417,9 +495,12 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot
+   * Get site OpenSearch snapshot
    *
-   * Returns the OpenSearch Snapshot
+   * Returns details for a snapshot of the specified site&#39;s OpenSearch index. For provisioned
+   * OpenSearch domains, the supplied snapshot name is resolved to the site&#39;s stored snapshot
+   * name before lookup. For OpenSearch Serverless, the response is read from the automated snapshot
+   * repository.
    *
    * @throws ApiException if the Api call fails
    */
@@ -432,9 +513,11 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repositories
+   * List OpenSearch snapshot repositories
    *
-   * Returns the OpenSearch Snapshot Repositories
+   * Returns all configured OpenSearch S3 snapshot repositories for the deployment. This endpoint is
+   * available to administrators when the fulltext OpenSearch module is installed and snapshot
+   * support is enabled. Snapshot repositories are not supported for OpenSearch Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -445,9 +528,12 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Get site(s) OpenSearch snapshot repository
+   * Get site OpenSearch snapshot repository
    *
-   * Returns the OpenSearch Snapshot Repository
+   * Returns the S3 snapshot repository configured for the specified site. The repository stores
+   * manual snapshots for the site&#39;s OpenSearch index. It is named from the site and application
+   * environment and is created automatically when a snapshot is requested. Snapshot repositories
+   * are not supported for OpenSearch Serverless.
    *
    * @throws ApiException if the Api call fails
    */
@@ -459,9 +545,11 @@ public class SystemManagementApiTest {
   }
 
   /**
-   * Get site(s) OpenSearch snapshots
+   * List site OpenSearch snapshots
    *
-   * Returns the OpenSearch Snapshots
+   * Returns snapshots for the specified site&#39;s OpenSearch index. For provisioned OpenSearch
+   * domains, the response is read from the site&#39;s S3 snapshot repository. For OpenSearch
+   * Serverless, the response is read from the automated snapshot repository.
    *
    * @throws ApiException if the Api call fails
    */
@@ -512,6 +600,32 @@ public class SystemManagementApiTest {
   public void getSitesTest() throws ApiException {
     SiteStatus status = null;
     GetSitesResponse response = api.getSites(status);
+    // TODO: test validations
+  }
+
+  /**
+   * Get system configuration
+   *
+   * Returns the system configuration
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSystemConfigurationTest() throws ApiException {
+    GetSystemConfigurationResponse response = api.getSystemConfiguration();
+    // TODO: test validations
+  }
+
+  /**
+   * Get system inference models
+   *
+   * Returns the system inference models
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getSystemInferenceModelsTest() throws ApiException {
+    GetSystemInferenceModelsResponse response = api.getSystemInferenceModels();
     // TODO: test validations
   }
 
@@ -621,6 +735,20 @@ public class SystemManagementApiTest {
     String siteId = null;
     UpdateSiteRequest updateSiteRequest = null;
     UpdateResponse response = api.updateSite(siteId, updateSiteRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Update system configuration
+   *
+   * Update the system configuration
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void updateSystemConfigurationTest() throws ApiException {
+    UpdateSystemConfigurationRequest updateSystemConfigurationRequest = null;
+    UpdateResponse response = api.updateSystemConfiguration(updateSystemConfigurationRequest);
     // TODO: test validations
   }
 

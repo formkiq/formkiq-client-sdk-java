@@ -92,6 +92,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -115,7 +116,8 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call addDocumentAttributesCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -145,6 +147,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -168,7 +174,8 @@ public class DocumentAttributesApi {
   private okhttp3.Call addDocumentAttributesValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -181,7 +188,8 @@ public class DocumentAttributesApi {
           "Missing the required parameter 'addDocumentAttributesRequest' when calling addDocumentAttributes(Async)");
     }
 
-    return addDocumentAttributesCall(documentId, addDocumentAttributesRequest, siteId, _callback);
+    return addDocumentAttributesCall(documentId, addDocumentAttributesRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -192,6 +200,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -215,9 +224,10 @@ public class DocumentAttributesApi {
    */
   public AddResponse addDocumentAttributes(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<AddResponse> localVarResp =
-        addDocumentAttributesWithHttpInfo(documentId, addDocumentAttributesRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<AddResponse> localVarResp = addDocumentAttributesWithHttpInfo(documentId,
+        addDocumentAttributesRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -228,6 +238,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -252,9 +263,10 @@ public class DocumentAttributesApi {
   public ApiResponse<AddResponse> addDocumentAttributesWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addDocumentAttributesValidateBeforeCall(documentId,
-        addDocumentAttributesRequest, siteId, null);
+        addDocumentAttributesRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -266,6 +278,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param addDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -289,11 +302,11 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call addDocumentAttributesAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddDocumentAttributesRequest addDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<AddResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<AddResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addDocumentAttributesValidateBeforeCall(documentId,
-        addDocumentAttributesRequest, siteId, _callback);
+        addDocumentAttributesRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -305,6 +318,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -328,7 +342,8 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call deleteDocumentAttributeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -360,6 +375,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -382,7 +401,8 @@ public class DocumentAttributesApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentAttributeValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -395,7 +415,7 @@ public class DocumentAttributesApi {
           "Missing the required parameter 'attributeKey' when calling deleteDocumentAttribute(Async)");
     }
 
-    return deleteDocumentAttributeCall(documentId, attributeKey, siteId, _callback);
+    return deleteDocumentAttributeCall(documentId, attributeKey, siteId, artifactId, _callback);
 
   }
 
@@ -405,6 +425,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -427,10 +448,10 @@ public class DocumentAttributesApi {
    *                        </table>
    */
   public DeleteResponse deleteDocumentAttribute(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentAttributeWithHttpInfo(documentId, attributeKey, siteId);
+        deleteDocumentAttributeWithHttpInfo(documentId, attributeKey, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -440,6 +461,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -463,9 +485,10 @@ public class DocumentAttributesApi {
    */
   public ApiResponse<DeleteResponse> deleteDocumentAttributeWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    okhttp3.Call localVarCall =
-        deleteDocumentAttributeValidateBeforeCall(documentId, attributeKey, siteId, null);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = deleteDocumentAttributeValidateBeforeCall(documentId, attributeKey,
+        siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -476,6 +499,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -499,10 +523,11 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call deleteDocumentAttributeAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteDocumentAttributeValidateBeforeCall(documentId, attributeKey, siteId, _callback);
+    okhttp3.Call localVarCall = deleteDocumentAttributeValidateBeforeCall(documentId, attributeKey,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -515,6 +540,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param attributeValue Attribute Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -539,7 +565,8 @@ public class DocumentAttributesApi {
   public okhttp3.Call deleteDocumentAttributeAndValueCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -573,6 +600,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -596,7 +627,8 @@ public class DocumentAttributesApi {
   private okhttp3.Call deleteDocumentAttributeAndValueValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -616,7 +648,7 @@ public class DocumentAttributesApi {
     }
 
     return deleteDocumentAttributeAndValueCall(documentId, attributeKey, attributeValue, siteId,
-        _callback);
+        artifactId, _callback);
 
   }
 
@@ -628,6 +660,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param attributeValue Attribute Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -651,10 +684,10 @@ public class DocumentAttributesApi {
    */
   public DeleteResponse deleteDocumentAttributeAndValue(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp = deleteDocumentAttributeAndValueWithHttpInfo(
-        documentId, attributeKey, attributeValue, siteId);
+        documentId, attributeKey, attributeValue, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -666,6 +699,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param attributeValue Attribute Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -689,10 +723,10 @@ public class DocumentAttributesApi {
    */
   public ApiResponse<DeleteResponse> deleteDocumentAttributeAndValueWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId)
-      throws ApiException {
+      @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId) throws ApiException {
     okhttp3.Call localVarCall = deleteDocumentAttributeAndValueValidateBeforeCall(documentId,
-        attributeKey, attributeValue, siteId, null);
+        attributeKey, attributeValue, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -706,6 +740,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param attributeValue Attribute Value (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -730,10 +765,11 @@ public class DocumentAttributesApi {
   public okhttp3.Call deleteDocumentAttributeAndValueAsync(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull String attributeValue, @javax.annotation.Nullable String siteId,
-      final ApiCallback<DeleteResponse> _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback<DeleteResponse> _callback)
+      throws ApiException {
 
     okhttp3.Call localVarCall = deleteDocumentAttributeAndValueValidateBeforeCall(documentId,
-        attributeKey, attributeValue, siteId, _callback);
+        attributeKey, attributeValue, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -745,6 +781,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -768,7 +805,8 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call getDocumentAttributeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, final ApiCallback _callback)
+      throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -800,6 +838,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -822,7 +864,8 @@ public class DocumentAttributesApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentAttributeValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -835,7 +878,7 @@ public class DocumentAttributesApi {
           "Missing the required parameter 'attributeKey' when calling getDocumentAttribute(Async)");
     }
 
-    return getDocumentAttributeCall(documentId, attributeKey, siteId, _callback);
+    return getDocumentAttributeCall(documentId, attributeKey, siteId, artifactId, _callback);
 
   }
 
@@ -845,6 +888,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return GetDocumentAttributeResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -868,9 +912,10 @@ public class DocumentAttributesApi {
    */
   public GetDocumentAttributeResponse getDocumentAttribute(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<GetDocumentAttributeResponse> localVarResp =
-        getDocumentAttributeWithHttpInfo(documentId, attributeKey, siteId);
+        getDocumentAttributeWithHttpInfo(documentId, attributeKey, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -880,6 +925,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;GetDocumentAttributeResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -903,9 +949,10 @@ public class DocumentAttributesApi {
    */
   public ApiResponse<GetDocumentAttributeResponse> getDocumentAttributeWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentAttributeValidateBeforeCall(documentId, attributeKey, siteId, null);
+        getDocumentAttributeValidateBeforeCall(documentId, attributeKey, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<GetDocumentAttributeResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -916,6 +963,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param attributeKey Attribute Key (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -939,10 +987,11 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call getDocumentAttributeAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
       final ApiCallback<GetDocumentAttributeResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentAttributeValidateBeforeCall(documentId, attributeKey, siteId, _callback);
+    okhttp3.Call localVarCall = getDocumentAttributeValidateBeforeCall(documentId, attributeKey,
+        siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentAttributeResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -953,6 +1002,7 @@ public class DocumentAttributesApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @param _callback Callback for upload/download progress
@@ -977,8 +1027,9 @@ public class DocumentAttributesApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentAttributesCall(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1006,6 +1057,10 @@ public class DocumentAttributesApi {
 
     if (siteId != null) {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
     }
 
     if (limit != null) {
@@ -1038,15 +1093,15 @@ public class DocumentAttributesApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call getDocumentAttributesValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
-      final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
           "Missing the required parameter 'documentId' when calling getDocumentAttributes(Async)");
     }
 
-    return getDocumentAttributesCall(documentId, siteId, limit, next, _callback);
+    return getDocumentAttributesCall(documentId, siteId, artifactId, limit, next, _callback);
 
   }
 
@@ -1055,6 +1110,7 @@ public class DocumentAttributesApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @return GetDocumentAttributesResponse
@@ -1080,10 +1136,10 @@ public class DocumentAttributesApi {
    */
   public GetDocumentAttributesResponse getDocumentAttributes(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
-      throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     ApiResponse<GetDocumentAttributesResponse> localVarResp =
-        getDocumentAttributesWithHttpInfo(documentId, siteId, limit, next);
+        getDocumentAttributesWithHttpInfo(documentId, siteId, artifactId, limit, next);
     return localVarResp.getData();
   }
 
@@ -1092,6 +1148,7 @@ public class DocumentAttributesApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @return ApiResponse&lt;GetDocumentAttributesResponse&gt;
@@ -1117,10 +1174,10 @@ public class DocumentAttributesApi {
    */
   public ApiResponse<GetDocumentAttributesResponse> getDocumentAttributesWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next)
-      throws ApiException {
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
     okhttp3.Call localVarCall =
-        getDocumentAttributesValidateBeforeCall(documentId, siteId, limit, next, null);
+        getDocumentAttributesValidateBeforeCall(documentId, siteId, artifactId, limit, next, null);
     Type localVarReturnType = new TypeToken<GetDocumentAttributesResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1130,6 +1187,7 @@ public class DocumentAttributesApi {
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param limit Limit Results (optional, default to 10)
    * @param next Next page of results token (optional)
    * @param _callback The callback to be executed when the API call finishes
@@ -1154,12 +1212,12 @@ public class DocumentAttributesApi {
    *                        </table>
    */
   public okhttp3.Call getDocumentAttributesAsync(@javax.annotation.Nonnull String documentId,
-      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String limit,
-      @javax.annotation.Nullable String next,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
       final ApiCallback<GetDocumentAttributesResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        getDocumentAttributesValidateBeforeCall(documentId, siteId, limit, next, _callback);
+    okhttp3.Call localVarCall = getDocumentAttributesValidateBeforeCall(documentId, siteId,
+        artifactId, limit, next, _callback);
     Type localVarReturnType = new TypeToken<GetDocumentAttributesResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1172,6 +1230,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param setDocumentAttributeRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1196,7 +1255,8 @@ public class DocumentAttributesApi {
   public okhttp3.Call setDocumentAttributeValueCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull SetDocumentAttributeRequest setDocumentAttributeRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1228,6 +1288,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1251,7 +1315,8 @@ public class DocumentAttributesApi {
   private okhttp3.Call setDocumentAttributeValueValidateBeforeCall(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull SetDocumentAttributeRequest setDocumentAttributeRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1271,7 +1336,7 @@ public class DocumentAttributesApi {
     }
 
     return setDocumentAttributeValueCall(documentId, attributeKey, setDocumentAttributeRequest,
-        siteId, _callback);
+        siteId, artifactId, _callback);
 
   }
 
@@ -1282,6 +1347,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param setDocumentAttributeRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1306,9 +1372,10 @@ public class DocumentAttributesApi {
   public SetResponse setDocumentAttributeValue(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull SetDocumentAttributeRequest setDocumentAttributeRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     ApiResponse<SetResponse> localVarResp = setDocumentAttributeValueWithHttpInfo(documentId,
-        attributeKey, setDocumentAttributeRequest, siteId);
+        attributeKey, setDocumentAttributeRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1319,6 +1386,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param setDocumentAttributeRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1343,9 +1411,10 @@ public class DocumentAttributesApi {
   public ApiResponse<SetResponse> setDocumentAttributeValueWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull SetDocumentAttributeRequest setDocumentAttributeRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = setDocumentAttributeValueValidateBeforeCall(documentId,
-        attributeKey, setDocumentAttributeRequest, siteId, null);
+        attributeKey, setDocumentAttributeRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1357,6 +1426,7 @@ public class DocumentAttributesApi {
    * @param attributeKey Attribute Key (required)
    * @param setDocumentAttributeRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1381,11 +1451,11 @@ public class DocumentAttributesApi {
   public okhttp3.Call setDocumentAttributeValueAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull String attributeKey,
       @javax.annotation.Nonnull SetDocumentAttributeRequest setDocumentAttributeRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = setDocumentAttributeValueValidateBeforeCall(documentId,
-        attributeKey, setDocumentAttributeRequest, siteId, _callback);
+        attributeKey, setDocumentAttributeRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
@@ -1397,6 +1467,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1420,7 +1491,8 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call setDocumentAttributesCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentAttributesRequest setDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -1450,6 +1522,10 @@ public class DocumentAttributesApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1473,7 +1549,8 @@ public class DocumentAttributesApi {
   private okhttp3.Call setDocumentAttributesValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentAttributesRequest setDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -1486,7 +1563,8 @@ public class DocumentAttributesApi {
           "Missing the required parameter 'setDocumentAttributesRequest' when calling setDocumentAttributes(Async)");
     }
 
-    return setDocumentAttributesCall(documentId, setDocumentAttributesRequest, siteId, _callback);
+    return setDocumentAttributesCall(documentId, setDocumentAttributesRequest, siteId, artifactId,
+        _callback);
 
   }
 
@@ -1498,6 +1576,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1521,9 +1600,10 @@ public class DocumentAttributesApi {
    */
   public SetResponse setDocumentAttributes(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentAttributesRequest setDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<SetResponse> localVarResp =
-        setDocumentAttributesWithHttpInfo(documentId, setDocumentAttributesRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<SetResponse> localVarResp = setDocumentAttributesWithHttpInfo(documentId,
+        setDocumentAttributesRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -1535,6 +1615,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1559,9 +1640,10 @@ public class DocumentAttributesApi {
   public ApiResponse<SetResponse> setDocumentAttributesWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentAttributesRequest setDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = setDocumentAttributesValidateBeforeCall(documentId,
-        setDocumentAttributesRequest, siteId, null);
+        setDocumentAttributesRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1574,6 +1656,7 @@ public class DocumentAttributesApi {
    * @param documentId Document Identifier (required)
    * @param setDocumentAttributesRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1597,11 +1680,11 @@ public class DocumentAttributesApi {
    */
   public okhttp3.Call setDocumentAttributesAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull SetDocumentAttributesRequest setDocumentAttributesRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = setDocumentAttributesValidateBeforeCall(documentId,
-        setDocumentAttributesRequest, siteId, _callback);
+        setDocumentAttributesRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

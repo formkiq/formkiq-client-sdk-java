@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocumentsCompressDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,17 +59,22 @@ import com.formkiq.client.invoker.JSON;
  * DocumentsCompressRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class DocumentsCompressRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_IDS = "documentIds";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_IDS)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<String> documentIds = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
+  @SerializedName(SERIALIZED_NAME_DOCUMENTS)
+  @javax.annotation.Nullable
+  private List<DocumentsCompressDocument> documents = new ArrayList<>();
 
   public DocumentsCompressRequest() {}
 
-  public DocumentsCompressRequest documentIds(@javax.annotation.Nonnull List<String> documentIds) {
+  public DocumentsCompressRequest documentIds(@javax.annotation.Nullable List<String> documentIds) {
     this.documentIds = documentIds;
     return this;
   }
@@ -86,13 +92,42 @@ public class DocumentsCompressRequest {
    * 
    * @return documentIds
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public List<String> getDocumentIds() {
     return documentIds;
   }
 
-  public void setDocumentIds(@javax.annotation.Nonnull List<String> documentIds) {
+  public void setDocumentIds(@javax.annotation.Nullable List<String> documentIds) {
     this.documentIds = documentIds;
+  }
+
+
+  public DocumentsCompressRequest documents(
+      @javax.annotation.Nullable List<DocumentsCompressDocument> documents) {
+    this.documents = documents;
+    return this;
+  }
+
+  public DocumentsCompressRequest addDocumentsItem(DocumentsCompressDocument documentsItem) {
+    if (this.documents == null) {
+      this.documents = new ArrayList<>();
+    }
+    this.documents.add(documentsItem);
+    return this;
+  }
+
+  /**
+   * Documents to compress with optional artifact identifiers
+   * 
+   * @return documents
+   */
+  @javax.annotation.Nullable
+  public List<DocumentsCompressDocument> getDocuments() {
+    return documents;
+  }
+
+  public void setDocuments(@javax.annotation.Nullable List<DocumentsCompressDocument> documents) {
+    this.documents = documents;
   }
 
 
@@ -106,12 +141,13 @@ public class DocumentsCompressRequest {
       return false;
     }
     DocumentsCompressRequest documentsCompressRequest = (DocumentsCompressRequest) o;
-    return Objects.equals(this.documentIds, documentsCompressRequest.documentIds);
+    return Objects.equals(this.documentIds, documentsCompressRequest.documentIds)
+        && Objects.equals(this.documents, documentsCompressRequest.documents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentIds);
+    return Objects.hash(documentIds, documents);
   }
 
   @Override
@@ -119,6 +155,7 @@ public class DocumentsCompressRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentsCompressRequest {\n");
     sb.append("    documentIds: ").append(toIndentedString(documentIds)).append("\n");
+    sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -127,10 +164,7 @@ public class DocumentsCompressRequest {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -139,10 +173,10 @@ public class DocumentsCompressRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documentIds"));
+    openapiFields = new HashSet<String>(Arrays.asList());
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("documentIds"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -170,24 +204,29 @@ public class DocumentsCompressRequest {
             entry.getKey(), jsonElement.toString()));
       }
     }
-
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : DocumentsCompressRequest.openapiRequiredFields) {
-      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field `%s` is not found in the JSON string: %s", requiredField,
-            jsonElement.toString()));
-      }
-    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // ensure the required json array is present
-    if (jsonObj.get("documentIds") == null) {
-      throw new IllegalArgumentException(
-          "Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-    } else if (!jsonObj.get("documentIds").isJsonArray()) {
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("documentIds") != null && !jsonObj.get("documentIds").isJsonNull()
+        && !jsonObj.get("documentIds").isJsonArray()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentIds` to be an array in the JSON string but got `%s`",
           jsonObj.get("documentIds").toString()));
+    }
+    if (jsonObj.get("documents") != null && !jsonObj.get("documents").isJsonNull()) {
+      JsonArray jsonArraydocuments = jsonObj.getAsJsonArray("documents");
+      if (jsonArraydocuments != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("documents").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `documents` to be an array in the JSON string but got `%s`",
+              jsonObj.get("documents").toString()));
+        }
+
+        // validate the optional field `documents` (array)
+        for (int i = 0; i < jsonArraydocuments.size(); i++) {
+          DocumentsCompressDocument.validateJsonElement(jsonArraydocuments.get(i));
+        } ;
+      }
     }
   }
 

@@ -301,7 +301,7 @@ No authorization required
 
 <a id="deleteCaseDocument"></a>
 # **deleteCaseDocument**
-> DeleteCaseDocumentResponse deleteCaseDocument(caseId, documentId, siteId)
+> DeleteCaseDocumentResponse deleteCaseDocument(caseId, documentId, siteId, artifactId)
 
 Delete Document from Case
 
@@ -328,8 +328,9 @@ public class Example {
     String caseId = "caseId_example"; // String | Case Identifier
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteCaseDocumentResponse result = apiInstance.deleteCaseDocument(caseId, documentId, siteId);
+      DeleteCaseDocumentResponse result = apiInstance.deleteCaseDocument(caseId, documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CaseManagementApi#deleteCaseDocument");
@@ -349,6 +350,7 @@ public class Example {
 | **caseId** | **String**| Case Identifier | |
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -439,7 +441,7 @@ No authorization required
 
 <a id="deleteNigoDocument"></a>
 # **deleteNigoDocument**
-> DeleteCaseNigoDocumentResponse deleteNigoDocument(caseId, nigoId, documentId, siteId)
+> DeleteCaseNigoDocumentResponse deleteNigoDocument(caseId, nigoId, documentId, siteId, artifactId)
 
 Delete Document from Nigo
 
@@ -467,8 +469,9 @@ public class Example {
     String nigoId = "nigoId_example"; // String | Nigo Identifier
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteCaseNigoDocumentResponse result = apiInstance.deleteNigoDocument(caseId, nigoId, documentId, siteId);
+      DeleteCaseNigoDocumentResponse result = apiInstance.deleteNigoDocument(caseId, nigoId, documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CaseManagementApi#deleteNigoDocument");
@@ -489,6 +492,7 @@ public class Example {
 | **nigoId** | **String**| Nigo Identifier | |
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -579,7 +583,7 @@ No authorization required
 
 <a id="deleteTaskDocument"></a>
 # **deleteTaskDocument**
-> DeleteCaseTaskDocumentResponse deleteTaskDocument(caseId, taskId, documentId, siteId)
+> DeleteCaseTaskDocumentResponse deleteTaskDocument(caseId, taskId, documentId, siteId, artifactId)
 
 Delete Document from Task
 
@@ -607,8 +611,9 @@ public class Example {
     String taskId = "taskId_example"; // String | Task Identifier
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteCaseTaskDocumentResponse result = apiInstance.deleteTaskDocument(caseId, taskId, documentId, siteId);
+      DeleteCaseTaskDocumentResponse result = apiInstance.deleteTaskDocument(caseId, taskId, documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CaseManagementApi#deleteTaskDocument");
@@ -629,6 +634,7 @@ public class Example {
 | **taskId** | **String**| Task Identifier | |
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

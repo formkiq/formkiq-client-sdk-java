@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**artifactCategory** | **String** | Artifact Category |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**width** | **String** | Document Content Width property |  [optional] |
 |**height** | **String** | Document Content Height property |  [optional] |

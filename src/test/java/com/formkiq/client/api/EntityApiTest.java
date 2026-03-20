@@ -30,6 +30,9 @@ import com.formkiq.client.model.GetEntitiesResponse;
 import com.formkiq.client.model.GetEntityResponse;
 import com.formkiq.client.model.GetEntityTypeResponse;
 import com.formkiq.client.model.GetEntityTypesResponse;
+import com.formkiq.client.model.SetEntityRequest;
+import com.formkiq.client.model.SetEntityTypeRequest;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateEntityRequest;
 import com.formkiq.client.model.UpdateResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
@@ -195,6 +198,44 @@ public class EntityApiTest {
     String next = null;
     String limit = null;
     GetEntityTypesResponse response = api.getEntityTypes(siteId, namespace, next, limit);
+    // TODO: test validations
+  }
+
+  /**
+   * Set Entity
+   *
+   * Sets a Entity
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setEntityTest() throws ApiException {
+    String entityTypeId = null;
+    String entityId = null;
+    SetEntityRequest setEntityRequest = null;
+    String siteId = null;
+    String namespace = null;
+    Boolean createIfMissing = null;
+    SetResponse response =
+        api.setEntity(entityTypeId, entityId, setEntityRequest, siteId, namespace, createIfMissing);
+    // TODO: test validations
+  }
+
+  /**
+   * Set EntityType
+   *
+   * Sets a Entity Type
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setEntityTypeTest() throws ApiException {
+    String entityTypeId = null;
+    SetEntityTypeRequest setEntityTypeRequest = null;
+    String siteId = null;
+    Boolean createIfMissing = null;
+    SetResponse response =
+        api.setEntityType(entityTypeId, setEntityTypeRequest, siteId, createIfMissing);
     // TODO: test validations
   }
 

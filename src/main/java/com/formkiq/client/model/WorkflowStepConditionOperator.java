@@ -38,7 +38,8 @@ import com.google.gson.stream.JsonWriter;
  * &#x60;GT&#x60; - Greater than - &#x60;GTE&#x60; - Greater than or equal - &#x60;LT&#x60; - Less
  * than - &#x60;LTE&#x60; - Less than or equal - &#x60;EXISTS&#x60; - Field exists -
  * &#x60;NOT_EXISTS&#x60; - Field does not exist - &#x60;IN&#x60; - Matches one of the provided
- * values - &#x60;NOT_IN&#x60; - Does not match any of the provided values
+ * values - &#x60;NOT_IN&#x60; - Does not match any of the provided values - &#x60;IS_EMPTY&#x60; -
+ * Source value is empty - &#x60;IS_NOT_EMPTY&#x60; - Source value is not empty
  */
 @JsonAdapter(WorkflowStepConditionOperator.Adapter.class)
 public enum WorkflowStepConditionOperator {
@@ -69,7 +70,11 @@ public enum WorkflowStepConditionOperator {
 
   IN("IN"),
 
-  NOT_IN("NOT_IN");
+  NOT_IN("NOT_IN"),
+
+  IS_EMPTY("IS_EMPTY"),
+
+  IS_NOT_EMPTY("IS_NOT_EMPTY");
 
   private String value;
 

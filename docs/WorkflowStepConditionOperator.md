@@ -33,5 +33,9 @@
 
 * `NOT_IN` (value: `"NOT_IN"`)
 
+* `IS_EMPTY` (value: `"IS_EMPTY"`)
+
+* `IS_NOT_EMPTY` (value: `"IS_NOT_EMPTY"`)
+
 
 

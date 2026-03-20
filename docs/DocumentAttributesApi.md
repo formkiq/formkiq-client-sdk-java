@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentAttributes"></a>
 # **addDocumentAttributes**
-> AddResponse addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId)
+> AddResponse addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, artifactId)
 
 Add attribute to document
 
@@ -42,8 +42,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentAttributesRequest addDocumentAttributesRequest = new AddDocumentAttributesRequest(); // AddDocumentAttributesRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddResponse result = apiInstance.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId);
+      AddResponse result = apiInstance.addDocumentAttributes(documentId, addDocumentAttributesRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#addDocumentAttributes");
@@ -63,6 +64,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentAttributesRequest** | [**AddDocumentAttributesRequest**](AddDocumentAttributesRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -84,7 +86,7 @@ No authorization required
 
 <a id="deleteDocumentAttribute"></a>
 # **deleteDocumentAttribute**
-> DeleteResponse deleteDocumentAttribute(documentId, attributeKey, siteId)
+> DeleteResponse deleteDocumentAttribute(documentId, attributeKey, siteId, artifactId)
 
 Delete document attribute
 
@@ -111,8 +113,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String attributeKey = "attributeKey_example"; // String | Attribute Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentAttribute(documentId, attributeKey, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentAttribute(documentId, attributeKey, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#deleteDocumentAttribute");
@@ -132,6 +135,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **attributeKey** | **String**| Attribute Key | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -153,7 +157,7 @@ No authorization required
 
 <a id="deleteDocumentAttributeAndValue"></a>
 # **deleteDocumentAttributeAndValue**
-> DeleteResponse deleteDocumentAttributeAndValue(documentId, attributeKey, attributeValue, siteId)
+> DeleteResponse deleteDocumentAttributeAndValue(documentId, attributeKey, attributeValue, siteId, artifactId)
 
 Delete document&#39;s attribute value
 
@@ -181,8 +185,9 @@ public class Example {
     String attributeKey = "attributeKey_example"; // String | Attribute Key
     String attributeValue = "attributeValue_example"; // String | Attribute Value
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentAttributeAndValue(documentId, attributeKey, attributeValue, siteId);
+      DeleteResponse result = apiInstance.deleteDocumentAttributeAndValue(documentId, attributeKey, attributeValue, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#deleteDocumentAttributeAndValue");
@@ -203,6 +208,7 @@ public class Example {
 | **attributeKey** | **String**| Attribute Key | |
 | **attributeValue** | **String**| Attribute Value | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -224,7 +230,7 @@ No authorization required
 
 <a id="getDocumentAttribute"></a>
 # **getDocumentAttribute**
-> GetDocumentAttributeResponse getDocumentAttribute(documentId, attributeKey, siteId)
+> GetDocumentAttributeResponse getDocumentAttribute(documentId, attributeKey, siteId, artifactId)
 
 Get document attribute by key
 
@@ -251,8 +257,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String attributeKey = "attributeKey_example"; // String | Attribute Key
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      GetDocumentAttributeResponse result = apiInstance.getDocumentAttribute(documentId, attributeKey, siteId);
+      GetDocumentAttributeResponse result = apiInstance.getDocumentAttribute(documentId, attributeKey, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#getDocumentAttribute");
@@ -272,6 +279,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **attributeKey** | **String**| Attribute Key | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -293,7 +301,7 @@ No authorization required
 
 <a id="getDocumentAttributes"></a>
 # **getDocumentAttributes**
-> GetDocumentAttributesResponse getDocumentAttributes(documentId, siteId, limit, next)
+> GetDocumentAttributesResponse getDocumentAttributes(documentId, siteId, artifactId, limit, next)
 
 Get document&#39;s attributes
 
@@ -319,10 +327,11 @@ public class Example {
     DocumentAttributesApi apiInstance = new DocumentAttributesApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentAttributesResponse result = apiInstance.getDocumentAttributes(documentId, siteId, limit, next);
+      GetDocumentAttributesResponse result = apiInstance.getDocumentAttributes(documentId, siteId, artifactId, limit, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#getDocumentAttributes");
@@ -341,6 +350,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **next** | **String**| Next page of results token | [optional] |
 
@@ -364,7 +374,7 @@ No authorization required
 
 <a id="setDocumentAttributeValue"></a>
 # **setDocumentAttributeValue**
-> SetResponse setDocumentAttributeValue(documentId, attributeKey, setDocumentAttributeRequest, siteId)
+> SetResponse setDocumentAttributeValue(documentId, attributeKey, setDocumentAttributeRequest, siteId, artifactId)
 
 Set document&#39;s attributes value
 
@@ -392,8 +402,9 @@ public class Example {
     String attributeKey = "attributeKey_example"; // String | Attribute Key
     SetDocumentAttributeRequest setDocumentAttributeRequest = new SetDocumentAttributeRequest(); // SetDocumentAttributeRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetResponse result = apiInstance.setDocumentAttributeValue(documentId, attributeKey, setDocumentAttributeRequest, siteId);
+      SetResponse result = apiInstance.setDocumentAttributeValue(documentId, attributeKey, setDocumentAttributeRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#setDocumentAttributeValue");
@@ -414,6 +425,7 @@ public class Example {
 | **attributeKey** | **String**| Attribute Key | |
 | **setDocumentAttributeRequest** | [**SetDocumentAttributeRequest**](SetDocumentAttributeRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -435,7 +447,7 @@ No authorization required
 
 <a id="setDocumentAttributes"></a>
 # **setDocumentAttributes**
-> SetResponse setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId)
+> SetResponse setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId, artifactId)
 
 Set document&#39;s attributes
 
@@ -462,8 +474,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     SetDocumentAttributesRequest setDocumentAttributesRequest = new SetDocumentAttributesRequest(); // SetDocumentAttributesRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetResponse result = apiInstance.setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId);
+      SetResponse result = apiInstance.setDocumentAttributes(documentId, setDocumentAttributesRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentAttributesApi#setDocumentAttributes");
@@ -483,6 +496,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **setDocumentAttributesRequest** | [**SetDocumentAttributesRequest**](SetDocumentAttributesRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

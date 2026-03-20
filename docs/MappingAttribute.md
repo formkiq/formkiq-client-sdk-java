@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributeKey** | **String** | Attribute Key |  [optional] |
-|**sourceType** | **MappingAttributeSourceType** |  |  [optional] |
-|**llmPromptEntityName** | **String** | LLM Prompt Entity Name (used for METADATA_EXTRACTION) |  [optional] |
+|**attributeKey** | **String** | Attribute Key |  |
+|**sourceType** | **MappingAttributeSourceType** |  |  |
 |**defaultValue** | **String** | Default value |  [optional] |
 |**defaultValues** | **List&lt;String&gt;** | Default values |  [optional] |
-|**labelTexts** | **List&lt;String&gt;** |  |  [optional] |
-|**labelMatchingType** | **MappingAttributeLabelMatchingType** |  |  [optional] |
-|**metadataField** | **MappingAttributeMetadataField** |  |  [optional] |
+|**labelTexts** | **List&lt;String&gt;** | Label Texts |  |
+|**labelMatchingType** | **MappingAttributeLabelMatchingType** |  |  |
 |**validationRegex** | **String** | Attribute Value Regex Validation |  [optional] |
+|**metadataField** | **MappingAttributeMetadataField** |  |  |
+|**llmPromptEntityName** | **String** | LLM prompt entity name |  |
 
 
 

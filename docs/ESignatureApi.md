@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocusignEnvelopes"></a>
 # **addDocusignEnvelopes**
-> AddDocusignEnvelopesResponse addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId)
+> AddDocusignEnvelopesResponse addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId, artifactId)
 
 Create Docusign Envelope request
 
@@ -38,8 +38,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocusignEnvelopesRequest addDocusignEnvelopesRequest = new AddDocusignEnvelopesRequest(); // AddDocusignEnvelopesRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocusignEnvelopesResponse result = apiInstance.addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId);
+      AddDocusignEnvelopesResponse result = apiInstance.addDocusignEnvelopes(documentId, addDocusignEnvelopesRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ESignatureApi#addDocusignEnvelopes");
@@ -59,6 +60,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocusignEnvelopesRequest** | [**AddDocusignEnvelopesRequest**](AddDocusignEnvelopesRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -81,7 +83,7 @@ No authorization required
 
 <a id="addDocusignRecipientView"></a>
 # **addDocusignRecipientView**
-> AddDocusignRecipientViewResponse addDocusignRecipientView(documentId, envelopeId, addDocusignRecipientViewRequest, siteId)
+> AddDocusignRecipientViewResponse addDocusignRecipientView(documentId, envelopeId, addDocusignRecipientViewRequest, siteId, artifactId)
 
 Create Docusign Recipient View request
 
@@ -109,8 +111,9 @@ public class Example {
     String envelopeId = "envelopeId_example"; // String | Docusign Envelope Id
     AddDocusignRecipientViewRequest addDocusignRecipientViewRequest = new AddDocusignRecipientViewRequest(); // AddDocusignRecipientViewRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocusignRecipientViewResponse result = apiInstance.addDocusignRecipientView(documentId, envelopeId, addDocusignRecipientViewRequest, siteId);
+      AddDocusignRecipientViewResponse result = apiInstance.addDocusignRecipientView(documentId, envelopeId, addDocusignRecipientViewRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ESignatureApi#addDocusignRecipientView");
@@ -131,6 +134,7 @@ public class Example {
 | **envelopeId** | **String**| Docusign Envelope Id | |
 | **addDocusignRecipientViewRequest** | [**AddDocusignRecipientViewRequest**](AddDocusignRecipientViewRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

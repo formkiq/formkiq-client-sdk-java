@@ -78,6 +78,22 @@ public class DocumentWorkflowTest {
   }
 
   /**
+   * Test the property 'actionCount'
+   */
+  @Test
+  public void actionCountTest() {
+    // TODO: test actionCount
+  }
+
+  /**
+   * Test the property 'completedActionCount'
+   */
+  @Test
+  public void completedActionCountTest() {
+    // TODO: test completedActionCount
+  }
+
+  /**
    * Test the property 'status'
    */
   @Test

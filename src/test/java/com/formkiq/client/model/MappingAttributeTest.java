@@ -20,7 +20,14 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.MappingAttributeAiPromptResult;
+import com.formkiq.client.model.MappingAttributeContent;
+import com.formkiq.client.model.MappingAttributeDataClassification;
 import com.formkiq.client.model.MappingAttributeLabelMatchingType;
+import com.formkiq.client.model.MappingAttributeMalwareScan;
+import com.formkiq.client.model.MappingAttributeManual;
+import com.formkiq.client.model.MappingAttributeMetadata;
+import com.formkiq.client.model.MappingAttributeMetadataExtractionResult;
 import com.formkiq.client.model.MappingAttributeMetadataField;
 import com.formkiq.client.model.MappingAttributeSourceType;
 import com.google.gson.TypeAdapter;
@@ -66,14 +73,6 @@ public class MappingAttributeTest {
   }
 
   /**
-   * Test the property 'llmPromptEntityName'
-   */
-  @Test
-  public void llmPromptEntityNameTest() {
-    // TODO: test llmPromptEntityName
-  }
-
-  /**
    * Test the property 'defaultValue'
    */
   @Test
@@ -106,6 +105,14 @@ public class MappingAttributeTest {
   }
 
   /**
+   * Test the property 'validationRegex'
+   */
+  @Test
+  public void validationRegexTest() {
+    // TODO: test validationRegex
+  }
+
+  /**
    * Test the property 'metadataField'
    */
   @Test
@@ -114,11 +121,11 @@ public class MappingAttributeTest {
   }
 
   /**
-   * Test the property 'validationRegex'
+   * Test the property 'llmPromptEntityName'
    */
   @Test
-  public void validationRegexTest() {
-    // TODO: test validationRegex
+  public void llmPromptEntityNameTest() {
+    // TODO: test llmPromptEntityName
   }
 
 }

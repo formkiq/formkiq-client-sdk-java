@@ -61,6 +61,22 @@ public class AddDocumentRequestTest {
   }
 
   /**
+   * Test the property 'artifacts'
+   */
+  @Test
+  public void artifactsTest() {
+    // TODO: test artifacts
+  }
+
+  /**
+   * Test the property 'artifactCategory'
+   */
+  @Test
+  public void artifactCategoryTest() {
+    // TODO: test artifactCategory
+  }
+
+  /**
    * Test the property 'path'
    */
   @Test

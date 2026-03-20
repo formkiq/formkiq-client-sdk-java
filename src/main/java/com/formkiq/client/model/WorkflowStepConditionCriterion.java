@@ -60,18 +60,21 @@ import com.formkiq.client.invoker.JSON;
 /**
  * A single criterion used to evaluate whether a workflow condition matches. A criterion compares a
  * document-derived source value against one or more provided values using the specified operator.
- * Supported sources include: - document attributes - document content type - document path Typical
- * examples: - attribute &#x60;status&#x60; equals &#x60;approved&#x60; - attribute
- * &#x60;amount&#x60; greater than &#x60;1000&#x60; - content type equals
- * &#x60;application/pdf&#x60; - path contains &#x60;/invoices/&#x60; Use the appropriate typed
- * value field for the comparison: - &#x60;stringValue&#x60; for string comparisons -
+ * Supported sources include: - document attributes - document attribute value comparisons -
+ * document content type - document path Typical examples: - attribute &#x60;status&#x60; equals
+ * &#x60;approved&#x60; - attribute &#x60;amount&#x60; greater than &#x60;1000&#x60; - attribute
+ * &#x60;invoiceTotal&#x60; equals attribute &#x60;approvedTotal&#x60; - attribute
+ * &#x60;invoiceTotal&#x60; equals the sum of attribute &#x60;lineItemAmount&#x60; - content type
+ * equals &#x60;application/pdf&#x60; - path contains &#x60;/invoices/&#x60; Use the appropriate
+ * typed value field for the comparison: - &#x60;stringValue&#x60; for string comparisons -
  * &#x60;numberValue&#x60; for numeric comparisons - &#x60;booleanValue&#x60; for boolean
  * comparisons - &#x60;stringValues&#x60; for multi-value comparisons such as &#x60;IN&#x60; and
- * &#x60;NOT_IN&#x60;
+ * &#x60;NOT_IN&#x60; Literal value fields should be omitted when &#x60;source&#x60; is an attribute
+ * value comparison.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class WorkflowStepConditionCriterion {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
@@ -280,10 +283,7 @@ public class WorkflowStepConditionCriterion {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

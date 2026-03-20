@@ -52,8 +52,9 @@ public class GoogleIntegrationApiTest {
     String documentId = null;
     AddGoogleDocumentExportRequest addGoogleDocumentExportRequest = null;
     String siteId = null;
+    String artifactId = null;
     AddGoogleDocumentExportResponse response =
-        api.addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId);
+        api.addGoogleDocumentExport(documentId, addGoogleDocumentExportRequest, siteId, artifactId);
     // TODO: test validations
   }
 

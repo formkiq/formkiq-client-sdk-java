@@ -8,6 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**documentId** | **String** | optional Document Identifier (Version 4 UUID), if skipped one will be assigned |  [optional] |
+|**artifacts** | **Boolean** | Whether the document supports artifact documents |  [optional] |
+|**artifactCategory** | **String** | Artifact Category |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**checksum** | **String** | The checksum value to validate the file against |  [optional] |

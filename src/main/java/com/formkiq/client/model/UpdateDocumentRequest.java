@@ -64,9 +64,14 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class UpdateDocumentRequest {
+  public static final String SERIALIZED_NAME_ARTIFACT_CATEGORY = "artifactCategory";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_CATEGORY)
+  @javax.annotation.Nullable
+  private String artifactCategory;
+
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
   @javax.annotation.Nullable
@@ -138,6 +143,27 @@ public class UpdateDocumentRequest {
   private List<AddChildDocument> documents = new ArrayList<>();
 
   public UpdateDocumentRequest() {}
+
+  public UpdateDocumentRequest artifactCategory(
+      @javax.annotation.Nullable String artifactCategory) {
+    this.artifactCategory = artifactCategory;
+    return this;
+  }
+
+  /**
+   * Artifact Category
+   * 
+   * @return artifactCategory
+   */
+  @javax.annotation.Nullable
+  public String getArtifactCategory() {
+    return artifactCategory;
+  }
+
+  public void setArtifactCategory(@javax.annotation.Nullable String artifactCategory) {
+    this.artifactCategory = artifactCategory;
+  }
+
 
   public UpdateDocumentRequest path(@javax.annotation.Nullable String path) {
     this.path = path;
@@ -472,7 +498,8 @@ public class UpdateDocumentRequest {
       return false;
     }
     UpdateDocumentRequest updateDocumentRequest = (UpdateDocumentRequest) o;
-    return Objects.equals(this.path, updateDocumentRequest.path)
+    return Objects.equals(this.artifactCategory, updateDocumentRequest.artifactCategory)
+        && Objects.equals(this.path, updateDocumentRequest.path)
         && Objects.equals(this.width, updateDocumentRequest.width)
         && Objects.equals(this.height, updateDocumentRequest.height)
         && Objects.equals(this.deepLinkPath, updateDocumentRequest.deepLinkPath)
@@ -490,14 +517,15 @@ public class UpdateDocumentRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, width, height, deepLinkPath, contentType, isBase64, content, checksum,
-        checksumType, tags, metadata, attributes, actions, documents);
+    return Objects.hash(artifactCategory, path, width, height, deepLinkPath, contentType, isBase64,
+        content, checksum, checksumType, tags, metadata, attributes, actions, documents);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateDocumentRequest {\n");
+    sb.append("    artifactCategory: ").append(toIndentedString(artifactCategory)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
@@ -520,10 +548,7 @@ public class UpdateDocumentRequest {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -532,9 +557,9 @@ public class UpdateDocumentRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("path", "width", "height", "deepLinkPath",
-        "contentType", "isBase64", "content", "checksum", "checksumType", "tags", "metadata",
-        "attributes", "actions", "documents"));
+    openapiFields = new HashSet<String>(Arrays.asList("artifactCategory", "path", "width", "height",
+        "deepLinkPath", "contentType", "isBase64", "content", "checksum", "checksumType", "tags",
+        "metadata", "attributes", "actions", "documents"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -566,6 +591,12 @@ public class UpdateDocumentRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    if ((jsonObj.get("artifactCategory") != null && !jsonObj.get("artifactCategory").isJsonNull())
+        && !jsonObj.get("artifactCategory").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactCategory` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactCategory").toString()));
+    }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,

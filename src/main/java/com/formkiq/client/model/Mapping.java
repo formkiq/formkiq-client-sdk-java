@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.MappingAttribute;
+import com.formkiq.client.model.MappingClassification;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,12 +60,12 @@ import com.formkiq.client.invoker.JSON;
  * Mapping
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class Mapping {
   public static final String SERIALIZED_NAME_MAPPING_ID = "mappingId";
   @SerializedName(SERIALIZED_NAME_MAPPING_ID)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String mappingId;
 
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -82,9 +83,14 @@ public class Mapping {
   @javax.annotation.Nullable
   private List<MappingAttribute> attributes = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_CLASSIFICATIONS = "classifications";
+  @SerializedName(SERIALIZED_NAME_CLASSIFICATIONS)
+  @javax.annotation.Nullable
+  private List<MappingClassification> classifications = new ArrayList<>();
+
   public Mapping() {}
 
-  public Mapping mappingId(@javax.annotation.Nullable String mappingId) {
+  public Mapping mappingId(@javax.annotation.Nonnull String mappingId) {
     this.mappingId = mappingId;
     return this;
   }
@@ -94,12 +100,12 @@ public class Mapping {
    * 
    * @return mappingId
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getMappingId() {
     return mappingId;
   }
 
-  public void setMappingId(@javax.annotation.Nullable String mappingId) {
+  public void setMappingId(@javax.annotation.Nonnull String mappingId) {
     this.mappingId = mappingId;
   }
 
@@ -172,6 +178,36 @@ public class Mapping {
   }
 
 
+  public Mapping classifications(
+      @javax.annotation.Nullable List<MappingClassification> classifications) {
+    this.classifications = classifications;
+    return this;
+  }
+
+  public Mapping addClassificationsItem(MappingClassification classificationsItem) {
+    if (this.classifications == null) {
+      this.classifications = new ArrayList<>();
+    }
+    this.classifications.add(classificationsItem);
+    return this;
+  }
+
+  /**
+   * List of classifications
+   * 
+   * @return classifications
+   */
+  @javax.annotation.Nullable
+  public List<MappingClassification> getClassifications() {
+    return classifications;
+  }
+
+  public void setClassifications(
+      @javax.annotation.Nullable List<MappingClassification> classifications) {
+    this.classifications = classifications;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -185,12 +221,13 @@ public class Mapping {
     return Objects.equals(this.mappingId, mapping.mappingId)
         && Objects.equals(this.name, mapping.name)
         && Objects.equals(this.description, mapping.description)
-        && Objects.equals(this.attributes, mapping.attributes);
+        && Objects.equals(this.attributes, mapping.attributes)
+        && Objects.equals(this.classifications, mapping.classifications);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mappingId, name, description, attributes);
+    return Objects.hash(mappingId, name, description, attributes, classifications);
   }
 
   @Override
@@ -201,6 +238,7 @@ public class Mapping {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    classifications: ").append(toIndentedString(classifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -209,10 +247,7 @@ public class Mapping {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -221,11 +256,11 @@ public class Mapping {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("mappingId", "name", "description", "attributes"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("mappingId", "name", "description", "attributes", "classifications"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("mappingId"));
   }
 
   /**
@@ -253,9 +288,17 @@ public class Mapping {
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : Mapping.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("mappingId") != null && !jsonObj.get("mappingId").isJsonNull())
-        && !jsonObj.get("mappingId").isJsonPrimitive()) {
+    if (!jsonObj.get("mappingId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `mappingId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("mappingId").toString()));
@@ -285,6 +328,22 @@ public class Mapping {
         // validate the optional field `attributes` (array)
         for (int i = 0; i < jsonArrayattributes.size(); i++) {
           MappingAttribute.validateJsonElement(jsonArrayattributes.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("classifications") != null && !jsonObj.get("classifications").isJsonNull()) {
+      JsonArray jsonArrayclassifications = jsonObj.getAsJsonArray("classifications");
+      if (jsonArrayclassifications != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("classifications").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `classifications` to be an array in the JSON string but got `%s`",
+              jsonObj.get("classifications").toString()));
+        }
+
+        // validate the optional field `classifications` (array)
+        for (int i = 0; i < jsonArrayclassifications.size(); i++) {
+          MappingClassification.validateJsonElement(jsonArrayclassifications.get(i));
         } ;
       }
     }

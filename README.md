@@ -1,15 +1,11 @@
-# FormKiQ Java Client Library
-=====================================
+# client
 
-This is the official supported Java library for the FormKiQ API. 
+FormKiQ API JWT
+- API version: 1.19.0
+  - Build date: 2026-06-21T22:53:47.944205-05:00[America/Winnipeg]
+  - Generator version: 7.23.0
 
-FormKiQ HTTP API
-
-- API version: 1.18.1
-  - Build date: 2026-03-16T21:45:19.549360-05:00[America/Winnipeg]
-  - Generator version: 7.20.0
-
-Formkiq API: Document Management Platform API using OAuth(JWT) Authentication
+FormKiQ API: Document Management Platform API using OAuth(JWT) Authentication
 
 You can find out more about FormKiQ at [https://formkiq.com](http://formkiq.com).
 
@@ -108,59 +104,23 @@ import com.formkiq.client.invoker.ApiClient;
 import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.invoker.Configuration;
 import com.formkiq.client.invoker.auth.*;
-import com.formkiq.client.invoker.models.*;
-import com.formkiq.client.api.AdvancedDocumentSearchApi;
+import com.formkiq.client.model.*;
+import com.formkiq.client.api.AccessControlApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
     
-    // Pick one of the following authorization methods (JWT / IAM / KEY)
-    //
-    // 1. For JWT authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for HttpApiUrl
-    defaultClient.setBasePath("<HttpApiUrl>");
-    defaultClient.addDefaultHeader("Authorization", <JWT Access Token>);
-
-    // 2. For IAM authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for IamApiUrl
-    defaultClient.setBasePath("<IamApiUrl>");
-    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "execute-api")
-
-    // 3. For Key authorization
-    // From the FormKiQ installation CloudFormation Outputs, find the value for KeyApiUrl
-    defaultClient.setBasePath("<KeyApiUrl>");
-    defaultClient.addDefaultHeader("Authorization", <Api Key>);    
-    
-    // Add New Document
-    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-    AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
-    String siteId = null; // String | Site Identifier
-    String shareKey = null; // String | Share Identifier
+    AccessControlApi apiInstance = new AccessControlApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
     try {
-      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey);
+      DeleteResponse result = apiInstance.deleteOpaAccessPolicyItems(siteId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentsApi#addDocument");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-
-    // Get Documents
-    DocumentsApi apiInstance = new DocumentsApi(defaultClient);
-    String date = null; // String | Fetch documents inserted on a certain date (yyyy-MM-dd)
-    String tz = null; // String | UTC offset to apply to date parameter (IE: -0600)
-    String next = null; // String | Next page of results token
-    String previous = null; // String | Previous page of results token
-    String siteId = null; // String | Site Identifier
-    String limit = "10"; // String | Limit Results
-    try {
-      GetDocumentsResponse result = apiInstance.getDocuments(date, tz, next, previous, siteId, limit);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DocumentsApi#getDocuments");
+      System.err.println("Exception when calling AccessControlApi#deleteOpaAccessPolicyItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -242,6 +202,12 @@ Class | Method | HTTP request | Description
 *DocumentOcrApi* | [**deleteDocumentOcr**](docs/DocumentOcrApi.md#deleteDocumentOcr) | **DELETE** /documents/{documentId}/ocr | Delete document ocr
 *DocumentOcrApi* | [**getDocumentOcr**](docs/DocumentOcrApi.md#getDocumentOcr) | **GET** /documents/{documentId}/ocr | Get document ocr content
 *DocumentOcrApi* | [**setDocumentOcr**](docs/DocumentOcrApi.md#setDocumentOcr) | **PUT** /documents/{documentId}/ocr | Set document ocr result
+*DocumentReviewsApi* | [**addDocumentReview**](docs/DocumentReviewsApi.md#addDocumentReview) | **POST** /documents/{documentId}/reviews | Add document review
+*DocumentReviewsApi* | [**addDocumentReviewDecision**](docs/DocumentReviewsApi.md#addDocumentReviewDecision) | **POST** /documents/{documentId}/reviews/{reviewId}/decisions | Add document review decision
+*DocumentReviewsApi* | [**getDocumentReview**](docs/DocumentReviewsApi.md#getDocumentReview) | **GET** /documents/{documentId}/reviews/{reviewId} | Get document review
+*DocumentReviewsApi* | [**getDocumentReviewDecisions**](docs/DocumentReviewsApi.md#getDocumentReviewDecisions) | **GET** /documents/{documentId}/reviews/{reviewId}/decisions | Get document review decisions
+*DocumentReviewsApi* | [**getDocumentReviews**](docs/DocumentReviewsApi.md#getDocumentReviews) | **GET** /documents/{documentId}/reviews | Get document reviews
+*DocumentReviewsApi* | [**updateDocumentReview**](docs/DocumentReviewsApi.md#updateDocumentReview) | **PATCH** /documents/{documentId}/reviews/{reviewId} | Update document review
 *DocumentSearchApi* | [**documentSearch**](docs/DocumentSearchApi.md#documentSearch) | **POST** /search | Document search
 *DocumentSharesApi* | [**addFolderShare**](docs/DocumentSharesApi.md#addFolderShare) | **POST** /shares/folders/{indexKey} | Add folder share
 *DocumentSharesApi* | [**deleteShare**](docs/DocumentSharesApi.md#deleteShare) | **DELETE** /shares/{shareKey} | Delete folder share
@@ -282,6 +248,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteDocumentCheckoutLegalHold**](docs/DocumentsApi.md#deleteDocumentCheckoutLegalHold) | **DELETE** /documents/{documentId}/legalHold | Delete document legal hold checkout
 *DocumentsApi* | [**deletePublishedDocumentContent**](docs/DocumentsApi.md#deletePublishedDocumentContent) | **DELETE** /publications/{documentId} | Delete published document&#39;s contents
 *DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents/{documentId} | Get document
+*DocumentsApi* | [**getDocumentArtifacts**](docs/DocumentsApi.md#getDocumentArtifacts) | **GET** /documents/{documentId}/artifacts | Get document artifacts
 *DocumentsApi* | [**getDocumentContent**](docs/DocumentsApi.md#getDocumentContent) | **GET** /documents/{documentId}/content | Get document&#39;s contents
 *DocumentsApi* | [**getDocumentIdUpload**](docs/DocumentsApi.md#getDocumentIdUpload) | **GET** /documents/{documentId}/upload | Get url to update large document
 *DocumentsApi* | [**getDocumentSyncs**](docs/DocumentsApi.md#getDocumentSyncs) | **GET** /documents/{documentId}/syncs | Get document syncs
@@ -289,6 +256,7 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**getDocumentUrl**](docs/DocumentsApi.md#getDocumentUrl) | **GET** /documents/{documentId}/url | Get document content url
 *DocumentsApi* | [**getDocuments**](docs/DocumentsApi.md#getDocuments) | **GET** /documents | Get Documents listing
 *DocumentsApi* | [**getPublishedDocumentContent**](docs/DocumentsApi.md#getPublishedDocumentContent) | **GET** /publications/{documentId} | Get published document&#39;s contents
+*DocumentsApi* | [**promoteDocumentArtifact**](docs/DocumentsApi.md#promoteDocumentArtifact) | **PUT** /documents/{documentId}/artifacts/promoteArtifact | Promote document artifact
 *DocumentsApi* | [**purgeDocument**](docs/DocumentsApi.md#purgeDocument) | **DELETE** /documents/{documentId}/purge | Purge document
 *DocumentsApi* | [**setDocumentCheckout**](docs/DocumentsApi.md#setDocumentCheckout) | **PUT** /documents/{documentId}/checkout | Perform document checkout
 *DocumentsApi* | [**setDocumentCheckoutLegalHold**](docs/DocumentsApi.md#setDocumentCheckoutLegalHold) | **PUT** /documents/{documentId}/legalHold | Perform document legal hold checkout
@@ -306,12 +274,17 @@ Class | Method | HTTP request | Description
 *EntityApi* | [**getEntity**](docs/EntityApi.md#getEntity) | **GET** /entities/{entityTypeId}/{entityId} | Get Entity
 *EntityApi* | [**getEntityType**](docs/EntityApi.md#getEntityType) | **GET** /entityTypes/{entityTypeId} | Get EntityType
 *EntityApi* | [**getEntityTypes**](docs/EntityApi.md#getEntityTypes) | **GET** /entityTypes | Get EntityTypes
+*EntityApi* | [**setEntity**](docs/EntityApi.md#setEntity) | **PUT** /entities/{entityTypeId}/{entityId} | Set Entity
+*EntityApi* | [**setEntityType**](docs/EntityApi.md#setEntityType) | **PUT** /entityTypes/{entityTypeId} | Set EntityType
 *EntityApi* | [**updateEntity**](docs/EntityApi.md#updateEntity) | **PATCH** /entities/{entityTypeId}/{entityId} | Update Entity
 *ExamineObjectsApi* | [**getExaminePdf**](docs/ExamineObjectsApi.md#getExaminePdf) | **GET** /objects/examine/{id}/pdf | Add Examine Pdf
 *ExamineObjectsApi* | [**getExaminePdfUrl**](docs/ExamineObjectsApi.md#getExaminePdfUrl) | **GET** /objects/examine/pdf | Add Examine Pdf
 *GoogleIntegrationApi* | [**addGoogleDocumentExport**](docs/GoogleIntegrationApi.md#addGoogleDocumentExport) | **POST** /integrations/google/drive/documents/{documentId}/export | Add Google Document Export
+*IntelligentDocumentProcessingApi* | [**addDocumentAiPrompt**](docs/IntelligentDocumentProcessingApi.md#addDocumentAiPrompt) | **POST** /documents/{documentId}/ai/prompts/{llmPromptEntityName} | Add document AI result from LLM prompt
 *IntelligentDocumentProcessingApi* | [**addDocumentMetadataExtractionResult**](docs/IntelligentDocumentProcessingApi.md#addDocumentMetadataExtractionResult) | **POST** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Add document&#39;s metadata extraction result
 *IntelligentDocumentProcessingApi* | [**getAllDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getAllDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults | Get all document&#39;s metadata extraction results
+*IntelligentDocumentProcessingApi* | [**getDocumentAiPromptResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentAiPromptResults) | **GET** /documents/{documentId}/ai/prompts/{llmPromptEntityName} | Get document AI results from LLM prompt
+*IntelligentDocumentProcessingApi* | [**getDocumentAiPromptsResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentAiPromptsResults) | **GET** /documents/{documentId}/ai/prompts | Get document AI results from LLM prompts
 *IntelligentDocumentProcessingApi* | [**getDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#getDocumentDataClassification) | **GET** /documents/{documentId}/dataClassification | Get document&#39;s data classification
 *IntelligentDocumentProcessingApi* | [**getDocumentMetadataExtractionResults**](docs/IntelligentDocumentProcessingApi.md#getDocumentMetadataExtractionResults) | **GET** /documents/{documentId}/metadataExtractionResults/{llmPromptEntityName} | Get document&#39;s metadata extraction results
 *IntelligentDocumentProcessingApi* | [**setDocumentDataClassification**](docs/IntelligentDocumentProcessingApi.md#setDocumentDataClassification) | **PUT** /documents/{documentId}/dataClassification | Set document&#39;s data classification
@@ -345,21 +318,25 @@ Class | Method | HTTP request | Description
 *SchemasApi* | [**getSitesSchemaAttributeAllowedValues**](docs/SchemasApi.md#getSitesSchemaAttributeAllowedValues) | **GET** /sites/{siteId}/schema/document/attributes/{key}/allowedValues | Get Attribute Allowed Values
 *SchemasApi* | [**setClassification**](docs/SchemasApi.md#setClassification) | **PUT** /sites/{siteId}/classifications/{classificationId} | Set Classification
 *SchemasApi* | [**setSitesSchema**](docs/SchemasApi.md#setSitesSchema) | **PUT** /sites/{siteId}/schema/document | Set Sites Schema
+*ShortlinksApi* | [**addShortlink**](docs/ShortlinksApi.md#addShortlink) | **POST** /shortlinks | Add shortlink
 *SystemManagementApi* | [**addApiKey**](docs/SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key
 *SystemManagementApi* | [**addLocale**](docs/SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale
 *SystemManagementApi* | [**addLocaleResourceItem**](docs/SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item
-*SystemManagementApi* | [**addOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Add an OpenSearch Restore Snapshot
-*SystemManagementApi* | [**addOpenSearchSnapshot**](docs/SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Add an OpenSearch Snapshot
+*SystemManagementApi* | [**addOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Restore site OpenSearch snapshot
+*SystemManagementApi* | [**addOpenSearchSnapshot**](docs/SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Create site OpenSearch snapshot
 *SystemManagementApi* | [**addSite**](docs/SystemManagementApi.md#addSite) | **POST** /sites | Add Site
+*SystemManagementApi* | [**addSystemInferenceModelAgreement**](docs/SystemManagementApi.md#addSystemInferenceModelAgreement) | **POST** /system/inferenceModels/agreement | Agree to a system inference model
+*SystemManagementApi* | [**cleanupOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#cleanupOpenSearchSnapshotRepository) | **POST** /sites/global/opensearch/snapshotRepositories/{repositoryName}/cleanup | Cleanup OpenSearch snapshot repository
 *SystemManagementApi* | [**deleteApiKey**](docs/SystemManagementApi.md#deleteApiKey) | **DELETE** /sites/{siteId}/apiKeys/{apiKey} | Delete API Key
 *SystemManagementApi* | [**deleteLocale**](docs/SystemManagementApi.md#deleteLocale) | **DELETE** /sites/{siteId}/locales/{locale} | Delete Locale
 *SystemManagementApi* | [**deleteLocaleResourceItem**](docs/SystemManagementApi.md#deleteLocaleResourceItem) | **DELETE** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Delete Local Resource Item
 *SystemManagementApi* | [**deleteOpenSearchIndex**](docs/SystemManagementApi.md#deleteOpenSearchIndex) | **DELETE** /sites/{siteId}/opensearch/index | Deletes site(s) OpenSearch index
 *SystemManagementApi* | [**deleteOpenSearchIndexByName**](docs/SystemManagementApi.md#deleteOpenSearchIndexByName) | **DELETE** /sites/global/opensearch/indices/{indexName} | Deletes OpenSearch index by name
-*SystemManagementApi* | [**deleteOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchRestoreSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Deletes site(s) OpenSearch Restore Snapshot
-*SystemManagementApi* | [**deleteOpenSearchSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Deletes site(s) OpenSearch Snapshot
-*SystemManagementApi* | [**deleteOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepository | Deletes site(s) OpenSearch Snapshot Repository
+*SystemManagementApi* | [**deleteOpenSearchRestoreSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchRestoreSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Delete restored OpenSearch snapshot index
+*SystemManagementApi* | [**deleteOpenSearchSnapshot**](docs/SystemManagementApi.md#deleteOpenSearchSnapshot) | **DELETE** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Delete site OpenSearch snapshot
+*SystemManagementApi* | [**deleteOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#deleteOpenSearchSnapshotRepository) | **DELETE** /sites/{siteId}/opensearch/snapshotRepository | Delete site OpenSearch snapshot repository
 *SystemManagementApi* | [**deleteSiteGroup**](docs/SystemManagementApi.md#deleteSiteGroup) | **DELETE** /sites/{siteId}/groups/{groupName} | Deletes Site Group and permissions
+*SystemManagementApi* | [**generateDelegationToken**](docs/SystemManagementApi.md#generateDelegationToken) | **POST** /sites/{siteId}/delegationTokens | Generate a delegation token
 *SystemManagementApi* | [**getAllOpenSearchIndices**](docs/SystemManagementApi.md#getAllOpenSearchIndices) | **GET** /sites/global/opensearch/indices | Get all OpenSearch indices
 *SystemManagementApi* | [**getApiKeys**](docs/SystemManagementApi.md#getApiKeys) | **GET** /sites/{siteId}/apiKeys | Get API Keys
 *SystemManagementApi* | [**getConfiguration**](docs/SystemManagementApi.md#getConfiguration) | **GET** /sites/{siteId}/configuration | Get site configuration
@@ -368,13 +345,15 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**getLocales**](docs/SystemManagementApi.md#getLocales) | **GET** /sites/{siteId}/locales | Get Locales
 *SystemManagementApi* | [**getOpenSearchIndex**](docs/SystemManagementApi.md#getOpenSearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings
 *SystemManagementApi* | [**getOpenSearchIndices**](docs/SystemManagementApi.md#getOpenSearchIndices) | **GET** /sites/{siteId}/opensearch/indices | Get site(s) OpenSearch indices
-*SystemManagementApi* | [**getOpenSearchSnapshot**](docs/SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site(s) OpenSearch snapshot
-*SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | Get site(s) OpenSearch snapshot repositories
-*SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site(s) OpenSearch snapshot repository
-*SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | Get site(s) OpenSearch snapshots
+*SystemManagementApi* | [**getOpenSearchSnapshot**](docs/SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site OpenSearch snapshot
+*SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | List OpenSearch snapshot repositories
+*SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site OpenSearch snapshot repository
+*SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | List site OpenSearch snapshots
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
+*SystemManagementApi* | [**getSystemConfiguration**](docs/SystemManagementApi.md#getSystemConfiguration) | **GET** /system/configuration | Get system configuration
+*SystemManagementApi* | [**getSystemInferenceModels**](docs/SystemManagementApi.md#getSystemInferenceModels) | **GET** /system/inferenceModels | Get system inference models
 *SystemManagementApi* | [**getVersion**](docs/SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version
 *SystemManagementApi* | [**setLocaleResourceItem**](docs/SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item
 *SystemManagementApi* | [**setOpenSearchIndex**](docs/SystemManagementApi.md#setOpenSearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings
@@ -382,6 +361,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**setSiteGroupPermissions**](docs/SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions
 *SystemManagementApi* | [**updateConfiguration**](docs/SystemManagementApi.md#updateConfiguration) | **PATCH** /sites/{siteId}/configuration | Update site configuration
 *SystemManagementApi* | [**updateSite**](docs/SystemManagementApi.md#updateSite) | **PATCH** /sites/{siteId} | Update Site
+*SystemManagementApi* | [**updateSystemConfiguration**](docs/SystemManagementApi.md#updateSystemConfiguration) | **PATCH** /system/configuration | Update system configuration
 *TagIndexApi* | [**indexSearch**](docs/TagIndexApi.md#indexSearch) | **POST** /indices/search | 
 *UserActivitiesApi* | [**getDocumentUserActivities**](docs/UserActivitiesApi.md#getDocumentUserActivities) | **GET** /documents/{documentId}/userActivities | Get user activities for a document
 *UserActivitiesApi* | [**getResourceActivities**](docs/UserActivitiesApi.md#getResourceActivities) | **GET** /activities | Get resource activities
@@ -412,6 +392,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Activity](docs/Activity.md)
+ - [ActivityDelegation](docs/ActivityDelegation.md)
  - [ActivityStatus](docs/ActivityStatus.md)
  - [AddAction](docs/AddAction.md)
  - [AddActionParameters](docs/AddActionParameters.md)
@@ -429,10 +410,16 @@ Class | Method | HTTP request | Description
  - [AddClassification](docs/AddClassification.md)
  - [AddClassificationRequest](docs/AddClassificationRequest.md)
  - [AddClassificationResponse](docs/AddClassificationResponse.md)
+ - [AddDelegationTokenRequest](docs/AddDelegationTokenRequest.md)
+ - [AddDelegationTokenResponse](docs/AddDelegationTokenResponse.md)
  - [AddDocumentActionsRequest](docs/AddDocumentActionsRequest.md)
+ - [AddDocumentAiPromptRequest](docs/AddDocumentAiPromptRequest.md)
+ - [AddDocumentAiResponse](docs/AddDocumentAiResponse.md)
  - [AddDocumentAttribute](docs/AddDocumentAttribute.md)
  - [AddDocumentAttributeClassification](docs/AddDocumentAttributeClassification.md)
+ - [AddDocumentAttributeEntities](docs/AddDocumentAttributeEntities.md)
  - [AddDocumentAttributeEntity](docs/AddDocumentAttributeEntity.md)
+ - [AddDocumentAttributeEntityValue](docs/AddDocumentAttributeEntityValue.md)
  - [AddDocumentAttributeRelationship](docs/AddDocumentAttributeRelationship.md)
  - [AddDocumentAttributeStandard](docs/AddDocumentAttributeStandard.md)
  - [AddDocumentAttributeValue](docs/AddDocumentAttributeValue.md)
@@ -449,6 +436,12 @@ Class | Method | HTTP request | Description
  - [AddDocumentOcrResponse](docs/AddDocumentOcrResponse.md)
  - [AddDocumentRequest](docs/AddDocumentRequest.md)
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
+ - [AddDocumentReview](docs/AddDocumentReview.md)
+ - [AddDocumentReviewDecision](docs/AddDocumentReviewDecision.md)
+ - [AddDocumentReviewDecisionRequest](docs/AddDocumentReviewDecisionRequest.md)
+ - [AddDocumentReviewDecisionResponse](docs/AddDocumentReviewDecisionResponse.md)
+ - [AddDocumentReviewRequest](docs/AddDocumentReviewRequest.md)
+ - [AddDocumentReviewResponse](docs/AddDocumentReviewResponse.md)
  - [AddDocumentSync](docs/AddDocumentSync.md)
  - [AddDocumentSyncRequest](docs/AddDocumentSyncRequest.md)
  - [AddDocumentSyncService](docs/AddDocumentSyncService.md)
@@ -503,8 +496,11 @@ Class | Method | HTTP request | Description
  - [AddRulesetRequest](docs/AddRulesetRequest.md)
  - [AddRulesetResponse](docs/AddRulesetResponse.md)
  - [AddShare](docs/AddShare.md)
+ - [AddShortlinkRequest](docs/AddShortlinkRequest.md)
+ - [AddShortlinkResponse](docs/AddShortlinkResponse.md)
  - [AddSite](docs/AddSite.md)
  - [AddSiteRequest](docs/AddSiteRequest.md)
+ - [AddSystemInferenceModelAgreementRequest](docs/AddSystemInferenceModelAgreementRequest.md)
  - [AddTask](docs/AddTask.md)
  - [AddTaskRequest](docs/AddTaskRequest.md)
  - [AddTaskResponse](docs/AddTaskResponse.md)
@@ -532,8 +528,11 @@ Class | Method | HTTP request | Description
  - [ChildDocument](docs/ChildDocument.md)
  - [Classification](docs/Classification.md)
  - [ClassificationSummary](docs/ClassificationSummary.md)
+ - [CleanupOpenSearchSnapshotRepositoryResponse](docs/CleanupOpenSearchSnapshotRepositoryResponse.md)
  - [DataClassification](docs/DataClassification.md)
  - [DataClassificationAttribute](docs/DataClassificationAttribute.md)
+ - [DelegationTokenPermission](docs/DelegationTokenPermission.md)
+ - [DelegationTokenPrincipal](docs/DelegationTokenPrincipal.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
  - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
@@ -549,16 +548,25 @@ Class | Method | HTTP request | Description
  - [DeleteRuleResponse](docs/DeleteRuleResponse.md)
  - [DeleteRulesetResponse](docs/DeleteRulesetResponse.md)
  - [DeleteShareResponse](docs/DeleteShareResponse.md)
+ - [DeleteType](docs/DeleteType.md)
  - [Document](docs/Document.md)
  - [DocumentAction](docs/DocumentAction.md)
  - [DocumentActionStatus](docs/DocumentActionStatus.md)
  - [DocumentActionType](docs/DocumentActionType.md)
+ - [DocumentAiPromptNamedResult](docs/DocumentAiPromptNamedResult.md)
+ - [DocumentAiPromptResult](docs/DocumentAiPromptResult.md)
+ - [DocumentAiPromptResultAttribute](docs/DocumentAiPromptResultAttribute.md)
+ - [DocumentAiPromptResultType](docs/DocumentAiPromptResultType.md)
+ - [DocumentAiPromptValue](docs/DocumentAiPromptValue.md)
  - [DocumentAttribute](docs/DocumentAttribute.md)
  - [DocumentCertification](docs/DocumentCertification.md)
- - [DocumentCertificationParameterStore](docs/DocumentCertificationParameterStore.md)
+ - [DocumentCertificationAwsSecretsManager](docs/DocumentCertificationAwsSecretsManager.md)
  - [DocumentCertificationTarget](docs/DocumentCertificationTarget.md)
+ - [DocumentCertificationType](docs/DocumentCertificationType.md)
  - [DocumentConfig](docs/DocumentConfig.md)
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
+ - [DocumentConfigDispositionAction](docs/DocumentConfigDispositionAction.md)
+ - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
@@ -572,6 +580,9 @@ Class | Method | HTTP request | Description
  - [DocumentId](docs/DocumentId.md)
  - [DocumentMetadata](docs/DocumentMetadata.md)
  - [DocumentRelationshipType](docs/DocumentRelationshipType.md)
+ - [DocumentReview](docs/DocumentReview.md)
+ - [DocumentReviewDecision](docs/DocumentReviewDecision.md)
+ - [DocumentReviewStatus](docs/DocumentReviewStatus.md)
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSearchAttribute](docs/DocumentSearchAttribute.md)
  - [DocumentSearchFilename](docs/DocumentSearchFilename.md)
@@ -592,6 +603,7 @@ Class | Method | HTTP request | Description
  - [DocumentVersion](docs/DocumentVersion.md)
  - [DocumentWorkflow](docs/DocumentWorkflow.md)
  - [DocumentWorkflowStatus](docs/DocumentWorkflowStatus.md)
+ - [DocumentsCompressDocument](docs/DocumentsCompressDocument.md)
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [DocusignConfig](docs/DocusignConfig.md)
@@ -630,6 +642,8 @@ Class | Method | HTTP request | Description
  - [GetClassificationsResponse](docs/GetClassificationsResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
  - [GetDocumentActionsResponse](docs/GetDocumentActionsResponse.md)
+ - [GetDocumentAiPromptResultsResponse](docs/GetDocumentAiPromptResultsResponse.md)
+ - [GetDocumentAiPromptsResultsResponse](docs/GetDocumentAiPromptsResultsResponse.md)
  - [GetDocumentAttributeResponse](docs/GetDocumentAttributeResponse.md)
  - [GetDocumentAttributesResponse](docs/GetDocumentAttributesResponse.md)
  - [GetDocumentContentResponse](docs/GetDocumentContentResponse.md)
@@ -638,6 +652,9 @@ Class | Method | HTTP request | Description
  - [GetDocumentMetadataExtractionResponse](docs/GetDocumentMetadataExtractionResponse.md)
  - [GetDocumentOcrResponse](docs/GetDocumentOcrResponse.md)
  - [GetDocumentResponse](docs/GetDocumentResponse.md)
+ - [GetDocumentReviewDecisionsResponse](docs/GetDocumentReviewDecisionsResponse.md)
+ - [GetDocumentReviewResponse](docs/GetDocumentReviewResponse.md)
+ - [GetDocumentReviewsResponse](docs/GetDocumentReviewsResponse.md)
  - [GetDocumentSyncResponse](docs/GetDocumentSyncResponse.md)
  - [GetDocumentTagResponse](docs/GetDocumentTagResponse.md)
  - [GetDocumentTagsResponse](docs/GetDocumentTagsResponse.md)
@@ -679,6 +696,8 @@ Class | Method | HTTP request | Description
  - [GetSiteGroupsResponse](docs/GetSiteGroupsResponse.md)
  - [GetSitesResponse](docs/GetSitesResponse.md)
  - [GetSitesSchemaResponse](docs/GetSitesSchemaResponse.md)
+ - [GetSystemConfigurationResponse](docs/GetSystemConfigurationResponse.md)
+ - [GetSystemInferenceModelsResponse](docs/GetSystemInferenceModelsResponse.md)
  - [GetUserActivitesResponse](docs/GetUserActivitesResponse.md)
  - [GetUserGroupsResponse](docs/GetUserGroupsResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
@@ -708,9 +727,24 @@ Class | Method | HTTP request | Description
  - [MalwareScanStatus](docs/MalwareScanStatus.md)
  - [Mapping](docs/Mapping.md)
  - [MappingAttribute](docs/MappingAttribute.md)
+ - [MappingAttributeAiPromptResult](docs/MappingAttributeAiPromptResult.md)
+ - [MappingAttributeContent](docs/MappingAttributeContent.md)
+ - [MappingAttributeDataClassification](docs/MappingAttributeDataClassification.md)
  - [MappingAttributeLabelMatchingType](docs/MappingAttributeLabelMatchingType.md)
+ - [MappingAttributeMalwareScan](docs/MappingAttributeMalwareScan.md)
+ - [MappingAttributeManual](docs/MappingAttributeManual.md)
+ - [MappingAttributeMetadata](docs/MappingAttributeMetadata.md)
+ - [MappingAttributeMetadataExtractionResult](docs/MappingAttributeMetadataExtractionResult.md)
  - [MappingAttributeMetadataField](docs/MappingAttributeMetadataField.md)
  - [MappingAttributeSourceType](docs/MappingAttributeSourceType.md)
+ - [MappingClassification](docs/MappingClassification.md)
+ - [MappingClassificationCondition](docs/MappingClassificationCondition.md)
+ - [MappingClassificationConditionAiPromptResult](docs/MappingClassificationConditionAiPromptResult.md)
+ - [MappingClassificationConditionContent](docs/MappingClassificationConditionContent.md)
+ - [MappingClassificationConditionDataClassification](docs/MappingClassificationConditionDataClassification.md)
+ - [MappingClassificationConditionMatchingType](docs/MappingClassificationConditionMatchingType.md)
+ - [MappingClassificationConditionMetadataExtractionResult](docs/MappingClassificationConditionMetadataExtractionResult.md)
+ - [MappingClassificationConditionSourceType](docs/MappingClassificationConditionSourceType.md)
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [MetadataExtraction](docs/MetadataExtraction.md)
  - [MetadataExtractionAttribute](docs/MetadataExtractionAttribute.md)
@@ -747,10 +781,12 @@ Class | Method | HTTP request | Description
  - [OpenSearchSnapshotShard](docs/OpenSearchSnapshotShard.md)
  - [PdfDocument](docs/PdfDocument.md)
  - [PdfDocumentField](docs/PdfDocumentField.md)
+ - [PromoteDocumentArtifactRequest](docs/PromoteDocumentArtifactRequest.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
  - [ReindexTarget](docs/ReindexTarget.md)
  - [ResourceItem](docs/ResourceItem.md)
+ - [ReviewDecisionType](docs/ReviewDecisionType.md)
  - [Rule](docs/Rule.md)
  - [RuleCondition](docs/RuleCondition.md)
  - [RuleConditionAttribute](docs/RuleConditionAttribute.md)
@@ -776,6 +812,8 @@ Class | Method | HTTP request | Description
  - [SetDocumentTagKeyRequest](docs/SetDocumentTagKeyRequest.md)
  - [SetDocumentVersionRequest](docs/SetDocumentVersionRequest.md)
  - [SetDocumentVersionResponse](docs/SetDocumentVersionResponse.md)
+ - [SetEntityRequest](docs/SetEntityRequest.md)
+ - [SetEntityTypeRequest](docs/SetEntityTypeRequest.md)
  - [SetFolderPermissionsRequest](docs/SetFolderPermissionsRequest.md)
  - [SetGroupPermissionsRequest](docs/SetGroupPermissionsRequest.md)
  - [SetLocaleResourceItemRequest](docs/SetLocaleResourceItemRequest.md)
@@ -792,10 +830,14 @@ Class | Method | HTTP request | Description
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
  - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
+ - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)
  - [StringFormat](docs/StringFormat.md)
  - [StringGeneratorType](docs/StringGeneratorType.md)
+ - [SystemConfigurationWebUi](docs/SystemConfigurationWebUi.md)
+ - [SystemInferenceModel](docs/SystemInferenceModel.md)
+ - [SystemInferenceModelInvocation](docs/SystemInferenceModelInvocation.md)
  - [Task](docs/Task.md)
  - [TaskStatus](docs/TaskStatus.md)
  - [TextractQuery](docs/TextractQuery.md)
@@ -809,6 +851,8 @@ Class | Method | HTTP request | Description
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
  - [UpdateDocumentFulltextResponse](docs/UpdateDocumentFulltextResponse.md)
  - [UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
+ - [UpdateDocumentReview](docs/UpdateDocumentReview.md)
+ - [UpdateDocumentReviewRequest](docs/UpdateDocumentReviewRequest.md)
  - [UpdateEntityRequest](docs/UpdateEntityRequest.md)
  - [UpdateMatchingDocumentTagsRequest](docs/UpdateMatchingDocumentTagsRequest.md)
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
@@ -826,6 +870,7 @@ Class | Method | HTTP request | Description
  - [UpdateRulesetResponse](docs/UpdateRulesetResponse.md)
  - [UpdateSite](docs/UpdateSite.md)
  - [UpdateSiteRequest](docs/UpdateSiteRequest.md)
+ - [UpdateSystemConfigurationRequest](docs/UpdateSystemConfigurationRequest.md)
  - [UpdateTask](docs/UpdateTask.md)
  - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
  - [UpdateTaskResponse](docs/UpdateTaskResponse.md)
@@ -852,6 +897,12 @@ Class | Method | HTTP request | Description
  - [WorkflowStatus](docs/WorkflowStatus.md)
  - [WorkflowStep](docs/WorkflowStep.md)
  - [WorkflowStepCondition](docs/WorkflowStepCondition.md)
+ - [WorkflowStepConditionAttributeAggregateType](docs/WorkflowStepConditionAttributeAggregateType.md)
+ - [WorkflowStepConditionAttributeValueComparison](docs/WorkflowStepConditionAttributeValueComparison.md)
+ - [WorkflowStepConditionAttributeValueComparisonAggregate](docs/WorkflowStepConditionAttributeValueComparisonAggregate.md)
+ - [WorkflowStepConditionAttributeValueComparisonAttribute](docs/WorkflowStepConditionAttributeValueComparisonAttribute.md)
+ - [WorkflowStepConditionAttributeValueComparisonSourceType](docs/WorkflowStepConditionAttributeValueComparisonSourceType.md)
+ - [WorkflowStepConditionAttributeValueComparisonTarget](docs/WorkflowStepConditionAttributeValueComparisonTarget.md)
  - [WorkflowStepConditionCriterion](docs/WorkflowStepConditionCriterion.md)
  - [WorkflowStepConditionDocumentAttribute](docs/WorkflowStepConditionDocumentAttribute.md)
  - [WorkflowStepConditionDocumentStandardMetadata](docs/WorkflowStepConditionDocumentStandardMetadata.md)

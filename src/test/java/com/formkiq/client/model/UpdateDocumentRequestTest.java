@@ -53,6 +53,14 @@ public class UpdateDocumentRequestTest {
   }
 
   /**
+   * Test the property 'artifactCategory'
+   */
+  @Test
+  public void artifactCategoryTest() {
+    // TODO: test artifactCategory
+  }
+
+  /**
    * Test the property 'path'
    */
   @Test

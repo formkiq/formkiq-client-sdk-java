@@ -21,7 +21,9 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.AddDocumentAttributeClassification;
+import com.formkiq.client.model.AddDocumentAttributeEntities;
 import com.formkiq.client.model.AddDocumentAttributeEntity;
+import com.formkiq.client.model.AddDocumentAttributeEntityValue;
 import com.formkiq.client.model.AddDocumentAttributeRelationship;
 import com.formkiq.client.model.AddDocumentAttributeStandard;
 import com.formkiq.client.model.DocumentRelationshipType;
@@ -155,6 +157,14 @@ public class AddDocumentAttributeTest {
   @Test
   public void namespaceTest() {
     // TODO: test namespace
+  }
+
+  /**
+   * Test the property 'entities'
+   */
+  @Test
+  public void entitiesTest() {
+    // TODO: test entities
   }
 
 }

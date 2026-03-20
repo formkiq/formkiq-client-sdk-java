@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**locale** | **String** | Name of Locale |  [optional] |
+|**locale** | **String** | Name of Locale |  |
 
 
 

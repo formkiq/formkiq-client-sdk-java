@@ -11,6 +11,10 @@
 
 * `FULLTEXT` (value: `"FULLTEXT"`)
 
+* `MOVE` (value: `"MOVE"`)
+
+* `DELETE` (value: `"DELETE"`)
+
 * `CHECKSUM` (value: `"CHECKSUM"`)
 
 * `NOTIFICATION` (value: `"NOTIFICATION"`)
@@ -31,9 +35,9 @@
 
 * `RESIZE` (value: `"RESIZE"`)
 
-* `DATA_CLASSIFICATION` (value: `"DATA_CLASSIFICATION"`)
+* `LLMPROMPT` (value: `"LLMPROMPT"`)
 
-* `METADATA_EXTRACTION` (value: `"METADATA_EXTRACTION"`)
+* `DATA_CLASSIFICATION` (value: `"DATA_CLASSIFICATION"`)
 
 * `MALWARE_SCAN` (value: `"MALWARE_SCAN"`)
 

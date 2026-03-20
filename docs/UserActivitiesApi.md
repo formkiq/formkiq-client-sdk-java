@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="getDocumentUserActivities"></a>
 # **getDocumentUserActivities**
-> GetUserActivitesResponse getDocumentUserActivities(documentId, siteId, next, limit)
+> GetUserActivitesResponse getDocumentUserActivities(documentId, siteId, artifactId, next, limit)
 
 Get user activities for a document
 
@@ -37,10 +37,11 @@ public class Example {
     UserActivitiesApi apiInstance = new UserActivitiesApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String next = "next_example"; // String | Next page of results token
     String limit = "10"; // String | Limit Results
     try {
-      GetUserActivitesResponse result = apiInstance.getDocumentUserActivities(documentId, siteId, next, limit);
+      GetUserActivitesResponse result = apiInstance.getDocumentUserActivities(documentId, siteId, artifactId, next, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserActivitiesApi#getDocumentUserActivities");
@@ -59,6 +60,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 
@@ -82,7 +84,7 @@ No authorization required
 
 <a id="getResourceActivities"></a>
 # **getResourceActivities**
-> GetActivitesResponse getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId, mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId)
+> GetActivitesResponse getResourceActivities(siteId, documentId, artifactId, entityTypeId, namespace, entityId, rulesetId, ruleId, workflowId, queueId, webhookId, locale, attributeKey, schema, classificationId, mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId)
 
 Get resource activities
 
@@ -108,12 +110,16 @@ public class Example {
     UserActivitiesApi apiInstance = new UserActivitiesApi(defaultClient);
     String siteId = "siteId_example"; // String | Site Identifier
     String documentId = "documentId_example"; // String | Document Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
     String namespace = "PRESET"; // String | Namespace Identifier
     String entityId = "entityId_example"; // String | Entity Identifier
     String rulesetId = "rulesetId_example"; // String | RulesetId Identifier
     String ruleId = "ruleId_example"; // String | RuleId Identifier
     String workflowId = "workflowId_example"; // String | Workflow Identifier
+    String queueId = "queueId_example"; // String | Queue Identifier
+    String webhookId = "webhookId_example"; // String | Webhook Identifier
+    String locale = "locale_example"; // String | Site Locale (ISO 639 / ISO 3166)
     String attributeKey = "attributeKey_example"; // String | Attribute Key
     String schema = "document"; // String | Schema Type
     String classificationId = "classificationId_example"; // String | Classification Id
@@ -127,7 +133,7 @@ public class Example {
     String limit = "10"; // String | Limit Results
     String userId = "userId_example"; // String | Fetch specific user activities
     try {
-      GetActivitesResponse result = apiInstance.getResourceActivities(siteId, documentId, entityTypeId, namespace, entityId, rulesetId, ruleId, workflowId, attributeKey, schema, classificationId, mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId);
+      GetActivitesResponse result = apiInstance.getResourceActivities(siteId, documentId, artifactId, entityTypeId, namespace, entityId, rulesetId, ruleId, workflowId, queueId, webhookId, locale, attributeKey, schema, classificationId, mappingId, apiKey, controlPolicy, start, end, sort, next, limit, userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UserActivitiesApi#getResourceActivities");
@@ -146,12 +152,16 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siteId** | **String**| Site Identifier | [optional] |
 | **documentId** | **String**| Document Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **entityTypeId** | **String**| EntityType Identifier | [optional] |
 | **namespace** | **String**| Namespace Identifier | [optional] [enum: PRESET, CUSTOM] |
 | **entityId** | **String**| Entity Identifier | [optional] |
 | **rulesetId** | **String**| RulesetId Identifier | [optional] |
 | **ruleId** | **String**| RuleId Identifier | [optional] |
 | **workflowId** | **String**| Workflow Identifier | [optional] |
+| **queueId** | **String**| Queue Identifier | [optional] |
+| **webhookId** | **String**| Webhook Identifier | [optional] |
+| **locale** | **String**| Site Locale (ISO 639 / ISO 3166) | [optional] |
 | **attributeKey** | **String**| Attribute Key | [optional] |
 | **schema** | **String**| Schema Type | [optional] [enum: document] |
 | **classificationId** | **String**| Classification Id | [optional] |

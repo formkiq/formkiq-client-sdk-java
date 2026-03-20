@@ -20,6 +20,9 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparison;
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparisonSourceType;
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparisonTarget;
 import com.formkiq.client.model.WorkflowStepConditionDocumentAttribute;
 import com.formkiq.client.model.WorkflowStepConditionDocumentStandardMetadata;
 import com.google.gson.TypeAdapter;
@@ -52,6 +55,30 @@ public class WorkflowStepConditionSourceTest {
   @Test
   public void attributeKeyTest() {
     // TODO: test attributeKey
+  }
+
+  /**
+   * Test the property 'sourceType'
+   */
+  @Test
+  public void sourceTypeTest() {
+    // TODO: test sourceType
+  }
+
+  /**
+   * Test the property 'valueAttributeKey'
+   */
+  @Test
+  public void valueAttributeKeyTest() {
+    // TODO: test valueAttributeKey
+  }
+
+  /**
+   * Test the property 'comparison'
+   */
+  @Test
+  public void comparisonTest() {
+    // TODO: test comparison
   }
 
 }

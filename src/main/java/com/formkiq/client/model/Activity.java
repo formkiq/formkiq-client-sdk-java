@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ActivityDelegation;
 import com.formkiq.client.model.ActivityStatus;
 import com.formkiq.client.model.UserActivityChanges;
 import com.google.gson.TypeAdapter;
@@ -61,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Activity
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class Activity {
   public static final String SERIALIZED_NAME_RESOURCE = "resource";
   @SerializedName(SERIALIZED_NAME_RESOURCE)
@@ -104,10 +105,20 @@ public class Activity {
   @javax.annotation.Nullable
   private String userId;
 
+  public static final String SERIALIZED_NAME_DELEGATION = "delegation";
+  @SerializedName(SERIALIZED_NAME_DELEGATION)
+  @javax.annotation.Nullable
+  private ActivityDelegation delegation;
+
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private Object documentId = null;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private Object artifactId = null;
 
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -123,6 +134,61 @@ public class Activity {
   @SerializedName(SERIALIZED_NAME_ENTITY_ID)
   @javax.annotation.Nullable
   private String entityId;
+
+  public static final String SERIALIZED_NAME_API_KEY = "apiKey";
+  @SerializedName(SERIALIZED_NAME_API_KEY)
+  @javax.annotation.Nullable
+  private String apiKey;
+
+  public static final String SERIALIZED_NAME_RULESET_ID = "rulesetId";
+  @SerializedName(SERIALIZED_NAME_RULESET_ID)
+  @javax.annotation.Nullable
+  private String rulesetId;
+
+  public static final String SERIALIZED_NAME_SCHEMA = "schema";
+  @SerializedName(SERIALIZED_NAME_SCHEMA)
+  @javax.annotation.Nullable
+  private String schema;
+
+  public static final String SERIALIZED_NAME_MAPPING_ID = "mappingId";
+  @SerializedName(SERIALIZED_NAME_MAPPING_ID)
+  @javax.annotation.Nullable
+  private String mappingId;
+
+  public static final String SERIALIZED_NAME_CLASSIFICATION_ID = "classificationId";
+  @SerializedName(SERIALIZED_NAME_CLASSIFICATION_ID)
+  @javax.annotation.Nullable
+  private String classificationId;
+
+  public static final String SERIALIZED_NAME_RULE_ID = "ruleId";
+  @SerializedName(SERIALIZED_NAME_RULE_ID)
+  @javax.annotation.Nullable
+  private String ruleId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
+  @javax.annotation.Nullable
+  private String workflowId;
+
+  public static final String SERIALIZED_NAME_QUEUE_ID = "queueId";
+  @SerializedName(SERIALIZED_NAME_QUEUE_ID)
+  @javax.annotation.Nullable
+  private String queueId;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_ID = "webhookId";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_ID)
+  @javax.annotation.Nullable
+  private String webhookId;
+
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  @javax.annotation.Nullable
+  private String locale;
+
+  public static final String SERIALIZED_NAME_CONTROL_POLICY = "controlPolicy";
+  @SerializedName(SERIALIZED_NAME_CONTROL_POLICY)
+  @javax.annotation.Nullable
+  private String controlPolicy;
 
   public static final String SERIALIZED_NAME_CHANGES = "changes";
   @SerializedName(SERIALIZED_NAME_CHANGES)
@@ -291,6 +357,26 @@ public class Activity {
   }
 
 
+  public Activity delegation(@javax.annotation.Nullable ActivityDelegation delegation) {
+    this.delegation = delegation;
+    return this;
+  }
+
+  /**
+   * Get delegation
+   * 
+   * @return delegation
+   */
+  @javax.annotation.Nullable
+  public ActivityDelegation getDelegation() {
+    return delegation;
+  }
+
+  public void setDelegation(@javax.annotation.Nullable ActivityDelegation delegation) {
+    this.delegation = delegation;
+  }
+
+
   public Activity documentId(@javax.annotation.Nullable Object documentId) {
     this.documentId = documentId;
     return this;
@@ -308,6 +394,26 @@ public class Activity {
 
   public void setDocumentId(@javax.annotation.Nullable Object documentId) {
     this.documentId = documentId;
+  }
+
+
+  public Activity artifactId(@javax.annotation.Nullable Object artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Document Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public Object getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable Object artifactId) {
+    this.artifactId = artifactId;
   }
 
 
@@ -371,6 +477,226 @@ public class Activity {
   }
 
 
+  public Activity apiKey(@javax.annotation.Nullable String apiKey) {
+    this.apiKey = apiKey;
+    return this;
+  }
+
+  /**
+   * API Key
+   * 
+   * @return apiKey
+   */
+  @javax.annotation.Nullable
+  public String getApiKey() {
+    return apiKey;
+  }
+
+  public void setApiKey(@javax.annotation.Nullable String apiKey) {
+    this.apiKey = apiKey;
+  }
+
+
+  public Activity rulesetId(@javax.annotation.Nullable String rulesetId) {
+    this.rulesetId = rulesetId;
+    return this;
+  }
+
+  /**
+   * Ruleset Identifier
+   * 
+   * @return rulesetId
+   */
+  @javax.annotation.Nullable
+  public String getRulesetId() {
+    return rulesetId;
+  }
+
+  public void setRulesetId(@javax.annotation.Nullable String rulesetId) {
+    this.rulesetId = rulesetId;
+  }
+
+
+  public Activity schema(@javax.annotation.Nullable String schema) {
+    this.schema = schema;
+    return this;
+  }
+
+  /**
+   * Schema Identifier
+   * 
+   * @return schema
+   */
+  @javax.annotation.Nullable
+  public String getSchema() {
+    return schema;
+  }
+
+  public void setSchema(@javax.annotation.Nullable String schema) {
+    this.schema = schema;
+  }
+
+
+  public Activity mappingId(@javax.annotation.Nullable String mappingId) {
+    this.mappingId = mappingId;
+    return this;
+  }
+
+  /**
+   * Mapping Identifier
+   * 
+   * @return mappingId
+   */
+  @javax.annotation.Nullable
+  public String getMappingId() {
+    return mappingId;
+  }
+
+  public void setMappingId(@javax.annotation.Nullable String mappingId) {
+    this.mappingId = mappingId;
+  }
+
+
+  public Activity classificationId(@javax.annotation.Nullable String classificationId) {
+    this.classificationId = classificationId;
+    return this;
+  }
+
+  /**
+   * Classification Identifier
+   * 
+   * @return classificationId
+   */
+  @javax.annotation.Nullable
+  public String getClassificationId() {
+    return classificationId;
+  }
+
+  public void setClassificationId(@javax.annotation.Nullable String classificationId) {
+    this.classificationId = classificationId;
+  }
+
+
+  public Activity ruleId(@javax.annotation.Nullable String ruleId) {
+    this.ruleId = ruleId;
+    return this;
+  }
+
+  /**
+   * Ruleset Rule Identifier
+   * 
+   * @return ruleId
+   */
+  @javax.annotation.Nullable
+  public String getRuleId() {
+    return ruleId;
+  }
+
+  public void setRuleId(@javax.annotation.Nullable String ruleId) {
+    this.ruleId = ruleId;
+  }
+
+
+  public Activity workflowId(@javax.annotation.Nullable String workflowId) {
+    this.workflowId = workflowId;
+    return this;
+  }
+
+  /**
+   * Workflow Identifier
+   * 
+   * @return workflowId
+   */
+  @javax.annotation.Nullable
+  public String getWorkflowId() {
+    return workflowId;
+  }
+
+  public void setWorkflowId(@javax.annotation.Nullable String workflowId) {
+    this.workflowId = workflowId;
+  }
+
+
+  public Activity queueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Queue Identifier
+   * 
+   * @return queueId
+   */
+  @javax.annotation.Nullable
+  public String getQueueId() {
+    return queueId;
+  }
+
+  public void setQueueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+  }
+
+
+  public Activity webhookId(@javax.annotation.Nullable String webhookId) {
+    this.webhookId = webhookId;
+    return this;
+  }
+
+  /**
+   * Webhook Identifier
+   * 
+   * @return webhookId
+   */
+  @javax.annotation.Nullable
+  public String getWebhookId() {
+    return webhookId;
+  }
+
+  public void setWebhookId(@javax.annotation.Nullable String webhookId) {
+    this.webhookId = webhookId;
+  }
+
+
+  public Activity locale(@javax.annotation.Nullable String locale) {
+    this.locale = locale;
+    return this;
+  }
+
+  /**
+   * Locale Identifier
+   * 
+   * @return locale
+   */
+  @javax.annotation.Nullable
+  public String getLocale() {
+    return locale;
+  }
+
+  public void setLocale(@javax.annotation.Nullable String locale) {
+    this.locale = locale;
+  }
+
+
+  public Activity controlPolicy(@javax.annotation.Nullable String controlPolicy) {
+    this.controlPolicy = controlPolicy;
+    return this;
+  }
+
+  /**
+   * Control Policy Type
+   * 
+   * @return controlPolicy
+   */
+  @javax.annotation.Nullable
+  public String getControlPolicy() {
+    return controlPolicy;
+  }
+
+  public void setControlPolicy(@javax.annotation.Nullable String controlPolicy) {
+    this.controlPolicy = controlPolicy;
+  }
+
+
   public Activity changes(@javax.annotation.Nullable Map<String, UserActivityChanges> changes) {
     this.changes = changes;
     return this;
@@ -416,10 +742,23 @@ public class Activity {
         && Objects.equals(this.status, activity.status)
         && Objects.equals(this.insertedDate, activity.insertedDate)
         && Objects.equals(this.userId, activity.userId)
+        && Objects.equals(this.delegation, activity.delegation)
         && Objects.equals(this.documentId, activity.documentId)
+        && Objects.equals(this.artifactId, activity.artifactId)
         && Objects.equals(this.attributeKey, activity.attributeKey)
         && Objects.equals(this.entityTypeId, activity.entityTypeId)
         && Objects.equals(this.entityId, activity.entityId)
+        && Objects.equals(this.apiKey, activity.apiKey)
+        && Objects.equals(this.rulesetId, activity.rulesetId)
+        && Objects.equals(this.schema, activity.schema)
+        && Objects.equals(this.mappingId, activity.mappingId)
+        && Objects.equals(this.classificationId, activity.classificationId)
+        && Objects.equals(this.ruleId, activity.ruleId)
+        && Objects.equals(this.workflowId, activity.workflowId)
+        && Objects.equals(this.queueId, activity.queueId)
+        && Objects.equals(this.webhookId, activity.webhookId)
+        && Objects.equals(this.locale, activity.locale)
+        && Objects.equals(this.controlPolicy, activity.controlPolicy)
         && Objects.equals(this.changes, activity.changes);
   }
 
@@ -431,7 +770,9 @@ public class Activity {
   @Override
   public int hashCode() {
     return Objects.hash(resource, type, source, sourceIpAddress, message, status, insertedDate,
-        userId, documentId, attributeKey, entityTypeId, entityId, changes);
+        userId, delegation, documentId, artifactId, attributeKey, entityTypeId, entityId, apiKey,
+        rulesetId, schema, mappingId, classificationId, ruleId, workflowId, queueId, webhookId,
+        locale, controlPolicy, changes);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -453,10 +794,23 @@ public class Activity {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    delegation: ").append(toIndentedString(delegation)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
     sb.append("    entityTypeId: ").append(toIndentedString(entityTypeId)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
+    sb.append("    rulesetId: ").append(toIndentedString(rulesetId)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    mappingId: ").append(toIndentedString(mappingId)).append("\n");
+    sb.append("    classificationId: ").append(toIndentedString(classificationId)).append("\n");
+    sb.append("    ruleId: ").append(toIndentedString(ruleId)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    webhookId: ").append(toIndentedString(webhookId)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("    controlPolicy: ").append(toIndentedString(controlPolicy)).append("\n");
     sb.append("    changes: ").append(toIndentedString(changes)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -466,10 +820,7 @@ public class Activity {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -479,8 +830,10 @@ public class Activity {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("resource", "type", "source",
-        "sourceIpAddress", "message", "status", "insertedDate", "userId", "documentId",
-        "attributeKey", "entityTypeId", "entityId", "changes"));
+        "sourceIpAddress", "message", "status", "insertedDate", "userId", "delegation",
+        "documentId", "artifactId", "attributeKey", "entityTypeId", "entityId", "apiKey",
+        "rulesetId", "schema", "mappingId", "classificationId", "ruleId", "workflowId", "queueId",
+        "webhookId", "locale", "controlPolicy", "changes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -558,6 +911,10 @@ public class Activity {
           "Expected the field `userId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("userId").toString()));
     }
+    // validate the optional field `delegation`
+    if (jsonObj.get("delegation") != null && !jsonObj.get("delegation").isJsonNull()) {
+      ActivityDelegation.validateJsonElement(jsonObj.get("delegation"));
+    }
     if ((jsonObj.get("entityTypeId") != null && !jsonObj.get("entityTypeId").isJsonNull())
         && !jsonObj.get("entityTypeId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -569,6 +926,72 @@ public class Activity {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `entityId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("entityId").toString()));
+    }
+    if ((jsonObj.get("apiKey") != null && !jsonObj.get("apiKey").isJsonNull())
+        && !jsonObj.get("apiKey").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `apiKey` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("apiKey").toString()));
+    }
+    if ((jsonObj.get("rulesetId") != null && !jsonObj.get("rulesetId").isJsonNull())
+        && !jsonObj.get("rulesetId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `rulesetId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("rulesetId").toString()));
+    }
+    if ((jsonObj.get("schema") != null && !jsonObj.get("schema").isJsonNull())
+        && !jsonObj.get("schema").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `schema` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("schema").toString()));
+    }
+    if ((jsonObj.get("mappingId") != null && !jsonObj.get("mappingId").isJsonNull())
+        && !jsonObj.get("mappingId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `mappingId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("mappingId").toString()));
+    }
+    if ((jsonObj.get("classificationId") != null && !jsonObj.get("classificationId").isJsonNull())
+        && !jsonObj.get("classificationId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `classificationId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("classificationId").toString()));
+    }
+    if ((jsonObj.get("ruleId") != null && !jsonObj.get("ruleId").isJsonNull())
+        && !jsonObj.get("ruleId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `ruleId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("ruleId").toString()));
+    }
+    if ((jsonObj.get("workflowId") != null && !jsonObj.get("workflowId").isJsonNull())
+        && !jsonObj.get("workflowId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `workflowId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("workflowId").toString()));
+    }
+    if ((jsonObj.get("queueId") != null && !jsonObj.get("queueId").isJsonNull())
+        && !jsonObj.get("queueId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `queueId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("queueId").toString()));
+    }
+    if ((jsonObj.get("webhookId") != null && !jsonObj.get("webhookId").isJsonNull())
+        && !jsonObj.get("webhookId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `webhookId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("webhookId").toString()));
+    }
+    if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull())
+        && !jsonObj.get("locale").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `locale` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("locale").toString()));
+    }
+    if ((jsonObj.get("controlPolicy") != null && !jsonObj.get("controlPolicy").isJsonNull())
+        && !jsonObj.get("controlPolicy").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `controlPolicy` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("controlPolicy").toString()));
     }
   }
 

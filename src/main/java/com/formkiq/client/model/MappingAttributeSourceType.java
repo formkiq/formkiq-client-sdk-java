@@ -48,6 +48,8 @@ public enum MappingAttributeSourceType {
 
   METADATA_EXTRACTION_RESULT("METADATA_EXTRACTION_RESULT"),
 
+  AI_PROMPT_RESULT("AI_PROMPT_RESULT"),
+
   MALWARE_SCAN("MALWARE_SCAN");
 
   private String value;

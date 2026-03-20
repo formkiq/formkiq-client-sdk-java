@@ -150,6 +150,38 @@ public class SearchResultDocumentTest {
   }
 
   /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
+  /**
+   * Test the property 'promotedArtifactId'
+   */
+  @Test
+  public void promotedArtifactIdTest() {
+    // TODO: test promotedArtifactId
+  }
+
+  /**
+   * Test the property 'artifactCategory'
+   */
+  @Test
+  public void artifactCategoryTest() {
+    // TODO: test artifactCategory
+  }
+
+  /**
+   * Test the property 'hasArtifacts'
+   */
+  @Test
+  public void hasArtifactsTest() {
+    // TODO: test hasArtifacts
+  }
+
+  /**
    * Test the property 'contentType'
    */
   @Test

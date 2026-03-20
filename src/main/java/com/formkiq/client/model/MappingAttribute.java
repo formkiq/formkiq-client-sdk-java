@@ -21,7 +21,14 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.MappingAttributeAiPromptResult;
+import com.formkiq.client.model.MappingAttributeContent;
+import com.formkiq.client.model.MappingAttributeDataClassification;
 import com.formkiq.client.model.MappingAttributeLabelMatchingType;
+import com.formkiq.client.model.MappingAttributeMalwareScan;
+import com.formkiq.client.model.MappingAttributeManual;
+import com.formkiq.client.model.MappingAttributeMetadata;
+import com.formkiq.client.model.MappingAttributeMetadataExtractionResult;
 import com.formkiq.client.model.MappingAttributeMetadataField;
 import com.formkiq.client.model.MappingAttributeSourceType;
 import com.google.gson.TypeAdapter;
@@ -34,396 +41,46 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParseException;
 
 import com.formkiq.client.invoker.JSON;
 
-/**
- * MappingAttribute
- */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
-public class MappingAttribute {
-  public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
-  @javax.annotation.Nullable
-  private String attributeKey;
-
-  public static final String SERIALIZED_NAME_SOURCE_TYPE = "sourceType";
-  @SerializedName(SERIALIZED_NAME_SOURCE_TYPE)
-  @javax.annotation.Nullable
-  private MappingAttributeSourceType sourceType;
-
-  public static final String SERIALIZED_NAME_DEFAULT_VALUE = "defaultValue";
-  @SerializedName(SERIALIZED_NAME_DEFAULT_VALUE)
-  @javax.annotation.Nullable
-  private String defaultValue;
-
-  public static final String SERIALIZED_NAME_DEFAULT_VALUES = "defaultValues";
-  @SerializedName(SERIALIZED_NAME_DEFAULT_VALUES)
-  @javax.annotation.Nullable
-  private List<String> defaultValues = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_LABEL_TEXTS = "labelTexts";
-  @SerializedName(SERIALIZED_NAME_LABEL_TEXTS)
-  @javax.annotation.Nullable
-  private List<String> labelTexts = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_LABEL_MATCHING_TYPE = "labelMatchingType";
-  @SerializedName(SERIALIZED_NAME_LABEL_MATCHING_TYPE)
-  @javax.annotation.Nullable
-  private MappingAttributeLabelMatchingType labelMatchingType;
-
-  public static final String SERIALIZED_NAME_METADATA_FIELD = "metadataField";
-  @SerializedName(SERIALIZED_NAME_METADATA_FIELD)
-  @javax.annotation.Nullable
-  private MappingAttributeMetadataField metadataField;
-
-  public static final String SERIALIZED_NAME_VALIDATION_REGEX = "validationRegex";
-  @SerializedName(SERIALIZED_NAME_VALIDATION_REGEX)
-  @javax.annotation.Nullable
-  private String validationRegex;
-
-  public MappingAttribute() {}
-
-  public MappingAttribute attributeKey(@javax.annotation.Nullable String attributeKey) {
-    this.attributeKey = attributeKey;
-    return this;
-  }
-
-  /**
-   * Attribute Key
-   * 
-   * @return attributeKey
-   */
-  @javax.annotation.Nullable
-  public String getAttributeKey() {
-    return attributeKey;
-  }
-
-  public void setAttributeKey(@javax.annotation.Nullable String attributeKey) {
-    this.attributeKey = attributeKey;
-  }
-
-
-  public MappingAttribute sourceType(
-      @javax.annotation.Nullable MappingAttributeSourceType sourceType) {
-    this.sourceType = sourceType;
-    return this;
-  }
-
-  /**
-   * Get sourceType
-   * 
-   * @return sourceType
-   */
-  @javax.annotation.Nullable
-  public MappingAttributeSourceType getSourceType() {
-    return sourceType;
-  }
-
-  public void setSourceType(@javax.annotation.Nullable MappingAttributeSourceType sourceType) {
-    this.sourceType = sourceType;
-  }
-
-
-  public MappingAttribute defaultValue(@javax.annotation.Nullable String defaultValue) {
-    this.defaultValue = defaultValue;
-    return this;
-  }
-
-  /**
-   * Default value
-   * 
-   * @return defaultValue
-   */
-  @javax.annotation.Nullable
-  public String getDefaultValue() {
-    return defaultValue;
-  }
-
-  public void setDefaultValue(@javax.annotation.Nullable String defaultValue) {
-    this.defaultValue = defaultValue;
-  }
-
-
-  public MappingAttribute defaultValues(@javax.annotation.Nullable List<String> defaultValues) {
-    this.defaultValues = defaultValues;
-    return this;
-  }
-
-  public MappingAttribute addDefaultValuesItem(String defaultValuesItem) {
-    if (this.defaultValues == null) {
-      this.defaultValues = new ArrayList<>();
-    }
-    this.defaultValues.add(defaultValuesItem);
-    return this;
-  }
-
-  /**
-   * Default values
-   * 
-   * @return defaultValues
-   */
-  @javax.annotation.Nullable
-  public List<String> getDefaultValues() {
-    return defaultValues;
-  }
-
-  public void setDefaultValues(@javax.annotation.Nullable List<String> defaultValues) {
-    this.defaultValues = defaultValues;
-  }
-
-
-  public MappingAttribute labelTexts(@javax.annotation.Nullable List<String> labelTexts) {
-    this.labelTexts = labelTexts;
-    return this;
-  }
-
-  public MappingAttribute addLabelTextsItem(String labelTextsItem) {
-    if (this.labelTexts == null) {
-      this.labelTexts = new ArrayList<>();
-    }
-    this.labelTexts.add(labelTextsItem);
-    return this;
-  }
-
-  /**
-   * Get labelTexts
-   * 
-   * @return labelTexts
-   */
-  @javax.annotation.Nullable
-  public List<String> getLabelTexts() {
-    return labelTexts;
-  }
-
-  public void setLabelTexts(@javax.annotation.Nullable List<String> labelTexts) {
-    this.labelTexts = labelTexts;
-  }
-
-
-  public MappingAttribute labelMatchingType(
-      @javax.annotation.Nullable MappingAttributeLabelMatchingType labelMatchingType) {
-    this.labelMatchingType = labelMatchingType;
-    return this;
-  }
-
-  /**
-   * Get labelMatchingType
-   * 
-   * @return labelMatchingType
-   */
-  @javax.annotation.Nullable
-  public MappingAttributeLabelMatchingType getLabelMatchingType() {
-    return labelMatchingType;
-  }
-
-  public void setLabelMatchingType(
-      @javax.annotation.Nullable MappingAttributeLabelMatchingType labelMatchingType) {
-    this.labelMatchingType = labelMatchingType;
-  }
-
-
-  public MappingAttribute metadataField(
-      @javax.annotation.Nullable MappingAttributeMetadataField metadataField) {
-    this.metadataField = metadataField;
-    return this;
-  }
-
-  /**
-   * Get metadataField
-   * 
-   * @return metadataField
-   */
-  @javax.annotation.Nullable
-  public MappingAttributeMetadataField getMetadataField() {
-    return metadataField;
-  }
-
-  public void setMetadataField(
-      @javax.annotation.Nullable MappingAttributeMetadataField metadataField) {
-    this.metadataField = metadataField;
-  }
-
-
-  public MappingAttribute validationRegex(@javax.annotation.Nullable String validationRegex) {
-    this.validationRegex = validationRegex;
-    return this;
-  }
-
-  /**
-   * Attribute Value Regex Validation
-   * 
-   * @return validationRegex
-   */
-  @javax.annotation.Nullable
-  public String getValidationRegex() {
-    return validationRegex;
-  }
-
-  public void setValidationRegex(@javax.annotation.Nullable String validationRegex) {
-    this.validationRegex = validationRegex;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    MappingAttribute mappingAttribute = (MappingAttribute) o;
-    return Objects.equals(this.attributeKey, mappingAttribute.attributeKey)
-        && Objects.equals(this.sourceType, mappingAttribute.sourceType)
-        && Objects.equals(this.defaultValue, mappingAttribute.defaultValue)
-        && Objects.equals(this.defaultValues, mappingAttribute.defaultValues)
-        && Objects.equals(this.labelTexts, mappingAttribute.labelTexts)
-        && Objects.equals(this.labelMatchingType, mappingAttribute.labelMatchingType)
-        && Objects.equals(this.metadataField, mappingAttribute.metadataField)
-        && Objects.equals(this.validationRegex, mappingAttribute.validationRegex);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(attributeKey, sourceType, defaultValue, defaultValues, labelTexts,
-        labelMatchingType, metadataField, validationRegex);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class MappingAttribute {\n");
-    sb.append("    attributeKey: ").append(toIndentedString(attributeKey)).append("\n");
-    sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
-    sb.append("    defaultValue: ").append(toIndentedString(defaultValue)).append("\n");
-    sb.append("    defaultValues: ").append(toIndentedString(defaultValues)).append("\n");
-    sb.append("    labelTexts: ").append(toIndentedString(labelTexts)).append("\n");
-    sb.append("    labelMatchingType: ").append(toIndentedString(labelMatchingType)).append("\n");
-    sb.append("    metadataField: ").append(toIndentedString(metadataField)).append("\n");
-    sb.append("    validationRegex: ").append(toIndentedString(validationRegex)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("attributeKey", "sourceType", "defaultValue",
-        "defaultValues", "labelTexts", "labelMatchingType", "metadataField", "validationRegex"));
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to MappingAttribute
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    if (jsonElement == null) {
-      if (!MappingAttribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON
-                                                               // element is null
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in MappingAttribute is not found in the empty JSON string",
-            MappingAttribute.openapiRequiredFields.toString()));
-      }
-    }
-
-    Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-    // check to see if the JSON string contains additional fields
-    for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!MappingAttribute.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `MappingAttribute` properties. JSON: %s",
-            entry.getKey(), jsonElement.toString()));
-      }
-    }
-    JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("attributeKey") != null && !jsonObj.get("attributeKey").isJsonNull())
-        && !jsonObj.get("attributeKey").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `attributeKey` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("attributeKey").toString()));
-    }
-    // validate the optional field `sourceType`
-    if (jsonObj.get("sourceType") != null && !jsonObj.get("sourceType").isJsonNull()) {
-      MappingAttributeSourceType.validateJsonElement(jsonObj.get("sourceType"));
-    }
-    if ((jsonObj.get("defaultValue") != null && !jsonObj.get("defaultValue").isJsonNull())
-        && !jsonObj.get("defaultValue").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `defaultValue` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("defaultValue").toString()));
-    }
-    // ensure the optional json data is an array if present
-    if (jsonObj.get("defaultValues") != null && !jsonObj.get("defaultValues").isJsonNull()
-        && !jsonObj.get("defaultValues").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `defaultValues` to be an array in the JSON string but got `%s`",
-          jsonObj.get("defaultValues").toString()));
-    }
-    // ensure the optional json data is an array if present
-    if (jsonObj.get("labelTexts") != null && !jsonObj.get("labelTexts").isJsonNull()
-        && !jsonObj.get("labelTexts").isJsonArray()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `labelTexts` to be an array in the JSON string but got `%s`",
-          jsonObj.get("labelTexts").toString()));
-    }
-    // validate the optional field `labelMatchingType`
-    if (jsonObj.get("labelMatchingType") != null
-        && !jsonObj.get("labelMatchingType").isJsonNull()) {
-      MappingAttributeLabelMatchingType.validateJsonElement(jsonObj.get("labelMatchingType"));
-    }
-    // validate the optional field `metadataField`
-    if (jsonObj.get("metadataField") != null && !jsonObj.get("metadataField").isJsonNull()) {
-      MappingAttributeMetadataField.validateJsonElement(jsonObj.get("metadataField"));
-    }
-    if ((jsonObj.get("validationRegex") != null && !jsonObj.get("validationRegex").isJsonNull())
-        && !jsonObj.get("validationRegex").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `validationRegex` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("validationRegex").toString()));
-    }
-  }
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
+public class MappingAttribute extends AbstractOpenApiSchema {
+  private static final Logger log = Logger.getLogger(MappingAttribute.class.getName());
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
@@ -433,24 +90,487 @@ public class MappingAttribute {
         return null; // this class only serializes 'MappingAttribute' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<MappingAttribute> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(MappingAttribute.class));
+      final TypeAdapter<MappingAttributeContent> adapterMappingAttributeContent =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeContent.class));
+      final TypeAdapter<MappingAttributeMetadata> adapterMappingAttributeMetadata =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeMetadata.class));
+      final TypeAdapter<MappingAttributeManual> adapterMappingAttributeManual =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeManual.class));
+      final TypeAdapter<MappingAttributeDataClassification> adapterMappingAttributeDataClassification =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeDataClassification.class));
+      final TypeAdapter<MappingAttributeMetadataExtractionResult> adapterMappingAttributeMetadataExtractionResult =
+          gson.getDelegateAdapter(this,
+              TypeToken.get(MappingAttributeMetadataExtractionResult.class));
+      final TypeAdapter<MappingAttributeAiPromptResult> adapterMappingAttributeAiPromptResult =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeAiPromptResult.class));
+      final TypeAdapter<MappingAttributeMalwareScan> adapterMappingAttributeMalwareScan =
+          gson.getDelegateAdapter(this, TypeToken.get(MappingAttributeMalwareScan.class));
 
       return (TypeAdapter<T>) new TypeAdapter<MappingAttribute>() {
         @Override
         public void write(JsonWriter out, MappingAttribute value) throws IOException {
-          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-          elementAdapter.write(out, obj);
+          if (value == null || value.getActualInstance() == null) {
+            elementAdapter.write(out, null);
+            return;
+          }
+
+          // check if the actual instance is of the type `MappingAttributeContent`
+          if (value.getActualInstance() instanceof MappingAttributeContent) {
+            JsonElement element = adapterMappingAttributeContent
+                .toJsonTree((MappingAttributeContent) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeMetadata`
+          if (value.getActualInstance() instanceof MappingAttributeMetadata) {
+            JsonElement element = adapterMappingAttributeMetadata
+                .toJsonTree((MappingAttributeMetadata) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeManual`
+          if (value.getActualInstance() instanceof MappingAttributeManual) {
+            JsonElement element = adapterMappingAttributeManual
+                .toJsonTree((MappingAttributeManual) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeDataClassification`
+          if (value.getActualInstance() instanceof MappingAttributeDataClassification) {
+            JsonElement element = adapterMappingAttributeDataClassification
+                .toJsonTree((MappingAttributeDataClassification) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeMetadataExtractionResult`
+          if (value.getActualInstance() instanceof MappingAttributeMetadataExtractionResult) {
+            JsonElement element = adapterMappingAttributeMetadataExtractionResult
+                .toJsonTree((MappingAttributeMetadataExtractionResult) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeAiPromptResult`
+          if (value.getActualInstance() instanceof MappingAttributeAiPromptResult) {
+            JsonElement element = adapterMappingAttributeAiPromptResult
+                .toJsonTree((MappingAttributeAiPromptResult) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type `MappingAttributeMalwareScan`
+          if (value.getActualInstance() instanceof MappingAttributeMalwareScan) {
+            JsonElement element = adapterMappingAttributeMalwareScan
+                .toJsonTree((MappingAttributeMalwareScan) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          throw new IOException(
+              "Failed to serialize as the type doesn't match oneOf schemas: MappingAttributeAiPromptResult, MappingAttributeContent, MappingAttributeDataClassification, MappingAttributeMalwareScan, MappingAttributeManual, MappingAttributeMetadata, MappingAttributeMetadataExtractionResult");
         }
 
         @Override
         public MappingAttribute read(JsonReader in) throws IOException {
+          Object deserialized = null;
           JsonElement jsonElement = elementAdapter.read(in);
-          validateJsonElement(jsonElement);
-          return thisAdapter.fromJsonTree(jsonElement);
-        }
 
+          JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+          // use discriminator value for faster oneOf lookup
+          MappingAttribute newMappingAttribute = new MappingAttribute();
+          if (jsonObject.get("sourceType") == null) {
+            log.log(Level.WARNING,
+                "Failed to lookup discriminator value for MappingAttribute as `sourceType` was not found in the payload or the payload is empty.");
+          } else {
+            // look up the discriminator value in the field `sourceType`
+            switch (jsonObject.get("sourceType").getAsString()) {
+              case "AI_PROMPT_RESULT":
+                deserialized = adapterMappingAttributeAiPromptResult.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "CONTENT":
+                deserialized = adapterMappingAttributeContent.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "CONTENT_KEY_VALUE":
+                deserialized = adapterMappingAttributeContent.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "DATA_CLASSIFICATION":
+                deserialized = adapterMappingAttributeDataClassification.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "MALWARE_SCAN":
+                deserialized = adapterMappingAttributeMalwareScan.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "MANUAL":
+                deserialized = adapterMappingAttributeManual.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "METADATA":
+                deserialized = adapterMappingAttributeMetadata.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              case "METADATA_EXTRACTION_RESULT":
+                deserialized =
+                    adapterMappingAttributeMetadataExtractionResult.fromJsonTree(jsonObject);
+                newMappingAttribute.setActualInstance(deserialized);
+                return newMappingAttribute;
+              default:
+                log.log(Level.WARNING, String.format(java.util.Locale.ROOT,
+                    "Failed to lookup discriminator value `%s` for MappingAttribute. Possible values: AI_PROMPT_RESULT CONTENT CONTENT_KEY_VALUE DATA_CLASSIFICATION MALWARE_SCAN MANUAL METADATA METADATA_EXTRACTION_RESULT",
+                    jsonObject.get("sourceType").getAsString()));
+            }
+          }
+
+          int match = 0;
+          ArrayList<String> errorMessages = new ArrayList<>();
+          TypeAdapter actualAdapter = elementAdapter;
+
+          // deserialize MappingAttributeContent
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeContent.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeContent;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeContent'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeContent failed with `%s`.", e.getMessage()));
+            log.log(Level.FINER, "Input data does not match schema 'MappingAttributeContent'", e);
+          }
+          // deserialize MappingAttributeMetadata
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeMetadata.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeMetadata;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeMetadata'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeMetadata failed with `%s`.", e.getMessage()));
+            log.log(Level.FINER, "Input data does not match schema 'MappingAttributeMetadata'", e);
+          }
+          // deserialize MappingAttributeManual
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeManual.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeManual;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeManual'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeManual failed with `%s`.", e.getMessage()));
+            log.log(Level.FINER, "Input data does not match schema 'MappingAttributeManual'", e);
+          }
+          // deserialize MappingAttributeDataClassification
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeDataClassification.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeDataClassification;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeDataClassification'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeDataClassification failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'MappingAttributeDataClassification'", e);
+          }
+          // deserialize MappingAttributeMetadataExtractionResult
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeMetadataExtractionResult.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeMetadataExtractionResult;
+            match++;
+            log.log(Level.FINER,
+                "Input data matches schema 'MappingAttributeMetadataExtractionResult'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeMetadataExtractionResult failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'MappingAttributeMetadataExtractionResult'", e);
+          }
+          // deserialize MappingAttributeAiPromptResult
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeAiPromptResult.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeAiPromptResult;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeAiPromptResult'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeAiPromptResult failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'MappingAttributeAiPromptResult'", e);
+          }
+          // deserialize MappingAttributeMalwareScan
+          try {
+            // validate the JSON object to see if any exception is thrown
+            MappingAttributeMalwareScan.validateJsonElement(jsonElement);
+            actualAdapter = adapterMappingAttributeMalwareScan;
+            match++;
+            log.log(Level.FINER, "Input data matches schema 'MappingAttributeMalwareScan'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for MappingAttributeMalwareScan failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER, "Input data does not match schema 'MappingAttributeMalwareScan'",
+                e);
+          }
+
+          if (match == 1) {
+            MappingAttribute ret = new MappingAttribute();
+            ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+            return ret;
+          }
+
+          throw new IOException(String.format(java.util.Locale.ROOT,
+              "Failed deserialization for MappingAttribute: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
+              match, errorMessages, jsonElement.toString()));
+        }
       }.nullSafe();
+    }
+  }
+
+  // store a list of schema names defined in oneOf
+  public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+  public MappingAttribute() {
+    super("oneOf", Boolean.FALSE);
+  }
+
+  public MappingAttribute(Object o) {
+    super("oneOf", Boolean.FALSE);
+    setActualInstance(o);
+  }
+
+  static {
+    schemas.put("MappingAttributeContent", MappingAttributeContent.class);
+    schemas.put("MappingAttributeMetadata", MappingAttributeMetadata.class);
+    schemas.put("MappingAttributeManual", MappingAttributeManual.class);
+    schemas.put("MappingAttributeDataClassification", MappingAttributeDataClassification.class);
+    schemas.put("MappingAttributeMetadataExtractionResult",
+        MappingAttributeMetadataExtractionResult.class);
+    schemas.put("MappingAttributeAiPromptResult", MappingAttributeAiPromptResult.class);
+    schemas.put("MappingAttributeMalwareScan", MappingAttributeMalwareScan.class);
+  }
+
+  @Override
+  public Map<String, Class<?>> getSchemas() {
+    return MappingAttribute.schemas;
+  }
+
+  /**
+   * Set the instance that matches the oneOf child schema, check the instance parameter is valid
+   * against the oneOf child schemas: MappingAttributeAiPromptResult, MappingAttributeContent,
+   * MappingAttributeDataClassification, MappingAttributeMalwareScan, MappingAttributeManual,
+   * MappingAttributeMetadata, MappingAttributeMetadataExtractionResult
+   *
+   * It could be an instance of the 'oneOf' schemas.
+   */
+  @Override
+  public void setActualInstance(Object instance) {
+    if (instance instanceof MappingAttributeContent) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeMetadata) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeManual) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeDataClassification) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeMetadataExtractionResult) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeAiPromptResult) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    if (instance instanceof MappingAttributeMalwareScan) {
+      super.setActualInstance(instance);
+      return;
+    }
+
+    throw new RuntimeException(
+        "Invalid instance type. Must be MappingAttributeAiPromptResult, MappingAttributeContent, MappingAttributeDataClassification, MappingAttributeMalwareScan, MappingAttributeManual, MappingAttributeMetadata, MappingAttributeMetadataExtractionResult");
+  }
+
+  /**
+   * Get the actual instance, which can be the following: MappingAttributeAiPromptResult,
+   * MappingAttributeContent, MappingAttributeDataClassification, MappingAttributeMalwareScan,
+   * MappingAttributeManual, MappingAttributeMetadata, MappingAttributeMetadataExtractionResult
+   *
+   * @return The actual instance (MappingAttributeAiPromptResult, MappingAttributeContent,
+   *         MappingAttributeDataClassification, MappingAttributeMalwareScan,
+   *         MappingAttributeManual, MappingAttributeMetadata,
+   *         MappingAttributeMetadataExtractionResult)
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public Object getActualInstance() {
+    return super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeContent`. If the actual instance is not
+   * `MappingAttributeContent`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeContent`
+   * @throws ClassCastException if the instance is not `MappingAttributeContent`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeContent getMappingAttributeContent() throws ClassCastException {
+    return (MappingAttributeContent) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeMetadata`. If the actual instance is not
+   * `MappingAttributeMetadata`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeMetadata`
+   * @throws ClassCastException if the instance is not `MappingAttributeMetadata`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeMetadata getMappingAttributeMetadata() throws ClassCastException {
+    return (MappingAttributeMetadata) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeManual`. If the actual instance is not
+   * `MappingAttributeManual`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeManual`
+   * @throws ClassCastException if the instance is not `MappingAttributeManual`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeManual getMappingAttributeManual() throws ClassCastException {
+    return (MappingAttributeManual) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeDataClassification`. If the actual instance is not
+   * `MappingAttributeDataClassification`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeDataClassification`
+   * @throws ClassCastException if the instance is not `MappingAttributeDataClassification`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeDataClassification getMappingAttributeDataClassification()
+      throws ClassCastException {
+    return (MappingAttributeDataClassification) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeMetadataExtractionResult`. If the actual instance
+   * is not `MappingAttributeMetadataExtractionResult`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeMetadataExtractionResult`
+   * @throws ClassCastException if the instance is not `MappingAttributeMetadataExtractionResult`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeMetadataExtractionResult getMappingAttributeMetadataExtractionResult()
+      throws ClassCastException {
+    return (MappingAttributeMetadataExtractionResult) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeAiPromptResult`. If the actual instance is not
+   * `MappingAttributeAiPromptResult`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeAiPromptResult`
+   * @throws ClassCastException if the instance is not `MappingAttributeAiPromptResult`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeAiPromptResult getMappingAttributeAiPromptResult()
+      throws ClassCastException {
+    return (MappingAttributeAiPromptResult) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `MappingAttributeMalwareScan`. If the actual instance is not
+   * `MappingAttributeMalwareScan`, the ClassCastException will be thrown.
+   *
+   * @return The actual instance of `MappingAttributeMalwareScan`
+   * @throws ClassCastException if the instance is not `MappingAttributeMalwareScan`
+   */
+  @SuppressWarnings("unchecked")
+  public MappingAttributeMalwareScan getMappingAttributeMalwareScan() throws ClassCastException {
+    return (MappingAttributeMalwareScan) super.getActualInstance();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MappingAttribute
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    JsonObject jsonObject = jsonElement.getAsJsonObject();
+    JsonElement discriminatorElement = jsonObject.get("sourceType");
+
+    if (discriminatorElement == null || discriminatorElement.isJsonNull()) {
+      throw new IOException(String.format(java.util.Locale.ROOT,
+          "Failed to lookup discriminator value for MappingAttribute as `sourceType` was not found in the payload or the payload is empty. JSON: %s",
+          jsonElement.toString()));
+    }
+
+    if (!discriminatorElement.isJsonPrimitive()) {
+      throw new IOException(String.format(java.util.Locale.ROOT,
+          "Expected discriminator field `sourceType` for MappingAttribute to be a primitive value. JSON: %s",
+          jsonElement.toString()));
+    }
+
+    String discriminatorValue = discriminatorElement.getAsString();
+    switch (discriminatorValue) {
+      case "CONTENT":
+      case "CONTENT_KEY_VALUE":
+        MappingAttributeContent.validateJsonElement(jsonElement);
+        return;
+      case "DATA_CLASSIFICATION":
+        MappingAttributeDataClassification.validateJsonElement(jsonElement);
+        return;
+      case "MALWARE_SCAN":
+        MappingAttributeMalwareScan.validateJsonElement(jsonElement);
+        return;
+      case "MANUAL":
+        MappingAttributeManual.validateJsonElement(jsonElement);
+        return;
+      case "METADATA":
+        MappingAttributeMetadata.validateJsonElement(jsonElement);
+        return;
+      case "METADATA_EXTRACTION_RESULT":
+        MappingAttributeMetadataExtractionResult.validateJsonElement(jsonElement);
+        return;
+      case "AI_PROMPT_RESULT":
+        MappingAttributeAiPromptResult.validateJsonElement(jsonElement);
+        return;
+      default:
+        throw new IOException(String.format(java.util.Locale.ROOT,
+            "Failed to lookup discriminator value `%s` for MappingAttribute. Possible values: CONTENT CONTENT_KEY_VALUE DATA_CLASSIFICATION MALWARE_SCAN MANUAL METADATA METADATA_EXTRACTION_RESULT AI_PROMPT_RESULT",
+            discriminatorValue));
     }
   }
 

@@ -17,6 +17,7 @@
 |**userId** | **String** | User who added attribute |  [optional] |
 |**valueType** | **AttributeValueType** |  |  [optional] |
 |**entity** | [**Entity**](Entity.md) |  |  [optional] |
+|**entities** | [**List&lt;Entity&gt;**](Entity.md) | Attribute with entity values |  [optional] |
 
 
 

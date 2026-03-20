@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 
 <a id="deleteDocumentVersion"></a>
 # **deleteDocumentVersion**
-> DeleteResponse deleteDocumentVersion(documentId, versionKey, siteId, shareKey)
+> DeleteResponse deleteDocumentVersion(documentId, versionKey, siteId, artifactId, shareKey)
 
 Delete document version
 
@@ -38,9 +38,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
     try {
-      DeleteResponse result = apiInstance.deleteDocumentVersion(documentId, versionKey, siteId, shareKey);
+      DeleteResponse result = apiInstance.deleteDocumentVersion(documentId, versionKey, siteId, artifactId, shareKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#deleteDocumentVersion");
@@ -60,6 +61,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **versionKey** | **String**| Version Key (version key required URL encoding) | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 
 ### Return type
@@ -82,7 +84,7 @@ No authorization required
 
 <a id="getDocumentVersions"></a>
 # **getDocumentVersions**
-> GetDocumentVersionsResponse getDocumentVersions(documentId, siteId, limit, shareKey, next)
+> GetDocumentVersionsResponse getDocumentVersions(documentId, siteId, artifactId, limit, shareKey, next)
 
 Get document&#39;s versions
 
@@ -108,11 +110,12 @@ public class Example {
     DocumentVersionsApi apiInstance = new DocumentVersionsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String limit = "10"; // String | Limit Results
     String shareKey = "shareKey_example"; // String | Share Identifier
     String next = "next_example"; // String | Next page of results token
     try {
-      GetDocumentVersionsResponse result = apiInstance.getDocumentVersions(documentId, siteId, limit, shareKey, next);
+      GetDocumentVersionsResponse result = apiInstance.getDocumentVersions(documentId, siteId, artifactId, limit, shareKey, next);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#getDocumentVersions");
@@ -131,6 +134,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **shareKey** | **String**| Share Identifier | [optional] |
 | **next** | **String**| Next page of results token | [optional] |
@@ -155,7 +159,7 @@ No authorization required
 
 <a id="setDocumentVersion"></a>
 # **setDocumentVersion**
-> SetDocumentVersionResponse setDocumentVersion(documentId, setDocumentVersionRequest, siteId)
+> SetDocumentVersionResponse setDocumentVersion(documentId, setDocumentVersionRequest, siteId, artifactId)
 
 Set version of document
 
@@ -182,8 +186,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     SetDocumentVersionRequest setDocumentVersionRequest = new SetDocumentVersionRequest(); // SetDocumentVersionRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      SetDocumentVersionResponse result = apiInstance.setDocumentVersion(documentId, setDocumentVersionRequest, siteId);
+      SetDocumentVersionResponse result = apiInstance.setDocumentVersion(documentId, setDocumentVersionRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentVersionsApi#setDocumentVersion");
@@ -203,6 +208,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **setDocumentVersionRequest** | [**SetDocumentVersionRequest**](SetDocumentVersionRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

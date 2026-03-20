@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**position** | **DocumentGenerateInsertDocumentPosition** |  |  |
 |**documentId** | **String** | Document Identifier of the data source document |  |
+|**artifactId** | **String** | Document Artifact Identifier of the data source document |  [optional] |
 
 
 

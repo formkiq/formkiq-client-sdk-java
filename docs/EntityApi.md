@@ -13,6 +13,8 @@ All URIs are relative to *http://localhost*
 | [**getEntity**](EntityApi.md#getEntity) | **GET** /entities/{entityTypeId}/{entityId} | Get Entity |
 | [**getEntityType**](EntityApi.md#getEntityType) | **GET** /entityTypes/{entityTypeId} | Get EntityType |
 | [**getEntityTypes**](EntityApi.md#getEntityTypes) | **GET** /entityTypes | Get EntityTypes |
+| [**setEntity**](EntityApi.md#setEntity) | **PUT** /entities/{entityTypeId}/{entityId} | Set Entity |
+| [**setEntityType**](EntityApi.md#setEntityType) | **PUT** /entityTypes/{entityTypeId} | Set EntityType |
 | [**updateEntity**](EntityApi.md#updateEntity) | **PATCH** /entities/{entityTypeId}/{entityId} | Update Entity |
 
 
@@ -646,6 +648,154 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setEntity"></a>
+# **setEntity**
+> SetResponse setEntity(entityTypeId, entityId, setEntityRequest, siteId, namespace, createIfMissing)
+
+Set Entity
+
+Sets a Entity
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.EntityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    EntityApi apiInstance = new EntityApi(defaultClient);
+    String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
+    String entityId = "entityId_example"; // String | Entity Identifier
+    SetEntityRequest setEntityRequest = new SetEntityRequest(); // SetEntityRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    String namespace = "PRESET"; // String | Namespace Identifier
+    Boolean createIfMissing = false; // Boolean | When true, skip checking whether the resource exists before setting it
+    try {
+      SetResponse result = apiInstance.setEntity(entityTypeId, entityId, setEntityRequest, siteId, namespace, createIfMissing);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EntityApi#setEntity");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityTypeId** | **String**| EntityType Identifier | |
+| **entityId** | **String**| Entity Identifier | |
+| **setEntityRequest** | [**SetEntityRequest**](SetEntityRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **namespace** | **String**| Namespace Identifier | [optional] [enum: PRESET, CUSTOM] |
+| **createIfMissing** | **Boolean**| When true, skip checking whether the resource exists before setting it | [optional] [default to false] |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
+
+<a id="setEntityType"></a>
+# **setEntityType**
+> SetResponse setEntityType(entityTypeId, setEntityTypeRequest, siteId, createIfMissing)
+
+Set EntityType
+
+Sets a Entity Type
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.EntityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    EntityApi apiInstance = new EntityApi(defaultClient);
+    String entityTypeId = "entityTypeId_example"; // String | EntityType Identifier
+    SetEntityTypeRequest setEntityTypeRequest = new SetEntityTypeRequest(); // SetEntityTypeRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    Boolean createIfMissing = false; // Boolean | When true, skip checking whether the resource exists before setting it
+    try {
+      SetResponse result = apiInstance.setEntityType(entityTypeId, setEntityTypeRequest, siteId, createIfMissing);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EntityApi#setEntityType");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **entityTypeId** | **String**| EntityType Identifier | |
+| **setEntityTypeRequest** | [**SetEntityTypeRequest**](SetEntityTypeRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **createIfMissing** | **Boolean**| When true, skip checking whether the resource exists before setting it | [optional] [default to false] |
+
+### Return type
+
+[**SetResponse**](SetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
 
 <a id="updateEntity"></a>
 # **updateEntity**

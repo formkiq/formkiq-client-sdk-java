@@ -118,7 +118,8 @@ public class MappingsApiTest {
     String mappingId = null;
     SetMappingRequest setMappingRequest = null;
     String siteId = null;
-    SetResponse response = api.setMapping(mappingId, setMappingRequest, siteId);
+    Boolean createIfMissing = null;
+    SetResponse response = api.setMapping(mappingId, setMappingRequest, siteId, createIfMissing);
     // TODO: test validations
   }
 

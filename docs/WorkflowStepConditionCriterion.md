@@ -2,7 +2,7 @@
 
 # WorkflowStepConditionCriterion
 
-A single criterion used to evaluate whether a workflow condition matches.  A criterion compares a document-derived source value against one or more provided values using the specified operator.  Supported sources include: - document attributes - document content type - document path  Typical examples: - attribute `status` equals `approved` - attribute `amount` greater than `1000` - content type equals `application/pdf` - path contains `/invoices/`  Use the appropriate typed value field for the comparison: - `stringValue` for string comparisons - `numberValue` for numeric comparisons - `booleanValue` for boolean comparisons - `stringValues` for multi-value comparisons such as `IN` and `NOT_IN` 
+A single criterion used to evaluate whether a workflow condition matches.  A criterion compares a document-derived source value against one or more provided values using the specified operator.  Supported sources include: - document attributes - document attribute value comparisons - document content type - document path  Typical examples: - attribute `status` equals `approved` - attribute `amount` greater than `1000` - attribute `invoiceTotal` equals attribute `approvedTotal` - attribute `invoiceTotal` equals the sum of attribute `lineItemAmount` - content type equals `application/pdf` - path contains `/invoices/`  Use the appropriate typed value field for the comparison: - `stringValue` for string comparisons - `numberValue` for numeric comparisons - `booleanValue` for boolean comparisons - `stringValues` for multi-value comparisons such as `IN` and `NOT_IN`  Literal value fields should be omitted when `source` is an attribute value comparison. 
 
 ## Properties
 

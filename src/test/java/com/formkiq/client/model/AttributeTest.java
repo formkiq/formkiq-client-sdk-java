@@ -72,6 +72,14 @@ public class AttributeTest {
   }
 
   /**
+   * Test the property 'validationRegex'
+   */
+  @Test
+  public void validationRegexTest() {
+    // TODO: test validationRegex
+  }
+
+  /**
    * Test the property 'watermark'
    */
   @Test

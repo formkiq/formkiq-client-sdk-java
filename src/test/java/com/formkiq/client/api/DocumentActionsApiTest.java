@@ -53,12 +53,14 @@ public class DocumentActionsApiTest {
    * tesseract or textract | | OCR | ocrOutputType | Convert OCR result to an Output format
    * (textract table only) | true | | OCR | ocrNumberOfPages | Number of pages to OCR (from start) |
    * -1 | | OCR | addPdfDetectedCharactersAsText | PDF Documents convert images to text | true or
-   * false | | DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | |
-   * METADATA_EXTRACTION | llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM | checksumType
-   * | Checksum algorithm to calculate and persist for the document | SHA1 or SHA256 | | FULLTEXT |
-   * characterMax | Maximum number of characters to add to Fulltext destination | -1 | |
-   * DOCUMENTTAGGING | engine | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags |
-   * Comma-deliminted list of keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * false | | LLMPROMPT | llmPromptEntityName | LLM Prompt Entity Name | | LLMPROMPT | modelId |
+   * Override the LLM Prompt Entity model id for this action | | DATA_CLASSIFICATION |
+   * llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION | llmPromptEntityName |
+   * LLM Prompt Entity Name | | CHECKSUM | checksumType | Checksum algorithm to calculate and
+   * persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax | Maximum number
+   * of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging Engine
+   * to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of keywords |
+   * author,title,description | | WEBHOOK | url | Webhook URL |
    * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
@@ -77,8 +79,10 @@ public class DocumentActionsApiTest {
   public void addDocumentActionsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentActionsRequest addDocumentActionsRequest = null;
-    AddResponse response = api.addDocumentActions(documentId, siteId, addDocumentActionsRequest);
+    AddResponse response =
+        api.addDocumentActions(documentId, siteId, artifactId, addDocumentActionsRequest);
     // TODO: test validations
   }
 
@@ -94,7 +98,8 @@ public class DocumentActionsApiTest {
   public void addDocumentRetryActionTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    AddResponse response = api.addDocumentRetryAction(documentId, siteId);
+    String artifactId = null;
+    AddResponse response = api.addDocumentRetryAction(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -109,11 +114,12 @@ public class DocumentActionsApiTest {
   public void getDocumentActionsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String shareKey = null;
     String next = null;
     GetDocumentActionsResponse response =
-        api.getDocumentActions(documentId, siteId, limit, shareKey, next);
+        api.getDocumentActions(documentId, siteId, artifactId, limit, shareKey, next);
     // TODO: test validations
   }
 

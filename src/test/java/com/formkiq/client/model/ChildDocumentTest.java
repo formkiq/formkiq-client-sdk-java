@@ -20,13 +20,16 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -109,6 +112,14 @@ public class ChildDocumentTest {
   }
 
   /**
+   * Test the property 'hasArtifacts'
+   */
+  @Test
+  public void hasArtifactsTest() {
+    // TODO: test hasArtifacts
+  }
+
+  /**
    * Test the property 'contentType'
    */
   @Test
@@ -146,6 +157,14 @@ public class ChildDocumentTest {
   @Test
   public void belongsToDocumentIdTest() {
     // TODO: test belongsToDocumentId
+  }
+
+  /**
+   * Test the property 'attributes'
+   */
+  @Test
+  public void attributesTest() {
+    // TODO: test attributes
   }
 
 }

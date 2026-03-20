@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
@@ -61,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -118,6 +119,11 @@ public class AddChildDocument {
   @SerializedName(SERIALIZED_NAME_METADATA)
   @javax.annotation.Nullable
   private List<AddDocumentMetadata> metadata = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
+  private List<AddDocumentAttribute> attributes = new ArrayList<>();
 
   public AddChildDocument() {}
 
@@ -357,6 +363,35 @@ public class AddChildDocument {
   }
 
 
+  public AddChildDocument attributes(
+      @javax.annotation.Nullable List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public AddChildDocument addAttributesItem(AddDocumentAttribute attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
+    this.attributes.add(attributesItem);
+    return this;
+  }
+
+  /**
+   * List of Attributes to add to document
+   * 
+   * @return attributes
+   */
+  @javax.annotation.Nullable
+  public List<AddDocumentAttribute> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(@javax.annotation.Nullable List<AddDocumentAttribute> attributes) {
+    this.attributes = attributes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -377,13 +412,14 @@ public class AddChildDocument {
         && Objects.equals(this.isBase64, addChildDocument.isBase64)
         && Objects.equals(this.content, addChildDocument.content)
         && Objects.equals(this.tags, addChildDocument.tags)
-        && Objects.equals(this.metadata, addChildDocument.metadata);
+        && Objects.equals(this.metadata, addChildDocument.metadata)
+        && Objects.equals(this.attributes, addChildDocument.attributes);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(path, width, height, deepLinkPath, contentType, checksumType, checksum,
-        isBase64, content, tags, metadata);
+        isBase64, content, tags, metadata, attributes);
   }
 
   @Override
@@ -401,6 +437,7 @@ public class AddChildDocument {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -409,10 +446,7 @@ public class AddChildDocument {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -421,8 +455,9 @@ public class AddChildDocument {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("path", "width", "height", "deepLinkPath",
-        "contentType", "checksumType", "checksum", "isBase64", "content", "tags", "metadata"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("path", "width", "height", "deepLinkPath", "contentType",
+            "checksumType", "checksum", "isBase64", "content", "tags", "metadata", "attributes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("content"));
@@ -537,6 +572,22 @@ public class AddChildDocument {
         // validate the optional field `metadata` (array)
         for (int i = 0; i < jsonArraymetadata.size(); i++) {
           AddDocumentMetadata.validateJsonElement(jsonArraymetadata.get(i));
+        } ;
+      }
+    }
+    if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+      if (jsonArrayattributes != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("attributes").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+              "Expected the field `attributes` to be an array in the JSON string but got `%s`",
+              jsonObj.get("attributes").toString()));
+        }
+
+        // validate the optional field `attributes` (array)
+        for (int i = 0; i < jsonArrayattributes.size(); i++) {
+          AddDocumentAttribute.validateJsonElement(jsonArrayattributes.get(i));
         } ;
       }
     }

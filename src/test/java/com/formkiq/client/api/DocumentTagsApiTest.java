@@ -27,8 +27,10 @@ import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetDocumentTagResponse;
 import com.formkiq.client.model.GetDocumentTagsResponse;
 import com.formkiq.client.model.SetDocumentTagKeyRequest;
+import com.formkiq.client.model.SetResponse;
 import com.formkiq.client.model.UpdateMatchingDocumentTagsRequest;
 import com.formkiq.client.model.UpdateMatchingDocumentTagsResponse;
+import com.formkiq.client.model.UpdateResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +60,9 @@ public class DocumentTagsApiTest {
     String documentId = null;
     AddDocumentTagsRequest addDocumentTagsRequest = null;
     String siteId = null;
-    AddResponse response = api.addDocumentTags(documentId, addDocumentTagsRequest, siteId);
+    String artifactId = null;
+    AddResponse response =
+        api.addDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -74,7 +78,8 @@ public class DocumentTagsApiTest {
     String documentId = null;
     String tagKey = null;
     String siteId = null;
-    DeleteResponse response = api.deleteDocumentTag(documentId, tagKey, siteId);
+    String artifactId = null;
+    DeleteResponse response = api.deleteDocumentTag(documentId, tagKey, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -92,9 +97,10 @@ public class DocumentTagsApiTest {
     String tagKey = null;
     String tagValue = null;
     String siteId = null;
+    String artifactId = null;
     String shareKey = null;
     DeleteResponse response =
-        api.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, shareKey);
+        api.deleteDocumentTagAndValue(documentId, tagKey, tagValue, siteId, artifactId, shareKey);
     // TODO: test validations
   }
 
@@ -110,8 +116,10 @@ public class DocumentTagsApiTest {
     String documentId = null;
     String tagKey = null;
     String siteId = null;
+    String artifactId = null;
     String shareKey = null;
-    GetDocumentTagResponse response = api.getDocumentTag(documentId, tagKey, siteId, shareKey);
+    GetDocumentTagResponse response =
+        api.getDocumentTag(documentId, tagKey, siteId, artifactId, shareKey);
     // TODO: test validations
   }
 
@@ -126,12 +134,13 @@ public class DocumentTagsApiTest {
   public void getDocumentTagsTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String limit = null;
     String shareKey = null;
     String next = null;
     String previous = null;
     GetDocumentTagsResponse response =
-        api.getDocumentTags(documentId, siteId, limit, shareKey, next, previous);
+        api.getDocumentTags(documentId, siteId, artifactId, limit, shareKey, next, previous);
     // TODO: test validations
   }
 
@@ -149,7 +158,9 @@ public class DocumentTagsApiTest {
     String tagKey = null;
     SetDocumentTagKeyRequest setDocumentTagKeyRequest = null;
     String siteId = null;
-    api.setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId);
+    String artifactId = null;
+    UpdateResponse response =
+        api.setDocumentTag(documentId, tagKey, setDocumentTagKeyRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -166,7 +177,9 @@ public class DocumentTagsApiTest {
     String documentId = null;
     AddDocumentTagsRequest addDocumentTagsRequest = null;
     String siteId = null;
-    api.setDocumentTags(documentId, addDocumentTagsRequest, siteId);
+    String artifactId = null;
+    SetResponse response =
+        api.setDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -183,7 +196,9 @@ public class DocumentTagsApiTest {
     String documentId = null;
     AddDocumentTagsRequest addDocumentTagsRequest = null;
     String siteId = null;
-    api.updateDocumentTags(documentId, addDocumentTagsRequest, siteId);
+    String artifactId = null;
+    UpdateResponse response =
+        api.updateDocumentTags(documentId, addDocumentTagsRequest, siteId, artifactId);
     // TODO: test validations
   }
 

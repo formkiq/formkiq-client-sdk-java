@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocumentsCompressDocument;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,14 +45,6 @@ public class DocumentsCompressRequestTest {
   @Test
   public void testDocumentsCompressRequest() {
     // TODO: test DocumentsCompressRequest
-  }
-
-  /**
-   * Test the property 'documentIds'
-   */
-  @Test
-  public void documentIdsTest() {
-    // TODO: test documentIds
   }
 
 }

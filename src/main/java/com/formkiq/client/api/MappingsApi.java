@@ -886,6 +886,8 @@ public class MappingsApi {
    * @param mappingId Mapping Identifier (required)
    * @param setMappingRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param createIfMissing When true, skip checking whether the resource exists before setting it
+   *        (optional, default to false)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -914,7 +916,8 @@ public class MappingsApi {
    */
   public okhttp3.Call setMappingCall(@javax.annotation.Nonnull String mappingId,
       @javax.annotation.Nonnull SetMappingRequest setMappingRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean createIfMissing,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -944,6 +947,11 @@ public class MappingsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (createIfMissing != null) {
+      localVarQueryParams
+          .addAll(localVarApiClient.parameterToPair("createIfMissing", createIfMissing));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -966,7 +974,8 @@ public class MappingsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call setMappingValidateBeforeCall(@javax.annotation.Nonnull String mappingId,
       @javax.annotation.Nonnull SetMappingRequest setMappingRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean createIfMissing,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'mappingId' is set
     if (mappingId == null) {
       throw new ApiException(
@@ -979,7 +988,7 @@ public class MappingsApi {
           "Missing the required parameter 'setMappingRequest' when calling setMapping(Async)");
     }
 
-    return setMappingCall(mappingId, setMappingRequest, siteId, _callback);
+    return setMappingCall(mappingId, setMappingRequest, siteId, createIfMissing, _callback);
 
   }
 
@@ -989,6 +998,8 @@ public class MappingsApi {
    * @param mappingId Mapping Identifier (required)
    * @param setMappingRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param createIfMissing When true, skip checking whether the resource exists before setting it
+   *        (optional, default to false)
    * @return SetResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1017,9 +1028,10 @@ public class MappingsApi {
    */
   public SetResponse setMapping(@javax.annotation.Nonnull String mappingId,
       @javax.annotation.Nonnull SetMappingRequest setMappingRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean createIfMissing)
+      throws ApiException {
     ApiResponse<SetResponse> localVarResp =
-        setMappingWithHttpInfo(mappingId, setMappingRequest, siteId);
+        setMappingWithHttpInfo(mappingId, setMappingRequest, siteId, createIfMissing);
     return localVarResp.getData();
   }
 
@@ -1029,6 +1041,8 @@ public class MappingsApi {
    * @param mappingId Mapping Identifier (required)
    * @param setMappingRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param createIfMissing When true, skip checking whether the resource exists before setting it
+   *        (optional, default to false)
    * @return ApiResponse&lt;SetResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1057,9 +1071,10 @@ public class MappingsApi {
    */
   public ApiResponse<SetResponse> setMappingWithHttpInfo(@javax.annotation.Nonnull String mappingId,
       @javax.annotation.Nonnull SetMappingRequest setMappingRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean createIfMissing)
+      throws ApiException {
     okhttp3.Call localVarCall =
-        setMappingValidateBeforeCall(mappingId, setMappingRequest, siteId, null);
+        setMappingValidateBeforeCall(mappingId, setMappingRequest, siteId, createIfMissing, null);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -1070,6 +1085,8 @@ public class MappingsApi {
    * @param mappingId Mapping Identifier (required)
    * @param setMappingRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param createIfMissing When true, skip checking whether the resource exists before setting it
+   *        (optional, default to false)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1098,11 +1115,11 @@ public class MappingsApi {
    */
   public okhttp3.Call setMappingAsync(@javax.annotation.Nonnull String mappingId,
       @javax.annotation.Nonnull SetMappingRequest setMappingRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback<SetResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable Boolean createIfMissing,
+      final ApiCallback<SetResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        setMappingValidateBeforeCall(mappingId, setMappingRequest, siteId, _callback);
+    okhttp3.Call localVarCall = setMappingValidateBeforeCall(mappingId, setMappingRequest, siteId,
+        createIfMissing, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

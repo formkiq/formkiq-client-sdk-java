@@ -284,7 +284,7 @@ No authorization required
 
 <a id="setMapping"></a>
 # **setMapping**
-> SetResponse setMapping(mappingId, setMappingRequest, siteId)
+> SetResponse setMapping(mappingId, setMappingRequest, siteId, createIfMissing)
 
 Set Mapping
 
@@ -311,8 +311,9 @@ public class Example {
     String mappingId = "mappingId_example"; // String | Mapping Identifier
     SetMappingRequest setMappingRequest = new SetMappingRequest(); // SetMappingRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    Boolean createIfMissing = false; // Boolean | When true, skip checking whether the resource exists before setting it
     try {
-      SetResponse result = apiInstance.setMapping(mappingId, setMappingRequest, siteId);
+      SetResponse result = apiInstance.setMapping(mappingId, setMappingRequest, siteId, createIfMissing);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MappingsApi#setMapping");
@@ -332,6 +333,7 @@ public class Example {
 | **mappingId** | **String**| Mapping Identifier | |
 | **setMappingRequest** | [**SetMappingRequest**](SetMappingRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **createIfMissing** | **Boolean**| When true, skip checking whether the resource exists before setting it | [optional] [default to false] |
 
 ### Return type
 

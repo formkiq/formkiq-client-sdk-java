@@ -57,8 +57,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentWorkflow
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class DocumentWorkflow {
   public static final String SERIALIZED_NAME_WORKFLOW_ID = "workflowId";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_ID)
@@ -79,6 +79,16 @@ public class DocumentWorkflow {
   @SerializedName(SERIALIZED_NAME_CURRENT_STEP_ID)
   @javax.annotation.Nullable
   private String currentStepId;
+
+  public static final String SERIALIZED_NAME_ACTION_COUNT = "actionCount";
+  @SerializedName(SERIALIZED_NAME_ACTION_COUNT)
+  @javax.annotation.Nullable
+  private Integer actionCount;
+
+  public static final String SERIALIZED_NAME_COMPLETED_ACTION_COUNT = "completedActionCount";
+  @SerializedName(SERIALIZED_NAME_COMPLETED_ACTION_COUNT)
+  @javax.annotation.Nullable
+  private Integer completedActionCount;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -172,6 +182,47 @@ public class DocumentWorkflow {
   }
 
 
+  public DocumentWorkflow actionCount(@javax.annotation.Nullable Integer actionCount) {
+    this.actionCount = actionCount;
+    return this;
+  }
+
+  /**
+   * Number of actions added for the current workflow step
+   * 
+   * @return actionCount
+   */
+  @javax.annotation.Nullable
+  public Integer getActionCount() {
+    return actionCount;
+  }
+
+  public void setActionCount(@javax.annotation.Nullable Integer actionCount) {
+    this.actionCount = actionCount;
+  }
+
+
+  public DocumentWorkflow completedActionCount(
+      @javax.annotation.Nullable Integer completedActionCount) {
+    this.completedActionCount = completedActionCount;
+    return this;
+  }
+
+  /**
+   * Number of completed actions for the current workflow step
+   * 
+   * @return completedActionCount
+   */
+  @javax.annotation.Nullable
+  public Integer getCompletedActionCount() {
+    return completedActionCount;
+  }
+
+  public void setCompletedActionCount(@javax.annotation.Nullable Integer completedActionCount) {
+    this.completedActionCount = completedActionCount;
+  }
+
+
   public DocumentWorkflow status(@javax.annotation.Nullable DocumentWorkflowStatus status) {
     this.status = status;
     return this;
@@ -226,13 +277,16 @@ public class DocumentWorkflow {
         && Objects.equals(this.name, documentWorkflow.name)
         && Objects.equals(this.description, documentWorkflow.description)
         && Objects.equals(this.currentStepId, documentWorkflow.currentStepId)
+        && Objects.equals(this.actionCount, documentWorkflow.actionCount)
+        && Objects.equals(this.completedActionCount, documentWorkflow.completedActionCount)
         && Objects.equals(this.status, documentWorkflow.status)
         && Objects.equals(this.insertedDate, documentWorkflow.insertedDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowId, name, description, currentStepId, status, insertedDate);
+    return Objects.hash(workflowId, name, description, currentStepId, actionCount,
+        completedActionCount, status, insertedDate);
   }
 
   @Override
@@ -243,6 +297,9 @@ public class DocumentWorkflow {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    currentStepId: ").append(toIndentedString(currentStepId)).append("\n");
+    sb.append("    actionCount: ").append(toIndentedString(actionCount)).append("\n");
+    sb.append("    completedActionCount: ").append(toIndentedString(completedActionCount))
+        .append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("}");
@@ -253,10 +310,7 @@ public class DocumentWorkflow {
    * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -266,7 +320,7 @@ public class DocumentWorkflow {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("workflowId", "name", "description",
-        "currentStepId", "status", "insertedDate"));
+        "currentStepId", "actionCount", "completedActionCount", "status", "insertedDate"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);

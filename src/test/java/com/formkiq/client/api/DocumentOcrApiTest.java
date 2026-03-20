@@ -55,8 +55,10 @@ public class DocumentOcrApiTest {
   public void addDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     AddDocumentOcrRequest addDocumentOcrRequest = null;
-    AddDocumentOcrResponse response = api.addDocumentOcr(documentId, siteId, addDocumentOcrRequest);
+    AddDocumentOcrResponse response =
+        api.addDocumentOcr(documentId, siteId, artifactId, addDocumentOcrRequest);
     // TODO: test validations
   }
 
@@ -73,7 +75,8 @@ public class DocumentOcrApiTest {
   public void deleteDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
-    DeleteResponse response = api.deleteDocumentOcr(documentId, siteId);
+    String artifactId = null;
+    DeleteResponse response = api.deleteDocumentOcr(documentId, siteId, artifactId);
     // TODO: test validations
   }
 
@@ -90,12 +93,13 @@ public class DocumentOcrApiTest {
   public void getDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     String outputType = null;
     String contentUrl = null;
     String text = null;
     String shareKey = null;
     GetDocumentOcrResponse response =
-        api.getDocumentOcr(documentId, siteId, outputType, contentUrl, text, shareKey);
+        api.getDocumentOcr(documentId, siteId, artifactId, outputType, contentUrl, text, shareKey);
     // TODO: test validations
   }
 
@@ -112,8 +116,10 @@ public class DocumentOcrApiTest {
   public void setDocumentOcrTest() throws ApiException {
     String documentId = null;
     String siteId = null;
+    String artifactId = null;
     SetDocumentOcrRequest setDocumentOcrRequest = null;
-    AddDocumentOcrResponse response = api.setDocumentOcr(documentId, siteId, setDocumentOcrRequest);
+    AddDocumentOcrResponse response =
+        api.setDocumentOcr(documentId, siteId, artifactId, setDocumentOcrRequest);
     // TODO: test validations
   }
 

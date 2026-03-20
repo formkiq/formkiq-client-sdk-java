@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.ActivityDelegation;
 import com.formkiq.client.model.ActivityStatus;
 import com.formkiq.client.model.UserActivityChanges;
 import com.google.gson.TypeAdapter;
@@ -114,11 +115,27 @@ public class ActivityTest {
   }
 
   /**
+   * Test the property 'delegation'
+   */
+  @Test
+  public void delegationTest() {
+    // TODO: test delegation
+  }
+
+  /**
    * Test the property 'documentId'
    */
   @Test
   public void documentIdTest() {
     // TODO: test documentId
+  }
+
+  /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
   }
 
   /**
@@ -199,6 +216,30 @@ public class ActivityTest {
   @Test
   public void workflowIdTest() {
     // TODO: test workflowId
+  }
+
+  /**
+   * Test the property 'queueId'
+   */
+  @Test
+  public void queueIdTest() {
+    // TODO: test queueId
+  }
+
+  /**
+   * Test the property 'webhookId'
+   */
+  @Test
+  public void webhookIdTest() {
+    // TODO: test webhookId
+  }
+
+  /**
+   * Test the property 'locale'
+   */
+  @Test
+  public void localeTest() {
+    // TODO: test locale
   }
 
   /**

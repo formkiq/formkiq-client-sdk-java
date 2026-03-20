@@ -21,6 +21,9 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparison;
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparisonSourceType;
+import com.formkiq.client.model.WorkflowStepConditionAttributeValueComparisonTarget;
 import com.formkiq.client.model.WorkflowStepConditionDocumentAttribute;
 import com.formkiq.client.model.WorkflowStepConditionDocumentStandardMetadata;
 import com.google.gson.TypeAdapter;
@@ -67,8 +70,8 @@ import com.google.gson.JsonParseException;
 import com.formkiq.client.invoker.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-03-14T20:35:46.352811-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.20.0")
+    date = "2026-06-21T22:53:47.944205-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.23.0")
 public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
   private static final Logger log = Logger.getLogger(WorkflowStepConditionSource.class.getName());
 
@@ -83,6 +86,9 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
       final TypeAdapter<WorkflowStepConditionDocumentAttribute> adapterWorkflowStepConditionDocumentAttribute =
           gson.getDelegateAdapter(this,
               TypeToken.get(WorkflowStepConditionDocumentAttribute.class));
+      final TypeAdapter<WorkflowStepConditionAttributeValueComparison> adapterWorkflowStepConditionAttributeValueComparison =
+          gson.getDelegateAdapter(this,
+              TypeToken.get(WorkflowStepConditionAttributeValueComparison.class));
       final TypeAdapter<WorkflowStepConditionDocumentStandardMetadata> adapterWorkflowStepConditionDocumentStandardMetadata =
           gson.getDelegateAdapter(this,
               TypeToken.get(WorkflowStepConditionDocumentStandardMetadata.class));
@@ -103,6 +109,14 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
             return;
           }
           // check if the actual instance is of the type
+          // `WorkflowStepConditionAttributeValueComparison`
+          if (value.getActualInstance() instanceof WorkflowStepConditionAttributeValueComparison) {
+            JsonElement element = adapterWorkflowStepConditionAttributeValueComparison.toJsonTree(
+                (WorkflowStepConditionAttributeValueComparison) value.getActualInstance());
+            elementAdapter.write(out, element);
+            return;
+          }
+          // check if the actual instance is of the type
           // `WorkflowStepConditionDocumentStandardMetadata`
           if (value.getActualInstance() instanceof WorkflowStepConditionDocumentStandardMetadata) {
             JsonElement element = adapterWorkflowStepConditionDocumentStandardMetadata.toJsonTree(
@@ -111,7 +125,7 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
             return;
           }
           throw new IOException(
-              "Failed to serialize as the type doesn't match oneOf schemas: WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata");
+              "Failed to serialize as the type doesn't match oneOf schemas: WorkflowStepConditionAttributeValueComparison, WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata");
         }
 
         @Override
@@ -138,6 +152,23 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
                 e.getMessage()));
             log.log(Level.FINER,
                 "Input data does not match schema 'WorkflowStepConditionDocumentAttribute'", e);
+          }
+          // deserialize WorkflowStepConditionAttributeValueComparison
+          try {
+            // validate the JSON object to see if any exception is thrown
+            WorkflowStepConditionAttributeValueComparison.validateJsonElement(jsonElement);
+            actualAdapter = adapterWorkflowStepConditionAttributeValueComparison;
+            match++;
+            log.log(Level.FINER,
+                "Input data matches schema 'WorkflowStepConditionAttributeValueComparison'");
+          } catch (Exception e) {
+            // deserialization failed, continue
+            errorMessages.add(String.format(java.util.Locale.ROOT,
+                "Deserialization for WorkflowStepConditionAttributeValueComparison failed with `%s`.",
+                e.getMessage()));
+            log.log(Level.FINER,
+                "Input data does not match schema 'WorkflowStepConditionAttributeValueComparison'",
+                e);
           }
           // deserialize WorkflowStepConditionDocumentStandardMetadata
           try {
@@ -186,6 +217,8 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
   static {
     schemas.put("WorkflowStepConditionDocumentAttribute",
         WorkflowStepConditionDocumentAttribute.class);
+    schemas.put("WorkflowStepConditionAttributeValueComparison",
+        WorkflowStepConditionAttributeValueComparison.class);
     schemas.put("WorkflowStepConditionDocumentStandardMetadata",
         WorkflowStepConditionDocumentStandardMetadata.class);
   }
@@ -197,8 +230,8 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
 
   /**
    * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-   * against the oneOf child schemas: WorkflowStepConditionDocumentAttribute,
-   * WorkflowStepConditionDocumentStandardMetadata
+   * against the oneOf child schemas: WorkflowStepConditionAttributeValueComparison,
+   * WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata
    *
    * It could be an instance of the 'oneOf' schemas.
    */
@@ -209,21 +242,27 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
       return;
     }
 
+    if (instance instanceof WorkflowStepConditionAttributeValueComparison) {
+      super.setActualInstance(instance);
+      return;
+    }
+
     if (instance instanceof WorkflowStepConditionDocumentStandardMetadata) {
       super.setActualInstance(instance);
       return;
     }
 
     throw new RuntimeException(
-        "Invalid instance type. Must be WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata");
+        "Invalid instance type. Must be WorkflowStepConditionAttributeValueComparison, WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata");
   }
 
   /**
-   * Get the actual instance, which can be the following: WorkflowStepConditionDocumentAttribute,
+   * Get the actual instance, which can be the following:
+   * WorkflowStepConditionAttributeValueComparison, WorkflowStepConditionDocumentAttribute,
    * WorkflowStepConditionDocumentStandardMetadata
    *
-   * @return The actual instance (WorkflowStepConditionDocumentAttribute,
-   *         WorkflowStepConditionDocumentStandardMetadata)
+   * @return The actual instance (WorkflowStepConditionAttributeValueComparison,
+   *         WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata)
    */
   @SuppressWarnings("unchecked")
   @Override
@@ -238,9 +277,25 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
    * @return The actual instance of `WorkflowStepConditionDocumentAttribute`
    * @throws ClassCastException if the instance is not `WorkflowStepConditionDocumentAttribute`
    */
+  @SuppressWarnings("unchecked")
   public WorkflowStepConditionDocumentAttribute getWorkflowStepConditionDocumentAttribute()
       throws ClassCastException {
     return (WorkflowStepConditionDocumentAttribute) super.getActualInstance();
+  }
+
+  /**
+   * Get the actual instance of `WorkflowStepConditionAttributeValueComparison`. If the actual
+   * instance is not `WorkflowStepConditionAttributeValueComparison`, the ClassCastException will be
+   * thrown.
+   *
+   * @return The actual instance of `WorkflowStepConditionAttributeValueComparison`
+   * @throws ClassCastException if the instance is not
+   *         `WorkflowStepConditionAttributeValueComparison`
+   */
+  @SuppressWarnings("unchecked")
+  public WorkflowStepConditionAttributeValueComparison getWorkflowStepConditionAttributeValueComparison()
+      throws ClassCastException {
+    return (WorkflowStepConditionAttributeValueComparison) super.getActualInstance();
   }
 
   /**
@@ -252,6 +307,7 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
    * @throws ClassCastException if the instance is not
    *         `WorkflowStepConditionDocumentStandardMetadata`
    */
+  @SuppressWarnings("unchecked")
   public WorkflowStepConditionDocumentStandardMetadata getWorkflowStepConditionDocumentStandardMetadata()
       throws ClassCastException {
     return (WorkflowStepConditionDocumentStandardMetadata) super.getActualInstance();
@@ -277,6 +333,16 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
           e.getMessage()));
       // continue to the next one
     }
+    // validate the json string with WorkflowStepConditionAttributeValueComparison
+    try {
+      WorkflowStepConditionAttributeValueComparison.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format(java.util.Locale.ROOT,
+          "Deserialization for WorkflowStepConditionAttributeValueComparison failed with `%s`.",
+          e.getMessage()));
+      // continue to the next one
+    }
     // validate the json string with WorkflowStepConditionDocumentStandardMetadata
     try {
       WorkflowStepConditionDocumentStandardMetadata.validateJsonElement(jsonElement);
@@ -289,7 +355,7 @@ public class WorkflowStepConditionSource extends AbstractOpenApiSchema {
     }
     if (validCount != 1) {
       throw new IOException(String.format(java.util.Locale.ROOT,
-          "The JSON string is invalid for WorkflowStepConditionSource with oneOf schemas: WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
+          "The JSON string is invalid for WorkflowStepConditionSource with oneOf schemas: WorkflowStepConditionAttributeValueComparison, WorkflowStepConditionDocumentAttribute, WorkflowStepConditionDocumentStandardMetadata. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s",
           validCount, errorMessages, jsonElement.toString()));
     }
   }

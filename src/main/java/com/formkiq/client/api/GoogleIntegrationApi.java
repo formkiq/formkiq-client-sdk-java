@@ -87,6 +87,7 @@ public class GoogleIntegrationApi {
    * @param documentId Document Identifier (required)
    * @param addGoogleDocumentExportRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -115,7 +116,8 @@ public class GoogleIntegrationApi {
    */
   public okhttp3.Call addGoogleDocumentExportCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     String basePath = null;
     // Operation Servers
     String[] localBasePaths = new String[] {};
@@ -145,6 +147,10 @@ public class GoogleIntegrationApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
     }
 
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -168,7 +174,8 @@ public class GoogleIntegrationApi {
   private okhttp3.Call addGoogleDocumentExportValidateBeforeCall(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
       throw new ApiException(
@@ -182,7 +189,7 @@ public class GoogleIntegrationApi {
     }
 
     return addGoogleDocumentExportCall(documentId, addGoogleDocumentExportRequest, siteId,
-        _callback);
+        artifactId, _callback);
 
   }
 
@@ -192,6 +199,7 @@ public class GoogleIntegrationApi {
    * @param documentId Document Identifier (required)
    * @param addGoogleDocumentExportRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return AddGoogleDocumentExportResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -221,9 +229,10 @@ public class GoogleIntegrationApi {
   public AddGoogleDocumentExportResponse addGoogleDocumentExport(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
-    ApiResponse<AddGoogleDocumentExportResponse> localVarResp =
-        addGoogleDocumentExportWithHttpInfo(documentId, addGoogleDocumentExportRequest, siteId);
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<AddGoogleDocumentExportResponse> localVarResp = addGoogleDocumentExportWithHttpInfo(
+        documentId, addGoogleDocumentExportRequest, siteId, artifactId);
     return localVarResp.getData();
   }
 
@@ -233,6 +242,7 @@ public class GoogleIntegrationApi {
    * @param documentId Document Identifier (required)
    * @param addGoogleDocumentExportRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @return ApiResponse&lt;AddGoogleDocumentExportResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -262,9 +272,10 @@ public class GoogleIntegrationApi {
   public ApiResponse<AddGoogleDocumentExportResponse> addGoogleDocumentExportWithHttpInfo(
       @javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      @javax.annotation.Nullable String siteId) throws ApiException {
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
     okhttp3.Call localVarCall = addGoogleDocumentExportValidateBeforeCall(documentId,
-        addGoogleDocumentExportRequest, siteId, null);
+        addGoogleDocumentExportRequest, siteId, artifactId, null);
     Type localVarReturnType = new TypeToken<AddGoogleDocumentExportResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
@@ -276,6 +287,7 @@ public class GoogleIntegrationApi {
    * @param documentId Document Identifier (required)
    * @param addGoogleDocumentExportRequest (required)
    * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -304,11 +316,11 @@ public class GoogleIntegrationApi {
    */
   public okhttp3.Call addGoogleDocumentExportAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nonnull AddGoogleDocumentExportRequest addGoogleDocumentExportRequest,
-      @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
       final ApiCallback<AddGoogleDocumentExportResponse> _callback) throws ApiException {
 
     okhttp3.Call localVarCall = addGoogleDocumentExportValidateBeforeCall(documentId,
-        addGoogleDocumentExportRequest, siteId, _callback);
+        addGoogleDocumentExportRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddGoogleDocumentExportResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
