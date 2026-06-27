@@ -7,6 +7,8 @@
 
 * `COMPLETE` (value: `"COMPLETE"`)
 
+* `ASYNC_COMPLETE` (value: `"ASYNC_COMPLETE"`)
+
 * `FAILED` (value: `"FAILED"`)
 
 * `IN_QUEUE` (value: `"IN_QUEUE"`)

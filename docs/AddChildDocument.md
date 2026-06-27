@@ -19,6 +19,7 @@ List of related documents
 |**content** | **String** | Document content |  |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |
 |**metadata** | [**List&lt;AddDocumentMetadata&gt;**](AddDocumentMetadata.md) | List of document Metadata |  [optional] |
+|**attributes** | [**List&lt;AddDocumentAttribute&gt;**](AddDocumentAttribute.md) | List of Attributes to add to document |  [optional] |
 
 
 

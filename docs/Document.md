@@ -14,9 +14,14 @@
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**lastModifiedDate** | **String** | Last Modified Timestamp |  [optional] |
+|**deletedDate** | **String** | Soft Deleted Timestamp |  [optional] |
 |**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**documentId** | **String** | Document Identifier |  [optional] |
+|**artifactId** | **String** | Artifact Identifier |  [optional] |
+|**promotedArtifactId** | **String** | Promoted Artifact Identifier |  [optional] |
+|**artifactCategory** | **String** | Artifact Category |  [optional] |
+|**hasArtifacts** | **Boolean** | Whether the document has artifact documents |  [optional] |
 |**contentType** | **String** | Document Content-Type |  [optional] |
 |**userId** | **String** | User who added document |  [optional] |
 |**contentLength** | **Integer** | Document size |  [optional] |

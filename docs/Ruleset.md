@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rulesetId** | **String** | Ruleset identifier |  [optional] |
+|**rulesetId** | **String** | Ruleset identifier |  |
 |**description** | **String** | Ruleset description |  [optional] |
 |**priority** | **BigDecimal** | Ruleset priority |  [optional] |
 |**version** | **BigDecimal** | Ruleset version |  [optional] |

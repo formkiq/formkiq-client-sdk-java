@@ -10,6 +10,8 @@ Document tag search criteria
 |------------ | ------------- | ------------- | -------------|
 |**text** | **String** | Full text search |  [optional] |
 |**meta** | [**DocumentSearchMeta**](DocumentSearchMeta.md) |  |  [optional] |
+|**filename** | [**DocumentSearchFilename**](DocumentSearchFilename.md) |  |  [optional] |
+|**folder** | [**DocumentSearchFolder**](DocumentSearchFolder.md) |  |  [optional] |
 |**attribute** | [**DocumentSearchAttribute**](DocumentSearchAttribute.md) |  |  [optional] |
 |**attributes** | [**List&lt;DocumentSearchAttribute&gt;**](DocumentSearchAttribute.md) | List of Composite Key attributes to filter search results on |  [optional] |
 |**tag** | [**DocumentSearchTag**](DocumentSearchTag.md) |  |  [optional] |

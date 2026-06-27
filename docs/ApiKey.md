@@ -12,8 +12,19 @@
 |**userId** | **String** |  |  [optional] |
 |**siteId** | **String** |  |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
-|**permissions** | **List&lt;ApiKeyPermission&gt;** |  |  [optional] |
+|**permissions** | [**List&lt;PermissionsEnum&gt;**](#List&lt;PermissionsEnum&gt;) | List of permissions |  [optional] |
 |**groups** | **List&lt;String&gt;** | List of groups to add as custom claims to API Key |  [optional] |
+
+
+
+## Enum: List&lt;PermissionsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| READ | &quot;READ&quot; |
+| WRITE | &quot;WRITE&quot; |
+| DELETE | &quot;DELETE&quot; |
+| GOVERN | &quot;GOVERN&quot; |
 
 
 

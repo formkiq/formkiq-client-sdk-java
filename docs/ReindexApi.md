@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addReindexDocument"></a>
 # **addReindexDocument**
-> AddResponse addReindexDocument(documentId, addReindexDocumentRequest, siteId)
+> AddResponse addReindexDocument(documentId, addReindexDocumentRequest, siteId, artifactId)
 
 Reindex metadata on a document
 
@@ -36,8 +36,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddReindexDocumentRequest addReindexDocumentRequest = new AddReindexDocumentRequest(); // AddReindexDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddResponse result = apiInstance.addReindexDocument(documentId, addReindexDocumentRequest, siteId);
+      AddResponse result = apiInstance.addReindexDocument(documentId, addReindexDocumentRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReindexApi#addReindexDocument");
@@ -57,6 +58,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addReindexDocumentRequest** | [**AddReindexDocumentRequest**](AddReindexDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 

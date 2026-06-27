@@ -7,6 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**artifactId** | **String** | Artifact Identifier |  [optional] |
+|**promotedArtifactId** | **String** | Promoted Artifact Identifier |  [optional] |
+|**artifactCategory** | **String** | Artifact Category |  [optional] |
+|**hasArtifacts** | **Boolean** | Whether the document has artifact documents |  [optional] |
 |**siteId** | **String** | Site Identifier |  [optional] |
 |**path** | **String** | Path or Name of document |  [optional] |
 |**width** | **String** | Document Content Width property |  [optional] |

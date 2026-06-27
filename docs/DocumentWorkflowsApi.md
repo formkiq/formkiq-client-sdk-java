@@ -24,7 +24,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocumentWorkflow"></a>
 # **addDocumentWorkflow**
-> AddDocumentWorkflowResponse addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId)
+> AddDocumentWorkflowResponse addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId, artifactId)
 
 Add document workflow
 
@@ -51,8 +51,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     AddDocumentWorkflowRequest addDocumentWorkflowRequest = new AddDocumentWorkflowRequest(); // AddDocumentWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocumentWorkflowResponse result = apiInstance.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId);
+      AddDocumentWorkflowResponse result = apiInstance.addDocumentWorkflow(documentId, addDocumentWorkflowRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflow");
@@ -72,6 +73,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **addDocumentWorkflowRequest** | [**AddDocumentWorkflowRequest**](AddDocumentWorkflowRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -94,7 +96,7 @@ No authorization required
 
 <a id="addDocumentWorkflowDecisions"></a>
 # **addDocumentWorkflowDecisions**
-> AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId)
+> AddDocumentWorkflowDecisionsResponse addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId, artifactId)
 
 Approve/Reject document in approval queue
 
@@ -122,8 +124,9 @@ public class Example {
     String workflowId = "workflowId_example"; // String | Workflow Identifier
     AddDocumentWorkflowDecisionsRequest addDocumentWorkflowDecisionsRequest = new AddDocumentWorkflowDecisionsRequest(); // AddDocumentWorkflowDecisionsRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      AddDocumentWorkflowDecisionsResponse result = apiInstance.addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId);
+      AddDocumentWorkflowDecisionsResponse result = apiInstance.addDocumentWorkflowDecisions(documentId, workflowId, addDocumentWorkflowDecisionsRequest, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#addDocumentWorkflowDecisions");
@@ -144,6 +147,7 @@ public class Example {
 | **workflowId** | **String**| Workflow Identifier | |
 | **addDocumentWorkflowDecisionsRequest** | [**AddDocumentWorkflowDecisionsRequest**](AddDocumentWorkflowDecisionsRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -369,7 +373,7 @@ No authorization required
 
 <a id="deleteWorkflow"></a>
 # **deleteWorkflow**
-> DeleteWorkflowResponse deleteWorkflow(workflowId, siteId)
+> DeleteResponse deleteWorkflow(workflowId, siteId)
 
 Delete workflow
 
@@ -396,7 +400,7 @@ public class Example {
     String workflowId = "workflowId_example"; // String | Workflow Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      DeleteWorkflowResponse result = apiInstance.deleteWorkflow(workflowId, siteId);
+      DeleteResponse result = apiInstance.deleteWorkflow(workflowId, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#deleteWorkflow");
@@ -418,7 +422,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteWorkflowResponse**](DeleteWorkflowResponse.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -436,7 +440,7 @@ No authorization required
 
 <a id="getDocumentWorkflow"></a>
 # **getDocumentWorkflow**
-> GetDocumentWorkflowResponse getDocumentWorkflow(documentId, workflowId, siteId)
+> GetDocumentWorkflowResponse getDocumentWorkflow(documentId, workflowId, siteId, artifactId)
 
 Get document workflow
 
@@ -463,8 +467,9 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String workflowId = "workflowId_example"; // String | Workflow Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      GetDocumentWorkflowResponse result = apiInstance.getDocumentWorkflow(documentId, workflowId, siteId);
+      GetDocumentWorkflowResponse result = apiInstance.getDocumentWorkflow(documentId, workflowId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#getDocumentWorkflow");
@@ -484,6 +489,7 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **workflowId** | **String**| Workflow Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -506,7 +512,7 @@ No authorization required
 
 <a id="getDocumentWorkflows"></a>
 # **getDocumentWorkflows**
-> GetDocumentWorkflowsResponse getDocumentWorkflows(documentId, siteId)
+> GetDocumentWorkflowsResponse getDocumentWorkflows(documentId, siteId, artifactId)
 
 Get document workflows
 
@@ -532,8 +538,9 @@ public class Example {
     DocumentWorkflowsApi apiInstance = new DocumentWorkflowsApi(defaultClient);
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     try {
-      GetDocumentWorkflowsResponse result = apiInstance.getDocumentWorkflows(documentId, siteId);
+      GetDocumentWorkflowsResponse result = apiInstance.getDocumentWorkflows(documentId, siteId, artifactId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#getDocumentWorkflows");
@@ -552,6 +559,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
 
 ### Return type
 
@@ -990,7 +998,7 @@ No authorization required
 
 <a id="setWorkflow"></a>
 # **setWorkflow**
-> SetWorkflowResponse setWorkflow(workflowId, setWorkflowRequest, siteId)
+> SetResponse setWorkflow(workflowId, setWorkflowRequest, siteId, createIfMissing)
 
 Set workflow
 
@@ -1017,8 +1025,9 @@ public class Example {
     String workflowId = "workflowId_example"; // String | Workflow Identifier
     SetWorkflowRequest setWorkflowRequest = new SetWorkflowRequest(); // SetWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
+    Boolean createIfMissing = false; // Boolean | When true, skip checking whether the resource exists before setting it
     try {
-      SetWorkflowResponse result = apiInstance.setWorkflow(workflowId, setWorkflowRequest, siteId);
+      SetResponse result = apiInstance.setWorkflow(workflowId, setWorkflowRequest, siteId, createIfMissing);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#setWorkflow");
@@ -1038,10 +1047,11 @@ public class Example {
 | **workflowId** | **String**| Workflow Identifier | |
 | **setWorkflowRequest** | [**SetWorkflowRequest**](SetWorkflowRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
+| **createIfMissing** | **Boolean**| When true, skip checking whether the resource exists before setting it | [optional] [default to false] |
 
 ### Return type
 
-[**SetWorkflowResponse**](SetWorkflowResponse.md)
+[**SetResponse**](SetResponse.md)
 
 ### Authorization
 
@@ -1055,12 +1065,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | 20) OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="updateWorkflow"></a>
 # **updateWorkflow**
-> UpdateWorkflowResponse updateWorkflow(workflowId, updateWorkflowRequest, siteId)
+> UpdateResponse updateWorkflow(workflowId, updateWorkflowRequest, siteId)
 
 Update workflow
 
@@ -1088,7 +1098,7 @@ public class Example {
     UpdateWorkflowRequest updateWorkflowRequest = new UpdateWorkflowRequest(); // UpdateWorkflowRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     try {
-      UpdateWorkflowResponse result = apiInstance.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
+      UpdateResponse result = apiInstance.updateWorkflow(workflowId, updateWorkflowRequest, siteId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentWorkflowsApi#updateWorkflow");
@@ -1111,7 +1121,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateWorkflowResponse**](UpdateWorkflowResponse.md)
+[**UpdateResponse**](UpdateResponse.md)
 
 ### Authorization
 
@@ -1125,6 +1135,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | 20) OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 BAD REQUEST |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 

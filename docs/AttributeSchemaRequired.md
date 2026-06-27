@@ -8,6 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributeKey** | **String** |  |  [optional] |
+|**defaultEntityTypeId** | **String** |  |  [optional] |
+|**defaultEntityId** | **String** |  |  [optional] |
 |**minNumberOfValues** | **BigDecimal** | The minimum number of attribute values |  [optional] |
 |**maxNumberOfValues** | **BigDecimal** | The maximum number of attribute values |  [optional] |
 |**defaultValue** | **String** | Default value |  [optional] |

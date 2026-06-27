@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**alias** | **String** | Certificate alias. |  |
-|**sourceType** | **DocumentCertificationSourceType** |  |  [optional] |
+|**sourceType** | **DocumentCertificationType** |  |  [optional] |
 |**awsSecretsManager** | [**DocumentCertificationAwsSecretsManager**](DocumentCertificationAwsSecretsManager.md) |  |  [optional] |
 
 
