@@ -1,8 +1,8 @@
 # client
 
 FormKiQ API JWT
-- API version: 1.19.0
-  - Build date: 2026-06-21T22:53:47.944205-05:00[America/Winnipeg]
+- API version: 1.19.1
+  - Build date: 2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]
   - Generator version: 7.23.0
 
 FormKiQ API: Document Management Platform API using OAuth(JWT) Authentication
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.19.0</version>
+  <version>1.19.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -76,7 +76,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.19.0"
+     implementation "com.formkiq:client:1.19.1"
   }
 ```
 
@@ -90,7 +90,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.19.0.jar`
+* `target/client-1.19.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -157,27 +157,6 @@ Class | Method | HTTP request | Description
 *AttributesApi* | [**getAttributeAllowedValues**](docs/AttributesApi.md#getAttributeAllowedValues) | **GET** /attributes/{key}/allowedValues | Get Attribute Allowed Values
 *AttributesApi* | [**getAttributes**](docs/AttributesApi.md#getAttributes) | **GET** /attributes | Get Attributes listing
 *AttributesApi* | [**updateAttribute**](docs/AttributesApi.md#updateAttribute) | **PATCH** /attributes/{key} | Update existing attribute
-*CaseManagementApi* | [**addCase**](docs/CaseManagementApi.md#addCase) | **POST** /cases | Add New Case
-*CaseManagementApi* | [**addNigo**](docs/CaseManagementApi.md#addNigo) | **POST** /cases/{caseId}/nigos | Add New Nigo
-*CaseManagementApi* | [**addTask**](docs/CaseManagementApi.md#addTask) | **POST** /cases/{caseId}/tasks | Add New Task
-*CaseManagementApi* | [**deleteCase**](docs/CaseManagementApi.md#deleteCase) | **DELETE** /cases/{caseId} | Delete Case
-*CaseManagementApi* | [**deleteCaseDocument**](docs/CaseManagementApi.md#deleteCaseDocument) | **DELETE** /cases/{caseId}/documents/{documentId} | Delete Document from Case
-*CaseManagementApi* | [**deleteNigo**](docs/CaseManagementApi.md#deleteNigo) | **DELETE** /cases/{caseId}/nigos/{nigoId} | Delete Nigo
-*CaseManagementApi* | [**deleteNigoDocument**](docs/CaseManagementApi.md#deleteNigoDocument) | **DELETE** /cases/{caseId}/nigos/{nigoId}/documents/{documentId} | Delete Document from Nigo
-*CaseManagementApi* | [**deleteTask**](docs/CaseManagementApi.md#deleteTask) | **DELETE** /cases/{caseId}/tasks/{taskId} | Delete Task
-*CaseManagementApi* | [**deleteTaskDocument**](docs/CaseManagementApi.md#deleteTaskDocument) | **DELETE** /cases/{caseId}/tasks/{taskId}/documents/{documentId} | Delete Document from Task
-*CaseManagementApi* | [**getCase**](docs/CaseManagementApi.md#getCase) | **GET** /cases/{caseId} | Get Case details
-*CaseManagementApi* | [**getCaseDocuments**](docs/CaseManagementApi.md#getCaseDocuments) | **GET** /cases/{caseId}/documents | Get list of document in a case
-*CaseManagementApi* | [**getCaseNigo**](docs/CaseManagementApi.md#getCaseNigo) | **GET** /cases/{caseId}/nigos/{nigoId} | Get nigo in a case
-*CaseManagementApi* | [**getCaseNigos**](docs/CaseManagementApi.md#getCaseNigos) | **GET** /cases/{caseId}/nigos | Get list of Nigos in a case
-*CaseManagementApi* | [**getCaseTask**](docs/CaseManagementApi.md#getCaseTask) | **GET** /cases/{caseId}/tasks/{taskId} | Get task in a case
-*CaseManagementApi* | [**getCaseTasks**](docs/CaseManagementApi.md#getCaseTasks) | **GET** /cases/{caseId}/tasks | Get list of tasks in a case
-*CaseManagementApi* | [**getCases**](docs/CaseManagementApi.md#getCases) | **GET** /cases | Get Case listing
-*CaseManagementApi* | [**getNigoDocuments**](docs/CaseManagementApi.md#getNigoDocuments) | **GET** /cases/{caseId}/nigos/{nigoId}/documents | Get list of document in a task
-*CaseManagementApi* | [**getTaskDocuments**](docs/CaseManagementApi.md#getTaskDocuments) | **GET** /cases/{caseId}/tasks/{taskId}/documents | Get list of document in a task
-*CaseManagementApi* | [**updateCase**](docs/CaseManagementApi.md#updateCase) | **PATCH** /cases/{caseId} | Update existing Case
-*CaseManagementApi* | [**updateNigo**](docs/CaseManagementApi.md#updateNigo) | **PATCH** /cases/{caseId}/nigos/{nigoId} | Update existing Nigo
-*CaseManagementApi* | [**updateTask**](docs/CaseManagementApi.md#updateTask) | **PATCH** /cases/{caseId}/tasks/{taskId} | Update existing Task
 *CustomIndexApi* | [**deleteIndex**](docs/CustomIndexApi.md#deleteIndex) | **DELETE** /indices/{indexType}/{indexKey} | 
 *CustomIndexApi* | [**indexFolderMove**](docs/CustomIndexApi.md#indexFolderMove) | **POST** /indices/{indexType}/move | 
 *CustomIndexApi* | [**indexSearch**](docs/CustomIndexApi.md#indexSearch) | **POST** /indices/search | 
@@ -195,6 +174,7 @@ Class | Method | HTTP request | Description
 *DocumentFoldersApi* | [**deleteFolder**](docs/DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder
 *DocumentFoldersApi* | [**getFolderDocuments**](docs/DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders
 *DocumentFoldersApi* | [**getFolderPermissions**](docs/DocumentFoldersApi.md#getFolderPermissions) | **GET** /folders/{indexKey}/permissions | Get folder permissions
+*DocumentFoldersApi* | [**moveFolder**](docs/DocumentFoldersApi.md#moveFolder) | **POST** /folders/{indexKey}/moves | Move document folder
 *DocumentFoldersApi* | [**setFolderPermissions**](docs/DocumentFoldersApi.md#setFolderPermissions) | **PUT** /folders/permissions | Sets Folder Permissions
 *DocumentGenerationApi* | [**addDocumentCertification**](docs/DocumentGenerationApi.md#addDocumentCertification) | **POST** /documents/{documentId}/certifications | Add Document Certification
 *DocumentGenerationApi* | [**addDocumentGenerate**](docs/DocumentGenerationApi.md#addDocumentGenerate) | **POST** /documents/{documentId}/generate | Add Document Generate
@@ -402,9 +382,6 @@ Class | Method | HTTP request | Description
  - [AddAttributeRequest](docs/AddAttributeRequest.md)
  - [AddAttributeSchemaOptional](docs/AddAttributeSchemaOptional.md)
  - [AddAttributeSchemaRequired](docs/AddAttributeSchemaRequired.md)
- - [AddCase](docs/AddCase.md)
- - [AddCaseRequest](docs/AddCaseRequest.md)
- - [AddCaseResponse](docs/AddCaseResponse.md)
  - [AddChildDocument](docs/AddChildDocument.md)
  - [AddChildDocumentResponse](docs/AddChildDocumentResponse.md)
  - [AddClassification](docs/AddClassification.md)
@@ -481,9 +458,6 @@ Class | Method | HTTP request | Description
  - [AddMapping](docs/AddMapping.md)
  - [AddMappingRequest](docs/AddMappingRequest.md)
  - [AddMappingResponse](docs/AddMappingResponse.md)
- - [AddNigo](docs/AddNigo.md)
- - [AddNigoRequest](docs/AddNigoRequest.md)
- - [AddNigoResponse](docs/AddNigoResponse.md)
  - [AddQueueRequest](docs/AddQueueRequest.md)
  - [AddQueueResponse](docs/AddQueueResponse.md)
  - [AddReindexDocumentRequest](docs/AddReindexDocumentRequest.md)
@@ -501,9 +475,6 @@ Class | Method | HTTP request | Description
  - [AddSite](docs/AddSite.md)
  - [AddSiteRequest](docs/AddSiteRequest.md)
  - [AddSystemInferenceModelAgreementRequest](docs/AddSystemInferenceModelAgreementRequest.md)
- - [AddTask](docs/AddTask.md)
- - [AddTaskRequest](docs/AddTaskRequest.md)
- - [AddTaskResponse](docs/AddTaskResponse.md)
  - [AddUser](docs/AddUser.md)
  - [AddUserRequest](docs/AddUserRequest.md)
  - [AddWebhookRequest](docs/AddWebhookRequest.md)
@@ -523,7 +494,6 @@ Class | Method | HTTP request | Description
  - [AttributeSchemaRequired](docs/AttributeSchemaRequired.md)
  - [AttributeType](docs/AttributeType.md)
  - [AttributeValueType](docs/AttributeValueType.md)
- - [CaseStatus](docs/CaseStatus.md)
  - [ChecksumType](docs/ChecksumType.md)
  - [ChildDocument](docs/ChildDocument.md)
  - [Classification](docs/Classification.md)
@@ -534,12 +504,6 @@ Class | Method | HTTP request | Description
  - [DelegationTokenPermission](docs/DelegationTokenPermission.md)
  - [DelegationTokenPrincipal](docs/DelegationTokenPrincipal.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
- - [DeleteCaseDocumentResponse](docs/DeleteCaseDocumentResponse.md)
- - [DeleteCaseNigoDocumentResponse](docs/DeleteCaseNigoDocumentResponse.md)
- - [DeleteCaseNigoResponse](docs/DeleteCaseNigoResponse.md)
- - [DeleteCaseResponse](docs/DeleteCaseResponse.md)
- - [DeleteCaseTaskDocumentResponse](docs/DeleteCaseTaskDocumentResponse.md)
- - [DeleteCaseTaskResponse](docs/DeleteCaseTaskResponse.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
@@ -631,13 +595,6 @@ Class | Method | HTTP request | Description
  - [GetAttributeAllowedValuesResponse](docs/GetAttributeAllowedValuesResponse.md)
  - [GetAttributeResponse](docs/GetAttributeResponse.md)
  - [GetAttributesResponse](docs/GetAttributesResponse.md)
- - [GetCaseDocumentsResponse](docs/GetCaseDocumentsResponse.md)
- - [GetCaseNigoResponse](docs/GetCaseNigoResponse.md)
- - [GetCaseNigosResponse](docs/GetCaseNigosResponse.md)
- - [GetCaseResponse](docs/GetCaseResponse.md)
- - [GetCaseTaskResponse](docs/GetCaseTaskResponse.md)
- - [GetCaseTasksResponse](docs/GetCaseTasksResponse.md)
- - [GetCasesResponse](docs/GetCasesResponse.md)
  - [GetClassificationResponse](docs/GetClassificationResponse.md)
  - [GetClassificationsResponse](docs/GetClassificationsResponse.md)
  - [GetConfigurationResponse](docs/GetConfigurationResponse.md)
@@ -748,9 +705,8 @@ Class | Method | HTTP request | Description
  - [MatchDocumentTag](docs/MatchDocumentTag.md)
  - [MetadataExtraction](docs/MetadataExtraction.md)
  - [MetadataExtractionAttribute](docs/MetadataExtractionAttribute.md)
- - [ModelCase](docs/ModelCase.md)
- - [Nigo](docs/Nigo.md)
- - [NigoStatus](docs/NigoStatus.md)
+ - [MoveFolderRequest](docs/MoveFolderRequest.md)
+ - [MoveFolderResponse](docs/MoveFolderResponse.md)
  - [OcrConfig](docs/OcrConfig.md)
  - [OcrEngine](docs/OcrEngine.md)
  - [OcrKeyValues](docs/OcrKeyValues.md)
@@ -833,19 +789,12 @@ Class | Method | HTTP request | Description
  - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)
- - [StringFormat](docs/StringFormat.md)
- - [StringGeneratorType](docs/StringGeneratorType.md)
  - [SystemConfigurationWebUi](docs/SystemConfigurationWebUi.md)
  - [SystemInferenceModel](docs/SystemInferenceModel.md)
  - [SystemInferenceModelInvocation](docs/SystemInferenceModelInvocation.md)
- - [Task](docs/Task.md)
- - [TaskStatus](docs/TaskStatus.md)
  - [TextractQuery](docs/TextractQuery.md)
  - [UpdateAttribute](docs/UpdateAttribute.md)
  - [UpdateAttributeRequest](docs/UpdateAttributeRequest.md)
- - [UpdateCase](docs/UpdateCase.md)
- - [UpdateCaseRequest](docs/UpdateCaseRequest.md)
- - [UpdateCaseResponse](docs/UpdateCaseResponse.md)
  - [UpdateConfigurationRequest](docs/UpdateConfigurationRequest.md)
  - [UpdateConfigurationResponse](docs/UpdateConfigurationResponse.md)
  - [UpdateDocumentFulltextRequest](docs/UpdateDocumentFulltextRequest.md)
@@ -858,9 +807,6 @@ Class | Method | HTTP request | Description
  - [UpdateMatchingDocumentTagsRequestMatch](docs/UpdateMatchingDocumentTagsRequestMatch.md)
  - [UpdateMatchingDocumentTagsRequestUpdate](docs/UpdateMatchingDocumentTagsRequestUpdate.md)
  - [UpdateMatchingDocumentTagsResponse](docs/UpdateMatchingDocumentTagsResponse.md)
- - [UpdateNigo](docs/UpdateNigo.md)
- - [UpdateNigoRequest](docs/UpdateNigoRequest.md)
- - [UpdateNigoResponse](docs/UpdateNigoResponse.md)
  - [UpdateResponse](docs/UpdateResponse.md)
  - [UpdateRule](docs/UpdateRule.md)
  - [UpdateRuleRequest](docs/UpdateRuleRequest.md)
@@ -871,9 +817,6 @@ Class | Method | HTTP request | Description
  - [UpdateSite](docs/UpdateSite.md)
  - [UpdateSiteRequest](docs/UpdateSiteRequest.md)
  - [UpdateSystemConfigurationRequest](docs/UpdateSystemConfigurationRequest.md)
- - [UpdateTask](docs/UpdateTask.md)
- - [UpdateTaskRequest](docs/UpdateTaskRequest.md)
- - [UpdateTaskResponse](docs/UpdateTaskResponse.md)
  - [UpdateWorkflowRequest](docs/UpdateWorkflowRequest.md)
  - [User](docs/User.md)
  - [UserActivity](docs/UserActivity.md)
