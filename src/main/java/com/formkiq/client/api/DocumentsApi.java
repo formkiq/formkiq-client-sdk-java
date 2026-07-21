@@ -3079,7 +3079,8 @@ public class DocumentsApi {
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
-   * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param inline Request inline delivery. S3-backed SVG documents identified by content type or
+   *        filename are always served as attachments. (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
    * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
@@ -3216,7 +3217,8 @@ public class DocumentsApi {
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
-   * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param inline Request inline delivery. S3-backed SVG documents identified by content type or
+   *        filename are always served as attachments. (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
    * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
@@ -3263,7 +3265,8 @@ public class DocumentsApi {
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
-   * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param inline Request inline delivery. S3-backed SVG documents identified by content type or
+   *        filename are always served as attachments. (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
    * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On
@@ -3311,7 +3314,8 @@ public class DocumentsApi {
    * @param versionKey Version Key (version key required URL encoding) (optional)
    * @param duration Indicates the number of hours request is valid for (optional)
    * @param shareKey Share Identifier (optional)
-   * @param inline Set the Content-Disposition to inline (optional, default to false)
+   * @param inline Request inline delivery. S3-backed SVG documents identified by content type or
+   *        filename are always served as attachments. (optional, default to false)
    * @param bypassWatermark Allow the by pass of watermark (only allowed by GOVERN / ADMIN
    *        permissions) (optional, default to false)
    * @param format Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On

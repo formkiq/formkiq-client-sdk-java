@@ -195,7 +195,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review Add a review to a document
+   * Add document review Add a review to a document. When notifications are supplied, queue each
+   * notification for delivery when the review is created.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -232,7 +233,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review Add a review to a document
+   * Add document review Add a review to a document. When notifications are supplied, queue each
+   * notification for delivery when the review is created.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -271,7 +273,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review (asynchronously) Add a review to a document
+   * Add document review (asynchronously) Add a review to a document. When notifications are
+   * supplied, queue each notification for delivery when the review is created.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -427,7 +430,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review decision Add a decision to a document review
+   * Add document review decision Add a decision to a document review. When approvalGroups is set on
+   * the review, the caller&#39;s credentials are also verified against those groups before the
+   * decision is added.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -467,7 +472,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review decision Add a decision to a document review
+   * Add document review decision Add a decision to a document review. When approvalGroups is set on
+   * the review, the caller&#39;s credentials are also verified against those groups before the
+   * decision is added.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -507,7 +514,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Add document review decision (asynchronously) Add a decision to a document review
+   * Add document review decision (asynchronously) Add a decision to a document review. When
+   * approvalGroups is set on the review, the caller&#39;s credentials are also verified against
+   * those groups before the decision is added.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)

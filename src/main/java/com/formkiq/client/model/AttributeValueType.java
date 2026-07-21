@@ -38,6 +38,8 @@ public enum AttributeValueType {
 
   BOOLEAN("BOOLEAN"),
 
+  DATE("DATE"),
+
   KEY_ONLY("KEY_ONLY"),
 
   NUMBER("NUMBER"),

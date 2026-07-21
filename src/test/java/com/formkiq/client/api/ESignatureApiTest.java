@@ -25,6 +25,8 @@ import com.formkiq.client.model.AddDocusignEnvelopesRequest;
 import com.formkiq.client.model.AddDocusignEnvelopesResponse;
 import com.formkiq.client.model.AddDocusignRecipientViewRequest;
 import com.formkiq.client.model.AddDocusignRecipientViewResponse;
+import com.formkiq.client.model.AddDocusignSenderViewRequest;
+import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
@@ -77,6 +79,25 @@ public class ESignatureApiTest {
     String artifactId = null;
     AddDocusignRecipientViewResponse response = api.addDocusignRecipientView(documentId, envelopeId,
         addDocusignRecipientViewRequest, siteId, artifactId);
+    // TODO: test validations
+  }
+
+  /**
+   * Create Docusign Sender View request
+   *
+   * DocuSign create Docusign Sender View request; available as an Add-On Module
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocusignSenderViewTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    AddDocusignSenderViewRequest addDocusignSenderViewRequest = null;
+    String siteId = null;
+    String artifactId = null;
+    AddDocusignSenderViewResponse response = api.addDocusignSenderView(documentId, envelopeId,
+        addDocusignSenderViewRequest, siteId, artifactId);
     // TODO: test validations
   }
 

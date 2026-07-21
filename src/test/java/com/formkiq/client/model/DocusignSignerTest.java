@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocusignSignerReadyToSignNotification;
 import com.formkiq.client.model.DocusignSigningTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -70,6 +71,14 @@ public class DocusignSignerTest {
   }
 
   /**
+   * Test the property 'embeddedRecipientStartUrl'
+   */
+  @Test
+  public void embeddedRecipientStartUrlTest() {
+    // TODO: test embeddedRecipientStartUrl
+  }
+
+  /**
    * Test the property 'recipientId'
    */
   @Test
@@ -91,6 +100,14 @@ public class DocusignSignerTest {
   @Test
   public void suppressEmailsTest() {
     // TODO: test suppressEmails
+  }
+
+  /**
+   * Test the property 'readyToSignNotification'
+   */
+  @Test
+  public void readyToSignNotificationTest() {
+    // TODO: test readyToSignNotification
   }
 
   /**

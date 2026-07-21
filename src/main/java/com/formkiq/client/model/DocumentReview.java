@@ -28,7 +28,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,6 +39,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -57,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentReview
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class DocumentReview {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
@@ -84,6 +87,11 @@ public class DocumentReview {
   @SerializedName(SERIALIZED_NAME_REVIEW_STATUS)
   @javax.annotation.Nullable
   private DocumentReviewStatus reviewStatus;
+
+  public static final String SERIALIZED_NAME_APPROVAL_GROUPS = "approvalGroups";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_GROUPS)
+  @javax.annotation.Nullable
+  private List<String> approvalGroups = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUIRED_DECISIONS = "requiredDecisions";
   @SerializedName(SERIALIZED_NAME_REQUIRED_DECISIONS)
@@ -212,6 +220,35 @@ public class DocumentReview {
   }
 
 
+  public DocumentReview approvalGroups(@javax.annotation.Nullable List<String> approvalGroups) {
+    this.approvalGroups = approvalGroups;
+    return this;
+  }
+
+  public DocumentReview addApprovalGroupsItem(String approvalGroupsItem) {
+    if (this.approvalGroups == null) {
+      this.approvalGroups = new ArrayList<>();
+    }
+    this.approvalGroups.add(approvalGroupsItem);
+    return this;
+  }
+
+  /**
+   * Optional approval groups used for additional credential verification when submitting a decision
+   * to POST /documents/{documentId}/reviews/{reviewId}/decisions.
+   * 
+   * @return approvalGroups
+   */
+  @javax.annotation.Nullable
+  public List<String> getApprovalGroups() {
+    return approvalGroups;
+  }
+
+  public void setApprovalGroups(@javax.annotation.Nullable List<String> approvalGroups) {
+    this.approvalGroups = approvalGroups;
+  }
+
+
   public DocumentReview requiredDecisions(@javax.annotation.Nullable Long requiredDecisions) {
     this.requiredDecisions = requiredDecisions;
     return this;
@@ -327,6 +364,7 @@ public class DocumentReview {
         && Objects.equals(this.reviewId, documentReview.reviewId)
         && Objects.equals(this.reviewCategory, documentReview.reviewCategory)
         && Objects.equals(this.reviewStatus, documentReview.reviewStatus)
+        && Objects.equals(this.approvalGroups, documentReview.approvalGroups)
         && Objects.equals(this.requiredDecisions, documentReview.requiredDecisions)
         && Objects.equals(this.userId, documentReview.userId)
         && Objects.equals(this.comments, documentReview.comments)
@@ -337,7 +375,7 @@ public class DocumentReview {
   @Override
   public int hashCode() {
     return Objects.hash(documentId, artifactId, reviewId, reviewCategory, reviewStatus,
-        requiredDecisions, userId, comments, insertedDate, lastModifiedDate);
+        approvalGroups, requiredDecisions, userId, comments, insertedDate, lastModifiedDate);
   }
 
   @Override
@@ -349,6 +387,7 @@ public class DocumentReview {
     sb.append("    reviewId: ").append(toIndentedString(reviewId)).append("\n");
     sb.append("    reviewCategory: ").append(toIndentedString(reviewCategory)).append("\n");
     sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
+    sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
     sb.append("    requiredDecisions: ").append(toIndentedString(requiredDecisions)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
@@ -371,9 +410,9 @@ public class DocumentReview {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("documentId", "artifactId", "reviewId", "reviewCategory", "reviewStatus",
-            "requiredDecisions", "userId", "comments", "insertedDate", "lastModifiedDate"));
+    openapiFields = new HashSet<String>(Arrays.asList("documentId", "artifactId", "reviewId",
+        "reviewCategory", "reviewStatus", "approvalGroups", "requiredDecisions", "userId",
+        "comments", "insertedDate", "lastModifiedDate"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -432,6 +471,13 @@ public class DocumentReview {
     // validate the optional field `reviewStatus`
     if (jsonObj.get("reviewStatus") != null && !jsonObj.get("reviewStatus").isJsonNull()) {
       DocumentReviewStatus.validateJsonElement(jsonObj.get("reviewStatus"));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("approvalGroups") != null && !jsonObj.get("approvalGroups").isJsonNull()
+        && !jsonObj.get("approvalGroups").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `approvalGroups` to be an array in the JSON string but got `%s`",
+          jsonObj.get("approvalGroups").toString()));
     }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {

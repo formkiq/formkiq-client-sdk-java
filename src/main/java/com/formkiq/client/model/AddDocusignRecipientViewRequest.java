@@ -38,6 +38,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -58,12 +59,12 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignRecipientViewRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class AddDocusignRecipientViewRequest {
   public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
   @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private DocusignEnvironment environment;
 
   public static final String SERIALIZED_NAME_RECIPIENT_VIEW = "recipientView";
@@ -74,7 +75,7 @@ public class AddDocusignRecipientViewRequest {
   public AddDocusignRecipientViewRequest() {}
 
   public AddDocusignRecipientViewRequest environment(
-      @javax.annotation.Nonnull DocusignEnvironment environment) {
+      @javax.annotation.Nullable DocusignEnvironment environment) {
     this.environment = environment;
     return this;
   }
@@ -84,12 +85,12 @@ public class AddDocusignRecipientViewRequest {
    * 
    * @return environment
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public DocusignEnvironment getEnvironment() {
     return environment;
   }
 
-  public void setEnvironment(@javax.annotation.Nonnull DocusignEnvironment environment) {
+  public void setEnvironment(@javax.annotation.Nullable DocusignEnvironment environment) {
     this.environment = environment;
   }
 
@@ -161,7 +162,7 @@ public class AddDocusignRecipientViewRequest {
     openapiFields = new HashSet<String>(Arrays.asList("environment", "recipientView"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("environment", "recipientView"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("recipientView"));
   }
 
   /**
@@ -201,8 +202,10 @@ public class AddDocusignRecipientViewRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    // validate the required field `environment`
-    DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
+    // validate the optional field `environment`
+    if (jsonObj.get("environment") != null && !jsonObj.get("environment").isJsonNull()) {
+      DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
+    }
     // validate the required field `recipientView`
     DocusignRecipientView.validateJsonElement(jsonObj.get("recipientView"));
   }

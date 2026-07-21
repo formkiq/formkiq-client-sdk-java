@@ -20,12 +20,14 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocusignEnvironment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -42,6 +44,14 @@ public class DocusignConfigTest {
   @Test
   public void testDocusignConfig() {
     // TODO: test DocusignConfig
+  }
+
+  /**
+   * Test the property 'environment'
+   */
+  @Test
+  public void environmentTest() {
+    // TODO: test environment
   }
 
   /**
@@ -74,6 +84,14 @@ public class DocusignConfigTest {
   @Test
   public void hmacSignatureTest() {
     // TODO: test hmacSignature
+  }
+
+  /**
+   * Test the property 'connectUrl'
+   */
+  @Test
+  public void connectUrlTest() {
+    // TODO: test connectUrl
   }
 
 }

@@ -21,12 +21,14 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocusignEnvironment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -36,6 +38,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -56,9 +59,14 @@ import com.formkiq.client.invoker.JSON;
  * DocusignConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class DocusignConfig {
+  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
+  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
+  @javax.annotation.Nullable
+  private DocusignEnvironment environment;
+
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   @javax.annotation.Nullable
@@ -79,7 +87,32 @@ public class DocusignConfig {
   @javax.annotation.Nullable
   private String hmacSignature;
 
+  public static final String SERIALIZED_NAME_CONNECT_URL = "connectUrl";
+  @SerializedName(SERIALIZED_NAME_CONNECT_URL)
+  @javax.annotation.Nullable
+  private URI connectUrl;
+
   public DocusignConfig() {}
+
+  public DocusignConfig environment(@javax.annotation.Nullable DocusignEnvironment environment) {
+    this.environment = environment;
+    return this;
+  }
+
+  /**
+   * Get environment
+   * 
+   * @return environment
+   */
+  @javax.annotation.Nullable
+  public DocusignEnvironment getEnvironment() {
+    return environment;
+  }
+
+  public void setEnvironment(@javax.annotation.Nullable DocusignEnvironment environment) {
+    this.environment = environment;
+  }
+
 
   public DocusignConfig userId(@javax.annotation.Nullable String userId) {
     this.userId = userId;
@@ -147,9 +180,9 @@ public class DocusignConfig {
   }
 
   /**
-   * Enabled security with Docusign Connect using HMAC keys. When enabled these keys are known only
-   * by Docusign and your app, and will be used to sign all Connect messages sent from your Docusign
-   * account to your application.
+   * Optional HMAC secret used to validate Docusign Connect event notifications. When configured,
+   * callbacks must include a matching Docusign HMAC signature. When omitted or empty, callbacks are
+   * processed without HMAC validation, including when connectUrl is configured.
    * 
    * @return hmacSignature
    */
@@ -163,6 +196,27 @@ public class DocusignConfig {
   }
 
 
+  public DocusignConfig connectUrl(@javax.annotation.Nullable URI connectUrl) {
+    this.connectUrl = connectUrl;
+    return this;
+  }
+
+  /**
+   * Public HTTPS URL that receives Docusign Connect event notifications. May be configured with or
+   * without hmacSignature.
+   * 
+   * @return connectUrl
+   */
+  @javax.annotation.Nullable
+  public URI getConnectUrl() {
+    return connectUrl;
+  }
+
+  public void setConnectUrl(@javax.annotation.Nullable URI connectUrl) {
+    this.connectUrl = connectUrl;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -173,25 +227,30 @@ public class DocusignConfig {
       return false;
     }
     DocusignConfig docusignConfig = (DocusignConfig) o;
-    return Objects.equals(this.userId, docusignConfig.userId)
+    return Objects.equals(this.environment, docusignConfig.environment)
+        && Objects.equals(this.userId, docusignConfig.userId)
         && Objects.equals(this.integrationKey, docusignConfig.integrationKey)
         && Objects.equals(this.rsaPrivateKey, docusignConfig.rsaPrivateKey)
-        && Objects.equals(this.hmacSignature, docusignConfig.hmacSignature);
+        && Objects.equals(this.hmacSignature, docusignConfig.hmacSignature)
+        && Objects.equals(this.connectUrl, docusignConfig.connectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, integrationKey, rsaPrivateKey, hmacSignature);
+    return Objects.hash(environment, userId, integrationKey, rsaPrivateKey, hmacSignature,
+        connectUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocusignConfig {\n");
+    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    integrationKey: ").append(toIndentedString(integrationKey)).append("\n");
     sb.append("    rsaPrivateKey: ").append(toIndentedString(rsaPrivateKey)).append("\n");
     sb.append("    hmacSignature: ").append(toIndentedString(hmacSignature)).append("\n");
+    sb.append("    connectUrl: ").append(toIndentedString(connectUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -209,8 +268,8 @@ public class DocusignConfig {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("userId", "integrationKey", "rsaPrivateKey", "hmacSignature"));
+    openapiFields = new HashSet<String>(Arrays.asList("environment", "userId", "integrationKey",
+        "rsaPrivateKey", "hmacSignature", "connectUrl"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -242,6 +301,10 @@ public class DocusignConfig {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // validate the optional field `environment`
+    if (jsonObj.get("environment") != null && !jsonObj.get("environment").isJsonNull()) {
+      DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
+    }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -265,6 +328,12 @@ public class DocusignConfig {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `hmacSignature` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("hmacSignature").toString()));
+    }
+    if ((jsonObj.get("connectUrl") != null && !jsonObj.get("connectUrl").isJsonNull())
+        && !jsonObj.get("connectUrl").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `connectUrl` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("connectUrl").toString()));
     }
   }
 

@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DocumentResourceType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -106,6 +107,14 @@ public class AddDocumentFulltextRequestTest {
   @Test
   public void deepLinkPathTest() {
     // TODO: test deepLinkPath
+  }
+
+  /**
+   * Test the property 'resourceType'
+   */
+  @Test
+  public void resourceTypeTest() {
+    // TODO: test resourceType
   }
 
   /**

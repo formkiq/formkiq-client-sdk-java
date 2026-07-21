@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import com.formkiq.client.model.DocumentConfig;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
+import com.formkiq.client.model.NotificationConfig;
 import com.formkiq.client.model.OcrConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -86,6 +87,14 @@ public class UpdateConfigurationRequestTest {
   @Test
   public void notificationEmailTest() {
     // TODO: test notificationEmail
+  }
+
+  /**
+   * Test the property 'notification'
+   */
+  @Test
+  public void notificationTest() {
+    // TODO: test notification
   }
 
   /**

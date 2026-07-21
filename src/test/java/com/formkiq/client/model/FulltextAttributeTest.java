@@ -81,6 +81,14 @@ public class FulltextAttributeTest {
   }
 
   /**
+   * Test the property 'dateValues'
+   */
+  @Test
+  public void dateValuesTest() {
+    // TODO: test dateValues
+  }
+
+  /**
    * Test the property 'valueType'
    */
   @Test

@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.AddDocumentReview;
 import com.formkiq.client.model.AddDocumentReviewDecision;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -51,6 +52,14 @@ public class AddDocumentReviewDecisionRequestTest {
   @Test
   public void decisionTest() {
     // TODO: test decision
+  }
+
+  /**
+   * Test the property 'review'
+   */
+  @Test
+  public void reviewTest() {
+    // TODO: test review
   }
 
 }

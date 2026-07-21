@@ -18,7 +18,7 @@ All URIs are relative to *http://localhost*
 
 Add document review
 
-Add a review to a document
+Add a review to a document. When notifications are supplied, queue each notification for delivery when the review is created.
 
 ### Example
 ```java
@@ -89,7 +89,7 @@ No authorization required
 
 Add document review decision
 
-Add a decision to a document review
+Add a decision to a document review. When approvalGroups is set on the review, the caller&#39;s credentials are also verified against those groups before the decision is added.
 
 ### Example
 ```java
