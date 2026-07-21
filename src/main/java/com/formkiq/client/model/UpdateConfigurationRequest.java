@@ -24,6 +24,7 @@ import java.util.Objects;
 import com.formkiq.client.model.DocumentConfig;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
+import com.formkiq.client.model.NotificationConfig;
 import com.formkiq.client.model.OcrConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -40,6 +41,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -60,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class UpdateConfigurationRequest {
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
@@ -84,9 +86,15 @@ public class UpdateConfigurationRequest {
   private String maxWebhooks;
 
   public static final String SERIALIZED_NAME_NOTIFICATION_EMAIL = "notificationEmail";
+  @Deprecated
   @SerializedName(SERIALIZED_NAME_NOTIFICATION_EMAIL)
   @javax.annotation.Nullable
   private String notificationEmail;
+
+  public static final String SERIALIZED_NAME_NOTIFICATION = "notification";
+  @SerializedName(SERIALIZED_NAME_NOTIFICATION)
+  @javax.annotation.Nullable
+  private NotificationConfig notification;
 
   public static final String SERIALIZED_NAME_DOCUMENT = "document";
   @SerializedName(SERIALIZED_NAME_DOCUMENT)
@@ -191,6 +199,7 @@ public class UpdateConfigurationRequest {
   }
 
 
+  @Deprecated
   public UpdateConfigurationRequest notificationEmail(
       @javax.annotation.Nullable String notificationEmail) {
     this.notificationEmail = notificationEmail;
@@ -198,17 +207,41 @@ public class UpdateConfigurationRequest {
   }
 
   /**
-   * Email address to use for notifications
+   * Deprecated. Use notification.email instead. Email address to use for SES notifications.
    * 
    * @return notificationEmail
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   public String getNotificationEmail() {
     return notificationEmail;
   }
 
+  @Deprecated
   public void setNotificationEmail(@javax.annotation.Nullable String notificationEmail) {
     this.notificationEmail = notificationEmail;
+  }
+
+
+  public UpdateConfigurationRequest notification(
+      @javax.annotation.Nullable NotificationConfig notification) {
+    this.notification = notification;
+    return this;
+  }
+
+  /**
+   * Get notification
+   * 
+   * @return notification
+   */
+  @javax.annotation.Nullable
+  public NotificationConfig getNotification() {
+    return notification;
+  }
+
+  public void setNotification(@javax.annotation.Nullable NotificationConfig notification) {
+    this.notification = notification;
   }
 
 
@@ -308,6 +341,7 @@ public class UpdateConfigurationRequest {
         && Objects.equals(this.maxDocuments, updateConfigurationRequest.maxDocuments)
         && Objects.equals(this.maxWebhooks, updateConfigurationRequest.maxWebhooks)
         && Objects.equals(this.notificationEmail, updateConfigurationRequest.notificationEmail)
+        && Objects.equals(this.notification, updateConfigurationRequest.notification)
         && Objects.equals(this.document, updateConfigurationRequest.document)
         && Objects.equals(this.ocr, updateConfigurationRequest.ocr)
         && Objects.equals(this.google, updateConfigurationRequest.google)
@@ -317,7 +351,7 @@ public class UpdateConfigurationRequest {
   @Override
   public int hashCode() {
     return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
-        notificationEmail, document, ocr, google, docusign);
+        notificationEmail, notification, document, ocr, google, docusign);
   }
 
   @Override
@@ -330,6 +364,7 @@ public class UpdateConfigurationRequest {
     sb.append("    maxDocuments: ").append(toIndentedString(maxDocuments)).append("\n");
     sb.append("    maxWebhooks: ").append(toIndentedString(maxWebhooks)).append("\n");
     sb.append("    notificationEmail: ").append(toIndentedString(notificationEmail)).append("\n");
+    sb.append("    notification: ").append(toIndentedString(notification)).append("\n");
     sb.append("    document: ").append(toIndentedString(document)).append("\n");
     sb.append("    ocr: ").append(toIndentedString(ocr)).append("\n");
     sb.append("    google: ").append(toIndentedString(google)).append("\n");
@@ -351,9 +386,9 @@ public class UpdateConfigurationRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("chatGptApiKey", "maxContentLengthBytes", "maxDocuments",
-            "maxWebhooks", "notificationEmail", "document", "ocr", "google", "docusign"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("chatGptApiKey", "maxContentLengthBytes", "maxDocuments", "maxWebhooks",
+            "notificationEmail", "notification", "document", "ocr", "google", "docusign"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -415,6 +450,10 @@ public class UpdateConfigurationRequest {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `notificationEmail` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("notificationEmail").toString()));
+    }
+    // validate the optional field `notification`
+    if (jsonObj.get("notification") != null && !jsonObj.get("notification").isJsonNull()) {
+      NotificationConfig.validateJsonElement(jsonObj.get("notification"));
     }
     // validate the optional field `document`
     if (jsonObj.get("document") != null && !jsonObj.get("document").isJsonNull()) {

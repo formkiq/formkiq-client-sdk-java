@@ -69,4 +69,12 @@ public class DocumentFulltextAttributeEqTest {
     // TODO: test booleanValue
   }
 
+  /**
+   * Test the property 'dateValue'
+   */
+  @Test
+  public void dateValueTest() {
+    // TODO: test dateValue
+  }
+
 }

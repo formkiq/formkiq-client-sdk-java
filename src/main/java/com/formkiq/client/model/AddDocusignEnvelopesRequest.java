@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocusignEnvelopeStatus;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignInpersonSigner;
 import com.formkiq.client.model.DocusignNotification;
@@ -42,6 +43,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -62,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocusignEnvelopesRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class AddDocusignEnvelopesRequest {
   public static final String SERIALIZED_NAME_EMAIL_SUBJECT = "emailSubject";
   @SerializedName(SERIALIZED_NAME_EMAIL_SUBJECT)
@@ -74,6 +76,11 @@ public class AddDocusignEnvelopesRequest {
   @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
   @javax.annotation.Nonnull
   private DocusignEnvironment environment;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
+  private DocusignEnvelopeStatus status = DocusignEnvelopeStatus.SENT;
 
   public static final String SERIALIZED_NAME_SIGNERS = "signers";
   @SerializedName(SERIALIZED_NAME_SIGNERS)
@@ -130,6 +137,27 @@ public class AddDocusignEnvelopesRequest {
 
   public void setEnvironment(@javax.annotation.Nonnull DocusignEnvironment environment) {
     this.environment = environment;
+  }
+
+
+  public AddDocusignEnvelopesRequest status(
+      @javax.annotation.Nullable DocusignEnvelopeStatus status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * 
+   * @return status
+   */
+  @javax.annotation.Nullable
+  public DocusignEnvelopeStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable DocusignEnvelopeStatus status) {
+    this.status = status;
   }
 
 
@@ -226,6 +254,7 @@ public class AddDocusignEnvelopesRequest {
     AddDocusignEnvelopesRequest addDocusignEnvelopesRequest = (AddDocusignEnvelopesRequest) o;
     return Objects.equals(this.emailSubject, addDocusignEnvelopesRequest.emailSubject)
         && Objects.equals(this.environment, addDocusignEnvelopesRequest.environment)
+        && Objects.equals(this.status, addDocusignEnvelopesRequest.status)
         && Objects.equals(this.signers, addDocusignEnvelopesRequest.signers)
         && Objects.equals(this.inpersonSigners, addDocusignEnvelopesRequest.inpersonSigners)
         && Objects.equals(this.notification, addDocusignEnvelopesRequest.notification);
@@ -233,7 +262,7 @@ public class AddDocusignEnvelopesRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailSubject, environment, signers, inpersonSigners, notification);
+    return Objects.hash(emailSubject, environment, status, signers, inpersonSigners, notification);
   }
 
   @Override
@@ -242,6 +271,7 @@ public class AddDocusignEnvelopesRequest {
     sb.append("class AddDocusignEnvelopesRequest {\n");
     sb.append("    emailSubject: ").append(toIndentedString(emailSubject)).append("\n");
     sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    inpersonSigners: ").append(toIndentedString(inpersonSigners)).append("\n");
     sb.append("    notification: ").append(toIndentedString(notification)).append("\n");
@@ -262,8 +292,8 @@ public class AddDocusignEnvelopesRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("emailSubject", "environment", "signers", "inpersonSigners", "notification"));
+    openapiFields = new HashSet<String>(Arrays.asList("emailSubject", "environment", "status",
+        "signers", "inpersonSigners", "notification"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("environment"));
@@ -312,6 +342,10 @@ public class AddDocusignEnvelopesRequest {
     }
     // validate the required field `environment`
     DocusignEnvironment.validateJsonElement(jsonObj.get("environment"));
+    // validate the optional field `status`
+    if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+      DocusignEnvelopeStatus.validateJsonElement(jsonObj.get("status"));
+    }
     if (jsonObj.get("signers") != null && !jsonObj.get("signers").isJsonNull()) {
       JsonArray jsonArraysigners = jsonObj.getAsJsonArray("signers");
       if (jsonArraysigners != null) {

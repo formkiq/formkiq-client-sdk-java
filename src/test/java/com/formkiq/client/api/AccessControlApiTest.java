@@ -25,8 +25,11 @@ import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetOpaAccessPoliciesResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyResponse;
+import com.formkiq.client.model.OpaPolicyTestErrorResponse;
 import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.TestOpaAccessPolicyRequest;
+import com.formkiq.client.model.TestOpaAccessPolicyResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -111,6 +114,24 @@ public class AccessControlApiTest {
     String siteId = null;
     SetOpaAccessPolicyItemsRequest setOpaAccessPolicyItemsRequest = null;
     SetResponse response = api.setOpaAccessPolicyItems(siteId, setOpaAccessPolicyItemsRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Test an OPA access policy, can only be requested with ADMIN privileges
+   *
+   * Evaluates the site&#39;s saved OPA access policy, or draft policy items supplied in the
+   * request, against simulated request and user input. The operation does not persist policies or
+   * modify documents.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void testOpaAccessPolicyTest() throws ApiException {
+    String siteId = null;
+    TestOpaAccessPolicyRequest testOpaAccessPolicyRequest = null;
+    TestOpaAccessPolicyResponse response =
+        api.testOpaAccessPolicy(siteId, testOpaAccessPolicyRequest);
     // TODO: test validations
   }
 

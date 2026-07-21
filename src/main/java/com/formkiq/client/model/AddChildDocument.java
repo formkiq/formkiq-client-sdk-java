@@ -25,6 +25,7 @@ import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DocumentResourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,6 +43,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -62,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * List of related documents
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class AddChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -84,6 +86,11 @@ public class AddChildDocument {
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   @javax.annotation.Nullable
   private String deepLinkPath;
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resourceType";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  @javax.annotation.Nullable
+  private DocumentResourceType resourceType;
 
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -204,6 +211,27 @@ public class AddChildDocument {
 
   public void setDeepLinkPath(@javax.annotation.Nullable String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
+  }
+
+
+  public AddChildDocument resourceType(
+      @javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
+    return this;
+  }
+
+  /**
+   * Get resourceType
+   * 
+   * @return resourceType
+   */
+  @javax.annotation.Nullable
+  public DocumentResourceType getResourceType() {
+    return resourceType;
+  }
+
+  public void setResourceType(@javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
   }
 
 
@@ -406,6 +434,7 @@ public class AddChildDocument {
         && Objects.equals(this.width, addChildDocument.width)
         && Objects.equals(this.height, addChildDocument.height)
         && Objects.equals(this.deepLinkPath, addChildDocument.deepLinkPath)
+        && Objects.equals(this.resourceType, addChildDocument.resourceType)
         && Objects.equals(this.contentType, addChildDocument.contentType)
         && Objects.equals(this.checksumType, addChildDocument.checksumType)
         && Objects.equals(this.checksum, addChildDocument.checksum)
@@ -418,8 +447,8 @@ public class AddChildDocument {
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, width, height, deepLinkPath, contentType, checksumType, checksum,
-        isBase64, content, tags, metadata, attributes);
+    return Objects.hash(path, width, height, deepLinkPath, resourceType, contentType, checksumType,
+        checksum, isBase64, content, tags, metadata, attributes);
   }
 
   @Override
@@ -430,6 +459,7 @@ public class AddChildDocument {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
@@ -455,8 +485,8 @@ public class AddChildDocument {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("path", "width", "height", "deepLinkPath", "contentType",
+    openapiFields = new HashSet<String>(
+        Arrays.asList("path", "width", "height", "deepLinkPath", "resourceType", "contentType",
             "checksumType", "checksum", "isBase64", "content", "tags", "metadata", "attributes"));
 
     // a set of required properties/fields (JSON key names)
@@ -521,6 +551,10 @@ public class AddChildDocument {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    // validate the optional field `resourceType`
+    if (jsonObj.get("resourceType") != null && !jsonObj.get("resourceType").isJsonNull()) {
+      DocumentResourceType.validateJsonElement(jsonObj.get("resourceType"));
     }
     if ((jsonObj.get("contentType") != null && !jsonObj.get("contentType").isJsonNull())
         && !jsonObj.get("contentType").isJsonPrimitive()) {

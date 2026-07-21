@@ -91,6 +91,30 @@ public class AddDocumentGenerateRequestTest {
   }
 
   /**
+   * Test the property 'saveAsArtifact'
+   */
+  @Test
+  public void saveAsArtifactTest() {
+    // TODO: test saveAsArtifact
+  }
+
+  /**
+   * Test the property 'saveAsArtifactId'
+   */
+  @Test
+  public void saveAsArtifactIdTest() {
+    // TODO: test saveAsArtifactId
+  }
+
+  /**
+   * Test the property 'artifactCategory'
+   */
+  @Test
+  public void artifactCategoryTest() {
+    // TODO: test artifactCategory
+  }
+
+  /**
    * Test the property 'path'
    */
   @Test

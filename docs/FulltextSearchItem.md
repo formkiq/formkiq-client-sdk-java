@@ -13,6 +13,7 @@
 |**width** | **String** | Document Content Width property |  [optional] |
 |**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
+|**resourceType** | **DocumentResourceType** |  |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
 |**lastModifiedDate** | **String** | Last Modified Timestamp |  [optional] |
 |**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |

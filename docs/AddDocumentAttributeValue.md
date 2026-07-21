@@ -13,6 +13,8 @@ Document Attribute Value
 |**numberValue** | **BigDecimal** | Attribute with number value |  [optional] |
 |**numberValues** | **List&lt;BigDecimal&gt;** | Attribute with number values |  [optional] |
 |**booleanValue** | **Boolean** | Attribute with boolean value |  [optional] |
+|**dateValue** | **String** | Attribute with date value |  [optional] |
+|**dateValues** | **List&lt;String&gt;** | Attribute with date values |  [optional] |
 
 
 

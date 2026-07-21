@@ -9,6 +9,7 @@ All URIs are relative to *http://localhost*
 | [**getOpaAccessPolicy**](AccessControlApi.md#getOpaAccessPolicy) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Access Policy |
 | [**getOpaAccessPolicyItems**](AccessControlApi.md#getOpaAccessPolicyItems) | **GET** /sites/{siteId}/opa/accessPolicy/policyItems | Get OPA Access Policy Items |
 | [**setOpaAccessPolicyItems**](AccessControlApi.md#setOpaAccessPolicyItems) | **PUT** /sites/{siteId}/opa/accessPolicy/policyItems | Set opa access policy items, can only be requested with ADMIN privileges |
+| [**testOpaAccessPolicy**](AccessControlApi.md#testOpaAccessPolicy) | **POST** /sites/{siteId}/opa/accessPolicy/test | Test an OPA access policy, can only be requested with ADMIN privileges |
 
 
 <a id="deleteOpaAccessPolicyItems"></a>
@@ -334,4 +335,76 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 | **400** | 400 OK |  -  |
+
+<a id="testOpaAccessPolicy"></a>
+# **testOpaAccessPolicy**
+> TestOpaAccessPolicyResponse testOpaAccessPolicy(siteId, testOpaAccessPolicyRequest)
+
+Test an OPA access policy, can only be requested with ADMIN privileges
+
+Evaluates the site&#39;s saved OPA access policy, or draft policy items supplied in the request, against simulated request and user input. The operation does not persist policies or modify documents.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.AccessControlApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    AccessControlApi apiInstance = new AccessControlApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    TestOpaAccessPolicyRequest testOpaAccessPolicyRequest = new TestOpaAccessPolicyRequest(); // TestOpaAccessPolicyRequest | 
+    try {
+      TestOpaAccessPolicyResponse result = apiInstance.testOpaAccessPolicy(siteId, testOpaAccessPolicyRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccessControlApi#testOpaAccessPolicy");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **testOpaAccessPolicyRequest** | [**TestOpaAccessPolicyRequest**](TestOpaAccessPolicyRequest.md)|  | |
+
+### Return type
+
+[**TestOpaAccessPolicyResponse**](TestOpaAccessPolicyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OPA access policy test completed |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Invalid OPA access policy test request |  -  |
+| **401** | User is not authenticated |  -  |
+| **403** | User does not have ADMIN privileges for the site |  -  |
+| **404** | No saved OPA access policy exists for the site |  -  |
+| **503** | OPA evaluation is unavailable or timed out |  -  |
 

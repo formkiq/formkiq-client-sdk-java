@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**addApiKey**](SystemManagementApi.md#addApiKey) | **POST** /sites/{siteId}/apiKeys | Add API Key |
 | [**addLocale**](SystemManagementApi.md#addLocale) | **POST** /sites/{siteId}/locales | Add Locale |
 | [**addLocaleResourceItem**](SystemManagementApi.md#addLocaleResourceItem) | **POST** /sites/{siteId}/locales/{locale}/resourceItems | Add Locale Resource Item |
+| [**addNotificationTest**](SystemManagementApi.md#addNotificationTest) | **POST** /sites/{siteId}/configuration/notification/test | Send a test notification |
 | [**addOpenSearchRestoreSnapshot**](SystemManagementApi.md#addOpenSearchRestoreSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName}/restore | Restore site OpenSearch snapshot |
 | [**addOpenSearchSnapshot**](SystemManagementApi.md#addOpenSearchSnapshot) | **POST** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Create site OpenSearch snapshot |
 | [**addSite**](SystemManagementApi.md#addSite) | **POST** /sites | Add Site |
@@ -28,6 +29,8 @@ All URIs are relative to *http://localhost*
 | [**getLocaleResourceItem**](SystemManagementApi.md#getLocaleResourceItem) | **GET** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Get Resource Item by Locale |
 | [**getLocaleResourceItems**](SystemManagementApi.md#getLocaleResourceItems) | **GET** /sites/{siteId}/locales/{locale}/resourceItems | Get Resource Items by Locale |
 | [**getLocales**](SystemManagementApi.md#getLocales) | **GET** /sites/{siteId}/locales | Get Locales |
+| [**getNumberingSequence**](SystemManagementApi.md#getNumberingSequence) | **GET** /sites/{siteId}/numberingSequences/{attributeKey} | Get numbering sequence |
+| [**getNumberingSequences**](SystemManagementApi.md#getNumberingSequences) | **GET** /sites/{siteId}/numberingSequences | Get numbering sequences |
 | [**getOpenSearchIndex**](SystemManagementApi.md#getOpenSearchIndex) | **GET** /sites/{siteId}/opensearch/index | Get site(s) OpenSearch index settings |
 | [**getOpenSearchIndices**](SystemManagementApi.md#getOpenSearchIndices) | **GET** /sites/{siteId}/opensearch/indices | Get site(s) OpenSearch indices |
 | [**getOpenSearchSnapshot**](SystemManagementApi.md#getOpenSearchSnapshot) | **GET** /sites/{siteId}/opensearch/snapshots/{snapshotName} | Get site OpenSearch snapshot |
@@ -41,6 +44,7 @@ All URIs are relative to *http://localhost*
 | [**getSystemInferenceModels**](SystemManagementApi.md#getSystemInferenceModels) | **GET** /system/inferenceModels | Get system inference models |
 | [**getVersion**](SystemManagementApi.md#getVersion) | **GET** /version | Get FormKiQ version |
 | [**setLocaleResourceItem**](SystemManagementApi.md#setLocaleResourceItem) | **PUT** /sites/{siteId}/locales/{locale}/resourceItems/{itemKey} | Set Locale Resource Item |
+| [**setNumberingSequence**](SystemManagementApi.md#setNumberingSequence) | **PUT** /sites/{siteId}/numberingSequences/{attributeKey} | Set numbering sequence |
 | [**setOpenSearchIndex**](SystemManagementApi.md#setOpenSearchIndex) | **PUT** /sites/{siteId}/opensearch/index | Set site(s) OpenSearch index settings |
 | [**setOpenSearchIndices**](SystemManagementApi.md#setOpenSearchIndices) | **PUT** /sites/{siteId}/opensearch/indices | Set site(s) OpenSearch index to use for a SiteId |
 | [**setSiteGroupPermissions**](SystemManagementApi.md#setSiteGroupPermissions) | **PUT** /sites/{siteId}/groups/{groupName}/permissions | Set Site&#39;s Group Permissions |
@@ -251,6 +255,74 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="addNotificationTest"></a>
+# **addNotificationTest**
+> AddNotificationTestResponse addNotificationTest(siteId, addNotificationTestRequest)
+
+Send a test notification
+
+Queues a test email using the site&#39;s saved notification configuration
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    AddNotificationTestRequest addNotificationTestRequest = new AddNotificationTestRequest(); // AddNotificationTestRequest | 
+    try {
+      AddNotificationTestResponse result = apiInstance.addNotificationTest(siteId, addNotificationTestRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#addNotificationTest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **addNotificationTestRequest** | [**AddNotificationTestRequest**](AddNotificationTestRequest.md)|  | |
+
+### Return type
+
+[**AddNotificationTestResponse**](AddNotificationTestResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Test notification queued |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Invalid request or notification configuration |  -  |
 
 <a id="addOpenSearchRestoreSnapshot"></a>
 # **addOpenSearchRestoreSnapshot**
@@ -1658,6 +1730,143 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
+<a id="getNumberingSequence"></a>
+# **getNumberingSequence**
+> GetNumberingSequenceResponse getNumberingSequence(siteId, attributeKey)
+
+Get numbering sequence
+
+Returns the numbering sequence configured for an attribute key
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
+    try {
+      GetNumberingSequenceResponse result = apiInstance.getNumberingSequence(siteId, attributeKey);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getNumberingSequence");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **attributeKey** | **String**| Attribute Key | |
+
+### Return type
+
+[**GetNumberingSequenceResponse**](GetNumberingSequenceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **404** | Numbering sequence not found |  -  |
+
+<a id="getNumberingSequences"></a>
+# **getNumberingSequences**
+> GetNumberingSequencesResponse getNumberingSequences(siteId, limit, next)
+
+Get numbering sequences
+
+Returns the numbering sequences configured for a site
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String limit = "10"; // String | Limit Results
+    String next = "next_example"; // String | Next page of results token
+    try {
+      GetNumberingSequencesResponse result = apiInstance.getNumberingSequences(siteId, limit, next);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#getNumberingSequences");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **limit** | **String**| Limit Results | [optional] [default to 10] |
+| **next** | **String**| Next page of results token | [optional] |
+
+### Return type
+
+[**GetNumberingSequencesResponse**](GetNumberingSequencesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
 <a id="getOpenSearchIndex"></a>
 # **getOpenSearchIndex**
 > GetOpenSearchIndexResponse getOpenSearchIndex(siteId)
@@ -2496,6 +2705,76 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="setNumberingSequence"></a>
+# **setNumberingSequence**
+> GetNumberingSequenceResponse setNumberingSequence(siteId, attributeKey, setNumberingSequenceRequest)
+
+Set numbering sequence
+
+Creates or updates the numbering sequence for an attribute key
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.SystemManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    SystemManagementApi apiInstance = new SystemManagementApi(defaultClient);
+    String siteId = "siteId_example"; // String | Site Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
+    SetNumberingSequenceRequest setNumberingSequenceRequest = new SetNumberingSequenceRequest(); // SetNumberingSequenceRequest | 
+    try {
+      GetNumberingSequenceResponse result = apiInstance.setNumberingSequence(siteId, attributeKey, setNumberingSequenceRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemManagementApi#setNumberingSequence");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**| Site Identifier | |
+| **attributeKey** | **String**| Attribute Key | |
+| **setNumberingSequenceRequest** | [**SetNumberingSequenceRequest**](SetNumberingSequenceRequest.md)|  | |
+
+### Return type
+
+[**GetNumberingSequenceResponse**](GetNumberingSequenceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Invalid numbering sequence configuration |  -  |
 
 <a id="setOpenSearchIndex"></a>
 # **setOpenSearchIndex**

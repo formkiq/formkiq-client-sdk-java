@@ -38,7 +38,9 @@ public enum SearchRangeDataType {
 
   STRING("STRING"),
 
-  NUMBER("NUMBER");
+  NUMBER("NUMBER"),
+
+  DATE("DATE");
 
   private String value;
 

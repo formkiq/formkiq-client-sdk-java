@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DocumentResourceType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -40,6 +41,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -60,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentFulltextResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class GetDocumentFulltextResponse {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -97,6 +99,11 @@ public class GetDocumentFulltextResponse {
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   @javax.annotation.Nullable
   private String deepLinkPath;
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resourceType";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  @javax.annotation.Nullable
+  private DocumentResourceType resourceType;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -287,6 +294,27 @@ public class GetDocumentFulltextResponse {
 
   public void setDeepLinkPath(@javax.annotation.Nullable String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
+  }
+
+
+  public GetDocumentFulltextResponse resourceType(
+      @javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
+    return this;
+  }
+
+  /**
+   * Get resourceType
+   * 
+   * @return resourceType
+   */
+  @javax.annotation.Nullable
+  public DocumentResourceType getResourceType() {
+    return resourceType;
+  }
+
+  public void setResourceType(@javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
   }
 
 
@@ -537,6 +565,7 @@ public class GetDocumentFulltextResponse {
         && Objects.equals(this.width, getDocumentFulltextResponse.width)
         && Objects.equals(this.height, getDocumentFulltextResponse.height)
         && Objects.equals(this.deepLinkPath, getDocumentFulltextResponse.deepLinkPath)
+        && Objects.equals(this.resourceType, getDocumentFulltextResponse.resourceType)
         && Objects.equals(this.insertedDate, getDocumentFulltextResponse.insertedDate)
         && Objects.equals(this.lastModifiedDate, getDocumentFulltextResponse.lastModifiedDate)
         && Objects.equals(this.documentId, getDocumentFulltextResponse.documentId)
@@ -552,8 +581,8 @@ public class GetDocumentFulltextResponse {
   @Override
   public int hashCode() {
     return Objects.hash(siteId, content, contentType, path, width, height, deepLinkPath,
-        insertedDate, lastModifiedDate, documentId, createdBy, contentLength, checksum,
-        checksumType, tags, metadata, attributes);
+        resourceType, insertedDate, lastModifiedDate, documentId, createdBy, contentLength,
+        checksum, checksumType, tags, metadata, attributes);
   }
 
   @Override
@@ -567,6 +596,7 @@ public class GetDocumentFulltextResponse {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
@@ -594,9 +624,9 @@ public class GetDocumentFulltextResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("siteId", "content", "contentType", "path", "width",
-            "height", "deepLinkPath", "insertedDate", "lastModifiedDate", "documentId", "createdBy",
+    openapiFields = new HashSet<String>(
+        Arrays.asList("siteId", "content", "contentType", "path", "width", "height", "deepLinkPath",
+            "resourceType", "insertedDate", "lastModifiedDate", "documentId", "createdBy",
             "contentLength", "checksum", "checksumType", "tags", "metadata", "attributes"));
 
     // a set of required properties/fields (JSON key names)
@@ -670,6 +700,10 @@ public class GetDocumentFulltextResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    // validate the optional field `resourceType`
+    if (jsonObj.get("resourceType") != null && !jsonObj.get("resourceType").isJsonNull()) {
+      DocumentResourceType.validateJsonElement(jsonObj.get("resourceType"));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

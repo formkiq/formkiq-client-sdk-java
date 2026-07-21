@@ -41,17 +41,22 @@ import com.formkiq.client.model.AddDelegationTokenResponse;
 import com.formkiq.client.model.AddLocaleRequest;
 import com.formkiq.client.model.AddLocaleResourceItemRequest;
 import com.formkiq.client.model.AddLocaleResourceItemResponse;
+import com.formkiq.client.model.AddNotificationTestRequest;
+import com.formkiq.client.model.AddNotificationTestResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.AddSystemInferenceModelAgreementRequest;
 import com.formkiq.client.model.CleanupOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetLocaleResourceItemResponse;
 import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetLocalesResponse;
+import com.formkiq.client.model.GetNumberingSequenceResponse;
+import com.formkiq.client.model.GetNumberingSequencesResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetOpenSearchIndiceResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotRepositoryResponse;
@@ -64,6 +69,7 @@ import com.formkiq.client.model.GetSystemInferenceModelsResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
+import com.formkiq.client.model.SetNumberingSequenceRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetOpenSearchIndiceRequest;
@@ -719,6 +725,230 @@ public class SystemManagementApi {
     okhttp3.Call localVarCall = addLocaleResourceItemValidateBeforeCall(siteId, locale,
         addLocaleResourceItemRequest, _callback);
     Type localVarReturnType = new TypeToken<AddLocaleResourceItemResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addNotificationTest
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addNotificationTestRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>202</td>
+   *                        <td>Test notification queued</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid request or notification configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addNotificationTestCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull AddNotificationTestRequest addNotificationTestRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addNotificationTestRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/configuration/notification/test"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addNotificationTestValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull AddNotificationTestRequest addNotificationTestRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling addNotificationTest(Async)");
+    }
+
+    // verify the required parameter 'addNotificationTestRequest' is set
+    if (addNotificationTestRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addNotificationTestRequest' when calling addNotificationTest(Async)");
+    }
+
+    return addNotificationTestCall(siteId, addNotificationTestRequest, _callback);
+
+  }
+
+  /**
+   * Send a test notification Queues a test email using the site&#39;s saved notification
+   * configuration
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addNotificationTestRequest (required)
+   * @return AddNotificationTestResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>202</td>
+   *                        <td>Test notification queued</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid request or notification configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddNotificationTestResponse addNotificationTest(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull AddNotificationTestRequest addNotificationTestRequest)
+      throws ApiException {
+    ApiResponse<AddNotificationTestResponse> localVarResp =
+        addNotificationTestWithHttpInfo(siteId, addNotificationTestRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Send a test notification Queues a test email using the site&#39;s saved notification
+   * configuration
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addNotificationTestRequest (required)
+   * @return ApiResponse&lt;AddNotificationTestResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>202</td>
+   *                        <td>Test notification queued</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid request or notification configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddNotificationTestResponse> addNotificationTestWithHttpInfo(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull AddNotificationTestRequest addNotificationTestRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        addNotificationTestValidateBeforeCall(siteId, addNotificationTestRequest, null);
+    Type localVarReturnType = new TypeToken<AddNotificationTestResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Send a test notification (asynchronously) Queues a test email using the site&#39;s saved
+   * notification configuration
+   * 
+   * @param siteId Site Identifier (required)
+   * @param addNotificationTestRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>202</td>
+   *                        <td>Test notification queued</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid request or notification configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addNotificationTestAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull AddNotificationTestRequest addNotificationTestRequest,
+      final ApiCallback<AddNotificationTestResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        addNotificationTestValidateBeforeCall(siteId, addNotificationTestRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddNotificationTestResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
@@ -4967,6 +5197,429 @@ public class SystemManagementApi {
   }
 
   /**
+   * Build call for getNumberingSequence
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getNumberingSequenceCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/numberingSequences/{attributeKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "attributeKey" + "}", localVarApiClient.escapeString(attributeKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getNumberingSequenceValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String attributeKey,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getNumberingSequence(Async)");
+    }
+
+    // verify the required parameter 'attributeKey' is set
+    if (attributeKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'attributeKey' when calling getNumberingSequence(Async)");
+    }
+
+    return getNumberingSequenceCall(siteId, attributeKey, _callback);
+
+  }
+
+  /**
+   * Get numbering sequence Returns the numbering sequence configured for an attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @return GetNumberingSequenceResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetNumberingSequenceResponse getNumberingSequence(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey) throws ApiException {
+    ApiResponse<GetNumberingSequenceResponse> localVarResp =
+        getNumberingSequenceWithHttpInfo(siteId, attributeKey);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get numbering sequence Returns the numbering sequence configured for an attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @return ApiResponse&lt;GetNumberingSequenceResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetNumberingSequenceResponse> getNumberingSequenceWithHttpInfo(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String attributeKey)
+      throws ApiException {
+    okhttp3.Call localVarCall = getNumberingSequenceValidateBeforeCall(siteId, attributeKey, null);
+    Type localVarReturnType = new TypeToken<GetNumberingSequenceResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get numbering sequence (asynchronously) Returns the numbering sequence configured for an
+   * attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getNumberingSequenceAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey,
+      final ApiCallback<GetNumberingSequenceResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getNumberingSequenceValidateBeforeCall(siteId, attributeKey, _callback);
+    Type localVarReturnType = new TypeToken<GetNumberingSequenceResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getNumberingSequences
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getNumberingSequencesCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/numberingSequences".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (limit != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+    }
+
+    if (next != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("next", next));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getNumberingSequencesValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling getNumberingSequences(Async)");
+    }
+
+    return getNumberingSequencesCall(siteId, limit, next, _callback);
+
+  }
+
+  /**
+   * Get numbering sequences Returns the numbering sequences configured for a site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return GetNumberingSequencesResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetNumberingSequencesResponse getNumberingSequences(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
+    ApiResponse<GetNumberingSequencesResponse> localVarResp =
+        getNumberingSequencesWithHttpInfo(siteId, limit, next);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get numbering sequences Returns the numbering sequences configured for a site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @return ApiResponse&lt;GetNumberingSequencesResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetNumberingSequencesResponse> getNumberingSequencesWithHttpInfo(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nullable String limit,
+      @javax.annotation.Nullable String next) throws ApiException {
+    okhttp3.Call localVarCall = getNumberingSequencesValidateBeforeCall(siteId, limit, next, null);
+    Type localVarReturnType = new TypeToken<GetNumberingSequencesResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get numbering sequences (asynchronously) Returns the numbering sequences configured for a site
+   * 
+   * @param siteId Site Identifier (required)
+   * @param limit Limit Results (optional, default to 10)
+   * @param next Next page of results token (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getNumberingSequencesAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nullable String limit, @javax.annotation.Nullable String next,
+      final ApiCallback<GetNumberingSequencesResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        getNumberingSequencesValidateBeforeCall(siteId, limit, next, _callback);
+    Type localVarReturnType = new TypeToken<GetNumberingSequencesResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
    * Build call for getOpenSearchIndex
    * 
    * @param siteId Site Identifier (required)
@@ -7397,6 +8050,242 @@ public class SystemManagementApi {
     okhttp3.Call localVarCall = setLocaleResourceItemValidateBeforeCall(siteId, locale, itemKey,
         setLocaleResourceItemRequest, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for setNumberingSequence
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param setNumberingSequenceRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid numbering sequence configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setNumberingSequenceCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nonnull SetNumberingSequenceRequest setNumberingSequenceRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = setNumberingSequenceRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/numberingSequences/{attributeKey}"
+        .replace("{" + "siteId" + "}", localVarApiClient.escapeString(siteId.toString())).replace(
+            "{" + "attributeKey" + "}", localVarApiClient.escapeString(attributeKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call setNumberingSequenceValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nonnull SetNumberingSequenceRequest setNumberingSequenceRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling setNumberingSequence(Async)");
+    }
+
+    // verify the required parameter 'attributeKey' is set
+    if (attributeKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'attributeKey' when calling setNumberingSequence(Async)");
+    }
+
+    // verify the required parameter 'setNumberingSequenceRequest' is set
+    if (setNumberingSequenceRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'setNumberingSequenceRequest' when calling setNumberingSequence(Async)");
+    }
+
+    return setNumberingSequenceCall(siteId, attributeKey, setNumberingSequenceRequest, _callback);
+
+  }
+
+  /**
+   * Set numbering sequence Creates or updates the numbering sequence for an attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param setNumberingSequenceRequest (required)
+   * @return GetNumberingSequenceResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid numbering sequence configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetNumberingSequenceResponse setNumberingSequence(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nonnull SetNumberingSequenceRequest setNumberingSequenceRequest)
+      throws ApiException {
+    ApiResponse<GetNumberingSequenceResponse> localVarResp =
+        setNumberingSequenceWithHttpInfo(siteId, attributeKey, setNumberingSequenceRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Set numbering sequence Creates or updates the numbering sequence for an attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param setNumberingSequenceRequest (required)
+   * @return ApiResponse&lt;GetNumberingSequenceResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid numbering sequence configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetNumberingSequenceResponse> setNumberingSequenceWithHttpInfo(
+      @javax.annotation.Nonnull String siteId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nonnull SetNumberingSequenceRequest setNumberingSequenceRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall = setNumberingSequenceValidateBeforeCall(siteId, attributeKey,
+        setNumberingSequenceRequest, null);
+    Type localVarReturnType = new TypeToken<GetNumberingSequenceResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Set numbering sequence (asynchronously) Creates or updates the numbering sequence for an
+   * attribute key
+   * 
+   * @param siteId Site Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param setNumberingSequenceRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid numbering sequence configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call setNumberingSequenceAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nonnull SetNumberingSequenceRequest setNumberingSequenceRequest,
+      final ApiCallback<GetNumberingSequenceResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = setNumberingSequenceValidateBeforeCall(siteId, attributeKey,
+        setNumberingSequenceRequest, _callback);
+    Type localVarReturnType = new TypeToken<GetNumberingSequenceResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

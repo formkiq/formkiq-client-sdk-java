@@ -14,6 +14,7 @@
 |**width** | **String** | Document Content Width property |  [optional] |
 |**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
+|**resourceType** | **DocumentResourceType** |  |  [optional] |
 |**checksum** | **String** | Document checksum, changes when document file changes |  [optional] |
 |**checksumType** | **ChecksumType** |  |  [optional] |
 |**tags** | [**List&lt;AddDocumentTag&gt;**](AddDocumentTag.md) | List of document tags |  [optional] |

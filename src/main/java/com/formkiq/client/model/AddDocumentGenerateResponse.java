@@ -36,6 +36,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -56,13 +57,18 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class AddDocumentGenerateResponse {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String documentId;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String artifactId;
 
   public AddDocumentGenerateResponse() {}
 
@@ -86,6 +92,26 @@ public class AddDocumentGenerateResponse {
   }
 
 
+  public AddDocumentGenerateResponse artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Artifact Identifier
+   * 
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = artifactId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -96,12 +122,13 @@ public class AddDocumentGenerateResponse {
       return false;
     }
     AddDocumentGenerateResponse addDocumentGenerateResponse = (AddDocumentGenerateResponse) o;
-    return Objects.equals(this.documentId, addDocumentGenerateResponse.documentId);
+    return Objects.equals(this.documentId, addDocumentGenerateResponse.documentId)
+        && Objects.equals(this.artifactId, addDocumentGenerateResponse.artifactId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentId);
+    return Objects.hash(documentId, artifactId);
   }
 
   @Override
@@ -109,6 +136,7 @@ public class AddDocumentGenerateResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddDocumentGenerateResponse {\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,7 +154,7 @@ public class AddDocumentGenerateResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("documentId"));
+    openapiFields = new HashSet<String>(Arrays.asList("documentId", "artifactId"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -163,6 +191,12 @@ public class AddDocumentGenerateResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `documentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("documentId").toString()));
+    }
+    if ((jsonObj.get("artifactId") != null && !jsonObj.get("artifactId").isJsonNull())
+        && !jsonObj.get("artifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactId").toString()));
     }
   }
 

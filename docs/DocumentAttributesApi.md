@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**addDocumentAttributes**](DocumentAttributesApi.md#addDocumentAttributes) | **POST** /documents/{documentId}/attributes | Add attribute to document |
 | [**deleteDocumentAttribute**](DocumentAttributesApi.md#deleteDocumentAttribute) | **DELETE** /documents/{documentId}/attributes/{attributeKey} | Delete document attribute |
 | [**deleteDocumentAttributeAndValue**](DocumentAttributesApi.md#deleteDocumentAttributeAndValue) | **DELETE** /documents/{documentId}/attributes/{attributeKey}/{attributeValue} | Delete document&#39;s attribute value |
+| [**generateDocumentAttributeValue**](DocumentAttributesApi.md#generateDocumentAttributeValue) | **POST** /documents/{documentId}/attributes/{attributeKey}/generate | Generate document attribute value |
 | [**getDocumentAttribute**](DocumentAttributesApi.md#getDocumentAttribute) | **GET** /documents/{documentId}/attributes/{attributeKey} | Get document attribute by key |
 | [**getDocumentAttributes**](DocumentAttributesApi.md#getDocumentAttributes) | **GET** /documents/{documentId}/attributes | Get document&#39;s attributes |
 | [**setDocumentAttributeValue**](DocumentAttributesApi.md#setDocumentAttributeValue) | **PUT** /documents/{documentId}/attributes/{attributeKey} | Set document&#39;s attributes value |
@@ -227,6 +228,77 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="generateDocumentAttributeValue"></a>
+# **generateDocumentAttributeValue**
+> GenerateDocumentAttributeValueResponse generateDocumentAttributeValue(documentId, attributeKey, siteId)
+
+Generate document attribute value
+
+Allocates the next value from the numbering sequence configured for the attribute key and stores it on the document. If the document already has a value for the attribute key, the existing value is returned.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentAttributesApi apiInstance = new DocumentAttributesApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String attributeKey = "attributeKey_example"; // String | Attribute Key
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      GenerateDocumentAttributeValueResponse result = apiInstance.generateDocumentAttributeValue(documentId, attributeKey, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentAttributesApi#generateDocumentAttributeValue");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **attributeKey** | **String**| Attribute Key | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**GenerateDocumentAttributeValueResponse**](GenerateDocumentAttributeValueResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Attribute key is not eligible for generated values |  -  |
+| **404** | Document or numbering sequence not found |  -  |
 
 <a id="getDocumentAttribute"></a>
 # **getDocumentAttribute**

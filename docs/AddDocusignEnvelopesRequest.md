@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**emailSubject** | **String** | The subject line of the email message that is sent to all recipients |  [optional] |
 |**environment** | **DocusignEnvironment** |  |  |
+|**status** | **DocusignEnvelopeStatus** |  |  [optional] |
 |**signers** | [**List&lt;DocusignSigner&gt;**](DocusignSigner.md) | List of DocuSign Signers |  [optional] |
 |**inpersonSigners** | [**List&lt;DocusignInpersonSigner&gt;**](DocusignInpersonSigner.md) | List of DocuSign Inperson Signers |  [optional] |
 |**notification** | [**DocusignNotification**](DocusignNotification.md) |  |  [optional] |

@@ -98,6 +98,22 @@ public class DocumentAttributeTest {
   }
 
   /**
+   * Test the property 'dateValue'
+   */
+  @Test
+  public void dateValueTest() {
+    // TODO: test dateValue
+  }
+
+  /**
+   * Test the property 'dateValues'
+   */
+  @Test
+  public void dateValuesTest() {
+    // TODO: test dateValues
+  }
+
+  /**
    * Test the property 'insertedDate'
    */
   @Test

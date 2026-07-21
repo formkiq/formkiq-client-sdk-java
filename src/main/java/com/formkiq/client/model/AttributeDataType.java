@@ -42,6 +42,8 @@ public enum AttributeDataType {
 
   BOOLEAN("BOOLEAN"),
 
+  DATE("DATE"),
+
   KEY_ONLY("KEY_ONLY"),
 
   PUBLICATION("PUBLICATION"),

@@ -44,6 +44,8 @@ docs/AddDocumentGenerateRequest.md
 docs/AddDocumentGenerateResponse.md
 docs/AddDocumentMetadata.md
 docs/AddDocumentMetadataExtractionResponse.md
+docs/AddDocumentNotificationRequest.md
+docs/AddDocumentNotificationResponse.md
 docs/AddDocumentOcrRequest.md
 docs/AddDocumentOcrResponse.md
 docs/AddDocumentRequest.md
@@ -68,6 +70,8 @@ docs/AddDocusignEnvelopesRequest.md
 docs/AddDocusignEnvelopesResponse.md
 docs/AddDocusignRecipientViewRequest.md
 docs/AddDocusignRecipientViewResponse.md
+docs/AddDocusignSenderViewRequest.md
+docs/AddDocusignSenderViewResponse.md
 docs/AddEntity.md
 docs/AddEntityAttribute.md
 docs/AddEntityRequest.md
@@ -93,6 +97,8 @@ docs/AddLocaleResourceSchemaItem.md
 docs/AddMapping.md
 docs/AddMappingRequest.md
 docs/AddMappingResponse.md
+docs/AddNotificationTestRequest.md
+docs/AddNotificationTestResponse.md
 docs/AddQueueRequest.md
 docs/AddQueueResponse.md
 docs/AddReindexDocumentRequest.md
@@ -185,8 +191,13 @@ docs/DocumentGenerateOutputType.md
 docs/DocumentGenerationApi.md
 docs/DocumentId.md
 docs/DocumentMetadata.md
+docs/DocumentNotification.md
+docs/DocumentNotificationStatus.md
+docs/DocumentNotificationType.md
+docs/DocumentNotificationsApi.md
 docs/DocumentOcrApi.md
 docs/DocumentRelationshipType.md
+docs/DocumentResourceType.md
 docs/DocumentReview.md
 docs/DocumentReviewDecision.md
 docs/DocumentReviewStatus.md
@@ -221,6 +232,7 @@ docs/DocumentsCompressDocument.md
 docs/DocumentsCompressRequest.md
 docs/DocumentsCompressResponse.md
 docs/DocusignConfig.md
+docs/DocusignEnvelopeStatus.md
 docs/DocusignEnvironment.md
 docs/DocusignInpersonSigner.md
 docs/DocusignNotification.md
@@ -243,6 +255,7 @@ docs/FolderPermission.md
 docs/FolderPermissionType.md
 docs/FulltextAttribute.md
 docs/FulltextSearchItem.md
+docs/GenerateDocumentAttributeValueResponse.md
 docs/GetActivitesResponse.md
 docs/GetApiKeysResponse.md
 docs/GetAttributeAllowedValuesResponse.md
@@ -260,6 +273,7 @@ docs/GetDocumentContentResponse.md
 docs/GetDocumentDataClassificationResponse.md
 docs/GetDocumentFulltextResponse.md
 docs/GetDocumentMetadataExtractionResponse.md
+docs/GetDocumentNotificationsResponse.md
 docs/GetDocumentOcrResponse.md
 docs/GetDocumentResponse.md
 docs/GetDocumentReviewDecisionsResponse.md
@@ -289,6 +303,8 @@ docs/GetLocalesResponse.md
 docs/GetMalwareScanResponse.md
 docs/GetMappingResponse.md
 docs/GetMappingsResponse.md
+docs/GetNumberingSequenceResponse.md
+docs/GetNumberingSequencesResponse.md
 docs/GetOpaAccessPoliciesResponse.md
 docs/GetOpaAccessPolicyItemsResponse.md
 docs/GetOpaAccessPolicyResponse.md
@@ -310,6 +326,7 @@ docs/GetSystemConfigurationResponse.md
 docs/GetSystemInferenceModelsResponse.md
 docs/GetUserActivitesResponse.md
 docs/GetUserGroupsResponse.md
+docs/GetUserNotificationsResponse.md
 docs/GetUserResponse.md
 docs/GetUserSharesResponse.md
 docs/GetUsersInGroupResponse.md
@@ -364,6 +381,12 @@ docs/MetadataExtraction.md
 docs/MetadataExtractionAttribute.md
 docs/MoveFolderRequest.md
 docs/MoveFolderResponse.md
+docs/NotificationConfig.md
+docs/NotificationEmailProvider.md
+docs/NotificationEmailSmtpConfig.md
+docs/NotificationEmailSmtpConnectionSecurity.md
+docs/NumberingSequence.md
+docs/NumberingSequenceReset.md
 docs/OcrConfig.md
 docs/OcrEngine.md
 docs/OcrKeyValues.md
@@ -385,6 +408,14 @@ docs/OpaPolicyInput.md
 docs/OpaPolicyInputMethod.md
 docs/OpaPolicyInputResource.md
 docs/OpaPolicyItem.md
+docs/OpaPolicyTestCriteriaGroup.md
+docs/OpaPolicyTestCriterion.md
+docs/OpaPolicyTestDecision.md
+docs/OpaPolicyTestErrorResponse.md
+docs/OpaPolicyTestHttpMethod.md
+docs/OpaPolicyTestInput.md
+docs/OpaPolicyTestInputUser.md
+docs/OpaPolicyTestOperator.md
 docs/OpenSearchAlias.md
 docs/OpenSearchIndex.md
 docs/OpenSearchIndexSetting.md
@@ -435,6 +466,7 @@ docs/SetFolderPermissionsRequest.md
 docs/SetGroupPermissionsRequest.md
 docs/SetLocaleResourceItemRequest.md
 docs/SetMappingRequest.md
+docs/SetNumberingSequenceRequest.md
 docs/SetOpaAccessPolicyItemsRequest.md
 docs/SetOpenSearchIndexRequest.md
 docs/SetOpenSearchIndexResponse.md
@@ -456,6 +488,8 @@ docs/SystemInferenceModel.md
 docs/SystemInferenceModelInvocation.md
 docs/SystemManagementApi.md
 docs/TagIndexApi.md
+docs/TestOpaAccessPolicyRequest.md
+docs/TestOpaAccessPolicyResponse.md
 docs/TextractQuery.md
 docs/UpdateAttribute.md
 docs/UpdateAttributeRequest.md
@@ -489,6 +523,7 @@ docs/UserActivityChanges.md
 docs/UserActivityType.md
 docs/UserAttributes.md
 docs/UserManagementApi.md
+docs/UserNotification.md
 docs/UserShare.md
 docs/UserSharePermission.md
 docs/UserSharePermissionType.md
@@ -542,6 +577,7 @@ src/main/java/com/formkiq/client/api/DocumentActionsApi.java
 src/main/java/com/formkiq/client/api/DocumentAttributesApi.java
 src/main/java/com/formkiq/client/api/DocumentFoldersApi.java
 src/main/java/com/formkiq/client/api/DocumentGenerationApi.java
+src/main/java/com/formkiq/client/api/DocumentNotificationsApi.java
 src/main/java/com/formkiq/client/api/DocumentOcrApi.java
 src/main/java/com/formkiq/client/api/DocumentReviewsApi.java
 src/main/java/com/formkiq/client/api/DocumentSearchApi.java
@@ -628,6 +664,8 @@ src/main/java/com/formkiq/client/model/AddDocumentGenerateRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentGenerateResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentMetadata.java
 src/main/java/com/formkiq/client/model/AddDocumentMetadataExtractionResponse.java
+src/main/java/com/formkiq/client/model/AddDocumentNotificationRequest.java
+src/main/java/com/formkiq/client/model/AddDocumentNotificationResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentRequest.java
@@ -652,6 +690,8 @@ src/main/java/com/formkiq/client/model/AddDocusignEnvelopesRequest.java
 src/main/java/com/formkiq/client/model/AddDocusignEnvelopesResponse.java
 src/main/java/com/formkiq/client/model/AddDocusignRecipientViewRequest.java
 src/main/java/com/formkiq/client/model/AddDocusignRecipientViewResponse.java
+src/main/java/com/formkiq/client/model/AddDocusignSenderViewRequest.java
+src/main/java/com/formkiq/client/model/AddDocusignSenderViewResponse.java
 src/main/java/com/formkiq/client/model/AddEntity.java
 src/main/java/com/formkiq/client/model/AddEntityAttribute.java
 src/main/java/com/formkiq/client/model/AddEntityRequest.java
@@ -677,6 +717,8 @@ src/main/java/com/formkiq/client/model/AddLocaleResourceSchemaItem.java
 src/main/java/com/formkiq/client/model/AddMapping.java
 src/main/java/com/formkiq/client/model/AddMappingRequest.java
 src/main/java/com/formkiq/client/model/AddMappingResponse.java
+src/main/java/com/formkiq/client/model/AddNotificationTestRequest.java
+src/main/java/com/formkiq/client/model/AddNotificationTestResponse.java
 src/main/java/com/formkiq/client/model/AddQueueRequest.java
 src/main/java/com/formkiq/client/model/AddQueueResponse.java
 src/main/java/com/formkiq/client/model/AddReindexDocumentRequest.java
@@ -762,7 +804,11 @@ src/main/java/com/formkiq/client/model/DocumentGenerateInsertDocumentPosition.ja
 src/main/java/com/formkiq/client/model/DocumentGenerateOutputType.java
 src/main/java/com/formkiq/client/model/DocumentId.java
 src/main/java/com/formkiq/client/model/DocumentMetadata.java
+src/main/java/com/formkiq/client/model/DocumentNotification.java
+src/main/java/com/formkiq/client/model/DocumentNotificationStatus.java
+src/main/java/com/formkiq/client/model/DocumentNotificationType.java
 src/main/java/com/formkiq/client/model/DocumentRelationshipType.java
+src/main/java/com/formkiq/client/model/DocumentResourceType.java
 src/main/java/com/formkiq/client/model/DocumentReview.java
 src/main/java/com/formkiq/client/model/DocumentReviewDecision.java
 src/main/java/com/formkiq/client/model/DocumentReviewStatus.java
@@ -790,6 +836,7 @@ src/main/java/com/formkiq/client/model/DocumentsCompressDocument.java
 src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
 src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/DocusignConfig.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeStatus.java
 src/main/java/com/formkiq/client/model/DocusignEnvironment.java
 src/main/java/com/formkiq/client/model/DocusignInpersonSigner.java
 src/main/java/com/formkiq/client/model/DocusignNotification.java
@@ -809,6 +856,7 @@ src/main/java/com/formkiq/client/model/FolderPermission.java
 src/main/java/com/formkiq/client/model/FolderPermissionType.java
 src/main/java/com/formkiq/client/model/FulltextAttribute.java
 src/main/java/com/formkiq/client/model/FulltextSearchItem.java
+src/main/java/com/formkiq/client/model/GenerateDocumentAttributeValueResponse.java
 src/main/java/com/formkiq/client/model/GetActivitesResponse.java
 src/main/java/com/formkiq/client/model/GetApiKeysResponse.java
 src/main/java/com/formkiq/client/model/GetAttributeAllowedValuesResponse.java
@@ -826,6 +874,7 @@ src/main/java/com/formkiq/client/model/GetDocumentContentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentDataClassificationResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentMetadataExtractionResponse.java
+src/main/java/com/formkiq/client/model/GetDocumentNotificationsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentOcrResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentReviewDecisionsResponse.java
@@ -855,6 +904,8 @@ src/main/java/com/formkiq/client/model/GetLocalesResponse.java
 src/main/java/com/formkiq/client/model/GetMalwareScanResponse.java
 src/main/java/com/formkiq/client/model/GetMappingResponse.java
 src/main/java/com/formkiq/client/model/GetMappingsResponse.java
+src/main/java/com/formkiq/client/model/GetNumberingSequenceResponse.java
+src/main/java/com/formkiq/client/model/GetNumberingSequencesResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPoliciesResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponse.java
 src/main/java/com/formkiq/client/model/GetOpaAccessPolicyResponse.java
@@ -876,6 +927,7 @@ src/main/java/com/formkiq/client/model/GetSystemConfigurationResponse.java
 src/main/java/com/formkiq/client/model/GetSystemInferenceModelsResponse.java
 src/main/java/com/formkiq/client/model/GetUserActivitesResponse.java
 src/main/java/com/formkiq/client/model/GetUserGroupsResponse.java
+src/main/java/com/formkiq/client/model/GetUserNotificationsResponse.java
 src/main/java/com/formkiq/client/model/GetUserResponse.java
 src/main/java/com/formkiq/client/model/GetUserSharesResponse.java
 src/main/java/com/formkiq/client/model/GetUsersInGroupResponse.java
@@ -926,6 +978,12 @@ src/main/java/com/formkiq/client/model/MetadataExtraction.java
 src/main/java/com/formkiq/client/model/MetadataExtractionAttribute.java
 src/main/java/com/formkiq/client/model/MoveFolderRequest.java
 src/main/java/com/formkiq/client/model/MoveFolderResponse.java
+src/main/java/com/formkiq/client/model/NotificationConfig.java
+src/main/java/com/formkiq/client/model/NotificationEmailProvider.java
+src/main/java/com/formkiq/client/model/NotificationEmailSmtpConfig.java
+src/main/java/com/formkiq/client/model/NotificationEmailSmtpConnectionSecurity.java
+src/main/java/com/formkiq/client/model/NumberingSequence.java
+src/main/java/com/formkiq/client/model/NumberingSequenceReset.java
 src/main/java/com/formkiq/client/model/OcrConfig.java
 src/main/java/com/formkiq/client/model/OcrEngine.java
 src/main/java/com/formkiq/client/model/OcrKeyValues.java
@@ -947,6 +1005,14 @@ src/main/java/com/formkiq/client/model/OpaPolicyInput.java
 src/main/java/com/formkiq/client/model/OpaPolicyInputMethod.java
 src/main/java/com/formkiq/client/model/OpaPolicyInputResource.java
 src/main/java/com/formkiq/client/model/OpaPolicyItem.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestCriteriaGroup.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestCriterion.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestDecision.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestErrorResponse.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestHttpMethod.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestInput.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestInputUser.java
+src/main/java/com/formkiq/client/model/OpaPolicyTestOperator.java
 src/main/java/com/formkiq/client/model/OpenSearchAlias.java
 src/main/java/com/formkiq/client/model/OpenSearchIndex.java
 src/main/java/com/formkiq/client/model/OpenSearchIndexSetting.java
@@ -993,6 +1059,7 @@ src/main/java/com/formkiq/client/model/SetFolderPermissionsRequest.java
 src/main/java/com/formkiq/client/model/SetGroupPermissionsRequest.java
 src/main/java/com/formkiq/client/model/SetLocaleResourceItemRequest.java
 src/main/java/com/formkiq/client/model/SetMappingRequest.java
+src/main/java/com/formkiq/client/model/SetNumberingSequenceRequest.java
 src/main/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexRequest.java
 src/main/java/com/formkiq/client/model/SetOpenSearchIndexResponse.java
@@ -1011,6 +1078,8 @@ src/main/java/com/formkiq/client/model/SiteUsage.java
 src/main/java/com/formkiq/client/model/SystemConfigurationWebUi.java
 src/main/java/com/formkiq/client/model/SystemInferenceModel.java
 src/main/java/com/formkiq/client/model/SystemInferenceModelInvocation.java
+src/main/java/com/formkiq/client/model/TestOpaAccessPolicyRequest.java
+src/main/java/com/formkiq/client/model/TestOpaAccessPolicyResponse.java
 src/main/java/com/formkiq/client/model/TextractQuery.java
 src/main/java/com/formkiq/client/model/UpdateAttribute.java
 src/main/java/com/formkiq/client/model/UpdateAttributeRequest.java
@@ -1042,6 +1111,7 @@ src/main/java/com/formkiq/client/model/UserActivity.java
 src/main/java/com/formkiq/client/model/UserActivityChanges.java
 src/main/java/com/formkiq/client/model/UserActivityType.java
 src/main/java/com/formkiq/client/model/UserAttributes.java
+src/main/java/com/formkiq/client/model/UserNotification.java
 src/main/java/com/formkiq/client/model/UserShare.java
 src/main/java/com/formkiq/client/model/UserSharePermission.java
 src/main/java/com/formkiq/client/model/UserSharePermissionType.java
@@ -1085,6 +1155,7 @@ src/test/java/com/formkiq/client/api/DocumentActionsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentAttributesApiTest.java
 src/test/java/com/formkiq/client/api/DocumentFoldersApiTest.java
 src/test/java/com/formkiq/client/api/DocumentGenerationApiTest.java
+src/test/java/com/formkiq/client/api/DocumentNotificationsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentOcrApiTest.java
 src/test/java/com/formkiq/client/api/DocumentReviewsApiTest.java
 src/test/java/com/formkiq/client/api/DocumentSearchApiTest.java
@@ -1148,6 +1219,8 @@ src/test/java/com/formkiq/client/model/AddDocumentGenerateRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentGenerateResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentMetadataExtractionResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentMetadataTest.java
+src/test/java/com/formkiq/client/model/AddDocumentNotificationRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocumentNotificationResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentRequestTest.java
@@ -1172,6 +1245,8 @@ src/test/java/com/formkiq/client/model/AddDocusignEnvelopesRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocusignEnvelopesResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocusignRecipientViewRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocusignRecipientViewResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocusignSenderViewRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocusignSenderViewResponseTest.java
 src/test/java/com/formkiq/client/model/AddEntityAttributeTest.java
 src/test/java/com/formkiq/client/model/AddEntityRequestTest.java
 src/test/java/com/formkiq/client/model/AddEntityResponseTest.java
@@ -1197,6 +1272,8 @@ src/test/java/com/formkiq/client/model/AddLocaleResourceSchemaItemTest.java
 src/test/java/com/formkiq/client/model/AddMappingRequestTest.java
 src/test/java/com/formkiq/client/model/AddMappingResponseTest.java
 src/test/java/com/formkiq/client/model/AddMappingTest.java
+src/test/java/com/formkiq/client/model/AddNotificationTestRequestTest.java
+src/test/java/com/formkiq/client/model/AddNotificationTestResponseTest.java
 src/test/java/com/formkiq/client/model/AddQueueRequestTest.java
 src/test/java/com/formkiq/client/model/AddQueueResponseTest.java
 src/test/java/com/formkiq/client/model/AddReindexDocumentRequestTest.java
@@ -1281,7 +1358,11 @@ src/test/java/com/formkiq/client/model/DocumentGenerateInsertDocumentTest.java
 src/test/java/com/formkiq/client/model/DocumentGenerateOutputTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentIdTest.java
 src/test/java/com/formkiq/client/model/DocumentMetadataTest.java
+src/test/java/com/formkiq/client/model/DocumentNotificationStatusTest.java
+src/test/java/com/formkiq/client/model/DocumentNotificationTest.java
+src/test/java/com/formkiq/client/model/DocumentNotificationTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentRelationshipTypeTest.java
+src/test/java/com/formkiq/client/model/DocumentResourceTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentReviewDecisionTest.java
 src/test/java/com/formkiq/client/model/DocumentReviewStatusTest.java
 src/test/java/com/formkiq/client/model/DocumentReviewTest.java
@@ -1310,6 +1391,7 @@ src/test/java/com/formkiq/client/model/DocumentsCompressDocumentTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/DocusignConfigTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeStatusTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvironmentTest.java
 src/test/java/com/formkiq/client/model/DocusignInpersonSignerTest.java
 src/test/java/com/formkiq/client/model/DocusignNotificationExpirationsTest.java
@@ -1329,6 +1411,7 @@ src/test/java/com/formkiq/client/model/FolderPermissionTest.java
 src/test/java/com/formkiq/client/model/FolderPermissionTypeTest.java
 src/test/java/com/formkiq/client/model/FulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/FulltextSearchItemTest.java
+src/test/java/com/formkiq/client/model/GenerateDocumentAttributeValueResponseTest.java
 src/test/java/com/formkiq/client/model/GetActivitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetApiKeysResponseTest.java
 src/test/java/com/formkiq/client/model/GetAttributeAllowedValuesResponseTest.java
@@ -1346,6 +1429,7 @@ src/test/java/com/formkiq/client/model/GetDocumentContentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentDataClassificationResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentMetadataExtractionResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocumentNotificationsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentReviewDecisionsResponseTest.java
@@ -1375,6 +1459,8 @@ src/test/java/com/formkiq/client/model/GetLocalesResponseTest.java
 src/test/java/com/formkiq/client/model/GetMalwareScanResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingResponseTest.java
 src/test/java/com/formkiq/client/model/GetMappingsResponseTest.java
+src/test/java/com/formkiq/client/model/GetNumberingSequenceResponseTest.java
+src/test/java/com/formkiq/client/model/GetNumberingSequencesResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPoliciesResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyItemsResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpaAccessPolicyResponseTest.java
@@ -1396,6 +1482,7 @@ src/test/java/com/formkiq/client/model/GetSystemConfigurationResponseTest.java
 src/test/java/com/formkiq/client/model/GetSystemInferenceModelsResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserActivitesResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserGroupsResponseTest.java
+src/test/java/com/formkiq/client/model/GetUserNotificationsResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserResponseTest.java
 src/test/java/com/formkiq/client/model/GetUserSharesResponseTest.java
 src/test/java/com/formkiq/client/model/GetUsersInGroupResponseTest.java
@@ -1446,6 +1533,12 @@ src/test/java/com/formkiq/client/model/MetadataExtractionAttributeTest.java
 src/test/java/com/formkiq/client/model/MetadataExtractionTest.java
 src/test/java/com/formkiq/client/model/MoveFolderRequestTest.java
 src/test/java/com/formkiq/client/model/MoveFolderResponseTest.java
+src/test/java/com/formkiq/client/model/NotificationConfigTest.java
+src/test/java/com/formkiq/client/model/NotificationEmailProviderTest.java
+src/test/java/com/formkiq/client/model/NotificationEmailSmtpConfigTest.java
+src/test/java/com/formkiq/client/model/NotificationEmailSmtpConnectionSecurityTest.java
+src/test/java/com/formkiq/client/model/NumberingSequenceResetTest.java
+src/test/java/com/formkiq/client/model/NumberingSequenceTest.java
 src/test/java/com/formkiq/client/model/OcrConfigTest.java
 src/test/java/com/formkiq/client/model/OcrEngineTest.java
 src/test/java/com/formkiq/client/model/OcrKeyValuesTest.java
@@ -1467,6 +1560,14 @@ src/test/java/com/formkiq/client/model/OpaPolicyInputResourceTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyInputTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyItemTest.java
 src/test/java/com/formkiq/client/model/OpaPolicyTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestCriteriaGroupTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestCriterionTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestDecisionTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestErrorResponseTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestHttpMethodTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestInputTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestInputUserTest.java
+src/test/java/com/formkiq/client/model/OpaPolicyTestOperatorTest.java
 src/test/java/com/formkiq/client/model/OpenSearchAliasTest.java
 src/test/java/com/formkiq/client/model/OpenSearchIndexSettingTest.java
 src/test/java/com/formkiq/client/model/OpenSearchIndexTest.java
@@ -1513,6 +1614,7 @@ src/test/java/com/formkiq/client/model/SetFolderPermissionsRequestTest.java
 src/test/java/com/formkiq/client/model/SetGroupPermissionsRequestTest.java
 src/test/java/com/formkiq/client/model/SetLocaleResourceItemRequestTest.java
 src/test/java/com/formkiq/client/model/SetMappingRequestTest.java
+src/test/java/com/formkiq/client/model/SetNumberingSequenceRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpaAccessPolicyItemsRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexRequestTest.java
 src/test/java/com/formkiq/client/model/SetOpenSearchIndexResponseTest.java
@@ -1531,6 +1633,8 @@ src/test/java/com/formkiq/client/model/SiteUsageTest.java
 src/test/java/com/formkiq/client/model/SystemConfigurationWebUiTest.java
 src/test/java/com/formkiq/client/model/SystemInferenceModelInvocationTest.java
 src/test/java/com/formkiq/client/model/SystemInferenceModelTest.java
+src/test/java/com/formkiq/client/model/TestOpaAccessPolicyRequestTest.java
+src/test/java/com/formkiq/client/model/TestOpaAccessPolicyResponseTest.java
 src/test/java/com/formkiq/client/model/TextractQueryTest.java
 src/test/java/com/formkiq/client/model/UpdateAttributeRequestTest.java
 src/test/java/com/formkiq/client/model/UpdateAttributeTest.java
@@ -1561,6 +1665,7 @@ src/test/java/com/formkiq/client/model/UserActivityChangesTest.java
 src/test/java/com/formkiq/client/model/UserActivityTest.java
 src/test/java/com/formkiq/client/model/UserActivityTypeTest.java
 src/test/java/com/formkiq/client/model/UserAttributesTest.java
+src/test/java/com/formkiq/client/model/UserNotificationTest.java
 src/test/java/com/formkiq/client/model/UserSharePermissionTest.java
 src/test/java/com/formkiq/client/model/UserSharePermissionTypeTest.java
 src/test/java/com/formkiq/client/model/UserShareTest.java

@@ -38,8 +38,11 @@ import com.formkiq.client.model.DeleteResponse;
 import com.formkiq.client.model.GetOpaAccessPoliciesResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyItemsResponse;
 import com.formkiq.client.model.GetOpaAccessPolicyResponse;
+import com.formkiq.client.model.OpaPolicyTestErrorResponse;
 import com.formkiq.client.model.SetOpaAccessPolicyItemsRequest;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.TestOpaAccessPolicyRequest;
+import com.formkiq.client.model.TestOpaAccessPolicyResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -1024,6 +1027,314 @@ public class AccessControlApi {
     okhttp3.Call localVarCall = setOpaAccessPolicyItemsValidateBeforeCall(siteId,
         setOpaAccessPolicyItemsRequest, _callback);
     Type localVarReturnType = new TypeToken<SetResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for testOpaAccessPolicy
+   * 
+   * @param siteId Site Identifier (required)
+   * @param testOpaAccessPolicyRequest (required)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>OPA access policy test completed</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid OPA access policy test request</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>User is not authenticated</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>User does not have ADMIN privileges for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>No saved OPA access policy exists for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>503</td>
+   *                        <td>OPA evaluation is unavailable or timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call testOpaAccessPolicyCall(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull TestOpaAccessPolicyRequest testOpaAccessPolicyRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = testOpaAccessPolicyRequest;
+
+    // create path and map variables
+    String localVarPath = "/sites/{siteId}/opa/accessPolicy/test".replace("{" + "siteId" + "}",
+        localVarApiClient.escapeString(siteId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call testOpaAccessPolicyValidateBeforeCall(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull TestOpaAccessPolicyRequest testOpaAccessPolicyRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'siteId' is set
+    if (siteId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'siteId' when calling testOpaAccessPolicy(Async)");
+    }
+
+    // verify the required parameter 'testOpaAccessPolicyRequest' is set
+    if (testOpaAccessPolicyRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'testOpaAccessPolicyRequest' when calling testOpaAccessPolicy(Async)");
+    }
+
+    return testOpaAccessPolicyCall(siteId, testOpaAccessPolicyRequest, _callback);
+
+  }
+
+  /**
+   * Test an OPA access policy, can only be requested with ADMIN privileges Evaluates the site&#39;s
+   * saved OPA access policy, or draft policy items supplied in the request, against simulated
+   * request and user input. The operation does not persist policies or modify documents.
+   * 
+   * @param siteId Site Identifier (required)
+   * @param testOpaAccessPolicyRequest (required)
+   * @return TestOpaAccessPolicyResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>OPA access policy test completed</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid OPA access policy test request</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>User is not authenticated</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>User does not have ADMIN privileges for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>No saved OPA access policy exists for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>503</td>
+   *                        <td>OPA evaluation is unavailable or timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public TestOpaAccessPolicyResponse testOpaAccessPolicy(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull TestOpaAccessPolicyRequest testOpaAccessPolicyRequest)
+      throws ApiException {
+    ApiResponse<TestOpaAccessPolicyResponse> localVarResp =
+        testOpaAccessPolicyWithHttpInfo(siteId, testOpaAccessPolicyRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Test an OPA access policy, can only be requested with ADMIN privileges Evaluates the site&#39;s
+   * saved OPA access policy, or draft policy items supplied in the request, against simulated
+   * request and user input. The operation does not persist policies or modify documents.
+   * 
+   * @param siteId Site Identifier (required)
+   * @param testOpaAccessPolicyRequest (required)
+   * @return ApiResponse&lt;TestOpaAccessPolicyResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>OPA access policy test completed</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid OPA access policy test request</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>User is not authenticated</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>User does not have ADMIN privileges for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>No saved OPA access policy exists for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>503</td>
+   *                        <td>OPA evaluation is unavailable or timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<TestOpaAccessPolicyResponse> testOpaAccessPolicyWithHttpInfo(
+      @javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull TestOpaAccessPolicyRequest testOpaAccessPolicyRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall =
+        testOpaAccessPolicyValidateBeforeCall(siteId, testOpaAccessPolicyRequest, null);
+    Type localVarReturnType = new TypeToken<TestOpaAccessPolicyResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Test an OPA access policy, can only be requested with ADMIN privileges (asynchronously)
+   * Evaluates the site&#39;s saved OPA access policy, or draft policy items supplied in the
+   * request, against simulated request and user input. The operation does not persist policies or
+   * modify documents.
+   * 
+   * @param siteId Site Identifier (required)
+   * @param testOpaAccessPolicyRequest (required)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>OPA access policy test completed</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid OPA access policy test request</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>User is not authenticated</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>User does not have ADMIN privileges for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>No saved OPA access policy exists for the site</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>503</td>
+   *                        <td>OPA evaluation is unavailable or timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call testOpaAccessPolicyAsync(@javax.annotation.Nonnull String siteId,
+      @javax.annotation.Nonnull TestOpaAccessPolicyRequest testOpaAccessPolicyRequest,
+      final ApiCallback<TestOpaAccessPolicyResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        testOpaAccessPolicyValidateBeforeCall(siteId, testOpaAccessPolicyRequest, _callback);
+    Type localVarReturnType = new TypeToken<TestOpaAccessPolicyResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

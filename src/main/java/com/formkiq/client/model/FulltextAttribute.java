@@ -40,6 +40,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -60,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * FulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class FulltextAttribute {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -82,6 +83,11 @@ public class FulltextAttribute {
   @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
   @javax.annotation.Nullable
   private Boolean booleanValue;
+
+  public static final String SERIALIZED_NAME_DATE_VALUES = "dateValues";
+  @SerializedName(SERIALIZED_NAME_DATE_VALUES)
+  @javax.annotation.Nullable
+  private List<String> dateValues = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
   @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
@@ -186,6 +192,34 @@ public class FulltextAttribute {
   }
 
 
+  public FulltextAttribute dateValues(@javax.annotation.Nullable List<String> dateValues) {
+    this.dateValues = dateValues;
+    return this;
+  }
+
+  public FulltextAttribute addDateValuesItem(String dateValuesItem) {
+    if (this.dateValues == null) {
+      this.dateValues = new ArrayList<>();
+    }
+    this.dateValues.add(dateValuesItem);
+    return this;
+  }
+
+  /**
+   * Attribute with date values
+   * 
+   * @return dateValues
+   */
+  @javax.annotation.Nullable
+  public List<String> getDateValues() {
+    return dateValues;
+  }
+
+  public void setDateValues(@javax.annotation.Nullable List<String> dateValues) {
+    this.dateValues = dateValues;
+  }
+
+
   public FulltextAttribute valueType(@javax.annotation.Nullable AttributeValueType valueType) {
     this.valueType = valueType;
     return this;
@@ -220,12 +254,14 @@ public class FulltextAttribute {
         && Objects.equals(this.stringValues, fulltextAttribute.stringValues)
         && Objects.equals(this.numberValues, fulltextAttribute.numberValues)
         && Objects.equals(this.booleanValue, fulltextAttribute.booleanValue)
+        && Objects.equals(this.dateValues, fulltextAttribute.dateValues)
         && Objects.equals(this.valueType, fulltextAttribute.valueType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(insertedDate, stringValues, numberValues, booleanValue, valueType);
+    return Objects.hash(insertedDate, stringValues, numberValues, booleanValue, dateValues,
+        valueType);
   }
 
   @Override
@@ -236,6 +272,7 @@ public class FulltextAttribute {
     sb.append("    stringValues: ").append(toIndentedString(stringValues)).append("\n");
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    dateValues: ").append(toIndentedString(dateValues)).append("\n");
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -254,8 +291,8 @@ public class FulltextAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("insertedDate", "stringValues", "numberValues", "booleanValue", "valueType"));
+    openapiFields = new HashSet<String>(Arrays.asList("insertedDate", "stringValues",
+        "numberValues", "booleanValue", "dateValues", "valueType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -306,6 +343,13 @@ public class FulltextAttribute {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `numberValues` to be an array in the JSON string but got `%s`",
           jsonObj.get("numberValues").toString()));
+    }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("dateValues") != null && !jsonObj.get("dateValues").isJsonNull()
+        && !jsonObj.get("dateValues").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `dateValues` to be an array in the JSON string but got `%s`",
+          jsonObj.get("dateValues").toString()));
     }
     // validate the optional field `valueType`
     if (jsonObj.get("valueType") != null && !jsonObj.get("valueType").isJsonNull()) {

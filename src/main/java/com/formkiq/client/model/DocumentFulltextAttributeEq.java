@@ -37,6 +37,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -57,8 +58,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentFulltextAttributeEq
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class DocumentFulltextAttributeEq {
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -74,6 +75,11 @@ public class DocumentFulltextAttributeEq {
   @SerializedName(SERIALIZED_NAME_BOOLEAN_VALUE)
   @javax.annotation.Nullable
   private Boolean booleanValue;
+
+  public static final String SERIALIZED_NAME_DATE_VALUE = "dateValue";
+  @SerializedName(SERIALIZED_NAME_DATE_VALUE)
+  @javax.annotation.Nullable
+  private String dateValue;
 
   public DocumentFulltextAttributeEq() {}
 
@@ -138,6 +144,26 @@ public class DocumentFulltextAttributeEq {
   }
 
 
+  public DocumentFulltextAttributeEq dateValue(@javax.annotation.Nullable String dateValue) {
+    this.dateValue = dateValue;
+    return this;
+  }
+
+  /**
+   * Search for date value
+   * 
+   * @return dateValue
+   */
+  @javax.annotation.Nullable
+  public String getDateValue() {
+    return dateValue;
+  }
+
+  public void setDateValue(@javax.annotation.Nullable String dateValue) {
+    this.dateValue = dateValue;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -150,12 +176,13 @@ public class DocumentFulltextAttributeEq {
     DocumentFulltextAttributeEq documentFulltextAttributeEq = (DocumentFulltextAttributeEq) o;
     return Objects.equals(this.stringValue, documentFulltextAttributeEq.stringValue)
         && Objects.equals(this.numberValue, documentFulltextAttributeEq.numberValue)
-        && Objects.equals(this.booleanValue, documentFulltextAttributeEq.booleanValue);
+        && Objects.equals(this.booleanValue, documentFulltextAttributeEq.booleanValue)
+        && Objects.equals(this.dateValue, documentFulltextAttributeEq.dateValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stringValue, numberValue, booleanValue);
+    return Objects.hash(stringValue, numberValue, booleanValue, dateValue);
   }
 
   @Override
@@ -165,6 +192,7 @@ public class DocumentFulltextAttributeEq {
     sb.append("    stringValue: ").append(toIndentedString(stringValue)).append("\n");
     sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    dateValue: ").append(toIndentedString(dateValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,8 +210,8 @@ public class DocumentFulltextAttributeEq {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("stringValue", "numberValue", "booleanValue"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("stringValue", "numberValue", "booleanValue", "dateValue"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -220,6 +248,12 @@ public class DocumentFulltextAttributeEq {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `stringValue` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("stringValue").toString()));
+    }
+    if ((jsonObj.get("dateValue") != null && !jsonObj.get("dateValue").isJsonNull())
+        && !jsonObj.get("dateValue").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `dateValue` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("dateValue").toString()));
     }
   }
 

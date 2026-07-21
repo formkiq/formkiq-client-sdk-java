@@ -42,6 +42,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -62,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentGenerateRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class AddDocumentGenerateRequest {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
@@ -89,6 +90,21 @@ public class AddDocumentGenerateRequest {
   @SerializedName(SERIALIZED_NAME_SAVE_AS_DOCUMENT_ID)
   @javax.annotation.Nullable
   private String saveAsDocumentId;
+
+  public static final String SERIALIZED_NAME_SAVE_AS_ARTIFACT = "saveAsArtifact";
+  @SerializedName(SERIALIZED_NAME_SAVE_AS_ARTIFACT)
+  @javax.annotation.Nullable
+  private Boolean saveAsArtifact = false;
+
+  public static final String SERIALIZED_NAME_SAVE_AS_ARTIFACT_ID = "saveAsArtifactId";
+  @SerializedName(SERIALIZED_NAME_SAVE_AS_ARTIFACT_ID)
+  @javax.annotation.Nullable
+  private String saveAsArtifactId;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_CATEGORY = "artifactCategory";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_CATEGORY)
+  @javax.annotation.Nullable
+  private String artifactCategory;
 
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -220,6 +236,69 @@ public class AddDocumentGenerateRequest {
   }
 
 
+  public AddDocumentGenerateRequest saveAsArtifact(
+      @javax.annotation.Nullable Boolean saveAsArtifact) {
+    this.saveAsArtifact = saveAsArtifact;
+    return this;
+  }
+
+  /**
+   * Create the output as a new artifact of saveAsDocumentId
+   * 
+   * @return saveAsArtifact
+   */
+  @javax.annotation.Nullable
+  public Boolean getSaveAsArtifact() {
+    return saveAsArtifact;
+  }
+
+  public void setSaveAsArtifact(@javax.annotation.Nullable Boolean saveAsArtifact) {
+    this.saveAsArtifact = saveAsArtifact;
+  }
+
+
+  public AddDocumentGenerateRequest saveAsArtifactId(
+      @javax.annotation.Nullable String saveAsArtifactId) {
+    this.saveAsArtifactId = saveAsArtifactId;
+    return this;
+  }
+
+  /**
+   * Save the output as a new version of an existing artifact
+   * 
+   * @return saveAsArtifactId
+   */
+  @javax.annotation.Nullable
+  public String getSaveAsArtifactId() {
+    return saveAsArtifactId;
+  }
+
+  public void setSaveAsArtifactId(@javax.annotation.Nullable String saveAsArtifactId) {
+    this.saveAsArtifactId = saveAsArtifactId;
+  }
+
+
+  public AddDocumentGenerateRequest artifactCategory(
+      @javax.annotation.Nullable String artifactCategory) {
+    this.artifactCategory = artifactCategory;
+    return this;
+  }
+
+  /**
+   * Optional caller-defined category for artifact output
+   * 
+   * @return artifactCategory
+   */
+  @javax.annotation.Nullable
+  public String getArtifactCategory() {
+    return artifactCategory;
+  }
+
+  public void setArtifactCategory(@javax.annotation.Nullable String artifactCategory) {
+    this.artifactCategory = artifactCategory;
+  }
+
+
   public AddDocumentGenerateRequest path(@javax.annotation.Nullable String path) {
     this.path = path;
     return this;
@@ -255,12 +334,16 @@ public class AddDocumentGenerateRequest {
         && Objects.equals(this.datasources, addDocumentGenerateRequest.datasources)
         && Objects.equals(this.outputType, addDocumentGenerateRequest.outputType)
         && Objects.equals(this.saveAsDocumentId, addDocumentGenerateRequest.saveAsDocumentId)
+        && Objects.equals(this.saveAsArtifact, addDocumentGenerateRequest.saveAsArtifact)
+        && Objects.equals(this.saveAsArtifactId, addDocumentGenerateRequest.saveAsArtifactId)
+        && Objects.equals(this.artifactCategory, addDocumentGenerateRequest.artifactCategory)
         && Objects.equals(this.path, addDocumentGenerateRequest.path);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, insertDocuments, datasources, outputType, saveAsDocumentId, path);
+    return Objects.hash(locale, insertDocuments, datasources, outputType, saveAsDocumentId,
+        saveAsArtifact, saveAsArtifactId, artifactCategory, path);
   }
 
   @Override
@@ -272,6 +355,9 @@ public class AddDocumentGenerateRequest {
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    outputType: ").append(toIndentedString(outputType)).append("\n");
     sb.append("    saveAsDocumentId: ").append(toIndentedString(saveAsDocumentId)).append("\n");
+    sb.append("    saveAsArtifact: ").append(toIndentedString(saveAsArtifact)).append("\n");
+    sb.append("    saveAsArtifactId: ").append(toIndentedString(saveAsArtifactId)).append("\n");
+    sb.append("    artifactCategory: ").append(toIndentedString(artifactCategory)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -290,8 +376,9 @@ public class AddDocumentGenerateRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("locale", "insertDocuments", "datasources",
-        "outputType", "saveAsDocumentId", "path"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("locale", "insertDocuments", "datasources", "outputType",
+            "saveAsDocumentId", "saveAsArtifact", "saveAsArtifactId", "artifactCategory", "path"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -368,6 +455,18 @@ public class AddDocumentGenerateRequest {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `saveAsDocumentId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("saveAsDocumentId").toString()));
+    }
+    if ((jsonObj.get("saveAsArtifactId") != null && !jsonObj.get("saveAsArtifactId").isJsonNull())
+        && !jsonObj.get("saveAsArtifactId").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `saveAsArtifactId` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("saveAsArtifactId").toString()));
+    }
+    if ((jsonObj.get("artifactCategory") != null && !jsonObj.get("artifactCategory").isJsonNull())
+        && !jsonObj.get("artifactCategory").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `artifactCategory` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("artifactCategory").toString()));
     }
     if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull())
         && !jsonObj.get("path").isJsonPrimitive()) {

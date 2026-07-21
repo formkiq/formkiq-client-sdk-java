@@ -37,11 +37,14 @@ import java.io.IOException;
 import com.formkiq.client.model.AddDocumentAttributesRequest;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GenerateDocumentAttributeValueResponse;
 import com.formkiq.client.model.GetDocumentAttributeResponse;
 import com.formkiq.client.model.GetDocumentAttributesResponse;
 import com.formkiq.client.model.SetDocumentAttributeRequest;
 import com.formkiq.client.model.SetDocumentAttributesRequest;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -771,6 +774,262 @@ public class DocumentAttributesApi {
     okhttp3.Call localVarCall = deleteDocumentAttributeAndValueValidateBeforeCall(documentId,
         attributeKey, attributeValue, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for generateDocumentAttributeValue
+   * 
+   * @param documentId Document Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Attribute key is not eligible for generated values</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call generateDocumentAttributeValueCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/documents/{documentId}/attributes/{attributeKey}/generate"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "attributeKey" + "}",
+            localVarApiClient.escapeString(attributeKey.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call generateDocumentAttributeValueValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nullable String siteId, final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling generateDocumentAttributeValue(Async)");
+    }
+
+    // verify the required parameter 'attributeKey' is set
+    if (attributeKey == null) {
+      throw new ApiException(
+          "Missing the required parameter 'attributeKey' when calling generateDocumentAttributeValue(Async)");
+    }
+
+    return generateDocumentAttributeValueCall(documentId, attributeKey, siteId, _callback);
+
+  }
+
+  /**
+   * Generate document attribute value Allocates the next value from the numbering sequence
+   * configured for the attribute key and stores it on the document. If the document already has a
+   * value for the attribute key, the existing value is returned.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param siteId Site Identifier (optional)
+   * @return GenerateDocumentAttributeValueResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Attribute key is not eligible for generated values</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GenerateDocumentAttributeValueResponse generateDocumentAttributeValue(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nullable String siteId) throws ApiException {
+    ApiResponse<GenerateDocumentAttributeValueResponse> localVarResp =
+        generateDocumentAttributeValueWithHttpInfo(documentId, attributeKey, siteId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Generate document attribute value Allocates the next value from the numbering sequence
+   * configured for the attribute key and stores it on the document. If the document already has a
+   * value for the attribute key, the existing value is returned.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param siteId Site Identifier (optional)
+   * @return ApiResponse&lt;GenerateDocumentAttributeValueResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Attribute key is not eligible for generated values</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GenerateDocumentAttributeValueResponse> generateDocumentAttributeValueWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nullable String siteId) throws ApiException {
+    okhttp3.Call localVarCall =
+        generateDocumentAttributeValueValidateBeforeCall(documentId, attributeKey, siteId, null);
+    Type localVarReturnType = new TypeToken<GenerateDocumentAttributeValueResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Generate document attribute value (asynchronously) Allocates the next value from the numbering
+   * sequence configured for the attribute key and stores it on the document. If the document
+   * already has a value for the attribute key, the existing value is returned.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param attributeKey Attribute Key (required)
+   * @param siteId Site Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Attribute key is not eligible for generated values</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or numbering sequence not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call generateDocumentAttributeValueAsync(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String attributeKey,
+      @javax.annotation.Nullable String siteId,
+      final ApiCallback<GenerateDocumentAttributeValueResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = generateDocumentAttributeValueValidateBeforeCall(documentId,
+        attributeKey, siteId, _callback);
+    Type localVarReturnType = new TypeToken<GenerateDocumentAttributeValueResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

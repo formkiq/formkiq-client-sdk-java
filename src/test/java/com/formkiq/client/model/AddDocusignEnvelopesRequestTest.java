@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.DocusignEnvelopeStatus;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.DocusignInpersonSigner;
 import com.formkiq.client.model.DocusignNotification;
@@ -64,6 +65,14 @@ public class AddDocusignEnvelopesRequestTest {
   @Test
   public void environmentTest() {
     // TODO: test environment
+  }
+
+  /**
+   * Test the property 'status'
+   */
+  @Test
+  public void statusTest() {
+    // TODO: test status
   }
 
   /**

@@ -24,6 +24,7 @@ import java.util.Objects;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DocumentResourceType;
 import com.formkiq.client.model.FulltextAttribute;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -44,6 +45,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -64,8 +66,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentFulltextRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class UpdateDocumentFulltextRequest {
   public static final String SERIALIZED_NAME_CONTENT_TYPE = "contentType";
   @SerializedName(SERIALIZED_NAME_CONTENT_TYPE)
@@ -101,6 +103,11 @@ public class UpdateDocumentFulltextRequest {
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   @javax.annotation.Nullable
   private String deepLinkPath;
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resourceType";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  @javax.annotation.Nullable
+  private DocumentResourceType resourceType;
 
   public static final String SERIALIZED_NAME_CHECKSUM = "checksum";
   @SerializedName(SERIALIZED_NAME_CHECKSUM)
@@ -279,6 +286,27 @@ public class UpdateDocumentFulltextRequest {
   }
 
 
+  public UpdateDocumentFulltextRequest resourceType(
+      @javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
+    return this;
+  }
+
+  /**
+   * Get resourceType
+   * 
+   * @return resourceType
+   */
+  @javax.annotation.Nullable
+  public DocumentResourceType getResourceType() {
+    return resourceType;
+  }
+
+  public void setResourceType(@javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
+  }
+
+
   public UpdateDocumentFulltextRequest checksum(@javax.annotation.Nullable String checksum) {
     this.checksum = checksum;
     return this;
@@ -424,6 +452,7 @@ public class UpdateDocumentFulltextRequest {
         && Objects.equals(this.width, updateDocumentFulltextRequest.width)
         && Objects.equals(this.height, updateDocumentFulltextRequest.height)
         && Objects.equals(this.deepLinkPath, updateDocumentFulltextRequest.deepLinkPath)
+        && Objects.equals(this.resourceType, updateDocumentFulltextRequest.resourceType)
         && Objects.equals(this.checksum, updateDocumentFulltextRequest.checksum)
         && Objects.equals(this.checksumType, updateDocumentFulltextRequest.checksumType)
         && Objects.equals(this.tags, updateDocumentFulltextRequest.tags)
@@ -434,7 +463,7 @@ public class UpdateDocumentFulltextRequest {
   @Override
   public int hashCode() {
     return Objects.hash(contentType, content, contentUrls, path, width, height, deepLinkPath,
-        checksum, checksumType, tags, metadata, attributes);
+        resourceType, checksum, checksumType, tags, metadata, attributes);
   }
 
   @Override
@@ -448,6 +477,7 @@ public class UpdateDocumentFulltextRequest {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
     sb.append("    checksumType: ").append(toIndentedString(checksumType)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
@@ -470,9 +500,9 @@ public class UpdateDocumentFulltextRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("contentType", "content", "contentUrls", "path", "width", "height",
-            "deepLinkPath", "checksum", "checksumType", "tags", "metadata", "attributes"));
+    openapiFields = new HashSet<String>(Arrays.asList("contentType", "content", "contentUrls",
+        "path", "width", "height", "deepLinkPath", "resourceType", "checksum", "checksumType",
+        "tags", "metadata", "attributes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -548,6 +578,10 @@ public class UpdateDocumentFulltextRequest {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    // validate the optional field `resourceType`
+    if (jsonObj.get("resourceType") != null && !jsonObj.get("resourceType").isJsonNull()) {
+      DocumentResourceType.validateJsonElement(jsonObj.get("resourceType"));
     }
     if ((jsonObj.get("checksum") != null && !jsonObj.get("checksum").isJsonNull())
         && !jsonObj.get("checksum").isJsonPrimitive()) {

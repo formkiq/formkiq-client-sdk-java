@@ -24,6 +24,7 @@ import java.util.Objects;
 import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.ChildDocument;
 import com.formkiq.client.model.DocumentMetadata;
+import com.formkiq.client.model.DocumentResourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,6 +42,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -61,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * GetDocumentResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-08-29T11:22:40.620253-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class GetDocumentResponse {
   public static final String SERIALIZED_NAME_ARTIFACT_ID = "artifactId";
   @SerializedName(SERIALIZED_NAME_ARTIFACT_ID)
@@ -108,6 +110,11 @@ public class GetDocumentResponse {
   @SerializedName(SERIALIZED_NAME_DEEP_LINK_PATH)
   @javax.annotation.Nullable
   private String deepLinkPath;
+
+  public static final String SERIALIZED_NAME_RESOURCE_TYPE = "resourceType";
+  @SerializedName(SERIALIZED_NAME_RESOURCE_TYPE)
+  @javax.annotation.Nullable
+  private DocumentResourceType resourceType;
 
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -349,6 +356,27 @@ public class GetDocumentResponse {
 
   public void setDeepLinkPath(@javax.annotation.Nullable String deepLinkPath) {
     this.deepLinkPath = deepLinkPath;
+  }
+
+
+  public GetDocumentResponse resourceType(
+      @javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
+    return this;
+  }
+
+  /**
+   * Get resourceType
+   * 
+   * @return resourceType
+   */
+  @javax.annotation.Nullable
+  public DocumentResourceType getResourceType() {
+    return resourceType;
+  }
+
+  public void setResourceType(@javax.annotation.Nullable DocumentResourceType resourceType) {
+    this.resourceType = resourceType;
   }
 
 
@@ -628,6 +656,7 @@ public class GetDocumentResponse {
         && Objects.equals(this.width, getDocumentResponse.width)
         && Objects.equals(this.height, getDocumentResponse.height)
         && Objects.equals(this.deepLinkPath, getDocumentResponse.deepLinkPath)
+        && Objects.equals(this.resourceType, getDocumentResponse.resourceType)
         && Objects.equals(this.insertedDate, getDocumentResponse.insertedDate)
         && Objects.equals(this.lastModifiedDate, getDocumentResponse.lastModifiedDate)
         && Objects.equals(this.checksum, getDocumentResponse.checksum)
@@ -645,9 +674,9 @@ public class GetDocumentResponse {
   @Override
   public int hashCode() {
     return Objects.hash(artifactId, promotedArtifactId, artifactCategory, hasArtifacts, siteId,
-        path, width, height, deepLinkPath, insertedDate, lastModifiedDate, checksum, checksumType,
-        documentId, contentType, userId, contentLength, versionId, documents, belongsToDocumentId,
-        metadata);
+        path, width, height, deepLinkPath, resourceType, insertedDate, lastModifiedDate, checksum,
+        checksumType, documentId, contentType, userId, contentLength, versionId, documents,
+        belongsToDocumentId, metadata);
   }
 
   @Override
@@ -663,6 +692,7 @@ public class GetDocumentResponse {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    deepLinkPath: ").append(toIndentedString(deepLinkPath)).append("\n");
+    sb.append("    resourceType: ").append(toIndentedString(resourceType)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    checksum: ").append(toIndentedString(checksum)).append("\n");
@@ -693,10 +723,11 @@ public class GetDocumentResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("artifactId", "promotedArtifactId",
-        "artifactCategory", "hasArtifacts", "siteId", "path", "width", "height", "deepLinkPath",
-        "insertedDate", "lastModifiedDate", "checksum", "checksumType", "documentId", "contentType",
-        "userId", "contentLength", "versionId", "documents", "belongsToDocumentId", "metadata"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("artifactId", "promotedArtifactId", "artifactCategory", "hasArtifacts",
+            "siteId", "path", "width", "height", "deepLinkPath", "resourceType", "insertedDate",
+            "lastModifiedDate", "checksum", "checksumType", "documentId", "contentType", "userId",
+            "contentLength", "versionId", "documents", "belongsToDocumentId", "metadata"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("documentId"));
@@ -785,6 +816,10 @@ public class GetDocumentResponse {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `deepLinkPath` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("deepLinkPath").toString()));
+    }
+    // validate the optional field `resourceType`
+    if (jsonObj.get("resourceType") != null && !jsonObj.get("resourceType").isJsonNull()) {
+      DocumentResourceType.validateJsonElement(jsonObj.get("resourceType"));
     }
     if ((jsonObj.get("insertedDate") != null && !jsonObj.get("insertedDate").isJsonNull())
         && !jsonObj.get("insertedDate").isJsonPrimitive()) {

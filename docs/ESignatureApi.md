@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**addDocusignEnvelopes**](ESignatureApi.md#addDocusignEnvelopes) | **POST** /esignature/docusign/{documentId}/envelopes | Create Docusign Envelope request |
 | [**addDocusignRecipientView**](ESignatureApi.md#addDocusignRecipientView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient | Create Docusign Recipient View request |
+| [**addDocusignSenderView**](ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request |
 | [**addEsignatureDocusignEvents**](ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event |
 
 
@@ -139,6 +140,80 @@ public class Example {
 ### Return type
 
 [**AddDocusignRecipientViewResponse**](AddDocusignRecipientViewResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | 400 OK |  -  |
+
+<a id="addDocusignSenderView"></a>
+# **addDocusignSenderView**
+> AddDocusignSenderViewResponse addDocusignSenderView(documentId, envelopeId, addDocusignSenderViewRequest, siteId, artifactId)
+
+Create Docusign Sender View request
+
+DocuSign create Docusign Sender View request; available as an Add-On Module
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.ESignatureApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    ESignatureApi apiInstance = new ESignatureApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String envelopeId = "envelopeId_example"; // String | Docusign Envelope Id
+    AddDocusignSenderViewRequest addDocusignSenderViewRequest = new AddDocusignSenderViewRequest(); // AddDocusignSenderViewRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
+    try {
+      AddDocusignSenderViewResponse result = apiInstance.addDocusignSenderView(documentId, envelopeId, addDocusignSenderViewRequest, siteId, artifactId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ESignatureApi#addDocusignSenderView");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **envelopeId** | **String**| Docusign Envelope Id | |
+| **addDocusignSenderViewRequest** | [**AddDocusignSenderViewRequest**](AddDocusignSenderViewRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
+
+### Return type
+
+[**AddDocusignSenderViewResponse**](AddDocusignSenderViewResponse.md)
 
 ### Authorization
 
