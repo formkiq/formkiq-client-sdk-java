@@ -11,6 +11,7 @@
 |**stringValue** | **String** | Attribute with string value |  [optional] |
 |**numberValue** | **BigDecimal** | Attribute with number value |  [optional] |
 |**booleanValue** | **Boolean** | Attribute with boolean value |  [optional] |
+|**dateValue** | **String** | Attribute with date value |  [optional] |
 
 
 

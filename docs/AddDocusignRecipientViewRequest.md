@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**environment** | **DocusignEnvironment** |  |  |
+|**environment** | **DocusignEnvironment** |  |  [optional] |
 |**recipientView** | [**DocusignRecipientView**](DocusignRecipientView.md) |  |  |
 
 

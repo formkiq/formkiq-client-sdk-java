@@ -7,6 +7,8 @@
 
 * `BOOLEAN` (value: `"BOOLEAN"`)
 
+* `DATE` (value: `"DATE"`)
+
 * `KEY_ONLY` (value: `"KEY_ONLY"`)
 
 * `NUMBER` (value: `"NUMBER"`)

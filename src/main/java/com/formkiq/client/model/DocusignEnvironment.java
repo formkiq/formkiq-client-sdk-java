@@ -31,7 +31,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Docusign Environment
+ * Docusign environment. When omitted from an E-Signature request, defaults to docusignEnvironment
+ * in the site configuration.
  */
 @JsonAdapter(DocusignEnvironment.Adapter.class)
 public enum DocusignEnvironment {

@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import com.formkiq.client.model.ChecksumType;
 import com.formkiq.client.model.DocumentMetadata;
+import com.formkiq.client.model.DocumentResourceType;
 import com.formkiq.client.model.DocumentSearchMatchAttribute;
 import com.formkiq.client.model.DocumentSearchMatchTag;
 import com.formkiq.client.model.SearchResultDocumentAttribute;
@@ -91,6 +92,14 @@ public class SearchResultDocumentTest {
   @Test
   public void deepLinkPathTest() {
     // TODO: test deepLinkPath
+  }
+
+  /**
+   * Test the property 'resourceType'
+   */
+  @Test
+  public void resourceTypeTest() {
+    // TODO: test resourceType
   }
 
   /**

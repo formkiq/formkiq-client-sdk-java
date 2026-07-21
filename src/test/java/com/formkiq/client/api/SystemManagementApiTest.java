@@ -28,17 +28,22 @@ import com.formkiq.client.model.AddDelegationTokenResponse;
 import com.formkiq.client.model.AddLocaleRequest;
 import com.formkiq.client.model.AddLocaleResourceItemRequest;
 import com.formkiq.client.model.AddLocaleResourceItemResponse;
+import com.formkiq.client.model.AddNotificationTestRequest;
+import com.formkiq.client.model.AddNotificationTestResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.AddSiteRequest;
 import com.formkiq.client.model.AddSystemInferenceModelAgreementRequest;
 import com.formkiq.client.model.CleanupOpenSearchSnapshotRepositoryResponse;
 import com.formkiq.client.model.DeleteApiKeyResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.ErrorsResponse;
 import com.formkiq.client.model.GetApiKeysResponse;
 import com.formkiq.client.model.GetConfigurationResponse;
 import com.formkiq.client.model.GetLocaleResourceItemResponse;
 import com.formkiq.client.model.GetLocaleResourceItemsResponse;
 import com.formkiq.client.model.GetLocalesResponse;
+import com.formkiq.client.model.GetNumberingSequenceResponse;
+import com.formkiq.client.model.GetNumberingSequencesResponse;
 import com.formkiq.client.model.GetOpenSearchIndexResponse;
 import com.formkiq.client.model.GetOpenSearchIndiceResponse;
 import com.formkiq.client.model.GetOpenSearchSnapshotRepositoryResponse;
@@ -51,6 +56,7 @@ import com.formkiq.client.model.GetSystemInferenceModelsResponse;
 import com.formkiq.client.model.GetVersionResponse;
 import com.formkiq.client.model.SetGroupPermissionsRequest;
 import com.formkiq.client.model.SetLocaleResourceItemRequest;
+import com.formkiq.client.model.SetNumberingSequenceRequest;
 import com.formkiq.client.model.SetOpenSearchIndexRequest;
 import com.formkiq.client.model.SetOpenSearchIndexResponse;
 import com.formkiq.client.model.SetOpenSearchIndiceRequest;
@@ -122,6 +128,22 @@ public class SystemManagementApiTest {
     AddLocaleResourceItemRequest addLocaleResourceItemRequest = null;
     AddLocaleResourceItemResponse response =
         api.addLocaleResourceItem(siteId, locale, addLocaleResourceItemRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Send a test notification
+   *
+   * Queues a test email using the site&#39;s saved notification configuration
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addNotificationTestTest() throws ApiException {
+    String siteId = null;
+    AddNotificationTestRequest addNotificationTestRequest = null;
+    AddNotificationTestResponse response =
+        api.addNotificationTest(siteId, addNotificationTestRequest);
     // TODO: test validations
   }
 
@@ -467,6 +489,37 @@ public class SystemManagementApiTest {
   }
 
   /**
+   * Get numbering sequence
+   *
+   * Returns the numbering sequence configured for an attribute key
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getNumberingSequenceTest() throws ApiException {
+    String siteId = null;
+    String attributeKey = null;
+    GetNumberingSequenceResponse response = api.getNumberingSequence(siteId, attributeKey);
+    // TODO: test validations
+  }
+
+  /**
+   * Get numbering sequences
+   *
+   * Returns the numbering sequences configured for a site
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getNumberingSequencesTest() throws ApiException {
+    String siteId = null;
+    String limit = null;
+    String next = null;
+    GetNumberingSequencesResponse response = api.getNumberingSequences(siteId, limit, next);
+    // TODO: test validations
+  }
+
+  /**
    * Get site(s) OpenSearch index settings
    *
    * Returns the OpenSearch index settings (Deprecated use /sites/{siteId}/opensearch/indices)
@@ -657,6 +710,23 @@ public class SystemManagementApiTest {
     SetLocaleResourceItemRequest setLocaleResourceItemRequest = null;
     SetResponse response =
         api.setLocaleResourceItem(siteId, locale, itemKey, setLocaleResourceItemRequest);
+    // TODO: test validations
+  }
+
+  /**
+   * Set numbering sequence
+   *
+   * Creates or updates the numbering sequence for an attribute key
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void setNumberingSequenceTest() throws ApiException {
+    String siteId = null;
+    String attributeKey = null;
+    SetNumberingSequenceRequest setNumberingSequenceRequest = null;
+    GetNumberingSequenceResponse response =
+        api.setNumberingSequence(siteId, attributeKey, setNumberingSequenceRequest);
     // TODO: test validations
   }
 

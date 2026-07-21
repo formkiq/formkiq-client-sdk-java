@@ -9,5 +9,7 @@
 
 * `NUMBER` (value: `"NUMBER"`)
 
+* `DATE` (value: `"DATE"`)
+
 
 

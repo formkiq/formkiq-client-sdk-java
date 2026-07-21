@@ -38,6 +38,8 @@ import com.formkiq.client.model.AddDocusignEnvelopesRequest;
 import com.formkiq.client.model.AddDocusignEnvelopesResponse;
 import com.formkiq.client.model.AddDocusignRecipientViewRequest;
 import com.formkiq.client.model.AddDocusignRecipientViewResponse;
+import com.formkiq.client.model.AddDocusignSenderViewRequest;
+import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
@@ -588,6 +590,266 @@ public class ESignatureApi {
     okhttp3.Call localVarCall = addDocusignRecipientViewValidateBeforeCall(documentId, envelopeId,
         addDocusignRecipientViewRequest, siteId, artifactId, _callback);
     Type localVarReturnType = new TypeToken<AddDocusignRecipientViewResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for addDocusignSenderView
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param addDocusignSenderViewRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocusignSenderViewCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull AddDocusignSenderViewRequest addDocusignSenderViewRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addDocusignSenderViewRequest;
+
+    // create path and map variables
+    String localVarPath = "/esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "envelopeId" + "}", localVarApiClient.escapeString(envelopeId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addDocusignSenderViewValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull AddDocusignSenderViewRequest addDocusignSenderViewRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling addDocusignSenderView(Async)");
+    }
+
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'envelopeId' when calling addDocusignSenderView(Async)");
+    }
+
+    // verify the required parameter 'addDocusignSenderViewRequest' is set
+    if (addDocusignSenderViewRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'addDocusignSenderViewRequest' when calling addDocusignSenderView(Async)");
+    }
+
+    return addDocusignSenderViewCall(documentId, envelopeId, addDocusignSenderViewRequest, siteId,
+        artifactId, _callback);
+
+  }
+
+  /**
+   * Create Docusign Sender View request DocuSign create Docusign Sender View request; available as
+   * an Add-On Module
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param addDocusignSenderViewRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return AddDocusignSenderViewResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddDocusignSenderViewResponse addDocusignSenderView(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull AddDocusignSenderViewRequest addDocusignSenderViewRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    ApiResponse<AddDocusignSenderViewResponse> localVarResp = addDocusignSenderViewWithHttpInfo(
+        documentId, envelopeId, addDocusignSenderViewRequest, siteId, artifactId);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Create Docusign Sender View request DocuSign create Docusign Sender View request; available as
+   * an Add-On Module
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param addDocusignSenderViewRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @return ApiResponse&lt;AddDocusignSenderViewResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddDocusignSenderViewResponse> addDocusignSenderViewWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull AddDocusignSenderViewRequest addDocusignSenderViewRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId)
+      throws ApiException {
+    okhttp3.Call localVarCall = addDocusignSenderViewValidateBeforeCall(documentId, envelopeId,
+        addDocusignSenderViewRequest, siteId, artifactId, null);
+    Type localVarReturnType = new TypeToken<AddDocusignSenderViewResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Create Docusign Sender View request (asynchronously) DocuSign create Docusign Sender View
+   * request; available as an Add-On Module
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param addDocusignSenderViewRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>200 OK</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>400 OK</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocusignSenderViewAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull AddDocusignSenderViewRequest addDocusignSenderViewRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      final ApiCallback<AddDocusignSenderViewResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = addDocusignSenderViewValidateBeforeCall(documentId, envelopeId,
+        addDocusignSenderViewRequest, siteId, artifactId, _callback);
+    Type localVarReturnType = new TypeToken<AddDocusignSenderViewResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

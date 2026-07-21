@@ -2298,6 +2298,72 @@ paths:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
+  /documents/{documentId}/attributes/{attributeKey}/generate:
+    post:
+      description: "Allocates the next value from the numbering sequence configured\
+        \ for the attribute key and stores it on the document. If the document already\
+        \ has a value for the attribute key, the existing value is returned."
+      operationId: GenerateDocumentAttributeValue
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateDocumentAttributeValueResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Attribute key is not eligible for generated values
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: Document or numbering sequence not found
+      security:
+      - ApiAuthorization: []
+      summary: Generate document attribute value
+      tags:
+      - Document Attributes
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
   /documents/{documentId}/certifications:
     post:
       description: |-
@@ -3761,6 +3827,139 @@ paths:
       - MalwareScan
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /documents/{documentId}/notifications:
+    get:
+      description: Get notifications attached to a document or one of its artifacts
+      operationId: GetDocumentNotifications
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDocumentNotificationsResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get document notifications
+      tags:
+      - Document Notifications
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    post:
+      description: Queue an ad hoc notification for a document or one of its artifacts
+      operationId: AddDocumentNotification
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddDocumentNotificationRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddDocumentNotificationResponse"
+          description: Notification accepted for delivery
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid notification request
+      security:
+      - ApiAuthorization: []
+      summary: Add an ad hoc document notification
+      tags:
+      - Document Notifications
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -7040,6 +7239,84 @@ paths:
       security:
       - ApiAuthorization: []
       summary: Create Docusign Recipient View request
+      tags:
+      - E-Signature
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender:
+    post:
+      description: DocuSign create Docusign Sender View request; available as an Add-On
+        Module
+      operationId: AddDocusignSenderView
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Docusign Envelope Id
+        explode: false
+        in: path
+        name: envelopeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              returnUrl: https://console.example.com/agreements/123/esignature
+            schema:
+              $ref: "#/components/schemas/AddDocusignSenderViewRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                viewUrl: https://...
+              schema:
+                $ref: "#/components/schemas/AddDocusignSenderViewResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: 400 OK
+      security:
+      - ApiAuthorization: []
+      summary: Create Docusign Sender View request
       tags:
       - E-Signature
       x-amazon-apigateway-integration:
@@ -11353,6 +11630,222 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /sites/{siteId}/numberingSequences:
+    get:
+      description: Returns the numbering sequences configured for a site
+      operationId: GetNumberingSequences
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetNumberingSequencesResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get numbering sequences
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+  /sites/{siteId}/numberingSequences/{attributeKey}:
+    get:
+      description: Returns the numbering sequence configured for an attribute key
+      operationId: GetNumberingSequence
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetNumberingSequenceResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+          description: Numbering sequence not found
+      security:
+      - ApiAuthorization: []
+      summary: Get numbering sequence
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+    put:
+      description: Creates or updates the numbering sequence for an attribute key
+      operationId: SetNumberingSequence
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Attribute Key
+        explode: false
+        in: path
+        name: attributeKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ContractNumber:
+                value:
+                  pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+                  startAt: 1
+                  padding: 5
+                  reset: YEARLY
+                  timezone: America/Winnipeg
+            schema:
+              $ref: "#/components/schemas/SetNumberingSequenceRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetNumberingSequenceResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid numbering sequence configuration
+      security:
+      - ApiAuthorization: []
+      summary: Set numbering sequence
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /sites/{siteId}/configuration/notification/test:
+    post:
+      description: Queues a test email using the site's saved notification configuration
+      operationId: AddNotificationTest
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddNotificationTestRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddNotificationTestResponse"
+          description: Test notification queued
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid request or notification configuration
+      security:
+      - ApiAuthorization: []
+      summary: Send a test notification
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /sites/{siteId}/apiKeys:
     get:
       description: Returns the list of ApiKeys
@@ -12305,6 +12798,60 @@ paths:
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /userNotifications:
+    get:
+      description: Retrieve notifications where the authenticated user's email is
+        a CC or BCC recipient
+      operationId: GetUserNotifications
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit Results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: "10"
+          type: string
+        style: form
+      - description: Next page of results token
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserNotificationsResponse"
+          description: 200 OK
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+      security:
+      - ApiAuthorization: []
+      summary: Get user notifications
+      tags:
+      - Document Notifications
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
   /version:
@@ -14016,6 +14563,13 @@ components:
         Access-Control-Allow-Headers:
           $ref: "#/components/headers/AccessControlAllowHeaders"
   schemas:
+    DocumentResourceType:
+      description: Document resource type
+      enum:
+      - DOCUMENT
+      - DOSSIER
+      - DEEP_LINK
+      type: string
     ValidationErrorsResponse:
       example:
         errors:
@@ -14189,6 +14743,7 @@ components:
             width: width
             height: height
             deepLinkPath: deepLinkPath
+            resourceType: DOCUMENT
             insertedDate: insertedDate
             lastModifiedDate: lastModifiedDate
             deletedDate: deletedDate
@@ -14230,6 +14785,7 @@ components:
             width: width
             height: height
             deepLinkPath: deepLinkPath
+            resourceType: DOCUMENT
             insertedDate: insertedDate
             lastModifiedDate: lastModifiedDate
             deletedDate: deletedDate
@@ -14297,6 +14853,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate
@@ -14645,6 +15202,7 @@ components:
       - STRING
       - NUMBER
       - BOOLEAN
+      - DATE
       - KEY_ONLY
       - PUBLICATION
       - WATERMARK
@@ -14815,6 +15373,9 @@ components:
           dataRoot: data
         outputType: DOCX
         saveAsDocumentId: saveAsDocumentId
+        saveAsArtifact: false
+        saveAsArtifactId: saveAsArtifactId
+        artifactCategory: artifactCategory
         path: path
       properties:
         locale:
@@ -14833,6 +15394,16 @@ components:
           $ref: "#/components/schemas/DocumentGenerateOutputType"
         saveAsDocumentId:
           description: Save the generated document with a specific documentId
+          type: string
+        saveAsArtifact:
+          default: false
+          description: Create the output as a new artifact of saveAsDocumentId
+          type: boolean
+        saveAsArtifactId:
+          description: Save the output as a new version of an existing artifact
+          type: string
+        artifactCategory:
+          description: Optional caller-defined category for artifact output
           type: string
         path:
           description: The path of the generated document
@@ -14893,9 +15464,13 @@ components:
     AddDocumentGenerateResponse:
       example:
         documentId: documentId
+        artifactId: artifactId
       properties:
         documentId:
           description: Generated document identifier
+          type: string
+        artifactId:
+          description: Artifact Identifier
           type: string
       type: object
     AddDocumentResponse:
@@ -14966,6 +15541,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate
@@ -14999,6 +15575,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate
@@ -15047,6 +15624,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         deletedDate: deletedDate
@@ -15091,6 +15669,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -15187,6 +15767,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         contentType: contentType
         isBase64: true
         content: content
@@ -15302,6 +15883,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         - key: key
           stringValue: stringValue
           stringValues:
@@ -15312,11 +15897,16 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         documents:
         - path: path
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           contentType: contentType
           checksumType: null
           checksum: checksum
@@ -15351,6 +15941,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           contentType: contentType
           checksumType: null
           checksum: checksum
@@ -15409,6 +16000,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         contentType:
           description: Document media type
           type: string
@@ -15453,6 +16046,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: null
         contentType: contentType
         checksumType: null
         checksum: checksum
@@ -15496,6 +16090,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         contentType:
           description: Document Content-Type
           type: string
@@ -15597,6 +16193,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         checksum: checksum
@@ -15611,6 +16208,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           checksum: checksum
@@ -15632,6 +16230,10 @@ components:
             - 5.962133916683182
             - 5.962133916683182
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             insertedDate: insertedDate
             userId: userId
             valueType: BOOLEAN
@@ -15651,6 +16253,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15662,6 +16268,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             entities:
             - entityId: entityId
@@ -15679,6 +16289,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15690,6 +16304,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             - entityId: entityId
               entityTypeId: entityTypeId
@@ -15706,6 +16324,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15717,6 +16339,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
           - key: key
             stringValue: stringValue
@@ -15728,6 +16354,10 @@ components:
             - 5.962133916683182
             - 5.962133916683182
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             insertedDate: insertedDate
             userId: userId
             valueType: BOOLEAN
@@ -15747,6 +16377,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15758,6 +16392,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             entities:
             - entityId: entityId
@@ -15775,6 +16413,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15786,6 +16428,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             - entityId: entityId
               entityTypeId: entityTypeId
@@ -15802,6 +16448,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15813,11 +16463,16 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
         - path: path
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           checksum: checksum
@@ -15839,6 +16494,10 @@ components:
             - 5.962133916683182
             - 5.962133916683182
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             insertedDate: insertedDate
             userId: userId
             valueType: BOOLEAN
@@ -15858,6 +16517,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15869,6 +16532,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             entities:
             - entityId: entityId
@@ -15886,6 +16553,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15897,6 +16568,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             - entityId: entityId
               entityTypeId: entityTypeId
@@ -15913,6 +16588,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15924,6 +16603,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
           - key: key
             stringValue: stringValue
@@ -15935,6 +16618,10 @@ components:
             - 5.962133916683182
             - 5.962133916683182
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             insertedDate: insertedDate
             userId: userId
             valueType: BOOLEAN
@@ -15954,6 +16641,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15965,6 +16656,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             entities:
             - entityId: entityId
@@ -15982,6 +16677,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -15993,6 +16692,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
             - entityId: entityId
               entityTypeId: entityTypeId
@@ -16009,6 +16712,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
               - key: key
                 stringValue: stringValue
@@ -16020,6 +16727,10 @@ components:
                 - 2.3021358869347655
                 - 2.3021358869347655
                 booleanValue: true
+                dateValue: dateValue
+                dateValues:
+                - dateValues
+                - dateValues
                 valueType: null
         belongsToDocumentId: belongsToDocumentId
         metadata:
@@ -16061,6 +16772,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -16109,6 +16822,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: null
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         checksum: checksum
@@ -16130,6 +16844,10 @@ components:
           - 5.962133916683182
           - 5.962133916683182
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           insertedDate: insertedDate
           userId: userId
           valueType: BOOLEAN
@@ -16149,6 +16867,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16160,6 +16882,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           entities:
           - entityId: entityId
@@ -16177,6 +16903,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16188,6 +16918,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           - entityId: entityId
             entityTypeId: entityTypeId
@@ -16204,6 +16938,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16215,6 +16953,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
         - key: key
           stringValue: stringValue
@@ -16226,6 +16968,10 @@ components:
           - 5.962133916683182
           - 5.962133916683182
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           insertedDate: insertedDate
           userId: userId
           valueType: BOOLEAN
@@ -16245,6 +16991,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16256,6 +17006,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           entities:
           - entityId: entityId
@@ -16273,6 +17027,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16284,6 +17042,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           - entityId: entityId
             entityTypeId: entityTypeId
@@ -16300,6 +17062,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -16311,6 +17077,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
       properties:
         path:
@@ -16325,6 +17095,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -16408,6 +17180,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         - key: key
           stringValue: stringValue
           stringValues:
@@ -16418,6 +17194,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         actions:
         - type: ANTIVIRUS
           parameters:
@@ -16502,6 +17282,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           contentType: contentType
           checksumType: null
           checksum: checksum
@@ -16536,6 +17317,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: null
           contentType: contentType
           checksumType: null
           checksum: checksum
@@ -17062,6 +17844,10 @@ components:
         - 6.027456183070403
         - 6.027456183070403
         booleanValue: true
+        dateValue: dateValue
+        dateValues:
+        - dateValues
+        - dateValues
       properties:
         stringValue:
           description: Attribute with string value
@@ -17082,6 +17868,14 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValue:
+          description: Attribute with date value
+          type: string
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
       type: object
     SetDocumentAttributeRequest:
       description: Set List of document attributes
@@ -17096,6 +17890,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
       properties:
         attribute:
           $ref: "#/components/schemas/AddDocumentAttributeValue"
@@ -17114,6 +17912,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         - key: key
           stringValue: stringValue
           stringValues:
@@ -17124,6 +17926,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
       properties:
         attributes:
           description: List of document attributes
@@ -17145,6 +17951,10 @@ components:
           - 5.962133916683182
           - 5.962133916683182
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           insertedDate: insertedDate
           userId: userId
           valueType: BOOLEAN
@@ -17164,6 +17974,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17175,6 +17989,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           entities:
           - entityId: entityId
@@ -17192,6 +18010,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17203,6 +18025,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           - entityId: entityId
             entityTypeId: entityTypeId
@@ -17219,6 +18045,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17230,6 +18060,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
         - key: key
           stringValue: stringValue
@@ -17241,6 +18075,10 @@ components:
           - 5.962133916683182
           - 5.962133916683182
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           insertedDate: insertedDate
           userId: userId
           valueType: BOOLEAN
@@ -17260,6 +18098,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17271,6 +18113,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           entities:
           - entityId: entityId
@@ -17288,6 +18134,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17299,6 +18149,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           - entityId: entityId
             entityTypeId: entityTypeId
@@ -17315,6 +18169,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17326,6 +18184,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
       properties:
         next:
@@ -17350,6 +18212,10 @@ components:
           - 5.962133916683182
           - 5.962133916683182
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           insertedDate: insertedDate
           userId: userId
           valueType: BOOLEAN
@@ -17369,6 +18235,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17380,6 +18250,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           entities:
           - entityId: entityId
@@ -17397,6 +18271,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17408,6 +18286,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
           - entityId: entityId
             entityTypeId: entityTypeId
@@ -17424,6 +18306,10 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
             - key: key
               stringValue: stringValue
@@ -17435,10 +18321,160 @@ components:
               - 2.3021358869347655
               - 2.3021358869347655
               booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: null
       properties:
         attribute:
           $ref: "#/components/schemas/DocumentAttribute"
+      type: object
+    GenerateDocumentAttributeValueResponse:
+      example:
+        attribute:
+          key: key
+          stringValue: stringValue
+          stringValues:
+          - stringValues
+          - stringValues
+          numberValue: 1.4658129805029452
+          numberValues:
+          - 5.962133916683182
+          - 5.962133916683182
+          booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
+          insertedDate: insertedDate
+          userId: userId
+          valueType: BOOLEAN
+          entity:
+            entityId: entityId
+            entityTypeId: entityTypeId
+            name: name
+            insertedDate: insertedDate
+            attributes:
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+          entities:
+          - entityId: entityId
+            entityTypeId: entityTypeId
+            name: name
+            insertedDate: insertedDate
+            attributes:
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+          - entityId: entityId
+            entityTypeId: entityTypeId
+            name: name
+            insertedDate: insertedDate
+            attributes:
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+            - key: key
+              stringValue: stringValue
+              stringValues:
+              - stringValues
+              - stringValues
+              numberValue: 5.637376656633329
+              numberValues:
+              - 2.3021358869347655
+              - 2.3021358869347655
+              booleanValue: true
+              dateValue: dateValue
+              dateValues:
+              - dateValues
+              - dateValues
+              valueType: null
+        sequence: 1
+        period: "2026"
+      properties:
+        attribute:
+          $ref: "#/components/schemas/DocumentAttribute"
+        sequence:
+          description: Allocated sequence number
+          example: 1
+          format: int64
+          type: integer
+        period:
+          description: Sequence period used for the allocation
+          example: "2026"
+          type: string
+      required:
+      - attribute
+      - period
+      - sequence
       type: object
     DocumentAttribute:
       example:
@@ -17452,6 +18488,10 @@ components:
         - 5.962133916683182
         - 5.962133916683182
         booleanValue: true
+        dateValue: dateValue
+        dateValues:
+        - dateValues
+        - dateValues
         insertedDate: insertedDate
         userId: userId
         valueType: BOOLEAN
@@ -17471,6 +18511,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -17482,6 +18526,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
         entities:
         - entityId: entityId
@@ -17499,6 +18547,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -17510,6 +18562,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
         - entityId: entityId
           entityTypeId: entityTypeId
@@ -17526,6 +18582,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -17537,6 +18597,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
       properties:
         key:
@@ -17561,6 +18625,14 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValue:
+          description: Attribute with date value
+          type: string
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -17581,6 +18653,7 @@ components:
       description: Attribute Value Type
       enum:
       - BOOLEAN
+      - DATE
       - KEY_ONLY
       - NUMBER
       - STRING
@@ -17605,6 +18678,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         - key: key
           stringValue: stringValue
           stringValues:
@@ -17615,6 +18692,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
       properties:
         attributes:
           description: List of document attributes
@@ -17642,6 +18723,10 @@ components:
         - 6.027456183070403
         - 6.027456183070403
         booleanValue: true
+        dateValue: dateValue
+        dateValues:
+        - dateValues
+        - dateValues
       properties:
         key:
           description: Attribute key
@@ -17665,6 +18750,14 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValue:
+          description: Attribute with date value
+          type: string
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
       required:
       - key
       type: object
@@ -18429,6 +19522,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         documentId: documentId
@@ -18450,6 +19544,9 @@ components:
             - 6.027456183070403
             - 6.027456183070403
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
       properties:
         siteId:
@@ -18473,6 +19570,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -18525,6 +19624,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         checksum: checksum
         checksumType: SHA1
         tags:
@@ -18559,6 +19659,9 @@ components:
             - 6.027456183070403
             - 6.027456183070403
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
       properties:
         contentType:
@@ -18584,6 +19687,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
@@ -18615,6 +19720,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         checksum: checksum
         checksumType: SHA1
         tags:
@@ -18649,6 +19755,9 @@ components:
             - 6.027456183070403
             - 6.027456183070403
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
       properties:
         contentType:
@@ -18674,6 +19783,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
@@ -18713,6 +19824,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         checksum: checksum
         checksumType: SHA1
         tags:
@@ -18747,6 +19859,9 @@ components:
             - 6.027456183070403
             - 6.027456183070403
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
       properties:
         contentType:
@@ -18772,6 +19887,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         checksum:
           description: "Document checksum, changes when document file changes"
           type: string
@@ -18877,6 +19994,208 @@ components:
       - MALICIOUS
       - ERROR
       - CLEAN
+      type: string
+    GetDocumentNotificationsResponse:
+      example:
+        next: next
+        notifications:
+        - entityTypeId: entityTypeId
+          entityId: entityId
+          cc:
+          - cc
+          - cc
+          bcc:
+          - bcc
+          - bcc
+          notificationType: EMAIL
+          notificationDate: notificationDate
+          status: WAITING
+          action:
+            status: COMPLETE
+            type: ANTIVIRUS
+            retryCount: 0.8008281904610115
+            maxRetries: 6.027456183070403
+            queueId: queueId
+            workflowId: workflowId
+            workflowStepId: workflowStepId
+            message: message
+            userId: userId
+            insertedDate: insertedDate
+            startDate: startDate
+            completedDate: completedDate
+            parameters:
+              key: "{}"
+            metadata:
+              key: metadata
+          insertedDate: insertedDate
+        - entityTypeId: entityTypeId
+          entityId: entityId
+          cc:
+          - cc
+          - cc
+          bcc:
+          - bcc
+          - bcc
+          notificationType: EMAIL
+          notificationDate: notificationDate
+          status: WAITING
+          action:
+            status: COMPLETE
+            type: ANTIVIRUS
+            retryCount: 0.8008281904610115
+            maxRetries: 6.027456183070403
+            queueId: queueId
+            workflowId: workflowId
+            workflowStepId: workflowStepId
+            message: message
+            userId: userId
+            insertedDate: insertedDate
+            startDate: startDate
+            completedDate: completedDate
+            parameters:
+              key: "{}"
+            metadata:
+              key: metadata
+          insertedDate: insertedDate
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        notifications:
+          description: List of document notifications
+          items:
+            $ref: "#/components/schemas/DocumentNotification"
+          type: array
+      type: object
+    AddDocumentNotificationRequest:
+      description: At least one CC or BCC recipient is required
+      example:
+        notificationType: EMAIL
+        cc:
+        - cc
+        - cc
+        bcc:
+        - bcc
+        - bcc
+        subject: subject
+        body: body
+      properties:
+        notificationType:
+          $ref: "#/components/schemas/DocumentNotificationType"
+        cc:
+          description: CC recipient email addresses
+          items:
+            format: email
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: true
+        bcc:
+          description: BCC recipient email addresses
+          items:
+            format: email
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: true
+        subject:
+          description: Notification subject
+          minLength: 1
+          type: string
+        body:
+          description: Notification body
+          minLength: 1
+          type: string
+      required:
+      - body
+      - notificationType
+      - subject
+      type: object
+    AddDocumentNotificationResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Notification queueing result
+          type: string
+      required:
+      - message
+      type: object
+    DocumentNotification:
+      example:
+        entityTypeId: entityTypeId
+        entityId: entityId
+        cc:
+        - cc
+        - cc
+        bcc:
+        - bcc
+        - bcc
+        notificationType: EMAIL
+        notificationDate: notificationDate
+        status: WAITING
+        action:
+          status: COMPLETE
+          type: ANTIVIRUS
+          retryCount: 0.8008281904610115
+          maxRetries: 6.027456183070403
+          queueId: queueId
+          workflowId: workflowId
+          workflowStepId: workflowStepId
+          message: message
+          userId: userId
+          insertedDate: insertedDate
+          startDate: startDate
+          completedDate: completedDate
+          parameters:
+            key: "{}"
+          metadata:
+            key: metadata
+        insertedDate: insertedDate
+      properties:
+        entityTypeId:
+          description: Reminder Policy entity type identifier
+          type: string
+        entityId:
+          description: Reminder Policy entity identifier
+          type: string
+        cc:
+          description: Normalized CC recipient email addresses
+          items:
+            type: string
+          type: array
+        bcc:
+          description: Normalized BCC recipient email addresses
+          items:
+            type: string
+          type: array
+        notificationType:
+          $ref: "#/components/schemas/DocumentNotificationType"
+        notificationDate:
+          description: Scheduled notification occurrence date
+          type: string
+        status:
+          $ref: "#/components/schemas/DocumentNotificationStatus"
+        action:
+          $ref: "#/components/schemas/DocumentAction"
+        insertedDate:
+          description: Inserted timestamp
+          type: string
+      type: object
+    DocumentNotificationType:
+      description: Type of document notification
+      enum:
+      - EMAIL
+      - IN_APP
+      type: string
+    DocumentNotificationStatus:
+      description: Status of the document notification. WAITING awaits an external
+        trigger and is not eligible for processing. PENDING is ready for processing.
+        ACTION_CREATED indicates that a Document Action has been created.
+      enum:
+      - WAITING
+      - PENDING
+      - ACTION_CREATED
       type: string
     OcrTableData:
       example:
@@ -19749,6 +21068,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         - key: key
           stringValue: stringValue
           stringValues:
@@ -19759,6 +21082,10 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
         tags:
         - key: key
           value: value
@@ -20160,6 +21487,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -20171,6 +21502,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
         - entityId: entityId
           entityTypeId: entityTypeId
@@ -20187,6 +21522,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -20198,6 +21537,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
       properties:
         next:
@@ -20227,6 +21570,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
           - key: key
             stringValue: stringValue
@@ -20238,6 +21585,10 @@ components:
             - 2.3021358869347655
             - 2.3021358869347655
             booleanValue: true
+            dateValue: dateValue
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: null
       properties:
         entity:
@@ -20271,6 +21622,10 @@ components:
           - 2.3021358869347655
           - 2.3021358869347655
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           valueType: null
         - key: key
           stringValue: stringValue
@@ -20282,6 +21637,10 @@ components:
           - 2.3021358869347655
           - 2.3021358869347655
           booleanValue: true
+          dateValue: dateValue
+          dateValues:
+          - dateValues
+          - dateValues
           valueType: null
       properties:
         entityId:
@@ -20471,6 +21830,10 @@ components:
         - 2.3021358869347655
         - 2.3021358869347655
         booleanValue: true
+        dateValue: dateValue
+        dateValues:
+        - dateValues
+        - dateValues
         valueType: null
       properties:
         key:
@@ -20495,6 +21858,14 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValue:
+          description: Attribute with date value
+          type: string
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
       type: object
@@ -20575,10 +21946,21 @@ components:
       - CUSTOM
       type: string
     DocusignEnvironment:
-      description: Docusign Environment
+      description: "Docusign environment. When omitted from an E-Signature request,\
+        \ defaults to docusignEnvironment in the site configuration."
       enum:
       - PRODUCTION
       - DEVELOPMENT
+      type: string
+    DocusignEnvelopeStatus:
+      default: sent
+      description: |-
+        Controls how the envelope is created:
+        * `created` saves the envelope as a draft without notifying recipients.
+        * `sent` immediately sends the envelope to recipients.
+      enum:
+      - created
+      - sent
       type: string
     DocusignRecipientView:
       example:
@@ -20627,13 +22009,19 @@ components:
       example:
         emailSubject: emailSubject
         environment: PRODUCTION
+        status: sent
         signers:
         - name: name
           email: email
           clientUserId: clientUserId
+          embeddedRecipientStartURL: SIGN_AT_DOCUSIGN
           recipientId: recipientId
           routingOrder: routingOrder
           suppressEmails: suppressEmails
+          readyToSignNotification:
+            notificationType: EMAIL
+            subject: subject
+            body: body
           tabs:
             signHereTabs:
             - anchorString: anchorString
@@ -20655,9 +22043,14 @@ components:
         - name: name
           email: email
           clientUserId: clientUserId
+          embeddedRecipientStartURL: SIGN_AT_DOCUSIGN
           recipientId: recipientId
           routingOrder: routingOrder
           suppressEmails: suppressEmails
+          readyToSignNotification:
+            notificationType: EMAIL
+            subject: subject
+            body: body
           tabs:
             signHereTabs:
             - anchorString: anchorString
@@ -20743,6 +22136,8 @@ components:
           type: string
         environment:
           $ref: "#/components/schemas/DocusignEnvironment"
+        status:
+          $ref: "#/components/schemas/DocusignEnvelopeStatus"
         signers:
           description: List of DocuSign Signers
           items:
@@ -20755,8 +22150,6 @@ components:
           type: array
         notification:
           $ref: "#/components/schemas/DocusignNotification"
-      required:
-      - environment
       type: object
     DocusignNotification:
       example:
@@ -20820,9 +22213,14 @@ components:
         name: name
         email: email
         clientUserId: clientUserId
+        embeddedRecipientStartURL: SIGN_AT_DOCUSIGN
         recipientId: recipientId
         routingOrder: routingOrder
         suppressEmails: suppressEmails
+        readyToSignNotification:
+          notificationType: EMAIL
+          subject: subject
+          body: body
         tabs:
           signHereTabs:
           - anchorString: anchorString
@@ -20851,6 +22249,14 @@ components:
         clientUserId:
           description: Specifies unique identifier for signer
           type: string
+        embeddedRecipientStartURL:
+          description: "Enables a Docusign signing invitation while retaining embedded\
+            \ signing through clientUserId. Requires clientUserId. When omitted, the\
+            \ existing signing behavior is unchanged. Hybrid recipients do not receive\
+            \ automated reminders or expiration notifications."
+          enum:
+          - SIGN_AT_DOCUSIGN
+          type: string
         recipientId:
           description: "A reference used to map recipients to other objects, such\
             \ as specific document tabs."
@@ -20862,10 +22268,43 @@ components:
           description: "When true, email notifications are suppressed for the recipient,\
             \ and they must access envelopes and documents from their Docusign inbox."
           type: string
+        readyToSignNotification:
+          $ref: "#/components/schemas/DocusignSignerReadyToSignNotification"
         tabs:
           $ref: "#/components/schemas/DocusignSigningTabs"
       required:
       - name
+      type: object
+    DocusignSignerReadyToSignNotification:
+      description: "Configuration for a FormKiQ-managed notification stored with status\
+        \ WAITING when the envelope is created. The Docusign recipient-completed callback\
+        \ for the immediately preceding signer in routing order releases it to PENDING.\
+        \ The callback updates the existing document notification without creating\
+        \ a separate user notification record. The notification is addressed to this\
+        \ signer's email address and does not require suppressEmails to be enabled.\
+        \ Requires a configured connectUrl, unique recipient IDs and unique positive\
+        \ integer routing orders for all signers, and at least one preceding signer.\
+        \ Only sequential signing is supported when readyToSignNotification is configured;\
+        \ parallel routing orders are rejected."
+      example:
+        notificationType: EMAIL
+        subject: subject
+        body: body
+      properties:
+        notificationType:
+          $ref: "#/components/schemas/DocumentNotificationType"
+        subject:
+          description: Notification subject
+          minLength: 1
+          type: string
+        body:
+          description: Notification body
+          minLength: 1
+          type: string
+      required:
+      - body
+      - notificationType
+      - subject
       type: object
     DocusignSigningTabs:
       example:
@@ -21022,7 +22461,6 @@ components:
         recipientView:
           $ref: "#/components/schemas/DocusignRecipientView"
       required:
-      - environment
       - recipientView
       type: object
     AddDocusignRecipientViewResponse:
@@ -21031,6 +22469,28 @@ components:
       properties:
         viewUrl:
           description: The view URL to be navigated to complete DocuSign signing
+          type: string
+      type: object
+    AddDocusignSenderViewRequest:
+      example:
+        environment: PRODUCTION
+        returnUrl: returnUrl
+      properties:
+        environment:
+          $ref: "#/components/schemas/DocusignEnvironment"
+        returnUrl:
+          description: The URL to which the sender is redirected after exiting the
+            sender view
+          type: string
+      required:
+      - returnUrl
+      type: object
+    AddDocusignSenderViewResponse:
+      example:
+        viewUrl: viewUrl
+      properties:
+        viewUrl:
+          description: The URL for the embedded DocuSign sender view
           type: string
       type: object
     GetFoldersResponse:
@@ -21043,6 +22503,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           folder: true
@@ -21064,6 +22525,7 @@ components:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           matchedTag:
             key: key
             value: value
@@ -21086,6 +22548,9 @@ components:
               - 1.4658129805029452
               - 1.4658129805029452
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
           metadata:
           - key: key
@@ -21103,6 +22568,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           folder: true
@@ -21124,6 +22590,7 @@ components:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           matchedTag:
             key: key
             value: value
@@ -21146,6 +22613,9 @@ components:
               - 1.4658129805029452
               - 1.4658129805029452
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
           metadata:
           - key: key
@@ -22596,6 +24066,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate
@@ -22712,6 +24183,7 @@ components:
             width: width
             height: height
             deepLinkPath: deepLinkPath
+            resourceType: DOCUMENT
             insertedDate: insertedDate
             lastModifiedDate: lastModifiedDate
             deletedDate: deletedDate
@@ -22754,6 +24226,7 @@ components:
             width: width
             height: height
             deepLinkPath: deepLinkPath
+            resourceType: DOCUMENT
             insertedDate: insertedDate
             lastModifiedDate: lastModifiedDate
             deletedDate: deletedDate
@@ -23295,6 +24768,7 @@ components:
         stringValue: stringValue
         numberValue: 6.027456183070403
         booleanValue: true
+        dateValue: dateValue
       properties:
         stringValue:
           description: Search for string value
@@ -23305,12 +24779,16 @@ components:
         booleanValue:
           description: Search for boolean value
           type: boolean
+        dateValue:
+          description: Search for date value
+          type: string
     SearchRangeDataType:
       default: STRING
       description: Search Range Data Type
       enum:
       - STRING
       - NUMBER
+      - DATE
       type: string
     DocumentFulltextAttribute:
       example:
@@ -23318,13 +24796,16 @@ components:
           stringValue: stringValue
           numberValue: 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
         eqOr:
         - stringValue: stringValue
           numberValue: 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
         - stringValue: stringValue
           numberValue: 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
         key: key
       properties:
         eq:
@@ -23401,25 +24882,31 @@ components:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           eqOr:
           - stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           - stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           key: key
         - eq:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           eqOr:
           - stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           - stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           key: key
       properties:
         page:
@@ -23792,6 +25279,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           folder: true
@@ -23813,6 +25301,7 @@ components:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           matchedTag:
             key: key
             value: value
@@ -23835,6 +25324,9 @@ components:
               - 1.4658129805029452
               - 1.4658129805029452
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
           metadata:
           - key: key
@@ -23852,6 +25344,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           folder: true
@@ -23873,6 +25366,7 @@ components:
             stringValue: stringValue
             numberValue: 6.027456183070403
             booleanValue: true
+            dateValue: dateValue
           matchedTag:
             key: key
             value: value
@@ -23895,6 +25389,9 @@ components:
               - 1.4658129805029452
               - 1.4658129805029452
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
           metadata:
           - key: key
@@ -23927,6 +25424,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         folder: true
@@ -23948,6 +25446,7 @@ components:
           stringValue: stringValue
           numberValue: 6.027456183070403
           booleanValue: true
+          dateValue: dateValue
         matchedTag:
           key: key
           value: value
@@ -23970,6 +25469,9 @@ components:
             - 1.4658129805029452
             - 1.4658129805029452
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
         metadata:
         - key: key
@@ -23998,6 +25500,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -24075,6 +25579,9 @@ components:
         - 1.4658129805029452
         - 1.4658129805029452
         booleanValue: true
+        dateValues:
+        - dateValues
+        - dateValues
         valueType: BOOLEAN
       properties:
         stringValues:
@@ -24090,6 +25597,11 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
     DocumentSearchMatchTag:
@@ -24114,6 +25626,7 @@ components:
         stringValue: stringValue
         numberValue: 6.027456183070403
         booleanValue: true
+        dateValue: dateValue
       properties:
         key:
           description: Tag key
@@ -24127,6 +25640,9 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValue:
+          description: Attribute with date value
+          type: string
       type: object
     DocumentFulltextRequest:
       description: Document full text search
@@ -24150,25 +25666,31 @@ components:
               stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             eqOr:
             - stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             - stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             key: key
           - eq:
               stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             eqOr:
             - stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             - stringValue: stringValue
               numberValue: 6.027456183070403
               booleanValue: true
+              dateValue: dateValue
             key: key
         responseFields:
           attributes:
@@ -24195,6 +25717,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           checksum: checksum
@@ -24216,6 +25739,9 @@ components:
               - 6.027456183070403
               - 6.027456183070403
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
         - siteId: siteId
           path: path
@@ -24223,6 +25749,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           checksum: checksum
@@ -24244,6 +25771,9 @@ components:
               - 6.027456183070403
               - 6.027456183070403
               booleanValue: true
+              dateValues:
+              - dateValues
+              - dateValues
               valueType: BOOLEAN
       properties:
         totalCount:
@@ -24264,6 +25794,7 @@ components:
         width: width
         height: height
         deepLinkPath: deepLinkPath
+        resourceType: DOCUMENT
         insertedDate: insertedDate
         lastModifiedDate: lastModifiedDate
         checksum: checksum
@@ -24285,6 +25816,9 @@ components:
             - 6.027456183070403
             - 6.027456183070403
             booleanValue: true
+            dateValues:
+            - dateValues
+            - dateValues
             valueType: BOOLEAN
       properties:
         siteId:
@@ -24305,6 +25839,8 @@ components:
         deepLinkPath:
           description: Path or Name of deep link
           type: string
+        resourceType:
+          $ref: "#/components/schemas/DocumentResourceType"
         insertedDate:
           description: Inserted Timestamp
           type: string
@@ -24348,6 +25884,9 @@ components:
         - 6.027456183070403
         - 6.027456183070403
         booleanValue: true
+        dateValues:
+        - dateValues
+        - dateValues
         valueType: BOOLEAN
       properties:
         insertedDate:
@@ -24366,6 +25905,11 @@ components:
         booleanValue:
           description: Attribute with boolean value
           type: boolean
+        dateValues:
+          description: Attribute with date values
+          items:
+            type: string
+          type: array
         valueType:
           $ref: "#/components/schemas/AttributeValueType"
       type: object
@@ -26999,6 +28543,169 @@ components:
           description: Max number of OCR actions that can be created (-1 for unlimited)
           type: number
       type: object
+    NumberingSequenceReset:
+      description: Frequency at which the sequence restarts at startAt
+      enum:
+      - NONE
+      - YEARLY
+      type: string
+    NumberingSequence:
+      example:
+        attributeKey: attributeKey
+        pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+        startAt: 1
+        padding: 5
+        reset: NONE
+        timezone: America/Winnipeg
+        currentPeriod: "2026"
+        currentSequence: 2
+        lastValue: CONTRACT-2026-00002
+      properties:
+        attributeKey:
+          description: Attribute key where generated values are stored
+          type: string
+        pattern:
+          description: "Number format using supported tokens such as {YEAR} and {SEQUENCE}"
+          example: "CONTRACT-{YEAR}-{SEQUENCE}"
+          type: string
+        startAt:
+          description: First sequence number allocated for a new period
+          example: 1
+          format: int64
+          minimum: 1
+          type: integer
+        padding:
+          description: "Minimum width of the generated sequence number, padded with\
+            \ leading zeroes"
+          example: 5
+          minimum: 1
+          type: integer
+        reset:
+          $ref: "#/components/schemas/NumberingSequenceReset"
+        timezone:
+          default: UTC
+          description: IANA timezone used to determine the active period; defaults
+            to UTC
+          example: America/Winnipeg
+          type: string
+        currentPeriod:
+          description: "Active sequence period, or null if no number has been allocated"
+          example: "2026"
+          nullable: true
+          readOnly: true
+          type: string
+        currentSequence:
+          description: "Most recently allocated sequence number, or null if none has\
+            \ been allocated"
+          example: 2
+          format: int64
+          nullable: true
+          readOnly: true
+          type: integer
+        lastValue:
+          description: "Most recently generated attribute value, or null if none has\
+            \ been allocated"
+          example: CONTRACT-2026-00002
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - attributeKey
+      - padding
+      - pattern
+      - reset
+      - startAt
+      type: object
+    SetNumberingSequenceRequest:
+      example:
+        pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+        startAt: 1
+        padding: 5
+        reset: NONE
+        timezone: America/Winnipeg
+      properties:
+        pattern:
+          description: "Number format using supported tokens such as {YEAR} and {SEQUENCE}"
+          example: "CONTRACT-{YEAR}-{SEQUENCE}"
+          type: string
+        startAt:
+          description: First sequence number allocated for a new period
+          example: 1
+          format: int64
+          minimum: 1
+          type: integer
+        padding:
+          description: "Minimum width of the generated sequence number, padded with\
+            \ leading zeroes"
+          example: 5
+          minimum: 1
+          type: integer
+        reset:
+          $ref: "#/components/schemas/NumberingSequenceReset"
+        timezone:
+          default: UTC
+          description: IANA timezone used to determine the active period; defaults
+            to UTC
+          example: America/Winnipeg
+          type: string
+      required:
+      - padding
+      - pattern
+      - reset
+      - startAt
+      type: object
+    GetNumberingSequencesResponse:
+      example:
+        next: next
+        numberingSequences:
+        - attributeKey: attributeKey
+          pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+          startAt: 1
+          padding: 5
+          reset: NONE
+          timezone: America/Winnipeg
+          currentPeriod: "2026"
+          currentSequence: 2
+          lastValue: CONTRACT-2026-00002
+        - attributeKey: attributeKey
+          pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+          startAt: 1
+          padding: 5
+          reset: NONE
+          timezone: America/Winnipeg
+          currentPeriod: "2026"
+          currentSequence: 2
+          lastValue: CONTRACT-2026-00002
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        numberingSequences:
+          description: List of numbering sequences
+          items:
+            $ref: "#/components/schemas/NumberingSequence"
+          type: array
+      required:
+      - numberingSequences
+      type: object
+    GetNumberingSequenceResponse:
+      example:
+        numberingSequence:
+          attributeKey: attributeKey
+          pattern: "CONTRACT-{YEAR}-{SEQUENCE}"
+          startAt: 1
+          padding: 5
+          reset: NONE
+          timezone: America/Winnipeg
+          currentPeriod: "2026"
+          currentSequence: 2
+          lastValue: CONTRACT-2026-00002
+      properties:
+        numberingSequence:
+          $ref: "#/components/schemas/NumberingSequence"
+      required:
+      - numberingSequence
+      type: object
     UpdateConfigurationRequest:
       example:
         chatGptApiKey: chatGptApiKey
@@ -27006,6 +28713,14 @@ components:
         maxDocuments: maxDocuments
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        notification:
+          email: email
+          provider: SES
+          smtp:
+            host: host
+            port: 5249
+            connectionSecurity: STARTTLS
+            credentialsSecretArn: credentialsSecretArn
         document:
           contentTypes:
             allowlist:
@@ -27025,10 +28740,12 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
         docusign:
+          environment: PRODUCTION
           userId: userId
           integrationKey: integrationKey
           rsaPrivateKey: rsaPrivateKey
           hmacSignature: hmacSignature
+          connectUrl: https://openapi-generator.tech
       properties:
         chatGptApiKey:
           description: ChatGPT Api Key
@@ -27043,8 +28760,13 @@ components:
           description: Set Maximum number of Webhooks allowed
           type: string
         notificationEmail:
-          description: Email address to use for notifications
+          deprecated: true
+          description: Deprecated. Use notification.email instead. Email address to
+            use for SES notifications.
+          format: email
           type: string
+        notification:
+          $ref: "#/components/schemas/NotificationConfig"
         document:
           $ref: "#/components/schemas/DocumentConfig"
         ocr:
@@ -27061,6 +28783,87 @@ components:
         message:
           description: Result message
           type: string
+      type: object
+    NotificationConfig:
+      example:
+        email: email
+        provider: SES
+        smtp:
+          host: host
+          port: 5249
+          connectionSecurity: STARTTLS
+          credentialsSecretArn: credentialsSecretArn
+      properties:
+        email:
+          description: Email address to use as the From address for notifications
+          format: email
+          type: string
+        provider:
+          $ref: "#/components/schemas/NotificationEmailProvider"
+        smtp:
+          $ref: "#/components/schemas/NotificationEmailSmtpConfig"
+      type: object
+    NotificationEmailProvider:
+      default: SES
+      enum:
+      - SES
+      - SMTP
+      type: string
+    NotificationEmailSmtpConfig:
+      example:
+        host: host
+        port: 5249
+        connectionSecurity: STARTTLS
+        credentialsSecretArn: credentialsSecretArn
+      properties:
+        host:
+          description: SMTP server hostname
+          type: string
+        port:
+          description: SMTP server port
+          format: int32
+          maximum: 65535
+          minimum: 1
+          type: integer
+        connectionSecurity:
+          $ref: "#/components/schemas/NotificationEmailSmtpConnectionSecurity"
+        credentialsSecretArn:
+          description: "AWS Secrets Manager ARN for a secret whose value is a JSON\
+            \ object containing non-empty string properties named \"username\" and\
+            \ \"password\", for example: {\"username\":\"smtp-user@example.com\",\"\
+            password\":\"smtp-password\"}."
+          type: string
+      required:
+      - connectionSecurity
+      - credentialsSecretArn
+      - host
+      - port
+      type: object
+    NotificationEmailSmtpConnectionSecurity:
+      enum:
+      - STARTTLS
+      - IMPLICIT_TLS
+      type: string
+    AddNotificationTestRequest:
+      example:
+        to: to
+      properties:
+        to:
+          description: Recipient of the test email
+          format: email
+          type: string
+      required:
+      - to
+      type: object
+    AddNotificationTestResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: Queueing result
+          type: string
+      required:
+      - message
       type: object
     DocumentConfig:
       example:
@@ -27138,6 +28941,14 @@ components:
         maxDocuments: maxDocuments
         maxWebhooks: maxWebhooks
         notificationEmail: notificationEmail
+        notification:
+          email: email
+          provider: SES
+          smtp:
+            host: host
+            port: 5249
+            connectionSecurity: STARTTLS
+            credentialsSecretArn: credentialsSecretArn
         document:
           contentTypes:
             allowlist:
@@ -27157,10 +28968,12 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
         docusign:
+          environment: PRODUCTION
           userId: userId
           integrationKey: integrationKey
           rsaPrivateKey: rsaPrivateKey
           hmacSignature: hmacSignature
+          connectUrl: https://openapi-generator.tech
       properties:
         chatGptApiKey:
           description: ChatGPT API Key
@@ -27175,9 +28988,13 @@ components:
           description: Set Maximum number of Webhooks allowed
           type: string
         notificationEmail:
-          description: Email address to use for notifications (Must be verified identity
-            created in AWS SES)
+          deprecated: true
+          description: Deprecated. Use notification.email instead. Email address to
+            use for SES notifications.
+          format: email
           type: string
+        notification:
+          $ref: "#/components/schemas/NotificationConfig"
         document:
           $ref: "#/components/schemas/DocumentConfig"
         ocr:
@@ -27201,11 +29018,15 @@ components:
       type: object
     DocusignConfig:
       example:
+        environment: PRODUCTION
         userId: userId
         integrationKey: integrationKey
         rsaPrivateKey: rsaPrivateKey
         hmacSignature: hmacSignature
+        connectUrl: https://openapi-generator.tech
       properties:
+        environment:
+          $ref: "#/components/schemas/DocusignEnvironment"
         userId:
           description: Docusign UserId
           type: string
@@ -27216,10 +29037,15 @@ components:
           description: Docusign Rsa Private Key
           type: string
         hmacSignature:
-          description: "Enabled security with Docusign Connect using HMAC keys. When\
-            \ enabled these keys are known only by Docusign and your app, and will\
-            \ be used to sign all Connect messages sent from your Docusign account\
-            \ to your application."
+          description: "Optional HMAC secret used to validate Docusign Connect event\
+            \ notifications. When configured, callbacks must include a matching Docusign\
+            \ HMAC signature. When omitted or empty, callbacks are processed without\
+            \ HMAC validation, including when connectUrl is configured."
+          type: string
+        connectUrl:
+          description: Public HTTPS URL that receives Docusign Connect event notifications.
+            May be configured with or without hmacSignature.
+          format: uri
           type: string
       type: object
     AddDelegationTokenRequest:
@@ -27432,6 +29258,131 @@ components:
       required:
       - invocationType
       - modelId
+      type: object
+    GetUserNotificationsResponse:
+      example:
+        next: next
+        notifications:
+        - documentId: documentId
+          artifactId: artifactId
+          notification:
+            entityTypeId: entityTypeId
+            entityId: entityId
+            cc:
+            - cc
+            - cc
+            bcc:
+            - bcc
+            - bcc
+            notificationType: EMAIL
+            notificationDate: notificationDate
+            status: WAITING
+            action:
+              status: COMPLETE
+              type: ANTIVIRUS
+              retryCount: 0.8008281904610115
+              maxRetries: 6.027456183070403
+              queueId: queueId
+              workflowId: workflowId
+              workflowStepId: workflowStepId
+              message: message
+              userId: userId
+              insertedDate: insertedDate
+              startDate: startDate
+              completedDate: completedDate
+              parameters:
+                key: "{}"
+              metadata:
+                key: metadata
+            insertedDate: insertedDate
+        - documentId: documentId
+          artifactId: artifactId
+          notification:
+            entityTypeId: entityTypeId
+            entityId: entityId
+            cc:
+            - cc
+            - cc
+            bcc:
+            - bcc
+            - bcc
+            notificationType: EMAIL
+            notificationDate: notificationDate
+            status: WAITING
+            action:
+              status: COMPLETE
+              type: ANTIVIRUS
+              retryCount: 0.8008281904610115
+              maxRetries: 6.027456183070403
+              queueId: queueId
+              workflowId: workflowId
+              workflowStepId: workflowStepId
+              message: message
+              userId: userId
+              insertedDate: insertedDate
+              startDate: startDate
+              completedDate: completedDate
+              parameters:
+                key: "{}"
+              metadata:
+                key: metadata
+            insertedDate: insertedDate
+      properties:
+        next:
+          description: Next page of results token
+          type: string
+        notifications:
+          description: List of notifications where the authenticated user's email
+            is a CC or BCC recipient
+          items:
+            $ref: "#/components/schemas/UserNotification"
+          type: array
+      type: object
+    UserNotification:
+      description: A document notification associated with the authenticated user's
+        email address
+      example:
+        documentId: documentId
+        artifactId: artifactId
+        notification:
+          entityTypeId: entityTypeId
+          entityId: entityId
+          cc:
+          - cc
+          - cc
+          bcc:
+          - bcc
+          - bcc
+          notificationType: EMAIL
+          notificationDate: notificationDate
+          status: WAITING
+          action:
+            status: COMPLETE
+            type: ANTIVIRUS
+            retryCount: 0.8008281904610115
+            maxRetries: 6.027456183070403
+            queueId: queueId
+            workflowId: workflowId
+            workflowStepId: workflowStepId
+            message: message
+            userId: userId
+            insertedDate: insertedDate
+            startDate: startDate
+            completedDate: completedDate
+            parameters:
+              key: "{}"
+            metadata:
+              key: metadata
+          insertedDate: insertedDate
+      properties:
+        documentId:
+          description: Document identifier
+          type: string
+        artifactId:
+          description: Document artifact identifier
+          type: string
+        notification:
+          $ref: "#/components/schemas/DocumentNotification"
       type: object
     GetVersionResponse:
       example:
@@ -29446,6 +31397,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate
@@ -29479,6 +31431,7 @@ components:
           width: width
           height: height
           deepLinkPath: deepLinkPath
+          resourceType: DOCUMENT
           insertedDate: insertedDate
           lastModifiedDate: lastModifiedDate
           deletedDate: deletedDate

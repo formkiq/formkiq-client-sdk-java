@@ -24,6 +24,7 @@ import com.formkiq.client.model.AddDocumentAttribute;
 import com.formkiq.client.model.AddDocumentMetadata;
 import com.formkiq.client.model.AddDocumentTag;
 import com.formkiq.client.model.ChecksumType;
+import com.formkiq.client.model.DocumentResourceType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -80,6 +81,14 @@ public class AddChildDocumentTest {
   @Test
   public void deepLinkPathTest() {
     // TODO: test deepLinkPath
+  }
+
+  /**
+   * Test the property 'resourceType'
+   */
+  @Test
+  public void resourceTypeTest() {
+    // TODO: test resourceType
   }
 
   /**

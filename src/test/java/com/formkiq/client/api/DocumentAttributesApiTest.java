@@ -24,11 +24,14 @@ import com.formkiq.client.invoker.ApiException;
 import com.formkiq.client.model.AddDocumentAttributesRequest;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.ErrorsResponse;
+import com.formkiq.client.model.GenerateDocumentAttributeValueResponse;
 import com.formkiq.client.model.GetDocumentAttributeResponse;
 import com.formkiq.client.model.GetDocumentAttributesResponse;
 import com.formkiq.client.model.SetDocumentAttributeRequest;
 import com.formkiq.client.model.SetDocumentAttributesRequest;
 import com.formkiq.client.model.SetResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -99,6 +102,25 @@ public class DocumentAttributesApiTest {
     String artifactId = null;
     DeleteResponse response = api.deleteDocumentAttributeAndValue(documentId, attributeKey,
         attributeValue, siteId, artifactId);
+    // TODO: test validations
+  }
+
+  /**
+   * Generate document attribute value
+   *
+   * Allocates the next value from the numbering sequence configured for the attribute key and
+   * stores it on the document. If the document already has a value for the attribute key, the
+   * existing value is returned.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void generateDocumentAttributeValueTest() throws ApiException {
+    String documentId = null;
+    String attributeKey = null;
+    String siteId = null;
+    GenerateDocumentAttributeValueResponse response =
+        api.generateDocumentAttributeValue(documentId, attributeKey, siteId);
     // TODO: test validations
   }
 

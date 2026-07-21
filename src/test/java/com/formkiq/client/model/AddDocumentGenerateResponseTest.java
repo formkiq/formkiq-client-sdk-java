@@ -52,4 +52,12 @@ public class AddDocumentGenerateResponseTest {
     // TODO: test documentId
   }
 
+  /**
+   * Test the property 'artifactId'
+   */
+  @Test
+  public void artifactIdTest() {
+    // TODO: test artifactId
+  }
+
 }

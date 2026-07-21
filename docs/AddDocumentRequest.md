@@ -16,6 +16,7 @@
 |**width** | **String** | Document Content Width property |  [optional] |
 |**height** | **String** | Document Content Height property |  [optional] |
 |**deepLinkPath** | **String** | Path or Name of deep link |  [optional] |
+|**resourceType** | **DocumentResourceType** |  |  [optional] |
 |**contentType** | **String** | Document media type |  [optional] |
 |**isBase64** | **Boolean** | Is the content Base64-encoded? |  [optional] |
 |**content** | **String** | Document content |  |

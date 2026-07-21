@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.DocusignSignerReadyToSignNotification;
 import com.formkiq.client.model.DocusignSigningTabs;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -37,6 +38,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -57,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * DocusignSigner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-07-15T15:43:35.087052+02:00[Europe/Copenhagen]",
-    comments = "Generator version: 7.23.0")
+    date = "2026-09-16T18:16:46.995871-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.25.0")
 public class DocusignSigner {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -75,6 +77,65 @@ public class DocusignSigner {
   @javax.annotation.Nullable
   private String clientUserId;
 
+  /**
+   * Enables a Docusign signing invitation while retaining embedded signing through clientUserId.
+   * Requires clientUserId. When omitted, the existing signing behavior is unchanged. Hybrid
+   * recipients do not receive automated reminders or expiration notifications.
+   */
+  @JsonAdapter(EmbeddedRecipientStartURLEnum.Adapter.class)
+  public enum EmbeddedRecipientStartURLEnum {
+    SIGN_AT_DOCUSIGN("SIGN_AT_DOCUSIGN");
+
+    private String value;
+
+    EmbeddedRecipientStartURLEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static EmbeddedRecipientStartURLEnum fromValue(String value) {
+      for (EmbeddedRecipientStartURLEnum b : EmbeddedRecipientStartURLEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<EmbeddedRecipientStartURLEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter,
+          final EmbeddedRecipientStartURLEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public EmbeddedRecipientStartURLEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return EmbeddedRecipientStartURLEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      EmbeddedRecipientStartURLEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_EMBEDDED_RECIPIENT_START_U_R_L =
+      "embeddedRecipientStartURL";
+  @SerializedName(SERIALIZED_NAME_EMBEDDED_RECIPIENT_START_U_R_L)
+  @javax.annotation.Nullable
+  private EmbeddedRecipientStartURLEnum embeddedRecipientStartURL;
+
   public static final String SERIALIZED_NAME_RECIPIENT_ID = "recipientId";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_ID)
   @javax.annotation.Nullable
@@ -89,6 +150,11 @@ public class DocusignSigner {
   @SerializedName(SERIALIZED_NAME_SUPPRESS_EMAILS)
   @javax.annotation.Nullable
   private String suppressEmails;
+
+  public static final String SERIALIZED_NAME_READY_TO_SIGN_NOTIFICATION = "readyToSignNotification";
+  @SerializedName(SERIALIZED_NAME_READY_TO_SIGN_NOTIFICATION)
+  @javax.annotation.Nullable
+  private DocusignSignerReadyToSignNotification readyToSignNotification;
 
   public static final String SERIALIZED_NAME_TABS = "tabs";
   @SerializedName(SERIALIZED_NAME_TABS)
@@ -157,6 +223,30 @@ public class DocusignSigner {
   }
 
 
+  public DocusignSigner embeddedRecipientStartURL(
+      @javax.annotation.Nullable EmbeddedRecipientStartURLEnum embeddedRecipientStartURL) {
+    this.embeddedRecipientStartURL = embeddedRecipientStartURL;
+    return this;
+  }
+
+  /**
+   * Enables a Docusign signing invitation while retaining embedded signing through clientUserId.
+   * Requires clientUserId. When omitted, the existing signing behavior is unchanged. Hybrid
+   * recipients do not receive automated reminders or expiration notifications.
+   * 
+   * @return embeddedRecipientStartURL
+   */
+  @javax.annotation.Nullable
+  public EmbeddedRecipientStartURLEnum getEmbeddedRecipientStartURL() {
+    return embeddedRecipientStartURL;
+  }
+
+  public void setEmbeddedRecipientStartURL(
+      @javax.annotation.Nullable EmbeddedRecipientStartURLEnum embeddedRecipientStartURL) {
+    this.embeddedRecipientStartURL = embeddedRecipientStartURL;
+  }
+
+
   public DocusignSigner recipientId(@javax.annotation.Nullable String recipientId) {
     this.recipientId = recipientId;
     return this;
@@ -218,6 +308,28 @@ public class DocusignSigner {
   }
 
 
+  public DocusignSigner readyToSignNotification(
+      @javax.annotation.Nullable DocusignSignerReadyToSignNotification readyToSignNotification) {
+    this.readyToSignNotification = readyToSignNotification;
+    return this;
+  }
+
+  /**
+   * Get readyToSignNotification
+   * 
+   * @return readyToSignNotification
+   */
+  @javax.annotation.Nullable
+  public DocusignSignerReadyToSignNotification getReadyToSignNotification() {
+    return readyToSignNotification;
+  }
+
+  public void setReadyToSignNotification(
+      @javax.annotation.Nullable DocusignSignerReadyToSignNotification readyToSignNotification) {
+    this.readyToSignNotification = readyToSignNotification;
+  }
+
+
   public DocusignSigner tabs(@javax.annotation.Nullable DocusignSigningTabs tabs) {
     this.tabs = tabs;
     return this;
@@ -251,15 +363,18 @@ public class DocusignSigner {
     return Objects.equals(this.name, docusignSigner.name)
         && Objects.equals(this.email, docusignSigner.email)
         && Objects.equals(this.clientUserId, docusignSigner.clientUserId)
+        && Objects.equals(this.embeddedRecipientStartURL, docusignSigner.embeddedRecipientStartURL)
         && Objects.equals(this.recipientId, docusignSigner.recipientId)
         && Objects.equals(this.routingOrder, docusignSigner.routingOrder)
         && Objects.equals(this.suppressEmails, docusignSigner.suppressEmails)
+        && Objects.equals(this.readyToSignNotification, docusignSigner.readyToSignNotification)
         && Objects.equals(this.tabs, docusignSigner.tabs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, clientUserId, recipientId, routingOrder, suppressEmails, tabs);
+    return Objects.hash(name, email, clientUserId, embeddedRecipientStartURL, recipientId,
+        routingOrder, suppressEmails, readyToSignNotification, tabs);
   }
 
   @Override
@@ -269,9 +384,13 @@ public class DocusignSigner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    clientUserId: ").append(toIndentedString(clientUserId)).append("\n");
+    sb.append("    embeddedRecipientStartURL: ").append(toIndentedString(embeddedRecipientStartURL))
+        .append("\n");
     sb.append("    recipientId: ").append(toIndentedString(recipientId)).append("\n");
     sb.append("    routingOrder: ").append(toIndentedString(routingOrder)).append("\n");
     sb.append("    suppressEmails: ").append(toIndentedString(suppressEmails)).append("\n");
+    sb.append("    readyToSignNotification: ").append(toIndentedString(readyToSignNotification))
+        .append("\n");
     sb.append("    tabs: ").append(toIndentedString(tabs)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -290,8 +409,9 @@ public class DocusignSigner {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("name", "email", "clientUserId",
-        "recipientId", "routingOrder", "suppressEmails", "tabs"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("name", "email", "clientUserId", "embeddedRecipientStartURL", "recipientId",
+            "routingOrder", "suppressEmails", "readyToSignNotification", "tabs"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("name"));
@@ -349,6 +469,18 @@ public class DocusignSigner {
           "Expected the field `clientUserId` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("clientUserId").toString()));
     }
+    if ((jsonObj.get("embeddedRecipientStartURL") != null
+        && !jsonObj.get("embeddedRecipientStartURL").isJsonNull())
+        && !jsonObj.get("embeddedRecipientStartURL").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `embeddedRecipientStartURL` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("embeddedRecipientStartURL").toString()));
+    }
+    // validate the optional field `embeddedRecipientStartURL`
+    if (jsonObj.get("embeddedRecipientStartURL") != null
+        && !jsonObj.get("embeddedRecipientStartURL").isJsonNull()) {
+      EmbeddedRecipientStartURLEnum.validateJsonElement(jsonObj.get("embeddedRecipientStartURL"));
+    }
     if ((jsonObj.get("recipientId") != null && !jsonObj.get("recipientId").isJsonNull())
         && !jsonObj.get("recipientId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -366,6 +498,12 @@ public class DocusignSigner {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `suppressEmails` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("suppressEmails").toString()));
+    }
+    // validate the optional field `readyToSignNotification`
+    if (jsonObj.get("readyToSignNotification") != null
+        && !jsonObj.get("readyToSignNotification").isJsonNull()) {
+      DocusignSignerReadyToSignNotification
+          .validateJsonElement(jsonObj.get("readyToSignNotification"));
     }
     // validate the optional field `tabs`
     if (jsonObj.get("tabs") != null && !jsonObj.get("tabs").isJsonNull()) {
