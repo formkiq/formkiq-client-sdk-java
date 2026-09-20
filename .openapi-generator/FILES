@@ -52,6 +52,7 @@ docs/AddDocumentRequest.md
 docs/AddDocumentResponse.md
 docs/AddDocumentReview.md
 docs/AddDocumentReviewDecision.md
+docs/AddDocumentReviewDecision409Response.md
 docs/AddDocumentReviewDecisionRequest.md
 docs/AddDocumentReviewDecisionResponse.md
 docs/AddDocumentReviewRequest.md
@@ -137,6 +138,7 @@ docs/AttributeSchemaRequired.md
 docs/AttributeType.md
 docs/AttributeValueType.md
 docs/AttributesApi.md
+docs/BrandingConfig.md
 docs/ChecksumType.md
 docs/ChildDocument.md
 docs/Classification.md
@@ -663,6 +665,7 @@ src/main/java/com/formkiq/client/model/AddDocumentRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentReview.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecision.java
+src/main/java/com/formkiq/client/model/AddDocumentReviewDecision409Response.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecisionRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecisionResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewRequest.java
@@ -746,6 +749,7 @@ src/main/java/com/formkiq/client/model/AttributeSchemaOptional.java
 src/main/java/com/formkiq/client/model/AttributeSchemaRequired.java
 src/main/java/com/formkiq/client/model/AttributeType.java
 src/main/java/com/formkiq/client/model/AttributeValueType.java
+src/main/java/com/formkiq/client/model/BrandingConfig.java
 src/main/java/com/formkiq/client/model/ChecksumType.java
 src/main/java/com/formkiq/client/model/ChildDocument.java
 src/main/java/com/formkiq/client/model/Classification.java
@@ -1207,6 +1211,7 @@ src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocumentReviewDecision409ResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionTest.java
@@ -1292,6 +1297,7 @@ src/test/java/com/formkiq/client/model/AttributeSchemaRequiredTest.java
 src/test/java/com/formkiq/client/model/AttributeTest.java
 src/test/java/com/formkiq/client/model/AttributeTypeTest.java
 src/test/java/com/formkiq/client/model/AttributeValueTypeTest.java
+src/test/java/com/formkiq/client/model/BrandingConfigTest.java
 src/test/java/com/formkiq/client/model/ChecksumTypeTest.java
 src/test/java/com/formkiq/client/model/ChildDocumentTest.java
 src/test/java/com/formkiq/client/model/ClassificationSummaryTest.java

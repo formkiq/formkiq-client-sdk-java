@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentReview
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    date = "2026-09-20T12:35:01.261266-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class AddDocumentReview {
   public static final String SERIALIZED_NAME_REVIEW_CATEGORY = "reviewCategory";
@@ -152,7 +152,9 @@ public class AddDocumentReview {
 
   /**
    * Optional approval groups used for additional credential verification when submitting a decision
-   * to POST /documents/{documentId}/reviews/{reviewId}/decisions.
+   * to POST /documents/{documentId}/reviews/{reviewId}/decisions. The caller must belong to at
+   * least one of the listed groups, in addition to satisfying the existing authorization
+   * requirements.
    * 
    * @return approvalGroups
    */

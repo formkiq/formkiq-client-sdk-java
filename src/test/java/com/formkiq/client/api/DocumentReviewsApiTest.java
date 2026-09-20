@@ -21,6 +21,7 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocumentReviewDecision409Response;
 import com.formkiq.client.model.AddDocumentReviewDecisionRequest;
 import com.formkiq.client.model.AddDocumentReviewDecisionResponse;
 import com.formkiq.client.model.AddDocumentReviewRequest;
@@ -68,8 +69,11 @@ public class DocumentReviewsApiTest {
   /**
    * Add document review decision
    *
-   * Add a decision to a document review. When approvalGroups is set on the review, the caller&#39;s
-   * credentials are also verified against those groups before the decision is added.
+   * Add a decision to a document review. When approvalGroups is set on the review, the caller must
+   * belong to at least one of those groups, in addition to satisfying the existing authorization
+   * requirements, before the decision is added. Decisions submitted to a review that is already
+   * COMPLETED return 409 Conflict without creating a decision, follow-up review, notification, or
+   * activity record.
    *
    * @throws ApiException if the Api call fails
    */

@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.BrandingConfig;
 import com.formkiq.client.model.SystemConfigurationWebUi;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -43,6 +44,14 @@ public class GetSystemConfigurationResponseTest {
   @Test
   public void testGetSystemConfigurationResponse() {
     // TODO: test GetSystemConfigurationResponse
+  }
+
+  /**
+   * Test the property 'branding'
+   */
+  @Test
+  public void brandingTest() {
+    // TODO: test branding
   }
 
   /**

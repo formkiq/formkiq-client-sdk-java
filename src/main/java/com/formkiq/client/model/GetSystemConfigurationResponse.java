@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.BrandingConfig;
 import com.formkiq.client.model.SystemConfigurationWebUi;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -58,15 +59,41 @@ import com.formkiq.client.invoker.JSON;
  * GetSystemConfigurationResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    date = "2026-09-20T12:35:01.261266-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class GetSystemConfigurationResponse {
+  public static final String SERIALIZED_NAME_BRANDING = "branding";
+  @SerializedName(SERIALIZED_NAME_BRANDING)
+  @javax.annotation.Nullable
+  private BrandingConfig branding;
+
   public static final String SERIALIZED_NAME_WEBUI = "webui";
   @SerializedName(SERIALIZED_NAME_WEBUI)
   @javax.annotation.Nullable
   private SystemConfigurationWebUi webui;
 
   public GetSystemConfigurationResponse() {}
+
+  public GetSystemConfigurationResponse branding(
+      @javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+    return this;
+  }
+
+  /**
+   * Get branding
+   * 
+   * @return branding
+   */
+  @javax.annotation.Nullable
+  public BrandingConfig getBranding() {
+    return branding;
+  }
+
+  public void setBranding(@javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+  }
+
 
   public GetSystemConfigurationResponse webui(
       @javax.annotation.Nullable SystemConfigurationWebUi webui) {
@@ -100,18 +127,20 @@ public class GetSystemConfigurationResponse {
     }
     GetSystemConfigurationResponse getSystemConfigurationResponse =
         (GetSystemConfigurationResponse) o;
-    return Objects.equals(this.webui, getSystemConfigurationResponse.webui);
+    return Objects.equals(this.branding, getSystemConfigurationResponse.branding)
+        && Objects.equals(this.webui, getSystemConfigurationResponse.webui);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webui);
+    return Objects.hash(branding, webui);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetSystemConfigurationResponse {\n");
+    sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("    webui: ").append(toIndentedString(webui)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -130,7 +159,7 @@ public class GetSystemConfigurationResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("webui"));
+    openapiFields = new HashSet<String>(Arrays.asList("branding", "webui"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -164,6 +193,10 @@ public class GetSystemConfigurationResponse {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // validate the optional field `branding`
+    if (jsonObj.get("branding") != null && !jsonObj.get("branding").isJsonNull()) {
+      BrandingConfig.validateJsonElement(jsonObj.get("branding"));
+    }
     // validate the optional field `webui`
     if (jsonObj.get("webui") != null && !jsonObj.get("webui").isJsonNull()) {
       SystemConfigurationWebUi.validateJsonElement(jsonObj.get("webui"));

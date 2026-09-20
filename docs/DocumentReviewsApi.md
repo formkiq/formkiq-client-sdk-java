@@ -89,7 +89,7 @@ No authorization required
 
 Add document review decision
 
-Add a decision to a document review. When approvalGroups is set on the review, the caller&#39;s credentials are also verified against those groups before the decision is added.
+Add a decision to a document review. When approvalGroups is set on the review, the caller must belong to at least one of those groups, in addition to satisfying the existing authorization requirements, before the decision is added. Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating a decision, follow-up review, notification, or activity record.
 
 ### Example
 ```java
@@ -155,6 +155,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **409** | The review is already complete. No decision was created. |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="getDocumentReview"></a>
 # **getDocumentReview**

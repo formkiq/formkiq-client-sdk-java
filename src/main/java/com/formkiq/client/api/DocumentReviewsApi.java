@@ -34,6 +34,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.AddDocumentReviewDecision409Response;
 import com.formkiq.client.model.AddDocumentReviewDecisionRequest;
 import com.formkiq.client.model.AddDocumentReviewDecisionResponse;
 import com.formkiq.client.model.AddDocumentReviewRequest;
@@ -340,6 +341,14 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>409</td>
+   *                        <td>The review is already complete. No decision was created.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
    *                        </table>
    */
   public okhttp3.Call addDocumentReviewDecisionCall(@javax.annotation.Nonnull String documentId,
@@ -431,8 +440,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review decision Add a decision to a document review. When approvalGroups is set on
-   * the review, the caller&#39;s credentials are also verified against those groups before the
-   * decision is added.
+   * the review, the caller must belong to at least one of those groups, in addition to satisfying
+   * the existing authorization requirements, before the decision is added. Decisions submitted to a
+   * review that is already COMPLETED return 409 Conflict without creating a decision, follow-up
+   * review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -458,6 +469,14 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>409</td>
+   *                        <td>The review is already complete. No decision was created.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
    *                        </table>
    */
   public AddDocumentReviewDecisionResponse addDocumentReviewDecision(
@@ -473,8 +492,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review decision Add a decision to a document review. When approvalGroups is set on
-   * the review, the caller&#39;s credentials are also verified against those groups before the
-   * decision is added.
+   * the review, the caller must belong to at least one of those groups, in addition to satisfying
+   * the existing authorization requirements, before the decision is added. Decisions submitted to a
+   * review that is already COMPLETED return 409 Conflict without creating a decision, follow-up
+   * review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -500,6 +521,14 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>409</td>
+   *                        <td>The review is already complete. No decision was created.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
    *                        </table>
    */
   public ApiResponse<AddDocumentReviewDecisionResponse> addDocumentReviewDecisionWithHttpInfo(
@@ -515,8 +544,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review decision (asynchronously) Add a decision to a document review. When
-   * approvalGroups is set on the review, the caller&#39;s credentials are also verified against
-   * those groups before the decision is added.
+   * approvalGroups is set on the review, the caller must belong to at least one of those groups, in
+   * addition to satisfying the existing authorization requirements, before the decision is added.
+   * Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating
+   * a decision, follow-up review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -537,6 +568,14 @@ public class DocumentReviewsApi {
    *                        <tr>
    *                        <td>201</td>
    *                        <td>201 CREATED</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>409</td>
+   *                        <td>The review is already complete. No decision was created.</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>

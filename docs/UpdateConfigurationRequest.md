@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**branding** | [**BrandingConfig**](BrandingConfig.md) |  |  [optional] |
 |**chatGptApiKey** | **String** | ChatGPT Api Key |  [optional] |
 |**maxContentLengthBytes** | **String** | Set Maximum Document Content Length in Bytes |  [optional] |
 |**maxDocuments** | **String** | Set Maximum number of Documents allowed |  [optional] |

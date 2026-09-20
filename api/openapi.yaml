@@ -4671,7 +4671,8 @@ paths:
     post:
       description: |-
         Add a decision to a document review. When approvalGroups is set on the review,
-        the caller's credentials are also verified against those groups before the decision is added.
+        the caller must belong to at least one of those groups, in addition to satisfying the existing authorization requirements, before the decision is added.
+        Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating a decision, follow-up review, notification, or activity record.
       operationId: AddDocumentReviewDecision
       parameters:
       - description: Site Identifier
@@ -4719,6 +4720,21 @@ paths:
               schema:
                 $ref: "#/components/schemas/AddDocumentReviewDecisionResponse"
           description: 201 CREATED
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "409":
+          content:
+            application/json:
+              example:
+                message: Review is already complete
+              schema:
+                $ref: "#/components/schemas/AddDocumentReviewDecision_409_response"
+          description: The review is already complete. No decision was created.
           headers:
             Access-Control-Allow-Origin:
               $ref: "#/components/headers/AccessControlAllowOrigin"
@@ -20522,7 +20538,9 @@ components:
           $ref: "#/components/schemas/DocumentReviewStatus"
         approvalGroups:
           description: "Optional approval groups used for additional credential verification\
-            \ when submitting a decision to POST /documents/{documentId}/reviews/{reviewId}/decisions."
+            \ when submitting a decision to POST /documents/{documentId}/reviews/{reviewId}/decisions.\
+            \ The caller must belong to at least one of the listed groups, in addition\
+            \ to satisfying the existing authorization requirements."
           items:
             type: string
           type: array
@@ -20663,7 +20681,9 @@ components:
           $ref: "#/components/schemas/DocumentReviewStatus"
         approvalGroups:
           description: "Optional approval groups used for additional credential verification\
-            \ when submitting a decision to POST /documents/{documentId}/reviews/{reviewId}/decisions."
+            \ when submitting a decision to POST /documents/{documentId}/reviews/{reviewId}/decisions.\
+            \ The caller must belong to at least one of the listed groups, in addition\
+            \ to satisfying the existing authorization requirements."
           items:
             type: string
           type: array
@@ -28477,6 +28497,8 @@ components:
           - ADMIN
           uploadEmail: uploadEmail
           config:
+            branding:
+              theme: theme
             maxContentLengthBytes: maxContentLengthBytes
             maxDocuments: maxDocuments
             maxWebhooks: maxWebhooks
@@ -28498,6 +28520,8 @@ components:
           - ADMIN
           uploadEmail: uploadEmail
           config:
+            branding:
+              theme: theme
             maxContentLengthBytes: maxContentLengthBytes
             maxDocuments: maxDocuments
             maxWebhooks: maxWebhooks
@@ -28545,6 +28569,8 @@ components:
         - ADMIN
         uploadEmail: uploadEmail
         config:
+          branding:
+            theme: theme
           maxContentLengthBytes: maxContentLengthBytes
           maxDocuments: maxDocuments
           maxWebhooks: maxWebhooks
@@ -28606,6 +28632,8 @@ components:
       type: string
     SiteConfig:
       example:
+        branding:
+          theme: theme
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
         maxWebhooks: maxWebhooks
@@ -28613,6 +28641,8 @@ components:
           maxPagesPerTransaction: 0.8008281904610115
           maxTransactions: 6.027456183070403
       properties:
+        branding:
+          $ref: "#/components/schemas/BrandingConfig"
         maxContentLengthBytes:
           description: Set Maximum Document Content Length in Bytes
           type: string
@@ -28816,6 +28846,8 @@ components:
       type: object
     UpdateConfigurationRequest:
       example:
+        branding:
+          theme: theme
         chatGptApiKey: chatGptApiKey
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
@@ -28855,6 +28887,8 @@ components:
           hmacSignature: hmacSignature
           connectUrl: https://openapi-generator.tech
       properties:
+        branding:
+          $ref: "#/components/schemas/BrandingConfig"
         chatGptApiKey:
           description: ChatGPT Api Key
           type: string
@@ -29044,6 +29078,8 @@ components:
       type: string
     GetConfigurationResponse:
       example:
+        branding:
+          theme: theme
         chatGptApiKey: chatGptApiKey
         maxContentLengthBytes: maxContentLengthBytes
         maxDocuments: maxDocuments
@@ -29083,6 +29119,8 @@ components:
           hmacSignature: hmacSignature
           connectUrl: https://openapi-generator.tech
       properties:
+        branding:
+          $ref: "#/components/schemas/BrandingConfig"
         chatGptApiKey:
           description: ChatGPT API Key
           type: string
@@ -29228,19 +29266,37 @@ components:
       required:
       - ssoLoginRedirectEnabled
       type: object
+    BrandingConfig:
+      description: Branding configuration that can be set globally or for an individual
+        site.
+      example:
+        theme: theme
+      properties:
+        theme:
+          description: Branding theme identifier.
+          type: string
+      type: object
     GetSystemConfigurationResponse:
       example:
+        branding:
+          theme: theme
         webui:
           ssoAutomaticSignIn: true
       properties:
+        branding:
+          $ref: "#/components/schemas/BrandingConfig"
         webui:
           $ref: "#/components/schemas/SystemConfigurationWebUi"
       type: object
     UpdateSystemConfigurationRequest:
       example:
+        branding:
+          theme: theme
         webui:
           ssoAutomaticSignIn: true
       properties:
+        branding:
+          $ref: "#/components/schemas/BrandingConfig"
         webui:
           $ref: "#/components/schemas/SystemConfigurationWebUi"
       type: object
@@ -31577,6 +31633,13 @@ components:
           items:
             $ref: "#/components/schemas/Document"
           type: array
+      type: object
+    AddDocumentReviewDecision_409_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
       type: object
     UpdateMatchingDocumentTagsRequest_match:
       example:

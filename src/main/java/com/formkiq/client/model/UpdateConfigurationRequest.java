@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.BrandingConfig;
 import com.formkiq.client.model.DocumentConfig;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
@@ -62,9 +63,14 @@ import com.formkiq.client.invoker.JSON;
  * UpdateConfigurationRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    date = "2026-09-20T12:35:01.261266-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class UpdateConfigurationRequest {
+  public static final String SERIALIZED_NAME_BRANDING = "branding";
+  @SerializedName(SERIALIZED_NAME_BRANDING)
+  @javax.annotation.Nullable
+  private BrandingConfig branding;
+
   public static final String SERIALIZED_NAME_CHAT_GPT_API_KEY = "chatGptApiKey";
   @SerializedName(SERIALIZED_NAME_CHAT_GPT_API_KEY)
   @javax.annotation.Nullable
@@ -117,6 +123,26 @@ public class UpdateConfigurationRequest {
   private DocusignConfig docusign;
 
   public UpdateConfigurationRequest() {}
+
+  public UpdateConfigurationRequest branding(@javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+    return this;
+  }
+
+  /**
+   * Get branding
+   * 
+   * @return branding
+   */
+  @javax.annotation.Nullable
+  public BrandingConfig getBranding() {
+    return branding;
+  }
+
+  public void setBranding(@javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+  }
+
 
   public UpdateConfigurationRequest chatGptApiKey(@javax.annotation.Nullable String chatGptApiKey) {
     this.chatGptApiKey = chatGptApiKey;
@@ -335,7 +361,8 @@ public class UpdateConfigurationRequest {
       return false;
     }
     UpdateConfigurationRequest updateConfigurationRequest = (UpdateConfigurationRequest) o;
-    return Objects.equals(this.chatGptApiKey, updateConfigurationRequest.chatGptApiKey)
+    return Objects.equals(this.branding, updateConfigurationRequest.branding)
+        && Objects.equals(this.chatGptApiKey, updateConfigurationRequest.chatGptApiKey)
         && Objects.equals(this.maxContentLengthBytes,
             updateConfigurationRequest.maxContentLengthBytes)
         && Objects.equals(this.maxDocuments, updateConfigurationRequest.maxDocuments)
@@ -350,7 +377,7 @@ public class UpdateConfigurationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
+    return Objects.hash(branding, chatGptApiKey, maxContentLengthBytes, maxDocuments, maxWebhooks,
         notificationEmail, notification, document, ocr, google, docusign);
   }
 
@@ -358,6 +385,7 @@ public class UpdateConfigurationRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateConfigurationRequest {\n");
+    sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("    chatGptApiKey: ").append(toIndentedString(chatGptApiKey)).append("\n");
     sb.append("    maxContentLengthBytes: ").append(toIndentedString(maxContentLengthBytes))
         .append("\n");
@@ -386,9 +414,9 @@ public class UpdateConfigurationRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(
-        Arrays.asList("chatGptApiKey", "maxContentLengthBytes", "maxDocuments", "maxWebhooks",
-            "notificationEmail", "notification", "document", "ocr", "google", "docusign"));
+    openapiFields = new HashSet<String>(Arrays.asList("branding", "chatGptApiKey",
+        "maxContentLengthBytes", "maxDocuments", "maxWebhooks", "notificationEmail", "notification",
+        "document", "ocr", "google", "docusign"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -420,6 +448,10 @@ public class UpdateConfigurationRequest {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // validate the optional field `branding`
+    if (jsonObj.get("branding") != null && !jsonObj.get("branding").isJsonNull()) {
+      BrandingConfig.validateJsonElement(jsonObj.get("branding"));
+    }
     if ((jsonObj.get("chatGptApiKey") != null && !jsonObj.get("chatGptApiKey").isJsonNull())
         && !jsonObj.get("chatGptApiKey").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,

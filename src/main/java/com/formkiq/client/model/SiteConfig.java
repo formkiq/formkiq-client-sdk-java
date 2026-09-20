@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.BrandingConfig;
 import com.formkiq.client.model.OcrConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -58,9 +59,14 @@ import com.formkiq.client.invoker.JSON;
  * SiteConfig
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-18T08:49:01.428544-05:00[America/Winnipeg]",
+    date = "2026-09-20T12:35:01.261266-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class SiteConfig {
+  public static final String SERIALIZED_NAME_BRANDING = "branding";
+  @SerializedName(SERIALIZED_NAME_BRANDING)
+  @javax.annotation.Nullable
+  private BrandingConfig branding;
+
   public static final String SERIALIZED_NAME_MAX_CONTENT_LENGTH_BYTES = "maxContentLengthBytes";
   @SerializedName(SERIALIZED_NAME_MAX_CONTENT_LENGTH_BYTES)
   @javax.annotation.Nullable
@@ -82,6 +88,26 @@ public class SiteConfig {
   private OcrConfig ocr;
 
   public SiteConfig() {}
+
+  public SiteConfig branding(@javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+    return this;
+  }
+
+  /**
+   * Get branding
+   * 
+   * @return branding
+   */
+  @javax.annotation.Nullable
+  public BrandingConfig getBranding() {
+    return branding;
+  }
+
+  public void setBranding(@javax.annotation.Nullable BrandingConfig branding) {
+    this.branding = branding;
+  }
+
 
   public SiteConfig maxContentLengthBytes(@javax.annotation.Nullable String maxContentLengthBytes) {
     this.maxContentLengthBytes = maxContentLengthBytes;
@@ -173,7 +199,8 @@ public class SiteConfig {
       return false;
     }
     SiteConfig siteConfig = (SiteConfig) o;
-    return Objects.equals(this.maxContentLengthBytes, siteConfig.maxContentLengthBytes)
+    return Objects.equals(this.branding, siteConfig.branding)
+        && Objects.equals(this.maxContentLengthBytes, siteConfig.maxContentLengthBytes)
         && Objects.equals(this.maxDocuments, siteConfig.maxDocuments)
         && Objects.equals(this.maxWebhooks, siteConfig.maxWebhooks)
         && Objects.equals(this.ocr, siteConfig.ocr);
@@ -181,13 +208,14 @@ public class SiteConfig {
 
   @Override
   public int hashCode() {
-    return Objects.hash(maxContentLengthBytes, maxDocuments, maxWebhooks, ocr);
+    return Objects.hash(branding, maxContentLengthBytes, maxDocuments, maxWebhooks, ocr);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SiteConfig {\n");
+    sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("    maxContentLengthBytes: ").append(toIndentedString(maxContentLengthBytes))
         .append("\n");
     sb.append("    maxDocuments: ").append(toIndentedString(maxDocuments)).append("\n");
@@ -211,7 +239,7 @@ public class SiteConfig {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(
-        Arrays.asList("maxContentLengthBytes", "maxDocuments", "maxWebhooks", "ocr"));
+        Arrays.asList("branding", "maxContentLengthBytes", "maxDocuments", "maxWebhooks", "ocr"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -243,6 +271,10 @@ public class SiteConfig {
       }
     }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
+    // validate the optional field `branding`
+    if (jsonObj.get("branding") != null && !jsonObj.get("branding").isJsonNull()) {
+      BrandingConfig.validateJsonElement(jsonObj.get("branding"));
+    }
     if ((jsonObj.get("maxContentLengthBytes") != null
         && !jsonObj.get("maxContentLengthBytes").isJsonNull())
         && !jsonObj.get("maxContentLengthBytes").isJsonPrimitive()) {

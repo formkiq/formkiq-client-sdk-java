@@ -20,6 +20,7 @@
 
 package com.formkiq.client.model;
 
+import com.formkiq.client.model.BrandingConfig;
 import com.formkiq.client.model.DocumentConfig;
 import com.formkiq.client.model.DocusignConfig;
 import com.formkiq.client.model.GoogleConfig;
@@ -47,6 +48,14 @@ public class GetConfigurationResponseTest {
   @Test
   public void testGetConfigurationResponse() {
     // TODO: test GetConfigurationResponse
+  }
+
+  /**
+   * Test the property 'branding'
+   */
+  @Test
+  public void brandingTest() {
+    // TODO: test branding
   }
 
   /**
