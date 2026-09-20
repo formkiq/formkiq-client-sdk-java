@@ -1,0 +1,36 @@
+name: No SNAPSHOT versions
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-snapshot:
+    name: No SNAPSHOT versions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Reject SNAPSHOT versions in Gradle configuration
+        shell: bash
+        run: |
+          status=0
+          git grep -n -F -- '-SNAPSHOT' -- '*.gradle' '*.gradle.kts' '*.properties' || status=$?
+          case "$status" in
+            0)
+              echo '::error::Remove -SNAPSHOT versions from Gradle configuration before merging.'
+              exit 1
+              ;;
+            1)
+              echo 'No SNAPSHOT versions found.'
+              ;;
+            *)
+              echo '::error::Unable to check Gradle configuration for SNAPSHOT versions.'
+              exit "$status"
+              ;;
+          esac
