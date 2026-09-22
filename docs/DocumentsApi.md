@@ -988,7 +988,7 @@ public class Example {
     String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
-    Boolean inline = false; // Boolean | Set the Content-Disposition to inline
+    Boolean inline = false; // Boolean | Request inline delivery. S3-backed SVG documents identified by content type or filename are always served as attachments.
     Boolean bypassWatermark = false; // Boolean | Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions)
     String format = "short"; // String | Return a shortlink URL when set to `short`; available as an Add-On Module
     try {
@@ -1015,7 +1015,7 @@ public class Example {
 | **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
-| **inline** | **Boolean**| Set the Content-Disposition to inline | [optional] [default to false] |
+| **inline** | **Boolean**| Request inline delivery. S3-backed SVG documents identified by content type or filename are always served as attachments. | [optional] [default to false] |
 | **bypassWatermark** | **Boolean**| Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions) | [optional] [default to false] |
 | **format** | **String**| Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On Module | [optional] [enum: short] |
 

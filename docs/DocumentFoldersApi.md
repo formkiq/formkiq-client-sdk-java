@@ -8,6 +8,7 @@ All URIs are relative to *http://localhost*
 | [**deleteFolder**](DocumentFoldersApi.md#deleteFolder) | **DELETE** /folders/{indexKey} | Delete document folder |
 | [**getFolderDocuments**](DocumentFoldersApi.md#getFolderDocuments) | **GET** /folders | Get document folders |
 | [**getFolderPermissions**](DocumentFoldersApi.md#getFolderPermissions) | **GET** /folders/{indexKey}/permissions | Get folder permissions |
+| [**moveFolder**](DocumentFoldersApi.md#moveFolder) | **POST** /folders/{indexKey}/moves | Move document folder |
 | [**setFolderPermissions**](DocumentFoldersApi.md#setFolderPermissions) | **PUT** /folders/permissions | Sets Folder Permissions |
 
 
@@ -290,6 +291,75 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+
+<a id="moveFolder"></a>
+# **moveFolder**
+> MoveFolderResponse moveFolder(indexKey, moveFolderRequest, siteId)
+
+Move document folder
+
+Creates an asynchronous folder move request
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.DocumentFoldersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    DocumentFoldersApi apiInstance = new DocumentFoldersApi(defaultClient);
+    String indexKey = "indexKey_example"; // String | Index Key Identifier
+    MoveFolderRequest moveFolderRequest = new MoveFolderRequest(); // MoveFolderRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    try {
+      MoveFolderResponse result = apiInstance.moveFolder(indexKey, moveFolderRequest, siteId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DocumentFoldersApi#moveFolder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **indexKey** | **String**| Index Key Identifier | |
+| **moveFolderRequest** | [**MoveFolderRequest**](MoveFolderRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+
+### Return type
+
+[**MoveFolderResponse**](MoveFolderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | 201 CREATED |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
 
 <a id="setFolderPermissions"></a>
 # **setFolderPermissions**
