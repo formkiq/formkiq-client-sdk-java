@@ -18,7 +18,7 @@ All URIs are relative to *http://localhost*
 
 Add new attribute
 
-Creates a new attribute
+Creates a new attribute  Use dataType JSON for one structured JSON object per document attribute key. Supply the value through jsonValue when adding the attribute to a document.
 
 ### Example
 ```java

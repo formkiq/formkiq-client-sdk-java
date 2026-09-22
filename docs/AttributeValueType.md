@@ -15,6 +15,8 @@
 
 * `STRING` (value: `"STRING"`)
 
+* `JSON` (value: `"JSON"`)
+
 * `PUBLICATION` (value: `"PUBLICATION"`)
 
 * `CLASSIFICATION` (value: `"CLASSIFICATION"`)

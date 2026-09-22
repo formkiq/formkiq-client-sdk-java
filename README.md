@@ -2,8 +2,8 @@
 
 This is the official supported Java library for the FormKiQ API. 
 
-- API version: 1.19.1
-  - Build date: 2026-09-18T08:49:01.428544-05:00[America/Winnipeg]
+- API version: 1.19.2
+  - Build date: 2026-09-21T20:58:33.985600-05:00[America/Winnipeg]
   - Generator version: 7.25.0
 
 FormKiQ API: Document Management Platform API using OAuth(JWT) Authentication
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.19.1</version>
+  <version>1.19.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.19.1"
+     implementation "com.formkiq:client:1.19.2"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.19.1.jar`
+* `target/client-1.19.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -143,6 +143,7 @@ Class | Method | HTTP request | Description
 *AccessControlApi* | [**getOpaAccessPolicy**](docs/AccessControlApi.md#getOpaAccessPolicy) | **GET** /sites/{siteId}/opa/accessPolicy | Get OPA Access Policy
 *AccessControlApi* | [**getOpaAccessPolicyItems**](docs/AccessControlApi.md#getOpaAccessPolicyItems) | **GET** /sites/{siteId}/opa/accessPolicy/policyItems | Get OPA Access Policy Items
 *AccessControlApi* | [**setOpaAccessPolicyItems**](docs/AccessControlApi.md#setOpaAccessPolicyItems) | **PUT** /sites/{siteId}/opa/accessPolicy/policyItems | Set opa access policy items, can only be requested with ADMIN privileges
+*AccessControlApi* | [**testOpaAccessPolicy**](docs/AccessControlApi.md#testOpaAccessPolicy) | **POST** /sites/{siteId}/opa/accessPolicy/test | Test an OPA access policy, can only be requested with ADMIN privileges
 *AdvancedDocumentSearchApi* | [**addDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#addDocumentFulltext) | **POST** /documents/{documentId}/fulltext | Add document&#39;s full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltext**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltext) | **DELETE** /documents/{documentId}/fulltext | Delete document full-text
 *AdvancedDocumentSearchApi* | [**deleteDocumentFulltextTag**](docs/AdvancedDocumentSearchApi.md#deleteDocumentFulltextTag) | **DELETE** /documents/{documentId}/fulltext/tags/{tagKey} | Delete document full-text tag
@@ -253,6 +254,7 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addDocusignSenderView**](docs/ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**getDocusignEnvelope**](docs/ESignatureApi.md#getDocusignEnvelope) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId} | Get Docusign envelope and recipient status
+*ESignatureApi* | [**voidDocusignEnvelope**](docs/ESignatureApi.md#voidDocusignEnvelope) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/void | Void a DocuSign envelope
 *EntityApi* | [**addEntity**](docs/EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity
 *EntityApi* | [**addEntityType**](docs/EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
 *EntityApi* | [**deleteEntity**](docs/EntityApi.md#deleteEntity) | **DELETE** /entities/{entityTypeId}/{entityId} | Deletes Entity
@@ -575,6 +577,7 @@ Class | Method | HTTP request | Description
  - [DocumentReviewStatus](docs/DocumentReviewStatus.md)
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSearchAttribute](docs/DocumentSearchAttribute.md)
+ - [DocumentSearchAttributeNot](docs/DocumentSearchAttributeNot.md)
  - [DocumentSearchFilename](docs/DocumentSearchFilename.md)
  - [DocumentSearchFolder](docs/DocumentSearchFolder.md)
  - [DocumentSearchMatchAttribute](docs/DocumentSearchMatchAttribute.md)
@@ -597,10 +600,13 @@ Class | Method | HTTP request | Description
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [DocusignConfig](docs/DocusignConfig.md)
+ - [DocusignDateSignedTab](docs/DocusignDateSignedTab.md)
+ - [DocusignDateTab](docs/DocusignDateTab.md)
  - [DocusignEnvelopeRecipient](docs/DocusignEnvelopeRecipient.md)
  - [DocusignEnvelopeRecipients](docs/DocusignEnvelopeRecipients.md)
  - [DocusignEnvelopeStatus](docs/DocusignEnvelopeStatus.md)
  - [DocusignEnvironment](docs/DocusignEnvironment.md)
+ - [DocusignInitialHereTab](docs/DocusignInitialHereTab.md)
  - [DocusignInpersonSigner](docs/DocusignInpersonSigner.md)
  - [DocusignNotification](docs/DocusignNotification.md)
  - [DocusignNotificationExpirations](docs/DocusignNotificationExpirations.md)
@@ -611,6 +617,7 @@ Class | Method | HTTP request | Description
  - [DocusignSigner](docs/DocusignSigner.md)
  - [DocusignSignerReadyToSignNotification](docs/DocusignSignerReadyToSignNotification.md)
  - [DocusignSigningTabs](docs/DocusignSigningTabs.md)
+ - [DocusignTextTab](docs/DocusignTextTab.md)
  - [Entity](docs/Entity.md)
  - [EntityAttribute](docs/EntityAttribute.md)
  - [EntityType](docs/EntityType.md)
@@ -714,6 +721,9 @@ Class | Method | HTTP request | Description
  - [IndexSearch](docs/IndexSearch.md)
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
+ - [JsonAttributeSearchFilter](docs/JsonAttributeSearchFilter.md)
+ - [JsonAttributeSearchValue](docs/JsonAttributeSearchValue.md)
+ - [JsonAttributeValueExclusiveNot](docs/JsonAttributeValueExclusiveNot.md)
  - [LocaleInfo](docs/LocaleInfo.md)
  - [LocaleResourceType](docs/LocaleResourceType.md)
  - [MalwareEngine](docs/MalwareEngine.md)
@@ -771,6 +781,14 @@ Class | Method | HTTP request | Description
  - [OpaPolicyInputMethod](docs/OpaPolicyInputMethod.md)
  - [OpaPolicyInputResource](docs/OpaPolicyInputResource.md)
  - [OpaPolicyItem](docs/OpaPolicyItem.md)
+ - [OpaPolicyTestCriteriaGroup](docs/OpaPolicyTestCriteriaGroup.md)
+ - [OpaPolicyTestCriterion](docs/OpaPolicyTestCriterion.md)
+ - [OpaPolicyTestDecision](docs/OpaPolicyTestDecision.md)
+ - [OpaPolicyTestErrorResponse](docs/OpaPolicyTestErrorResponse.md)
+ - [OpaPolicyTestHttpMethod](docs/OpaPolicyTestHttpMethod.md)
+ - [OpaPolicyTestInput](docs/OpaPolicyTestInput.md)
+ - [OpaPolicyTestInputUser](docs/OpaPolicyTestInputUser.md)
+ - [OpaPolicyTestOperator](docs/OpaPolicyTestOperator.md)
  - [OpenSearchAlias](docs/OpenSearchAlias.md)
  - [OpenSearchIndex](docs/OpenSearchIndex.md)
  - [OpenSearchIndexSetting](docs/OpenSearchIndexSetting.md)
@@ -836,6 +854,8 @@ Class | Method | HTTP request | Description
  - [SystemConfigurationWebUi](docs/SystemConfigurationWebUi.md)
  - [SystemInferenceModel](docs/SystemInferenceModel.md)
  - [SystemInferenceModelInvocation](docs/SystemInferenceModelInvocation.md)
+ - [TestOpaAccessPolicyRequest](docs/TestOpaAccessPolicyRequest.md)
+ - [TestOpaAccessPolicyResponse](docs/TestOpaAccessPolicyResponse.md)
  - [TextractQuery](docs/TextractQuery.md)
  - [UpdateAttribute](docs/UpdateAttribute.md)
  - [UpdateAttributeRequest](docs/UpdateAttributeRequest.md)
@@ -873,6 +893,8 @@ Class | Method | HTTP request | Description
  - [UserSharePermissionType](docs/UserSharePermissionType.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorsResponse](docs/ValidationErrorsResponse.md)
+ - [VoidDocusignEnvelopeRequest](docs/VoidDocusignEnvelopeRequest.md)
+ - [VoidDocusignEnvelopeResponse](docs/VoidDocusignEnvelopeResponse.md)
  - [Watermark](docs/Watermark.md)
  - [WatermarkPosition](docs/WatermarkPosition.md)
  - [WatermarkPositionXAnchor](docs/WatermarkPositionXAnchor.md)

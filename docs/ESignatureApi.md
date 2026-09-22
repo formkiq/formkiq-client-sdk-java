@@ -101,7 +101,7 @@ No authorization required
 
 Create Docusign Envelope request
 
-DocuSign create Docusign Envelope request; available as an Add-On Module
+Create a DocuSign envelope for the selected document or artifact; available as an Add-On Module. Recipient tabs support signatures, initials, automatic signing dates, recipient-entered dates, and single-line or multiline text. See DocusignSigningTabs for the supported collections and validation rules.
 
 ### Example
 ```java
@@ -165,7 +165,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-| **400** | 400 OK |  -  |
+| **400** | Invalid envelope request |  -  |
 
 <a id="addDocusignRecipientView"></a>
 # **addDocusignRecipientView**
@@ -461,7 +461,7 @@ No authorization required
 
 Void a DocuSign envelope
 
-Cancels an in-progress DocuSign envelope; available as an Add-On Module. Requires write access to the selected document or artifact and a matching stored envelope ID. Calls DocuSign&#39;s envelope update API, PUT /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the supplied voidedReason. DocuSign notifies recipients that the envelope was voided. Draft and completed envelopes cannot be voided, and voiding cannot be undone. After a timeout, the outcome is unknown; check the existing GET envelope status endpoint before attempting the operation again.
+Cancels an in-progress DocuSign envelope; available as an Add-On Module. Requires write access to the selected document or artifact and a matching stored envelope ID. Calls DocuSign&#39;s envelope update API, PUT /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the supplied voidedReason. DocuSign notifies recipients that the envelope was voided, including the supplied reason. Only sent or delivered envelopes can be voided. If the envelope is already voided, returns its current state without another update or changing its original reason. Voiding cannot be undone. The existing envelope-voided callback updates the stored FormKiQ status. After a timeout, the outcome is unknown; check the existing GET envelope status endpoint before attempting the operation again.
 
 ### Example
 ```java
@@ -529,7 +529,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | DocuSign envelope voided successfully |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
-| **400** | Invalid parameters, missing or blank voidedReason, missing DocuSign configuration, or an envelope that is not eligible to be voided. |  -  |
+| **400** | Invalid parameters, missing, blank, or overlong voidedReason, missing DocuSign configuration, or an envelope that is not eligible to be voided. |  -  |
 | **401** | Authentication required |  -  |
 | **403** | Write access to the selected document or artifact is denied |  -  |
 | **404** | Document, artifact, or associated DocuSign envelope not found |  -  |
