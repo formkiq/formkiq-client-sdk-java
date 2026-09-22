@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.19.1
+  version: 1.19.2
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -9706,8 +9706,10 @@ paths:
         \ enabled, full text search is supported through the \"text\" parameter. Full\
         \ text search will look for the text in the \"content\" and/or document \"\
         metadata\".\n\nDocumentIds parameter allows you to filter your results to\
-        \ a specific set of documents. \n\nSee requestBody examples below for commmon\
-        \ examples."
+        \ a specific set of documents. \n\nUse the `projection` parameter to return\
+        \ matching documents or a count of matching documents. Count responses are\
+        \ capped at 10,000 and indicate when the count was truncated.\n\nSee requestBody\
+        \ examples below for commmon examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -9741,6 +9743,20 @@ paths:
         name: previous
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Controls the search response projection. `DOCUMENTS` returns\
+          \ matching documents and pagination tokens. `COUNT` returns `count` and\
+          \ `truncated`, and omits `documents`, `next`, and `previous`."
+        explode: true
+        in: query
+        name: projection
+        required: false
+        schema:
+          default: DOCUMENTS
+          enum:
+          - DOCUMENTS
+          - COUNT
           type: string
         style: form
       requestBody:
@@ -9801,6 +9817,16 @@ paths:
         "200":
           content:
             application/json:
+              examples:
+                Documents:
+                  value:
+                    documents: []
+                    next: null
+                    previous: null
+                Count:
+                  value:
+                    count: 10000
+                    truncated: true
               schema:
                 $ref: "#/components/schemas/DocumentSearchResponse"
           description: 200 OK
@@ -12072,6 +12098,79 @@ paths:
       - Access Control
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-accepts:
+      - application/json
+  /sites/{siteId}/opa/accessPolicy/test:
+    post:
+      description: |-
+        Evaluates the site's saved OPA access policy, or draft policy items supplied in the
+        request, against simulated request and user input. The operation does not persist
+        policies or modify documents.
+      operationId: TestOpaAccessPolicy
+      parameters:
+      - description: Site Identifier
+        explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TestOpaAccessPolicyRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TestOpaAccessPolicyResponse"
+          description: OPA access policy test completed
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid OPA access policy test request
+        "401":
+          description: User is not authenticated or does not have ADMIN privileges
+            for the site
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpaPolicyTestErrorResponse"
+          description: No saved OPA access policy exists for the site
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpaPolicyTestErrorResponse"
+          description: OPA evaluation failed
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpaPolicyTestErrorResponse"
+          description: OPA evaluation timed out
+      security:
+      - ApiAuthorization: []
+      summary: "Test an OPA access policy, can only be requested with ADMIN privileges"
+      tags:
+      - Access Control
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
+      x-content-type: application/json
       x-accepts:
       - application/json
   /sites/{siteId}/opa/accessPolicy/policyItems:
@@ -25055,6 +25154,7 @@ components:
           type: array
       type: object
     DocumentSearchFilename:
+      description: Filename search criteria. Cannot be combined with `documentIds`.
       example:
         beginsWith: beginsWith
       properties:
@@ -25116,7 +25216,10 @@ components:
           description: Searches for strings that eq
           type: string
         eqOr:
-          description: Searches for ANY strings that eq
+          description: |
+            Searches for strings equal to any provided value. Pagination is not supported when
+            `eqOr` is used, so no `nextToken` is returned. The request limit is applied separately
+            to each value.
           items:
             type: string
           type: array
@@ -25169,7 +25272,10 @@ components:
           description: Searches for strings that eq
           type: string
         eqOr:
-          description: Searches for ANY strings that eq
+          description: |
+            Searches for strings equal to any provided value. Pagination is not supported when
+            `eqOr` is used, so no `nextToken` is returned. The request limit is applied separately
+            to each value.
           items:
             type: string
           type: array
@@ -25375,7 +25481,8 @@ components:
             $ref: "#/components/schemas/DocumentSearchTags"
           type: array
         documentIds:
-          description: List of DocumentIds to filter search results on
+          description: List of DocumentIds to filter search results on. Cannot be
+            combined with `filename`.
           items:
             type: string
           type: array
@@ -25398,6 +25505,9 @@ components:
             type: string
           type: array
     DocumentSearchResponse:
+      description: "Document search response. The `DOCUMENTS` projection returns `documents`,\
+        \ `next`, and `previous`. The `COUNT` projection returns `count` and `truncated`\
+        \ instead."
       example:
         next: next
         previous: previous
@@ -25532,18 +25642,32 @@ components:
             values:
             - values
             - values
+        count: 800
+        truncated: true
       properties:
         next:
-          description: Next page of results token
+          description: Next page of document results token; omitted for the COUNT
+            projection
           type: string
         previous:
-          description: Previous page of results token
+          description: Previous page of document results token; omitted for the COUNT
+            projection
           type: string
         documents:
-          description: List of search result documents
+          description: List of search result documents; omitted for the COUNT projection
           items:
             $ref: "#/components/schemas/SearchResultDocument"
           type: array
+        count:
+          description: "Number of matching documents counted, up to 10,000; only returned\
+            \ for the COUNT projection"
+          maximum: 10000
+          minimum: 0
+          type: integer
+        truncated:
+          description: "Whether counting stopped at the 10,000-document limit before\
+            \ the search was exhausted; only returned for the COUNT projection"
+          type: boolean
       type: object
     SearchResultDocument:
       example:
@@ -26881,6 +27005,387 @@ components:
           type: array
         input:
           $ref: "#/components/schemas/OpaPolicyInput"
+      type: object
+    TestOpaAccessPolicyRequest:
+      additionalProperties: false
+      example:
+        policyItems:
+        - policy: policy
+          allRoles:
+          - allRoles
+          - allRoles
+          anyRoles:
+          - anyRoles
+          - anyRoles
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
+          attributes:
+          - key: key
+            eq:
+              stringValue: stringValue
+              numberValue: 0.8008281904610115
+              booleanValue: true
+              input:
+                matchUsername: true
+                matchUserClaim: matchUserClaim
+            gt:
+              numberValue: 6.027456183070403
+            gte:
+              numberValue: 1.4658129805029452
+            lt:
+              numberValue: 5.962133916683182
+            lte:
+              numberValue: 5.637376656633329
+            neq:
+              stringValue: stringValue
+            in:
+              stringValues:
+              - stringValues
+              - stringValues
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
+          - key: key
+            eq:
+              stringValue: stringValue
+              numberValue: 0.8008281904610115
+              booleanValue: true
+              input:
+                matchUsername: true
+                matchUserClaim: matchUserClaim
+            gt:
+              numberValue: 6.027456183070403
+            gte:
+              numberValue: 1.4658129805029452
+            lt:
+              numberValue: 5.962133916683182
+            lte:
+              numberValue: 5.637376656633329
+            neq:
+              stringValue: stringValue
+            in:
+              stringValues:
+              - stringValues
+              - stringValues
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
+          input:
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+        - policy: policy
+          allRoles:
+          - allRoles
+          - allRoles
+          anyRoles:
+          - anyRoles
+          - anyRoles
+          excludedRoles:
+          - excludedRoles
+          - excludedRoles
+          attributes:
+          - key: key
+            eq:
+              stringValue: stringValue
+              numberValue: 0.8008281904610115
+              booleanValue: true
+              input:
+                matchUsername: true
+                matchUserClaim: matchUserClaim
+            gt:
+              numberValue: 6.027456183070403
+            gte:
+              numberValue: 1.4658129805029452
+            lt:
+              numberValue: 5.962133916683182
+            lte:
+              numberValue: 5.637376656633329
+            neq:
+              stringValue: stringValue
+            in:
+              stringValues:
+              - stringValues
+              - stringValues
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
+          - key: key
+            eq:
+              stringValue: stringValue
+              numberValue: 0.8008281904610115
+              booleanValue: true
+              input:
+                matchUsername: true
+                matchUserClaim: matchUserClaim
+            gt:
+              numberValue: 6.027456183070403
+            gte:
+              numberValue: 1.4658129805029452
+            lt:
+              numberValue: 5.962133916683182
+            lte:
+              numberValue: 5.637376656633329
+            neq:
+              stringValue: stringValue
+            in:
+              stringValues:
+              - stringValues
+              - stringValues
+            notIn:
+              stringValues:
+              - stringValues
+              - stringValues
+          input:
+            httpMethod:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+            resource:
+              in:
+              - in
+              - in
+              notIn:
+              - notIn
+              - notIn
+        input:
+          resource: resource
+          httpMethod: DELETE
+          pathParameters:
+            key: pathParameters
+          queryParameters:
+            key: queryParameters
+          user:
+            username: username
+            roles:
+            - roles
+            - roles
+            claims:
+              key: ""
+      properties:
+        policyItems:
+          description: |-
+            Draft OPA policy items to test without persisting them. When omitted, the site's
+            saved OPA access policy is tested. An explicitly empty array tests the generated
+            deny-all policy.
+          items:
+            $ref: "#/components/schemas/OpaPolicyItem"
+          type: array
+        input:
+          $ref: "#/components/schemas/OpaPolicyTestInput"
+      required:
+      - input
+      type: object
+    OpaPolicyTestHttpMethod:
+      description: HTTP method for the simulated request.
+      enum:
+      - DELETE
+      - GET
+      - HEAD
+      - OPTIONS
+      - PATCH
+      - POST
+      - PUT
+      type: string
+    OpaPolicyTestDecision:
+      description: |-
+        OPA policy evaluation decision. ALLOW maps to TRUE, DENY maps to FALSE, and PARTIAL
+        indicates that document criteria must be evaluated by the request interceptor.
+      enum:
+      - ALLOW
+      - DENY
+      - PARTIAL
+      type: string
+    OpaPolicyTestOperator:
+      description: Document attribute comparison operator produced by partial evaluation.
+      enum:
+      - EQ
+      - GT
+      - GTE
+      - LT
+      - LTE
+      - NEQ
+      - IN
+      - NOT_IN
+      type: string
+    OpaPolicyTestInputUser:
+      additionalProperties: false
+      example:
+        username: username
+        roles:
+        - roles
+        - roles
+        claims:
+          key: ""
+      properties:
+        username:
+          description: Simulated username placed at input.user.username.
+          minLength: 1
+          type: string
+        roles:
+          description: Simulated roles placed at input.user.roles. Defaults to an
+            empty array.
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        claims:
+          additionalProperties: true
+          description: |-
+            JSON-compatible simulated claims placed at input.user.claims. Defaults to an empty
+            object.
+          type: object
+      required:
+      - username
+      type: object
+    OpaPolicyTestInput:
+      additionalProperties: false
+      example:
+        resource: resource
+        httpMethod: DELETE
+        pathParameters:
+          key: pathParameters
+        queryParameters:
+          key: queryParameters
+        user:
+          username: username
+          roles:
+          - roles
+          - roles
+          claims:
+            key: ""
+      properties:
+        resource:
+          description: "API Gateway resource template, such as /documents/{documentId}."
+          minLength: 1
+          type: string
+        httpMethod:
+          $ref: "#/components/schemas/OpaPolicyTestHttpMethod"
+        pathParameters:
+          additionalProperties:
+            type: string
+          description: Simulated API Gateway path parameters. Defaults to an empty
+            object.
+          type: object
+        queryParameters:
+          additionalProperties:
+            type: string
+          description: |-
+            Simulated API Gateway query parameters. The path siteId is added when siteId is
+            omitted; a different siteId is rejected.
+          type: object
+        user:
+          $ref: "#/components/schemas/OpaPolicyTestInputUser"
+      required:
+      - httpMethod
+      - resource
+      - user
+      type: object
+    OpaPolicyTestCriterion:
+      additionalProperties: false
+      example:
+        key: key
+        operator: EQ
+        value: ""
+      properties:
+        key:
+          description: Document attribute key referenced by the partial criterion.
+          type: string
+        operator:
+          $ref: "#/components/schemas/OpaPolicyTestOperator"
+        value:
+          description: "String, number, boolean, array, or null value used by the\
+            \ criterion."
+          nullable: true
+      required:
+      - key
+      - operator
+      - value
+      type: object
+    OpaPolicyTestCriteriaGroup:
+      additionalProperties: false
+      example:
+        criteria:
+        - key: key
+          operator: EQ
+          value: ""
+        - key: key
+          operator: EQ
+          value: ""
+      properties:
+        criteria:
+          description: AND criteria within this group. Groups are combined using OR.
+          items:
+            $ref: "#/components/schemas/OpaPolicyTestCriterion"
+          type: array
+      required:
+      - criteria
+      type: object
+    TestOpaAccessPolicyResponse:
+      additionalProperties: false
+      example:
+        decision: ALLOW
+        criteriaGroups:
+        - criteria:
+          - key: key
+            operator: EQ
+            value: ""
+          - key: key
+            operator: EQ
+            value: ""
+        - criteria:
+          - key: key
+            operator: EQ
+            value: ""
+          - key: key
+            operator: EQ
+            value: ""
+      properties:
+        decision:
+          $ref: "#/components/schemas/OpaPolicyTestDecision"
+        criteriaGroups:
+          description: |-
+            OR groups containing AND document criteria returned by partial evaluation. Empty
+            when decision is ALLOW or DENY.
+          items:
+            $ref: "#/components/schemas/OpaPolicyTestCriteriaGroup"
+          type: array
+      required:
+      - criteriaGroups
+      - decision
+      type: object
+    OpaPolicyTestErrorResponse:
+      additionalProperties: false
+      example:
+        message: message
+        requestId: requestId
+      properties:
+        message:
+          description: Sanitized error message.
+          type: string
+        requestId:
+          description: Request identifier used to locate restricted diagnostic logs.
+          type: string
+      required:
+      - message
       type: object
     ApiKey:
       example:

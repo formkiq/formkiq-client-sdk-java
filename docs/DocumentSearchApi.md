@@ -9,11 +9,11 @@ All URIs are relative to *http://localhost*
 
 <a id="documentSearch"></a>
 # **documentSearch**
-> DocumentSearchResponse documentSearch(documentSearchRequest, siteId, limit, next, previous)
+> DocumentSearchResponse documentSearch(documentSearchRequest, siteId, limit, next, previous, projection)
 
 Document search
 
-Document search query request;   Supports searching DynamoDB for document(s) by a single TAG key and/or value. Value can be \&quot;exacted\&quot; or \&quot;begins_with\&quot; matched. Search can be filtered to only check certain documentIds (up to 100 documentIds accepted).  If using Enteprise Composite Keys feature then multiple tag(s) can be searched for.  If Typesense is enabled, full text search is supported through the \&quot;text\&quot; parameter. Full text search will look for the text in the \&quot;content\&quot; and/or document \&quot;metadata\&quot;.  DocumentIds parameter allows you to filter your results to a specific set of documents.   See requestBody examples below for commmon examples.
+Document search query request;   Supports searching DynamoDB for document(s) by a single TAG key and/or value. Value can be \&quot;exacted\&quot; or \&quot;begins_with\&quot; matched. Search can be filtered to only check certain documentIds (up to 100 documentIds accepted).  If using Enteprise Composite Keys feature then multiple tag(s) can be searched for.  If Typesense is enabled, full text search is supported through the \&quot;text\&quot; parameter. Full text search will look for the text in the \&quot;content\&quot; and/or document \&quot;metadata\&quot;.  DocumentIds parameter allows you to filter your results to a specific set of documents.   Use the &#x60;projection&#x60; parameter to return matching documents or a count of matching documents. Count responses are capped at 10,000 and indicate when the count was truncated.  See requestBody examples below for commmon examples.
 
 ### Example
 ```java
@@ -38,8 +38,9 @@ public class Example {
     String limit = "10"; // String | Limit Results
     String next = "next_example"; // String | Next page of results token
     String previous = "previous_example"; // String | Previous page of results token
+    String projection = "DOCUMENTS"; // String | Controls the search response projection. `DOCUMENTS` returns matching documents and pagination tokens. `COUNT` returns `count` and `truncated`, and omits `documents`, `next`, and `previous`.
     try {
-      DocumentSearchResponse result = apiInstance.documentSearch(documentSearchRequest, siteId, limit, next, previous);
+      DocumentSearchResponse result = apiInstance.documentSearch(documentSearchRequest, siteId, limit, next, previous, projection);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentSearchApi#documentSearch");
@@ -61,6 +62,7 @@ public class Example {
 | **limit** | **String**| Limit Results | [optional] [default to 10] |
 | **next** | **String**| Next page of results token | [optional] |
 | **previous** | **String**| Previous page of results token | [optional] |
+| **projection** | **String**| Controls the search response projection. &#x60;DOCUMENTS&#x60; returns matching documents and pagination tokens. &#x60;COUNT&#x60; returns &#x60;count&#x60; and &#x60;truncated&#x60;, and omits &#x60;documents&#x60;, &#x60;next&#x60;, and &#x60;previous&#x60;. | [optional] [default to DOCUMENTS] [enum: DOCUMENTS, COUNT] |
 
 ### Return type
 
