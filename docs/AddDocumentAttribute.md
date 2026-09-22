@@ -7,22 +7,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**key** | **String** | Attribute key |  |
-|**stringValue** | **String** | Attribute with string value |  [optional] |
-|**stringValues** | **List&lt;String&gt;** | Attribute with string values |  [optional] |
-|**numberValue** | **BigDecimal** | Attribute with number value |  [optional] |
-|**numberValues** | **List&lt;BigDecimal&gt;** | Attribute with number values |  [optional] |
-|**booleanValue** | **Boolean** | Attribute with boolean value |  [optional] |
-|**dateValue** | **String** | Attribute with date value |  [optional] |
-|**dateValues** | **List&lt;String&gt;** | Attribute with date values |  [optional] |
-|**classificationId** | **String** | Classification Identifier |  |
-|**documentId** | **String** | Relationship To Document Identifier |  |
-|**relationship** | **DocumentRelationshipType** |  |  |
-|**inverseRelationship** | **DocumentRelationshipType** |  |  [optional] |
-|**entityTypeId** | **String** | EntityType Identifier or Entity Type Name |  |
-|**entityId** | **String** | Entity Identifier |  |
-|**namespace** | **EntityTypeNamespace** |  |  [optional] |
-|**entities** | [**List&lt;AddDocumentAttributeEntityValue&gt;**](AddDocumentAttributeEntityValue.md) | Attribute with entity values |  |
 
 
 

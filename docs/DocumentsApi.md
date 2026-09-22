@@ -30,7 +30,7 @@ All URIs are relative to *http://localhost*
 
 <a id="addDocument"></a>
 # **addDocument**
-> AddDocumentResponse addDocument(addDocumentRequest, siteId, shareKey)
+> AddDocumentResponse addDocument(addDocumentRequest, siteId, shareKey, accelerate)
 
 Add new document
 
@@ -57,8 +57,9 @@ public class Example {
     AddDocumentRequest addDocumentRequest = new AddDocumentRequest(); // AddDocumentRequest | 
     String siteId = "siteId_example"; // String | Site Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey);
+      AddDocumentResponse result = apiInstance.addDocument(addDocumentRequest, siteId, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#addDocument");
@@ -78,6 +79,7 @@ public class Example {
 | **addDocumentRequest** | [**AddDocumentRequest**](AddDocumentRequest.md)|  | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -169,7 +171,7 @@ No authorization required
 
 <a id="addDocumentUpload"></a>
 # **addDocumentUpload**
-> GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey)
+> GetDocumentUrlResponse addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey, accelerate)
 
 Add large document
 
@@ -198,8 +200,9 @@ public class Example {
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      GetDocumentUrlResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.addDocumentUpload(addDocumentUploadRequest, siteId, contentLength, duration, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#addDocumentUpload");
@@ -221,6 +224,7 @@ public class Example {
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -658,7 +662,7 @@ No authorization required
 
 <a id="getDocumentContent"></a>
 # **getDocumentContent**
-> GetDocumentContentResponse getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey)
+> GetDocumentContentResponse getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey, accelerate)
 
 Get document&#39;s contents
 
@@ -687,8 +691,9 @@ public class Example {
     String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String versionKey = "versionKey_example"; // String | Version Key (version key required URL encoding)
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey);
+      GetDocumentContentResponse result = apiInstance.getDocumentContent(documentId, siteId, artifactId, versionKey, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentContent");
@@ -710,6 +715,7 @@ public class Example {
 | **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **versionKey** | **String**| Version Key (version key required URL encoding) | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -731,7 +737,7 @@ No authorization required
 
 <a id="getDocumentIdUpload"></a>
 # **getDocumentIdUpload**
-> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey)
+> GetDocumentUrlResponse getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey, accelerate)
 
 Get url to update large document
 
@@ -763,8 +769,9 @@ public class Example {
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.getDocumentIdUpload(documentId, siteId, artifactId, checksumType, checksum, contentLength, duration, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentIdUpload");
@@ -789,6 +796,7 @@ public class Example {
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -881,7 +889,7 @@ No authorization required
 
 <a id="getDocumentUpload"></a>
 # **getDocumentUpload**
-> GetDocumentUrlResponse getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey)
+> GetDocumentUrlResponse getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey, accelerate)
 
 Get url to add large document
 
@@ -912,8 +920,9 @@ public class Example {
     Integer contentLength = 56; // Integer | Indicates the size of the entity-body
     Integer duration = 56; // Integer | Indicates the number of hours request is valid for
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUpload(path, siteId, checksumType, checksum, contentLength, duration, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUpload");
@@ -937,6 +946,7 @@ public class Example {
 | **contentLength** | **Integer**| Indicates the size of the entity-body | [optional] |
 | **duration** | **Integer**| Indicates the number of hours request is valid for | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -958,11 +968,11 @@ No authorization required
 
 <a id="getDocumentUrl"></a>
 # **getDocumentUrl**
-> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format)
+> GetDocumentUrlResponse getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format, maxUses, accelerate)
 
 Get document content url
 
-Returns a URL for the document&#39;s contents; this URL will expire (the default is 48 hours)
+Returns a URL for the document&#39;s contents. Direct S3 presigned URLs expire after 48 hours by default.  With the Shortlinks Add-On Module, use &#x60;format&#x3D;short&amp;maxUses&#x3D;1&#x60; for a single-redemption short link, or set &#x60;maxUses&#x60; to a larger positive integer to allow that many redemptions. Omitting &#x60;maxUses&#x60; permits unlimited redemptions during the short link&#39;s validity period.  For usage-limited short links, &#x60;duration&#x60; controls the short link&#39;s validity in hours. Each successful redemption generates a fresh S3 presigned URL valid for 20 seconds. The S3 request must start before expiry; a download already in progress can continue afterward. The S3 URL itself can be reused during those 20 seconds.
 
 ### Example
 ```java
@@ -991,8 +1001,10 @@ public class Example {
     Boolean inline = false; // Boolean | Request inline delivery. S3-backed SVG documents identified by content type or filename are always served as attachments.
     Boolean bypassWatermark = false; // Boolean | Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions)
     String format = "short"; // String | Return a shortlink URL when set to `short`; available as an Add-On Module
+    Integer maxUses = 1; // Integer | Maximum number of successful short-link redemptions. Requires `format=short` and the Shortlinks Add-On Module. Set to `1` for a single redemption; omit for unlimited redemptions during the short link's validity period.
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format);
+      GetDocumentUrlResponse result = apiInstance.getDocumentUrl(documentId, siteId, artifactId, versionKey, duration, shareKey, inline, bypassWatermark, format, maxUses, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#getDocumentUrl");
@@ -1018,6 +1030,8 @@ public class Example {
 | **inline** | **Boolean**| Request inline delivery. S3-backed SVG documents identified by content type or filename are always served as attachments. | [optional] [default to false] |
 | **bypassWatermark** | **Boolean**| Allow the by pass of watermark (only allowed by GOVERN / ADMIN permissions) | [optional] [default to false] |
 | **format** | **String**| Return a shortlink URL when set to &#x60;short&#x60;; available as an Add-On Module | [optional] [enum: short] |
+| **maxUses** | **Integer**| Maximum number of successful short-link redemptions. Requires &#x60;format&#x3D;short&#x60; and the Shortlinks Add-On Module. Set to &#x60;1&#x60; for a single redemption; omit for unlimited redemptions during the short link&#39;s validity period. | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
@@ -1541,7 +1555,7 @@ No authorization required
 
 <a id="updateDocument"></a>
 # **updateDocument**
-> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey)
+> AddDocumentResponse updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey, accelerate)
 
 Update document
 
@@ -1570,8 +1584,9 @@ public class Example {
     String siteId = "siteId_example"; // String | Site Identifier
     String artifactId = "artifactId_example"; // String | Artifact Document Identifier
     String shareKey = "shareKey_example"; // String | Share Identifier
+    Boolean accelerate = false; // Boolean | Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration=true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400.
     try {
-      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey);
+      AddDocumentResponse result = apiInstance.updateDocument(documentId, updateDocumentRequest, siteId, artifactId, shareKey, accelerate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#updateDocument");
@@ -1593,6 +1608,7 @@ public class Example {
 | **siteId** | **String**| Site Identifier | [optional] |
 | **artifactId** | **String**| Artifact Document Identifier | [optional] |
 | **shareKey** | **String**| Share Identifier | [optional] |
+| **accelerate** | **Boolean**| Use S3 Transfer Acceleration for presigned transfer URLs targeting the FormKiQ documents bucket, including internal uploads of inline content. Requires EnableS3TransferAcceleration&#x3D;true on the deployment; additional transfer charges apply. Defaults to false. Has no effect on inline content returned by the API. Unavailable acceleration, external download URLs, and watermarked downloads return HTTP 400. | [optional] [default to false] |
 
 ### Return type
 
