@@ -67,6 +67,8 @@ docs/AddDocumentWorkflowDecisionsRequest.md
 docs/AddDocumentWorkflowDecisionsResponse.md
 docs/AddDocumentWorkflowRequest.md
 docs/AddDocumentWorkflowResponse.md
+docs/AddDocusignEnvelopeRemindersRequest.md
+docs/AddDocusignEnvelopeRemindersResponse.md
 docs/AddDocusignEnvelopesRequest.md
 docs/AddDocusignEnvelopesResponse.md
 docs/AddDocusignRecipientViewRequest.md
@@ -234,6 +236,8 @@ docs/DocumentsCompressDocument.md
 docs/DocumentsCompressRequest.md
 docs/DocumentsCompressResponse.md
 docs/DocusignConfig.md
+docs/DocusignEnvelopeRecipient.md
+docs/DocusignEnvelopeRecipients.md
 docs/DocusignEnvelopeStatus.md
 docs/DocusignEnvironment.md
 docs/DocusignInpersonSigner.md
@@ -241,6 +245,7 @@ docs/DocusignNotification.md
 docs/DocusignNotificationExpirations.md
 docs/DocusignNotificationReminders.md
 docs/DocusignRecipientView.md
+docs/DocusignReminderRecipient.md
 docs/DocusignSignHereTabs.md
 docs/DocusignSigner.md
 docs/DocusignSignerReadyToSignNotification.md
@@ -290,6 +295,7 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentWorkflowResponse.md
 docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
+docs/GetDocusignEnvelopeResponse.md
 docs/GetEntitiesResponse.md
 docs/GetEntityResponse.md
 docs/GetEntityTypeResponse.md
@@ -680,6 +686,8 @@ src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentWorkflowResponse.java
+src/main/java/com/formkiq/client/model/AddDocusignEnvelopeRemindersRequest.java
+src/main/java/com/formkiq/client/model/AddDocusignEnvelopeRemindersResponse.java
 src/main/java/com/formkiq/client/model/AddDocusignEnvelopesRequest.java
 src/main/java/com/formkiq/client/model/AddDocusignEnvelopesResponse.java
 src/main/java/com/formkiq/client/model/AddDocusignRecipientViewRequest.java
@@ -831,6 +839,8 @@ src/main/java/com/formkiq/client/model/DocumentsCompressDocument.java
 src/main/java/com/formkiq/client/model/DocumentsCompressRequest.java
 src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/DocusignConfig.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeRecipient.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeRecipients.java
 src/main/java/com/formkiq/client/model/DocusignEnvelopeStatus.java
 src/main/java/com/formkiq/client/model/DocusignEnvironment.java
 src/main/java/com/formkiq/client/model/DocusignInpersonSigner.java
@@ -838,6 +848,7 @@ src/main/java/com/formkiq/client/model/DocusignNotification.java
 src/main/java/com/formkiq/client/model/DocusignNotificationExpirations.java
 src/main/java/com/formkiq/client/model/DocusignNotificationReminders.java
 src/main/java/com/formkiq/client/model/DocusignRecipientView.java
+src/main/java/com/formkiq/client/model/DocusignReminderRecipient.java
 src/main/java/com/formkiq/client/model/DocusignSignHereTabs.java
 src/main/java/com/formkiq/client/model/DocusignSigner.java
 src/main/java/com/formkiq/client/model/DocusignSignerReadyToSignNotification.java
@@ -884,6 +895,7 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
+src/main/java/com/formkiq/client/model/GetDocusignEnvelopeResponse.java
 src/main/java/com/formkiq/client/model/GetEntitiesResponse.java
 src/main/java/com/formkiq/client/model/GetEntityResponse.java
 src/main/java/com/formkiq/client/model/GetEntityTypeResponse.java
@@ -1228,6 +1240,8 @@ src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsRequestTest.j
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowDecisionsResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentWorkflowResponseTest.java
+src/test/java/com/formkiq/client/model/AddDocusignEnvelopeRemindersRequestTest.java
+src/test/java/com/formkiq/client/model/AddDocusignEnvelopeRemindersResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocusignEnvelopesRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocusignEnvelopesResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocusignRecipientViewRequestTest.java
@@ -1379,6 +1393,8 @@ src/test/java/com/formkiq/client/model/DocumentsCompressDocumentTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/DocusignConfigTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeRecipientTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeRecipientsTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvelopeStatusTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvironmentTest.java
 src/test/java/com/formkiq/client/model/DocusignInpersonSignerTest.java
@@ -1386,6 +1402,7 @@ src/test/java/com/formkiq/client/model/DocusignNotificationExpirationsTest.java
 src/test/java/com/formkiq/client/model/DocusignNotificationRemindersTest.java
 src/test/java/com/formkiq/client/model/DocusignNotificationTest.java
 src/test/java/com/formkiq/client/model/DocusignRecipientViewTest.java
+src/test/java/com/formkiq/client/model/DocusignReminderRecipientTest.java
 src/test/java/com/formkiq/client/model/DocusignSignHereTabsTest.java
 src/test/java/com/formkiq/client/model/DocusignSignerReadyToSignNotificationTest.java
 src/test/java/com/formkiq/client/model/DocusignSignerTest.java
@@ -1432,6 +1449,7 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocusignEnvelopeResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntitiesResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntityResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntityTypeResponseTest.java

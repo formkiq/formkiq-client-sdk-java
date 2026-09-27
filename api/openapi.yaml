@@ -7193,6 +7193,281 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /esignature/docusign/{documentId}/envelopes/{envelopeId}:
+    get:
+      description: "Retrieves the DocuSign envelope using include=recipients and returns\
+        \ the DocuSign response directly, including envelope status and recipient\
+        \ routing information. No FormKiQ fields or wrapper are added. The envelope\
+        \ must be associated with the selected document or artifact. This read-only\
+        \ operation does not update document attributes or download the signed document.\
+        \ Available as an Add-On Module. Repeated status polling must be at least\
+        \ 15 minutes apart. Use recipients.signers[].recipientId from this response\
+        \ as entries in the optional recipientIds array in POST /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders\
+        \ to request reminders for selected signers."
+      operationId: GetDocusignEnvelope
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Docusign Envelope Id
+        explode: false
+        in: path
+        name: envelopeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
+          required when the site has no default. Use the environment in which the
+          envelope was created.
+        explode: true
+        in: query
+        name: environment
+        required: false
+        schema:
+          $ref: "#/components/schemas/DocusignEnvironment"
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                envelopeId: a1111111-b222-c333-d444-e55555555555
+                status: sent
+                recipients:
+                  recipientCount: "3"
+                  currentRoutingOrder: "2"
+                  signers:
+                  - recipientId: "1"
+                    name: Alice
+                    email: alice@example.com
+                    routingOrder: "1"
+                    status: completed
+                  - recipientId: "2"
+                    name: Bob
+                    email: bob@example.com
+                    routingOrder: "2"
+                    status: delivered
+                  - recipientId: "3"
+                    name: Carol
+                    email: carol@example.com
+                    routingOrder: "3"
+                    status: created
+              schema:
+                $ref: "#/components/schemas/GetDocusignEnvelopeResponse"
+          description: DocuSign envelope with recipients
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid parameters or missing DocuSign configuration
+        "401":
+          description: Authentication required
+        "403":
+          description: Access to the selected document or artifact is denied
+        "404":
+          description: "Document, artifact, or associated DocuSign envelope not found"
+        "429":
+          description: Envelope polling or DocuSign rate limit exceeded
+          headers:
+            Retry-After:
+              description: Seconds to wait before another lookup
+              explode: false
+              schema:
+                minimum: 0
+                type: integer
+              style: simple
+        "502":
+          description: "DocuSign authentication failure, upstream error, or invalid\
+            \ response"
+        "504":
+          description: DocuSign request timed out
+      security:
+      - ApiAuthorization: []
+      summary: Get Docusign envelope and recipient status
+      tags:
+      - E-Signature
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
+      x-accepts:
+      - application/json
+  /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders:
+    post:
+      description: "Resends signing notifications for an in-progress DocuSign envelope;\
+        \ available as an Add-On Module. With no request body or an empty object,\
+        \ DocuSign reminds all eligible recipients at the current routing step. Supply\
+        \ recipientIds to remind only the selected eligible signers. Obtain IDs from\
+        \ recipients.signers[].recipientId in GET /esignature/docusign/{documentId}/envelopes/{envelopeId}.\
+        \ Every selected signer must still be awaiting action at the current routing\
+        \ step when this request is processed. Validate the entire selection before\
+        \ issuing a resend. Completed and future-step signers cannot be targeted.\
+        \ Invalid targeted requests never fall back to reminding all recipients. Recipient\
+        \ notification settings are respected; this operation does not send FormKiQ\
+        \ notifications to embedded-only or email-suppressed signers. Requires write\
+        \ access to the selected document or artifact and a matching stored envelope\
+        \ ID. The operation resends the existing invitation without changing recipients,\
+        \ documents, routing, or automatic reminder settings. Targeted responses report\
+        \ each selected recipient's acceptance or failure, with no overall status.\
+        \ Acceptance does not confirm notification delivery. Do not automatically\
+        \ retry after a timeout because the reminder may already have been requested."
+      operationId: AddDocusignEnvelopeReminders
+      parameters:
+      - description: Site Identifier
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Document Identifier
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Artifact Document Identifier
+        explode: true
+        in: query
+        name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Docusign Envelope Id
+        explode: false
+        in: path
+        name: envelopeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
+          required when the site has no default. Use the environment in which the
+          envelope was created.
+        explode: true
+        in: query
+        name: environment
+        required: false
+        schema:
+          $ref: "#/components/schemas/DocusignEnvironment"
+        style: form
+      requestBody:
+        content:
+          application/json:
+            examples:
+              allCurrentRecipients:
+                summary: Remind all eligible current recipients
+                value: {}
+              selectedSigner:
+                summary: Remind one signer identified by the GET envelope response
+                value:
+                  recipientIds:
+                  - "2"
+              selectedSigners:
+                summary: Remind multiple signers sharing the current routing step
+                value:
+                  recipientIds:
+                  - "2"
+                  - "3"
+            schema:
+              $ref: "#/components/schemas/AddDocusignEnvelopeRemindersRequest"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                selectedRecipients:
+                  summary: One reminder accepted and one failed after validation
+                  value:
+                    recipients:
+                    - recipientId: "1"
+                      status: accepted
+                    - recipientId: "2"
+                      status: failed
+                      message: Recipient is no longer eligible for a reminder.
+                envelopeWide:
+                  summary: Envelope-wide reminder accepted without individual outcomes
+                  value: {}
+              schema:
+                $ref: "#/components/schemas/AddDocusignEnvelopeRemindersResponse"
+          description: "Reminder request processed. For targeted requests, inspect\
+            \ each entry in recipients for acceptance or failure; HTTP 200 does not\
+            \ mean all selected recipients succeeded. An envelope-wide request returns\
+            \ an empty object when DocuSign accepts it, because individual recipient\
+            \ outcomes are not returned. Acceptance does not confirm delivery."
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: "Invalid parameters, missing DocuSign configuration, ineligible\
+            \ envelope state, or unknown or ineligible signers. Null or empty recipientIds\
+            \ arrays, duplicate IDs, and null, blank, or non-string entries are rejected.\
+            \ The singular recipientId field is not accepted. Draft and terminal envelopes\
+            \ cannot be reminded."
+        "401":
+          description: Authentication required
+        "403":
+          description: Write access to the selected document or artifact is denied
+        "404":
+          description: "Document, artifact, or associated DocuSign envelope not found"
+        "429":
+          description: DocuSign rate limit exceeded
+        "502":
+          description: "DocuSign authentication failure, upstream error, or invalid\
+            \ response"
+        "504":
+          description: DocuSign request timed out; reminder delivery outcome is unknown
+      security:
+      - ApiAuthorization: []
+      summary: Request DocuSign signing reminders
+      tags:
+      - E-Signature
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient:
     post:
       description: DocuSign create Docusign Recipient View request; available as an
@@ -22559,6 +22834,872 @@ components:
       - hostEmail
       - hostName
       - signerName
+      type: object
+    GetDocusignEnvelopeResponse:
+      additionalProperties: true
+      description: "The DocuSign Get Envelope response with include=recipients, returned\
+        \ without enrichment. Additional DocuSign fields are preserved. Optional fields\
+        \ are returned only when supplied by DocuSign. A completed envelope does not\
+        \ confirm that FormKiQ has stored the signed PDF."
+      example:
+        envelopeId: envelopeId
+        status: status
+        statusChangedDateTime: 2000-01-23T04:56:07.000+00:00
+        sentDateTime: 2000-01-23T04:56:07.000+00:00
+        deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+        completedDateTime: 2000-01-23T04:56:07.000+00:00
+        declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        voidedDateTime: 2000-01-23T04:56:07.000+00:00
+        recipients:
+          recipientCount: recipientCount
+          currentRoutingOrder: currentRoutingOrder
+          signers:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          inPersonSigners:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          agents:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          editors:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          intermediaries:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          carbonCopies:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          certifiedDeliveries:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          witnesses:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          seals:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          notaries:
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+          - recipientId: recipientId
+            recipientIdGuid: recipientIdGuid
+            recipientType: recipientType
+            name: name
+            email: email
+            signerName: signerName
+            signerEmail: signerEmail
+            hostName: hostName
+            hostEmail: hostEmail
+            routingOrder: routingOrder
+            status: status
+            sentDateTime: 2000-01-23T04:56:07.000+00:00
+            deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+            signedDateTime: 2000-01-23T04:56:07.000+00:00
+            declinedDateTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        envelopeId:
+          description: DocuSign envelope identifier
+          type: string
+        status:
+          description: "Envelope status reported by DocuSign, such as created, sent,\
+            \ delivered, signed, completed, declined, or voided."
+          type: string
+        statusChangedDateTime:
+          description: Time DocuSign reports the envelope status changed
+          format: date-time
+          type: string
+        sentDateTime:
+          format: date-time
+          type: string
+        deliveredDateTime:
+          format: date-time
+          type: string
+        completedDateTime:
+          format: date-time
+          type: string
+        declinedDateTime:
+          format: date-time
+          type: string
+        voidedDateTime:
+          format: date-time
+          type: string
+        recipients:
+          $ref: "#/components/schemas/DocusignEnvelopeRecipients"
+      type: object
+    DocusignEnvelopeRecipients:
+      additionalProperties: true
+      description: Recipient information returned by DocuSign
+      example:
+        recipientCount: recipientCount
+        currentRoutingOrder: currentRoutingOrder
+        signers:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        inPersonSigners:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        agents:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        editors:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        intermediaries:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        carbonCopies:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        certifiedDeliveries:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        witnesses:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        seals:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        notaries:
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+        - recipientId: recipientId
+          recipientIdGuid: recipientIdGuid
+          recipientType: recipientType
+          name: name
+          email: email
+          signerName: signerName
+          signerEmail: signerEmail
+          hostName: hostName
+          hostEmail: hostEmail
+          routingOrder: routingOrder
+          status: status
+          sentDateTime: 2000-01-23T04:56:07.000+00:00
+          deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+          signedDateTime: 2000-01-23T04:56:07.000+00:00
+          declinedDateTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        recipientCount:
+          description: "Number of recipients, represented as a DocuSign string"
+          type: string
+        currentRoutingOrder:
+          description: Current routing step. Match this to recipient routingOrder
+            and inspect recipient status to identify outstanding actions. Multiple
+            recipients can share a routing order. Also check envelope status before
+            treating a recipient as awaiting action.
+          type: string
+        signers:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        inPersonSigners:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        agents:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        editors:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        intermediaries:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        carbonCopies:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        certifiedDeliveries:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        witnesses:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        seals:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+        notaries:
+          items:
+            $ref: "#/components/schemas/DocusignEnvelopeRecipient"
+          type: array
+      type: object
+    DocusignEnvelopeRecipient:
+      additionalProperties: true
+      description: Recipient fields returned by DocuSign. Fields depend on the recipient
+        type; additional type-specific fields are preserved. This response schema
+        is separate from FormKiQ's envelope creation request schemas.
+      example:
+        recipientId: recipientId
+        recipientIdGuid: recipientIdGuid
+        recipientType: recipientType
+        name: name
+        email: email
+        signerName: signerName
+        signerEmail: signerEmail
+        hostName: hostName
+        hostEmail: hostEmail
+        routingOrder: routingOrder
+        status: status
+        sentDateTime: 2000-01-23T04:56:07.000+00:00
+        deliveredDateTime: 2000-01-23T04:56:07.000+00:00
+        signedDateTime: 2000-01-23T04:56:07.000+00:00
+        declinedDateTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        recipientId:
+          type: string
+        recipientIdGuid:
+          type: string
+        recipientType:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        signerName:
+          type: string
+        signerEmail:
+          type: string
+        hostName:
+          type: string
+        hostEmail:
+          type: string
+        routingOrder:
+          type: string
+        status:
+          description: Recipient status reported by DocuSign
+          type: string
+        sentDateTime:
+          format: date-time
+          type: string
+        deliveredDateTime:
+          format: date-time
+          type: string
+        signedDateTime:
+          format: date-time
+          type: string
+        declinedDateTime:
+          format: date-time
+          type: string
+      type: object
+    AddDocusignEnvelopeRemindersRequest:
+      additionalProperties: false
+      description: "Optional selection of one or more signers. Omit the body or send\
+        \ an empty object to remind all eligible recipients at the current routing\
+        \ step. The singular recipientId field, signer names, and email addresses\
+        \ are not accepted. Invalid selections never trigger an envelope-level reminder."
+      example:
+        recipientIds:
+        - "2"
+        - "3"
+      properties:
+        recipientIds:
+          description: "Existing DocuSign signer IDs from recipients.signers[].recipientId\
+            \ in GET /esignature/docusign/{documentId}/envelopes/{envelopeId} for\
+            \ this same envelope. Every selected signer must be notification-eligible\
+            \ and awaiting action at the current routing step. Validate the entire\
+            \ selection before issuing a resend. Null or empty arrays, duplicate IDs,\
+            \ and null, empty, whitespace-only, or non-string entries are invalid.\
+            \ Omit this property for an envelope-level reminder."
+          example:
+          - "2"
+          - "3"
+          items:
+            minLength: 1
+            pattern: \S
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: true
+      type: object
+    AddDocusignEnvelopeRemindersResponse:
+      additionalProperties: false
+      description: "For targeted reminders, recipients contains exactly one outcome\
+        \ for each requested recipient ID. HTTP 200 can include accepted and failed\
+        \ outcomes, including when every recipient failed at the provider after validation.\
+        \ Invalid selections detected before the resend return 400 instead. Envelope-wide\
+        \ acceptance returns an empty object; do not infer individual outcomes. There\
+        \ is no overall status field. Authentication, validation, rate-limit, upstream,\
+        \ and timeout errors use the documented 4xx/5xx responses."
+      example:
+        recipients:
+        - recipientId: "1"
+          status: accepted
+          message: Recipient is no longer eligible for a reminder.
+        - recipientId: "1"
+          status: accepted
+          message: Recipient is no longer eligible for a reminder.
+      properties:
+        recipients:
+          description: "Outcomes for the selected recipients, present for targeted\
+            \ requests and omitted for envelope-wide reminders. A timeout or missing\
+            \ provider outcome must not be represented as confirmed acceptance or\
+            \ failure."
+          items:
+            $ref: "#/components/schemas/DocusignReminderRecipient"
+          minItems: 1
+          type: array
+      type: object
+    DocusignReminderRecipient:
+      additionalProperties: false
+      example:
+        recipientId: "1"
+        status: accepted
+        message: Recipient is no longer eligible for a reminder.
+      properties:
+        recipientId:
+          description: Selected DocuSign signer ID from the request
+          example: "1"
+          type: string
+        status:
+          description: "accepted means DocuSign accepted the reminder request for\
+            \ this recipient, not confirmed delivery. failed means DocuSign returned\
+            \ a definitive recipient-level failure."
+          example: accepted
+          type: string
+        message:
+          description: "Explanation of a recipient-level failure, when available"
+          example: Recipient is no longer eligible for a reminder.
+          type: string
+      required:
+      - recipientId
+      - status
       type: object
     AddDocusignEnvelopesResponse:
       example:

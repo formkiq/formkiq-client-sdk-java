@@ -34,6 +34,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.formkiq.client.model.AddDocusignEnvelopeRemindersRequest;
+import com.formkiq.client.model.AddDocusignEnvelopeRemindersResponse;
 import com.formkiq.client.model.AddDocusignEnvelopesRequest;
 import com.formkiq.client.model.AddDocusignEnvelopesResponse;
 import com.formkiq.client.model.AddDocusignRecipientViewRequest;
@@ -41,6 +43,8 @@ import com.formkiq.client.model.AddDocusignRecipientViewResponse;
 import com.formkiq.client.model.AddDocusignSenderViewRequest;
 import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.DocusignEnvironment;
+import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
@@ -84,6 +88,483 @@ public class ESignatureApi {
 
   public void setCustomBaseUrl(String customBaseUrl) {
     this.localCustomBaseUrl = customBaseUrl;
+  }
+
+  /**
+   * Build call for addDocusignEnvelopeReminders
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param addDocusignEnvelopeRemindersRequest (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>Reminder request processed. For targeted requests, inspect each
+   *                        entry in recipients for acceptance or failure; HTTP 200 does not mean
+   *                        all selected recipients succeeded. An envelope-wide request returns an
+   *                        empty object when DocuSign accepts it, because individual recipient
+   *                        outcomes are not returned. Acceptance does not confirm delivery.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing DocuSign configuration, ineligible
+   *                        envelope state, or unknown or ineligible signers. Null or empty
+   *                        recipientIds arrays, duplicate IDs, and null, blank, or non-string
+   *                        entries are rejected. The singular recipientId field is not accepted.
+   *                        Draft and terminal envelopes cannot be reminded.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; reminder delivery outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocusignEnvelopeRemindersCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      @javax.annotation.Nullable AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest,
+      final ApiCallback _callback) throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = addDocusignEnvelopeRemindersRequest;
+
+    // create path and map variables
+    String localVarPath = "/esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "envelopeId" + "}", localVarApiClient.escapeString(envelopeId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    if (environment != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call addDocusignEnvelopeRemindersValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      @javax.annotation.Nullable AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest,
+      final ApiCallback _callback) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling addDocusignEnvelopeReminders(Async)");
+    }
+
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'envelopeId' when calling addDocusignEnvelopeReminders(Async)");
+    }
+
+    return addDocusignEnvelopeRemindersCall(documentId, envelopeId, siteId, artifactId, environment,
+        addDocusignEnvelopeRemindersRequest, _callback);
+
+  }
+
+  /**
+   * Request DocuSign signing reminders Resends signing notifications for an in-progress DocuSign
+   * envelope; available as an Add-On Module. With no request body or an empty object, DocuSign
+   * reminds all eligible recipients at the current routing step. Supply recipientIds to remind only
+   * the selected eligible signers. Obtain IDs from recipients.signers[].recipientId in GET
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}. Every selected signer must still be
+   * awaiting action at the current routing step when this request is processed. Validate the entire
+   * selection before issuing a resend. Completed and future-step signers cannot be targeted.
+   * Invalid targeted requests never fall back to reminding all recipients. Recipient notification
+   * settings are respected; this operation does not send FormKiQ notifications to embedded-only or
+   * email-suppressed signers. Requires write access to the selected document or artifact and a
+   * matching stored envelope ID. The operation resends the existing invitation without changing
+   * recipients, documents, routing, or automatic reminder settings. Targeted responses report each
+   * selected recipient&#39;s acceptance or failure, with no overall status. Acceptance does not
+   * confirm notification delivery. Do not automatically retry after a timeout because the reminder
+   * may already have been requested.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param addDocusignEnvelopeRemindersRequest (optional)
+   * @return AddDocusignEnvelopeRemindersResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>Reminder request processed. For targeted requests, inspect each
+   *                        entry in recipients for acceptance or failure; HTTP 200 does not mean
+   *                        all selected recipients succeeded. An envelope-wide request returns an
+   *                        empty object when DocuSign accepts it, because individual recipient
+   *                        outcomes are not returned. Acceptance does not confirm delivery.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing DocuSign configuration, ineligible
+   *                        envelope state, or unknown or ineligible signers. Null or empty
+   *                        recipientIds arrays, duplicate IDs, and null, blank, or non-string
+   *                        entries are rejected. The singular recipientId field is not accepted.
+   *                        Draft and terminal envelopes cannot be reminded.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; reminder delivery outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public AddDocusignEnvelopeRemindersResponse addDocusignEnvelopeReminders(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      @javax.annotation.Nullable AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest)
+      throws ApiException {
+    ApiResponse<AddDocusignEnvelopeRemindersResponse> localVarResp =
+        addDocusignEnvelopeRemindersWithHttpInfo(documentId, envelopeId, siteId, artifactId,
+            environment, addDocusignEnvelopeRemindersRequest);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Request DocuSign signing reminders Resends signing notifications for an in-progress DocuSign
+   * envelope; available as an Add-On Module. With no request body or an empty object, DocuSign
+   * reminds all eligible recipients at the current routing step. Supply recipientIds to remind only
+   * the selected eligible signers. Obtain IDs from recipients.signers[].recipientId in GET
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}. Every selected signer must still be
+   * awaiting action at the current routing step when this request is processed. Validate the entire
+   * selection before issuing a resend. Completed and future-step signers cannot be targeted.
+   * Invalid targeted requests never fall back to reminding all recipients. Recipient notification
+   * settings are respected; this operation does not send FormKiQ notifications to embedded-only or
+   * email-suppressed signers. Requires write access to the selected document or artifact and a
+   * matching stored envelope ID. The operation resends the existing invitation without changing
+   * recipients, documents, routing, or automatic reminder settings. Targeted responses report each
+   * selected recipient&#39;s acceptance or failure, with no overall status. Acceptance does not
+   * confirm notification delivery. Do not automatically retry after a timeout because the reminder
+   * may already have been requested.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param addDocusignEnvelopeRemindersRequest (optional)
+   * @return ApiResponse&lt;AddDocusignEnvelopeRemindersResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>Reminder request processed. For targeted requests, inspect each
+   *                        entry in recipients for acceptance or failure; HTTP 200 does not mean
+   *                        all selected recipients succeeded. An envelope-wide request returns an
+   *                        empty object when DocuSign accepts it, because individual recipient
+   *                        outcomes are not returned. Acceptance does not confirm delivery.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing DocuSign configuration, ineligible
+   *                        envelope state, or unknown or ineligible signers. Null or empty
+   *                        recipientIds arrays, duplicate IDs, and null, blank, or non-string
+   *                        entries are rejected. The singular recipientId field is not accepted.
+   *                        Draft and terminal envelopes cannot be reminded.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; reminder delivery outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<AddDocusignEnvelopeRemindersResponse> addDocusignEnvelopeRemindersWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      @javax.annotation.Nullable AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest)
+      throws ApiException {
+    okhttp3.Call localVarCall = addDocusignEnvelopeRemindersValidateBeforeCall(documentId,
+        envelopeId, siteId, artifactId, environment, addDocusignEnvelopeRemindersRequest, null);
+    Type localVarReturnType = new TypeToken<AddDocusignEnvelopeRemindersResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Request DocuSign signing reminders (asynchronously) Resends signing notifications for an
+   * in-progress DocuSign envelope; available as an Add-On Module. With no request body or an empty
+   * object, DocuSign reminds all eligible recipients at the current routing step. Supply
+   * recipientIds to remind only the selected eligible signers. Obtain IDs from
+   * recipients.signers[].recipientId in GET
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}. Every selected signer must still be
+   * awaiting action at the current routing step when this request is processed. Validate the entire
+   * selection before issuing a resend. Completed and future-step signers cannot be targeted.
+   * Invalid targeted requests never fall back to reminding all recipients. Recipient notification
+   * settings are respected; this operation does not send FormKiQ notifications to embedded-only or
+   * email-suppressed signers. Requires write access to the selected document or artifact and a
+   * matching stored envelope ID. The operation resends the existing invitation without changing
+   * recipients, documents, routing, or automatic reminder settings. Targeted responses report each
+   * selected recipient&#39;s acceptance or failure, with no overall status. Acceptance does not
+   * confirm notification delivery. Do not automatically retry after a timeout because the reminder
+   * may already have been requested.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param addDocusignEnvelopeRemindersRequest (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>Reminder request processed. For targeted requests, inspect each
+   *                        entry in recipients for acceptance or failure; HTTP 200 does not mean
+   *                        all selected recipients succeeded. An envelope-wide request returns an
+   *                        empty object when DocuSign accepts it, because individual recipient
+   *                        outcomes are not returned. Acceptance does not confirm delivery.</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing DocuSign configuration, ineligible
+   *                        envelope state, or unknown or ineligible signers. Null or empty
+   *                        recipientIds arrays, duplicate IDs, and null, blank, or non-string
+   *                        entries are rejected. The singular recipientId field is not accepted.
+   *                        Draft and terminal envelopes cannot be reminded.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; reminder delivery outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call addDocusignEnvelopeRemindersAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      @javax.annotation.Nullable AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest,
+      final ApiCallback<AddDocusignEnvelopeRemindersResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall =
+        addDocusignEnvelopeRemindersValidateBeforeCall(documentId, envelopeId, siteId, artifactId,
+            environment, addDocusignEnvelopeRemindersRequest, _callback);
+    Type localVarReturnType = new TypeToken<AddDocusignEnvelopeRemindersResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
   }
 
   /**
@@ -1019,6 +1500,419 @@ public class ESignatureApi {
 
     okhttp3.Call localVarCall = addEsignatureDocusignEventsValidateBeforeCall(_callback);
     Type localVarReturnType = new TypeToken<AddResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getDocusignEnvelope
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope with recipients</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>Envelope polling or DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocusignEnvelopeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/esignature/docusign/{documentId}/envelopes/{envelopeId}"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "envelopeId" + "}", localVarApiClient.escapeString(envelopeId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    if (environment != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getDocusignEnvelopeValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getDocusignEnvelope(Async)");
+    }
+
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'envelopeId' when calling getDocusignEnvelope(Async)");
+    }
+
+    return getDocusignEnvelopeCall(documentId, envelopeId, siteId, artifactId, environment,
+        _callback);
+
+  }
+
+  /**
+   * Get Docusign envelope and recipient status Retrieves the DocuSign envelope using
+   * include&#x3D;recipients and returns the DocuSign response directly, including envelope status
+   * and recipient routing information. No FormKiQ fields or wrapper are added. The envelope must be
+   * associated with the selected document or artifact. This read-only operation does not update
+   * document attributes or download the signed document. Available as an Add-On Module. Repeated
+   * status polling must be at least 15 minutes apart. Use recipients.signers[].recipientId from
+   * this response as entries in the optional recipientIds array in POST
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders to request reminders for
+   * selected signers.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @return GetDocusignEnvelopeResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope with recipients</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>Envelope polling or DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public GetDocusignEnvelopeResponse getDocusignEnvelope(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    ApiResponse<GetDocusignEnvelopeResponse> localVarResp =
+        getDocusignEnvelopeWithHttpInfo(documentId, envelopeId, siteId, artifactId, environment);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get Docusign envelope and recipient status Retrieves the DocuSign envelope using
+   * include&#x3D;recipients and returns the DocuSign response directly, including envelope status
+   * and recipient routing information. No FormKiQ fields or wrapper are added. The envelope must be
+   * associated with the selected document or artifact. This read-only operation does not update
+   * document attributes or download the signed document. Available as an Add-On Module. Repeated
+   * status polling must be at least 15 minutes apart. Use recipients.signers[].recipientId from
+   * this response as entries in the optional recipientIds array in POST
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders to request reminders for
+   * selected signers.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @return ApiResponse&lt;GetDocusignEnvelopeResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope with recipients</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>Envelope polling or DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public ApiResponse<GetDocusignEnvelopeResponse> getDocusignEnvelopeWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    okhttp3.Call localVarCall = getDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
+        siteId, artifactId, environment, null);
+    Type localVarReturnType = new TypeToken<GetDocusignEnvelopeResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get Docusign envelope and recipient status (asynchronously) Retrieves the DocuSign envelope
+   * using include&#x3D;recipients and returns the DocuSign response directly, including envelope
+   * status and recipient routing information. No FormKiQ fields or wrapper are added. The envelope
+   * must be associated with the selected document or artifact. This read-only operation does not
+   * update document attributes or download the signed document. Available as an Add-On Module.
+   * Repeated status polling must be at least 15 minutes apart. Use recipients.signers[].recipientId
+   * from this response as entries in the optional recipientIds array in POST
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders to request reminders for
+   * selected signers.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope with recipients</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>Envelope polling or DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   */
+  public okhttp3.Call getDocusignEnvelopeAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId, @javax.annotation.Nullable String siteId,
+      @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      final ApiCallback<GetDocusignEnvelopeResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
+        siteId, artifactId, environment, _callback);
+    Type localVarReturnType = new TypeToken<GetDocusignEnvelopeResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

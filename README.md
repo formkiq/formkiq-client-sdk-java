@@ -247,10 +247,12 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**setDocumentCheckoutLegalHold**](docs/DocumentsApi.md#setDocumentCheckoutLegalHold) | **PUT** /documents/{documentId}/legalHold | Perform document legal hold checkout
 *DocumentsApi* | [**setDocumentRestore**](docs/DocumentsApi.md#setDocumentRestore) | **PUT** /documents/{documentId}/restore | Restore soft deleted document
 *DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PATCH** /documents/{documentId} | Update document
+*ESignatureApi* | [**addDocusignEnvelopeReminders**](docs/ESignatureApi.md#addDocusignEnvelopeReminders) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders | Request DocuSign signing reminders
 *ESignatureApi* | [**addDocusignEnvelopes**](docs/ESignatureApi.md#addDocusignEnvelopes) | **POST** /esignature/docusign/{documentId}/envelopes | Create Docusign Envelope request
 *ESignatureApi* | [**addDocusignRecipientView**](docs/ESignatureApi.md#addDocusignRecipientView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient | Create Docusign Recipient View request
 *ESignatureApi* | [**addDocusignSenderView**](docs/ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
+*ESignatureApi* | [**getDocusignEnvelope**](docs/ESignatureApi.md#getDocusignEnvelope) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId} | Get Docusign envelope and recipient status
 *EntityApi* | [**addEntity**](docs/EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity
 *EntityApi* | [**addEntityType**](docs/EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
 *EntityApi* | [**deleteEntity**](docs/EntityApi.md#deleteEntity) | **DELETE** /entities/{entityTypeId}/{entityId} | Deletes Entity
@@ -442,6 +444,8 @@ Class | Method | HTTP request | Description
  - [AddDocumentWorkflowDecisionsResponse](docs/AddDocumentWorkflowDecisionsResponse.md)
  - [AddDocumentWorkflowRequest](docs/AddDocumentWorkflowRequest.md)
  - [AddDocumentWorkflowResponse](docs/AddDocumentWorkflowResponse.md)
+ - [AddDocusignEnvelopeRemindersRequest](docs/AddDocusignEnvelopeRemindersRequest.md)
+ - [AddDocusignEnvelopeRemindersResponse](docs/AddDocusignEnvelopeRemindersResponse.md)
  - [AddDocusignEnvelopesRequest](docs/AddDocusignEnvelopesRequest.md)
  - [AddDocusignEnvelopesResponse](docs/AddDocusignEnvelopesResponse.md)
  - [AddDocusignRecipientViewRequest](docs/AddDocusignRecipientViewRequest.md)
@@ -593,6 +597,8 @@ Class | Method | HTTP request | Description
  - [DocumentsCompressRequest](docs/DocumentsCompressRequest.md)
  - [DocumentsCompressResponse](docs/DocumentsCompressResponse.md)
  - [DocusignConfig](docs/DocusignConfig.md)
+ - [DocusignEnvelopeRecipient](docs/DocusignEnvelopeRecipient.md)
+ - [DocusignEnvelopeRecipients](docs/DocusignEnvelopeRecipients.md)
  - [DocusignEnvelopeStatus](docs/DocusignEnvelopeStatus.md)
  - [DocusignEnvironment](docs/DocusignEnvironment.md)
  - [DocusignInpersonSigner](docs/DocusignInpersonSigner.md)
@@ -600,6 +606,7 @@ Class | Method | HTTP request | Description
  - [DocusignNotificationExpirations](docs/DocusignNotificationExpirations.md)
  - [DocusignNotificationReminders](docs/DocusignNotificationReminders.md)
  - [DocusignRecipientView](docs/DocusignRecipientView.md)
+ - [DocusignReminderRecipient](docs/DocusignReminderRecipient.md)
  - [DocusignSignHereTabs](docs/DocusignSignHereTabs.md)
  - [DocusignSigner](docs/DocusignSigner.md)
  - [DocusignSignerReadyToSignNotification](docs/DocusignSignerReadyToSignNotification.md)
@@ -646,6 +653,7 @@ Class | Method | HTTP request | Description
  - [GetDocumentWorkflowResponse](docs/GetDocumentWorkflowResponse.md)
  - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
+ - [GetDocusignEnvelopeResponse](docs/GetDocusignEnvelopeResponse.md)
  - [GetEntitiesResponse](docs/GetEntitiesResponse.md)
  - [GetEntityResponse](docs/GetEntityResponse.md)
  - [GetEntityTypeResponse](docs/GetEntityTypeResponse.md)

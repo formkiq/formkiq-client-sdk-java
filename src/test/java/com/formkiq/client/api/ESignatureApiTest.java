@@ -21,6 +21,8 @@
 package com.formkiq.client.api;
 
 import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.model.AddDocusignEnvelopeRemindersRequest;
+import com.formkiq.client.model.AddDocusignEnvelopeRemindersResponse;
 import com.formkiq.client.model.AddDocusignEnvelopesRequest;
 import com.formkiq.client.model.AddDocusignEnvelopesResponse;
 import com.formkiq.client.model.AddDocusignRecipientViewRequest;
@@ -28,6 +30,8 @@ import com.formkiq.client.model.AddDocusignRecipientViewResponse;
 import com.formkiq.client.model.AddDocusignSenderViewRequest;
 import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.DocusignEnvironment;
+import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -44,6 +48,40 @@ import java.util.Map;
 public class ESignatureApiTest {
 
   private final ESignatureApi api = new ESignatureApi();
+
+  /**
+   * Request DocuSign signing reminders
+   *
+   * Resends signing notifications for an in-progress DocuSign envelope; available as an Add-On
+   * Module. With no request body or an empty object, DocuSign reminds all eligible recipients at
+   * the current routing step. Supply recipientIds to remind only the selected eligible signers.
+   * Obtain IDs from recipients.signers[].recipientId in GET
+   * /esignature/docusign/{documentId}/envelopes/{envelopeId}. Every selected signer must still be
+   * awaiting action at the current routing step when this request is processed. Validate the entire
+   * selection before issuing a resend. Completed and future-step signers cannot be targeted.
+   * Invalid targeted requests never fall back to reminding all recipients. Recipient notification
+   * settings are respected; this operation does not send FormKiQ notifications to embedded-only or
+   * email-suppressed signers. Requires write access to the selected document or artifact and a
+   * matching stored envelope ID. The operation resends the existing invitation without changing
+   * recipients, documents, routing, or automatic reminder settings. Targeted responses report each
+   * selected recipient&#39;s acceptance or failure, with no overall status. Acceptance does not
+   * confirm notification delivery. Do not automatically retry after a timeout because the reminder
+   * may already have been requested.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void addDocusignEnvelopeRemindersTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    String siteId = null;
+    String artifactId = null;
+    DocusignEnvironment environment = null;
+    AddDocusignEnvelopeRemindersRequest addDocusignEnvelopeRemindersRequest = null;
+    AddDocusignEnvelopeRemindersResponse response = api.addDocusignEnvelopeReminders(documentId,
+        envelopeId, siteId, artifactId, environment, addDocusignEnvelopeRemindersRequest);
+    // TODO: test validations
+  }
 
   /**
    * Create Docusign Envelope request
@@ -111,6 +149,32 @@ public class ESignatureApiTest {
   @Test
   public void addEsignatureDocusignEventsTest() throws ApiException {
     AddResponse response = api.addEsignatureDocusignEvents();
+    // TODO: test validations
+  }
+
+  /**
+   * Get Docusign envelope and recipient status
+   *
+   * Retrieves the DocuSign envelope using include&#x3D;recipients and returns the DocuSign response
+   * directly, including envelope status and recipient routing information. No FormKiQ fields or
+   * wrapper are added. The envelope must be associated with the selected document or artifact. This
+   * read-only operation does not update document attributes or download the signed document.
+   * Available as an Add-On Module. Repeated status polling must be at least 15 minutes apart. Use
+   * recipients.signers[].recipientId from this response as entries in the optional recipientIds
+   * array in POST /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders to request
+   * reminders for selected signers.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocusignEnvelopeTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    String siteId = null;
+    String artifactId = null;
+    DocusignEnvironment environment = null;
+    GetDocusignEnvelopeResponse response =
+        api.getDocusignEnvelope(documentId, envelopeId, siteId, artifactId, environment);
     // TODO: test validations
   }
 
