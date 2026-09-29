@@ -33,6 +33,8 @@ import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
+import com.formkiq.client.model.VoidDocusignEnvelopeRequest;
+import com.formkiq.client.model.VoidDocusignEnvelopeResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -175,6 +177,32 @@ public class ESignatureApiTest {
     DocusignEnvironment environment = null;
     GetDocusignEnvelopeResponse response =
         api.getDocusignEnvelope(documentId, envelopeId, siteId, artifactId, environment);
+    // TODO: test validations
+  }
+
+  /**
+   * Void a DocuSign envelope
+   *
+   * Cancels an in-progress DocuSign envelope; available as an Add-On Module. Requires write access
+   * to the selected document or artifact and a matching stored envelope ID. Calls DocuSign&#39;s
+   * envelope update API, PUT /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status
+   * set to voided and the supplied voidedReason. DocuSign notifies recipients that the envelope was
+   * voided. Draft and completed envelopes cannot be voided, and voiding cannot be undone. After a
+   * timeout, the outcome is unknown; check the existing GET envelope status endpoint before
+   * attempting the operation again.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void voidDocusignEnvelopeTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest = null;
+    String siteId = null;
+    String artifactId = null;
+    DocusignEnvironment environment = null;
+    VoidDocusignEnvelopeResponse response = api.voidDocusignEnvelope(documentId, envelopeId,
+        voidDocusignEnvelopeRequest, siteId, artifactId, environment);
     // TODO: test validations
   }
 

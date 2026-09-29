@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**addDocusignSenderView**](ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request |
 | [**addEsignatureDocusignEvents**](ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event |
 | [**getDocusignEnvelope**](ESignatureApi.md#getDocusignEnvelope) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId} | Get Docusign envelope and recipient status |
+| [**voidDocusignEnvelope**](ESignatureApi.md#voidDocusignEnvelope) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/void | Void a DocuSign envelope |
 
 
 <a id="addDocusignEnvelopeReminders"></a>
@@ -453,4 +454,86 @@ No authorization required
 | **429** | Envelope polling or DocuSign rate limit exceeded |  * Retry-After - Seconds to wait before another lookup <br>  |
 | **502** | DocuSign authentication failure, upstream error, or invalid response |  -  |
 | **504** | DocuSign request timed out |  -  |
+
+<a id="voidDocusignEnvelope"></a>
+# **voidDocusignEnvelope**
+> VoidDocusignEnvelopeResponse voidDocusignEnvelope(documentId, envelopeId, voidDocusignEnvelopeRequest, siteId, artifactId, environment)
+
+Void a DocuSign envelope
+
+Cancels an in-progress DocuSign envelope; available as an Add-On Module. Requires write access to the selected document or artifact and a matching stored envelope ID. Calls DocuSign&#39;s envelope update API, PUT /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the supplied voidedReason. DocuSign notifies recipients that the envelope was voided. Draft and completed envelopes cannot be voided, and voiding cannot be undone. After a timeout, the outcome is unknown; check the existing GET envelope status endpoint before attempting the operation again.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.ESignatureApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    ESignatureApi apiInstance = new ESignatureApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String envelopeId = "envelopeId_example"; // String | Docusign Envelope Id
+    VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest = new VoidDocusignEnvelopeRequest(); // VoidDocusignEnvelopeRequest | 
+    String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
+    DocusignEnvironment environment = DocusignEnvironment.fromValue("PRODUCTION"); // DocusignEnvironment | DocuSign environment. Defaults to the site's docusignEnvironment; required when the site has no default. Use the environment in which the envelope was created.
+    try {
+      VoidDocusignEnvelopeResponse result = apiInstance.voidDocusignEnvelope(documentId, envelopeId, voidDocusignEnvelopeRequest, siteId, artifactId, environment);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ESignatureApi#voidDocusignEnvelope");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **envelopeId** | **String**| Docusign Envelope Id | |
+| **voidDocusignEnvelopeRequest** | [**VoidDocusignEnvelopeRequest**](VoidDocusignEnvelopeRequest.md)|  | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
+| **environment** | [**DocusignEnvironment**](.md)| DocuSign environment. Defaults to the site&#39;s docusignEnvironment; required when the site has no default. Use the environment in which the envelope was created. | [optional] [enum: PRODUCTION, DEVELOPMENT] |
+
+### Return type
+
+[**VoidDocusignEnvelopeResponse**](VoidDocusignEnvelopeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | DocuSign envelope voided successfully |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Invalid parameters, missing or blank voidedReason, missing DocuSign configuration, or an envelope that is not eligible to be voided. |  -  |
+| **401** | Authentication required |  -  |
+| **403** | Write access to the selected document or artifact is denied |  -  |
+| **404** | Document, artifact, or associated DocuSign envelope not found |  -  |
+| **429** | DocuSign rate limit exceeded |  -  |
+| **502** | DocuSign authentication failure, upstream error, or invalid response |  -  |
+| **504** | DocuSign request timed out; the void operation outcome is unknown |  -  |
 

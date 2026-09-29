@@ -62,7 +62,7 @@ import com.formkiq.client.invoker.JSON;
  * SetSchemaAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-29T14:32:35.639977-05:00[America/Winnipeg]",
+    date = "2026-09-29T15:39:34.975275-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class SetSchemaAttributes {
   public static final String SERIALIZED_NAME_COMPOSITE_KEYS = "compositeKeys";

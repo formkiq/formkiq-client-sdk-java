@@ -61,7 +61,7 @@ import com.formkiq.client.invoker.JSON;
  * DocuSign. A completed envelope does not confirm that FormKiQ has stored the signed PDF.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-09-29T14:32:35.639977-05:00[America/Winnipeg]",
+    date = "2026-09-29T15:39:34.975275-05:00[America/Winnipeg]",
     comments = "Generator version: 7.25.0")
 public class GetDocusignEnvelopeResponse {
   public static final String SERIALIZED_NAME_ENVELOPE_ID = "envelopeId";

@@ -46,6 +46,8 @@ import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DocusignEnvironment;
 import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
+import com.formkiq.client.model.VoidDocusignEnvelopeRequest;
+import com.formkiq.client.model.VoidDocusignEnvelopeResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1913,6 +1915,451 @@ public class ESignatureApi {
     okhttp3.Call localVarCall = getDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
         siteId, artifactId, environment, _callback);
     Type localVarReturnType = new TypeToken<GetDocusignEnvelopeResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for voidDocusignEnvelope
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param voidDocusignEnvelopeRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope voided successfully</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing or blank voidedReason, missing DocuSign
+   *                        configuration, or an envelope that is not eligible to be voided.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; the void operation outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes update API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/update/">Void
+   *      a DocuSign envelope Documentation</a>
+   */
+  public okhttp3.Call voidDocusignEnvelopeCall(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = voidDocusignEnvelopeRequest;
+
+    // create path and map variables
+    String localVarPath = "/esignature/docusign/{documentId}/envelopes/{envelopeId}/void"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "envelopeId" + "}", localVarApiClient.escapeString(envelopeId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    if (environment != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {"application/json"};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call voidDocusignEnvelopeValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling voidDocusignEnvelope(Async)");
+    }
+
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'envelopeId' when calling voidDocusignEnvelope(Async)");
+    }
+
+    // verify the required parameter 'voidDocusignEnvelopeRequest' is set
+    if (voidDocusignEnvelopeRequest == null) {
+      throw new ApiException(
+          "Missing the required parameter 'voidDocusignEnvelopeRequest' when calling voidDocusignEnvelope(Async)");
+    }
+
+    return voidDocusignEnvelopeCall(documentId, envelopeId, voidDocusignEnvelopeRequest, siteId,
+        artifactId, environment, _callback);
+
+  }
+
+  /**
+   * Void a DocuSign envelope Cancels an in-progress DocuSign envelope; available as an Add-On
+   * Module. Requires write access to the selected document or artifact and a matching stored
+   * envelope ID. Calls DocuSign&#39;s envelope update API, PUT
+   * /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the
+   * supplied voidedReason. DocuSign notifies recipients that the envelope was voided. Draft and
+   * completed envelopes cannot be voided, and voiding cannot be undone. After a timeout, the
+   * outcome is unknown; check the existing GET envelope status endpoint before attempting the
+   * operation again.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param voidDocusignEnvelopeRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @return VoidDocusignEnvelopeResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope voided successfully</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing or blank voidedReason, missing DocuSign
+   *                        configuration, or an envelope that is not eligible to be voided.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; the void operation outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes update API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/update/">Void
+   *      a DocuSign envelope Documentation</a>
+   */
+  public VoidDocusignEnvelopeResponse voidDocusignEnvelope(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    ApiResponse<VoidDocusignEnvelopeResponse> localVarResp = voidDocusignEnvelopeWithHttpInfo(
+        documentId, envelopeId, voidDocusignEnvelopeRequest, siteId, artifactId, environment);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Void a DocuSign envelope Cancels an in-progress DocuSign envelope; available as an Add-On
+   * Module. Requires write access to the selected document or artifact and a matching stored
+   * envelope ID. Calls DocuSign&#39;s envelope update API, PUT
+   * /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the
+   * supplied voidedReason. DocuSign notifies recipients that the envelope was voided. Draft and
+   * completed envelopes cannot be voided, and voiding cannot be undone. After a timeout, the
+   * outcome is unknown; check the existing GET envelope status endpoint before attempting the
+   * operation again.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param voidDocusignEnvelopeRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @return ApiResponse&lt;VoidDocusignEnvelopeResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope voided successfully</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing or blank voidedReason, missing DocuSign
+   *                        configuration, or an envelope that is not eligible to be voided.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; the void operation outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes update API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/update/">Void
+   *      a DocuSign envelope Documentation</a>
+   */
+  public ApiResponse<VoidDocusignEnvelopeResponse> voidDocusignEnvelopeWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    okhttp3.Call localVarCall = voidDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
+        voidDocusignEnvelopeRequest, siteId, artifactId, environment, null);
+    Type localVarReturnType = new TypeToken<VoidDocusignEnvelopeResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Void a DocuSign envelope (asynchronously) Cancels an in-progress DocuSign envelope; available
+   * as an Add-On Module. Requires write access to the selected document or artifact and a matching
+   * stored envelope ID. Calls DocuSign&#39;s envelope update API, PUT
+   * /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}, with status set to voided and the
+   * supplied voidedReason. DocuSign notifies recipients that the envelope was voided. Draft and
+   * completed envelopes cannot be voided, and voiding cannot be undone. After a timeout, the
+   * outcome is unknown; check the existing GET envelope status endpoint before attempting the
+   * operation again.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param voidDocusignEnvelopeRequest (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Use the environment in which the envelope was
+   *        created. (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope voided successfully</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters, missing or blank voidedReason, missing DocuSign
+   *                        configuration, or an envelope that is not eligible to be voided.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Write access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out; the void operation outcome is unknown
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes update API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/update/">Void
+   *      a DocuSign envelope Documentation</a>
+   */
+  public okhttp3.Call voidDocusignEnvelopeAsync(@javax.annotation.Nonnull String documentId,
+      @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nonnull VoidDocusignEnvelopeRequest voidDocusignEnvelopeRequest,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      final ApiCallback<VoidDocusignEnvelopeResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = voidDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
+        voidDocusignEnvelopeRequest, siteId, artifactId, environment, _callback);
+    Type localVarReturnType = new TypeToken<VoidDocusignEnvelopeResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }
