@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.DocumentReviewStatus;
+import com.formkiq.client.model.ReviewDecisionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -29,6 +30,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * UpdateDocumentReview
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class UpdateDocumentReview {
   public static final String SERIALIZED_NAME_REVIEW_STATUS = "reviewStatus";
   @SerializedName(SERIALIZED_NAME_REVIEW_STATUS)
@@ -70,6 +74,11 @@ public class UpdateDocumentReview {
   @SerializedName(SERIALIZED_NAME_REQUIRED_DECISIONS)
   @javax.annotation.Nullable
   private Long requiredDecisions;
+
+  public static final String SERIALIZED_NAME_COUNTED_DECISION_TYPES = "countedDecisionTypes";
+  @SerializedName(SERIALIZED_NAME_COUNTED_DECISION_TYPES)
+  @javax.annotation.Nullable
+  private Set<ReviewDecisionType> countedDecisionTypes;
 
   public static final String SERIALIZED_NAME_COMMENTS = "comments";
   @SerializedName(SERIALIZED_NAME_COMMENTS)
@@ -105,7 +114,8 @@ public class UpdateDocumentReview {
   }
 
   /**
-   * Number of decisions required to complete the review minimum: 1
+   * Number of decision records matching countedDecisionTypes required to complete the review.
+   * Changes apply when subsequent counted decisions are submitted. minimum: 0
    * 
    * @return requiredDecisions
    */
@@ -116,6 +126,41 @@ public class UpdateDocumentReview {
 
   public void setRequiredDecisions(@javax.annotation.Nullable Long requiredDecisions) {
     this.requiredDecisions = requiredDecisions;
+  }
+
+
+  public UpdateDocumentReview countedDecisionTypes(
+      @javax.annotation.Nullable Set<ReviewDecisionType> countedDecisionTypes) {
+    this.countedDecisionTypes = countedDecisionTypes;
+    return this;
+  }
+
+  public UpdateDocumentReview addCountedDecisionTypesItem(
+      ReviewDecisionType countedDecisionTypesItem) {
+    if (this.countedDecisionTypes == null) {
+      this.countedDecisionTypes = new LinkedHashSet<>();
+    }
+    this.countedDecisionTypes.add(countedDecisionTypesItem);
+    return this;
+  }
+
+  /**
+   * Replacement types of decision records that count toward requiredDecisions. Omission or null
+   * preserves the effective current policy; it does not reset it to [APPROVAL]. Changes apply when
+   * subsequent counted decisions are submitted, counting existing records against the updated
+   * policy. This does not restrict submissions. Empty arrays, duplicate entries, unknown types, and
+   * non-string entries are rejected.
+   * 
+   * @return countedDecisionTypes
+   */
+  @javax.annotation.Nullable
+  public Set<ReviewDecisionType> getCountedDecisionTypes() {
+    return countedDecisionTypes;
+  }
+
+  public void setCountedDecisionTypes(
+      @javax.annotation.Nullable Set<ReviewDecisionType> countedDecisionTypes) {
+    this.countedDecisionTypes = countedDecisionTypes;
   }
 
 
@@ -151,12 +196,25 @@ public class UpdateDocumentReview {
     UpdateDocumentReview updateDocumentReview = (UpdateDocumentReview) o;
     return Objects.equals(this.reviewStatus, updateDocumentReview.reviewStatus)
         && Objects.equals(this.requiredDecisions, updateDocumentReview.requiredDecisions)
+        && Objects.equals(this.countedDecisionTypes, updateDocumentReview.countedDecisionTypes)
         && Objects.equals(this.comments, updateDocumentReview.comments);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
+        && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reviewStatus, requiredDecisions, comments);
+    return Objects.hash(reviewStatus, requiredDecisions, countedDecisionTypes, comments);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
@@ -165,6 +223,8 @@ public class UpdateDocumentReview {
     sb.append("class UpdateDocumentReview {\n");
     sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
     sb.append("    requiredDecisions: ").append(toIndentedString(requiredDecisions)).append("\n");
+    sb.append("    countedDecisionTypes: ").append(toIndentedString(countedDecisionTypes))
+        .append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -183,8 +243,8 @@ public class UpdateDocumentReview {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields =
-        new HashSet<String>(Arrays.asList("reviewStatus", "requiredDecisions", "comments"));
+    openapiFields = new HashSet<String>(
+        Arrays.asList("reviewStatus", "requiredDecisions", "countedDecisionTypes", "comments"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -220,6 +280,14 @@ public class UpdateDocumentReview {
     if (jsonObj.get("reviewStatus") != null && !jsonObj.get("reviewStatus").isJsonNull()) {
       DocumentReviewStatus.validateJsonElement(jsonObj.get("reviewStatus"));
     }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("countedDecisionTypes") != null
+        && !jsonObj.get("countedDecisionTypes").isJsonNull()
+        && !jsonObj.get("countedDecisionTypes").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `countedDecisionTypes` to be an array in the JSON string but got `%s`",
+          jsonObj.get("countedDecisionTypes").toString()));
+    }
     if ((jsonObj.get("comments") != null && !jsonObj.get("comments").isJsonNull())
         && !jsonObj.get("comments").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -228,6 +296,7 @@ public class UpdateDocumentReview {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

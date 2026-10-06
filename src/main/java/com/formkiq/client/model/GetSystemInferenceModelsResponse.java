@@ -60,8 +60,8 @@ import com.formkiq.client.invoker.JSON;
  * GetSystemInferenceModelsResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class GetSystemInferenceModelsResponse {
   public static final String SERIALIZED_NAME_INFERENCE_MODELS = "inferenceModels";
   @SerializedName(SERIALIZED_NAME_INFERENCE_MODELS)
@@ -194,6 +194,7 @@ public class GetSystemInferenceModelsResponse {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

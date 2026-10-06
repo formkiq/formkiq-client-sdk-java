@@ -62,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * Mapping Attribute from document metadata
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class MappingAttributeMetadata {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEY = "attributeKey";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEY)
@@ -395,6 +395,7 @@ public class MappingAttributeMetadata {
     MappingAttributeMetadataField.validateJsonElement(jsonObj.get("metadataField"));
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

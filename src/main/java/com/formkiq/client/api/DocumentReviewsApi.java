@@ -44,6 +44,7 @@ import com.formkiq.client.model.GetDocumentReviewResponse;
 import com.formkiq.client.model.GetDocumentReviewsResponse;
 import com.formkiq.client.model.UpdateDocumentReviewRequest;
 import com.formkiq.client.model.UpdateResponse;
+import com.formkiq.client.model.ValidationErrorsResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -113,6 +114,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */
@@ -197,7 +204,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review Add a review to a document. When notifications are supplied, queue each
-   * notification for delivery when the review is created.
+   * notification for delivery when the review is created. Omitted or null countedDecisionTypes
+   * defaults to [APPROVAL]. Only decision records of the configured types count toward
+   * requiredDecisions; other supported types may still be submitted. The same counting policy
+   * applies to document-level and artifact-scoped reviews.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -222,6 +232,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public AddDocumentReviewResponse addDocumentReview(@javax.annotation.Nonnull String documentId,
@@ -235,7 +251,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review Add a review to a document. When notifications are supplied, queue each
-   * notification for delivery when the review is created.
+   * notification for delivery when the review is created. Omitted or null countedDecisionTypes
+   * defaults to [APPROVAL]. Only decision records of the configured types count toward
+   * requiredDecisions; other supported types may still be submitted. The same counting policy
+   * applies to document-level and artifact-scoped reviews.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -260,6 +279,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public ApiResponse<AddDocumentReviewResponse> addDocumentReviewWithHttpInfo(
@@ -275,7 +300,10 @@ public class DocumentReviewsApi {
 
   /**
    * Add document review (asynchronously) Add a review to a document. When notifications are
-   * supplied, queue each notification for delivery when the review is created.
+   * supplied, queue each notification for delivery when the review is created. Omitted or null
+   * countedDecisionTypes defaults to [APPROVAL]. Only decision records of the configured types
+   * count toward requiredDecisions; other supported types may still be submitted. The same counting
+   * policy applies to document-level and artifact-scoped reviews.
    * 
    * @param documentId Document Identifier (required)
    * @param addDocumentReviewRequest (required)
@@ -299,6 +327,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */
@@ -340,6 +374,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid decision or explicitly requested follow-up review
+   *                        configuration.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        <tr>
    *                        <td>409</td>
@@ -441,9 +481,19 @@ public class DocumentReviewsApi {
   /**
    * Add document review decision Add a decision to a document review. When approvalGroups is set on
    * the review, the caller must belong to at least one of those groups, in addition to satisfying
-   * the existing authorization requirements, before the decision is added. Decisions submitted to a
-   * review that is already COMPLETED return 409 Conflict without creating a decision, follow-up
-   * review, notification, or activity record.
+   * the existing authorization requirements, before the decision is added. Every accepted
+   * submission is retained with its own decision ID, author, timestamp, and content.
+   * countedDecisionTypes selects records that contribute to requiredDecisions; it does not restrict
+   * which supported types may be submitted. Counting uses decision records, not distinct reviewers.
+   * APPROVAL records count regardless of their decision value. With the default [APPROVAL] policy,
+   * COMMENT, RECOMMENDATION, and ACKNOWLEDGMENT may be submitted repeatedly by the same authorized
+   * user while the review is open. A non-counting submission may move PENDING to IN_PROGRESS, but
+   * cannot complete the review or trigger completion-dependent processing. It does not
+   * automatically create a follow-up review or downstream action; an explicitly supplied follow-up
+   * review uses the same counting-policy defaults and validation as ordinary review creation.
+   * Completion occurs when the qualifying count reaches or exceeds requiredDecisions. Decisions
+   * submitted to a review that is already COMPLETED return 409 Conflict without creating a
+   * decision, follow-up review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -470,6 +520,12 @@ public class DocumentReviewsApi {
    *                        </td>
    *                        </tr>
    *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid decision or explicitly requested follow-up review
+   *                        configuration.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
    *                        <td>409</td>
    *                        <td>The review is already complete. No decision was created.</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
@@ -493,9 +549,19 @@ public class DocumentReviewsApi {
   /**
    * Add document review decision Add a decision to a document review. When approvalGroups is set on
    * the review, the caller must belong to at least one of those groups, in addition to satisfying
-   * the existing authorization requirements, before the decision is added. Decisions submitted to a
-   * review that is already COMPLETED return 409 Conflict without creating a decision, follow-up
-   * review, notification, or activity record.
+   * the existing authorization requirements, before the decision is added. Every accepted
+   * submission is retained with its own decision ID, author, timestamp, and content.
+   * countedDecisionTypes selects records that contribute to requiredDecisions; it does not restrict
+   * which supported types may be submitted. Counting uses decision records, not distinct reviewers.
+   * APPROVAL records count regardless of their decision value. With the default [APPROVAL] policy,
+   * COMMENT, RECOMMENDATION, and ACKNOWLEDGMENT may be submitted repeatedly by the same authorized
+   * user while the review is open. A non-counting submission may move PENDING to IN_PROGRESS, but
+   * cannot complete the review or trigger completion-dependent processing. It does not
+   * automatically create a follow-up review or downstream action; an explicitly supplied follow-up
+   * review uses the same counting-policy defaults and validation as ordinary review creation.
+   * Completion occurs when the qualifying count reaches or exceeds requiredDecisions. Decisions
+   * submitted to a review that is already COMPLETED return 409 Conflict without creating a
+   * decision, follow-up review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -522,6 +588,12 @@ public class DocumentReviewsApi {
    *                        </td>
    *                        </tr>
    *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid decision or explicitly requested follow-up review
+   *                        configuration.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
    *                        <td>409</td>
    *                        <td>The review is already complete. No decision was created.</td>
    *                        <td>* Access-Control-Allow-Origin - <br>
@@ -546,8 +618,18 @@ public class DocumentReviewsApi {
    * Add document review decision (asynchronously) Add a decision to a document review. When
    * approvalGroups is set on the review, the caller must belong to at least one of those groups, in
    * addition to satisfying the existing authorization requirements, before the decision is added.
-   * Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating
-   * a decision, follow-up review, notification, or activity record.
+   * Every accepted submission is retained with its own decision ID, author, timestamp, and content.
+   * countedDecisionTypes selects records that contribute to requiredDecisions; it does not restrict
+   * which supported types may be submitted. Counting uses decision records, not distinct reviewers.
+   * APPROVAL records count regardless of their decision value. With the default [APPROVAL] policy,
+   * COMMENT, RECOMMENDATION, and ACKNOWLEDGMENT may be submitted repeatedly by the same authorized
+   * user while the review is open. A non-counting submission may move PENDING to IN_PROGRESS, but
+   * cannot complete the review or trigger completion-dependent processing. It does not
+   * automatically create a follow-up review or downstream action; an explicitly supplied follow-up
+   * review uses the same counting-policy defaults and validation as ordinary review creation.
+   * Completion occurs when the qualifying count reaches or exceeds requiredDecisions. Decisions
+   * submitted to a review that is already COMPLETED return 409 Conflict without creating a
+   * decision, follow-up review, notification, or activity record.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -572,6 +654,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid decision or explicitly requested follow-up review
+   *                        configuration.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        <tr>
    *                        <td>409</td>
@@ -703,7 +791,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review Get a document review by review id
+   * Get document review Get a document review by review id, including its effective
+   * countedDecisionTypes policy. Reviews stored without an explicit policy return [APPROVAL];
+   * historical completed reviews retain their status.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -739,7 +829,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review Get a document review by review id
+   * Get document review Get a document review by review id, including its effective
+   * countedDecisionTypes policy. Reviews stored without an explicit policy return [APPROVAL];
+   * historical completed reviews retain their status.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -777,7 +869,9 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review (asynchronously) Get a document review by review id
+   * Get document review (asynchronously) Get a document review by review id, including its
+   * effective countedDecisionTypes policy. Reviews stored without an explicit policy return
+   * [APPROVAL]; historical completed reviews retain their status.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -935,7 +1029,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review decisions Get a listing of decisions for a document review
+   * Get document review decisions Get a listing of all decisions for a document review, including
+   * records whose types do not count toward completion.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -976,7 +1071,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review decisions Get a listing of decisions for a document review
+   * Get document review decisions Get a listing of all decisions for a document review, including
+   * records whose types do not count toward completion.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -1017,7 +1113,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document review decisions (asynchronously) Get a listing of decisions for a document review
+   * Get document review decisions (asynchronously) Get a listing of all decisions for a document
+   * review, including records whose types do not count toward completion.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -1168,7 +1265,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document reviews Get a listing of reviews for a document
+   * Get document reviews Get a listing of reviews for a document, including the effective
+   * countedDecisionTypes policy for each review.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -1206,7 +1304,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document reviews Get a listing of reviews for a document
+   * Get document reviews Get a listing of reviews for a document, including the effective
+   * countedDecisionTypes policy for each review.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -1245,7 +1344,8 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Get document reviews (asynchronously) Get a listing of reviews for a document
+   * Get document reviews (asynchronously) Get a listing of reviews for a document, including the
+   * effective countedDecisionTypes policy for each review.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
@@ -1311,6 +1411,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */
@@ -1402,7 +1508,10 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Update document review Update a document review by review id
+   * Update document review Update a document review by review id. Omitted properties retain their
+   * existing values. Changes to countedDecisionTypes or requiredDecisions apply when subsequent
+   * counted decisions are submitted. Updating the counting configuration does not change
+   * reviewStatus.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -1428,6 +1537,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public UpdateResponse updateDocumentReview(@javax.annotation.Nonnull String documentId,
@@ -1441,7 +1556,10 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Update document review Update a document review by review id
+   * Update document review Update a document review by review id. Omitted properties retain their
+   * existing values. Changes to countedDecisionTypes or requiredDecisions apply when subsequent
+   * counted decisions are submitted. Updating the counting configuration does not change
+   * reviewStatus.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -1467,6 +1585,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public ApiResponse<UpdateResponse> updateDocumentReviewWithHttpInfo(
@@ -1481,7 +1605,10 @@ public class DocumentReviewsApi {
   }
 
   /**
-   * Update document review (asynchronously) Update a document review by review id
+   * Update document review (asynchronously) Update a document review by review id. Omitted
+   * properties retain their existing values. Changes to countedDecisionTypes or requiredDecisions
+   * apply when subsequent counted decisions are submitted. Updating the counting configuration does
+   * not change reviewStatus.
    * 
    * @param documentId Document Identifier (required)
    * @param reviewId Review Identifier (required)
@@ -1506,6 +1633,12 @@ public class DocumentReviewsApi {
    *                        * Access-Control-Allow-Methods - <br>
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid review configuration, including empty, duplicate, unknown,
+   *                        or non-string countedDecisionTypes entries.</td>
+   *                        <td>-</td>
    *                        </tr>
    *                        </table>
    */

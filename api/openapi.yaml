@@ -4436,7 +4436,8 @@ paths:
       - application/json
   /documents/{documentId}/reviews:
     get:
-      description: Get a listing of reviews for a document
+      description: "Get a listing of reviews for a document, including the effective\
+        \ countedDecisionTypes policy for each review."
       operationId: GetDocumentReviews
       parameters:
       - description: Site Identifier
@@ -4507,6 +4508,9 @@ paths:
       description: |-
         Add a review to a document. When notifications are supplied, queue each notification
         for delivery when the review is created.
+        Omitted or null countedDecisionTypes defaults to [APPROVAL]. Only decision records of the
+        configured types count toward requiredDecisions; other supported types may still be submitted.
+        The same counting policy applies to document-level and artifact-scoped reviews.
       operationId: AddDocumentReview
       parameters:
       - description: Site Identifier
@@ -4536,6 +4540,24 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              approvalReview:
+                summary: Require two approval-type responses
+                value:
+                  review:
+                    reviewCategory: Legal
+                    requiredDecisions: 2
+                    countedDecisionTypes:
+                    - APPROVAL
+              acknowledgmentReview:
+                summary: Require one acknowledgment while allowing other decision
+                  types
+                value:
+                  review:
+                    reviewCategory: Receipt
+                    requiredDecisions: 1
+                    countedDecisionTypes:
+                    - ACKNOWLEDGMENT
             schema:
               $ref: "#/components/schemas/AddDocumentReviewRequest"
         required: true
@@ -4553,6 +4575,13 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: "Invalid review configuration, including empty, duplicate,\
+            \ unknown, or non-string countedDecisionTypes entries."
       security:
       - ApiAuthorization: []
       summary: Add document review
@@ -4565,7 +4594,9 @@ paths:
       - application/json
   /documents/{documentId}/reviews/{reviewId}:
     get:
-      description: Get a document review by review id
+      description: "Get a document review by review id, including its effective countedDecisionTypes\
+        \ policy. Reviews stored without an explicit policy return [APPROVAL]; historical\
+        \ completed reviews retain their status."
       operationId: GetDocumentReview
       parameters:
       - description: Site Identifier
@@ -4624,7 +4655,10 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Update a document review by review id
+      description: |-
+        Update a document review by review id. Omitted properties retain their existing values.
+        Changes to countedDecisionTypes or requiredDecisions apply when subsequent counted
+        decisions are submitted. Updating the counting configuration does not change reviewStatus.
       operationId: UpdateDocumentReview
       parameters:
       - description: Site Identifier
@@ -4679,6 +4713,13 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: "Invalid review configuration, including empty, duplicate,\
+            \ unknown, or non-string countedDecisionTypes entries."
       security:
       - ApiAuthorization: []
       summary: Update document review
@@ -4691,7 +4732,8 @@ paths:
       - application/json
   /documents/{documentId}/reviews/{reviewId}/decisions:
     get:
-      description: Get a listing of decisions for a document review
+      description: "Get a listing of all decisions for a document review, including\
+        \ records whose types do not count toward completion."
       operationId: GetDocumentReviewDecisions
       parameters:
       - description: Site Identifier
@@ -4770,6 +4812,17 @@ paths:
       description: |-
         Add a decision to a document review. When approvalGroups is set on the review,
         the caller must belong to at least one of those groups, in addition to satisfying the existing authorization requirements, before the decision is added.
+        Every accepted submission is retained with its own decision ID, author, timestamp,
+        and content. countedDecisionTypes selects records that contribute to requiredDecisions;
+        it does not restrict which supported types may be submitted. Counting uses decision
+        records, not distinct reviewers. APPROVAL records count regardless of their decision value.
+        With the default [APPROVAL] policy, COMMENT, RECOMMENDATION, and ACKNOWLEDGMENT
+        may be submitted repeatedly by the same authorized user while the review is open.
+        A non-counting submission may move PENDING to IN_PROGRESS, but cannot complete the
+        review or trigger completion-dependent processing. It does not automatically create
+        a follow-up review or downstream action; an explicitly supplied follow-up review
+        uses the same counting-policy defaults and validation as ordinary review creation.
+        Completion occurs when the qualifying count reaches or exceeds requiredDecisions.
         Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating a decision, follow-up review, notification, or activity record.
       operationId: AddDocumentReviewDecision
       parameters:
@@ -4825,6 +4878,12 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid decision or explicitly requested follow-up review configuration.
         "409":
           content:
             application/json:
@@ -10386,34 +10445,33 @@ paths:
         \ documentIds (up to 100 documentIds accepted).\n\nIf using Enteprise Composite\
         \ Keys feature then multiple tag(s) can be searched for.\n\nFor attributes\
         \ defined with dataType JSON, use an attribute criterion's json filter\nwith\
-        \ a path to compare a nested field. Equality values inside json retain their\
-        \ JSON\nstring, number, or boolean type. Numeric bounds inside json use gt,\
-        \ gte, lt, and lte.\nExisting attribute eq and eqOr operators continue to\
-        \ accept strings.\nPaths support object properties and explicit array positions;\n\
-        wildcard, recursive, and array any-element matching are not supported.\nMultiple\
-        \ conditions on different paths under the same attribute key are supported.\n\
-        All conditions must match the same document or artifact.\n\nJSON path filtering\
-        \ is applied after candidate records are read and does not reduce\nread capacity\
-        \ consumed for those candidates. A stored JSON value does not automatically\n\
-        create an index for its nested fields. Continue through empty filtered pages\
-        \ until the\nnext token is absent; candidate and time-budget limits still\
-        \ apply.\n\nIf Typesense is enabled, full text search is supported through\
-        \ the \"text\" parameter. Full text search will look for the text in the \"\
-        content\" and/or document \"metadata\".\n\nWhen `documentIds` is supplied,\
-        \ all supplied IDs are checked against the search criteria and all matching\
-        \ documents are returned. The `limit` query parameter is ignored. Up to 100\
-        \ document IDs are accepted.\n\nUse the `projection` parameter to return matching\
-        \ documents or a count of matching documents. Count responses are capped at\
-        \ 10,000 and indicate when the count was truncated.\nMulti-attribute searches\
-        \ requiring additional attribute filtering use a 25-second processing budget\n\
-        for index batches, attribute filtering, and document loading. The budget starts\
-        \ after index selection and empty-index prechecks. Searches with explicit\n\
-        `documentIds` or a composite key covering every search attribute are exempt.\n\
-        The budget is checked before starting each read; an in-flight read is allowed\
-        \ to finish.\nIf the budget expires, document searches return completed matches\
-        \ with `truncated=true` and a `next` token;\ncount searches return a partial\
-        \ lower bound with `truncated=true`.\n\nSee requestBody examples below for\
-        \ commmon examples."
+        \ a path to compare a nested field. The eq and eqOr operators accept strings,\n\
+        including inside json filters. Match JSON boolean fields using the strings\
+        \ \"true\"\nor \"false\". Compare JSON numeric fields using gt, gte, lt, and\
+        \ lte.\nPaths support object properties and explicit array positions;\nwildcard,\
+        \ recursive, and array any-element matching are not supported.\nMultiple conditions\
+        \ on different paths under the same attribute key are supported.\nAll conditions\
+        \ must match the same document or artifact.\n\nJSON path filtering is applied\
+        \ after candidate records are read and does not reduce\nread capacity consumed\
+        \ for those candidates. A stored JSON value does not automatically\ncreate\
+        \ an index for its nested fields. Continue through empty filtered pages until\
+        \ the\nnext token is absent; candidate and time-budget limits still apply.\n\
+        \nIf Typesense is enabled, full text search is supported through the \"text\"\
+        \ parameter. Full text search will look for the text in the \"content\" and/or\
+        \ document \"metadata\".\n\nWhen `documentIds` is supplied, all supplied IDs\
+        \ are checked against the search criteria and all matching documents are returned.\
+        \ The `limit` query parameter is ignored. Up to 100 document IDs are accepted.\n\
+        \nUse the `projection` parameter to return matching documents or a count of\
+        \ matching documents. Count responses are capped at 10,000 and indicate when\
+        \ the count was truncated.\nMulti-attribute searches requiring additional\
+        \ attribute filtering use a 25-second processing budget\nfor index batches,\
+        \ attribute filtering, and document loading. The budget starts after index\
+        \ selection and empty-index prechecks. Searches with explicit\n`documentIds`\
+        \ or a composite key covering every search attribute are exempt.\nThe budget\
+        \ is checked before starting each read; an in-flight read is allowed to finish.\n\
+        If the budget expires, document searches return completed matches with `truncated=true`\
+        \ and a `next` token;\ncount searches return a partial lower bound with `truncated=true`.\n\
+        \nSee requestBody examples below for commmon examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -10505,7 +10563,7 @@ paths:
                     - key: invoiceDetails
                       json:
                         path: $.approved
-                        eq: true
+                        eq: "true"
                     - key: invoiceDetails
                       json:
                         path: $.total
@@ -10634,6 +10692,29 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              jsonAttribute:
+                summary: Search nested JSON fields
+                value:
+                  query:
+                    attributes:
+                    - key: invoiceDetails
+                      json:
+                        path: $.customer.name
+                        eq: Acme
+                    - key: invoiceDetails
+                      json:
+                        path: $.approved
+                        eq: "true"
+                    - key: invoiceDetails
+                      json:
+                        path: $.total
+                        gte: 1000
+                        lt: 2000
+                    - key: invoiceDetails
+                      json:
+                        path: $.lineItems.sku
+                        eq: HOSTING
             schema:
               $ref: "#/components/schemas/DocumentFulltextRequest"
         required: true
@@ -18745,9 +18826,7 @@ components:
         - sku: HOSTING
           quantity: 2
       not:
-        enum:
-        - null
-        type: string
+        $ref: "#/components/schemas/JsonAttributeValue_not"
       nullable: true
       type: object
     JsonAttributeValueExclusive:
@@ -19595,9 +19674,7 @@ components:
             - sku: HOSTING
               quantity: 2
           not:
-            enum:
-            - null
-            type: string
+            $ref: "#/components/schemas/JsonAttributeValue_not"
           nullable: true
           type: object
         stringValue:
@@ -20512,6 +20589,15 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              notes: null
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         siteId:
@@ -20627,6 +20713,15 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              notes: null
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -20723,6 +20818,15 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              notes: null
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -20827,6 +20931,15 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              notes: null
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -21386,7 +21499,7 @@ components:
         Status of Document Review:
         - PENDING: Review has been created and is waiting for one or more decisions.
         - IN_PROGRESS: Review has been claimed or at least one decision has been submitted, but completion requirements are not yet satisfied.
-        - COMPLETED: Completion requirements are satisfied.
+        - COMPLETED: The required number of records matching countedDecisionTypes has been collected. This status does not imply that every decision approved the document.
         - CANCELLED: Review was cancelled before completion.
         - SUPERSEDED: Review was replaced by another review, usually because the artifact/document changed.
       enum:
@@ -21397,6 +21510,8 @@ components:
       - SUPERSEDED
       type: string
     ReviewDecisionType:
+      description: Decision type. APPROVAL identifies an approval-type response; the
+        separate decision value represents its outcome and may be positive or negative.
       enum:
       - APPROVAL
       - RECOMMENDATION
@@ -21411,7 +21526,10 @@ components:
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           notifications:
           - notificationType: EMAIL
             cc:
@@ -21453,7 +21571,10 @@ components:
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        requiredDecisions: 1
+        requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         notifications:
         - notificationType: EMAIL
           cc:
@@ -21489,10 +21610,26 @@ components:
             type: string
           type: array
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Records count regardless of decision value or
+            whether the same reviewer submitted earlier records.
           format: int64
-          minimum: 1
+          minimum: 0
           type: integer
+        countedDecisionTypes:
+          default:
+          - APPROVAL
+          description: |-
+            Types of decision records that count toward requiredDecisions. Omission or null defaults
+            to [APPROVAL]. This selects records to count and does not restrict which supported
+            decision types may be submitted. Empty arrays, duplicate entries, unknown
+            types, and non-string entries are rejected.
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: true
+          type: array
+          uniqueItems: true
         notifications:
           description: Optional notifications to queue for delivery when the review
             is created. An empty list sends no notifications.
@@ -21510,7 +21647,10 @@ components:
       example:
         review:
           reviewStatus: PENDING
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           comments: comments
       properties:
         review:
@@ -21519,16 +21659,34 @@ components:
     UpdateDocumentReview:
       example:
         reviewStatus: PENDING
-        requiredDecisions: 1
+        requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         comments: comments
       properties:
         reviewStatus:
           $ref: "#/components/schemas/DocumentReviewStatus"
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Changes apply when subsequent counted decisions
+            are submitted.
           format: int64
-          minimum: 1
+          minimum: 0
           type: integer
+        countedDecisionTypes:
+          description: |-
+            Replacement types of decision records that count toward requiredDecisions.
+            Omission or null preserves the effective current policy; it does not reset it to [APPROVAL].
+            Changes apply when subsequent counted decisions are submitted, counting existing
+            records against the updated policy. This does not restrict submissions.
+            Empty arrays, duplicate entries, unknown types, and non-string entries are rejected.
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: true
+          type: array
+          uniqueItems: true
         comments:
           description: Review comments
           type: string
@@ -21546,6 +21704,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21559,6 +21720,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21585,6 +21749,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21604,6 +21771,9 @@ components:
         - approvalGroups
         - approvalGroups
         requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         userId: userId
         comments: comments
         insertedDate: insertedDate
@@ -21632,9 +21802,22 @@ components:
             type: string
           type: array
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Completion does not imply a positive approval
+            outcome.
           format: int64
           type: integer
+        countedDecisionTypes:
+          description: "Effective types of decision records that count toward requiredDecisions.\
+            \ Always returned by review GET and list operations, including [APPROVAL]\
+            \ for records stored without an explicit policy. This does not restrict\
+            \ which supported decision types may be submitted."
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: false
+          type: array
+          uniqueItems: true
         userId:
           description: User who added review
           type: string
@@ -21647,6 +21830,8 @@ components:
         lastModifiedDate:
           description: Last Modified Timestamp
           type: string
+      required:
+      - countedDecisionTypes
       type: object
     AddDocumentReviewDecisionRequest:
       example:
@@ -21660,7 +21845,10 @@ components:
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           notifications:
           - notificationType: EMAIL
             cc:
@@ -28460,6 +28648,17 @@ components:
       - DATE
       type: string
     DocumentFulltextAttribute:
+      description: |-
+        Full-text attribute search criteria. Use eq or eqOr for scalar attributes and json
+        for nested fields of JSON attributes. json cannot be combined with eq or eqOr.
+        To compare multiple paths in one JSON attribute, use separate criteria with the same key.
+        JSON searches use native OpenSearch indexes. Property paths through arrays match any
+        element; array positions are not supported, and criteria may match different elements.
+        Dotted property names use OpenSearch field-path semantics. Field types are inferred
+        from stored values and must remain compatible across documents. Date-like strings may
+        be indexed as dates, and numeric comparisons use the inferred numeric precision.
+        Exact string and prefix searches use keyword fields; the default dynamic mapping does
+        not index strings longer than 256 characters in keyword fields.
       example:
         eq:
           stringValue: stringValue
@@ -28475,17 +28674,32 @@ components:
           numberValue: 6.027456183070403
           booleanValue: true
           dateValue: dateValue
+        json:
+          path: $.customer.name
+          eq: eq
+          eqOr:
+          - eqOr
+          - eqOr
+          beginsWith: beginsWith
+          gt: 0.8008281904610115
+          gte: 6.027456183070403
+          lt: 1.4658129805029452
+          lte: 5.962133916683182
         key: key
+      not:
+        $ref: "#/components/schemas/DocumentFulltextAttribute_not"
       properties:
         eq:
           $ref: "#/components/schemas/DocumentFulltextAttributeEq"
         eqOr:
-          description: Searches for ANY strings that eq
+          description: Searches for any of the supplied typed attribute values
           items:
             $ref: "#/components/schemas/DocumentFulltextAttributeEq"
           type: array
+        json:
+          $ref: "#/components/schemas/JsonAttributeSearchFilter"
         key:
-          description: Tag key to search
+          description: Attribute key to search
           type: string
       required:
       - key
@@ -28561,6 +28775,17 @@ components:
             numberValue: 6.027456183070403
             booleanValue: true
             dateValue: dateValue
+          json:
+            path: $.customer.name
+            eq: eq
+            eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            gt: 0.8008281904610115
+            gte: 6.027456183070403
+            lt: 1.4658129805029452
+            lte: 5.962133916683182
           key: key
         - eq:
             stringValue: stringValue
@@ -28576,6 +28801,17 @@ components:
             numberValue: 6.027456183070403
             booleanValue: true
             dateValue: dateValue
+          json:
+            path: $.customer.name
+            eq: eq
+            eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            gt: 0.8008281904610115
+            gte: 6.027456183070403
+            lt: 1.4658129805029452
+            lte: 5.962133916683182
           key: key
       properties:
         page:
@@ -28697,16 +28933,6 @@ components:
       required:
       - key
       type: object
-    JsonAttributeSearchValue:
-      description: |-
-        A scalar JSON field comparison value. Types are compared without coercion: true is
-        different from "true", and numbers are compared numerically. Objects, arrays, and
-        null are not accepted as comparison values. Missing fields or incompatible field
-        types do not match.
-      oneOf:
-      - type: string
-      - type: number
-      - type: boolean
     JsonAttributeSearchPath:
       description: |-
         Path relative to jsonValue, beginning with $. Use dot notation for identifier-like
@@ -28715,6 +28941,9 @@ components:
         $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
         At least one property or array position is required. Wildcards, recursive descent,
         slices, and filter expressions are not supported.
+        For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+        array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+        as OpenSearch field paths rather than distinct literal keys.
       example: $.customer.name
       pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
         \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
@@ -28725,14 +28954,20 @@ components:
         Compare a nested scalar field of an attribute defined with dataType JSON.
         A path and at least one field comparison are required.
         All supplied predicates are combined with AND; eqOr matches any supplied value.
+        eq and eqOr accept strings and match string fields or boolean fields represented
+        by the lowercase strings "true" and "false". Numeric fields do not match eq or eqOr;
+        use numeric bounds instead. Missing fields, null, and objects do not match.
+        Arrays do not match in /search; /searchFulltext can match scalar elements of arrays.
         beginsWith applies to string fields and gt/gte/lt/lte apply to numeric fields.
         The legacy range operator is not supported inside a json filter.
+        /searchFulltext uses native OpenSearch field types and indexing limits as described
+        by DocumentFulltextAttribute, including date detection and numeric precision.
       example:
         path: $.customer.name
-        eq: JsonAttributeSearchValue
+        eq: eq
         eqOr:
-        - null
-        - null
+        - eqOr
+        - eqOr
         beginsWith: beginsWith
         gt: 0.8008281904610115
         gte: 6.027456183070403
@@ -28748,17 +28983,22 @@ components:
             $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
             At least one property or array position is required. Wildcards, recursive descent,
             slices, and filter expressions are not supported.
+            For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+            array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+            as OpenSearch field paths rather than distinct literal keys.
           example: $.customer.name
           pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
             \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
           type: string
         eq:
-          $ref: "#/components/schemas/JsonAttributeSearchValue"
+          description: Match a JSON string field or a boolean field using "true" or
+            "false".
+          type: string
         eqOr:
-          description: "Match the field against any provided string, number, or boolean\
-            \ without type coercion."
+          description: Match a JSON string field or a boolean field against any provided
+            string; use "true" or "false" for booleans.
           items:
-            $ref: "#/components/schemas/JsonAttributeSearchValue"
+            type: string
           minItems: 1
           type: array
         beginsWith:
@@ -28799,10 +29039,10 @@ components:
         key: key
         json:
           path: $.customer.name
-          eq: JsonAttributeSearchValue
+          eq: eq
           eqOr:
-          - null
-          - null
+          - eqOr
+          - eqOr
           beginsWith: beginsWith
           gt: 0.8008281904610115
           gte: 6.027456183070403
@@ -28863,10 +29103,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28885,10 +29125,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28906,10 +29146,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28986,10 +29226,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29008,10 +29248,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29029,10 +29269,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29556,9 +29796,7 @@ components:
             - sku: HOSTING
               quantity: 2
           not:
-            enum:
-            - null
-            type: string
+            $ref: "#/components/schemas/JsonAttributeValue_not"
           nullable: true
           type: object
         stringValues:
@@ -29643,9 +29881,7 @@ components:
             - sku: HOSTING
               quantity: 2
           not:
-            enum:
-            - null
-            type: string
+            $ref: "#/components/schemas/JsonAttributeValue_not"
           nullable: true
           type: object
         jsonPath:
@@ -29656,6 +29892,9 @@ components:
             $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
             At least one property or array position is required. Wildcards, recursive descent,
             slices, and filter expressions are not supported.
+            For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+            array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+            as OpenSearch field paths rather than distinct literal keys.
           example: $.customer.name
           pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
             \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
@@ -29705,6 +29944,17 @@ components:
               numberValue: 6.027456183070403
               booleanValue: true
               dateValue: dateValue
+            json:
+              path: $.customer.name
+              eq: eq
+              eqOr:
+              - eqOr
+              - eqOr
+              beginsWith: beginsWith
+              gt: 0.8008281904610115
+              gte: 6.027456183070403
+              lt: 1.4658129805029452
+              lte: 5.962133916683182
             key: key
           - eq:
               stringValue: stringValue
@@ -29720,6 +29970,17 @@ components:
               numberValue: 6.027456183070403
               booleanValue: true
               dateValue: dateValue
+            json:
+              path: $.customer.name
+              eq: eq
+              eqOr:
+              - eqOr
+              - eqOr
+              beginsWith: beginsWith
+              gt: 0.8008281904610115
+              gte: 6.027456183070403
+              lt: 1.4658129805029452
+              lte: 5.962133916683182
             key: key
         responseFields:
           attributes:
@@ -29771,6 +30032,15 @@ components:
               dateValues:
               - dateValues
               - dateValues
+              jsonValue:
+                total: 1250.5
+                approved: true
+                customer:
+                  name: Acme
+                notes: null
+                lineItems:
+                - sku: HOSTING
+                  quantity: 2
               valueType: BOOLEAN
         - siteId: siteId
           path: path
@@ -29803,6 +30073,15 @@ components:
               dateValues:
               - dateValues
               - dateValues
+              jsonValue:
+                total: 1250.5
+                approved: true
+                customer:
+                  name: Acme
+                notes: null
+                lineItems:
+                - sku: HOSTING
+                  quantity: 2
               valueType: BOOLEAN
       properties:
         totalCount:
@@ -29848,6 +30127,15 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              notes: null
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         siteId:
@@ -29904,6 +30192,53 @@ components:
           type: object
       type: object
     FulltextAttribute:
+      allOf:
+      - $ref: "#/components/schemas/JsonAttributeValueExclusive"
+      - description: |-
+          Full-text attribute value. JSON attributes use valueType JSON and jsonValue containing
+          one JSON object. jsonValue cannot be combined with other attribute value forms.
+          The JSON object is stored directly in OpenSearch. Its field types are inferred using
+          the existing index mappings and must remain compatible across documents. Arrays must
+          contain values compatible with one OpenSearch field type; arbitrary mixed-type arrays
+          may fail indexing. The original object, including nulls and array order, is returned
+          by GET and search responses, while searches use native indexed field semantics.
+        example:
+          valueType: JSON
+          jsonValue:
+            total: 1250.5
+            approved: true
+            customer:
+              name: Acme
+            lineItems:
+            - sku: HOSTING
+              quantity: 2
+        properties:
+          insertedDate:
+            description: Inserted Timestamp
+            type: string
+          stringValues:
+            description: Attribute with string values
+            items:
+              type: string
+            type: array
+          numberValues:
+            description: Attribute with number values
+            items:
+              type: number
+            type: array
+          booleanValue:
+            description: Attribute with boolean value
+            type: boolean
+          dateValues:
+            description: Attribute with date values
+            items:
+              type: string
+            type: array
+          jsonValue:
+            $ref: "#/components/schemas/JsonAttributeValue"
+          valueType:
+            $ref: "#/components/schemas/AttributeValueType"
+        type: object
       example:
         insertedDate: insertedDate
         stringValues:
@@ -29916,31 +30251,16 @@ components:
         dateValues:
         - dateValues
         - dateValues
+        jsonValue:
+          total: 1250.5
+          approved: true
+          customer:
+            name: Acme
+          notes: null
+          lineItems:
+          - sku: HOSTING
+            quantity: 2
         valueType: BOOLEAN
-      properties:
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        stringValues:
-          description: Attribute with string values
-          items:
-            type: string
-          type: array
-        numberValues:
-          description: Attribute with number values
-          items:
-            type: number
-          type: array
-        booleanValue:
-          description: Attribute with boolean value
-          type: boolean
-        dateValues:
-          description: Attribute with date values
-          items:
-            type: string
-          type: array
-        valueType:
-          $ref: "#/components/schemas/AttributeValueType"
       type: object
     QueryFulltextRequest:
       description: OpenSearch search API request (https://opensearch.org/docs/latest/opensearch/rest-api/search/)
@@ -30273,6 +30593,8 @@ components:
         - attributeKeys
       properties:
         attributeKeys:
+          description: Attribute keys that form the composite key. Attributes with
+            dataType JSON cannot be part of a composite key.
           items:
             type: string
           type: array
@@ -35923,6 +36245,11 @@ components:
         message:
           type: string
       type: object
+    JsonAttributeValue_not:
+      anyOf:
+      - enum:
+        - null
+        type: string
     JsonAttributeValueExclusive_not:
       allOf:
       - required:
@@ -35987,6 +36314,15 @@ components:
             $ref: "#/components/schemas/AddDocumentTag"
           type: array
       type: object
+    DocumentFulltextAttribute_not:
+      allOf:
+      - required:
+        - json
+      - anyOf:
+        - required:
+          - eq
+        - required:
+          - eqOr
     DocumentSearchAttribute_not:
       allOf:
       - required:

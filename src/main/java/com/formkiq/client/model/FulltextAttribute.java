@@ -31,7 +31,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -61,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * FulltextAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class FulltextAttribute {
   public static final String SERIALIZED_NAME_INSERTED_DATE = "insertedDate";
   @SerializedName(SERIALIZED_NAME_INSERTED_DATE)
@@ -88,6 +91,11 @@ public class FulltextAttribute {
   @SerializedName(SERIALIZED_NAME_DATE_VALUES)
   @javax.annotation.Nullable
   private List<String> dateValues = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_JSON_VALUE = "jsonValue";
+  @SerializedName(SERIALIZED_NAME_JSON_VALUE)
+  @javax.annotation.Nullable
+  private Map<String, Object> jsonValue;
 
   public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
   @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
@@ -220,6 +228,40 @@ public class FulltextAttribute {
   }
 
 
+  public FulltextAttribute jsonValue(@javax.annotation.Nullable Map<String, Object> jsonValue) {
+    this.jsonValue = jsonValue;
+    return this;
+  }
+
+  public FulltextAttribute putJsonValueItem(String key, Object jsonValueItem) {
+    if (this.jsonValue == null) {
+      this.jsonValue = new HashMap<>();
+    }
+    this.jsonValue.put(key, jsonValueItem);
+    return this;
+  }
+
+  /**
+   * One JSON object stored as a single attribute value. Arrays, scalars, and null are not accepted
+   * at the top level. Nested values may include objects, arrays, strings, numbers, booleans, and
+   * null. Empty objects and nested empty arrays are accepted. Object property order and original
+   * number formatting are not preserved. The complete stored DynamoDB item, including metadata and
+   * attribute names, must fit within 400 KB. Stored document nesting must not exceed 32 levels,
+   * including the wrapper. Numbers must fit within DynamoDB&#39;s supported range and 38 digits of
+   * precision.
+   * 
+   * @return jsonValue
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getJsonValue() {
+    return jsonValue;
+  }
+
+  public void setJsonValue(@javax.annotation.Nullable Map<String, Object> jsonValue) {
+    this.jsonValue = jsonValue;
+  }
+
+
   public FulltextAttribute valueType(@javax.annotation.Nullable AttributeValueType valueType) {
     this.valueType = valueType;
     return this;
@@ -255,13 +297,26 @@ public class FulltextAttribute {
         && Objects.equals(this.numberValues, fulltextAttribute.numberValues)
         && Objects.equals(this.booleanValue, fulltextAttribute.booleanValue)
         && Objects.equals(this.dateValues, fulltextAttribute.dateValues)
+        && Objects.equals(this.jsonValue, fulltextAttribute.jsonValue)
         && Objects.equals(this.valueType, fulltextAttribute.valueType);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
+        && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(insertedDate, stringValues, numberValues, booleanValue, dateValues,
-        valueType);
+        jsonValue, valueType);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
@@ -273,6 +328,7 @@ public class FulltextAttribute {
     sb.append("    numberValues: ").append(toIndentedString(numberValues)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
     sb.append("    dateValues: ").append(toIndentedString(dateValues)).append("\n");
+    sb.append("    jsonValue: ").append(toIndentedString(jsonValue)).append("\n");
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -292,7 +348,7 @@ public class FulltextAttribute {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("insertedDate", "stringValues",
-        "numberValues", "booleanValue", "dateValues", "valueType"));
+        "numberValues", "booleanValue", "dateValues", "jsonValue", "valueType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -357,6 +413,7 @@ public class FulltextAttribute {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

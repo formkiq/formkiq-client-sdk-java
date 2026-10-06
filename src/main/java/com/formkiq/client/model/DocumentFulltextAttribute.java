@@ -22,6 +22,7 @@ package com.formkiq.client.model;
 
 import java.util.Objects;
 import com.formkiq.client.model.DocumentFulltextAttributeEq;
+import com.formkiq.client.model.JsonAttributeSearchFilter;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -57,11 +58,19 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * DocumentFulltextAttribute
+ * Full-text attribute search criteria. Use eq or eqOr for scalar attributes and json for nested
+ * fields of JSON attributes. json cannot be combined with eq or eqOr. To compare multiple paths in
+ * one JSON attribute, use separate criteria with the same key. JSON searches use native OpenSearch
+ * indexes. Property paths through arrays match any element; array positions are not supported, and
+ * criteria may match different elements. Dotted property names use OpenSearch field-path semantics.
+ * Field types are inferred from stored values and must remain compatible across documents.
+ * Date-like strings may be indexed as dates, and numeric comparisons use the inferred numeric
+ * precision. Exact string and prefix searches use keyword fields; the default dynamic mapping does
+ * not index strings longer than 256 characters in keyword fields.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class DocumentFulltextAttribute {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
@@ -72,6 +81,11 @@ public class DocumentFulltextAttribute {
   @SerializedName(SERIALIZED_NAME_EQ_OR)
   @javax.annotation.Nullable
   private List<DocumentFulltextAttributeEq> eqOr = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_JSON = "json";
+  @SerializedName(SERIALIZED_NAME_JSON)
+  @javax.annotation.Nullable
+  private JsonAttributeSearchFilter json;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -115,7 +129,7 @@ public class DocumentFulltextAttribute {
   }
 
   /**
-   * Searches for ANY strings that eq
+   * Searches for any of the supplied typed attribute values
    * 
    * @return eqOr
    */
@@ -129,13 +143,33 @@ public class DocumentFulltextAttribute {
   }
 
 
+  public DocumentFulltextAttribute json(@javax.annotation.Nullable JsonAttributeSearchFilter json) {
+    this.json = json;
+    return this;
+  }
+
+  /**
+   * Get json
+   * 
+   * @return json
+   */
+  @javax.annotation.Nullable
+  public JsonAttributeSearchFilter getJson() {
+    return json;
+  }
+
+  public void setJson(@javax.annotation.Nullable JsonAttributeSearchFilter json) {
+    this.json = json;
+  }
+
+
   public DocumentFulltextAttribute key(@javax.annotation.Nonnull String key) {
     this.key = key;
     return this;
   }
 
   /**
-   * Tag key to search
+   * Attribute key to search
    * 
    * @return key
    */
@@ -161,12 +195,13 @@ public class DocumentFulltextAttribute {
     DocumentFulltextAttribute documentFulltextAttribute = (DocumentFulltextAttribute) o;
     return Objects.equals(this.eq, documentFulltextAttribute.eq)
         && Objects.equals(this.eqOr, documentFulltextAttribute.eqOr)
+        && Objects.equals(this.json, documentFulltextAttribute.json)
         && Objects.equals(this.key, documentFulltextAttribute.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eq, eqOr, key);
+    return Objects.hash(eq, eqOr, json, key);
   }
 
   @Override
@@ -175,6 +210,7 @@ public class DocumentFulltextAttribute {
     sb.append("class DocumentFulltextAttribute {\n");
     sb.append("    eq: ").append(toIndentedString(eq)).append("\n");
     sb.append("    eqOr: ").append(toIndentedString(eqOr)).append("\n");
+    sb.append("    json: ").append(toIndentedString(json)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -193,7 +229,7 @@ public class DocumentFulltextAttribute {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("eq", "eqOr", "key"));
+    openapiFields = new HashSet<String>(Arrays.asList("eq", "eqOr", "json", "key"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("key"));
@@ -254,6 +290,10 @@ public class DocumentFulltextAttribute {
         } ;
       }
     }
+    // validate the optional field `json`
+    if (jsonObj.get("json") != null && !jsonObj.get("json").isJsonNull()) {
+      JsonAttributeSearchFilter.validateJsonElement(jsonObj.get("json"));
+    }
     if (!jsonObj.get("key").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
           "Expected the field `key` to be a primitive type in the JSON string but got `%s`",
@@ -261,6 +301,7 @@ public class DocumentFulltextAttribute {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

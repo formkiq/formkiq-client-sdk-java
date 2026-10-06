@@ -23,6 +23,7 @@ package com.formkiq.client.model;
 import java.util.Objects;
 import com.formkiq.client.model.AddDocumentNotificationRequest;
 import com.formkiq.client.model.DocumentReviewStatus;
+import com.formkiq.client.model.ReviewDecisionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,7 +32,10 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -61,8 +65,8 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentReview
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class AddDocumentReview {
   public static final String SERIALIZED_NAME_REVIEW_CATEGORY = "reviewCategory";
   @SerializedName(SERIALIZED_NAME_REVIEW_CATEGORY)
@@ -83,6 +87,12 @@ public class AddDocumentReview {
   @SerializedName(SERIALIZED_NAME_REQUIRED_DECISIONS)
   @javax.annotation.Nonnull
   private Long requiredDecisions;
+
+  public static final String SERIALIZED_NAME_COUNTED_DECISION_TYPES = "countedDecisionTypes";
+  @SerializedName(SERIALIZED_NAME_COUNTED_DECISION_TYPES)
+  @javax.annotation.Nullable
+  private Set<ReviewDecisionType> countedDecisionTypes =
+      new LinkedHashSet<>(Arrays.asList(ReviewDecisionType.APPROVAL));
 
   public static final String SERIALIZED_NAME_NOTIFICATIONS = "notifications";
   @SerializedName(SERIALIZED_NAME_NOTIFICATIONS)
@@ -174,7 +184,9 @@ public class AddDocumentReview {
   }
 
   /**
-   * Number of decisions required to complete the review minimum: 1
+   * Number of decision records matching countedDecisionTypes required to complete the review.
+   * Records count regardless of decision value or whether the same reviewer submitted earlier
+   * records. minimum: 0
    * 
    * @return requiredDecisions
    */
@@ -185,6 +197,40 @@ public class AddDocumentReview {
 
   public void setRequiredDecisions(@javax.annotation.Nonnull Long requiredDecisions) {
     this.requiredDecisions = requiredDecisions;
+  }
+
+
+  public AddDocumentReview countedDecisionTypes(
+      @javax.annotation.Nullable Set<ReviewDecisionType> countedDecisionTypes) {
+    this.countedDecisionTypes = countedDecisionTypes;
+    return this;
+  }
+
+  public AddDocumentReview addCountedDecisionTypesItem(
+      ReviewDecisionType countedDecisionTypesItem) {
+    if (this.countedDecisionTypes == null) {
+      this.countedDecisionTypes = new LinkedHashSet<>();
+    }
+    this.countedDecisionTypes.add(countedDecisionTypesItem);
+    return this;
+  }
+
+  /**
+   * Types of decision records that count toward requiredDecisions. Omission or null defaults to
+   * [APPROVAL]. This selects records to count and does not restrict which supported decision types
+   * may be submitted. Empty arrays, duplicate entries, unknown types, and non-string entries are
+   * rejected.
+   * 
+   * @return countedDecisionTypes
+   */
+  @javax.annotation.Nullable
+  public Set<ReviewDecisionType> getCountedDecisionTypes() {
+    return countedDecisionTypes;
+  }
+
+  public void setCountedDecisionTypes(
+      @javax.annotation.Nullable Set<ReviewDecisionType> countedDecisionTypes) {
+    this.countedDecisionTypes = countedDecisionTypes;
   }
 
 
@@ -253,14 +299,27 @@ public class AddDocumentReview {
         && Objects.equals(this.reviewStatus, addDocumentReview.reviewStatus)
         && Objects.equals(this.approvalGroups, addDocumentReview.approvalGroups)
         && Objects.equals(this.requiredDecisions, addDocumentReview.requiredDecisions)
+        && Objects.equals(this.countedDecisionTypes, addDocumentReview.countedDecisionTypes)
         && Objects.equals(this.notifications, addDocumentReview.notifications)
         && Objects.equals(this.comments, addDocumentReview.comments);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
+        && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(reviewCategory, reviewStatus, approvalGroups, requiredDecisions,
-        notifications, comments);
+        countedDecisionTypes, notifications, comments);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
@@ -271,6 +330,8 @@ public class AddDocumentReview {
     sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
     sb.append("    approvalGroups: ").append(toIndentedString(approvalGroups)).append("\n");
     sb.append("    requiredDecisions: ").append(toIndentedString(requiredDecisions)).append("\n");
+    sb.append("    countedDecisionTypes: ").append(toIndentedString(countedDecisionTypes))
+        .append("\n");
     sb.append("    notifications: ").append(toIndentedString(notifications)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("}");
@@ -290,8 +351,9 @@ public class AddDocumentReview {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("reviewCategory", "reviewStatus",
-        "approvalGroups", "requiredDecisions", "notifications", "comments"));
+    openapiFields =
+        new HashSet<String>(Arrays.asList("reviewCategory", "reviewStatus", "approvalGroups",
+            "requiredDecisions", "countedDecisionTypes", "notifications", "comments"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields =
@@ -349,6 +411,14 @@ public class AddDocumentReview {
           "Expected the field `approvalGroups` to be an array in the JSON string but got `%s`",
           jsonObj.get("approvalGroups").toString()));
     }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("countedDecisionTypes") != null
+        && !jsonObj.get("countedDecisionTypes").isJsonNull()
+        && !jsonObj.get("countedDecisionTypes").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `countedDecisionTypes` to be an array in the JSON string but got `%s`",
+          jsonObj.get("countedDecisionTypes").toString()));
+    }
     if (jsonObj.get("notifications") != null && !jsonObj.get("notifications").isJsonNull()) {
       JsonArray jsonArraynotifications = jsonObj.getAsJsonArray("notifications");
       if (jsonArraynotifications != null) {
@@ -373,6 +443,7 @@ public class AddDocumentReview {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

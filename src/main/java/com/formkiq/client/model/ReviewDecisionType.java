@@ -31,7 +31,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets ReviewDecisionType
+ * Decision type. APPROVAL identifies an approval-type response; the separate decision value
+ * represents its outcome and may be positive or negative.
  */
 @JsonAdapter(ReviewDecisionType.Adapter.class)
 public enum ReviewDecisionType {

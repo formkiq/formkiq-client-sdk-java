@@ -30,7 +30,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -86,6 +89,14 @@ public class FulltextAttributeTest {
   @Test
   public void dateValuesTest() {
     // TODO: test dateValues
+  }
+
+  /**
+   * Test the property 'jsonValue'
+   */
+  @Test
+  public void jsonValueTest() {
+    // TODO: test jsonValue
   }
 
   /**

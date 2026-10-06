@@ -63,8 +63,8 @@ import com.formkiq.client.invoker.JSON;
  * supplied.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class DocumentSearchMatchAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -169,6 +169,9 @@ public class DocumentSearchMatchAttribute {
    * positions. Examples: $.customer.name, $[&#39;customer.name&#39;], and $.lineItems[0].quantity.
    * Quoted names may escape characters using a backslash. At least one property or array position
    * is required. Wildcards, recursive descent, slices, and filter expressions are not supported.
+   * For /searchFulltext, only property paths are supported: $.lineItems.sku matches any array
+   * element, while $.lineItems[0].sku is rejected. Dotted property names are treated as OpenSearch
+   * field paths rather than distinct literal keys.
    * 
    * @return jsonPath
    */
@@ -389,6 +392,7 @@ public class DocumentSearchMatchAttribute {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

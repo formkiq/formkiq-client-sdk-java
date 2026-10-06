@@ -21,7 +21,6 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
-import com.formkiq.client.model.JsonAttributeSearchValue;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,12 +59,17 @@ import com.formkiq.client.invoker.JSON;
 /**
  * Compare a nested scalar field of an attribute defined with dataType JSON. A path and at least one
  * field comparison are required. All supplied predicates are combined with AND; eqOr matches any
- * supplied value. beginsWith applies to string fields and gt/gte/lt/lte apply to numeric fields.
- * The legacy range operator is not supported inside a json filter.
+ * supplied value. eq and eqOr accept strings and match string fields or boolean fields represented
+ * by the lowercase strings \&quot;true\&quot; and \&quot;false\&quot;. Numeric fields do not match
+ * eq or eqOr; use numeric bounds instead. Missing fields, null, and objects do not match. Arrays do
+ * not match in /search; /searchFulltext can match scalar elements of arrays. beginsWith applies to
+ * string fields and gt/gte/lt/lte apply to numeric fields. The legacy range operator is not
+ * supported inside a json filter. /searchFulltext uses native OpenSearch field types and indexing
+ * limits as described by DocumentFulltextAttribute, including date detection and numeric precision.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-10-08T14:37:04.653818-05:00[America/Winnipeg]",
+    comments = "Generator version: 7.26.0")
 public class JsonAttributeSearchFilter {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -75,12 +79,12 @@ public class JsonAttributeSearchFilter {
   public static final String SERIALIZED_NAME_EQ = "eq";
   @SerializedName(SERIALIZED_NAME_EQ)
   @javax.annotation.Nullable
-  private JsonAttributeSearchValue eq;
+  private String eq;
 
   public static final String SERIALIZED_NAME_EQ_OR = "eqOr";
   @SerializedName(SERIALIZED_NAME_EQ_OR)
   @javax.annotation.Nullable
-  private List<JsonAttributeSearchValue> eqOr = new ArrayList<>();
+  private List<String> eqOr = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BEGINS_WITH = "beginsWith";
   @SerializedName(SERIALIZED_NAME_BEGINS_WITH)
@@ -120,6 +124,9 @@ public class JsonAttributeSearchFilter {
    * positions. Examples: $.customer.name, $[&#39;customer.name&#39;], and $.lineItems[0].quantity.
    * Quoted names may escape characters using a backslash. At least one property or array position
    * is required. Wildcards, recursive descent, slices, and filter expressions are not supported.
+   * For /searchFulltext, only property paths are supported: $.lineItems.sku matches any array
+   * element, while $.lineItems[0].sku is rejected. Dotted property names are treated as OpenSearch
+   * field paths rather than distinct literal keys.
    * 
    * @return path
    */
@@ -133,33 +140,32 @@ public class JsonAttributeSearchFilter {
   }
 
 
-  public JsonAttributeSearchFilter eq(@javax.annotation.Nullable JsonAttributeSearchValue eq) {
+  public JsonAttributeSearchFilter eq(@javax.annotation.Nullable String eq) {
     this.eq = eq;
     return this;
   }
 
   /**
-   * Get eq
+   * Match a JSON string field or a boolean field using \&quot;true\&quot; or \&quot;false\&quot;.
    * 
    * @return eq
    */
   @javax.annotation.Nullable
-  public JsonAttributeSearchValue getEq() {
+  public String getEq() {
     return eq;
   }
 
-  public void setEq(@javax.annotation.Nullable JsonAttributeSearchValue eq) {
+  public void setEq(@javax.annotation.Nullable String eq) {
     this.eq = eq;
   }
 
 
-  public JsonAttributeSearchFilter eqOr(
-      @javax.annotation.Nullable List<JsonAttributeSearchValue> eqOr) {
+  public JsonAttributeSearchFilter eqOr(@javax.annotation.Nullable List<String> eqOr) {
     this.eqOr = eqOr;
     return this;
   }
 
-  public JsonAttributeSearchFilter addEqOrItem(JsonAttributeSearchValue eqOrItem) {
+  public JsonAttributeSearchFilter addEqOrItem(String eqOrItem) {
     if (this.eqOr == null) {
       this.eqOr = new ArrayList<>();
     }
@@ -168,16 +174,17 @@ public class JsonAttributeSearchFilter {
   }
 
   /**
-   * Match the field against any provided string, number, or boolean without type coercion.
+   * Match a JSON string field or a boolean field against any provided string; use
+   * \&quot;true\&quot; or \&quot;false\&quot; for booleans.
    * 
    * @return eqOr
    */
   @javax.annotation.Nullable
-  public List<JsonAttributeSearchValue> getEqOr() {
+  public List<String> getEqOr() {
     return eqOr;
   }
 
-  public void setEqOr(@javax.annotation.Nullable List<JsonAttributeSearchValue> eqOr) {
+  public void setEqOr(@javax.annotation.Nullable List<String> eqOr) {
     this.eqOr = eqOr;
   }
 
@@ -383,25 +390,18 @@ public class JsonAttributeSearchFilter {
           "Expected the field `path` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("path").toString()));
     }
-    // validate the optional field `eq`
-    if (jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull()) {
-      JsonAttributeSearchValue.validateJsonElement(jsonObj.get("eq"));
+    if ((jsonObj.get("eq") != null && !jsonObj.get("eq").isJsonNull())
+        && !jsonObj.get("eq").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `eq` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("eq").toString()));
     }
-    if (jsonObj.get("eqOr") != null && !jsonObj.get("eqOr").isJsonNull()) {
-      JsonArray jsonArrayeqOr = jsonObj.getAsJsonArray("eqOr");
-      if (jsonArrayeqOr != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("eqOr").isJsonArray()) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-              "Expected the field `eqOr` to be an array in the JSON string but got `%s`",
-              jsonObj.get("eqOr").toString()));
-        }
-
-        // validate the optional field `eqOr` (array)
-        for (int i = 0; i < jsonArrayeqOr.size(); i++) {
-          JsonAttributeSearchValue.validateJsonElement(jsonArrayeqOr.get(i));
-        } ;
-      }
+    // ensure the optional json data is an array if present
+    if (jsonObj.get("eqOr") != null && !jsonObj.get("eqOr").isJsonNull()
+        && !jsonObj.get("eqOr").isJsonArray()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `eqOr` to be an array in the JSON string but got `%s`",
+          jsonObj.get("eqOr").toString()));
     }
     if ((jsonObj.get("beginsWith") != null && !jsonObj.get("beginsWith").isJsonNull())
         && !jsonObj.get("beginsWith").isJsonPrimitive()) {
@@ -411,6 +411,7 @@ public class JsonAttributeSearchFilter {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

@@ -48,14 +48,14 @@ public class DocumentSearchApiTest {
    * can be filtered to only check certain documentIds (up to 100 documentIds accepted). If using
    * Enteprise Composite Keys feature then multiple tag(s) can be searched for. For attributes
    * defined with dataType JSON, use an attribute criterion&#39;s json filter with a path to compare
-   * a nested field. Equality values inside json retain their JSON string, number, or boolean type.
-   * Numeric bounds inside json use gt, gte, lt, and lte. Existing attribute eq and eqOr operators
-   * continue to accept strings. Paths support object properties and explicit array positions;
-   * wildcard, recursive, and array any-element matching are not supported. Multiple conditions on
-   * different paths under the same attribute key are supported. All conditions must match the same
-   * document or artifact. JSON path filtering is applied after candidate records are read and does
-   * not reduce read capacity consumed for those candidates. A stored JSON value does not
-   * automatically create an index for its nested fields. Continue through empty filtered pages
+   * a nested field. The eq and eqOr operators accept strings, including inside json filters. Match
+   * JSON boolean fields using the strings \&quot;true\&quot; or \&quot;false\&quot;. Compare JSON
+   * numeric fields using gt, gte, lt, and lte. Paths support object properties and explicit array
+   * positions; wildcard, recursive, and array any-element matching are not supported. Multiple
+   * conditions on different paths under the same attribute key are supported. All conditions must
+   * match the same document or artifact. JSON path filtering is applied after candidate records are
+   * read and does not reduce read capacity consumed for those candidates. A stored JSON value does
+   * not automatically create an index for its nested fields. Continue through empty filtered pages
    * until the next token is absent; candidate and time-budget limits still apply. If Typesense is
    * enabled, full text search is supported through the \&quot;text\&quot; parameter. Full text
    * search will look for the text in the \&quot;content\&quot; and/or document

@@ -184,6 +184,7 @@ docs/DocumentConfigRetentionAndDisposition.md
 docs/DocumentFoldersApi.md
 docs/DocumentFulltextAttribute.md
 docs/DocumentFulltextAttributeEq.md
+docs/DocumentFulltextAttributeNot.md
 docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
@@ -364,8 +365,8 @@ docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
 docs/IntelligentDocumentProcessingApi.md
 docs/JsonAttributeSearchFilter.md
-docs/JsonAttributeSearchValue.md
 docs/JsonAttributeValueExclusiveNot.md
+docs/JsonAttributeValueNot.md
 docs/LocaleInfo.md
 docs/LocaleResourceType.md
 docs/MalwareEngine.md
@@ -817,6 +818,7 @@ src/main/java/com/formkiq/client/model/DocumentConfigDispositionAction.java
 src/main/java/com/formkiq/client/model/DocumentConfigRetentionAndDisposition.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttributeEq.java
+src/main/java/com/formkiq/client/model/DocumentFulltextAttributeNot.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
@@ -982,8 +984,8 @@ src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
 src/main/java/com/formkiq/client/model/JsonAttributeSearchFilter.java
-src/main/java/com/formkiq/client/model/JsonAttributeSearchValue.java
 src/main/java/com/formkiq/client/model/JsonAttributeValueExclusiveNot.java
+src/main/java/com/formkiq/client/model/JsonAttributeValueNot.java
 src/main/java/com/formkiq/client/model/LocaleInfo.java
 src/main/java/com/formkiq/client/model/LocaleResourceType.java
 src/main/java/com/formkiq/client/model/MalwareEngine.java
@@ -1389,6 +1391,7 @@ src/test/java/com/formkiq/client/model/DocumentConfigDispositionActionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigRetentionAndDispositionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
+src/test/java/com/formkiq/client/model/DocumentFulltextAttributeNotTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
@@ -1556,8 +1559,8 @@ src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeSearchFilterTest.java
-src/test/java/com/formkiq/client/model/JsonAttributeSearchValueTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeValueExclusiveNotTest.java
+src/test/java/com/formkiq/client/model/JsonAttributeValueNotTest.java
 src/test/java/com/formkiq/client/model/LocaleInfoTest.java
 src/test/java/com/formkiq/client/model/LocaleResourceTypeTest.java
 src/test/java/com/formkiq/client/model/MalwareEngineTest.java

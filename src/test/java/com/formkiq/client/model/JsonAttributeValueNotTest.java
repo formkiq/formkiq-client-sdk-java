@@ -20,22 +20,21 @@
 
 package com.formkiq.client.model;
 
-import java.math.BigDecimal;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for JsonAttributeSearchValue
+ * Model tests for JsonAttributeValueNot
  */
-public class JsonAttributeSearchValueTest {
-  private final JsonAttributeSearchValue model = new JsonAttributeSearchValue();
+public class JsonAttributeValueNotTest {
+  private final JsonAttributeValueNot model = new JsonAttributeValueNot();
 
   /**
-   * Model tests for JsonAttributeSearchValue
+   * Model tests for JsonAttributeValueNot
    */
   @Test
-  public void testJsonAttributeSearchValue() {
-    // TODO: test JsonAttributeSearchValue
+  public void testJsonAttributeValueNot() {
+    // TODO: test JsonAttributeValueNot
   }
 
 }
