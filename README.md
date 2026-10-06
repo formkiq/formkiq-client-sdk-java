@@ -3,8 +3,8 @@
 This is the official supported Java library for the FormKiQ API. 
 
 - API version: 1.19.2
-  - Build date: 2026-09-21T20:58:33.985600-05:00[America/Winnipeg]
-  - Generator version: 7.25.0
+  - Build date: 2026-11-10T20:25:30.194672-06:00[America/Winnipeg]
+  - Generator version: 7.27.0
 
 FormKiQ API: Document Management Platform API using OAuth(JWT) Authentication
 
@@ -254,6 +254,7 @@ Class | Method | HTTP request | Description
 *ESignatureApi* | [**addDocusignSenderView**](docs/ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request
 *ESignatureApi* | [**addEsignatureDocusignEvents**](docs/ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event
 *ESignatureApi* | [**getDocusignEnvelope**](docs/ESignatureApi.md#getDocusignEnvelope) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId} | Get Docusign envelope and recipient status
+*ESignatureApi* | [**getDocusignEnvelopeAuditEvents**](docs/ESignatureApi.md#getDocusignEnvelopeAuditEvents) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId}/auditEvents | Get DocuSign envelope audit events
 *ESignatureApi* | [**voidDocusignEnvelope**](docs/ESignatureApi.md#voidDocusignEnvelope) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/void | Void a DocuSign envelope
 *EntityApi* | [**addEntity**](docs/EntityApi.md#addEntity) | **POST** /entities/{entityTypeId} | Add New Entity
 *EntityApi* | [**addEntityType**](docs/EntityApi.md#addEntityType) | **POST** /entityTypes | Add New EntityType
@@ -342,6 +343,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | List OpenSearch snapshot repositories
 *SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site OpenSearch snapshot repository
 *SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | List site OpenSearch snapshots
+*SystemManagementApi* | [**getPermissionCatalog**](docs/SystemManagementApi.md#getPermissionCatalog) | **GET** /permissions/catalog | Get API permission catalog
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
@@ -431,7 +433,6 @@ Class | Method | HTTP request | Description
  - [AddDocumentResponse](docs/AddDocumentResponse.md)
  - [AddDocumentReview](docs/AddDocumentReview.md)
  - [AddDocumentReviewDecision](docs/AddDocumentReviewDecision.md)
- - [AddDocumentReviewDecision409Response](docs/AddDocumentReviewDecision409Response.md)
  - [AddDocumentReviewDecisionRequest](docs/AddDocumentReviewDecisionRequest.md)
  - [AddDocumentReviewDecisionResponse](docs/AddDocumentReviewDecisionResponse.md)
  - [AddDocumentReviewRequest](docs/AddDocumentReviewRequest.md)
@@ -509,7 +510,10 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
- - [ApiKeyPermission](docs/ApiKeyPermission.md)
+ - [ApiPermission](docs/ApiPermission.md)
+ - [ApiPermissionGrant](docs/ApiPermissionGrant.md)
+ - [ApiPermissionGroup](docs/ApiPermissionGroup.md)
+ - [ApiPermissionRoleType](docs/ApiPermissionRoleType.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeDataType](docs/AttributeDataType.md)
  - [AttributeSchemaCompositeKey](docs/AttributeSchemaCompositeKey.md)
@@ -528,6 +532,7 @@ Class | Method | HTTP request | Description
  - [DelegationTokenPermission](docs/DelegationTokenPermission.md)
  - [DelegationTokenPrincipal](docs/DelegationTokenPrincipal.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
+ - [DeleteDocument404Response](docs/DeleteDocument404Response.md)
  - [DeleteFolderResponse](docs/DeleteFolderResponse.md)
  - [DeleteFulltextResponse](docs/DeleteFulltextResponse.md)
  - [DeleteIndicesResponse](docs/DeleteIndicesResponse.md)
@@ -555,8 +560,10 @@ Class | Method | HTTP request | Description
  - [DocumentConfigContentTypes](docs/DocumentConfigContentTypes.md)
  - [DocumentConfigDispositionAction](docs/DocumentConfigDispositionAction.md)
  - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
+ - [DocumentDeleteType](docs/DocumentDeleteType.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
+ - [DocumentFulltextAttributeNot](docs/DocumentFulltextAttributeNot.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
@@ -602,6 +609,10 @@ Class | Method | HTTP request | Description
  - [DocusignConfig](docs/DocusignConfig.md)
  - [DocusignDateSignedTab](docs/DocusignDateSignedTab.md)
  - [DocusignDateTab](docs/DocusignDateTab.md)
+ - [DocusignEnvelopeAuditEvent](docs/DocusignEnvelopeAuditEvent.md)
+ - [DocusignEnvelopeAuditEventField](docs/DocusignEnvelopeAuditEventField.md)
+ - [DocusignEnvelopeAuditEventFieldErrorDetails](docs/DocusignEnvelopeAuditEventFieldErrorDetails.md)
+ - [DocusignEnvelopePaymentEvent](docs/DocusignEnvelopePaymentEvent.md)
  - [DocusignEnvelopeRecipient](docs/DocusignEnvelopeRecipient.md)
  - [DocusignEnvelopeRecipients](docs/DocusignEnvelopeRecipients.md)
  - [DocusignEnvelopeStatus](docs/DocusignEnvelopeStatus.md)
@@ -660,6 +671,7 @@ Class | Method | HTTP request | Description
  - [GetDocumentWorkflowResponse](docs/GetDocumentWorkflowResponse.md)
  - [GetDocumentWorkflowsResponse](docs/GetDocumentWorkflowsResponse.md)
  - [GetDocumentsResponse](docs/GetDocumentsResponse.md)
+ - [GetDocusignEnvelopeAuditEventsResponse](docs/GetDocusignEnvelopeAuditEventsResponse.md)
  - [GetDocusignEnvelopeResponse](docs/GetDocusignEnvelopeResponse.md)
  - [GetEntitiesResponse](docs/GetEntitiesResponse.md)
  - [GetEntityResponse](docs/GetEntityResponse.md)
@@ -686,6 +698,7 @@ Class | Method | HTTP request | Description
  - [GetOpenSearchIndiceResponse](docs/GetOpenSearchIndiceResponse.md)
  - [GetOpenSearchSnapshotRepositoryResponse](docs/GetOpenSearchSnapshotRepositoryResponse.md)
  - [GetOpenSearchSnapshotResponse](docs/GetOpenSearchSnapshotResponse.md)
+ - [GetPermissionCatalogResponse](docs/GetPermissionCatalogResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
  - [GetRuleResponse](docs/GetRuleResponse.md)
@@ -722,7 +735,6 @@ Class | Method | HTTP request | Description
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
  - [JsonAttributeSearchFilter](docs/JsonAttributeSearchFilter.md)
- - [JsonAttributeSearchValue](docs/JsonAttributeSearchValue.md)
  - [JsonAttributeValueExclusiveNot](docs/JsonAttributeValueExclusiveNot.md)
  - [LocaleInfo](docs/LocaleInfo.md)
  - [LocaleResourceType](docs/LocaleResourceType.md)
@@ -798,6 +810,9 @@ Class | Method | HTTP request | Description
  - [OpenSearchSnapshotShard](docs/OpenSearchSnapshotShard.md)
  - [PdfDocument](docs/PdfDocument.md)
  - [PdfDocumentField](docs/PdfDocumentField.md)
+ - [PermissionCatalogGroup](docs/PermissionCatalogGroup.md)
+ - [PermissionCatalogPermission](docs/PermissionCatalogPermission.md)
+ - [PermissionCatalogRoleType](docs/PermissionCatalogRoleType.md)
  - [PromoteDocumentArtifactRequest](docs/PromoteDocumentArtifactRequest.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
@@ -847,7 +862,6 @@ Class | Method | HTTP request | Description
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
- - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
  - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)

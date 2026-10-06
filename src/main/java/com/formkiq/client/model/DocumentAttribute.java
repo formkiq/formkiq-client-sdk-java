@@ -35,7 +35,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * DocumentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class DocumentAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -76,7 +75,7 @@ public class DocumentAttribute {
   public static final String SERIALIZED_NAME_JSON_VALUE = "jsonValue";
   @SerializedName(SERIALIZED_NAME_JSON_VALUE)
   @javax.annotation.Nullable
-  private Map<String, Object> jsonValue;
+  private Map<String, Object> jsonValue = new HashMap<>();
 
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -118,6 +117,11 @@ public class DocumentAttribute {
   @javax.annotation.Nullable
   private String insertedDate;
 
+  public static final String SERIALIZED_NAME_LAST_MODIFIED_DATE = "lastModifiedDate";
+  @SerializedName(SERIALIZED_NAME_LAST_MODIFIED_DATE)
+  @javax.annotation.Nullable
+  private String lastModifiedDate;
+
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   @javax.annotation.Nullable
@@ -139,6 +143,12 @@ public class DocumentAttribute {
   private List<Entity> entities = new ArrayList<>();
 
   public DocumentAttribute() {}
+
+  public DocumentAttribute(String insertedDate, String lastModifiedDate) {
+    this();
+    this.insertedDate = insertedDate;
+    this.lastModifiedDate = lastModifiedDate;
+  }
 
   public DocumentAttribute key(@javax.annotation.Nullable String key) {
     this.key = key;
@@ -358,13 +368,10 @@ public class DocumentAttribute {
   }
 
 
-  public DocumentAttribute insertedDate(@javax.annotation.Nullable String insertedDate) {
-    this.insertedDate = insertedDate;
-    return this;
-  }
-
   /**
-   * Inserted Timestamp
+   * Earliest insertion timestamp across the attribute&#39;s current values. Adding a value
+   * preserves this timestamp; removing values recomputes it from the remaining values. May be
+   * absent for older records.
    * 
    * @return insertedDate
    */
@@ -373,9 +380,21 @@ public class DocumentAttribute {
     return insertedDate;
   }
 
-  public void setInsertedDate(@javax.annotation.Nullable String insertedDate) {
-    this.insertedDate = insertedDate;
+
+
+  /**
+   * Latest modification timestamp across the attribute&#39;s current values. Removing values
+   * recomputes this timestamp from the remaining values; it does not track the time of removal. For
+   * older values without a modification timestamp, their insertion timestamp is used when
+   * available. May be absent when no timestamp is available.
+   * 
+   * @return lastModifiedDate
+   */
+  @javax.annotation.Nullable
+  public String getLastModifiedDate() {
+    return lastModifiedDate;
   }
+
 
 
   public DocumentAttribute userId(@javax.annotation.Nullable String userId) {
@@ -486,28 +505,18 @@ public class DocumentAttribute {
         && Objects.equals(this.dateValue, documentAttribute.dateValue)
         && Objects.equals(this.dateValues, documentAttribute.dateValues)
         && Objects.equals(this.insertedDate, documentAttribute.insertedDate)
+        && Objects.equals(this.lastModifiedDate, documentAttribute.lastModifiedDate)
         && Objects.equals(this.userId, documentAttribute.userId)
         && Objects.equals(this.valueType, documentAttribute.valueType)
         && Objects.equals(this.entity, documentAttribute.entity)
         && Objects.equals(this.entities, documentAttribute.entities);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
-        && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(key, jsonValue, stringValue, stringValues, numberValue, numberValues,
-        booleanValue, dateValue, dateValues, insertedDate, userId, valueType, entity, entities);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+        booleanValue, dateValue, dateValues, insertedDate, lastModifiedDate, userId, valueType,
+        entity, entities);
   }
 
   @Override
@@ -524,6 +533,7 @@ public class DocumentAttribute {
     sb.append("    dateValue: ").append(toIndentedString(dateValue)).append("\n");
     sb.append("    dateValues: ").append(toIndentedString(dateValues)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
@@ -547,7 +557,7 @@ public class DocumentAttribute {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("key", "jsonValue", "stringValue",
         "stringValues", "numberValue", "numberValues", "booleanValue", "dateValue", "dateValues",
-        "insertedDate", "userId", "valueType", "entity", "entities"));
+        "insertedDate", "lastModifiedDate", "userId", "valueType", "entity", "entities"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -624,6 +634,12 @@ public class DocumentAttribute {
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
+    if ((jsonObj.get("lastModifiedDate") != null && !jsonObj.get("lastModifiedDate").isJsonNull())
+        && !jsonObj.get("lastModifiedDate").isJsonPrimitive()) {
+      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+          "Expected the field `lastModifiedDate` to be a primitive type in the JSON string but got `%s`",
+          jsonObj.get("lastModifiedDate").toString()));
+    }
     if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull())
         && !jsonObj.get("userId").isJsonPrimitive()) {
       throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
@@ -656,6 +672,7 @@ public class DocumentAttribute {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

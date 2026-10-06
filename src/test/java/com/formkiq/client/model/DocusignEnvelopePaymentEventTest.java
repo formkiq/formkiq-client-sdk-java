@@ -31,26 +31,81 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AddDocumentReviewDecision409Response
+ * Model tests for DocusignEnvelopePaymentEvent
  */
-public class AddDocumentReviewDecision409ResponseTest {
-  private final AddDocumentReviewDecision409Response model =
-      new AddDocumentReviewDecision409Response();
+public class DocusignEnvelopePaymentEventTest {
+  private final DocusignEnvelopePaymentEvent model = new DocusignEnvelopePaymentEvent();
 
   /**
-   * Model tests for AddDocumentReviewDecision409Response
+   * Model tests for DocusignEnvelopePaymentEvent
    */
   @Test
-  public void testAddDocumentReviewDecision409Response() {
-    // TODO: test AddDocumentReviewDecision409Response
+  public void testDocusignEnvelopePaymentEvent() {
+    // TODO: test DocusignEnvelopePaymentEvent
   }
 
   /**
-   * Test the property 'message'
+   * Test the property 'accountId'
    */
   @Test
-  public void messageTest() {
-    // TODO: test message
+  public void accountIdTest() {
+    // TODO: test accountId
+  }
+
+  /**
+   * Test the property 'action'
+   */
+  @Test
+  public void actionTest() {
+    // TODO: test action
+  }
+
+  /**
+   * Test the property 'actorDisplayName'
+   */
+  @Test
+  public void actorDisplayNameTest() {
+    // TODO: test actorDisplayName
+  }
+
+  /**
+   * Test the property 'eventDescription'
+   */
+  @Test
+  public void eventDescriptionTest() {
+    // TODO: test eventDescription
+  }
+
+  /**
+   * Test the property 'eventType'
+   */
+  @Test
+  public void eventTypeTest() {
+    // TODO: test eventType
+  }
+
+  /**
+   * Test the property 'responsibleActor'
+   */
+  @Test
+  public void responsibleActorTest() {
+    // TODO: test responsibleActor
+  }
+
+  /**
+   * Test the property 'status'
+   */
+  @Test
+  public void statusTest() {
+    // TODO: test status
+  }
+
+  /**
+   * Test the property 'timestamp'
+   */
+  @Test
+  public void timestampTest() {
+    // TODO: test timestamp
   }
 
 }

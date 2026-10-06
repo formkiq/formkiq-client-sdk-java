@@ -201,11 +201,13 @@ public class DocumentActionsApi {
    * images to text | true or false | | LLMPROMPT | llmPromptEntityName | LLM Prompt Entity Name | |
    * LLMPROMPT | modelId | Override the LLM Prompt Entity model id for this action | |
    * DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION |
-   * llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM | checksumType | Checksum algorithm
-   * to calculate and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax
-   * | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine
-   * | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of
-   * keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * llmPromptEntityName | LLM Prompt Entity Name | | DELETE | deleteType | Deletion mode.
+   * CONTENT_ONLY removes the current S3 object while preserving document metadata. | SOFT_DELETE,
+   * HARD_DELETE, PURGE, CONTENT_ONLY | | CHECKSUM | checksumType | Checksum algorithm to calculate
+   * and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax | Maximum
+   * number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging
+   * Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of keywords |
+   * author,title,description | | WEBHOOK | url | Webhook URL |
    * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
@@ -270,11 +272,13 @@ public class DocumentActionsApi {
    * images to text | true or false | | LLMPROMPT | llmPromptEntityName | LLM Prompt Entity Name | |
    * LLMPROMPT | modelId | Override the LLM Prompt Entity model id for this action | |
    * DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION |
-   * llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM | checksumType | Checksum algorithm
-   * to calculate and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax
-   * | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine
-   * | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of
-   * keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * llmPromptEntityName | LLM Prompt Entity Name | | DELETE | deleteType | Deletion mode.
+   * CONTENT_ONLY removes the current S3 object while preserving document metadata. | SOFT_DELETE,
+   * HARD_DELETE, PURGE, CONTENT_ONLY | | CHECKSUM | checksumType | Checksum algorithm to calculate
+   * and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax | Maximum
+   * number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging
+   * Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of keywords |
+   * author,title,description | | WEBHOOK | url | Webhook URL |
    * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |
@@ -341,11 +345,13 @@ public class DocumentActionsApi {
    * convert images to text | true or false | | LLMPROMPT | llmPromptEntityName | LLM Prompt Entity
    * Name | | LLMPROMPT | modelId | Override the LLM Prompt Entity model id for this action | |
    * DATA_CLASSIFICATION | llmPromptEntityName | LLM Prompt Entity Name | | METADATA_EXTRACTION |
-   * llmPromptEntityName | LLM Prompt Entity Name | | CHECKSUM | checksumType | Checksum algorithm
-   * to calculate and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax
-   * | Maximum number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine
-   * | Tagging Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of
-   * keywords | author,title,description | | WEBHOOK | url | Webhook URL |
+   * llmPromptEntityName | LLM Prompt Entity Name | | DELETE | deleteType | Deletion mode.
+   * CONTENT_ONLY removes the current S3 object while preserving document metadata. | SOFT_DELETE,
+   * HARD_DELETE, PURGE, CONTENT_ONLY | | CHECKSUM | checksumType | Checksum algorithm to calculate
+   * and persist for the document | SHA1, SHA256, or SHA512 | | FULLTEXT | characterMax | Maximum
+   * number of characters to add to Fulltext destination | -1 | | DOCUMENTTAGGING | engine | Tagging
+   * Engine to use | chatgpt | | DOCUMENTTAGGING | tags | Comma-deliminted list of keywords |
+   * author,title,description | | WEBHOOK | url | Webhook URL |
    * https://yourdomain.com/webhook-endpoint | | NOTIFICATION | notificationType | Type of
    * Notification | email | | NOTIFICATION | notificationToCc | Notification Carbon Copy |
    * email@yourdomain.com | | NOTIFICATION | notificationToBcc | Notification Blind Carbon Copy |

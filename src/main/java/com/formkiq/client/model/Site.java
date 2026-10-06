@@ -21,8 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ApiPermissionGrant;
 import com.formkiq.client.model.SiteConfig;
-import com.formkiq.client.model.SiteGroupPermissions;
 import com.formkiq.client.model.SitePermission;
 import com.formkiq.client.model.SiteStatus;
 import com.formkiq.client.model.SiteUsage;
@@ -64,8 +64,8 @@ import com.formkiq.client.invoker.JSON;
  * Site
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class Site {
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
@@ -96,7 +96,7 @@ public class Site {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
   @javax.annotation.Nullable
-  private List<SiteGroupPermissions> permissions = new ArrayList<>();
+  private List<ApiPermissionGrant> permissions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPLOAD_EMAIL = "uploadEmail";
   @SerializedName(SERIALIZED_NAME_UPLOAD_EMAIL)
@@ -227,12 +227,12 @@ public class Site {
   }
 
 
-  public Site permissions(@javax.annotation.Nullable List<SiteGroupPermissions> permissions) {
+  public Site permissions(@javax.annotation.Nullable List<ApiPermissionGrant> permissions) {
     this.permissions = permissions;
     return this;
   }
 
-  public Site addPermissionsItem(SiteGroupPermissions permissionsItem) {
+  public Site addPermissionsItem(ApiPermissionGrant permissionsItem) {
     if (this.permissions == null) {
       this.permissions = new ArrayList<>();
     }
@@ -246,11 +246,11 @@ public class Site {
    * @return permissions
    */
   @javax.annotation.Nullable
-  public List<SiteGroupPermissions> getPermissions() {
+  public List<ApiPermissionGrant> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(@javax.annotation.Nullable List<SiteGroupPermissions> permissions) {
+  public void setPermissions(@javax.annotation.Nullable List<ApiPermissionGrant> permissions) {
     this.permissions = permissions;
   }
 
@@ -452,6 +452,7 @@ public class Site {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

@@ -21,13 +21,16 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.PermissionCatalogRoleType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,36 +57,45 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * AddDocumentReviewDecision409Response
+ * GetPermissionCatalogResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
-public class AddDocumentReviewDecision409Response {
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nullable
-  private String message;
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
+public class GetPermissionCatalogResponse {
+  public static final String SERIALIZED_NAME_ROLE_TYPES = "roleTypes";
+  @SerializedName(SERIALIZED_NAME_ROLE_TYPES)
+  @javax.annotation.Nonnull
+  private List<PermissionCatalogRoleType> roleTypes = new ArrayList<>();
 
-  public AddDocumentReviewDecision409Response() {}
+  public GetPermissionCatalogResponse() {}
 
-  public AddDocumentReviewDecision409Response message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public GetPermissionCatalogResponse roleTypes(
+      @javax.annotation.Nonnull List<PermissionCatalogRoleType> roleTypes) {
+    this.roleTypes = roleTypes;
+    return this;
+  }
+
+  public GetPermissionCatalogResponse addRoleTypesItem(PermissionCatalogRoleType roleTypesItem) {
+    if (this.roleTypes == null) {
+      this.roleTypes = new ArrayList<>();
+    }
+    this.roleTypes.add(roleTypesItem);
     return this;
   }
 
   /**
-   * Get message
+   * Supported role types and their permission groups
    * 
-   * @return message
+   * @return roleTypes
    */
-  @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  @javax.annotation.Nonnull
+  public List<PermissionCatalogRoleType> getRoleTypes() {
+    return roleTypes;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setRoleTypes(@javax.annotation.Nonnull List<PermissionCatalogRoleType> roleTypes) {
+    this.roleTypes = roleTypes;
   }
 
 
@@ -96,21 +108,20 @@ public class AddDocumentReviewDecision409Response {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddDocumentReviewDecision409Response addDocumentReviewDecision409Response =
-        (AddDocumentReviewDecision409Response) o;
-    return Objects.equals(this.message, addDocumentReviewDecision409Response.message);
+    GetPermissionCatalogResponse getPermissionCatalogResponse = (GetPermissionCatalogResponse) o;
+    return Objects.equals(this.roleTypes, getPermissionCatalogResponse.roleTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(roleTypes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddDocumentReviewDecision409Response {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class GetPermissionCatalogResponse {\n");
+    sb.append("    roleTypes: ").append(toIndentedString(roleTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -128,71 +139,83 @@ public class AddDocumentReviewDecision409Response {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("message"));
+    openapiFields = new HashSet<String>(Arrays.asList("roleTypes"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("roleTypes"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to
-   *         AddDocumentReviewDecision409Response
+   * @throws IOException if the JSON Element is invalid with respect to GetPermissionCatalogResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     if (jsonElement == null) {
-      if (!AddDocumentReviewDecision409Response.openapiRequiredFields.isEmpty()) { // has required
-                                                                                   // fields but
-                                                                                   // JSON element
-                                                                                   // is null
+      if (!GetPermissionCatalogResponse.openapiRequiredFields.isEmpty()) { // has required fields
+                                                                           // but JSON element is
+                                                                           // null
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The required field(s) %s in AddDocumentReviewDecision409Response is not found in the empty JSON string",
-            AddDocumentReviewDecision409Response.openapiRequiredFields.toString()));
+            "The required field(s) %s in GetPermissionCatalogResponse is not found in the empty JSON string",
+            GetPermissionCatalogResponse.openapiRequiredFields.toString()));
       }
     }
 
     Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
     // check to see if the JSON string contains additional fields
     for (Map.Entry<String, JsonElement> entry : entries) {
-      if (!AddDocumentReviewDecision409Response.openapiFields.contains(entry.getKey())) {
+      if (!GetPermissionCatalogResponse.openapiFields.contains(entry.getKey())) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-            "The field `%s` in the JSON string is not defined in the `AddDocumentReviewDecision409Response` properties. JSON: %s",
+            "The field `%s` in the JSON string is not defined in the `GetPermissionCatalogResponse` properties. JSON: %s",
             entry.getKey(), jsonElement.toString()));
       }
     }
+
+    // check to make sure all required properties/fields are present in the JSON string
+    for (String requiredField : GetPermissionCatalogResponse.openapiRequiredFields) {
+      if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "The required field `%s` is not found in the JSON string: %s", requiredField,
+            jsonElement.toString()));
+      }
+    }
     JsonObject jsonObj = jsonElement.getAsJsonObject();
-    if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull())
-        && !jsonObj.get("message").isJsonPrimitive()) {
-      throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
-          "Expected the field `message` to be a primitive type in the JSON string but got `%s`",
-          jsonObj.get("message").toString()));
+    if (jsonObj.get("roleTypes") != null) {
+      if (!jsonObj.get("roleTypes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT,
+            "Expected the field `roleTypes` to be an array in the JSON string but got `%s`",
+            jsonObj.get("roleTypes").toString()));
+      }
+      JsonArray jsonArrayroleTypes = jsonObj.getAsJsonArray("roleTypes");
+      // validate the required field `roleTypes` (array)
+      for (int i = 0; i < jsonArrayroleTypes.size(); i++) {
+        PermissionCatalogRoleType.validateJsonElement(jsonArrayroleTypes.get(i));
+      }
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!AddDocumentReviewDecision409Response.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'AddDocumentReviewDecision409Response' and its
-                     // subtypes
+      if (!GetPermissionCatalogResponse.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'GetPermissionCatalogResponse' and its subtypes
       }
       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<AddDocumentReviewDecision409Response> thisAdapter =
-          gson.getDelegateAdapter(this, TypeToken.get(AddDocumentReviewDecision409Response.class));
+      final TypeAdapter<GetPermissionCatalogResponse> thisAdapter =
+          gson.getDelegateAdapter(this, TypeToken.get(GetPermissionCatalogResponse.class));
 
-      return (TypeAdapter<T>) new TypeAdapter<AddDocumentReviewDecision409Response>() {
+      return (TypeAdapter<T>) new TypeAdapter<GetPermissionCatalogResponse>() {
         @Override
-        public void write(JsonWriter out, AddDocumentReviewDecision409Response value)
-            throws IOException {
+        public void write(JsonWriter out, GetPermissionCatalogResponse value) throws IOException {
           JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
           elementAdapter.write(out, obj);
         }
 
         @Override
-        public AddDocumentReviewDecision409Response read(JsonReader in) throws IOException {
+        public GetPermissionCatalogResponse read(JsonReader in) throws IOException {
           JsonElement jsonElement = elementAdapter.read(in);
           validateJsonElement(jsonElement);
           return thisAdapter.fromJsonTree(jsonElement);
@@ -203,20 +226,18 @@ public class AddDocumentReviewDecision409Response {
   }
 
   /**
-   * Create an instance of AddDocumentReviewDecision409Response given an JSON string
+   * Create an instance of GetPermissionCatalogResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AddDocumentReviewDecision409Response
-   * @throws IOException if the JSON string is invalid with respect to
-   *         AddDocumentReviewDecision409Response
+   * @return An instance of GetPermissionCatalogResponse
+   * @throws IOException if the JSON string is invalid with respect to GetPermissionCatalogResponse
    */
-  public static AddDocumentReviewDecision409Response fromJson(String jsonString)
-      throws IOException {
-    return JSON.getGson().fromJson(jsonString, AddDocumentReviewDecision409Response.class);
+  public static GetPermissionCatalogResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GetPermissionCatalogResponse.class);
   }
 
   /**
-   * Convert an instance of AddDocumentReviewDecision409Response to an JSON string
+   * Convert an instance of GetPermissionCatalogResponse to an JSON string
    *
    * @return JSON string
    */

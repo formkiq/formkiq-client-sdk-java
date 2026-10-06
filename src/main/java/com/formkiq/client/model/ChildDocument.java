@@ -61,8 +61,8 @@ import com.formkiq.client.invoker.JSON;
  * ChildDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class ChildDocument {
   public static final String SERIALIZED_NAME_PATH = "path";
   @SerializedName(SERIALIZED_NAME_PATH)
@@ -685,6 +685,7 @@ public class ChildDocument {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

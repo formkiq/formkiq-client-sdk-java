@@ -44,6 +44,7 @@ import com.formkiq.client.model.AddDocusignSenderViewRequest;
 import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DocusignEnvironment;
+import com.formkiq.client.model.GetDocusignEnvelopeAuditEventsResponse;
 import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import com.formkiq.client.model.VoidDocusignEnvelopeRequest;
@@ -1921,6 +1922,440 @@ public class ESignatureApi {
     okhttp3.Call localVarCall = getDocusignEnvelopeValidateBeforeCall(documentId, envelopeId,
         siteId, artifactId, environment, _callback);
     Type localVarReturnType = new TypeToken<GetDocusignEnvelopeResponse>() {}.getType();
+    localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+    return localVarCall;
+  }
+
+  /**
+   * Build call for getDocusignEnvelopeAuditEvents
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Must match the environment in which the envelope
+   *        was created. (optional)
+   * @param _callback Callback for upload/download progress
+   * @return Call to execute
+   * @throws ApiException If fail to serialize the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope audit history returned unchanged</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        * Cache-Control - Prevents caching of the envelope audit history <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Read access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes list audit events API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/listauditevents/">Get
+   *      DocuSign envelope audit events Documentation</a>
+   */
+  public okhttp3.Call getDocusignEnvelopeAuditEventsCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    String basePath = null;
+    // Operation Servers
+    String[] localBasePaths = new String[] {};
+
+    // Determine Base Path to Use
+    if (localCustomBaseUrl != null) {
+      basePath = localCustomBaseUrl;
+    } else if (localBasePaths.length > 0) {
+      basePath = localBasePaths[localHostIndex];
+    } else {
+      basePath = null;
+    }
+
+    Object localVarPostBody = null;
+
+    // create path and map variables
+    String localVarPath = "/esignature/docusign/{documentId}/envelopes/{envelopeId}/auditEvents"
+        .replace("{" + "documentId" + "}", localVarApiClient.escapeString(documentId.toString()))
+        .replace("{" + "envelopeId" + "}", localVarApiClient.escapeString(envelopeId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    if (siteId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("siteId", siteId));
+    }
+
+    if (artifactId != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("artifactId", artifactId));
+    }
+
+    if (environment != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
+    }
+
+    final String[] localVarAccepts = {"application/json"};
+    final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) {
+      localVarHeaderParams.put("Accept", localVarAccept);
+    }
+
+    final String[] localVarContentTypes = {};
+    final String localVarContentType =
+        localVarApiClient.selectHeaderContentType(localVarContentTypes);
+    if (localVarContentType != null) {
+      localVarHeaderParams.put("Content-Type", localVarContentType);
+    }
+
+    String[] localVarAuthNames = new String[] {"AWS4Auth"};
+    return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams,
+        localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams,
+        localVarFormParams, localVarAuthNames, _callback);
+  }
+
+  @SuppressWarnings("rawtypes")
+  private okhttp3.Call getDocusignEnvelopeAuditEventsValidateBeforeCall(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment, final ApiCallback _callback)
+      throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'documentId' when calling getDocusignEnvelopeAuditEvents(Async)");
+    }
+
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(
+          "Missing the required parameter 'envelopeId' when calling getDocusignEnvelopeAuditEvents(Async)");
+    }
+
+    return getDocusignEnvelopeAuditEventsCall(documentId, envelopeId, siteId, artifactId,
+        environment, _callback);
+
+  }
+
+  /**
+   * Get DocuSign envelope audit events Retrieves the audit history recorded by DocuSign for an
+   * associated envelope; available as an Add-On Module. Requires read access to the selected
+   * document or artifact and validates its stored envelope association before contacting DocuSign.
+   * Calls GET /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events, resolving the
+   * account, base URI, and OAuth token through the site&#39;s existing integration. Returns
+   * DocuSign&#39;s JSON unchanged, including auditEvents, paymentEvents, and any additional fields,
+   * without a FormKiQ wrapper. Includes reminder and resend events when recorded by DocuSign; this
+   * history does not guarantee that every reminder is recorded or confirm inbox delivery. Reminder
+   * and resend webhook subscriptions are separate from this operation.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Must match the environment in which the envelope
+   *        was created. (optional)
+   * @return GetDocusignEnvelopeAuditEventsResponse
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope audit history returned unchanged</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        * Cache-Control - Prevents caching of the envelope audit history <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Read access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes list audit events API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/listauditevents/">Get
+   *      DocuSign envelope audit events Documentation</a>
+   */
+  public GetDocusignEnvelopeAuditEventsResponse getDocusignEnvelopeAuditEvents(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    ApiResponse<GetDocusignEnvelopeAuditEventsResponse> localVarResp =
+        getDocusignEnvelopeAuditEventsWithHttpInfo(documentId, envelopeId, siteId, artifactId,
+            environment);
+    return localVarResp.getData();
+  }
+
+  /**
+   * Get DocuSign envelope audit events Retrieves the audit history recorded by DocuSign for an
+   * associated envelope; available as an Add-On Module. Requires read access to the selected
+   * document or artifact and validates its stored envelope association before contacting DocuSign.
+   * Calls GET /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events, resolving the
+   * account, base URI, and OAuth token through the site&#39;s existing integration. Returns
+   * DocuSign&#39;s JSON unchanged, including auditEvents, paymentEvents, and any additional fields,
+   * without a FormKiQ wrapper. Includes reminder and resend events when recorded by DocuSign; this
+   * history does not guarantee that every reminder is recorded or confirm inbox delivery. Reminder
+   * and resend webhook subscriptions are separate from this operation.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Must match the environment in which the envelope
+   *        was created. (optional)
+   * @return ApiResponse&lt;GetDocusignEnvelopeAuditEventsResponse&gt;
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+   *         response body
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope audit history returned unchanged</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        * Cache-Control - Prevents caching of the envelope audit history <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Read access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes list audit events API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/listauditevents/">Get
+   *      DocuSign envelope audit events Documentation</a>
+   */
+  public ApiResponse<GetDocusignEnvelopeAuditEventsResponse> getDocusignEnvelopeAuditEventsWithHttpInfo(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment) throws ApiException {
+    okhttp3.Call localVarCall = getDocusignEnvelopeAuditEventsValidateBeforeCall(documentId,
+        envelopeId, siteId, artifactId, environment, null);
+    Type localVarReturnType = new TypeToken<GetDocusignEnvelopeAuditEventsResponse>() {}.getType();
+    return localVarApiClient.execute(localVarCall, localVarReturnType);
+  }
+
+  /**
+   * Get DocuSign envelope audit events (asynchronously) Retrieves the audit history recorded by
+   * DocuSign for an associated envelope; available as an Add-On Module. Requires read access to the
+   * selected document or artifact and validates its stored envelope association before contacting
+   * DocuSign. Calls GET /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events,
+   * resolving the account, base URI, and OAuth token through the site&#39;s existing integration.
+   * Returns DocuSign&#39;s JSON unchanged, including auditEvents, paymentEvents, and any additional
+   * fields, without a FormKiQ wrapper. Includes reminder and resend events when recorded by
+   * DocuSign; this history does not guarantee that every reminder is recorded or confirm inbox
+   * delivery. Reminder and resend webhook subscriptions are separate from this operation.
+   * 
+   * @param documentId Document Identifier (required)
+   * @param envelopeId Docusign Envelope Id (required)
+   * @param siteId Site Identifier (optional)
+   * @param artifactId Artifact Document Identifier (optional)
+   * @param environment DocuSign environment. Defaults to the site&#39;s docusignEnvironment;
+   *        required when the site has no default. Must match the environment in which the envelope
+   *        was created. (optional)
+   * @param _callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   * @http.response.details
+   *                        <table border="1">
+   *                        <caption>Response Details</caption>
+   *                        <tr>
+   *                        <td>Status Code</td>
+   *                        <td>Description</td>
+   *                        <td>Response Headers</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>200</td>
+   *                        <td>DocuSign envelope audit history returned unchanged</td>
+   *                        <td>* Access-Control-Allow-Origin - <br>
+   *                        * Access-Control-Allow-Methods - <br>
+   *                        * Access-Control-Allow-Headers - <br>
+   *                        * Cache-Control - Prevents caching of the envelope audit history <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid parameters or missing DocuSign configuration</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>401</td>
+   *                        <td>Authentication required</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>403</td>
+   *                        <td>Read access to the selected document or artifact is denied</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document, artifact, or associated DocuSign envelope not found</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>429</td>
+   *                        <td>DocuSign rate limit exceeded</td>
+   *                        <td>* Retry-After - Seconds to wait before another lookup <br>
+   *                        </td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>502</td>
+   *                        <td>DocuSign authentication failure, upstream error, or invalid response
+   *                        </td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>504</td>
+   *                        <td>DocuSign request timed out</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        </table>
+   *                        DocuSign Envelopes list audit events API
+   * @see <a href=
+   *      "https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/listauditevents/">Get
+   *      DocuSign envelope audit events Documentation</a>
+   */
+  public okhttp3.Call getDocusignEnvelopeAuditEventsAsync(
+      @javax.annotation.Nonnull String documentId, @javax.annotation.Nonnull String envelopeId,
+      @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
+      @javax.annotation.Nullable DocusignEnvironment environment,
+      final ApiCallback<GetDocusignEnvelopeAuditEventsResponse> _callback) throws ApiException {
+
+    okhttp3.Call localVarCall = getDocusignEnvelopeAuditEventsValidateBeforeCall(documentId,
+        envelopeId, siteId, artifactId, environment, _callback);
+    Type localVarReturnType = new TypeToken<GetDocusignEnvelopeAuditEventsResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;
   }

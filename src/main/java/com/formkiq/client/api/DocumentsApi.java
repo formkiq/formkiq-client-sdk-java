@@ -39,7 +39,9 @@ import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentSyncRequest;
 import com.formkiq.client.model.AddDocumentUploadRequest;
 import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.DeleteDocument404Response;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.DocumentDeleteType;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -1070,7 +1072,12 @@ public class DocumentsApi {
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param artifactId Artifact Document Identifier (optional)
-   * @param softDelete Whether to soft delete document (optional)
+   * @param softDelete Legacy deletion flag. Set true to soft delete the document, equivalent to
+   *        deleteType&#x3D;SOFT_DELETE. Existing requests remain supported. Ignored when deleteType
+   *        is supplied. (optional)
+   * @param deleteType Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults
+   *        to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated
+   *        softDelete parameter when both are supplied. (optional)
    * @param _callback Callback for upload/download progress
    * @return Call to execute
    * @throws ApiException If fail to serialize the request body object
@@ -1090,11 +1097,25 @@ public class DocumentsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid deletion mode.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or content not found. Content-only deletion returns this
+   *                        status when the current S3 object is absent, including repeated
+   *                        deletion, with the message \&quot;Document content for {documentId} not
+   *                        found.\&quot;</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public okhttp3.Call deleteDocumentCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
-      @javax.annotation.Nullable Boolean softDelete, final ApiCallback _callback)
+      @javax.annotation.Nullable Boolean softDelete,
+      @javax.annotation.Nullable DocumentDeleteType deleteType, final ApiCallback _callback)
       throws ApiException {
     String basePath = null;
     // Operation Servers
@@ -1133,6 +1154,10 @@ public class DocumentsApi {
       localVarQueryParams.addAll(localVarApiClient.parameterToPair("softDelete", softDelete));
     }
 
+    if (deleteType != null) {
+      localVarQueryParams.addAll(localVarApiClient.parameterToPair("deleteType", deleteType));
+    }
+
     final String[] localVarAccepts = {"application/json"};
     final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
     if (localVarAccept != null) {
@@ -1155,7 +1180,8 @@ public class DocumentsApi {
   @SuppressWarnings("rawtypes")
   private okhttp3.Call deleteDocumentValidateBeforeCall(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
-      @javax.annotation.Nullable Boolean softDelete, final ApiCallback _callback)
+      @javax.annotation.Nullable Boolean softDelete,
+      @javax.annotation.Nullable DocumentDeleteType deleteType, final ApiCallback _callback)
       throws ApiException {
     // verify the required parameter 'documentId' is set
     if (documentId == null) {
@@ -1163,22 +1189,34 @@ public class DocumentsApi {
           "Missing the required parameter 'documentId' when calling deleteDocument(Async)");
     }
 
-    return deleteDocumentCall(documentId, siteId, artifactId, softDelete, _callback);
+    return deleteDocumentCall(documentId, siteId, artifactId, softDelete, deleteType, _callback);
 
   }
 
   /**
-   * Delete document Delete a document&#39;s details, i.e., metadata, contents, etc SoftDelete: The
-   * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
-   * etc from being retrieved from all API requests. The document can be permanently deleted by
-   * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
-   * the soft deleted documents.
+   * Delete document Select the deletion behavior using deleteType (case-insensitive; surrounding
+   * whitespace is ignored): - SOFT_DELETE temporarily hides the document&#39;s metadata,
+   * attributes, and associated records from normal API requests. Restore the document using PUT
+   * /documents/{documentId}/restore, or list soft-deleted documents using GET
+   * /documents?softDeleted&#x3D;true. - HARD_DELETE deletes the document&#39;s metadata and current
+   * contents. - CONTENT_ONLY removes the current S3 object while retaining document metadata,
+   * attributes, tags, processing results, and workflow history. Existing S3 versions are retained.
+   * Returns 404 when the current content does not exist, including repeated content deletion. When
+   * no deletion option is supplied, the document&#39;s metadata and current contents are deleted.
+   * The deprecated softDelete parameter remains supported for backward compatibility. Without
+   * deleteType, softDelete&#x3D;true selects SOFT_DELETE. If softDelete is false or omitted,
+   * HARD_DELETE is used. When deleteType is supplied, it takes precedence and softDelete is
+   * ignored.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param artifactId Artifact Document Identifier (optional)
-   * @param softDelete Whether to soft delete document (optional)
+   * @param softDelete Legacy deletion flag. Set true to soft delete the document, equivalent to
+   *        deleteType&#x3D;SOFT_DELETE. Existing requests remain supported. Ignored when deleteType
+   *        is supplied. (optional)
+   * @param deleteType Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults
+   *        to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated
+   *        softDelete parameter when both are supplied. (optional)
    * @return DeleteResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1198,28 +1236,54 @@ public class DocumentsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid deletion mode.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or content not found. Content-only deletion returns this
+   *                        status when the current S3 object is absent, including repeated
+   *                        deletion, with the message \&quot;Document content for {documentId} not
+   *                        found.\&quot;</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public DeleteResponse deleteDocument(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
-      @javax.annotation.Nullable Boolean softDelete) throws ApiException {
+      @javax.annotation.Nullable Boolean softDelete,
+      @javax.annotation.Nullable DocumentDeleteType deleteType) throws ApiException {
     ApiResponse<DeleteResponse> localVarResp =
-        deleteDocumentWithHttpInfo(documentId, siteId, artifactId, softDelete);
+        deleteDocumentWithHttpInfo(documentId, siteId, artifactId, softDelete, deleteType);
     return localVarResp.getData();
   }
 
   /**
-   * Delete document Delete a document&#39;s details, i.e., metadata, contents, etc SoftDelete: The
-   * SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes,
-   * etc from being retrieved from all API requests. The document can be permanently deleted by
-   * calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
-   * the soft deleted documents.
+   * Delete document Select the deletion behavior using deleteType (case-insensitive; surrounding
+   * whitespace is ignored): - SOFT_DELETE temporarily hides the document&#39;s metadata,
+   * attributes, and associated records from normal API requests. Restore the document using PUT
+   * /documents/{documentId}/restore, or list soft-deleted documents using GET
+   * /documents?softDeleted&#x3D;true. - HARD_DELETE deletes the document&#39;s metadata and current
+   * contents. - CONTENT_ONLY removes the current S3 object while retaining document metadata,
+   * attributes, tags, processing results, and workflow history. Existing S3 versions are retained.
+   * Returns 404 when the current content does not exist, including repeated content deletion. When
+   * no deletion option is supplied, the document&#39;s metadata and current contents are deleted.
+   * The deprecated softDelete parameter remains supported for backward compatibility. Without
+   * deleteType, softDelete&#x3D;true selects SOFT_DELETE. If softDelete is false or omitted,
+   * HARD_DELETE is used. When deleteType is supplied, it takes precedence and softDelete is
+   * ignored.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param artifactId Artifact Document Identifier (optional)
-   * @param softDelete Whether to soft delete document (optional)
+   * @param softDelete Legacy deletion flag. Set true to soft delete the document, equivalent to
+   *        deleteType&#x3D;SOFT_DELETE. Existing requests remain supported. Ignored when deleteType
+   *        is supplied. (optional)
+   * @param deleteType Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults
+   *        to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated
+   *        softDelete parameter when both are supplied. (optional)
    * @return ApiResponse&lt;DeleteResponse&gt;
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
    *         response body
@@ -1239,30 +1303,55 @@ public class DocumentsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid deletion mode.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or content not found. Content-only deletion returns this
+   *                        status when the current S3 object is absent, including repeated
+   *                        deletion, with the message \&quot;Document content for {documentId} not
+   *                        found.\&quot;</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public ApiResponse<DeleteResponse> deleteDocumentWithHttpInfo(
       @javax.annotation.Nonnull String documentId, @javax.annotation.Nullable String siteId,
-      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable Boolean softDelete)
-      throws ApiException {
-    okhttp3.Call localVarCall =
-        deleteDocumentValidateBeforeCall(documentId, siteId, artifactId, softDelete, null);
+      @javax.annotation.Nullable String artifactId, @javax.annotation.Nullable Boolean softDelete,
+      @javax.annotation.Nullable DocumentDeleteType deleteType) throws ApiException {
+    okhttp3.Call localVarCall = deleteDocumentValidateBeforeCall(documentId, siteId, artifactId,
+        softDelete, deleteType, null);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     return localVarApiClient.execute(localVarCall, localVarReturnType);
   }
 
   /**
-   * Delete document (asynchronously) Delete a document&#39;s details, i.e., metadata, contents, etc
-   * SoftDelete: The SoftDelete parameter allows for the temporary removal of a document&#39;s
-   * metadata, attributes, etc from being retrieved from all API requests. The document can be
-   * permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or
-   * restored using the PUT /documents/{documentId}/restore. Only the GET
-   * /documents?softDeleted&#x3D;true will return all the soft deleted documents.
+   * Delete document (asynchronously) Select the deletion behavior using deleteType
+   * (case-insensitive; surrounding whitespace is ignored): - SOFT_DELETE temporarily hides the
+   * document&#39;s metadata, attributes, and associated records from normal API requests. Restore
+   * the document using PUT /documents/{documentId}/restore, or list soft-deleted documents using
+   * GET /documents?softDeleted&#x3D;true. - HARD_DELETE deletes the document&#39;s metadata and
+   * current contents. - CONTENT_ONLY removes the current S3 object while retaining document
+   * metadata, attributes, tags, processing results, and workflow history. Existing S3 versions are
+   * retained. Returns 404 when the current content does not exist, including repeated content
+   * deletion. When no deletion option is supplied, the document&#39;s metadata and current contents
+   * are deleted. The deprecated softDelete parameter remains supported for backward compatibility.
+   * Without deleteType, softDelete&#x3D;true selects SOFT_DELETE. If softDelete is false or
+   * omitted, HARD_DELETE is used. When deleteType is supplied, it takes precedence and softDelete
+   * is ignored.
    * 
    * @param documentId Document Identifier (required)
    * @param siteId Site Identifier (optional)
    * @param artifactId Artifact Document Identifier (optional)
-   * @param softDelete Whether to soft delete document (optional)
+   * @param softDelete Legacy deletion flag. Set true to soft delete the document, equivalent to
+   *        deleteType&#x3D;SOFT_DELETE. Existing requests remain supported. Ignored when deleteType
+   *        is supplied. (optional)
+   * @param deleteType Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults
+   *        to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated
+   *        softDelete parameter when both are supplied. (optional)
    * @param _callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1282,15 +1371,29 @@ public class DocumentsApi {
    *                        * Access-Control-Allow-Headers - <br>
    *                        </td>
    *                        </tr>
+   *                        <tr>
+   *                        <td>400</td>
+   *                        <td>Invalid deletion mode.</td>
+   *                        <td>-</td>
+   *                        </tr>
+   *                        <tr>
+   *                        <td>404</td>
+   *                        <td>Document or content not found. Content-only deletion returns this
+   *                        status when the current S3 object is absent, including repeated
+   *                        deletion, with the message \&quot;Document content for {documentId} not
+   *                        found.\&quot;</td>
+   *                        <td>-</td>
+   *                        </tr>
    *                        </table>
    */
   public okhttp3.Call deleteDocumentAsync(@javax.annotation.Nonnull String documentId,
       @javax.annotation.Nullable String siteId, @javax.annotation.Nullable String artifactId,
-      @javax.annotation.Nullable Boolean softDelete, final ApiCallback<DeleteResponse> _callback)
-      throws ApiException {
+      @javax.annotation.Nullable Boolean softDelete,
+      @javax.annotation.Nullable DocumentDeleteType deleteType,
+      final ApiCallback<DeleteResponse> _callback) throws ApiException {
 
-    okhttp3.Call localVarCall =
-        deleteDocumentValidateBeforeCall(documentId, siteId, artifactId, softDelete, _callback);
+    okhttp3.Call localVarCall = deleteDocumentValidateBeforeCall(documentId, siteId, artifactId,
+        softDelete, deleteType, _callback);
     Type localVarReturnType = new TypeToken<DeleteResponse>() {}.getType();
     localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
     return localVarCall;

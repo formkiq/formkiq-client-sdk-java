@@ -33,9 +33,10 @@ import com.google.gson.stream.JsonWriter;
 /**
  * Status of Document Review: - PENDING: Review has been created and is waiting for one or more
  * decisions. - IN_PROGRESS: Review has been claimed or at least one decision has been submitted,
- * but completion requirements are not yet satisfied. - COMPLETED: Completion requirements are
- * satisfied. - CANCELLED: Review was cancelled before completion. - SUPERSEDED: Review was replaced
- * by another review, usually because the artifact/document changed.
+ * but completion requirements are not yet satisfied. - COMPLETED: The required number of records
+ * matching countedDecisionTypes has been collected. This status does not imply that every decision
+ * approved the document. - CANCELLED: Review was cancelled before completion. - SUPERSEDED: Review
+ * was replaced by another review, usually because the artifact/document changed.
  */
 @JsonAdapter(DocumentReviewStatus.Adapter.class)
 public enum DocumentReviewStatus {

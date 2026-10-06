@@ -21,6 +21,7 @@
 package com.formkiq.client.model;
 
 import com.formkiq.client.model.DocumentFulltextAttributeEq;
+import com.formkiq.client.model.JsonAttributeSearchFilter;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -61,6 +62,14 @@ public class DocumentFulltextAttributeTest {
   @Test
   public void eqOrTest() {
     // TODO: test eqOr
+  }
+
+  /**
+   * Test the property 'json'
+   */
+  @Test
+  public void jsonTest() {
+    // TODO: test json
   }
 
   /**

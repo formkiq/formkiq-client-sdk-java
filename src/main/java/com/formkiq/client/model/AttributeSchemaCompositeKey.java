@@ -59,8 +59,8 @@ import com.formkiq.client.invoker.JSON;
  * AttributeSchemaCompositeKey
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class AttributeSchemaCompositeKey {
   public static final String SERIALIZED_NAME_ATTRIBUTE_KEYS = "attributeKeys";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_KEYS)
@@ -84,7 +84,8 @@ public class AttributeSchemaCompositeKey {
   }
 
   /**
-   * Get attributeKeys
+   * Attribute keys that form the composite key. Attributes with dataType JSON cannot be part of a
+   * composite key.
    * 
    * @return attributeKeys
    */
@@ -179,6 +180,7 @@ public class AttributeSchemaCompositeKey {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

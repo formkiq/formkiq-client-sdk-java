@@ -20,16 +20,17 @@
 
 package com.formkiq.client.model;
 
-import com.formkiq.client.model.SiteGroupPermissions;
+import com.formkiq.client.model.ApiPermissionGrant;
+import com.formkiq.client.model.ApiPermissionRoleType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,14 @@ public class SetGroupPermissionsRequestTest {
   @Test
   public void testSetGroupPermissionsRequest() {
     // TODO: test SetGroupPermissionsRequest
+  }
+
+  /**
+   * Test the property 'roleType'
+   */
+  @Test
+  public void roleTypeTest() {
+    // TODO: test roleType
   }
 
   /**

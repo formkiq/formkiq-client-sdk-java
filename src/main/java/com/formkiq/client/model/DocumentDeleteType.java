@@ -31,22 +31,23 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * List of API permissions (defaults to READ / WRITE / DELETE)
+ * Deletion mode for DELETE /documents/{documentId}. SOFT_DELETE temporarily hides the document
+ * until restored. HARD_DELETE deletes document metadata and current contents. CONTENT_ONLY deletes
+ * the current S3 object while preserving document metadata and associated records. Existing S3
+ * versions are retained; this mode does not purge historical content.
  */
-@JsonAdapter(ApiKeyPermission.Adapter.class)
-public enum ApiKeyPermission {
+@JsonAdapter(DocumentDeleteType.Adapter.class)
+public enum DocumentDeleteType {
 
-  READ("READ"),
+  SOFT_DELETE("SOFT_DELETE"),
 
-  WRITE("WRITE"),
+  HARD_DELETE("HARD_DELETE"),
 
-  DELETE("DELETE"),
-
-  GOVERN("GOVERN");
+  CONTENT_ONLY("CONTENT_ONLY");
 
   private String value;
 
-  ApiKeyPermission(String value) {
+  DocumentDeleteType(String value) {
     this.value = value;
   }
 
@@ -59,8 +60,8 @@ public enum ApiKeyPermission {
     return String.valueOf(value);
   }
 
-  public static ApiKeyPermission fromValue(String value) {
-    for (ApiKeyPermission b : ApiKeyPermission.values()) {
+  public static DocumentDeleteType fromValue(String value) {
+    for (DocumentDeleteType b : DocumentDeleteType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -68,23 +69,23 @@ public enum ApiKeyPermission {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<ApiKeyPermission> {
+  public static class Adapter extends TypeAdapter<DocumentDeleteType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final ApiKeyPermission enumeration)
+    public void write(final JsonWriter jsonWriter, final DocumentDeleteType enumeration)
         throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public ApiKeyPermission read(final JsonReader jsonReader) throws IOException {
+    public DocumentDeleteType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return ApiKeyPermission.fromValue(value);
+      return DocumentDeleteType.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    ApiKeyPermission.fromValue(value);
+    DocumentDeleteType.fromValue(value);
   }
 }
 

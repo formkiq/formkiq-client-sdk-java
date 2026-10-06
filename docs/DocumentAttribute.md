@@ -16,7 +16,8 @@
 |**booleanValue** | **Boolean** | Attribute with boolean value |  [optional] |
 |**dateValue** | **String** | Attribute with date value |  [optional] |
 |**dateValues** | **List&lt;String&gt;** | Attribute with date values |  [optional] |
-|**insertedDate** | **String** | Inserted Timestamp |  [optional] |
+|**insertedDate** | **String** | Earliest insertion timestamp across the attribute&#39;s current values. Adding a value preserves this timestamp; removing values recomputes it from the remaining values. May be absent for older records. |  [optional] [readonly] |
+|**lastModifiedDate** | **String** | Latest modification timestamp across the attribute&#39;s current values. Removing values recomputes this timestamp from the remaining values; it does not track the time of removal. For older values without a modification timestamp, their insertion timestamp is used when available. May be absent when no timestamp is available. |  [optional] [readonly] |
 |**userId** | **String** | User who added attribute |  [optional] |
 |**valueType** | **AttributeValueType** |  |  [optional] |
 |**entity** | [**Entity**](Entity.md) |  |  [optional] |

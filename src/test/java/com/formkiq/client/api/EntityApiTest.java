@@ -55,7 +55,12 @@ public class EntityApiTest {
   /**
    * Add New Entity
    *
-   * Creates a Entity
+   * Creates an entity. Requires WRITE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * WRITE_REMINDER_POLICY for the PRESET ReminderPolicy type, or WRITE_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; WRITE_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -72,7 +77,11 @@ public class EntityApiTest {
   /**
    * Add New EntityType
    *
-   * Creates a Entity Type
+   * Creates an entity type. Requires WRITE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * WRITE_REMINDER_POLICY for the PRESET ReminderPolicy type, or WRITE_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; WRITE_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by the namespace and name in the
+   * request body.
    *
    * @throws ApiException if the Api call fails
    */
@@ -87,7 +96,12 @@ public class EntityApiTest {
   /**
    * Deletes Entity
    *
-   * Deletes Entity
+   * Deletes an entity. Requires DELETE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * DELETE_REMINDER_POLICY for the PRESET ReminderPolicy type, or DELETE_ENTITY for other types.
+   * The dedicated preset permission replaces the generic entity permission; DELETE_ENTITY alone
+   * does not authorize either dedicated preset. The preset is identified by its stored namespace
+   * and name, whether the request identifies the entity type by name or UUID. A CUSTOM type with
+   * the same name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -103,7 +117,8 @@ public class EntityApiTest {
   /**
    * Deletes Entity Attribute
    *
-   * Deletes Entity Attribute
+   * Deletes an entity attribute. Requires DELETE_ENTITY. Attributes cannot be removed from PRESET
+   * entities, including RetentionPolicy and ReminderPolicy.
    *
    * @throws ApiException if the Api call fails
    */
@@ -121,7 +136,12 @@ public class EntityApiTest {
   /**
    * Deletes Entity Type
    *
-   * Deletes Entity Type
+   * Deletes an entity type. Requires DELETE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * DELETE_REMINDER_POLICY for the PRESET ReminderPolicy type, or DELETE_ENTITY for other types.
+   * The dedicated preset permission replaces the generic entity permission; DELETE_ENTITY alone
+   * does not authorize either dedicated preset. The preset is identified by its stored namespace
+   * and name, whether the request identifies the entity type by name or UUID. A CUSTOM type with
+   * the same name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -136,7 +156,12 @@ public class EntityApiTest {
   /**
    * Get Entities
    *
-   * Returns a list of entities
+   * Returns a list of entities. Requires READ_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * READ_REMINDER_POLICY for the PRESET ReminderPolicy type, or READ_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; READ_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -154,7 +179,12 @@ public class EntityApiTest {
   /**
    * Get Entity
    *
-   * Returns a entity
+   * Returns an entity. Requires READ_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * READ_REMINDER_POLICY for the PRESET ReminderPolicy type, or READ_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; READ_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -171,7 +201,12 @@ public class EntityApiTest {
   /**
    * Get EntityType
    *
-   * Returns a entity type
+   * Returns an entity type. Requires READ_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * READ_REMINDER_POLICY for the PRESET ReminderPolicy type, or READ_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; READ_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -187,7 +222,7 @@ public class EntityApiTest {
   /**
    * Get EntityTypes
    *
-   * Returns a list of entity types
+   * Returns a list of entity types. Requires READ_ENTITY for both CUSTOM and PRESET namespaces.
    *
    * @throws ApiException if the Api call fails
    */
@@ -204,7 +239,12 @@ public class EntityApiTest {
   /**
    * Set Entity
    *
-   * Sets a Entity
+   * Sets an entity. Requires WRITE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * WRITE_REMINDER_POLICY for the PRESET ReminderPolicy type, or WRITE_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; WRITE_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */
@@ -224,7 +264,14 @@ public class EntityApiTest {
   /**
    * Set EntityType
    *
-   * Sets a Entity Type
+   * Sets an entity type. Existing PRESET entity type names cannot be changed, including when
+   * createIfMissing&#x3D;true. CUSTOM entity types can be renamed. Requires WRITE_RETENTION_POLICY
+   * for the PRESET RetentionPolicy type, WRITE_REMINDER_POLICY for the PRESET ReminderPolicy type,
+   * or WRITE_ENTITY for other types. The dedicated preset permission replaces the generic entity
+   * permission; WRITE_ENTITY alone does not authorize either dedicated preset. Existing types use
+   * their stored namespace and name. When creating a missing type, the namespace and name in the
+   * request body determine the permission. Updating an existing type must not bypass its current
+   * permission requirement.
    *
    * @throws ApiException if the Api call fails
    */
@@ -242,7 +289,12 @@ public class EntityApiTest {
   /**
    * Update Entity
    *
-   * Updates a Entity
+   * Updates an entity. Requires WRITE_RETENTION_POLICY for the PRESET RetentionPolicy type,
+   * WRITE_REMINDER_POLICY for the PRESET ReminderPolicy type, or WRITE_ENTITY for other types. The
+   * dedicated preset permission replaces the generic entity permission; WRITE_ENTITY alone does not
+   * authorize either dedicated preset. The preset is identified by its stored namespace and name,
+   * whether the request identifies the entity type by name or UUID. A CUSTOM type with the same
+   * name continues to use the generic entity permission.
    *
    * @throws ApiException if the Api call fails
    */

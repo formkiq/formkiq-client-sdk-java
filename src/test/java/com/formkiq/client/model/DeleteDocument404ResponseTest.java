@@ -20,20 +20,36 @@
 
 package com.formkiq.client.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for ApiKeyPermission
+ * Model tests for DeleteDocument404Response
  */
-public class ApiKeyPermissionTest {
+public class DeleteDocument404ResponseTest {
+  private final DeleteDocument404Response model = new DeleteDocument404Response();
+
   /**
-   * Model tests for ApiKeyPermission
+   * Model tests for DeleteDocument404Response
    */
   @Test
-  public void testApiKeyPermission() {
-    // TODO: test ApiKeyPermission
+  public void testDeleteDocument404Response() {
+    // TODO: test DeleteDocument404Response
+  }
+
+  /**
+   * Test the property 'message'
+   */
+  @Test
+  public void messageTest() {
+    // TODO: test message
   }
 
 }

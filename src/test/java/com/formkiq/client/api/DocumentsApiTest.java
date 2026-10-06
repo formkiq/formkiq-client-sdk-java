@@ -26,7 +26,9 @@ import com.formkiq.client.model.AddDocumentResponse;
 import com.formkiq.client.model.AddDocumentSyncRequest;
 import com.formkiq.client.model.AddDocumentUploadRequest;
 import com.formkiq.client.model.AddResponse;
+import com.formkiq.client.model.DeleteDocument404Response;
 import com.formkiq.client.model.DeleteResponse;
+import com.formkiq.client.model.DocumentDeleteType;
 import com.formkiq.client.model.DocumentsCompressRequest;
 import com.formkiq.client.model.DocumentsCompressResponse;
 import com.formkiq.client.model.GetDocumentContentResponse;
@@ -140,12 +142,19 @@ public class DocumentsApiTest {
   /**
    * Delete document
    *
-   * Delete a document&#39;s details, i.e., metadata, contents, etc SoftDelete: The SoftDelete
-   * parameter allows for the temporary removal of a document&#39;s metadata, attributes, etc from
-   * being retrieved from all API requests. The document can be permanently deleted by calling the
-   * DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT
-   * /documents/{documentId}/restore. Only the GET /documents?softDeleted&#x3D;true will return all
-   * the soft deleted documents.
+   * Select the deletion behavior using deleteType (case-insensitive; surrounding whitespace is
+   * ignored): - SOFT_DELETE temporarily hides the document&#39;s metadata, attributes, and
+   * associated records from normal API requests. Restore the document using PUT
+   * /documents/{documentId}/restore, or list soft-deleted documents using GET
+   * /documents?softDeleted&#x3D;true. - HARD_DELETE deletes the document&#39;s metadata and current
+   * contents. - CONTENT_ONLY removes the current S3 object while retaining document metadata,
+   * attributes, tags, processing results, and workflow history. Existing S3 versions are retained.
+   * Returns 404 when the current content does not exist, including repeated content deletion. When
+   * no deletion option is supplied, the document&#39;s metadata and current contents are deleted.
+   * The deprecated softDelete parameter remains supported for backward compatibility. Without
+   * deleteType, softDelete&#x3D;true selects SOFT_DELETE. If softDelete is false or omitted,
+   * HARD_DELETE is used. When deleteType is supplied, it takes precedence and softDelete is
+   * ignored.
    *
    * @throws ApiException if the Api call fails
    */
@@ -155,7 +164,9 @@ public class DocumentsApiTest {
     String siteId = null;
     String artifactId = null;
     Boolean softDelete = null;
-    DeleteResponse response = api.deleteDocument(documentId, siteId, artifactId, softDelete);
+    DocumentDeleteType deleteType = null;
+    DeleteResponse response =
+        api.deleteDocument(documentId, siteId, artifactId, softDelete, deleteType);
     // TODO: test validations
   }
 

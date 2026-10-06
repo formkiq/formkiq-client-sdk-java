@@ -31,7 +31,6 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -63,8 +62,8 @@ import com.formkiq.client.invoker.JSON;
  * supplied.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class DocumentSearchMatchAttribute {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -74,7 +73,7 @@ public class DocumentSearchMatchAttribute {
   public static final String SERIALIZED_NAME_JSON_VALUE = "jsonValue";
   @SerializedName(SERIALIZED_NAME_JSON_VALUE)
   @javax.annotation.Nullable
-  private Map<String, Object> jsonValue;
+  private Map<String, Object> jsonValue = new HashMap<>();
 
   public static final String SERIALIZED_NAME_JSON_PATH = "jsonPath";
   @SerializedName(SERIALIZED_NAME_JSON_PATH)
@@ -169,6 +168,9 @@ public class DocumentSearchMatchAttribute {
    * positions. Examples: $.customer.name, $[&#39;customer.name&#39;], and $.lineItems[0].quantity.
    * Quoted names may escape characters using a backslash. At least one property or array position
    * is required. Wildcards, recursive descent, slices, and filter expressions are not supported.
+   * For /searchFulltext, only property paths are supported: $.lineItems.sku matches any array
+   * element, while $.lineItems[0].sku is rejected. Dotted property names are treated as OpenSearch
+   * field paths rather than distinct literal keys.
    * 
    * @return jsonPath
    */
@@ -283,22 +285,10 @@ public class DocumentSearchMatchAttribute {
         && Objects.equals(this.dateValue, documentSearchMatchAttribute.dateValue);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
-        && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(key, jsonValue, jsonPath, stringValue, numberValue, booleanValue,
         dateValue);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
@@ -389,6 +379,7 @@ public class DocumentSearchMatchAttribute {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

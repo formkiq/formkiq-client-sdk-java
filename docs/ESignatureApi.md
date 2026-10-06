@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**addDocusignSenderView**](ESignatureApi.md#addDocusignSenderView) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender | Create Docusign Sender View request |
 | [**addEsignatureDocusignEvents**](ESignatureApi.md#addEsignatureDocusignEvents) | **POST** /esignature/docusign/events | Add E-signature event |
 | [**getDocusignEnvelope**](ESignatureApi.md#getDocusignEnvelope) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId} | Get Docusign envelope and recipient status |
+| [**getDocusignEnvelopeAuditEvents**](ESignatureApi.md#getDocusignEnvelopeAuditEvents) | **GET** /esignature/docusign/{documentId}/envelopes/{envelopeId}/auditEvents | Get DocuSign envelope audit events |
 | [**voidDocusignEnvelope**](ESignatureApi.md#voidDocusignEnvelope) | **POST** /esignature/docusign/{documentId}/envelopes/{envelopeId}/void | Void a DocuSign envelope |
 
 
@@ -452,6 +453,86 @@ No authorization required
 | **403** | Access to the selected document or artifact is denied |  -  |
 | **404** | Document, artifact, or associated DocuSign envelope not found |  -  |
 | **429** | Envelope polling or DocuSign rate limit exceeded |  * Retry-After - Seconds to wait before another lookup <br>  |
+| **502** | DocuSign authentication failure, upstream error, or invalid response |  -  |
+| **504** | DocuSign request timed out |  -  |
+
+<a id="getDocusignEnvelopeAuditEvents"></a>
+# **getDocusignEnvelopeAuditEvents**
+> GetDocusignEnvelopeAuditEventsResponse getDocusignEnvelopeAuditEvents(documentId, envelopeId, siteId, artifactId, environment)
+
+Get DocuSign envelope audit events
+
+Retrieves the audit history recorded by DocuSign for an associated envelope; available as an Add-On Module. Requires read access to the selected document or artifact and validates its stored envelope association before contacting DocuSign. Calls GET /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events, resolving the account, base URI, and OAuth token through the site&#39;s existing integration. Returns DocuSign&#39;s JSON unchanged, including auditEvents, paymentEvents, and any additional fields, without a FormKiQ wrapper. Includes reminder and resend events when recorded by DocuSign; this history does not guarantee that every reminder is recorded or confirm inbox delivery. Reminder and resend webhook subscriptions are separate from this operation.
+
+### Example
+```java
+// Import classes:
+import com.formkiq.client.invoker.ApiClient;
+import com.formkiq.client.invoker.ApiException;
+import com.formkiq.client.invoker.Configuration;
+import com.formkiq.client.invoker.auth.*;
+import com.formkiq.client.invoker.models.*;
+import com.formkiq.client.api.ESignatureApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    // Configure AWS Signature V4 authorization
+    defaultClient.setAWS4Configuration("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY", "REGION", "SERVICE")
+    
+    ESignatureApi apiInstance = new ESignatureApi(defaultClient);
+    String documentId = "documentId_example"; // String | Document Identifier
+    String envelopeId = "envelopeId_example"; // String | Docusign Envelope Id
+    String siteId = "siteId_example"; // String | Site Identifier
+    String artifactId = "artifactId_example"; // String | Artifact Document Identifier
+    DocusignEnvironment environment = DocusignEnvironment.fromValue("PRODUCTION"); // DocusignEnvironment | DocuSign environment. Defaults to the site's docusignEnvironment; required when the site has no default. Must match the environment in which the envelope was created.
+    try {
+      GetDocusignEnvelopeAuditEventsResponse result = apiInstance.getDocusignEnvelopeAuditEvents(documentId, envelopeId, siteId, artifactId, environment);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ESignatureApi#getDocusignEnvelopeAuditEvents");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| Document Identifier | |
+| **envelopeId** | **String**| Docusign Envelope Id | |
+| **siteId** | **String**| Site Identifier | [optional] |
+| **artifactId** | **String**| Artifact Document Identifier | [optional] |
+| **environment** | [**DocusignEnvironment**](.md)| DocuSign environment. Defaults to the site&#39;s docusignEnvironment; required when the site has no default. Must match the environment in which the envelope was created. | [optional] [enum: PRODUCTION, DEVELOPMENT] |
+
+### Return type
+
+[**GetDocusignEnvelopeAuditEventsResponse**](GetDocusignEnvelopeAuditEventsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | DocuSign envelope audit history returned unchanged |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  * Cache-Control - Prevents caching of the envelope audit history <br>  |
+| **400** | Invalid parameters or missing DocuSign configuration |  -  |
+| **401** | Authentication required |  -  |
+| **403** | Read access to the selected document or artifact is denied |  -  |
+| **404** | Document, artifact, or associated DocuSign envelope not found |  -  |
+| **429** | DocuSign rate limit exceeded |  * Retry-After - Seconds to wait before another lookup <br>  |
 | **502** | DocuSign authentication failure, upstream error, or invalid response |  -  |
 | **504** | DocuSign request timed out |  -  |
 

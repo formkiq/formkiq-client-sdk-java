@@ -313,11 +313,11 @@ No authorization required
 
 <a id="deleteDocument"></a>
 # **deleteDocument**
-> DeleteResponse deleteDocument(documentId, siteId, artifactId, softDelete)
+> DeleteResponse deleteDocument(documentId, siteId, artifactId, softDelete, deleteType)
 
 Delete document
 
-Delete a document&#39;s details, i.e., metadata, contents, etc  SoftDelete:  The SoftDelete parameter allows for the temporary removal of a document&#39;s metadata, attributes, etc from being retrieved from all API requests.  The document can be permanently deleted by calling the DELETE /documents/{documentId} with softDelete&#x3D;false or restored using the PUT /documents/{documentId}/restore.  Only the GET /documents?softDeleted&#x3D;true will return all the soft deleted documents.
+Select the deletion behavior using deleteType (case-insensitive; surrounding whitespace is ignored):  - SOFT_DELETE temporarily hides the document&#39;s metadata, attributes, and associated records   from normal API requests. Restore the document using PUT /documents/{documentId}/restore,   or list soft-deleted documents using GET /documents?softDeleted&#x3D;true. - HARD_DELETE deletes the document&#39;s metadata and current contents. - CONTENT_ONLY removes the current S3 object while retaining document metadata,   attributes, tags, processing results, and workflow history. Existing S3 versions are retained.   Returns 404 when the current content does not exist, including repeated content deletion.  When no deletion option is supplied, the document&#39;s metadata and current contents are deleted.  The deprecated softDelete parameter remains supported for backward compatibility. Without deleteType, softDelete&#x3D;true selects SOFT_DELETE. If softDelete is false or omitted, HARD_DELETE is used.  When deleteType is supplied, it takes precedence and softDelete is ignored.
 
 ### Example
 ```java
@@ -340,9 +340,10 @@ public class Example {
     String documentId = "documentId_example"; // String | Document Identifier
     String siteId = "siteId_example"; // String | Site Identifier
     String artifactId = "artifactId_example"; // String | Artifact Document Identifier
-    Boolean softDelete = true; // Boolean | Whether to soft delete document
+    Boolean softDelete = true; // Boolean | Legacy deletion flag. Set true to soft delete the document, equivalent to deleteType=SOFT_DELETE. Existing requests remain supported. Ignored when deleteType is supplied.
+    DocumentDeleteType deleteType = DocumentDeleteType.fromValue("SOFT_DELETE"); // DocumentDeleteType | Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated softDelete parameter when both are supplied.
     try {
-      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, artifactId, softDelete);
+      DeleteResponse result = apiInstance.deleteDocument(documentId, siteId, artifactId, softDelete, deleteType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentsApi#deleteDocument");
@@ -362,7 +363,8 @@ public class Example {
 | **documentId** | **String**| Document Identifier | |
 | **siteId** | **String**| Site Identifier | [optional] |
 | **artifactId** | **String**| Artifact Document Identifier | [optional] |
-| **softDelete** | **Boolean**| Whether to soft delete document | [optional] |
+| **softDelete** | **Boolean**| Legacy deletion flag. Set true to soft delete the document, equivalent to deleteType&#x3D;SOFT_DELETE. Existing requests remain supported. Ignored when deleteType is supplied. | [optional] |
+| **deleteType** | [**DocumentDeleteType**](.md)| Case-insensitive deletion mode; surrounding whitespace is ignored. Defaults to HARD_DELETE when no deletion option is supplied. Takes precedence over the deprecated softDelete parameter when both are supplied. | [optional] [enum: SOFT_DELETE, HARD_DELETE, CONTENT_ONLY] |
 
 ### Return type
 
@@ -381,6 +383,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | 200 OK |  * Access-Control-Allow-Origin -  <br>  * Access-Control-Allow-Methods -  <br>  * Access-Control-Allow-Headers -  <br>  |
+| **400** | Invalid deletion mode. |  -  |
+| **404** | Document or content not found. Content-only deletion returns this status when the current S3 object is absent, including repeated deletion, with the message \&quot;Document content for {documentId} not found.\&quot; |  -  |
 
 <a id="deleteDocumentCheckoutLegalHold"></a>
 # **deleteDocumentCheckoutLegalHold**

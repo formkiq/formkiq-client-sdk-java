@@ -33,7 +33,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -63,13 +62,13 @@ import com.formkiq.client.invoker.JSON;
  * AddDocumentAttributeValue
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class AddDocumentAttributeValue {
   public static final String SERIALIZED_NAME_JSON_VALUE = "jsonValue";
   @SerializedName(SERIALIZED_NAME_JSON_VALUE)
   @javax.annotation.Nullable
-  private Map<String, Object> jsonValue;
+  private Map<String, Object> jsonValue = new HashMap<>();
 
   public static final String SERIALIZED_NAME_STRING_VALUE = "stringValue";
   @SerializedName(SERIALIZED_NAME_STRING_VALUE)
@@ -329,22 +328,10 @@ public class AddDocumentAttributeValue {
         && Objects.equals(this.dateValues, addDocumentAttributeValue.dateValues);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
-        && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(jsonValue, stringValue, stringValues, numberValue, numberValues,
         booleanValue, dateValue, dateValues);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
@@ -444,6 +431,7 @@ public class AddDocumentAttributeValue {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

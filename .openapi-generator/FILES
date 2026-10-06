@@ -52,7 +52,6 @@ docs/AddDocumentRequest.md
 docs/AddDocumentResponse.md
 docs/AddDocumentReview.md
 docs/AddDocumentReviewDecision.md
-docs/AddDocumentReviewDecision409Response.md
 docs/AddDocumentReviewDecisionRequest.md
 docs/AddDocumentReviewDecisionResponse.md
 docs/AddDocumentReviewRequest.md
@@ -131,7 +130,10 @@ docs/AddWorkflowStepDecision.md
 docs/AddWorkflowStepQueue.md
 docs/AdvancedDocumentSearchApi.md
 docs/ApiKey.md
-docs/ApiKeyPermission.md
+docs/ApiPermission.md
+docs/ApiPermissionGrant.md
+docs/ApiPermissionGroup.md
+docs/ApiPermissionRoleType.md
 docs/Attribute.md
 docs/AttributeDataType.md
 docs/AttributeSchemaCompositeKey.md
@@ -152,6 +154,7 @@ docs/DataClassificationAttribute.md
 docs/DelegationTokenPermission.md
 docs/DelegationTokenPrincipal.md
 docs/DeleteApiKeyResponse.md
+docs/DeleteDocument404Response.md
 docs/DeleteFolderResponse.md
 docs/DeleteFulltextResponse.md
 docs/DeleteIndicesResponse.md
@@ -181,9 +184,11 @@ docs/DocumentConfig.md
 docs/DocumentConfigContentTypes.md
 docs/DocumentConfigDispositionAction.md
 docs/DocumentConfigRetentionAndDisposition.md
+docs/DocumentDeleteType.md
 docs/DocumentFoldersApi.md
 docs/DocumentFulltextAttribute.md
 docs/DocumentFulltextAttributeEq.md
+docs/DocumentFulltextAttributeNot.md
 docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
@@ -239,6 +244,10 @@ docs/DocumentsCompressResponse.md
 docs/DocusignConfig.md
 docs/DocusignDateSignedTab.md
 docs/DocusignDateTab.md
+docs/DocusignEnvelopeAuditEvent.md
+docs/DocusignEnvelopeAuditEventField.md
+docs/DocusignEnvelopeAuditEventFieldErrorDetails.md
+docs/DocusignEnvelopePaymentEvent.md
 docs/DocusignEnvelopeRecipient.md
 docs/DocusignEnvelopeRecipients.md
 docs/DocusignEnvelopeStatus.md
@@ -300,6 +309,7 @@ docs/GetDocumentVersionsResponse.md
 docs/GetDocumentWorkflowResponse.md
 docs/GetDocumentWorkflowsResponse.md
 docs/GetDocumentsResponse.md
+docs/GetDocusignEnvelopeAuditEventsResponse.md
 docs/GetDocusignEnvelopeResponse.md
 docs/GetEntitiesResponse.md
 docs/GetEntityResponse.md
@@ -326,6 +336,7 @@ docs/GetOpenSearchIndexResponse.md
 docs/GetOpenSearchIndiceResponse.md
 docs/GetOpenSearchSnapshotRepositoryResponse.md
 docs/GetOpenSearchSnapshotResponse.md
+docs/GetPermissionCatalogResponse.md
 docs/GetQueueResponse.md
 docs/GetQueuesResponse.md
 docs/GetRuleResponse.md
@@ -364,7 +375,6 @@ docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
 docs/IntelligentDocumentProcessingApi.md
 docs/JsonAttributeSearchFilter.md
-docs/JsonAttributeSearchValue.md
 docs/JsonAttributeValueExclusiveNot.md
 docs/LocaleInfo.md
 docs/LocaleResourceType.md
@@ -442,6 +452,9 @@ docs/OpenSearchSnapshotFailure.md
 docs/OpenSearchSnapshotShard.md
 docs/PdfDocument.md
 docs/PdfDocumentField.md
+docs/PermissionCatalogGroup.md
+docs/PermissionCatalogPermission.md
+docs/PermissionCatalogRoleType.md
 docs/PromoteDocumentArtifactRequest.md
 docs/PublicApi.md
 docs/QueryFulltextResponse.md
@@ -496,7 +509,6 @@ docs/ShortlinksApi.md
 docs/Site.md
 docs/SiteConfig.md
 docs/SiteGroup.md
-docs/SiteGroupPermissions.md
 docs/SitePermission.md
 docs/SiteStatus.md
 docs/SiteUsage.md
@@ -691,7 +703,6 @@ src/main/java/com/formkiq/client/model/AddDocumentRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentReview.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecision.java
-src/main/java/com/formkiq/client/model/AddDocumentReviewDecision409Response.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecisionRequest.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewDecisionResponse.java
 src/main/java/com/formkiq/client/model/AddDocumentReviewRequest.java
@@ -769,7 +780,10 @@ src/main/java/com/formkiq/client/model/AddWorkflowStep.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepDecision.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepQueue.java
 src/main/java/com/formkiq/client/model/ApiKey.java
-src/main/java/com/formkiq/client/model/ApiKeyPermission.java
+src/main/java/com/formkiq/client/model/ApiPermission.java
+src/main/java/com/formkiq/client/model/ApiPermissionGrant.java
+src/main/java/com/formkiq/client/model/ApiPermissionGroup.java
+src/main/java/com/formkiq/client/model/ApiPermissionRoleType.java
 src/main/java/com/formkiq/client/model/Attribute.java
 src/main/java/com/formkiq/client/model/AttributeDataType.java
 src/main/java/com/formkiq/client/model/AttributeSchemaCompositeKey.java
@@ -788,6 +802,7 @@ src/main/java/com/formkiq/client/model/DataClassificationAttribute.java
 src/main/java/com/formkiq/client/model/DelegationTokenPermission.java
 src/main/java/com/formkiq/client/model/DelegationTokenPrincipal.java
 src/main/java/com/formkiq/client/model/DeleteApiKeyResponse.java
+src/main/java/com/formkiq/client/model/DeleteDocument404Response.java
 src/main/java/com/formkiq/client/model/DeleteFolderResponse.java
 src/main/java/com/formkiq/client/model/DeleteFulltextResponse.java
 src/main/java/com/formkiq/client/model/DeleteIndicesResponse.java
@@ -815,8 +830,10 @@ src/main/java/com/formkiq/client/model/DocumentConfig.java
 src/main/java/com/formkiq/client/model/DocumentConfigContentTypes.java
 src/main/java/com/formkiq/client/model/DocumentConfigDispositionAction.java
 src/main/java/com/formkiq/client/model/DocumentConfigRetentionAndDisposition.java
+src/main/java/com/formkiq/client/model/DocumentDeleteType.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttributeEq.java
+src/main/java/com/formkiq/client/model/DocumentFulltextAttributeNot.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
@@ -862,6 +879,10 @@ src/main/java/com/formkiq/client/model/DocumentsCompressResponse.java
 src/main/java/com/formkiq/client/model/DocusignConfig.java
 src/main/java/com/formkiq/client/model/DocusignDateSignedTab.java
 src/main/java/com/formkiq/client/model/DocusignDateTab.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeAuditEvent.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeAuditEventField.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopeAuditEventFieldErrorDetails.java
+src/main/java/com/formkiq/client/model/DocusignEnvelopePaymentEvent.java
 src/main/java/com/formkiq/client/model/DocusignEnvelopeRecipient.java
 src/main/java/com/formkiq/client/model/DocusignEnvelopeRecipients.java
 src/main/java/com/formkiq/client/model/DocusignEnvelopeStatus.java
@@ -920,6 +941,7 @@ src/main/java/com/formkiq/client/model/GetDocumentVersionsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentWorkflowsResponse.java
 src/main/java/com/formkiq/client/model/GetDocumentsResponse.java
+src/main/java/com/formkiq/client/model/GetDocusignEnvelopeAuditEventsResponse.java
 src/main/java/com/formkiq/client/model/GetDocusignEnvelopeResponse.java
 src/main/java/com/formkiq/client/model/GetEntitiesResponse.java
 src/main/java/com/formkiq/client/model/GetEntityResponse.java
@@ -946,6 +968,7 @@ src/main/java/com/formkiq/client/model/GetOpenSearchIndexResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchIndiceResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchSnapshotRepositoryResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchSnapshotResponse.java
+src/main/java/com/formkiq/client/model/GetPermissionCatalogResponse.java
 src/main/java/com/formkiq/client/model/GetQueueResponse.java
 src/main/java/com/formkiq/client/model/GetQueuesResponse.java
 src/main/java/com/formkiq/client/model/GetRuleResponse.java
@@ -982,7 +1005,6 @@ src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
 src/main/java/com/formkiq/client/model/JsonAttributeSearchFilter.java
-src/main/java/com/formkiq/client/model/JsonAttributeSearchValue.java
 src/main/java/com/formkiq/client/model/JsonAttributeValueExclusiveNot.java
 src/main/java/com/formkiq/client/model/LocaleInfo.java
 src/main/java/com/formkiq/client/model/LocaleResourceType.java
@@ -1058,6 +1080,9 @@ src/main/java/com/formkiq/client/model/OpenSearchSnapshotFailure.java
 src/main/java/com/formkiq/client/model/OpenSearchSnapshotShard.java
 src/main/java/com/formkiq/client/model/PdfDocument.java
 src/main/java/com/formkiq/client/model/PdfDocumentField.java
+src/main/java/com/formkiq/client/model/PermissionCatalogGroup.java
+src/main/java/com/formkiq/client/model/PermissionCatalogPermission.java
+src/main/java/com/formkiq/client/model/PermissionCatalogRoleType.java
 src/main/java/com/formkiq/client/model/PromoteDocumentArtifactRequest.java
 src/main/java/com/formkiq/client/model/QueryFulltextResponse.java
 src/main/java/com/formkiq/client/model/Queue.java
@@ -1107,7 +1132,6 @@ src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/Site.java
 src/main/java/com/formkiq/client/model/SiteConfig.java
 src/main/java/com/formkiq/client/model/SiteGroup.java
-src/main/java/com/formkiq/client/model/SiteGroupPermissions.java
 src/main/java/com/formkiq/client/model/SitePermission.java
 src/main/java/com/formkiq/client/model/SiteStatus.java
 src/main/java/com/formkiq/client/model/SiteUsage.java
@@ -1263,7 +1287,6 @@ src/test/java/com/formkiq/client/model/AddDocumentOcrRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentOcrResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentResponseTest.java
-src/test/java/com/formkiq/client/model/AddDocumentReviewDecision409ResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionRequestTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionResponseTest.java
 src/test/java/com/formkiq/client/model/AddDocumentReviewDecisionTest.java
@@ -1342,8 +1365,11 @@ src/test/java/com/formkiq/client/model/AddWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepDecisionTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepQueueTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepTest.java
-src/test/java/com/formkiq/client/model/ApiKeyPermissionTest.java
 src/test/java/com/formkiq/client/model/ApiKeyTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionGrantTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionGroupTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionRoleTypeTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionTest.java
 src/test/java/com/formkiq/client/model/AttributeDataTypeTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaCompositeKeyTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaOptionalTest.java
@@ -1362,6 +1388,7 @@ src/test/java/com/formkiq/client/model/DataClassificationTest.java
 src/test/java/com/formkiq/client/model/DelegationTokenPermissionTest.java
 src/test/java/com/formkiq/client/model/DelegationTokenPrincipalTest.java
 src/test/java/com/formkiq/client/model/DeleteApiKeyResponseTest.java
+src/test/java/com/formkiq/client/model/DeleteDocument404ResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFolderResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/DeleteIndicesResponseTest.java
@@ -1388,7 +1415,9 @@ src/test/java/com/formkiq/client/model/DocumentConfigContentTypesTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigDispositionActionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigRetentionAndDispositionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigTest.java
+src/test/java/com/formkiq/client/model/DocumentDeleteTypeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
+src/test/java/com/formkiq/client/model/DocumentFulltextAttributeNotTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
@@ -1436,6 +1465,10 @@ src/test/java/com/formkiq/client/model/DocumentsCompressResponseTest.java
 src/test/java/com/formkiq/client/model/DocusignConfigTest.java
 src/test/java/com/formkiq/client/model/DocusignDateSignedTabTest.java
 src/test/java/com/formkiq/client/model/DocusignDateTabTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeAuditEventFieldErrorDetailsTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeAuditEventFieldTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopeAuditEventTest.java
+src/test/java/com/formkiq/client/model/DocusignEnvelopePaymentEventTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvelopeRecipientTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvelopeRecipientsTest.java
 src/test/java/com/formkiq/client/model/DocusignEnvelopeStatusTest.java
@@ -1494,6 +1527,7 @@ src/test/java/com/formkiq/client/model/GetDocumentVersionsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentWorkflowsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocumentsResponseTest.java
+src/test/java/com/formkiq/client/model/GetDocusignEnvelopeAuditEventsResponseTest.java
 src/test/java/com/formkiq/client/model/GetDocusignEnvelopeResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntitiesResponseTest.java
 src/test/java/com/formkiq/client/model/GetEntityResponseTest.java
@@ -1520,6 +1554,7 @@ src/test/java/com/formkiq/client/model/GetOpenSearchIndexResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchIndiceResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchSnapshotRepositoryResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchSnapshotResponseTest.java
+src/test/java/com/formkiq/client/model/GetPermissionCatalogResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetRuleResponseTest.java
@@ -1556,7 +1591,6 @@ src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeSearchFilterTest.java
-src/test/java/com/formkiq/client/model/JsonAttributeSearchValueTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeValueExclusiveNotTest.java
 src/test/java/com/formkiq/client/model/LocaleInfoTest.java
 src/test/java/com/formkiq/client/model/LocaleResourceTypeTest.java
@@ -1632,6 +1666,9 @@ src/test/java/com/formkiq/client/model/OpenSearchSnapshotShardTest.java
 src/test/java/com/formkiq/client/model/OpenSearchSnapshotTest.java
 src/test/java/com/formkiq/client/model/PdfDocumentFieldTest.java
 src/test/java/com/formkiq/client/model/PdfDocumentTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogGroupTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogPermissionTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogRoleTypeTest.java
 src/test/java/com/formkiq/client/model/PromoteDocumentArtifactRequestTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/QueueTest.java
@@ -1679,7 +1716,6 @@ src/test/java/com/formkiq/client/model/SetSchemaAttributesTest.java
 src/test/java/com/formkiq/client/model/SetSitesSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SiteConfigTest.java
-src/test/java/com/formkiq/client/model/SiteGroupPermissionsTest.java
 src/test/java/com/formkiq/client/model/SiteGroupTest.java
 src/test/java/com/formkiq/client/model/SitePermissionTest.java
 src/test/java/com/formkiq/client/model/SiteStatusTest.java

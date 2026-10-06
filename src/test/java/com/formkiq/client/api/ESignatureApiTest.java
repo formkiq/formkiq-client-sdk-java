@@ -31,6 +31,7 @@ import com.formkiq.client.model.AddDocusignSenderViewRequest;
 import com.formkiq.client.model.AddDocusignSenderViewResponse;
 import com.formkiq.client.model.AddResponse;
 import com.formkiq.client.model.DocusignEnvironment;
+import com.formkiq.client.model.GetDocusignEnvelopeAuditEventsResponse;
 import com.formkiq.client.model.GetDocusignEnvelopeResponse;
 import com.formkiq.client.model.ValidationErrorsResponse;
 import com.formkiq.client.model.VoidDocusignEnvelopeRequest;
@@ -180,6 +181,33 @@ public class ESignatureApiTest {
     DocusignEnvironment environment = null;
     GetDocusignEnvelopeResponse response =
         api.getDocusignEnvelope(documentId, envelopeId, siteId, artifactId, environment);
+    // TODO: test validations
+  }
+
+  /**
+   * Get DocuSign envelope audit events
+   *
+   * Retrieves the audit history recorded by DocuSign for an associated envelope; available as an
+   * Add-On Module. Requires read access to the selected document or artifact and validates its
+   * stored envelope association before contacting DocuSign. Calls GET
+   * /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events, resolving the account,
+   * base URI, and OAuth token through the site&#39;s existing integration. Returns DocuSign&#39;s
+   * JSON unchanged, including auditEvents, paymentEvents, and any additional fields, without a
+   * FormKiQ wrapper. Includes reminder and resend events when recorded by DocuSign; this history
+   * does not guarantee that every reminder is recorded or confirm inbox delivery. Reminder and
+   * resend webhook subscriptions are separate from this operation.
+   *
+   * @throws ApiException if the Api call fails
+   */
+  @Test
+  public void getDocusignEnvelopeAuditEventsTest() throws ApiException {
+    String documentId = null;
+    String envelopeId = null;
+    String siteId = null;
+    String artifactId = null;
+    DocusignEnvironment environment = null;
+    GetDocusignEnvelopeAuditEventsResponse response =
+        api.getDocusignEnvelopeAuditEvents(documentId, envelopeId, siteId, artifactId, environment);
     // TODO: test validations
   }
 

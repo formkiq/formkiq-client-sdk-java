@@ -21,6 +21,8 @@
 package com.formkiq.client.model;
 
 import java.util.Objects;
+import com.formkiq.client.model.ApiPermissionGrant;
+import com.formkiq.client.model.ApiPermissionRoleType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -29,7 +31,11 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,11 +62,13 @@ import java.util.Set;
 import com.formkiq.client.invoker.JSON;
 
 /**
- * ApiKey
+ * An API key and its permission configuration. roleType is optional for legacy records. A missing
+ * roleType means permissions contains explicit CUSTOM grants. A predefined roleType determines the
+ * effective role grants, which can be discovered in the catalog.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-    date = "2026-10-02T11:17:53.259032-05:00[America/Winnipeg]",
-    comments = "Generator version: 7.25.0")
+    date = "2026-11-05T19:42:54.447631-06:00[America/Winnipeg]",
+    comments = "Generator version: 7.27.0")
 public class ApiKey {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -87,72 +95,25 @@ public class ApiKey {
   @javax.annotation.Nullable
   private String insertedDate;
 
-  /**
-   * Gets or Sets permissions
-   */
-  @JsonAdapter(PermissionsEnum.Adapter.class)
-  public enum PermissionsEnum {
-    READ("READ"),
-
-    WRITE("WRITE"),
-
-    DELETE("DELETE"),
-
-    GOVERN("GOVERN");
-
-    private String value;
-
-    PermissionsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PermissionsEnum fromValue(String value) {
-      for (PermissionsEnum b : PermissionsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PermissionsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PermissionsEnum enumeration)
-          throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PermissionsEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return PermissionsEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      PermissionsEnum.fromValue(value);
-    }
-  }
+  public static final String SERIALIZED_NAME_ROLE_TYPE = "roleType";
+  @SerializedName(SERIALIZED_NAME_ROLE_TYPE)
+  @javax.annotation.Nullable
+  private ApiPermissionRoleType roleType;
 
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
   @javax.annotation.Nullable
-  private List<PermissionsEnum> permissions = new ArrayList<>();
+  private Set<ApiPermissionGrant> permissions = new LinkedHashSet<>();
 
   public static final String SERIALIZED_NAME_GROUPS = "groups";
   @SerializedName(SERIALIZED_NAME_GROUPS)
   @javax.annotation.Nullable
   private List<String> groups = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_CUSTOM_CLAIMS = "customClaims";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_CLAIMS)
+  @javax.annotation.Nullable
+  private Map<String, Object> customClaims = new HashMap<>();
 
   public ApiKey() {}
 
@@ -256,30 +217,50 @@ public class ApiKey {
   }
 
 
-  public ApiKey permissions(@javax.annotation.Nullable List<PermissionsEnum> permissions) {
+  public ApiKey roleType(@javax.annotation.Nullable ApiPermissionRoleType roleType) {
+    this.roleType = roleType;
+    return this;
+  }
+
+  /**
+   * Get roleType
+   * 
+   * @return roleType
+   */
+  @javax.annotation.Nullable
+  public ApiPermissionRoleType getRoleType() {
+    return roleType;
+  }
+
+  public void setRoleType(@javax.annotation.Nullable ApiPermissionRoleType roleType) {
+    this.roleType = roleType;
+  }
+
+
+  public ApiKey permissions(@javax.annotation.Nullable Set<ApiPermissionGrant> permissions) {
     this.permissions = permissions;
     return this;
   }
 
-  public ApiKey addPermissionsItem(PermissionsEnum permissionsItem) {
+  public ApiKey addPermissionsItem(ApiPermissionGrant permissionsItem) {
     if (this.permissions == null) {
-      this.permissions = new ArrayList<>();
+      this.permissions = new LinkedHashSet<>();
     }
     this.permissions.add(permissionsItem);
     return this;
   }
 
   /**
-   * List of permissions
+   * Explicit CUSTOM or legacy permission grants.
    * 
    * @return permissions
    */
   @javax.annotation.Nullable
-  public List<PermissionsEnum> getPermissions() {
+  public Set<ApiPermissionGrant> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(@javax.annotation.Nullable List<PermissionsEnum> permissions) {
+  public void setPermissions(@javax.annotation.Nullable Set<ApiPermissionGrant> permissions) {
     this.permissions = permissions;
   }
 
@@ -312,6 +293,37 @@ public class ApiKey {
   }
 
 
+  public ApiKey customClaims(@javax.annotation.Nullable Map<String, Object> customClaims) {
+    this.customClaims = customClaims;
+    return this;
+  }
+
+  public ApiKey putCustomClaimsItem(String key, Object customClaimsItem) {
+    if (this.customClaims == null) {
+      this.customClaims = new HashMap<>();
+    }
+    this.customClaims.put(key, customClaimsItem);
+    return this;
+  }
+
+  /**
+   * Custom claims associated with the API key and exposed in the requesting caller&#39;s
+   * userClaims. Values may be strings, numbers, Booleans, arrays, or objects. Null-valued object
+   * fields are omitted. These claims do not override the key&#39;s username, site, groups, role, or
+   * permissions. Keys created without custom claims have an empty claims map.
+   * 
+   * @return customClaims
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getCustomClaims() {
+    return customClaims;
+  }
+
+  public void setCustomClaims(@javax.annotation.Nullable Map<String, Object> customClaims) {
+    this.customClaims = customClaims;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -325,13 +337,16 @@ public class ApiKey {
     return Objects.equals(this.name, apiKey.name) && Objects.equals(this.apiKey, apiKey.apiKey)
         && Objects.equals(this.userId, apiKey.userId) && Objects.equals(this.siteId, apiKey.siteId)
         && Objects.equals(this.insertedDate, apiKey.insertedDate)
+        && Objects.equals(this.roleType, apiKey.roleType)
         && Objects.equals(this.permissions, apiKey.permissions)
-        && Objects.equals(this.groups, apiKey.groups);
+        && Objects.equals(this.groups, apiKey.groups)
+        && Objects.equals(this.customClaims, apiKey.customClaims);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, apiKey, userId, siteId, insertedDate, permissions, groups);
+    return Objects.hash(name, apiKey, userId, siteId, insertedDate, roleType, permissions, groups,
+        customClaims);
   }
 
   @Override
@@ -343,8 +358,10 @@ public class ApiKey {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    insertedDate: ").append(toIndentedString(insertedDate)).append("\n");
+    sb.append("    roleType: ").append(toIndentedString(roleType)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    customClaims: ").append(toIndentedString(customClaims)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -363,7 +380,7 @@ public class ApiKey {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>(Arrays.asList("name", "apiKey", "userId", "siteId",
-        "insertedDate", "permissions", "groups"));
+        "insertedDate", "roleType", "permissions", "groups", "customClaims"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -424,6 +441,10 @@ public class ApiKey {
           "Expected the field `insertedDate` to be a primitive type in the JSON string but got `%s`",
           jsonObj.get("insertedDate").toString()));
     }
+    // validate the optional field `roleType`
+    if (jsonObj.get("roleType") != null && !jsonObj.get("roleType").isJsonNull()) {
+      ApiPermissionRoleType.validateJsonElement(jsonObj.get("roleType"));
+    }
     // ensure the optional json data is an array if present
     if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()
         && !jsonObj.get("permissions").isJsonArray()) {
@@ -440,6 +461,7 @@ public class ApiKey {
     }
   }
 
+  /** @hidden */
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override

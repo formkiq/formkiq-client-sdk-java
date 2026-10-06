@@ -31,7 +31,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * DELETE: Type of delete to perform
+ * DELETE action deletion mode. CONTENT_ONLY removes the current S3 object while preserving document
+ * metadata, attributes, tags, malware scan results, and workflow history. Existing S3 versions are
+ * retained. Use this mode in a workflow when infected content must be removed while retaining its
+ * metadata and scan results.
  */
 @JsonAdapter(DeleteType.Adapter.class)
 public enum DeleteType {
@@ -40,7 +43,9 @@ public enum DeleteType {
 
   HARD_DELETE("HARD_DELETE"),
 
-  PURGE("PURGE");
+  PURGE("PURGE"),
+
+  CONTENT_ONLY("CONTENT_ONLY");
 
   private String value;
 

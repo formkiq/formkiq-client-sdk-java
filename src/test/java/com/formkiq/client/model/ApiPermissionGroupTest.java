@@ -20,22 +20,20 @@
 
 package com.formkiq.client.model;
 
-import java.math.BigDecimal;
+import com.google.gson.annotations.SerializedName;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for JsonAttributeSearchValue
+ * Model tests for ApiPermissionGroup
  */
-public class JsonAttributeSearchValueTest {
-  private final JsonAttributeSearchValue model = new JsonAttributeSearchValue();
-
+public class ApiPermissionGroupTest {
   /**
-   * Model tests for JsonAttributeSearchValue
+   * Model tests for ApiPermissionGroup
    */
   @Test
-  public void testJsonAttributeSearchValue() {
-    // TODO: test JsonAttributeSearchValue
+  public void testApiPermissionGroup() {
+    // TODO: test ApiPermissionGroup
   }
 
 }
