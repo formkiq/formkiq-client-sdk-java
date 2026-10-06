@@ -342,6 +342,7 @@ Class | Method | HTTP request | Description
 *SystemManagementApi* | [**getOpenSearchSnapshotRepositories**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepositories) | **GET** /sites/global/opensearch/snapshotRepositories | List OpenSearch snapshot repositories
 *SystemManagementApi* | [**getOpenSearchSnapshotRepository**](docs/SystemManagementApi.md#getOpenSearchSnapshotRepository) | **GET** /sites/{siteId}/opensearch/snapshotRepository | Get site OpenSearch snapshot repository
 *SystemManagementApi* | [**getOpenSearchSnapshots**](docs/SystemManagementApi.md#getOpenSearchSnapshots) | **GET** /sites/{siteId}/opensearch/snapshots | List site OpenSearch snapshots
+*SystemManagementApi* | [**getPermissionCatalog**](docs/SystemManagementApi.md#getPermissionCatalog) | **GET** /permissions/catalog | Get API permission catalog
 *SystemManagementApi* | [**getSiteGroup**](docs/SystemManagementApi.md#getSiteGroup) | **GET** /sites/{siteId}/groups/{groupName} | Get group and permissions belonging to site
 *SystemManagementApi* | [**getSiteGroups**](docs/SystemManagementApi.md#getSiteGroups) | **GET** /sites/{siteId}/groups | Get group(s) and permissions belonging to site
 *SystemManagementApi* | [**getSites**](docs/SystemManagementApi.md#getSites) | **GET** /sites | Get site(s) access
@@ -509,7 +510,10 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
  - [ApiKey](docs/ApiKey.md)
- - [ApiKeyPermission](docs/ApiKeyPermission.md)
+ - [ApiPermission](docs/ApiPermission.md)
+ - [ApiPermissionGrant](docs/ApiPermissionGrant.md)
+ - [ApiPermissionGroup](docs/ApiPermissionGroup.md)
+ - [ApiPermissionRoleType](docs/ApiPermissionRoleType.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeDataType](docs/AttributeDataType.md)
  - [AttributeSchemaCompositeKey](docs/AttributeSchemaCompositeKey.md)
@@ -557,6 +561,7 @@ Class | Method | HTTP request | Description
  - [DocumentConfigRetentionAndDisposition](docs/DocumentConfigRetentionAndDisposition.md)
  - [DocumentFulltextAttribute](docs/DocumentFulltextAttribute.md)
  - [DocumentFulltextAttributeEq](docs/DocumentFulltextAttributeEq.md)
+ - [DocumentFulltextAttributeNot](docs/DocumentFulltextAttributeNot.md)
  - [DocumentFulltextRequest](docs/DocumentFulltextRequest.md)
  - [DocumentFulltextResponse](docs/DocumentFulltextResponse.md)
  - [DocumentFulltextSearch](docs/DocumentFulltextSearch.md)
@@ -686,6 +691,7 @@ Class | Method | HTTP request | Description
  - [GetOpenSearchIndiceResponse](docs/GetOpenSearchIndiceResponse.md)
  - [GetOpenSearchSnapshotRepositoryResponse](docs/GetOpenSearchSnapshotRepositoryResponse.md)
  - [GetOpenSearchSnapshotResponse](docs/GetOpenSearchSnapshotResponse.md)
+ - [GetPermissionCatalogResponse](docs/GetPermissionCatalogResponse.md)
  - [GetQueueResponse](docs/GetQueueResponse.md)
  - [GetQueuesResponse](docs/GetQueuesResponse.md)
  - [GetRuleResponse](docs/GetRuleResponse.md)
@@ -722,7 +728,6 @@ Class | Method | HTTP request | Description
  - [IndexSearchRequest](docs/IndexSearchRequest.md)
  - [IndexSearchResponse](docs/IndexSearchResponse.md)
  - [JsonAttributeSearchFilter](docs/JsonAttributeSearchFilter.md)
- - [JsonAttributeSearchValue](docs/JsonAttributeSearchValue.md)
  - [JsonAttributeValueExclusiveNot](docs/JsonAttributeValueExclusiveNot.md)
  - [LocaleInfo](docs/LocaleInfo.md)
  - [LocaleResourceType](docs/LocaleResourceType.md)
@@ -798,6 +803,9 @@ Class | Method | HTTP request | Description
  - [OpenSearchSnapshotShard](docs/OpenSearchSnapshotShard.md)
  - [PdfDocument](docs/PdfDocument.md)
  - [PdfDocumentField](docs/PdfDocumentField.md)
+ - [PermissionCatalogGroup](docs/PermissionCatalogGroup.md)
+ - [PermissionCatalogPermission](docs/PermissionCatalogPermission.md)
+ - [PermissionCatalogRoleType](docs/PermissionCatalogRoleType.md)
  - [PromoteDocumentArtifactRequest](docs/PromoteDocumentArtifactRequest.md)
  - [QueryFulltextResponse](docs/QueryFulltextResponse.md)
  - [Queue](docs/Queue.md)
@@ -847,7 +855,6 @@ Class | Method | HTTP request | Description
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteGroup](docs/SiteGroup.md)
- - [SiteGroupPermissions](docs/SiteGroupPermissions.md)
  - [SitePermission](docs/SitePermission.md)
  - [SiteStatus](docs/SiteStatus.md)
  - [SiteUsage](docs/SiteUsage.md)

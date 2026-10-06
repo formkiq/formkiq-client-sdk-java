@@ -131,7 +131,10 @@ docs/AddWorkflowStepDecision.md
 docs/AddWorkflowStepQueue.md
 docs/AdvancedDocumentSearchApi.md
 docs/ApiKey.md
-docs/ApiKeyPermission.md
+docs/ApiPermission.md
+docs/ApiPermissionGrant.md
+docs/ApiPermissionGroup.md
+docs/ApiPermissionRoleType.md
 docs/Attribute.md
 docs/AttributeDataType.md
 docs/AttributeSchemaCompositeKey.md
@@ -184,6 +187,7 @@ docs/DocumentConfigRetentionAndDisposition.md
 docs/DocumentFoldersApi.md
 docs/DocumentFulltextAttribute.md
 docs/DocumentFulltextAttributeEq.md
+docs/DocumentFulltextAttributeNot.md
 docs/DocumentFulltextRequest.md
 docs/DocumentFulltextResponse.md
 docs/DocumentFulltextSearch.md
@@ -326,6 +330,7 @@ docs/GetOpenSearchIndexResponse.md
 docs/GetOpenSearchIndiceResponse.md
 docs/GetOpenSearchSnapshotRepositoryResponse.md
 docs/GetOpenSearchSnapshotResponse.md
+docs/GetPermissionCatalogResponse.md
 docs/GetQueueResponse.md
 docs/GetQueuesResponse.md
 docs/GetRuleResponse.md
@@ -364,7 +369,6 @@ docs/IndexSearchRequest.md
 docs/IndexSearchResponse.md
 docs/IntelligentDocumentProcessingApi.md
 docs/JsonAttributeSearchFilter.md
-docs/JsonAttributeSearchValue.md
 docs/JsonAttributeValueExclusiveNot.md
 docs/LocaleInfo.md
 docs/LocaleResourceType.md
@@ -442,6 +446,9 @@ docs/OpenSearchSnapshotFailure.md
 docs/OpenSearchSnapshotShard.md
 docs/PdfDocument.md
 docs/PdfDocumentField.md
+docs/PermissionCatalogGroup.md
+docs/PermissionCatalogPermission.md
+docs/PermissionCatalogRoleType.md
 docs/PromoteDocumentArtifactRequest.md
 docs/PublicApi.md
 docs/QueryFulltextResponse.md
@@ -496,7 +503,6 @@ docs/ShortlinksApi.md
 docs/Site.md
 docs/SiteConfig.md
 docs/SiteGroup.md
-docs/SiteGroupPermissions.md
 docs/SitePermission.md
 docs/SiteStatus.md
 docs/SiteUsage.md
@@ -769,7 +775,10 @@ src/main/java/com/formkiq/client/model/AddWorkflowStep.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepDecision.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepQueue.java
 src/main/java/com/formkiq/client/model/ApiKey.java
-src/main/java/com/formkiq/client/model/ApiKeyPermission.java
+src/main/java/com/formkiq/client/model/ApiPermission.java
+src/main/java/com/formkiq/client/model/ApiPermissionGrant.java
+src/main/java/com/formkiq/client/model/ApiPermissionGroup.java
+src/main/java/com/formkiq/client/model/ApiPermissionRoleType.java
 src/main/java/com/formkiq/client/model/Attribute.java
 src/main/java/com/formkiq/client/model/AttributeDataType.java
 src/main/java/com/formkiq/client/model/AttributeSchemaCompositeKey.java
@@ -817,6 +826,7 @@ src/main/java/com/formkiq/client/model/DocumentConfigDispositionAction.java
 src/main/java/com/formkiq/client/model/DocumentConfigRetentionAndDisposition.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttribute.java
 src/main/java/com/formkiq/client/model/DocumentFulltextAttributeEq.java
+src/main/java/com/formkiq/client/model/DocumentFulltextAttributeNot.java
 src/main/java/com/formkiq/client/model/DocumentFulltextRequest.java
 src/main/java/com/formkiq/client/model/DocumentFulltextResponse.java
 src/main/java/com/formkiq/client/model/DocumentFulltextSearch.java
@@ -946,6 +956,7 @@ src/main/java/com/formkiq/client/model/GetOpenSearchIndexResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchIndiceResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchSnapshotRepositoryResponse.java
 src/main/java/com/formkiq/client/model/GetOpenSearchSnapshotResponse.java
+src/main/java/com/formkiq/client/model/GetPermissionCatalogResponse.java
 src/main/java/com/formkiq/client/model/GetQueueResponse.java
 src/main/java/com/formkiq/client/model/GetQueuesResponse.java
 src/main/java/com/formkiq/client/model/GetRuleResponse.java
@@ -982,7 +993,6 @@ src/main/java/com/formkiq/client/model/IndexSearch.java
 src/main/java/com/formkiq/client/model/IndexSearchRequest.java
 src/main/java/com/formkiq/client/model/IndexSearchResponse.java
 src/main/java/com/formkiq/client/model/JsonAttributeSearchFilter.java
-src/main/java/com/formkiq/client/model/JsonAttributeSearchValue.java
 src/main/java/com/formkiq/client/model/JsonAttributeValueExclusiveNot.java
 src/main/java/com/formkiq/client/model/LocaleInfo.java
 src/main/java/com/formkiq/client/model/LocaleResourceType.java
@@ -1058,6 +1068,9 @@ src/main/java/com/formkiq/client/model/OpenSearchSnapshotFailure.java
 src/main/java/com/formkiq/client/model/OpenSearchSnapshotShard.java
 src/main/java/com/formkiq/client/model/PdfDocument.java
 src/main/java/com/formkiq/client/model/PdfDocumentField.java
+src/main/java/com/formkiq/client/model/PermissionCatalogGroup.java
+src/main/java/com/formkiq/client/model/PermissionCatalogPermission.java
+src/main/java/com/formkiq/client/model/PermissionCatalogRoleType.java
 src/main/java/com/formkiq/client/model/PromoteDocumentArtifactRequest.java
 src/main/java/com/formkiq/client/model/QueryFulltextResponse.java
 src/main/java/com/formkiq/client/model/Queue.java
@@ -1107,7 +1120,6 @@ src/main/java/com/formkiq/client/model/SetWorkflowRequest.java
 src/main/java/com/formkiq/client/model/Site.java
 src/main/java/com/formkiq/client/model/SiteConfig.java
 src/main/java/com/formkiq/client/model/SiteGroup.java
-src/main/java/com/formkiq/client/model/SiteGroupPermissions.java
 src/main/java/com/formkiq/client/model/SitePermission.java
 src/main/java/com/formkiq/client/model/SiteStatus.java
 src/main/java/com/formkiq/client/model/SiteUsage.java
@@ -1342,8 +1354,11 @@ src/test/java/com/formkiq/client/model/AddWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepDecisionTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepQueueTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepTest.java
-src/test/java/com/formkiq/client/model/ApiKeyPermissionTest.java
 src/test/java/com/formkiq/client/model/ApiKeyTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionGrantTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionGroupTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionRoleTypeTest.java
+src/test/java/com/formkiq/client/model/ApiPermissionTest.java
 src/test/java/com/formkiq/client/model/AttributeDataTypeTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaCompositeKeyTest.java
 src/test/java/com/formkiq/client/model/AttributeSchemaOptionalTest.java
@@ -1389,6 +1404,7 @@ src/test/java/com/formkiq/client/model/DocumentConfigDispositionActionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigRetentionAndDispositionTest.java
 src/test/java/com/formkiq/client/model/DocumentConfigTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeEqTest.java
+src/test/java/com/formkiq/client/model/DocumentFulltextAttributeNotTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextAttributeTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextRequestTest.java
 src/test/java/com/formkiq/client/model/DocumentFulltextResponseTest.java
@@ -1520,6 +1536,7 @@ src/test/java/com/formkiq/client/model/GetOpenSearchIndexResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchIndiceResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchSnapshotRepositoryResponseTest.java
 src/test/java/com/formkiq/client/model/GetOpenSearchSnapshotResponseTest.java
+src/test/java/com/formkiq/client/model/GetPermissionCatalogResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueueResponseTest.java
 src/test/java/com/formkiq/client/model/GetQueuesResponseTest.java
 src/test/java/com/formkiq/client/model/GetRuleResponseTest.java
@@ -1556,7 +1573,6 @@ src/test/java/com/formkiq/client/model/IndexSearchRequestTest.java
 src/test/java/com/formkiq/client/model/IndexSearchResponseTest.java
 src/test/java/com/formkiq/client/model/IndexSearchTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeSearchFilterTest.java
-src/test/java/com/formkiq/client/model/JsonAttributeSearchValueTest.java
 src/test/java/com/formkiq/client/model/JsonAttributeValueExclusiveNotTest.java
 src/test/java/com/formkiq/client/model/LocaleInfoTest.java
 src/test/java/com/formkiq/client/model/LocaleResourceTypeTest.java
@@ -1632,6 +1648,9 @@ src/test/java/com/formkiq/client/model/OpenSearchSnapshotShardTest.java
 src/test/java/com/formkiq/client/model/OpenSearchSnapshotTest.java
 src/test/java/com/formkiq/client/model/PdfDocumentFieldTest.java
 src/test/java/com/formkiq/client/model/PdfDocumentTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogGroupTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogPermissionTest.java
+src/test/java/com/formkiq/client/model/PermissionCatalogRoleTypeTest.java
 src/test/java/com/formkiq/client/model/PromoteDocumentArtifactRequestTest.java
 src/test/java/com/formkiq/client/model/QueryFulltextResponseTest.java
 src/test/java/com/formkiq/client/model/QueueTest.java
@@ -1679,7 +1698,6 @@ src/test/java/com/formkiq/client/model/SetSchemaAttributesTest.java
 src/test/java/com/formkiq/client/model/SetSitesSchemaRequestTest.java
 src/test/java/com/formkiq/client/model/SetWorkflowRequestTest.java
 src/test/java/com/formkiq/client/model/SiteConfigTest.java
-src/test/java/com/formkiq/client/model/SiteGroupPermissionsTest.java
 src/test/java/com/formkiq/client/model/SiteGroupTest.java
 src/test/java/com/formkiq/client/model/SitePermissionTest.java
 src/test/java/com/formkiq/client/model/SiteStatusTest.java

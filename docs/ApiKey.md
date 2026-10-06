@@ -2,6 +2,7 @@
 
 # ApiKey
 
+An API key and its permission configuration. roleType is optional for legacy records. A missing roleType means permissions contains explicit CUSTOM grants. A predefined roleType determines the effective role grants, which can be discovered in the catalog.
 
 ## Properties
 
@@ -12,19 +13,9 @@
 |**userId** | **String** |  |  [optional] |
 |**siteId** | **String** |  |  [optional] |
 |**insertedDate** | **String** | Inserted Timestamp |  [optional] |
-|**permissions** | [**List&lt;PermissionsEnum&gt;**](#List&lt;PermissionsEnum&gt;) | List of permissions |  [optional] |
+|**roleType** | **ApiPermissionRoleType** |  |  [optional] |
+|**permissions** | **Set&lt;ApiPermissionGrant&gt;** | Explicit CUSTOM or legacy permission grants. |  [optional] |
 |**groups** | **List&lt;String&gt;** | List of groups to add as custom claims to API Key |  [optional] |
-
-
-
-## Enum: List&lt;PermissionsEnum&gt;
-
-| Name | Value |
-|---- | -----|
-| READ | &quot;READ&quot; |
-| WRITE | &quot;WRITE&quot; |
-| DELETE | &quot;DELETE&quot; |
-| GOVERN | &quot;GOVERN&quot; |
 
 
 

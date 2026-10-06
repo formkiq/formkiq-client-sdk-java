@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.19.2
+  version: 1.19.2-apipermissions
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -178,6 +178,7 @@ paths:
       summary: Get user activities
       tags:
       - User Activities
+      x-formkiq-required-permission: GOVERN_USER_ACTIVITIES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -247,6 +248,7 @@ paths:
       summary: Get user activities for a document
       tags:
       - User Activities
+      x-formkiq-required-permission: GOVERN_USER_ACTIVITIES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -480,6 +482,7 @@ paths:
       summary: Get resource activities
       tags:
       - User Activities
+      x-formkiq-required-permission: GOVERN_USER_ACTIVITIES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -533,6 +536,7 @@ paths:
       summary: Get Attributes listing
       tags:
       - Attributes
+      x-formkiq-required-permission: READ_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -543,6 +547,19 @@ paths:
 
         Use dataType JSON for one structured JSON object per document attribute key.
         Supply the value through jsonValue when adding the attribute to a document.
+
+        To define a watermark, use dataType WATERMARK and supply watermark.text for text
+        or watermark.imageDocumentId for an image. Text supports `${...}` references to
+        document attributes, document fields, metadata, and the authorization available
+        to the watermark invocation.
+        For example, `${attributes.CustomerName[0]}` selects the first CustomerName value,
+        `${document.path}` selects the document path, and `${auth.username}` selects the
+        current invocation's username. The request examples include sample source values
+        and the expected rendered text.
+
+        The presigned-URL download flow does not forward the downloader's authorization.
+        Without supplied invocation authorization, auth.username is System and custom
+        claim placeholders remain unchanged.
       operationId: AddAttribute
       parameters:
       - description: Site Identifier
@@ -557,6 +574,87 @@ paths:
         content:
           application/json:
             examples:
+              Text_Watermark:
+                summary: Static text watermark
+                value:
+                  attribute:
+                    key: confidentialWatermark
+                    dataType: WATERMARK
+                    watermark:
+                      text: Confidential
+              Variable_Watermark:
+                description: |-
+                  Given CustomerName values ["Acme"], document path "invoice.pdf", username
+                  "mike@example.com", and custom:department claim "Sales" supplied to the watermark
+                  invocation, the expected output is:
+
+                  ```text
+                  Confidential — Acme
+                  File: invoice.pdf
+                  User: mike@example.com
+                  Department: Sales
+                  ```
+                summary: Variable text watermark
+                value:
+                  attribute:
+                    key: personalizedWatermark
+                    dataType: WATERMARK
+                    watermark:
+                      text: |-
+                        Confidential — ${attributes.CustomerName[0]}
+                        File: ${document.path}
+                        User: ${auth.username}
+                        Department: ${auth.claims["custom:department"]}
+              Indexed_Attribute_Watermark:
+                description: |-
+                  Given Reviewer values ["Alice", "Bob"] and the attribute key "Invoice.Number"
+                  with values ["INV-123"], the expected rendered text is "Reviewed by Bob — INV-123".
+                  `[1]` selects the second value; quoted brackets preserve the dot in the attribute key.
+                summary: Indexed attribute values and literal keys
+                value:
+                  attribute:
+                    key: reviewerWatermark
+                    dataType: WATERMARK
+                    watermark:
+                      text: "Reviewed by ${attributes.Reviewer[1]} — ${attributes[\"\
+                        Invoice.Number\"][0]}"
+              JSON_Attribute_Watermark:
+                description: |-
+                  Given a Contract JSON attribute with the following jsonValue:
+
+                  ```json
+                  {
+                    "customer": {"name": "Acme"},
+                    "items": [
+                      {"description": "First"},
+                      {"description": "Second"},
+                      {"description": "Third"}
+                    ]
+                  }
+                  ```
+
+                  The expected rendered text is "Acme — Third". Contract[0] selects the attribute
+                  value, while items[2] selects the third element within its JSON array.
+                summary: Nested JSON attribute values
+                value:
+                  attribute:
+                    key: contractWatermark
+                    dataType: WATERMARK
+                    watermark:
+                      text: "${attributes.Contract[0].customer.name} — ${attributes.Contract[0].items[2].description}"
+              Auth_Claims_Watermark:
+                description: |-
+                  Given invocation claims {"custom:department": "Sales", "roles": ["reviewer", "editor"]},
+                  the expected rendered text is "Sales — reviewer". These claims must be supplied to
+                  the watermark invocation. The presigned-URL download flow does not forward them;
+                  without those claims, the placeholders remain unchanged.
+                summary: Custom claims (requires invocation authorization)
+                value:
+                  attribute:
+                    key: departmentWatermark
+                    dataType: WATERMARK
+                    watermark:
+                      text: "${auth.claims[\"custom:department\"]} — ${auth.claims.roles[0]}"
               JSON_Attribute:
                 value:
                   attribute:
@@ -590,6 +688,7 @@ paths:
       summary: Add new attribute
       tags:
       - Attributes
+      x-formkiq-required-permission: WRITE_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -641,6 +740,7 @@ paths:
       summary: Delete attribute
       tags:
       - Attributes
+      x-formkiq-required-permission: DELETE_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -684,6 +784,7 @@ paths:
       summary: Get Attribute
       tags:
       - Attributes
+      x-formkiq-required-permission: READ_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -739,6 +840,7 @@ paths:
       summary: Update existing attribute
       tags:
       - Attributes
+      x-formkiq-required-permission: WRITE_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -785,6 +887,7 @@ paths:
       summary: Get Attribute Allowed Values
       tags:
       - Attributes
+      x-formkiq-required-permission: READ_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -854,6 +957,7 @@ paths:
       summary: Add Document Generate
       tags:
       - Document Generation
+      x-formkiq-required-permission: WRITE_DOCUMENT_GENERATION
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/documentGenerationLambdaApi201"
       x-content-type: application/json
@@ -1016,6 +1120,7 @@ paths:
       summary: Get Documents listing
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1141,6 +1246,7 @@ paths:
       summary: Add new document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -1255,6 +1361,7 @@ paths:
       summary: Reindex metadata on a document
       tags:
       - Reindex
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -1301,6 +1408,7 @@ paths:
       summary: Compress multiple documents into a .zip file
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -1371,6 +1479,7 @@ paths:
       summary: Delete document
       tags:
       - Documents
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1430,6 +1539,7 @@ paths:
       summary: Get document
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1538,6 +1648,7 @@ paths:
       summary: Update document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -1616,6 +1727,7 @@ paths:
       summary: Get document actions
       tags:
       - Document Actions
+      x-formkiq-required-permission: READ_DOCUMENT_ACTIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1715,6 +1827,7 @@ paths:
       summary: Add document action
       tags:
       - Document Actions
+      x-formkiq-required-permission: WRITE_DOCUMENT_ACTIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -1775,6 +1888,7 @@ paths:
       summary: Retries failed document action(s)
       tags:
       - Document Actions
+      x-formkiq-required-permission: WRITE_DOCUMENT_ACTIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1837,6 +1951,7 @@ paths:
       summary: Get document artifacts
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1887,6 +2002,7 @@ paths:
       summary: Promote document artifact
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -1894,7 +2010,10 @@ paths:
       - application/json
   /documents/{documentId}/attributes:
     get:
-      description: Get a listing of a document's attributes
+      description: |-
+        Get a listing of a document's attributes
+
+        Requires READ_DOCUMENT_ATTRIBUTES or READ. ADMIN retains access.
       operationId: GetDocumentAttributes
       parameters:
       - description: Site Identifier
@@ -1957,6 +2076,7 @@ paths:
       summary: Get document's attributes
       tags:
       - Document Attributes
+      x-formkiq-required-permission: READ_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -1967,6 +2087,8 @@ paths:
 
         For an attribute defined with dataType JSON, supply one object in jsonValue.
         Do not combine jsonValue with scalar, entity, classification, or relationship value fields.
+
+        Requires WRITE_DOCUMENT_ATTRIBUTES or WRITE. ADMIN retains access.
       operationId: AddDocumentAttributes
       parameters:
       - description: Site Identifier
@@ -2031,6 +2153,7 @@ paths:
       summary: Add attribute to document
       tags:
       - Document Attributes
+      x-formkiq-required-permission: WRITE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -2043,6 +2166,8 @@ paths:
         Note:
         - attributes in the request will overwrite existing attributes.
         - jsonValue replaces the entire JSON object; nested fields are not merged.
+
+        Requires WRITE_DOCUMENT_ATTRIBUTES or WRITE. ADMIN retains access.
       operationId: SetDocumentAttributes
       parameters:
       - description: Site Identifier
@@ -2094,6 +2219,7 @@ paths:
       summary: Set document's attributes
       tags:
       - Document Attributes
+      x-formkiq-required-permission: WRITE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -2104,6 +2230,8 @@ paths:
       description: |-
         Delete a document attribute by using its key. For a JSON attribute, this deletes the
         entire JSON object, subject to authorization and required-attribute validation.
+
+        Requires DELETE_DOCUMENT_ATTRIBUTES or DELETE. ADMIN retains access.
       operationId: DeleteDocumentAttribute
       parameters:
       - description: Site Identifier
@@ -2157,12 +2285,16 @@ paths:
       summary: Delete document attribute
       tags:
       - Document Attributes
+      x-formkiq-required-permission: DELETE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
     get:
-      description: Get a document attribute by using its key
+      description: |-
+        Get a document attribute by using its key
+
+        Requires READ_DOCUMENT_ATTRIBUTES or READ. ADMIN retains access.
       operationId: GetDocumentAttribute
       parameters:
       - description: Site Identifier
@@ -2216,6 +2348,7 @@ paths:
       summary: Get document attribute by key
       tags:
       - Document Attributes
+      x-formkiq-required-permission: READ_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2224,6 +2357,8 @@ paths:
       description: |-
         Set an attribute value on a document. For an attribute defined with dataType JSON,
         supply jsonValue to replace the entire object. Nested fields are not merged.
+
+        Requires WRITE_DOCUMENT_ATTRIBUTES or WRITE. ADMIN retains access.
       operationId: SetDocumentAttributeValue
       parameters:
       - description: Site Identifier
@@ -2292,6 +2427,7 @@ paths:
       summary: Set document's attributes value
       tags:
       - Document Attributes
+      x-formkiq-required-permission: WRITE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -2306,6 +2442,8 @@ paths:
         Attributes defined with dataType JSON are rejected with 400 Bad Request, regardless of
         the supplied attributeValue. No data is changed. Delete the entire JSON attribute using
         DELETE /documents/{documentId}/attributes/{attributeKey} instead.
+
+        Requires DELETE_DOCUMENT_ATTRIBUTES or DELETE. ADMIN retains access.
       operationId: DeleteDocumentAttributeAndValue
       parameters:
       - description: Site Identifier
@@ -2378,15 +2516,17 @@ paths:
       summary: Delete document's attribute value
       tags:
       - Document Attributes
+      x-formkiq-required-permission: DELETE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
   /documents/{documentId}/attributes/{attributeKey}/generate:
     post:
-      description: "Allocates the next value from the numbering sequence configured\
-        \ for the attribute key and stores it on the document. If the document already\
-        \ has a value for the attribute key, the existing value is returned."
+      description: |-
+        Allocates the next value from the numbering sequence configured for the attribute key and stores it on the document. If the document already has a value for the attribute key, the existing value is returned.
+
+        Requires WRITE_DOCUMENT_ATTRIBUTES or WRITE. ADMIN retains access.
       operationId: GenerateDocumentAttributeValue
       parameters:
       - description: Site Identifier
@@ -2444,6 +2584,7 @@ paths:
       summary: Generate document attribute value
       tags:
       - Document Attributes
+      x-formkiq-required-permission: WRITE_DOCUMENT_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2511,6 +2652,7 @@ paths:
       summary: Add Document Certification
       tags:
       - Document Generation
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/documentSignatureLambdaApi"
       x-content-type: application/json
@@ -2565,6 +2707,7 @@ paths:
       summary: Perform document checkout
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2618,6 +2761,7 @@ paths:
       summary: Delete document legal hold checkout
       tags:
       - Documents
+      x-formkiq-required-permission: GOVERN_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2670,6 +2814,7 @@ paths:
       summary: Perform document legal hold checkout
       tags:
       - Documents
+      x-formkiq-required-permission: GOVERN_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2763,6 +2908,7 @@ paths:
       summary: Get document's contents
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -2836,6 +2982,7 @@ paths:
       summary: Get document's data classification
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: READ_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -2897,6 +3044,7 @@ paths:
       summary: Set document's data classification
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: WRITE_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
@@ -2971,6 +3119,7 @@ paths:
       summary: Get all document's metadata extraction results
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: READ_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -3052,6 +3201,7 @@ paths:
       summary: Get document's metadata extraction results
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: READ_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -3115,6 +3265,7 @@ paths:
       summary: Add document's metadata extraction result
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: WRITE_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -3193,6 +3344,7 @@ paths:
       summary: Get document AI results from LLM prompts
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: READ_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -3279,6 +3431,7 @@ paths:
       summary: Get document AI results from LLM prompt
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: READ_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -3343,6 +3496,7 @@ paths:
       summary: Add document AI result from LLM prompt
       tags:
       - Intelligent Document Processing
+      x-formkiq-required-permission: WRITE_INTELLIGENT_DOCUMENT_PROCESSING
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
@@ -3389,6 +3543,7 @@ paths:
       summary: Delete document full-text
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -3440,6 +3595,7 @@ paths:
       summary: Get document's full-text
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -3489,6 +3645,7 @@ paths:
       summary: Update document's full-text
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -3539,6 +3696,7 @@ paths:
       summary: Add document's full-text
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -3590,6 +3748,7 @@ paths:
       summary: Set document's full-text
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -3648,6 +3807,7 @@ paths:
       summary: Delete document full-text tag
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -3714,6 +3874,7 @@ paths:
       summary: Delete document full-text tag/value
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -3782,6 +3943,7 @@ paths:
       summary: Antivirus document scan
       tags:
       - MalwareScan
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
       x-content-type: application/json
@@ -3865,6 +4027,7 @@ paths:
       summary: Get Malware Scan results
       tags:
       - MalwareScan
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
       x-accepts:
@@ -3923,6 +4086,7 @@ paths:
       summary: MalwareScan document scan
       tags:
       - MalwareScan
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/antivirusLambdaApi200"
       x-content-type: application/json
@@ -3993,6 +4157,7 @@ paths:
       summary: Get document notifications
       tags:
       - Document Notifications
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -4056,6 +4221,7 @@ paths:
       summary: Add an ad hoc document notification
       tags:
       - Document Notifications
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -4111,6 +4277,7 @@ paths:
       summary: Delete document ocr
       tags:
       - Document OCR
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrLambdaApi200"
       x-accepts:
@@ -4202,6 +4369,7 @@ paths:
       summary: Get document ocr content
       tags:
       - Document OCR
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrLambdaApi200"
       x-accepts:
@@ -4262,6 +4430,7 @@ paths:
       summary: Perform document ocr
       tags:
       - Document OCR
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrLambdaApi200"
       x-content-type: application/json
@@ -4322,6 +4491,7 @@ paths:
       summary: Set document ocr result
       tags:
       - Document OCR
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrLambdaApi200"
       x-content-type: application/json
@@ -4378,6 +4548,7 @@ paths:
       summary: Purge document
       tags:
       - Documents
+      x-formkiq-required-permission: GOVERN_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -4430,13 +4601,15 @@ paths:
       summary: Restore soft deleted document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
   /documents/{documentId}/reviews:
     get:
-      description: Get a listing of reviews for a document
+      description: "Get a listing of reviews for a document, including the effective\
+        \ countedDecisionTypes policy for each review."
       operationId: GetDocumentReviews
       parameters:
       - description: Site Identifier
@@ -4499,6 +4672,7 @@ paths:
       summary: Get document reviews
       tags:
       - Document Reviews
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -4507,6 +4681,9 @@ paths:
       description: |-
         Add a review to a document. When notifications are supplied, queue each notification
         for delivery when the review is created.
+        Omitted or null countedDecisionTypes defaults to [APPROVAL]. Only decision records of the
+        configured types count toward requiredDecisions; other supported types may still be submitted.
+        The same counting policy applies to document-level and artifact-scoped reviews.
       operationId: AddDocumentReview
       parameters:
       - description: Site Identifier
@@ -4536,6 +4713,24 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              approvalReview:
+                summary: Require two approval-type responses
+                value:
+                  review:
+                    reviewCategory: Legal
+                    requiredDecisions: 2
+                    countedDecisionTypes:
+                    - APPROVAL
+              acknowledgmentReview:
+                summary: Require one acknowledgment while allowing other decision
+                  types
+                value:
+                  review:
+                    reviewCategory: Receipt
+                    requiredDecisions: 1
+                    countedDecisionTypes:
+                    - ACKNOWLEDGMENT
             schema:
               $ref: "#/components/schemas/AddDocumentReviewRequest"
         required: true
@@ -4553,11 +4748,19 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: "Invalid review configuration, including empty, duplicate,\
+            \ unknown, or non-string countedDecisionTypes entries."
       security:
       - ApiAuthorization: []
       summary: Add document review
       tags:
       - Document Reviews
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -4565,7 +4768,9 @@ paths:
       - application/json
   /documents/{documentId}/reviews/{reviewId}:
     get:
-      description: Get a document review by review id
+      description: "Get a document review by review id, including its effective countedDecisionTypes\
+        \ policy. Reviews stored without an explicit policy return [APPROVAL]; historical\
+        \ completed reviews retain their status."
       operationId: GetDocumentReview
       parameters:
       - description: Site Identifier
@@ -4619,12 +4824,16 @@ paths:
       summary: Get document review
       tags:
       - Document Reviews
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
     patch:
-      description: Update a document review by review id
+      description: |-
+        Update a document review by review id. Omitted properties retain their existing values.
+        Changes to countedDecisionTypes or requiredDecisions apply when subsequent counted
+        decisions are submitted. Updating the counting configuration does not change reviewStatus.
       operationId: UpdateDocumentReview
       parameters:
       - description: Site Identifier
@@ -4679,11 +4888,19 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: "Invalid review configuration, including empty, duplicate,\
+            \ unknown, or non-string countedDecisionTypes entries."
       security:
       - ApiAuthorization: []
       summary: Update document review
       tags:
       - Document Reviews
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -4691,7 +4908,8 @@ paths:
       - application/json
   /documents/{documentId}/reviews/{reviewId}/decisions:
     get:
-      description: Get a listing of decisions for a document review
+      description: "Get a listing of all decisions for a document review, including\
+        \ records whose types do not count toward completion."
       operationId: GetDocumentReviewDecisions
       parameters:
       - description: Site Identifier
@@ -4762,6 +4980,7 @@ paths:
       summary: Get document review decisions
       tags:
       - Document Reviews
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -4770,6 +4989,17 @@ paths:
       description: |-
         Add a decision to a document review. When approvalGroups is set on the review,
         the caller must belong to at least one of those groups, in addition to satisfying the existing authorization requirements, before the decision is added.
+        Every accepted submission is retained with its own decision ID, author, timestamp,
+        and content. countedDecisionTypes selects records that contribute to requiredDecisions;
+        it does not restrict which supported types may be submitted. Counting uses decision
+        records, not distinct reviewers. APPROVAL records count regardless of their decision value.
+        With the default [APPROVAL] policy, COMMENT, RECOMMENDATION, and ACKNOWLEDGMENT
+        may be submitted repeatedly by the same authorized user while the review is open.
+        A non-counting submission may move PENDING to IN_PROGRESS, but cannot complete the
+        review or trigger completion-dependent processing. It does not automatically create
+        a follow-up review or downstream action; an explicitly supplied follow-up review
+        uses the same counting-policy defaults and validation as ordinary review creation.
+        Completion occurs when the qualifying count reaches or exceeds requiredDecisions.
         Decisions submitted to a review that is already COMPLETED return 409 Conflict without creating a decision, follow-up review, notification, or activity record.
       operationId: AddDocumentReviewDecision
       parameters:
@@ -4825,6 +5055,12 @@ paths:
               $ref: "#/components/headers/AccessControlAllowMethods"
             Access-Control-Allow-Headers:
               $ref: "#/components/headers/AccessControlAllowHeaders"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorsResponse"
+          description: Invalid decision or explicitly requested follow-up review configuration.
         "409":
           content:
             application/json:
@@ -4845,6 +5081,7 @@ paths:
       summary: Add document review decision
       tags:
       - Document Reviews
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -4907,6 +5144,7 @@ paths:
       summary: Get document syncs
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -4956,6 +5194,7 @@ paths:
       summary: Add document sync to service
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -5042,6 +5281,7 @@ paths:
       summary: Get document's tags
       tags:
       - Document Tags
+      x-formkiq-required-permission: READ_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -5117,6 +5357,7 @@ paths:
       summary: Update document tags
       tags:
       - Document Tags
+      x-formkiq-required-permission: WRITE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -5190,6 +5431,7 @@ paths:
       summary: Add tag to document
       tags:
       - Document Tags
+      x-formkiq-required-permission: WRITE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -5266,6 +5508,7 @@ paths:
       summary: Set document's tags
       tags:
       - Document Tags
+      x-formkiq-required-permission: WRITE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -5327,6 +5570,7 @@ paths:
       summary: Delete document tag
       tags:
       - Document Tags
+      x-formkiq-required-permission: DELETE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -5394,6 +5638,7 @@ paths:
       summary: Get document tag by key
       tags:
       - Document Tags
+      x-formkiq-required-permission: READ_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -5460,6 +5705,7 @@ paths:
       summary: Update document tag value(s)
       tags:
       - Document Tags
+      x-formkiq-required-permission: WRITE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -5538,6 +5784,7 @@ paths:
       summary: Delete document's tag value
       tags:
       - Document Tags
+      x-formkiq-required-permission: DELETE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -5581,6 +5828,7 @@ paths:
       summary: Mass Update document tag(s)
       tags:
       - Document Tags
+      x-formkiq-required-permission: WRITE_DOCUMENT_TAGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -5686,6 +5934,7 @@ paths:
       summary: Get url to add large document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -5790,6 +6039,7 @@ paths:
       summary: Add large document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -5904,6 +6154,7 @@ paths:
       summary: Get url to update large document
       tags:
       - Documents
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6048,6 +6299,7 @@ paths:
       summary: Get document content url
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6126,6 +6378,7 @@ paths:
       summary: Get document's versions
       tags:
       - Document Versions
+      x-formkiq-required-permission: READ_DOCUMENT_VERSIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6190,6 +6443,7 @@ paths:
       summary: Set version of document
       tags:
       - Document Versions
+      x-formkiq-required-permission: WRITE_DOCUMENT_VERSIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -6260,6 +6514,7 @@ paths:
       summary: Delete document version
       tags:
       - Document Versions
+      x-formkiq-required-permission: GOVERN_DOCUMENT_VERSIONS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6325,6 +6580,7 @@ paths:
       summary: Get document workflows
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6395,6 +6651,7 @@ paths:
       summary: Add document workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -6469,6 +6726,7 @@ paths:
       summary: Get document workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6549,6 +6807,7 @@ paths:
       summary: Approve/Reject document in approval queue
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -6614,6 +6873,7 @@ paths:
       summary: Get EntityTypes
       tags:
       - Entity
+      x-formkiq-required-permission: READ_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6661,6 +6921,7 @@ paths:
       summary: Add New EntityType
       tags:
       - Entity
+      x-formkiq-required-permission: WRITE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -6706,6 +6967,7 @@ paths:
       summary: Deletes Entity Type
       tags:
       - Entity
+      x-formkiq-required-permission: DELETE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6760,6 +7022,7 @@ paths:
       summary: Get EntityType
       tags:
       - Entity
+      x-formkiq-required-permission: READ_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6825,6 +7088,7 @@ paths:
       summary: Set EntityType
       tags:
       - Entity
+      x-formkiq-required-permission: WRITE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -6898,6 +7162,7 @@ paths:
       summary: Get Entities
       tags:
       - Entity
+      x-formkiq-required-permission: READ_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -6964,6 +7229,7 @@ paths:
       summary: Add New Entity
       tags:
       - Entity
+      x-formkiq-required-permission: WRITE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -7017,6 +7283,7 @@ paths:
       summary: Deletes Entity
       tags:
       - Entity
+      x-formkiq-required-permission: DELETE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -7079,6 +7346,7 @@ paths:
       summary: Get Entity
       tags:
       - Entity
+      x-formkiq-required-permission: READ_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -7153,6 +7421,7 @@ paths:
       summary: Update Entity
       tags:
       - Entity
+      x-formkiq-required-permission: WRITE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -7238,6 +7507,7 @@ paths:
       summary: Set Entity
       tags:
       - Entity
+      x-formkiq-required-permission: WRITE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -7299,6 +7569,7 @@ paths:
       summary: Deletes Entity Attribute
       tags:
       - Entity
+      x-formkiq-required-permission: DELETE_ENTITY
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -7479,6 +7750,7 @@ paths:
       summary: Create Docusign Envelope request
       tags:
       - E-Signature
+      x-formkiq-required-permission: WRITE_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-content-type: application/json
@@ -7607,6 +7879,7 @@ paths:
       summary: Get Docusign envelope and recipient status
       tags:
       - E-Signature
+      x-formkiq-required-permission: READ_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-accepts:
@@ -7754,6 +8027,7 @@ paths:
       summary: Request DocuSign signing reminders
       tags:
       - E-Signature
+      x-formkiq-required-permission: WRITE_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-content-type: application/json
@@ -7870,6 +8144,7 @@ paths:
       summary: Void a DocuSign envelope
       tags:
       - E-Signature
+      x-formkiq-required-permission: WRITE_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-content-type: application/json
@@ -7944,6 +8219,7 @@ paths:
       summary: Create Docusign Recipient View request
       tags:
       - E-Signature
+      x-formkiq-required-permission: WRITE_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-content-type: application/json
@@ -8022,6 +8298,7 @@ paths:
       summary: Create Docusign Sender View request
       tags:
       - E-Signature
+      x-formkiq-required-permission: WRITE_E_SIGNATURE
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/esignatureLambdaApi200"
       x-content-type: application/json
@@ -8125,6 +8402,7 @@ paths:
       summary: Get document folders
       tags:
       - Document Folders
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/searchLambdaApi200"
       x-accepts:
@@ -8174,6 +8452,7 @@ paths:
       summary: Add document folder
       tags:
       - Document Folders
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -8227,6 +8506,7 @@ paths:
       summary: Move document folder
       tags:
       - Document Folders
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -8280,6 +8560,7 @@ paths:
       summary: Delete document folder
       tags:
       - Document Folders
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8324,6 +8605,7 @@ paths:
       summary: Get folder permissions
       tags:
       - Document Folders
+      x-formkiq-required-permission: GOVERN_DOCUMENT_FOLDERS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/searchLambdaApi200"
       x-accepts:
@@ -8369,6 +8651,7 @@ paths:
       summary: Sets Folder Permissions
       tags:
       - Document Folders
+      x-formkiq-required-permission: GOVERN_DOCUMENT_FOLDERS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -8434,6 +8717,7 @@ paths:
       summary: Add Google Document Export
       tags:
       - Google Integration
+      x-formkiq-required-permission: WRITE_GOOGLE_INTEGRATION
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/googleLambdaApi201"
       x-content-type: application/json
@@ -8480,6 +8764,7 @@ paths:
       summary: Get list of user group(s)
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8512,6 +8797,7 @@ paths:
       summary: Add a group
       tags:
       - User Management
+      x-formkiq-required-permission: WRITE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -8549,6 +8835,7 @@ paths:
       summary: Delete Group
       tags:
       - User Management
+      x-formkiq-required-permission: DELETE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8584,6 +8871,7 @@ paths:
       summary: Get a user group
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8637,6 +8925,7 @@ paths:
       summary: Get users in a group
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8678,6 +8967,7 @@ paths:
       summary: Add User to a group
       tags:
       - User Management
+      x-formkiq-required-permission: WRITE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -8723,6 +9013,7 @@ paths:
       summary: Remove Username From Group
       tags:
       - User Management
+      x-formkiq-required-permission: DELETE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8768,6 +9059,7 @@ paths:
       summary: Get list of user(s)
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8800,6 +9092,7 @@ paths:
       summary: Add User
       tags:
       - User Management
+      x-formkiq-required-permission: WRITE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -8837,6 +9130,7 @@ paths:
       summary: Delete Username
       tags:
       - User Management
+      x-formkiq-required-permission: DELETE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8872,6 +9166,7 @@ paths:
       summary: Get a user
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8925,6 +9220,7 @@ paths:
       summary: Returns a list of group user belongs to
       tags:
       - User Management
+      x-formkiq-required-permission: READ_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -8973,6 +9269,7 @@ paths:
       summary: Set User Operation
       tags:
       - User Management
+      x-formkiq-required-permission: WRITE_USER_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9028,6 +9325,7 @@ paths:
       - ApiAuthorization: []
       tags:
       - Custom Index
+      x-formkiq-required-permission: WRITE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -9089,6 +9387,7 @@ paths:
       - ApiAuthorization: []
       tags:
       - Custom Index
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9163,6 +9462,7 @@ paths:
       tags:
       - Custom Index
       - Tag Index
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -9217,6 +9517,7 @@ paths:
       summary: Get Mappings
       tags:
       - Mappings
+      x-formkiq-required-permission: READ_MAPPINGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9264,6 +9565,7 @@ paths:
       summary: Add New Mapping
       tags:
       - Mappings
+      x-formkiq-required-permission: WRITE_MAPPINGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -9309,6 +9611,7 @@ paths:
       summary: Delete Mapping
       tags:
       - Mappings
+      x-formkiq-required-permission: DELETE_MAPPINGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9352,6 +9655,7 @@ paths:
       summary: Get Mapping
       tags:
       - Mappings
+      x-formkiq-required-permission: READ_MAPPINGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9417,6 +9721,7 @@ paths:
       summary: Set Mapping
       tags:
       - Mappings
+      x-formkiq-required-permission: WRITE_MAPPINGS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -9455,6 +9760,7 @@ paths:
       summary: Add Examine Pdf
       tags:
       - Examine Objects
+      x-formkiq-required-permission: READ_EXAMINE_OBJECTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200"
       x-accepts:
@@ -9502,8 +9808,85 @@ paths:
       summary: Add Examine Pdf
       tags:
       - Examine Objects
+      x-formkiq-required-permission: READ_EXAMINE_OBJECTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/ocrObjectsLambdaApi200"
+      x-accepts:
+      - application/json
+  /permissions/catalog:
+    get:
+      description: |-
+        Returns the supported API permission role types, grouped by permission group,
+        with the scoped permission names and descriptions in each group. Use this catalog when creating
+        API keys or mapping user roles to permissions.
+
+        Predefined role types contain their effective permissions, including permissions
+        inherited from other operation categories. CUSTOM contains all available scoped
+        permissions as selectable options; it does not automatically grant them.
+        Deprecated umbrella permissions are excluded from the permission lists, and empty
+        groups are omitted.
+
+        The catalog is available to authenticated callers without a site-specific API
+        permission. It describes supported grants rather than the caller's current
+        permissions or authority to assign those grants. No siteId is required.
+      operationId: GetPermissionCatalog
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CatalogStructure:
+                  summary: "Abbreviated role type, group and permission hierarchy"
+                  value:
+                    roleTypes:
+                    - name: READ
+                      groups:
+                      - name: DOCUMENTS
+                        label: Documents
+                        permissions:
+                        - name: READ_DOCUMENTS
+                          description: "Read and search documents, their content,\
+                            \ and related document data."
+                      - name: DOCUMENT_ATTRIBUTES
+                        label: Document Attributes
+                        permissions:
+                        - name: READ_DOCUMENT_ATTRIBUTES
+                          description: Read attributes assigned to documents.
+                    - name: CUSTOM
+                      groups:
+                      - name: DOCUMENTS
+                        label: Documents
+                        permissions:
+                        - name: READ_DOCUMENTS
+                          description: "Read and search documents, their content,\
+                            \ and related document data."
+                        - name: WRITE_DOCUMENTS
+                          description: "Create, upload, and update documents, their\
+                            \ content, and related document data."
+                        - name: DELETE_DOCUMENTS
+                          description: Delete documents and related document data.
+                        - name: GOVERN_DOCUMENTS
+                          description: "Permanently delete documents and manage document\
+                            \ governance, including legal holds."
+              schema:
+                $ref: "#/components/schemas/GetPermissionCatalogResponse"
+          description: API permission catalog
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: "#/components/headers/AccessControlAllowOrigin"
+            Access-Control-Allow-Methods:
+              $ref: "#/components/headers/AccessControlAllowMethods"
+            Access-Control-Allow-Headers:
+              $ref: "#/components/headers/AccessControlAllowHeaders"
+        "401":
+          description: Authentication required
+      security:
+      - ApiAuthorization: []
+      summary: Get API permission catalog
+      tags:
+      - System Management
+      x-amazon-apigateway-integration:
+        $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
   /publications/{documentId}:
@@ -9549,6 +9932,7 @@ paths:
       summary: Delete published document's contents
       tags:
       - Documents
+      x-formkiq-required-permission: DELETE_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9590,6 +9974,7 @@ paths:
       summary: Get published document's contents
       tags:
       - Documents
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9643,6 +10028,7 @@ paths:
       summary: Get queues
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9697,6 +10083,7 @@ paths:
       summary: Add queue
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -9742,6 +10129,7 @@ paths:
       summary: Delete queue
       tags:
       - Document Workflows
+      x-formkiq-required-permission: DELETE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9785,6 +10173,7 @@ paths:
       summary: Get queue
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9846,6 +10235,7 @@ paths:
       summary: Get list of documents in queue
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/searchLambdaApi200"
       x-accepts:
@@ -9899,6 +10289,7 @@ paths:
       summary: Get Rulesets
       tags:
       - Rulesets
+      x-formkiq-required-permission: READ_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -9946,6 +10337,7 @@ paths:
       summary: Add New Ruleset
       tags:
       - Rulesets
+      x-formkiq-required-permission: WRITE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -9991,6 +10383,7 @@ paths:
       summary: Delete Ruleset
       tags:
       - Rulesets
+      x-formkiq-required-permission: DELETE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10034,6 +10427,7 @@ paths:
       summary: Get Ruleset
       tags:
       - Rulesets
+      x-formkiq-required-permission: READ_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10089,6 +10483,7 @@ paths:
       summary: Update Ruleset
       tags:
       - Rulesets
+      x-formkiq-required-permission: WRITE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -10151,6 +10546,7 @@ paths:
       summary: Get Rules
       tags:
       - Rulesets
+      x-formkiq-required-permission: READ_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10206,6 +10602,7 @@ paths:
       summary: Add New Rule
       tags:
       - Rulesets
+      x-formkiq-required-permission: WRITE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -10259,6 +10656,7 @@ paths:
       summary: Delete Rule
       tags:
       - Rulesets
+      x-formkiq-required-permission: DELETE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10310,6 +10708,7 @@ paths:
       summary: Get Rule
       tags:
       - Rulesets
+      x-formkiq-required-permission: READ_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10373,6 +10772,7 @@ paths:
       summary: Update Rule
       tags:
       - Rulesets
+      x-formkiq-required-permission: WRITE_RULESETS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -10386,34 +10786,33 @@ paths:
         \ documentIds (up to 100 documentIds accepted).\n\nIf using Enteprise Composite\
         \ Keys feature then multiple tag(s) can be searched for.\n\nFor attributes\
         \ defined with dataType JSON, use an attribute criterion's json filter\nwith\
-        \ a path to compare a nested field. Equality values inside json retain their\
-        \ JSON\nstring, number, or boolean type. Numeric bounds inside json use gt,\
-        \ gte, lt, and lte.\nExisting attribute eq and eqOr operators continue to\
-        \ accept strings.\nPaths support object properties and explicit array positions;\n\
-        wildcard, recursive, and array any-element matching are not supported.\nMultiple\
-        \ conditions on different paths under the same attribute key are supported.\n\
-        All conditions must match the same document or artifact.\n\nJSON path filtering\
-        \ is applied after candidate records are read and does not reduce\nread capacity\
-        \ consumed for those candidates. A stored JSON value does not automatically\n\
-        create an index for its nested fields. Continue through empty filtered pages\
-        \ until the\nnext token is absent; candidate and time-budget limits still\
-        \ apply.\n\nIf Typesense is enabled, full text search is supported through\
-        \ the \"text\" parameter. Full text search will look for the text in the \"\
-        content\" and/or document \"metadata\".\n\nWhen `documentIds` is supplied,\
-        \ all supplied IDs are checked against the search criteria and all matching\
-        \ documents are returned. The `limit` query parameter is ignored. Up to 100\
-        \ document IDs are accepted.\n\nUse the `projection` parameter to return matching\
-        \ documents or a count of matching documents. Count responses are capped at\
-        \ 10,000 and indicate when the count was truncated.\nMulti-attribute searches\
-        \ requiring additional attribute filtering use a 25-second processing budget\n\
-        for index batches, attribute filtering, and document loading. The budget starts\
-        \ after index selection and empty-index prechecks. Searches with explicit\n\
-        `documentIds` or a composite key covering every search attribute are exempt.\n\
-        The budget is checked before starting each read; an in-flight read is allowed\
-        \ to finish.\nIf the budget expires, document searches return completed matches\
-        \ with `truncated=true` and a `next` token;\ncount searches return a partial\
-        \ lower bound with `truncated=true`.\n\nSee requestBody examples below for\
-        \ commmon examples."
+        \ a path to compare a nested field. The eq and eqOr operators accept strings,\n\
+        including inside json filters. Match JSON boolean fields using the strings\
+        \ \"true\"\nor \"false\". Compare JSON numeric fields using gt, gte, lt, and\
+        \ lte.\nPaths support object properties and explicit array positions;\nwildcard,\
+        \ recursive, and array any-element matching are not supported.\nMultiple conditions\
+        \ on different paths under the same attribute key are supported.\nAll conditions\
+        \ must match the same document or artifact.\n\nJSON path filtering is applied\
+        \ after candidate records are read and does not reduce\nread capacity consumed\
+        \ for those candidates. A stored JSON value does not automatically\ncreate\
+        \ an index for its nested fields. Continue through empty filtered pages until\
+        \ the\nnext token is absent; candidate and time-budget limits still apply.\n\
+        \nIf Typesense is enabled, full text search is supported through the \"text\"\
+        \ parameter. Full text search will look for the text in the \"content\" and/or\
+        \ document \"metadata\".\n\nWhen `documentIds` is supplied, all supplied IDs\
+        \ are checked against the search criteria and all matching documents are returned.\
+        \ The `limit` query parameter is ignored. Up to 100 document IDs are accepted.\n\
+        \nUse the `projection` parameter to return matching documents or a count of\
+        \ matching documents. Count responses are capped at 10,000 and indicate when\
+        \ the count was truncated.\nMulti-attribute searches requiring additional\
+        \ attribute filtering use a 25-second processing budget\nfor index batches,\
+        \ attribute filtering, and document loading. The budget starts after index\
+        \ selection and empty-index prechecks. Searches with explicit\n`documentIds`\
+        \ or a composite key covering every search attribute are exempt.\nThe budget\
+        \ is checked before starting each read; an in-flight read is allowed to finish.\n\
+        If the budget expires, document searches return completed matches with `truncated=true`\
+        \ and a `next` token;\ncount searches return a partial lower bound with `truncated=true`.\n\
+        \nSee requestBody examples below for commmon examples."
       operationId: DocumentSearch
       parameters:
       - description: Site Identifier
@@ -10505,7 +10904,7 @@ paths:
                     - key: invoiceDetails
                       json:
                         path: $.approved
-                        eq: true
+                        eq: "true"
                     - key: invoiceDetails
                       json:
                         path: $.total
@@ -10595,6 +10994,7 @@ paths:
       summary: Document search
       tags:
       - Document Search
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/searchLambdaApi200"
       x-content-type: application/json
@@ -10634,6 +11034,29 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              jsonAttribute:
+                summary: Search nested JSON fields
+                value:
+                  query:
+                    attributes:
+                    - key: invoiceDetails
+                      json:
+                        path: $.customer.name
+                        eq: Acme
+                    - key: invoiceDetails
+                      json:
+                        path: $.approved
+                        eq: "true"
+                    - key: invoiceDetails
+                      json:
+                        path: $.total
+                        gte: 1000
+                        lt: 2000
+                    - key: invoiceDetails
+                      json:
+                        path: $.lineItems.sku
+                        eq: HOSTING
             schema:
               $ref: "#/components/schemas/DocumentFulltextRequest"
         required: true
@@ -10662,6 +11085,7 @@ paths:
       summary: Document full-text search
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -10716,6 +11140,7 @@ paths:
       summary: Direct opensearch search API
       tags:
       - Advanced Document Search
+      x-formkiq-required-permission: READ_DOCUMENTS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -10827,6 +11252,7 @@ paths:
       summary: Add folder share
       tags:
       - Document Shares
+      x-formkiq-required-permission: WRITE_DOCUMENT_SHARES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -10864,6 +11290,7 @@ paths:
       summary: Delete folder share
       tags:
       - Document Shares
+      x-formkiq-required-permission: DELETE_DOCUMENT_SHARES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -10903,6 +11330,7 @@ paths:
       summary: Add shortlink
       tags:
       - Shortlinks
+      x-formkiq-required-permission: WRITE_SHORTLINKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -10979,6 +11407,7 @@ paths:
       summary: Add Site
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -11022,6 +11451,7 @@ paths:
       summary: Update Site
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -11059,6 +11489,7 @@ paths:
       summary: Get group(s) and permissions belonging to site
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -11103,6 +11534,7 @@ paths:
       summary: Deletes Site Group and permissions
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -11146,13 +11578,21 @@ paths:
       summary: Get group and permissions belonging to site
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
   /sites/{siteId}/groups/{groupName}/permissions:
     put:
-      description: Set Site's Group Permissions
+      description: |-
+        Replaces the group's permission grants for the specified site. Supply an optional
+        roleType to select a predefined role, or CUSTOM with a nonempty permissions array.
+        When roleType is omitted, permissions is required and is treated as an explicit
+        CUSTOM grant without adding inherited role permissions. For predefined role types,
+        omit permissions or supply an empty array. Nonempty permissions with a predefined
+        roleType are rejected. ADMIN roles and ADMIN permission grants are not allowed,
+        even for administrators.
       operationId: SetSiteGroupPermissions
       parameters:
       - description: Site Identifier
@@ -11174,6 +11614,30 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              PredefinedRole:
+                summary: Grant the predefined User Management role
+                value:
+                  roleType: USER_MANAGEMENT
+              CustomRole:
+                summary: Grant document and document-attribute reads
+                value:
+                  roleType: CUSTOM
+                  permissions:
+                  - READ_DOCUMENTS
+                  - READ_DOCUMENT_ATTRIBUTES
+              ScopedPermissions:
+                summary: Omit roleType for explicit scoped grants
+                value:
+                  permissions:
+                  - READ_DOCUMENTS
+                  - READ_DOCUMENT_ATTRIBUTES
+              LegacyPermissions:
+                summary: Preserve explicit umbrella grants
+                value:
+                  permissions:
+                  - READ
+                  - WRITE
             schema:
               $ref: "#/components/schemas/SetGroupPermissionsRequest"
         required: true
@@ -11196,6 +11660,7 @@ paths:
       summary: Set Site's Group Permissions
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -11233,6 +11698,7 @@ paths:
       summary: Deletes site(s) OpenSearch index
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11268,6 +11734,7 @@ paths:
       summary: Get site(s) OpenSearch index settings
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11309,6 +11776,7 @@ paths:
       summary: Set site(s) OpenSearch index settings
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -11337,6 +11805,7 @@ paths:
       summary: Get all OpenSearch indices
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11373,6 +11842,7 @@ paths:
       summary: Deletes OpenSearch index by name
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11409,6 +11879,7 @@ paths:
       summary: Get site(s) OpenSearch indices
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11450,6 +11921,7 @@ paths:
       summary: Set site(s) OpenSearch index to use for a SiteId
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-content-type: application/json
@@ -11481,6 +11953,7 @@ paths:
       summary: List OpenSearch snapshot repositories
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11537,6 +12010,7 @@ paths:
       summary: Cleanup OpenSearch snapshot repository
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11576,6 +12050,7 @@ paths:
       summary: Delete site OpenSearch snapshot repository
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11614,6 +12089,7 @@ paths:
       summary: Get site OpenSearch snapshot repository
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11653,6 +12129,7 @@ paths:
       summary: List site OpenSearch snapshots
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11700,6 +12177,7 @@ paths:
       summary: Delete site OpenSearch snapshot
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11746,6 +12224,7 @@ paths:
       summary: Get site OpenSearch snapshot
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11792,6 +12271,7 @@ paths:
       summary: Create site OpenSearch snapshot
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11839,6 +12319,7 @@ paths:
       summary: Delete restored OpenSearch snapshot index
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11885,6 +12366,7 @@ paths:
       summary: Restore site OpenSearch snapshot
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/fulltextLambdaApi200"
       x-accepts:
@@ -11929,6 +12411,7 @@ paths:
       summary: Get Sites Schema
       tags:
       - Schemas
+      x-formkiq-required-permission: READ_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -11976,6 +12459,7 @@ paths:
       summary: Set Sites Schema
       tags:
       - Schemas
+      x-formkiq-required-permission: WRITE_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12029,6 +12513,7 @@ paths:
       summary: Get Attribute Allowed Values
       tags:
       - Schemas
+      x-formkiq-required-permission: READ_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12082,6 +12567,7 @@ paths:
       summary: Get Sites Classifications
       tags:
       - Schemas
+      x-formkiq-required-permission: READ_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12129,6 +12615,7 @@ paths:
       summary: Add Classification
       tags:
       - Schemas
+      x-formkiq-required-permission: WRITE_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12174,6 +12661,7 @@ paths:
       summary: Delete Classification
       tags:
       - Schemas
+      x-formkiq-required-permission: DELETE_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12225,6 +12713,7 @@ paths:
       summary: Get Classification
       tags:
       - Schemas
+      x-formkiq-required-permission: READ_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12280,6 +12769,7 @@ paths:
       summary: Set Classification
       tags:
       - Schemas
+      x-formkiq-required-permission: WRITE_SCHEMAS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12342,6 +12832,7 @@ paths:
       summary: Get Classification's Attribute Allowed Values
       tags:
       - Schemas
+      x-formkiq-required-permission: READ_ATTRIBUTES
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12378,6 +12869,7 @@ paths:
       summary: Get site configuration
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12425,6 +12917,7 @@ paths:
       summary: Update site configuration
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12479,6 +12972,7 @@ paths:
       summary: Get numbering sequences
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12529,6 +13023,7 @@ paths:
       summary: Get numbering sequence
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12592,6 +13087,7 @@ paths:
       summary: Set numbering sequence
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12641,6 +13137,7 @@ paths:
       summary: Send a test notification
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12695,12 +13192,21 @@ paths:
       summary: Get API Keys
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
       - application/json
     post:
-      description: Adds a new API Key
+      description: |-
+        Creates an API key for the specified site. Supply an optional roleType to select
+        a predefined role, or CUSTOM with a nonempty permissions array. When roleType is
+        omitted and a nonempty permissions array is supplied, that array is treated as an
+        explicit CUSTOM grant without adding inherited role permissions. If roleType and
+        permissions are both omitted, or permissions is empty with no roleType, the legacy
+        READ, WRITE and DELETE grants apply. For predefined role types, omit permissions
+        or supply an empty array; nonempty permissions are rejected. ADMIN roles and ADMIN
+        permission grants are not allowed, even for administrators.
       operationId: AddApiKey
       parameters:
       - description: Site Identifier
@@ -12716,8 +13222,34 @@ paths:
           application/json:
             examples:
               AddApiKey:
+                summary: Preserve the legacy default grants
                 value:
                   name: My API Key
+              PredefinedRole:
+                summary: Create a key with the predefined READ role
+                value:
+                  name: Document reader
+                  roleType: READ
+              CustomRole:
+                summary: Create a key with scoped read grants
+                value:
+                  name: Document and attribute reader
+                  roleType: CUSTOM
+                  permissions:
+                  - READ_DOCUMENTS
+                  - READ_DOCUMENT_ATTRIBUTES
+              ScopedPermissions:
+                summary: Omit roleType for explicit scoped grants
+                value:
+                  name: Document reader
+                  permissions:
+                  - READ_DOCUMENTS
+              LegacyPermissions:
+                summary: Preserve an explicit write-only umbrella grant
+                value:
+                  name: Document writer
+                  permissions:
+                  - WRITE
             schema:
               $ref: "#/components/schemas/AddApiKeyRequest"
         required: true
@@ -12740,6 +13272,7 @@ paths:
       summary: Add API Key
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12785,6 +13318,7 @@ paths:
       summary: Delete API Key
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12813,6 +13347,7 @@ paths:
       summary: Get OPAs Access Policies
       tags:
       - Access Control
+      x-formkiq-required-permission: GOVERN_ACCESS_CONTROL
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12849,6 +13384,7 @@ paths:
       summary: Get OPA Access Policy
       tags:
       - Access Control
+      x-formkiq-required-permission: GOVERN_ACCESS_CONTROL
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12921,6 +13457,7 @@ paths:
       summary: "Test an OPA access policy, can only be requested with ADMIN privileges"
       tags:
       - Access Control
+      x-formkiq-required-permission: ADMIN
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -12958,6 +13495,7 @@ paths:
       summary: Delete OPA Access Policy Items
       tags:
       - Access Control
+      x-formkiq-required-permission: ADMIN
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -12994,6 +13532,7 @@ paths:
       summary: Get OPA Access Policy Items
       tags:
       - Access Control
+      x-formkiq-required-permission: GOVERN_ACCESS_CONTROL
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13041,6 +13580,7 @@ paths:
       summary: "Set opa access policy items, can only be requested with ADMIN privileges"
       tags:
       - Access Control
+      x-formkiq-required-permission: ADMIN
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -13095,6 +13635,7 @@ paths:
       summary: Get Locales
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13136,6 +13677,7 @@ paths:
       summary: Add Locale
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13181,6 +13723,7 @@ paths:
       summary: Delete Locale
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13242,6 +13785,7 @@ paths:
       summary: Get Resource Items by Locale
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13316,6 +13860,7 @@ paths:
       summary: Add Locale Resource Item
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13369,6 +13914,7 @@ paths:
       summary: Delete Local Resource Item
       tags:
       - System Management
+      x-formkiq-required-permission: DELETE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13420,6 +13966,7 @@ paths:
       summary: Get Resource Item by Locale
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13477,6 +14024,7 @@ paths:
       summary: Set Locale Resource Item
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13534,6 +14082,7 @@ paths:
       summary: Generate a delegation token
       tags:
       - System Management
+      x-formkiq-required-permission: ADMIN
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13562,6 +14111,7 @@ paths:
       summary: Get system configuration
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13600,6 +14150,7 @@ paths:
       summary: Update system configuration
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13628,6 +14179,7 @@ paths:
       summary: Get system inference models
       tags:
       - System Management
+      x-formkiq-required-permission: READ_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-accepts:
@@ -13668,6 +14220,7 @@ paths:
       summary: Agree to a system inference model
       tags:
       - System Management
+      x-formkiq-required-permission: WRITE_SYSTEM_MANAGEMENT
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/dataClassificationLambdaApi200"
       x-content-type: application/json
@@ -13852,6 +14405,7 @@ paths:
       summary: Add webhook
       tags:
       - Webhooks
+      x-formkiq-required-permission: WRITE_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -13908,6 +14462,7 @@ paths:
       summary: Get webhooks
       tags:
       - Webhooks
+      x-formkiq-required-permission: READ_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -13951,6 +14506,7 @@ paths:
       summary: Add webhook
       tags:
       - Webhooks
+      x-formkiq-required-permission: WRITE_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -13997,6 +14553,7 @@ paths:
       summary: Delete webhook
       tags:
       - Webhooks
+      x-formkiq-required-permission: DELETE_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14040,6 +14597,7 @@ paths:
       summary: Get webhook
       tags:
       - Webhooks
+      x-formkiq-required-permission: READ_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14089,6 +14647,7 @@ paths:
       summary: Update webhook
       tags:
       - Webhooks
+      x-formkiq-required-permission: WRITE_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -14134,6 +14693,7 @@ paths:
       summary: Get webhook tags
       tags:
       - Webhooks
+      x-formkiq-required-permission: READ_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14188,6 +14748,7 @@ paths:
       summary: Add webhook tag
       tags:
       - Webhooks
+      x-formkiq-required-permission: WRITE_WEBHOOKS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -14253,6 +14814,7 @@ paths:
       summary: Get workflows
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14307,6 +14869,7 @@ paths:
       summary: Add workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi201"
       x-content-type: application/json
@@ -14352,6 +14915,7 @@ paths:
       summary: Delete workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: DELETE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14395,6 +14959,7 @@ paths:
       summary: Get workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-accepts:
@@ -14457,6 +15022,7 @@ paths:
       summary: Update workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -14530,6 +15096,7 @@ paths:
       summary: Set workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: WRITE_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/lambdaApi200"
       x-content-type: application/json
@@ -14592,6 +15159,7 @@ paths:
       summary: Get list of documents in workflow
       tags:
       - Document Workflows
+      x-formkiq-required-permission: READ_DOCUMENT_WORKFLOWS
       x-amazon-apigateway-integration:
         $ref: "#/components/x-amazon-apigateway-integrations/searchLambdaApi200"
       x-accepts:
@@ -16024,7 +16592,54 @@ components:
           description: Watermark Font Size
           type: number
         text:
-          description: Watermark text
+          description: |-
+            Text to render as a watermark. `${...}` references are resolved before rendering
+            text onto a PDF or image. Static text remains unchanged.
+
+            Use `${...}` markers with explicit namespaces, property access, and zero-based
+            list indices. These markers match document generation, but watermark expressions
+            are limited to value paths; full FreeMarker expressions and directives are not supported.
+
+            | Reference | Meaning | Example resolved value |
+            |---|---|---|
+            | `${attributes.CustomerName[0]}` | First value of `CustomerName` | `Acme` |
+            | `${attributes.Reviewer[1]}` | Second reviewer from `["Alice", "Bob"]` | `Bob` |
+            | `${attributes["Invoice.Number"][0]}` | Attribute whose key contains a dot | `INV-123` |
+            | `${attributes.Contract[0].customer.name}` | Property inside a JSON attribute | `Acme` |
+            | `${attributes.Contract[0].items[2].description}` | Third item inside that JSON object | `Third` |
+            | `${document.documentId}` | Standard document ID | `doc-123` |
+            | `${document.path}` | Standard document path | `invoice.pdf` |
+            | `${document.contentType}` | Standard document content type | `application/pdf` |
+            | `${document.insertedDate}` | Document creation date; example uses ISO 8601 UTC formatting | `2026-10-15T12:00:00Z` |
+            | `${metadata.Department}` | Custom document metadata | `Legal` |
+            | `${auth.username}` | Invocation username; defaults to `System` | `mike@example.com` |
+            | `${auth.claims["custom:department"]}` | Custom authentication claim | `Sales` |
+            | `${auth.claims.roles[0]}` | First role from `["reviewer", "editor"]` | `reviewer` |
+
+            Every document attribute is represented as a list, including a single-valued
+            attribute. In `attributes.Contract[0].items[2]`, `[0]` selects the attribute value
+            and `[2]` selects a JSON array element. Repeated scalar attribute values use
+            DynamoDB sort-key order, not original insertion order; JSON arrays retain their
+            own order.
+
+            Dots traverse properties. Single- or double-quoted bracket keys select exact
+            names containing dots, spaces, colons, or other punctuation. Within a quoted
+            key, a backslash escapes the next character. JSON attributes and claims retain
+            their native object, list, number, Boolean, and string types until a final value
+            is selected. Watermark text must select scalar values; whole objects and lists
+            are rejected.
+
+            The original placeholder is preserved for unknown
+            properties, null values, and out-of-range indices. Malformed paths are rejected.
+            Wildcards, slices, negative indices, and recursive descent are not supported.
+
+            Substitution runs once. Markers inside replacement values remain literal text.
+
+            The auth namespace uses authorization available to the watermark invocation.
+            The presigned-URL download flow does not forward the downloader's identity or
+            custom claims. Without supplied invocation authorization, auth.username resolves
+            to System and custom claim placeholders remain unchanged. The document.userId
+            field identifies the stored document's user and can differ from auth.username.
           type: string
         rotation:
           description: Watermark Rotation
@@ -17090,7 +17705,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -17223,7 +17837,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -17372,7 +17985,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -17505,7 +18117,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -17740,7 +18351,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -17873,7 +18483,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -18740,15 +19349,10 @@ components:
         approved: true
         customer:
           name: Acme
-        notes: null
         lineItems:
         - sku: HOSTING
           quantity: 2
-      not:
-        enum:
-        - null
-        type: string
-      nullable: true
+      nullable: false
       type: object
     JsonAttributeValueExclusive:
       description: A JSON value cannot be combined with other attribute value forms.
@@ -18799,7 +19403,6 @@ components:
           approved: true
           customer:
             name: Acme
-          notes: null
           lineItems:
           - sku: HOSTING
             quantity: 2
@@ -18826,7 +19429,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -18870,7 +19472,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -19003,7 +19604,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -19149,7 +19749,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -19289,7 +19888,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -19443,7 +20041,6 @@ components:
           approved: true
           customer:
             name: Acme
-          notes: null
           lineItems:
           - sku: HOSTING
             quantity: 2
@@ -19590,15 +20187,10 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
-          not:
-            enum:
-            - null
-            type: string
-          nullable: true
+          nullable: false
           type: object
         stringValue:
           description: Attribute with string value
@@ -20512,6 +21104,14 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         siteId:
@@ -20627,6 +21227,14 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -20723,6 +21331,14 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -20827,6 +21443,14 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         contentType:
@@ -21386,7 +22010,7 @@ components:
         Status of Document Review:
         - PENDING: Review has been created and is waiting for one or more decisions.
         - IN_PROGRESS: Review has been claimed or at least one decision has been submitted, but completion requirements are not yet satisfied.
-        - COMPLETED: Completion requirements are satisfied.
+        - COMPLETED: The required number of records matching countedDecisionTypes has been collected. This status does not imply that every decision approved the document.
         - CANCELLED: Review was cancelled before completion.
         - SUPERSEDED: Review was replaced by another review, usually because the artifact/document changed.
       enum:
@@ -21397,6 +22021,8 @@ components:
       - SUPERSEDED
       type: string
     ReviewDecisionType:
+      description: Decision type. APPROVAL identifies an approval-type response; the
+        separate decision value represents its outcome and may be positive or negative.
       enum:
       - APPROVAL
       - RECOMMENDATION
@@ -21411,7 +22037,10 @@ components:
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           notifications:
           - notificationType: EMAIL
             cc:
@@ -21453,7 +22082,10 @@ components:
         approvalGroups:
         - approvalGroups
         - approvalGroups
-        requiredDecisions: 1
+        requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         notifications:
         - notificationType: EMAIL
           cc:
@@ -21489,10 +22121,26 @@ components:
             type: string
           type: array
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Records count regardless of decision value or
+            whether the same reviewer submitted earlier records.
           format: int64
-          minimum: 1
+          minimum: 0
           type: integer
+        countedDecisionTypes:
+          default:
+          - APPROVAL
+          description: |-
+            Types of decision records that count toward requiredDecisions. Omission or null defaults
+            to [APPROVAL]. This selects records to count and does not restrict which supported
+            decision types may be submitted. Empty arrays, duplicate entries, unknown
+            types, and non-string entries are rejected.
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: true
+          type: array
+          uniqueItems: true
         notifications:
           description: Optional notifications to queue for delivery when the review
             is created. An empty list sends no notifications.
@@ -21510,7 +22158,10 @@ components:
       example:
         review:
           reviewStatus: PENDING
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           comments: comments
       properties:
         review:
@@ -21519,16 +22170,34 @@ components:
     UpdateDocumentReview:
       example:
         reviewStatus: PENDING
-        requiredDecisions: 1
+        requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         comments: comments
       properties:
         reviewStatus:
           $ref: "#/components/schemas/DocumentReviewStatus"
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Changes apply when subsequent counted decisions
+            are submitted.
           format: int64
-          minimum: 1
+          minimum: 0
           type: integer
+        countedDecisionTypes:
+          description: |-
+            Replacement types of decision records that count toward requiredDecisions.
+            Omission or null preserves the effective current policy; it does not reset it to [APPROVAL].
+            Changes apply when subsequent counted decisions are submitted, counting existing
+            records against the updated policy. This does not restrict submissions.
+            Empty arrays, duplicate entries, unknown types, and non-string entries are rejected.
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: true
+          type: array
+          uniqueItems: true
         comments:
           description: Review comments
           type: string
@@ -21546,6 +22215,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21559,6 +22231,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21585,6 +22260,9 @@ components:
           - approvalGroups
           - approvalGroups
           requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           userId: userId
           comments: comments
           insertedDate: insertedDate
@@ -21604,6 +22282,9 @@ components:
         - approvalGroups
         - approvalGroups
         requiredDecisions: 0
+        countedDecisionTypes:
+        - APPROVAL
+        - APPROVAL
         userId: userId
         comments: comments
         insertedDate: insertedDate
@@ -21632,9 +22313,22 @@ components:
             type: string
           type: array
         requiredDecisions:
-          description: Number of decisions required to complete the review
+          description: Number of decision records matching countedDecisionTypes required
+            to complete the review. Completion does not imply a positive approval
+            outcome.
           format: int64
           type: integer
+        countedDecisionTypes:
+          description: "Effective types of decision records that count toward requiredDecisions.\
+            \ Always returned by review GET and list operations, including [APPROVAL]\
+            \ for records stored without an explicit policy. This does not restrict\
+            \ which supported decision types may be submitted."
+          items:
+            $ref: "#/components/schemas/ReviewDecisionType"
+          minItems: 1
+          nullable: false
+          type: array
+          uniqueItems: true
         userId:
           description: User who added review
           type: string
@@ -21647,6 +22341,8 @@ components:
         lastModifiedDate:
           description: Last Modified Timestamp
           type: string
+      required:
+      - countedDecisionTypes
       type: object
     AddDocumentReviewDecisionRequest:
       example:
@@ -21660,7 +22356,10 @@ components:
           approvalGroups:
           - approvalGroups
           - approvalGroups
-          requiredDecisions: 1
+          requiredDecisions: 0
+          countedDecisionTypes:
+          - APPROVAL
+          - APPROVAL
           notifications:
           - notificationType: EMAIL
             cc:
@@ -26158,7 +26857,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -26187,7 +26885,6 @@ components:
                 approved: true
                 customer:
                   name: Acme
-                notes: null
                 lineItems:
                 - sku: HOSTING
                   quantity: 2
@@ -26242,7 +26939,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -26271,7 +26967,6 @@ components:
                 approved: true
                 customer:
                   name: Acme
-                notes: null
                 lineItems:
                 - sku: HOSTING
                   quantity: 2
@@ -26622,15 +27317,33 @@ components:
           type: string
       type: object
     SetGroupPermissionsRequest:
+      description: |-
+        Replaces the group's grants for a site. roleType is optional. Supply a predefined
+        roleType with no permissions or an empty array, or CUSTOM with a nonempty
+        permissions array. Nonempty permissions with a predefined roleType are rejected. When
+        roleType is omitted, a nonempty permissions array is required and is treated as
+        an explicit CUSTOM grant without adding inherited role permissions. For example,
+        legacy WRITE grants write operations only and is not converted to the predefined
+        WRITE role, which also grants read and delete operations. Requests with neither
+        field, unknown role types or permission names, and invalid field combinations
+        are rejected. Administrator grants require an administrator caller.
       example:
+        roleType: ADMIN
         permissions:
         - ADMIN
         - ADMIN
       properties:
+        roleType:
+          $ref: "#/components/schemas/ApiPermissionRoleType"
         permissions:
+          description: |-
+            Explicit scoped or legacy umbrella grants. Required when roleType is omitted
+            or CUSTOM, and must then be nonempty. For predefined role types, omit this
+            field or supply an empty array.
           items:
-            $ref: "#/components/schemas/SiteGroupPermissions"
+            $ref: "#/components/schemas/ApiPermissionGrant"
           type: array
+          uniqueItems: true
       type: object
     GetUsersInGroupResponse:
       example:
@@ -27719,6 +28432,303 @@ components:
           description: Value of Field
           type: string
       type: object
+    GetPermissionCatalogResponse:
+      example:
+        roleTypes:
+        - name: ADMIN
+          groups:
+          - name: ACCESS_CONTROL
+            label: Document Attributes
+            permissions:
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+          - name: ACCESS_CONTROL
+            label: Document Attributes
+            permissions:
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+        - name: ADMIN
+          groups:
+          - name: ACCESS_CONTROL
+            label: Document Attributes
+            permissions:
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+          - name: ACCESS_CONTROL
+            label: Document Attributes
+            permissions:
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+            - name: GOVERN_ACCESS_CONTROL
+              description: Read attributes assigned to documents.
+      properties:
+        roleTypes:
+          description: Supported role types and their permission groups
+          items:
+            $ref: "#/components/schemas/PermissionCatalogRoleType"
+          type: array
+      required:
+      - roleTypes
+      type: object
+    PermissionCatalogRoleType:
+      example:
+        name: ADMIN
+        groups:
+        - name: ACCESS_CONTROL
+          label: Document Attributes
+          permissions:
+          - name: GOVERN_ACCESS_CONTROL
+            description: Read attributes assigned to documents.
+          - name: GOVERN_ACCESS_CONTROL
+            description: Read attributes assigned to documents.
+        - name: ACCESS_CONTROL
+          label: Document Attributes
+          permissions:
+          - name: GOVERN_ACCESS_CONTROL
+            description: Read attributes assigned to documents.
+          - name: GOVERN_ACCESS_CONTROL
+            description: Read attributes assigned to documents.
+      properties:
+        name:
+          $ref: "#/components/schemas/ApiPermissionRoleType"
+        groups:
+          description: |-
+            Nonempty groups of effective permissions for a predefined role type.
+            For CUSTOM, these groups contain all selectable scoped permissions.
+          items:
+            $ref: "#/components/schemas/PermissionCatalogGroup"
+          type: array
+      required:
+      - groups
+      - name
+      type: object
+    PermissionCatalogGroup:
+      example:
+        name: ACCESS_CONTROL
+        label: Document Attributes
+        permissions:
+        - name: GOVERN_ACCESS_CONTROL
+          description: Read attributes assigned to documents.
+        - name: GOVERN_ACCESS_CONTROL
+          description: Read attributes assigned to documents.
+      properties:
+        name:
+          $ref: "#/components/schemas/ApiPermissionGroup"
+        label:
+          description: Display label for the permission group
+          example: Document Attributes
+          type: string
+        permissions:
+          description: Scoped permissions and their descriptions in this group
+          items:
+            $ref: "#/components/schemas/PermissionCatalogPermission"
+          minItems: 1
+          type: array
+          uniqueItems: true
+      required:
+      - label
+      - name
+      - permissions
+      type: object
+    PermissionCatalogPermission:
+      example:
+        name: GOVERN_ACCESS_CONTROL
+        description: Read attributes assigned to documents.
+      properties:
+        name:
+          $ref: "#/components/schemas/ApiPermission"
+        description:
+          description: Human-readable explanation of the permission
+          example: Read attributes assigned to documents.
+          minLength: 1
+          type: string
+      required:
+      - description
+      - name
+      type: object
+    ApiPermissionRoleType:
+      description: |-
+        A predefined permission role or CUSTOM for selecting individual permissions.
+        ADMIN grants all scoped permissions. GOVERN grants governance, read, write and
+        delete permissions outside the dedicated management roles. WRITE also grants
+        read and delete permissions. SYSTEM_MANAGEMENT and USER_MANAGEMENT grant their
+        respective management permissions. READ and DELETE grant their matching
+        operation permissions. CUSTOM has no implicit grants.
+      enum:
+      - ADMIN
+      - DELETE
+      - READ
+      - WRITE
+      - GOVERN
+      - SYSTEM_MANAGEMENT
+      - USER_MANAGEMENT
+      - CUSTOM
+      type: string
+    ApiPermissionGroup:
+      description: Permission group identifier
+      enum:
+      - ACCESS_CONTROL
+      - ATTRIBUTES
+      - DOCUMENT_ACTIONS
+      - DOCUMENT_ATTRIBUTES
+      - DOCUMENT_FOLDERS
+      - DOCUMENT_GENERATION
+      - DOCUMENT_SHARES
+      - DOCUMENT_TAGS
+      - DOCUMENT_VERSIONS
+      - DOCUMENT_WORKFLOWS
+      - DOCUMENTS
+      - E_SIGNATURE
+      - ENTITY
+      - EXAMINE_OBJECTS
+      - GOOGLE_INTEGRATION
+      - INTELLIGENT_DOCUMENT_PROCESSING
+      - MAPPINGS
+      - RULESETS
+      - SCHEMAS
+      - SHORTLINKS
+      - SYSTEM_MANAGEMENT
+      - USER_ACTIVITIES
+      - USER_MANAGEMENT
+      - WEBHOOKS
+      type: string
+    ApiPermission:
+      description: Scoped API permission identifier
+      enum:
+      - GOVERN_ACCESS_CONTROL
+      - READ_ATTRIBUTES
+      - WRITE_ATTRIBUTES
+      - DELETE_ATTRIBUTES
+      - READ_DOCUMENT_ACTIONS
+      - WRITE_DOCUMENT_ACTIONS
+      - READ_DOCUMENT_ATTRIBUTES
+      - WRITE_DOCUMENT_ATTRIBUTES
+      - DELETE_DOCUMENT_ATTRIBUTES
+      - GOVERN_DOCUMENT_FOLDERS
+      - WRITE_DOCUMENT_GENERATION
+      - WRITE_DOCUMENT_SHARES
+      - DELETE_DOCUMENT_SHARES
+      - READ_DOCUMENT_TAGS
+      - WRITE_DOCUMENT_TAGS
+      - DELETE_DOCUMENT_TAGS
+      - READ_DOCUMENT_VERSIONS
+      - WRITE_DOCUMENT_VERSIONS
+      - GOVERN_DOCUMENT_VERSIONS
+      - READ_DOCUMENT_WORKFLOWS
+      - WRITE_DOCUMENT_WORKFLOWS
+      - DELETE_DOCUMENT_WORKFLOWS
+      - READ_DOCUMENTS
+      - WRITE_DOCUMENTS
+      - DELETE_DOCUMENTS
+      - GOVERN_DOCUMENTS
+      - READ_E_SIGNATURE
+      - WRITE_E_SIGNATURE
+      - READ_ENTITY
+      - WRITE_ENTITY
+      - DELETE_ENTITY
+      - READ_EXAMINE_OBJECTS
+      - WRITE_GOOGLE_INTEGRATION
+      - READ_INTELLIGENT_DOCUMENT_PROCESSING
+      - WRITE_INTELLIGENT_DOCUMENT_PROCESSING
+      - READ_MAPPINGS
+      - WRITE_MAPPINGS
+      - DELETE_MAPPINGS
+      - READ_RULESETS
+      - WRITE_RULESETS
+      - DELETE_RULESETS
+      - READ_SCHEMAS
+      - WRITE_SCHEMAS
+      - DELETE_SCHEMAS
+      - WRITE_SHORTLINKS
+      - READ_SYSTEM_MANAGEMENT
+      - WRITE_SYSTEM_MANAGEMENT
+      - DELETE_SYSTEM_MANAGEMENT
+      - GOVERN_USER_ACTIVITIES
+      - READ_USER_MANAGEMENT
+      - WRITE_USER_MANAGEMENT
+      - DELETE_USER_MANAGEMENT
+      - GOVERN_USER_MANAGEMENT
+      - READ_WEBHOOKS
+      - WRITE_WEBHOOKS
+      - DELETE_WEBHOOKS
+      type: string
+    ApiPermissionGrant:
+      description: |-
+        An explicit permission grant. Scoped names match those returned by the permission
+        catalog. The legacy ADMIN, DELETE, READ, WRITE and GOVERN umbrella names are also
+        accepted for compatibility. These names are explicit grants, not selections of a
+        predefined role type; for example, WRITE alone does not imply READ or DELETE.
+        Use roleType to select a predefined role. Administrator grants require an
+        administrator caller.
+      enum:
+      - ADMIN
+      - DELETE
+      - READ
+      - WRITE
+      - GOVERN
+      - GOVERN_ACCESS_CONTROL
+      - READ_ATTRIBUTES
+      - WRITE_ATTRIBUTES
+      - DELETE_ATTRIBUTES
+      - READ_DOCUMENT_ACTIONS
+      - WRITE_DOCUMENT_ACTIONS
+      - READ_DOCUMENT_ATTRIBUTES
+      - WRITE_DOCUMENT_ATTRIBUTES
+      - DELETE_DOCUMENT_ATTRIBUTES
+      - GOVERN_DOCUMENT_FOLDERS
+      - WRITE_DOCUMENT_GENERATION
+      - WRITE_DOCUMENT_SHARES
+      - DELETE_DOCUMENT_SHARES
+      - READ_DOCUMENT_TAGS
+      - WRITE_DOCUMENT_TAGS
+      - DELETE_DOCUMENT_TAGS
+      - READ_DOCUMENT_VERSIONS
+      - WRITE_DOCUMENT_VERSIONS
+      - GOVERN_DOCUMENT_VERSIONS
+      - READ_DOCUMENT_WORKFLOWS
+      - WRITE_DOCUMENT_WORKFLOWS
+      - DELETE_DOCUMENT_WORKFLOWS
+      - READ_DOCUMENTS
+      - WRITE_DOCUMENTS
+      - DELETE_DOCUMENTS
+      - GOVERN_DOCUMENTS
+      - READ_E_SIGNATURE
+      - WRITE_E_SIGNATURE
+      - READ_ENTITY
+      - WRITE_ENTITY
+      - DELETE_ENTITY
+      - READ_EXAMINE_OBJECTS
+      - WRITE_GOOGLE_INTEGRATION
+      - READ_INTELLIGENT_DOCUMENT_PROCESSING
+      - WRITE_INTELLIGENT_DOCUMENT_PROCESSING
+      - READ_MAPPINGS
+      - WRITE_MAPPINGS
+      - DELETE_MAPPINGS
+      - READ_RULESETS
+      - WRITE_RULESETS
+      - DELETE_RULESETS
+      - READ_SCHEMAS
+      - WRITE_SCHEMAS
+      - DELETE_SCHEMAS
+      - WRITE_SHORTLINKS
+      - READ_SYSTEM_MANAGEMENT
+      - WRITE_SYSTEM_MANAGEMENT
+      - DELETE_SYSTEM_MANAGEMENT
+      - GOVERN_USER_ACTIVITIES
+      - READ_USER_MANAGEMENT
+      - WRITE_USER_MANAGEMENT
+      - DELETE_USER_MANAGEMENT
+      - GOVERN_USER_MANAGEMENT
+      - READ_WEBHOOKS
+      - WRITE_WEBHOOKS
+      - DELETE_WEBHOOKS
+      type: string
     WorkflowDocument:
       example:
         workflow:
@@ -28460,6 +29470,17 @@ components:
       - DATE
       type: string
     DocumentFulltextAttribute:
+      description: |-
+        Full-text attribute search criteria. Use eq or eqOr for scalar attributes and json
+        for nested fields of JSON attributes. json cannot be combined with eq or eqOr.
+        To compare multiple paths in one JSON attribute, use separate criteria with the same key.
+        JSON searches use native OpenSearch indexes. Property paths through arrays match any
+        element; array positions are not supported, and criteria may match different elements.
+        Dotted property names use OpenSearch field-path semantics. Field types are inferred
+        from stored values and must remain compatible across documents. Date-like strings may
+        be indexed as dates, and numeric comparisons use the inferred numeric precision.
+        Exact string and prefix searches use keyword fields; the default dynamic mapping does
+        not index strings longer than 256 characters in keyword fields.
       example:
         eq:
           stringValue: stringValue
@@ -28475,17 +29496,32 @@ components:
           numberValue: 6.027456183070403
           booleanValue: true
           dateValue: dateValue
+        json:
+          path: $.customer.name
+          eq: eq
+          eqOr:
+          - eqOr
+          - eqOr
+          beginsWith: beginsWith
+          gt: 0.8008281904610115
+          gte: 6.027456183070403
+          lt: 1.4658129805029452
+          lte: 5.962133916683182
         key: key
+      not:
+        $ref: "#/components/schemas/DocumentFulltextAttribute_not"
       properties:
         eq:
           $ref: "#/components/schemas/DocumentFulltextAttributeEq"
         eqOr:
-          description: Searches for ANY strings that eq
+          description: Searches for any of the supplied typed attribute values
           items:
             $ref: "#/components/schemas/DocumentFulltextAttributeEq"
           type: array
+        json:
+          $ref: "#/components/schemas/JsonAttributeSearchFilter"
         key:
-          description: Tag key to search
+          description: Attribute key to search
           type: string
       required:
       - key
@@ -28561,6 +29597,17 @@ components:
             numberValue: 6.027456183070403
             booleanValue: true
             dateValue: dateValue
+          json:
+            path: $.customer.name
+            eq: eq
+            eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            gt: 0.8008281904610115
+            gte: 6.027456183070403
+            lt: 1.4658129805029452
+            lte: 5.962133916683182
           key: key
         - eq:
             stringValue: stringValue
@@ -28576,6 +29623,17 @@ components:
             numberValue: 6.027456183070403
             booleanValue: true
             dateValue: dateValue
+          json:
+            path: $.customer.name
+            eq: eq
+            eqOr:
+            - eqOr
+            - eqOr
+            beginsWith: beginsWith
+            gt: 0.8008281904610115
+            gte: 6.027456183070403
+            lt: 1.4658129805029452
+            lte: 5.962133916683182
           key: key
       properties:
         page:
@@ -28697,16 +29755,6 @@ components:
       required:
       - key
       type: object
-    JsonAttributeSearchValue:
-      description: |-
-        A scalar JSON field comparison value. Types are compared without coercion: true is
-        different from "true", and numbers are compared numerically. Objects, arrays, and
-        null are not accepted as comparison values. Missing fields or incompatible field
-        types do not match.
-      oneOf:
-      - type: string
-      - type: number
-      - type: boolean
     JsonAttributeSearchPath:
       description: |-
         Path relative to jsonValue, beginning with $. Use dot notation for identifier-like
@@ -28715,6 +29763,9 @@ components:
         $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
         At least one property or array position is required. Wildcards, recursive descent,
         slices, and filter expressions are not supported.
+        For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+        array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+        as OpenSearch field paths rather than distinct literal keys.
       example: $.customer.name
       pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
         \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
@@ -28725,14 +29776,20 @@ components:
         Compare a nested scalar field of an attribute defined with dataType JSON.
         A path and at least one field comparison are required.
         All supplied predicates are combined with AND; eqOr matches any supplied value.
+        eq and eqOr accept strings and match string fields or boolean fields represented
+        by the lowercase strings "true" and "false". Numeric fields do not match eq or eqOr;
+        use numeric bounds instead. Missing fields, null, and objects do not match.
+        Arrays do not match in /search; /searchFulltext can match scalar elements of arrays.
         beginsWith applies to string fields and gt/gte/lt/lte apply to numeric fields.
         The legacy range operator is not supported inside a json filter.
+        /searchFulltext uses native OpenSearch field types and indexing limits as described
+        by DocumentFulltextAttribute, including date detection and numeric precision.
       example:
         path: $.customer.name
-        eq: JsonAttributeSearchValue
+        eq: eq
         eqOr:
-        - null
-        - null
+        - eqOr
+        - eqOr
         beginsWith: beginsWith
         gt: 0.8008281904610115
         gte: 6.027456183070403
@@ -28748,17 +29805,22 @@ components:
             $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
             At least one property or array position is required. Wildcards, recursive descent,
             slices, and filter expressions are not supported.
+            For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+            array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+            as OpenSearch field paths rather than distinct literal keys.
           example: $.customer.name
           pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
             \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
           type: string
         eq:
-          $ref: "#/components/schemas/JsonAttributeSearchValue"
+          description: Match a JSON string field or a boolean field using "true" or
+            "false".
+          type: string
         eqOr:
-          description: "Match the field against any provided string, number, or boolean\
-            \ without type coercion."
+          description: Match a JSON string field or a boolean field against any provided
+            string; use "true" or "false" for booleans.
           items:
-            $ref: "#/components/schemas/JsonAttributeSearchValue"
+            type: string
           minItems: 1
           type: array
         beginsWith:
@@ -28799,10 +29861,10 @@ components:
         key: key
         json:
           path: $.customer.name
-          eq: JsonAttributeSearchValue
+          eq: eq
           eqOr:
-          - null
-          - null
+          - eqOr
+          - eqOr
           beginsWith: beginsWith
           gt: 0.8008281904610115
           gte: 6.027456183070403
@@ -28863,10 +29925,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28885,10 +29947,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28906,10 +29968,10 @@ components:
             key: key
             json:
               path: $.customer.name
-              eq: JsonAttributeSearchValue
+              eq: eq
               eqOr:
-              - null
-              - null
+              - eqOr
+              - eqOr
               beginsWith: beginsWith
               gt: 0.8008281904610115
               gte: 6.027456183070403
@@ -28986,10 +30048,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29008,10 +30070,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29029,10 +30091,10 @@ components:
           key: key
           json:
             path: $.customer.name
-            eq: JsonAttributeSearchValue
+            eq: eq
             eqOr:
-            - null
-            - null
+            - eqOr
+            - eqOr
             beginsWith: beginsWith
             gt: 0.8008281904610115
             gte: 6.027456183070403
@@ -29167,7 +30229,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -29196,7 +30257,6 @@ components:
                 approved: true
                 customer:
                   name: Acme
-                notes: null
                 lineItems:
                 - sku: HOSTING
                   quantity: 2
@@ -29251,7 +30311,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -29280,7 +30339,6 @@ components:
                 approved: true
                 customer:
                   name: Acme
-                notes: null
                 lineItems:
                 - sku: HOSTING
                   quantity: 2
@@ -29371,7 +30429,6 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
@@ -29400,7 +30457,6 @@ components:
               approved: true
               customer:
                 name: Acme
-              notes: null
               lineItems:
               - sku: HOSTING
                 quantity: 2
@@ -29519,7 +30575,6 @@ components:
           approved: true
           customer:
             name: Acme
-          notes: null
           lineItems:
           - sku: HOSTING
             quantity: 2
@@ -29551,15 +30606,10 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
-          not:
-            enum:
-            - null
-            type: string
-          nullable: true
+          nullable: false
           type: object
         stringValues:
           description: Attribute with string values
@@ -29609,7 +30659,6 @@ components:
           approved: true
           customer:
             name: Acme
-          notes: null
           lineItems:
           - sku: HOSTING
             quantity: 2
@@ -29638,15 +30687,10 @@ components:
             approved: true
             customer:
               name: Acme
-            notes: null
             lineItems:
             - sku: HOSTING
               quantity: 2
-          not:
-            enum:
-            - null
-            type: string
-          nullable: true
+          nullable: false
           type: object
         jsonPath:
           description: |-
@@ -29656,6 +30700,9 @@ components:
             $.lineItems[0].quantity. Quoted names may escape characters using a backslash.
             At least one property or array position is required. Wildcards, recursive descent,
             slices, and filter expressions are not supported.
+            For /searchFulltext, only property paths are supported: $.lineItems.sku matches any
+            array element, while $.lineItems[0].sku is rejected. Dotted property names are treated
+            as OpenSearch field paths rather than distinct literal keys.
           example: $.customer.name
           pattern: "^\\$(?:\\.[A-Za-z_][A-Za-z0-9_]*|\\[(?:0|[1-9][0-9]*)\\]|\\['(?:[^'\\\
             \\]|\\\\.)+'\\]|\\[\"(?:[^\"\\\\]|\\\\.)+\"\\])+$"
@@ -29705,6 +30752,17 @@ components:
               numberValue: 6.027456183070403
               booleanValue: true
               dateValue: dateValue
+            json:
+              path: $.customer.name
+              eq: eq
+              eqOr:
+              - eqOr
+              - eqOr
+              beginsWith: beginsWith
+              gt: 0.8008281904610115
+              gte: 6.027456183070403
+              lt: 1.4658129805029452
+              lte: 5.962133916683182
             key: key
           - eq:
               stringValue: stringValue
@@ -29720,6 +30778,17 @@ components:
               numberValue: 6.027456183070403
               booleanValue: true
               dateValue: dateValue
+            json:
+              path: $.customer.name
+              eq: eq
+              eqOr:
+              - eqOr
+              - eqOr
+              beginsWith: beginsWith
+              gt: 0.8008281904610115
+              gte: 6.027456183070403
+              lt: 1.4658129805029452
+              lte: 5.962133916683182
             key: key
         responseFields:
           attributes:
@@ -29771,6 +30840,14 @@ components:
               dateValues:
               - dateValues
               - dateValues
+              jsonValue:
+                total: 1250.5
+                approved: true
+                customer:
+                  name: Acme
+                lineItems:
+                - sku: HOSTING
+                  quantity: 2
               valueType: BOOLEAN
         - siteId: siteId
           path: path
@@ -29803,6 +30880,14 @@ components:
               dateValues:
               - dateValues
               - dateValues
+              jsonValue:
+                total: 1250.5
+                approved: true
+                customer:
+                  name: Acme
+                lineItems:
+                - sku: HOSTING
+                  quantity: 2
               valueType: BOOLEAN
       properties:
         totalCount:
@@ -29848,6 +30933,14 @@ components:
             dateValues:
             - dateValues
             - dateValues
+            jsonValue:
+              total: 1250.5
+              approved: true
+              customer:
+                name: Acme
+              lineItems:
+              - sku: HOSTING
+                quantity: 2
             valueType: BOOLEAN
       properties:
         siteId:
@@ -29904,6 +30997,53 @@ components:
           type: object
       type: object
     FulltextAttribute:
+      allOf:
+      - $ref: "#/components/schemas/JsonAttributeValueExclusive"
+      - description: |-
+          Full-text attribute value. JSON attributes use valueType JSON and jsonValue containing
+          one JSON object. jsonValue cannot be combined with other attribute value forms.
+          The JSON object is stored directly in OpenSearch. Its field types are inferred using
+          the existing index mappings and must remain compatible across documents. Arrays must
+          contain values compatible with one OpenSearch field type; arbitrary mixed-type arrays
+          may fail indexing. The original object, including nulls and array order, is returned
+          by GET and search responses, while searches use native indexed field semantics.
+        example:
+          valueType: JSON
+          jsonValue:
+            total: 1250.5
+            approved: true
+            customer:
+              name: Acme
+            lineItems:
+            - sku: HOSTING
+              quantity: 2
+        properties:
+          insertedDate:
+            description: Inserted Timestamp
+            type: string
+          stringValues:
+            description: Attribute with string values
+            items:
+              type: string
+            type: array
+          numberValues:
+            description: Attribute with number values
+            items:
+              type: number
+            type: array
+          booleanValue:
+            description: Attribute with boolean value
+            type: boolean
+          dateValues:
+            description: Attribute with date values
+            items:
+              type: string
+            type: array
+          jsonValue:
+            $ref: "#/components/schemas/JsonAttributeValue"
+          valueType:
+            $ref: "#/components/schemas/AttributeValueType"
+        type: object
       example:
         insertedDate: insertedDate
         stringValues:
@@ -29916,31 +31056,15 @@ components:
         dateValues:
         - dateValues
         - dateValues
+        jsonValue:
+          total: 1250.5
+          approved: true
+          customer:
+            name: Acme
+          lineItems:
+          - sku: HOSTING
+            quantity: 2
         valueType: BOOLEAN
-      properties:
-        insertedDate:
-          description: Inserted Timestamp
-          type: string
-        stringValues:
-          description: Attribute with string values
-          items:
-            type: string
-          type: array
-        numberValues:
-          description: Attribute with number values
-          items:
-            type: number
-          type: array
-        booleanValue:
-          description: Attribute with boolean value
-          type: boolean
-        dateValues:
-          description: Attribute with date values
-          items:
-            type: string
-          type: array
-        valueType:
-          $ref: "#/components/schemas/AttributeValueType"
       type: object
     QueryFulltextRequest:
       description: OpenSearch search API request (https://opensearch.org/docs/latest/opensearch/rest-api/search/)
@@ -30273,6 +31397,8 @@ components:
         - attributeKeys
       properties:
         attributeKeys:
+          description: Attribute keys that form the composite key. Attributes with
+            dataType JSON cannot be part of a composite key.
           items:
             type: string
           type: array
@@ -30657,14 +31783,6 @@ components:
         classificationId:
           description: Classification Id
           type: string
-    ApiKeyPermission:
-      description: List of API permissions (defaults to READ / WRITE / DELETE)
-      enum:
-      - READ
-      - WRITE
-      - DELETE
-      - GOVERN
-      type: string
     OpaPolicy:
       example:
         siteId: siteId
@@ -31165,15 +32283,20 @@ components:
       - message
       type: object
     ApiKey:
+      description: |-
+        An API key and its permission configuration. roleType is optional for legacy records.
+        A missing roleType means permissions contains explicit CUSTOM grants. A predefined
+        roleType determines the effective role grants, which can be discovered in the catalog.
       example:
         name: name
         apiKey: apiKey
         userId: userId
         siteId: siteId
         insertedDate: insertedDate
+        roleType: ADMIN
         permissions:
-        - READ
-        - READ
+        - ADMIN
+        - ADMIN
         groups:
         - groups
         - groups
@@ -31191,16 +32314,14 @@ components:
         insertedDate:
           description: Inserted Timestamp
           type: string
+        roleType:
+          $ref: "#/components/schemas/ApiPermissionRoleType"
         permissions:
-          description: List of permissions
+          description: Explicit CUSTOM or legacy permission grants.
           items:
-            enum:
-            - READ
-            - WRITE
-            - DELETE
-            - GOVERN
-            type: string
+            $ref: "#/components/schemas/ApiPermissionGrant"
           type: array
+          uniqueItems: true
         groups:
           description: List of groups to add as custom claims to API Key
           items:
@@ -31293,15 +32414,24 @@ components:
           type: string
       type: object
     SiteGroup:
+      description: |-
+        A group's permission configuration for a site. roleType is optional for legacy
+        records. A missing roleType means permissions contains explicit CUSTOM grants.
+        A predefined roleType determines the effective role grants.
       example:
+        roleType: ADMIN
         permissions:
         - ADMIN
         - ADMIN
       properties:
+        roleType:
+          $ref: "#/components/schemas/ApiPermissionRoleType"
         permissions:
+          description: Explicit CUSTOM or legacy permission grants.
           items:
-            $ref: "#/components/schemas/SiteGroupPermissions"
+            $ref: "#/components/schemas/ApiPermissionGrant"
           type: array
+          uniqueItems: true
       type: object
     LocaleInfo:
       example:
@@ -31772,14 +32902,25 @@ components:
           $ref: "#/components/schemas/ResourceItem"
       type: object
     AddApiKeyRequest:
+      description: |-
+        roleType is optional. A predefined roleType must be supplied without nonempty
+        permissions; an omitted or empty array is accepted.
+        CUSTOM requires a nonempty permissions array. When roleType is omitted, a nonempty
+        permissions array is an explicit CUSTOM grant: legacy WRITE grants write operations
+        only and is not converted to the predefined WRITE role, which also grants read and
+        delete operations. If neither field is supplied, or permissions is empty with no
+        roleType, the legacy READ, WRITE and DELETE defaults apply. Unknown role types or
+        permission names, and invalid field combinations, are rejected. ADMIN roles and ADMIN
+        permission grants are not allowed, even for administrators.
       example:
         name: name
         groups:
         - groups
         - groups
+        roleType: ADMIN
         permissions:
-        - READ
-        - READ
+        - ADMIN
+        - ADMIN
       properties:
         name:
           description: Name of API Key
@@ -31789,10 +32930,20 @@ components:
           items:
             type: string
           type: array
+        roleType:
+          $ref: "#/components/schemas/ApiPermissionRoleType"
         permissions:
+          description: |-
+            Explicit scoped or legacy umbrella grants for CUSTOM or an omitted roleType.
+            Required and nonempty when roleType is CUSTOM. For predefined role types,
+            omit this field or supply an empty array.
+            Legacy requests without roleType keep the default grants when this is empty.
           items:
-            $ref: "#/components/schemas/ApiKeyPermission"
+            $ref: "#/components/schemas/ApiPermissionGrant"
           type: array
+          uniqueItems: true
+      required:
+      - name
       type: object
     AddApiKeyResponse:
       example:
@@ -32178,9 +33329,10 @@ components:
           userId: userId
           siteId: siteId
           insertedDate: insertedDate
+          roleType: ADMIN
           permissions:
-          - READ
-          - READ
+          - ADMIN
+          - ADMIN
           groups:
           - groups
           - groups
@@ -32189,9 +33341,10 @@ components:
           userId: userId
           siteId: siteId
           insertedDate: insertedDate
+          roleType: ADMIN
           permissions:
-          - READ
-          - READ
+          - ADMIN
+          - ADMIN
           groups:
           - groups
           - groups
@@ -32332,6 +33485,7 @@ components:
     GetSiteGroupResponse:
       example:
         group:
+          roleType: ADMIN
           permissions:
           - ADMIN
           - ADMIN
@@ -32880,7 +34034,7 @@ components:
           type: array
         permissions:
           items:
-            $ref: "#/components/schemas/SiteGroupPermissions"
+            $ref: "#/components/schemas/ApiPermissionGrant"
           type: array
         uploadEmail:
           description: SiteId document upload email address
@@ -32902,15 +34056,6 @@ components:
       enum:
       - READ_WRITE
       - READ_ONLY
-      type: string
-    SiteGroupPermissions:
-      description: Site Group Permissions
-      enum:
-      - ADMIN
-      - DELETE
-      - READ
-      - WRITE
-      - GOVERN
       type: string
     SiteConfig:
       example:
@@ -35987,6 +37132,15 @@ components:
             $ref: "#/components/schemas/AddDocumentTag"
           type: array
       type: object
+    DocumentFulltextAttribute_not:
+      allOf:
+      - required:
+        - json
+      - anyOf:
+        - required:
+          - eq
+        - required:
+          - eqOr
     DocumentSearchAttribute_not:
       allOf:
       - required:
