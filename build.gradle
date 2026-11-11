@@ -1,14 +1,12 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     id 'java'
-    id 'com.vanniktech.maven.publish' version '0.32.0'
+    id 'com.vanniktech.maven.publish' version '0.37.0'
     id 'com.diffplug.spotless' version '8.4.0'
     id 'com.github.ben-manes.versions' version '0.44.0'
 }
 
 group = 'com.formkiq'
-version = '1.19.1'
+version = '1.19.2'
 
 repositories {
     mavenLocal()
@@ -49,13 +47,17 @@ tasks.withType(JavaCompile).configureEach {
     options.release = 11
 }
 
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('tag', 'http.response.details:a:HTTP response details')
+}
+
 test {
     useJUnitPlatform()
 }
 
 mavenPublishing {
 
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
     signAllPublications()
 
     pom {

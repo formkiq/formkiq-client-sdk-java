@@ -11,5 +11,7 @@
 
 * `PURGE` (value: `"PURGE"`)
 
+* `CONTENT_ONLY` (value: `"CONTENT_ONLY"`)
+
 
 

@@ -7,6 +7,8 @@
 
 * `STRING` (value: `"STRING"`)
 
+* `JSON` (value: `"JSON"`)
+
 * `NUMBER` (value: `"NUMBER"`)
 
 * `BOOLEAN` (value: `"BOOLEAN"`)
