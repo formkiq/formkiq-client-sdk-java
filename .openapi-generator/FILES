@@ -128,6 +128,7 @@ docs/AddWorkflowResponse.md
 docs/AddWorkflowStep.md
 docs/AddWorkflowStepDecision.md
 docs/AddWorkflowStepQueue.md
+docs/AdditionalDocusignConfig.md
 docs/AdvancedDocumentSearchApi.md
 docs/ApiKey.md
 docs/ApiPermission.md
@@ -779,6 +780,7 @@ src/main/java/com/formkiq/client/model/AddWorkflowResponse.java
 src/main/java/com/formkiq/client/model/AddWorkflowStep.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepDecision.java
 src/main/java/com/formkiq/client/model/AddWorkflowStepQueue.java
+src/main/java/com/formkiq/client/model/AdditionalDocusignConfig.java
 src/main/java/com/formkiq/client/model/ApiKey.java
 src/main/java/com/formkiq/client/model/ApiPermission.java
 src/main/java/com/formkiq/client/model/ApiPermissionGrant.java
@@ -1365,6 +1367,7 @@ src/test/java/com/formkiq/client/model/AddWorkflowResponseTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepDecisionTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepQueueTest.java
 src/test/java/com/formkiq/client/model/AddWorkflowStepTest.java
+src/test/java/com/formkiq/client/model/AdditionalDocusignConfigTest.java
 src/test/java/com/formkiq/client/model/ApiKeyTest.java
 src/test/java/com/formkiq/client/model/ApiPermissionGrantTest.java
 src/test/java/com/formkiq/client/model/ApiPermissionGroupTest.java

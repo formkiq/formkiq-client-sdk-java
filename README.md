@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.formkiq</groupId>
   <artifactId>client</artifactId>
-  <version>1.19.2</version>
+  <version>1.19.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.formkiq:client:1.19.2"
+     implementation "com.formkiq:client:1.19.3"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-1.19.2.jar`
+* `target/client-1.19.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -509,6 +509,7 @@ Class | Method | HTTP request | Description
  - [AddWorkflowStep](docs/AddWorkflowStep.md)
  - [AddWorkflowStepDecision](docs/AddWorkflowStepDecision.md)
  - [AddWorkflowStepQueue](docs/AddWorkflowStepQueue.md)
+ - [AdditionalDocusignConfig](docs/AdditionalDocusignConfig.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiPermission](docs/ApiPermission.md)
  - [ApiPermissionGrant](docs/ApiPermissionGrant.md)

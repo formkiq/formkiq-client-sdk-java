@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: FormKiQ API JWT
-  version: 1.19.2
+  version: 1.19.3
   x-logo:
     url: https://docs.formkiq.com/docs/latest/_images/formkiq-logo.png
     backgroundColor: "#FFFFFF"
@@ -7745,7 +7745,15 @@ paths:
         \ available as an Add-On Module. Recipient tabs support signatures, initials,\
         \ automatic signing dates, recipient-entered dates, and single-line or multiline\
         \ text. See DocusignSigningTabs for the supported collections and validation\
-        \ rules."
+        \ rules. Use the accountId query parameter to select the site's default docusign\
+        \ account or an additionalDocusignAccounts entry. When omitted, uses the default\
+        \ docusign configuration, preserving existing single-account behavior. The\
+        \ selected account's DocuSign settings control automatic Date Signed formatting.\
+        \ The account ID, environment, connection identity, and API base URI are stored\
+        \ with the document or artifact envelope association for all subsequent operations.\
+        \ Account selection does not modify a returned DocuSign signing URL. For example,\
+        \ POST /esignature/docusign/{documentId}/envelopes?siteId=contracts&accountId=a1111111-b222-4333-8444-e55555555555\
+        \ selects that configured account."
       operationId: AddDocusignEnvelopes
       parameters:
       - description: Site Identifier
@@ -7768,6 +7776,24 @@ paths:
         explode: true
         in: query
         name: artifactId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "DocuSign API account GUID configured in the site's docusign\
+          \ or additionalDocusignAccounts settings. On envelope creation, selects\
+          \ that account and its API base URI. When omitted, uses docusign.accountId,\
+          \ or the first account returned for the default DocuSign identity when that\
+          \ setting is absent. For an existing envelope, the stored account association\
+          \ is authoritative when present; otherwise uses the existing docusign configuration.\
+          \ Omit this parameter or supply the matching account ID. Malformed, unconfigured,\
+          \ inaccessible, or mismatching IDs are rejected before an envelope or view\
+          \ request is sent to DocuSign, without fallback. Account selection does\
+          \ not grant access to a site, document, or artifact."
+        example: a1111111-b222-4333-8444-e55555555555
+        explode: true
+        in: query
+        name: accountId
         required: false
         schema:
           type: string
@@ -7907,9 +7933,19 @@ paths:
                     - key: "signers[0].tabs.textTabs[0]"
                       error: "Specify either anchorString with anchor options or pageNumber,\
                         \ xPosition and yPosition"
+                invalidAccountId:
+                  summary: Account is not configured for the site
+                  value:
+                    errors:
+                    - key: accountId
+                      error: DocuSign account is not configured for this site
               schema:
                 $ref: "#/components/schemas/ValidationErrorsResponse"
-          description: Invalid envelope request
+          description: "Invalid envelope request, malformed, unconfigured, or inaccessible\
+            \ accountId, or an environment conflicting with the selected account."
+        "403":
+          description: "Access to the selected document, artifact, or configured DocuSign\
+            \ account is denied"
       security:
       - ApiAuthorization: []
       summary: Create Docusign Envelope request
@@ -7931,7 +7967,11 @@ paths:
         \ Available as an Add-On Module. Repeated status polling must be at least\
         \ 15 minutes apart. Use recipients.signers[].recipientId from this response\
         \ as entries in the optional recipientIds array in POST /esignature/docusign/{documentId}/envelopes/{envelopeId}/reminders\
-        \ to request reminders for selected signers."
+        \ to request reminders for selected signers. Uses the envelope's stored account,\
+        \ environment, connection identity, and API base URI when available; changes\
+        \ to the site's default account do not reroute an envelope with a stored association.\
+        \ Envelopes without a stored association continue using the existing docusign\
+        \ configuration."
       operationId: GetDocusignEnvelope
       parameters:
       - description: Site Identifier
@@ -7966,9 +8006,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
-          required when the site has no default. Use the environment in which the
-          envelope was created.
+      - description: "DocuSign environment. When the envelope has a stored account\
+          \ association, defaults to its stored environment and rejects conflicting\
+          \ explicit values. Otherwise, preserves existing behavior: an explicit environment\
+          \ is used, or defaults to the site's docusign environment when omitted.\
+          \ Required when neither the request nor configuration supplies an environment."
         explode: true
         in: query
         name: environment
@@ -8055,12 +8097,14 @@ paths:
         \ envelope; available as an Add-On Module. Requires read access to the selected\
         \ document or artifact and validates its stored envelope association before\
         \ contacting DocuSign. Calls GET /restapi/v2.1/accounts/{accountId}/envelopes/{envelopeId}/audit_events,\
-        \ resolving the account, base URI, and OAuth token through the site's existing\
-        \ integration. Returns DocuSign's JSON unchanged, including auditEvents, paymentEvents,\
-        \ and any additional fields, without a FormKiQ wrapper. Includes reminder\
-        \ and resend events when recorded by DocuSign; this history does not guarantee\
-        \ that every reminder is recorded or confirm inbox delivery. Reminder and\
-        \ resend webhook subscriptions are separate from this operation."
+        \ resolving the account, environment, API base URI, and connection identity\
+        \ through the stored envelope association when available, otherwise using\
+        \ the site's existing docusign configuration. Returns DocuSign's JSON unchanged,\
+        \ including auditEvents, paymentEvents, and any additional fields, without\
+        \ a FormKiQ wrapper. Includes reminder and resend events when recorded by\
+        \ DocuSign; this history does not guarantee that every reminder is recorded\
+        \ or confirm inbox delivery. Reminder and resend webhook subscriptions are\
+        \ separate from this operation."
       externalDocs:
         description: DocuSign Envelopes list audit events API
         url: https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/listauditevents/
@@ -8098,9 +8142,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
-          required when the site has no default. Must match the environment in which
-          the envelope was created.
+      - description: "DocuSign environment. When the envelope has a stored account\
+          \ association, defaults to its stored environment and rejects conflicting\
+          \ explicit values. Otherwise, preserves existing behavior: an explicit environment\
+          \ is used, or defaults to the site's docusign environment when omitted.\
+          \ Required when neither the request nor configuration supplies an environment."
         explode: true
         in: query
         name: environment
@@ -8193,7 +8239,11 @@ paths:
         \ documents, routing, or automatic reminder settings. Targeted responses report\
         \ each selected recipient's acceptance or failure, with no overall status.\
         \ Acceptance does not confirm notification delivery. Do not automatically\
-        \ retry after a timeout because the reminder may already have been requested."
+        \ retry after a timeout because the reminder may already have been requested.\
+        \ Uses the envelope's stored account, environment, connection identity, and\
+        \ API base URI when available; changes to the site's default account do not\
+        \ reroute an envelope with a stored association. Envelopes without a stored\
+        \ association continue using the existing docusign configuration."
       operationId: AddDocusignEnvelopeReminders
       parameters:
       - description: Site Identifier
@@ -8228,9 +8278,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
-          required when the site has no default. Use the environment in which the
-          envelope was created.
+      - description: "DocuSign environment. When the envelope has a stored account\
+          \ association, defaults to its stored environment and rejects conflicting\
+          \ explicit values. Otherwise, preserves existing behavior: an explicit environment\
+          \ is used, or defaults to the site's docusign environment when omitted.\
+          \ Required when neither the request nor configuration supplies an environment."
         explode: true
         in: query
         name: environment
@@ -8336,7 +8388,10 @@ paths:
         \ original reason. Voiding cannot be undone. The existing envelope-voided\
         \ callback updates the stored FormKiQ status. After a timeout, the outcome\
         \ is unknown; check the existing GET envelope status endpoint before attempting\
-        \ the operation again."
+        \ the operation again. Uses the envelope's stored account, environment, connection\
+        \ identity, and API base URI when available; changes to the site's default\
+        \ account do not reroute an envelope with a stored association. Envelopes\
+        \ without a stored association continue using the existing docusign configuration."
       externalDocs:
         description: DocuSign Envelopes update API
         url: https://developers.docusign.com/docs/esign-rest-api/reference/envelopes/envelopes/update/
@@ -8374,9 +8429,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: DocuSign environment. Defaults to the site's docusignEnvironment;
-          required when the site has no default. Use the environment in which the
-          envelope was created.
+      - description: "DocuSign environment. When the envelope has a stored account\
+          \ association, defaults to its stored environment and rejects conflicting\
+          \ explicit values. Otherwise, preserves existing behavior: an explicit environment\
+          \ is used, or defaults to the site's docusign environment when omitted.\
+          \ Required when neither the request nor configuration supplies an environment."
         explode: true
         in: query
         name: environment
@@ -8443,8 +8500,13 @@ paths:
       - application/json
   /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/recipient:
     post:
-      description: DocuSign create Docusign Recipient View request; available as an
-        Add-On Module
+      description: "Creates a DocuSign recipient view for the selected document or\
+        \ artifact; available as an Add-On Module. Uses the envelope's stored account,\
+        \ environment, connection identity, and API base URI when available, otherwise\
+        \ using the existing docusign configuration. The optional accountId must match\
+        \ the envelope's stored account or, when no association is stored, the account\
+        \ resolved through docusign. Mismatches fail before contacting DocuSign. The\
+        \ returned signing URL belongs to that envelope and account."
       operationId: AddDocusignRecipientView
       parameters:
       - description: Site Identifier
@@ -8479,6 +8541,24 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "DocuSign API account GUID configured in the site's docusign\
+          \ or additionalDocusignAccounts settings. On envelope creation, selects\
+          \ that account and its API base URI. When omitted, uses docusign.accountId,\
+          \ or the first account returned for the default DocuSign identity when that\
+          \ setting is absent. For an existing envelope, the stored account association\
+          \ is authoritative when present; otherwise uses the existing docusign configuration.\
+          \ Omit this parameter or supply the matching account ID. Malformed, unconfigured,\
+          \ inaccessible, or mismatching IDs are rejected before an envelope or view\
+          \ request is sent to DocuSign, without fallback. Account selection does\
+          \ not grant access to a site, document, or artifact."
+        example: a1111111-b222-4333-8444-e55555555555
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -8502,9 +8582,21 @@ paths:
         "400":
           content:
             application/json:
+              examples:
+                accountMismatch:
+                  summary: Requested account differs from the envelope's account
+                  value:
+                    errors:
+                    - key: accountId
+                      error: DocuSign account does not match the stored envelope association
               schema:
                 $ref: "#/components/schemas/ValidationErrorsResponse"
-          description: 400 OK
+          description: "Invalid view request, malformed or mismatching accountId,\
+            \ unavailable account configuration, or an environment conflicting with\
+            \ the envelope."
+        "403":
+          description: "Access to the selected document, artifact, or configured DocuSign\
+            \ account is denied"
       security:
       - ApiAuthorization: []
       summary: Create Docusign Recipient View request
@@ -8518,8 +8610,13 @@ paths:
       - application/json
   /esignature/docusign/{documentId}/envelopes/{envelopeId}/views/sender:
     post:
-      description: DocuSign create Docusign Sender View request; available as an Add-On
-        Module
+      description: "Creates a DocuSign sender view for the selected document or artifact;\
+        \ available as an Add-On Module. Uses the envelope's stored account, environment,\
+        \ connection identity, and API base URI when available, otherwise using the\
+        \ existing docusign configuration. The optional accountId must match the envelope's\
+        \ stored account or, when no association is stored, the account resolved through\
+        \ docusign. Mismatches fail before contacting DocuSign. The returned view\
+        \ URL belongs to that envelope and account."
       operationId: AddDocusignSenderView
       parameters:
       - description: Site Identifier
@@ -8554,6 +8651,24 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "DocuSign API account GUID configured in the site's docusign\
+          \ or additionalDocusignAccounts settings. On envelope creation, selects\
+          \ that account and its API base URI. When omitted, uses docusign.accountId,\
+          \ or the first account returned for the default DocuSign identity when that\
+          \ setting is absent. For an existing envelope, the stored account association\
+          \ is authoritative when present; otherwise uses the existing docusign configuration.\
+          \ Omit this parameter or supply the matching account ID. Malformed, unconfigured,\
+          \ inaccessible, or mismatching IDs are rejected before an envelope or view\
+          \ request is sent to DocuSign, without fallback. Account selection does\
+          \ not grant access to a site, document, or artifact."
+        example: a1111111-b222-4333-8444-e55555555555
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -8581,9 +8696,21 @@ paths:
         "400":
           content:
             application/json:
+              examples:
+                accountMismatch:
+                  summary: Requested account differs from the envelope's account
+                  value:
+                    errors:
+                    - key: accountId
+                      error: DocuSign account does not match the stored envelope association
               schema:
                 $ref: "#/components/schemas/ValidationErrorsResponse"
-          description: 400 OK
+          description: "Invalid view request, malformed or mismatching accountId,\
+            \ unavailable account configuration, or an environment conflicting with\
+            \ the envelope."
+        "403":
+          description: "Access to the selected document, artifact, or configured DocuSign\
+            \ account is denied"
       security:
       - ApiAuthorization: []
       summary: Create Docusign Sender View request
@@ -8597,7 +8724,16 @@ paths:
       - application/json
   /esignature/docusign/events:
     post:
-      description: DocuSign callback URL handler; available as an Add-On Module
+      description: "DocuSign callback URL handler; available as an Add-On Module.\
+        \ Uses the document or artifact envelope's stored account association when\
+        \ available, otherwise using the existing docusign configuration. Validates\
+        \ the site, document, artifact, envelope, and account before processing. HMAC\
+        \ verification uses that account configuration's hmacSignature when configured.\
+        \ Callback account identity alone does not authorize processing. Signed-document\
+        \ retrieval uses the stored account, environment, connection identity, and\
+        \ API base URI, regardless of changes to the site's default. Credential rotation\
+        \ must preserve access to in-flight and historical envelopes; an unavailable\
+        \ account must not cause fallback to another account."
       operationId: AddEsignatureDocusignEvents
       responses:
         "200":
@@ -13180,6 +13316,22 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              multipleDocusignAccounts:
+                summary: Default and Swiss DocuSign accounts using a shared identity
+                value:
+                  docusign:
+                    accountId: a1111111-b222-4333-8444-e55555555555
+                    environment: PRODUCTION
+                    userId: configured-service-user-id
+                    integrationKey: configured-integration-key
+                    rsaPrivateKey: REPLACE_WITH_RSA_PRIVATE_KEY
+                  additionalDocusignAccounts:
+                  - accountId: b1111111-c222-4333-8444-f55555555555
+                    environment: PRODUCTION
+                    userId: configured-service-user-id
+                    integrationKey: configured-integration-key
+                    rsaPrivateKey: REPLACE_WITH_RSA_PRIVATE_KEY
             schema:
               $ref: "#/components/schemas/UpdateConfigurationRequest"
         required: true
@@ -16059,6 +16211,25 @@ components:
       schema:
         type: string
       style: simple
+    docusignAccountIdParam:
+      description: "DocuSign API account GUID configured in the site's docusign or\
+        \ additionalDocusignAccounts settings. On envelope creation, selects that\
+        \ account and its API base URI. When omitted, uses docusign.accountId, or\
+        \ the first account returned for the default DocuSign identity when that setting\
+        \ is absent. For an existing envelope, the stored account association is authoritative\
+        \ when present; otherwise uses the existing docusign configuration. Omit this\
+        \ parameter or supply the matching account ID. Malformed, unconfigured, inaccessible,\
+        \ or mismatching IDs are rejected before an envelope or view request is sent\
+        \ to DocuSign, without fallback. Account selection does not grant access to\
+        \ a site, document, or artifact."
+      example: a1111111-b222-4333-8444-e55555555555
+      explode: true
+      in: query
+      name: accountId
+      required: false
+      schema:
+        type: string
+      style: form
     mappingIdParam:
       description: Mapping Identifier
       explode: false
@@ -24034,8 +24205,13 @@ components:
       - CUSTOM
       type: string
     DocusignEnvironment:
-      description: "Docusign environment. When omitted from an E-Signature request,\
-        \ defaults to docusignEnvironment in the site configuration."
+      description: "DocuSign environment. Existing requests continue to use their\
+        \ explicit environment, or the default docusign configuration's environment\
+        \ when omitted. Selecting an additional DocuSign account uses that account's\
+        \ configured environment and rejects conflicting explicit values. For an envelope\
+        \ with a stored account association, uses the stored environment and rejects\
+        \ conflicting explicit values. Adding additional accounts does not change\
+        \ the default configuration used by existing requests and envelopes."
       enum:
       - PRODUCTION
       - DEVELOPMENT
@@ -34838,12 +35014,16 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
         docusign:
+          accountId: accountId
           environment: PRODUCTION
           userId: userId
           integrationKey: integrationKey
           rsaPrivateKey: rsaPrivateKey
           hmacSignature: hmacSignature
           connectUrl: https://openapi-generator.tech
+        additionalDocusignAccounts:
+        - {}
+        - {}
       properties:
         branding:
           $ref: "#/components/schemas/BrandingConfig"
@@ -34875,6 +35055,21 @@ components:
           $ref: "#/components/schemas/GoogleConfig"
         docusign:
           $ref: "#/components/schemas/DocusignConfig"
+        additionalDocusignAccounts:
+          description: "Additional DocuSign accounts available to this site through\
+            \ the accountId query parameter. The docusign configuration remains the\
+            \ default for new envelopes when accountId is omitted. Each entry is self-contained\
+            \ and does not inherit environment, credentials, or callback settings\
+            \ from docusign. Accounts sharing an authorized identity may use the same\
+            \ credentials. Account IDs must be unique across the default and additional\
+            \ accounts. Omit this property or set it to null to leave the additional\
+            \ accounts unchanged; supply an empty array to clear them. Retain connection\
+            \ settings needed by existing envelopes; configuration changes must not\
+            \ reassign them."
+          items:
+            $ref: "#/components/schemas/AdditionalDocusignConfig"
+          nullable: true
+          type: array
       type: object
     UpdateConfigurationResponse:
       example:
@@ -35070,12 +35265,16 @@ components:
           workloadIdentityAudience: workloadIdentityAudience
           workloadIdentityServiceAccount: workloadIdentityServiceAccount
         docusign:
+          accountId: accountId
           environment: PRODUCTION
           userId: userId
           integrationKey: integrationKey
           rsaPrivateKey: rsaPrivateKey
           hmacSignature: hmacSignature
           connectUrl: https://openapi-generator.tech
+        additionalDocusignAccounts:
+        - {}
+        - {}
       properties:
         branding:
           $ref: "#/components/schemas/BrandingConfig"
@@ -35107,6 +35306,14 @@ components:
           $ref: "#/components/schemas/GoogleConfig"
         docusign:
           $ref: "#/components/schemas/DocusignConfig"
+        additionalDocusignAccounts:
+          description: "Additional DocuSign account configurations selectable through\
+            \ accountId. The docusign configuration remains the default for new envelopes\
+            \ when accountId is omitted. Each entry has its own environment, credentials,\
+            \ and callback settings, with no implicit inheritance from docusign."
+          items:
+            $ref: "#/components/schemas/AdditionalDocusignConfig"
+          type: array
       type: object
     GoogleConfig:
       example:
@@ -35122,6 +35329,7 @@ components:
       type: object
     DocusignConfig:
       example:
+        accountId: accountId
         environment: PRODUCTION
         userId: userId
         integrationKey: integrationKey
@@ -35129,6 +35337,14 @@ components:
         hmacSignature: hmacSignature
         connectUrl: https://openapi-generator.tech
       properties:
+        accountId:
+          description: "Optional DocuSign API account GUID. When set, selects the\
+            \ matching account accessible to the configured DocuSign user and its\
+            \ API base URI. When omitted, uses the first account returned by DocuSign\
+            \ for that user. Invalid or inaccessible account IDs are rejected without\
+            \ falling back to another account. This is optional for the default docusign\
+            \ configuration and required for each additionalDocusignAccounts entry."
+          type: string
         environment:
           $ref: "#/components/schemas/DocusignEnvironment"
         userId:
@@ -35152,6 +35368,20 @@ components:
           format: uri
           type: string
       type: object
+    AdditionalDocusignConfig:
+      allOf:
+      - $ref: "#/components/schemas/DocusignConfig"
+      - required:
+        - accountId
+        - environment
+        - integrationKey
+        - rsaPrivateKey
+        - userId
+        type: object
+      description: A self-contained additional DocuSign account configuration. Credentials
+        may match another configuration when that identity can access both accounts.
+        Optional HMAC and callback settings apply only to this account.
+      example: {}
     AddDelegationTokenRequest:
       example:
         permissions:
@@ -37705,6 +37935,10 @@ components:
         jwtConfiguration:
           audience:
           - Fn::Sub: "${CognitoUserPoolClient}"
+          - Fn::If:
+            - HasCognitoAdditionalAppClientId
+            - Ref: CognitoAdditionalAppClientId
+            - Ref: AWS::NoValue
           issuer:
             Fn::Sub: "https://cognito-idp.${AWS::Region}.${AWS::URLSuffix}/${CognitoUserPool}"
         type: jwt

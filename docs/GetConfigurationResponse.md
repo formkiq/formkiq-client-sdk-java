@@ -18,6 +18,7 @@
 |**ocr** | [**OcrConfig**](OcrConfig.md) |  |  [optional] |
 |**google** | [**GoogleConfig**](GoogleConfig.md) |  |  [optional] |
 |**docusign** | [**DocusignConfig**](DocusignConfig.md) |  |  [optional] |
+|**additionalDocusignAccounts** | [**List&lt;AdditionalDocusignConfig&gt;**](AdditionalDocusignConfig.md) | Additional DocuSign account configurations selectable through accountId. The docusign configuration remains the default for new envelopes when accountId is omitted. Each entry has its own environment, credentials, and callback settings, with no implicit inheritance from docusign. |  [optional] |
 
 
 
